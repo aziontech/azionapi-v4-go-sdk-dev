@@ -1,1 +1,1 @@
-edge-api.yaml
+edgesql-api.yaml
