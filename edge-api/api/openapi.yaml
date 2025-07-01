@@ -13413,7 +13413,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: edge_application, edge_firewall, id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version)
+          (Valid fields: id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version)
         explode: true
         in: query
         name: ordering
@@ -13712,17 +13712,18 @@ paths:
       summary: Create an Workload
       tags:
       - Workloads
-  /workspace/workloads/{global_id}:
+  /workspace/workloads/{workload_id}:
     delete:
       description: Destruction of a specific Workload in your account.
       operationId: Destroy Workload
       parameters:
       - explode: false
         in: path
-        name: global_id
+        name: workload_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       responses:
         "202":
@@ -13863,10 +13864,11 @@ paths:
         style: form
       - explode: false
         in: path
-        name: global_id
+        name: workload_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       responses:
         "200":
@@ -14000,10 +14002,11 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: global_id
+        name: workload_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -14148,10 +14151,11 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: global_id
+        name: workload_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -14305,7 +14309,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, tag, current)
+          (Valid fields: id, name, active, last_editor, last_modified, current)
         explode: true
         in: query
         name: ordering
@@ -14344,8 +14348,8 @@ paths:
         name: workload_id
         required: true
         schema:
-          pattern: ^\d+$
-          type: string
+          format: int64
+          type: integer
         style: simple
       responses:
         "200":
@@ -14472,11 +14476,171 @@ paths:
       summary: List Workload Deployments
       tags:
       - Workload Deployments
-  /workspace/workloads/{workload_id}/deployments/{id}:
+    post:
+      description: Create a new Workload Deployment in your account.
+      operationId: Create Workload Deployment
+      parameters:
+      - explode: false
+        in: path
+        name: workload_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkloadDeploymentRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncWorkloadDeployment"
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestWorkloadDeployment"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncWorkloadDeployment"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Create a Workload Deployment
+      tags:
+      - Workload Deployments
+  /workspace/workloads/{workload_id}/deployments/{deployment_id}:
+    delete:
+      description: Destruction of a specific Workload Deployment in your account.
+      operationId: Destroy Workload Deployment
+      parameters:
+      - explode: false
+        in: path
+        name: deployment_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: workload_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncDeleteWorkloadDeployment"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncDeleteWorkloadDeployment"
+          description: Accepted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestWorkloadDeployment"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Destroy a Workload Deployment
+      tags:
+      - Workload Deployments
     get:
       description: Retrieve details of a specific Workload Deployment in your account.
       operationId: Retrieve Workload Deployment
       parameters:
+      - explode: false
+        in: path
+        name: deployment_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -14487,18 +14651,11 @@ paths:
         style: form
       - explode: false
         in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: false
-        in: path
         name: workload_id
         required: true
         schema:
-          pattern: ^\d+$
-          type: string
+          format: int64
+          type: integer
         style: simple
       responses:
         "200":
@@ -14632,18 +14789,19 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: id
+        name: deployment_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       - explode: false
         in: path
         name: workload_id
         required: true
         schema:
-          pattern: ^\d+$
-          type: string
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -14788,18 +14946,19 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: id
+        name: deployment_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       - explode: false
         in: path
         name: workload_id
         required: true
         schema:
-          pattern: ^\d+$
-          type: string
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -15323,6 +15482,59 @@ components:
     CacheSetting:
       additionalProperties: false
       example:
+        name: name
+        id: 0
+        modules:
+          edge_cache:
+            max_age: 4622587
+            caching_for_post_enabled: true
+            caching_for_options_enabled: true
+            stale_cache_enabled: true
+            behavior: behavior
+            tiered_cache_region: tiered_cache_region
+            tiered_cache_enabled: true
+          browser_cache:
+            max_age: 19008185
+            behavior: behavior
+          slice_controls:
+            slice_tiered_caching_enabled: true
+            slice_edge_caching_enabled: true
+            slice_configuration_range: 577
+            slice_configuration_enabled: true
+          application_controls:
+            cache_by_cookies: cache_by_cookies
+            query_string_fields:
+            - query_string_fields
+            - query_string_fields
+            adaptive_delivery_action: adaptive_delivery_action
+            device_group:
+            - 5
+            - 5
+            query_string_sort_enabled: true
+            cookie_names:
+            - cookie_names
+            - cookie_names
+            cache_by_query_string: cache_by_query_string
+      properties:
+        id:
+          format: int64
+          readOnly: true
+          type: integer
+        name:
+          maxLength: 250
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 \\-\\.\\'\\,|]+$"
+          type: string
+        modules:
+          $ref: "#/components/schemas/CacheSettingModules"
+      required:
+      - id
+      - name
+      title: CacheSetting
+      type: object
+    CacheSettingModules:
+      additionalProperties: false
+      example:
         edge_cache:
           max_age: 4622587
           caching_for_post_enabled: true
@@ -15334,7 +15546,6 @@ components:
         browser_cache:
           max_age: 19008185
           behavior: behavior
-        name: name
         slice_controls:
           slice_tiered_caching_enabled: true
           slice_edge_caching_enabled: true
@@ -15354,17 +15565,7 @@ components:
           - cookie_names
           - cookie_names
           cache_by_query_string: cache_by_query_string
-        id: 0
       properties:
-        id:
-          format: int64
-          readOnly: true
-          type: integer
-        name:
-          maxLength: 250
-          minLength: 1
-          pattern: "^[a-zA-Z0-9 \\-\\.\\'\\,|]+$"
-          type: string
         browser_cache:
           $ref: "#/components/schemas/BrowserCacheModule"
         edge_cache:
@@ -15377,12 +15578,10 @@ components:
       - application_controls
       - browser_cache
       - edge_cache
-      - id
-      - name
       - slice_controls
-      title: CacheSetting
+      title: CacheSettingModules
       type: object
-    CacheSettingRequest:
+    CacheSettingModulesRequest:
       additionalProperties: false
       example:
         edge_cache:
@@ -15396,7 +15595,6 @@ components:
         browser_cache:
           max_age: 2525491
           behavior: behavior
-        name: name
         slice_controls:
           slice_tiered_caching_enabled: true
           slice_edge_caching_enabled: true
@@ -15417,11 +15615,6 @@ components:
           - cookie_names
           cache_by_query_string: cache_by_query_string
       properties:
-        name:
-          maxLength: 250
-          minLength: 1
-          pattern: "^[a-zA-Z0-9 \\-\\.\\'\\,|]+$"
-          type: string
         browser_cache:
           $ref: "#/components/schemas/BrowserCacheModuleRequest"
         edge_cache:
@@ -15434,8 +15627,54 @@ components:
       - application_controls
       - browser_cache
       - edge_cache
-      - name
       - slice_controls
+      title: CacheSettingModulesRequest
+      type: object
+    CacheSettingRequest:
+      additionalProperties: false
+      example:
+        name: name
+        modules:
+          edge_cache:
+            max_age: 19008185
+            caching_for_post_enabled: true
+            caching_for_options_enabled: true
+            stale_cache_enabled: true
+            behavior: behavior
+            tiered_cache_region: tiered_cache_region
+            tiered_cache_enabled: true
+          browser_cache:
+            max_age: 2525491
+            behavior: behavior
+          slice_controls:
+            slice_tiered_caching_enabled: true
+            slice_edge_caching_enabled: true
+            slice_configuration_range: 610
+            slice_configuration_enabled: true
+          application_controls:
+            cache_by_cookies: cache_by_cookies
+            query_string_fields:
+            - query_string_fields
+            - query_string_fields
+            adaptive_delivery_action: adaptive_delivery_action
+            device_group:
+            - 1
+            - 1
+            query_string_sort_enabled: true
+            cookie_names:
+            - cookie_names
+            - cookie_names
+            cache_by_query_string: cache_by_query_string
+      properties:
+        name:
+          maxLength: 250
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 \\-\\.\\'\\,|]+$"
+          type: string
+        modules:
+          $ref: "#/components/schemas/CacheSettingModulesRequest"
+      required:
+      - name
       title: CacheSettingRequest
       type: object
     CaptureMatchGroupsArgument:
@@ -15719,6 +15958,74 @@ components:
       - name
       title: CustomPagesRequest
       type: object
+    DefaultDeploymentStrategy:
+      additionalProperties: false
+      example:
+        custom_page: 1
+        edge_firewall: 1
+        edge_application: 5559347081229897728
+      properties:
+        edge_application:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        edge_firewall:
+          format: int64
+          nullable: true
+          type: integer
+        custom_page:
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+      required:
+      - edge_application
+      title: DefaultDeploymentStrategy
+      type: object
+    DefaultDeploymentStrategyAttrs:
+      additionalProperties: false
+      properties:
+        attributes:
+          $ref: "#/components/schemas/DefaultDeploymentStrategy"
+      required:
+      - attributes
+      title: DefaultDeploymentStrategyAttrs
+      type: object
+    DefaultDeploymentStrategyAttrsRequest:
+      additionalProperties: false
+      properties:
+        attributes:
+          $ref: "#/components/schemas/DefaultDeploymentStrategyRequest"
+      required:
+      - attributes
+      title: DefaultDeploymentStrategyAttrsRequest
+      type: object
+    DefaultDeploymentStrategyRequest:
+      additionalProperties: false
+      example:
+        custom_page: 1
+        edge_firewall: 6
+        edge_application: 738633633822310400
+      properties:
+        edge_application:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        edge_firewall:
+          format: int64
+          nullable: true
+          type: integer
+        custom_page:
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+      required:
+      - edge_application
+      title: DefaultDeploymentStrategyRequest
+      type: object
     DefaultErrorResponse:
       additionalProperties: false
       example:
@@ -15730,6 +16037,63 @@ components:
           pattern: .*
           type: string
       title: DefaultErrorResponse
+      type: object
+    DeploymentStrategy:
+      $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrs"
+    DeploymentStrategyDefaultDeploymentStrategyAttrs:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/DeploymentStrategyShared"
+      - $ref: "#/components/schemas/DefaultDeploymentStrategyAttrs"
+      example:
+        strategy_type: strategy_type
+        attributes:
+          custom_page: 1
+          edge_firewall: 1
+          edge_application: 5559347081229897728
+      title: DeploymentStrategyDefaultDeploymentStrategyAttrs
+    DeploymentStrategyDefaultDeploymentStrategyAttrsRequest:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/DeploymentStrategyShared"
+      - $ref: "#/components/schemas/DefaultDeploymentStrategyAttrsRequest"
+      example:
+        strategy_type: strategy_type
+        attributes:
+          custom_page: 1
+          edge_firewall: 6
+          edge_application: 738633633822310400
+      title: DeploymentStrategyDefaultDeploymentStrategyAttrsRequest
+    DeploymentStrategyRequest:
+      $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest"
+    DeploymentStrategyShared:
+      additionalProperties: false
+      description: |-
+        Polymorphic serializer base class.
+
+        Note that the discriminator field must exist at the same depth as the mapped
+        serializer fields for the OpenAPI introspection. See
+        https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/ for
+        more information. As such, it's not possible to define something like:
+
+        {
+            "object_type": "foo",
+            "polymorphic_context": {
+                <foo-specific fields>
+            }
+        }
+
+        without explicitly wrapping this in a parent serializer, i.e. -
+        ``polymorphic_context`` can not be a PolymorphicSerializer itself, as it requires
+        access to the ``object_type`` in the parent scope.
+      properties:
+        strategy_type:
+          description: '* `default` - Default'
+          title: StrategyTypeEnum
+          type: string
+      required:
+      - strategy_type
+      title: DeploymentStrategyShared
       type: object
     EdgeApplication:
       additionalProperties: false
@@ -19345,7 +19709,7 @@ components:
 
             - IP with expiration date: 192.168.0.1 --LT2025-05-29T12:25:23Z
 
-                (The expiration date format is --LT followed by ISO8601 date)
+                (The expiration date format is --LT followed by ISO8601 date in UTC timezone)
 
 
         2. Country Codes:
@@ -19367,12 +19731,11 @@ components:
         id: 0
         type: type
         items:
-        - 192.168.0.1
-        - 192.168.0.1/24
-        - 192.168.0.1 --LT2025-05-29T12:25:23Z
-        - 2001:db8:3333:4444:5555:6666:7777:8888
-        - BR
-        - "1234"
+        - items
+        - items
+        - items
+        - items
+        - items
         last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -19392,32 +19755,10 @@ components:
           title: Type528Enum
           type: string
         items:
-          example:
-          - 192.168.0.1
-          - 192.168.0.1/24
-          - 192.168.0.1 --LT2025-05-29T12:25:23Z
-          - 2001:db8:3333:4444:5555:6666:7777:8888
-          - BR
-          - "1234"
           items:
-            description: |-
-              A Network List item can be one of the following formats:
-
-              1. IP Addresses (IPv4/IPv6):
-                 - Simple IPv4: 192.168.0.1
-                 - IPv4 with CIDR: 192.168.0.1/24
-                 - Simple IPv6: 2001:db8:3333:4444:5555:6666:7777:8888
-                 - IPv6 with CIDR: 2001:db8::/32
-                 - IP with expiration date: 192.168.0.1 --LT2025-05-29T12:25:23Z
-                   (The expiration date format is --LT followed by ISO8601 date)
-
-              2. Country Codes:
-                 - Two-character uppercase alphanumeric country code (ISO 3166-1 alpha-2)
-                 - Examples: BR, US, DE, JP
-
-              3. Autonomous System Numbers (ASN):
-                 - Number composed of digits only
-                 - Examples: 1234, 5678, 13335
+            maxLength: 250
+            minLength: 0
+            pattern: .*
             type: string
           maxItems: 20000
           minItems: 1
@@ -19460,7 +19801,7 @@ components:
 
             - IP with expiration date: 192.168.0.1 --LT2025-05-29T12:25:23Z
 
-                (The expiration date format is --LT followed by ISO8601 date)
+                (The expiration date format is --LT followed by ISO8601 date in UTC timezone)
 
 
         2. Country Codes:
@@ -19480,12 +19821,11 @@ components:
         active: true
         type: type
         items:
-        - 192.168.0.1
-        - 192.168.0.1/24
-        - 192.168.0.1 --LT2025-05-29T12:25:23Z
-        - 2001:db8:3333:4444:5555:6666:7777:8888
-        - BR
-        - "1234"
+        - items
+        - items
+        - items
+        - items
+        - items
       properties:
         name:
           maxLength: 250
@@ -19500,32 +19840,10 @@ components:
           title: Type528Enum
           type: string
         items:
-          example:
-          - 192.168.0.1
-          - 192.168.0.1/24
-          - 192.168.0.1 --LT2025-05-29T12:25:23Z
-          - 2001:db8:3333:4444:5555:6666:7777:8888
-          - BR
-          - "1234"
           items:
-            description: |-
-              A Network List item can be one of the following formats:
-
-              1. IP Addresses (IPv4/IPv6):
-                 - Simple IPv4: 192.168.0.1
-                 - IPv4 with CIDR: 192.168.0.1/24
-                 - Simple IPv6: 2001:db8:3333:4444:5555:6666:7777:8888
-                 - IPv6 with CIDR: 2001:db8::/32
-                 - IP with expiration date: 192.168.0.1 --LT2025-05-29T12:25:23Z
-                   (The expiration date format is --LT followed by ISO8601 date)
-
-              2. Country Codes:
-                 - Two-character uppercase alphanumeric country code (ISO 3166-1 alpha-2)
-                 - Examples: BR, US, DE, JP
-
-              3. Autonomous System Numbers (ASN):
-                 - Number composed of digits only
-                 - Examples: 1234, 5678, 13335
+            maxLength: 250
+            minLength: 1
+            pattern: .*
             type: string
           maxItems: 20000
           minItems: 1
@@ -20611,70 +20929,72 @@ components:
       example:
         count: 123
         results:
-        - edge_cache:
-            max_age: 4622587
-            caching_for_post_enabled: true
-            caching_for_options_enabled: true
-            stale_cache_enabled: true
-            behavior: behavior
-            tiered_cache_region: tiered_cache_region
-            tiered_cache_enabled: true
-          browser_cache:
-            max_age: 19008185
-            behavior: behavior
-          name: name
-          slice_controls:
-            slice_tiered_caching_enabled: true
-            slice_edge_caching_enabled: true
-            slice_configuration_range: 577
-            slice_configuration_enabled: true
-          application_controls:
-            cache_by_cookies: cache_by_cookies
-            query_string_fields:
-            - query_string_fields
-            - query_string_fields
-            adaptive_delivery_action: adaptive_delivery_action
-            device_group:
-            - 5
-            - 5
-            query_string_sort_enabled: true
-            cookie_names:
-            - cookie_names
-            - cookie_names
-            cache_by_query_string: cache_by_query_string
+        - name: name
           id: 0
-        - edge_cache:
-            max_age: 4622587
-            caching_for_post_enabled: true
-            caching_for_options_enabled: true
-            stale_cache_enabled: true
-            behavior: behavior
-            tiered_cache_region: tiered_cache_region
-            tiered_cache_enabled: true
-          browser_cache:
-            max_age: 19008185
-            behavior: behavior
-          name: name
-          slice_controls:
-            slice_tiered_caching_enabled: true
-            slice_edge_caching_enabled: true
-            slice_configuration_range: 577
-            slice_configuration_enabled: true
-          application_controls:
-            cache_by_cookies: cache_by_cookies
-            query_string_fields:
-            - query_string_fields
-            - query_string_fields
-            adaptive_delivery_action: adaptive_delivery_action
-            device_group:
-            - 5
-            - 5
-            query_string_sort_enabled: true
-            cookie_names:
-            - cookie_names
-            - cookie_names
-            cache_by_query_string: cache_by_query_string
+          modules:
+            edge_cache:
+              max_age: 4622587
+              caching_for_post_enabled: true
+              caching_for_options_enabled: true
+              stale_cache_enabled: true
+              behavior: behavior
+              tiered_cache_region: tiered_cache_region
+              tiered_cache_enabled: true
+            browser_cache:
+              max_age: 19008185
+              behavior: behavior
+            slice_controls:
+              slice_tiered_caching_enabled: true
+              slice_edge_caching_enabled: true
+              slice_configuration_range: 577
+              slice_configuration_enabled: true
+            application_controls:
+              cache_by_cookies: cache_by_cookies
+              query_string_fields:
+              - query_string_fields
+              - query_string_fields
+              adaptive_delivery_action: adaptive_delivery_action
+              device_group:
+              - 5
+              - 5
+              query_string_sort_enabled: true
+              cookie_names:
+              - cookie_names
+              - cookie_names
+              cache_by_query_string: cache_by_query_string
+        - name: name
           id: 0
+          modules:
+            edge_cache:
+              max_age: 4622587
+              caching_for_post_enabled: true
+              caching_for_options_enabled: true
+              stale_cache_enabled: true
+              behavior: behavior
+              tiered_cache_region: tiered_cache_region
+              tiered_cache_enabled: true
+            browser_cache:
+              max_age: 19008185
+              behavior: behavior
+            slice_controls:
+              slice_tiered_caching_enabled: true
+              slice_edge_caching_enabled: true
+              slice_configuration_range: 577
+              slice_configuration_enabled: true
+            application_controls:
+              cache_by_cookies: cache_by_cookies
+              query_string_fields:
+              - query_string_fields
+              - query_string_fields
+              adaptive_delivery_action: adaptive_delivery_action
+              device_group:
+              - 5
+              - 5
+              query_string_sort_enabled: true
+              cookie_names:
+              - cookie_names
+              - cookie_names
+              cache_by_query_string: cache_by_query_string
       properties:
         count:
           example: 123
@@ -20799,20 +21119,30 @@ components:
       example:
         count: 123
         results:
-        - binds:
-            custom_page: 1
-            edge_firewall: 1
-            edge_application: 5559347081229897728
-          current: true
+        - current: true
+          last_editor: last_editor
+          name: name
+          active: true
           id: 0
-          tag: tag
-        - binds:
-            custom_page: 1
-            edge_firewall: 1
-            edge_application: 5559347081229897728
-          current: true
+          strategy:
+            strategy_type: strategy_type
+            attributes:
+              custom_page: 1
+              edge_firewall: 1
+              edge_application: 5559347081229897728
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        - current: true
+          last_editor: last_editor
+          name: name
+          active: true
           id: 0
-          tag: tag
+          strategy:
+            strategy_type: strategy_type
+            attributes:
+              custom_page: 1
+              edge_firewall: 1
+              edge_application: 5559347081229897728
+          last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           example: 123
@@ -20893,51 +21223,46 @@ components:
     PatchedCacheSettingRequest:
       additionalProperties: false
       example:
-        edge_cache:
-          max_age: 19008185
-          caching_for_post_enabled: true
-          caching_for_options_enabled: true
-          stale_cache_enabled: true
-          behavior: behavior
-          tiered_cache_region: tiered_cache_region
-          tiered_cache_enabled: true
-        browser_cache:
-          max_age: 2525491
-          behavior: behavior
         name: name
-        slice_controls:
-          slice_tiered_caching_enabled: true
-          slice_edge_caching_enabled: true
-          slice_configuration_range: 610
-          slice_configuration_enabled: true
-        application_controls:
-          cache_by_cookies: cache_by_cookies
-          query_string_fields:
-          - query_string_fields
-          - query_string_fields
-          adaptive_delivery_action: adaptive_delivery_action
-          device_group:
-          - 1
-          - 1
-          query_string_sort_enabled: true
-          cookie_names:
-          - cookie_names
-          - cookie_names
-          cache_by_query_string: cache_by_query_string
+        modules:
+          edge_cache:
+            max_age: 19008185
+            caching_for_post_enabled: true
+            caching_for_options_enabled: true
+            stale_cache_enabled: true
+            behavior: behavior
+            tiered_cache_region: tiered_cache_region
+            tiered_cache_enabled: true
+          browser_cache:
+            max_age: 2525491
+            behavior: behavior
+          slice_controls:
+            slice_tiered_caching_enabled: true
+            slice_edge_caching_enabled: true
+            slice_configuration_range: 610
+            slice_configuration_enabled: true
+          application_controls:
+            cache_by_cookies: cache_by_cookies
+            query_string_fields:
+            - query_string_fields
+            - query_string_fields
+            adaptive_delivery_action: adaptive_delivery_action
+            device_group:
+            - 1
+            - 1
+            query_string_sort_enabled: true
+            cookie_names:
+            - cookie_names
+            - cookie_names
+            cache_by_query_string: cache_by_query_string
       properties:
         name:
           maxLength: 250
           minLength: 1
           pattern: "^[a-zA-Z0-9 \\-\\.\\'\\,|]+$"
           type: string
-        browser_cache:
-          $ref: "#/components/schemas/BrowserCacheModuleRequest"
-        edge_cache:
-          $ref: "#/components/schemas/EdgeCacheModuleRequest"
-        application_controls:
-          $ref: "#/components/schemas/ApplicationControlsModuleRequest"
-        slice_controls:
-          $ref: "#/components/schemas/SliceControlsModuleRequest"
+        modules:
+          $ref: "#/components/schemas/CacheSettingModulesRequest"
       title: PatchedCacheSettingRequest
       type: object
     PatchedCustomPagesRequest:
@@ -21727,7 +22052,7 @@ components:
 
             - IP with expiration date: 192.168.0.1 --LT2025-05-29T12:25:23Z
 
-                (The expiration date format is --LT followed by ISO8601 date)
+                (The expiration date format is --LT followed by ISO8601 date in UTC timezone)
 
 
         2. Country Codes:
@@ -21747,12 +22072,11 @@ components:
         active: true
         type: type
         items:
-        - 192.168.0.1
-        - 192.168.0.1/24
-        - 192.168.0.1 --LT2025-05-29T12:25:23Z
-        - 2001:db8:3333:4444:5555:6666:7777:8888
-        - BR
-        - "1234"
+        - items
+        - items
+        - items
+        - items
+        - items
       properties:
         name:
           maxLength: 250
@@ -21767,32 +22091,10 @@ components:
           title: Type528Enum
           type: string
         items:
-          example:
-          - 192.168.0.1
-          - 192.168.0.1/24
-          - 192.168.0.1 --LT2025-05-29T12:25:23Z
-          - 2001:db8:3333:4444:5555:6666:7777:8888
-          - BR
-          - "1234"
           items:
-            description: |-
-              A Network List item can be one of the following formats:
-
-              1. IP Addresses (IPv4/IPv6):
-                 - Simple IPv4: 192.168.0.1
-                 - IPv4 with CIDR: 192.168.0.1/24
-                 - Simple IPv6: 2001:db8:3333:4444:5555:6666:7777:8888
-                 - IPv6 with CIDR: 2001:db8::/32
-                 - IP with expiration date: 192.168.0.1 --LT2025-05-29T12:25:23Z
-                   (The expiration date format is --LT followed by ISO8601 date)
-
-              2. Country Codes:
-                 - Two-character uppercase alphanumeric country code (ISO 3166-1 alpha-2)
-                 - Examples: BR, US, DE, JP
-
-              3. Autonomous System Numbers (ASN):
-                 - Number composed of digits only
-                 - Examples: 1234, 5678, 13335
+            maxLength: 250
+            minLength: 1
+            pattern: .*
             type: string
           maxItems: 20000
           minItems: 1
@@ -22012,31 +22314,31 @@ components:
     PatchedWorkloadDeploymentRequest:
       additionalProperties: false
       example:
-        binds:
-          custom_page: 1
-          edge_firewall: 6
-          edge_application: 738633633822310400
         current: true
-        tag: tag
+        name: name
+        active: true
+        strategy:
+          strategy_type: strategy_type
+          attributes:
+            custom_page: 1
+            edge_firewall: 6
+            edge_application: 738633633822310400
       properties:
-        tag:
-          maxLength: 100
+        name:
+          maxLength: 254
           minLength: 1
           pattern: .*
           type: string
-        binds:
-          $ref: "#/components/schemas/WorkloadDeploymentBindsRequest"
         current:
           type: boolean
+        active:
+          type: boolean
+        strategy:
+          $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest"
       title: PatchedWorkloadDeploymentRequest
       type: object
     PatchedWorkloadRequest:
       additionalProperties: false
-      description: |-
-        Serializer for Workload model.
-
-        Handles the serialization, validation, creation and updating of Workload instances.
-        Includes nested serializers for TLS, protocols, and mTLS configurations.
       example:
         infrastructure: ""
         name: name
@@ -22162,38 +22464,39 @@ components:
       additionalProperties: false
       example:
         data:
-          edge_cache:
-            max_age: 4622587
-            caching_for_post_enabled: true
-            caching_for_options_enabled: true
-            stale_cache_enabled: true
-            behavior: behavior
-            tiered_cache_region: tiered_cache_region
-            tiered_cache_enabled: true
-          browser_cache:
-            max_age: 19008185
-            behavior: behavior
           name: name
-          slice_controls:
-            slice_tiered_caching_enabled: true
-            slice_edge_caching_enabled: true
-            slice_configuration_range: 577
-            slice_configuration_enabled: true
-          application_controls:
-            cache_by_cookies: cache_by_cookies
-            query_string_fields:
-            - query_string_fields
-            - query_string_fields
-            adaptive_delivery_action: adaptive_delivery_action
-            device_group:
-            - 5
-            - 5
-            query_string_sort_enabled: true
-            cookie_names:
-            - cookie_names
-            - cookie_names
-            cache_by_query_string: cache_by_query_string
           id: 0
+          modules:
+            edge_cache:
+              max_age: 4622587
+              caching_for_post_enabled: true
+              caching_for_options_enabled: true
+              stale_cache_enabled: true
+              behavior: behavior
+              tiered_cache_region: tiered_cache_region
+              tiered_cache_enabled: true
+            browser_cache:
+              max_age: 19008185
+              behavior: behavior
+            slice_controls:
+              slice_tiered_caching_enabled: true
+              slice_edge_caching_enabled: true
+              slice_configuration_range: 577
+              slice_configuration_enabled: true
+            application_controls:
+              cache_by_cookies: cache_by_cookies
+              query_string_fields:
+              - query_string_fields
+              - query_string_fields
+              adaptive_delivery_action: adaptive_delivery_action
+              device_group:
+              - 5
+              - 5
+              query_string_sort_enabled: true
+              cookie_names:
+              - cookie_names
+              - cookie_names
+              cache_by_query_string: cache_by_query_string
         state: state
       properties:
         state:
@@ -22420,6 +22723,18 @@ components:
           pattern: .*
           type: string
       title: ResponseAsyncDeleteWorkload
+      type: object
+    ResponseAsyncDeleteWorkloadDeployment:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          pattern: .*
+          type: string
+      title: ResponseAsyncDeleteWorkloadDeployment
       type: object
     ResponseAsyncEdgeApplication:
       additionalProperties: false
@@ -22932,12 +23247,11 @@ components:
           id: 0
           type: type
           items:
-          - 192.168.0.1
-          - 192.168.0.1/24
-          - 192.168.0.1 --LT2025-05-29T12:25:23Z
-          - 2001:db8:3333:4444:5555:6666:7777:8888
-          - BR
-          - "1234"
+          - items
+          - items
+          - items
+          - items
+          - items
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -23086,13 +23400,18 @@ components:
       additionalProperties: false
       example:
         data:
-          binds:
-            custom_page: 1
-            edge_firewall: 1
-            edge_application: 5559347081229897728
           current: true
+          last_editor: last_editor
+          name: name
+          active: true
           id: 0
-          tag: tag
+          strategy:
+            strategy_type: strategy_type
+            attributes:
+              custom_page: 1
+              edge_firewall: 1
+              edge_application: 5559347081229897728
+          last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
         state:
@@ -23109,75 +23428,76 @@ components:
     ResponseBadRequestCacheSetting:
       additionalProperties: false
       example:
-        edge_cache:
-          max_age:
-          - max_age
-          - max_age
-          caching_for_post_enabled:
-          - caching_for_post_enabled
-          - caching_for_post_enabled
-          caching_for_options_enabled:
-          - caching_for_options_enabled
-          - caching_for_options_enabled
-          stale_cache_enabled:
-          - stale_cache_enabled
-          - stale_cache_enabled
-          behavior:
-          - behavior
-          - behavior
-          tiered_cache_region:
-          - tiered_cache_region
-          - tiered_cache_region
-          tiered_cache_enabled:
-          - tiered_cache_enabled
-          - tiered_cache_enabled
-        browser_cache:
-          max_age:
-          - max_age
-          - max_age
-          behavior:
-          - behavior
-          - behavior
         name:
         - name
         - name
-        slice_controls:
-          slice_tiered_caching_enabled:
-          - slice_tiered_caching_enabled
-          - slice_tiered_caching_enabled
-          slice_edge_caching_enabled:
-          - slice_edge_caching_enabled
-          - slice_edge_caching_enabled
-          slice_configuration_range:
-          - slice_configuration_range
-          - slice_configuration_range
-          slice_configuration_enabled:
-          - slice_configuration_enabled
-          - slice_configuration_enabled
-        application_controls:
-          cache_by_cookies:
-          - cache_by_cookies
-          - cache_by_cookies
-          query_string_fields:
-          - ResponseBadRequestSerializerMetaclassApplication_controlsField_query_string_fields
-          - ResponseBadRequestSerializerMetaclassApplication_controlsField_query_string_fields
-          adaptive_delivery_action:
-          - adaptive_delivery_action
-          - adaptive_delivery_action
-          device_group:
-          - device_group
-          - device_group
-          query_string_sort_enabled:
-          - query_string_sort_enabled
-          - query_string_sort_enabled
-          cookie_names: null
-          cache_by_query_string:
-          - cache_by_query_string
-          - cache_by_query_string
         id:
         - id
         - id
         detail: detail
+        modules:
+          edge_cache:
+            max_age:
+            - max_age
+            - max_age
+            caching_for_post_enabled:
+            - caching_for_post_enabled
+            - caching_for_post_enabled
+            caching_for_options_enabled:
+            - caching_for_options_enabled
+            - caching_for_options_enabled
+            stale_cache_enabled:
+            - stale_cache_enabled
+            - stale_cache_enabled
+            behavior:
+            - behavior
+            - behavior
+            tiered_cache_region:
+            - tiered_cache_region
+            - tiered_cache_region
+            tiered_cache_enabled:
+            - tiered_cache_enabled
+            - tiered_cache_enabled
+          browser_cache:
+            max_age:
+            - max_age
+            - max_age
+            behavior:
+            - behavior
+            - behavior
+          slice_controls:
+            slice_tiered_caching_enabled:
+            - slice_tiered_caching_enabled
+            - slice_tiered_caching_enabled
+            slice_edge_caching_enabled:
+            - slice_edge_caching_enabled
+            - slice_edge_caching_enabled
+            slice_configuration_range:
+            - slice_configuration_range
+            - slice_configuration_range
+            slice_configuration_enabled:
+            - slice_configuration_enabled
+            - slice_configuration_enabled
+          application_controls:
+            cache_by_cookies:
+            - cache_by_cookies
+            - cache_by_cookies
+            query_string_fields:
+            - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
+            - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
+            adaptive_delivery_action:
+            - adaptive_delivery_action
+            - adaptive_delivery_action
+            device_group:
+            - device_group
+            - device_group
+            query_string_sort_enabled:
+            - query_string_sort_enabled
+            - query_string_sort_enabled
+            cookie_names: null
+            cache_by_query_string:
+            - cache_by_query_string
+            - cache_by_query_string
       properties:
         id:
           items:
@@ -23187,20 +23507,172 @@ components:
           items:
             type: string
           type: array
-        browser_cache:
-          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassBrowser_cacheField"
-        edge_cache:
-          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassEdge_cacheField"
-        application_controls:
-          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassApplication_controlsField"
-        slice_controls:
-          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassSlice_controlsField"
+        modules:
+          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassModulesField"
         detail:
           maxLength: 4096
           minLength: 1
           pattern: .*
           type: string
       title: ResponseBadRequestCacheSetting
+      type: object
+    ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField:
+      additionalProperties: false
+      example:
+        cache_by_cookies:
+        - cache_by_cookies
+        - cache_by_cookies
+        query_string_fields:
+        - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
+        - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
+        adaptive_delivery_action:
+        - adaptive_delivery_action
+        - adaptive_delivery_action
+        device_group:
+        - device_group
+        - device_group
+        query_string_sort_enabled:
+        - query_string_sort_enabled
+        - query_string_sort_enabled
+        cookie_names: null
+        cache_by_query_string:
+        - cache_by_query_string
+        - cache_by_query_string
+      properties:
+        cache_by_query_string:
+          items:
+            type: string
+          type: array
+        query_string_fields:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields"
+        query_string_sort_enabled:
+          items:
+            type: string
+          type: array
+        cache_by_cookies:
+          items:
+            type: string
+          type: array
+        cookie_names:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields"
+        adaptive_delivery_action:
+          items:
+            type: string
+          type: array
+        device_group:
+          items:
+            type: string
+          type: array
+      title: ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField
+      type: object
+    ResponseBadRequestCacheSettingModulesSerializerBrowser_cacheField:
+      additionalProperties: false
+      example:
+        max_age:
+        - max_age
+        - max_age
+        behavior:
+        - behavior
+        - behavior
+      properties:
+        behavior:
+          items:
+            type: string
+          type: array
+        max_age:
+          items:
+            type: string
+          type: array
+      title: ResponseBadRequestCacheSettingModulesSerializerBrowser_cacheField
+      type: object
+    ResponseBadRequestCacheSettingModulesSerializerEdge_cacheField:
+      additionalProperties: false
+      example:
+        max_age:
+        - max_age
+        - max_age
+        caching_for_post_enabled:
+        - caching_for_post_enabled
+        - caching_for_post_enabled
+        caching_for_options_enabled:
+        - caching_for_options_enabled
+        - caching_for_options_enabled
+        stale_cache_enabled:
+        - stale_cache_enabled
+        - stale_cache_enabled
+        behavior:
+        - behavior
+        - behavior
+        tiered_cache_region:
+        - tiered_cache_region
+        - tiered_cache_region
+        tiered_cache_enabled:
+        - tiered_cache_enabled
+        - tiered_cache_enabled
+      properties:
+        behavior:
+          items:
+            type: string
+          type: array
+        max_age:
+          items:
+            type: string
+          type: array
+        caching_for_post_enabled:
+          items:
+            type: string
+          type: array
+        caching_for_options_enabled:
+          items:
+            type: string
+          type: array
+        stale_cache_enabled:
+          items:
+            type: string
+          type: array
+        tiered_cache_enabled:
+          items:
+            type: string
+          type: array
+        tiered_cache_region:
+          items:
+            type: string
+          type: array
+      title: ResponseBadRequestCacheSettingModulesSerializerEdge_cacheField
+      type: object
+    ResponseBadRequestCacheSettingModulesSerializerSlice_controlsField:
+      additionalProperties: false
+      example:
+        slice_tiered_caching_enabled:
+        - slice_tiered_caching_enabled
+        - slice_tiered_caching_enabled
+        slice_edge_caching_enabled:
+        - slice_edge_caching_enabled
+        - slice_edge_caching_enabled
+        slice_configuration_range:
+        - slice_configuration_range
+        - slice_configuration_range
+        slice_configuration_enabled:
+        - slice_configuration_enabled
+        - slice_configuration_enabled
+      properties:
+        slice_configuration_enabled:
+          items:
+            type: string
+          type: array
+        slice_edge_caching_enabled:
+          items:
+            type: string
+          type: array
+        slice_tiered_caching_enabled:
+          items:
+            type: string
+          type: array
+        slice_configuration_range:
+          items:
+            type: string
+          type: array
+      title: ResponseBadRequestCacheSettingModulesSerializerSlice_controlsField
       type: object
     ResponseBadRequestEdgeApplication:
       additionalProperties: false
@@ -23229,25 +23701,67 @@ components:
         - last_modified
         modules:
           edge_cache:
-            enabled:
-            - enabled
-            - enabled
-          application_accelerator:
-            enabled:
-            - enabled
-            - enabled
-          tiered_cache:
-            enabled:
-            - enabled
-            - enabled
-          image_processor:
-            enabled:
-            - enabled
-            - enabled
-          edge_functions:
-            enabled:
-            - enabled
-            - enabled
+            max_age:
+            - max_age
+            - max_age
+            caching_for_post_enabled:
+            - caching_for_post_enabled
+            - caching_for_post_enabled
+            caching_for_options_enabled:
+            - caching_for_options_enabled
+            - caching_for_options_enabled
+            stale_cache_enabled:
+            - stale_cache_enabled
+            - stale_cache_enabled
+            behavior:
+            - behavior
+            - behavior
+            tiered_cache_region:
+            - tiered_cache_region
+            - tiered_cache_region
+            tiered_cache_enabled:
+            - tiered_cache_enabled
+            - tiered_cache_enabled
+          browser_cache:
+            max_age:
+            - max_age
+            - max_age
+            behavior:
+            - behavior
+            - behavior
+          slice_controls:
+            slice_tiered_caching_enabled:
+            - slice_tiered_caching_enabled
+            - slice_tiered_caching_enabled
+            slice_edge_caching_enabled:
+            - slice_edge_caching_enabled
+            - slice_edge_caching_enabled
+            slice_configuration_range:
+            - slice_configuration_range
+            - slice_configuration_range
+            slice_configuration_enabled:
+            - slice_configuration_enabled
+            - slice_configuration_enabled
+          application_controls:
+            cache_by_cookies:
+            - cache_by_cookies
+            - cache_by_cookies
+            query_string_fields:
+            - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
+            - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
+            adaptive_delivery_action:
+            - adaptive_delivery_action
+            - adaptive_delivery_action
+            device_group:
+            - device_group
+            - device_group
+            query_string_sort_enabled:
+            - query_string_sort_enabled
+            - query_string_sort_enabled
+            cookie_names: null
+            cache_by_query_string:
+            - cache_by_query_string
+            - cache_by_query_string
       properties:
         name:
           items:
@@ -23286,264 +23800,154 @@ components:
           type: string
       title: ResponseBadRequestEdgeApplication
       type: object
-    ResponseBadRequestEdgeApplicationModulesSerializerApplication_acceleratorField:
-      additionalProperties: false
-      example:
-        enabled:
-        - enabled
-        - enabled
-      properties:
-        enabled:
-          items:
-            type: string
-          type: array
-      title: ResponseBadRequestEdgeApplicationModulesSerializerApplication_acceleratorField
-      type: object
-    ResponseBadRequestEdgeApplicationModulesSerializerEdge_cacheField:
-      additionalProperties: false
-      example:
-        enabled:
-        - enabled
-        - enabled
-      properties:
-        enabled:
-          items:
-            type: string
-          type: array
-      title: ResponseBadRequestEdgeApplicationModulesSerializerEdge_cacheField
-      type: object
-    ResponseBadRequestEdgeApplicationModulesSerializerEdge_functionsField:
-      additionalProperties: false
-      example:
-        enabled:
-        - enabled
-        - enabled
-      properties:
-        enabled:
-          items:
-            type: string
-          type: array
-      title: ResponseBadRequestEdgeApplicationModulesSerializerEdge_functionsField
-      type: object
-    ResponseBadRequestEdgeApplicationModulesSerializerImage_processorField:
-      additionalProperties: false
-      example:
-        enabled:
-        - enabled
-        - enabled
-      properties:
-        enabled:
-          items:
-            type: string
-          type: array
-      title: ResponseBadRequestEdgeApplicationModulesSerializerImage_processorField
-      type: object
-    ResponseBadRequestEdgeApplicationModulesSerializerTiered_cacheField:
-      additionalProperties: false
-      example:
-        enabled:
-        - enabled
-        - enabled
-      properties:
-        enabled:
-          items:
-            type: string
-          type: array
-      title: ResponseBadRequestEdgeApplicationModulesSerializerTiered_cacheField
-      type: object
-    ResponseBadRequestSerializerMetaclassApplication_controlsField:
-      additionalProperties: false
-      example:
-        cache_by_cookies:
-        - cache_by_cookies
-        - cache_by_cookies
-        query_string_fields:
-        - ResponseBadRequestSerializerMetaclassApplication_controlsField_query_string_fields
-        - ResponseBadRequestSerializerMetaclassApplication_controlsField_query_string_fields
-        adaptive_delivery_action:
-        - adaptive_delivery_action
-        - adaptive_delivery_action
-        device_group:
-        - device_group
-        - device_group
-        query_string_sort_enabled:
-        - query_string_sort_enabled
-        - query_string_sort_enabled
-        cookie_names: null
-        cache_by_query_string:
-        - cache_by_query_string
-        - cache_by_query_string
-      properties:
-        cache_by_query_string:
-          items:
-            type: string
-          type: array
-        query_string_fields:
-          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassApplication_controlsField_query_string_fields"
-        query_string_sort_enabled:
-          items:
-            type: string
-          type: array
-        cache_by_cookies:
-          items:
-            type: string
-          type: array
-        cookie_names:
-          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassApplication_controlsField_query_string_fields"
-        adaptive_delivery_action:
-          items:
-            type: string
-          type: array
-        device_group:
-          items:
-            type: string
-          type: array
-      title: ResponseBadRequestSerializerMetaclassApplication_controlsField
-      type: object
-    ResponseBadRequestSerializerMetaclassBrowser_cacheField:
-      additionalProperties: false
-      example:
-        max_age:
-        - max_age
-        - max_age
-        behavior:
-        - behavior
-        - behavior
-      properties:
-        behavior:
-          items:
-            type: string
-          type: array
-        max_age:
-          items:
-            type: string
-          type: array
-      title: ResponseBadRequestSerializerMetaclassBrowser_cacheField
-      type: object
-    ResponseBadRequestSerializerMetaclassEdge_cacheField:
-      additionalProperties: false
-      example:
-        max_age:
-        - max_age
-        - max_age
-        caching_for_post_enabled:
-        - caching_for_post_enabled
-        - caching_for_post_enabled
-        caching_for_options_enabled:
-        - caching_for_options_enabled
-        - caching_for_options_enabled
-        stale_cache_enabled:
-        - stale_cache_enabled
-        - stale_cache_enabled
-        behavior:
-        - behavior
-        - behavior
-        tiered_cache_region:
-        - tiered_cache_region
-        - tiered_cache_region
-        tiered_cache_enabled:
-        - tiered_cache_enabled
-        - tiered_cache_enabled
-      properties:
-        behavior:
-          items:
-            type: string
-          type: array
-        max_age:
-          items:
-            type: string
-          type: array
-        caching_for_post_enabled:
-          items:
-            type: string
-          type: array
-        caching_for_options_enabled:
-          items:
-            type: string
-          type: array
-        stale_cache_enabled:
-          items:
-            type: string
-          type: array
-        tiered_cache_enabled:
-          items:
-            type: string
-          type: array
-        tiered_cache_region:
-          items:
-            type: string
-          type: array
-      title: ResponseBadRequestSerializerMetaclassEdge_cacheField
-      type: object
     ResponseBadRequestSerializerMetaclassModulesField:
       additionalProperties: false
       example:
         edge_cache:
-          enabled:
-          - enabled
-          - enabled
-        application_accelerator:
-          enabled:
-          - enabled
-          - enabled
-        tiered_cache:
-          enabled:
-          - enabled
-          - enabled
-        image_processor:
-          enabled:
-          - enabled
-          - enabled
-        edge_functions:
-          enabled:
-          - enabled
-          - enabled
+          max_age:
+          - max_age
+          - max_age
+          caching_for_post_enabled:
+          - caching_for_post_enabled
+          - caching_for_post_enabled
+          caching_for_options_enabled:
+          - caching_for_options_enabled
+          - caching_for_options_enabled
+          stale_cache_enabled:
+          - stale_cache_enabled
+          - stale_cache_enabled
+          behavior:
+          - behavior
+          - behavior
+          tiered_cache_region:
+          - tiered_cache_region
+          - tiered_cache_region
+          tiered_cache_enabled:
+          - tiered_cache_enabled
+          - tiered_cache_enabled
+        browser_cache:
+          max_age:
+          - max_age
+          - max_age
+          behavior:
+          - behavior
+          - behavior
+        slice_controls:
+          slice_tiered_caching_enabled:
+          - slice_tiered_caching_enabled
+          - slice_tiered_caching_enabled
+          slice_edge_caching_enabled:
+          - slice_edge_caching_enabled
+          - slice_edge_caching_enabled
+          slice_configuration_range:
+          - slice_configuration_range
+          - slice_configuration_range
+          slice_configuration_enabled:
+          - slice_configuration_enabled
+          - slice_configuration_enabled
+        application_controls:
+          cache_by_cookies:
+          - cache_by_cookies
+          - cache_by_cookies
+          query_string_fields:
+          - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
+          - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
+          adaptive_delivery_action:
+          - adaptive_delivery_action
+          - adaptive_delivery_action
+          device_group:
+          - device_group
+          - device_group
+          query_string_sort_enabled:
+          - query_string_sort_enabled
+          - query_string_sort_enabled
+          cookie_names: null
+          cache_by_query_string:
+          - cache_by_query_string
+          - cache_by_query_string
       properties:
+        browser_cache:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerBrowser_cacheField"
         edge_cache:
-          $ref: "#/components/schemas/ResponseBadRequestEdgeApplicationModulesSerializerEdge_cacheField"
-        edge_functions:
-          $ref: "#/components/schemas/ResponseBadRequestEdgeApplicationModulesSerializerEdge_functionsField"
-        application_accelerator:
-          $ref: "#/components/schemas/ResponseBadRequestEdgeApplicationModulesSerializerApplication_acceleratorField"
-        image_processor:
-          $ref: "#/components/schemas/ResponseBadRequestEdgeApplicationModulesSerializerImage_processorField"
-        tiered_cache:
-          $ref: "#/components/schemas/ResponseBadRequestEdgeApplicationModulesSerializerTiered_cacheField"
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerEdge_cacheField"
+        application_controls:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField"
+        slice_controls:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerSlice_controlsField"
       title: ResponseBadRequestSerializerMetaclassModulesField
       type: object
-    ResponseBadRequestSerializerMetaclassSlice_controlsField:
+    ResponseBadRequestSerializerMetaclassStrategyField:
       additionalProperties: false
       example:
-        slice_tiered_caching_enabled:
-        - slice_tiered_caching_enabled
-        - slice_tiered_caching_enabled
-        slice_edge_caching_enabled:
-        - slice_edge_caching_enabled
-        - slice_edge_caching_enabled
-        slice_configuration_range:
-        - slice_configuration_range
-        - slice_configuration_range
-        slice_configuration_enabled:
-        - slice_configuration_enabled
-        - slice_configuration_enabled
+        strategy_type:
+        - strategy_type
+        - strategy_type
       properties:
-        slice_configuration_enabled:
+        strategy_type:
           items:
             type: string
           type: array
-        slice_edge_caching_enabled:
+      title: ResponseBadRequestSerializerMetaclassStrategyField
+      type: object
+    ResponseBadRequestWorkloadDeployment:
+      additionalProperties: false
+      example:
+        current:
+        - current
+        - current
+        last_editor:
+        - last_editor
+        - last_editor
+        name:
+        - name
+        - name
+        active:
+        - active
+        - active
+        id:
+        - id
+        - id
+        detail: detail
+        strategy:
+          strategy_type:
+          - strategy_type
+          - strategy_type
+        last_modified:
+        - last_modified
+        - last_modified
+      properties:
+        id:
           items:
             type: string
           type: array
-        slice_tiered_caching_enabled:
+        name:
           items:
             type: string
           type: array
-        slice_configuration_range:
+        active:
           items:
             type: string
           type: array
-      title: ResponseBadRequestSerializerMetaclassSlice_controlsField
+        last_editor:
+          items:
+            type: string
+          type: array
+        last_modified:
+          items:
+            type: string
+          type: array
+        strategy:
+          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassStrategyField"
+        current:
+          items:
+            type: string
+          type: array
+        detail:
+          maxLength: 4096
+          minLength: 1
+          pattern: .*
+          type: string
+      title: ResponseBadRequestWorkloadDeployment
       type: object
     ResponseCustomPages:
       additionalProperties: false
@@ -24227,38 +24631,39 @@ components:
     ResponseListCacheSetting:
       additionalProperties: false
       example:
-        edge_cache:
-          max_age: 4622587
-          caching_for_post_enabled: true
-          caching_for_options_enabled: true
-          stale_cache_enabled: true
-          behavior: behavior
-          tiered_cache_region: tiered_cache_region
-          tiered_cache_enabled: true
-        browser_cache:
-          max_age: 19008185
-          behavior: behavior
         name: name
-        slice_controls:
-          slice_tiered_caching_enabled: true
-          slice_edge_caching_enabled: true
-          slice_configuration_range: 577
-          slice_configuration_enabled: true
-        application_controls:
-          cache_by_cookies: cache_by_cookies
-          query_string_fields:
-          - query_string_fields
-          - query_string_fields
-          adaptive_delivery_action: adaptive_delivery_action
-          device_group:
-          - 5
-          - 5
-          query_string_sort_enabled: true
-          cookie_names:
-          - cookie_names
-          - cookie_names
-          cache_by_query_string: cache_by_query_string
         id: 0
+        modules:
+          edge_cache:
+            max_age: 4622587
+            caching_for_post_enabled: true
+            caching_for_options_enabled: true
+            stale_cache_enabled: true
+            behavior: behavior
+            tiered_cache_region: tiered_cache_region
+            tiered_cache_enabled: true
+          browser_cache:
+            max_age: 19008185
+            behavior: behavior
+          slice_controls:
+            slice_tiered_caching_enabled: true
+            slice_edge_caching_enabled: true
+            slice_configuration_range: 577
+            slice_configuration_enabled: true
+          application_controls:
+            cache_by_cookies: cache_by_cookies
+            query_string_fields:
+            - query_string_fields
+            - query_string_fields
+            adaptive_delivery_action: adaptive_delivery_action
+            device_group:
+            - 5
+            - 5
+            query_string_sort_enabled: true
+            cookie_names:
+            - cookie_names
+            - cookie_names
+            cache_by_query_string: cache_by_query_string
       properties:
         id:
           format: int64
@@ -24269,21 +24674,11 @@ components:
           minLength: 1
           pattern: "^[a-zA-Z0-9 \\-\\.\\'\\,|]+$"
           type: string
-        browser_cache:
-          $ref: "#/components/schemas/BrowserCacheModule"
-        edge_cache:
-          $ref: "#/components/schemas/EdgeCacheModule"
-        application_controls:
-          $ref: "#/components/schemas/ApplicationControlsModule"
-        slice_controls:
-          $ref: "#/components/schemas/SliceControlsModule"
+        modules:
+          $ref: "#/components/schemas/CacheSettingModules"
       required:
-      - application_controls
-      - browser_cache
-      - edge_cache
       - id
       - name
-      - slice_controls
       title: ResponseListCacheSetting
       type: object
     ResponseNetworkListDetail:
@@ -24296,12 +24691,11 @@ components:
           id: 0
           type: type
           items:
-          - 192.168.0.1
-          - 192.168.0.1/24
-          - 192.168.0.1 --LT2025-05-29T12:25:23Z
-          - 2001:db8:3333:4444:5555:6666:7777:8888
-          - BR
-          - "1234"
+          - items
+          - items
+          - items
+          - items
+          - items
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -24341,38 +24735,39 @@ components:
       additionalProperties: false
       example:
         data:
-          edge_cache:
-            max_age: 4622587
-            caching_for_post_enabled: true
-            caching_for_options_enabled: true
-            stale_cache_enabled: true
-            behavior: behavior
-            tiered_cache_region: tiered_cache_region
-            tiered_cache_enabled: true
-          browser_cache:
-            max_age: 19008185
-            behavior: behavior
           name: name
-          slice_controls:
-            slice_tiered_caching_enabled: true
-            slice_edge_caching_enabled: true
-            slice_configuration_range: 577
-            slice_configuration_enabled: true
-          application_controls:
-            cache_by_cookies: cache_by_cookies
-            query_string_fields:
-            - query_string_fields
-            - query_string_fields
-            adaptive_delivery_action: adaptive_delivery_action
-            device_group:
-            - 5
-            - 5
-            query_string_sort_enabled: true
-            cookie_names:
-            - cookie_names
-            - cookie_names
-            cache_by_query_string: cache_by_query_string
           id: 0
+          modules:
+            edge_cache:
+              max_age: 4622587
+              caching_for_post_enabled: true
+              caching_for_options_enabled: true
+              stale_cache_enabled: true
+              behavior: behavior
+              tiered_cache_region: tiered_cache_region
+              tiered_cache_enabled: true
+            browser_cache:
+              max_age: 19008185
+              behavior: behavior
+            slice_controls:
+              slice_tiered_caching_enabled: true
+              slice_edge_caching_enabled: true
+              slice_configuration_range: 577
+              slice_configuration_enabled: true
+            application_controls:
+              cache_by_cookies: cache_by_cookies
+              query_string_fields:
+              - query_string_fields
+              - query_string_fields
+              adaptive_delivery_action: adaptive_delivery_action
+              device_group:
+              - 5
+              - 5
+              query_string_sort_enabled: true
+              cookie_names:
+              - cookie_names
+              - cookie_names
+              cache_by_query_string: cache_by_query_string
       properties:
         data:
           $ref: "#/components/schemas/CacheSetting"
@@ -24864,12 +25259,11 @@ components:
           id: 0
           type: type
           items:
-          - 192.168.0.1
-          - 192.168.0.1/24
-          - 192.168.0.1 --LT2025-05-29T12:25:23Z
-          - 2001:db8:3333:4444:5555:6666:7777:8888
-          - BR
-          - "1234"
+          - items
+          - items
+          - items
+          - items
+          - items
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
@@ -24973,13 +25367,18 @@ components:
       additionalProperties: false
       example:
         data:
-          binds:
-            custom_page: 1
-            edge_firewall: 1
-            edge_application: 5559347081229897728
           current: true
+          last_editor: last_editor
+          name: name
+          active: true
           id: 0
-          tag: tag
+          strategy:
+            strategy_type: strategy_type
+            attributes:
+              custom_page: 1
+              edge_firewall: 1
+              edge_application: 5559347081229897728
+          last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           $ref: "#/components/schemas/WorkloadDeployment"
@@ -25100,13 +25499,18 @@ components:
       additionalProperties: false
       example:
         data:
-          binds:
-            custom_page: 1
-            edge_firewall: 1
-            edge_application: 5559347081229897728
           current: true
+          last_editor: last_editor
+          name: name
+          active: true
           id: 0
-          tag: tag
+          strategy:
+            strategy_type: strategy_type
+            attributes:
+              custom_page: 1
+              edge_firewall: 1
+              edge_application: 5559347081229897728
+          last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
         state:
@@ -25400,6 +25804,10 @@ components:
       - slice_tiered_caching_enabled
       title: SliceControlsModuleRequest
       type: object
+    StrategyTypeEnum:
+      description: '* `default` - Default'
+      title: StrategyTypeEnum
+      type: string
     TLSEdgeConnector:
       additionalProperties: false
       properties:
@@ -26349,11 +26757,6 @@ components:
       type: object
     Workload:
       additionalProperties: false
-      description: |-
-        Serializer for Workload model.
-
-        Handles the serialization, validation, creation and updating of Workload instances.
-        Includes nested serializers for TLS, protocols, and mTLS configurations.
       example:
         product_version: product_version
         last_editor: last_editor
@@ -26437,114 +26840,83 @@ components:
     WorkloadDeployment:
       additionalProperties: false
       example:
-        binds:
-          custom_page: 1
-          edge_firewall: 1
-          edge_application: 5559347081229897728
         current: true
+        last_editor: last_editor
+        name: name
+        active: true
         id: 0
-        tag: tag
+        strategy:
+          strategy_type: strategy_type
+          attributes:
+            custom_page: 1
+            edge_firewall: 1
+            edge_application: 5559347081229897728
+        last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           format: int64
           readOnly: true
           type: integer
-        tag:
-          maxLength: 100
+        name:
+          maxLength: 254
           minLength: 1
           pattern: .*
           type: string
-        binds:
-          $ref: "#/components/schemas/WorkloadDeploymentBinds"
         current:
           type: boolean
+        active:
+          type: boolean
+        strategy:
+          $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrs"
+        last_editor:
+          maxLength: 250
+          minLength: 1
+          pattern: .*
+          readOnly: true
+          type: string
+        last_modified:
+          format: date-time
+          readOnly: true
+          type: string
       required:
-      - binds
       - id
-      - tag
+      - last_editor
+      - last_modified
+      - name
+      - strategy
       title: WorkloadDeployment
-      type: object
-    WorkloadDeploymentBinds:
-      additionalProperties: false
-      example:
-        custom_page: 1
-        edge_firewall: 1
-        edge_application: 5559347081229897728
-      properties:
-        edge_application:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        edge_firewall:
-          format: int64
-          nullable: true
-          type: integer
-        custom_page:
-          format: int64
-          minimum: 1
-          nullable: true
-          type: integer
-      required:
-      - edge_application
-      title: WorkloadDeploymentBinds
-      type: object
-    WorkloadDeploymentBindsRequest:
-      additionalProperties: false
-      example:
-        custom_page: 1
-        edge_firewall: 6
-        edge_application: 738633633822310400
-      properties:
-        edge_application:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        edge_firewall:
-          format: int64
-          nullable: true
-          type: integer
-        custom_page:
-          format: int64
-          minimum: 1
-          nullable: true
-          type: integer
-      required:
-      - edge_application
-      title: WorkloadDeploymentBindsRequest
       type: object
     WorkloadDeploymentRequest:
       additionalProperties: false
       example:
-        binds:
-          custom_page: 1
-          edge_firewall: 6
-          edge_application: 738633633822310400
         current: true
-        tag: tag
+        name: name
+        active: true
+        strategy:
+          strategy_type: strategy_type
+          attributes:
+            custom_page: 1
+            edge_firewall: 6
+            edge_application: 738633633822310400
       properties:
-        tag:
-          maxLength: 100
+        name:
+          maxLength: 254
           minLength: 1
           pattern: .*
           type: string
-        binds:
-          $ref: "#/components/schemas/WorkloadDeploymentBindsRequest"
         current:
           type: boolean
+        active:
+          type: boolean
+        strategy:
+          $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest"
       required:
-      - binds
-      - tag
+      - name
+      - strategy
       title: WorkloadDeploymentRequest
       type: object
     WorkloadRequest:
       additionalProperties: false
-      description: |-
-        Serializer for Workload model.
-
-        Handles the serialization, validation, creation and updating of Workload instances.
-        Includes nested serializers for TLS, protocols, and mTLS configurations.
       example:
         infrastructure: ""
         name: name
@@ -26554,7 +26926,6 @@ components:
         - domains
         workload_domain_allow_access: true
         tls: ""
-        edge_firewall: 6
         protocols: ""
         mtls:
           certificate: 1
@@ -26565,29 +26936,17 @@ components:
           - 1
           - 1
           verification: null
-        edge_application: 738633633822310400
       properties:
         name:
           maxLength: 100
           minLength: 1
           pattern: .*
           type: string
-        edge_application:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-          writeOnly: true
         active:
           type: boolean
         infrastructure:
           allOf:
           - $ref: "#/components/schemas/InfrastructureEnum"
-        edge_firewall:
-          format: int64
-          nullable: true
-          type: integer
-          writeOnly: true
         tls:
           allOf:
           - $ref: "#/components/schemas/TLSWorkloadRequest"
@@ -26604,7 +26963,6 @@ components:
         workload_domain_allow_access:
           type: boolean
       required:
-      - edge_application
       - name
       title: WorkloadRequest
       type: object
@@ -26635,7 +26993,7 @@ components:
       oneOf:
       - $ref: "#/components/schemas/VerificationEnum"
       - $ref: "#/components/schemas/NullEnum"
-    ResponseBadRequestSerializerMetaclassApplication_controlsField_query_string_fields:
+    ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields:
       oneOf:
       - items:
           type: string

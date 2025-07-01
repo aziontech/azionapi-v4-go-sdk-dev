@@ -6,10 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **[]string** |  | [optional] 
 **Name** | Pointer to **[]string** |  | [optional] 
-**BrowserCache** | Pointer to [**ResponseBadRequestSerializerMetaclassBrowserCacheField**](ResponseBadRequestSerializerMetaclassBrowserCacheField.md) |  | [optional] 
-**EdgeCache** | Pointer to [**ResponseBadRequestSerializerMetaclassEdgeCacheField**](ResponseBadRequestSerializerMetaclassEdgeCacheField.md) |  | [optional] 
-**ApplicationControls** | Pointer to [**ResponseBadRequestSerializerMetaclassApplicationControlsField**](ResponseBadRequestSerializerMetaclassApplicationControlsField.md) |  | [optional] 
-**SliceControls** | Pointer to [**ResponseBadRequestSerializerMetaclassSliceControlsField**](ResponseBadRequestSerializerMetaclassSliceControlsField.md) |  | [optional] 
+**Modules** | Pointer to [**ResponseBadRequestSerializerMetaclassModulesField**](ResponseBadRequestSerializerMetaclassModulesField.md) |  | [optional] 
 **Detail** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -81,105 +78,30 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetBrowserCache
+### GetModules
 
-`func (o *ResponseBadRequestCacheSetting) GetBrowserCache() ResponseBadRequestSerializerMetaclassBrowserCacheField`
+`func (o *ResponseBadRequestCacheSetting) GetModules() ResponseBadRequestSerializerMetaclassModulesField`
 
-GetBrowserCache returns the BrowserCache field if non-nil, zero value otherwise.
+GetModules returns the Modules field if non-nil, zero value otherwise.
 
-### GetBrowserCacheOk
+### GetModulesOk
 
-`func (o *ResponseBadRequestCacheSetting) GetBrowserCacheOk() (*ResponseBadRequestSerializerMetaclassBrowserCacheField, bool)`
+`func (o *ResponseBadRequestCacheSetting) GetModulesOk() (*ResponseBadRequestSerializerMetaclassModulesField, bool)`
 
-GetBrowserCacheOk returns a tuple with the BrowserCache field if it's non-nil, zero value otherwise
+GetModulesOk returns a tuple with the Modules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBrowserCache
+### SetModules
 
-`func (o *ResponseBadRequestCacheSetting) SetBrowserCache(v ResponseBadRequestSerializerMetaclassBrowserCacheField)`
+`func (o *ResponseBadRequestCacheSetting) SetModules(v ResponseBadRequestSerializerMetaclassModulesField)`
 
-SetBrowserCache sets BrowserCache field to given value.
+SetModules sets Modules field to given value.
 
-### HasBrowserCache
+### HasModules
 
-`func (o *ResponseBadRequestCacheSetting) HasBrowserCache() bool`
+`func (o *ResponseBadRequestCacheSetting) HasModules() bool`
 
-HasBrowserCache returns a boolean if a field has been set.
-
-### GetEdgeCache
-
-`func (o *ResponseBadRequestCacheSetting) GetEdgeCache() ResponseBadRequestSerializerMetaclassEdgeCacheField`
-
-GetEdgeCache returns the EdgeCache field if non-nil, zero value otherwise.
-
-### GetEdgeCacheOk
-
-`func (o *ResponseBadRequestCacheSetting) GetEdgeCacheOk() (*ResponseBadRequestSerializerMetaclassEdgeCacheField, bool)`
-
-GetEdgeCacheOk returns a tuple with the EdgeCache field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEdgeCache
-
-`func (o *ResponseBadRequestCacheSetting) SetEdgeCache(v ResponseBadRequestSerializerMetaclassEdgeCacheField)`
-
-SetEdgeCache sets EdgeCache field to given value.
-
-### HasEdgeCache
-
-`func (o *ResponseBadRequestCacheSetting) HasEdgeCache() bool`
-
-HasEdgeCache returns a boolean if a field has been set.
-
-### GetApplicationControls
-
-`func (o *ResponseBadRequestCacheSetting) GetApplicationControls() ResponseBadRequestSerializerMetaclassApplicationControlsField`
-
-GetApplicationControls returns the ApplicationControls field if non-nil, zero value otherwise.
-
-### GetApplicationControlsOk
-
-`func (o *ResponseBadRequestCacheSetting) GetApplicationControlsOk() (*ResponseBadRequestSerializerMetaclassApplicationControlsField, bool)`
-
-GetApplicationControlsOk returns a tuple with the ApplicationControls field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetApplicationControls
-
-`func (o *ResponseBadRequestCacheSetting) SetApplicationControls(v ResponseBadRequestSerializerMetaclassApplicationControlsField)`
-
-SetApplicationControls sets ApplicationControls field to given value.
-
-### HasApplicationControls
-
-`func (o *ResponseBadRequestCacheSetting) HasApplicationControls() bool`
-
-HasApplicationControls returns a boolean if a field has been set.
-
-### GetSliceControls
-
-`func (o *ResponseBadRequestCacheSetting) GetSliceControls() ResponseBadRequestSerializerMetaclassSliceControlsField`
-
-GetSliceControls returns the SliceControls field if non-nil, zero value otherwise.
-
-### GetSliceControlsOk
-
-`func (o *ResponseBadRequestCacheSetting) GetSliceControlsOk() (*ResponseBadRequestSerializerMetaclassSliceControlsField, bool)`
-
-GetSliceControlsOk returns a tuple with the SliceControls field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSliceControls
-
-`func (o *ResponseBadRequestCacheSetting) SetSliceControls(v ResponseBadRequestSerializerMetaclassSliceControlsField)`
-
-SetSliceControls sets SliceControls field to given value.
-
-### HasSliceControls
-
-`func (o *ResponseBadRequestCacheSetting) HasSliceControls() bool`
-
-HasSliceControls returns a boolean if a field has been set.
+HasModules returns a boolean if a field has been set.
 
 ### GetDetail
 

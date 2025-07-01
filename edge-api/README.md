@@ -168,16 +168,18 @@ Class | Method | HTTP request | Description
 *WAFsExceptionsAPI* | [**PartialUpdateWAFException**](docs/WAFsExceptionsAPI.md#partialupdatewafexception) | **Patch** /edge_firewall/wafs/{waf_id}/exceptions/{exception_id} | Partially update an Exception for a Web Application Firewall (WAF)
 *WAFsExceptionsAPI* | [**RetrieveWAFException**](docs/WAFsExceptionsAPI.md#retrievewafexception) | **Get** /edge_firewall/wafs/{waf_id}/exceptions/{exception_id} | Retrieve details of an Exception from a Web Application Firewall (WAF)
 *WAFsExceptionsAPI* | [**UpdateWAFException**](docs/WAFsExceptionsAPI.md#updatewafexception) | **Put** /edge_firewall/wafs/{waf_id}/exceptions/{exception_id} | Update an Exception for a Web Application Firewall (WAF)
+*WorkloadDeploymentsAPI* | [**CreateWorkloadDeployment**](docs/WorkloadDeploymentsAPI.md#createworkloaddeployment) | **Post** /workspace/workloads/{workload_id}/deployments | Create a Workload Deployment
+*WorkloadDeploymentsAPI* | [**DestroyWorkloadDeployment**](docs/WorkloadDeploymentsAPI.md#destroyworkloaddeployment) | **Delete** /workspace/workloads/{workload_id}/deployments/{deployment_id} | Destroy a Workload Deployment
 *WorkloadDeploymentsAPI* | [**ListWorkloadDeployments**](docs/WorkloadDeploymentsAPI.md#listworkloaddeployments) | **Get** /workspace/workloads/{workload_id}/deployments | List Workload Deployments
-*WorkloadDeploymentsAPI* | [**PartialUpdateWorkloadDeployment**](docs/WorkloadDeploymentsAPI.md#partialupdateworkloaddeployment) | **Patch** /workspace/workloads/{workload_id}/deployments/{id} | Partially update a Workload Deployment
-*WorkloadDeploymentsAPI* | [**RetrieveWorkloadDeployment**](docs/WorkloadDeploymentsAPI.md#retrieveworkloaddeployment) | **Get** /workspace/workloads/{workload_id}/deployments/{id} | Retrieve details of a Workload Deployment
-*WorkloadDeploymentsAPI* | [**UpdateWorkloadDeployment**](docs/WorkloadDeploymentsAPI.md#updateworkloaddeployment) | **Put** /workspace/workloads/{workload_id}/deployments/{id} | Update a Workload Deployment
+*WorkloadDeploymentsAPI* | [**PartialUpdateWorkloadDeployment**](docs/WorkloadDeploymentsAPI.md#partialupdateworkloaddeployment) | **Patch** /workspace/workloads/{workload_id}/deployments/{deployment_id} | Partially update a Workload Deployment
+*WorkloadDeploymentsAPI* | [**RetrieveWorkloadDeployment**](docs/WorkloadDeploymentsAPI.md#retrieveworkloaddeployment) | **Get** /workspace/workloads/{workload_id}/deployments/{deployment_id} | Retrieve details of a Workload Deployment
+*WorkloadDeploymentsAPI* | [**UpdateWorkloadDeployment**](docs/WorkloadDeploymentsAPI.md#updateworkloaddeployment) | **Put** /workspace/workloads/{workload_id}/deployments/{deployment_id} | Update a Workload Deployment
 *WorkloadsAPI* | [**CreateWorkload**](docs/WorkloadsAPI.md#createworkload) | **Post** /workspace/workloads | Create an Workload
-*WorkloadsAPI* | [**DestroyWorkload**](docs/WorkloadsAPI.md#destroyworkload) | **Delete** /workspace/workloads/{global_id} | Destroy an Workload
+*WorkloadsAPI* | [**DestroyWorkload**](docs/WorkloadsAPI.md#destroyworkload) | **Delete** /workspace/workloads/{workload_id} | Destroy an Workload
 *WorkloadsAPI* | [**ListWorkloads**](docs/WorkloadsAPI.md#listworkloads) | **Get** /workspace/workloads | List Workloads
-*WorkloadsAPI* | [**PartialUpdateWorkload**](docs/WorkloadsAPI.md#partialupdateworkload) | **Patch** /workspace/workloads/{global_id} | Partially update an Workload
-*WorkloadsAPI* | [**RetrieveWorkload**](docs/WorkloadsAPI.md#retrieveworkload) | **Get** /workspace/workloads/{global_id} | Retrieve details of an Workload
-*WorkloadsAPI* | [**UpdateWorkload**](docs/WorkloadsAPI.md#updateworkload) | **Put** /workspace/workloads/{global_id} | Update an Workload
+*WorkloadsAPI* | [**PartialUpdateWorkload**](docs/WorkloadsAPI.md#partialupdateworkload) | **Patch** /workspace/workloads/{workload_id} | Partially update an Workload
+*WorkloadsAPI* | [**RetrieveWorkload**](docs/WorkloadsAPI.md#retrieveworkload) | **Get** /workspace/workloads/{workload_id} | Retrieve details of an Workload
+*WorkloadsAPI* | [**UpdateWorkload**](docs/WorkloadsAPI.md#updateworkload) | **Put** /workspace/workloads/{workload_id} | Update an Workload
 
 
 ## Documentation For Models
@@ -193,6 +195,8 @@ Class | Method | HTTP request | Description
  - [CacheModule](docs/CacheModule.md)
  - [CacheModuleRequest](docs/CacheModuleRequest.md)
  - [CacheSetting](docs/CacheSetting.md)
+ - [CacheSettingModules](docs/CacheSettingModules.md)
+ - [CacheSettingModulesRequest](docs/CacheSettingModulesRequest.md)
  - [CacheSettingRequest](docs/CacheSettingRequest.md)
  - [CaptureMatchGroupsArgument](docs/CaptureMatchGroupsArgument.md)
  - [CaptureMatchGroupsArgumentRequest](docs/CaptureMatchGroupsArgumentRequest.md)
@@ -203,7 +207,14 @@ Class | Method | HTTP request | Description
  - [ConnectorCustomPagesRequest](docs/ConnectorCustomPagesRequest.md)
  - [CustomPages](docs/CustomPages.md)
  - [CustomPagesRequest](docs/CustomPagesRequest.md)
+ - [DefaultDeploymentStrategy](docs/DefaultDeploymentStrategy.md)
+ - [DefaultDeploymentStrategyAttrs](docs/DefaultDeploymentStrategyAttrs.md)
+ - [DefaultDeploymentStrategyAttrsRequest](docs/DefaultDeploymentStrategyAttrsRequest.md)
+ - [DefaultDeploymentStrategyRequest](docs/DefaultDeploymentStrategyRequest.md)
  - [DefaultErrorResponse](docs/DefaultErrorResponse.md)
+ - [DeploymentStrategyDefaultDeploymentStrategyAttrs](docs/DeploymentStrategyDefaultDeploymentStrategyAttrs.md)
+ - [DeploymentStrategyDefaultDeploymentStrategyAttrsRequest](docs/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest.md)
+ - [DeploymentStrategyShared](docs/DeploymentStrategyShared.md)
  - [EdgeApplication](docs/EdgeApplication.md)
  - [EdgeApplicationBehaviorField](docs/EdgeApplicationBehaviorField.md)
  - [EdgeApplicationBehaviorFieldRequest](docs/EdgeApplicationBehaviorFieldRequest.md)
@@ -343,6 +354,7 @@ Class | Method | HTTP request | Description
  - [ResponseAsyncDeleteWAF](docs/ResponseAsyncDeleteWAF.md)
  - [ResponseAsyncDeleteWAFRule](docs/ResponseAsyncDeleteWAFRule.md)
  - [ResponseAsyncDeleteWorkload](docs/ResponseAsyncDeleteWorkload.md)
+ - [ResponseAsyncDeleteWorkloadDeployment](docs/ResponseAsyncDeleteWorkloadDeployment.md)
  - [ResponseAsyncEdgeApplication](docs/ResponseAsyncEdgeApplication.md)
  - [ResponseAsyncEdgeApplicationDeviceGroups](docs/ResponseAsyncEdgeApplicationDeviceGroups.md)
  - [ResponseAsyncEdgeApplicationFunctionInstance](docs/ResponseAsyncEdgeApplicationFunctionInstance.md)
@@ -359,18 +371,15 @@ Class | Method | HTTP request | Description
  - [ResponseAsyncWorkload](docs/ResponseAsyncWorkload.md)
  - [ResponseAsyncWorkloadDeployment](docs/ResponseAsyncWorkloadDeployment.md)
  - [ResponseBadRequestCacheSetting](docs/ResponseBadRequestCacheSetting.md)
+ - [ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField](docs/ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField.md)
+ - [ResponseBadRequestCacheSettingModulesSerializerApplicationControlsFieldQueryStringFields](docs/ResponseBadRequestCacheSettingModulesSerializerApplicationControlsFieldQueryStringFields.md)
+ - [ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField](docs/ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField.md)
+ - [ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField](docs/ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField.md)
+ - [ResponseBadRequestCacheSettingModulesSerializerSliceControlsField](docs/ResponseBadRequestCacheSettingModulesSerializerSliceControlsField.md)
  - [ResponseBadRequestEdgeApplication](docs/ResponseBadRequestEdgeApplication.md)
- - [ResponseBadRequestEdgeApplicationModulesSerializerApplicationAcceleratorField](docs/ResponseBadRequestEdgeApplicationModulesSerializerApplicationAcceleratorField.md)
- - [ResponseBadRequestEdgeApplicationModulesSerializerEdgeCacheField](docs/ResponseBadRequestEdgeApplicationModulesSerializerEdgeCacheField.md)
- - [ResponseBadRequestEdgeApplicationModulesSerializerEdgeFunctionsField](docs/ResponseBadRequestEdgeApplicationModulesSerializerEdgeFunctionsField.md)
- - [ResponseBadRequestEdgeApplicationModulesSerializerImageProcessorField](docs/ResponseBadRequestEdgeApplicationModulesSerializerImageProcessorField.md)
- - [ResponseBadRequestEdgeApplicationModulesSerializerTieredCacheField](docs/ResponseBadRequestEdgeApplicationModulesSerializerTieredCacheField.md)
- - [ResponseBadRequestSerializerMetaclassApplicationControlsField](docs/ResponseBadRequestSerializerMetaclassApplicationControlsField.md)
- - [ResponseBadRequestSerializerMetaclassApplicationControlsFieldQueryStringFields](docs/ResponseBadRequestSerializerMetaclassApplicationControlsFieldQueryStringFields.md)
- - [ResponseBadRequestSerializerMetaclassBrowserCacheField](docs/ResponseBadRequestSerializerMetaclassBrowserCacheField.md)
- - [ResponseBadRequestSerializerMetaclassEdgeCacheField](docs/ResponseBadRequestSerializerMetaclassEdgeCacheField.md)
  - [ResponseBadRequestSerializerMetaclassModulesField](docs/ResponseBadRequestSerializerMetaclassModulesField.md)
- - [ResponseBadRequestSerializerMetaclassSliceControlsField](docs/ResponseBadRequestSerializerMetaclassSliceControlsField.md)
+ - [ResponseBadRequestSerializerMetaclassStrategyField](docs/ResponseBadRequestSerializerMetaclassStrategyField.md)
+ - [ResponseBadRequestWorkloadDeployment](docs/ResponseBadRequestWorkloadDeployment.md)
  - [ResponseCustomPages](docs/ResponseCustomPages.md)
  - [ResponseDeleteCustomPages](docs/ResponseDeleteCustomPages.md)
  - [ResponseDeleteEdgeApplication](docs/ResponseDeleteEdgeApplication.md)
@@ -451,8 +460,6 @@ Class | Method | HTTP request | Description
  - [WAFRuleRequest](docs/WAFRuleRequest.md)
  - [Workload](docs/Workload.md)
  - [WorkloadDeployment](docs/WorkloadDeployment.md)
- - [WorkloadDeploymentBinds](docs/WorkloadDeploymentBinds.md)
- - [WorkloadDeploymentBindsRequest](docs/WorkloadDeploymentBindsRequest.md)
  - [WorkloadDeploymentRequest](docs/WorkloadDeploymentRequest.md)
  - [WorkloadRequest](docs/WorkloadRequest.md)
 

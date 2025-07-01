@@ -23,10 +23,390 @@ import (
 // WorkloadDeploymentsAPIService WorkloadDeploymentsAPI service
 type WorkloadDeploymentsAPIService service
 
+type ApiCreateWorkloadDeploymentRequest struct {
+	ctx context.Context
+	ApiService *WorkloadDeploymentsAPIService
+	workloadId int64
+	workloadDeploymentRequest *WorkloadDeploymentRequest
+}
+
+func (r ApiCreateWorkloadDeploymentRequest) WorkloadDeploymentRequest(workloadDeploymentRequest WorkloadDeploymentRequest) ApiCreateWorkloadDeploymentRequest {
+	r.workloadDeploymentRequest = &workloadDeploymentRequest
+	return r
+}
+
+func (r ApiCreateWorkloadDeploymentRequest) Execute() (*ResponseAsyncWorkloadDeployment, *http.Response, error) {
+	return r.ApiService.CreateWorkloadDeploymentExecute(r)
+}
+
+/*
+CreateWorkloadDeployment Create a Workload Deployment
+
+Create a new Workload Deployment in your account.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param workloadId
+ @return ApiCreateWorkloadDeploymentRequest
+*/
+func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeployment(ctx context.Context, workloadId int64) ApiCreateWorkloadDeploymentRequest {
+	return ApiCreateWorkloadDeploymentRequest{
+		ApiService: a,
+		ctx: ctx,
+		workloadId: workloadId,
+	}
+}
+
+// Execute executes the request
+//  @return ResponseAsyncWorkloadDeployment
+func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCreateWorkloadDeploymentRequest) (*ResponseAsyncWorkloadDeployment, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseAsyncWorkloadDeployment
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.CreateWorkloadDeployment")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspace/workloads/{workload_id}/deployments"
+	localVarPath = strings.Replace(localVarPath, "{"+"workload_id"+"}", url.PathEscape(parameterValueToString(r.workloadId, "workloadId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.workloadDeploymentRequest == nil {
+		return localVarReturnValue, nil, reportError("workloadDeploymentRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.workloadDeploymentRequest
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["TokenAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ResponseBadRequestWorkloadDeployment
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 405 {
+			var v DefaultErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v DefaultErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v DefaultErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DefaultErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v DefaultErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDestroyWorkloadDeploymentRequest struct {
+	ctx context.Context
+	ApiService *WorkloadDeploymentsAPIService
+	deploymentId int64
+	workloadId int64
+}
+
+func (r ApiDestroyWorkloadDeploymentRequest) Execute() (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
+	return r.ApiService.DestroyWorkloadDeploymentExecute(r)
+}
+
+/*
+DestroyWorkloadDeployment Destroy a Workload Deployment
+
+Destruction of a specific Workload Deployment in your account.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param deploymentId
+ @param workloadId
+ @return ApiDestroyWorkloadDeploymentRequest
+*/
+func (a *WorkloadDeploymentsAPIService) DestroyWorkloadDeployment(ctx context.Context, deploymentId int64, workloadId int64) ApiDestroyWorkloadDeploymentRequest {
+	return ApiDestroyWorkloadDeploymentRequest{
+		ApiService: a,
+		ctx: ctx,
+		deploymentId: deploymentId,
+		workloadId: workloadId,
+	}
+}
+
+// Execute executes the request
+//  @return ResponseAsyncDeleteWorkloadDeployment
+func (a *WorkloadDeploymentsAPIService) DestroyWorkloadDeploymentExecute(r ApiDestroyWorkloadDeploymentRequest) (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseAsyncDeleteWorkloadDeployment
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.DestroyWorkloadDeployment")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspace/workloads/{workload_id}/deployments/{deployment_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"deployment_id"+"}", url.PathEscape(parameterValueToString(r.deploymentId, "deploymentId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"workload_id"+"}", url.PathEscape(parameterValueToString(r.workloadId, "workloadId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["TokenAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ResponseBadRequestWorkloadDeployment
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 405 {
+			var v DefaultErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v DefaultErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v DefaultErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v DefaultErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v DefaultErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiListWorkloadDeploymentsRequest struct {
 	ctx context.Context
 	ApiService *WorkloadDeploymentsAPIService
-	workloadId string
+	workloadId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -40,7 +420,7 @@ func (r ApiListWorkloadDeploymentsRequest) Fields(fields string) ApiListWorkload
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: id, tag, current)
+// Which field to use when ordering the results. (Valid fields: id, name, active, last_editor, last_modified, current)
 func (r ApiListWorkloadDeploymentsRequest) Ordering(ordering string) ApiListWorkloadDeploymentsRequest {
 	r.ordering = &ordering
 	return r
@@ -77,7 +457,7 @@ List all Workload Deployments related to your account's Workloads.
  @param workloadId
  @return ApiListWorkloadDeploymentsRequest
 */
-func (a *WorkloadDeploymentsAPIService) ListWorkloadDeployments(ctx context.Context, workloadId string) ApiListWorkloadDeploymentsRequest {
+func (a *WorkloadDeploymentsAPIService) ListWorkloadDeployments(ctx context.Context, workloadId int64) ApiListWorkloadDeploymentsRequest {
 	return ApiListWorkloadDeploymentsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -269,8 +649,8 @@ func (a *WorkloadDeploymentsAPIService) ListWorkloadDeploymentsExecute(r ApiList
 type ApiPartialUpdateWorkloadDeploymentRequest struct {
 	ctx context.Context
 	ApiService *WorkloadDeploymentsAPIService
-	id string
-	workloadId string
+	deploymentId int64
+	workloadId int64
 	patchedWorkloadDeploymentRequest *PatchedWorkloadDeploymentRequest
 }
 
@@ -289,15 +669,15 @@ PartialUpdateWorkloadDeployment Partially update a Workload Deployment
 Update one or more fields of an existing Workload Deployment without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param deploymentId
  @param workloadId
  @return ApiPartialUpdateWorkloadDeploymentRequest
 */
-func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeployment(ctx context.Context, id string, workloadId string) ApiPartialUpdateWorkloadDeploymentRequest {
+func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeployment(ctx context.Context, deploymentId int64, workloadId int64) ApiPartialUpdateWorkloadDeploymentRequest {
 	return ApiPartialUpdateWorkloadDeploymentRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		deploymentId: deploymentId,
 		workloadId: workloadId,
 	}
 }
@@ -317,8 +697,8 @@ func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeploymentExecute(r
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/workloads/{workload_id}/deployments/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/workspace/workloads/{workload_id}/deployments/{deployment_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"deployment_id"+"}", url.PathEscape(parameterValueToString(r.deploymentId, "deploymentId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"workload_id"+"}", url.PathEscape(parameterValueToString(r.workloadId, "workloadId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -474,8 +854,8 @@ func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeploymentExecute(r
 type ApiRetrieveWorkloadDeploymentRequest struct {
 	ctx context.Context
 	ApiService *WorkloadDeploymentsAPIService
-	id string
-	workloadId string
+	deploymentId int64
+	workloadId int64
 	fields *string
 }
 
@@ -495,15 +875,15 @@ RetrieveWorkloadDeployment Retrieve details of a Workload Deployment
 Retrieve details of a specific Workload Deployment in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param deploymentId
  @param workloadId
  @return ApiRetrieveWorkloadDeploymentRequest
 */
-func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeployment(ctx context.Context, id string, workloadId string) ApiRetrieveWorkloadDeploymentRequest {
+func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeployment(ctx context.Context, deploymentId int64, workloadId int64) ApiRetrieveWorkloadDeploymentRequest {
 	return ApiRetrieveWorkloadDeploymentRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		deploymentId: deploymentId,
 		workloadId: workloadId,
 	}
 }
@@ -523,8 +903,8 @@ func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeploymentExecute(r ApiR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/workloads/{workload_id}/deployments/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/workspace/workloads/{workload_id}/deployments/{deployment_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"deployment_id"+"}", url.PathEscape(parameterValueToString(r.deploymentId, "deploymentId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"workload_id"+"}", url.PathEscape(parameterValueToString(r.workloadId, "workloadId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -681,8 +1061,8 @@ func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeploymentExecute(r ApiR
 type ApiUpdateWorkloadDeploymentRequest struct {
 	ctx context.Context
 	ApiService *WorkloadDeploymentsAPIService
-	id string
-	workloadId string
+	deploymentId int64
+	workloadId int64
 	workloadDeploymentRequest *WorkloadDeploymentRequest
 }
 
@@ -701,15 +1081,15 @@ UpdateWorkloadDeployment Update a Workload Deployment
 Update an existing Workload Deployment. This replaces the entire Workload Deployment with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param deploymentId
  @param workloadId
  @return ApiUpdateWorkloadDeploymentRequest
 */
-func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeployment(ctx context.Context, id string, workloadId string) ApiUpdateWorkloadDeploymentRequest {
+func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeployment(ctx context.Context, deploymentId int64, workloadId int64) ApiUpdateWorkloadDeploymentRequest {
 	return ApiUpdateWorkloadDeploymentRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		deploymentId: deploymentId,
 		workloadId: workloadId,
 	}
 }
@@ -729,8 +1109,8 @@ func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeploymentExecute(r ApiUpd
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/workloads/{workload_id}/deployments/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/workspace/workloads/{workload_id}/deployments/{deployment_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"deployment_id"+"}", url.PathEscape(parameterValueToString(r.deploymentId, "deploymentId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"workload_id"+"}", url.PathEscape(parameterValueToString(r.workloadId, "workloadId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

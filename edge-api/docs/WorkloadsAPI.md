@@ -5,11 +5,11 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateWorkload**](WorkloadsAPI.md#CreateWorkload) | **Post** /workspace/workloads | Create an Workload
-[**DestroyWorkload**](WorkloadsAPI.md#DestroyWorkload) | **Delete** /workspace/workloads/{global_id} | Destroy an Workload
+[**DestroyWorkload**](WorkloadsAPI.md#DestroyWorkload) | **Delete** /workspace/workloads/{workload_id} | Destroy an Workload
 [**ListWorkloads**](WorkloadsAPI.md#ListWorkloads) | **Get** /workspace/workloads | List Workloads
-[**PartialUpdateWorkload**](WorkloadsAPI.md#PartialUpdateWorkload) | **Patch** /workspace/workloads/{global_id} | Partially update an Workload
-[**RetrieveWorkload**](WorkloadsAPI.md#RetrieveWorkload) | **Get** /workspace/workloads/{global_id} | Retrieve details of an Workload
-[**UpdateWorkload**](WorkloadsAPI.md#UpdateWorkload) | **Put** /workspace/workloads/{global_id} | Update an Workload
+[**PartialUpdateWorkload**](WorkloadsAPI.md#PartialUpdateWorkload) | **Patch** /workspace/workloads/{workload_id} | Partially update an Workload
+[**RetrieveWorkload**](WorkloadsAPI.md#RetrieveWorkload) | **Get** /workspace/workloads/{workload_id} | Retrieve details of an Workload
+[**UpdateWorkload**](WorkloadsAPI.md#UpdateWorkload) | **Put** /workspace/workloads/{workload_id} | Update an Workload
 
 
 
@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	workloadRequest := *openapiclient.NewWorkloadRequest("Name_example", int64(123)) // WorkloadRequest | 
+	workloadRequest := *openapiclient.NewWorkloadRequest("Name_example") // WorkloadRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DestroyWorkload
 
-> ResponseAsyncDeleteWorkload DestroyWorkload(ctx, globalId).Execute()
+> ResponseAsyncDeleteWorkload DestroyWorkload(ctx, workloadId).Execute()
 
 Destroy an Workload
 
@@ -100,11 +100,11 @@ import (
 )
 
 func main() {
-	globalId := "globalId_example" // string | 
+	workloadId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.DestroyWorkload(context.Background(), globalId).Execute()
+	resp, r, err := apiClient.WorkloadsAPI.DestroyWorkload(context.Background(), workloadId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.DestroyWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**globalId** | **string** |  | 
+**workloadId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -171,7 +171,7 @@ import (
 
 func main() {
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: edge_application, edge_firewall, id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version) (optional)
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
@@ -200,7 +200,7 @@ Other parameters are passed through a pointer to a apiListWorkloadsRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **ordering** | **string** | Which field to use when ordering the results. (Valid fields: edge_application, edge_firewall, id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version) | 
+ **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateWorkload
 
-> ResponseWorkload PartialUpdateWorkload(ctx, globalId).PatchedWorkloadRequest(patchedWorkloadRequest).Execute()
+> ResponseWorkload PartialUpdateWorkload(ctx, workloadId).PatchedWorkloadRequest(patchedWorkloadRequest).Execute()
 
 Partially update an Workload
 
@@ -244,12 +244,12 @@ import (
 )
 
 func main() {
-	globalId := "globalId_example" // string | 
+	workloadId := int64(789) // int64 | 
 	patchedWorkloadRequest := *openapiclient.NewPatchedWorkloadRequest() // PatchedWorkloadRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.PartialUpdateWorkload(context.Background(), globalId).PatchedWorkloadRequest(patchedWorkloadRequest).Execute()
+	resp, r, err := apiClient.WorkloadsAPI.PartialUpdateWorkload(context.Background(), workloadId).PatchedWorkloadRequest(patchedWorkloadRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.PartialUpdateWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -265,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**globalId** | **string** |  | 
+**workloadId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveWorkload
 
-> ResponseRetrieveWorkload RetrieveWorkload(ctx, globalId).Fields(fields).Execute()
+> ResponseRetrieveWorkload RetrieveWorkload(ctx, workloadId).Fields(fields).Execute()
 
 Retrieve details of an Workload
 
@@ -316,12 +316,12 @@ import (
 )
 
 func main() {
-	globalId := "globalId_example" // string | 
+	workloadId := int64(789) // int64 | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.RetrieveWorkload(context.Background(), globalId).Fields(fields).Execute()
+	resp, r, err := apiClient.WorkloadsAPI.RetrieveWorkload(context.Background(), workloadId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.RetrieveWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -337,7 +337,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**globalId** | **string** |  | 
+**workloadId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWorkload
 
-> ResponseWorkload UpdateWorkload(ctx, globalId).WorkloadRequest(workloadRequest).Execute()
+> ResponseWorkload UpdateWorkload(ctx, workloadId).WorkloadRequest(workloadRequest).Execute()
 
 Update an Workload
 
@@ -388,12 +388,12 @@ import (
 )
 
 func main() {
-	globalId := "globalId_example" // string | 
-	workloadRequest := *openapiclient.NewWorkloadRequest("Name_example", int64(123)) // WorkloadRequest | 
+	workloadId := int64(789) // int64 | 
+	workloadRequest := *openapiclient.NewWorkloadRequest("Name_example") // WorkloadRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.UpdateWorkload(context.Background(), globalId).WorkloadRequest(workloadRequest).Execute()
+	resp, r, err := apiClient.WorkloadsAPI.UpdateWorkload(context.Background(), workloadId).WorkloadRequest(workloadRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.UpdateWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -409,7 +409,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**globalId** | **string** |  | 
+**workloadId** | **int64** |  | 
 
 ### Other Parameters
 

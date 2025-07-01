@@ -226,7 +226,7 @@ func (a *WorkloadsAPIService) CreateWorkloadExecute(r ApiCreateWorkloadRequest) 
 type ApiDestroyWorkloadRequest struct {
 	ctx context.Context
 	ApiService *WorkloadsAPIService
-	globalId string
+	workloadId int64
 }
 
 func (r ApiDestroyWorkloadRequest) Execute() (*ResponseAsyncDeleteWorkload, *http.Response, error) {
@@ -239,14 +239,14 @@ DestroyWorkload Destroy an Workload
 Destruction of a specific Workload in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param globalId
+ @param workloadId
  @return ApiDestroyWorkloadRequest
 */
-func (a *WorkloadsAPIService) DestroyWorkload(ctx context.Context, globalId string) ApiDestroyWorkloadRequest {
+func (a *WorkloadsAPIService) DestroyWorkload(ctx context.Context, workloadId int64) ApiDestroyWorkloadRequest {
 	return ApiDestroyWorkloadRequest{
 		ApiService: a,
 		ctx: ctx,
-		globalId: globalId,
+		workloadId: workloadId,
 	}
 }
 
@@ -265,8 +265,8 @@ func (a *WorkloadsAPIService) DestroyWorkloadExecute(r ApiDestroyWorkloadRequest
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/workloads/{global_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"global_id"+"}", url.PathEscape(parameterValueToString(r.globalId, "globalId")), -1)
+	localVarPath := localBasePath + "/workspace/workloads/{workload_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"workload_id"+"}", url.PathEscape(parameterValueToString(r.workloadId, "workloadId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -432,7 +432,7 @@ func (r ApiListWorkloadsRequest) Fields(fields string) ApiListWorkloadsRequest {
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: edge_application, edge_firewall, id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version)
+// Which field to use when ordering the results. (Valid fields: id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version)
 func (r ApiListWorkloadsRequest) Ordering(ordering string) ApiListWorkloadsRequest {
 	r.ordering = &ordering
 	return r
@@ -658,7 +658,7 @@ func (a *WorkloadsAPIService) ListWorkloadsExecute(r ApiListWorkloadsRequest) (*
 type ApiPartialUpdateWorkloadRequest struct {
 	ctx context.Context
 	ApiService *WorkloadsAPIService
-	globalId string
+	workloadId int64
 	patchedWorkloadRequest *PatchedWorkloadRequest
 }
 
@@ -677,14 +677,14 @@ PartialUpdateWorkload Partially update an Workload
 Update one or more fields of an existing Workload without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param globalId
+ @param workloadId
  @return ApiPartialUpdateWorkloadRequest
 */
-func (a *WorkloadsAPIService) PartialUpdateWorkload(ctx context.Context, globalId string) ApiPartialUpdateWorkloadRequest {
+func (a *WorkloadsAPIService) PartialUpdateWorkload(ctx context.Context, workloadId int64) ApiPartialUpdateWorkloadRequest {
 	return ApiPartialUpdateWorkloadRequest{
 		ApiService: a,
 		ctx: ctx,
-		globalId: globalId,
+		workloadId: workloadId,
 	}
 }
 
@@ -703,8 +703,8 @@ func (a *WorkloadsAPIService) PartialUpdateWorkloadExecute(r ApiPartialUpdateWor
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/workloads/{global_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"global_id"+"}", url.PathEscape(parameterValueToString(r.globalId, "globalId")), -1)
+	localVarPath := localBasePath + "/workspace/workloads/{workload_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"workload_id"+"}", url.PathEscape(parameterValueToString(r.workloadId, "workloadId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -859,7 +859,7 @@ func (a *WorkloadsAPIService) PartialUpdateWorkloadExecute(r ApiPartialUpdateWor
 type ApiRetrieveWorkloadRequest struct {
 	ctx context.Context
 	ApiService *WorkloadsAPIService
-	globalId string
+	workloadId int64
 	fields *string
 }
 
@@ -879,14 +879,14 @@ RetrieveWorkload Retrieve details of an Workload
 Retrieve details of a specific Workload in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param globalId
+ @param workloadId
  @return ApiRetrieveWorkloadRequest
 */
-func (a *WorkloadsAPIService) RetrieveWorkload(ctx context.Context, globalId string) ApiRetrieveWorkloadRequest {
+func (a *WorkloadsAPIService) RetrieveWorkload(ctx context.Context, workloadId int64) ApiRetrieveWorkloadRequest {
 	return ApiRetrieveWorkloadRequest{
 		ApiService: a,
 		ctx: ctx,
-		globalId: globalId,
+		workloadId: workloadId,
 	}
 }
 
@@ -905,8 +905,8 @@ func (a *WorkloadsAPIService) RetrieveWorkloadExecute(r ApiRetrieveWorkloadReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/workloads/{global_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"global_id"+"}", url.PathEscape(parameterValueToString(r.globalId, "globalId")), -1)
+	localVarPath := localBasePath + "/workspace/workloads/{workload_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"workload_id"+"}", url.PathEscape(parameterValueToString(r.workloadId, "workloadId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1062,7 +1062,7 @@ func (a *WorkloadsAPIService) RetrieveWorkloadExecute(r ApiRetrieveWorkloadReque
 type ApiUpdateWorkloadRequest struct {
 	ctx context.Context
 	ApiService *WorkloadsAPIService
-	globalId string
+	workloadId int64
 	workloadRequest *WorkloadRequest
 }
 
@@ -1081,14 +1081,14 @@ UpdateWorkload Update an Workload
 Update an existing Workload. This replaces the entire Workload with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param globalId
+ @param workloadId
  @return ApiUpdateWorkloadRequest
 */
-func (a *WorkloadsAPIService) UpdateWorkload(ctx context.Context, globalId string) ApiUpdateWorkloadRequest {
+func (a *WorkloadsAPIService) UpdateWorkload(ctx context.Context, workloadId int64) ApiUpdateWorkloadRequest {
 	return ApiUpdateWorkloadRequest{
 		ApiService: a,
 		ctx: ctx,
-		globalId: globalId,
+		workloadId: workloadId,
 	}
 }
 
@@ -1107,8 +1107,8 @@ func (a *WorkloadsAPIService) UpdateWorkloadExecute(r ApiUpdateWorkloadRequest) 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/workloads/{global_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"global_id"+"}", url.PathEscape(parameterValueToString(r.globalId, "globalId")), -1)
+	localVarPath := localBasePath + "/workspace/workloads/{workload_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"workload_id"+"}", url.PathEscape(parameterValueToString(r.workloadId, "workloadId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
