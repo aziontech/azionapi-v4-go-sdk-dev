@@ -23,10 +23,7 @@ var _ MappedNullable = &ResponseListCacheSetting{}
 type ResponseListCacheSetting struct {
 	Id int64 `json:"id"`
 	Name string `json:"name" validate:"regexp=^[a-zA-Z0-9 \\\\-\\\\.\\\\'\\\\,|]+$"`
-	BrowserCache BrowserCacheModule `json:"browser_cache"`
-	EdgeCache EdgeCacheModule `json:"edge_cache"`
-	ApplicationControls ApplicationControlsModule `json:"application_controls"`
-	SliceControls SliceControlsModule `json:"slice_controls"`
+	Modules *CacheSettingModules `json:"modules,omitempty"`
 }
 
 type _ResponseListCacheSetting ResponseListCacheSetting
@@ -35,14 +32,10 @@ type _ResponseListCacheSetting ResponseListCacheSetting
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponseListCacheSetting(id int64, name string, browserCache BrowserCacheModule, edgeCache EdgeCacheModule, applicationControls ApplicationControlsModule, sliceControls SliceControlsModule) *ResponseListCacheSetting {
+func NewResponseListCacheSetting(id int64, name string) *ResponseListCacheSetting {
 	this := ResponseListCacheSetting{}
 	this.Id = id
 	this.Name = name
-	this.BrowserCache = browserCache
-	this.EdgeCache = edgeCache
-	this.ApplicationControls = applicationControls
-	this.SliceControls = sliceControls
 	return &this
 }
 
@@ -102,100 +95,36 @@ func (o *ResponseListCacheSetting) SetName(v string) {
 	o.Name = v
 }
 
-// GetBrowserCache returns the BrowserCache field value
-func (o *ResponseListCacheSetting) GetBrowserCache() BrowserCacheModule {
-	if o == nil {
-		var ret BrowserCacheModule
+// GetModules returns the Modules field value if set, zero value otherwise.
+func (o *ResponseListCacheSetting) GetModules() CacheSettingModules {
+	if o == nil || IsNil(o.Modules) {
+		var ret CacheSettingModules
 		return ret
 	}
-
-	return o.BrowserCache
+	return *o.Modules
 }
 
-// GetBrowserCacheOk returns a tuple with the BrowserCache field value
+// GetModulesOk returns a tuple with the Modules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResponseListCacheSetting) GetBrowserCacheOk() (*BrowserCacheModule, bool) {
-	if o == nil {
+func (o *ResponseListCacheSetting) GetModulesOk() (*CacheSettingModules, bool) {
+	if o == nil || IsNil(o.Modules) {
 		return nil, false
 	}
-	return &o.BrowserCache, true
+	return o.Modules, true
 }
 
-// SetBrowserCache sets field value
-func (o *ResponseListCacheSetting) SetBrowserCache(v BrowserCacheModule) {
-	o.BrowserCache = v
-}
-
-// GetEdgeCache returns the EdgeCache field value
-func (o *ResponseListCacheSetting) GetEdgeCache() EdgeCacheModule {
-	if o == nil {
-		var ret EdgeCacheModule
-		return ret
+// HasModules returns a boolean if a field has been set.
+func (o *ResponseListCacheSetting) HasModules() bool {
+	if o != nil && !IsNil(o.Modules) {
+		return true
 	}
 
-	return o.EdgeCache
+	return false
 }
 
-// GetEdgeCacheOk returns a tuple with the EdgeCache field value
-// and a boolean to check if the value has been set.
-func (o *ResponseListCacheSetting) GetEdgeCacheOk() (*EdgeCacheModule, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EdgeCache, true
-}
-
-// SetEdgeCache sets field value
-func (o *ResponseListCacheSetting) SetEdgeCache(v EdgeCacheModule) {
-	o.EdgeCache = v
-}
-
-// GetApplicationControls returns the ApplicationControls field value
-func (o *ResponseListCacheSetting) GetApplicationControls() ApplicationControlsModule {
-	if o == nil {
-		var ret ApplicationControlsModule
-		return ret
-	}
-
-	return o.ApplicationControls
-}
-
-// GetApplicationControlsOk returns a tuple with the ApplicationControls field value
-// and a boolean to check if the value has been set.
-func (o *ResponseListCacheSetting) GetApplicationControlsOk() (*ApplicationControlsModule, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ApplicationControls, true
-}
-
-// SetApplicationControls sets field value
-func (o *ResponseListCacheSetting) SetApplicationControls(v ApplicationControlsModule) {
-	o.ApplicationControls = v
-}
-
-// GetSliceControls returns the SliceControls field value
-func (o *ResponseListCacheSetting) GetSliceControls() SliceControlsModule {
-	if o == nil {
-		var ret SliceControlsModule
-		return ret
-	}
-
-	return o.SliceControls
-}
-
-// GetSliceControlsOk returns a tuple with the SliceControls field value
-// and a boolean to check if the value has been set.
-func (o *ResponseListCacheSetting) GetSliceControlsOk() (*SliceControlsModule, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SliceControls, true
-}
-
-// SetSliceControls sets field value
-func (o *ResponseListCacheSetting) SetSliceControls(v SliceControlsModule) {
-	o.SliceControls = v
+// SetModules gets a reference to the given CacheSettingModules and assigns it to the Modules field.
+func (o *ResponseListCacheSetting) SetModules(v CacheSettingModules) {
+	o.Modules = &v
 }
 
 func (o ResponseListCacheSetting) MarshalJSON() ([]byte, error) {
@@ -210,10 +139,9 @@ func (o ResponseListCacheSetting) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
-	toSerialize["browser_cache"] = o.BrowserCache
-	toSerialize["edge_cache"] = o.EdgeCache
-	toSerialize["application_controls"] = o.ApplicationControls
-	toSerialize["slice_controls"] = o.SliceControls
+	if !IsNil(o.Modules) {
+		toSerialize["modules"] = o.Modules
+	}
 	return toSerialize, nil
 }
 
@@ -224,10 +152,6 @@ func (o *ResponseListCacheSetting) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"name",
-		"browser_cache",
-		"edge_cache",
-		"application_controls",
-		"slice_controls",
 	}
 
 	allProperties := make(map[string]interface{})

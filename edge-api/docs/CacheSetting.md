@@ -6,16 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int64** |  | [readonly] 
 **Name** | **string** |  | 
-**BrowserCache** | [**BrowserCacheModule**](BrowserCacheModule.md) |  | 
-**EdgeCache** | [**EdgeCacheModule**](EdgeCacheModule.md) |  | 
-**ApplicationControls** | [**ApplicationControlsModule**](ApplicationControlsModule.md) |  | 
-**SliceControls** | [**SliceControlsModule**](SliceControlsModule.md) |  | 
+**Modules** | Pointer to [**CacheSettingModules**](CacheSettingModules.md) |  | [optional] 
 
 ## Methods
 
 ### NewCacheSetting
 
-`func NewCacheSetting(id int64, name string, browserCache BrowserCacheModule, edgeCache EdgeCacheModule, applicationControls ApplicationControlsModule, sliceControls SliceControlsModule, ) *CacheSetting`
+`func NewCacheSetting(id int64, name string, ) *CacheSetting`
 
 NewCacheSetting instantiates a new CacheSetting object
 This constructor will assign default values to properties that have it defined,
@@ -70,85 +67,30 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetBrowserCache
+### GetModules
 
-`func (o *CacheSetting) GetBrowserCache() BrowserCacheModule`
+`func (o *CacheSetting) GetModules() CacheSettingModules`
 
-GetBrowserCache returns the BrowserCache field if non-nil, zero value otherwise.
+GetModules returns the Modules field if non-nil, zero value otherwise.
 
-### GetBrowserCacheOk
+### GetModulesOk
 
-`func (o *CacheSetting) GetBrowserCacheOk() (*BrowserCacheModule, bool)`
+`func (o *CacheSetting) GetModulesOk() (*CacheSettingModules, bool)`
 
-GetBrowserCacheOk returns a tuple with the BrowserCache field if it's non-nil, zero value otherwise
+GetModulesOk returns a tuple with the Modules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBrowserCache
+### SetModules
 
-`func (o *CacheSetting) SetBrowserCache(v BrowserCacheModule)`
+`func (o *CacheSetting) SetModules(v CacheSettingModules)`
 
-SetBrowserCache sets BrowserCache field to given value.
+SetModules sets Modules field to given value.
 
+### HasModules
 
-### GetEdgeCache
+`func (o *CacheSetting) HasModules() bool`
 
-`func (o *CacheSetting) GetEdgeCache() EdgeCacheModule`
-
-GetEdgeCache returns the EdgeCache field if non-nil, zero value otherwise.
-
-### GetEdgeCacheOk
-
-`func (o *CacheSetting) GetEdgeCacheOk() (*EdgeCacheModule, bool)`
-
-GetEdgeCacheOk returns a tuple with the EdgeCache field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEdgeCache
-
-`func (o *CacheSetting) SetEdgeCache(v EdgeCacheModule)`
-
-SetEdgeCache sets EdgeCache field to given value.
-
-
-### GetApplicationControls
-
-`func (o *CacheSetting) GetApplicationControls() ApplicationControlsModule`
-
-GetApplicationControls returns the ApplicationControls field if non-nil, zero value otherwise.
-
-### GetApplicationControlsOk
-
-`func (o *CacheSetting) GetApplicationControlsOk() (*ApplicationControlsModule, bool)`
-
-GetApplicationControlsOk returns a tuple with the ApplicationControls field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetApplicationControls
-
-`func (o *CacheSetting) SetApplicationControls(v ApplicationControlsModule)`
-
-SetApplicationControls sets ApplicationControls field to given value.
-
-
-### GetSliceControls
-
-`func (o *CacheSetting) GetSliceControls() SliceControlsModule`
-
-GetSliceControls returns the SliceControls field if non-nil, zero value otherwise.
-
-### GetSliceControlsOk
-
-`func (o *CacheSetting) GetSliceControlsOk() (*SliceControlsModule, bool)`
-
-GetSliceControlsOk returns a tuple with the SliceControls field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSliceControls
-
-`func (o *CacheSetting) SetSliceControls(v SliceControlsModule)`
-
-SetSliceControls sets SliceControls field to given value.
-
+HasModules returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

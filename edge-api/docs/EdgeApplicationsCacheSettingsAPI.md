@@ -35,7 +35,7 @@ import (
 
 func main() {
 	edgeApplicationId := "edgeApplicationId_example" // string | 
-	cacheSettingRequest := *openapiclient.NewCacheSettingRequest("Name_example", *openapiclient.NewBrowserCacheModuleRequest("Behavior_example", int64(123)), *openapiclient.NewEdgeCacheModuleRequest("Behavior_example", int64(123), false, false, false, false), *openapiclient.NewApplicationControlsModuleRequest("CacheByQueryString_example", []string{"QueryStringFields_example"}, false, "CacheByCookies_example", []string{"CookieNames_example"}, "AdaptiveDeliveryAction_example", []int64{int64(123)}), *openapiclient.NewSliceControlsModuleRequest(false, false, false)) // CacheSettingRequest | 
+	cacheSettingRequest := *openapiclient.NewCacheSettingRequest("Name_example") // CacheSettingRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -411,7 +411,7 @@ import (
 func main() {
 	edgeApplicationId := "edgeApplicationId_example" // string | 
 	id := "id_example" // string | 
-	cacheSettingRequest := *openapiclient.NewCacheSettingRequest("Name_example", *openapiclient.NewBrowserCacheModuleRequest("Behavior_example", int64(123)), *openapiclient.NewEdgeCacheModuleRequest("Behavior_example", int64(123), false, false, false, false), *openapiclient.NewApplicationControlsModuleRequest("CacheByQueryString_example", []string{"QueryStringFields_example"}, false, "CacheByCookies_example", []string{"CookieNames_example"}, "AdaptiveDeliveryAction_example", []int64{int64(123)}), *openapiclient.NewSliceControlsModuleRequest(false, false, false)) // CacheSettingRequest | 
+	cacheSettingRequest := *openapiclient.NewCacheSettingRequest("Name_example") // CacheSettingRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
