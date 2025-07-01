@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Behaviors** | [**[]EdgeFirewallBehaviorFieldRequest**](EdgeFirewallBehaviorFieldRequest.md) |  | 
+**Behaviors** | [**[]EdgeFirewallBehaviorsRequest**](EdgeFirewallBehaviorsRequest.md) |  | 
 **Criteria** | [**[][]EdgeFirewallCriterionFieldRequest**]([]EdgeFirewallCriterionFieldRequest.md) |  | 
 **Description** | Pointer to **string** |  | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewEdgeFirewallRuleEngineRequest
 
-`func NewEdgeFirewallRuleEngineRequest(name string, behaviors []EdgeFirewallBehaviorFieldRequest, criteria [][]EdgeFirewallCriterionFieldRequest, ) *EdgeFirewallRuleEngineRequest`
+`func NewEdgeFirewallRuleEngineRequest(name string, behaviors []EdgeFirewallBehaviorsRequest, criteria [][]EdgeFirewallCriterionFieldRequest, ) *EdgeFirewallRuleEngineRequest`
 
 NewEdgeFirewallRuleEngineRequest instantiates a new EdgeFirewallRuleEngineRequest object
 This constructor will assign default values to properties that have it defined,
@@ -76,20 +76,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetBehaviors
 
-`func (o *EdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorFieldRequest`
+`func (o *EdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorsRequest`
 
 GetBehaviors returns the Behaviors field if non-nil, zero value otherwise.
 
 ### GetBehaviorsOk
 
-`func (o *EdgeFirewallRuleEngineRequest) GetBehaviorsOk() (*[]EdgeFirewallBehaviorFieldRequest, bool)`
+`func (o *EdgeFirewallRuleEngineRequest) GetBehaviorsOk() (*[]EdgeFirewallBehaviorsRequest, bool)`
 
 GetBehaviorsOk returns a tuple with the Behaviors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBehaviors
 
-`func (o *EdgeFirewallRuleEngineRequest) SetBehaviors(v []EdgeFirewallBehaviorFieldRequest)`
+`func (o *EdgeFirewallRuleEngineRequest) SetBehaviors(v []EdgeFirewallBehaviorsRequest)`
 
 SetBehaviors sets Behaviors field to given value.
 

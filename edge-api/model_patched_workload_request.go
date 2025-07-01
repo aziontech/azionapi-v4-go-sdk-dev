@@ -17,7 +17,7 @@ import (
 // checks if the PatchedWorkloadRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PatchedWorkloadRequest{}
 
-// PatchedWorkloadRequest Serializer for Workload model.  Handles the serialization, validation, creation and updating of Workload instances. Includes nested serializers for TLS, protocols, and mTLS configurations.
+// PatchedWorkloadRequest struct for PatchedWorkloadRequest
 type PatchedWorkloadRequest struct {
 	Name *string `json:"name,omitempty" validate:"regexp=.*"`
 	Active *bool `json:"active,omitempty"`

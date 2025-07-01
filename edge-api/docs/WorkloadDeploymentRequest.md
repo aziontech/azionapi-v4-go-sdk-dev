@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tag** | **string** |  | 
-**Binds** | [**WorkloadDeploymentBindsRequest**](WorkloadDeploymentBindsRequest.md) |  | 
+**Name** | **string** |  | 
 **Current** | Pointer to **bool** |  | [optional] 
+**Active** | Pointer to **bool** |  | [optional] 
+**Strategy** | [**DeploymentStrategyDefaultDeploymentStrategyAttrsRequest**](DeploymentStrategyDefaultDeploymentStrategyAttrsRequest.md) |  | 
 
 ## Methods
 
 ### NewWorkloadDeploymentRequest
 
-`func NewWorkloadDeploymentRequest(tag string, binds WorkloadDeploymentBindsRequest, ) *WorkloadDeploymentRequest`
+`func NewWorkloadDeploymentRequest(name string, strategy DeploymentStrategyDefaultDeploymentStrategyAttrsRequest, ) *WorkloadDeploymentRequest`
 
 NewWorkloadDeploymentRequest instantiates a new WorkloadDeploymentRequest object
 This constructor will assign default values to properties that have it defined,
@@ -27,44 +28,24 @@ NewWorkloadDeploymentRequestWithDefaults instantiates a new WorkloadDeploymentRe
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTag
+### GetName
 
-`func (o *WorkloadDeploymentRequest) GetTag() string`
+`func (o *WorkloadDeploymentRequest) GetName() string`
 
-GetTag returns the Tag field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTagOk
+### GetNameOk
 
-`func (o *WorkloadDeploymentRequest) GetTagOk() (*string, bool)`
+`func (o *WorkloadDeploymentRequest) GetNameOk() (*string, bool)`
 
-GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTag
+### SetName
 
-`func (o *WorkloadDeploymentRequest) SetTag(v string)`
+`func (o *WorkloadDeploymentRequest) SetName(v string)`
 
-SetTag sets Tag field to given value.
-
-
-### GetBinds
-
-`func (o *WorkloadDeploymentRequest) GetBinds() WorkloadDeploymentBindsRequest`
-
-GetBinds returns the Binds field if non-nil, zero value otherwise.
-
-### GetBindsOk
-
-`func (o *WorkloadDeploymentRequest) GetBindsOk() (*WorkloadDeploymentBindsRequest, bool)`
-
-GetBindsOk returns a tuple with the Binds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBinds
-
-`func (o *WorkloadDeploymentRequest) SetBinds(v WorkloadDeploymentBindsRequest)`
-
-SetBinds sets Binds field to given value.
+SetName sets Name field to given value.
 
 
 ### GetCurrent
@@ -91,6 +72,51 @@ SetCurrent sets Current field to given value.
 `func (o *WorkloadDeploymentRequest) HasCurrent() bool`
 
 HasCurrent returns a boolean if a field has been set.
+
+### GetActive
+
+`func (o *WorkloadDeploymentRequest) GetActive() bool`
+
+GetActive returns the Active field if non-nil, zero value otherwise.
+
+### GetActiveOk
+
+`func (o *WorkloadDeploymentRequest) GetActiveOk() (*bool, bool)`
+
+GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActive
+
+`func (o *WorkloadDeploymentRequest) SetActive(v bool)`
+
+SetActive sets Active field to given value.
+
+### HasActive
+
+`func (o *WorkloadDeploymentRequest) HasActive() bool`
+
+HasActive returns a boolean if a field has been set.
+
+### GetStrategy
+
+`func (o *WorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyAttrsRequest`
+
+GetStrategy returns the Strategy field if non-nil, zero value otherwise.
+
+### GetStrategyOk
+
+`func (o *WorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyAttrsRequest, bool)`
+
+GetStrategyOk returns a tuple with the Strategy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStrategy
+
+`func (o *WorkloadDeploymentRequest) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyAttrsRequest)`
+
+SetStrategy sets Strategy field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

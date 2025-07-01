@@ -12,6 +12,7 @@ package edge-api
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -22,9 +23,12 @@ var _ MappedNullable = &WorkloadDeployment{}
 // WorkloadDeployment struct for WorkloadDeployment
 type WorkloadDeployment struct {
 	Id int64 `json:"id"`
-	Tag string `json:"tag" validate:"regexp=.*"`
-	Binds WorkloadDeploymentBinds `json:"binds"`
+	Name string `json:"name" validate:"regexp=.*"`
 	Current *bool `json:"current,omitempty"`
+	Active *bool `json:"active,omitempty"`
+	Strategy DeploymentStrategyDefaultDeploymentStrategyAttrs `json:"strategy"`
+	LastEditor string `json:"last_editor" validate:"regexp=.*"`
+	LastModified time.Time `json:"last_modified"`
 }
 
 type _WorkloadDeployment WorkloadDeployment
@@ -33,11 +37,13 @@ type _WorkloadDeployment WorkloadDeployment
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkloadDeployment(id int64, tag string, binds WorkloadDeploymentBinds) *WorkloadDeployment {
+func NewWorkloadDeployment(id int64, name string, strategy DeploymentStrategyDefaultDeploymentStrategyAttrs, lastEditor string, lastModified time.Time) *WorkloadDeployment {
 	this := WorkloadDeployment{}
 	this.Id = id
-	this.Tag = tag
-	this.Binds = binds
+	this.Name = name
+	this.Strategy = strategy
+	this.LastEditor = lastEditor
+	this.LastModified = lastModified
 	return &this
 }
 
@@ -73,52 +79,28 @@ func (o *WorkloadDeployment) SetId(v int64) {
 	o.Id = v
 }
 
-// GetTag returns the Tag field value
-func (o *WorkloadDeployment) GetTag() string {
+// GetName returns the Name field value
+func (o *WorkloadDeployment) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Tag
+	return o.Name
 }
 
-// GetTagOk returns a tuple with the Tag field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *WorkloadDeployment) GetTagOk() (*string, bool) {
+func (o *WorkloadDeployment) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Tag, true
+	return &o.Name, true
 }
 
-// SetTag sets field value
-func (o *WorkloadDeployment) SetTag(v string) {
-	o.Tag = v
-}
-
-// GetBinds returns the Binds field value
-func (o *WorkloadDeployment) GetBinds() WorkloadDeploymentBinds {
-	if o == nil {
-		var ret WorkloadDeploymentBinds
-		return ret
-	}
-
-	return o.Binds
-}
-
-// GetBindsOk returns a tuple with the Binds field value
-// and a boolean to check if the value has been set.
-func (o *WorkloadDeployment) GetBindsOk() (*WorkloadDeploymentBinds, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Binds, true
-}
-
-// SetBinds sets field value
-func (o *WorkloadDeployment) SetBinds(v WorkloadDeploymentBinds) {
-	o.Binds = v
+// SetName sets field value
+func (o *WorkloadDeployment) SetName(v string) {
+	o.Name = v
 }
 
 // GetCurrent returns the Current field value if set, zero value otherwise.
@@ -153,6 +135,110 @@ func (o *WorkloadDeployment) SetCurrent(v bool) {
 	o.Current = &v
 }
 
+// GetActive returns the Active field value if set, zero value otherwise.
+func (o *WorkloadDeployment) GetActive() bool {
+	if o == nil || IsNil(o.Active) {
+		var ret bool
+		return ret
+	}
+	return *o.Active
+}
+
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkloadDeployment) GetActiveOk() (*bool, bool) {
+	if o == nil || IsNil(o.Active) {
+		return nil, false
+	}
+	return o.Active, true
+}
+
+// HasActive returns a boolean if a field has been set.
+func (o *WorkloadDeployment) HasActive() bool {
+	if o != nil && !IsNil(o.Active) {
+		return true
+	}
+
+	return false
+}
+
+// SetActive gets a reference to the given bool and assigns it to the Active field.
+func (o *WorkloadDeployment) SetActive(v bool) {
+	o.Active = &v
+}
+
+// GetStrategy returns the Strategy field value
+func (o *WorkloadDeployment) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyAttrs {
+	if o == nil {
+		var ret DeploymentStrategyDefaultDeploymentStrategyAttrs
+		return ret
+	}
+
+	return o.Strategy
+}
+
+// GetStrategyOk returns a tuple with the Strategy field value
+// and a boolean to check if the value has been set.
+func (o *WorkloadDeployment) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyAttrs, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Strategy, true
+}
+
+// SetStrategy sets field value
+func (o *WorkloadDeployment) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyAttrs) {
+	o.Strategy = v
+}
+
+// GetLastEditor returns the LastEditor field value
+func (o *WorkloadDeployment) GetLastEditor() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LastEditor
+}
+
+// GetLastEditorOk returns a tuple with the LastEditor field value
+// and a boolean to check if the value has been set.
+func (o *WorkloadDeployment) GetLastEditorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastEditor, true
+}
+
+// SetLastEditor sets field value
+func (o *WorkloadDeployment) SetLastEditor(v string) {
+	o.LastEditor = v
+}
+
+// GetLastModified returns the LastModified field value
+func (o *WorkloadDeployment) GetLastModified() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.LastModified
+}
+
+// GetLastModifiedOk returns a tuple with the LastModified field value
+// and a boolean to check if the value has been set.
+func (o *WorkloadDeployment) GetLastModifiedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastModified, true
+}
+
+// SetLastModified sets field value
+func (o *WorkloadDeployment) SetLastModified(v time.Time) {
+	o.LastModified = v
+}
+
 func (o WorkloadDeployment) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -164,11 +250,16 @@ func (o WorkloadDeployment) MarshalJSON() ([]byte, error) {
 func (o WorkloadDeployment) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
-	toSerialize["tag"] = o.Tag
-	toSerialize["binds"] = o.Binds
+	toSerialize["name"] = o.Name
 	if !IsNil(o.Current) {
 		toSerialize["current"] = o.Current
 	}
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
+	toSerialize["strategy"] = o.Strategy
+	toSerialize["last_editor"] = o.LastEditor
+	toSerialize["last_modified"] = o.LastModified
 	return toSerialize, nil
 }
 
@@ -178,8 +269,10 @@ func (o *WorkloadDeployment) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"id",
-		"tag",
-		"binds",
+		"name",
+		"strategy",
+		"last_editor",
+		"last_modified",
 	}
 
 	allProperties := make(map[string]interface{})

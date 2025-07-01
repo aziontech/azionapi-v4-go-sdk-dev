@@ -20,7 +20,7 @@ import (
 // checks if the Workload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Workload{}
 
-// Workload Serializer for Workload model.  Handles the serialization, validation, creation and updating of Workload instances. Includes nested serializers for TLS, protocols, and mTLS configurations.
+// Workload struct for Workload
 type Workload struct {
 	Id int64 `json:"id"`
 	Name string `json:"name" validate:"regexp=.*"`

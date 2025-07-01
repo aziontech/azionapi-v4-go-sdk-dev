@@ -36,7 +36,7 @@ import (
 
 func main() {
 	edgeApplicationId := "edgeApplicationId_example" // string | 
-	edgeApplicationRuleEngineRequest := *openapiclient.NewEdgeApplicationRuleEngineRequest("Name_example", "Phase_example", []openapiclient.EdgeApplicationBehaviorFieldRequest{*openapiclient.NewEdgeApplicationBehaviorFieldRequest("Name_example")}, [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Variable_example", "Conditional_example", "Operator_example")}}) // EdgeApplicationRuleEngineRequest | 
+	edgeApplicationRuleEngineRequest := *openapiclient.NewEdgeApplicationRuleEngineRequest("Name_example", "Phase_example", []openapiclient.EdgeApplicationBehaviorFieldRequest{*openapiclient.NewEdgeApplicationBehaviorFieldRequest("Name_example")}, [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}) // EdgeApplicationRuleEngineRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -492,7 +492,7 @@ import (
 func main() {
 	edgeApplicationId := "edgeApplicationId_example" // string | 
 	id := "id_example" // string | 
-	edgeApplicationRuleEngineRequest := *openapiclient.NewEdgeApplicationRuleEngineRequest("Name_example", "Phase_example", []openapiclient.EdgeApplicationBehaviorFieldRequest{*openapiclient.NewEdgeApplicationBehaviorFieldRequest("Name_example")}, [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Variable_example", "Conditional_example", "Operator_example")}}) // EdgeApplicationRuleEngineRequest | 
+	edgeApplicationRuleEngineRequest := *openapiclient.NewEdgeApplicationRuleEngineRequest("Name_example", "Phase_example", []openapiclient.EdgeApplicationBehaviorFieldRequest{*openapiclient.NewEdgeApplicationBehaviorFieldRequest("Name_example")}, [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}) // EdgeApplicationRuleEngineRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

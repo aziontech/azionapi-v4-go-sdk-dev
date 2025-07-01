@@ -5,10 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**EdgeApplication** | **int64** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 **Infrastructure** | Pointer to **int64** | * &#x60;1&#x60; - Production Infrastructure (All Edge Locations) * &#x60;2&#x60; - Staging Infrastructure | [optional] 
-**EdgeFirewall** | Pointer to **NullableInt64** |  | [optional] 
 **Tls** | Pointer to [**TLSWorkloadRequest**](TLSWorkloadRequest.md) |  | [optional] 
 **Protocols** | Pointer to [**ProtocolsRequest**](ProtocolsRequest.md) |  | [optional] 
 **Mtls** | Pointer to [**MTLSRequest**](MTLSRequest.md) |  | [optional] 
@@ -19,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewWorkloadRequest
 
-`func NewWorkloadRequest(name string, edgeApplication int64, ) *WorkloadRequest`
+`func NewWorkloadRequest(name string, ) *WorkloadRequest`
 
 NewWorkloadRequest instantiates a new WorkloadRequest object
 This constructor will assign default values to properties that have it defined,
@@ -52,26 +50,6 @@ and a boolean to check if the value has been set.
 `func (o *WorkloadRequest) SetName(v string)`
 
 SetName sets Name field to given value.
-
-
-### GetEdgeApplication
-
-`func (o *WorkloadRequest) GetEdgeApplication() int64`
-
-GetEdgeApplication returns the EdgeApplication field if non-nil, zero value otherwise.
-
-### GetEdgeApplicationOk
-
-`func (o *WorkloadRequest) GetEdgeApplicationOk() (*int64, bool)`
-
-GetEdgeApplicationOk returns a tuple with the EdgeApplication field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEdgeApplication
-
-`func (o *WorkloadRequest) SetEdgeApplication(v int64)`
-
-SetEdgeApplication sets EdgeApplication field to given value.
 
 
 ### GetActive
@@ -124,41 +102,6 @@ SetInfrastructure sets Infrastructure field to given value.
 
 HasInfrastructure returns a boolean if a field has been set.
 
-### GetEdgeFirewall
-
-`func (o *WorkloadRequest) GetEdgeFirewall() int64`
-
-GetEdgeFirewall returns the EdgeFirewall field if non-nil, zero value otherwise.
-
-### GetEdgeFirewallOk
-
-`func (o *WorkloadRequest) GetEdgeFirewallOk() (*int64, bool)`
-
-GetEdgeFirewallOk returns a tuple with the EdgeFirewall field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEdgeFirewall
-
-`func (o *WorkloadRequest) SetEdgeFirewall(v int64)`
-
-SetEdgeFirewall sets EdgeFirewall field to given value.
-
-### HasEdgeFirewall
-
-`func (o *WorkloadRequest) HasEdgeFirewall() bool`
-
-HasEdgeFirewall returns a boolean if a field has been set.
-
-### SetEdgeFirewallNil
-
-`func (o *WorkloadRequest) SetEdgeFirewallNil(b bool)`
-
- SetEdgeFirewallNil sets the value for EdgeFirewall to be an explicit nil
-
-### UnsetEdgeFirewall
-`func (o *WorkloadRequest) UnsetEdgeFirewall()`
-
-UnsetEdgeFirewall ensures that no value is present for EdgeFirewall, not even an explicit nil
 ### GetTls
 
 `func (o *WorkloadRequest) GetTls() TLSWorkloadRequest`

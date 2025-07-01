@@ -19,14 +19,12 @@ import (
 // checks if the WorkloadRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &WorkloadRequest{}
 
-// WorkloadRequest Serializer for Workload model.  Handles the serialization, validation, creation and updating of Workload instances. Includes nested serializers for TLS, protocols, and mTLS configurations.
+// WorkloadRequest struct for WorkloadRequest
 type WorkloadRequest struct {
 	Name string `json:"name" validate:"regexp=.*"`
-	EdgeApplication int64 `json:"edge_application"`
 	Active *bool `json:"active,omitempty"`
 	// * `1` - Production Infrastructure (All Edge Locations) * `2` - Staging Infrastructure
 	Infrastructure *int64 `json:"infrastructure,omitempty"`
-	EdgeFirewall NullableInt64 `json:"edge_firewall,omitempty"`
 	Tls *TLSWorkloadRequest `json:"tls,omitempty"`
 	Protocols *ProtocolsRequest `json:"protocols,omitempty"`
 	Mtls *MTLSRequest `json:"mtls,omitempty"`
@@ -40,10 +38,9 @@ type _WorkloadRequest WorkloadRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkloadRequest(name string, edgeApplication int64) *WorkloadRequest {
+func NewWorkloadRequest(name string) *WorkloadRequest {
 	this := WorkloadRequest{}
 	this.Name = name
-	this.EdgeApplication = edgeApplication
 	return &this
 }
 
@@ -77,30 +74,6 @@ func (o *WorkloadRequest) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *WorkloadRequest) SetName(v string) {
 	o.Name = v
-}
-
-// GetEdgeApplication returns the EdgeApplication field value
-func (o *WorkloadRequest) GetEdgeApplication() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.EdgeApplication
-}
-
-// GetEdgeApplicationOk returns a tuple with the EdgeApplication field value
-// and a boolean to check if the value has been set.
-func (o *WorkloadRequest) GetEdgeApplicationOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EdgeApplication, true
-}
-
-// SetEdgeApplication sets field value
-func (o *WorkloadRequest) SetEdgeApplication(v int64) {
-	o.EdgeApplication = v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -165,48 +138,6 @@ func (o *WorkloadRequest) HasInfrastructure() bool {
 // SetInfrastructure gets a reference to the given int64 and assigns it to the Infrastructure field.
 func (o *WorkloadRequest) SetInfrastructure(v int64) {
 	o.Infrastructure = &v
-}
-
-// GetEdgeFirewall returns the EdgeFirewall field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WorkloadRequest) GetEdgeFirewall() int64 {
-	if o == nil || IsNil(o.EdgeFirewall.Get()) {
-		var ret int64
-		return ret
-	}
-	return *o.EdgeFirewall.Get()
-}
-
-// GetEdgeFirewallOk returns a tuple with the EdgeFirewall field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WorkloadRequest) GetEdgeFirewallOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.EdgeFirewall.Get(), o.EdgeFirewall.IsSet()
-}
-
-// HasEdgeFirewall returns a boolean if a field has been set.
-func (o *WorkloadRequest) HasEdgeFirewall() bool {
-	if o != nil && o.EdgeFirewall.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetEdgeFirewall gets a reference to the given NullableInt64 and assigns it to the EdgeFirewall field.
-func (o *WorkloadRequest) SetEdgeFirewall(v int64) {
-	o.EdgeFirewall.Set(&v)
-}
-// SetEdgeFirewallNil sets the value for EdgeFirewall to be an explicit nil
-func (o *WorkloadRequest) SetEdgeFirewallNil() {
-	o.EdgeFirewall.Set(nil)
-}
-
-// UnsetEdgeFirewall ensures that no value is present for EdgeFirewall, not even an explicit nil
-func (o *WorkloadRequest) UnsetEdgeFirewall() {
-	o.EdgeFirewall.Unset()
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
@@ -380,15 +311,11 @@ func (o WorkloadRequest) MarshalJSON() ([]byte, error) {
 func (o WorkloadRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
-	toSerialize["edge_application"] = o.EdgeApplication
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
 	if !IsNil(o.Infrastructure) {
 		toSerialize["infrastructure"] = o.Infrastructure
-	}
-	if o.EdgeFirewall.IsSet() {
-		toSerialize["edge_firewall"] = o.EdgeFirewall.Get()
 	}
 	if !IsNil(o.Tls) {
 		toSerialize["tls"] = o.Tls
@@ -414,7 +341,6 @@ func (o *WorkloadRequest) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
-		"edge_application",
 	}
 
 	allProperties := make(map[string]interface{})

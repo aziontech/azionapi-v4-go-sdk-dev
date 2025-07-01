@@ -6675,7 +6675,7 @@ paths:
       summary: Update an Edge Firewall Function
       tags:
       - Edge Firewalls - Function
-  /edge_firewall/firewalls/{edge_firewall_id}/rules:
+  /edge_firewall/firewalls/{edge_firewall_id}/request_rules:
     get:
       description: List all Rules for a specific Edge Firewall owned by your account.
       operationId: List Edge Firewall Rules
@@ -7006,7 +7006,7 @@ paths:
       summary: Create an Edge Firewall Rule
       tags:
       - Edge Firewalls - Rules Engine
-  /edge_firewall/firewalls/{edge_firewall_id}/rules/{id}:
+  /edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id}:
     delete:
       description: Destroy a specific Rule in your account.
       operationId: Destroy Edge Firewall Rule
@@ -7622,7 +7622,7 @@ paths:
       summary: Update an Edge Firewall Rule
       tags:
       - Edge Firewalls - Rules Engine
-  /edge_firewall/firewalls/{edge_firewall_id}/rules/order:
+  /edge_firewall/firewalls/{edge_firewall_id}/request_rules/order:
     put:
       description: Reoder all Rules for a specific Edge Firewall owned by your account.
       operationId: Order Edge Firewall Rules
@@ -13413,7 +13413,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: edge_application, edge_firewall, id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version)
+          (Valid fields: id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version)
         explode: true
         in: query
         name: ordering
@@ -13712,17 +13712,18 @@ paths:
       summary: Create an Workload
       tags:
       - Workloads
-  /workspace/workloads/{global_id}:
+  /workspace/workloads/{workload_id}:
     delete:
       description: Destruction of a specific Workload in your account.
       operationId: Destroy Workload
       parameters:
       - explode: false
         in: path
-        name: global_id
+        name: workload_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       responses:
         "202":
@@ -13863,10 +13864,11 @@ paths:
         style: form
       - explode: false
         in: path
-        name: global_id
+        name: workload_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       responses:
         "200":
@@ -14000,10 +14002,11 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: global_id
+        name: workload_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -14148,10 +14151,11 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: global_id
+        name: workload_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -14305,7 +14309,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, tag, current)
+          (Valid fields: id, name, active, last_editor, last_modified, current)
         explode: true
         in: query
         name: ordering
@@ -14344,8 +14348,8 @@ paths:
         name: workload_id
         required: true
         schema:
-          pattern: ^\d+$
-          type: string
+          format: int64
+          type: integer
         style: simple
       responses:
         "200":
@@ -14472,11 +14476,171 @@ paths:
       summary: List Workload Deployments
       tags:
       - Workload Deployments
-  /workspace/workloads/{workload_id}/deployments/{id}:
+    post:
+      description: Create a new Workload Deployment in your account.
+      operationId: Create Workload Deployment
+      parameters:
+      - explode: false
+        in: path
+        name: workload_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkloadDeploymentRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncWorkloadDeployment"
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestWorkloadDeployment"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncWorkloadDeployment"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Create a Workload Deployment
+      tags:
+      - Workload Deployments
+  /workspace/workloads/{workload_id}/deployments/{deployment_id}:
+    delete:
+      description: Destruction of a specific Workload Deployment in your account.
+      operationId: Destroy Workload Deployment
+      parameters:
+      - explode: false
+        in: path
+        name: deployment_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: workload_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncDeleteWorkloadDeployment"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncDeleteWorkloadDeployment"
+          description: Accepted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestWorkloadDeployment"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Destroy a Workload Deployment
+      tags:
+      - Workload Deployments
     get:
       description: Retrieve details of a specific Workload Deployment in your account.
       operationId: Retrieve Workload Deployment
       parameters:
+      - explode: false
+        in: path
+        name: deployment_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -14487,18 +14651,11 @@ paths:
         style: form
       - explode: false
         in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: false
-        in: path
         name: workload_id
         required: true
         schema:
-          pattern: ^\d+$
-          type: string
+          format: int64
+          type: integer
         style: simple
       responses:
         "200":
@@ -14632,18 +14789,19 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: id
+        name: deployment_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       - explode: false
         in: path
         name: workload_id
         required: true
         schema:
-          pattern: ^\d+$
-          type: string
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -14788,18 +14946,19 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: id
+        name: deployment_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       - explode: false
         in: path
         name: workload_id
         required: true
         schema:
-          pattern: ^\d+$
-          type: string
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -15799,6 +15958,74 @@ components:
       - name
       title: CustomPagesRequest
       type: object
+    DefaultDeploymentStrategy:
+      additionalProperties: false
+      example:
+        custom_page: 1
+        edge_firewall: 1
+        edge_application: 5559347081229897728
+      properties:
+        edge_application:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        edge_firewall:
+          format: int64
+          nullable: true
+          type: integer
+        custom_page:
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+      required:
+      - edge_application
+      title: DefaultDeploymentStrategy
+      type: object
+    DefaultDeploymentStrategyAttrs:
+      additionalProperties: false
+      properties:
+        attributes:
+          $ref: "#/components/schemas/DefaultDeploymentStrategy"
+      required:
+      - attributes
+      title: DefaultDeploymentStrategyAttrs
+      type: object
+    DefaultDeploymentStrategyAttrsRequest:
+      additionalProperties: false
+      properties:
+        attributes:
+          $ref: "#/components/schemas/DefaultDeploymentStrategyRequest"
+      required:
+      - attributes
+      title: DefaultDeploymentStrategyAttrsRequest
+      type: object
+    DefaultDeploymentStrategyRequest:
+      additionalProperties: false
+      example:
+        custom_page: 1
+        edge_firewall: 6
+        edge_application: 738633633822310400
+      properties:
+        edge_application:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        edge_firewall:
+          format: int64
+          nullable: true
+          type: integer
+        custom_page:
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+      required:
+      - edge_application
+      title: DefaultDeploymentStrategyRequest
+      type: object
     DefaultErrorResponse:
       additionalProperties: false
       example:
@@ -15810,6 +16037,63 @@ components:
           pattern: .*
           type: string
       title: DefaultErrorResponse
+      type: object
+    DeploymentStrategy:
+      $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrs"
+    DeploymentStrategyDefaultDeploymentStrategyAttrs:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/DeploymentStrategyShared"
+      - $ref: "#/components/schemas/DefaultDeploymentStrategyAttrs"
+      example:
+        strategy_type: strategy_type
+        attributes:
+          custom_page: 1
+          edge_firewall: 1
+          edge_application: 5559347081229897728
+      title: DeploymentStrategyDefaultDeploymentStrategyAttrs
+    DeploymentStrategyDefaultDeploymentStrategyAttrsRequest:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/DeploymentStrategyShared"
+      - $ref: "#/components/schemas/DefaultDeploymentStrategyAttrsRequest"
+      example:
+        strategy_type: strategy_type
+        attributes:
+          custom_page: 1
+          edge_firewall: 6
+          edge_application: 738633633822310400
+      title: DeploymentStrategyDefaultDeploymentStrategyAttrsRequest
+    DeploymentStrategyRequest:
+      $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest"
+    DeploymentStrategyShared:
+      additionalProperties: false
+      description: |-
+        Polymorphic serializer base class.
+
+        Note that the discriminator field must exist at the same depth as the mapped
+        serializer fields for the OpenAPI introspection. See
+        https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/ for
+        more information. As such, it's not possible to define something like:
+
+        {
+            "object_type": "foo",
+            "polymorphic_context": {
+                <foo-specific fields>
+            }
+        }
+
+        without explicitly wrapping this in a parent serializer, i.e. -
+        ``polymorphic_context`` can not be a PolymorphicSerializer itself, as it requires
+        access to the ``object_type`` in the parent scope.
+      properties:
+        strategy_type:
+          description: '* `default` - Default'
+          title: StrategyTypeEnum
+          type: string
+      required:
+      - strategy_type
+      title: DeploymentStrategyShared
       type: object
     EdgeApplication:
       additionalProperties: false
@@ -16063,10 +16347,13 @@ components:
         variable: variable
         operator: operator
       properties:
-        argument:
-          allOf:
-          - $ref: "#/components/schemas/EdgeApplicationCriterionPolymorphicArgument"
-          nullable: true
+        conditional:
+          description: |-
+            * `if` - if
+            * `or` - or
+            * `and` - and
+          title: ConditionalEnum
+          type: string
         variable:
           description: |-
             * `${arg_<name>}` - ${arg_<name>}
@@ -16116,13 +16403,6 @@ components:
             * `${request_body}` - ${request_body}
           title: EdgeApplicationCriterionFieldVariableEnum
           type: string
-        conditional:
-          description: |-
-            * `if` - if
-            * `or` - or
-            * `and` - and
-          title: ConditionalEnum
-          type: string
         operator:
           description: |-
             * `does_not_exist` - does_not_exist
@@ -16137,6 +16417,10 @@ components:
             * `starts_with` - starts_with
           title: Operator565Enum
           type: string
+        argument:
+          allOf:
+          - $ref: "#/components/schemas/EdgeApplicationCriterionPolymorphicArgument"
+          nullable: true
       required:
       - conditional
       - operator
@@ -16204,10 +16488,13 @@ components:
         variable: variable
         operator: operator
       properties:
-        argument:
-          allOf:
-          - $ref: "#/components/schemas/EdgeApplicationCriterionPolymorphicArgumentRequest"
-          nullable: true
+        conditional:
+          description: |-
+            * `if` - if
+            * `or` - or
+            * `and` - and
+          title: ConditionalEnum
+          type: string
         variable:
           description: |-
             * `${arg_<name>}` - ${arg_<name>}
@@ -16257,13 +16544,6 @@ components:
             * `${request_body}` - ${request_body}
           title: EdgeApplicationCriterionFieldVariableEnum
           type: string
-        conditional:
-          description: |-
-            * `if` - if
-            * `or` - or
-            * `and` - and
-          title: ConditionalEnum
-          type: string
         operator:
           description: |-
             * `does_not_exist` - does_not_exist
@@ -16278,6 +16558,10 @@ components:
             * `starts_with` - starts_with
           title: Operator565Enum
           type: string
+        argument:
+          allOf:
+          - $ref: "#/components/schemas/EdgeApplicationCriterionPolymorphicArgumentRequest"
+          nullable: true
       required:
       - conditional
       - operator
@@ -18042,89 +18326,546 @@ components:
       - product_version
       title: EdgeFirewall
       type: object
-    EdgeFirewallBehaviorField:
+    EdgeFirewallBehaviorNoArguments:
       additionalProperties: false
-      example:
-        argument: ""
-        name: name
+      description: Behaviors without arguments
       properties:
-        name:
+        type:
           description: |-
             * `deny` - deny
-            * `run_function` - run_function
             * `drop` - drop
-            * `set_rate_limit` - set_rate_limit
-            * `tag_event` - tag_event
-            * `set_custom_response` - set_custom_response
-            * `set_waf_ruleset` - set_waf_ruleset
-          title: EdgeFirewallBehaviorNameField
+          title: EdgeFirewallBehaviorNoArgumentsTypeEnum
           type: string
-        argument:
-          allOf:
-          - $ref: "#/components/schemas/EdgeFirewallBehaviorPolymorphicArgument"
-          nullable: true
       required:
-      - name
-      title: EdgeFirewallBehaviorField
+      - type
+      title: EdgeFirewallBehaviorNoArguments
       type: object
-    EdgeFirewallBehaviorFieldRequest:
+    EdgeFirewallBehaviorNoArgumentsRequest:
       additionalProperties: false
-      example:
-        argument: ""
-        name: name
+      description: Behaviors without arguments
       properties:
-        name:
+        type:
           description: |-
             * `deny` - deny
-            * `run_function` - run_function
             * `drop` - drop
-            * `set_rate_limit` - set_rate_limit
-            * `tag_event` - tag_event
-            * `set_custom_response` - set_custom_response
-            * `set_waf_ruleset` - set_waf_ruleset
-          title: EdgeFirewallBehaviorNameField
+          title: EdgeFirewallBehaviorNoArgumentsTypeEnum
           type: string
-        argument:
-          allOf:
-          - $ref: "#/components/schemas/EdgeFirewallBehaviorPolymorphicArgumentRequest"
-          nullable: true
       required:
-      - name
-      title: EdgeFirewallBehaviorFieldRequest
+      - type
+      title: EdgeFirewallBehaviorNoArgumentsRequest
       type: object
-    EdgeFirewallBehaviorNameField:
+    EdgeFirewallBehaviorNoArgumentsTypeEnum:
       description: |-
         * `deny` - deny
-        * `run_function` - run_function
         * `drop` - drop
-        * `set_rate_limit` - set_rate_limit
-        * `tag_event` - tag_event
-        * `set_custom_response` - set_custom_response
-        * `set_waf_ruleset` - set_waf_ruleset
-      title: EdgeFirewallBehaviorNameField
+      title: EdgeFirewallBehaviorNoArgumentsTypeEnum
       type: string
-    EdgeFirewallBehaviorPolymorphicArgument:
+    EdgeFirewallBehaviorRunFunction:
       additionalProperties: false
-      nullable: true
-      oneOf:
-      - format: int64
-        type: integer
-      - type: string
-      - $ref: "#/components/schemas/SetRateLimitArgument"
-      - $ref: "#/components/schemas/SetCustomResponseArgument"
-      - $ref: "#/components/schemas/SetWafRuleSetArgument"
-      title: EdgeFirewallBehaviorPolymorphicArgument
-    EdgeFirewallBehaviorPolymorphicArgumentRequest:
+      description: Run a function
+      properties:
+        type:
+          description: '* `run_function` - run_function'
+          title: EdgeFirewallBehaviorRunFunctionTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/EdgeFirewallBehaviorRunFunctionAttributes"
+      required:
+      - attributes
+      - type
+      title: EdgeFirewallBehaviorRunFunction
+      type: object
+    EdgeFirewallBehaviorRunFunctionAttributes:
       additionalProperties: false
-      nullable: true
+      properties:
+        value:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+      required:
+      - value
+      title: EdgeFirewallBehaviorRunFunctionAttributes
+      type: object
+    EdgeFirewallBehaviorRunFunctionAttributesRequest:
+      additionalProperties: false
+      properties:
+        value:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+      required:
+      - value
+      title: EdgeFirewallBehaviorRunFunctionAttributesRequest
+      type: object
+    EdgeFirewallBehaviorRunFunctionRequest:
+      additionalProperties: false
+      description: Run a function
+      properties:
+        type:
+          description: '* `run_function` - run_function'
+          title: EdgeFirewallBehaviorRunFunctionTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/EdgeFirewallBehaviorRunFunctionAttributesRequest"
+      required:
+      - attributes
+      - type
+      title: EdgeFirewallBehaviorRunFunctionRequest
+      type: object
+    EdgeFirewallBehaviorRunFunctionTypeEnum:
+      description: '* `run_function` - run_function'
+      title: EdgeFirewallBehaviorRunFunctionTypeEnum
+      type: string
+    EdgeFirewallBehaviorSetCustomResponse:
+      additionalProperties: false
+      description: Set a custom response
+      properties:
+        type:
+          description: '* `set_custom_response` - set_custom_response'
+          title: EdgeFirewallBehaviorSetCustomResponseTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/EdgeFirewallBehaviorSetCustomResponseAttributes"
+      required:
+      - attributes
+      - type
+      title: EdgeFirewallBehaviorSetCustomResponse
+      type: object
+    EdgeFirewallBehaviorSetCustomResponseAttributes:
+      additionalProperties: false
+      properties:
+        status_code:
+          format: int64
+          maximum: 499
+          minimum: 200
+          type: integer
+        content_type:
+          maxLength: 255
+          minLength: 0
+          pattern: .*
+          type: string
+        content_body:
+          maxLength: 500
+          minLength: 0
+          pattern: .*
+          type: string
+      required:
+      - status_code
+      title: EdgeFirewallBehaviorSetCustomResponseAttributes
+      type: object
+    EdgeFirewallBehaviorSetCustomResponseAttributesRequest:
+      additionalProperties: false
+      properties:
+        status_code:
+          format: int64
+          maximum: 499
+          minimum: 200
+          type: integer
+        content_type:
+          maxLength: 255
+          minLength: 0
+          pattern: .*
+          type: string
+        content_body:
+          maxLength: 500
+          minLength: 0
+          pattern: .*
+          type: string
+      required:
+      - status_code
+      title: EdgeFirewallBehaviorSetCustomResponseAttributesRequest
+      type: object
+    EdgeFirewallBehaviorSetCustomResponseRequest:
+      additionalProperties: false
+      description: Set a custom response
+      properties:
+        type:
+          description: '* `set_custom_response` - set_custom_response'
+          title: EdgeFirewallBehaviorSetCustomResponseTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/EdgeFirewallBehaviorSetCustomResponseAttributesRequest"
+      required:
+      - attributes
+      - type
+      title: EdgeFirewallBehaviorSetCustomResponseRequest
+      type: object
+    EdgeFirewallBehaviorSetCustomResponseTypeEnum:
+      description: '* `set_custom_response` - set_custom_response'
+      title: EdgeFirewallBehaviorSetCustomResponseTypeEnum
+      type: string
+    EdgeFirewallBehaviorSetRateLimit:
+      additionalProperties: false
+      description: Set a rate limit
+      properties:
+        type:
+          description: '* `set_rate_limit` - set_rate_limit'
+          title: EdgeFirewallBehaviorSetRateLimitTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimitAttributes"
+      required:
+      - attributes
+      - type
+      title: EdgeFirewallBehaviorSetRateLimit
+      type: object
+    EdgeFirewallBehaviorSetRateLimitAttributes:
+      additionalProperties: false
+      properties:
+        type:
+          allOf:
+          - $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimitAttributesTypeEnum"
+        limit_by:
+          description: |-
+            * `client_ip` - client_ip
+            * `global` - global
+          title: LimitByEnum
+          type: string
+        average_rate_limit:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        maximum_burst_size:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+      required:
+      - average_rate_limit
+      - limit_by
+      title: EdgeFirewallBehaviorSetRateLimitAttributes
+      type: object
+    EdgeFirewallBehaviorSetRateLimitAttributesRequest:
+      additionalProperties: false
+      properties:
+        type:
+          allOf:
+          - $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimitAttributesTypeEnum"
+        limit_by:
+          description: |-
+            * `client_ip` - client_ip
+            * `global` - global
+          title: LimitByEnum
+          type: string
+        average_rate_limit:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        maximum_burst_size:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+      required:
+      - average_rate_limit
+      - limit_by
+      title: EdgeFirewallBehaviorSetRateLimitAttributesRequest
+      type: object
+    EdgeFirewallBehaviorSetRateLimitAttributesTypeEnum:
+      description: |-
+        * `second` - second
+        * `minute` - minute
+      title: EdgeFirewallBehaviorSetRateLimitAttributesTypeEnum
+      type: string
+    EdgeFirewallBehaviorSetRateLimitRequest:
+      additionalProperties: false
+      description: Set a rate limit
+      properties:
+        type:
+          description: '* `set_rate_limit` - set_rate_limit'
+          title: EdgeFirewallBehaviorSetRateLimitTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimitAttributesRequest"
+      required:
+      - attributes
+      - type
+      title: EdgeFirewallBehaviorSetRateLimitRequest
+      type: object
+    EdgeFirewallBehaviorSetRateLimitTypeEnum:
+      description: '* `set_rate_limit` - set_rate_limit'
+      title: EdgeFirewallBehaviorSetRateLimitTypeEnum
+      type: string
+    EdgeFirewallBehaviorSetWaf:
+      additionalProperties: false
+      description: Set a WAF
+      properties:
+        type:
+          description: '* `set_waf` - set_waf'
+          title: EdgeFirewallBehaviorSetWafTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/EdgeFirewallBehaviorSetWafAttributes"
+      required:
+      - attributes
+      - type
+      title: EdgeFirewallBehaviorSetWaf
+      type: object
+    EdgeFirewallBehaviorSetWafAttributes:
+      additionalProperties: false
+      properties:
+        waf_id:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        mode:
+          description: |-
+            * `logging` - logging
+            * `blocking` - blocking
+          title: ModeEnum
+          type: string
+      required:
+      - mode
+      - waf_id
+      title: EdgeFirewallBehaviorSetWafAttributes
+      type: object
+    EdgeFirewallBehaviorSetWafAttributesRequest:
+      additionalProperties: false
+      properties:
+        waf_id:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        mode:
+          description: |-
+            * `logging` - logging
+            * `blocking` - blocking
+          title: ModeEnum
+          type: string
+      required:
+      - mode
+      - waf_id
+      title: EdgeFirewallBehaviorSetWafAttributesRequest
+      type: object
+    EdgeFirewallBehaviorSetWafRequest:
+      additionalProperties: false
+      description: Set a WAF
+      properties:
+        type:
+          description: '* `set_waf` - set_waf'
+          title: EdgeFirewallBehaviorSetWafTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/EdgeFirewallBehaviorSetWafAttributesRequest"
+      required:
+      - attributes
+      - type
+      title: EdgeFirewallBehaviorSetWafRequest
+      type: object
+    EdgeFirewallBehaviorSetWafTypeEnum:
+      description: '* `set_waf` - set_waf'
+      title: EdgeFirewallBehaviorSetWafTypeEnum
+      type: string
+    EdgeFirewallBehaviorTagEvent:
+      additionalProperties: false
+      description: Tag event
+      properties:
+        type:
+          description: '* `tag_event` - tag_event'
+          title: EdgeFirewallBehaviorTagEventTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/EdgeFirewallBehaviorTagEventAttributes"
+      required:
+      - attributes
+      - type
+      title: EdgeFirewallBehaviorTagEvent
+      type: object
+    EdgeFirewallBehaviorTagEventAttributes:
+      additionalProperties: false
+      properties:
+        value:
+          maxLength: 128
+          minLength: 1
+          pattern: .*
+          type: string
+      required:
+      - value
+      title: EdgeFirewallBehaviorTagEventAttributes
+      type: object
+    EdgeFirewallBehaviorTagEventAttributesRequest:
+      additionalProperties: false
+      properties:
+        value:
+          maxLength: 128
+          minLength: 1
+          pattern: .*
+          type: string
+      required:
+      - value
+      title: EdgeFirewallBehaviorTagEventAttributesRequest
+      type: object
+    EdgeFirewallBehaviorTagEventRequest:
+      additionalProperties: false
+      description: Tag event
+      properties:
+        type:
+          description: '* `tag_event` - tag_event'
+          title: EdgeFirewallBehaviorTagEventTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/EdgeFirewallBehaviorTagEventAttributesRequest"
+      required:
+      - attributes
+      - type
+      title: EdgeFirewallBehaviorTagEventRequest
+      type: object
+    EdgeFirewallBehaviorTagEventTypeEnum:
+      description: '* `tag_event` - tag_event'
+      title: EdgeFirewallBehaviorTagEventTypeEnum
+      type: string
+    EdgeFirewallBehaviors:
+      additionalProperties: true
+      discriminator:
+        mapping:
+          deny: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments"
+          drop: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments"
+          set_custom_response: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponse"
+          set_rate_limit: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimit"
+          tag_event: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEvent"
+          set_waf: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf"
+          run_function: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction"
+        propertyName: type
       oneOf:
-      - format: int64
-        type: integer
-      - type: string
-      - $ref: "#/components/schemas/SetRateLimitArgumentRequest"
-      - $ref: "#/components/schemas/SetCustomResponseArgumentRequest"
-      - $ref: "#/components/schemas/SetWafRuleSetArgumentRequest"
-      title: EdgeFirewallBehaviorPolymorphicArgumentRequest
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponse"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimit"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEvent"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction"
+      title: EdgeFirewallBehaviors
+    EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorNoArguments"
+      example:
+        type: type
+      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments
+    EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorNoArgumentsRequest"
+      example:
+        type: type
+      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest
+    EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorRunFunction"
+      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction
+    EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorRunFunctionRequest"
+      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest
+    EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponse:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorSetCustomResponse"
+      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponse
+    EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponseRequest:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorSetCustomResponseRequest"
+      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponseRequest
+    EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimit:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimit"
+      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimit
+    EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimitRequest:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimitRequest"
+      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimitRequest
+    EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorSetWaf"
+      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf
+    EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWafRequest:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorSetWafRequest"
+      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWafRequest
+    EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEvent:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorTagEvent"
+      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEvent
+    EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEventRequest:
+      additionalProperties: false
+      allOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorTagEventRequest"
+      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEventRequest
+    EdgeFirewallBehaviorsRequest:
+      additionalProperties: true
+      discriminator:
+        mapping:
+          deny: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest"
+          drop: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest"
+          set_custom_response: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponseRequest"
+          set_rate_limit: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimitRequest"
+          tag_event: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEventRequest"
+          set_waf: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWafRequest"
+          run_function: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponseRequest"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimitRequest"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEventRequest"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWafRequest"
+      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest"
+      title: EdgeFirewallBehaviorsRequest
+    EdgeFirewallBehaviorsShared:
+      additionalProperties: false
+      description: |-
+        Polymorphic serializer base class.
+
+        Note that the discriminator field must exist at the same depth as the mapped
+        serializer fields for the OpenAPI introspection. See
+        https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/ for
+        more information. As such, it's not possible to define something like:
+
+        {
+            "object_type": "foo",
+            "polymorphic_context": {
+                <foo-specific fields>
+            }
+        }
+
+        without explicitly wrapping this in a parent serializer, i.e. -
+        ``polymorphic_context`` can not be a PolymorphicSerializer itself, as it requires
+        access to the ``object_type`` in the parent scope.
+      properties:
+        type:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+      required:
+      - type
+      title: EdgeFirewallBehaviorsShared
+      type: object
     EdgeFirewallCriterionField:
       additionalProperties: false
       description: |-
@@ -18156,10 +18897,13 @@ components:
         variable: variable
         operator: operator
       properties:
-        argument:
-          allOf:
-          - $ref: "#/components/schemas/EdgeFirewallCriterionPolymorphicArgument"
-          nullable: true
+        conditional:
+          description: |-
+            * `if` - if
+            * `or` - or
+            * `and` - and
+          title: ConditionalEnum
+          type: string
         variable:
           description: |-
             * `${header_accept}` - ${header_accept}
@@ -18179,13 +18923,6 @@ components:
             * `${client_certificate_validation}` - ${client_certificate_validation}
           title: EdgeFirewallCriterionFieldVariableEnum
           type: string
-        conditional:
-          description: |-
-            * `if` - if
-            * `or` - or
-            * `and` - and
-          title: ConditionalEnum
-          type: string
         operator:
           description: |-
             * `does_not_exist` - does_not_exist
@@ -18200,6 +18937,10 @@ components:
             * `starts_with` - starts_with
           title: Operator565Enum
           type: string
+        argument:
+          allOf:
+          - $ref: "#/components/schemas/EdgeFirewallCriterionPolymorphicArgument"
+          nullable: true
       required:
       - conditional
       - operator
@@ -18237,10 +18978,13 @@ components:
         variable: variable
         operator: operator
       properties:
-        argument:
-          allOf:
-          - $ref: "#/components/schemas/EdgeFirewallCriterionPolymorphicArgumentRequest"
-          nullable: true
+        conditional:
+          description: |-
+            * `if` - if
+            * `or` - or
+            * `and` - and
+          title: ConditionalEnum
+          type: string
         variable:
           description: |-
             * `${header_accept}` - ${header_accept}
@@ -18260,13 +19004,6 @@ components:
             * `${client_certificate_validation}` - ${client_certificate_validation}
           title: EdgeFirewallCriterionFieldVariableEnum
           type: string
-        conditional:
-          description: |-
-            * `if` - if
-            * `or` - or
-            * `and` - and
-          title: ConditionalEnum
-          type: string
         operator:
           description: |-
             * `does_not_exist` - does_not_exist
@@ -18281,6 +19018,10 @@ components:
             * `starts_with` - starts_with
           title: Operator565Enum
           type: string
+        argument:
+          allOf:
+          - $ref: "#/components/schemas/EdgeFirewallCriterionPolymorphicArgumentRequest"
+          nullable: true
       required:
       - conditional
       - operator
@@ -18502,16 +19243,11 @@ components:
       additionalProperties: false
       example:
         behaviors:
-        - argument: ""
-          name: name
-        - argument: ""
-          name: name
-        - argument: ""
-          name: name
-        - argument: ""
-          name: name
-        - argument: ""
-          name: name
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
         criteria:
         - - argument: ""
             conditional: conditional
@@ -18643,7 +19379,7 @@ components:
           type: boolean
         behaviors:
           items:
-            $ref: "#/components/schemas/EdgeFirewallBehaviorField"
+            $ref: "#/components/schemas/EdgeFirewallBehaviors"
           maxItems: 10
           minItems: 1
           type: array
@@ -18700,16 +19436,11 @@ components:
       additionalProperties: false
       example:
         behaviors:
-        - argument: ""
-          name: name
-        - argument: ""
-          name: name
-        - argument: ""
-          name: name
-        - argument: ""
-          name: name
-        - argument: ""
-          name: name
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
         criteria:
         - - argument: ""
             conditional: conditional
@@ -18824,7 +19555,7 @@ components:
           type: boolean
         behaviors:
           items:
-            $ref: "#/components/schemas/EdgeFirewallBehaviorFieldRequest"
+            $ref: "#/components/schemas/EdgeFirewallBehaviorsRequest"
           maxItems: 10
           minItems: 1
           type: array
@@ -19358,7 +20089,7 @@ components:
       type: string
     ModeEnum:
       description: |-
-        * `learning` - learning
+        * `logging` - logging
         * `blocking` - blocking
       title: ModeEnum
       type: string
@@ -20316,16 +21047,11 @@ components:
         count: 123
         results:
         - behaviors:
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -20435,16 +21161,11 @@ components:
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
         - behaviors:
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -20835,20 +21556,30 @@ components:
       example:
         count: 123
         results:
-        - binds:
-            custom_page: 1
-            edge_firewall: 1
-            edge_application: 5559347081229897728
-          current: true
+        - current: true
+          last_editor: last_editor
+          name: name
+          active: true
           id: 0
-          tag: tag
-        - binds:
-            custom_page: 1
-            edge_firewall: 1
-            edge_application: 5559347081229897728
-          current: true
+          strategy:
+            strategy_type: strategy_type
+            attributes:
+              custom_page: 1
+              edge_firewall: 1
+              edge_application: 5559347081229897728
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        - current: true
+          last_editor: last_editor
+          name: name
+          active: true
           id: 0
-          tag: tag
+          strategy:
+            strategy_type: strategy_type
+            attributes:
+              custom_page: 1
+              edge_firewall: 1
+              edge_application: 5559347081229897728
+          last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           example: 123
@@ -21562,16 +22293,11 @@ components:
       additionalProperties: false
       example:
         behaviors:
-        - argument: ""
-          name: name
-        - argument: ""
-          name: name
-        - argument: ""
-          name: name
-        - argument: ""
-          name: name
-        - argument: ""
-          name: name
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
         criteria:
         - - argument: ""
             conditional: conditional
@@ -21686,7 +22412,7 @@ components:
           type: boolean
         behaviors:
           items:
-            $ref: "#/components/schemas/EdgeFirewallBehaviorFieldRequest"
+            $ref: "#/components/schemas/EdgeFirewallBehaviorsRequest"
           maxItems: 10
           minItems: 1
           type: array
@@ -22020,31 +22746,31 @@ components:
     PatchedWorkloadDeploymentRequest:
       additionalProperties: false
       example:
-        binds:
-          custom_page: 1
-          edge_firewall: 6
-          edge_application: 738633633822310400
         current: true
-        tag: tag
+        name: name
+        active: true
+        strategy:
+          strategy_type: strategy_type
+          attributes:
+            custom_page: 1
+            edge_firewall: 6
+            edge_application: 738633633822310400
       properties:
-        tag:
-          maxLength: 100
+        name:
+          maxLength: 254
           minLength: 1
           pattern: .*
           type: string
-        binds:
-          $ref: "#/components/schemas/WorkloadDeploymentBindsRequest"
         current:
           type: boolean
+        active:
+          type: boolean
+        strategy:
+          $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest"
       title: PatchedWorkloadDeploymentRequest
       type: object
     PatchedWorkloadRequest:
       additionalProperties: false
-      description: |-
-        Serializer for Workload model.
-
-        Handles the serialization, validation, creation and updating of Workload instances.
-        Includes nested serializers for TLS, protocols, and mTLS configurations.
       example:
         infrastructure: ""
         name: name
@@ -22430,6 +23156,18 @@ components:
           type: string
       title: ResponseAsyncDeleteWorkload
       type: object
+    ResponseAsyncDeleteWorkloadDeployment:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          pattern: .*
+          type: string
+      title: ResponseAsyncDeleteWorkloadDeployment
+      type: object
     ResponseAsyncEdgeApplication:
       additionalProperties: false
       example:
@@ -22769,16 +23507,11 @@ components:
       example:
         data:
           behaviors:
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -23094,13 +23827,18 @@ components:
       additionalProperties: false
       example:
         data:
-          binds:
-            custom_page: 1
-            edge_firewall: 1
-            edge_application: 5559347081229897728
           current: true
+          last_editor: last_editor
+          name: name
+          active: true
           id: 0
-          tag: tag
+          strategy:
+            strategy_type: strategy_type
+            attributes:
+              custom_page: 1
+              edge_firewall: 1
+              edge_application: 5559347081229897728
+          last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
         state:
@@ -23564,6 +24302,79 @@ components:
         slice_controls:
           $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerSlice_controlsField"
       title: ResponseBadRequestSerializerMetaclassModulesField
+      type: object
+    ResponseBadRequestSerializerMetaclassStrategyField:
+      additionalProperties: false
+      example:
+        strategy_type:
+        - strategy_type
+        - strategy_type
+      properties:
+        strategy_type:
+          items:
+            type: string
+          type: array
+      title: ResponseBadRequestSerializerMetaclassStrategyField
+      type: object
+    ResponseBadRequestWorkloadDeployment:
+      additionalProperties: false
+      example:
+        current:
+        - current
+        - current
+        last_editor:
+        - last_editor
+        - last_editor
+        name:
+        - name
+        - name
+        active:
+        - active
+        - active
+        id:
+        - id
+        - id
+        detail: detail
+        strategy:
+          strategy_type:
+          - strategy_type
+          - strategy_type
+        last_modified:
+        - last_modified
+        - last_modified
+      properties:
+        id:
+          items:
+            type: string
+          type: array
+        name:
+          items:
+            type: string
+          type: array
+        active:
+          items:
+            type: string
+          type: array
+        last_editor:
+          items:
+            type: string
+          type: array
+        last_modified:
+          items:
+            type: string
+          type: array
+        strategy:
+          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassStrategyField"
+        current:
+          items:
+            type: string
+          type: array
+        detail:
+          maxLength: 4096
+          minLength: 1
+          pattern: .*
+          type: string
+      title: ResponseBadRequestWorkloadDeployment
       type: object
     ResponseCustomPages:
       additionalProperties: false
@@ -24082,16 +24893,11 @@ components:
       example:
         data:
           behaviors:
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -24716,16 +25522,11 @@ components:
       example:
         data:
           behaviors:
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
-          - argument: ""
-            name: name
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -24983,13 +25784,18 @@ components:
       additionalProperties: false
       example:
         data:
-          binds:
-            custom_page: 1
-            edge_firewall: 1
-            edge_application: 5559347081229897728
           current: true
+          last_editor: last_editor
+          name: name
+          active: true
           id: 0
-          tag: tag
+          strategy:
+            strategy_type: strategy_type
+            attributes:
+              custom_page: 1
+              edge_firewall: 1
+              edge_application: 5559347081229897728
+          last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           $ref: "#/components/schemas/WorkloadDeployment"
@@ -25110,13 +25916,18 @@ components:
       additionalProperties: false
       example:
         data:
-          binds:
-            custom_page: 1
-            edge_firewall: 1
-            edge_application: 5559347081229897728
           current: true
+          last_editor: last_editor
+          name: name
+          active: true
           id: 0
-          tag: tag
+          strategy:
+            strategy_type: strategy_type
+            attributes:
+              custom_page: 1
+              edge_firewall: 1
+              edge_application: 5559347081229897728
+          last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
         state:
@@ -25218,148 +26029,6 @@ components:
         * `backup` - Backup
       title: ServerRoleEnum
       type: string
-    SetCustomResponseArgument:
-      additionalProperties: false
-      properties:
-        status_code:
-          format: int64
-          maximum: 499
-          minimum: 200
-          type: integer
-        content_type:
-          maxLength: 255
-          minLength: 0
-          pattern: .*
-          type: string
-        content_body:
-          maxLength: 500
-          minLength: 0
-          pattern: .*
-          type: string
-      required:
-      - status_code
-      title: SetCustomResponseArgument
-      type: object
-    SetCustomResponseArgumentRequest:
-      additionalProperties: false
-      properties:
-        status_code:
-          format: int64
-          maximum: 499
-          minimum: 200
-          type: integer
-        content_type:
-          maxLength: 255
-          minLength: 0
-          pattern: .*
-          type: string
-        content_body:
-          maxLength: 500
-          minLength: 0
-          pattern: .*
-          type: string
-      required:
-      - status_code
-      title: SetCustomResponseArgumentRequest
-      type: object
-    SetRateLimitArgument:
-      additionalProperties: false
-      properties:
-        type:
-          allOf:
-          - $ref: "#/components/schemas/SetRateLimitArgumentTypeEnum"
-        limit_by:
-          description: |-
-            * `client_ip` - client_ip
-            * `global` - global
-          title: LimitByEnum
-          type: string
-        average_rate_limit:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        maximum_burst_size:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-      required:
-      - average_rate_limit
-      - limit_by
-      title: SetRateLimitArgument
-      type: object
-    SetRateLimitArgumentRequest:
-      additionalProperties: false
-      properties:
-        type:
-          allOf:
-          - $ref: "#/components/schemas/SetRateLimitArgumentTypeEnum"
-        limit_by:
-          description: |-
-            * `client_ip` - client_ip
-            * `global` - global
-          title: LimitByEnum
-          type: string
-        average_rate_limit:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        maximum_burst_size:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-      required:
-      - average_rate_limit
-      - limit_by
-      title: SetRateLimitArgumentRequest
-      type: object
-    SetRateLimitArgumentTypeEnum:
-      description: |-
-        * `second` - second
-        * `minute` - minute
-      title: SetRateLimitArgumentTypeEnum
-      type: string
-    SetWafRuleSetArgument:
-      additionalProperties: false
-      properties:
-        id:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        mode:
-          description: |-
-            * `learning` - learning
-            * `blocking` - blocking
-          title: ModeEnum
-          type: string
-      required:
-      - id
-      - mode
-      title: SetWafRuleSetArgument
-      type: object
-    SetWafRuleSetArgumentRequest:
-      additionalProperties: false
-      properties:
-        id:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        mode:
-          description: |-
-            * `learning` - learning
-            * `blocking` - blocking
-          title: ModeEnum
-          type: string
-      required:
-      - id
-      - mode
-      title: SetWafRuleSetArgumentRequest
-      type: object
     SliceControlsModule:
       additionalProperties: false
       example:
@@ -25410,6 +26079,10 @@ components:
       - slice_tiered_caching_enabled
       title: SliceControlsModuleRequest
       type: object
+    StrategyTypeEnum:
+      description: '* `default` - Default'
+      title: StrategyTypeEnum
+      type: string
     TLSEdgeConnector:
       additionalProperties: false
       properties:
@@ -26359,11 +27032,6 @@ components:
       type: object
     Workload:
       additionalProperties: false
-      description: |-
-        Serializer for Workload model.
-
-        Handles the serialization, validation, creation and updating of Workload instances.
-        Includes nested serializers for TLS, protocols, and mTLS configurations.
       example:
         product_version: product_version
         last_editor: last_editor
@@ -26447,114 +27115,83 @@ components:
     WorkloadDeployment:
       additionalProperties: false
       example:
-        binds:
-          custom_page: 1
-          edge_firewall: 1
-          edge_application: 5559347081229897728
         current: true
+        last_editor: last_editor
+        name: name
+        active: true
         id: 0
-        tag: tag
+        strategy:
+          strategy_type: strategy_type
+          attributes:
+            custom_page: 1
+            edge_firewall: 1
+            edge_application: 5559347081229897728
+        last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           format: int64
           readOnly: true
           type: integer
-        tag:
-          maxLength: 100
+        name:
+          maxLength: 254
           minLength: 1
           pattern: .*
           type: string
-        binds:
-          $ref: "#/components/schemas/WorkloadDeploymentBinds"
         current:
           type: boolean
+        active:
+          type: boolean
+        strategy:
+          $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrs"
+        last_editor:
+          maxLength: 250
+          minLength: 1
+          pattern: .*
+          readOnly: true
+          type: string
+        last_modified:
+          format: date-time
+          readOnly: true
+          type: string
       required:
-      - binds
       - id
-      - tag
+      - last_editor
+      - last_modified
+      - name
+      - strategy
       title: WorkloadDeployment
-      type: object
-    WorkloadDeploymentBinds:
-      additionalProperties: false
-      example:
-        custom_page: 1
-        edge_firewall: 1
-        edge_application: 5559347081229897728
-      properties:
-        edge_application:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        edge_firewall:
-          format: int64
-          nullable: true
-          type: integer
-        custom_page:
-          format: int64
-          minimum: 1
-          nullable: true
-          type: integer
-      required:
-      - edge_application
-      title: WorkloadDeploymentBinds
-      type: object
-    WorkloadDeploymentBindsRequest:
-      additionalProperties: false
-      example:
-        custom_page: 1
-        edge_firewall: 6
-        edge_application: 738633633822310400
-      properties:
-        edge_application:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        edge_firewall:
-          format: int64
-          nullable: true
-          type: integer
-        custom_page:
-          format: int64
-          minimum: 1
-          nullable: true
-          type: integer
-      required:
-      - edge_application
-      title: WorkloadDeploymentBindsRequest
       type: object
     WorkloadDeploymentRequest:
       additionalProperties: false
       example:
-        binds:
-          custom_page: 1
-          edge_firewall: 6
-          edge_application: 738633633822310400
         current: true
-        tag: tag
+        name: name
+        active: true
+        strategy:
+          strategy_type: strategy_type
+          attributes:
+            custom_page: 1
+            edge_firewall: 6
+            edge_application: 738633633822310400
       properties:
-        tag:
-          maxLength: 100
+        name:
+          maxLength: 254
           minLength: 1
           pattern: .*
           type: string
-        binds:
-          $ref: "#/components/schemas/WorkloadDeploymentBindsRequest"
         current:
           type: boolean
+        active:
+          type: boolean
+        strategy:
+          $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest"
       required:
-      - binds
-      - tag
+      - name
+      - strategy
       title: WorkloadDeploymentRequest
       type: object
     WorkloadRequest:
       additionalProperties: false
-      description: |-
-        Serializer for Workload model.
-
-        Handles the serialization, validation, creation and updating of Workload instances.
-        Includes nested serializers for TLS, protocols, and mTLS configurations.
       example:
         infrastructure: ""
         name: name
@@ -26564,7 +27201,6 @@ components:
         - domains
         workload_domain_allow_access: true
         tls: ""
-        edge_firewall: 6
         protocols: ""
         mtls:
           certificate: 1
@@ -26575,29 +27211,17 @@ components:
           - 1
           - 1
           verification: null
-        edge_application: 738633633822310400
       properties:
         name:
           maxLength: 100
           minLength: 1
           pattern: .*
           type: string
-        edge_application:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-          writeOnly: true
         active:
           type: boolean
         infrastructure:
           allOf:
           - $ref: "#/components/schemas/InfrastructureEnum"
-        edge_firewall:
-          format: int64
-          nullable: true
-          type: integer
-          writeOnly: true
         tls:
           allOf:
           - $ref: "#/components/schemas/TLSWorkloadRequest"
@@ -26614,7 +27238,6 @@ components:
         workload_domain_allow_access:
           type: boolean
       required:
-      - edge_application
       - name
       title: WorkloadRequest
       type: object

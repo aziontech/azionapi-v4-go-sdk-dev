@@ -21,9 +21,10 @@ var _ MappedNullable = &WorkloadDeploymentRequest{}
 
 // WorkloadDeploymentRequest struct for WorkloadDeploymentRequest
 type WorkloadDeploymentRequest struct {
-	Tag string `json:"tag" validate:"regexp=.*"`
-	Binds WorkloadDeploymentBindsRequest `json:"binds"`
+	Name string `json:"name" validate:"regexp=.*"`
 	Current *bool `json:"current,omitempty"`
+	Active *bool `json:"active,omitempty"`
+	Strategy DeploymentStrategyDefaultDeploymentStrategyAttrsRequest `json:"strategy"`
 }
 
 type _WorkloadDeploymentRequest WorkloadDeploymentRequest
@@ -32,10 +33,10 @@ type _WorkloadDeploymentRequest WorkloadDeploymentRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkloadDeploymentRequest(tag string, binds WorkloadDeploymentBindsRequest) *WorkloadDeploymentRequest {
+func NewWorkloadDeploymentRequest(name string, strategy DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) *WorkloadDeploymentRequest {
 	this := WorkloadDeploymentRequest{}
-	this.Tag = tag
-	this.Binds = binds
+	this.Name = name
+	this.Strategy = strategy
 	return &this
 }
 
@@ -47,52 +48,28 @@ func NewWorkloadDeploymentRequestWithDefaults() *WorkloadDeploymentRequest {
 	return &this
 }
 
-// GetTag returns the Tag field value
-func (o *WorkloadDeploymentRequest) GetTag() string {
+// GetName returns the Name field value
+func (o *WorkloadDeploymentRequest) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Tag
+	return o.Name
 }
 
-// GetTagOk returns a tuple with the Tag field value
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *WorkloadDeploymentRequest) GetTagOk() (*string, bool) {
+func (o *WorkloadDeploymentRequest) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Tag, true
+	return &o.Name, true
 }
 
-// SetTag sets field value
-func (o *WorkloadDeploymentRequest) SetTag(v string) {
-	o.Tag = v
-}
-
-// GetBinds returns the Binds field value
-func (o *WorkloadDeploymentRequest) GetBinds() WorkloadDeploymentBindsRequest {
-	if o == nil {
-		var ret WorkloadDeploymentBindsRequest
-		return ret
-	}
-
-	return o.Binds
-}
-
-// GetBindsOk returns a tuple with the Binds field value
-// and a boolean to check if the value has been set.
-func (o *WorkloadDeploymentRequest) GetBindsOk() (*WorkloadDeploymentBindsRequest, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Binds, true
-}
-
-// SetBinds sets field value
-func (o *WorkloadDeploymentRequest) SetBinds(v WorkloadDeploymentBindsRequest) {
-	o.Binds = v
+// SetName sets field value
+func (o *WorkloadDeploymentRequest) SetName(v string) {
+	o.Name = v
 }
 
 // GetCurrent returns the Current field value if set, zero value otherwise.
@@ -127,6 +104,62 @@ func (o *WorkloadDeploymentRequest) SetCurrent(v bool) {
 	o.Current = &v
 }
 
+// GetActive returns the Active field value if set, zero value otherwise.
+func (o *WorkloadDeploymentRequest) GetActive() bool {
+	if o == nil || IsNil(o.Active) {
+		var ret bool
+		return ret
+	}
+	return *o.Active
+}
+
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkloadDeploymentRequest) GetActiveOk() (*bool, bool) {
+	if o == nil || IsNil(o.Active) {
+		return nil, false
+	}
+	return o.Active, true
+}
+
+// HasActive returns a boolean if a field has been set.
+func (o *WorkloadDeploymentRequest) HasActive() bool {
+	if o != nil && !IsNil(o.Active) {
+		return true
+	}
+
+	return false
+}
+
+// SetActive gets a reference to the given bool and assigns it to the Active field.
+func (o *WorkloadDeploymentRequest) SetActive(v bool) {
+	o.Active = &v
+}
+
+// GetStrategy returns the Strategy field value
+func (o *WorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyAttrsRequest {
+	if o == nil {
+		var ret DeploymentStrategyDefaultDeploymentStrategyAttrsRequest
+		return ret
+	}
+
+	return o.Strategy
+}
+
+// GetStrategyOk returns a tuple with the Strategy field value
+// and a boolean to check if the value has been set.
+func (o *WorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyAttrsRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Strategy, true
+}
+
+// SetStrategy sets field value
+func (o *WorkloadDeploymentRequest) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) {
+	o.Strategy = v
+}
+
 func (o WorkloadDeploymentRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -137,11 +170,14 @@ func (o WorkloadDeploymentRequest) MarshalJSON() ([]byte, error) {
 
 func (o WorkloadDeploymentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["tag"] = o.Tag
-	toSerialize["binds"] = o.Binds
+	toSerialize["name"] = o.Name
 	if !IsNil(o.Current) {
 		toSerialize["current"] = o.Current
 	}
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
+	toSerialize["strategy"] = o.Strategy
 	return toSerialize, nil
 }
 
@@ -150,8 +186,8 @@ func (o *WorkloadDeploymentRequest) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"tag",
-		"binds",
+		"name",
+		"strategy",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -21,13 +21,13 @@ var _ MappedNullable = &EdgeFirewallCriterionField{}
 
 // EdgeFirewallCriterionField The criterion which will be evaluated to define if the configured behaviors for this rule can be executed.  | Variable | Description | Operators | Argument | | -------- | ----------- | --------- | ---------| | ${header_accept} |  | matches, does_not_match | string | | ${header_accept_encoding} |  | matches, does_not_match | string | | ${header_accept_language} |  | matches, does_not_match | string | | ${header_cookie} |  | matches, does_not_match | string | | ${header_origin} |  | matches, does_not_match | string | | ${header_referer} |  | matches, does_not_match | string | | ${header_user_agent} |  | matches, does_not_match | string | | ${host} |  | is_equal, is_not_equal, matches, does_not_match | string | | ${network} |  | is_in_list, is_not_in_list | string | | ${request_args} |  | is_equal, is_not_equal, matches, does_not_match, exists, does_not_exist | string | | ${request_method} |  | is_equal, is_not_equal | string | | ${request_uri} |  | starts_with, does_not_starts_with, is_equal, is_not_equal, matches, does_not_match | string | | ${scheme} |  | is_equal, is_not_equal | string | | ${ssl_verification_status} |  | is_equal, is_not_equal | SUCCESS, CERTIFICATE_VERIFICATION_ERROR, MISSING_CLIENT_CERTIFICATE | | ${client_certificate_validation} |  | is_equal, is_not_equal | string |   About `operator` field: it's the operator to be used to evaluate the current criterion. When used in the first criterion of a block it should be always the `if` operator.
 type EdgeFirewallCriterionField struct {
-	Argument NullableEdgeFirewallCriterionPolymorphicArgument `json:"argument,omitempty"`
-	// * `${header_accept}` - ${header_accept} * `${header_accept_encoding}` - ${header_accept_encoding} * `${header_accept_language}` - ${header_accept_language} * `${header_cookie}` - ${header_cookie} * `${header_origin}` - ${header_origin} * `${header_referer}` - ${header_referer} * `${header_user_agent}` - ${header_user_agent} * `${host}` - ${host} * `${network}` - ${network} * `${request_args}` - ${request_args} * `${request_method}` - ${request_method} * `${request_uri}` - ${request_uri} * `${scheme}` - ${scheme} * `${ssl_verification_status}` - ${ssl_verification_status} * `${client_certificate_validation}` - ${client_certificate_validation}
-	Variable string `json:"variable"`
 	// * `if` - if * `or` - or * `and` - and
 	Conditional string `json:"conditional"`
+	// * `${header_accept}` - ${header_accept} * `${header_accept_encoding}` - ${header_accept_encoding} * `${header_accept_language}` - ${header_accept_language} * `${header_cookie}` - ${header_cookie} * `${header_origin}` - ${header_origin} * `${header_referer}` - ${header_referer} * `${header_user_agent}` - ${header_user_agent} * `${host}` - ${host} * `${network}` - ${network} * `${request_args}` - ${request_args} * `${request_method}` - ${request_method} * `${request_uri}` - ${request_uri} * `${scheme}` - ${scheme} * `${ssl_verification_status}` - ${ssl_verification_status} * `${client_certificate_validation}` - ${client_certificate_validation}
+	Variable string `json:"variable"`
 	// * `does_not_exist` - does_not_exist * `does_not_match` - does_not_match * `does_not_start_with` - does_not_start_with * `exists` - exists * `is_equal` - is_equal * `is_in_list` - is_in_list * `is_not_equal` - is_not_equal * `is_not_in_list` - is_not_in_list * `matches` - matches * `starts_with` - starts_with
 	Operator string `json:"operator"`
+	Argument NullableEdgeFirewallCriterionPolymorphicArgument `json:"argument,omitempty"`
 }
 
 type _EdgeFirewallCriterionField EdgeFirewallCriterionField
@@ -36,10 +36,10 @@ type _EdgeFirewallCriterionField EdgeFirewallCriterionField
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEdgeFirewallCriterionField(variable string, conditional string, operator string) *EdgeFirewallCriterionField {
+func NewEdgeFirewallCriterionField(conditional string, variable string, operator string) *EdgeFirewallCriterionField {
 	this := EdgeFirewallCriterionField{}
-	this.Variable = variable
 	this.Conditional = conditional
+	this.Variable = variable
 	this.Operator = operator
 	return &this
 }
@@ -50,6 +50,78 @@ func NewEdgeFirewallCriterionField(variable string, conditional string, operator
 func NewEdgeFirewallCriterionFieldWithDefaults() *EdgeFirewallCriterionField {
 	this := EdgeFirewallCriterionField{}
 	return &this
+}
+
+// GetConditional returns the Conditional field value
+func (o *EdgeFirewallCriterionField) GetConditional() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Conditional
+}
+
+// GetConditionalOk returns a tuple with the Conditional field value
+// and a boolean to check if the value has been set.
+func (o *EdgeFirewallCriterionField) GetConditionalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Conditional, true
+}
+
+// SetConditional sets field value
+func (o *EdgeFirewallCriterionField) SetConditional(v string) {
+	o.Conditional = v
+}
+
+// GetVariable returns the Variable field value
+func (o *EdgeFirewallCriterionField) GetVariable() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Variable
+}
+
+// GetVariableOk returns a tuple with the Variable field value
+// and a boolean to check if the value has been set.
+func (o *EdgeFirewallCriterionField) GetVariableOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Variable, true
+}
+
+// SetVariable sets field value
+func (o *EdgeFirewallCriterionField) SetVariable(v string) {
+	o.Variable = v
+}
+
+// GetOperator returns the Operator field value
+func (o *EdgeFirewallCriterionField) GetOperator() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Operator
+}
+
+// GetOperatorOk returns a tuple with the Operator field value
+// and a boolean to check if the value has been set.
+func (o *EdgeFirewallCriterionField) GetOperatorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Operator, true
+}
+
+// SetOperator sets field value
+func (o *EdgeFirewallCriterionField) SetOperator(v string) {
+	o.Operator = v
 }
 
 // GetArgument returns the Argument field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -94,78 +166,6 @@ func (o *EdgeFirewallCriterionField) UnsetArgument() {
 	o.Argument.Unset()
 }
 
-// GetVariable returns the Variable field value
-func (o *EdgeFirewallCriterionField) GetVariable() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Variable
-}
-
-// GetVariableOk returns a tuple with the Variable field value
-// and a boolean to check if the value has been set.
-func (o *EdgeFirewallCriterionField) GetVariableOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Variable, true
-}
-
-// SetVariable sets field value
-func (o *EdgeFirewallCriterionField) SetVariable(v string) {
-	o.Variable = v
-}
-
-// GetConditional returns the Conditional field value
-func (o *EdgeFirewallCriterionField) GetConditional() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Conditional
-}
-
-// GetConditionalOk returns a tuple with the Conditional field value
-// and a boolean to check if the value has been set.
-func (o *EdgeFirewallCriterionField) GetConditionalOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Conditional, true
-}
-
-// SetConditional sets field value
-func (o *EdgeFirewallCriterionField) SetConditional(v string) {
-	o.Conditional = v
-}
-
-// GetOperator returns the Operator field value
-func (o *EdgeFirewallCriterionField) GetOperator() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Operator
-}
-
-// GetOperatorOk returns a tuple with the Operator field value
-// and a boolean to check if the value has been set.
-func (o *EdgeFirewallCriterionField) GetOperatorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Operator, true
-}
-
-// SetOperator sets field value
-func (o *EdgeFirewallCriterionField) SetOperator(v string) {
-	o.Operator = v
-}
-
 func (o EdgeFirewallCriterionField) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -176,12 +176,12 @@ func (o EdgeFirewallCriterionField) MarshalJSON() ([]byte, error) {
 
 func (o EdgeFirewallCriterionField) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["conditional"] = o.Conditional
+	toSerialize["variable"] = o.Variable
+	toSerialize["operator"] = o.Operator
 	if o.Argument.IsSet() {
 		toSerialize["argument"] = o.Argument.Get()
 	}
-	toSerialize["variable"] = o.Variable
-	toSerialize["conditional"] = o.Conditional
-	toSerialize["operator"] = o.Operator
 	return toSerialize, nil
 }
 
@@ -190,8 +190,8 @@ func (o *EdgeFirewallCriterionField) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"variable",
 		"conditional",
+		"variable",
 		"operator",
 	}
 
