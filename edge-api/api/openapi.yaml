@@ -23942,12 +23942,209 @@ components:
           items:
             type: string
           type: array
+      title: ResponseBadRequestCacheSettingModulesSerializerSlice_controlsField
+      type: object
+    ResponseBadRequestEdgeApplication:
+      additionalProperties: false
+      example:
+        product_version:
+        - product_version
+        - product_version
+        debug:
+        - debug
+        - debug
+        last_editor:
+        - last_editor
+        - last_editor
+        name:
+        - name
+        - name
+        active:
+        - active
+        - active
+        id:
+        - id
+        - id
+        detail: detail
+        last_modified:
+        - last_modified
+        - last_modified
+        modules:
+          edge_cache:
+            max_age:
+            - max_age
+            - max_age
+            caching_for_post_enabled:
+            - caching_for_post_enabled
+            - caching_for_post_enabled
+            caching_for_options_enabled:
+            - caching_for_options_enabled
+            - caching_for_options_enabled
+            stale_cache_enabled:
+            - stale_cache_enabled
+            - stale_cache_enabled
+            behavior:
+            - behavior
+            - behavior
+            tiered_cache_region:
+            - tiered_cache_region
+            - tiered_cache_region
+            tiered_cache_enabled:
+            - tiered_cache_enabled
+            - tiered_cache_enabled
+          browser_cache:
+            max_age:
+            - max_age
+            - max_age
+            behavior:
+            - behavior
+            - behavior
+          slice_controls:
+            slice_tiered_caching_enabled:
+            - slice_tiered_caching_enabled
+            - slice_tiered_caching_enabled
+            slice_edge_caching_enabled:
+            - slice_edge_caching_enabled
+            - slice_edge_caching_enabled
+            slice_configuration_range:
+            - slice_configuration_range
+            - slice_configuration_range
+            slice_configuration_enabled:
+            - slice_configuration_enabled
+            - slice_configuration_enabled
+          application_controls:
+            cache_by_cookies:
+            - cache_by_cookies
+            - cache_by_cookies
+            query_string_fields:
+            - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
+            - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
+            adaptive_delivery_action:
+            - adaptive_delivery_action
+            - adaptive_delivery_action
+            device_group:
+            - device_group
+            - device_group
+            query_string_sort_enabled:
+            - query_string_sort_enabled
+            - query_string_sort_enabled
+            cookie_names: null
+            cache_by_query_string:
+            - cache_by_query_string
+            - cache_by_query_string
+      properties:
+        name:
+          items:
+            type: string
+          type: array
+        id:
+          items:
+            type: string
+          type: array
+        last_editor:
+          items:
+            type: string
+          type: array
+        last_modified:
+          items:
+            type: string
+          type: array
+        modules:
+          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassModulesField"
+        active:
+          items:
+            type: string
+          type: array
+        debug:
+          items:
+            type: string
+          type: array
+        product_version:
+          items:
+            type: string
+          type: array
         detail:
           maxLength: 4096
           minLength: 1
           pattern: .*
           type: string
       title: ResponseBadRequestWorkloadDeployment
+      type: object
+    ResponseBadRequestSerializerMetaclassModulesField:
+      additionalProperties: false
+      example:
+        edge_cache:
+          max_age:
+          - max_age
+          - max_age
+          caching_for_post_enabled:
+          - caching_for_post_enabled
+          - caching_for_post_enabled
+          caching_for_options_enabled:
+          - caching_for_options_enabled
+          - caching_for_options_enabled
+          stale_cache_enabled:
+          - stale_cache_enabled
+          - stale_cache_enabled
+          behavior:
+          - behavior
+          - behavior
+          tiered_cache_region:
+          - tiered_cache_region
+          - tiered_cache_region
+          tiered_cache_enabled:
+          - tiered_cache_enabled
+          - tiered_cache_enabled
+        browser_cache:
+          max_age:
+          - max_age
+          - max_age
+          behavior:
+          - behavior
+          - behavior
+        slice_controls:
+          slice_tiered_caching_enabled:
+          - slice_tiered_caching_enabled
+          - slice_tiered_caching_enabled
+          slice_edge_caching_enabled:
+          - slice_edge_caching_enabled
+          - slice_edge_caching_enabled
+          slice_configuration_range:
+          - slice_configuration_range
+          - slice_configuration_range
+          slice_configuration_enabled:
+          - slice_configuration_enabled
+          - slice_configuration_enabled
+        application_controls:
+          cache_by_cookies:
+          - cache_by_cookies
+          - cache_by_cookies
+          query_string_fields:
+          - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
+          - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
+          adaptive_delivery_action:
+          - adaptive_delivery_action
+          - adaptive_delivery_action
+          device_group:
+          - device_group
+          - device_group
+          query_string_sort_enabled:
+          - query_string_sort_enabled
+          - query_string_sort_enabled
+          cookie_names: null
+          cache_by_query_string:
+          - cache_by_query_string
+          - cache_by_query_string
+      properties:
+        browser_cache:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerBrowser_cacheField"
+        edge_cache:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerEdge_cacheField"
+        application_controls:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField"
+        slice_controls:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerSlice_controlsField"
+      title: ResponseBadRequestSerializerMetaclassModulesField
       type: object
     ResponseCustomPages:
       additionalProperties: false
