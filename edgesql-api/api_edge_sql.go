@@ -658,7 +658,7 @@ func (r ApiListDatabasesRequest) Fields(fields string) ApiListDatabasesRequest {
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: id, name, status, is_active, updated_at)
+// Which field to use when ordering the results. (Valid fields: id, name, status, active, last_modified)
 func (r ApiListDatabasesRequest) Ordering(ordering string) ApiListDatabasesRequest {
 	r.ordering = &ordering
 	return r

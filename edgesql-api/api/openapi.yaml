@@ -21,7 +21,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, name, status, is_active, updated_at)
+          (Valid fields: id, name, status, active, last_modified)
         explode: true
         in: query
         name: ordering
