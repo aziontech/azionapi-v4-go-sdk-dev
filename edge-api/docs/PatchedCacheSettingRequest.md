@@ -5,10 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
-**BrowserCache** | Pointer to [**BrowserCacheModuleRequest**](BrowserCacheModuleRequest.md) |  | [optional] 
-**EdgeCache** | Pointer to [**EdgeCacheModuleRequest**](EdgeCacheModuleRequest.md) |  | [optional] 
-**ApplicationControls** | Pointer to [**ApplicationControlsModuleRequest**](ApplicationControlsModuleRequest.md) |  | [optional] 
-**SliceControls** | Pointer to [**SliceControlsModuleRequest**](SliceControlsModuleRequest.md) |  | [optional] 
+**Modules** | Pointer to [**CacheSettingModulesRequest**](CacheSettingModulesRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -54,105 +51,30 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetBrowserCache
+### GetModules
 
-`func (o *PatchedCacheSettingRequest) GetBrowserCache() BrowserCacheModuleRequest`
+`func (o *PatchedCacheSettingRequest) GetModules() CacheSettingModulesRequest`
 
-GetBrowserCache returns the BrowserCache field if non-nil, zero value otherwise.
+GetModules returns the Modules field if non-nil, zero value otherwise.
 
-### GetBrowserCacheOk
+### GetModulesOk
 
-`func (o *PatchedCacheSettingRequest) GetBrowserCacheOk() (*BrowserCacheModuleRequest, bool)`
+`func (o *PatchedCacheSettingRequest) GetModulesOk() (*CacheSettingModulesRequest, bool)`
 
-GetBrowserCacheOk returns a tuple with the BrowserCache field if it's non-nil, zero value otherwise
+GetModulesOk returns a tuple with the Modules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBrowserCache
+### SetModules
 
-`func (o *PatchedCacheSettingRequest) SetBrowserCache(v BrowserCacheModuleRequest)`
+`func (o *PatchedCacheSettingRequest) SetModules(v CacheSettingModulesRequest)`
 
-SetBrowserCache sets BrowserCache field to given value.
+SetModules sets Modules field to given value.
 
-### HasBrowserCache
+### HasModules
 
-`func (o *PatchedCacheSettingRequest) HasBrowserCache() bool`
+`func (o *PatchedCacheSettingRequest) HasModules() bool`
 
-HasBrowserCache returns a boolean if a field has been set.
-
-### GetEdgeCache
-
-`func (o *PatchedCacheSettingRequest) GetEdgeCache() EdgeCacheModuleRequest`
-
-GetEdgeCache returns the EdgeCache field if non-nil, zero value otherwise.
-
-### GetEdgeCacheOk
-
-`func (o *PatchedCacheSettingRequest) GetEdgeCacheOk() (*EdgeCacheModuleRequest, bool)`
-
-GetEdgeCacheOk returns a tuple with the EdgeCache field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEdgeCache
-
-`func (o *PatchedCacheSettingRequest) SetEdgeCache(v EdgeCacheModuleRequest)`
-
-SetEdgeCache sets EdgeCache field to given value.
-
-### HasEdgeCache
-
-`func (o *PatchedCacheSettingRequest) HasEdgeCache() bool`
-
-HasEdgeCache returns a boolean if a field has been set.
-
-### GetApplicationControls
-
-`func (o *PatchedCacheSettingRequest) GetApplicationControls() ApplicationControlsModuleRequest`
-
-GetApplicationControls returns the ApplicationControls field if non-nil, zero value otherwise.
-
-### GetApplicationControlsOk
-
-`func (o *PatchedCacheSettingRequest) GetApplicationControlsOk() (*ApplicationControlsModuleRequest, bool)`
-
-GetApplicationControlsOk returns a tuple with the ApplicationControls field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetApplicationControls
-
-`func (o *PatchedCacheSettingRequest) SetApplicationControls(v ApplicationControlsModuleRequest)`
-
-SetApplicationControls sets ApplicationControls field to given value.
-
-### HasApplicationControls
-
-`func (o *PatchedCacheSettingRequest) HasApplicationControls() bool`
-
-HasApplicationControls returns a boolean if a field has been set.
-
-### GetSliceControls
-
-`func (o *PatchedCacheSettingRequest) GetSliceControls() SliceControlsModuleRequest`
-
-GetSliceControls returns the SliceControls field if non-nil, zero value otherwise.
-
-### GetSliceControlsOk
-
-`func (o *PatchedCacheSettingRequest) GetSliceControlsOk() (*SliceControlsModuleRequest, bool)`
-
-GetSliceControlsOk returns a tuple with the SliceControls field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSliceControls
-
-`func (o *PatchedCacheSettingRequest) SetSliceControls(v SliceControlsModuleRequest)`
-
-SetSliceControls sets SliceControls field to given value.
-
-### HasSliceControls
-
-`func (o *PatchedCacheSettingRequest) HasSliceControls() bool`
-
-HasSliceControls returns a boolean if a field has been set.
+HasModules returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
