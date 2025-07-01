@@ -1,1 +1,1 @@
-edgesql-api.yaml
+data-stream-api.yaml
