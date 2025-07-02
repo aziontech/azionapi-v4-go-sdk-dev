@@ -21,7 +21,7 @@ var _ MappedNullable = &PatchedCustomPagesRequest{}
 type PatchedCustomPagesRequest struct {
 	Name *string `json:"name,omitempty" validate:"regexp=.*"`
 	Active *bool `json:"active,omitempty"`
-	ConnectorCustomPages *ConnectorCustomPagesRequest `json:"connector_custom_pages,omitempty"`
+	Pages []ItemPageRequest `json:"pages,omitempty"`
 }
 
 // NewPatchedCustomPagesRequest instantiates a new PatchedCustomPagesRequest object
@@ -105,36 +105,36 @@ func (o *PatchedCustomPagesRequest) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetConnectorCustomPages returns the ConnectorCustomPages field value if set, zero value otherwise.
-func (o *PatchedCustomPagesRequest) GetConnectorCustomPages() ConnectorCustomPagesRequest {
-	if o == nil || IsNil(o.ConnectorCustomPages) {
-		var ret ConnectorCustomPagesRequest
+// GetPages returns the Pages field value if set, zero value otherwise.
+func (o *PatchedCustomPagesRequest) GetPages() []ItemPageRequest {
+	if o == nil || IsNil(o.Pages) {
+		var ret []ItemPageRequest
 		return ret
 	}
-	return *o.ConnectorCustomPages
+	return o.Pages
 }
 
-// GetConnectorCustomPagesOk returns a tuple with the ConnectorCustomPages field value if set, nil otherwise
+// GetPagesOk returns a tuple with the Pages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedCustomPagesRequest) GetConnectorCustomPagesOk() (*ConnectorCustomPagesRequest, bool) {
-	if o == nil || IsNil(o.ConnectorCustomPages) {
+func (o *PatchedCustomPagesRequest) GetPagesOk() ([]ItemPageRequest, bool) {
+	if o == nil || IsNil(o.Pages) {
 		return nil, false
 	}
-	return o.ConnectorCustomPages, true
+	return o.Pages, true
 }
 
-// HasConnectorCustomPages returns a boolean if a field has been set.
-func (o *PatchedCustomPagesRequest) HasConnectorCustomPages() bool {
-	if o != nil && !IsNil(o.ConnectorCustomPages) {
+// HasPages returns a boolean if a field has been set.
+func (o *PatchedCustomPagesRequest) HasPages() bool {
+	if o != nil && !IsNil(o.Pages) {
 		return true
 	}
 
 	return false
 }
 
-// SetConnectorCustomPages gets a reference to the given ConnectorCustomPagesRequest and assigns it to the ConnectorCustomPages field.
-func (o *PatchedCustomPagesRequest) SetConnectorCustomPages(v ConnectorCustomPagesRequest) {
-	o.ConnectorCustomPages = &v
+// SetPages gets a reference to the given []ItemPageRequest and assigns it to the Pages field.
+func (o *PatchedCustomPagesRequest) SetPages(v []ItemPageRequest) {
+	o.Pages = v
 }
 
 func (o PatchedCustomPagesRequest) MarshalJSON() ([]byte, error) {
@@ -153,8 +153,8 @@ func (o PatchedCustomPagesRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if !IsNil(o.ConnectorCustomPages) {
-		toSerialize["connector_custom_pages"] = o.ConnectorCustomPages
+	if !IsNil(o.Pages) {
+		toSerialize["pages"] = o.Pages
 	}
 	return toSerialize, nil
 }

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**ConnectorCustomPages** | Pointer to [**ConnectorCustomPagesRequest**](ConnectorCustomPagesRequest.md) |  | [optional] 
+**Pages** | Pointer to [**[]ItemPageRequest**](ItemPageRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -77,30 +77,30 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetConnectorCustomPages
+### GetPages
 
-`func (o *PatchedCustomPagesRequest) GetConnectorCustomPages() ConnectorCustomPagesRequest`
+`func (o *PatchedCustomPagesRequest) GetPages() []ItemPageRequest`
 
-GetConnectorCustomPages returns the ConnectorCustomPages field if non-nil, zero value otherwise.
+GetPages returns the Pages field if non-nil, zero value otherwise.
 
-### GetConnectorCustomPagesOk
+### GetPagesOk
 
-`func (o *PatchedCustomPagesRequest) GetConnectorCustomPagesOk() (*ConnectorCustomPagesRequest, bool)`
+`func (o *PatchedCustomPagesRequest) GetPagesOk() (*[]ItemPageRequest, bool)`
 
-GetConnectorCustomPagesOk returns a tuple with the ConnectorCustomPages field if it's non-nil, zero value otherwise
+GetPagesOk returns a tuple with the Pages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConnectorCustomPages
+### SetPages
 
-`func (o *PatchedCustomPagesRequest) SetConnectorCustomPages(v ConnectorCustomPagesRequest)`
+`func (o *PatchedCustomPagesRequest) SetPages(v []ItemPageRequest)`
 
-SetConnectorCustomPages sets ConnectorCustomPages field to given value.
+SetPages sets Pages field to given value.
 
-### HasConnectorCustomPages
+### HasPages
 
-`func (o *PatchedCustomPagesRequest) HasConnectorCustomPages() bool`
+`func (o *PatchedCustomPagesRequest) HasPages() bool`
 
-HasConnectorCustomPages returns a boolean if a field has been set.
+HasPages returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

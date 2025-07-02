@@ -23,7 +23,7 @@ var _ MappedNullable = &CustomPagesRequest{}
 type CustomPagesRequest struct {
 	Name string `json:"name" validate:"regexp=.*"`
 	Active *bool `json:"active,omitempty"`
-	ConnectorCustomPages ConnectorCustomPagesRequest `json:"connector_custom_pages"`
+	Pages []ItemPageRequest `json:"pages"`
 }
 
 type _CustomPagesRequest CustomPagesRequest
@@ -32,10 +32,10 @@ type _CustomPagesRequest CustomPagesRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomPagesRequest(name string, connectorCustomPages ConnectorCustomPagesRequest) *CustomPagesRequest {
+func NewCustomPagesRequest(name string, pages []ItemPageRequest) *CustomPagesRequest {
 	this := CustomPagesRequest{}
 	this.Name = name
-	this.ConnectorCustomPages = connectorCustomPages
+	this.Pages = pages
 	return &this
 }
 
@@ -103,28 +103,28 @@ func (o *CustomPagesRequest) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetConnectorCustomPages returns the ConnectorCustomPages field value
-func (o *CustomPagesRequest) GetConnectorCustomPages() ConnectorCustomPagesRequest {
+// GetPages returns the Pages field value
+func (o *CustomPagesRequest) GetPages() []ItemPageRequest {
 	if o == nil {
-		var ret ConnectorCustomPagesRequest
+		var ret []ItemPageRequest
 		return ret
 	}
 
-	return o.ConnectorCustomPages
+	return o.Pages
 }
 
-// GetConnectorCustomPagesOk returns a tuple with the ConnectorCustomPages field value
+// GetPagesOk returns a tuple with the Pages field value
 // and a boolean to check if the value has been set.
-func (o *CustomPagesRequest) GetConnectorCustomPagesOk() (*ConnectorCustomPagesRequest, bool) {
+func (o *CustomPagesRequest) GetPagesOk() ([]ItemPageRequest, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ConnectorCustomPages, true
+	return o.Pages, true
 }
 
-// SetConnectorCustomPages sets field value
-func (o *CustomPagesRequest) SetConnectorCustomPages(v ConnectorCustomPagesRequest) {
-	o.ConnectorCustomPages = v
+// SetPages sets field value
+func (o *CustomPagesRequest) SetPages(v []ItemPageRequest) {
+	o.Pages = v
 }
 
 func (o CustomPagesRequest) MarshalJSON() ([]byte, error) {
@@ -141,7 +141,7 @@ func (o CustomPagesRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	toSerialize["connector_custom_pages"] = o.ConnectorCustomPages
+	toSerialize["pages"] = o.Pages
 	return toSerialize, nil
 }
 
@@ -151,7 +151,7 @@ func (o *CustomPagesRequest) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
-		"connector_custom_pages",
+		"pages",
 	}
 
 	allProperties := make(map[string]interface{})
