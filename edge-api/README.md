@@ -135,13 +135,13 @@ Class | Method | HTTP request | Description
 *EdgeFirewallsFunctionAPI* | [**PartialUpdateEdgeFirewallFunction**](docs/EdgeFirewallsFunctionAPI.md#partialupdateedgefirewallfunction) | **Patch** /edge_firewall/firewalls/{edge_firewall_id}/functions/{id} | Partially update an Edge Firewall Function
 *EdgeFirewallsFunctionAPI* | [**RetrieveEdgeFirewallFunction**](docs/EdgeFirewallsFunctionAPI.md#retrieveedgefirewallfunction) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/functions/{id} | Retrieve details of an Edge Firewall Function
 *EdgeFirewallsFunctionAPI* | [**UpdateEdgeFirewallFunction**](docs/EdgeFirewallsFunctionAPI.md#updateedgefirewallfunction) | **Put** /edge_firewall/firewalls/{edge_firewall_id}/functions/{id} | Update an Edge Firewall Function
-*EdgeFirewallsRulesEngineAPI* | [**CreateEdgeFirewallRule**](docs/EdgeFirewallsRulesEngineAPI.md#createedgefirewallrule) | **Post** /edge_firewall/firewalls/{edge_firewall_id}/rules | Create an Edge Firewall Rule
-*EdgeFirewallsRulesEngineAPI* | [**DestroyEdgeFirewallRule**](docs/EdgeFirewallsRulesEngineAPI.md#destroyedgefirewallrule) | **Delete** /edge_firewall/firewalls/{edge_firewall_id}/rules/{id} | Destroy an Edge Firewall Rule
-*EdgeFirewallsRulesEngineAPI* | [**ListEdgeFirewallRules**](docs/EdgeFirewallsRulesEngineAPI.md#listedgefirewallrules) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/rules | List Edge Firewall Rules
-*EdgeFirewallsRulesEngineAPI* | [**OrderEdgeFirewallRules**](docs/EdgeFirewallsRulesEngineAPI.md#orderedgefirewallrules) | **Put** /edge_firewall/firewalls/{edge_firewall_id}/rules/order | Ordering Edge Firewall Rules
-*EdgeFirewallsRulesEngineAPI* | [**PartialUpdateEdgeFirewallRule**](docs/EdgeFirewallsRulesEngineAPI.md#partialupdateedgefirewallrule) | **Patch** /edge_firewall/firewalls/{edge_firewall_id}/rules/{id} | Partially update an Edge Firewall Rule
-*EdgeFirewallsRulesEngineAPI* | [**RetrieveEdgeFirewallRule**](docs/EdgeFirewallsRulesEngineAPI.md#retrieveedgefirewallrule) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/rules/{id} | Retrieve details of an Edge Firewall Rule
-*EdgeFirewallsRulesEngineAPI* | [**UpdateEdgeFirewallRule**](docs/EdgeFirewallsRulesEngineAPI.md#updateedgefirewallrule) | **Put** /edge_firewall/firewalls/{edge_firewall_id}/rules/{id} | Update an Edge Firewall Rule
+*EdgeFirewallsRulesEngineAPI* | [**CreateEdgeFirewallRule**](docs/EdgeFirewallsRulesEngineAPI.md#createedgefirewallrule) | **Post** /edge_firewall/firewalls/{edge_firewall_id}/request_rules | Create an Edge Firewall Rule
+*EdgeFirewallsRulesEngineAPI* | [**DestroyEdgeFirewallRule**](docs/EdgeFirewallsRulesEngineAPI.md#destroyedgefirewallrule) | **Delete** /edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id} | Destroy an Edge Firewall Rule
+*EdgeFirewallsRulesEngineAPI* | [**ListEdgeFirewallRules**](docs/EdgeFirewallsRulesEngineAPI.md#listedgefirewallrules) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/request_rules | List Edge Firewall Rules
+*EdgeFirewallsRulesEngineAPI* | [**OrderEdgeFirewallRules**](docs/EdgeFirewallsRulesEngineAPI.md#orderedgefirewallrules) | **Put** /edge_firewall/firewalls/{edge_firewall_id}/request_rules/order | Ordering Edge Firewall Rules
+*EdgeFirewallsRulesEngineAPI* | [**PartialUpdateEdgeFirewallRule**](docs/EdgeFirewallsRulesEngineAPI.md#partialupdateedgefirewallrule) | **Patch** /edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id} | Partially update an Edge Firewall Rule
+*EdgeFirewallsRulesEngineAPI* | [**RetrieveEdgeFirewallRule**](docs/EdgeFirewallsRulesEngineAPI.md#retrieveedgefirewallrule) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id} | Retrieve details of an Edge Firewall Rule
+*EdgeFirewallsRulesEngineAPI* | [**UpdateEdgeFirewallRule**](docs/EdgeFirewallsRulesEngineAPI.md#updateedgefirewallrule) | **Put** /edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id} | Update an Edge Firewall Rule
 *EdgeFunctionsAPI* | [**CreateEdgeFunction**](docs/EdgeFunctionsAPI.md#createedgefunction) | **Post** /edge_functions/functions | Create an Edge Function
 *EdgeFunctionsAPI* | [**DestroyEdgeFunction**](docs/EdgeFunctionsAPI.md#destroyedgefunction) | **Delete** /edge_functions/functions/{id} | Destroy an Edge Function
 *EdgeFunctionsAPI* | [**ListEdgeFunctions**](docs/EdgeFunctionsAPI.md#listedgefunctions) | **Get** /edge_functions/functions | List Edge Functions
@@ -258,10 +258,43 @@ Class | Method | HTTP request | Description
  - [EdgeConnectorStorageTypeProperties](docs/EdgeConnectorStorageTypeProperties.md)
  - [EdgeConnectorStorageTypePropertiesRequest](docs/EdgeConnectorStorageTypePropertiesRequest.md)
  - [EdgeFirewall](docs/EdgeFirewall.md)
- - [EdgeFirewallBehaviorField](docs/EdgeFirewallBehaviorField.md)
- - [EdgeFirewallBehaviorFieldRequest](docs/EdgeFirewallBehaviorFieldRequest.md)
- - [EdgeFirewallBehaviorPolymorphicArgument](docs/EdgeFirewallBehaviorPolymorphicArgument.md)
- - [EdgeFirewallBehaviorPolymorphicArgumentRequest](docs/EdgeFirewallBehaviorPolymorphicArgumentRequest.md)
+ - [EdgeFirewallBehaviorNoArguments](docs/EdgeFirewallBehaviorNoArguments.md)
+ - [EdgeFirewallBehaviorNoArgumentsRequest](docs/EdgeFirewallBehaviorNoArgumentsRequest.md)
+ - [EdgeFirewallBehaviorRunFunction](docs/EdgeFirewallBehaviorRunFunction.md)
+ - [EdgeFirewallBehaviorRunFunctionAttributes](docs/EdgeFirewallBehaviorRunFunctionAttributes.md)
+ - [EdgeFirewallBehaviorRunFunctionAttributesRequest](docs/EdgeFirewallBehaviorRunFunctionAttributesRequest.md)
+ - [EdgeFirewallBehaviorRunFunctionRequest](docs/EdgeFirewallBehaviorRunFunctionRequest.md)
+ - [EdgeFirewallBehaviorSetCustomResponse](docs/EdgeFirewallBehaviorSetCustomResponse.md)
+ - [EdgeFirewallBehaviorSetCustomResponseAttributes](docs/EdgeFirewallBehaviorSetCustomResponseAttributes.md)
+ - [EdgeFirewallBehaviorSetCustomResponseAttributesRequest](docs/EdgeFirewallBehaviorSetCustomResponseAttributesRequest.md)
+ - [EdgeFirewallBehaviorSetCustomResponseRequest](docs/EdgeFirewallBehaviorSetCustomResponseRequest.md)
+ - [EdgeFirewallBehaviorSetRateLimit](docs/EdgeFirewallBehaviorSetRateLimit.md)
+ - [EdgeFirewallBehaviorSetRateLimitAttributes](docs/EdgeFirewallBehaviorSetRateLimitAttributes.md)
+ - [EdgeFirewallBehaviorSetRateLimitAttributesRequest](docs/EdgeFirewallBehaviorSetRateLimitAttributesRequest.md)
+ - [EdgeFirewallBehaviorSetRateLimitRequest](docs/EdgeFirewallBehaviorSetRateLimitRequest.md)
+ - [EdgeFirewallBehaviorSetWaf](docs/EdgeFirewallBehaviorSetWaf.md)
+ - [EdgeFirewallBehaviorSetWafAttributes](docs/EdgeFirewallBehaviorSetWafAttributes.md)
+ - [EdgeFirewallBehaviorSetWafAttributesRequest](docs/EdgeFirewallBehaviorSetWafAttributesRequest.md)
+ - [EdgeFirewallBehaviorSetWafRequest](docs/EdgeFirewallBehaviorSetWafRequest.md)
+ - [EdgeFirewallBehaviorTagEvent](docs/EdgeFirewallBehaviorTagEvent.md)
+ - [EdgeFirewallBehaviorTagEventAttributes](docs/EdgeFirewallBehaviorTagEventAttributes.md)
+ - [EdgeFirewallBehaviorTagEventAttributesRequest](docs/EdgeFirewallBehaviorTagEventAttributesRequest.md)
+ - [EdgeFirewallBehaviorTagEventRequest](docs/EdgeFirewallBehaviorTagEventRequest.md)
+ - [EdgeFirewallBehaviors](docs/EdgeFirewallBehaviors.md)
+ - [EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments](docs/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments.md)
+ - [EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest](docs/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest.md)
+ - [EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction](docs/EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction.md)
+ - [EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest](docs/EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest.md)
+ - [EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponse](docs/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponse.md)
+ - [EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponseRequest](docs/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponseRequest.md)
+ - [EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimit](docs/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimit.md)
+ - [EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimitRequest](docs/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimitRequest.md)
+ - [EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf](docs/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf.md)
+ - [EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWafRequest](docs/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWafRequest.md)
+ - [EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEvent](docs/EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEvent.md)
+ - [EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEventRequest](docs/EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEventRequest.md)
+ - [EdgeFirewallBehaviorsRequest](docs/EdgeFirewallBehaviorsRequest.md)
+ - [EdgeFirewallBehaviorsShared](docs/EdgeFirewallBehaviorsShared.md)
  - [EdgeFirewallCriterionField](docs/EdgeFirewallCriterionField.md)
  - [EdgeFirewallCriterionFieldRequest](docs/EdgeFirewallCriterionFieldRequest.md)
  - [EdgeFirewallCriterionPolymorphicArgument](docs/EdgeFirewallCriterionPolymorphicArgument.md)
@@ -425,12 +458,6 @@ Class | Method | HTTP request | Description
  - [ResponseWAFRule](docs/ResponseWAFRule.md)
  - [ResponseWorkload](docs/ResponseWorkload.md)
  - [ResponseWorkloadDeployment](docs/ResponseWorkloadDeployment.md)
- - [SetCustomResponseArgument](docs/SetCustomResponseArgument.md)
- - [SetCustomResponseArgumentRequest](docs/SetCustomResponseArgumentRequest.md)
- - [SetRateLimitArgument](docs/SetRateLimitArgument.md)
- - [SetRateLimitArgumentRequest](docs/SetRateLimitArgumentRequest.md)
- - [SetWafRuleSetArgument](docs/SetWafRuleSetArgument.md)
- - [SetWafRuleSetArgumentRequest](docs/SetWafRuleSetArgumentRequest.md)
  - [SliceControlsModule](docs/SliceControlsModule.md)
  - [SliceControlsModuleRequest](docs/SliceControlsModuleRequest.md)
  - [TLSEdgeConnector](docs/TLSEdgeConnector.md)

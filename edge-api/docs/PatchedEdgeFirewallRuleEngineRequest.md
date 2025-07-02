@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Behaviors** | Pointer to [**[]EdgeFirewallBehaviorFieldRequest**](EdgeFirewallBehaviorFieldRequest.md) |  | [optional] 
+**Behaviors** | Pointer to [**[]EdgeFirewallBehaviorsRequest**](EdgeFirewallBehaviorsRequest.md) |  | [optional] 
 **Criteria** | Pointer to [**[][]EdgeFirewallCriterionFieldRequest**]([]EdgeFirewallCriterionFieldRequest.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 
@@ -81,20 +81,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetBehaviors
 
-`func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorFieldRequest`
+`func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorsRequest`
 
 GetBehaviors returns the Behaviors field if non-nil, zero value otherwise.
 
 ### GetBehaviorsOk
 
-`func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviorsOk() (*[]EdgeFirewallBehaviorFieldRequest, bool)`
+`func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviorsOk() (*[]EdgeFirewallBehaviorsRequest, bool)`
 
 GetBehaviorsOk returns a tuple with the Behaviors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBehaviors
 
-`func (o *PatchedEdgeFirewallRuleEngineRequest) SetBehaviors(v []EdgeFirewallBehaviorFieldRequest)`
+`func (o *PatchedEdgeFirewallRuleEngineRequest) SetBehaviors(v []EdgeFirewallBehaviorsRequest)`
 
 SetBehaviors sets Behaviors field to given value.
 
