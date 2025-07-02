@@ -35,7 +35,7 @@ import (
 
 func main() {
 	workloadId := int64(789) // int64 | 
-	workloadDeploymentRequest := *openapiclient.NewWorkloadDeploymentRequest("Name_example", *openapiclient.NewDeploymentStrategyDefaultDeploymentStrategyAttrsRequest("StrategyType_example", *openapiclient.NewDefaultDeploymentStrategyRequest(int64(123)))) // WorkloadDeploymentRequest | 
+	workloadDeploymentRequest := *openapiclient.NewWorkloadDeploymentRequest("Name_example", *openapiclient.NewDeploymentStrategyDefaultDeploymentStrategyAttrsRequest("Type_example", *openapiclient.NewDefaultDeploymentStrategyRequest(int64(123)))) // WorkloadDeploymentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -411,7 +411,7 @@ import (
 func main() {
 	deploymentId := int64(789) // int64 | 
 	workloadId := int64(789) // int64 | 
-	workloadDeploymentRequest := *openapiclient.NewWorkloadDeploymentRequest("Name_example", *openapiclient.NewDeploymentStrategyDefaultDeploymentStrategyAttrsRequest("StrategyType_example", *openapiclient.NewDefaultDeploymentStrategyRequest(int64(123)))) // WorkloadDeploymentRequest | 
+	workloadDeploymentRequest := *openapiclient.NewWorkloadDeploymentRequest("Name_example", *openapiclient.NewDeploymentStrategyDefaultDeploymentStrategyAttrsRequest("Type_example", *openapiclient.NewDefaultDeploymentStrategyRequest(int64(123)))) // WorkloadDeploymentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

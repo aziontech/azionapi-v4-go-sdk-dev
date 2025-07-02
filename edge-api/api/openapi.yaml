@@ -16000,11 +16000,11 @@ components:
       - $ref: "#/components/schemas/DeploymentStrategyShared"
       - $ref: "#/components/schemas/DefaultDeploymentStrategyAttrs"
       example:
-        strategy_type: strategy_type
         attributes:
           custom_page: 1
           edge_firewall: 1
           edge_application: 5559347081229897728
+        type: type
       title: DeploymentStrategyDefaultDeploymentStrategyAttrs
     DeploymentStrategyDefaultDeploymentStrategyAttrsRequest:
       additionalProperties: false
@@ -16012,41 +16012,28 @@ components:
       - $ref: "#/components/schemas/DeploymentStrategyShared"
       - $ref: "#/components/schemas/DefaultDeploymentStrategyAttrsRequest"
       example:
-        strategy_type: strategy_type
         attributes:
           custom_page: 1
           edge_firewall: 6
           edge_application: 738633633822310400
+        type: type
       title: DeploymentStrategyDefaultDeploymentStrategyAttrsRequest
     DeploymentStrategyRequest:
       $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest"
     DeploymentStrategyShared:
       additionalProperties: false
       description: |-
-        Polymorphic serializer base class.
-
-        Note that the discriminator field must exist at the same depth as the mapped
-        serializer fields for the OpenAPI introspection. See
-        https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/ for
-        more information. As such, it's not possible to define something like:
-
-        {
-            "object_type": "foo",
-            "polymorphic_context": {
-                <foo-specific fields>
-            }
-        }
-
-        without explicitly wrapping this in a parent serializer, i.e. -
-        ``polymorphic_context`` can not be a PolymorphicSerializer itself, as it requires
-        access to the ``object_type`` in the parent scope.
+        Deployment strategy.
+            Allowed strategies:
+                - default
       properties:
-        strategy_type:
-          description: '* `default` - Default'
-          title: StrategyTypeEnum
+        type:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
           type: string
       required:
-      - strategy_type
+      - type
       title: DeploymentStrategyShared
       type: object
     EdgeApplication:
@@ -21712,11 +21699,11 @@ components:
           active: true
           id: 0
           strategy:
-            strategy_type: strategy_type
             attributes:
               custom_page: 1
               edge_firewall: 1
               edge_application: 5559347081229897728
+            type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
         - current: true
           last_editor: last_editor
@@ -21724,11 +21711,11 @@ components:
           active: true
           id: 0
           strategy:
-            strategy_type: strategy_type
             attributes:
               custom_page: 1
               edge_firewall: 1
               edge_application: 5559347081229897728
+            type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
@@ -22908,11 +22895,11 @@ components:
         name: name
         active: true
         strategy:
-          strategy_type: strategy_type
           attributes:
             custom_page: 1
             edge_firewall: 6
             edge_application: 738633633822310400
+          type: type
       properties:
         name:
           maxLength: 254
@@ -23997,11 +23984,11 @@ components:
           active: true
           id: 0
           strategy:
-            strategy_type: strategy_type
             attributes:
               custom_page: 1
               edge_firewall: 1
               edge_application: 5559347081229897728
+            type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -24470,11 +24457,11 @@ components:
     ResponseBadRequestSerializerMetaclassStrategyField:
       additionalProperties: false
       example:
-        strategy_type:
-        - strategy_type
-        - strategy_type
+        type:
+        - type
+        - type
       properties:
-        strategy_type:
+        type:
           items:
             type: string
           type: array
@@ -24500,9 +24487,9 @@ components:
         - id
         detail: detail
         strategy:
-          strategy_type:
-          - strategy_type
-          - strategy_type
+          type:
+          - type
+          - type
         last_modified:
         - last_modified
         - last_modified
@@ -25966,11 +25953,11 @@ components:
           active: true
           id: 0
           strategy:
-            strategy_type: strategy_type
             attributes:
               custom_page: 1
               edge_firewall: 1
               edge_application: 5559347081229897728
+            type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
@@ -26098,11 +26085,11 @@ components:
           active: true
           id: 0
           strategy:
-            strategy_type: strategy_type
             attributes:
               custom_page: 1
               edge_firewall: 1
               edge_application: 5559347081229897728
+            type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -26255,10 +26242,6 @@ components:
       - slice_tiered_caching_enabled
       title: SliceControlsModuleRequest
       type: object
-    StrategyTypeEnum:
-      description: '* `default` - Default'
-      title: StrategyTypeEnum
-      type: string
     TLSEdgeConnector:
       additionalProperties: false
       properties:
@@ -27297,11 +27280,11 @@ components:
         active: true
         id: 0
         strategy:
-          strategy_type: strategy_type
           attributes:
             custom_page: 1
             edge_firewall: 1
             edge_application: 5559347081229897728
+          type: type
         last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -27344,11 +27327,11 @@ components:
         name: name
         active: true
         strategy:
-          strategy_type: strategy_type
           attributes:
             custom_page: 1
             edge_firewall: 6
             edge_application: 738633633822310400
+          type: type
       properties:
         name:
           maxLength: 254

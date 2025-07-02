@@ -21,8 +21,7 @@ var _ MappedNullable = &DeploymentStrategyDefaultDeploymentStrategyAttrsRequest{
 
 // DeploymentStrategyDefaultDeploymentStrategyAttrsRequest struct for DeploymentStrategyDefaultDeploymentStrategyAttrsRequest
 type DeploymentStrategyDefaultDeploymentStrategyAttrsRequest struct {
-	// * `default` - Default
-	StrategyType string `json:"strategy_type"`
+	Type string `json:"type" validate:"regexp=.*"`
 	Attributes DefaultDeploymentStrategyRequest `json:"attributes"`
 }
 
@@ -32,9 +31,9 @@ type _DeploymentStrategyDefaultDeploymentStrategyAttrsRequest DeploymentStrategy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeploymentStrategyDefaultDeploymentStrategyAttrsRequest(strategyType string, attributes DefaultDeploymentStrategyRequest) *DeploymentStrategyDefaultDeploymentStrategyAttrsRequest {
+func NewDeploymentStrategyDefaultDeploymentStrategyAttrsRequest(type_ string, attributes DefaultDeploymentStrategyRequest) *DeploymentStrategyDefaultDeploymentStrategyAttrsRequest {
 	this := DeploymentStrategyDefaultDeploymentStrategyAttrsRequest{}
-	this.StrategyType = strategyType
+	this.Type = type_
 	this.Attributes = attributes
 	return &this
 }
@@ -47,28 +46,28 @@ func NewDeploymentStrategyDefaultDeploymentStrategyAttrsRequestWithDefaults() *D
 	return &this
 }
 
-// GetStrategyType returns the StrategyType field value
-func (o *DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) GetStrategyType() string {
+// GetType returns the Type field value
+func (o *DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.StrategyType
+	return o.Type
 }
 
-// GetStrategyTypeOk returns a tuple with the StrategyType field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) GetStrategyTypeOk() (*string, bool) {
+func (o *DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.StrategyType, true
+	return &o.Type, true
 }
 
-// SetStrategyType sets field value
-func (o *DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) SetStrategyType(v string) {
-	o.StrategyType = v
+// SetType sets field value
+func (o *DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) SetType(v string) {
+	o.Type = v
 }
 
 // GetAttributes returns the Attributes field value
@@ -105,7 +104,7 @@ func (o DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) MarshalJSON() (
 
 func (o DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["strategy_type"] = o.StrategyType
+	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
 	return toSerialize, nil
 }
@@ -115,7 +114,7 @@ func (o *DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) UnmarshalJSON(
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"strategy_type",
+		"type",
 		"attributes",
 	}
 

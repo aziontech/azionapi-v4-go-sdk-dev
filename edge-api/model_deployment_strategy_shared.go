@@ -19,10 +19,9 @@ import (
 // checks if the DeploymentStrategyShared type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeploymentStrategyShared{}
 
-// DeploymentStrategyShared Polymorphic serializer base class.  Note that the discriminator field must exist at the same depth as the mapped serializer fields for the OpenAPI introspection. See https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/ for more information. As such, it's not possible to define something like:  {     \"object_type\": \"foo\",     \"polymorphic_context\": {         <foo-specific fields>     } }  without explicitly wrapping this in a parent serializer, i.e. - ``polymorphic_context`` can not be a PolymorphicSerializer itself, as it requires access to the ``object_type`` in the parent scope.
+// DeploymentStrategyShared Deployment strategy.     Allowed strategies:         - default
 type DeploymentStrategyShared struct {
-	// * `default` - Default
-	StrategyType string `json:"strategy_type"`
+	Type string `json:"type" validate:"regexp=.*"`
 }
 
 type _DeploymentStrategyShared DeploymentStrategyShared
@@ -31,9 +30,9 @@ type _DeploymentStrategyShared DeploymentStrategyShared
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeploymentStrategyShared(strategyType string) *DeploymentStrategyShared {
+func NewDeploymentStrategyShared(type_ string) *DeploymentStrategyShared {
 	this := DeploymentStrategyShared{}
-	this.StrategyType = strategyType
+	this.Type = type_
 	return &this
 }
 
@@ -45,28 +44,28 @@ func NewDeploymentStrategySharedWithDefaults() *DeploymentStrategyShared {
 	return &this
 }
 
-// GetStrategyType returns the StrategyType field value
-func (o *DeploymentStrategyShared) GetStrategyType() string {
+// GetType returns the Type field value
+func (o *DeploymentStrategyShared) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.StrategyType
+	return o.Type
 }
 
-// GetStrategyTypeOk returns a tuple with the StrategyType field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *DeploymentStrategyShared) GetStrategyTypeOk() (*string, bool) {
+func (o *DeploymentStrategyShared) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.StrategyType, true
+	return &o.Type, true
 }
 
-// SetStrategyType sets field value
-func (o *DeploymentStrategyShared) SetStrategyType(v string) {
-	o.StrategyType = v
+// SetType sets field value
+func (o *DeploymentStrategyShared) SetType(v string) {
+	o.Type = v
 }
 
 func (o DeploymentStrategyShared) MarshalJSON() ([]byte, error) {
@@ -79,7 +78,7 @@ func (o DeploymentStrategyShared) MarshalJSON() ([]byte, error) {
 
 func (o DeploymentStrategyShared) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["strategy_type"] = o.StrategyType
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -88,7 +87,7 @@ func (o *DeploymentStrategyShared) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"strategy_type",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})

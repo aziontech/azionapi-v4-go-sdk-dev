@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StrategyType** | **string** | * &#x60;default&#x60; - Default | 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewDeploymentStrategyShared
 
-`func NewDeploymentStrategyShared(strategyType string, ) *DeploymentStrategyShared`
+`func NewDeploymentStrategyShared(type_ string, ) *DeploymentStrategyShared`
 
 NewDeploymentStrategyShared instantiates a new DeploymentStrategyShared object
 This constructor will assign default values to properties that have it defined,
@@ -25,24 +25,24 @@ NewDeploymentStrategySharedWithDefaults instantiates a new DeploymentStrategySha
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetStrategyType
+### GetType
 
-`func (o *DeploymentStrategyShared) GetStrategyType() string`
+`func (o *DeploymentStrategyShared) GetType() string`
 
-GetStrategyType returns the StrategyType field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetStrategyTypeOk
+### GetTypeOk
 
-`func (o *DeploymentStrategyShared) GetStrategyTypeOk() (*string, bool)`
+`func (o *DeploymentStrategyShared) GetTypeOk() (*string, bool)`
 
-GetStrategyTypeOk returns a tuple with the StrategyType field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStrategyType
+### SetType
 
-`func (o *DeploymentStrategyShared) SetStrategyType(v string)`
+`func (o *DeploymentStrategyShared) SetType(v string)`
 
-SetStrategyType sets StrategyType field to given value.
+SetType sets Type field to given value.
 
 
 
