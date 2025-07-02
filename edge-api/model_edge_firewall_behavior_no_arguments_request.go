@@ -12,7 +12,6 @@ package edge-api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -23,6 +22,7 @@ var _ MappedNullable = &EdgeFirewallBehaviorNoArgumentsRequest{}
 type EdgeFirewallBehaviorNoArgumentsRequest struct {
 	// * `deny` - deny * `drop` - drop
 	Type string `json:"type"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EdgeFirewallBehaviorNoArgumentsRequest EdgeFirewallBehaviorNoArgumentsRequest
@@ -80,6 +80,11 @@ func (o EdgeFirewallBehaviorNoArgumentsRequest) MarshalJSON() ([]byte, error) {
 func (o EdgeFirewallBehaviorNoArgumentsRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -107,15 +112,20 @@ func (o *EdgeFirewallBehaviorNoArgumentsRequest) UnmarshalJSON(data []byte) (err
 
 	varEdgeFirewallBehaviorNoArgumentsRequest := _EdgeFirewallBehaviorNoArgumentsRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEdgeFirewallBehaviorNoArgumentsRequest)
+	err = json.Unmarshal(data, &varEdgeFirewallBehaviorNoArgumentsRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EdgeFirewallBehaviorNoArgumentsRequest(varEdgeFirewallBehaviorNoArgumentsRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -12,7 +12,6 @@ package edge-api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type EdgeFirewallBehaviorSetCustomResponseAttributes struct {
 	StatusCode int64 `json:"status_code"`
 	ContentType *string `json:"content_type,omitempty" validate:"regexp=.*"`
 	ContentBody *string `json:"content_body,omitempty" validate:"regexp=.*"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EdgeFirewallBehaviorSetCustomResponseAttributes EdgeFirewallBehaviorSetCustomResponseAttributes
@@ -151,6 +151,11 @@ func (o EdgeFirewallBehaviorSetCustomResponseAttributes) ToMap() (map[string]int
 	if !IsNil(o.ContentBody) {
 		toSerialize["content_body"] = o.ContentBody
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -178,15 +183,22 @@ func (o *EdgeFirewallBehaviorSetCustomResponseAttributes) UnmarshalJSON(data []b
 
 	varEdgeFirewallBehaviorSetCustomResponseAttributes := _EdgeFirewallBehaviorSetCustomResponseAttributes{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEdgeFirewallBehaviorSetCustomResponseAttributes)
+	err = json.Unmarshal(data, &varEdgeFirewallBehaviorSetCustomResponseAttributes)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EdgeFirewallBehaviorSetCustomResponseAttributes(varEdgeFirewallBehaviorSetCustomResponseAttributes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "status_code")
+		delete(additionalProperties, "content_type")
+		delete(additionalProperties, "content_body")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

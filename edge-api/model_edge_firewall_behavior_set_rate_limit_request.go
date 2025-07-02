@@ -12,7 +12,6 @@ package edge-api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type EdgeFirewallBehaviorSetRateLimitRequest struct {
 	// * `set_rate_limit` - set_rate_limit
 	Type string `json:"type"`
 	Attributes EdgeFirewallBehaviorSetRateLimitAttributesRequest `json:"attributes"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EdgeFirewallBehaviorSetRateLimitRequest EdgeFirewallBehaviorSetRateLimitRequest
@@ -107,6 +107,11 @@ func (o EdgeFirewallBehaviorSetRateLimitRequest) ToMap() (map[string]interface{}
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *EdgeFirewallBehaviorSetRateLimitRequest) UnmarshalJSON(data []byte) (er
 
 	varEdgeFirewallBehaviorSetRateLimitRequest := _EdgeFirewallBehaviorSetRateLimitRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEdgeFirewallBehaviorSetRateLimitRequest)
+	err = json.Unmarshal(data, &varEdgeFirewallBehaviorSetRateLimitRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EdgeFirewallBehaviorSetRateLimitRequest(varEdgeFirewallBehaviorSetRateLimitRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "attributes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

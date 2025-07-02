@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Behaviors** | [**[]EdgeFirewallBehaviorsRequest**](EdgeFirewallBehaviorsRequest.md) |  | 
 **Criteria** | [**[][]EdgeFirewallCriterionFieldRequest**]([]EdgeFirewallCriterionFieldRequest.md) |  | 
+**Behaviors** | [**[]EdgeFirewallBehaviorsRequest**](EdgeFirewallBehaviorsRequest.md) |  | 
 **Description** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewEdgeFirewallRuleEngineRequest
 
-`func NewEdgeFirewallRuleEngineRequest(name string, behaviors []EdgeFirewallBehaviorsRequest, criteria [][]EdgeFirewallCriterionFieldRequest, ) *EdgeFirewallRuleEngineRequest`
+`func NewEdgeFirewallRuleEngineRequest(name string, criteria [][]EdgeFirewallCriterionFieldRequest, behaviors []EdgeFirewallBehaviorsRequest, ) *EdgeFirewallRuleEngineRequest`
 
 NewEdgeFirewallRuleEngineRequest instantiates a new EdgeFirewallRuleEngineRequest object
 This constructor will assign default values to properties that have it defined,
@@ -74,26 +74,6 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetBehaviors
-
-`func (o *EdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorsRequest`
-
-GetBehaviors returns the Behaviors field if non-nil, zero value otherwise.
-
-### GetBehaviorsOk
-
-`func (o *EdgeFirewallRuleEngineRequest) GetBehaviorsOk() (*[]EdgeFirewallBehaviorsRequest, bool)`
-
-GetBehaviorsOk returns a tuple with the Behaviors field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBehaviors
-
-`func (o *EdgeFirewallRuleEngineRequest) SetBehaviors(v []EdgeFirewallBehaviorsRequest)`
-
-SetBehaviors sets Behaviors field to given value.
-
-
 ### GetCriteria
 
 `func (o *EdgeFirewallRuleEngineRequest) GetCriteria() [][]EdgeFirewallCriterionFieldRequest`
@@ -112,6 +92,26 @@ and a boolean to check if the value has been set.
 `func (o *EdgeFirewallRuleEngineRequest) SetCriteria(v [][]EdgeFirewallCriterionFieldRequest)`
 
 SetCriteria sets Criteria field to given value.
+
+
+### GetBehaviors
+
+`func (o *EdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorsRequest`
+
+GetBehaviors returns the Behaviors field if non-nil, zero value otherwise.
+
+### GetBehaviorsOk
+
+`func (o *EdgeFirewallRuleEngineRequest) GetBehaviorsOk() (*[]EdgeFirewallBehaviorsRequest, bool)`
+
+GetBehaviorsOk returns a tuple with the Behaviors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBehaviors
+
+`func (o *EdgeFirewallRuleEngineRequest) SetBehaviors(v []EdgeFirewallBehaviorsRequest)`
+
+SetBehaviors sets Behaviors field to given value.
 
 
 ### GetDescription
