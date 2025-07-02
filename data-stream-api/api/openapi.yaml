@@ -2213,12 +2213,8 @@ components:
             rate: 60
           type: type
         inputs:
-        - attributes:
-            data_source: data_source
-          type: type
-        - attributes:
-            data_source: data_source
-          type: type
+        - null
+        - null
         last_editor: last_editor
         name: name
         active: true
@@ -2253,11 +2249,11 @@ components:
           type: boolean
         inputs:
           items:
-            $ref: "#/components/schemas/Input"
+            $ref: "#/components/schemas/InputPolymorphic"
           type: array
         transform:
           items:
-            $ref: "#/components/schemas/Transform"
+            $ref: "#/components/schemas/TransformPolymorphic"
           type: array
         outputs:
           items:
@@ -2302,12 +2298,8 @@ components:
             rate: 8
           type: type
         inputs:
-        - attributes:
-            data_source: data_source
-          type: type
-        - attributes:
-            data_source: data_source
-          type: type
+        - null
+        - null
         name: name
         active: true
       properties:
@@ -2320,11 +2312,11 @@ components:
           type: boolean
         inputs:
           items:
-            $ref: "#/components/schemas/InputRequest"
+            $ref: "#/components/schemas/InputPolymorphicRequest"
           type: array
         transform:
           items:
-            $ref: "#/components/schemas/TransformRequest"
+            $ref: "#/components/schemas/TransformPolymorphicRequest"
           type: array
         outputs:
           items:
@@ -2473,48 +2465,6 @@ components:
       - url
       title: HttpPostEndpointRequest
       type: object
-    Input:
-      additionalProperties: false
-      example:
-        attributes:
-          data_source: data_source
-        type: type
-      properties:
-        type:
-          description: '* `raw_logs` - Raw Logs'
-          title: InputTypeEnum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/InputAttributesPolymorphicInputDataSource"
-      required:
-      - attributes
-      - type
-      title: Input
-      type: object
-    InputAttributesPolymorphic:
-      $ref: "#/components/schemas/InputAttributesPolymorphicInputDataSource"
-    InputAttributesPolymorphicInputDataSource:
-      additionalProperties: false
-      allOf:
-      - $ref: "#/components/schemas/InputAttributesPolymorphicShared"
-      - $ref: "#/components/schemas/InputDataSource"
-      example:
-        data_source: data_source
-      title: InputAttributesPolymorphicInputDataSource
-    InputAttributesPolymorphicInputDataSourceRequest:
-      additionalProperties: false
-      allOf:
-      - $ref: "#/components/schemas/InputAttributesPolymorphicShared"
-      - $ref: "#/components/schemas/InputDataSourceRequest"
-      example:
-        data_source: data_source
-      title: InputAttributesPolymorphicInputDataSourceRequest
-    InputAttributesPolymorphicRequest:
-      $ref: "#/components/schemas/InputAttributesPolymorphicInputDataSourceRequest"
-    InputAttributesPolymorphicShared:
-      additionalProperties: false
-      title: InputAttributesPolymorphicShared
-      type: object
     InputDataSource:
       additionalProperties: false
       properties:
@@ -2530,6 +2480,38 @@ components:
       - data_source
       title: InputDataSource
       type: object
+    InputDataSourceAttributes:
+      additionalProperties: false
+      properties:
+        type:
+          description: '* `raw_logs` - Raw Logs'
+          title: InputDataSourceAttributesTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/InputDataSource"
+      required:
+      - attributes
+      - type
+      title: InputDataSourceAttributes
+      type: object
+    InputDataSourceAttributesRequest:
+      additionalProperties: false
+      properties:
+        type:
+          description: '* `raw_logs` - Raw Logs'
+          title: InputDataSourceAttributesTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/InputDataSourceRequest"
+      required:
+      - attributes
+      - type
+      title: InputDataSourceAttributesRequest
+      type: object
+    InputDataSourceAttributesTypeEnum:
+      description: '* `raw_logs` - Raw Logs'
+      title: InputDataSourceAttributesTypeEnum
+      type: string
     InputDataSourceRequest:
       additionalProperties: false
       properties:
@@ -2545,28 +2527,32 @@ components:
       - data_source
       title: InputDataSourceRequest
       type: object
-    InputRequest:
+    InputPolymorphic:
+      $ref: "#/components/schemas/InputPolymorphicInputDataSourceAttributes"
+    InputPolymorphicInputDataSourceAttributes:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/InputPolymorphicShared"
+      - $ref: "#/components/schemas/InputDataSourceAttributes"
+      title: InputPolymorphicInputDataSourceAttributes
+    InputPolymorphicInputDataSourceAttributesRequest:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/InputPolymorphicShared"
+      - $ref: "#/components/schemas/InputDataSourceAttributesRequest"
+      title: InputPolymorphicInputDataSourceAttributesRequest
+    InputPolymorphicRequest:
+      $ref: "#/components/schemas/InputPolymorphicInputDataSourceAttributesRequest"
+    InputPolymorphicShared:
       additionalProperties: false
-      example:
-        attributes:
-          data_source: data_source
-        type: type
       properties:
         type:
-          description: '* `raw_logs` - Raw Logs'
-          title: InputTypeEnum
+          minLength: 1
           type: string
-        attributes:
-          $ref: "#/components/schemas/InputAttributesPolymorphicInputDataSourceRequest"
       required:
-      - attributes
       - type
-      title: InputRequest
+      title: InputPolymorphicShared
       type: object
-    InputTypeEnum:
-      description: '* `raw_logs` - Raw Logs'
-      title: InputTypeEnum
-      type: string
     JSONAPIErrorObject:
       additionalProperties: false
       description: Serializer for a single JSON:API error object.
@@ -2900,12 +2886,8 @@ components:
               rate: 60
             type: type
           inputs:
-          - attributes:
-              data_source: data_source
-            type: type
-          - attributes:
-              data_source: data_source
-            type: type
+          - null
+          - null
           last_editor: last_editor
           name: name
           active: true
@@ -2937,12 +2919,8 @@ components:
               rate: 60
             type: type
           inputs:
-          - attributes:
-              data_source: data_source
-            type: type
-          - attributes:
-              data_source: data_source
-            type: type
+          - null
+          - null
           last_editor: last_editor
           name: name
           active: true
@@ -3004,12 +2982,8 @@ components:
             rate: 8
           type: type
         inputs:
-        - attributes:
-            data_source: data_source
-          type: type
-        - attributes:
-            data_source: data_source
-          type: type
+        - null
+        - null
         name: name
         active: true
       properties:
@@ -3022,11 +2996,11 @@ components:
           type: boolean
         inputs:
           items:
-            $ref: "#/components/schemas/InputRequest"
+            $ref: "#/components/schemas/InputPolymorphicRequest"
           type: array
         transform:
           items:
-            $ref: "#/components/schemas/TransformRequest"
+            $ref: "#/components/schemas/TransformPolymorphicRequest"
           type: array
       title: PatchedDataStreamRequest
       type: object
@@ -3102,12 +3076,8 @@ components:
               rate: 60
             type: type
           inputs:
-          - attributes:
-              data_source: data_source
-            type: type
-          - attributes:
-              data_source: data_source
-            type: type
+          - null
+          - null
           last_editor: last_editor
           name: name
           active: true
@@ -3204,12 +3174,8 @@ components:
               rate: 60
             type: type
           inputs:
-          - attributes:
-              data_source: data_source
-            type: type
-          - attributes:
-              data_source: data_source
-            type: type
+          - null
+          - null
           last_editor: last_editor
           name: name
           active: true
@@ -3306,12 +3272,8 @@ components:
             rate: 60
           type: type
         inputs:
-        - attributes:
-            data_source: data_source
-          type: type
-        - attributes:
-            data_source: data_source
-          type: type
+        - null
+        - null
         last_editor: last_editor
         name: name
         active: true
@@ -3346,11 +3308,11 @@ components:
           type: boolean
         inputs:
           items:
-            $ref: "#/components/schemas/Input"
+            $ref: "#/components/schemas/InputPolymorphic"
           type: array
         transform:
           items:
-            $ref: "#/components/schemas/Transform"
+            $ref: "#/components/schemas/TransformPolymorphic"
           type: array
         outputs:
           items:
@@ -3446,12 +3408,8 @@ components:
               rate: 60
             type: type
           inputs:
-          - attributes:
-              data_source: data_source
-            type: type
-          - attributes:
-              data_source: data_source
-            type: type
+          - null
+          - null
           last_editor: last_editor
           name: name
           active: true
@@ -3682,97 +3640,6 @@ components:
       - name
       title: TemplateRequest
       type: object
-    Transform:
-      additionalProperties: false
-      example:
-        attributes:
-          rate: 60
-        type: type
-      properties:
-        type:
-          description: |-
-            * `render_template` - Render Template
-            * `sampling` - Sampling
-            * `filter_workloads` - Filter Workloads
-          title: TransformTypeEnum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/TransformAttributesPolymorphic"
-      required:
-      - attributes
-      - type
-      title: Transform
-      type: object
-    TransformAttributesPolymorphic:
-      additionalProperties: true
-      discriminator:
-        mapping:
-          sampling: "#/components/schemas/TransformAttributesPolymorphicTransformSampling"
-          filter_workloads: "#/components/schemas/TransformAttributesPolymorphicTransformFilterWorkloads"
-          render_template: "#/components/schemas/TransformAttributesPolymorphicTransformRenderTemplate"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/TransformAttributesPolymorphicTransformSampling"
-      - $ref: "#/components/schemas/TransformAttributesPolymorphicTransformFilterWorkloads"
-      - $ref: "#/components/schemas/TransformAttributesPolymorphicTransformRenderTemplate"
-      title: TransformAttributesPolymorphic
-    TransformAttributesPolymorphicRequest:
-      additionalProperties: true
-      discriminator:
-        mapping:
-          sampling: "#/components/schemas/TransformAttributesPolymorphicTransformSamplingRequest"
-          filter_workloads: "#/components/schemas/TransformAttributesPolymorphicTransformFilterWorkloadsRequest"
-          render_template: "#/components/schemas/TransformAttributesPolymorphicTransformRenderTemplateRequest"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/TransformAttributesPolymorphicTransformSamplingRequest"
-      - $ref: "#/components/schemas/TransformAttributesPolymorphicTransformFilterWorkloadsRequest"
-      - $ref: "#/components/schemas/TransformAttributesPolymorphicTransformRenderTemplateRequest"
-      title: TransformAttributesPolymorphicRequest
-    TransformAttributesPolymorphicShared:
-      additionalProperties: false
-      title: TransformAttributesPolymorphicShared
-      type: object
-    TransformAttributesPolymorphicTransformFilterWorkloads:
-      additionalProperties: false
-      allOf:
-      - $ref: "#/components/schemas/TransformAttributesPolymorphicShared"
-      - $ref: "#/components/schemas/TransformFilterWorkloads"
-      title: TransformAttributesPolymorphicTransformFilterWorkloads
-    TransformAttributesPolymorphicTransformFilterWorkloadsRequest:
-      additionalProperties: false
-      allOf:
-      - $ref: "#/components/schemas/TransformAttributesPolymorphicShared"
-      - $ref: "#/components/schemas/TransformFilterWorkloadsRequest"
-      title: TransformAttributesPolymorphicTransformFilterWorkloadsRequest
-    TransformAttributesPolymorphicTransformRenderTemplate:
-      additionalProperties: false
-      allOf:
-      - $ref: "#/components/schemas/TransformAttributesPolymorphicShared"
-      - $ref: "#/components/schemas/TransformRenderTemplate"
-      title: TransformAttributesPolymorphicTransformRenderTemplate
-    TransformAttributesPolymorphicTransformRenderTemplateRequest:
-      additionalProperties: false
-      allOf:
-      - $ref: "#/components/schemas/TransformAttributesPolymorphicShared"
-      - $ref: "#/components/schemas/TransformRenderTemplateRequest"
-      title: TransformAttributesPolymorphicTransformRenderTemplateRequest
-    TransformAttributesPolymorphicTransformSampling:
-      additionalProperties: false
-      allOf:
-      - $ref: "#/components/schemas/TransformAttributesPolymorphicShared"
-      - $ref: "#/components/schemas/TransformSampling"
-      example:
-        rate: 60
-      title: TransformAttributesPolymorphicTransformSampling
-    TransformAttributesPolymorphicTransformSamplingRequest:
-      additionalProperties: false
-      allOf:
-      - $ref: "#/components/schemas/TransformAttributesPolymorphicShared"
-      - $ref: "#/components/schemas/TransformSamplingRequest"
-      example:
-        rate: 8
-      title: TransformAttributesPolymorphicTransformSamplingRequest
     TransformFilterWorkloads:
       additionalProperties: false
       description: Serializer for filter_workloads transform attributes.
@@ -3789,6 +3656,38 @@ components:
       - workloads
       title: TransformFilterWorkloads
       type: object
+    TransformFilterWorkloadsAttributes:
+      additionalProperties: false
+      properties:
+        type:
+          description: '* `filter_workloads` - Filter Workloads'
+          title: TransformFilterWorkloadsAttributesTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/TransformFilterWorkloads"
+      required:
+      - attributes
+      - type
+      title: TransformFilterWorkloadsAttributes
+      type: object
+    TransformFilterWorkloadsAttributesRequest:
+      additionalProperties: false
+      properties:
+        type:
+          description: '* `filter_workloads` - Filter Workloads'
+          title: TransformFilterWorkloadsAttributesTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/TransformFilterWorkloadsRequest"
+      required:
+      - attributes
+      - type
+      title: TransformFilterWorkloadsAttributesRequest
+      type: object
+    TransformFilterWorkloadsAttributesTypeEnum:
+      description: '* `filter_workloads` - Filter Workloads'
+      title: TransformFilterWorkloadsAttributesTypeEnum
+      type: string
     TransformFilterWorkloadsRequest:
       additionalProperties: false
       description: Serializer for filter_workloads transform attributes.
@@ -3805,6 +3704,86 @@ components:
       - workloads
       title: TransformFilterWorkloadsRequest
       type: object
+    TransformPolymorphic:
+      additionalProperties: true
+      discriminator:
+        mapping:
+          sampling: "#/components/schemas/TransformPolymorphicTransformSamplingAttributes"
+          filter_workloads: "#/components/schemas/TransformPolymorphicTransformFilterWorkloadsAttributes"
+          render_template: "#/components/schemas/TransformPolymorphicTransformRenderTemplateAttributes"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/TransformPolymorphicTransformSamplingAttributes"
+      - $ref: "#/components/schemas/TransformPolymorphicTransformFilterWorkloadsAttributes"
+      - $ref: "#/components/schemas/TransformPolymorphicTransformRenderTemplateAttributes"
+      title: TransformPolymorphic
+    TransformPolymorphicRequest:
+      additionalProperties: true
+      discriminator:
+        mapping:
+          sampling: "#/components/schemas/TransformPolymorphicTransformSamplingAttributesRequest"
+          filter_workloads: "#/components/schemas/TransformPolymorphicTransformFilterWorkloadsAttributesRequest"
+          render_template: "#/components/schemas/TransformPolymorphicTransformRenderTemplateAttributesRequest"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/TransformPolymorphicTransformSamplingAttributesRequest"
+      - $ref: "#/components/schemas/TransformPolymorphicTransformFilterWorkloadsAttributesRequest"
+      - $ref: "#/components/schemas/TransformPolymorphicTransformRenderTemplateAttributesRequest"
+      title: TransformPolymorphicRequest
+    TransformPolymorphicShared:
+      additionalProperties: false
+      properties:
+        type:
+          minLength: 1
+          type: string
+      required:
+      - type
+      title: TransformPolymorphicShared
+      type: object
+    TransformPolymorphicTransformFilterWorkloadsAttributes:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/TransformPolymorphicShared"
+      - $ref: "#/components/schemas/TransformFilterWorkloadsAttributes"
+      title: TransformPolymorphicTransformFilterWorkloadsAttributes
+    TransformPolymorphicTransformFilterWorkloadsAttributesRequest:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/TransformPolymorphicShared"
+      - $ref: "#/components/schemas/TransformFilterWorkloadsAttributesRequest"
+      title: TransformPolymorphicTransformFilterWorkloadsAttributesRequest
+    TransformPolymorphicTransformRenderTemplateAttributes:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/TransformPolymorphicShared"
+      - $ref: "#/components/schemas/TransformRenderTemplateAttributes"
+      title: TransformPolymorphicTransformRenderTemplateAttributes
+    TransformPolymorphicTransformRenderTemplateAttributesRequest:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/TransformPolymorphicShared"
+      - $ref: "#/components/schemas/TransformRenderTemplateAttributesRequest"
+      title: TransformPolymorphicTransformRenderTemplateAttributesRequest
+    TransformPolymorphicTransformSamplingAttributes:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/TransformPolymorphicShared"
+      - $ref: "#/components/schemas/TransformSamplingAttributes"
+      example:
+        attributes:
+          rate: 60
+        type: type
+      title: TransformPolymorphicTransformSamplingAttributes
+    TransformPolymorphicTransformSamplingAttributesRequest:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/TransformPolymorphicShared"
+      - $ref: "#/components/schemas/TransformSamplingAttributesRequest"
+      example:
+        attributes:
+          rate: 8
+        type: type
+      title: TransformPolymorphicTransformSamplingAttributesRequest
     TransformRenderTemplate:
       additionalProperties: false
       description: Serializer for render_template transform attributes.
@@ -3817,6 +3796,38 @@ components:
       - template
       title: TransformRenderTemplate
       type: object
+    TransformRenderTemplateAttributes:
+      additionalProperties: false
+      properties:
+        type:
+          description: '* `render_template` - Render Template'
+          title: TransformRenderTemplateAttributesTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/TransformRenderTemplate"
+      required:
+      - attributes
+      - type
+      title: TransformRenderTemplateAttributes
+      type: object
+    TransformRenderTemplateAttributesRequest:
+      additionalProperties: false
+      properties:
+        type:
+          description: '* `render_template` - Render Template'
+          title: TransformRenderTemplateAttributesTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/TransformRenderTemplateRequest"
+      required:
+      - attributes
+      - type
+      title: TransformRenderTemplateAttributesRequest
+      type: object
+    TransformRenderTemplateAttributesTypeEnum:
+      description: '* `render_template` - Render Template'
+      title: TransformRenderTemplateAttributesTypeEnum
+      type: string
     TransformRenderTemplateRequest:
       additionalProperties: false
       description: Serializer for render_template transform attributes.
@@ -3829,30 +3840,11 @@ components:
       - template
       title: TransformRenderTemplateRequest
       type: object
-    TransformRequest:
-      additionalProperties: false
-      example:
-        attributes:
-          rate: 8
-        type: type
-      properties:
-        type:
-          description: |-
-            * `render_template` - Render Template
-            * `sampling` - Sampling
-            * `filter_workloads` - Filter Workloads
-          title: TransformTypeEnum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/TransformAttributesPolymorphicRequest"
-      required:
-      - attributes
-      - type
-      title: TransformRequest
-      type: object
     TransformSampling:
       additionalProperties: false
       description: Serializer for sampling transform attributes.
+      example:
+        rate: 60
       properties:
         rate:
           format: int64
@@ -3863,9 +3855,43 @@ components:
       - rate
       title: TransformSampling
       type: object
+    TransformSamplingAttributes:
+      additionalProperties: false
+      properties:
+        type:
+          description: '* `sampling` - Sampling'
+          title: TransformSamplingAttributesTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/TransformSampling"
+      required:
+      - attributes
+      - type
+      title: TransformSamplingAttributes
+      type: object
+    TransformSamplingAttributesRequest:
+      additionalProperties: false
+      properties:
+        type:
+          description: '* `sampling` - Sampling'
+          title: TransformSamplingAttributesTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/TransformSamplingRequest"
+      required:
+      - attributes
+      - type
+      title: TransformSamplingAttributesRequest
+      type: object
+    TransformSamplingAttributesTypeEnum:
+      description: '* `sampling` - Sampling'
+      title: TransformSamplingAttributesTypeEnum
+      type: string
     TransformSamplingRequest:
       additionalProperties: false
       description: Serializer for sampling transform attributes.
+      example:
+        rate: 8
       properties:
         rate:
           format: int64
@@ -3876,13 +3902,6 @@ components:
       - rate
       title: TransformSamplingRequest
       type: object
-    TransformTypeEnum:
-      description: |-
-        * `render_template` - Render Template
-        * `sampling` - Sampling
-        * `filter_workloads` - Filter Workloads
-      title: TransformTypeEnum
-      type: string
   securitySchemes:
     BearerAuth:
       scheme: bearer

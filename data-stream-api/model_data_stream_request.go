@@ -23,8 +23,8 @@ var _ MappedNullable = &DataStreamRequest{}
 type DataStreamRequest struct {
 	Name string `json:"name" validate:"regexp=.*"`
 	Active *bool `json:"active,omitempty"`
-	Inputs []InputRequest `json:"inputs"`
-	Transform []TransformRequest `json:"transform"`
+	Inputs []InputPolymorphicInputDataSourceAttributesRequest `json:"inputs"`
+	Transform []TransformPolymorphicRequest `json:"transform"`
 	Outputs []OutputRequest `json:"outputs"`
 }
 
@@ -34,7 +34,7 @@ type _DataStreamRequest DataStreamRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataStreamRequest(name string, inputs []InputRequest, transform []TransformRequest, outputs []OutputRequest) *DataStreamRequest {
+func NewDataStreamRequest(name string, inputs []InputPolymorphicInputDataSourceAttributesRequest, transform []TransformPolymorphicRequest, outputs []OutputRequest) *DataStreamRequest {
 	this := DataStreamRequest{}
 	this.Name = name
 	this.Inputs = inputs
@@ -108,9 +108,9 @@ func (o *DataStreamRequest) SetActive(v bool) {
 }
 
 // GetInputs returns the Inputs field value
-func (o *DataStreamRequest) GetInputs() []InputRequest {
+func (o *DataStreamRequest) GetInputs() []InputPolymorphicInputDataSourceAttributesRequest {
 	if o == nil {
-		var ret []InputRequest
+		var ret []InputPolymorphicInputDataSourceAttributesRequest
 		return ret
 	}
 
@@ -119,7 +119,7 @@ func (o *DataStreamRequest) GetInputs() []InputRequest {
 
 // GetInputsOk returns a tuple with the Inputs field value
 // and a boolean to check if the value has been set.
-func (o *DataStreamRequest) GetInputsOk() ([]InputRequest, bool) {
+func (o *DataStreamRequest) GetInputsOk() ([]InputPolymorphicInputDataSourceAttributesRequest, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -127,14 +127,14 @@ func (o *DataStreamRequest) GetInputsOk() ([]InputRequest, bool) {
 }
 
 // SetInputs sets field value
-func (o *DataStreamRequest) SetInputs(v []InputRequest) {
+func (o *DataStreamRequest) SetInputs(v []InputPolymorphicInputDataSourceAttributesRequest) {
 	o.Inputs = v
 }
 
 // GetTransform returns the Transform field value
-func (o *DataStreamRequest) GetTransform() []TransformRequest {
+func (o *DataStreamRequest) GetTransform() []TransformPolymorphicRequest {
 	if o == nil {
-		var ret []TransformRequest
+		var ret []TransformPolymorphicRequest
 		return ret
 	}
 
@@ -143,7 +143,7 @@ func (o *DataStreamRequest) GetTransform() []TransformRequest {
 
 // GetTransformOk returns a tuple with the Transform field value
 // and a boolean to check if the value has been set.
-func (o *DataStreamRequest) GetTransformOk() ([]TransformRequest, bool) {
+func (o *DataStreamRequest) GetTransformOk() ([]TransformPolymorphicRequest, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -151,7 +151,7 @@ func (o *DataStreamRequest) GetTransformOk() ([]TransformRequest, bool) {
 }
 
 // SetTransform sets field value
-func (o *DataStreamRequest) SetTransform(v []TransformRequest) {
+func (o *DataStreamRequest) SetTransform(v []TransformPolymorphicRequest) {
 	o.Transform = v
 }
 

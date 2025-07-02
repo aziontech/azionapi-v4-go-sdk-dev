@@ -28,8 +28,8 @@ type ResponseListDataStream struct {
 	LastModified time.Time `json:"last_modified"`
 	ProductVersion string `json:"product_version" validate:"regexp=.*"`
 	Active *bool `json:"active,omitempty"`
-	Inputs []Input `json:"inputs"`
-	Transform []Transform `json:"transform"`
+	Inputs []InputPolymorphicInputDataSourceAttributes `json:"inputs"`
+	Transform []TransformPolymorphic `json:"transform"`
 	Outputs []Output `json:"outputs"`
 }
 
@@ -39,7 +39,7 @@ type _ResponseListDataStream ResponseListDataStream
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponseListDataStream(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, inputs []Input, transform []Transform, outputs []Output) *ResponseListDataStream {
+func NewResponseListDataStream(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, inputs []InputPolymorphicInputDataSourceAttributes, transform []TransformPolymorphic, outputs []Output) *ResponseListDataStream {
 	this := ResponseListDataStream{}
 	this.Id = id
 	this.Name = name
@@ -213,9 +213,9 @@ func (o *ResponseListDataStream) SetActive(v bool) {
 }
 
 // GetInputs returns the Inputs field value
-func (o *ResponseListDataStream) GetInputs() []Input {
+func (o *ResponseListDataStream) GetInputs() []InputPolymorphicInputDataSourceAttributes {
 	if o == nil {
-		var ret []Input
+		var ret []InputPolymorphicInputDataSourceAttributes
 		return ret
 	}
 
@@ -224,7 +224,7 @@ func (o *ResponseListDataStream) GetInputs() []Input {
 
 // GetInputsOk returns a tuple with the Inputs field value
 // and a boolean to check if the value has been set.
-func (o *ResponseListDataStream) GetInputsOk() ([]Input, bool) {
+func (o *ResponseListDataStream) GetInputsOk() ([]InputPolymorphicInputDataSourceAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -232,14 +232,14 @@ func (o *ResponseListDataStream) GetInputsOk() ([]Input, bool) {
 }
 
 // SetInputs sets field value
-func (o *ResponseListDataStream) SetInputs(v []Input) {
+func (o *ResponseListDataStream) SetInputs(v []InputPolymorphicInputDataSourceAttributes) {
 	o.Inputs = v
 }
 
 // GetTransform returns the Transform field value
-func (o *ResponseListDataStream) GetTransform() []Transform {
+func (o *ResponseListDataStream) GetTransform() []TransformPolymorphic {
 	if o == nil {
-		var ret []Transform
+		var ret []TransformPolymorphic
 		return ret
 	}
 
@@ -248,7 +248,7 @@ func (o *ResponseListDataStream) GetTransform() []Transform {
 
 // GetTransformOk returns a tuple with the Transform field value
 // and a boolean to check if the value has been set.
-func (o *ResponseListDataStream) GetTransformOk() ([]Transform, bool) {
+func (o *ResponseListDataStream) GetTransformOk() ([]TransformPolymorphic, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -256,7 +256,7 @@ func (o *ResponseListDataStream) GetTransformOk() ([]Transform, bool) {
 }
 
 // SetTransform sets field value
-func (o *ResponseListDataStream) SetTransform(v []Transform) {
+func (o *ResponseListDataStream) SetTransform(v []TransformPolymorphic) {
 	o.Transform = v
 }
 

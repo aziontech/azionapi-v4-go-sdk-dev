@@ -10,15 +10,15 @@ Name | Type | Description | Notes
 **LastModified** | **time.Time** |  | [readonly] 
 **ProductVersion** | **string** |  | [readonly] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Inputs** | [**[]Input**](Input.md) |  | 
-**Transform** | [**[]Transform**](Transform.md) |  | 
+**Inputs** | [**[]InputPolymorphicInputDataSourceAttributes**](InputPolymorphicInputDataSourceAttributes.md) |  | 
+**Transform** | [**[]TransformPolymorphic**](TransformPolymorphic.md) |  | 
 **Outputs** | [**[]Output**](Output.md) |  | 
 
 ## Methods
 
 ### NewResponseListDataStream
 
-`func NewResponseListDataStream(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, inputs []Input, transform []Transform, outputs []Output, ) *ResponseListDataStream`
+`func NewResponseListDataStream(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, inputs []InputPolymorphicInputDataSourceAttributes, transform []TransformPolymorphic, outputs []Output, ) *ResponseListDataStream`
 
 NewResponseListDataStream instantiates a new ResponseListDataStream object
 This constructor will assign default values to properties that have it defined,
@@ -160,40 +160,40 @@ HasActive returns a boolean if a field has been set.
 
 ### GetInputs
 
-`func (o *ResponseListDataStream) GetInputs() []Input`
+`func (o *ResponseListDataStream) GetInputs() []InputPolymorphicInputDataSourceAttributes`
 
 GetInputs returns the Inputs field if non-nil, zero value otherwise.
 
 ### GetInputsOk
 
-`func (o *ResponseListDataStream) GetInputsOk() (*[]Input, bool)`
+`func (o *ResponseListDataStream) GetInputsOk() (*[]InputPolymorphicInputDataSourceAttributes, bool)`
 
 GetInputsOk returns a tuple with the Inputs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInputs
 
-`func (o *ResponseListDataStream) SetInputs(v []Input)`
+`func (o *ResponseListDataStream) SetInputs(v []InputPolymorphicInputDataSourceAttributes)`
 
 SetInputs sets Inputs field to given value.
 
 
 ### GetTransform
 
-`func (o *ResponseListDataStream) GetTransform() []Transform`
+`func (o *ResponseListDataStream) GetTransform() []TransformPolymorphic`
 
 GetTransform returns the Transform field if non-nil, zero value otherwise.
 
 ### GetTransformOk
 
-`func (o *ResponseListDataStream) GetTransformOk() (*[]Transform, bool)`
+`func (o *ResponseListDataStream) GetTransformOk() (*[]TransformPolymorphic, bool)`
 
 GetTransformOk returns a tuple with the Transform field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransform
 
-`func (o *ResponseListDataStream) SetTransform(v []Transform)`
+`func (o *ResponseListDataStream) SetTransform(v []TransformPolymorphic)`
 
 SetTransform sets Transform field to given value.
 

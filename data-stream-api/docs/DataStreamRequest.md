@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Inputs** | [**[]InputRequest**](InputRequest.md) |  | 
-**Transform** | [**[]TransformRequest**](TransformRequest.md) |  | 
+**Inputs** | [**[]InputPolymorphicInputDataSourceAttributesRequest**](InputPolymorphicInputDataSourceAttributesRequest.md) |  | 
+**Transform** | [**[]TransformPolymorphicRequest**](TransformPolymorphicRequest.md) |  | 
 **Outputs** | [**[]OutputRequest**](OutputRequest.md) |  | 
 
 ## Methods
 
 ### NewDataStreamRequest
 
-`func NewDataStreamRequest(name string, inputs []InputRequest, transform []TransformRequest, outputs []OutputRequest, ) *DataStreamRequest`
+`func NewDataStreamRequest(name string, inputs []InputPolymorphicInputDataSourceAttributesRequest, transform []TransformPolymorphicRequest, outputs []OutputRequest, ) *DataStreamRequest`
 
 NewDataStreamRequest instantiates a new DataStreamRequest object
 This constructor will assign default values to properties that have it defined,
@@ -76,40 +76,40 @@ HasActive returns a boolean if a field has been set.
 
 ### GetInputs
 
-`func (o *DataStreamRequest) GetInputs() []InputRequest`
+`func (o *DataStreamRequest) GetInputs() []InputPolymorphicInputDataSourceAttributesRequest`
 
 GetInputs returns the Inputs field if non-nil, zero value otherwise.
 
 ### GetInputsOk
 
-`func (o *DataStreamRequest) GetInputsOk() (*[]InputRequest, bool)`
+`func (o *DataStreamRequest) GetInputsOk() (*[]InputPolymorphicInputDataSourceAttributesRequest, bool)`
 
 GetInputsOk returns a tuple with the Inputs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInputs
 
-`func (o *DataStreamRequest) SetInputs(v []InputRequest)`
+`func (o *DataStreamRequest) SetInputs(v []InputPolymorphicInputDataSourceAttributesRequest)`
 
 SetInputs sets Inputs field to given value.
 
 
 ### GetTransform
 
-`func (o *DataStreamRequest) GetTransform() []TransformRequest`
+`func (o *DataStreamRequest) GetTransform() []TransformPolymorphicRequest`
 
 GetTransform returns the Transform field if non-nil, zero value otherwise.
 
 ### GetTransformOk
 
-`func (o *DataStreamRequest) GetTransformOk() (*[]TransformRequest, bool)`
+`func (o *DataStreamRequest) GetTransformOk() (*[]TransformPolymorphicRequest, bool)`
 
 GetTransformOk returns a tuple with the Transform field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransform
 
-`func (o *DataStreamRequest) SetTransform(v []TransformRequest)`
+`func (o *DataStreamRequest) SetTransform(v []TransformPolymorphicRequest)`
 
 SetTransform sets Transform field to given value.
 
