@@ -1,1 +1,1 @@
-edge-api.yaml
+data-stream-api.yaml
