@@ -19,7 +19,7 @@ var _ MappedNullable = &ResponseBadRequestSerializerMetaclassStrategyField{}
 
 // ResponseBadRequestSerializerMetaclassStrategyField struct for ResponseBadRequestSerializerMetaclassStrategyField
 type ResponseBadRequestSerializerMetaclassStrategyField struct {
-	StrategyType []string `json:"strategy_type,omitempty"`
+	Type []string `json:"type,omitempty"`
 }
 
 // NewResponseBadRequestSerializerMetaclassStrategyField instantiates a new ResponseBadRequestSerializerMetaclassStrategyField object
@@ -39,36 +39,36 @@ func NewResponseBadRequestSerializerMetaclassStrategyFieldWithDefaults() *Respon
 	return &this
 }
 
-// GetStrategyType returns the StrategyType field value if set, zero value otherwise.
-func (o *ResponseBadRequestSerializerMetaclassStrategyField) GetStrategyType() []string {
-	if o == nil || IsNil(o.StrategyType) {
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *ResponseBadRequestSerializerMetaclassStrategyField) GetType() []string {
+	if o == nil || IsNil(o.Type) {
 		var ret []string
 		return ret
 	}
-	return o.StrategyType
+	return o.Type
 }
 
-// GetStrategyTypeOk returns a tuple with the StrategyType field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResponseBadRequestSerializerMetaclassStrategyField) GetStrategyTypeOk() ([]string, bool) {
-	if o == nil || IsNil(o.StrategyType) {
+func (o *ResponseBadRequestSerializerMetaclassStrategyField) GetTypeOk() ([]string, bool) {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return o.StrategyType, true
+	return o.Type, true
 }
 
-// HasStrategyType returns a boolean if a field has been set.
-func (o *ResponseBadRequestSerializerMetaclassStrategyField) HasStrategyType() bool {
-	if o != nil && !IsNil(o.StrategyType) {
+// HasType returns a boolean if a field has been set.
+func (o *ResponseBadRequestSerializerMetaclassStrategyField) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
 	return false
 }
 
-// SetStrategyType gets a reference to the given []string and assigns it to the StrategyType field.
-func (o *ResponseBadRequestSerializerMetaclassStrategyField) SetStrategyType(v []string) {
-	o.StrategyType = v
+// SetType gets a reference to the given []string and assigns it to the Type field.
+func (o *ResponseBadRequestSerializerMetaclassStrategyField) SetType(v []string) {
+	o.Type = v
 }
 
 func (o ResponseBadRequestSerializerMetaclassStrategyField) MarshalJSON() ([]byte, error) {
@@ -81,8 +81,8 @@ func (o ResponseBadRequestSerializerMetaclassStrategyField) MarshalJSON() ([]byt
 
 func (o ResponseBadRequestSerializerMetaclassStrategyField) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.StrategyType) {
-		toSerialize["strategy_type"] = o.StrategyType
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
 }

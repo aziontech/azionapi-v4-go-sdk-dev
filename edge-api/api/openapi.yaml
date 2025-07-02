@@ -11451,7 +11451,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: name, last_editor, last_modified, product_version)
+          (Valid fields: name, last_editor, last_modified, product_version, pages)
         explode: true
         in: query
         name: ordering
@@ -15574,11 +15574,6 @@ components:
           $ref: "#/components/schemas/ApplicationControlsModule"
         slice_controls:
           $ref: "#/components/schemas/SliceControlsModule"
-      required:
-      - application_controls
-      - browser_cache
-      - edge_cache
-      - slice_controls
       title: CacheSettingModules
       type: object
     CacheSettingModulesRequest:
@@ -15623,11 +15618,6 @@ components:
           $ref: "#/components/schemas/ApplicationControlsModuleRequest"
         slice_controls:
           $ref: "#/components/schemas/SliceControlsModuleRequest"
-      required:
-      - application_controls
-      - browser_cache
-      - edge_cache
-      - slice_controls
       title: CacheSettingModulesRequest
       type: object
     CacheSettingRequest:
@@ -15814,73 +15804,27 @@ components:
         * `and` - and
       title: ConditionalEnum
       type: string
-    ConnectorCustomPages:
-      additionalProperties: false
-      example:
-        pages:
-        - code: code
-          custom_status_code: 397
-          ttl: 4622587
-          uri: uri
-        - code: code
-          custom_status_code: 397
-          ttl: 4622587
-          uri: uri
-        edge_connector: 6
-      properties:
-        edge_connector:
-          format: int64
-          nullable: true
-          type: integer
-        pages:
-          items:
-            $ref: "#/components/schemas/Page"
-          type: array
-      required:
-      - pages
-      title: ConnectorCustomPages
-      type: object
-    ConnectorCustomPagesRequest:
-      additionalProperties: false
-      example:
-        pages:
-        - code: code
-          custom_status_code: 173
-          ttl: 19008185
-          uri: uri
-        - code: code
-          custom_status_code: 173
-          ttl: 19008185
-          uri: uri
-        edge_connector: 0
-      properties:
-        edge_connector:
-          format: int64
-          nullable: true
-          type: integer
-        pages:
-          items:
-            $ref: "#/components/schemas/PageRequest"
-          type: array
-      required:
-      - pages
-      title: ConnectorCustomPagesRequest
-      type: object
     CustomPages:
       additionalProperties: false
       example:
         product_version: product_version
-        connector_custom_pages:
-          pages:
-          - code: code
-            custom_status_code: 397
-            ttl: 4622587
-            uri: uri
-          - code: code
-            custom_status_code: 397
-            ttl: 4622587
-            uri: uri
-          edge_connector: 6
+        pages:
+        - code: code
+          page:
+            attributes:
+              content_type: content_type
+              response: response
+              custom_status_code: 173
+              ttl: 19008185
+              uri: uri
+        - code: code
+          page:
+            attributes:
+              content_type: content_type
+              response: response
+              custom_status_code: 173
+              ttl: 19008185
+              uri: uri
         last_editor: last_editor
         name: name
         active: true
@@ -15915,31 +15859,39 @@ components:
           pattern: \d+\.\d+
           readOnly: true
           type: string
-        connector_custom_pages:
-          $ref: "#/components/schemas/ConnectorCustomPages"
+        pages:
+          items:
+            $ref: "#/components/schemas/ItemPage"
+          type: array
       required:
-      - connector_custom_pages
       - id
       - last_editor
       - last_modified
       - name
+      - pages
       - product_version
       title: CustomPages
       type: object
     CustomPagesRequest:
       additionalProperties: false
       example:
-        connector_custom_pages:
-          pages:
-          - code: code
-            custom_status_code: 173
-            ttl: 19008185
-            uri: uri
-          - code: code
-            custom_status_code: 173
-            ttl: 19008185
-            uri: uri
-          edge_connector: 0
+        pages:
+        - code: code
+          page:
+            attributes:
+              content_type: content_type
+              response: response
+              custom_status_code: 400
+              ttl: 2525491
+              uri: uri
+        - code: code
+          page:
+            attributes:
+              content_type: content_type
+              response: response
+              custom_status_code: 400
+              ttl: 2525491
+              uri: uri
         name: name
         active: true
       properties:
@@ -15951,11 +15903,13 @@ components:
         active:
           title: Is Active
           type: boolean
-        connector_custom_pages:
-          $ref: "#/components/schemas/ConnectorCustomPagesRequest"
+        pages:
+          items:
+            $ref: "#/components/schemas/ItemPageRequest"
+          type: array
       required:
-      - connector_custom_pages
       - name
+      - pages
       title: CustomPagesRequest
       type: object
     DefaultDeploymentStrategy:
@@ -16046,11 +16000,11 @@ components:
       - $ref: "#/components/schemas/DeploymentStrategyShared"
       - $ref: "#/components/schemas/DefaultDeploymentStrategyAttrs"
       example:
-        strategy_type: strategy_type
         attributes:
           custom_page: 1
           edge_firewall: 1
           edge_application: 5559347081229897728
+        type: type
       title: DeploymentStrategyDefaultDeploymentStrategyAttrs
     DeploymentStrategyDefaultDeploymentStrategyAttrsRequest:
       additionalProperties: false
@@ -16058,41 +16012,28 @@ components:
       - $ref: "#/components/schemas/DeploymentStrategyShared"
       - $ref: "#/components/schemas/DefaultDeploymentStrategyAttrsRequest"
       example:
-        strategy_type: strategy_type
         attributes:
           custom_page: 1
           edge_firewall: 6
           edge_application: 738633633822310400
+        type: type
       title: DeploymentStrategyDefaultDeploymentStrategyAttrsRequest
     DeploymentStrategyRequest:
       $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest"
     DeploymentStrategyShared:
       additionalProperties: false
       description: |-
-        Polymorphic serializer base class.
-
-        Note that the discriminator field must exist at the same depth as the mapped
-        serializer fields for the OpenAPI introspection. See
-        https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/ for
-        more information. As such, it's not possible to define something like:
-
-        {
-            "object_type": "foo",
-            "polymorphic_context": {
-                <foo-specific fields>
-            }
-        }
-
-        without explicitly wrapping this in a parent serializer, i.e. -
-        ``polymorphic_context`` can not be a PolymorphicSerializer itself, as it requires
-        access to the ``object_type`` in the parent scope.
+        Deployment strategy.
+            Allowed strategies:
+                - default
       properties:
-        strategy_type:
-          description: '* `default` - Default'
-          title: StrategyTypeEnum
+        type:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
           type: string
       required:
-      - strategy_type
+      - type
       title: DeploymentStrategyShared
       type: object
     EdgeApplication:
@@ -19899,6 +19840,98 @@ components:
         * `edge_firewall` - Edge Firewall
       title: InitiatorTypeEnum
       type: string
+    ItemPage:
+      additionalProperties: false
+      example:
+        code: code
+        page:
+          attributes:
+            content_type: content_type
+            response: response
+            custom_status_code: 173
+            ttl: 19008185
+            uri: uri
+      properties:
+        code:
+          description: |-
+            * `default` - default
+            * `400` - Bad Request
+            * `401` - Unauthorized
+            * `403` - Forbidden
+            * `404` - Not Found
+            * `405` - Method Not Allowed
+            * `406` - Not Acceptable
+            * `408` - Request Timeout
+            * `409` - Conflict
+            * `410` - Gone
+            * `411` - Length Required
+            * `414` - URI Too Long
+            * `415` - Unsupported Media Type
+            * `416` - Range Not Satisfiable
+            * `426` - Upgrade Required
+            * `429` - Too Many Requests
+            * `431` - Request Header Fields Too Large
+            * `500` - Internal Server Error
+            * `501` - Not Implemented
+            * `502` - Bad Gateway
+            * `503` - Service Unavailable
+            * `504` - Gateway Timeout
+            * `505` - HTTP Version Not Supported
+          title: CodeEnum
+          type: string
+        page:
+          $ref: "#/components/schemas/PagePolymorphic"
+      required:
+      - code
+      - page
+      title: ItemPage
+      type: object
+    ItemPageRequest:
+      additionalProperties: false
+      example:
+        code: code
+        page:
+          attributes:
+            content_type: content_type
+            response: response
+            custom_status_code: 400
+            ttl: 2525491
+            uri: uri
+      properties:
+        code:
+          description: |-
+            * `default` - default
+            * `400` - Bad Request
+            * `401` - Unauthorized
+            * `403` - Forbidden
+            * `404` - Not Found
+            * `405` - Method Not Allowed
+            * `406` - Not Acceptable
+            * `408` - Request Timeout
+            * `409` - Conflict
+            * `410` - Gone
+            * `411` - Length Required
+            * `414` - URI Too Long
+            * `415` - Unsupported Media Type
+            * `416` - Range Not Satisfiable
+            * `426` - Upgrade Required
+            * `429` - Too Many Requests
+            * `431` - Request Header Fields Too Large
+            * `500` - Internal Server Error
+            * `501` - Not Implemented
+            * `502` - Bad Gateway
+            * `503` - Service Unavailable
+            * `504` - Gateway Timeout
+            * `505` - HTTP Version Not Supported
+          title: CodeEnum
+          type: string
+        page:
+          $ref: "#/components/schemas/PagePolymorphicRequest"
+      required:
+      - code
+      - page
+      title: ItemPageRequest
+      type: object
     JSONAPIErrorObject:
       additionalProperties: false
       description: Serializer for a single JSON:API error object.
@@ -20321,41 +20354,21 @@ components:
         * `starts_with` - starts_with
       title: Operator565Enum
       type: string
-    Page:
+    PageConnector:
       additionalProperties: false
-      example:
-        code: code
-        custom_status_code: 397
-        ttl: 4622587
-        uri: uri
       properties:
-        code:
-          description: |-
-            * `default` - default
-            * `400` - Bad Request
-            * `401` - Unauthorized
-            * `403` - Forbidden
-            * `404` - Not Found
-            * `405` - Method Not Allowed
-            * `406` - Not Acceptable
-            * `408` - Request Timeout
-            * `409` - Conflict
-            * `410` - Gone
-            * `411` - Length Required
-            * `414` - URI Too Long
-            * `415` - Unsupported Media Type
-            * `416` - Range Not Satisfiable
-            * `426` - Upgrade Required
-            * `429` - Too Many Requests
-            * `431` - Request Header Fields Too Large
-            * `500` - Internal Server Error
-            * `501` - Not Implemented
-            * `502` - Bad Gateway
-            * `503` - Service Unavailable
-            * `504` - Gateway Timeout
-            * `505` - HTTP Version Not Supported
-          title: CodeEnum
-          type: string
+        attributes:
+          $ref: "#/components/schemas/PageConnectorAttributes"
+      required:
+      - attributes
+      title: PageConnector
+      type: object
+    PageConnectorAttributes:
+      additionalProperties: false
+      properties:
+        connector:
+          format: int64
+          type: integer
         ttl:
           format: int64
           maximum: 31536000
@@ -20374,48 +20387,73 @@ components:
           nullable: true
           type: integer
       required:
-      - code
-      title: Page
+      - connector
+      title: PageConnectorAttributes
       type: object
-    PageRequest:
+    PageConnectorAttributesRequest:
+      additionalProperties: false
+      properties:
+        connector:
+          format: int64
+          type: integer
+        ttl:
+          format: int64
+          maximum: 31536000
+          minimum: 0
+          type: integer
+        uri:
+          maxLength: 250
+          minLength: 1
+          nullable: true
+          pattern: "^\\/[\\/a-zA-Z0-9\\-_\\.\\~@:]*$"
+          type: string
+        custom_status_code:
+          format: int64
+          maximum: 599
+          minimum: 100
+          nullable: true
+          type: integer
+      required:
+      - connector
+      title: PageConnectorAttributesRequest
+      type: object
+    PageConnectorRequest:
+      additionalProperties: false
+      properties:
+        attributes:
+          $ref: "#/components/schemas/PageConnectorAttributesRequest"
+      required:
+      - attributes
+      title: PageConnectorRequest
+      type: object
+    PageDefault:
       additionalProperties: false
       example:
-        code: code
+        attributes:
+          content_type: content_type
+          response: response
+          custom_status_code: 173
+          ttl: 19008185
+          uri: uri
+      properties:
+        attributes:
+          $ref: "#/components/schemas/PageDefaultAttributes"
+      title: PageDefault
+      type: object
+    PageDefaultAttributes:
+      additionalProperties: false
+      example:
+        content_type: content_type
+        response: response
         custom_status_code: 173
         ttl: 19008185
         uri: uri
       properties:
-        code:
-          description: |-
-            * `default` - default
-            * `400` - Bad Request
-            * `401` - Unauthorized
-            * `403` - Forbidden
-            * `404` - Not Found
-            * `405` - Method Not Allowed
-            * `406` - Not Acceptable
-            * `408` - Request Timeout
-            * `409` - Conflict
-            * `410` - Gone
-            * `411` - Length Required
-            * `414` - URI Too Long
-            * `415` - Unsupported Media Type
-            * `416` - Range Not Satisfiable
-            * `426` - Upgrade Required
-            * `429` - Too Many Requests
-            * `431` - Request Header Fields Too Large
-            * `500` - Internal Server Error
-            * `501` - Not Implemented
-            * `502` - Bad Gateway
-            * `503` - Service Unavailable
-            * `504` - Gateway Timeout
-            * `505` - HTTP Version Not Supported
-          title: CodeEnum
-          type: string
         ttl:
           format: int64
           maximum: 31536000
           minimum: 0
+          nullable: true
           type: integer
         uri:
           maxLength: 250
@@ -20423,50 +20461,149 @@ components:
           nullable: true
           pattern: "^\\/[\\/a-zA-Z0-9\\-_\\.\\~@:]*$"
           type: string
+        content_type:
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          pattern: .*
+          type: string
+        response:
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          pattern: .*
+          type: string
         custom_status_code:
           format: int64
           maximum: 599
           minimum: 100
           nullable: true
           type: integer
-      required:
-      - code
-      title: PageRequest
+      title: PageDefaultAttributes
       type: object
+    PageDefaultAttributesRequest:
+      additionalProperties: false
+      example:
+        content_type: content_type
+        response: response
+        custom_status_code: 400
+        ttl: 2525491
+        uri: uri
+      properties:
+        ttl:
+          format: int64
+          maximum: 31536000
+          minimum: 0
+          nullable: true
+          type: integer
+        uri:
+          maxLength: 250
+          minLength: 1
+          nullable: true
+          pattern: "^\\/[\\/a-zA-Z0-9\\-_\\.\\~@:]*$"
+          type: string
+        content_type:
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          pattern: .*
+          type: string
+        response:
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          pattern: .*
+          type: string
+        custom_status_code:
+          format: int64
+          maximum: 599
+          minimum: 100
+          nullable: true
+          type: integer
+      title: PageDefaultAttributesRequest
+      type: object
+    PageDefaultRequest:
+      additionalProperties: false
+      example:
+        attributes:
+          content_type: content_type
+          response: response
+          custom_status_code: 400
+          ttl: 2525491
+          uri: uri
+      properties:
+        attributes:
+          $ref: "#/components/schemas/PageDefaultAttributesRequest"
+      title: PageDefaultRequest
+      type: object
+    PagePolymorphic:
+      additionalProperties: true
+      discriminator:
+        mapping:
+          PageDefault: "#/components/schemas/PageDefault"
+          PageConnector: "#/components/schemas/PageConnector"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/PageDefault"
+      - $ref: "#/components/schemas/PageConnector"
+      title: PagePolymorphic
+    PagePolymorphicRequest:
+      additionalProperties: true
+      discriminator:
+        mapping:
+          PageDefault: "#/components/schemas/PageDefaultRequest"
+          PageConnector: "#/components/schemas/PageConnectorRequest"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/PageDefaultRequest"
+      - $ref: "#/components/schemas/PageConnectorRequest"
+      title: PagePolymorphicRequest
     PaginatedCustomPagesList:
       additionalProperties: false
       example:
         count: 123
         results:
         - product_version: product_version
-          connector_custom_pages:
-            pages:
-            - code: code
-              custom_status_code: 397
-              ttl: 4622587
-              uri: uri
-            - code: code
-              custom_status_code: 397
-              ttl: 4622587
-              uri: uri
-            edge_connector: 6
+          pages:
+          - code: code
+            page:
+              attributes:
+                content_type: content_type
+                response: response
+                custom_status_code: 173
+                ttl: 19008185
+                uri: uri
+          - code: code
+            page:
+              attributes:
+                content_type: content_type
+                response: response
+                custom_status_code: 173
+                ttl: 19008185
+                uri: uri
           last_editor: last_editor
           name: name
           active: true
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
         - product_version: product_version
-          connector_custom_pages:
-            pages:
-            - code: code
-              custom_status_code: 397
-              ttl: 4622587
-              uri: uri
-            - code: code
-              custom_status_code: 397
-              ttl: 4622587
-              uri: uri
-            edge_connector: 6
+          pages:
+          - code: code
+            page:
+              attributes:
+                content_type: content_type
+                response: response
+                custom_status_code: 173
+                ttl: 19008185
+                uri: uri
+          - code: code
+            page:
+              attributes:
+                content_type: content_type
+                response: response
+                custom_status_code: 173
+                ttl: 19008185
+                uri: uri
           last_editor: last_editor
           name: name
           active: true
@@ -21562,11 +21699,11 @@ components:
           active: true
           id: 0
           strategy:
-            strategy_type: strategy_type
             attributes:
               custom_page: 1
               edge_firewall: 1
               edge_application: 5559347081229897728
+            type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
         - current: true
           last_editor: last_editor
@@ -21574,11 +21711,11 @@ components:
           active: true
           id: 0
           strategy:
-            strategy_type: strategy_type
             attributes:
               custom_page: 1
               edge_firewall: 1
               edge_application: 5559347081229897728
+            type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
@@ -21705,17 +21842,23 @@ components:
     PatchedCustomPagesRequest:
       additionalProperties: false
       example:
-        connector_custom_pages:
-          pages:
-          - code: code
-            custom_status_code: 173
-            ttl: 19008185
-            uri: uri
-          - code: code
-            custom_status_code: 173
-            ttl: 19008185
-            uri: uri
-          edge_connector: 0
+        pages:
+        - code: code
+          page:
+            attributes:
+              content_type: content_type
+              response: response
+              custom_status_code: 400
+              ttl: 2525491
+              uri: uri
+        - code: code
+          page:
+            attributes:
+              content_type: content_type
+              response: response
+              custom_status_code: 400
+              ttl: 2525491
+              uri: uri
         name: name
         active: true
       properties:
@@ -21727,8 +21870,10 @@ components:
         active:
           title: Is Active
           type: boolean
-        connector_custom_pages:
-          $ref: "#/components/schemas/ConnectorCustomPagesRequest"
+        pages:
+          items:
+            $ref: "#/components/schemas/ItemPageRequest"
+          type: array
       title: PatchedCustomPagesRequest
       type: object
     PatchedEdgeApplicationDeviceGroupsRequest:
@@ -22750,11 +22895,11 @@ components:
         name: name
         active: true
         strategy:
-          strategy_type: strategy_type
           attributes:
             custom_page: 1
             edge_firewall: 6
             edge_application: 738633633822310400
+          type: type
       properties:
         name:
           maxLength: 254
@@ -22947,17 +23092,23 @@ components:
       example:
         data:
           product_version: product_version
-          connector_custom_pages:
-            pages:
-            - code: code
-              custom_status_code: 397
-              ttl: 4622587
-              uri: uri
-            - code: code
-              custom_status_code: 397
-              ttl: 4622587
-              uri: uri
-            edge_connector: 6
+          pages:
+          - code: code
+            page:
+              attributes:
+                content_type: content_type
+                response: response
+                custom_status_code: 173
+                ttl: 19008185
+                uri: uri
+          - code: code
+            page:
+              attributes:
+                content_type: content_type
+                response: response
+                custom_status_code: 173
+                ttl: 19008185
+                uri: uri
           last_editor: last_editor
           name: name
           active: true
@@ -23833,11 +23984,11 @@ components:
           active: true
           id: 0
           strategy:
-            strategy_type: strategy_type
             attributes:
               custom_page: 1
               edge_firewall: 1
               edge_application: 5559347081229897728
+            type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -24306,11 +24457,11 @@ components:
     ResponseBadRequestSerializerMetaclassStrategyField:
       additionalProperties: false
       example:
-        strategy_type:
-        - strategy_type
-        - strategy_type
+        type:
+        - type
+        - type
       properties:
-        strategy_type:
+        type:
           items:
             type: string
           type: array
@@ -24336,9 +24487,9 @@ components:
         - id
         detail: detail
         strategy:
-          strategy_type:
-          - strategy_type
-          - strategy_type
+          type:
+          - type
+          - type
         last_modified:
         - last_modified
         - last_modified
@@ -24381,17 +24532,23 @@ components:
       example:
         data:
           product_version: product_version
-          connector_custom_pages:
-            pages:
-            - code: code
-              custom_status_code: 397
-              ttl: 4622587
-              uri: uri
-            - code: code
-              custom_status_code: 397
-              ttl: 4622587
-              uri: uri
-            edge_connector: 6
+          pages:
+          - code: code
+            page:
+              attributes:
+                content_type: content_type
+                response: response
+                custom_status_code: 173
+                ttl: 19008185
+                uri: uri
+          - code: code
+            page:
+              attributes:
+                content_type: content_type
+                response: response
+                custom_status_code: 173
+                ttl: 19008185
+                uri: uri
           last_editor: last_editor
           name: name
           active: true
@@ -25202,17 +25359,23 @@ components:
       example:
         data:
           product_version: product_version
-          connector_custom_pages:
-            pages:
-            - code: code
-              custom_status_code: 397
-              ttl: 4622587
-              uri: uri
-            - code: code
-              custom_status_code: 397
-              ttl: 4622587
-              uri: uri
-            edge_connector: 6
+          pages:
+          - code: code
+            page:
+              attributes:
+                content_type: content_type
+                response: response
+                custom_status_code: 173
+                ttl: 19008185
+                uri: uri
+          - code: code
+            page:
+              attributes:
+                content_type: content_type
+                response: response
+                custom_status_code: 173
+                ttl: 19008185
+                uri: uri
           last_editor: last_editor
           name: name
           active: true
@@ -25790,11 +25953,11 @@ components:
           active: true
           id: 0
           strategy:
-            strategy_type: strategy_type
             attributes:
               custom_page: 1
               edge_firewall: 1
               edge_application: 5559347081229897728
+            type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
@@ -25922,11 +26085,11 @@ components:
           active: true
           id: 0
           strategy:
-            strategy_type: strategy_type
             attributes:
               custom_page: 1
               edge_firewall: 1
               edge_application: 5559347081229897728
+            type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -26079,10 +26242,6 @@ components:
       - slice_tiered_caching_enabled
       title: SliceControlsModuleRequest
       type: object
-    StrategyTypeEnum:
-      description: '* `default` - Default'
-      title: StrategyTypeEnum
-      type: string
     TLSEdgeConnector:
       additionalProperties: false
       properties:
@@ -27121,11 +27280,11 @@ components:
         active: true
         id: 0
         strategy:
-          strategy_type: strategy_type
           attributes:
             custom_page: 1
             edge_firewall: 1
             edge_application: 5559347081229897728
+          type: type
         last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -27168,11 +27327,11 @@ components:
         name: name
         active: true
         strategy:
-          strategy_type: strategy_type
           attributes:
             custom_page: 1
             edge_firewall: 6
             edge_application: 738633633822310400
+          type: type
       properties:
         name:
           maxLength: 254

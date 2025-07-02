@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StrategyType** | Pointer to **[]string** |  | [optional] 
+**Type** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -25,30 +25,30 @@ NewResponseBadRequestSerializerMetaclassStrategyFieldWithDefaults instantiates a
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetStrategyType
+### GetType
 
-`func (o *ResponseBadRequestSerializerMetaclassStrategyField) GetStrategyType() []string`
+`func (o *ResponseBadRequestSerializerMetaclassStrategyField) GetType() []string`
 
-GetStrategyType returns the StrategyType field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetStrategyTypeOk
+### GetTypeOk
 
-`func (o *ResponseBadRequestSerializerMetaclassStrategyField) GetStrategyTypeOk() (*[]string, bool)`
+`func (o *ResponseBadRequestSerializerMetaclassStrategyField) GetTypeOk() (*[]string, bool)`
 
-GetStrategyTypeOk returns a tuple with the StrategyType field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStrategyType
+### SetType
 
-`func (o *ResponseBadRequestSerializerMetaclassStrategyField) SetStrategyType(v []string)`
+`func (o *ResponseBadRequestSerializerMetaclassStrategyField) SetType(v []string)`
 
-SetStrategyType sets StrategyType field to given value.
+SetType sets Type field to given value.
 
-### HasStrategyType
+### HasType
 
-`func (o *ResponseBadRequestSerializerMetaclassStrategyField) HasStrategyType() bool`
+`func (o *ResponseBadRequestSerializerMetaclassStrategyField) HasType() bool`
 
-HasStrategyType returns a boolean if a field has been set.
+HasType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

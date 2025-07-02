@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**ConnectorCustomPages** | [**ConnectorCustomPagesRequest**](ConnectorCustomPagesRequest.md) |  | 
+**Pages** | [**[]ItemPageRequest**](ItemPageRequest.md) |  | 
 
 ## Methods
 
 ### NewCustomPagesRequest
 
-`func NewCustomPagesRequest(name string, connectorCustomPages ConnectorCustomPagesRequest, ) *CustomPagesRequest`
+`func NewCustomPagesRequest(name string, pages []ItemPageRequest, ) *CustomPagesRequest`
 
 NewCustomPagesRequest instantiates a new CustomPagesRequest object
 This constructor will assign default values to properties that have it defined,
@@ -72,24 +72,24 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetConnectorCustomPages
+### GetPages
 
-`func (o *CustomPagesRequest) GetConnectorCustomPages() ConnectorCustomPagesRequest`
+`func (o *CustomPagesRequest) GetPages() []ItemPageRequest`
 
-GetConnectorCustomPages returns the ConnectorCustomPages field if non-nil, zero value otherwise.
+GetPages returns the Pages field if non-nil, zero value otherwise.
 
-### GetConnectorCustomPagesOk
+### GetPagesOk
 
-`func (o *CustomPagesRequest) GetConnectorCustomPagesOk() (*ConnectorCustomPagesRequest, bool)`
+`func (o *CustomPagesRequest) GetPagesOk() (*[]ItemPageRequest, bool)`
 
-GetConnectorCustomPagesOk returns a tuple with the ConnectorCustomPages field if it's non-nil, zero value otherwise
+GetPagesOk returns a tuple with the Pages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConnectorCustomPages
+### SetPages
 
-`func (o *CustomPagesRequest) SetConnectorCustomPages(v ConnectorCustomPagesRequest)`
+`func (o *CustomPagesRequest) SetPages(v []ItemPageRequest)`
 
-SetConnectorCustomPages sets ConnectorCustomPages field to given value.
+SetPages sets Pages field to given value.
 
 
 

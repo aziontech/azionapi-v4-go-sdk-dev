@@ -28,7 +28,7 @@ type CustomPages struct {
 	LastModified time.Time `json:"last_modified"`
 	Active *bool `json:"active,omitempty"`
 	ProductVersion string `json:"product_version" validate:"regexp=\\\\d+\\\\.\\\\d+"`
-	ConnectorCustomPages ConnectorCustomPages `json:"connector_custom_pages"`
+	Pages []ItemPage `json:"pages"`
 }
 
 type _CustomPages CustomPages
@@ -37,14 +37,14 @@ type _CustomPages CustomPages
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomPages(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, connectorCustomPages ConnectorCustomPages) *CustomPages {
+func NewCustomPages(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, pages []ItemPage) *CustomPages {
 	this := CustomPages{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
 	this.ProductVersion = productVersion
-	this.ConnectorCustomPages = connectorCustomPages
+	this.Pages = pages
 	return &this
 }
 
@@ -208,28 +208,28 @@ func (o *CustomPages) SetProductVersion(v string) {
 	o.ProductVersion = v
 }
 
-// GetConnectorCustomPages returns the ConnectorCustomPages field value
-func (o *CustomPages) GetConnectorCustomPages() ConnectorCustomPages {
+// GetPages returns the Pages field value
+func (o *CustomPages) GetPages() []ItemPage {
 	if o == nil {
-		var ret ConnectorCustomPages
+		var ret []ItemPage
 		return ret
 	}
 
-	return o.ConnectorCustomPages
+	return o.Pages
 }
 
-// GetConnectorCustomPagesOk returns a tuple with the ConnectorCustomPages field value
+// GetPagesOk returns a tuple with the Pages field value
 // and a boolean to check if the value has been set.
-func (o *CustomPages) GetConnectorCustomPagesOk() (*ConnectorCustomPages, bool) {
+func (o *CustomPages) GetPagesOk() ([]ItemPage, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ConnectorCustomPages, true
+	return o.Pages, true
 }
 
-// SetConnectorCustomPages sets field value
-func (o *CustomPages) SetConnectorCustomPages(v ConnectorCustomPages) {
-	o.ConnectorCustomPages = v
+// SetPages sets field value
+func (o *CustomPages) SetPages(v []ItemPage) {
+	o.Pages = v
 }
 
 func (o CustomPages) MarshalJSON() ([]byte, error) {
@@ -250,7 +250,7 @@ func (o CustomPages) ToMap() (map[string]interface{}, error) {
 		toSerialize["active"] = o.Active
 	}
 	toSerialize["product_version"] = o.ProductVersion
-	toSerialize["connector_custom_pages"] = o.ConnectorCustomPages
+	toSerialize["pages"] = o.Pages
 	return toSerialize, nil
 }
 
@@ -264,7 +264,7 @@ func (o *CustomPages) UnmarshalJSON(data []byte) (err error) {
 		"last_editor",
 		"last_modified",
 		"product_version",
-		"connector_custom_pages",
+		"pages",
 	}
 
 	allProperties := make(map[string]interface{})

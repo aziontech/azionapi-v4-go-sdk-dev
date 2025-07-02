@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BrowserCache** | [**BrowserCacheModuleRequest**](BrowserCacheModuleRequest.md) |  | 
-**EdgeCache** | [**EdgeCacheModuleRequest**](EdgeCacheModuleRequest.md) |  | 
-**ApplicationControls** | [**ApplicationControlsModuleRequest**](ApplicationControlsModuleRequest.md) |  | 
-**SliceControls** | [**SliceControlsModuleRequest**](SliceControlsModuleRequest.md) |  | 
+**BrowserCache** | Pointer to [**BrowserCacheModuleRequest**](BrowserCacheModuleRequest.md) |  | [optional] 
+**EdgeCache** | Pointer to [**EdgeCacheModuleRequest**](EdgeCacheModuleRequest.md) |  | [optional] 
+**ApplicationControls** | Pointer to [**ApplicationControlsModuleRequest**](ApplicationControlsModuleRequest.md) |  | [optional] 
+**SliceControls** | Pointer to [**SliceControlsModuleRequest**](SliceControlsModuleRequest.md) |  | [optional] 
 
 ## Methods
 
 ### NewCacheSettingModulesRequest
 
-`func NewCacheSettingModulesRequest(browserCache BrowserCacheModuleRequest, edgeCache EdgeCacheModuleRequest, applicationControls ApplicationControlsModuleRequest, sliceControls SliceControlsModuleRequest, ) *CacheSettingModulesRequest`
+`func NewCacheSettingModulesRequest() *CacheSettingModulesRequest`
 
 NewCacheSettingModulesRequest instantiates a new CacheSettingModulesRequest object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetBrowserCache sets BrowserCache field to given value.
 
+### HasBrowserCache
+
+`func (o *CacheSettingModulesRequest) HasBrowserCache() bool`
+
+HasBrowserCache returns a boolean if a field has been set.
 
 ### GetEdgeCache
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetEdgeCache sets EdgeCache field to given value.
 
+### HasEdgeCache
+
+`func (o *CacheSettingModulesRequest) HasEdgeCache() bool`
+
+HasEdgeCache returns a boolean if a field has been set.
 
 ### GetApplicationControls
 
@@ -87,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetApplicationControls sets ApplicationControls field to given value.
 
+### HasApplicationControls
+
+`func (o *CacheSettingModulesRequest) HasApplicationControls() bool`
+
+HasApplicationControls returns a boolean if a field has been set.
 
 ### GetSliceControls
 
@@ -107,6 +122,11 @@ and a boolean to check if the value has been set.
 
 SetSliceControls sets SliceControls field to given value.
 
+### HasSliceControls
+
+`func (o *CacheSettingModulesRequest) HasSliceControls() bool`
+
+HasSliceControls returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

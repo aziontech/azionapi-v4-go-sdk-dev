@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StrategyType** | **string** | * &#x60;default&#x60; - Default | 
+**Type** | **string** |  | 
 **Attributes** | [**DefaultDeploymentStrategy**](DefaultDeploymentStrategy.md) |  | 
 
 ## Methods
 
 ### NewDeploymentStrategyDefaultDeploymentStrategyAttrs
 
-`func NewDeploymentStrategyDefaultDeploymentStrategyAttrs(strategyType string, attributes DefaultDeploymentStrategy, ) *DeploymentStrategyDefaultDeploymentStrategyAttrs`
+`func NewDeploymentStrategyDefaultDeploymentStrategyAttrs(type_ string, attributes DefaultDeploymentStrategy, ) *DeploymentStrategyDefaultDeploymentStrategyAttrs`
 
 NewDeploymentStrategyDefaultDeploymentStrategyAttrs instantiates a new DeploymentStrategyDefaultDeploymentStrategyAttrs object
 This constructor will assign default values to properties that have it defined,
@@ -26,24 +26,24 @@ NewDeploymentStrategyDefaultDeploymentStrategyAttrsWithDefaults instantiates a n
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetStrategyType
+### GetType
 
-`func (o *DeploymentStrategyDefaultDeploymentStrategyAttrs) GetStrategyType() string`
+`func (o *DeploymentStrategyDefaultDeploymentStrategyAttrs) GetType() string`
 
-GetStrategyType returns the StrategyType field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetStrategyTypeOk
+### GetTypeOk
 
-`func (o *DeploymentStrategyDefaultDeploymentStrategyAttrs) GetStrategyTypeOk() (*string, bool)`
+`func (o *DeploymentStrategyDefaultDeploymentStrategyAttrs) GetTypeOk() (*string, bool)`
 
-GetStrategyTypeOk returns a tuple with the StrategyType field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStrategyType
+### SetType
 
-`func (o *DeploymentStrategyDefaultDeploymentStrategyAttrs) SetStrategyType(v string)`
+`func (o *DeploymentStrategyDefaultDeploymentStrategyAttrs) SetType(v string)`
 
-SetStrategyType sets StrategyType field to given value.
+SetType sets Type field to given value.
 
 
 ### GetAttributes

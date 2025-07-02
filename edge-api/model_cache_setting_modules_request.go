@@ -12,8 +12,6 @@ package edge-api
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the CacheSettingModulesRequest type satisfies the MappedNullable interface at compile time
@@ -21,24 +19,18 @@ var _ MappedNullable = &CacheSettingModulesRequest{}
 
 // CacheSettingModulesRequest struct for CacheSettingModulesRequest
 type CacheSettingModulesRequest struct {
-	BrowserCache BrowserCacheModuleRequest `json:"browser_cache"`
-	EdgeCache EdgeCacheModuleRequest `json:"edge_cache"`
-	ApplicationControls ApplicationControlsModuleRequest `json:"application_controls"`
-	SliceControls SliceControlsModuleRequest `json:"slice_controls"`
+	BrowserCache *BrowserCacheModuleRequest `json:"browser_cache,omitempty"`
+	EdgeCache *EdgeCacheModuleRequest `json:"edge_cache,omitempty"`
+	ApplicationControls *ApplicationControlsModuleRequest `json:"application_controls,omitempty"`
+	SliceControls *SliceControlsModuleRequest `json:"slice_controls,omitempty"`
 }
-
-type _CacheSettingModulesRequest CacheSettingModulesRequest
 
 // NewCacheSettingModulesRequest instantiates a new CacheSettingModulesRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCacheSettingModulesRequest(browserCache BrowserCacheModuleRequest, edgeCache EdgeCacheModuleRequest, applicationControls ApplicationControlsModuleRequest, sliceControls SliceControlsModuleRequest) *CacheSettingModulesRequest {
+func NewCacheSettingModulesRequest() *CacheSettingModulesRequest {
 	this := CacheSettingModulesRequest{}
-	this.BrowserCache = browserCache
-	this.EdgeCache = edgeCache
-	this.ApplicationControls = applicationControls
-	this.SliceControls = sliceControls
 	return &this
 }
 
@@ -50,100 +42,132 @@ func NewCacheSettingModulesRequestWithDefaults() *CacheSettingModulesRequest {
 	return &this
 }
 
-// GetBrowserCache returns the BrowserCache field value
+// GetBrowserCache returns the BrowserCache field value if set, zero value otherwise.
 func (o *CacheSettingModulesRequest) GetBrowserCache() BrowserCacheModuleRequest {
-	if o == nil {
+	if o == nil || IsNil(o.BrowserCache) {
 		var ret BrowserCacheModuleRequest
 		return ret
 	}
-
-	return o.BrowserCache
+	return *o.BrowserCache
 }
 
-// GetBrowserCacheOk returns a tuple with the BrowserCache field value
+// GetBrowserCacheOk returns a tuple with the BrowserCache field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CacheSettingModulesRequest) GetBrowserCacheOk() (*BrowserCacheModuleRequest, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BrowserCache) {
 		return nil, false
 	}
-	return &o.BrowserCache, true
+	return o.BrowserCache, true
 }
 
-// SetBrowserCache sets field value
+// HasBrowserCache returns a boolean if a field has been set.
+func (o *CacheSettingModulesRequest) HasBrowserCache() bool {
+	if o != nil && !IsNil(o.BrowserCache) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrowserCache gets a reference to the given BrowserCacheModuleRequest and assigns it to the BrowserCache field.
 func (o *CacheSettingModulesRequest) SetBrowserCache(v BrowserCacheModuleRequest) {
-	o.BrowserCache = v
+	o.BrowserCache = &v
 }
 
-// GetEdgeCache returns the EdgeCache field value
+// GetEdgeCache returns the EdgeCache field value if set, zero value otherwise.
 func (o *CacheSettingModulesRequest) GetEdgeCache() EdgeCacheModuleRequest {
-	if o == nil {
+	if o == nil || IsNil(o.EdgeCache) {
 		var ret EdgeCacheModuleRequest
 		return ret
 	}
-
-	return o.EdgeCache
+	return *o.EdgeCache
 }
 
-// GetEdgeCacheOk returns a tuple with the EdgeCache field value
+// GetEdgeCacheOk returns a tuple with the EdgeCache field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CacheSettingModulesRequest) GetEdgeCacheOk() (*EdgeCacheModuleRequest, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EdgeCache) {
 		return nil, false
 	}
-	return &o.EdgeCache, true
+	return o.EdgeCache, true
 }
 
-// SetEdgeCache sets field value
+// HasEdgeCache returns a boolean if a field has been set.
+func (o *CacheSettingModulesRequest) HasEdgeCache() bool {
+	if o != nil && !IsNil(o.EdgeCache) {
+		return true
+	}
+
+	return false
+}
+
+// SetEdgeCache gets a reference to the given EdgeCacheModuleRequest and assigns it to the EdgeCache field.
 func (o *CacheSettingModulesRequest) SetEdgeCache(v EdgeCacheModuleRequest) {
-	o.EdgeCache = v
+	o.EdgeCache = &v
 }
 
-// GetApplicationControls returns the ApplicationControls field value
+// GetApplicationControls returns the ApplicationControls field value if set, zero value otherwise.
 func (o *CacheSettingModulesRequest) GetApplicationControls() ApplicationControlsModuleRequest {
-	if o == nil {
+	if o == nil || IsNil(o.ApplicationControls) {
 		var ret ApplicationControlsModuleRequest
 		return ret
 	}
-
-	return o.ApplicationControls
+	return *o.ApplicationControls
 }
 
-// GetApplicationControlsOk returns a tuple with the ApplicationControls field value
+// GetApplicationControlsOk returns a tuple with the ApplicationControls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CacheSettingModulesRequest) GetApplicationControlsOk() (*ApplicationControlsModuleRequest, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ApplicationControls) {
 		return nil, false
 	}
-	return &o.ApplicationControls, true
+	return o.ApplicationControls, true
 }
 
-// SetApplicationControls sets field value
+// HasApplicationControls returns a boolean if a field has been set.
+func (o *CacheSettingModulesRequest) HasApplicationControls() bool {
+	if o != nil && !IsNil(o.ApplicationControls) {
+		return true
+	}
+
+	return false
+}
+
+// SetApplicationControls gets a reference to the given ApplicationControlsModuleRequest and assigns it to the ApplicationControls field.
 func (o *CacheSettingModulesRequest) SetApplicationControls(v ApplicationControlsModuleRequest) {
-	o.ApplicationControls = v
+	o.ApplicationControls = &v
 }
 
-// GetSliceControls returns the SliceControls field value
+// GetSliceControls returns the SliceControls field value if set, zero value otherwise.
 func (o *CacheSettingModulesRequest) GetSliceControls() SliceControlsModuleRequest {
-	if o == nil {
+	if o == nil || IsNil(o.SliceControls) {
 		var ret SliceControlsModuleRequest
 		return ret
 	}
-
-	return o.SliceControls
+	return *o.SliceControls
 }
 
-// GetSliceControlsOk returns a tuple with the SliceControls field value
+// GetSliceControlsOk returns a tuple with the SliceControls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CacheSettingModulesRequest) GetSliceControlsOk() (*SliceControlsModuleRequest, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SliceControls) {
 		return nil, false
 	}
-	return &o.SliceControls, true
+	return o.SliceControls, true
 }
 
-// SetSliceControls sets field value
+// HasSliceControls returns a boolean if a field has been set.
+func (o *CacheSettingModulesRequest) HasSliceControls() bool {
+	if o != nil && !IsNil(o.SliceControls) {
+		return true
+	}
+
+	return false
+}
+
+// SetSliceControls gets a reference to the given SliceControlsModuleRequest and assigns it to the SliceControls field.
 func (o *CacheSettingModulesRequest) SetSliceControls(v SliceControlsModuleRequest) {
-	o.SliceControls = v
+	o.SliceControls = &v
 }
 
 func (o CacheSettingModulesRequest) MarshalJSON() ([]byte, error) {
@@ -156,51 +180,19 @@ func (o CacheSettingModulesRequest) MarshalJSON() ([]byte, error) {
 
 func (o CacheSettingModulesRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["browser_cache"] = o.BrowserCache
-	toSerialize["edge_cache"] = o.EdgeCache
-	toSerialize["application_controls"] = o.ApplicationControls
-	toSerialize["slice_controls"] = o.SliceControls
+	if !IsNil(o.BrowserCache) {
+		toSerialize["browser_cache"] = o.BrowserCache
+	}
+	if !IsNil(o.EdgeCache) {
+		toSerialize["edge_cache"] = o.EdgeCache
+	}
+	if !IsNil(o.ApplicationControls) {
+		toSerialize["application_controls"] = o.ApplicationControls
+	}
+	if !IsNil(o.SliceControls) {
+		toSerialize["slice_controls"] = o.SliceControls
+	}
 	return toSerialize, nil
-}
-
-func (o *CacheSettingModulesRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"browser_cache",
-		"edge_cache",
-		"application_controls",
-		"slice_controls",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCacheSettingModulesRequest := _CacheSettingModulesRequest{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCacheSettingModulesRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CacheSettingModulesRequest(varCacheSettingModulesRequest)
-
-	return err
 }
 
 type NullableCacheSettingModulesRequest struct {
