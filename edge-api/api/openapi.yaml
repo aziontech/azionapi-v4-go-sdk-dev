@@ -18268,7 +18268,7 @@ components:
       title: EdgeFirewall
       type: object
     EdgeFirewallBehaviorNoArguments:
-      additionalProperties: false
+      additionalProperties: true
       description: Behaviors without arguments
       properties:
         type:
@@ -18282,7 +18282,7 @@ components:
       title: EdgeFirewallBehaviorNoArguments
       type: object
     EdgeFirewallBehaviorNoArgumentsRequest:
-      additionalProperties: false
+      additionalProperties: true
       description: Behaviors without arguments
       properties:
         type:
@@ -18302,7 +18302,7 @@ components:
       title: EdgeFirewallBehaviorNoArgumentsTypeEnum
       type: string
     EdgeFirewallBehaviorRunFunction:
-      additionalProperties: false
+      additionalProperties: true
       description: Run a function
       properties:
         type:
@@ -18317,7 +18317,7 @@ components:
       title: EdgeFirewallBehaviorRunFunction
       type: object
     EdgeFirewallBehaviorRunFunctionAttributes:
-      additionalProperties: false
+      additionalProperties: true
       properties:
         value:
           format: int64
@@ -18329,7 +18329,7 @@ components:
       title: EdgeFirewallBehaviorRunFunctionAttributes
       type: object
     EdgeFirewallBehaviorRunFunctionAttributesRequest:
-      additionalProperties: false
+      additionalProperties: true
       properties:
         value:
           format: int64
@@ -18341,7 +18341,7 @@ components:
       title: EdgeFirewallBehaviorRunFunctionAttributesRequest
       type: object
     EdgeFirewallBehaviorRunFunctionRequest:
-      additionalProperties: false
+      additionalProperties: true
       description: Run a function
       properties:
         type:
@@ -18360,7 +18360,7 @@ components:
       title: EdgeFirewallBehaviorRunFunctionTypeEnum
       type: string
     EdgeFirewallBehaviorSetCustomResponse:
-      additionalProperties: false
+      additionalProperties: true
       description: Set a custom response
       properties:
         type:
@@ -18375,7 +18375,7 @@ components:
       title: EdgeFirewallBehaviorSetCustomResponse
       type: object
     EdgeFirewallBehaviorSetCustomResponseAttributes:
-      additionalProperties: false
+      additionalProperties: true
       properties:
         status_code:
           format: int64
@@ -18397,7 +18397,7 @@ components:
       title: EdgeFirewallBehaviorSetCustomResponseAttributes
       type: object
     EdgeFirewallBehaviorSetCustomResponseAttributesRequest:
-      additionalProperties: false
+      additionalProperties: true
       properties:
         status_code:
           format: int64
@@ -18419,7 +18419,7 @@ components:
       title: EdgeFirewallBehaviorSetCustomResponseAttributesRequest
       type: object
     EdgeFirewallBehaviorSetCustomResponseRequest:
-      additionalProperties: false
+      additionalProperties: true
       description: Set a custom response
       properties:
         type:
@@ -18438,7 +18438,7 @@ components:
       title: EdgeFirewallBehaviorSetCustomResponseTypeEnum
       type: string
     EdgeFirewallBehaviorSetRateLimit:
-      additionalProperties: false
+      additionalProperties: true
       description: Set a rate limit
       properties:
         type:
@@ -18453,7 +18453,7 @@ components:
       title: EdgeFirewallBehaviorSetRateLimit
       type: object
     EdgeFirewallBehaviorSetRateLimitAttributes:
-      additionalProperties: false
+      additionalProperties: true
       properties:
         type:
           allOf:
@@ -18480,7 +18480,7 @@ components:
       title: EdgeFirewallBehaviorSetRateLimitAttributes
       type: object
     EdgeFirewallBehaviorSetRateLimitAttributesRequest:
-      additionalProperties: false
+      additionalProperties: true
       properties:
         type:
           allOf:
@@ -18513,7 +18513,7 @@ components:
       title: EdgeFirewallBehaviorSetRateLimitAttributesTypeEnum
       type: string
     EdgeFirewallBehaviorSetRateLimitRequest:
-      additionalProperties: false
+      additionalProperties: true
       description: Set a rate limit
       properties:
         type:
@@ -18532,7 +18532,7 @@ components:
       title: EdgeFirewallBehaviorSetRateLimitTypeEnum
       type: string
     EdgeFirewallBehaviorSetWaf:
-      additionalProperties: false
+      additionalProperties: true
       description: Set a WAF
       properties:
         type:
@@ -18547,7 +18547,7 @@ components:
       title: EdgeFirewallBehaviorSetWaf
       type: object
     EdgeFirewallBehaviorSetWafAttributes:
-      additionalProperties: false
+      additionalProperties: true
       properties:
         waf_id:
           format: int64
@@ -18566,7 +18566,7 @@ components:
       title: EdgeFirewallBehaviorSetWafAttributes
       type: object
     EdgeFirewallBehaviorSetWafAttributesRequest:
-      additionalProperties: false
+      additionalProperties: true
       properties:
         waf_id:
           format: int64
@@ -18585,7 +18585,7 @@ components:
       title: EdgeFirewallBehaviorSetWafAttributesRequest
       type: object
     EdgeFirewallBehaviorSetWafRequest:
-      additionalProperties: false
+      additionalProperties: true
       description: Set a WAF
       properties:
         type:
@@ -18604,7 +18604,7 @@ components:
       title: EdgeFirewallBehaviorSetWafTypeEnum
       type: string
     EdgeFirewallBehaviorTagEvent:
-      additionalProperties: false
+      additionalProperties: true
       description: Tag event
       properties:
         type:
@@ -18619,7 +18619,7 @@ components:
       title: EdgeFirewallBehaviorTagEvent
       type: object
     EdgeFirewallBehaviorTagEventAttributes:
-      additionalProperties: false
+      additionalProperties: true
       properties:
         value:
           maxLength: 128
@@ -18631,7 +18631,7 @@ components:
       title: EdgeFirewallBehaviorTagEventAttributes
       type: object
     EdgeFirewallBehaviorTagEventAttributesRequest:
-      additionalProperties: false
+      additionalProperties: true
       properties:
         value:
           maxLength: 128
@@ -18643,7 +18643,7 @@ components:
       title: EdgeFirewallBehaviorTagEventAttributesRequest
       type: object
     EdgeFirewallBehaviorTagEventRequest:
-      additionalProperties: false
+      additionalProperties: true
       description: Tag event
       properties:
         type:
@@ -18682,7 +18682,7 @@ components:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction"
       title: EdgeFirewallBehaviors
     EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
       - $ref: "#/components/schemas/EdgeFirewallBehaviorNoArguments"
@@ -18690,7 +18690,7 @@ components:
         type: type
       title: EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments
     EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
       - $ref: "#/components/schemas/EdgeFirewallBehaviorNoArgumentsRequest"
@@ -18698,61 +18698,61 @@ components:
         type: type
       title: EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest
     EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
       - $ref: "#/components/schemas/EdgeFirewallBehaviorRunFunction"
       title: EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction
     EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
       - $ref: "#/components/schemas/EdgeFirewallBehaviorRunFunctionRequest"
       title: EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest
     EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponse:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
       - $ref: "#/components/schemas/EdgeFirewallBehaviorSetCustomResponse"
       title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponse
     EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponseRequest:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
       - $ref: "#/components/schemas/EdgeFirewallBehaviorSetCustomResponseRequest"
       title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponseRequest
     EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimit:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
       - $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimit"
       title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimit
     EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimitRequest:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
       - $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimitRequest"
       title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimitRequest
     EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
       - $ref: "#/components/schemas/EdgeFirewallBehaviorSetWaf"
       title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf
     EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWafRequest:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
       - $ref: "#/components/schemas/EdgeFirewallBehaviorSetWafRequest"
       title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWafRequest
     EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEvent:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
       - $ref: "#/components/schemas/EdgeFirewallBehaviorTagEvent"
       title: EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEvent
     EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEventRequest:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
       - $ref: "#/components/schemas/EdgeFirewallBehaviorTagEventRequest"
@@ -18778,7 +18778,7 @@ components:
       - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest"
       title: EdgeFirewallBehaviorsRequest
     EdgeFirewallBehaviorsShared:
-      additionalProperties: false
+      additionalProperties: true
       description: |-
         Polymorphic serializer base class.
 
@@ -19183,12 +19183,6 @@ components:
     EdgeFirewallRuleEngine:
       additionalProperties: false
       example:
-        behaviors:
-        - type: type
-        - type: type
-        - type: type
-        - type: type
-        - type: type
         criteria:
         - - argument: ""
             conditional: conditional
@@ -19290,6 +19284,12 @@ components:
             conditional: conditional
             variable: variable
             operator: operator
+        behaviors:
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
         last_editor: last_editor
         name: name
         active: true
@@ -19318,12 +19318,6 @@ components:
           type: string
         active:
           type: boolean
-        behaviors:
-          items:
-            $ref: "#/components/schemas/EdgeFirewallBehaviors"
-          maxItems: 10
-          minItems: 1
-          type: array
         criteria:
           items:
             items:
@@ -19332,6 +19326,12 @@ components:
             minItems: 1
             type: array
           maxItems: 5
+          minItems: 1
+          type: array
+        behaviors:
+          items:
+            $ref: "#/components/schemas/EdgeFirewallBehaviors"
+          maxItems: 10
           minItems: 1
           type: array
         description:
@@ -19376,12 +19376,6 @@ components:
     EdgeFirewallRuleEngineRequest:
       additionalProperties: false
       example:
-        behaviors:
-        - type: type
-        - type: type
-        - type: type
-        - type: type
-        - type: type
         criteria:
         - - argument: ""
             conditional: conditional
@@ -19483,6 +19477,12 @@ components:
             conditional: conditional
             variable: variable
             operator: operator
+        behaviors:
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
         name: name
         active: true
         description: description
@@ -19494,12 +19494,6 @@ components:
           type: string
         active:
           type: boolean
-        behaviors:
-          items:
-            $ref: "#/components/schemas/EdgeFirewallBehaviorsRequest"
-          maxItems: 10
-          minItems: 1
-          type: array
         criteria:
           items:
             items:
@@ -19508,6 +19502,12 @@ components:
             minItems: 1
             type: array
           maxItems: 5
+          minItems: 1
+          type: array
+        behaviors:
+          items:
+            $ref: "#/components/schemas/EdgeFirewallBehaviorsRequest"
+          maxItems: 10
           minItems: 1
           type: array
         description:
@@ -21183,13 +21183,7 @@ components:
       example:
         count: 123
         results:
-        - behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          criteria:
+        - criteria:
           - - argument: ""
               conditional: conditional
               variable: variable
@@ -21290,6 +21284,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true
@@ -21297,13 +21297,7 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
-        - behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          criteria:
+        - criteria:
           - - argument: ""
               conditional: conditional
               variable: variable
@@ -21404,6 +21398,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true
@@ -22437,12 +22437,6 @@ components:
     PatchedEdgeFirewallRuleEngineRequest:
       additionalProperties: false
       example:
-        behaviors:
-        - type: type
-        - type: type
-        - type: type
-        - type: type
-        - type: type
         criteria:
         - - argument: ""
             conditional: conditional
@@ -22544,6 +22538,12 @@ components:
             conditional: conditional
             variable: variable
             operator: operator
+        behaviors:
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
         name: name
         active: true
         description: description
@@ -22555,12 +22555,6 @@ components:
           type: string
         active:
           type: boolean
-        behaviors:
-          items:
-            $ref: "#/components/schemas/EdgeFirewallBehaviorsRequest"
-          maxItems: 10
-          minItems: 1
-          type: array
         criteria:
           items:
             items:
@@ -22569,6 +22563,12 @@ components:
             minItems: 1
             type: array
           maxItems: 5
+          minItems: 1
+          type: array
+        behaviors:
+          items:
+            $ref: "#/components/schemas/EdgeFirewallBehaviorsRequest"
+          maxItems: 10
           minItems: 1
           type: array
         description:
@@ -23657,12 +23657,6 @@ components:
       additionalProperties: false
       example:
         data:
-          behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -23764,6 +23758,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true
@@ -25049,12 +25049,6 @@ components:
       additionalProperties: false
       example:
         data:
-          behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -25156,6 +25150,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true
@@ -25684,12 +25684,6 @@ components:
       additionalProperties: false
       example:
         data:
-          behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -25791,6 +25785,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true

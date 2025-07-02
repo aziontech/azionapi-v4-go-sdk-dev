@@ -12,7 +12,6 @@ package edge-api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf struct {
 	// * `set_waf` - set_waf
 	Type string `json:"type"`
 	Attributes EdgeFirewallBehaviorSetWafAttributes `json:"attributes"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf
@@ -107,6 +107,11 @@ func (o EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf) ToMap() (map[string]int
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf) UnmarshalJSON(data []b
 
 	varEdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf := _EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf)
+	err = json.Unmarshal(data, &varEdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf(varEdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "attributes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

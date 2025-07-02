@@ -36,7 +36,7 @@ import (
 
 func main() {
 	edgeFirewallId := "edgeFirewallId_example" // string | 
-	edgeFirewallRuleEngineRequest := *openapiclient.NewEdgeFirewallRuleEngineRequest("Name_example", []openapiclient.EdgeFirewallBehaviorsRequest{openapiclient.EdgeFirewallBehaviorsRequest{EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest: openapiclient.NewEdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest("Type_example")}}, [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}) // EdgeFirewallRuleEngineRequest | 
+	edgeFirewallRuleEngineRequest := *openapiclient.NewEdgeFirewallRuleEngineRequest("Name_example", [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.EdgeFirewallBehaviorsRequest{openapiclient.EdgeFirewallBehaviorsRequest{EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest: openapiclient.NewEdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest("Type_example")}}) // EdgeFirewallRuleEngineRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -492,7 +492,7 @@ import (
 func main() {
 	edgeFirewallId := "edgeFirewallId_example" // string | 
 	id := "id_example" // string | 
-	edgeFirewallRuleEngineRequest := *openapiclient.NewEdgeFirewallRuleEngineRequest("Name_example", []openapiclient.EdgeFirewallBehaviorsRequest{openapiclient.EdgeFirewallBehaviorsRequest{EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest: openapiclient.NewEdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest("Type_example")}}, [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}) // EdgeFirewallRuleEngineRequest | 
+	edgeFirewallRuleEngineRequest := *openapiclient.NewEdgeFirewallRuleEngineRequest("Name_example", [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.EdgeFirewallBehaviorsRequest{openapiclient.EdgeFirewallBehaviorsRequest{EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest: openapiclient.NewEdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest("Type_example")}}) // EdgeFirewallRuleEngineRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

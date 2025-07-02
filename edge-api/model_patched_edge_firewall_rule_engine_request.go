@@ -21,8 +21,8 @@ var _ MappedNullable = &PatchedEdgeFirewallRuleEngineRequest{}
 type PatchedEdgeFirewallRuleEngineRequest struct {
 	Name *string `json:"name,omitempty" validate:"regexp=.*"`
 	Active *bool `json:"active,omitempty"`
-	Behaviors []EdgeFirewallBehaviorsRequest `json:"behaviors,omitempty"`
 	Criteria [][]EdgeFirewallCriterionFieldRequest `json:"criteria,omitempty"`
+	Behaviors []EdgeFirewallBehaviorsRequest `json:"behaviors,omitempty"`
 	Description *string `json:"description,omitempty" validate:"regexp=.*"`
 }
 
@@ -107,38 +107,6 @@ func (o *PatchedEdgeFirewallRuleEngineRequest) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetBehaviors returns the Behaviors field value if set, zero value otherwise.
-func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorsRequest {
-	if o == nil || IsNil(o.Behaviors) {
-		var ret []EdgeFirewallBehaviorsRequest
-		return ret
-	}
-	return o.Behaviors
-}
-
-// GetBehaviorsOk returns a tuple with the Behaviors field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviorsOk() ([]EdgeFirewallBehaviorsRequest, bool) {
-	if o == nil || IsNil(o.Behaviors) {
-		return nil, false
-	}
-	return o.Behaviors, true
-}
-
-// HasBehaviors returns a boolean if a field has been set.
-func (o *PatchedEdgeFirewallRuleEngineRequest) HasBehaviors() bool {
-	if o != nil && !IsNil(o.Behaviors) {
-		return true
-	}
-
-	return false
-}
-
-// SetBehaviors gets a reference to the given []EdgeFirewallBehaviorsRequest and assigns it to the Behaviors field.
-func (o *PatchedEdgeFirewallRuleEngineRequest) SetBehaviors(v []EdgeFirewallBehaviorsRequest) {
-	o.Behaviors = v
-}
-
 // GetCriteria returns the Criteria field value if set, zero value otherwise.
 func (o *PatchedEdgeFirewallRuleEngineRequest) GetCriteria() [][]EdgeFirewallCriterionFieldRequest {
 	if o == nil || IsNil(o.Criteria) {
@@ -169,6 +137,38 @@ func (o *PatchedEdgeFirewallRuleEngineRequest) HasCriteria() bool {
 // SetCriteria gets a reference to the given [][]EdgeFirewallCriterionFieldRequest and assigns it to the Criteria field.
 func (o *PatchedEdgeFirewallRuleEngineRequest) SetCriteria(v [][]EdgeFirewallCriterionFieldRequest) {
 	o.Criteria = v
+}
+
+// GetBehaviors returns the Behaviors field value if set, zero value otherwise.
+func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorsRequest {
+	if o == nil || IsNil(o.Behaviors) {
+		var ret []EdgeFirewallBehaviorsRequest
+		return ret
+	}
+	return o.Behaviors
+}
+
+// GetBehaviorsOk returns a tuple with the Behaviors field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviorsOk() ([]EdgeFirewallBehaviorsRequest, bool) {
+	if o == nil || IsNil(o.Behaviors) {
+		return nil, false
+	}
+	return o.Behaviors, true
+}
+
+// HasBehaviors returns a boolean if a field has been set.
+func (o *PatchedEdgeFirewallRuleEngineRequest) HasBehaviors() bool {
+	if o != nil && !IsNil(o.Behaviors) {
+		return true
+	}
+
+	return false
+}
+
+// SetBehaviors gets a reference to the given []EdgeFirewallBehaviorsRequest and assigns it to the Behaviors field.
+func (o *PatchedEdgeFirewallRuleEngineRequest) SetBehaviors(v []EdgeFirewallBehaviorsRequest) {
+	o.Behaviors = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -219,11 +219,11 @@ func (o PatchedEdgeFirewallRuleEngineRequest) ToMap() (map[string]interface{}, e
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if !IsNil(o.Behaviors) {
-		toSerialize["behaviors"] = o.Behaviors
-	}
 	if !IsNil(o.Criteria) {
 		toSerialize["criteria"] = o.Criteria
+	}
+	if !IsNil(o.Behaviors) {
+		toSerialize["behaviors"] = o.Behaviors
 	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description

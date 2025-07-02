@@ -12,7 +12,6 @@ package edge-api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &EdgeFirewallBehaviorsShared{}
 // EdgeFirewallBehaviorsShared Polymorphic serializer base class.  Note that the discriminator field must exist at the same depth as the mapped serializer fields for the OpenAPI introspection. See https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/ for more information. As such, it's not possible to define something like:  {     \"object_type\": \"foo\",     \"polymorphic_context\": {         <foo-specific fields>     } }  without explicitly wrapping this in a parent serializer, i.e. - ``polymorphic_context`` can not be a PolymorphicSerializer itself, as it requires access to the ``object_type`` in the parent scope.
 type EdgeFirewallBehaviorsShared struct {
 	Type string `json:"type" validate:"regexp=.*"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EdgeFirewallBehaviorsShared EdgeFirewallBehaviorsShared
@@ -79,6 +79,11 @@ func (o EdgeFirewallBehaviorsShared) MarshalJSON() ([]byte, error) {
 func (o EdgeFirewallBehaviorsShared) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *EdgeFirewallBehaviorsShared) UnmarshalJSON(data []byte) (err error) {
 
 	varEdgeFirewallBehaviorsShared := _EdgeFirewallBehaviorsShared{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEdgeFirewallBehaviorsShared)
+	err = json.Unmarshal(data, &varEdgeFirewallBehaviorsShared)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EdgeFirewallBehaviorsShared(varEdgeFirewallBehaviorsShared)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

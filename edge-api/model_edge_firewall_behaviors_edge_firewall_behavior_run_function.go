@@ -12,7 +12,6 @@ package edge-api
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -24,6 +23,7 @@ type EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction struct {
 	// * `run_function` - run_function
 	Type string `json:"type"`
 	Attributes EdgeFirewallBehaviorRunFunctionAttributes `json:"attributes"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction
@@ -107,6 +107,11 @@ func (o EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction) ToMap() (map[strin
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -135,15 +140,21 @@ func (o *EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction) UnmarshalJSON(dat
 
 	varEdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction := _EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction)
+	err = json.Unmarshal(data, &varEdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction(varEdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "attributes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
