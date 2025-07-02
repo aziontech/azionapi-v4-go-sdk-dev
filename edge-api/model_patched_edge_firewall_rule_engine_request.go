@@ -21,7 +21,7 @@ var _ MappedNullable = &PatchedEdgeFirewallRuleEngineRequest{}
 type PatchedEdgeFirewallRuleEngineRequest struct {
 	Name *string `json:"name,omitempty" validate:"regexp=.*"`
 	Active *bool `json:"active,omitempty"`
-	Behaviors []EdgeFirewallBehaviorFieldRequest `json:"behaviors,omitempty"`
+	Behaviors []EdgeFirewallBehaviorsRequest `json:"behaviors,omitempty"`
 	Criteria [][]EdgeFirewallCriterionFieldRequest `json:"criteria,omitempty"`
 	Description *string `json:"description,omitempty" validate:"regexp=.*"`
 }
@@ -108,9 +108,9 @@ func (o *PatchedEdgeFirewallRuleEngineRequest) SetActive(v bool) {
 }
 
 // GetBehaviors returns the Behaviors field value if set, zero value otherwise.
-func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorFieldRequest {
+func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorsRequest {
 	if o == nil || IsNil(o.Behaviors) {
-		var ret []EdgeFirewallBehaviorFieldRequest
+		var ret []EdgeFirewallBehaviorsRequest
 		return ret
 	}
 	return o.Behaviors
@@ -118,7 +118,7 @@ func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBeha
 
 // GetBehaviorsOk returns a tuple with the Behaviors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviorsOk() ([]EdgeFirewallBehaviorFieldRequest, bool) {
+func (o *PatchedEdgeFirewallRuleEngineRequest) GetBehaviorsOk() ([]EdgeFirewallBehaviorsRequest, bool) {
 	if o == nil || IsNil(o.Behaviors) {
 		return nil, false
 	}
@@ -134,8 +134,8 @@ func (o *PatchedEdgeFirewallRuleEngineRequest) HasBehaviors() bool {
 	return false
 }
 
-// SetBehaviors gets a reference to the given []EdgeFirewallBehaviorFieldRequest and assigns it to the Behaviors field.
-func (o *PatchedEdgeFirewallRuleEngineRequest) SetBehaviors(v []EdgeFirewallBehaviorFieldRequest) {
+// SetBehaviors gets a reference to the given []EdgeFirewallBehaviorsRequest and assigns it to the Behaviors field.
+func (o *PatchedEdgeFirewallRuleEngineRequest) SetBehaviors(v []EdgeFirewallBehaviorsRequest) {
 	o.Behaviors = v
 }
 

@@ -21,13 +21,13 @@ var _ MappedNullable = &EdgeApplicationCriterionField{}
 
 // EdgeApplicationCriterionField The criterion which will be evaluated to define if the configured behaviors for this rule can be executed.  | Variable | Description | Phase | Operators | Argument | | -------- | ----------- | ----- | --------- | ---------| | ${arg_&lt;name&gt;} | Use this variable to match a query param. Replace &lt;name&gt; with the specific query param you want to match, replacing any '-' with '_'. Examples: ${arg_search}, ${arg_next}. | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${args} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${cookie_&lt;name&gt;} | Use this variable to match cookies sent by the browser Cookie headers.Replace &lt;name&gt; with the specific cookie name you want to match, replacing any '-' with '_'. Examples: cookie_session_id, cookie_user_pref. | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${device_group} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${geoip_city_continent_code} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${geoip_city_country_code} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${geoip_city_country_name} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${geoip_city} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${geoip_continent_code} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${geoip_country_code} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${geoip_country_name} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${geoip_region_name} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${geoip_region} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${host} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${domain} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${http_&lt;header_name&gt;} | Use this variable to match HTTP headers. Replace &lt;header_name&gt; with the specific header you want to match, replacing any '-' with '_'. Examples: http_authorization, http_accept, http_x_debug. | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${remote_addr} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${remote_user} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${request_method} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${request_uri} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${request} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${scheme} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${sent_http_&lt;header_name&gt;} | Use this variable to match HTTP headers sent to origin server. Replace &lt;header_name&gt; with the specific header you want to match, replacing any '-' with '_'. Examples: http_authorization, http_accept, http_x_debug. | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${status} |  | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${upstream_addr} |  | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${upstream_cookie_&lt;name&gt;} | Use this variable to match cookies sent by the origin server in Set-Cookie headers.Replace &lt;name&gt; with the specific cookie you want to match, replacing any '-' with '_'. Examples: ${upstream_cookie_mycookie}, ${upstream_cookie_user_info}. | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${upstream_http_&lt;header_name&gt;} | Use this variable to match origin HTTP headers. Replace &lt;header_name&gt; with the specific header you want to match, replacing any '-' with '_'. If many origins are consulted while the request is processed, only headers from the last origin are stored. Examples: http_authorization, http_accept, http_x_debug. | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${upstream_status} |  | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${uri} | The normalized (urldecoded) URI of the request. | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${server_addr} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${server_port} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${ssl_client_cert} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${ssl_client_escaped_cert} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${ssl_client_fingerprint} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${ssl_client_i_dn} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${ssl_client_s_dn_parsed} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${ssl_client_s_dn} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${ssl_client_serial} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${ssl_client_v_end} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${ssl_client_v_remain} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${ssl_client_v_start} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${ssl_client_verify} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${tcpinfo_rtt} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${remote_port} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string | | ${request_body} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |   About `operator` field: it's the operator to be used to evaluate the current criterion. When used in the first criterion of a block it should be always the `if` operator.
 type EdgeApplicationCriterionField struct {
-	Argument NullableEdgeApplicationCriterionPolymorphicArgument `json:"argument,omitempty"`
-	// * `${arg_<name>}` - ${arg_<name>} * `${args}` - ${args} * `${cookie_<name>}` - ${cookie_<name>} * `${device_group}` - ${device_group} * `${geoip_city_continent_code}` - ${geoip_city_continent_code} * `${geoip_city_country_code}` - ${geoip_city_country_code} * `${geoip_city_country_name}` - ${geoip_city_country_name} * `${geoip_city}` - ${geoip_city} * `${geoip_continent_code}` - ${geoip_continent_code} * `${geoip_country_code}` - ${geoip_country_code} * `${geoip_country_name}` - ${geoip_country_name} * `${geoip_region_name}` - ${geoip_region_name} * `${geoip_region}` - ${geoip_region} * `${host}` - ${host} * `${domain}` - ${domain} * `${http_<header_name>}` - ${http_<header_name>} * `${remote_addr}` - ${remote_addr} * `${remote_user}` - ${remote_user} * `${request_method}` - ${request_method} * `${request_uri}` - ${request_uri} * `${request}` - ${request} * `${scheme}` - ${scheme} * `${sent_http_<header_name>}` - ${sent_http_<header_name>} * `${status}` - ${status} * `${upstream_addr}` - ${upstream_addr} * `${upstream_cookie_<name>}` - ${upstream_cookie_<name>} * `${upstream_http_<header_name>}` - ${upstream_http_<header_name>} * `${upstream_status}` - ${upstream_status} * `${uri}` - ${uri} * `${server_addr}` - ${server_addr} * `${server_port}` - ${server_port} * `${ssl_client_cert}` - ${ssl_client_cert} * `${ssl_client_escaped_cert}` - ${ssl_client_escaped_cert} * `${ssl_client_fingerprint}` - ${ssl_client_fingerprint} * `${ssl_client_i_dn}` - ${ssl_client_i_dn} * `${ssl_client_s_dn_parsed}` - ${ssl_client_s_dn_parsed} * `${ssl_client_s_dn}` - ${ssl_client_s_dn} * `${ssl_client_serial}` - ${ssl_client_serial} * `${ssl_client_v_end}` - ${ssl_client_v_end} * `${ssl_client_v_remain}` - ${ssl_client_v_remain} * `${ssl_client_v_start}` - ${ssl_client_v_start} * `${ssl_client_verify}` - ${ssl_client_verify} * `${tcpinfo_rtt}` - ${tcpinfo_rtt} * `${remote_port}` - ${remote_port} * `${request_body}` - ${request_body}
-	Variable string `json:"variable"`
 	// * `if` - if * `or` - or * `and` - and
 	Conditional string `json:"conditional"`
+	// * `${arg_<name>}` - ${arg_<name>} * `${args}` - ${args} * `${cookie_<name>}` - ${cookie_<name>} * `${device_group}` - ${device_group} * `${geoip_city_continent_code}` - ${geoip_city_continent_code} * `${geoip_city_country_code}` - ${geoip_city_country_code} * `${geoip_city_country_name}` - ${geoip_city_country_name} * `${geoip_city}` - ${geoip_city} * `${geoip_continent_code}` - ${geoip_continent_code} * `${geoip_country_code}` - ${geoip_country_code} * `${geoip_country_name}` - ${geoip_country_name} * `${geoip_region_name}` - ${geoip_region_name} * `${geoip_region}` - ${geoip_region} * `${host}` - ${host} * `${domain}` - ${domain} * `${http_<header_name>}` - ${http_<header_name>} * `${remote_addr}` - ${remote_addr} * `${remote_user}` - ${remote_user} * `${request_method}` - ${request_method} * `${request_uri}` - ${request_uri} * `${request}` - ${request} * `${scheme}` - ${scheme} * `${sent_http_<header_name>}` - ${sent_http_<header_name>} * `${status}` - ${status} * `${upstream_addr}` - ${upstream_addr} * `${upstream_cookie_<name>}` - ${upstream_cookie_<name>} * `${upstream_http_<header_name>}` - ${upstream_http_<header_name>} * `${upstream_status}` - ${upstream_status} * `${uri}` - ${uri} * `${server_addr}` - ${server_addr} * `${server_port}` - ${server_port} * `${ssl_client_cert}` - ${ssl_client_cert} * `${ssl_client_escaped_cert}` - ${ssl_client_escaped_cert} * `${ssl_client_fingerprint}` - ${ssl_client_fingerprint} * `${ssl_client_i_dn}` - ${ssl_client_i_dn} * `${ssl_client_s_dn_parsed}` - ${ssl_client_s_dn_parsed} * `${ssl_client_s_dn}` - ${ssl_client_s_dn} * `${ssl_client_serial}` - ${ssl_client_serial} * `${ssl_client_v_end}` - ${ssl_client_v_end} * `${ssl_client_v_remain}` - ${ssl_client_v_remain} * `${ssl_client_v_start}` - ${ssl_client_v_start} * `${ssl_client_verify}` - ${ssl_client_verify} * `${tcpinfo_rtt}` - ${tcpinfo_rtt} * `${remote_port}` - ${remote_port} * `${request_body}` - ${request_body}
+	Variable string `json:"variable"`
 	// * `does_not_exist` - does_not_exist * `does_not_match` - does_not_match * `does_not_start_with` - does_not_start_with * `exists` - exists * `is_equal` - is_equal * `is_in_list` - is_in_list * `is_not_equal` - is_not_equal * `is_not_in_list` - is_not_in_list * `matches` - matches * `starts_with` - starts_with
 	Operator string `json:"operator"`
+	Argument NullableEdgeApplicationCriterionPolymorphicArgument `json:"argument,omitempty"`
 }
 
 type _EdgeApplicationCriterionField EdgeApplicationCriterionField
@@ -36,10 +36,10 @@ type _EdgeApplicationCriterionField EdgeApplicationCriterionField
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEdgeApplicationCriterionField(variable string, conditional string, operator string) *EdgeApplicationCriterionField {
+func NewEdgeApplicationCriterionField(conditional string, variable string, operator string) *EdgeApplicationCriterionField {
 	this := EdgeApplicationCriterionField{}
-	this.Variable = variable
 	this.Conditional = conditional
+	this.Variable = variable
 	this.Operator = operator
 	return &this
 }
@@ -50,6 +50,78 @@ func NewEdgeApplicationCriterionField(variable string, conditional string, opera
 func NewEdgeApplicationCriterionFieldWithDefaults() *EdgeApplicationCriterionField {
 	this := EdgeApplicationCriterionField{}
 	return &this
+}
+
+// GetConditional returns the Conditional field value
+func (o *EdgeApplicationCriterionField) GetConditional() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Conditional
+}
+
+// GetConditionalOk returns a tuple with the Conditional field value
+// and a boolean to check if the value has been set.
+func (o *EdgeApplicationCriterionField) GetConditionalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Conditional, true
+}
+
+// SetConditional sets field value
+func (o *EdgeApplicationCriterionField) SetConditional(v string) {
+	o.Conditional = v
+}
+
+// GetVariable returns the Variable field value
+func (o *EdgeApplicationCriterionField) GetVariable() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Variable
+}
+
+// GetVariableOk returns a tuple with the Variable field value
+// and a boolean to check if the value has been set.
+func (o *EdgeApplicationCriterionField) GetVariableOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Variable, true
+}
+
+// SetVariable sets field value
+func (o *EdgeApplicationCriterionField) SetVariable(v string) {
+	o.Variable = v
+}
+
+// GetOperator returns the Operator field value
+func (o *EdgeApplicationCriterionField) GetOperator() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Operator
+}
+
+// GetOperatorOk returns a tuple with the Operator field value
+// and a boolean to check if the value has been set.
+func (o *EdgeApplicationCriterionField) GetOperatorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Operator, true
+}
+
+// SetOperator sets field value
+func (o *EdgeApplicationCriterionField) SetOperator(v string) {
+	o.Operator = v
 }
 
 // GetArgument returns the Argument field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -94,78 +166,6 @@ func (o *EdgeApplicationCriterionField) UnsetArgument() {
 	o.Argument.Unset()
 }
 
-// GetVariable returns the Variable field value
-func (o *EdgeApplicationCriterionField) GetVariable() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Variable
-}
-
-// GetVariableOk returns a tuple with the Variable field value
-// and a boolean to check if the value has been set.
-func (o *EdgeApplicationCriterionField) GetVariableOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Variable, true
-}
-
-// SetVariable sets field value
-func (o *EdgeApplicationCriterionField) SetVariable(v string) {
-	o.Variable = v
-}
-
-// GetConditional returns the Conditional field value
-func (o *EdgeApplicationCriterionField) GetConditional() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Conditional
-}
-
-// GetConditionalOk returns a tuple with the Conditional field value
-// and a boolean to check if the value has been set.
-func (o *EdgeApplicationCriterionField) GetConditionalOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Conditional, true
-}
-
-// SetConditional sets field value
-func (o *EdgeApplicationCriterionField) SetConditional(v string) {
-	o.Conditional = v
-}
-
-// GetOperator returns the Operator field value
-func (o *EdgeApplicationCriterionField) GetOperator() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Operator
-}
-
-// GetOperatorOk returns a tuple with the Operator field value
-// and a boolean to check if the value has been set.
-func (o *EdgeApplicationCriterionField) GetOperatorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Operator, true
-}
-
-// SetOperator sets field value
-func (o *EdgeApplicationCriterionField) SetOperator(v string) {
-	o.Operator = v
-}
-
 func (o EdgeApplicationCriterionField) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -176,12 +176,12 @@ func (o EdgeApplicationCriterionField) MarshalJSON() ([]byte, error) {
 
 func (o EdgeApplicationCriterionField) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["conditional"] = o.Conditional
+	toSerialize["variable"] = o.Variable
+	toSerialize["operator"] = o.Operator
 	if o.Argument.IsSet() {
 		toSerialize["argument"] = o.Argument.Get()
 	}
-	toSerialize["variable"] = o.Variable
-	toSerialize["conditional"] = o.Conditional
-	toSerialize["operator"] = o.Operator
 	return toSerialize, nil
 }
 
@@ -190,8 +190,8 @@ func (o *EdgeApplicationCriterionField) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"variable",
 		"conditional",
+		"variable",
 		"operator",
 	}
 

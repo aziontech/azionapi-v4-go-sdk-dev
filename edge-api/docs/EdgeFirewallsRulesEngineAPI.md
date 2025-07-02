@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateEdgeFirewallRule**](EdgeFirewallsRulesEngineAPI.md#CreateEdgeFirewallRule) | **Post** /edge_firewall/firewalls/{edge_firewall_id}/rules | Create an Edge Firewall Rule
-[**DestroyEdgeFirewallRule**](EdgeFirewallsRulesEngineAPI.md#DestroyEdgeFirewallRule) | **Delete** /edge_firewall/firewalls/{edge_firewall_id}/rules/{id} | Destroy an Edge Firewall Rule
-[**ListEdgeFirewallRules**](EdgeFirewallsRulesEngineAPI.md#ListEdgeFirewallRules) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/rules | List Edge Firewall Rules
-[**OrderEdgeFirewallRules**](EdgeFirewallsRulesEngineAPI.md#OrderEdgeFirewallRules) | **Put** /edge_firewall/firewalls/{edge_firewall_id}/rules/order | Ordering Edge Firewall Rules
-[**PartialUpdateEdgeFirewallRule**](EdgeFirewallsRulesEngineAPI.md#PartialUpdateEdgeFirewallRule) | **Patch** /edge_firewall/firewalls/{edge_firewall_id}/rules/{id} | Partially update an Edge Firewall Rule
-[**RetrieveEdgeFirewallRule**](EdgeFirewallsRulesEngineAPI.md#RetrieveEdgeFirewallRule) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/rules/{id} | Retrieve details of an Edge Firewall Rule
-[**UpdateEdgeFirewallRule**](EdgeFirewallsRulesEngineAPI.md#UpdateEdgeFirewallRule) | **Put** /edge_firewall/firewalls/{edge_firewall_id}/rules/{id} | Update an Edge Firewall Rule
+[**CreateEdgeFirewallRule**](EdgeFirewallsRulesEngineAPI.md#CreateEdgeFirewallRule) | **Post** /edge_firewall/firewalls/{edge_firewall_id}/request_rules | Create an Edge Firewall Rule
+[**DestroyEdgeFirewallRule**](EdgeFirewallsRulesEngineAPI.md#DestroyEdgeFirewallRule) | **Delete** /edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id} | Destroy an Edge Firewall Rule
+[**ListEdgeFirewallRules**](EdgeFirewallsRulesEngineAPI.md#ListEdgeFirewallRules) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/request_rules | List Edge Firewall Rules
+[**OrderEdgeFirewallRules**](EdgeFirewallsRulesEngineAPI.md#OrderEdgeFirewallRules) | **Put** /edge_firewall/firewalls/{edge_firewall_id}/request_rules/order | Ordering Edge Firewall Rules
+[**PartialUpdateEdgeFirewallRule**](EdgeFirewallsRulesEngineAPI.md#PartialUpdateEdgeFirewallRule) | **Patch** /edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id} | Partially update an Edge Firewall Rule
+[**RetrieveEdgeFirewallRule**](EdgeFirewallsRulesEngineAPI.md#RetrieveEdgeFirewallRule) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id} | Retrieve details of an Edge Firewall Rule
+[**UpdateEdgeFirewallRule**](EdgeFirewallsRulesEngineAPI.md#UpdateEdgeFirewallRule) | **Put** /edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id} | Update an Edge Firewall Rule
 
 
 
@@ -36,7 +36,7 @@ import (
 
 func main() {
 	edgeFirewallId := "edgeFirewallId_example" // string | 
-	edgeFirewallRuleEngineRequest := *openapiclient.NewEdgeFirewallRuleEngineRequest("Name_example", []openapiclient.EdgeFirewallBehaviorFieldRequest{*openapiclient.NewEdgeFirewallBehaviorFieldRequest("Name_example")}, [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Variable_example", "Conditional_example", "Operator_example")}}) // EdgeFirewallRuleEngineRequest | 
+	edgeFirewallRuleEngineRequest := *openapiclient.NewEdgeFirewallRuleEngineRequest("Name_example", []openapiclient.EdgeFirewallBehaviorsRequest{openapiclient.EdgeFirewallBehaviorsRequest{EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest: openapiclient.NewEdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest("Type_example")}}, [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}) // EdgeFirewallRuleEngineRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -492,7 +492,7 @@ import (
 func main() {
 	edgeFirewallId := "edgeFirewallId_example" // string | 
 	id := "id_example" // string | 
-	edgeFirewallRuleEngineRequest := *openapiclient.NewEdgeFirewallRuleEngineRequest("Name_example", []openapiclient.EdgeFirewallBehaviorFieldRequest{*openapiclient.NewEdgeFirewallBehaviorFieldRequest("Name_example")}, [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Variable_example", "Conditional_example", "Operator_example")}}) // EdgeFirewallRuleEngineRequest | 
+	edgeFirewallRuleEngineRequest := *openapiclient.NewEdgeFirewallRuleEngineRequest("Name_example", []openapiclient.EdgeFirewallBehaviorsRequest{openapiclient.EdgeFirewallBehaviorsRequest{EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest: openapiclient.NewEdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest("Type_example")}}, [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}) // EdgeFirewallRuleEngineRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

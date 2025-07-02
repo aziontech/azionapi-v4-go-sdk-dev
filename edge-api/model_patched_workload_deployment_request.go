@@ -19,9 +19,10 @@ var _ MappedNullable = &PatchedWorkloadDeploymentRequest{}
 
 // PatchedWorkloadDeploymentRequest struct for PatchedWorkloadDeploymentRequest
 type PatchedWorkloadDeploymentRequest struct {
-	Tag *string `json:"tag,omitempty" validate:"regexp=.*"`
-	Binds *WorkloadDeploymentBindsRequest `json:"binds,omitempty"`
+	Name *string `json:"name,omitempty" validate:"regexp=.*"`
 	Current *bool `json:"current,omitempty"`
+	Active *bool `json:"active,omitempty"`
+	Strategy *DeploymentStrategyDefaultDeploymentStrategyAttrsRequest `json:"strategy,omitempty"`
 }
 
 // NewPatchedWorkloadDeploymentRequest instantiates a new PatchedWorkloadDeploymentRequest object
@@ -41,68 +42,36 @@ func NewPatchedWorkloadDeploymentRequestWithDefaults() *PatchedWorkloadDeploymen
 	return &this
 }
 
-// GetTag returns the Tag field value if set, zero value otherwise.
-func (o *PatchedWorkloadDeploymentRequest) GetTag() string {
-	if o == nil || IsNil(o.Tag) {
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PatchedWorkloadDeploymentRequest) GetName() string {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-	return *o.Tag
+	return *o.Name
 }
 
-// GetTagOk returns a tuple with the Tag field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedWorkloadDeploymentRequest) GetTagOk() (*string, bool) {
-	if o == nil || IsNil(o.Tag) {
+func (o *PatchedWorkloadDeploymentRequest) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Tag, true
+	return o.Name, true
 }
 
-// HasTag returns a boolean if a field has been set.
-func (o *PatchedWorkloadDeploymentRequest) HasTag() bool {
-	if o != nil && !IsNil(o.Tag) {
+// HasName returns a boolean if a field has been set.
+func (o *PatchedWorkloadDeploymentRequest) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetTag gets a reference to the given string and assigns it to the Tag field.
-func (o *PatchedWorkloadDeploymentRequest) SetTag(v string) {
-	o.Tag = &v
-}
-
-// GetBinds returns the Binds field value if set, zero value otherwise.
-func (o *PatchedWorkloadDeploymentRequest) GetBinds() WorkloadDeploymentBindsRequest {
-	if o == nil || IsNil(o.Binds) {
-		var ret WorkloadDeploymentBindsRequest
-		return ret
-	}
-	return *o.Binds
-}
-
-// GetBindsOk returns a tuple with the Binds field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedWorkloadDeploymentRequest) GetBindsOk() (*WorkloadDeploymentBindsRequest, bool) {
-	if o == nil || IsNil(o.Binds) {
-		return nil, false
-	}
-	return o.Binds, true
-}
-
-// HasBinds returns a boolean if a field has been set.
-func (o *PatchedWorkloadDeploymentRequest) HasBinds() bool {
-	if o != nil && !IsNil(o.Binds) {
-		return true
-	}
-
-	return false
-}
-
-// SetBinds gets a reference to the given WorkloadDeploymentBindsRequest and assigns it to the Binds field.
-func (o *PatchedWorkloadDeploymentRequest) SetBinds(v WorkloadDeploymentBindsRequest) {
-	o.Binds = &v
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PatchedWorkloadDeploymentRequest) SetName(v string) {
+	o.Name = &v
 }
 
 // GetCurrent returns the Current field value if set, zero value otherwise.
@@ -137,6 +106,70 @@ func (o *PatchedWorkloadDeploymentRequest) SetCurrent(v bool) {
 	o.Current = &v
 }
 
+// GetActive returns the Active field value if set, zero value otherwise.
+func (o *PatchedWorkloadDeploymentRequest) GetActive() bool {
+	if o == nil || IsNil(o.Active) {
+		var ret bool
+		return ret
+	}
+	return *o.Active
+}
+
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedWorkloadDeploymentRequest) GetActiveOk() (*bool, bool) {
+	if o == nil || IsNil(o.Active) {
+		return nil, false
+	}
+	return o.Active, true
+}
+
+// HasActive returns a boolean if a field has been set.
+func (o *PatchedWorkloadDeploymentRequest) HasActive() bool {
+	if o != nil && !IsNil(o.Active) {
+		return true
+	}
+
+	return false
+}
+
+// SetActive gets a reference to the given bool and assigns it to the Active field.
+func (o *PatchedWorkloadDeploymentRequest) SetActive(v bool) {
+	o.Active = &v
+}
+
+// GetStrategy returns the Strategy field value if set, zero value otherwise.
+func (o *PatchedWorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyAttrsRequest {
+	if o == nil || IsNil(o.Strategy) {
+		var ret DeploymentStrategyDefaultDeploymentStrategyAttrsRequest
+		return ret
+	}
+	return *o.Strategy
+}
+
+// GetStrategyOk returns a tuple with the Strategy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedWorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyAttrsRequest, bool) {
+	if o == nil || IsNil(o.Strategy) {
+		return nil, false
+	}
+	return o.Strategy, true
+}
+
+// HasStrategy returns a boolean if a field has been set.
+func (o *PatchedWorkloadDeploymentRequest) HasStrategy() bool {
+	if o != nil && !IsNil(o.Strategy) {
+		return true
+	}
+
+	return false
+}
+
+// SetStrategy gets a reference to the given DeploymentStrategyDefaultDeploymentStrategyAttrsRequest and assigns it to the Strategy field.
+func (o *PatchedWorkloadDeploymentRequest) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) {
+	o.Strategy = &v
+}
+
 func (o PatchedWorkloadDeploymentRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -147,14 +180,17 @@ func (o PatchedWorkloadDeploymentRequest) MarshalJSON() ([]byte, error) {
 
 func (o PatchedWorkloadDeploymentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Tag) {
-		toSerialize["tag"] = o.Tag
-	}
-	if !IsNil(o.Binds) {
-		toSerialize["binds"] = o.Binds
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	if !IsNil(o.Current) {
 		toSerialize["current"] = o.Current
+	}
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
+	if !IsNil(o.Strategy) {
+		toSerialize["strategy"] = o.Strategy
 	}
 	return toSerialize, nil
 }

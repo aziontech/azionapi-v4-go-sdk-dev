@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Tag** | Pointer to **string** |  | [optional] 
-**Binds** | Pointer to [**WorkloadDeploymentBindsRequest**](WorkloadDeploymentBindsRequest.md) |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Current** | Pointer to **bool** |  | [optional] 
+**Active** | Pointer to **bool** |  | [optional] 
+**Strategy** | Pointer to [**DeploymentStrategyDefaultDeploymentStrategyAttrsRequest**](DeploymentStrategyDefaultDeploymentStrategyAttrsRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -27,55 +28,30 @@ NewPatchedWorkloadDeploymentRequestWithDefaults instantiates a new PatchedWorklo
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTag
+### GetName
 
-`func (o *PatchedWorkloadDeploymentRequest) GetTag() string`
+`func (o *PatchedWorkloadDeploymentRequest) GetName() string`
 
-GetTag returns the Tag field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTagOk
+### GetNameOk
 
-`func (o *PatchedWorkloadDeploymentRequest) GetTagOk() (*string, bool)`
+`func (o *PatchedWorkloadDeploymentRequest) GetNameOk() (*string, bool)`
 
-GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTag
+### SetName
 
-`func (o *PatchedWorkloadDeploymentRequest) SetTag(v string)`
+`func (o *PatchedWorkloadDeploymentRequest) SetName(v string)`
 
-SetTag sets Tag field to given value.
+SetName sets Name field to given value.
 
-### HasTag
+### HasName
 
-`func (o *PatchedWorkloadDeploymentRequest) HasTag() bool`
+`func (o *PatchedWorkloadDeploymentRequest) HasName() bool`
 
-HasTag returns a boolean if a field has been set.
-
-### GetBinds
-
-`func (o *PatchedWorkloadDeploymentRequest) GetBinds() WorkloadDeploymentBindsRequest`
-
-GetBinds returns the Binds field if non-nil, zero value otherwise.
-
-### GetBindsOk
-
-`func (o *PatchedWorkloadDeploymentRequest) GetBindsOk() (*WorkloadDeploymentBindsRequest, bool)`
-
-GetBindsOk returns a tuple with the Binds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBinds
-
-`func (o *PatchedWorkloadDeploymentRequest) SetBinds(v WorkloadDeploymentBindsRequest)`
-
-SetBinds sets Binds field to given value.
-
-### HasBinds
-
-`func (o *PatchedWorkloadDeploymentRequest) HasBinds() bool`
-
-HasBinds returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
 ### GetCurrent
 
@@ -101,6 +77,56 @@ SetCurrent sets Current field to given value.
 `func (o *PatchedWorkloadDeploymentRequest) HasCurrent() bool`
 
 HasCurrent returns a boolean if a field has been set.
+
+### GetActive
+
+`func (o *PatchedWorkloadDeploymentRequest) GetActive() bool`
+
+GetActive returns the Active field if non-nil, zero value otherwise.
+
+### GetActiveOk
+
+`func (o *PatchedWorkloadDeploymentRequest) GetActiveOk() (*bool, bool)`
+
+GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActive
+
+`func (o *PatchedWorkloadDeploymentRequest) SetActive(v bool)`
+
+SetActive sets Active field to given value.
+
+### HasActive
+
+`func (o *PatchedWorkloadDeploymentRequest) HasActive() bool`
+
+HasActive returns a boolean if a field has been set.
+
+### GetStrategy
+
+`func (o *PatchedWorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyAttrsRequest`
+
+GetStrategy returns the Strategy field if non-nil, zero value otherwise.
+
+### GetStrategyOk
+
+`func (o *PatchedWorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyAttrsRequest, bool)`
+
+GetStrategyOk returns a tuple with the Strategy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStrategy
+
+`func (o *PatchedWorkloadDeploymentRequest) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyAttrsRequest)`
+
+SetStrategy sets Strategy field to given value.
+
+### HasStrategy
+
+`func (o *PatchedWorkloadDeploymentRequest) HasStrategy() bool`
+
+HasStrategy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
