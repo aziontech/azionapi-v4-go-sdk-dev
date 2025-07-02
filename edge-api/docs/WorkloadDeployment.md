@@ -5,15 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int64** |  | [readonly] 
-**Tag** | **string** |  | 
-**Binds** | [**WorkloadDeploymentBinds**](WorkloadDeploymentBinds.md) |  | 
+**Name** | **string** |  | 
 **Current** | Pointer to **bool** |  | [optional] 
+**Active** | Pointer to **bool** |  | [optional] 
+**Strategy** | [**DeploymentStrategyDefaultDeploymentStrategyAttrs**](DeploymentStrategyDefaultDeploymentStrategyAttrs.md) |  | 
+**LastEditor** | **string** |  | [readonly] 
+**LastModified** | **time.Time** |  | [readonly] 
 
 ## Methods
 
 ### NewWorkloadDeployment
 
-`func NewWorkloadDeployment(id int64, tag string, binds WorkloadDeploymentBinds, ) *WorkloadDeployment`
+`func NewWorkloadDeployment(id int64, name string, strategy DeploymentStrategyDefaultDeploymentStrategyAttrs, lastEditor string, lastModified time.Time, ) *WorkloadDeployment`
 
 NewWorkloadDeployment instantiates a new WorkloadDeployment object
 This constructor will assign default values to properties that have it defined,
@@ -48,44 +51,24 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetTag
+### GetName
 
-`func (o *WorkloadDeployment) GetTag() string`
+`func (o *WorkloadDeployment) GetName() string`
 
-GetTag returns the Tag field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTagOk
+### GetNameOk
 
-`func (o *WorkloadDeployment) GetTagOk() (*string, bool)`
+`func (o *WorkloadDeployment) GetNameOk() (*string, bool)`
 
-GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTag
+### SetName
 
-`func (o *WorkloadDeployment) SetTag(v string)`
+`func (o *WorkloadDeployment) SetName(v string)`
 
-SetTag sets Tag field to given value.
-
-
-### GetBinds
-
-`func (o *WorkloadDeployment) GetBinds() WorkloadDeploymentBinds`
-
-GetBinds returns the Binds field if non-nil, zero value otherwise.
-
-### GetBindsOk
-
-`func (o *WorkloadDeployment) GetBindsOk() (*WorkloadDeploymentBinds, bool)`
-
-GetBindsOk returns a tuple with the Binds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBinds
-
-`func (o *WorkloadDeployment) SetBinds(v WorkloadDeploymentBinds)`
-
-SetBinds sets Binds field to given value.
+SetName sets Name field to given value.
 
 
 ### GetCurrent
@@ -112,6 +95,91 @@ SetCurrent sets Current field to given value.
 `func (o *WorkloadDeployment) HasCurrent() bool`
 
 HasCurrent returns a boolean if a field has been set.
+
+### GetActive
+
+`func (o *WorkloadDeployment) GetActive() bool`
+
+GetActive returns the Active field if non-nil, zero value otherwise.
+
+### GetActiveOk
+
+`func (o *WorkloadDeployment) GetActiveOk() (*bool, bool)`
+
+GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActive
+
+`func (o *WorkloadDeployment) SetActive(v bool)`
+
+SetActive sets Active field to given value.
+
+### HasActive
+
+`func (o *WorkloadDeployment) HasActive() bool`
+
+HasActive returns a boolean if a field has been set.
+
+### GetStrategy
+
+`func (o *WorkloadDeployment) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyAttrs`
+
+GetStrategy returns the Strategy field if non-nil, zero value otherwise.
+
+### GetStrategyOk
+
+`func (o *WorkloadDeployment) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyAttrs, bool)`
+
+GetStrategyOk returns a tuple with the Strategy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStrategy
+
+`func (o *WorkloadDeployment) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyAttrs)`
+
+SetStrategy sets Strategy field to given value.
+
+
+### GetLastEditor
+
+`func (o *WorkloadDeployment) GetLastEditor() string`
+
+GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
+
+### GetLastEditorOk
+
+`func (o *WorkloadDeployment) GetLastEditorOk() (*string, bool)`
+
+GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastEditor
+
+`func (o *WorkloadDeployment) SetLastEditor(v string)`
+
+SetLastEditor sets LastEditor field to given value.
+
+
+### GetLastModified
+
+`func (o *WorkloadDeployment) GetLastModified() time.Time`
+
+GetLastModified returns the LastModified field if non-nil, zero value otherwise.
+
+### GetLastModifiedOk
+
+`func (o *WorkloadDeployment) GetLastModifiedOk() (*time.Time, bool)`
+
+GetLastModifiedOk returns a tuple with the LastModified field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastModified
+
+`func (o *WorkloadDeployment) SetLastModified(v time.Time)`
+
+SetLastModified sets LastModified field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

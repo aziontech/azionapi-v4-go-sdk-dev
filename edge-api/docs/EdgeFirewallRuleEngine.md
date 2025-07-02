@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **LastEditor** | **string** |  | [readonly] 
 **LastModified** | **time.Time** |  | [readonly] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Behaviors** | [**[]EdgeFirewallBehaviorField**](EdgeFirewallBehaviorField.md) |  | 
+**Behaviors** | [**[]EdgeFirewallBehaviors**](EdgeFirewallBehaviors.md) |  | 
 **Criteria** | [**[][]EdgeFirewallCriterionField**]([]EdgeFirewallCriterionField.md) |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Order** | **int64** |  | [readonly] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewEdgeFirewallRuleEngine
 
-`func NewEdgeFirewallRuleEngine(id int64, name string, lastEditor string, lastModified time.Time, behaviors []EdgeFirewallBehaviorField, criteria [][]EdgeFirewallCriterionField, order int64, ) *EdgeFirewallRuleEngine`
+`func NewEdgeFirewallRuleEngine(id int64, name string, lastEditor string, lastModified time.Time, behaviors []EdgeFirewallBehaviors, criteria [][]EdgeFirewallCriterionField, order int64, ) *EdgeFirewallRuleEngine`
 
 NewEdgeFirewallRuleEngine instantiates a new EdgeFirewallRuleEngine object
 This constructor will assign default values to properties that have it defined,
@@ -140,20 +140,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetBehaviors
 
-`func (o *EdgeFirewallRuleEngine) GetBehaviors() []EdgeFirewallBehaviorField`
+`func (o *EdgeFirewallRuleEngine) GetBehaviors() []EdgeFirewallBehaviors`
 
 GetBehaviors returns the Behaviors field if non-nil, zero value otherwise.
 
 ### GetBehaviorsOk
 
-`func (o *EdgeFirewallRuleEngine) GetBehaviorsOk() (*[]EdgeFirewallBehaviorField, bool)`
+`func (o *EdgeFirewallRuleEngine) GetBehaviorsOk() (*[]EdgeFirewallBehaviors, bool)`
 
 GetBehaviorsOk returns a tuple with the Behaviors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBehaviors
 
-`func (o *EdgeFirewallRuleEngine) SetBehaviors(v []EdgeFirewallBehaviorField)`
+`func (o *EdgeFirewallRuleEngine) SetBehaviors(v []EdgeFirewallBehaviors)`
 
 SetBehaviors sets Behaviors field to given value.
 

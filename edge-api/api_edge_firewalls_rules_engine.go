@@ -71,7 +71,7 @@ func (a *EdgeFirewallsRulesEngineAPIService) CreateEdgeFirewallRuleExecute(r Api
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/rules"
+	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/request_rules"
 	localVarPath = strings.Replace(localVarPath, "{"+"edge_firewall_id"+"}", url.PathEscape(parameterValueToString(r.edgeFirewallId, "edgeFirewallId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -272,7 +272,7 @@ func (a *EdgeFirewallsRulesEngineAPIService) DestroyEdgeFirewallRuleExecute(r Ap
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/rules/{id}"
+	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"edge_firewall_id"+"}", url.PathEscape(parameterValueToString(r.edgeFirewallId, "edgeFirewallId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
@@ -501,7 +501,7 @@ func (a *EdgeFirewallsRulesEngineAPIService) ListEdgeFirewallRulesExecute(r ApiL
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/rules"
+	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/request_rules"
 	localVarPath = strings.Replace(localVarPath, "{"+"edge_firewall_id"+"}", url.PathEscape(parameterValueToString(r.edgeFirewallId, "edgeFirewallId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -743,7 +743,7 @@ func (a *EdgeFirewallsRulesEngineAPIService) OrderEdgeFirewallRulesExecute(r Api
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/rules/order"
+	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/request_rules/order"
 	localVarPath = strings.Replace(localVarPath, "{"+"edge_firewall_id"+"}", url.PathEscape(parameterValueToString(r.edgeFirewallId, "edgeFirewallId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -962,7 +962,7 @@ func (a *EdgeFirewallsRulesEngineAPIService) PartialUpdateEdgeFirewallRuleExecut
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/rules/{id}"
+	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"edge_firewall_id"+"}", url.PathEscape(parameterValueToString(r.edgeFirewallId, "edgeFirewallId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
@@ -1168,7 +1168,7 @@ func (a *EdgeFirewallsRulesEngineAPIService) RetrieveEdgeFirewallRuleExecute(r A
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/rules/{id}"
+	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"edge_firewall_id"+"}", url.PathEscape(parameterValueToString(r.edgeFirewallId, "edgeFirewallId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
@@ -1374,7 +1374,7 @@ func (a *EdgeFirewallsRulesEngineAPIService) UpdateEdgeFirewallRuleExecute(r Api
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/rules/{id}"
+	localVarPath := localBasePath + "/edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"edge_firewall_id"+"}", url.PathEscape(parameterValueToString(r.edgeFirewallId, "edgeFirewallId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 

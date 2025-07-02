@@ -23,7 +23,7 @@ var _ MappedNullable = &EdgeFirewallRuleEngineRequest{}
 type EdgeFirewallRuleEngineRequest struct {
 	Name string `json:"name" validate:"regexp=.*"`
 	Active *bool `json:"active,omitempty"`
-	Behaviors []EdgeFirewallBehaviorFieldRequest `json:"behaviors"`
+	Behaviors []EdgeFirewallBehaviorsRequest `json:"behaviors"`
 	Criteria [][]EdgeFirewallCriterionFieldRequest `json:"criteria"`
 	Description *string `json:"description,omitempty" validate:"regexp=.*"`
 }
@@ -34,7 +34,7 @@ type _EdgeFirewallRuleEngineRequest EdgeFirewallRuleEngineRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEdgeFirewallRuleEngineRequest(name string, behaviors []EdgeFirewallBehaviorFieldRequest, criteria [][]EdgeFirewallCriterionFieldRequest) *EdgeFirewallRuleEngineRequest {
+func NewEdgeFirewallRuleEngineRequest(name string, behaviors []EdgeFirewallBehaviorsRequest, criteria [][]EdgeFirewallCriterionFieldRequest) *EdgeFirewallRuleEngineRequest {
 	this := EdgeFirewallRuleEngineRequest{}
 	this.Name = name
 	this.Behaviors = behaviors
@@ -107,9 +107,9 @@ func (o *EdgeFirewallRuleEngineRequest) SetActive(v bool) {
 }
 
 // GetBehaviors returns the Behaviors field value
-func (o *EdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorFieldRequest {
+func (o *EdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorsRequest {
 	if o == nil {
-		var ret []EdgeFirewallBehaviorFieldRequest
+		var ret []EdgeFirewallBehaviorsRequest
 		return ret
 	}
 
@@ -118,7 +118,7 @@ func (o *EdgeFirewallRuleEngineRequest) GetBehaviors() []EdgeFirewallBehaviorFie
 
 // GetBehaviorsOk returns a tuple with the Behaviors field value
 // and a boolean to check if the value has been set.
-func (o *EdgeFirewallRuleEngineRequest) GetBehaviorsOk() ([]EdgeFirewallBehaviorFieldRequest, bool) {
+func (o *EdgeFirewallRuleEngineRequest) GetBehaviorsOk() ([]EdgeFirewallBehaviorsRequest, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -126,7 +126,7 @@ func (o *EdgeFirewallRuleEngineRequest) GetBehaviorsOk() ([]EdgeFirewallBehavior
 }
 
 // SetBehaviors sets field value
-func (o *EdgeFirewallRuleEngineRequest) SetBehaviors(v []EdgeFirewallBehaviorFieldRequest) {
+func (o *EdgeFirewallRuleEngineRequest) SetBehaviors(v []EdgeFirewallBehaviorsRequest) {
 	o.Behaviors = v
 }
 
