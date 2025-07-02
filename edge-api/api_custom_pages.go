@@ -432,7 +432,7 @@ func (r ApiListCustomPagesRequest) Fields(fields string) ApiListCustomPagesReque
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, product_version)
+// Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, product_version, pages)
 func (r ApiListCustomPagesRequest) Ordering(ordering string) ApiListCustomPagesRequest {
 	r.ordering = &ordering
 	return r
