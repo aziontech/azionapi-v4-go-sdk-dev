@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -173,7 +172,4 @@ model_transform_sampling_attributes.go
 model_transform_sampling_attributes_request.go
 model_transform_sampling_request.go
 response.go
-test/api_data_stream_data_sources_test.go
-test/api_data_stream_streams_test.go
-test/api_data_stream_templates_test.go
 utils.go
