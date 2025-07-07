@@ -1,7 +1,7 @@
 /*
-object-storage-api
+edge-storage-api
 
-REST API OpenAPI documentation for the Object Storage
+REST API OpenAPI documentation for the Edge Storage
 
 API version: 1.0.0 (v1)
 */
@@ -19,7 +19,7 @@ var _ MappedNullable = &PaginatedResponseListCredentialList{}
 
 // PaginatedResponseListCredentialList struct for PaginatedResponseListCredentialList
 type PaginatedResponseListCredentialList struct {
-	Count   *int64                   `json:"count,omitempty"`
+	Count *int64 `json:"count,omitempty"`
 	Results []ResponseListCredential `json:"results,omitempty"`
 }
 
@@ -105,7 +105,7 @@ func (o *PaginatedResponseListCredentialList) SetResults(v []ResponseListCredent
 }
 
 func (o PaginatedResponseListCredentialList) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullablePaginatedResponseListCredentialList) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -1,7 +1,7 @@
 /*
-object-storage-api
+edge-storage-api
 
-REST API OpenAPI documentation for the Object Storage
+REST API OpenAPI documentation for the Edge Storage
 
 API version: 1.0.0 (v1)
 */
@@ -13,13 +13,12 @@ package storageapi
 import (
 	"encoding/json"
 	"fmt"
-
 	"gopkg.in/validator.v2"
 )
 
 // ResponseBadRequestCredentialCapabilities - struct for ResponseBadRequestCredentialCapabilities
 type ResponseBadRequestCredentialCapabilities struct {
-	ArrayOfString               *[]string
+	ArrayOfString *[]string
 	MapmapOfStringarrayOfString *map[string][]string
 }
 
@@ -36,6 +35,7 @@ func MapmapOfStringarrayOfStringAsResponseBadRequestCredentialCapabilities(v *ma
 		MapmapOfStringarrayOfString: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ResponseBadRequestCredentialCapabilities) UnmarshalJSON(data []byte) error {
@@ -102,7 +102,7 @@ func (src ResponseBadRequestCredentialCapabilities) MarshalJSON() ([]byte, error
 }
 
 // Get the actual instance
-func (obj *ResponseBadRequestCredentialCapabilities) GetActualInstance() interface{} {
+func (obj *ResponseBadRequestCredentialCapabilities) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -119,7 +119,7 @@ func (obj *ResponseBadRequestCredentialCapabilities) GetActualInstance() interfa
 }
 
 // Get the actual instance value
-func (obj ResponseBadRequestCredentialCapabilities) GetActualInstanceValue() interface{} {
+func (obj ResponseBadRequestCredentialCapabilities) GetActualInstanceValue() (interface{}) {
 	if obj.ArrayOfString != nil {
 		return *obj.ArrayOfString
 	}
@@ -167,3 +167,5 @@ func (v *NullableResponseBadRequestCredentialCapabilities) UnmarshalJSON(src []b
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

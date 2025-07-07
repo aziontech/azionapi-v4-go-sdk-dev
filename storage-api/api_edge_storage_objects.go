@@ -1,7 +1,7 @@
 /*
-object-storage-api
+edge-storage-api
 
-REST API OpenAPI documentation for the Object Storage
+REST API OpenAPI documentation for the Edge Storage
 
 API version: 1.0.0 (v1)
 */
@@ -16,19 +16,20 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"os"
 	"strings"
+	"os"
 )
+
 
 // EdgeStorageObjectsAPIService EdgeStorageObjectsAPI service
 type EdgeStorageObjectsAPIService service
 
 type ApiCreateObjectKeyRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *EdgeStorageObjectsAPIService
 	bucketName string
-	objectKey  string
-	body       *os.File
+	objectKey string
+	body *os.File
 }
 
 func (r ApiCreateObjectKeyRequest) Body(body *os.File) ApiCreateObjectKeyRequest {
@@ -45,29 +46,28 @@ CreateObjectKey Create new object key.
 
 Create a new object key in the bucket. The object's Content-Type is defined by the Content-Type header. If this header is not included, the Content-Type will be automatically detected.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param bucketName
-	@param objectKey
-	@return ApiCreateObjectKeyRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param bucketName
+ @param objectKey
+ @return ApiCreateObjectKeyRequest
 */
 func (a *EdgeStorageObjectsAPIService) CreateObjectKey(ctx context.Context, bucketName string, objectKey string) ApiCreateObjectKeyRequest {
 	return ApiCreateObjectKeyRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		bucketName: bucketName,
-		objectKey:  objectKey,
+		objectKey: objectKey,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SuccessObjectOperation
+//  @return SuccessObjectOperation
 func (a *EdgeStorageObjectsAPIService) CreateObjectKeyExecute(r ApiCreateObjectKeyRequest) (*SuccessObjectOperation, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SuccessObjectOperation
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SuccessObjectOperation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageObjectsAPIService.CreateObjectKey")
@@ -145,8 +145,8 @@ func (a *EdgeStorageObjectsAPIService) CreateObjectKeyExecute(r ApiCreateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -156,8 +156,8 @@ func (a *EdgeStorageObjectsAPIService) CreateObjectKeyExecute(r ApiCreateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -167,8 +167,8 @@ func (a *EdgeStorageObjectsAPIService) CreateObjectKeyExecute(r ApiCreateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -178,8 +178,8 @@ func (a *EdgeStorageObjectsAPIService) CreateObjectKeyExecute(r ApiCreateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -189,8 +189,8 @@ func (a *EdgeStorageObjectsAPIService) CreateObjectKeyExecute(r ApiCreateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -200,8 +200,8 @@ func (a *EdgeStorageObjectsAPIService) CreateObjectKeyExecute(r ApiCreateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -211,8 +211,8 @@ func (a *EdgeStorageObjectsAPIService) CreateObjectKeyExecute(r ApiCreateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -230,10 +230,10 @@ func (a *EdgeStorageObjectsAPIService) CreateObjectKeyExecute(r ApiCreateObjectK
 }
 
 type ApiDeleteObjectKeyRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *EdgeStorageObjectsAPIService
 	bucketName string
-	objectKey  string
+	objectKey string
 }
 
 func (r ApiDeleteObjectKeyRequest) Execute() (*ResponseDeleteBucketObject, *http.Response, error) {
@@ -245,29 +245,28 @@ DeleteObjectKey Delete object key
 
 Upon a successful deletion request, the object will be permanentlydeleted after a 24-hour grace period.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param bucketName
-	@param objectKey
-	@return ApiDeleteObjectKeyRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param bucketName
+ @param objectKey
+ @return ApiDeleteObjectKeyRequest
 */
 func (a *EdgeStorageObjectsAPIService) DeleteObjectKey(ctx context.Context, bucketName string, objectKey string) ApiDeleteObjectKeyRequest {
 	return ApiDeleteObjectKeyRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		bucketName: bucketName,
-		objectKey:  objectKey,
+		objectKey: objectKey,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ResponseDeleteBucketObject
+//  @return ResponseDeleteBucketObject
 func (a *EdgeStorageObjectsAPIService) DeleteObjectKeyExecute(r ApiDeleteObjectKeyRequest) (*ResponseDeleteBucketObject, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ResponseDeleteBucketObject
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseDeleteBucketObject
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageObjectsAPIService.DeleteObjectKey")
@@ -343,8 +342,8 @@ func (a *EdgeStorageObjectsAPIService) DeleteObjectKeyExecute(r ApiDeleteObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -354,8 +353,8 @@ func (a *EdgeStorageObjectsAPIService) DeleteObjectKeyExecute(r ApiDeleteObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -365,8 +364,8 @@ func (a *EdgeStorageObjectsAPIService) DeleteObjectKeyExecute(r ApiDeleteObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -376,8 +375,8 @@ func (a *EdgeStorageObjectsAPIService) DeleteObjectKeyExecute(r ApiDeleteObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -387,8 +386,8 @@ func (a *EdgeStorageObjectsAPIService) DeleteObjectKeyExecute(r ApiDeleteObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -398,8 +397,8 @@ func (a *EdgeStorageObjectsAPIService) DeleteObjectKeyExecute(r ApiDeleteObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -409,8 +408,8 @@ func (a *EdgeStorageObjectsAPIService) DeleteObjectKeyExecute(r ApiDeleteObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -428,11 +427,11 @@ func (a *EdgeStorageObjectsAPIService) DeleteObjectKeyExecute(r ApiDeleteObjectK
 }
 
 type ApiDownloadObjectRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *EdgeStorageObjectsAPIService
 	bucketName string
-	objectKey  string
-	fields     *string
+	objectKey string
+	fields *string
 }
 
 // Comma-separated list of field names to include in the response.
@@ -450,29 +449,28 @@ DownloadObject Download object
 
 Download the object key from bucket.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param bucketName
-	@param objectKey
-	@return ApiDownloadObjectRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param bucketName
+ @param objectKey
+ @return ApiDownloadObjectRequest
 */
 func (a *EdgeStorageObjectsAPIService) DownloadObject(ctx context.Context, bucketName string, objectKey string) ApiDownloadObjectRequest {
 	return ApiDownloadObjectRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		bucketName: bucketName,
-		objectKey:  objectKey,
+		objectKey: objectKey,
 	}
 }
 
 // Execute executes the request
-//
-//	@return *os.File
+//  @return *os.File
 func (a *EdgeStorageObjectsAPIService) DownloadObjectExecute(r ApiDownloadObjectRequest) (*os.File, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *os.File
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageObjectsAPIService.DownloadObject")
@@ -551,8 +549,8 @@ func (a *EdgeStorageObjectsAPIService) DownloadObjectExecute(r ApiDownloadObject
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -562,8 +560,8 @@ func (a *EdgeStorageObjectsAPIService) DownloadObjectExecute(r ApiDownloadObject
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -573,8 +571,8 @@ func (a *EdgeStorageObjectsAPIService) DownloadObjectExecute(r ApiDownloadObject
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -584,8 +582,8 @@ func (a *EdgeStorageObjectsAPIService) DownloadObjectExecute(r ApiDownloadObject
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -595,8 +593,8 @@ func (a *EdgeStorageObjectsAPIService) DownloadObjectExecute(r ApiDownloadObject
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -606,8 +604,8 @@ func (a *EdgeStorageObjectsAPIService) DownloadObjectExecute(r ApiDownloadObject
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -617,8 +615,8 @@ func (a *EdgeStorageObjectsAPIService) DownloadObjectExecute(r ApiDownloadObject
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -636,12 +634,12 @@ func (a *EdgeStorageObjectsAPIService) DownloadObjectExecute(r ApiDownloadObject
 }
 
 type ApiListObjectKeysRequest struct {
-	ctx               context.Context
-	ApiService        *EdgeStorageObjectsAPIService
-	bucketName        string
+	ctx context.Context
+	ApiService *EdgeStorageObjectsAPIService
+	bucketName string
 	continuationToken *string
-	fields            *string
-	maxObjectCount    *int64
+	fields *string
+	maxObjectCount *int64
 }
 
 // A continuation token for the next page of records.
@@ -671,27 +669,26 @@ ListObjectKeys List buckets objects
 
 List buckets objects
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param bucketName
-	@return ApiListObjectKeysRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param bucketName
+ @return ApiListObjectKeysRequest
 */
 func (a *EdgeStorageObjectsAPIService) ListObjectKeys(ctx context.Context, bucketName string) ApiListObjectKeysRequest {
 	return ApiListObjectKeysRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		bucketName: bucketName,
 	}
 }
 
 // Execute executes the request
-//
-//	@return []ResponseBucketObject
+//  @return []ResponseBucketObject
 func (a *EdgeStorageObjectsAPIService) ListObjectKeysExecute(r ApiListObjectKeysRequest) ([]ResponseBucketObject, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue []ResponseBucketObject
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []ResponseBucketObject
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageObjectsAPIService.ListObjectKeys")
@@ -775,8 +772,8 @@ func (a *EdgeStorageObjectsAPIService) ListObjectKeysExecute(r ApiListObjectKeys
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -786,8 +783,8 @@ func (a *EdgeStorageObjectsAPIService) ListObjectKeysExecute(r ApiListObjectKeys
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -797,8 +794,8 @@ func (a *EdgeStorageObjectsAPIService) ListObjectKeysExecute(r ApiListObjectKeys
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -808,8 +805,8 @@ func (a *EdgeStorageObjectsAPIService) ListObjectKeysExecute(r ApiListObjectKeys
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -819,8 +816,8 @@ func (a *EdgeStorageObjectsAPIService) ListObjectKeysExecute(r ApiListObjectKeys
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -830,8 +827,8 @@ func (a *EdgeStorageObjectsAPIService) ListObjectKeysExecute(r ApiListObjectKeys
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -841,8 +838,8 @@ func (a *EdgeStorageObjectsAPIService) ListObjectKeysExecute(r ApiListObjectKeys
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -860,11 +857,11 @@ func (a *EdgeStorageObjectsAPIService) ListObjectKeysExecute(r ApiListObjectKeys
 }
 
 type ApiUpdateObjectKeyRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *EdgeStorageObjectsAPIService
 	bucketName string
-	objectKey  string
-	body       *os.File
+	objectKey string
+	body *os.File
 }
 
 func (r ApiUpdateObjectKeyRequest) Body(body *os.File) ApiUpdateObjectKeyRequest {
@@ -881,29 +878,28 @@ UpdateObjectKey Update the object key.
 
 Update the object key from bucket. The object's Content-Type is defined by the Content-Type header. If this header is not included, the Content-Type will be automatically detected.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param bucketName
-	@param objectKey
-	@return ApiUpdateObjectKeyRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param bucketName
+ @param objectKey
+ @return ApiUpdateObjectKeyRequest
 */
 func (a *EdgeStorageObjectsAPIService) UpdateObjectKey(ctx context.Context, bucketName string, objectKey string) ApiUpdateObjectKeyRequest {
 	return ApiUpdateObjectKeyRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		bucketName: bucketName,
-		objectKey:  objectKey,
+		objectKey: objectKey,
 	}
 }
 
 // Execute executes the request
-//
-//	@return SuccessObjectOperation
+//  @return SuccessObjectOperation
 func (a *EdgeStorageObjectsAPIService) UpdateObjectKeyExecute(r ApiUpdateObjectKeyRequest) (*SuccessObjectOperation, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPut
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *SuccessObjectOperation
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SuccessObjectOperation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageObjectsAPIService.UpdateObjectKey")
@@ -981,8 +977,8 @@ func (a *EdgeStorageObjectsAPIService) UpdateObjectKeyExecute(r ApiUpdateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -992,8 +988,8 @@ func (a *EdgeStorageObjectsAPIService) UpdateObjectKeyExecute(r ApiUpdateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -1003,8 +999,8 @@ func (a *EdgeStorageObjectsAPIService) UpdateObjectKeyExecute(r ApiUpdateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -1014,8 +1010,8 @@ func (a *EdgeStorageObjectsAPIService) UpdateObjectKeyExecute(r ApiUpdateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -1025,8 +1021,8 @@ func (a *EdgeStorageObjectsAPIService) UpdateObjectKeyExecute(r ApiUpdateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1036,8 +1032,8 @@ func (a *EdgeStorageObjectsAPIService) UpdateObjectKeyExecute(r ApiUpdateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1047,8 +1043,8 @@ func (a *EdgeStorageObjectsAPIService) UpdateObjectKeyExecute(r ApiUpdateObjectK
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

@@ -1,7 +1,7 @@
 /*
-object-storage-api
+edge-storage-api
 
-REST API OpenAPI documentation for the Object Storage
+REST API OpenAPI documentation for the Edge Storage
 
 API version: 1.0.0 (v1)
 */
@@ -19,12 +19,12 @@ var _ MappedNullable = &ResponseBadRequestBucket{}
 
 // ResponseBadRequestBucket struct for ResponseBadRequestBucket
 type ResponseBadRequestBucket struct {
-	Name           []string `json:"name,omitempty"`
-	EdgeAccess     []string `json:"edge_access,omitempty"`
-	LastEditor     []string `json:"last_editor,omitempty"`
-	LastModified   []string `json:"last_modified,omitempty"`
+	Name []string `json:"name,omitempty"`
+	EdgeAccess []string `json:"edge_access,omitempty"`
+	LastEditor []string `json:"last_editor,omitempty"`
+	LastModified []string `json:"last_modified,omitempty"`
 	ProductVersion []string `json:"product_version,omitempty"`
-	Detail         *string  `json:"detail,omitempty" validate:"regexp=.*"`
+	Detail *string `json:"detail,omitempty" validate:"regexp=.*"`
 }
 
 // NewResponseBadRequestBucket instantiates a new ResponseBadRequestBucket object
@@ -237,7 +237,7 @@ func (o *ResponseBadRequestBucket) SetDetail(v string) {
 }
 
 func (o ResponseBadRequestBucket) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -302,3 +302,5 @@ func (v *NullableResponseBadRequestBucket) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

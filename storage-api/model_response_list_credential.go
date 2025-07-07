@@ -1,7 +1,7 @@
 /*
-object-storage-api
+edge-storage-api
 
-REST API OpenAPI documentation for the Object Storage
+REST API OpenAPI documentation for the Edge Storage
 
 API version: 1.0.0 (v1)
 */
@@ -11,10 +11,10 @@ API version: 1.0.0 (v1)
 package storageapi
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ResponseListCredential type satisfies the MappedNullable interface at compile time
@@ -22,14 +22,14 @@ var _ MappedNullable = &ResponseListCredential{}
 
 // ResponseListCredential struct for ResponseListCredential
 type ResponseListCredential struct {
-	Name           string         `json:"name" validate:"regexp=^[a-zA-Z0-9\\\\-]+$"`
-	AccessKey      string         `json:"access_key"`
-	SecretKey      string         `json:"secret_key"`
-	Capabilities   []string       `json:"capabilities"`
-	Bucket         *string        `json:"bucket,omitempty" validate:"regexp=.{6,63}"`
-	ExpirationDate *time.Time     `json:"expiration_date,omitempty"`
-	LastEditor     NullableString `json:"last_editor"`
-	LastModified   time.Time      `json:"last_modified"`
+	Name string `json:"name" validate:"regexp=^[a-zA-Z0-9\\\\-]+$"`
+	AccessKey string `json:"access_key"`
+	SecretKey string `json:"secret_key"`
+	Capabilities []string `json:"capabilities"`
+	Bucket *string `json:"bucket,omitempty" validate:"regexp=.{6,63}"`
+	ExpirationDate *time.Time `json:"expiration_date,omitempty"`
+	LastEditor NullableString `json:"last_editor"`
+	LastModified time.Time `json:"last_modified"`
 }
 
 type _ResponseListCredential ResponseListCredential
@@ -268,7 +268,7 @@ func (o *ResponseListCredential) SetLastModified(v time.Time) {
 }
 
 func (o ResponseListCredential) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -310,10 +310,10 @@ func (o *ResponseListCredential) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -369,3 +369,5 @@ func (v *NullableResponseListCredential) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
