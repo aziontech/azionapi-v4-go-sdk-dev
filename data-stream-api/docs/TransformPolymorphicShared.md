@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
+**Type** | **map[string]interface{}** |  | 
 
 ## Methods
 
 ### NewTransformPolymorphicShared
 
-`func NewTransformPolymorphicShared(type_ string, ) *TransformPolymorphicShared`
+`func NewTransformPolymorphicShared(type_ map[string]interface{}, ) *TransformPolymorphicShared`
 
 NewTransformPolymorphicShared instantiates a new TransformPolymorphicShared object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetType
 
-`func (o *TransformPolymorphicShared) GetType() string`
+`func (o *TransformPolymorphicShared) GetType() map[string]interface{}`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *TransformPolymorphicShared) GetTypeOk() (*string, bool)`
+`func (o *TransformPolymorphicShared) GetTypeOk() (*map[string]interface{}, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *TransformPolymorphicShared) SetType(v string)`
+`func (o *TransformPolymorphicShared) SetType(v map[string]interface{})`
 
 SetType sets Type field to given value.
 

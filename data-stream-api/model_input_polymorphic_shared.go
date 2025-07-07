@@ -20,7 +20,8 @@ var _ MappedNullable = &InputPolymorphicShared{}
 
 // InputPolymorphicShared struct for InputPolymorphicShared
 type InputPolymorphicShared struct {
-	Type string `json:"type"`
+	// 
+	Type map[string]interface{} `json:"type"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -30,7 +31,7 @@ type _InputPolymorphicShared InputPolymorphicShared
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInputPolymorphicShared(type_ string) *InputPolymorphicShared {
+func NewInputPolymorphicShared(type_ map[string]interface{}) *InputPolymorphicShared {
 	this := InputPolymorphicShared{}
 	this.Type = type_
 	return &this
@@ -45,9 +46,9 @@ func NewInputPolymorphicSharedWithDefaults() *InputPolymorphicShared {
 }
 
 // GetType returns the Type field value
-func (o *InputPolymorphicShared) GetType() string {
+func (o *InputPolymorphicShared) GetType() map[string]interface{} {
 	if o == nil {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -56,15 +57,15 @@ func (o *InputPolymorphicShared) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *InputPolymorphicShared) GetTypeOk() (*string, bool) {
+func (o *InputPolymorphicShared) GetTypeOk() (map[string]interface{}, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
 // SetType sets field value
-func (o *InputPolymorphicShared) SetType(v string) {
+func (o *InputPolymorphicShared) SetType(v map[string]interface{}) {
 	o.Type = v
 }
 

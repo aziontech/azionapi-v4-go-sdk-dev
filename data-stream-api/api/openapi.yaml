@@ -2547,8 +2547,9 @@ components:
       additionalProperties: true
       properties:
         type:
-          minLength: 1
-          type: string
+          allOf:
+          - $ref: "#/components/schemas/Type4f5Enum"
+          description: ""
       required:
       - type
       title: InputPolymorphicShared
@@ -3649,7 +3650,7 @@ components:
             format: int64
             minimum: 1
             type: integer
-          maxItems: 100
+          maxItems: 600
           minItems: 1
           type: array
       required:
@@ -3697,7 +3698,7 @@ components:
             format: int64
             minimum: 1
             type: integer
-          maxItems: 100
+          maxItems: 600
           minItems: 1
           type: array
       required:
@@ -3734,8 +3735,9 @@ components:
       additionalProperties: true
       properties:
         type:
-          minLength: 1
-          type: string
+          allOf:
+          - $ref: "#/components/schemas/Type4f5Enum"
+          description: ""
       required:
       - type
       title: TransformPolymorphicShared
@@ -3901,6 +3903,10 @@ components:
       required:
       - rate
       title: TransformSamplingRequest
+      type: object
+    Type4f5Enum:
+      additionalProperties: false
+      title: Type4f5Enum
       type: object
   securitySchemes:
     BearerAuth:
