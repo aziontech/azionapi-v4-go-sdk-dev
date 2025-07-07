@@ -1,7 +1,7 @@
 /*
-object-storage-api
+edge-storage-api
 
-REST API OpenAPI documentation for the Object Storage
+REST API OpenAPI documentation for the Edge Storage
 
 API version: 1.0.0 (v1)
 */
@@ -72,7 +72,7 @@ func (o *ResponseDeleteBucketObject) SetState(v string) {
 }
 
 func (o ResponseDeleteBucketObject) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -122,3 +122,5 @@ func (v *NullableResponseDeleteBucketObject) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -1,7 +1,7 @@
 /*
-object-storage-api
+edge-storage-api
 
-REST API OpenAPI documentation for the Object Storage
+REST API OpenAPI documentation for the Edge Storage
 
 API version: 1.0.0 (v1)
 */
@@ -19,12 +19,13 @@ import (
 	"strings"
 )
 
+
 // EdgeStorageBucketsAPIService EdgeStorageBucketsAPI service
 type EdgeStorageBucketsAPIService service
 
 type ApiCreateBucketRequest struct {
-	ctx                 context.Context
-	ApiService          *EdgeStorageBucketsAPIService
+	ctx context.Context
+	ApiService *EdgeStorageBucketsAPIService
 	bucketCreateRequest *BucketCreateRequest
 }
 
@@ -42,25 +43,24 @@ CreateBucket Create a new bucket
 
 Create a new bucket.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCreateBucketRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateBucketRequest
 */
 func (a *EdgeStorageBucketsAPIService) CreateBucket(ctx context.Context) ApiCreateBucketRequest {
 	return ApiCreateBucketRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ResponseBucketCreate
+//  @return ResponseBucketCreate
 func (a *EdgeStorageBucketsAPIService) CreateBucketExecute(r ApiCreateBucketRequest) (*ResponseBucketCreate, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ResponseBucketCreate
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseBucketCreate
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageBucketsAPIService.CreateBucket")
@@ -139,8 +139,8 @@ func (a *EdgeStorageBucketsAPIService) CreateBucketExecute(r ApiCreateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -150,8 +150,8 @@ func (a *EdgeStorageBucketsAPIService) CreateBucketExecute(r ApiCreateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -161,8 +161,8 @@ func (a *EdgeStorageBucketsAPIService) CreateBucketExecute(r ApiCreateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -172,8 +172,8 @@ func (a *EdgeStorageBucketsAPIService) CreateBucketExecute(r ApiCreateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -183,8 +183,8 @@ func (a *EdgeStorageBucketsAPIService) CreateBucketExecute(r ApiCreateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -194,8 +194,8 @@ func (a *EdgeStorageBucketsAPIService) CreateBucketExecute(r ApiCreateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -205,8 +205,8 @@ func (a *EdgeStorageBucketsAPIService) CreateBucketExecute(r ApiCreateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -224,9 +224,9 @@ func (a *EdgeStorageBucketsAPIService) CreateBucketExecute(r ApiCreateBucketRequ
 }
 
 type ApiDeleteBucketRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *EdgeStorageBucketsAPIService
-	name       string
+	name string
 }
 
 func (r ApiDeleteBucketRequest) Execute() (*ResponseDeleteBucketCreate, *http.Response, error) {
@@ -238,27 +238,26 @@ DeleteBucket Delete a bucket
 
 Delete a specific bucket.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param name
-	@return ApiDeleteBucketRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param name
+ @return ApiDeleteBucketRequest
 */
 func (a *EdgeStorageBucketsAPIService) DeleteBucket(ctx context.Context, name string) ApiDeleteBucketRequest {
 	return ApiDeleteBucketRequest{
 		ApiService: a,
-		ctx:        ctx,
-		name:       name,
+		ctx: ctx,
+		name: name,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ResponseDeleteBucketCreate
+//  @return ResponseDeleteBucketCreate
 func (a *EdgeStorageBucketsAPIService) DeleteBucketExecute(r ApiDeleteBucketRequest) (*ResponseDeleteBucketCreate, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ResponseDeleteBucketCreate
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseDeleteBucketCreate
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageBucketsAPIService.DeleteBucket")
@@ -333,8 +332,8 @@ func (a *EdgeStorageBucketsAPIService) DeleteBucketExecute(r ApiDeleteBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -344,8 +343,8 @@ func (a *EdgeStorageBucketsAPIService) DeleteBucketExecute(r ApiDeleteBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
@@ -355,8 +354,8 @@ func (a *EdgeStorageBucketsAPIService) DeleteBucketExecute(r ApiDeleteBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -366,8 +365,8 @@ func (a *EdgeStorageBucketsAPIService) DeleteBucketExecute(r ApiDeleteBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -377,8 +376,8 @@ func (a *EdgeStorageBucketsAPIService) DeleteBucketExecute(r ApiDeleteBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -388,8 +387,8 @@ func (a *EdgeStorageBucketsAPIService) DeleteBucketExecute(r ApiDeleteBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -399,8 +398,8 @@ func (a *EdgeStorageBucketsAPIService) DeleteBucketExecute(r ApiDeleteBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -418,13 +417,13 @@ func (a *EdgeStorageBucketsAPIService) DeleteBucketExecute(r ApiDeleteBucketRequ
 }
 
 type ApiListBucketsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *EdgeStorageBucketsAPIService
-	fields     *string
-	ordering   *string
-	page       *int64
-	pageSize   *int64
-	search     *string
+	fields *string
+	ordering *string
+	page *int64
+	pageSize *int64
+	search *string
 }
 
 // Comma-separated list of field names to include in the response.
@@ -466,25 +465,24 @@ ListBuckets List buckets
 
 List all buckets.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListBucketsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListBucketsRequest
 */
 func (a *EdgeStorageBucketsAPIService) ListBuckets(ctx context.Context) ApiListBucketsRequest {
 	return ApiListBucketsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PaginatedBucketList
+//  @return PaginatedBucketList
 func (a *EdgeStorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsRequest) (*PaginatedBucketList, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PaginatedBucketList
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedBucketList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageBucketsAPIService.ListBuckets")
@@ -573,8 +571,8 @@ func (a *EdgeStorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -584,8 +582,8 @@ func (a *EdgeStorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -595,8 +593,8 @@ func (a *EdgeStorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -606,8 +604,8 @@ func (a *EdgeStorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -617,8 +615,8 @@ func (a *EdgeStorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -628,8 +626,8 @@ func (a *EdgeStorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -639,8 +637,8 @@ func (a *EdgeStorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsReques
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -658,10 +656,10 @@ func (a *EdgeStorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsReques
 }
 
 type ApiRetrieveBucketRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *EdgeStorageBucketsAPIService
-	name       string
-	fields     *string
+	name string
+	fields *string
 }
 
 // Comma-separated list of field names to include in the response.
@@ -679,27 +677,26 @@ RetrieveBucket Retrieve details from a bucket
 
 Retrieve details from a specific bucket.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param name
-	@return ApiRetrieveBucketRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param name
+ @return ApiRetrieveBucketRequest
 */
 func (a *EdgeStorageBucketsAPIService) RetrieveBucket(ctx context.Context, name string) ApiRetrieveBucketRequest {
 	return ApiRetrieveBucketRequest{
 		ApiService: a,
-		ctx:        ctx,
-		name:       name,
+		ctx: ctx,
+		name: name,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ResponseRetrieveBucket
+//  @return ResponseRetrieveBucket
 func (a *EdgeStorageBucketsAPIService) RetrieveBucketExecute(r ApiRetrieveBucketRequest) (*ResponseRetrieveBucket, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ResponseRetrieveBucket
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseRetrieveBucket
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageBucketsAPIService.RetrieveBucket")
@@ -777,8 +774,8 @@ func (a *EdgeStorageBucketsAPIService) RetrieveBucketExecute(r ApiRetrieveBucket
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -788,8 +785,8 @@ func (a *EdgeStorageBucketsAPIService) RetrieveBucketExecute(r ApiRetrieveBucket
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -799,8 +796,8 @@ func (a *EdgeStorageBucketsAPIService) RetrieveBucketExecute(r ApiRetrieveBucket
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -810,8 +807,8 @@ func (a *EdgeStorageBucketsAPIService) RetrieveBucketExecute(r ApiRetrieveBucket
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -821,8 +818,8 @@ func (a *EdgeStorageBucketsAPIService) RetrieveBucketExecute(r ApiRetrieveBucket
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -832,8 +829,8 @@ func (a *EdgeStorageBucketsAPIService) RetrieveBucketExecute(r ApiRetrieveBucket
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -851,9 +848,9 @@ func (a *EdgeStorageBucketsAPIService) RetrieveBucketExecute(r ApiRetrieveBucket
 }
 
 type ApiUpdateBucketRequest struct {
-	ctx                  context.Context
-	ApiService           *EdgeStorageBucketsAPIService
-	name                 string
+	ctx context.Context
+	ApiService *EdgeStorageBucketsAPIService
+	name string
 	patchedBucketRequest *PatchedBucketRequest
 }
 
@@ -871,27 +868,26 @@ UpdateBucket Update bucket info
 
 Update bucket information (bucket name cannot be changed)
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param name
-	@return ApiUpdateBucketRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param name
+ @return ApiUpdateBucketRequest
 */
 func (a *EdgeStorageBucketsAPIService) UpdateBucket(ctx context.Context, name string) ApiUpdateBucketRequest {
 	return ApiUpdateBucketRequest{
 		ApiService: a,
-		ctx:        ctx,
-		name:       name,
+		ctx: ctx,
+		name: name,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ResponseBucketCreate
+//  @return ResponseBucketCreate
 func (a *EdgeStorageBucketsAPIService) UpdateBucketExecute(r ApiUpdateBucketRequest) (*ResponseBucketCreate, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPatch
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ResponseBucketCreate
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseBucketCreate
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageBucketsAPIService.UpdateBucket")
@@ -968,8 +964,8 @@ func (a *EdgeStorageBucketsAPIService) UpdateBucketExecute(r ApiUpdateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -979,8 +975,8 @@ func (a *EdgeStorageBucketsAPIService) UpdateBucketExecute(r ApiUpdateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -990,8 +986,8 @@ func (a *EdgeStorageBucketsAPIService) UpdateBucketExecute(r ApiUpdateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -1001,8 +997,8 @@ func (a *EdgeStorageBucketsAPIService) UpdateBucketExecute(r ApiUpdateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -1012,8 +1008,8 @@ func (a *EdgeStorageBucketsAPIService) UpdateBucketExecute(r ApiUpdateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -1023,8 +1019,8 @@ func (a *EdgeStorageBucketsAPIService) UpdateBucketExecute(r ApiUpdateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1034,8 +1030,8 @@ func (a *EdgeStorageBucketsAPIService) UpdateBucketExecute(r ApiUpdateBucketRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

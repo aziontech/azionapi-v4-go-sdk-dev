@@ -1,7 +1,7 @@
 /*
-object-storage-api
+edge-storage-api
 
-REST API OpenAPI documentation for the Object Storage
+REST API OpenAPI documentation for the Edge Storage
 
 API version: 1.0.0 (v1)
 */
@@ -19,12 +19,12 @@ var _ MappedNullable = &ResponseBadRequestCredential{}
 
 // ResponseBadRequestCredential struct for ResponseBadRequestCredential
 type ResponseBadRequestCredential struct {
-	Name           []string                                  `json:"name,omitempty"`
-	ExpirationDate []string                                  `json:"expiration_date,omitempty"`
-	LastModified   []string                                  `json:"last_modified,omitempty"`
-	Capabilities   *ResponseBadRequestCredentialCapabilities `json:"capabilities,omitempty"`
-	Bucket         []string                                  `json:"bucket,omitempty"`
-	Detail         *string                                   `json:"detail,omitempty" validate:"regexp=.*"`
+	Name []string `json:"name,omitempty"`
+	ExpirationDate []string `json:"expiration_date,omitempty"`
+	LastModified []string `json:"last_modified,omitempty"`
+	Capabilities *ResponseBadRequestCredentialCapabilities `json:"capabilities,omitempty"`
+	Bucket []string `json:"bucket,omitempty"`
+	Detail *string `json:"detail,omitempty" validate:"regexp=.*"`
 }
 
 // NewResponseBadRequestCredential instantiates a new ResponseBadRequestCredential object
@@ -237,7 +237,7 @@ func (o *ResponseBadRequestCredential) SetDetail(v string) {
 }
 
 func (o ResponseBadRequestCredential) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -302,3 +302,5 @@ func (v *NullableResponseBadRequestCredential) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

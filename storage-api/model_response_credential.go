@@ -1,7 +1,7 @@
 /*
-object-storage-api
+edge-storage-api
 
-REST API OpenAPI documentation for the Object Storage
+REST API OpenAPI documentation for the Edge Storage
 
 API version: 1.0.0 (v1)
 */
@@ -11,8 +11,8 @@ API version: 1.0.0 (v1)
 package storageapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,8 +21,8 @@ var _ MappedNullable = &ResponseCredential{}
 
 // ResponseCredential struct for ResponseCredential
 type ResponseCredential struct {
-	State *string    `json:"state,omitempty" validate:"regexp=.*"`
-	Data  Credential `json:"data"`
+	State *string `json:"state,omitempty" validate:"regexp=.*"`
+	Data Credential `json:"data"`
 }
 
 type _ResponseCredential ResponseCredential
@@ -102,7 +102,7 @@ func (o *ResponseCredential) SetData(v Credential) {
 }
 
 func (o ResponseCredential) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -131,10 +131,10 @@ func (o *ResponseCredential) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -190,3 +190,5 @@ func (v *NullableResponseCredential) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

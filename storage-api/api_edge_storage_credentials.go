@@ -1,7 +1,7 @@
 /*
-object-storage-api
+edge-storage-api
 
-REST API OpenAPI documentation for the Object Storage
+REST API OpenAPI documentation for the Edge Storage
 
 API version: 1.0.0 (v1)
 */
@@ -19,12 +19,13 @@ import (
 	"strings"
 )
 
+
 // EdgeStorageCredentialsAPIService EdgeStorageCredentialsAPI service
 type EdgeStorageCredentialsAPIService service
 
 type ApiCreateCredentialRequest struct {
-	ctx                     context.Context
-	ApiService              *EdgeStorageCredentialsAPIService
+	ctx context.Context
+	ApiService *EdgeStorageCredentialsAPIService
 	credentialCreateRequest *CredentialCreateRequest
 }
 
@@ -42,25 +43,24 @@ CreateCredential Create a new credential
 
 Create a new credential.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCreateCredentialRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateCredentialRequest
 */
 func (a *EdgeStorageCredentialsAPIService) CreateCredential(ctx context.Context) ApiCreateCredentialRequest {
 	return ApiCreateCredentialRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ResponseCredential
+//  @return ResponseCredential
 func (a *EdgeStorageCredentialsAPIService) CreateCredentialExecute(r ApiCreateCredentialRequest) (*ResponseCredential, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ResponseCredential
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseCredential
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageCredentialsAPIService.CreateCredential")
@@ -139,8 +139,8 @@ func (a *EdgeStorageCredentialsAPIService) CreateCredentialExecute(r ApiCreateCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -150,8 +150,8 @@ func (a *EdgeStorageCredentialsAPIService) CreateCredentialExecute(r ApiCreateCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -161,8 +161,8 @@ func (a *EdgeStorageCredentialsAPIService) CreateCredentialExecute(r ApiCreateCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -172,8 +172,8 @@ func (a *EdgeStorageCredentialsAPIService) CreateCredentialExecute(r ApiCreateCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -183,8 +183,8 @@ func (a *EdgeStorageCredentialsAPIService) CreateCredentialExecute(r ApiCreateCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -194,8 +194,8 @@ func (a *EdgeStorageCredentialsAPIService) CreateCredentialExecute(r ApiCreateCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -205,8 +205,8 @@ func (a *EdgeStorageCredentialsAPIService) CreateCredentialExecute(r ApiCreateCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -224,9 +224,9 @@ func (a *EdgeStorageCredentialsAPIService) CreateCredentialExecute(r ApiCreateCr
 }
 
 type ApiDeleteCredentialRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *EdgeStorageCredentialsAPIService
-	id         string
+	id string
 }
 
 func (r ApiDeleteCredentialRequest) Execute() (*ResponseAsyncDeleteCredential, *http.Response, error) {
@@ -238,27 +238,26 @@ DeleteCredential Delete a credential
 
 Delete a specific credential.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ApiDeleteCredentialRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApiDeleteCredentialRequest
 */
 func (a *EdgeStorageCredentialsAPIService) DeleteCredential(ctx context.Context, id string) ApiDeleteCredentialRequest {
 	return ApiDeleteCredentialRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ResponseAsyncDeleteCredential
+//  @return ResponseAsyncDeleteCredential
 func (a *EdgeStorageCredentialsAPIService) DeleteCredentialExecute(r ApiDeleteCredentialRequest) (*ResponseAsyncDeleteCredential, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodDelete
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ResponseAsyncDeleteCredential
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseAsyncDeleteCredential
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageCredentialsAPIService.DeleteCredential")
@@ -333,8 +332,8 @@ func (a *EdgeStorageCredentialsAPIService) DeleteCredentialExecute(r ApiDeleteCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -344,8 +343,8 @@ func (a *EdgeStorageCredentialsAPIService) DeleteCredentialExecute(r ApiDeleteCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -355,8 +354,8 @@ func (a *EdgeStorageCredentialsAPIService) DeleteCredentialExecute(r ApiDeleteCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -366,8 +365,8 @@ func (a *EdgeStorageCredentialsAPIService) DeleteCredentialExecute(r ApiDeleteCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -377,8 +376,8 @@ func (a *EdgeStorageCredentialsAPIService) DeleteCredentialExecute(r ApiDeleteCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -388,8 +387,8 @@ func (a *EdgeStorageCredentialsAPIService) DeleteCredentialExecute(r ApiDeleteCr
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -407,13 +406,13 @@ func (a *EdgeStorageCredentialsAPIService) DeleteCredentialExecute(r ApiDeleteCr
 }
 
 type ApiListCredentialsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *EdgeStorageCredentialsAPIService
-	fields     *string
-	ordering   *string
-	page       *int64
-	pageSize   *int64
-	search     *string
+	fields *string
+	ordering *string
+	page *int64
+	pageSize *int64
+	search *string
 }
 
 // Comma-separated list of field names to include in the response.
@@ -455,25 +454,24 @@ ListCredentials List credentials
 
 List all credentials.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListCredentialsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListCredentialsRequest
 */
 func (a *EdgeStorageCredentialsAPIService) ListCredentials(ctx context.Context) ApiListCredentialsRequest {
 	return ApiListCredentialsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return PaginatedResponseListCredentialList
+//  @return PaginatedResponseListCredentialList
 func (a *EdgeStorageCredentialsAPIService) ListCredentialsExecute(r ApiListCredentialsRequest) (*PaginatedResponseListCredentialList, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *PaginatedResponseListCredentialList
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedResponseListCredentialList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageCredentialsAPIService.ListCredentials")
@@ -562,8 +560,8 @@ func (a *EdgeStorageCredentialsAPIService) ListCredentialsExecute(r ApiListCrede
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -573,8 +571,8 @@ func (a *EdgeStorageCredentialsAPIService) ListCredentialsExecute(r ApiListCrede
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -584,8 +582,8 @@ func (a *EdgeStorageCredentialsAPIService) ListCredentialsExecute(r ApiListCrede
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -595,8 +593,8 @@ func (a *EdgeStorageCredentialsAPIService) ListCredentialsExecute(r ApiListCrede
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -606,8 +604,8 @@ func (a *EdgeStorageCredentialsAPIService) ListCredentialsExecute(r ApiListCrede
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -617,8 +615,8 @@ func (a *EdgeStorageCredentialsAPIService) ListCredentialsExecute(r ApiListCrede
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -636,10 +634,10 @@ func (a *EdgeStorageCredentialsAPIService) ListCredentialsExecute(r ApiListCrede
 }
 
 type ApiRetrieveCredentialRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService *EdgeStorageCredentialsAPIService
-	id         string
-	fields     *string
+	id string
+	fields *string
 }
 
 // Comma-separated list of field names to include in the response.
@@ -657,27 +655,26 @@ RetrieveCredential Retrieve details from a credential
 
 Retrieve details from a specific credential.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id
-	@return ApiRetrieveCredentialRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApiRetrieveCredentialRequest
 */
 func (a *EdgeStorageCredentialsAPIService) RetrieveCredential(ctx context.Context, id string) ApiRetrieveCredentialRequest {
 	return ApiRetrieveCredentialRequest{
 		ApiService: a,
-		ctx:        ctx,
-		id:         id,
+		ctx: ctx,
+		id: id,
 	}
 }
 
 // Execute executes the request
-//
-//	@return ResponseRetrieveCredential
+//  @return ResponseRetrieveCredential
 func (a *EdgeStorageCredentialsAPIService) RetrieveCredentialExecute(r ApiRetrieveCredentialRequest) (*ResponseRetrieveCredential, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ResponseRetrieveCredential
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseRetrieveCredential
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageCredentialsAPIService.RetrieveCredential")
@@ -755,8 +752,8 @@ func (a *EdgeStorageCredentialsAPIService) RetrieveCredentialExecute(r ApiRetrie
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
@@ -766,8 +763,8 @@ func (a *EdgeStorageCredentialsAPIService) RetrieveCredentialExecute(r ApiRetrie
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
@@ -777,8 +774,8 @@ func (a *EdgeStorageCredentialsAPIService) RetrieveCredentialExecute(r ApiRetrie
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
@@ -788,8 +785,8 @@ func (a *EdgeStorageCredentialsAPIService) RetrieveCredentialExecute(r ApiRetrie
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
@@ -799,8 +796,8 @@ func (a *EdgeStorageCredentialsAPIService) RetrieveCredentialExecute(r ApiRetrie
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -810,8 +807,8 @@ func (a *EdgeStorageCredentialsAPIService) RetrieveCredentialExecute(r ApiRetrie
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

@@ -1,7 +1,7 @@
 /*
-object-storage-api
+edge-storage-api
 
-REST API OpenAPI documentation for the Object Storage
+REST API OpenAPI documentation for the Edge Storage
 
 API version: 1.0.0 (v1)
 */
@@ -11,8 +11,8 @@ API version: 1.0.0 (v1)
 package storageapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &ResponseBucketObject{}
 // ResponseBucketObject struct for ResponseBucketObject
 type ResponseBucketObject struct {
 	ContinuationToken NullableString `json:"continuation_token" validate:"regexp=.{0,255}"`
-	Results           []BucketObject `json:"results"`
+	Results []BucketObject `json:"results"`
 }
 
 type _ResponseBucketObject ResponseBucketObject
@@ -97,7 +97,7 @@ func (o *ResponseBucketObject) SetResults(v []BucketObject) {
 }
 
 func (o ResponseBucketObject) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -125,10 +125,10 @@ func (o *ResponseBucketObject) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -184,3 +184,5 @@ func (v *NullableResponseBucketObject) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
