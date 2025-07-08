@@ -2111,6 +2111,7 @@ components:
     CertificateRequestRequest:
       additionalProperties: false
       example:
+        source_certificate: 171976545
         authority: authority
         name: name
         certificate: certificate
@@ -2152,8 +2153,8 @@ components:
             * `trusted_ca_certificate` - Trusted CA Certificate
         challenge:
           description: |-
-            * `dns` - dns
-            * `http` - http
+            * `dns` - Uses DNS to solve the ACME challenge.
+            * `http` - Uses HTTP to solve the ACME challenge.
           title: ChallengeEnum
           type: string
         authority:
@@ -2166,7 +2167,7 @@ components:
         active:
           type: boolean
         common_name:
-          maxLength: 250
+          maxLength: 64
           minLength: 1
           pattern: "^(((\\*\\.)?[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$"
           type: string
@@ -2179,6 +2180,13 @@ components:
               .)+[a-zA-Z](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$"
             type: string
           type: array
+          writeOnly: true
+        source_certificate:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+          type: integer
           writeOnly: true
       required:
       - authority
@@ -2402,8 +2410,8 @@ components:
       type: object
     ChallengeEnum:
       description: |-
-        * `dns` - dns
-        * `http` - http
+        * `dns` - Uses DNS to solve the ACME challenge.
+        * `http` - Uses HTTP to solve the ACME challenge.
       title: ChallengeEnum
       type: string
     DefaultErrorResponse:
