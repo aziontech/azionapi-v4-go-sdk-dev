@@ -26,7 +26,7 @@ type CertificateRequestRequest struct {
 	PrivateKey NullableString `json:"private_key,omitempty" validate:"regexp=.*"`
 	// The value can't be changed after the certificate creation.  * `edge_certificate` - Edge Certificate * `trusted_ca_certificate` - Trusted CA Certificate
 	Type *string `json:"type,omitempty"`
-	// * `dns` - dns * `http` - http
+	// * `dns` - Uses DNS to solve the ACME challenge. * `http` - Uses HTTP to solve the ACME challenge.
 	Challenge string `json:"challenge"`
 	// * `lets_encrypt` - lets_encrypt
 	Authority string `json:"authority"`
@@ -35,6 +35,7 @@ type CertificateRequestRequest struct {
 	Active *bool `json:"active,omitempty"`
 	CommonName string `json:"common_name" validate:"regexp=^(((\\\\*\\\\.)?[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\\\\.)+[a-zA-Z](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$"`
 	AlternativeNames []string `json:"alternative_names,omitempty"`
+	SourceCertificate NullableInt64 `json:"source_certificate,omitempty"`
 }
 
 type _CertificateRequestRequest CertificateRequestRequest
@@ -368,6 +369,48 @@ func (o *CertificateRequestRequest) SetAlternativeNames(v []string) {
 	o.AlternativeNames = v
 }
 
+// GetSourceCertificate returns the SourceCertificate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CertificateRequestRequest) GetSourceCertificate() int64 {
+	if o == nil || IsNil(o.SourceCertificate.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.SourceCertificate.Get()
+}
+
+// GetSourceCertificateOk returns a tuple with the SourceCertificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateRequestRequest) GetSourceCertificateOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SourceCertificate.Get(), o.SourceCertificate.IsSet()
+}
+
+// HasSourceCertificate returns a boolean if a field has been set.
+func (o *CertificateRequestRequest) HasSourceCertificate() bool {
+	if o != nil && o.SourceCertificate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSourceCertificate gets a reference to the given NullableInt64 and assigns it to the SourceCertificate field.
+func (o *CertificateRequestRequest) SetSourceCertificate(v int64) {
+	o.SourceCertificate.Set(&v)
+}
+// SetSourceCertificateNil sets the value for SourceCertificate to be an explicit nil
+func (o *CertificateRequestRequest) SetSourceCertificateNil() {
+	o.SourceCertificate.Set(nil)
+}
+
+// UnsetSourceCertificate ensures that no value is present for SourceCertificate, not even an explicit nil
+func (o *CertificateRequestRequest) UnsetSourceCertificate() {
+	o.SourceCertificate.Unset()
+}
+
 func (o CertificateRequestRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -399,6 +442,9 @@ func (o CertificateRequestRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["common_name"] = o.CommonName
 	if !IsNil(o.AlternativeNames) {
 		toSerialize["alternative_names"] = o.AlternativeNames
+	}
+	if o.SourceCertificate.IsSet() {
+		toSerialize["source_certificate"] = o.SourceCertificate.Get()
 	}
 	return toSerialize, nil
 }

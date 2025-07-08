@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **Certificate** | Pointer to **NullableString** |  | [optional] 
 **PrivateKey** | Pointer to **NullableString** |  | [optional] 
 **Type** | Pointer to **string** | The value can&#39;t be changed after the certificate creation.  * &#x60;edge_certificate&#x60; - Edge Certificate * &#x60;trusted_ca_certificate&#x60; - Trusted CA Certificate | [optional] 
-**Challenge** | **string** | * &#x60;dns&#x60; - dns * &#x60;http&#x60; - http | 
+**Challenge** | **string** | * &#x60;dns&#x60; - Uses DNS to solve the ACME challenge. * &#x60;http&#x60; - Uses HTTP to solve the ACME challenge. | 
 **Authority** | **string** | * &#x60;lets_encrypt&#x60; - lets_encrypt | 
 **KeyAlgorithm** | Pointer to **string** | * &#x60;rsa_2048&#x60; - 2048-bit RSA * &#x60;rsa_4096&#x60; - 4096-bit RSA * &#x60;ecc_384&#x60; - 384-bit Prime Field Curve | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **CommonName** | **string** |  | 
 **AlternativeNames** | Pointer to **[]string** |  | [optional] 
+**SourceCertificate** | Pointer to **NullableInt64** |  | [optional] 
 
 ## Methods
 
@@ -284,6 +285,41 @@ SetAlternativeNames sets AlternativeNames field to given value.
 
 HasAlternativeNames returns a boolean if a field has been set.
 
+### GetSourceCertificate
+
+`func (o *CertificateRequestRequest) GetSourceCertificate() int64`
+
+GetSourceCertificate returns the SourceCertificate field if non-nil, zero value otherwise.
+
+### GetSourceCertificateOk
+
+`func (o *CertificateRequestRequest) GetSourceCertificateOk() (*int64, bool)`
+
+GetSourceCertificateOk returns a tuple with the SourceCertificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSourceCertificate
+
+`func (o *CertificateRequestRequest) SetSourceCertificate(v int64)`
+
+SetSourceCertificate sets SourceCertificate field to given value.
+
+### HasSourceCertificate
+
+`func (o *CertificateRequestRequest) HasSourceCertificate() bool`
+
+HasSourceCertificate returns a boolean if a field has been set.
+
+### SetSourceCertificateNil
+
+`func (o *CertificateRequestRequest) SetSourceCertificateNil(b bool)`
+
+ SetSourceCertificateNil sets the value for SourceCertificate to be an explicit nil
+
+### UnsetSourceCertificate
+`func (o *CertificateRequestRequest) UnsetSourceCertificate()`
+
+UnsetSourceCertificate ensures that no value is present for SourceCertificate, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
