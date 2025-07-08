@@ -59,9 +59,9 @@ type APIClient struct {
 
 	EdgeApplicationsFunctionAPI *EdgeApplicationsFunctionAPIService
 
-	EdgeApplicationsResponseRulesAPI *EdgeApplicationsResponseRulesAPIService
+	EdgeApplicationsRequestRulesAPI *EdgeApplicationsRequestRulesAPIService
 
-	EdgeApplicationsRulesAPI *EdgeApplicationsRulesAPIService
+	EdgeApplicationsResponseRulesAPI *EdgeApplicationsResponseRulesAPIService
 
 	EdgeConnectorsAPI *EdgeConnectorsAPIService
 
@@ -107,8 +107,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.EdgeApplicationsCacheSettingsAPI = (*EdgeApplicationsCacheSettingsAPIService)(&c.common)
 	c.EdgeApplicationsDeviceGroupsAPI = (*EdgeApplicationsDeviceGroupsAPIService)(&c.common)
 	c.EdgeApplicationsFunctionAPI = (*EdgeApplicationsFunctionAPIService)(&c.common)
+	c.EdgeApplicationsRequestRulesAPI = (*EdgeApplicationsRequestRulesAPIService)(&c.common)
 	c.EdgeApplicationsResponseRulesAPI = (*EdgeApplicationsResponseRulesAPIService)(&c.common)
-	c.EdgeApplicationsRulesAPI = (*EdgeApplicationsRulesAPIService)(&c.common)
 	c.EdgeConnectorsAPI = (*EdgeConnectorsAPIService)(&c.common)
 	c.EdgeFirewallsAPI = (*EdgeFirewallsAPIService)(&c.common)
 	c.EdgeFirewallsFunctionAPI = (*EdgeFirewallsFunctionAPIService)(&c.common)

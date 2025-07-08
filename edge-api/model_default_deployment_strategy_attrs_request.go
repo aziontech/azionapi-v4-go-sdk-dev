@@ -12,7 +12,6 @@ package edgeapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &DefaultDeploymentStrategyAttrsRequest{}
 // DefaultDeploymentStrategyAttrsRequest struct for DefaultDeploymentStrategyAttrsRequest
 type DefaultDeploymentStrategyAttrsRequest struct {
 	Attributes DefaultDeploymentStrategyRequest `json:"attributes"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DefaultDeploymentStrategyAttrsRequest DefaultDeploymentStrategyAttrsRequest
@@ -79,6 +79,11 @@ func (o DefaultDeploymentStrategyAttrsRequest) MarshalJSON() ([]byte, error) {
 func (o DefaultDeploymentStrategyAttrsRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["attributes"] = o.Attributes
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *DefaultDeploymentStrategyAttrsRequest) UnmarshalJSON(data []byte) (err 
 
 	varDefaultDeploymentStrategyAttrsRequest := _DefaultDeploymentStrategyAttrsRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDefaultDeploymentStrategyAttrsRequest)
+	err = json.Unmarshal(data, &varDefaultDeploymentStrategyAttrsRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DefaultDeploymentStrategyAttrsRequest(varDefaultDeploymentStrategyAttrsRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "attributes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

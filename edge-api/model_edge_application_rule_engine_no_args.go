@@ -20,7 +20,7 @@ var _ MappedNullable = &EdgeApplicationRuleEngineNoArgs{}
 
 // EdgeApplicationRuleEngineNoArgs Behaviors without arguments
 type EdgeApplicationRuleEngineNoArgs struct {
-	// * `deny` - deny * `no_content` - no_content * `deliver` - deliver * `finish_request_phase` - finish_request_phase * `forward_cookies` - forward_cookies * `optimize_images` - optimize_images * `bypass_cache_phase` - bypass_cache_phase * `enable_gzip` - enable_gzip * `redirect_http_to_https` - redirect_http_to_https
+	// * `deny` - deny * `no_content` - no_content * `deliver` - deliver * `finish_request_phase` - finish_request_phase * `forward_cookies` - forward_cookies * `optimize_images` - optimize_images * `bypass_cache` - bypass_cache * `enable_gzip` - enable_gzip * `redirect_http_to_https` - redirect_http_to_https
 	Type string `json:"type"`
 	AdditionalProperties map[string]interface{}
 }

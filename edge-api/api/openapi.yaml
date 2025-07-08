@@ -2901,7 +2901,7 @@ paths:
       - BearerAuth: []
       summary: List Edge Application Request Rules
       tags:
-      - Edge Applications - Rules
+      - Edge Applications - Request Rules
     post:
       description: Create a new Rule for a specific Edge Application in your account.
       operationId: edge_application_api_applications_request_rules_create
@@ -3050,7 +3050,7 @@ paths:
       - BearerAuth: []
       summary: Create an Edge Application Request Rule
       tags:
-      - Edge Applications - Rules
+      - Edge Applications - Request Rules
   /edge_application/applications/{edge_application_id}/request_rules/{id}:
     delete:
       description: Destroy a specific Rule in your account.
@@ -3201,7 +3201,7 @@ paths:
       - BearerAuth: []
       summary: Destroy an Edge Application Request Rule
       tags:
-      - Edge Applications - Rules
+      - Edge Applications - Request Rules
     get:
       description: Retrieve details of a specific Rule in your account.
       operationId: edge_application_api_applications_request_rules_retrieve
@@ -3353,7 +3353,7 @@ paths:
       - BearerAuth: []
       summary: Retrieve details of an Edge Application Request Rule
       tags:
-      - Edge Applications - Rules
+      - Edge Applications - Request Rules
     patch:
       description: Update one or more fields of an existing Edge Application Rule  without
         affecting other fields.
@@ -3509,7 +3509,7 @@ paths:
       - BearerAuth: []
       summary: Partially update an Edge Application Request Rule
       tags:
-      - Edge Applications - Rules
+      - Edge Applications - Request Rules
     put:
       description: Update an existing Rule. This replaces the entire Rule with the
         new data provided.
@@ -3666,7 +3666,7 @@ paths:
       - BearerAuth: []
       summary: Update an Edge Application Request Rule
       tags:
-      - Edge Applications - Rules
+      - Edge Applications - Request Rules
   /edge_application/applications/{edge_application_id}/request_rules/order:
     put:
       description: Reoder all Rules for a specific Edge Application owned by your
@@ -3853,7 +3853,7 @@ paths:
       - BearerAuth: []
       summary: Ordering Edge Application Request Rules
       tags:
-      - Edge Applications - Rules
+      - Edge Applications - Request Rules
   /edge_application/applications/{edge_application_id}/response_rules:
     get:
       description: List all Rules for a specific Edge Application owned by your account.
@@ -17028,7 +17028,7 @@ components:
       title: DefaultDeploymentStrategy
       type: object
     DefaultDeploymentStrategyAttrs:
-      additionalProperties: false
+      additionalProperties: true
       properties:
         attributes:
           $ref: "#/components/schemas/DefaultDeploymentStrategy"
@@ -17037,7 +17037,7 @@ components:
       title: DefaultDeploymentStrategyAttrs
       type: object
     DefaultDeploymentStrategyAttrsRequest:
-      additionalProperties: false
+      additionalProperties: true
       properties:
         attributes:
           $ref: "#/components/schemas/DefaultDeploymentStrategyRequest"
@@ -17085,7 +17085,7 @@ components:
     DeploymentStrategy:
       $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrs"
     DeploymentStrategyDefaultDeploymentStrategyAttrs:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/DeploymentStrategyShared"
       - $ref: "#/components/schemas/DefaultDeploymentStrategyAttrs"
@@ -17097,7 +17097,7 @@ components:
         type: type
       title: DeploymentStrategyDefaultDeploymentStrategyAttrs
     DeploymentStrategyDefaultDeploymentStrategyAttrsRequest:
-      additionalProperties: false
+      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/DeploymentStrategyShared"
       - $ref: "#/components/schemas/DefaultDeploymentStrategyAttrsRequest"
@@ -17111,7 +17111,7 @@ components:
     DeploymentStrategyRequest:
       $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest"
     DeploymentStrategyShared:
-      additionalProperties: false
+      additionalProperties: true
       description: |-
         Deployment strategy.
             Allowed strategies:
@@ -18907,7 +18907,7 @@ components:
             * `finish_request_phase` - finish_request_phase
             * `forward_cookies` - forward_cookies
             * `optimize_images` - optimize_images
-            * `bypass_cache_phase` - bypass_cache_phase
+            * `bypass_cache` - bypass_cache
             * `enable_gzip` - enable_gzip
             * `redirect_http_to_https` - redirect_http_to_https
           title: EdgeApplicationRuleEngineNoArgsTypeEnum
@@ -18928,7 +18928,7 @@ components:
             * `finish_request_phase` - finish_request_phase
             * `forward_cookies` - forward_cookies
             * `optimize_images` - optimize_images
-            * `bypass_cache_phase` - bypass_cache_phase
+            * `bypass_cache` - bypass_cache
             * `enable_gzip` - enable_gzip
             * `redirect_http_to_https` - redirect_http_to_https
           title: EdgeApplicationRuleEngineNoArgsTypeEnum
@@ -18945,7 +18945,7 @@ components:
         * `finish_request_phase` - finish_request_phase
         * `forward_cookies` - forward_cookies
         * `optimize_images` - optimize_images
-        * `bypass_cache_phase` - bypass_cache_phase
+        * `bypass_cache` - bypass_cache
         * `enable_gzip` - enable_gzip
         * `redirect_http_to_https` - redirect_http_to_https
       title: EdgeApplicationRuleEngineNoArgsTypeEnum
@@ -18962,7 +18962,7 @@ components:
           redirect_to_302: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineString"
           forward_cookies: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgs"
           optimize_images: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgs"
-          bypass_cache_phase: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgs"
+          bypass_cache: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgs"
           enable_gzip: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgs"
           filter_request_cookie: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineFilterRequestCookie"
           run_function: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineRunFunction"
@@ -19150,7 +19150,7 @@ components:
           redirect_to_302: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineStringRequest"
           forward_cookies: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgsRequest"
           optimize_images: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgsRequest"
-          bypass_cache_phase: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgsRequest"
+          bypass_cache: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgsRequest"
           enable_gzip: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgsRequest"
           filter_request_cookie: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineFilterRequestCookieRequest"
           run_function: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineRunFunctionRequest"
