@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Behaviors** | Pointer to [**[]EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest**](EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest.md) |  | [optional] 
 **Criteria** | Pointer to [**[][]EdgeApplicationCriterionFieldRequest**]([]EdgeApplicationCriterionFieldRequest.md) |  | [optional] 
+**Behaviors** | Pointer to [**[]EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest**](EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -79,31 +79,6 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetBehaviors
-
-`func (o *PatchedEdgeApplicationRequestPhaseRuleEngineRequest) GetBehaviors() []EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest`
-
-GetBehaviors returns the Behaviors field if non-nil, zero value otherwise.
-
-### GetBehaviorsOk
-
-`func (o *PatchedEdgeApplicationRequestPhaseRuleEngineRequest) GetBehaviorsOk() (*[]EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest, bool)`
-
-GetBehaviorsOk returns a tuple with the Behaviors field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBehaviors
-
-`func (o *PatchedEdgeApplicationRequestPhaseRuleEngineRequest) SetBehaviors(v []EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest)`
-
-SetBehaviors sets Behaviors field to given value.
-
-### HasBehaviors
-
-`func (o *PatchedEdgeApplicationRequestPhaseRuleEngineRequest) HasBehaviors() bool`
-
-HasBehaviors returns a boolean if a field has been set.
-
 ### GetCriteria
 
 `func (o *PatchedEdgeApplicationRequestPhaseRuleEngineRequest) GetCriteria() [][]EdgeApplicationCriterionFieldRequest`
@@ -128,6 +103,31 @@ SetCriteria sets Criteria field to given value.
 `func (o *PatchedEdgeApplicationRequestPhaseRuleEngineRequest) HasCriteria() bool`
 
 HasCriteria returns a boolean if a field has been set.
+
+### GetBehaviors
+
+`func (o *PatchedEdgeApplicationRequestPhaseRuleEngineRequest) GetBehaviors() []EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest`
+
+GetBehaviors returns the Behaviors field if non-nil, zero value otherwise.
+
+### GetBehaviorsOk
+
+`func (o *PatchedEdgeApplicationRequestPhaseRuleEngineRequest) GetBehaviorsOk() (*[]EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest, bool)`
+
+GetBehaviorsOk returns a tuple with the Behaviors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBehaviors
+
+`func (o *PatchedEdgeApplicationRequestPhaseRuleEngineRequest) SetBehaviors(v []EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest)`
+
+SetBehaviors sets Behaviors field to given value.
+
+### HasBehaviors
+
+`func (o *PatchedEdgeApplicationRequestPhaseRuleEngineRequest) HasBehaviors() bool`
+
+HasBehaviors returns a boolean if a field has been set.
 
 ### GetDescription
 

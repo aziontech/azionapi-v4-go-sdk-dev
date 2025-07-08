@@ -21,8 +21,8 @@ var _ MappedNullable = &PatchedEdgeApplicationResponsePhaseRuleEngineRequest{}
 type PatchedEdgeApplicationResponsePhaseRuleEngineRequest struct {
 	Name *string `json:"name,omitempty" validate:"regexp=.*"`
 	Active *bool `json:"active,omitempty"`
-	Behaviors []EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest `json:"behaviors,omitempty"`
 	Criteria [][]EdgeApplicationCriterionFieldRequest `json:"criteria,omitempty"`
+	Behaviors []EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest `json:"behaviors,omitempty"`
 	Description *string `json:"description,omitempty" validate:"regexp=.*"`
 }
 
@@ -107,38 +107,6 @@ func (o *PatchedEdgeApplicationResponsePhaseRuleEngineRequest) SetActive(v bool)
 	o.Active = &v
 }
 
-// GetBehaviors returns the Behaviors field value if set, zero value otherwise.
-func (o *PatchedEdgeApplicationResponsePhaseRuleEngineRequest) GetBehaviors() []EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest {
-	if o == nil || IsNil(o.Behaviors) {
-		var ret []EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest
-		return ret
-	}
-	return o.Behaviors
-}
-
-// GetBehaviorsOk returns a tuple with the Behaviors field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedEdgeApplicationResponsePhaseRuleEngineRequest) GetBehaviorsOk() ([]EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest, bool) {
-	if o == nil || IsNil(o.Behaviors) {
-		return nil, false
-	}
-	return o.Behaviors, true
-}
-
-// HasBehaviors returns a boolean if a field has been set.
-func (o *PatchedEdgeApplicationResponsePhaseRuleEngineRequest) HasBehaviors() bool {
-	if o != nil && !IsNil(o.Behaviors) {
-		return true
-	}
-
-	return false
-}
-
-// SetBehaviors gets a reference to the given []EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest and assigns it to the Behaviors field.
-func (o *PatchedEdgeApplicationResponsePhaseRuleEngineRequest) SetBehaviors(v []EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest) {
-	o.Behaviors = v
-}
-
 // GetCriteria returns the Criteria field value if set, zero value otherwise.
 func (o *PatchedEdgeApplicationResponsePhaseRuleEngineRequest) GetCriteria() [][]EdgeApplicationCriterionFieldRequest {
 	if o == nil || IsNil(o.Criteria) {
@@ -169,6 +137,38 @@ func (o *PatchedEdgeApplicationResponsePhaseRuleEngineRequest) HasCriteria() boo
 // SetCriteria gets a reference to the given [][]EdgeApplicationCriterionFieldRequest and assigns it to the Criteria field.
 func (o *PatchedEdgeApplicationResponsePhaseRuleEngineRequest) SetCriteria(v [][]EdgeApplicationCriterionFieldRequest) {
 	o.Criteria = v
+}
+
+// GetBehaviors returns the Behaviors field value if set, zero value otherwise.
+func (o *PatchedEdgeApplicationResponsePhaseRuleEngineRequest) GetBehaviors() []EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest {
+	if o == nil || IsNil(o.Behaviors) {
+		var ret []EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest
+		return ret
+	}
+	return o.Behaviors
+}
+
+// GetBehaviorsOk returns a tuple with the Behaviors field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedEdgeApplicationResponsePhaseRuleEngineRequest) GetBehaviorsOk() ([]EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest, bool) {
+	if o == nil || IsNil(o.Behaviors) {
+		return nil, false
+	}
+	return o.Behaviors, true
+}
+
+// HasBehaviors returns a boolean if a field has been set.
+func (o *PatchedEdgeApplicationResponsePhaseRuleEngineRequest) HasBehaviors() bool {
+	if o != nil && !IsNil(o.Behaviors) {
+		return true
+	}
+
+	return false
+}
+
+// SetBehaviors gets a reference to the given []EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest and assigns it to the Behaviors field.
+func (o *PatchedEdgeApplicationResponsePhaseRuleEngineRequest) SetBehaviors(v []EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest) {
+	o.Behaviors = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -219,11 +219,11 @@ func (o PatchedEdgeApplicationResponsePhaseRuleEngineRequest) ToMap() (map[strin
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if !IsNil(o.Behaviors) {
-		toSerialize["behaviors"] = o.Behaviors
-	}
 	if !IsNil(o.Criteria) {
 		toSerialize["criteria"] = o.Criteria
+	}
+	if !IsNil(o.Behaviors) {
+		toSerialize["behaviors"] = o.Behaviors
 	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description

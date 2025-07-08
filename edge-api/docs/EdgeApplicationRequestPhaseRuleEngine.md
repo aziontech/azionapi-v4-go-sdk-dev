@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Id** | **int64** |  | [readonly] 
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Behaviors** | [**[]EdgeApplicationRuleEngineRequestPhaseBehaviors**](EdgeApplicationRuleEngineRequestPhaseBehaviors.md) |  | 
 **Criteria** | [**[][]EdgeApplicationCriterionField**]([]EdgeApplicationCriterionField.md) |  | 
+**Behaviors** | [**[]EdgeApplicationRuleEngineRequestPhaseBehaviors**](EdgeApplicationRuleEngineRequestPhaseBehaviors.md) |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Order** | **int64** |  | [readonly] 
 **LastEditor** | **NullableString** |  | [readonly] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewEdgeApplicationRequestPhaseRuleEngine
 
-`func NewEdgeApplicationRequestPhaseRuleEngine(id int64, name string, behaviors []EdgeApplicationRuleEngineRequestPhaseBehaviors, criteria [][]EdgeApplicationCriterionField, order int64, lastEditor NullableString, lastModified NullableTime, ) *EdgeApplicationRequestPhaseRuleEngine`
+`func NewEdgeApplicationRequestPhaseRuleEngine(id int64, name string, criteria [][]EdgeApplicationCriterionField, behaviors []EdgeApplicationRuleEngineRequestPhaseBehaviors, order int64, lastEditor NullableString, lastModified NullableTime, ) *EdgeApplicationRequestPhaseRuleEngine`
 
 NewEdgeApplicationRequestPhaseRuleEngine instantiates a new EdgeApplicationRequestPhaseRuleEngine object
 This constructor will assign default values to properties that have it defined,
@@ -98,26 +98,6 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetBehaviors
-
-`func (o *EdgeApplicationRequestPhaseRuleEngine) GetBehaviors() []EdgeApplicationRuleEngineRequestPhaseBehaviors`
-
-GetBehaviors returns the Behaviors field if non-nil, zero value otherwise.
-
-### GetBehaviorsOk
-
-`func (o *EdgeApplicationRequestPhaseRuleEngine) GetBehaviorsOk() (*[]EdgeApplicationRuleEngineRequestPhaseBehaviors, bool)`
-
-GetBehaviorsOk returns a tuple with the Behaviors field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBehaviors
-
-`func (o *EdgeApplicationRequestPhaseRuleEngine) SetBehaviors(v []EdgeApplicationRuleEngineRequestPhaseBehaviors)`
-
-SetBehaviors sets Behaviors field to given value.
-
-
 ### GetCriteria
 
 `func (o *EdgeApplicationRequestPhaseRuleEngine) GetCriteria() [][]EdgeApplicationCriterionField`
@@ -136,6 +116,26 @@ and a boolean to check if the value has been set.
 `func (o *EdgeApplicationRequestPhaseRuleEngine) SetCriteria(v [][]EdgeApplicationCriterionField)`
 
 SetCriteria sets Criteria field to given value.
+
+
+### GetBehaviors
+
+`func (o *EdgeApplicationRequestPhaseRuleEngine) GetBehaviors() []EdgeApplicationRuleEngineRequestPhaseBehaviors`
+
+GetBehaviors returns the Behaviors field if non-nil, zero value otherwise.
+
+### GetBehaviorsOk
+
+`func (o *EdgeApplicationRequestPhaseRuleEngine) GetBehaviorsOk() (*[]EdgeApplicationRuleEngineRequestPhaseBehaviors, bool)`
+
+GetBehaviorsOk returns a tuple with the Behaviors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBehaviors
+
+`func (o *EdgeApplicationRequestPhaseRuleEngine) SetBehaviors(v []EdgeApplicationRuleEngineRequestPhaseBehaviors)`
+
+SetBehaviors sets Behaviors field to given value.
 
 
 ### GetDescription
