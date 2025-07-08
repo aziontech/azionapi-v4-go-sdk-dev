@@ -7,8 +7,8 @@ api_edge_applications.go
 api_edge_applications_cache_settings.go
 api_edge_applications_device_groups.go
 api_edge_applications_function.go
+api_edge_applications_request_rules.go
 api_edge_applications_response_rules.go
-api_edge_applications_rules.go
 api_edge_connectors.go
 api_edge_firewalls.go
 api_edge_firewalls_function.go
@@ -185,8 +185,8 @@ docs/EdgeApplicationsAPI.md
 docs/EdgeApplicationsCacheSettingsAPI.md
 docs/EdgeApplicationsDeviceGroupsAPI.md
 docs/EdgeApplicationsFunctionAPI.md
+docs/EdgeApplicationsRequestRulesAPI.md
 docs/EdgeApplicationsResponseRulesAPI.md
-docs/EdgeApplicationsRulesAPI.md
 docs/EdgeCacheModule.md
 docs/EdgeCacheModuleRequest.md
 docs/EdgeConnectorHTTP.md
@@ -900,5 +900,5 @@ model_workload_deployment.go
 model_workload_deployment_request.go
 model_workload_request.go
 response.go
-test/api_edge_applications_response_rules_test.go
+test/api_edge_applications_request_rules_test.go
 utils.go

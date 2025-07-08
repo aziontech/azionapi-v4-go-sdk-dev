@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | * &#x60;deny&#x60; - deny * &#x60;no_content&#x60; - no_content * &#x60;deliver&#x60; - deliver * &#x60;finish_request_phase&#x60; - finish_request_phase * &#x60;forward_cookies&#x60; - forward_cookies * &#x60;optimize_images&#x60; - optimize_images * &#x60;bypass_cache_phase&#x60; - bypass_cache_phase * &#x60;enable_gzip&#x60; - enable_gzip * &#x60;redirect_http_to_https&#x60; - redirect_http_to_https | 
+**Type** | **string** | * &#x60;deny&#x60; - deny * &#x60;no_content&#x60; - no_content * &#x60;deliver&#x60; - deliver * &#x60;finish_request_phase&#x60; - finish_request_phase * &#x60;forward_cookies&#x60; - forward_cookies * &#x60;optimize_images&#x60; - optimize_images * &#x60;bypass_cache&#x60; - bypass_cache * &#x60;enable_gzip&#x60; - enable_gzip * &#x60;redirect_http_to_https&#x60; - redirect_http_to_https | 
 
 ## Methods
 
