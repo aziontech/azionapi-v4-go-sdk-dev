@@ -25,8 +25,8 @@ type EdgeApplicationRequestPhaseRuleEngine struct {
 	Id int64 `json:"id"`
 	Name string `json:"name" validate:"regexp=.*"`
 	Active *bool `json:"active,omitempty"`
-	Behaviors []EdgeApplicationRuleEngineRequestPhaseBehaviors `json:"behaviors"`
 	Criteria [][]EdgeApplicationCriterionField `json:"criteria"`
+	Behaviors []EdgeApplicationRuleEngineRequestPhaseBehaviors `json:"behaviors"`
 	Description *string `json:"description,omitempty" validate:"regexp=.*"`
 	Order int64 `json:"order"`
 	LastEditor NullableString `json:"last_editor" validate:"regexp=.*"`
@@ -39,12 +39,12 @@ type _EdgeApplicationRequestPhaseRuleEngine EdgeApplicationRequestPhaseRuleEngin
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEdgeApplicationRequestPhaseRuleEngine(id int64, name string, behaviors []EdgeApplicationRuleEngineRequestPhaseBehaviors, criteria [][]EdgeApplicationCriterionField, order int64, lastEditor NullableString, lastModified NullableTime) *EdgeApplicationRequestPhaseRuleEngine {
+func NewEdgeApplicationRequestPhaseRuleEngine(id int64, name string, criteria [][]EdgeApplicationCriterionField, behaviors []EdgeApplicationRuleEngineRequestPhaseBehaviors, order int64, lastEditor NullableString, lastModified NullableTime) *EdgeApplicationRequestPhaseRuleEngine {
 	this := EdgeApplicationRequestPhaseRuleEngine{}
 	this.Id = id
 	this.Name = name
-	this.Behaviors = behaviors
 	this.Criteria = criteria
+	this.Behaviors = behaviors
 	this.Order = order
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
@@ -139,30 +139,6 @@ func (o *EdgeApplicationRequestPhaseRuleEngine) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetBehaviors returns the Behaviors field value
-func (o *EdgeApplicationRequestPhaseRuleEngine) GetBehaviors() []EdgeApplicationRuleEngineRequestPhaseBehaviors {
-	if o == nil {
-		var ret []EdgeApplicationRuleEngineRequestPhaseBehaviors
-		return ret
-	}
-
-	return o.Behaviors
-}
-
-// GetBehaviorsOk returns a tuple with the Behaviors field value
-// and a boolean to check if the value has been set.
-func (o *EdgeApplicationRequestPhaseRuleEngine) GetBehaviorsOk() ([]EdgeApplicationRuleEngineRequestPhaseBehaviors, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Behaviors, true
-}
-
-// SetBehaviors sets field value
-func (o *EdgeApplicationRequestPhaseRuleEngine) SetBehaviors(v []EdgeApplicationRuleEngineRequestPhaseBehaviors) {
-	o.Behaviors = v
-}
-
 // GetCriteria returns the Criteria field value
 func (o *EdgeApplicationRequestPhaseRuleEngine) GetCriteria() [][]EdgeApplicationCriterionField {
 	if o == nil {
@@ -185,6 +161,30 @@ func (o *EdgeApplicationRequestPhaseRuleEngine) GetCriteriaOk() ([][]EdgeApplica
 // SetCriteria sets field value
 func (o *EdgeApplicationRequestPhaseRuleEngine) SetCriteria(v [][]EdgeApplicationCriterionField) {
 	o.Criteria = v
+}
+
+// GetBehaviors returns the Behaviors field value
+func (o *EdgeApplicationRequestPhaseRuleEngine) GetBehaviors() []EdgeApplicationRuleEngineRequestPhaseBehaviors {
+	if o == nil {
+		var ret []EdgeApplicationRuleEngineRequestPhaseBehaviors
+		return ret
+	}
+
+	return o.Behaviors
+}
+
+// GetBehaviorsOk returns a tuple with the Behaviors field value
+// and a boolean to check if the value has been set.
+func (o *EdgeApplicationRequestPhaseRuleEngine) GetBehaviorsOk() ([]EdgeApplicationRuleEngineRequestPhaseBehaviors, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Behaviors, true
+}
+
+// SetBehaviors sets field value
+func (o *EdgeApplicationRequestPhaseRuleEngine) SetBehaviors(v []EdgeApplicationRuleEngineRequestPhaseBehaviors) {
+	o.Behaviors = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -310,8 +310,8 @@ func (o EdgeApplicationRequestPhaseRuleEngine) ToMap() (map[string]interface{}, 
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	toSerialize["behaviors"] = o.Behaviors
 	toSerialize["criteria"] = o.Criteria
+	toSerialize["behaviors"] = o.Behaviors
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -328,8 +328,8 @@ func (o *EdgeApplicationRequestPhaseRuleEngine) UnmarshalJSON(data []byte) (err 
 	requiredProperties := []string{
 		"id",
 		"name",
-		"behaviors",
 		"criteria",
+		"behaviors",
 		"order",
 		"last_editor",
 		"last_modified",

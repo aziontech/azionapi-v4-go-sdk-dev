@@ -900,5 +900,4 @@ model_workload_deployment.go
 model_workload_deployment_request.go
 model_workload_request.go
 response.go
-test/api_edge_applications_request_rules_test.go
 utils.go

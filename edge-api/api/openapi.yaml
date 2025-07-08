@@ -17782,12 +17782,6 @@ components:
     EdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
       example:
-        behaviors:
-        - type: type
-        - type: type
-        - type: type
-        - type: type
-        - type: type
         criteria:
         - - argument: ""
             conditional: conditional
@@ -17889,6 +17883,12 @@ components:
             conditional: conditional
             variable: variable
             operator: operator
+        behaviors:
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
         last_editor: last_editor
         name: name
         active: true
@@ -17908,12 +17908,6 @@ components:
           type: string
         active:
           type: boolean
-        behaviors:
-          items:
-            $ref: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviors"
-          maxItems: 10
-          minItems: 1
-          type: array
         criteria:
           items:
             items:
@@ -17922,6 +17916,12 @@ components:
             minItems: 1
             type: array
           maxItems: 5
+          minItems: 1
+          type: array
+        behaviors:
+          items:
+            $ref: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviors"
+          maxItems: 10
           minItems: 1
           type: array
         description:
@@ -17977,12 +17977,6 @@ components:
     EdgeApplicationRequestPhaseRuleEngineRequest:
       additionalProperties: false
       example:
-        behaviors:
-        - type: type
-        - type: type
-        - type: type
-        - type: type
-        - type: type
         criteria:
         - - argument: ""
             conditional: conditional
@@ -18084,6 +18078,12 @@ components:
             conditional: conditional
             variable: variable
             operator: operator
+        behaviors:
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
         name: name
         active: true
         description: description
@@ -18095,12 +18095,6 @@ components:
           type: string
         active:
           type: boolean
-        behaviors:
-          items:
-            $ref: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest"
-          maxItems: 10
-          minItems: 1
-          type: array
         criteria:
           items:
             items:
@@ -18109,6 +18103,12 @@ components:
             minItems: 1
             type: array
           maxItems: 5
+          minItems: 1
+          type: array
+        behaviors:
+          items:
+            $ref: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest"
+          maxItems: 10
           minItems: 1
           type: array
         description:
@@ -18125,12 +18125,6 @@ components:
     EdgeApplicationResponsePhaseRuleEngine:
       additionalProperties: false
       example:
-        behaviors:
-        - type: type
-        - type: type
-        - type: type
-        - type: type
-        - type: type
         criteria:
         - - argument: ""
             conditional: conditional
@@ -18232,6 +18226,12 @@ components:
             conditional: conditional
             variable: variable
             operator: operator
+        behaviors:
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
         last_editor: last_editor
         name: name
         active: true
@@ -18251,12 +18251,6 @@ components:
           type: string
         active:
           type: boolean
-        behaviors:
-          items:
-            $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviors"
-          maxItems: 10
-          minItems: 1
-          type: array
         criteria:
           items:
             items:
@@ -18265,6 +18259,12 @@ components:
             minItems: 1
             type: array
           maxItems: 5
+          minItems: 1
+          type: array
+        behaviors:
+          items:
+            $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviors"
+          maxItems: 10
           minItems: 1
           type: array
         description:
@@ -18320,12 +18320,6 @@ components:
     EdgeApplicationResponsePhaseRuleEngineRequest:
       additionalProperties: false
       example:
-        behaviors:
-        - type: type
-        - type: type
-        - type: type
-        - type: type
-        - type: type
         criteria:
         - - argument: ""
             conditional: conditional
@@ -18427,6 +18421,12 @@ components:
             conditional: conditional
             variable: variable
             operator: operator
+        behaviors:
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
         name: name
         active: true
         description: description
@@ -18438,12 +18438,6 @@ components:
           type: string
         active:
           type: boolean
-        behaviors:
-          items:
-            $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest"
-          maxItems: 10
-          minItems: 1
-          type: array
         criteria:
           items:
             items:
@@ -18452,6 +18446,12 @@ components:
             minItems: 1
             type: array
           maxItems: 5
+          minItems: 1
+          type: array
+        behaviors:
+          items:
+            $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest"
+          maxItems: 10
           minItems: 1
           type: array
         description:
@@ -23495,13 +23495,7 @@ components:
       example:
         count: 123
         results:
-        - behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          criteria:
+        - criteria:
           - - argument: ""
               conditional: conditional
               variable: variable
@@ -23602,6 +23596,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true
@@ -23609,13 +23609,7 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
-        - behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          criteria:
+        - criteria:
           - - argument: ""
               conditional: conditional
               variable: variable
@@ -23716,6 +23710,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true
@@ -23741,13 +23741,7 @@ components:
       example:
         count: 123
         results:
-        - behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          criteria:
+        - criteria:
           - - argument: ""
               conditional: conditional
               variable: variable
@@ -23848,6 +23842,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true
@@ -23855,13 +23855,7 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
-        - behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          criteria:
+        - criteria:
           - - argument: ""
               conditional: conditional
               variable: variable
@@ -23962,6 +23956,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true
@@ -24947,12 +24947,6 @@ components:
     PatchedEdgeApplicationRequestPhaseRuleEngineRequest:
       additionalProperties: false
       example:
-        behaviors:
-        - type: type
-        - type: type
-        - type: type
-        - type: type
-        - type: type
         criteria:
         - - argument: ""
             conditional: conditional
@@ -25054,6 +25048,12 @@ components:
             conditional: conditional
             variable: variable
             operator: operator
+        behaviors:
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
         name: name
         active: true
         description: description
@@ -25065,12 +25065,6 @@ components:
           type: string
         active:
           type: boolean
-        behaviors:
-          items:
-            $ref: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest"
-          maxItems: 10
-          minItems: 1
-          type: array
         criteria:
           items:
             items:
@@ -25079,6 +25073,12 @@ components:
             minItems: 1
             type: array
           maxItems: 5
+          minItems: 1
+          type: array
+        behaviors:
+          items:
+            $ref: "#/components/schemas/EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest"
+          maxItems: 10
           minItems: 1
           type: array
         description:
@@ -25091,12 +25091,6 @@ components:
     PatchedEdgeApplicationResponsePhaseRuleEngineRequest:
       additionalProperties: false
       example:
-        behaviors:
-        - type: type
-        - type: type
-        - type: type
-        - type: type
-        - type: type
         criteria:
         - - argument: ""
             conditional: conditional
@@ -25198,6 +25192,12 @@ components:
             conditional: conditional
             variable: variable
             operator: operator
+        behaviors:
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
         name: name
         active: true
         description: description
@@ -25209,12 +25209,6 @@ components:
           type: string
         active:
           type: boolean
-        behaviors:
-          items:
-            $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest"
-          maxItems: 10
-          minItems: 1
-          type: array
         criteria:
           items:
             items:
@@ -25223,6 +25217,12 @@ components:
             minItems: 1
             type: array
           maxItems: 5
+          minItems: 1
+          type: array
+        behaviors:
+          items:
+            $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest"
+          maxItems: 10
           minItems: 1
           type: array
         description:
@@ -26533,12 +26533,6 @@ components:
       additionalProperties: false
       example:
         data:
-          behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -26640,6 +26634,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true
@@ -26664,12 +26664,6 @@ components:
       additionalProperties: false
       example:
         data:
-          behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -26771,6 +26765,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true
@@ -28064,12 +28064,6 @@ components:
       additionalProperties: false
       example:
         data:
-          behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -28171,6 +28165,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true
@@ -28195,12 +28195,6 @@ components:
       additionalProperties: false
       example:
         data:
-          behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -28302,6 +28296,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true
@@ -28850,12 +28850,6 @@ components:
       additionalProperties: false
       example:
         data:
-          behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
           criteria:
           - - argument: ""
               conditional: conditional
@@ -28957,6 +28951,12 @@ components:
               conditional: conditional
               variable: variable
               operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
           last_editor: last_editor
           name: name
           active: true

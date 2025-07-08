@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Behaviors** | [**[]EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest**](EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest.md) |  | 
 **Criteria** | [**[][]EdgeApplicationCriterionFieldRequest**]([]EdgeApplicationCriterionFieldRequest.md) |  | 
+**Behaviors** | [**[]EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest**](EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest.md) |  | 
 **Description** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewEdgeApplicationRequestPhaseRuleEngineRequest
 
-`func NewEdgeApplicationRequestPhaseRuleEngineRequest(name string, behaviors []EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest, criteria [][]EdgeApplicationCriterionFieldRequest, ) *EdgeApplicationRequestPhaseRuleEngineRequest`
+`func NewEdgeApplicationRequestPhaseRuleEngineRequest(name string, criteria [][]EdgeApplicationCriterionFieldRequest, behaviors []EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest, ) *EdgeApplicationRequestPhaseRuleEngineRequest`
 
 NewEdgeApplicationRequestPhaseRuleEngineRequest instantiates a new EdgeApplicationRequestPhaseRuleEngineRequest object
 This constructor will assign default values to properties that have it defined,
@@ -74,26 +74,6 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetBehaviors
-
-`func (o *EdgeApplicationRequestPhaseRuleEngineRequest) GetBehaviors() []EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest`
-
-GetBehaviors returns the Behaviors field if non-nil, zero value otherwise.
-
-### GetBehaviorsOk
-
-`func (o *EdgeApplicationRequestPhaseRuleEngineRequest) GetBehaviorsOk() (*[]EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest, bool)`
-
-GetBehaviorsOk returns a tuple with the Behaviors field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBehaviors
-
-`func (o *EdgeApplicationRequestPhaseRuleEngineRequest) SetBehaviors(v []EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest)`
-
-SetBehaviors sets Behaviors field to given value.
-
-
 ### GetCriteria
 
 `func (o *EdgeApplicationRequestPhaseRuleEngineRequest) GetCriteria() [][]EdgeApplicationCriterionFieldRequest`
@@ -112,6 +92,26 @@ and a boolean to check if the value has been set.
 `func (o *EdgeApplicationRequestPhaseRuleEngineRequest) SetCriteria(v [][]EdgeApplicationCriterionFieldRequest)`
 
 SetCriteria sets Criteria field to given value.
+
+
+### GetBehaviors
+
+`func (o *EdgeApplicationRequestPhaseRuleEngineRequest) GetBehaviors() []EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest`
+
+GetBehaviors returns the Behaviors field if non-nil, zero value otherwise.
+
+### GetBehaviorsOk
+
+`func (o *EdgeApplicationRequestPhaseRuleEngineRequest) GetBehaviorsOk() (*[]EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest, bool)`
+
+GetBehaviorsOk returns a tuple with the Behaviors field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBehaviors
+
+`func (o *EdgeApplicationRequestPhaseRuleEngineRequest) SetBehaviors(v []EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest)`
+
+SetBehaviors sets Behaviors field to given value.
 
 
 ### GetDescription
