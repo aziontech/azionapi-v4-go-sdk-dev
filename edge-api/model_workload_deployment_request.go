@@ -24,7 +24,7 @@ type WorkloadDeploymentRequest struct {
 	Name string `json:"name" validate:"regexp=.*"`
 	Current *bool `json:"current,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	Strategy DeploymentStrategyDefaultDeploymentStrategyAttrsRequest `json:"strategy"`
+	Strategy DeploymentStrategyDefaultDeploymentStrategyRequest `json:"strategy"`
 }
 
 type _WorkloadDeploymentRequest WorkloadDeploymentRequest
@@ -33,7 +33,7 @@ type _WorkloadDeploymentRequest WorkloadDeploymentRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkloadDeploymentRequest(name string, strategy DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) *WorkloadDeploymentRequest {
+func NewWorkloadDeploymentRequest(name string, strategy DeploymentStrategyDefaultDeploymentStrategyRequest) *WorkloadDeploymentRequest {
 	this := WorkloadDeploymentRequest{}
 	this.Name = name
 	this.Strategy = strategy
@@ -137,9 +137,9 @@ func (o *WorkloadDeploymentRequest) SetActive(v bool) {
 }
 
 // GetStrategy returns the Strategy field value
-func (o *WorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyAttrsRequest {
+func (o *WorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyRequest {
 	if o == nil {
-		var ret DeploymentStrategyDefaultDeploymentStrategyAttrsRequest
+		var ret DeploymentStrategyDefaultDeploymentStrategyRequest
 		return ret
 	}
 
@@ -148,7 +148,7 @@ func (o *WorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeplo
 
 // GetStrategyOk returns a tuple with the Strategy field value
 // and a boolean to check if the value has been set.
-func (o *WorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyAttrsRequest, bool) {
+func (o *WorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyRequest, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -156,7 +156,7 @@ func (o *WorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultD
 }
 
 // SetStrategy sets field value
-func (o *WorkloadDeploymentRequest) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) {
+func (o *WorkloadDeploymentRequest) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyRequest) {
 	o.Strategy = v
 }
 

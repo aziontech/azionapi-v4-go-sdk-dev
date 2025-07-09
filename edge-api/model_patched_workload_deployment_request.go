@@ -22,7 +22,7 @@ type PatchedWorkloadDeploymentRequest struct {
 	Name *string `json:"name,omitempty" validate:"regexp=.*"`
 	Current *bool `json:"current,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	Strategy *DeploymentStrategyDefaultDeploymentStrategyAttrsRequest `json:"strategy,omitempty"`
+	Strategy *DeploymentStrategyDefaultDeploymentStrategyRequest `json:"strategy,omitempty"`
 }
 
 // NewPatchedWorkloadDeploymentRequest instantiates a new PatchedWorkloadDeploymentRequest object
@@ -139,9 +139,9 @@ func (o *PatchedWorkloadDeploymentRequest) SetActive(v bool) {
 }
 
 // GetStrategy returns the Strategy field value if set, zero value otherwise.
-func (o *PatchedWorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyAttrsRequest {
+func (o *PatchedWorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyRequest {
 	if o == nil || IsNil(o.Strategy) {
-		var ret DeploymentStrategyDefaultDeploymentStrategyAttrsRequest
+		var ret DeploymentStrategyDefaultDeploymentStrategyRequest
 		return ret
 	}
 	return *o.Strategy
@@ -149,7 +149,7 @@ func (o *PatchedWorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefau
 
 // GetStrategyOk returns a tuple with the Strategy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedWorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyAttrsRequest, bool) {
+func (o *PatchedWorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyRequest, bool) {
 	if o == nil || IsNil(o.Strategy) {
 		return nil, false
 	}
@@ -165,8 +165,8 @@ func (o *PatchedWorkloadDeploymentRequest) HasStrategy() bool {
 	return false
 }
 
-// SetStrategy gets a reference to the given DeploymentStrategyDefaultDeploymentStrategyAttrsRequest and assigns it to the Strategy field.
-func (o *PatchedWorkloadDeploymentRequest) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyAttrsRequest) {
+// SetStrategy gets a reference to the given DeploymentStrategyDefaultDeploymentStrategyRequest and assigns it to the Strategy field.
+func (o *PatchedWorkloadDeploymentRequest) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyRequest) {
 	o.Strategy = &v
 }
 
