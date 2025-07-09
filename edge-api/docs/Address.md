@@ -4,15 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Address** | **string** | IPv4/IPv6 address or CNAME to resolve | 
-**PlainPort** | Pointer to **int64** |  | [optional] 
-**TlsPort** | Pointer to **int64** |  | [optional] 
-**ServerRole** | Pointer to **string** | Role of the address in load balancing  * &#x60;primary&#x60; - Primary * &#x60;backup&#x60; - Backup | [optional] 
-**Weight** | Pointer to **int64** | Weight used in load balancing strategy | [optional] 
 **Active** | Pointer to **bool** | Indicates if the address is active for use | [optional] 
-**MaxConns** | Pointer to **int64** | Maximum number of open connections per Edge Application instance | [optional] 
-**MaxFails** | Pointer to **int64** | Maximum number of communication attempts before marking as unavailable | [optional] 
-**FailTimeout** | Pointer to **int64** | Timeout for communication attempts | [optional] 
+**Address** | **string** | IPv4/IPv6 address or CNAME to resolve | 
+**HttpPort** | Pointer to **int64** |  | [optional] 
+**HttpsPort** | Pointer to **int64** |  | [optional] 
+**Modules** | Pointer to [**NullableAddressModules**](AddressModules.md) |  | [optional] 
 
 ## Methods
 
@@ -32,126 +28,6 @@ will change when the set of required properties is changed
 NewAddressWithDefaults instantiates a new Address object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetAddress
-
-`func (o *Address) GetAddress() string`
-
-GetAddress returns the Address field if non-nil, zero value otherwise.
-
-### GetAddressOk
-
-`func (o *Address) GetAddressOk() (*string, bool)`
-
-GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAddress
-
-`func (o *Address) SetAddress(v string)`
-
-SetAddress sets Address field to given value.
-
-
-### GetPlainPort
-
-`func (o *Address) GetPlainPort() int64`
-
-GetPlainPort returns the PlainPort field if non-nil, zero value otherwise.
-
-### GetPlainPortOk
-
-`func (o *Address) GetPlainPortOk() (*int64, bool)`
-
-GetPlainPortOk returns a tuple with the PlainPort field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPlainPort
-
-`func (o *Address) SetPlainPort(v int64)`
-
-SetPlainPort sets PlainPort field to given value.
-
-### HasPlainPort
-
-`func (o *Address) HasPlainPort() bool`
-
-HasPlainPort returns a boolean if a field has been set.
-
-### GetTlsPort
-
-`func (o *Address) GetTlsPort() int64`
-
-GetTlsPort returns the TlsPort field if non-nil, zero value otherwise.
-
-### GetTlsPortOk
-
-`func (o *Address) GetTlsPortOk() (*int64, bool)`
-
-GetTlsPortOk returns a tuple with the TlsPort field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTlsPort
-
-`func (o *Address) SetTlsPort(v int64)`
-
-SetTlsPort sets TlsPort field to given value.
-
-### HasTlsPort
-
-`func (o *Address) HasTlsPort() bool`
-
-HasTlsPort returns a boolean if a field has been set.
-
-### GetServerRole
-
-`func (o *Address) GetServerRole() string`
-
-GetServerRole returns the ServerRole field if non-nil, zero value otherwise.
-
-### GetServerRoleOk
-
-`func (o *Address) GetServerRoleOk() (*string, bool)`
-
-GetServerRoleOk returns a tuple with the ServerRole field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServerRole
-
-`func (o *Address) SetServerRole(v string)`
-
-SetServerRole sets ServerRole field to given value.
-
-### HasServerRole
-
-`func (o *Address) HasServerRole() bool`
-
-HasServerRole returns a boolean if a field has been set.
-
-### GetWeight
-
-`func (o *Address) GetWeight() int64`
-
-GetWeight returns the Weight field if non-nil, zero value otherwise.
-
-### GetWeightOk
-
-`func (o *Address) GetWeightOk() (*int64, bool)`
-
-GetWeightOk returns a tuple with the Weight field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetWeight
-
-`func (o *Address) SetWeight(v int64)`
-
-SetWeight sets Weight field to given value.
-
-### HasWeight
-
-`func (o *Address) HasWeight() bool`
-
-HasWeight returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -178,81 +54,111 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetMaxConns
+### GetAddress
 
-`func (o *Address) GetMaxConns() int64`
+`func (o *Address) GetAddress() string`
 
-GetMaxConns returns the MaxConns field if non-nil, zero value otherwise.
+GetAddress returns the Address field if non-nil, zero value otherwise.
 
-### GetMaxConnsOk
+### GetAddressOk
 
-`func (o *Address) GetMaxConnsOk() (*int64, bool)`
+`func (o *Address) GetAddressOk() (*string, bool)`
 
-GetMaxConnsOk returns a tuple with the MaxConns field if it's non-nil, zero value otherwise
+GetAddressOk returns a tuple with the Address field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMaxConns
+### SetAddress
 
-`func (o *Address) SetMaxConns(v int64)`
+`func (o *Address) SetAddress(v string)`
 
-SetMaxConns sets MaxConns field to given value.
+SetAddress sets Address field to given value.
 
-### HasMaxConns
 
-`func (o *Address) HasMaxConns() bool`
+### GetHttpPort
 
-HasMaxConns returns a boolean if a field has been set.
+`func (o *Address) GetHttpPort() int64`
 
-### GetMaxFails
+GetHttpPort returns the HttpPort field if non-nil, zero value otherwise.
 
-`func (o *Address) GetMaxFails() int64`
+### GetHttpPortOk
 
-GetMaxFails returns the MaxFails field if non-nil, zero value otherwise.
+`func (o *Address) GetHttpPortOk() (*int64, bool)`
 
-### GetMaxFailsOk
-
-`func (o *Address) GetMaxFailsOk() (*int64, bool)`
-
-GetMaxFailsOk returns a tuple with the MaxFails field if it's non-nil, zero value otherwise
+GetHttpPortOk returns a tuple with the HttpPort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMaxFails
+### SetHttpPort
 
-`func (o *Address) SetMaxFails(v int64)`
+`func (o *Address) SetHttpPort(v int64)`
 
-SetMaxFails sets MaxFails field to given value.
+SetHttpPort sets HttpPort field to given value.
 
-### HasMaxFails
+### HasHttpPort
 
-`func (o *Address) HasMaxFails() bool`
+`func (o *Address) HasHttpPort() bool`
 
-HasMaxFails returns a boolean if a field has been set.
+HasHttpPort returns a boolean if a field has been set.
 
-### GetFailTimeout
+### GetHttpsPort
 
-`func (o *Address) GetFailTimeout() int64`
+`func (o *Address) GetHttpsPort() int64`
 
-GetFailTimeout returns the FailTimeout field if non-nil, zero value otherwise.
+GetHttpsPort returns the HttpsPort field if non-nil, zero value otherwise.
 
-### GetFailTimeoutOk
+### GetHttpsPortOk
 
-`func (o *Address) GetFailTimeoutOk() (*int64, bool)`
+`func (o *Address) GetHttpsPortOk() (*int64, bool)`
 
-GetFailTimeoutOk returns a tuple with the FailTimeout field if it's non-nil, zero value otherwise
+GetHttpsPortOk returns a tuple with the HttpsPort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFailTimeout
+### SetHttpsPort
 
-`func (o *Address) SetFailTimeout(v int64)`
+`func (o *Address) SetHttpsPort(v int64)`
 
-SetFailTimeout sets FailTimeout field to given value.
+SetHttpsPort sets HttpsPort field to given value.
 
-### HasFailTimeout
+### HasHttpsPort
 
-`func (o *Address) HasFailTimeout() bool`
+`func (o *Address) HasHttpsPort() bool`
 
-HasFailTimeout returns a boolean if a field has been set.
+HasHttpsPort returns a boolean if a field has been set.
 
+### GetModules
+
+`func (o *Address) GetModules() AddressModules`
+
+GetModules returns the Modules field if non-nil, zero value otherwise.
+
+### GetModulesOk
+
+`func (o *Address) GetModulesOk() (*AddressModules, bool)`
+
+GetModulesOk returns a tuple with the Modules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetModules
+
+`func (o *Address) SetModules(v AddressModules)`
+
+SetModules sets Modules field to given value.
+
+### HasModules
+
+`func (o *Address) HasModules() bool`
+
+HasModules returns a boolean if a field has been set.
+
+### SetModulesNil
+
+`func (o *Address) SetModulesNil(b bool)`
+
+ SetModulesNil sets the value for Modules to be an explicit nil
+
+### UnsetModules
+`func (o *Address) UnsetModules()`
+
+UnsetModules ensures that no value is present for Modules, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -26,20 +26,11 @@ type EdgeConnectorHTTP struct {
 	Name string `json:"name" validate:"regexp=.*"`
 	LastEditor string `json:"last_editor" validate:"regexp=.*"`
 	LastModified time.Time `json:"last_modified"`
-	Modules EdgeConnectorModules `json:"modules"`
 	Active *bool `json:"active,omitempty"`
 	ProductVersion string `json:"product_version" validate:"regexp=\\\\d+\\\\.\\\\d+"`
-	// * `http` - HTTP * `s3` - S3 * `edge_storage` - Edge Storage * `live_ingest` - Live Ingest
+	// * `http` - HTTP * `edge_storage` - Edge Storage * `live_ingest` - Live Ingest
 	Type string `json:"type"`
-	Addresses []Address `json:"addresses,omitempty"`
-	Tls *TLSEdgeConnector `json:"tls,omitempty"`
-	// * `off` - Off * `ip_hash` - IP Hash * `least_connections` - Least Connections * `round_robin` - Round Robin
-	LoadBalanceMethod *string `json:"load_balance_method,omitempty"`
-	ConnectionPreference []string `json:"connection_preference,omitempty"`
-	ConnectionTimeout *int64 `json:"connection_timeout,omitempty"`
-	ReadWriteTimeout *int64 `json:"read_write_timeout,omitempty"`
-	MaxRetries *int64 `json:"max_retries,omitempty"`
-	TypeProperties EdgeConnectorHTTPTypeProperties `json:"type_properties"`
+	Attributes EdgeConnectorHTTPAttributes `json:"attributes"`
 }
 
 type _EdgeConnectorHTTP EdgeConnectorHTTP
@@ -48,16 +39,15 @@ type _EdgeConnectorHTTP EdgeConnectorHTTP
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEdgeConnectorHTTP(id int64, name string, lastEditor string, lastModified time.Time, modules EdgeConnectorModules, productVersion string, type_ string, typeProperties EdgeConnectorHTTPTypeProperties) *EdgeConnectorHTTP {
+func NewEdgeConnectorHTTP(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, type_ string, attributes EdgeConnectorHTTPAttributes) *EdgeConnectorHTTP {
 	this := EdgeConnectorHTTP{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
-	this.Modules = modules
 	this.ProductVersion = productVersion
 	this.Type = type_
-	this.TypeProperties = typeProperties
+	this.Attributes = attributes
 	return &this
 }
 
@@ -165,30 +155,6 @@ func (o *EdgeConnectorHTTP) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
-// GetModules returns the Modules field value
-func (o *EdgeConnectorHTTP) GetModules() EdgeConnectorModules {
-	if o == nil {
-		var ret EdgeConnectorModules
-		return ret
-	}
-
-	return o.Modules
-}
-
-// GetModulesOk returns a tuple with the Modules field value
-// and a boolean to check if the value has been set.
-func (o *EdgeConnectorHTTP) GetModulesOk() (*EdgeConnectorModules, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Modules, true
-}
-
-// SetModules sets field value
-func (o *EdgeConnectorHTTP) SetModules(v EdgeConnectorModules) {
-	o.Modules = v
-}
-
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *EdgeConnectorHTTP) GetActive() bool {
 	if o == nil || IsNil(o.Active) {
@@ -269,252 +235,28 @@ func (o *EdgeConnectorHTTP) SetType(v string) {
 	o.Type = v
 }
 
-// GetAddresses returns the Addresses field value if set, zero value otherwise.
-func (o *EdgeConnectorHTTP) GetAddresses() []Address {
-	if o == nil || IsNil(o.Addresses) {
-		var ret []Address
-		return ret
-	}
-	return o.Addresses
-}
-
-// GetAddressesOk returns a tuple with the Addresses field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeConnectorHTTP) GetAddressesOk() ([]Address, bool) {
-	if o == nil || IsNil(o.Addresses) {
-		return nil, false
-	}
-	return o.Addresses, true
-}
-
-// HasAddresses returns a boolean if a field has been set.
-func (o *EdgeConnectorHTTP) HasAddresses() bool {
-	if o != nil && !IsNil(o.Addresses) {
-		return true
-	}
-
-	return false
-}
-
-// SetAddresses gets a reference to the given []Address and assigns it to the Addresses field.
-func (o *EdgeConnectorHTTP) SetAddresses(v []Address) {
-	o.Addresses = v
-}
-
-// GetTls returns the Tls field value if set, zero value otherwise.
-func (o *EdgeConnectorHTTP) GetTls() TLSEdgeConnector {
-	if o == nil || IsNil(o.Tls) {
-		var ret TLSEdgeConnector
-		return ret
-	}
-	return *o.Tls
-}
-
-// GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeConnectorHTTP) GetTlsOk() (*TLSEdgeConnector, bool) {
-	if o == nil || IsNil(o.Tls) {
-		return nil, false
-	}
-	return o.Tls, true
-}
-
-// HasTls returns a boolean if a field has been set.
-func (o *EdgeConnectorHTTP) HasTls() bool {
-	if o != nil && !IsNil(o.Tls) {
-		return true
-	}
-
-	return false
-}
-
-// SetTls gets a reference to the given TLSEdgeConnector and assigns it to the Tls field.
-func (o *EdgeConnectorHTTP) SetTls(v TLSEdgeConnector) {
-	o.Tls = &v
-}
-
-// GetLoadBalanceMethod returns the LoadBalanceMethod field value if set, zero value otherwise.
-func (o *EdgeConnectorHTTP) GetLoadBalanceMethod() string {
-	if o == nil || IsNil(o.LoadBalanceMethod) {
-		var ret string
-		return ret
-	}
-	return *o.LoadBalanceMethod
-}
-
-// GetLoadBalanceMethodOk returns a tuple with the LoadBalanceMethod field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeConnectorHTTP) GetLoadBalanceMethodOk() (*string, bool) {
-	if o == nil || IsNil(o.LoadBalanceMethod) {
-		return nil, false
-	}
-	return o.LoadBalanceMethod, true
-}
-
-// HasLoadBalanceMethod returns a boolean if a field has been set.
-func (o *EdgeConnectorHTTP) HasLoadBalanceMethod() bool {
-	if o != nil && !IsNil(o.LoadBalanceMethod) {
-		return true
-	}
-
-	return false
-}
-
-// SetLoadBalanceMethod gets a reference to the given string and assigns it to the LoadBalanceMethod field.
-func (o *EdgeConnectorHTTP) SetLoadBalanceMethod(v string) {
-	o.LoadBalanceMethod = &v
-}
-
-// GetConnectionPreference returns the ConnectionPreference field value if set, zero value otherwise.
-func (o *EdgeConnectorHTTP) GetConnectionPreference() []string {
-	if o == nil || IsNil(o.ConnectionPreference) {
-		var ret []string
-		return ret
-	}
-	return o.ConnectionPreference
-}
-
-// GetConnectionPreferenceOk returns a tuple with the ConnectionPreference field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeConnectorHTTP) GetConnectionPreferenceOk() ([]string, bool) {
-	if o == nil || IsNil(o.ConnectionPreference) {
-		return nil, false
-	}
-	return o.ConnectionPreference, true
-}
-
-// HasConnectionPreference returns a boolean if a field has been set.
-func (o *EdgeConnectorHTTP) HasConnectionPreference() bool {
-	if o != nil && !IsNil(o.ConnectionPreference) {
-		return true
-	}
-
-	return false
-}
-
-// SetConnectionPreference gets a reference to the given []string and assigns it to the ConnectionPreference field.
-func (o *EdgeConnectorHTTP) SetConnectionPreference(v []string) {
-	o.ConnectionPreference = v
-}
-
-// GetConnectionTimeout returns the ConnectionTimeout field value if set, zero value otherwise.
-func (o *EdgeConnectorHTTP) GetConnectionTimeout() int64 {
-	if o == nil || IsNil(o.ConnectionTimeout) {
-		var ret int64
-		return ret
-	}
-	return *o.ConnectionTimeout
-}
-
-// GetConnectionTimeoutOk returns a tuple with the ConnectionTimeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeConnectorHTTP) GetConnectionTimeoutOk() (*int64, bool) {
-	if o == nil || IsNil(o.ConnectionTimeout) {
-		return nil, false
-	}
-	return o.ConnectionTimeout, true
-}
-
-// HasConnectionTimeout returns a boolean if a field has been set.
-func (o *EdgeConnectorHTTP) HasConnectionTimeout() bool {
-	if o != nil && !IsNil(o.ConnectionTimeout) {
-		return true
-	}
-
-	return false
-}
-
-// SetConnectionTimeout gets a reference to the given int64 and assigns it to the ConnectionTimeout field.
-func (o *EdgeConnectorHTTP) SetConnectionTimeout(v int64) {
-	o.ConnectionTimeout = &v
-}
-
-// GetReadWriteTimeout returns the ReadWriteTimeout field value if set, zero value otherwise.
-func (o *EdgeConnectorHTTP) GetReadWriteTimeout() int64 {
-	if o == nil || IsNil(o.ReadWriteTimeout) {
-		var ret int64
-		return ret
-	}
-	return *o.ReadWriteTimeout
-}
-
-// GetReadWriteTimeoutOk returns a tuple with the ReadWriteTimeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeConnectorHTTP) GetReadWriteTimeoutOk() (*int64, bool) {
-	if o == nil || IsNil(o.ReadWriteTimeout) {
-		return nil, false
-	}
-	return o.ReadWriteTimeout, true
-}
-
-// HasReadWriteTimeout returns a boolean if a field has been set.
-func (o *EdgeConnectorHTTP) HasReadWriteTimeout() bool {
-	if o != nil && !IsNil(o.ReadWriteTimeout) {
-		return true
-	}
-
-	return false
-}
-
-// SetReadWriteTimeout gets a reference to the given int64 and assigns it to the ReadWriteTimeout field.
-func (o *EdgeConnectorHTTP) SetReadWriteTimeout(v int64) {
-	o.ReadWriteTimeout = &v
-}
-
-// GetMaxRetries returns the MaxRetries field value if set, zero value otherwise.
-func (o *EdgeConnectorHTTP) GetMaxRetries() int64 {
-	if o == nil || IsNil(o.MaxRetries) {
-		var ret int64
-		return ret
-	}
-	return *o.MaxRetries
-}
-
-// GetMaxRetriesOk returns a tuple with the MaxRetries field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeConnectorHTTP) GetMaxRetriesOk() (*int64, bool) {
-	if o == nil || IsNil(o.MaxRetries) {
-		return nil, false
-	}
-	return o.MaxRetries, true
-}
-
-// HasMaxRetries returns a boolean if a field has been set.
-func (o *EdgeConnectorHTTP) HasMaxRetries() bool {
-	if o != nil && !IsNil(o.MaxRetries) {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxRetries gets a reference to the given int64 and assigns it to the MaxRetries field.
-func (o *EdgeConnectorHTTP) SetMaxRetries(v int64) {
-	o.MaxRetries = &v
-}
-
-// GetTypeProperties returns the TypeProperties field value
-func (o *EdgeConnectorHTTP) GetTypeProperties() EdgeConnectorHTTPTypeProperties {
+// GetAttributes returns the Attributes field value
+func (o *EdgeConnectorHTTP) GetAttributes() EdgeConnectorHTTPAttributes {
 	if o == nil {
-		var ret EdgeConnectorHTTPTypeProperties
+		var ret EdgeConnectorHTTPAttributes
 		return ret
 	}
 
-	return o.TypeProperties
+	return o.Attributes
 }
 
-// GetTypePropertiesOk returns a tuple with the TypeProperties field value
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *EdgeConnectorHTTP) GetTypePropertiesOk() (*EdgeConnectorHTTPTypeProperties, bool) {
+func (o *EdgeConnectorHTTP) GetAttributesOk() (*EdgeConnectorHTTPAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TypeProperties, true
+	return &o.Attributes, true
 }
 
-// SetTypeProperties sets field value
-func (o *EdgeConnectorHTTP) SetTypeProperties(v EdgeConnectorHTTPTypeProperties) {
-	o.TypeProperties = v
+// SetAttributes sets field value
+func (o *EdgeConnectorHTTP) SetAttributes(v EdgeConnectorHTTPAttributes) {
+	o.Attributes = v
 }
 
 func (o EdgeConnectorHTTP) MarshalJSON() ([]byte, error) {
@@ -531,34 +273,12 @@ func (o EdgeConnectorHTTP) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
-	toSerialize["modules"] = o.Modules
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
 	toSerialize["product_version"] = o.ProductVersion
 	toSerialize["type"] = o.Type
-	if !IsNil(o.Addresses) {
-		toSerialize["addresses"] = o.Addresses
-	}
-	if !IsNil(o.Tls) {
-		toSerialize["tls"] = o.Tls
-	}
-	if !IsNil(o.LoadBalanceMethod) {
-		toSerialize["load_balance_method"] = o.LoadBalanceMethod
-	}
-	if !IsNil(o.ConnectionPreference) {
-		toSerialize["connection_preference"] = o.ConnectionPreference
-	}
-	if !IsNil(o.ConnectionTimeout) {
-		toSerialize["connection_timeout"] = o.ConnectionTimeout
-	}
-	if !IsNil(o.ReadWriteTimeout) {
-		toSerialize["read_write_timeout"] = o.ReadWriteTimeout
-	}
-	if !IsNil(o.MaxRetries) {
-		toSerialize["max_retries"] = o.MaxRetries
-	}
-	toSerialize["type_properties"] = o.TypeProperties
+	toSerialize["attributes"] = o.Attributes
 	return toSerialize, nil
 }
 
@@ -571,10 +291,9 @@ func (o *EdgeConnectorHTTP) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"last_editor",
 		"last_modified",
-		"modules",
 		"product_version",
 		"type",
-		"type_properties",
+		"attributes",
 	}
 
 	allProperties := make(map[string]interface{})
