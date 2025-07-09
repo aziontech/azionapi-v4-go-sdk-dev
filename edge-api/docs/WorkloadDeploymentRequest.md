@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Current** | Pointer to **bool** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Strategy** | [**DeploymentStrategyDefaultDeploymentStrategyAttrsRequest**](DeploymentStrategyDefaultDeploymentStrategyAttrsRequest.md) |  | 
+**Strategy** | [**DeploymentStrategyDefaultDeploymentStrategyRequest**](DeploymentStrategyDefaultDeploymentStrategyRequest.md) |  | 
 
 ## Methods
 
 ### NewWorkloadDeploymentRequest
 
-`func NewWorkloadDeploymentRequest(name string, strategy DeploymentStrategyDefaultDeploymentStrategyAttrsRequest, ) *WorkloadDeploymentRequest`
+`func NewWorkloadDeploymentRequest(name string, strategy DeploymentStrategyDefaultDeploymentStrategyRequest, ) *WorkloadDeploymentRequest`
 
 NewWorkloadDeploymentRequest instantiates a new WorkloadDeploymentRequest object
 This constructor will assign default values to properties that have it defined,
@@ -100,20 +100,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetStrategy
 
-`func (o *WorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyAttrsRequest`
+`func (o *WorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyRequest`
 
 GetStrategy returns the Strategy field if non-nil, zero value otherwise.
 
 ### GetStrategyOk
 
-`func (o *WorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyAttrsRequest, bool)`
+`func (o *WorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyRequest, bool)`
 
 GetStrategyOk returns a tuple with the Strategy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStrategy
 
-`func (o *WorkloadDeploymentRequest) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyAttrsRequest)`
+`func (o *WorkloadDeploymentRequest) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyRequest)`
 
 SetStrategy sets Strategy field to given value.
 

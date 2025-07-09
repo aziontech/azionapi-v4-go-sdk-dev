@@ -17003,6 +17003,15 @@ components:
       title: CustomPagesRequest
       type: object
     DefaultDeploymentStrategy:
+      additionalProperties: true
+      properties:
+        attributes:
+          $ref: "#/components/schemas/DefaultDeploymentStrategyAttrs"
+      required:
+      - attributes
+      title: DefaultDeploymentStrategy
+      type: object
+    DefaultDeploymentStrategyAttrs:
       additionalProperties: false
       example:
         custom_page: 1
@@ -17025,27 +17034,9 @@ components:
           type: integer
       required:
       - edge_application
-      title: DefaultDeploymentStrategy
-      type: object
-    DefaultDeploymentStrategyAttrs:
-      additionalProperties: true
-      properties:
-        attributes:
-          $ref: "#/components/schemas/DefaultDeploymentStrategy"
-      required:
-      - attributes
       title: DefaultDeploymentStrategyAttrs
       type: object
     DefaultDeploymentStrategyAttrsRequest:
-      additionalProperties: true
-      properties:
-        attributes:
-          $ref: "#/components/schemas/DefaultDeploymentStrategyRequest"
-      required:
-      - attributes
-      title: DefaultDeploymentStrategyAttrsRequest
-      type: object
-    DefaultDeploymentStrategyRequest:
       additionalProperties: false
       example:
         custom_page: 1
@@ -17068,6 +17059,15 @@ components:
           type: integer
       required:
       - edge_application
+      title: DefaultDeploymentStrategyAttrsRequest
+      type: object
+    DefaultDeploymentStrategyRequest:
+      additionalProperties: true
+      properties:
+        attributes:
+          $ref: "#/components/schemas/DefaultDeploymentStrategyAttrsRequest"
+      required:
+      - attributes
       title: DefaultDeploymentStrategyRequest
       type: object
     DefaultErrorResponse:
@@ -17083,39 +17083,36 @@ components:
       title: DefaultErrorResponse
       type: object
     DeploymentStrategy:
-      $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrs"
-    DeploymentStrategyDefaultDeploymentStrategyAttrs:
+      $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategy"
+    DeploymentStrategyDefaultDeploymentStrategy:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/DeploymentStrategyShared"
-      - $ref: "#/components/schemas/DefaultDeploymentStrategyAttrs"
+      - $ref: "#/components/schemas/DefaultDeploymentStrategy"
       example:
         attributes:
           custom_page: 1
           edge_firewall: 1
           edge_application: 5559347081229897728
         type: type
-      title: DeploymentStrategyDefaultDeploymentStrategyAttrs
-    DeploymentStrategyDefaultDeploymentStrategyAttrsRequest:
+      title: DeploymentStrategyDefaultDeploymentStrategy
+    DeploymentStrategyDefaultDeploymentStrategyRequest:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/DeploymentStrategyShared"
-      - $ref: "#/components/schemas/DefaultDeploymentStrategyAttrsRequest"
+      - $ref: "#/components/schemas/DefaultDeploymentStrategyRequest"
       example:
         attributes:
           custom_page: 1
           edge_firewall: 6
           edge_application: 738633633822310400
         type: type
-      title: DeploymentStrategyDefaultDeploymentStrategyAttrsRequest
+      title: DeploymentStrategyDefaultDeploymentStrategyRequest
     DeploymentStrategyRequest:
-      $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest"
+      $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyRequest"
     DeploymentStrategyShared:
       additionalProperties: true
-      description: |-
-        Deployment strategy.
-            Allowed strategies:
-                - default
+      description: Deployment strategy.
       properties:
         type:
           maxLength: 255
@@ -26042,7 +26039,7 @@ components:
         active:
           type: boolean
         strategy:
-          $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest"
+          $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyRequest"
       title: PatchedWorkloadDeploymentRequest
       type: object
     PatchedWorkloadRequest:
@@ -30743,7 +30740,7 @@ components:
         active:
           type: boolean
         strategy:
-          $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrs"
+          $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategy"
         last_editor:
           maxLength: 250
           minLength: 1
@@ -30785,7 +30782,7 @@ components:
         active:
           type: boolean
         strategy:
-          $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyAttrsRequest"
+          $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyRequest"
       required:
       - name
       - strategy

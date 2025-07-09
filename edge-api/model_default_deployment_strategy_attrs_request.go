@@ -12,6 +12,7 @@ package edgeapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -20,8 +21,9 @@ var _ MappedNullable = &DefaultDeploymentStrategyAttrsRequest{}
 
 // DefaultDeploymentStrategyAttrsRequest struct for DefaultDeploymentStrategyAttrsRequest
 type DefaultDeploymentStrategyAttrsRequest struct {
-	Attributes DefaultDeploymentStrategyRequest `json:"attributes"`
-	AdditionalProperties map[string]interface{}
+	EdgeApplication int64 `json:"edge_application"`
+	EdgeFirewall NullableInt64 `json:"edge_firewall,omitempty"`
+	CustomPage NullableInt64 `json:"custom_page,omitempty"`
 }
 
 type _DefaultDeploymentStrategyAttrsRequest DefaultDeploymentStrategyAttrsRequest
@@ -30,9 +32,9 @@ type _DefaultDeploymentStrategyAttrsRequest DefaultDeploymentStrategyAttrsReques
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDefaultDeploymentStrategyAttrsRequest(attributes DefaultDeploymentStrategyRequest) *DefaultDeploymentStrategyAttrsRequest {
+func NewDefaultDeploymentStrategyAttrsRequest(edgeApplication int64) *DefaultDeploymentStrategyAttrsRequest {
 	this := DefaultDeploymentStrategyAttrsRequest{}
-	this.Attributes = attributes
+	this.EdgeApplication = edgeApplication
 	return &this
 }
 
@@ -44,28 +46,112 @@ func NewDefaultDeploymentStrategyAttrsRequestWithDefaults() *DefaultDeploymentSt
 	return &this
 }
 
-// GetAttributes returns the Attributes field value
-func (o *DefaultDeploymentStrategyAttrsRequest) GetAttributes() DefaultDeploymentStrategyRequest {
+// GetEdgeApplication returns the EdgeApplication field value
+func (o *DefaultDeploymentStrategyAttrsRequest) GetEdgeApplication() int64 {
 	if o == nil {
-		var ret DefaultDeploymentStrategyRequest
+		var ret int64
 		return ret
 	}
 
-	return o.Attributes
+	return o.EdgeApplication
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value
+// GetEdgeApplicationOk returns a tuple with the EdgeApplication field value
 // and a boolean to check if the value has been set.
-func (o *DefaultDeploymentStrategyAttrsRequest) GetAttributesOk() (*DefaultDeploymentStrategyRequest, bool) {
+func (o *DefaultDeploymentStrategyAttrsRequest) GetEdgeApplicationOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Attributes, true
+	return &o.EdgeApplication, true
 }
 
-// SetAttributes sets field value
-func (o *DefaultDeploymentStrategyAttrsRequest) SetAttributes(v DefaultDeploymentStrategyRequest) {
-	o.Attributes = v
+// SetEdgeApplication sets field value
+func (o *DefaultDeploymentStrategyAttrsRequest) SetEdgeApplication(v int64) {
+	o.EdgeApplication = v
+}
+
+// GetEdgeFirewall returns the EdgeFirewall field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DefaultDeploymentStrategyAttrsRequest) GetEdgeFirewall() int64 {
+	if o == nil || IsNil(o.EdgeFirewall.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.EdgeFirewall.Get()
+}
+
+// GetEdgeFirewallOk returns a tuple with the EdgeFirewall field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DefaultDeploymentStrategyAttrsRequest) GetEdgeFirewallOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EdgeFirewall.Get(), o.EdgeFirewall.IsSet()
+}
+
+// HasEdgeFirewall returns a boolean if a field has been set.
+func (o *DefaultDeploymentStrategyAttrsRequest) HasEdgeFirewall() bool {
+	if o != nil && o.EdgeFirewall.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEdgeFirewall gets a reference to the given NullableInt64 and assigns it to the EdgeFirewall field.
+func (o *DefaultDeploymentStrategyAttrsRequest) SetEdgeFirewall(v int64) {
+	o.EdgeFirewall.Set(&v)
+}
+// SetEdgeFirewallNil sets the value for EdgeFirewall to be an explicit nil
+func (o *DefaultDeploymentStrategyAttrsRequest) SetEdgeFirewallNil() {
+	o.EdgeFirewall.Set(nil)
+}
+
+// UnsetEdgeFirewall ensures that no value is present for EdgeFirewall, not even an explicit nil
+func (o *DefaultDeploymentStrategyAttrsRequest) UnsetEdgeFirewall() {
+	o.EdgeFirewall.Unset()
+}
+
+// GetCustomPage returns the CustomPage field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DefaultDeploymentStrategyAttrsRequest) GetCustomPage() int64 {
+	if o == nil || IsNil(o.CustomPage.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.CustomPage.Get()
+}
+
+// GetCustomPageOk returns a tuple with the CustomPage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DefaultDeploymentStrategyAttrsRequest) GetCustomPageOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CustomPage.Get(), o.CustomPage.IsSet()
+}
+
+// HasCustomPage returns a boolean if a field has been set.
+func (o *DefaultDeploymentStrategyAttrsRequest) HasCustomPage() bool {
+	if o != nil && o.CustomPage.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomPage gets a reference to the given NullableInt64 and assigns it to the CustomPage field.
+func (o *DefaultDeploymentStrategyAttrsRequest) SetCustomPage(v int64) {
+	o.CustomPage.Set(&v)
+}
+// SetCustomPageNil sets the value for CustomPage to be an explicit nil
+func (o *DefaultDeploymentStrategyAttrsRequest) SetCustomPageNil() {
+	o.CustomPage.Set(nil)
+}
+
+// UnsetCustomPage ensures that no value is present for CustomPage, not even an explicit nil
+func (o *DefaultDeploymentStrategyAttrsRequest) UnsetCustomPage() {
+	o.CustomPage.Unset()
 }
 
 func (o DefaultDeploymentStrategyAttrsRequest) MarshalJSON() ([]byte, error) {
@@ -78,12 +164,13 @@ func (o DefaultDeploymentStrategyAttrsRequest) MarshalJSON() ([]byte, error) {
 
 func (o DefaultDeploymentStrategyAttrsRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["attributes"] = o.Attributes
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
+	toSerialize["edge_application"] = o.EdgeApplication
+	if o.EdgeFirewall.IsSet() {
+		toSerialize["edge_firewall"] = o.EdgeFirewall.Get()
 	}
-
+	if o.CustomPage.IsSet() {
+		toSerialize["custom_page"] = o.CustomPage.Get()
+	}
 	return toSerialize, nil
 }
 
@@ -92,7 +179,7 @@ func (o *DefaultDeploymentStrategyAttrsRequest) UnmarshalJSON(data []byte) (err 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"attributes",
+		"edge_application",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -111,20 +198,15 @@ func (o *DefaultDeploymentStrategyAttrsRequest) UnmarshalJSON(data []byte) (err 
 
 	varDefaultDeploymentStrategyAttrsRequest := _DefaultDeploymentStrategyAttrsRequest{}
 
-	err = json.Unmarshal(data, &varDefaultDeploymentStrategyAttrsRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varDefaultDeploymentStrategyAttrsRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DefaultDeploymentStrategyAttrsRequest(varDefaultDeploymentStrategyAttrsRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "attributes")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

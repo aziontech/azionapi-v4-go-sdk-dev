@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Current** | Pointer to **bool** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Strategy** | [**DeploymentStrategyDefaultDeploymentStrategyAttrs**](DeploymentStrategyDefaultDeploymentStrategyAttrs.md) |  | 
+**Strategy** | [**DeploymentStrategyDefaultDeploymentStrategy**](DeploymentStrategyDefaultDeploymentStrategy.md) |  | 
 **LastEditor** | **string** |  | [readonly] 
 **LastModified** | **time.Time** |  | [readonly] 
 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewWorkloadDeployment
 
-`func NewWorkloadDeployment(id int64, name string, strategy DeploymentStrategyDefaultDeploymentStrategyAttrs, lastEditor string, lastModified time.Time, ) *WorkloadDeployment`
+`func NewWorkloadDeployment(id int64, name string, strategy DeploymentStrategyDefaultDeploymentStrategy, lastEditor string, lastModified time.Time, ) *WorkloadDeployment`
 
 NewWorkloadDeployment instantiates a new WorkloadDeployment object
 This constructor will assign default values to properties that have it defined,
@@ -123,20 +123,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetStrategy
 
-`func (o *WorkloadDeployment) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyAttrs`
+`func (o *WorkloadDeployment) GetStrategy() DeploymentStrategyDefaultDeploymentStrategy`
 
 GetStrategy returns the Strategy field if non-nil, zero value otherwise.
 
 ### GetStrategyOk
 
-`func (o *WorkloadDeployment) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyAttrs, bool)`
+`func (o *WorkloadDeployment) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategy, bool)`
 
 GetStrategyOk returns a tuple with the Strategy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStrategy
 
-`func (o *WorkloadDeployment) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyAttrs)`
+`func (o *WorkloadDeployment) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategy)`
 
 SetStrategy sets Strategy field to given value.
 

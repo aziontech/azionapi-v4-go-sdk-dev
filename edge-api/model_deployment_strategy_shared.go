@@ -18,7 +18,7 @@ import (
 // checks if the DeploymentStrategyShared type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeploymentStrategyShared{}
 
-// DeploymentStrategyShared Deployment strategy.     Allowed strategies:         - default
+// DeploymentStrategyShared Deployment strategy.
 type DeploymentStrategyShared struct {
 	Type string `json:"type" validate:"regexp=.*"`
 	AdditionalProperties map[string]interface{}

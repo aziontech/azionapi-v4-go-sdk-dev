@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Current** | Pointer to **bool** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Strategy** | Pointer to [**DeploymentStrategyDefaultDeploymentStrategyAttrsRequest**](DeploymentStrategyDefaultDeploymentStrategyAttrsRequest.md) |  | [optional] 
+**Strategy** | Pointer to [**DeploymentStrategyDefaultDeploymentStrategyRequest**](DeploymentStrategyDefaultDeploymentStrategyRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetStrategy
 
-`func (o *PatchedWorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyAttrsRequest`
+`func (o *PatchedWorkloadDeploymentRequest) GetStrategy() DeploymentStrategyDefaultDeploymentStrategyRequest`
 
 GetStrategy returns the Strategy field if non-nil, zero value otherwise.
 
 ### GetStrategyOk
 
-`func (o *PatchedWorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyAttrsRequest, bool)`
+`func (o *PatchedWorkloadDeploymentRequest) GetStrategyOk() (*DeploymentStrategyDefaultDeploymentStrategyRequest, bool)`
 
 GetStrategyOk returns a tuple with the Strategy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStrategy
 
-`func (o *PatchedWorkloadDeploymentRequest) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyAttrsRequest)`
+`func (o *PatchedWorkloadDeploymentRequest) SetStrategy(v DeploymentStrategyDefaultDeploymentStrategyRequest)`
 
 SetStrategy sets Strategy field to given value.
 
