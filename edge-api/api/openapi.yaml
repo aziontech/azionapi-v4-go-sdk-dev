@@ -19208,39 +19208,46 @@ components:
       - type
       title: EdgeApplicationRuleEngineRequestPhaseBehaviorsShared
       type: object
-    EdgeApplicationRuleEngineResponseEnableGzip:
+    EdgeApplicationRuleEngineResponseNoArgs:
       additionalProperties: true
       description: Enable gzip
       properties:
         type:
-          description: '* `enable_gzip` - enable_gzip'
-          title: EdgeApplicationRuleEngineResponseEnableGzipTypeEnum
+          description: |-
+            * `enable_gzip` - enable_gzip
+            * `deliver` - deliver
+          title: EdgeApplicationRuleEngineResponseNoArgsTypeEnum
           type: string
       required:
       - type
-      title: EdgeApplicationRuleEngineResponseEnableGzip
+      title: EdgeApplicationRuleEngineResponseNoArgs
       type: object
-    EdgeApplicationRuleEngineResponseEnableGzipRequest:
+    EdgeApplicationRuleEngineResponseNoArgsRequest:
       additionalProperties: true
       description: Enable gzip
       properties:
         type:
-          description: '* `enable_gzip` - enable_gzip'
-          title: EdgeApplicationRuleEngineResponseEnableGzipTypeEnum
+          description: |-
+            * `enable_gzip` - enable_gzip
+            * `deliver` - deliver
+          title: EdgeApplicationRuleEngineResponseNoArgsTypeEnum
           type: string
       required:
       - type
-      title: EdgeApplicationRuleEngineResponseEnableGzipRequest
+      title: EdgeApplicationRuleEngineResponseNoArgsRequest
       type: object
-    EdgeApplicationRuleEngineResponseEnableGzipTypeEnum:
-      description: '* `enable_gzip` - enable_gzip'
-      title: EdgeApplicationRuleEngineResponseEnableGzipTypeEnum
+    EdgeApplicationRuleEngineResponseNoArgsTypeEnum:
+      description: |-
+        * `enable_gzip` - enable_gzip
+        * `deliver` - deliver
+      title: EdgeApplicationRuleEngineResponseNoArgsTypeEnum
       type: string
     EdgeApplicationRuleEngineResponsePhaseBehaviors:
       additionalProperties: true
       discriminator:
         mapping:
-          enable_gzip: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseEnableGzip"
+          enable_gzip: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgs"
+          deliver: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgs"
           redirect_to_301: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseString"
           redirect_to_302: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseString"
           filter_response_cookie: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseString"
@@ -19251,7 +19258,7 @@ components:
           capture_match_groups: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineCaptureMatchGroups"
         propertyName: type
       oneOf:
-      - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseEnableGzip"
+      - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgs"
       - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseString"
       - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineRunFunctionResponse"
       - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineSetCookie"
@@ -19295,22 +19302,22 @@ components:
       - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsShared"
       - $ref: "#/components/schemas/EdgeApplicationRuleEngineFilterResponseHeaderRequest"
       title: EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineFilterResponseHeaderRequest
-    EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseEnableGzip:
+    EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgs:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponseEnableGzip"
+      - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponseNoArgs"
       example:
         type: type
-      title: EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseEnableGzip
-    EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseEnableGzipRequest:
+      title: EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgs
+    EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgsRequest:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponseEnableGzipRequest"
+      - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponseNoArgsRequest"
       example:
         type: type
-      title: EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseEnableGzipRequest
+      title: EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgsRequest
     EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseString:
       additionalProperties: true
       allOf:
@@ -19351,7 +19358,8 @@ components:
       additionalProperties: true
       discriminator:
         mapping:
-          enable_gzip: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseEnableGzipRequest"
+          enable_gzip: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgsRequest"
+          deliver: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgsRequest"
           redirect_to_301: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseStringRequest"
           redirect_to_302: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseStringRequest"
           filter_response_cookie: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseStringRequest"
@@ -19362,7 +19370,7 @@ components:
           capture_match_groups: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineCaptureMatchGroupsRequest"
         propertyName: type
       oneOf:
-      - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseEnableGzipRequest"
+      - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgsRequest"
       - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseStringRequest"
       - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineRunFunctionResponseRequest"
       - $ref: "#/components/schemas/EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineSetCookieRequest"
