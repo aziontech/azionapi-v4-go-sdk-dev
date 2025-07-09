@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	edgeConnectorPolymorphicRequest := openapiclient.EdgeConnectorPolymorphicRequest{EdgeConnectorHTTPRequest: openapiclient.NewEdgeConnectorHTTPRequest("Name_example", *openapiclient.NewEdgeConnectorModulesRequest(false, false), "Type_example", *openapiclient.NewEdgeConnectorHTTPTypePropertiesRequest("Host_example", "Path_example", "RealIpHeader_example", "RealPortHeader_example"))} // EdgeConnectorPolymorphicRequest |  (optional)
+	edgeConnectorPolymorphicRequest := openapiclient.EdgeConnectorPolymorphicRequest{EdgeConnectorHTTPRequest: openapiclient.NewEdgeConnectorHTTPRequest("Name_example", "Type_example", *openapiclient.NewEdgeConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // EdgeConnectorPolymorphicRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -389,7 +389,7 @@ import (
 
 func main() {
 	id := "id_example" // string | 
-	edgeConnectorPolymorphicRequest := openapiclient.EdgeConnectorPolymorphicRequest{EdgeConnectorHTTPRequest: openapiclient.NewEdgeConnectorHTTPRequest("Name_example", *openapiclient.NewEdgeConnectorModulesRequest(false, false), "Type_example", *openapiclient.NewEdgeConnectorHTTPTypePropertiesRequest("Host_example", "Path_example", "RealIpHeader_example", "RealPortHeader_example"))} // EdgeConnectorPolymorphicRequest |  (optional)
+	edgeConnectorPolymorphicRequest := openapiclient.EdgeConnectorPolymorphicRequest{EdgeConnectorHTTPRequest: openapiclient.NewEdgeConnectorHTTPRequest("Name_example", "Type_example", *openapiclient.NewEdgeConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // EdgeConnectorPolymorphicRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

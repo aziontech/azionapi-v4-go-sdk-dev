@@ -20,7 +20,6 @@ import (
 type PatchedEdgeConnectorPolymorphicRequest struct {
 	PatchedEdgeConnectorHTTPRequest *PatchedEdgeConnectorHTTPRequest
 	PatchedEdgeConnectorLiveIngestRequest *PatchedEdgeConnectorLiveIngestRequest
-	PatchedEdgeConnectorS3Request *PatchedEdgeConnectorS3Request
 	PatchedEdgeConnectorStorageRequest *PatchedEdgeConnectorStorageRequest
 }
 
@@ -35,13 +34,6 @@ func PatchedEdgeConnectorHTTPRequestAsPatchedEdgeConnectorPolymorphicRequest(v *
 func PatchedEdgeConnectorLiveIngestRequestAsPatchedEdgeConnectorPolymorphicRequest(v *PatchedEdgeConnectorLiveIngestRequest) PatchedEdgeConnectorPolymorphicRequest {
 	return PatchedEdgeConnectorPolymorphicRequest{
 		PatchedEdgeConnectorLiveIngestRequest: v,
-	}
-}
-
-// PatchedEdgeConnectorS3RequestAsPatchedEdgeConnectorPolymorphicRequest is a convenience function that returns PatchedEdgeConnectorS3Request wrapped in PatchedEdgeConnectorPolymorphicRequest
-func PatchedEdgeConnectorS3RequestAsPatchedEdgeConnectorPolymorphicRequest(v *PatchedEdgeConnectorS3Request) PatchedEdgeConnectorPolymorphicRequest {
-	return PatchedEdgeConnectorPolymorphicRequest{
-		PatchedEdgeConnectorS3Request: v,
 	}
 }
 
@@ -91,23 +83,6 @@ func (dst *PatchedEdgeConnectorPolymorphicRequest) UnmarshalJSON(data []byte) er
 		dst.PatchedEdgeConnectorLiveIngestRequest = nil
 	}
 
-	// try to unmarshal data into PatchedEdgeConnectorS3Request
-	err = newStrictDecoder(data).Decode(&dst.PatchedEdgeConnectorS3Request)
-	if err == nil {
-		jsonPatchedEdgeConnectorS3Request, _ := json.Marshal(dst.PatchedEdgeConnectorS3Request)
-		if string(jsonPatchedEdgeConnectorS3Request) == "{}" { // empty struct
-			dst.PatchedEdgeConnectorS3Request = nil
-		} else {
-			if err = validator.Validate(dst.PatchedEdgeConnectorS3Request); err != nil {
-				dst.PatchedEdgeConnectorS3Request = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.PatchedEdgeConnectorS3Request = nil
-	}
-
 	// try to unmarshal data into PatchedEdgeConnectorStorageRequest
 	err = newStrictDecoder(data).Decode(&dst.PatchedEdgeConnectorStorageRequest)
 	if err == nil {
@@ -129,7 +104,6 @@ func (dst *PatchedEdgeConnectorPolymorphicRequest) UnmarshalJSON(data []byte) er
 		// reset to nil
 		dst.PatchedEdgeConnectorHTTPRequest = nil
 		dst.PatchedEdgeConnectorLiveIngestRequest = nil
-		dst.PatchedEdgeConnectorS3Request = nil
 		dst.PatchedEdgeConnectorStorageRequest = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(PatchedEdgeConnectorPolymorphicRequest)")
@@ -148,10 +122,6 @@ func (src PatchedEdgeConnectorPolymorphicRequest) MarshalJSON() ([]byte, error) 
 
 	if src.PatchedEdgeConnectorLiveIngestRequest != nil {
 		return json.Marshal(&src.PatchedEdgeConnectorLiveIngestRequest)
-	}
-
-	if src.PatchedEdgeConnectorS3Request != nil {
-		return json.Marshal(&src.PatchedEdgeConnectorS3Request)
 	}
 
 	if src.PatchedEdgeConnectorStorageRequest != nil {
@@ -174,10 +144,6 @@ func (obj *PatchedEdgeConnectorPolymorphicRequest) GetActualInstance() (interfac
 		return obj.PatchedEdgeConnectorLiveIngestRequest
 	}
 
-	if obj.PatchedEdgeConnectorS3Request != nil {
-		return obj.PatchedEdgeConnectorS3Request
-	}
-
 	if obj.PatchedEdgeConnectorStorageRequest != nil {
 		return obj.PatchedEdgeConnectorStorageRequest
 	}
@@ -194,10 +160,6 @@ func (obj PatchedEdgeConnectorPolymorphicRequest) GetActualInstanceValue() (inte
 
 	if obj.PatchedEdgeConnectorLiveIngestRequest != nil {
 		return *obj.PatchedEdgeConnectorLiveIngestRequest
-	}
-
-	if obj.PatchedEdgeConnectorS3Request != nil {
-		return *obj.PatchedEdgeConnectorS3Request
 	}
 
 	if obj.PatchedEdgeConnectorStorageRequest != nil {

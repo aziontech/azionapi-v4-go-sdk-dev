@@ -21,22 +21,13 @@ var _ MappedNullable = &Address{}
 
 // Address struct for Address
 type Address struct {
-	// IPv4/IPv6 address or CNAME to resolve
-	Address string `json:"address" validate:"regexp=.*"`
-	PlainPort *int64 `json:"plain_port,omitempty"`
-	TlsPort *int64 `json:"tls_port,omitempty"`
-	// Role of the address in load balancing  * `primary` - Primary * `backup` - Backup
-	ServerRole *string `json:"server_role,omitempty"`
-	// Weight used in load balancing strategy
-	Weight *int64 `json:"weight,omitempty"`
 	// Indicates if the address is active for use
 	Active *bool `json:"active,omitempty"`
-	// Maximum number of open connections per Edge Application instance
-	MaxConns *int64 `json:"max_conns,omitempty"`
-	// Maximum number of communication attempts before marking as unavailable
-	MaxFails *int64 `json:"max_fails,omitempty"`
-	// Timeout for communication attempts
-	FailTimeout *int64 `json:"fail_timeout,omitempty"`
+	// IPv4/IPv6 address or CNAME to resolve
+	Address string `json:"address" validate:"regexp=.*"`
+	HttpPort *int64 `json:"http_port,omitempty"`
+	HttpsPort *int64 `json:"https_port,omitempty"`
+	Modules NullableAddressModules `json:"modules,omitempty"`
 }
 
 type _Address Address
@@ -57,158 +48,6 @@ func NewAddress(address string) *Address {
 func NewAddressWithDefaults() *Address {
 	this := Address{}
 	return &this
-}
-
-// GetAddress returns the Address field value
-func (o *Address) GetAddress() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Address
-}
-
-// GetAddressOk returns a tuple with the Address field value
-// and a boolean to check if the value has been set.
-func (o *Address) GetAddressOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Address, true
-}
-
-// SetAddress sets field value
-func (o *Address) SetAddress(v string) {
-	o.Address = v
-}
-
-// GetPlainPort returns the PlainPort field value if set, zero value otherwise.
-func (o *Address) GetPlainPort() int64 {
-	if o == nil || IsNil(o.PlainPort) {
-		var ret int64
-		return ret
-	}
-	return *o.PlainPort
-}
-
-// GetPlainPortOk returns a tuple with the PlainPort field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Address) GetPlainPortOk() (*int64, bool) {
-	if o == nil || IsNil(o.PlainPort) {
-		return nil, false
-	}
-	return o.PlainPort, true
-}
-
-// HasPlainPort returns a boolean if a field has been set.
-func (o *Address) HasPlainPort() bool {
-	if o != nil && !IsNil(o.PlainPort) {
-		return true
-	}
-
-	return false
-}
-
-// SetPlainPort gets a reference to the given int64 and assigns it to the PlainPort field.
-func (o *Address) SetPlainPort(v int64) {
-	o.PlainPort = &v
-}
-
-// GetTlsPort returns the TlsPort field value if set, zero value otherwise.
-func (o *Address) GetTlsPort() int64 {
-	if o == nil || IsNil(o.TlsPort) {
-		var ret int64
-		return ret
-	}
-	return *o.TlsPort
-}
-
-// GetTlsPortOk returns a tuple with the TlsPort field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Address) GetTlsPortOk() (*int64, bool) {
-	if o == nil || IsNil(o.TlsPort) {
-		return nil, false
-	}
-	return o.TlsPort, true
-}
-
-// HasTlsPort returns a boolean if a field has been set.
-func (o *Address) HasTlsPort() bool {
-	if o != nil && !IsNil(o.TlsPort) {
-		return true
-	}
-
-	return false
-}
-
-// SetTlsPort gets a reference to the given int64 and assigns it to the TlsPort field.
-func (o *Address) SetTlsPort(v int64) {
-	o.TlsPort = &v
-}
-
-// GetServerRole returns the ServerRole field value if set, zero value otherwise.
-func (o *Address) GetServerRole() string {
-	if o == nil || IsNil(o.ServerRole) {
-		var ret string
-		return ret
-	}
-	return *o.ServerRole
-}
-
-// GetServerRoleOk returns a tuple with the ServerRole field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Address) GetServerRoleOk() (*string, bool) {
-	if o == nil || IsNil(o.ServerRole) {
-		return nil, false
-	}
-	return o.ServerRole, true
-}
-
-// HasServerRole returns a boolean if a field has been set.
-func (o *Address) HasServerRole() bool {
-	if o != nil && !IsNil(o.ServerRole) {
-		return true
-	}
-
-	return false
-}
-
-// SetServerRole gets a reference to the given string and assigns it to the ServerRole field.
-func (o *Address) SetServerRole(v string) {
-	o.ServerRole = &v
-}
-
-// GetWeight returns the Weight field value if set, zero value otherwise.
-func (o *Address) GetWeight() int64 {
-	if o == nil || IsNil(o.Weight) {
-		var ret int64
-		return ret
-	}
-	return *o.Weight
-}
-
-// GetWeightOk returns a tuple with the Weight field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Address) GetWeightOk() (*int64, bool) {
-	if o == nil || IsNil(o.Weight) {
-		return nil, false
-	}
-	return o.Weight, true
-}
-
-// HasWeight returns a boolean if a field has been set.
-func (o *Address) HasWeight() bool {
-	if o != nil && !IsNil(o.Weight) {
-		return true
-	}
-
-	return false
-}
-
-// SetWeight gets a reference to the given int64 and assigns it to the Weight field.
-func (o *Address) SetWeight(v int64) {
-	o.Weight = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -243,100 +82,134 @@ func (o *Address) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetMaxConns returns the MaxConns field value if set, zero value otherwise.
-func (o *Address) GetMaxConns() int64 {
-	if o == nil || IsNil(o.MaxConns) {
+// GetAddress returns the Address field value
+func (o *Address) GetAddress() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Address
+}
+
+// GetAddressOk returns a tuple with the Address field value
+// and a boolean to check if the value has been set.
+func (o *Address) GetAddressOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Address, true
+}
+
+// SetAddress sets field value
+func (o *Address) SetAddress(v string) {
+	o.Address = v
+}
+
+// GetHttpPort returns the HttpPort field value if set, zero value otherwise.
+func (o *Address) GetHttpPort() int64 {
+	if o == nil || IsNil(o.HttpPort) {
 		var ret int64
 		return ret
 	}
-	return *o.MaxConns
+	return *o.HttpPort
 }
 
-// GetMaxConnsOk returns a tuple with the MaxConns field value if set, nil otherwise
+// GetHttpPortOk returns a tuple with the HttpPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Address) GetMaxConnsOk() (*int64, bool) {
-	if o == nil || IsNil(o.MaxConns) {
+func (o *Address) GetHttpPortOk() (*int64, bool) {
+	if o == nil || IsNil(o.HttpPort) {
 		return nil, false
 	}
-	return o.MaxConns, true
+	return o.HttpPort, true
 }
 
-// HasMaxConns returns a boolean if a field has been set.
-func (o *Address) HasMaxConns() bool {
-	if o != nil && !IsNil(o.MaxConns) {
+// HasHttpPort returns a boolean if a field has been set.
+func (o *Address) HasHttpPort() bool {
+	if o != nil && !IsNil(o.HttpPort) {
 		return true
 	}
 
 	return false
 }
 
-// SetMaxConns gets a reference to the given int64 and assigns it to the MaxConns field.
-func (o *Address) SetMaxConns(v int64) {
-	o.MaxConns = &v
+// SetHttpPort gets a reference to the given int64 and assigns it to the HttpPort field.
+func (o *Address) SetHttpPort(v int64) {
+	o.HttpPort = &v
 }
 
-// GetMaxFails returns the MaxFails field value if set, zero value otherwise.
-func (o *Address) GetMaxFails() int64 {
-	if o == nil || IsNil(o.MaxFails) {
+// GetHttpsPort returns the HttpsPort field value if set, zero value otherwise.
+func (o *Address) GetHttpsPort() int64 {
+	if o == nil || IsNil(o.HttpsPort) {
 		var ret int64
 		return ret
 	}
-	return *o.MaxFails
+	return *o.HttpsPort
 }
 
-// GetMaxFailsOk returns a tuple with the MaxFails field value if set, nil otherwise
+// GetHttpsPortOk returns a tuple with the HttpsPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Address) GetMaxFailsOk() (*int64, bool) {
-	if o == nil || IsNil(o.MaxFails) {
+func (o *Address) GetHttpsPortOk() (*int64, bool) {
+	if o == nil || IsNil(o.HttpsPort) {
 		return nil, false
 	}
-	return o.MaxFails, true
+	return o.HttpsPort, true
 }
 
-// HasMaxFails returns a boolean if a field has been set.
-func (o *Address) HasMaxFails() bool {
-	if o != nil && !IsNil(o.MaxFails) {
+// HasHttpsPort returns a boolean if a field has been set.
+func (o *Address) HasHttpsPort() bool {
+	if o != nil && !IsNil(o.HttpsPort) {
 		return true
 	}
 
 	return false
 }
 
-// SetMaxFails gets a reference to the given int64 and assigns it to the MaxFails field.
-func (o *Address) SetMaxFails(v int64) {
-	o.MaxFails = &v
+// SetHttpsPort gets a reference to the given int64 and assigns it to the HttpsPort field.
+func (o *Address) SetHttpsPort(v int64) {
+	o.HttpsPort = &v
 }
 
-// GetFailTimeout returns the FailTimeout field value if set, zero value otherwise.
-func (o *Address) GetFailTimeout() int64 {
-	if o == nil || IsNil(o.FailTimeout) {
-		var ret int64
+// GetModules returns the Modules field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Address) GetModules() AddressModules {
+	if o == nil || IsNil(o.Modules.Get()) {
+		var ret AddressModules
 		return ret
 	}
-	return *o.FailTimeout
+	return *o.Modules.Get()
 }
 
-// GetFailTimeoutOk returns a tuple with the FailTimeout field value if set, nil otherwise
+// GetModulesOk returns a tuple with the Modules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Address) GetFailTimeoutOk() (*int64, bool) {
-	if o == nil || IsNil(o.FailTimeout) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Address) GetModulesOk() (*AddressModules, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.FailTimeout, true
+	return o.Modules.Get(), o.Modules.IsSet()
 }
 
-// HasFailTimeout returns a boolean if a field has been set.
-func (o *Address) HasFailTimeout() bool {
-	if o != nil && !IsNil(o.FailTimeout) {
+// HasModules returns a boolean if a field has been set.
+func (o *Address) HasModules() bool {
+	if o != nil && o.Modules.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetFailTimeout gets a reference to the given int64 and assigns it to the FailTimeout field.
-func (o *Address) SetFailTimeout(v int64) {
-	o.FailTimeout = &v
+// SetModules gets a reference to the given NullableAddressModules and assigns it to the Modules field.
+func (o *Address) SetModules(v AddressModules) {
+	o.Modules.Set(&v)
+}
+// SetModulesNil sets the value for Modules to be an explicit nil
+func (o *Address) SetModulesNil() {
+	o.Modules.Set(nil)
+}
+
+// UnsetModules ensures that no value is present for Modules, not even an explicit nil
+func (o *Address) UnsetModules() {
+	o.Modules.Unset()
 }
 
 func (o Address) MarshalJSON() ([]byte, error) {
@@ -349,30 +222,18 @@ func (o Address) MarshalJSON() ([]byte, error) {
 
 func (o Address) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["address"] = o.Address
-	if !IsNil(o.PlainPort) {
-		toSerialize["plain_port"] = o.PlainPort
-	}
-	if !IsNil(o.TlsPort) {
-		toSerialize["tls_port"] = o.TlsPort
-	}
-	if !IsNil(o.ServerRole) {
-		toSerialize["server_role"] = o.ServerRole
-	}
-	if !IsNil(o.Weight) {
-		toSerialize["weight"] = o.Weight
-	}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if !IsNil(o.MaxConns) {
-		toSerialize["max_conns"] = o.MaxConns
+	toSerialize["address"] = o.Address
+	if !IsNil(o.HttpPort) {
+		toSerialize["http_port"] = o.HttpPort
 	}
-	if !IsNil(o.MaxFails) {
-		toSerialize["max_fails"] = o.MaxFails
+	if !IsNil(o.HttpsPort) {
+		toSerialize["https_port"] = o.HttpsPort
 	}
-	if !IsNil(o.FailTimeout) {
-		toSerialize["fail_timeout"] = o.FailTimeout
+	if o.Modules.IsSet() {
+		toSerialize["modules"] = o.Modules.Get()
 	}
 	return toSerialize, nil
 }

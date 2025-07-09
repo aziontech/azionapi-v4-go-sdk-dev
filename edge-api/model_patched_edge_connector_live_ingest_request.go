@@ -20,18 +20,10 @@ var _ MappedNullable = &PatchedEdgeConnectorLiveIngestRequest{}
 // PatchedEdgeConnectorLiveIngestRequest struct for PatchedEdgeConnectorLiveIngestRequest
 type PatchedEdgeConnectorLiveIngestRequest struct {
 	Name *string `json:"name,omitempty" validate:"regexp=.*"`
-	Modules *EdgeConnectorModulesRequest `json:"modules,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	// * `http` - HTTP * `s3` - S3 * `edge_storage` - Edge Storage * `live_ingest` - Live Ingest
+	// * `http` - HTTP * `edge_storage` - Edge Storage * `live_ingest` - Live Ingest
 	Type *string `json:"type,omitempty"`
-	Tls *TLSEdgeConnectorRequest `json:"tls,omitempty"`
-	// * `off` - Off * `ip_hash` - IP Hash * `least_connections` - Least Connections * `round_robin` - Round Robin
-	LoadBalanceMethod *string `json:"load_balance_method,omitempty"`
-	ConnectionPreference []string `json:"connection_preference,omitempty"`
-	ConnectionTimeout *int64 `json:"connection_timeout,omitempty"`
-	ReadWriteTimeout *int64 `json:"read_write_timeout,omitempty"`
-	MaxRetries *int64 `json:"max_retries,omitempty"`
-	TypeProperties *EdgeConnectorLiveIngestTypePropertiesRequest `json:"type_properties,omitempty"`
+	Attributes *EdgeConnectorLiveIngestAttributesRequest `json:"attributes,omitempty"`
 }
 
 // NewPatchedEdgeConnectorLiveIngestRequest instantiates a new PatchedEdgeConnectorLiveIngestRequest object
@@ -81,38 +73,6 @@ func (o *PatchedEdgeConnectorLiveIngestRequest) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *PatchedEdgeConnectorLiveIngestRequest) SetName(v string) {
 	o.Name = &v
-}
-
-// GetModules returns the Modules field value if set, zero value otherwise.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetModules() EdgeConnectorModulesRequest {
-	if o == nil || IsNil(o.Modules) {
-		var ret EdgeConnectorModulesRequest
-		return ret
-	}
-	return *o.Modules
-}
-
-// GetModulesOk returns a tuple with the Modules field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetModulesOk() (*EdgeConnectorModulesRequest, bool) {
-	if o == nil || IsNil(o.Modules) {
-		return nil, false
-	}
-	return o.Modules, true
-}
-
-// HasModules returns a boolean if a field has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) HasModules() bool {
-	if o != nil && !IsNil(o.Modules) {
-		return true
-	}
-
-	return false
-}
-
-// SetModules gets a reference to the given EdgeConnectorModulesRequest and assigns it to the Modules field.
-func (o *PatchedEdgeConnectorLiveIngestRequest) SetModules(v EdgeConnectorModulesRequest) {
-	o.Modules = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -179,228 +139,36 @@ func (o *PatchedEdgeConnectorLiveIngestRequest) SetType(v string) {
 	o.Type = &v
 }
 
-// GetTls returns the Tls field value if set, zero value otherwise.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetTls() TLSEdgeConnectorRequest {
-	if o == nil || IsNil(o.Tls) {
-		var ret TLSEdgeConnectorRequest
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
+func (o *PatchedEdgeConnectorLiveIngestRequest) GetAttributes() EdgeConnectorLiveIngestAttributesRequest {
+	if o == nil || IsNil(o.Attributes) {
+		var ret EdgeConnectorLiveIngestAttributesRequest
 		return ret
 	}
-	return *o.Tls
+	return *o.Attributes
 }
 
-// GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetTlsOk() (*TLSEdgeConnectorRequest, bool) {
-	if o == nil || IsNil(o.Tls) {
+func (o *PatchedEdgeConnectorLiveIngestRequest) GetAttributesOk() (*EdgeConnectorLiveIngestAttributesRequest, bool) {
+	if o == nil || IsNil(o.Attributes) {
 		return nil, false
 	}
-	return o.Tls, true
+	return o.Attributes, true
 }
 
-// HasTls returns a boolean if a field has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) HasTls() bool {
-	if o != nil && !IsNil(o.Tls) {
+// HasAttributes returns a boolean if a field has been set.
+func (o *PatchedEdgeConnectorLiveIngestRequest) HasAttributes() bool {
+	if o != nil && !IsNil(o.Attributes) {
 		return true
 	}
 
 	return false
 }
 
-// SetTls gets a reference to the given TLSEdgeConnectorRequest and assigns it to the Tls field.
-func (o *PatchedEdgeConnectorLiveIngestRequest) SetTls(v TLSEdgeConnectorRequest) {
-	o.Tls = &v
-}
-
-// GetLoadBalanceMethod returns the LoadBalanceMethod field value if set, zero value otherwise.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetLoadBalanceMethod() string {
-	if o == nil || IsNil(o.LoadBalanceMethod) {
-		var ret string
-		return ret
-	}
-	return *o.LoadBalanceMethod
-}
-
-// GetLoadBalanceMethodOk returns a tuple with the LoadBalanceMethod field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetLoadBalanceMethodOk() (*string, bool) {
-	if o == nil || IsNil(o.LoadBalanceMethod) {
-		return nil, false
-	}
-	return o.LoadBalanceMethod, true
-}
-
-// HasLoadBalanceMethod returns a boolean if a field has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) HasLoadBalanceMethod() bool {
-	if o != nil && !IsNil(o.LoadBalanceMethod) {
-		return true
-	}
-
-	return false
-}
-
-// SetLoadBalanceMethod gets a reference to the given string and assigns it to the LoadBalanceMethod field.
-func (o *PatchedEdgeConnectorLiveIngestRequest) SetLoadBalanceMethod(v string) {
-	o.LoadBalanceMethod = &v
-}
-
-// GetConnectionPreference returns the ConnectionPreference field value if set, zero value otherwise.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetConnectionPreference() []string {
-	if o == nil || IsNil(o.ConnectionPreference) {
-		var ret []string
-		return ret
-	}
-	return o.ConnectionPreference
-}
-
-// GetConnectionPreferenceOk returns a tuple with the ConnectionPreference field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetConnectionPreferenceOk() ([]string, bool) {
-	if o == nil || IsNil(o.ConnectionPreference) {
-		return nil, false
-	}
-	return o.ConnectionPreference, true
-}
-
-// HasConnectionPreference returns a boolean if a field has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) HasConnectionPreference() bool {
-	if o != nil && !IsNil(o.ConnectionPreference) {
-		return true
-	}
-
-	return false
-}
-
-// SetConnectionPreference gets a reference to the given []string and assigns it to the ConnectionPreference field.
-func (o *PatchedEdgeConnectorLiveIngestRequest) SetConnectionPreference(v []string) {
-	o.ConnectionPreference = v
-}
-
-// GetConnectionTimeout returns the ConnectionTimeout field value if set, zero value otherwise.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetConnectionTimeout() int64 {
-	if o == nil || IsNil(o.ConnectionTimeout) {
-		var ret int64
-		return ret
-	}
-	return *o.ConnectionTimeout
-}
-
-// GetConnectionTimeoutOk returns a tuple with the ConnectionTimeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetConnectionTimeoutOk() (*int64, bool) {
-	if o == nil || IsNil(o.ConnectionTimeout) {
-		return nil, false
-	}
-	return o.ConnectionTimeout, true
-}
-
-// HasConnectionTimeout returns a boolean if a field has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) HasConnectionTimeout() bool {
-	if o != nil && !IsNil(o.ConnectionTimeout) {
-		return true
-	}
-
-	return false
-}
-
-// SetConnectionTimeout gets a reference to the given int64 and assigns it to the ConnectionTimeout field.
-func (o *PatchedEdgeConnectorLiveIngestRequest) SetConnectionTimeout(v int64) {
-	o.ConnectionTimeout = &v
-}
-
-// GetReadWriteTimeout returns the ReadWriteTimeout field value if set, zero value otherwise.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetReadWriteTimeout() int64 {
-	if o == nil || IsNil(o.ReadWriteTimeout) {
-		var ret int64
-		return ret
-	}
-	return *o.ReadWriteTimeout
-}
-
-// GetReadWriteTimeoutOk returns a tuple with the ReadWriteTimeout field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetReadWriteTimeoutOk() (*int64, bool) {
-	if o == nil || IsNil(o.ReadWriteTimeout) {
-		return nil, false
-	}
-	return o.ReadWriteTimeout, true
-}
-
-// HasReadWriteTimeout returns a boolean if a field has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) HasReadWriteTimeout() bool {
-	if o != nil && !IsNil(o.ReadWriteTimeout) {
-		return true
-	}
-
-	return false
-}
-
-// SetReadWriteTimeout gets a reference to the given int64 and assigns it to the ReadWriteTimeout field.
-func (o *PatchedEdgeConnectorLiveIngestRequest) SetReadWriteTimeout(v int64) {
-	o.ReadWriteTimeout = &v
-}
-
-// GetMaxRetries returns the MaxRetries field value if set, zero value otherwise.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetMaxRetries() int64 {
-	if o == nil || IsNil(o.MaxRetries) {
-		var ret int64
-		return ret
-	}
-	return *o.MaxRetries
-}
-
-// GetMaxRetriesOk returns a tuple with the MaxRetries field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetMaxRetriesOk() (*int64, bool) {
-	if o == nil || IsNil(o.MaxRetries) {
-		return nil, false
-	}
-	return o.MaxRetries, true
-}
-
-// HasMaxRetries returns a boolean if a field has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) HasMaxRetries() bool {
-	if o != nil && !IsNil(o.MaxRetries) {
-		return true
-	}
-
-	return false
-}
-
-// SetMaxRetries gets a reference to the given int64 and assigns it to the MaxRetries field.
-func (o *PatchedEdgeConnectorLiveIngestRequest) SetMaxRetries(v int64) {
-	o.MaxRetries = &v
-}
-
-// GetTypeProperties returns the TypeProperties field value if set, zero value otherwise.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetTypeProperties() EdgeConnectorLiveIngestTypePropertiesRequest {
-	if o == nil || IsNil(o.TypeProperties) {
-		var ret EdgeConnectorLiveIngestTypePropertiesRequest
-		return ret
-	}
-	return *o.TypeProperties
-}
-
-// GetTypePropertiesOk returns a tuple with the TypeProperties field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) GetTypePropertiesOk() (*EdgeConnectorLiveIngestTypePropertiesRequest, bool) {
-	if o == nil || IsNil(o.TypeProperties) {
-		return nil, false
-	}
-	return o.TypeProperties, true
-}
-
-// HasTypeProperties returns a boolean if a field has been set.
-func (o *PatchedEdgeConnectorLiveIngestRequest) HasTypeProperties() bool {
-	if o != nil && !IsNil(o.TypeProperties) {
-		return true
-	}
-
-	return false
-}
-
-// SetTypeProperties gets a reference to the given EdgeConnectorLiveIngestTypePropertiesRequest and assigns it to the TypeProperties field.
-func (o *PatchedEdgeConnectorLiveIngestRequest) SetTypeProperties(v EdgeConnectorLiveIngestTypePropertiesRequest) {
-	o.TypeProperties = &v
+// SetAttributes gets a reference to the given EdgeConnectorLiveIngestAttributesRequest and assigns it to the Attributes field.
+func (o *PatchedEdgeConnectorLiveIngestRequest) SetAttributes(v EdgeConnectorLiveIngestAttributesRequest) {
+	o.Attributes = &v
 }
 
 func (o PatchedEdgeConnectorLiveIngestRequest) MarshalJSON() ([]byte, error) {
@@ -416,35 +184,14 @@ func (o PatchedEdgeConnectorLiveIngestRequest) ToMap() (map[string]interface{}, 
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !IsNil(o.Modules) {
-		toSerialize["modules"] = o.Modules
-	}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !IsNil(o.Tls) {
-		toSerialize["tls"] = o.Tls
-	}
-	if !IsNil(o.LoadBalanceMethod) {
-		toSerialize["load_balance_method"] = o.LoadBalanceMethod
-	}
-	if !IsNil(o.ConnectionPreference) {
-		toSerialize["connection_preference"] = o.ConnectionPreference
-	}
-	if !IsNil(o.ConnectionTimeout) {
-		toSerialize["connection_timeout"] = o.ConnectionTimeout
-	}
-	if !IsNil(o.ReadWriteTimeout) {
-		toSerialize["read_write_timeout"] = o.ReadWriteTimeout
-	}
-	if !IsNil(o.MaxRetries) {
-		toSerialize["max_retries"] = o.MaxRetries
-	}
-	if !IsNil(o.TypeProperties) {
-		toSerialize["type_properties"] = o.TypeProperties
+	if !IsNil(o.Attributes) {
+		toSerialize["attributes"] = o.Attributes
 	}
 	return toSerialize, nil
 }

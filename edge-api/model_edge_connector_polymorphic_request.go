@@ -20,7 +20,6 @@ import (
 type EdgeConnectorPolymorphicRequest struct {
 	EdgeConnectorHTTPRequest *EdgeConnectorHTTPRequest
 	EdgeConnectorLiveIngestRequest *EdgeConnectorLiveIngestRequest
-	EdgeConnectorS3Request *EdgeConnectorS3Request
 	EdgeConnectorStorageRequest *EdgeConnectorStorageRequest
 }
 
@@ -35,13 +34,6 @@ func EdgeConnectorHTTPRequestAsEdgeConnectorPolymorphicRequest(v *EdgeConnectorH
 func EdgeConnectorLiveIngestRequestAsEdgeConnectorPolymorphicRequest(v *EdgeConnectorLiveIngestRequest) EdgeConnectorPolymorphicRequest {
 	return EdgeConnectorPolymorphicRequest{
 		EdgeConnectorLiveIngestRequest: v,
-	}
-}
-
-// EdgeConnectorS3RequestAsEdgeConnectorPolymorphicRequest is a convenience function that returns EdgeConnectorS3Request wrapped in EdgeConnectorPolymorphicRequest
-func EdgeConnectorS3RequestAsEdgeConnectorPolymorphicRequest(v *EdgeConnectorS3Request) EdgeConnectorPolymorphicRequest {
-	return EdgeConnectorPolymorphicRequest{
-		EdgeConnectorS3Request: v,
 	}
 }
 
@@ -91,23 +83,6 @@ func (dst *EdgeConnectorPolymorphicRequest) UnmarshalJSON(data []byte) error {
 		dst.EdgeConnectorLiveIngestRequest = nil
 	}
 
-	// try to unmarshal data into EdgeConnectorS3Request
-	err = newStrictDecoder(data).Decode(&dst.EdgeConnectorS3Request)
-	if err == nil {
-		jsonEdgeConnectorS3Request, _ := json.Marshal(dst.EdgeConnectorS3Request)
-		if string(jsonEdgeConnectorS3Request) == "{}" { // empty struct
-			dst.EdgeConnectorS3Request = nil
-		} else {
-			if err = validator.Validate(dst.EdgeConnectorS3Request); err != nil {
-				dst.EdgeConnectorS3Request = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.EdgeConnectorS3Request = nil
-	}
-
 	// try to unmarshal data into EdgeConnectorStorageRequest
 	err = newStrictDecoder(data).Decode(&dst.EdgeConnectorStorageRequest)
 	if err == nil {
@@ -129,7 +104,6 @@ func (dst *EdgeConnectorPolymorphicRequest) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		dst.EdgeConnectorHTTPRequest = nil
 		dst.EdgeConnectorLiveIngestRequest = nil
-		dst.EdgeConnectorS3Request = nil
 		dst.EdgeConnectorStorageRequest = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(EdgeConnectorPolymorphicRequest)")
@@ -148,10 +122,6 @@ func (src EdgeConnectorPolymorphicRequest) MarshalJSON() ([]byte, error) {
 
 	if src.EdgeConnectorLiveIngestRequest != nil {
 		return json.Marshal(&src.EdgeConnectorLiveIngestRequest)
-	}
-
-	if src.EdgeConnectorS3Request != nil {
-		return json.Marshal(&src.EdgeConnectorS3Request)
 	}
 
 	if src.EdgeConnectorStorageRequest != nil {
@@ -174,10 +144,6 @@ func (obj *EdgeConnectorPolymorphicRequest) GetActualInstance() (interface{}) {
 		return obj.EdgeConnectorLiveIngestRequest
 	}
 
-	if obj.EdgeConnectorS3Request != nil {
-		return obj.EdgeConnectorS3Request
-	}
-
 	if obj.EdgeConnectorStorageRequest != nil {
 		return obj.EdgeConnectorStorageRequest
 	}
@@ -194,10 +160,6 @@ func (obj EdgeConnectorPolymorphicRequest) GetActualInstanceValue() (interface{}
 
 	if obj.EdgeConnectorLiveIngestRequest != nil {
 		return *obj.EdgeConnectorLiveIngestRequest
-	}
-
-	if obj.EdgeConnectorS3Request != nil {
-		return *obj.EdgeConnectorS3Request
 	}
 
 	if obj.EdgeConnectorStorageRequest != nil {

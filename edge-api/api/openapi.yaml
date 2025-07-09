@@ -16242,137 +16242,111 @@ components:
     Address:
       additionalProperties: false
       example:
-        tls_port: 9607
-        max_fails: 3
+        https_port: 9607
         address: address
-        plain_port: 39501
-        max_conns: 563
-        weight: 59
         active: true
-        server_role: ""
-        fail_timeout: 42
+        http_port: 39501
+        modules: ""
       properties:
+        active:
+          description: Indicates if the address is active for use
+          type: boolean
         address:
           description: IPv4/IPv6 address or CNAME to resolve
           maxLength: 255
           minLength: 1
           pattern: .*
           type: string
-        plain_port:
+        http_port:
           format: int64
           maximum: 65535
           minimum: 1
           type: integer
-        tls_port:
+        https_port:
           format: int64
           maximum: 65535
           minimum: 1
           type: integer
-        server_role:
+        modules:
           allOf:
-          - $ref: "#/components/schemas/ServerRoleEnum"
-          description: |-
-            Role of the address in load balancing
-
-            * `primary` - Primary
-            * `backup` - Backup
-        weight:
-          description: Weight used in load balancing strategy
-          format: int64
-          maximum: 100
-          minimum: 0
-          type: integer
-        active:
-          description: Indicates if the address is active for use
-          type: boolean
-        max_conns:
-          description: Maximum number of open connections per Edge Application instance
-          format: int64
-          maximum: 1000
-          minimum: 0
-          type: integer
-        max_fails:
-          description: Maximum number of communication attempts before marking as
-            unavailable
-          format: int64
-          maximum: 10
-          minimum: 1
-          type: integer
-        fail_timeout:
-          description: Timeout for communication attempts
-          format: int64
-          maximum: 60
-          minimum: 1
-          type: integer
+          - $ref: "#/components/schemas/AddressModules"
+          nullable: true
       required:
       - address
       title: Address
       type: object
+    AddressLoadBalancerModule:
+      additionalProperties: false
+      properties:
+        server_role:
+          allOf:
+          - $ref: "#/components/schemas/ServerRoleEnum"
+        weight:
+          format: int64
+          maximum: 100
+          minimum: 1
+          type: integer
+      title: AddressLoadBalancerModule
+      type: object
+    AddressLoadBalancerModuleRequest:
+      additionalProperties: false
+      properties:
+        server_role:
+          allOf:
+          - $ref: "#/components/schemas/ServerRoleEnum"
+        weight:
+          format: int64
+          maximum: 100
+          minimum: 1
+          type: integer
+      title: AddressLoadBalancerModuleRequest
+      type: object
+    AddressModules:
+      additionalProperties: false
+      properties:
+        load_balancer:
+          $ref: "#/components/schemas/AddressLoadBalancerModule"
+      title: AddressModules
+      type: object
+    AddressModulesRequest:
+      additionalProperties: false
+      properties:
+        load_balancer:
+          $ref: "#/components/schemas/AddressLoadBalancerModuleRequest"
+      title: AddressModulesRequest
+      type: object
     AddressRequest:
       additionalProperties: false
       example:
-        tls_port: 39501
-        max_fails: 6
+        https_port: 39501
         address: address
-        plain_port: 5249
-        max_conns: 596
-        weight: 14
         active: true
-        server_role: ""
-        fail_timeout: 14
+        http_port: 5249
+        modules: ""
       properties:
+        active:
+          description: Indicates if the address is active for use
+          type: boolean
         address:
           description: IPv4/IPv6 address or CNAME to resolve
           maxLength: 255
           minLength: 1
           pattern: .*
           type: string
-        plain_port:
+        http_port:
           format: int64
           maximum: 65535
           minimum: 1
           type: integer
-        tls_port:
+        https_port:
           format: int64
           maximum: 65535
           minimum: 1
           type: integer
-        server_role:
+        modules:
           allOf:
-          - $ref: "#/components/schemas/ServerRoleEnum"
-          description: |-
-            Role of the address in load balancing
-
-            * `primary` - Primary
-            * `backup` - Backup
-        weight:
-          description: Weight used in load balancing strategy
-          format: int64
-          maximum: 100
-          minimum: 0
-          type: integer
-        active:
-          description: Indicates if the address is active for use
-          type: boolean
-        max_conns:
-          description: Maximum number of open connections per Edge Application instance
-          format: int64
-          maximum: 1000
-          minimum: 0
-          type: integer
-        max_fails:
-          description: Maximum number of communication attempts before marking as
-            unavailable
-          format: int64
-          maximum: 10
-          minimum: 1
-          type: integer
-        fail_timeout:
-          description: Timeout for communication attempts
-          format: int64
-          maximum: 60
-          minimum: 1
-          type: integer
+          - $ref: "#/components/schemas/AddressModulesRequest"
+          nullable: true
       required:
       - address
       title: AddressRequest
@@ -17123,6 +17097,13 @@ components:
       - type
       title: DeploymentStrategyShared
       type: object
+    DnsResolutionEnum:
+      description: |-
+        * `preserve` - Preserve
+        * `force_ipv4` - Force IPv4
+        * `force_ipv6` - Force IPv6
+      title: DnsResolutionEnum
+      type: string
     EdgeApllicationRuleEngineRewriteRequestAttributes:
       additionalProperties: false
       properties:
@@ -20004,51 +19985,26 @@ components:
       additionalProperties: false
       example:
         product_version: product_version
-        addresses:
-        - tls_port: 9607
-          max_fails: 3
-          address: address
-          plain_port: 39501
-          max_conns: 563
-          weight: 59
-          active: true
-          server_role: ""
-          fail_timeout: 42
-        - tls_port: 9607
-          max_fails: 3
-          address: address
-          plain_port: 39501
-          max_conns: 563
-          weight: 59
-          active: true
-          server_role: ""
-          fail_timeout: 42
-        read_write_timeout: 109
-        load_balance_method: ""
-        max_retries: 2
         last_editor: last_editor
-        active: true
-        type: type
-        type_properties:
-          path: path
-          versions:
-          - null
-          - null
-          real_port_header: real_port_header
-          host: host
-          following_redirect: true
-          real_ip_header: real_ip_header
-        modules:
-          load_balancer_enabled: true
-          origin_shield_enabled: true
-        connection_preference:
-        - connection_preference
-        - connection_preference
         name: name
-        tls: ""
+        active: true
+        attributes:
+          addresses:
+          - https_port: 9607
+            address: address
+            active: true
+            http_port: 39501
+            modules: ""
+          - https_port: 9607
+            address: address
+            active: true
+            http_port: 39501
+            modules: ""
+          connection_options: ""
+          modules: ""
         id: 0
+        type: type
         last_modified: 2000-01-23T04:56:07.000+00:00
-        connection_timeout: 279
       properties:
         id:
           format: int64
@@ -20069,8 +20025,6 @@ components:
           format: date-time
           readOnly: true
           type: string
-        modules:
-          $ref: "#/components/schemas/EdgeConnectorModules"
         active:
           type: boolean
         product_version:
@@ -20082,250 +20036,126 @@ components:
         type:
           description: |-
             * `http` - HTTP
-            * `s3` - S3
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type5cdEnum
+          title: Type625Enum
           type: string
+        attributes:
+          $ref: "#/components/schemas/EdgeConnectorHTTPAttributes"
+      required:
+      - attributes
+      - id
+      - last_editor
+      - last_modified
+      - name
+      - product_version
+      - type
+      title: EdgeConnectorHTTP
+      type: object
+    EdgeConnectorHTTPAttributes:
+      additionalProperties: false
+      example:
+        addresses:
+        - https_port: 9607
+          address: address
+          active: true
+          http_port: 39501
+          modules: ""
+        - https_port: 9607
+          address: address
+          active: true
+          http_port: 39501
+          modules: ""
+        connection_options: ""
+        modules: ""
+      properties:
         addresses:
           items:
             $ref: "#/components/schemas/Address"
           type: array
-        tls:
+        connection_options:
           allOf:
-          - $ref: "#/components/schemas/TLSEdgeConnector"
-        load_balance_method:
+          - $ref: "#/components/schemas/HTTPConnectionOptions"
+        modules:
           allOf:
-          - $ref: "#/components/schemas/LoadBalanceMethodEnum"
-        connection_preference:
-          items:
-            maxLength: 30
-            type: string
-          maxItems: 2
-          type: array
-        connection_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        read_write_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        max_retries:
-          format: int64
-          maximum: 10
-          minimum: 0
-          type: integer
-        type_properties:
-          $ref: "#/components/schemas/EdgeConnectorHTTPTypeProperties"
+          - $ref: "#/components/schemas/HTTPModules"
       required:
-      - id
-      - last_editor
-      - last_modified
-      - modules
-      - name
-      - product_version
-      - type
-      - type_properties
-      title: EdgeConnectorHTTP
+      - addresses
+      title: EdgeConnectorHTTPAttributes
+      type: object
+    EdgeConnectorHTTPAttributesRequest:
+      additionalProperties: false
+      example:
+        addresses:
+        - https_port: 39501
+          address: address
+          active: true
+          http_port: 5249
+          modules: ""
+        - https_port: 39501
+          address: address
+          active: true
+          http_port: 5249
+          modules: ""
+        connection_options: ""
+        modules: ""
+      properties:
+        addresses:
+          items:
+            $ref: "#/components/schemas/AddressRequest"
+          type: array
+        connection_options:
+          allOf:
+          - $ref: "#/components/schemas/HTTPConnectionOptionsRequest"
+        modules:
+          allOf:
+          - $ref: "#/components/schemas/HTTPModulesRequest"
+      required:
+      - addresses
+      title: EdgeConnectorHTTPAttributesRequest
       type: object
     EdgeConnectorHTTPRequest:
       additionalProperties: false
       example:
-        addresses:
-        - tls_port: 39501
-          max_fails: 6
-          address: address
-          plain_port: 5249
-          max_conns: 596
-          weight: 14
-          active: true
-          server_role: ""
-          fail_timeout: 14
-        - tls_port: 39501
-          max_fails: 6
-          address: address
-          plain_port: 5249
-          max_conns: 596
-          weight: 14
-          active: true
-          server_role: ""
-          fail_timeout: 14
-        read_write_timeout: 279
-        load_balance_method: ""
-        max_retries: 3
-        connection_preference:
-        - connection_preference
-        - connection_preference
         name: name
         active: true
-        tls: ""
+        attributes:
+          addresses:
+          - https_port: 39501
+            address: address
+            active: true
+            http_port: 5249
+            modules: ""
+          - https_port: 39501
+            address: address
+            active: true
+            http_port: 5249
+            modules: ""
+          connection_options: ""
+          modules: ""
         type: type
-        connection_timeout: 212
-        type_properties:
-          path: path
-          versions:
-          - null
-          - null
-          real_port_header: real_port_header
-          host: host
-          following_redirect: true
-          real_ip_header: real_ip_header
-        modules:
-          load_balancer_enabled: true
-          origin_shield_enabled: true
       properties:
         name:
           maxLength: 255
           minLength: 1
           pattern: .*
           type: string
-        modules:
-          $ref: "#/components/schemas/EdgeConnectorModulesRequest"
         active:
           type: boolean
         type:
           description: |-
             * `http` - HTTP
-            * `s3` - S3
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type5cdEnum
+          title: Type625Enum
           type: string
-        addresses:
-          items:
-            $ref: "#/components/schemas/AddressRequest"
-          type: array
-        tls:
-          allOf:
-          - $ref: "#/components/schemas/TLSEdgeConnectorRequest"
-        load_balance_method:
-          allOf:
-          - $ref: "#/components/schemas/LoadBalanceMethodEnum"
-        connection_preference:
-          items:
-            maxLength: 30
-            minLength: 1
-            type: string
-          maxItems: 2
-          type: array
-        connection_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        read_write_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        max_retries:
-          format: int64
-          maximum: 10
-          minimum: 0
-          type: integer
-        type_properties:
-          $ref: "#/components/schemas/EdgeConnectorHTTPTypePropertiesRequest"
+        attributes:
+          $ref: "#/components/schemas/EdgeConnectorHTTPAttributesRequest"
       required:
-      - modules
+      - attributes
       - name
       - type
-      - type_properties
       title: EdgeConnectorHTTPRequest
-      type: object
-    EdgeConnectorHTTPTypeProperties:
-      additionalProperties: false
-      example:
-        path: path
-        versions:
-        - null
-        - null
-        real_port_header: real_port_header
-        host: host
-        following_redirect: true
-        real_ip_header: real_ip_header
-      properties:
-        versions:
-          items:
-            $ref: "#/components/schemas/VersionsEnum"
-          type: array
-        host:
-          maxLength: 255
-          minLength: 1
-          nullable: true
-          pattern: .*
-          type: string
-        path:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        following_redirect:
-          type: boolean
-        real_ip_header:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        real_port_header:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-      required:
-      - host
-      - path
-      - real_ip_header
-      - real_port_header
-      title: EdgeConnectorHTTPTypeProperties
-      type: object
-    EdgeConnectorHTTPTypePropertiesRequest:
-      additionalProperties: false
-      example:
-        path: path
-        versions:
-        - null
-        - null
-        real_port_header: real_port_header
-        host: host
-        following_redirect: true
-        real_ip_header: real_ip_header
-      properties:
-        versions:
-          items:
-            $ref: "#/components/schemas/VersionsEnum"
-          type: array
-        host:
-          maxLength: 255
-          minLength: 1
-          nullable: true
-          pattern: .*
-          type: string
-        path:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        following_redirect:
-          type: boolean
-        real_ip_header:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        real_port_header:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-      required:
-      - host
-      - path
-      - real_ip_header
-      - real_port_header
-      title: EdgeConnectorHTTPTypePropertiesRequest
       type: object
     EdgeConnectorLiveIngest:
       additionalProperties: false
@@ -20349,8 +20179,6 @@ components:
           format: date-time
           readOnly: true
           type: string
-        modules:
-          $ref: "#/components/schemas/EdgeConnectorModules"
         active:
           type: boolean
         product_version:
@@ -20362,50 +20190,53 @@ components:
         type:
           description: |-
             * `http` - HTTP
-            * `s3` - S3
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type5cdEnum
+          title: Type625Enum
           type: string
-        tls:
-          allOf:
-          - $ref: "#/components/schemas/TLSEdgeConnector"
-        load_balance_method:
-          allOf:
-          - $ref: "#/components/schemas/LoadBalanceMethodEnum"
-        connection_preference:
-          items:
-            maxLength: 30
-            type: string
-          maxItems: 2
-          type: array
-        connection_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        read_write_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        max_retries:
-          format: int64
-          maximum: 10
-          minimum: 0
-          type: integer
-        type_properties:
-          $ref: "#/components/schemas/EdgeConnectorLiveIngestTypeProperties"
+        attributes:
+          $ref: "#/components/schemas/EdgeConnectorLiveIngestAttributes"
       required:
+      - attributes
       - id
       - last_editor
       - last_modified
-      - modules
       - name
       - product_version
       - type
-      - type_properties
       title: EdgeConnectorLiveIngest
+      type: object
+    EdgeConnectorLiveIngestAttributes:
+      additionalProperties: false
+      properties:
+        region:
+          description: |-
+            * `us-east-1` - us-east-1
+            * `us-east-2` - us-east-2
+            * `br-east-1` - br-east-1
+            * `br-east-2` - br-east-2
+            * `br-east-3` - br-east-3
+          title: RegionEnum
+          type: string
+      required:
+      - region
+      title: EdgeConnectorLiveIngestAttributes
+      type: object
+    EdgeConnectorLiveIngestAttributesRequest:
+      additionalProperties: false
+      properties:
+        region:
+          description: |-
+            * `us-east-1` - us-east-1
+            * `us-east-2` - us-east-2
+            * `br-east-1` - br-east-1
+            * `br-east-2` - br-east-2
+            * `br-east-3` - br-east-3
+          title: RegionEnum
+          type: string
+      required:
+      - region
+      title: EdgeConnectorLiveIngestAttributesRequest
       type: object
     EdgeConnectorLiveIngestRequest:
       additionalProperties: false
@@ -20415,121 +20246,33 @@ components:
           minLength: 1
           pattern: .*
           type: string
-        modules:
-          $ref: "#/components/schemas/EdgeConnectorModulesRequest"
         active:
           type: boolean
         type:
           description: |-
             * `http` - HTTP
-            * `s3` - S3
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type5cdEnum
+          title: Type625Enum
           type: string
-        tls:
-          allOf:
-          - $ref: "#/components/schemas/TLSEdgeConnectorRequest"
-        load_balance_method:
-          allOf:
-          - $ref: "#/components/schemas/LoadBalanceMethodEnum"
-        connection_preference:
-          items:
-            maxLength: 30
-            minLength: 1
-            type: string
-          maxItems: 2
-          type: array
-        connection_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        read_write_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        max_retries:
-          format: int64
-          maximum: 10
-          minimum: 0
-          type: integer
-        type_properties:
-          $ref: "#/components/schemas/EdgeConnectorLiveIngestTypePropertiesRequest"
+        attributes:
+          $ref: "#/components/schemas/EdgeConnectorLiveIngestAttributesRequest"
       required:
-      - modules
+      - attributes
       - name
       - type
-      - type_properties
       title: EdgeConnectorLiveIngestRequest
-      type: object
-    EdgeConnectorLiveIngestTypeProperties:
-      additionalProperties: false
-      properties:
-        endpoint:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-      required:
-      - endpoint
-      title: EdgeConnectorLiveIngestTypeProperties
-      type: object
-    EdgeConnectorLiveIngestTypePropertiesRequest:
-      additionalProperties: false
-      properties:
-        endpoint:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-      required:
-      - endpoint
-      title: EdgeConnectorLiveIngestTypePropertiesRequest
-      type: object
-    EdgeConnectorModules:
-      additionalProperties: false
-      example:
-        load_balancer_enabled: true
-        origin_shield_enabled: true
-      properties:
-        load_balancer_enabled:
-          type: boolean
-        origin_shield_enabled:
-          type: boolean
-      required:
-      - load_balancer_enabled
-      - origin_shield_enabled
-      title: EdgeConnectorModules
-      type: object
-    EdgeConnectorModulesRequest:
-      additionalProperties: false
-      example:
-        load_balancer_enabled: true
-        origin_shield_enabled: true
-      properties:
-        load_balancer_enabled:
-          type: boolean
-        origin_shield_enabled:
-          type: boolean
-      required:
-      - load_balancer_enabled
-      - origin_shield_enabled
-      title: EdgeConnectorModulesRequest
       type: object
     EdgeConnectorPolymorphic:
       additionalProperties: true
       discriminator:
         mapping:
           http: "#/components/schemas/EdgeConnectorHTTP"
-          s3: "#/components/schemas/EdgeConnectorS3"
           edge_storage: "#/components/schemas/EdgeConnectorStorage"
           live_ingest: "#/components/schemas/EdgeConnectorLiveIngest"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/EdgeConnectorHTTP"
-      - $ref: "#/components/schemas/EdgeConnectorS3"
       - $ref: "#/components/schemas/EdgeConnectorStorage"
       - $ref: "#/components/schemas/EdgeConnectorLiveIngest"
       title: EdgeConnectorPolymorphic
@@ -20538,247 +20281,14 @@ components:
       discriminator:
         mapping:
           http: "#/components/schemas/EdgeConnectorHTTPRequest"
-          s3: "#/components/schemas/EdgeConnectorS3Request"
           edge_storage: "#/components/schemas/EdgeConnectorStorageRequest"
           live_ingest: "#/components/schemas/EdgeConnectorLiveIngestRequest"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/EdgeConnectorHTTPRequest"
-      - $ref: "#/components/schemas/EdgeConnectorS3Request"
       - $ref: "#/components/schemas/EdgeConnectorStorageRequest"
       - $ref: "#/components/schemas/EdgeConnectorLiveIngestRequest"
       title: EdgeConnectorPolymorphicRequest
-    EdgeConnectorS3:
-      additionalProperties: false
-      properties:
-        id:
-          format: int64
-          readOnly: true
-          type: integer
-        name:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        last_editor:
-          maxLength: 250
-          minLength: 1
-          pattern: .*
-          readOnly: true
-          type: string
-        last_modified:
-          format: date-time
-          readOnly: true
-          type: string
-        modules:
-          $ref: "#/components/schemas/EdgeConnectorModules"
-        active:
-          type: boolean
-        product_version:
-          maxLength: 50
-          minLength: 3
-          pattern: \d+\.\d+
-          readOnly: true
-          type: string
-        type:
-          description: |-
-            * `http` - HTTP
-            * `s3` - S3
-            * `edge_storage` - Edge Storage
-            * `live_ingest` - Live Ingest
-          title: Type5cdEnum
-          type: string
-        addresses:
-          items:
-            $ref: "#/components/schemas/Address"
-          type: array
-        tls:
-          allOf:
-          - $ref: "#/components/schemas/TLSEdgeConnector"
-        load_balance_method:
-          allOf:
-          - $ref: "#/components/schemas/LoadBalanceMethodEnum"
-        connection_preference:
-          items:
-            maxLength: 30
-            type: string
-          maxItems: 2
-          type: array
-        connection_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        read_write_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        max_retries:
-          format: int64
-          maximum: 10
-          minimum: 0
-          type: integer
-        type_properties:
-          $ref: "#/components/schemas/EdgeConnectorS3TypeProperties"
-      required:
-      - id
-      - last_editor
-      - last_modified
-      - modules
-      - name
-      - product_version
-      - type
-      - type_properties
-      title: EdgeConnectorS3
-      type: object
-    EdgeConnectorS3Request:
-      additionalProperties: false
-      properties:
-        name:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        modules:
-          $ref: "#/components/schemas/EdgeConnectorModulesRequest"
-        active:
-          type: boolean
-        type:
-          description: |-
-            * `http` - HTTP
-            * `s3` - S3
-            * `edge_storage` - Edge Storage
-            * `live_ingest` - Live Ingest
-          title: Type5cdEnum
-          type: string
-        addresses:
-          items:
-            $ref: "#/components/schemas/AddressRequest"
-          type: array
-        tls:
-          allOf:
-          - $ref: "#/components/schemas/TLSEdgeConnectorRequest"
-        load_balance_method:
-          allOf:
-          - $ref: "#/components/schemas/LoadBalanceMethodEnum"
-        connection_preference:
-          items:
-            maxLength: 30
-            minLength: 1
-            type: string
-          maxItems: 2
-          type: array
-        connection_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        read_write_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        max_retries:
-          format: int64
-          maximum: 10
-          minimum: 0
-          type: integer
-        type_properties:
-          $ref: "#/components/schemas/EdgeConnectorS3TypePropertiesRequest"
-      required:
-      - modules
-      - name
-      - type
-      - type_properties
-      title: EdgeConnectorS3Request
-      type: object
-    EdgeConnectorS3TypeProperties:
-      additionalProperties: false
-      properties:
-        host:
-          maxLength: 255
-          minLength: 1
-          nullable: true
-          pattern: .*
-          type: string
-        bucket:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        path:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        region:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        access_key:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        secret_key:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-      required:
-      - access_key
-      - bucket
-      - host
-      - path
-      - region
-      - secret_key
-      title: EdgeConnectorS3TypeProperties
-      type: object
-    EdgeConnectorS3TypePropertiesRequest:
-      additionalProperties: false
-      properties:
-        host:
-          maxLength: 255
-          minLength: 1
-          nullable: true
-          pattern: .*
-          type: string
-        bucket:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        path:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        region:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        access_key:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        secret_key:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-      required:
-      - access_key
-      - bucket
-      - host
-      - path
-      - region
-      - secret_key
-      title: EdgeConnectorS3TypePropertiesRequest
-      type: object
     EdgeConnectorStorage:
       additionalProperties: false
       properties:
@@ -20801,8 +20311,6 @@ components:
           format: date-time
           readOnly: true
           type: string
-        modules:
-          $ref: "#/components/schemas/EdgeConnectorModules"
         active:
           type: boolean
         product_version:
@@ -20814,50 +20322,55 @@ components:
         type:
           description: |-
             * `http` - HTTP
-            * `s3` - S3
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type5cdEnum
+          title: Type625Enum
           type: string
-        tls:
-          allOf:
-          - $ref: "#/components/schemas/TLSEdgeConnector"
-        load_balance_method:
-          allOf:
-          - $ref: "#/components/schemas/LoadBalanceMethodEnum"
-        connection_preference:
-          items:
-            maxLength: 30
-            type: string
-          maxItems: 2
-          type: array
-        connection_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        read_write_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        max_retries:
-          format: int64
-          maximum: 10
-          minimum: 0
-          type: integer
-        type_properties:
-          $ref: "#/components/schemas/EdgeConnectorStorageTypeProperties"
+        attributes:
+          $ref: "#/components/schemas/EdgeConnectorStorageAttributes"
       required:
+      - attributes
       - id
       - last_editor
       - last_modified
-      - modules
       - name
       - product_version
       - type
-      - type_properties
       title: EdgeConnectorStorage
+      type: object
+    EdgeConnectorStorageAttributes:
+      additionalProperties: false
+      properties:
+        bucket:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+        prefix:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+      required:
+      - bucket
+      title: EdgeConnectorStorageAttributes
+      type: object
+    EdgeConnectorStorageAttributesRequest:
+      additionalProperties: false
+      properties:
+        bucket:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+        prefix:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+      required:
+      - bucket
+      title: EdgeConnectorStorageAttributesRequest
       type: object
     EdgeConnectorStorageRequest:
       additionalProperties: false
@@ -20867,88 +20380,22 @@ components:
           minLength: 1
           pattern: .*
           type: string
-        modules:
-          $ref: "#/components/schemas/EdgeConnectorModulesRequest"
         active:
           type: boolean
         type:
           description: |-
             * `http` - HTTP
-            * `s3` - S3
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type5cdEnum
+          title: Type625Enum
           type: string
-        tls:
-          allOf:
-          - $ref: "#/components/schemas/TLSEdgeConnectorRequest"
-        load_balance_method:
-          allOf:
-          - $ref: "#/components/schemas/LoadBalanceMethodEnum"
-        connection_preference:
-          items:
-            maxLength: 30
-            minLength: 1
-            type: string
-          maxItems: 2
-          type: array
-        connection_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        read_write_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        max_retries:
-          format: int64
-          maximum: 10
-          minimum: 0
-          type: integer
-        type_properties:
-          $ref: "#/components/schemas/EdgeConnectorStorageTypePropertiesRequest"
+        attributes:
+          $ref: "#/components/schemas/EdgeConnectorStorageAttributesRequest"
       required:
-      - modules
+      - attributes
       - name
       - type
-      - type_properties
       title: EdgeConnectorStorageRequest
-      type: object
-    EdgeConnectorStorageTypeProperties:
-      additionalProperties: false
-      properties:
-        bucket:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        prefix:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-      required:
-      - bucket
-      title: EdgeConnectorStorageTypeProperties
-      type: object
-    EdgeConnectorStorageTypePropertiesRequest:
-      additionalProperties: false
-      properties:
-        bucket:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        prefix:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-      required:
-      - bucket
-      title: EdgeConnectorStorageTypePropertiesRequest
       type: object
     EdgeFirewall:
       additionalProperties: false
@@ -22475,6 +21922,118 @@ components:
         * `lua` - Lua
       title: GetEdgeFunctionsLanguageEnum
       type: string
+    HMAC:
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        config:
+          type: string
+      title: HMAC
+      type: object
+    HMACRequest:
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        config:
+          type: string
+      title: HMACRequest
+      type: object
+    HTTPConnectionOptions:
+      additionalProperties: false
+      properties:
+        dns_resolution:
+          allOf:
+          - $ref: "#/components/schemas/DnsResolutionEnum"
+        transport_policy:
+          allOf:
+          - $ref: "#/components/schemas/TransportPolicyEnum"
+        http_version_policy:
+          allOf:
+          - $ref: "#/components/schemas/HttpVersionPolicyEnum"
+        host:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+        path_prefix:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+        following_redirect:
+          type: boolean
+        real_ip_header:
+          maxLength: 100
+          minLength: 1
+          pattern: .*
+          type: string
+        real_port_header:
+          maxLength: 100
+          minLength: 1
+          pattern: .*
+          type: string
+      title: HTTPConnectionOptions
+      type: object
+    HTTPConnectionOptionsRequest:
+      additionalProperties: false
+      properties:
+        dns_resolution:
+          allOf:
+          - $ref: "#/components/schemas/DnsResolutionEnum"
+        transport_policy:
+          allOf:
+          - $ref: "#/components/schemas/TransportPolicyEnum"
+        http_version_policy:
+          allOf:
+          - $ref: "#/components/schemas/HttpVersionPolicyEnum"
+        host:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+        path_prefix:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+        following_redirect:
+          type: boolean
+        real_ip_header:
+          maxLength: 100
+          minLength: 1
+          pattern: .*
+          type: string
+        real_port_header:
+          maxLength: 100
+          minLength: 1
+          pattern: .*
+          type: string
+      title: HTTPConnectionOptionsRequest
+      type: object
+    HTTPModules:
+      additionalProperties: false
+      properties:
+        load_balancer:
+          allOf:
+          - $ref: "#/components/schemas/LoadBalancerModule"
+        origin_shield:
+          allOf:
+          - $ref: "#/components/schemas/OriginShieldModule"
+      title: HTTPModules
+      type: object
+    HTTPModulesRequest:
+      additionalProperties: false
+      properties:
+        load_balancer:
+          allOf:
+          - $ref: "#/components/schemas/LoadBalancerModuleRequest"
+        origin_shield:
+          allOf:
+          - $ref: "#/components/schemas/OriginShieldModuleRequest"
+      title: HTTPModulesRequest
+      type: object
     HttpProtocol:
       additionalProperties: false
       properties:
@@ -22542,6 +22101,10 @@ components:
           type: array
       title: HttpProtocolRequest
       type: object
+    HttpVersionPolicyEnum:
+      description: '* `http1_1` - HTTP/1.1'
+      title: HttpVersionPolicyEnum
+      type: string
     ImageProcessorModule:
       additionalProperties: false
       example:
@@ -22780,14 +22343,74 @@ components:
         * `global` - global
       title: LimitByEnum
       type: string
-    LoadBalanceMethodEnum:
-      description: |-
-        * `off` - Off
-        * `ip_hash` - IP Hash
-        * `least_connections` - Least Connections
-        * `round_robin` - Round Robin
-      title: LoadBalanceMethodEnum
-      type: string
+    LoadBalancerModule:
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        config:
+          allOf:
+          - $ref: "#/components/schemas/LoadBalancerModuleConfig"
+          nullable: true
+      title: LoadBalancerModule
+      type: object
+    LoadBalancerModuleConfig:
+      additionalProperties: false
+      properties:
+        method:
+          allOf:
+          - $ref: "#/components/schemas/MethodEnum"
+        max_retries:
+          format: int64
+          maximum: 20
+          minimum: 0
+          type: integer
+        connection_timeout:
+          format: int64
+          maximum: 300
+          minimum: 1
+          type: integer
+        read_write_timeout:
+          format: int64
+          maximum: 600
+          minimum: 1
+          type: integer
+      title: LoadBalancerModuleConfig
+      type: object
+    LoadBalancerModuleConfigRequest:
+      additionalProperties: false
+      properties:
+        method:
+          allOf:
+          - $ref: "#/components/schemas/MethodEnum"
+        max_retries:
+          format: int64
+          maximum: 20
+          minimum: 0
+          type: integer
+        connection_timeout:
+          format: int64
+          maximum: 300
+          minimum: 1
+          type: integer
+        read_write_timeout:
+          format: int64
+          maximum: 600
+          minimum: 1
+          type: integer
+      title: LoadBalancerModuleConfigRequest
+      type: object
+    LoadBalancerModuleRequest:
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        config:
+          allOf:
+          - $ref: "#/components/schemas/LoadBalancerModuleConfigRequest"
+          nullable: true
+      title: LoadBalancerModuleRequest
+      type: object
     MTLS:
       additionalProperties: false
       example:
@@ -22846,6 +22469,13 @@ components:
           type: array
       title: MTLSRequest
       type: object
+    MethodEnum:
+      description: |-
+        * `round_robin` - Round Robin
+        * `least_conn` - Least Connections
+        * `ip_hash` - IP Hash
+      title: MethodEnum
+      type: string
     MinimumVersionEnum:
       description: |-
         * `` - None
@@ -23089,6 +22719,60 @@ components:
         * `starts_with` - starts_with
       title: Operator565Enum
       type: string
+    OriginIPACL:
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+      title: OriginIPACL
+      type: object
+    OriginIPACLRequest:
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+      title: OriginIPACLRequest
+      type: object
+    OriginShieldConfig:
+      additionalProperties: false
+      properties:
+        origin_ip_acl:
+          $ref: "#/components/schemas/OriginIPACL"
+        hmac:
+          $ref: "#/components/schemas/HMAC"
+      title: OriginShieldConfig
+      type: object
+    OriginShieldConfigRequest:
+      additionalProperties: false
+      properties:
+        origin_ip_acl:
+          $ref: "#/components/schemas/OriginIPACLRequest"
+        hmac:
+          $ref: "#/components/schemas/HMACRequest"
+      title: OriginShieldConfigRequest
+      type: object
+    OriginShieldModule:
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        config:
+          allOf:
+          - $ref: "#/components/schemas/OriginShieldConfig"
+          nullable: true
+      title: OriginShieldModule
+      type: object
+    OriginShieldModuleRequest:
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        config:
+          allOf:
+          - $ref: "#/components/schemas/OriginShieldConfigRequest"
+          nullable: true
+      title: OriginShieldModuleRequest
+      type: object
     PageConnector:
       additionalProperties: false
       properties:
@@ -23993,97 +23677,47 @@ components:
         count: 123
         results:
         - product_version: product_version
-          addresses:
-          - tls_port: 9607
-            max_fails: 3
-            address: address
-            plain_port: 39501
-            max_conns: 563
-            weight: 59
-            active: true
-            server_role: ""
-            fail_timeout: 42
-          - tls_port: 9607
-            max_fails: 3
-            address: address
-            plain_port: 39501
-            max_conns: 563
-            weight: 59
-            active: true
-            server_role: ""
-            fail_timeout: 42
-          read_write_timeout: 109
-          load_balance_method: ""
-          max_retries: 2
           last_editor: last_editor
-          active: true
-          type: type
-          type_properties:
-            path: path
-            versions:
-            - null
-            - null
-            real_port_header: real_port_header
-            host: host
-            following_redirect: true
-            real_ip_header: real_ip_header
-          modules:
-            load_balancer_enabled: true
-            origin_shield_enabled: true
-          connection_preference:
-          - connection_preference
-          - connection_preference
           name: name
-          tls: ""
+          active: true
+          attributes:
+            addresses:
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            connection_options: ""
+            modules: ""
           id: 0
+          type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
-          connection_timeout: 279
         - product_version: product_version
-          addresses:
-          - tls_port: 9607
-            max_fails: 3
-            address: address
-            plain_port: 39501
-            max_conns: 563
-            weight: 59
-            active: true
-            server_role: ""
-            fail_timeout: 42
-          - tls_port: 9607
-            max_fails: 3
-            address: address
-            plain_port: 39501
-            max_conns: 563
-            weight: 59
-            active: true
-            server_role: ""
-            fail_timeout: 42
-          read_write_timeout: 109
-          load_balance_method: ""
-          max_retries: 2
           last_editor: last_editor
-          active: true
-          type: type
-          type_properties:
-            path: path
-            versions:
-            - null
-            - null
-            real_port_header: real_port_header
-            host: host
-            following_redirect: true
-            real_ip_header: real_ip_header
-          modules:
-            load_balancer_enabled: true
-            origin_shield_enabled: true
-          connection_preference:
-          - connection_preference
-          - connection_preference
           name: name
-          tls: ""
+          active: true
+          attributes:
+            addresses:
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            connection_options: ""
+            modules: ""
           id: 0
+          type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
-          connection_timeout: 279
       properties:
         count:
           example: 123
@@ -25240,100 +24874,40 @@ components:
     PatchedEdgeConnectorHTTPRequest:
       additionalProperties: false
       example:
-        addresses:
-        - tls_port: 39501
-          max_fails: 6
-          address: address
-          plain_port: 5249
-          max_conns: 596
-          weight: 14
-          active: true
-          server_role: ""
-          fail_timeout: 14
-        - tls_port: 39501
-          max_fails: 6
-          address: address
-          plain_port: 5249
-          max_conns: 596
-          weight: 14
-          active: true
-          server_role: ""
-          fail_timeout: 14
-        read_write_timeout: 181
-        load_balance_method: ""
-        max_retries: 1
-        connection_preference:
-        - connection_preference
-        - connection_preference
         name: name
         active: true
-        tls: ""
+        attributes:
+          addresses:
+          - https_port: 39501
+            address: address
+            active: true
+            http_port: 5249
+            modules: ""
+          - https_port: 39501
+            address: address
+            active: true
+            http_port: 5249
+            modules: ""
+          connection_options: ""
+          modules: ""
         type: type
-        connection_timeout: 24
-        type_properties:
-          path: path
-          versions:
-          - null
-          - null
-          real_port_header: real_port_header
-          host: host
-          following_redirect: true
-          real_ip_header: real_ip_header
-        modules:
-          load_balancer_enabled: true
-          origin_shield_enabled: true
       properties:
         name:
           maxLength: 255
           minLength: 1
           pattern: .*
           type: string
-        modules:
-          $ref: "#/components/schemas/EdgeConnectorModulesRequest"
         active:
           type: boolean
         type:
           description: |-
             * `http` - HTTP
-            * `s3` - S3
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type5cdEnum
+          title: Type625Enum
           type: string
-        addresses:
-          items:
-            $ref: "#/components/schemas/AddressRequest"
-          type: array
-        tls:
-          allOf:
-          - $ref: "#/components/schemas/TLSEdgeConnectorRequest"
-        load_balance_method:
-          allOf:
-          - $ref: "#/components/schemas/LoadBalanceMethodEnum"
-        connection_preference:
-          items:
-            maxLength: 30
-            minLength: 1
-            type: string
-          maxItems: 2
-          type: array
-        connection_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        read_write_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        max_retries:
-          format: int64
-          maximum: 10
-          minimum: 0
-          type: integer
-        type_properties:
-          $ref: "#/components/schemas/EdgeConnectorHTTPTypePropertiesRequest"
+        attributes:
+          $ref: "#/components/schemas/EdgeConnectorHTTPAttributesRequest"
       title: PatchedEdgeConnectorHTTPRequest
       type: object
     PatchedEdgeConnectorLiveIngestRequest:
@@ -25344,48 +24918,17 @@ components:
           minLength: 1
           pattern: .*
           type: string
-        modules:
-          $ref: "#/components/schemas/EdgeConnectorModulesRequest"
         active:
           type: boolean
         type:
           description: |-
             * `http` - HTTP
-            * `s3` - S3
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type5cdEnum
+          title: Type625Enum
           type: string
-        tls:
-          allOf:
-          - $ref: "#/components/schemas/TLSEdgeConnectorRequest"
-        load_balance_method:
-          allOf:
-          - $ref: "#/components/schemas/LoadBalanceMethodEnum"
-        connection_preference:
-          items:
-            maxLength: 30
-            minLength: 1
-            type: string
-          maxItems: 2
-          type: array
-        connection_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        read_write_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        max_retries:
-          format: int64
-          maximum: 10
-          minimum: 0
-          type: integer
-        type_properties:
-          $ref: "#/components/schemas/EdgeConnectorLiveIngestTypePropertiesRequest"
+        attributes:
+          $ref: "#/components/schemas/EdgeConnectorLiveIngestAttributesRequest"
       title: PatchedEdgeConnectorLiveIngestRequest
       type: object
     PatchedEdgeConnectorPolymorphicRequest:
@@ -25393,72 +24936,14 @@ components:
       discriminator:
         mapping:
           http: "#/components/schemas/PatchedEdgeConnectorHTTPRequest"
-          s3: "#/components/schemas/PatchedEdgeConnectorS3Request"
           edge_storage: "#/components/schemas/PatchedEdgeConnectorStorageRequest"
           live_ingest: "#/components/schemas/PatchedEdgeConnectorLiveIngestRequest"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/PatchedEdgeConnectorHTTPRequest"
-      - $ref: "#/components/schemas/PatchedEdgeConnectorS3Request"
       - $ref: "#/components/schemas/PatchedEdgeConnectorStorageRequest"
       - $ref: "#/components/schemas/PatchedEdgeConnectorLiveIngestRequest"
       title: PatchedEdgeConnectorPolymorphicRequest
-    PatchedEdgeConnectorS3Request:
-      additionalProperties: false
-      properties:
-        name:
-          maxLength: 255
-          minLength: 1
-          pattern: .*
-          type: string
-        modules:
-          $ref: "#/components/schemas/EdgeConnectorModulesRequest"
-        active:
-          type: boolean
-        type:
-          description: |-
-            * `http` - HTTP
-            * `s3` - S3
-            * `edge_storage` - Edge Storage
-            * `live_ingest` - Live Ingest
-          title: Type5cdEnum
-          type: string
-        addresses:
-          items:
-            $ref: "#/components/schemas/AddressRequest"
-          type: array
-        tls:
-          allOf:
-          - $ref: "#/components/schemas/TLSEdgeConnectorRequest"
-        load_balance_method:
-          allOf:
-          - $ref: "#/components/schemas/LoadBalanceMethodEnum"
-        connection_preference:
-          items:
-            maxLength: 30
-            minLength: 1
-            type: string
-          maxItems: 2
-          type: array
-        connection_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        read_write_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        max_retries:
-          format: int64
-          maximum: 10
-          minimum: 0
-          type: integer
-        type_properties:
-          $ref: "#/components/schemas/EdgeConnectorS3TypePropertiesRequest"
-      title: PatchedEdgeConnectorS3Request
-      type: object
     PatchedEdgeConnectorStorageRequest:
       additionalProperties: false
       properties:
@@ -25467,48 +24952,17 @@ components:
           minLength: 1
           pattern: .*
           type: string
-        modules:
-          $ref: "#/components/schemas/EdgeConnectorModulesRequest"
         active:
           type: boolean
         type:
           description: |-
             * `http` - HTTP
-            * `s3` - S3
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type5cdEnum
+          title: Type625Enum
           type: string
-        tls:
-          allOf:
-          - $ref: "#/components/schemas/TLSEdgeConnectorRequest"
-        load_balance_method:
-          allOf:
-          - $ref: "#/components/schemas/LoadBalanceMethodEnum"
-        connection_preference:
-          items:
-            maxLength: 30
-            minLength: 1
-            type: string
-          maxItems: 2
-          type: array
-        connection_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        read_write_timeout:
-          format: int64
-          maximum: 300
-          minimum: 1
-          type: integer
-        max_retries:
-          format: int64
-          maximum: 10
-          minimum: 0
-          type: integer
-        type_properties:
-          $ref: "#/components/schemas/EdgeConnectorStorageTypePropertiesRequest"
+        attributes:
+          $ref: "#/components/schemas/EdgeConnectorStorageAttributesRequest"
       title: PatchedEdgeConnectorStorageRequest
       type: object
     PatchedEdgeFirewallFunctionInstanceRequest:
@@ -26091,13 +25545,6 @@ components:
           type: boolean
       title: PatchedWorkloadRequest
       type: object
-    PolicyEnum:
-      description: |-
-        * `off` - off
-        * `on` - on
-        * `preserve` - preserve
-      title: PolicyEnum
-      type: string
     Protocols:
       additionalProperties: false
       properties:
@@ -26158,6 +25605,15 @@ components:
       - items
       title: PurgeInputRequest
       type: object
+    RegionEnum:
+      description: |-
+        * `us-east-1` - us-east-1
+        * `us-east-2` - us-east-2
+        * `br-east-1` - br-east-1
+        * `br-east-2` - br-east-2
+        * `br-east-3` - br-east-3
+      title: RegionEnum
+      type: string
     ResponseAsyncCacheSetting:
       additionalProperties: false
       example:
@@ -26801,51 +26257,26 @@ components:
       example:
         data:
           product_version: product_version
-          addresses:
-          - tls_port: 9607
-            max_fails: 3
-            address: address
-            plain_port: 39501
-            max_conns: 563
-            weight: 59
-            active: true
-            server_role: ""
-            fail_timeout: 42
-          - tls_port: 9607
-            max_fails: 3
-            address: address
-            plain_port: 39501
-            max_conns: 563
-            weight: 59
-            active: true
-            server_role: ""
-            fail_timeout: 42
-          read_write_timeout: 109
-          load_balance_method: ""
-          max_retries: 2
           last_editor: last_editor
-          active: true
-          type: type
-          type_properties:
-            path: path
-            versions:
-            - null
-            - null
-            real_port_header: real_port_header
-            host: host
-            following_redirect: true
-            real_ip_header: real_ip_header
-          modules:
-            load_balancer_enabled: true
-            origin_shield_enabled: true
-          connection_preference:
-          - connection_preference
-          - connection_preference
           name: name
-          tls: ""
+          active: true
+          attributes:
+            addresses:
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            connection_options: ""
+            modules: ""
           id: 0
+          type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
-          connection_timeout: 279
         state: state
       properties:
         state:
@@ -28332,51 +27763,26 @@ components:
       example:
         data:
           product_version: product_version
-          addresses:
-          - tls_port: 9607
-            max_fails: 3
-            address: address
-            plain_port: 39501
-            max_conns: 563
-            weight: 59
-            active: true
-            server_role: ""
-            fail_timeout: 42
-          - tls_port: 9607
-            max_fails: 3
-            address: address
-            plain_port: 39501
-            max_conns: 563
-            weight: 59
-            active: true
-            server_role: ""
-            fail_timeout: 42
-          read_write_timeout: 109
-          load_balance_method: ""
-          max_retries: 2
           last_editor: last_editor
-          active: true
-          type: type
-          type_properties:
-            path: path
-            versions:
-            - null
-            - null
-            real_port_header: real_port_header
-            host: host
-            following_redirect: true
-            real_ip_header: real_ip_header
-          modules:
-            load_balancer_enabled: true
-            origin_shield_enabled: true
-          connection_preference:
-          - connection_preference
-          - connection_preference
           name: name
-          tls: ""
+          active: true
+          attributes:
+            addresses:
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            connection_options: ""
+            modules: ""
           id: 0
+          type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
-          connection_timeout: 279
         state: state
       properties:
         state:
@@ -28981,51 +28387,26 @@ components:
       example:
         data:
           product_version: product_version
-          addresses:
-          - tls_port: 9607
-            max_fails: 3
-            address: address
-            plain_port: 39501
-            max_conns: 563
-            weight: 59
-            active: true
-            server_role: ""
-            fail_timeout: 42
-          - tls_port: 9607
-            max_fails: 3
-            address: address
-            plain_port: 39501
-            max_conns: 563
-            weight: 59
-            active: true
-            server_role: ""
-            fail_timeout: 42
-          read_write_timeout: 109
-          load_balance_method: ""
-          max_retries: 2
           last_editor: last_editor
-          active: true
-          type: type
-          type_properties:
-            path: path
-            versions:
-            - null
-            - null
-            real_port_header: real_port_header
-            host: host
-            following_redirect: true
-            real_ip_header: real_ip_header
-          modules:
-            load_balancer_enabled: true
-            origin_shield_enabled: true
-          connection_preference:
-          - connection_preference
-          - connection_preference
           name: name
-          tls: ""
+          active: true
+          attributes:
+            addresses:
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            connection_options: ""
+            modules: ""
           id: 0
+          type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
-          connection_timeout: 279
       properties:
         data:
           $ref: "#/components/schemas/EdgeConnectorPolymorphic"
@@ -29637,34 +29018,6 @@ components:
       - slice_tiered_caching_enabled
       title: SliceControlsModuleRequest
       type: object
-    TLSEdgeConnector:
-      additionalProperties: false
-      properties:
-        policy:
-          allOf:
-          - $ref: "#/components/schemas/PolicyEnum"
-          description: |-
-            policy of security to access the origin Possible values: off, on, preserve. Default: preserve
-
-            * `off` - off
-            * `on` - on
-            * `preserve` - preserve
-      title: TLSEdgeConnector
-      type: object
-    TLSEdgeConnectorRequest:
-      additionalProperties: false
-      properties:
-        policy:
-          allOf:
-          - $ref: "#/components/schemas/PolicyEnum"
-          description: |-
-            policy of security to access the origin Possible values: off, on, preserve. Default: preserve
-
-            * `off` - off
-            * `on` - on
-            * `preserve` - preserve
-      title: TLSEdgeConnectorRequest
-      type: object
     TLSWorkload:
       additionalProperties: false
       properties:
@@ -29797,6 +29150,13 @@ components:
           type: boolean
       title: TieredCacheModuleRequest
       type: object
+    TransportPolicyEnum:
+      description: |-
+        * `preserve` - Preserve
+        * `force_https` - Force HTTPS
+        * `force_http` - Force HTTP
+      title: TransportPolicyEnum
+      type: string
     Type528Enum:
       description: |-
         * `asn` - ASN
@@ -29804,13 +29164,12 @@ components:
         * `ip_cidr` - IP/CIDR
       title: Type528Enum
       type: string
-    Type5cdEnum:
+    Type625Enum:
       description: |-
         * `http` - HTTP
-        * `s3` - S3
         * `edge_storage` - Edge Storage
         * `live_ingest` - Live Ingest
-      title: Type5cdEnum
+      title: Type625Enum
       type: string
     Type689Enum:
       description: '* `run_function` - run_function'
@@ -29825,10 +29184,6 @@ components:
         * `enforce` - Enforce
         * `permissive` - Permissive
       title: VerificationEnum
-      type: string
-    VersionsEnum:
-      description: '* `http1` - http1'
-      title: VersionsEnum
       type: string
     WAF:
       additionalProperties: false
