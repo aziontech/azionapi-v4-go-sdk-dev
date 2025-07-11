@@ -2230,7 +2230,6 @@ components:
           pattern: .*
           type: string
         last_editor:
-          maxLength: 100
           minLength: 1
           pattern: .*
           readOnly: true
@@ -2240,7 +2239,6 @@ components:
           readOnly: true
           type: string
         product_version:
-          maxLength: 100
           minLength: 1
           pattern: .*
           readOnly: true
@@ -3020,7 +3018,6 @@ components:
         active:
           type: boolean
         data_set:
-          maxLength: 100
           minLength: 1
           pattern: .*
           type: string
@@ -3290,7 +3287,6 @@ components:
           pattern: .*
           type: string
         last_editor:
-          maxLength: 100
           minLength: 1
           pattern: .*
           readOnly: true
@@ -3300,7 +3296,6 @@ components:
           readOnly: true
           type: string
         product_version:
-          maxLength: 100
           minLength: 1
           pattern: .*
           readOnly: true
@@ -3351,7 +3346,6 @@ components:
           pattern: .*
           type: string
         last_editor:
-          maxLength: 100
           minLength: 1
           pattern: .*
           readOnly: true
@@ -3366,7 +3360,6 @@ components:
         active:
           type: boolean
         data_set:
-          maxLength: 100
           minLength: 1
           pattern: .*
           type: string
@@ -3589,7 +3582,6 @@ components:
           pattern: .*
           type: string
         last_editor:
-          maxLength: 100
           minLength: 1
           pattern: .*
           readOnly: true
@@ -3604,7 +3596,6 @@ components:
         active:
           type: boolean
         data_set:
-          maxLength: 100
           minLength: 1
           pattern: .*
           type: string
@@ -3632,7 +3623,6 @@ components:
         active:
           type: boolean
         data_set:
-          maxLength: 100
           minLength: 1
           pattern: .*
           type: string
