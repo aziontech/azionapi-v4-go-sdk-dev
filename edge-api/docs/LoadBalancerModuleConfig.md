@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Method** | Pointer to **string** | * &#x60;round_robin&#x60; - Round Robin * &#x60;least_conn&#x60; - Least Connections * &#x60;ip_hash&#x60; - IP Hash | [optional] 
-**MaxRetries** | Pointer to **int64** |  | [optional] 
-**ConnectionTimeout** | Pointer to **int64** |  | [optional] 
-**ReadWriteTimeout** | Pointer to **int64** |  | [optional] 
+**Method** | Pointer to **string** | Load balancing method to use (e.g., round-robin, least_conn).  * &#x60;round_robin&#x60; - Round Robin * &#x60;least_conn&#x60; - Least Connections * &#x60;ip_hash&#x60; - IP Hash | [optional] 
+**MaxRetries** | Pointer to **int64** | Maximum number of retry attempts on connection failure. | [optional] 
+**ConnectionTimeout** | Pointer to **int64** | Maximum time (in seconds) to wait for a connection to be established. | [optional] 
+**ReadWriteTimeout** | Pointer to **int64** | Maximum time (in seconds) to wait for data read/write after connection. | [optional] 
 
 ## Methods
 

@@ -21,7 +21,7 @@ var _ MappedNullable = &PatchedEdgeConnectorHTTPRequest{}
 type PatchedEdgeConnectorHTTPRequest struct {
 	Name *string `json:"name,omitempty" validate:"regexp=.*"`
 	Active *bool `json:"active,omitempty"`
-	// * `http` - HTTP * `edge_storage` - Edge Storage * `live_ingest` - Live Ingest
+	// Type of the edge connector  * `http` - HTTP * `edge_storage` - Edge Storage * `live_ingest` - Live Ingest
 	Type *string `json:"type,omitempty"`
 	Attributes *EdgeConnectorHTTPAttributesRequest `json:"attributes,omitempty"`
 }

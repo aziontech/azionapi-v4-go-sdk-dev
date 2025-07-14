@@ -19,8 +19,9 @@ var _ MappedNullable = &AddressLoadBalancerModuleRequest{}
 
 // AddressLoadBalancerModuleRequest struct for AddressLoadBalancerModuleRequest
 type AddressLoadBalancerModuleRequest struct {
-	// * `primary` - Primary * `backup` - Backup
+	// Role of the address in load balancing  * `primary` - Primary * `backup` - Backup
 	ServerRole *string `json:"server_role,omitempty"`
+	// Weight used in load balancing strategy
 	Weight *int64 `json:"weight,omitempty"`
 }
 

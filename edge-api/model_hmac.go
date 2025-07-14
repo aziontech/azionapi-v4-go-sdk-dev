@@ -20,7 +20,7 @@ var _ MappedNullable = &HMAC{}
 // HMAC struct for HMAC
 type HMAC struct {
 	Enabled *bool `json:"enabled,omitempty"`
-	Config *string `json:"config,omitempty"`
+	Config NullableAWS4HMAC `json:"config,omitempty"`
 }
 
 // NewHMAC instantiates a new HMAC object
@@ -72,36 +72,46 @@ func (o *HMAC) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetConfig returns the Config field value if set, zero value otherwise.
-func (o *HMAC) GetConfig() string {
-	if o == nil || IsNil(o.Config) {
-		var ret string
+// GetConfig returns the Config field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HMAC) GetConfig() AWS4HMAC {
+	if o == nil || IsNil(o.Config.Get()) {
+		var ret AWS4HMAC
 		return ret
 	}
-	return *o.Config
+	return *o.Config.Get()
 }
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HMAC) GetConfigOk() (*string, bool) {
-	if o == nil || IsNil(o.Config) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HMAC) GetConfigOk() (*AWS4HMAC, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Config, true
+	return o.Config.Get(), o.Config.IsSet()
 }
 
 // HasConfig returns a boolean if a field has been set.
 func (o *HMAC) HasConfig() bool {
-	if o != nil && !IsNil(o.Config) {
+	if o != nil && o.Config.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetConfig gets a reference to the given string and assigns it to the Config field.
-func (o *HMAC) SetConfig(v string) {
-	o.Config = &v
+// SetConfig gets a reference to the given NullableAWS4HMAC and assigns it to the Config field.
+func (o *HMAC) SetConfig(v AWS4HMAC) {
+	o.Config.Set(&v)
+}
+// SetConfigNil sets the value for Config to be an explicit nil
+func (o *HMAC) SetConfigNil() {
+	o.Config.Set(nil)
+}
+
+// UnsetConfig ensures that no value is present for Config, not even an explicit nil
+func (o *HMAC) UnsetConfig() {
+	o.Config.Unset()
 }
 
 func (o HMAC) MarshalJSON() ([]byte, error) {
@@ -117,8 +127,8 @@ func (o HMAC) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if !IsNil(o.Config) {
-		toSerialize["config"] = o.Config
+	if o.Config.IsSet() {
+		toSerialize["config"] = o.Config.Get()
 	}
 	return toSerialize, nil
 }
