@@ -16236,10 +16236,15 @@ components:
     AWS4HMAC:
       additionalProperties: false
       properties:
+        type:
+          description: '* `aws4_hmac_sha256` - AWS for HMAC - SHA256'
+          title: AWS4HMACTypeEnum
+          type: string
         attributes:
           $ref: "#/components/schemas/AWS4HMACAttributes"
       required:
       - attributes
+      - type
       title: AWS4HMAC
       type: object
     AWS4HMACAttributes:
@@ -16303,12 +16308,21 @@ components:
     AWS4HMACRequest:
       additionalProperties: false
       properties:
+        type:
+          description: '* `aws4_hmac_sha256` - AWS for HMAC - SHA256'
+          title: AWS4HMACTypeEnum
+          type: string
         attributes:
           $ref: "#/components/schemas/AWS4HMACAttributesRequest"
       required:
       - attributes
+      - type
       title: AWS4HMACRequest
       type: object
+    AWS4HMACTypeEnum:
+      description: '* `aws4_hmac_sha256` - AWS for HMAC - SHA256'
+      title: AWS4HMACTypeEnum
+      type: string
     AdaptiveDeliveryActionEnum:
       description: |-
         * `ignore` - Ignore
