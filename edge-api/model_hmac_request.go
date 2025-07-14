@@ -20,7 +20,7 @@ var _ MappedNullable = &HMACRequest{}
 // HMACRequest struct for HMACRequest
 type HMACRequest struct {
 	Enabled *bool `json:"enabled,omitempty"`
-	Config *string `json:"config,omitempty"`
+	Config NullableAWS4HMACRequest `json:"config,omitempty"`
 }
 
 // NewHMACRequest instantiates a new HMACRequest object
@@ -72,36 +72,46 @@ func (o *HMACRequest) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetConfig returns the Config field value if set, zero value otherwise.
-func (o *HMACRequest) GetConfig() string {
-	if o == nil || IsNil(o.Config) {
-		var ret string
+// GetConfig returns the Config field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HMACRequest) GetConfig() AWS4HMACRequest {
+	if o == nil || IsNil(o.Config.Get()) {
+		var ret AWS4HMACRequest
 		return ret
 	}
-	return *o.Config
+	return *o.Config.Get()
 }
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HMACRequest) GetConfigOk() (*string, bool) {
-	if o == nil || IsNil(o.Config) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HMACRequest) GetConfigOk() (*AWS4HMACRequest, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Config, true
+	return o.Config.Get(), o.Config.IsSet()
 }
 
 // HasConfig returns a boolean if a field has been set.
 func (o *HMACRequest) HasConfig() bool {
-	if o != nil && !IsNil(o.Config) {
+	if o != nil && o.Config.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetConfig gets a reference to the given string and assigns it to the Config field.
-func (o *HMACRequest) SetConfig(v string) {
-	o.Config = &v
+// SetConfig gets a reference to the given NullableAWS4HMACRequest and assigns it to the Config field.
+func (o *HMACRequest) SetConfig(v AWS4HMACRequest) {
+	o.Config.Set(&v)
+}
+// SetConfigNil sets the value for Config to be an explicit nil
+func (o *HMACRequest) SetConfigNil() {
+	o.Config.Set(nil)
+}
+
+// UnsetConfig ensures that no value is present for Config, not even an explicit nil
+func (o *HMACRequest) UnsetConfig() {
+	o.Config.Unset()
 }
 
 func (o HMACRequest) MarshalJSON() ([]byte, error) {
@@ -117,8 +127,8 @@ func (o HMACRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if !IsNil(o.Config) {
-		toSerialize["config"] = o.Config
+	if o.Config.IsSet() {
+		toSerialize["config"] = o.Config.Get()
 	}
 	return toSerialize, nil
 }

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | **string** | * &#x60;http&#x60; - HTTP * &#x60;edge_storage&#x60; - Edge Storage * &#x60;live_ingest&#x60; - Live Ingest | 
+**Type** | **string** | Type of the edge connector  * &#x60;http&#x60; - HTTP * &#x60;edge_storage&#x60; - Edge Storage * &#x60;live_ingest&#x60; - Live Ingest | 
 **Attributes** | [**EdgeConnectorHTTPAttributesRequest**](EdgeConnectorHTTPAttributesRequest.md) |  | 
 
 ## Methods

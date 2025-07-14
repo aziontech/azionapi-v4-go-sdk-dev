@@ -16233,6 +16233,82 @@ paths:
       - Workload Deployments
 components:
   schemas:
+    AWS4HMAC:
+      additionalProperties: false
+      properties:
+        attributes:
+          $ref: "#/components/schemas/AWS4HMACAttributes"
+      required:
+      - attributes
+      title: AWS4HMAC
+      type: object
+    AWS4HMACAttributes:
+      additionalProperties: false
+      properties:
+        region:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+        service:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+        access_key:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+        secret_key:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+      required:
+      - access_key
+      - region
+      - secret_key
+      title: AWS4HMACAttributes
+      type: object
+    AWS4HMACAttributesRequest:
+      additionalProperties: false
+      properties:
+        region:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+        service:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+        access_key:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+        secret_key:
+          maxLength: 255
+          minLength: 1
+          pattern: .*
+          type: string
+      required:
+      - access_key
+      - region
+      - secret_key
+      title: AWS4HMACAttributesRequest
+      type: object
+    AWS4HMACRequest:
+      additionalProperties: false
+      properties:
+        attributes:
+          $ref: "#/components/schemas/AWS4HMACAttributesRequest"
+      required:
+      - attributes
+      title: AWS4HMACRequest
+      type: object
     AdaptiveDeliveryActionEnum:
       description: |-
         * `ignore` - Ignore
@@ -16258,11 +16334,13 @@ components:
           pattern: .*
           type: string
         http_port:
+          description: Port number for HTTP connections
           format: int64
           maximum: 65535
           minimum: 1
           type: integer
         https_port:
+          description: Port number for HTTPS connections
           format: int64
           maximum: 65535
           minimum: 1
@@ -16281,7 +16359,13 @@ components:
         server_role:
           allOf:
           - $ref: "#/components/schemas/ServerRoleEnum"
+          description: |-
+            Role of the address in load balancing
+
+            * `primary` - Primary
+            * `backup` - Backup
         weight:
+          description: Weight used in load balancing strategy
           format: int64
           maximum: 100
           minimum: 1
@@ -16294,7 +16378,13 @@ components:
         server_role:
           allOf:
           - $ref: "#/components/schemas/ServerRoleEnum"
+          description: |-
+            Role of the address in load balancing
+
+            * `primary` - Primary
+            * `backup` - Backup
         weight:
+          description: Weight used in load balancing strategy
           format: int64
           maximum: 100
           minimum: 1
@@ -16334,11 +16424,13 @@ components:
           pattern: .*
           type: string
         http_port:
+          description: Port number for HTTP connections
           format: int64
           maximum: 65535
           minimum: 1
           type: integer
         https_port:
+          description: Port number for HTTPS connections
           format: int64
           maximum: 65535
           minimum: 1
@@ -20003,7 +20095,7 @@ components:
           connection_options: ""
           modules: ""
         id: 0
-        type: type
+        type: ""
         last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -20034,12 +20126,14 @@ components:
           readOnly: true
           type: string
         type:
+          allOf:
+          - $ref: "#/components/schemas/Type625Enum"
           description: |-
+            Type of the edge connector
+
             * `http` - HTTP
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type625Enum
-          type: string
         attributes:
           $ref: "#/components/schemas/EdgeConnectorHTTPAttributes"
       required:
@@ -20133,7 +20227,7 @@ components:
             modules: ""
           connection_options: ""
           modules: ""
-        type: type
+        type: ""
       properties:
         name:
           maxLength: 255
@@ -20143,12 +20237,14 @@ components:
         active:
           type: boolean
         type:
+          allOf:
+          - $ref: "#/components/schemas/Type625Enum"
           description: |-
+            Type of the edge connector
+
             * `http` - HTTP
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type625Enum
-          type: string
         attributes:
           $ref: "#/components/schemas/EdgeConnectorHTTPAttributesRequest"
       required:
@@ -20188,12 +20284,14 @@ components:
           readOnly: true
           type: string
         type:
+          allOf:
+          - $ref: "#/components/schemas/Type625Enum"
           description: |-
+            Type of the edge connector
+
             * `http` - HTTP
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type625Enum
-          type: string
         attributes:
           $ref: "#/components/schemas/EdgeConnectorLiveIngestAttributes"
       required:
@@ -20249,12 +20347,14 @@ components:
         active:
           type: boolean
         type:
+          allOf:
+          - $ref: "#/components/schemas/Type625Enum"
           description: |-
+            Type of the edge connector
+
             * `http` - HTTP
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type625Enum
-          type: string
         attributes:
           $ref: "#/components/schemas/EdgeConnectorLiveIngestAttributesRequest"
       required:
@@ -20320,12 +20420,14 @@ components:
           readOnly: true
           type: string
         type:
+          allOf:
+          - $ref: "#/components/schemas/Type625Enum"
           description: |-
+            Type of the edge connector
+
             * `http` - HTTP
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type625Enum
-          type: string
         attributes:
           $ref: "#/components/schemas/EdgeConnectorStorageAttributes"
       required:
@@ -20383,12 +20485,14 @@ components:
         active:
           type: boolean
         type:
+          allOf:
+          - $ref: "#/components/schemas/Type625Enum"
           description: |-
+            Type of the edge connector
+
             * `http` - HTTP
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type625Enum
-          type: string
         attributes:
           $ref: "#/components/schemas/EdgeConnectorStorageAttributesRequest"
       required:
@@ -21928,16 +22032,24 @@ components:
         enabled:
           type: boolean
         config:
-          type: string
+          allOf:
+          - $ref: "#/components/schemas/HMACPolymorphic"
+          nullable: true
       title: HMAC
       type: object
+    HMACPolymorphic:
+      $ref: "#/components/schemas/AWS4HMAC"
+    HMACPolymorphicRequest:
+      $ref: "#/components/schemas/AWS4HMACRequest"
     HMACRequest:
       additionalProperties: false
       properties:
         enabled:
           type: boolean
         config:
-          type: string
+          allOf:
+          - $ref: "#/components/schemas/HMACPolymorphicRequest"
+          nullable: true
       title: HMACRequest
       type: object
     HTTPConnectionOptions:
@@ -21946,30 +22058,53 @@ components:
         dns_resolution:
           allOf:
           - $ref: "#/components/schemas/DnsResolutionEnum"
+          description: |-
+            DNS resolution policy: preserve, force IPv4, or force IPv6 usage when connecting.
+
+            * `preserve` - Preserve
+            * `force_ipv4` - Force IPv4
+            * `force_ipv6` - Force IPv6
         transport_policy:
           allOf:
           - $ref: "#/components/schemas/TransportPolicyEnum"
+          description: |-
+            Transport protocol policy: preserve current scheme, force HTTP, or force HTTPS.
+
+            * `preserve` - Preserve
+            * `force_https` - Force HTTPS
+            * `force_http` - Force HTTP
         http_version_policy:
           allOf:
           - $ref: "#/components/schemas/HttpVersionPolicyEnum"
+          description: |-
+            Defines the HTTP version preference for outbound connections (e.g., HTTP/1.1).
+
+            * `http1_1` - HTTP/1.1
         host:
+          description: Optional custom host used to override the default target hostname
+            during connection.
           maxLength: 255
           minLength: 1
           pattern: .*
           type: string
         path_prefix:
+          description: "Optional prefix to add to all request paths (e.g., '/v1')."
           maxLength: 255
           minLength: 1
           pattern: .*
           type: string
         following_redirect:
+          description: "If true, automatically follows HTTP redirects from the target\
+            \ server."
           type: boolean
         real_ip_header:
+          description: Header name used to forward the original client IP address.
           maxLength: 100
           minLength: 1
           pattern: .*
           type: string
         real_port_header:
+          description: Header name used to forward the original client port.
           maxLength: 100
           minLength: 1
           pattern: .*
@@ -21982,30 +22117,53 @@ components:
         dns_resolution:
           allOf:
           - $ref: "#/components/schemas/DnsResolutionEnum"
+          description: |-
+            DNS resolution policy: preserve, force IPv4, or force IPv6 usage when connecting.
+
+            * `preserve` - Preserve
+            * `force_ipv4` - Force IPv4
+            * `force_ipv6` - Force IPv6
         transport_policy:
           allOf:
           - $ref: "#/components/schemas/TransportPolicyEnum"
+          description: |-
+            Transport protocol policy: preserve current scheme, force HTTP, or force HTTPS.
+
+            * `preserve` - Preserve
+            * `force_https` - Force HTTPS
+            * `force_http` - Force HTTP
         http_version_policy:
           allOf:
           - $ref: "#/components/schemas/HttpVersionPolicyEnum"
+          description: |-
+            Defines the HTTP version preference for outbound connections (e.g., HTTP/1.1).
+
+            * `http1_1` - HTTP/1.1
         host:
+          description: Optional custom host used to override the default target hostname
+            during connection.
           maxLength: 255
           minLength: 1
           pattern: .*
           type: string
         path_prefix:
+          description: "Optional prefix to add to all request paths (e.g., '/v1')."
           maxLength: 255
           minLength: 1
           pattern: .*
           type: string
         following_redirect:
+          description: "If true, automatically follows HTTP redirects from the target\
+            \ server."
           type: boolean
         real_ip_header:
+          description: Header name used to forward the original client IP address.
           maxLength: 100
           minLength: 1
           pattern: .*
           type: string
         real_port_header:
+          description: Header name used to forward the original client port.
           maxLength: 100
           minLength: 1
           pattern: .*
@@ -22360,17 +22518,27 @@ components:
         method:
           allOf:
           - $ref: "#/components/schemas/MethodEnum"
+          description: |-
+            Load balancing method to use (e.g., round-robin, least_conn).
+
+            * `round_robin` - Round Robin
+            * `least_conn` - Least Connections
+            * `ip_hash` - IP Hash
         max_retries:
+          description: Maximum number of retry attempts on connection failure.
           format: int64
           maximum: 20
           minimum: 0
           type: integer
         connection_timeout:
+          description: Maximum time (in seconds) to wait for a connection to be established.
           format: int64
           maximum: 300
           minimum: 1
           type: integer
         read_write_timeout:
+          description: Maximum time (in seconds) to wait for data read/write after
+            connection.
           format: int64
           maximum: 600
           minimum: 1
@@ -22383,17 +22551,27 @@ components:
         method:
           allOf:
           - $ref: "#/components/schemas/MethodEnum"
+          description: |-
+            Load balancing method to use (e.g., round-robin, least_conn).
+
+            * `round_robin` - Round Robin
+            * `least_conn` - Least Connections
+            * `ip_hash` - IP Hash
         max_retries:
+          description: Maximum number of retry attempts on connection failure.
           format: int64
           maximum: 20
           minimum: 0
           type: integer
         connection_timeout:
+          description: Maximum time (in seconds) to wait for a connection to be established.
           format: int64
           maximum: 300
           minimum: 1
           type: integer
         read_write_timeout:
+          description: Maximum time (in seconds) to wait for data read/write after
+            connection.
           format: int64
           maximum: 600
           minimum: 1
@@ -23695,7 +23873,7 @@ components:
             connection_options: ""
             modules: ""
           id: 0
-          type: type
+          type: ""
           last_modified: 2000-01-23T04:56:07.000+00:00
         - product_version: product_version
           last_editor: last_editor
@@ -23716,7 +23894,7 @@ components:
             connection_options: ""
             modules: ""
           id: 0
-          type: type
+          type: ""
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
@@ -24890,7 +25068,7 @@ components:
             modules: ""
           connection_options: ""
           modules: ""
-        type: type
+        type: ""
       properties:
         name:
           maxLength: 255
@@ -24900,12 +25078,14 @@ components:
         active:
           type: boolean
         type:
+          allOf:
+          - $ref: "#/components/schemas/Type625Enum"
           description: |-
+            Type of the edge connector
+
             * `http` - HTTP
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type625Enum
-          type: string
         attributes:
           $ref: "#/components/schemas/EdgeConnectorHTTPAttributesRequest"
       title: PatchedEdgeConnectorHTTPRequest
@@ -24921,12 +25101,14 @@ components:
         active:
           type: boolean
         type:
+          allOf:
+          - $ref: "#/components/schemas/Type625Enum"
           description: |-
+            Type of the edge connector
+
             * `http` - HTTP
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type625Enum
-          type: string
         attributes:
           $ref: "#/components/schemas/EdgeConnectorLiveIngestAttributesRequest"
       title: PatchedEdgeConnectorLiveIngestRequest
@@ -24955,12 +25137,14 @@ components:
         active:
           type: boolean
         type:
+          allOf:
+          - $ref: "#/components/schemas/Type625Enum"
           description: |-
+            Type of the edge connector
+
             * `http` - HTTP
             * `edge_storage` - Edge Storage
             * `live_ingest` - Live Ingest
-          title: Type625Enum
-          type: string
         attributes:
           $ref: "#/components/schemas/EdgeConnectorStorageAttributesRequest"
       title: PatchedEdgeConnectorStorageRequest
@@ -26275,7 +26459,7 @@ components:
             connection_options: ""
             modules: ""
           id: 0
-          type: type
+          type: ""
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -27781,7 +27965,7 @@ components:
             connection_options: ""
             modules: ""
           id: 0
-          type: type
+          type: ""
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -28405,7 +28589,7 @@ components:
             connection_options: ""
             modules: ""
           id: 0
-          type: type
+          type: ""
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         data:

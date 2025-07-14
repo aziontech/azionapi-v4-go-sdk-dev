@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **LastModified** | **time.Time** |  | [readonly] 
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | **string** |  | [readonly] 
-**Type** | **string** | * &#x60;http&#x60; - HTTP * &#x60;edge_storage&#x60; - Edge Storage * &#x60;live_ingest&#x60; - Live Ingest | 
+**Type** | **string** | Type of the edge connector  * &#x60;http&#x60; - HTTP * &#x60;edge_storage&#x60; - Edge Storage * &#x60;live_ingest&#x60; - Live Ingest | 
 **Attributes** | [**EdgeConnectorHTTPAttributes**](EdgeConnectorHTTPAttributes.md) |  | 
 
 ## Methods

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | Pointer to **bool** |  | [optional] 
-**Config** | Pointer to **string** |  | [optional] 
+**Config** | Pointer to [**NullableAWS4HMAC**](AWS4HMAC.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasEnabled returns a boolean if a field has been set.
 
 ### GetConfig
 
-`func (o *HMAC) GetConfig() string`
+`func (o *HMAC) GetConfig() AWS4HMAC`
 
 GetConfig returns the Config field if non-nil, zero value otherwise.
 
 ### GetConfigOk
 
-`func (o *HMAC) GetConfigOk() (*string, bool)`
+`func (o *HMAC) GetConfigOk() (*AWS4HMAC, bool)`
 
 GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConfig
 
-`func (o *HMAC) SetConfig(v string)`
+`func (o *HMAC) SetConfig(v AWS4HMAC)`
 
 SetConfig sets Config field to given value.
 
@@ -76,6 +76,16 @@ SetConfig sets Config field to given value.
 
 HasConfig returns a boolean if a field has been set.
 
+### SetConfigNil
+
+`func (o *HMAC) SetConfigNil(b bool)`
+
+ SetConfigNil sets the value for Config to be an explicit nil
+
+### UnsetConfig
+`func (o *HMAC) UnsetConfig()`
+
+UnsetConfig ensures that no value is present for Config, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -25,7 +25,9 @@ type AddressRequest struct {
 	Active *bool `json:"active,omitempty"`
 	// IPv4/IPv6 address or CNAME to resolve
 	Address string `json:"address" validate:"regexp=.*"`
+	// Port number for HTTP connections
 	HttpPort *int64 `json:"http_port,omitempty"`
+	// Port number for HTTPS connections
 	HttpsPort *int64 `json:"https_port,omitempty"`
 	Modules NullableAddressModulesRequest `json:"modules,omitempty"`
 }

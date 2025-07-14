@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServerRole** | Pointer to **string** | * &#x60;primary&#x60; - Primary * &#x60;backup&#x60; - Backup | [optional] 
-**Weight** | Pointer to **int64** |  | [optional] 
+**ServerRole** | Pointer to **string** | Role of the address in load balancing  * &#x60;primary&#x60; - Primary * &#x60;backup&#x60; - Backup | [optional] 
+**Weight** | Pointer to **int64** | Weight used in load balancing strategy | [optional] 
 
 ## Methods
 

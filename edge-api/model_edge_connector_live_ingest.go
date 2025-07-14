@@ -28,7 +28,7 @@ type EdgeConnectorLiveIngest struct {
 	LastModified time.Time `json:"last_modified"`
 	Active *bool `json:"active,omitempty"`
 	ProductVersion string `json:"product_version" validate:"regexp=\\\\d+\\\\.\\\\d+"`
-	// * `http` - HTTP * `edge_storage` - Edge Storage * `live_ingest` - Live Ingest
+	// Type of the edge connector  * `http` - HTTP * `edge_storage` - Edge Storage * `live_ingest` - Live Ingest
 	Type string `json:"type"`
 	Attributes EdgeConnectorLiveIngestAttributes `json:"attributes"`
 }

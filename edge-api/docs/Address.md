@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Active** | Pointer to **bool** | Indicates if the address is active for use | [optional] 
 **Address** | **string** | IPv4/IPv6 address or CNAME to resolve | 
-**HttpPort** | Pointer to **int64** |  | [optional] 
-**HttpsPort** | Pointer to **int64** |  | [optional] 
+**HttpPort** | Pointer to **int64** | Port number for HTTP connections | [optional] 
+**HttpsPort** | Pointer to **int64** | Port number for HTTPS connections | [optional] 
 **Modules** | Pointer to [**NullableAddressModules**](AddressModules.md) |  | [optional] 
 
 ## Methods

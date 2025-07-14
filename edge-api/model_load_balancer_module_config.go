@@ -19,10 +19,13 @@ var _ MappedNullable = &LoadBalancerModuleConfig{}
 
 // LoadBalancerModuleConfig struct for LoadBalancerModuleConfig
 type LoadBalancerModuleConfig struct {
-	// * `round_robin` - Round Robin * `least_conn` - Least Connections * `ip_hash` - IP Hash
+	// Load balancing method to use (e.g., round-robin, least_conn).  * `round_robin` - Round Robin * `least_conn` - Least Connections * `ip_hash` - IP Hash
 	Method *string `json:"method,omitempty"`
+	// Maximum number of retry attempts on connection failure.
 	MaxRetries *int64 `json:"max_retries,omitempty"`
+	// Maximum time (in seconds) to wait for a connection to be established.
 	ConnectionTimeout *int64 `json:"connection_timeout,omitempty"`
+	// Maximum time (in seconds) to wait for data read/write after connection.
 	ReadWriteTimeout *int64 `json:"read_write_timeout,omitempty"`
 }
 

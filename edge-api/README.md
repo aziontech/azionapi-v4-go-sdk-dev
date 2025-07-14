@@ -191,6 +191,10 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AWS4HMAC](docs/AWS4HMAC.md)
+ - [AWS4HMACAttributes](docs/AWS4HMACAttributes.md)
+ - [AWS4HMACAttributesRequest](docs/AWS4HMACAttributesRequest.md)
+ - [AWS4HMACRequest](docs/AWS4HMACRequest.md)
  - [Address](docs/Address.md)
  - [AddressLoadBalancerModule](docs/AddressLoadBalancerModule.md)
  - [AddressLoadBalancerModuleRequest](docs/AddressLoadBalancerModuleRequest.md)

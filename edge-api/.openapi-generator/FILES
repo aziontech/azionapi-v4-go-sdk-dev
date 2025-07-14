@@ -22,6 +22,10 @@ api_workload_deployments.go
 api_workloads.go
 client.go
 configuration.go
+docs/AWS4HMAC.md
+docs/AWS4HMACAttributes.md
+docs/AWS4HMACAttributesRequest.md
+docs/AWS4HMACRequest.md
 docs/Address.md
 docs/AddressLoadBalancerModule.md
 docs/AddressLoadBalancerModuleRequest.md
@@ -492,6 +496,10 @@ model_application_accelerator_module.go
 model_application_accelerator_module_request.go
 model_application_controls_module.go
 model_application_controls_module_request.go
+model_aws4_hmac.go
+model_aws4_hmac_attributes.go
+model_aws4_hmac_attributes_request.go
+model_aws4_hmac_request.go
 model_browser_cache_module.go
 model_browser_cache_module_request.go
 model_cache_module.go
