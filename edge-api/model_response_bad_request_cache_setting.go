@@ -21,6 +21,7 @@ var _ MappedNullable = &ResponseBadRequestCacheSetting{}
 type ResponseBadRequestCacheSetting struct {
 	Id []string `json:"id,omitempty"`
 	Name []string `json:"name,omitempty"`
+	BrowserCache *ResponseBadRequestSerializerMetaclassBrowserCacheField `json:"browser_cache,omitempty"`
 	Modules *ResponseBadRequestSerializerMetaclassModulesField `json:"modules,omitempty"`
 	Detail *string `json:"detail,omitempty" validate:"regexp=.*"`
 }
@@ -106,6 +107,38 @@ func (o *ResponseBadRequestCacheSetting) SetName(v []string) {
 	o.Name = v
 }
 
+// GetBrowserCache returns the BrowserCache field value if set, zero value otherwise.
+func (o *ResponseBadRequestCacheSetting) GetBrowserCache() ResponseBadRequestSerializerMetaclassBrowserCacheField {
+	if o == nil || IsNil(o.BrowserCache) {
+		var ret ResponseBadRequestSerializerMetaclassBrowserCacheField
+		return ret
+	}
+	return *o.BrowserCache
+}
+
+// GetBrowserCacheOk returns a tuple with the BrowserCache field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResponseBadRequestCacheSetting) GetBrowserCacheOk() (*ResponseBadRequestSerializerMetaclassBrowserCacheField, bool) {
+	if o == nil || IsNil(o.BrowserCache) {
+		return nil, false
+	}
+	return o.BrowserCache, true
+}
+
+// HasBrowserCache returns a boolean if a field has been set.
+func (o *ResponseBadRequestCacheSetting) HasBrowserCache() bool {
+	if o != nil && !IsNil(o.BrowserCache) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrowserCache gets a reference to the given ResponseBadRequestSerializerMetaclassBrowserCacheField and assigns it to the BrowserCache field.
+func (o *ResponseBadRequestCacheSetting) SetBrowserCache(v ResponseBadRequestSerializerMetaclassBrowserCacheField) {
+	o.BrowserCache = &v
+}
+
 // GetModules returns the Modules field value if set, zero value otherwise.
 func (o *ResponseBadRequestCacheSetting) GetModules() ResponseBadRequestSerializerMetaclassModulesField {
 	if o == nil || IsNil(o.Modules) {
@@ -185,6 +218,9 @@ func (o ResponseBadRequestCacheSetting) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.BrowserCache) {
+		toSerialize["browser_cache"] = o.BrowserCache
 	}
 	if !IsNil(o.Modules) {
 		toSerialize["modules"] = o.Modules

@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
-**Modules** | Pointer to [**CacheSettingModulesRequest**](CacheSettingModulesRequest.md) |  | [optional] 
+**BrowserCache** | Pointer to [**BrowserCacheModuleRequest**](BrowserCacheModuleRequest.md) |  | [optional] 
+**Modules** | Pointer to [**CacheSettingsModulesRequest**](CacheSettingsModulesRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -51,22 +52,47 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetBrowserCache
+
+`func (o *PatchedCacheSettingRequest) GetBrowserCache() BrowserCacheModuleRequest`
+
+GetBrowserCache returns the BrowserCache field if non-nil, zero value otherwise.
+
+### GetBrowserCacheOk
+
+`func (o *PatchedCacheSettingRequest) GetBrowserCacheOk() (*BrowserCacheModuleRequest, bool)`
+
+GetBrowserCacheOk returns a tuple with the BrowserCache field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrowserCache
+
+`func (o *PatchedCacheSettingRequest) SetBrowserCache(v BrowserCacheModuleRequest)`
+
+SetBrowserCache sets BrowserCache field to given value.
+
+### HasBrowserCache
+
+`func (o *PatchedCacheSettingRequest) HasBrowserCache() bool`
+
+HasBrowserCache returns a boolean if a field has been set.
+
 ### GetModules
 
-`func (o *PatchedCacheSettingRequest) GetModules() CacheSettingModulesRequest`
+`func (o *PatchedCacheSettingRequest) GetModules() CacheSettingsModulesRequest`
 
 GetModules returns the Modules field if non-nil, zero value otherwise.
 
 ### GetModulesOk
 
-`func (o *PatchedCacheSettingRequest) GetModulesOk() (*CacheSettingModulesRequest, bool)`
+`func (o *PatchedCacheSettingRequest) GetModulesOk() (*CacheSettingsModulesRequest, bool)`
 
 GetModulesOk returns a tuple with the Modules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModules
 
-`func (o *PatchedCacheSettingRequest) SetModules(v CacheSettingModulesRequest)`
+`func (o *PatchedCacheSettingRequest) SetModules(v CacheSettingsModulesRequest)`
 
 SetModules sets Modules field to given value.
 

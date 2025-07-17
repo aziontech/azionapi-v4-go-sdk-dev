@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **[]string** |  | [optional] 
 **Name** | Pointer to **[]string** |  | [optional] 
+**BrowserCache** | Pointer to [**ResponseBadRequestSerializerMetaclassBrowserCacheField**](ResponseBadRequestSerializerMetaclassBrowserCacheField.md) |  | [optional] 
 **Modules** | Pointer to [**ResponseBadRequestSerializerMetaclassModulesField**](ResponseBadRequestSerializerMetaclassModulesField.md) |  | [optional] 
 **Detail** | Pointer to **string** |  | [optional] 
 
@@ -77,6 +78,31 @@ SetName sets Name field to given value.
 `func (o *ResponseBadRequestCacheSetting) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetBrowserCache
+
+`func (o *ResponseBadRequestCacheSetting) GetBrowserCache() ResponseBadRequestSerializerMetaclassBrowserCacheField`
+
+GetBrowserCache returns the BrowserCache field if non-nil, zero value otherwise.
+
+### GetBrowserCacheOk
+
+`func (o *ResponseBadRequestCacheSetting) GetBrowserCacheOk() (*ResponseBadRequestSerializerMetaclassBrowserCacheField, bool)`
+
+GetBrowserCacheOk returns a tuple with the BrowserCache field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrowserCache
+
+`func (o *ResponseBadRequestCacheSetting) SetBrowserCache(v ResponseBadRequestSerializerMetaclassBrowserCacheField)`
+
+SetBrowserCache sets BrowserCache field to given value.
+
+### HasBrowserCache
+
+`func (o *ResponseBadRequestCacheSetting) HasBrowserCache() bool`
+
+HasBrowserCache returns a boolean if a field has been set.
 
 ### GetModules
 

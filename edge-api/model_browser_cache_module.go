@@ -12,8 +12,6 @@ package edgeapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the BrowserCacheModule type satisfies the MappedNullable interface at compile time
@@ -21,21 +19,17 @@ var _ MappedNullable = &BrowserCacheModule{}
 
 // BrowserCacheModule struct for BrowserCacheModule
 type BrowserCacheModule struct {
-	// * `honor` - Honor Origin Cache Headers * `override` - Override Cache Settings * `no-cache` - No Cache
-	Behavior string `json:"behavior"`
-	MaxAge int64 `json:"max_age"`
+	// * `override` - override * `honor` - honor * `no-cache` - no-cache
+	Behavior *string `json:"behavior,omitempty"`
+	MaxAge *int64 `json:"max_age,omitempty"`
 }
-
-type _BrowserCacheModule BrowserCacheModule
 
 // NewBrowserCacheModule instantiates a new BrowserCacheModule object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBrowserCacheModule(behavior string, maxAge int64) *BrowserCacheModule {
+func NewBrowserCacheModule() *BrowserCacheModule {
 	this := BrowserCacheModule{}
-	this.Behavior = behavior
-	this.MaxAge = maxAge
 	return &this
 }
 
@@ -47,52 +41,68 @@ func NewBrowserCacheModuleWithDefaults() *BrowserCacheModule {
 	return &this
 }
 
-// GetBehavior returns the Behavior field value
+// GetBehavior returns the Behavior field value if set, zero value otherwise.
 func (o *BrowserCacheModule) GetBehavior() string {
-	if o == nil {
+	if o == nil || IsNil(o.Behavior) {
 		var ret string
 		return ret
 	}
-
-	return o.Behavior
+	return *o.Behavior
 }
 
-// GetBehaviorOk returns a tuple with the Behavior field value
+// GetBehaviorOk returns a tuple with the Behavior field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BrowserCacheModule) GetBehaviorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Behavior) {
 		return nil, false
 	}
-	return &o.Behavior, true
+	return o.Behavior, true
 }
 
-// SetBehavior sets field value
+// HasBehavior returns a boolean if a field has been set.
+func (o *BrowserCacheModule) HasBehavior() bool {
+	if o != nil && !IsNil(o.Behavior) {
+		return true
+	}
+
+	return false
+}
+
+// SetBehavior gets a reference to the given string and assigns it to the Behavior field.
 func (o *BrowserCacheModule) SetBehavior(v string) {
-	o.Behavior = v
+	o.Behavior = &v
 }
 
-// GetMaxAge returns the MaxAge field value
+// GetMaxAge returns the MaxAge field value if set, zero value otherwise.
 func (o *BrowserCacheModule) GetMaxAge() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.MaxAge) {
 		var ret int64
 		return ret
 	}
-
-	return o.MaxAge
+	return *o.MaxAge
 }
 
-// GetMaxAgeOk returns a tuple with the MaxAge field value
+// GetMaxAgeOk returns a tuple with the MaxAge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BrowserCacheModule) GetMaxAgeOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MaxAge) {
 		return nil, false
 	}
-	return &o.MaxAge, true
+	return o.MaxAge, true
 }
 
-// SetMaxAge sets field value
+// HasMaxAge returns a boolean if a field has been set.
+func (o *BrowserCacheModule) HasMaxAge() bool {
+	if o != nil && !IsNil(o.MaxAge) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxAge gets a reference to the given int64 and assigns it to the MaxAge field.
 func (o *BrowserCacheModule) SetMaxAge(v int64) {
-	o.MaxAge = v
+	o.MaxAge = &v
 }
 
 func (o BrowserCacheModule) MarshalJSON() ([]byte, error) {
@@ -105,47 +115,13 @@ func (o BrowserCacheModule) MarshalJSON() ([]byte, error) {
 
 func (o BrowserCacheModule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["behavior"] = o.Behavior
-	toSerialize["max_age"] = o.MaxAge
+	if !IsNil(o.Behavior) {
+		toSerialize["behavior"] = o.Behavior
+	}
+	if !IsNil(o.MaxAge) {
+		toSerialize["max_age"] = o.MaxAge
+	}
 	return toSerialize, nil
-}
-
-func (o *BrowserCacheModule) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"behavior",
-		"max_age",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varBrowserCacheModule := _BrowserCacheModule{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBrowserCacheModule)
-
-	if err != nil {
-		return err
-	}
-
-	*o = BrowserCacheModule(varBrowserCacheModule)
-
-	return err
 }
 
 type NullableBrowserCacheModule struct {

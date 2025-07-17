@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**Modules** | Pointer to [**CacheSettingModulesRequest**](CacheSettingModulesRequest.md) |  | [optional] 
+**BrowserCache** | Pointer to [**BrowserCacheModuleRequest**](BrowserCacheModuleRequest.md) |  | [optional] 
+**Modules** | Pointer to [**CacheSettingsModulesRequest**](CacheSettingsModulesRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -46,22 +47,47 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetBrowserCache
+
+`func (o *CacheSettingRequest) GetBrowserCache() BrowserCacheModuleRequest`
+
+GetBrowserCache returns the BrowserCache field if non-nil, zero value otherwise.
+
+### GetBrowserCacheOk
+
+`func (o *CacheSettingRequest) GetBrowserCacheOk() (*BrowserCacheModuleRequest, bool)`
+
+GetBrowserCacheOk returns a tuple with the BrowserCache field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrowserCache
+
+`func (o *CacheSettingRequest) SetBrowserCache(v BrowserCacheModuleRequest)`
+
+SetBrowserCache sets BrowserCache field to given value.
+
+### HasBrowserCache
+
+`func (o *CacheSettingRequest) HasBrowserCache() bool`
+
+HasBrowserCache returns a boolean if a field has been set.
+
 ### GetModules
 
-`func (o *CacheSettingRequest) GetModules() CacheSettingModulesRequest`
+`func (o *CacheSettingRequest) GetModules() CacheSettingsModulesRequest`
 
 GetModules returns the Modules field if non-nil, zero value otherwise.
 
 ### GetModulesOk
 
-`func (o *CacheSettingRequest) GetModulesOk() (*CacheSettingModulesRequest, bool)`
+`func (o *CacheSettingRequest) GetModulesOk() (*CacheSettingsModulesRequest, bool)`
 
 GetModulesOk returns a tuple with the Modules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModules
 
-`func (o *CacheSettingRequest) SetModules(v CacheSettingModulesRequest)`
+`func (o *CacheSettingRequest) SetModules(v CacheSettingsModulesRequest)`
 
 SetModules sets Modules field to given value.
 

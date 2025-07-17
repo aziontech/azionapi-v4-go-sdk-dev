@@ -16323,12 +16323,6 @@ components:
       description: '* `aws4_hmac_sha256` - AWS for HMAC - SHA256'
       title: AWS4HMACTypeEnum
       type: string
-    AdaptiveDeliveryActionEnum:
-      description: |-
-        * `ignore` - Ignore
-        * `whitelist` - Whitelist
-      title: AdaptiveDeliveryActionEnum
-      type: string
     Address:
       additionalProperties: false
       example:
@@ -16475,134 +16469,14 @@ components:
           type: boolean
       title: ApplicationAcceleratorModuleRequest
       type: object
-    ApplicationControlsModule:
-      additionalProperties: false
-      example:
-        cache_by_cookies: cache_by_cookies
-        query_string_fields:
-        - query_string_fields
-        - query_string_fields
-        adaptive_delivery_action: adaptive_delivery_action
-        device_group:
-        - 5
-        - 5
-        query_string_sort_enabled: true
-        cookie_names:
-        - cookie_names
-        - cookie_names
-        cache_by_query_string: cache_by_query_string
-      properties:
-        cache_by_query_string:
-          description: |-
-            * `ignore` - Content does not vary by Query String (Improves Caching)
-            * `whitelist` - Content varies by some Query String fields (Whitelist)
-            * `blacklist` - Content varies by Query String, except for some fields (Blacklist)
-            * `all` - Content varies by all Query String fields
-          title: CacheByQueryStringEnum
-          type: string
-        query_string_fields:
-          items:
-            type: string
-          type: array
-        query_string_sort_enabled:
-          type: boolean
-        cache_by_cookies:
-          description: |-
-            * `ignore` - Content does not vary by Cookies (Improves Caching)
-            * `whitelist` - Content varies by some Cookies (Whitelist)
-            * `blacklist` - Content varies by Cookies, with the exception of a few (Blacklist)
-            * `all` - Content varies by all Cookies
-          title: CacheByCookiesEnum
-          type: string
-        cookie_names:
-          items:
-            type: string
-          type: array
-        adaptive_delivery_action:
-          description: |-
-            * `ignore` - Ignore
-            * `whitelist` - Whitelist
-          title: AdaptiveDeliveryActionEnum
-          type: string
-        device_group:
-          items:
-            format: int64
-            type: integer
-          type: array
-      required:
-      - adaptive_delivery_action
-      - cache_by_cookies
-      - cache_by_query_string
-      - cookie_names
-      - device_group
-      - query_string_fields
-      - query_string_sort_enabled
-      title: ApplicationControlsModule
-      type: object
-    ApplicationControlsModuleRequest:
-      additionalProperties: false
-      example:
-        cache_by_cookies: cache_by_cookies
-        query_string_fields:
-        - query_string_fields
-        - query_string_fields
-        adaptive_delivery_action: adaptive_delivery_action
-        device_group:
-        - 1
-        - 1
-        query_string_sort_enabled: true
-        cookie_names:
-        - cookie_names
-        - cookie_names
-        cache_by_query_string: cache_by_query_string
-      properties:
-        cache_by_query_string:
-          description: |-
-            * `ignore` - Content does not vary by Query String (Improves Caching)
-            * `whitelist` - Content varies by some Query String fields (Whitelist)
-            * `blacklist` - Content varies by Query String, except for some fields (Blacklist)
-            * `all` - Content varies by all Query String fields
-          title: CacheByQueryStringEnum
-          type: string
-        query_string_fields:
-          items:
-            type: string
-          type: array
-        query_string_sort_enabled:
-          type: boolean
-        cache_by_cookies:
-          description: |-
-            * `ignore` - Content does not vary by Cookies (Improves Caching)
-            * `whitelist` - Content varies by some Cookies (Whitelist)
-            * `blacklist` - Content varies by Cookies, with the exception of a few (Blacklist)
-            * `all` - Content varies by all Cookies
-          title: CacheByCookiesEnum
-          type: string
-        cookie_names:
-          items:
-            type: string
-          type: array
-        adaptive_delivery_action:
-          description: |-
-            * `ignore` - Ignore
-            * `whitelist` - Whitelist
-          title: AdaptiveDeliveryActionEnum
-          type: string
-        device_group:
-          items:
-            format: int64
-            type: integer
-          type: array
-      required:
-      - adaptive_delivery_action
-      - cache_by_cookies
-      - cache_by_query_string
-      - cookie_names
-      - device_group
-      - query_string_fields
-      - query_string_sort_enabled
-      title: ApplicationControlsModuleRequest
-      type: object
+    BehaviorA69Enum:
+      description: |-
+        * `ignore` - ignore
+        * `all` - all
+        * `allowlist` - allowlist
+        * `denylist` - denylist
+      title: BehaviorA69Enum
+      type: string
     BlankEnum:
       title: BlankEnum
       type: string
@@ -16610,71 +16484,41 @@ components:
       additionalProperties: false
       example:
         max_age: 19008185
-        behavior: behavior
+        behavior: ""
       properties:
         behavior:
-          description: |-
-            * `honor` - Honor Origin Cache Headers
-            * `override` - Override Cache Settings
-            * `no-cache` - No Cache
-          title: BrowserCacheModuleBehaviorEnum
-          type: string
+          allOf:
+          - $ref: "#/components/schemas/BrowserCacheModuleBehaviorEnum"
         max_age:
           format: int64
           maximum: 31536000
           minimum: 0
           type: integer
-      required:
-      - behavior
-      - max_age
       title: BrowserCacheModule
       type: object
     BrowserCacheModuleBehaviorEnum:
       description: |-
-        * `honor` - Honor Origin Cache Headers
-        * `override` - Override Cache Settings
-        * `no-cache` - No Cache
+        * `override` - override
+        * `honor` - honor
+        * `no-cache` - no-cache
       title: BrowserCacheModuleBehaviorEnum
       type: string
     BrowserCacheModuleRequest:
       additionalProperties: false
       example:
         max_age: 2525491
-        behavior: behavior
+        behavior: ""
       properties:
         behavior:
-          description: |-
-            * `honor` - Honor Origin Cache Headers
-            * `override` - Override Cache Settings
-            * `no-cache` - No Cache
-          title: BrowserCacheModuleBehaviorEnum
-          type: string
+          allOf:
+          - $ref: "#/components/schemas/BrowserCacheModuleBehaviorEnum"
         max_age:
           format: int64
           maximum: 31536000
           minimum: 0
           type: integer
-      required:
-      - behavior
-      - max_age
       title: BrowserCacheModuleRequest
       type: object
-    CacheByCookiesEnum:
-      description: |-
-        * `ignore` - Content does not vary by Cookies (Improves Caching)
-        * `whitelist` - Content varies by some Cookies (Whitelist)
-        * `blacklist` - Content varies by Cookies, with the exception of a few (Blacklist)
-        * `all` - Content varies by all Cookies
-      title: CacheByCookiesEnum
-      type: string
-    CacheByQueryStringEnum:
-      description: |-
-        * `ignore` - Content does not vary by Query String (Improves Caching)
-        * `whitelist` - Content varies by some Query String fields (Whitelist)
-        * `blacklist` - Content varies by Query String, except for some fields (Blacklist)
-        * `all` - Content varies by all Query String fields
-      title: CacheByQueryStringEnum
-      type: string
     CacheModule:
       additionalProperties: false
       example:
@@ -16696,39 +16540,41 @@ components:
     CacheSetting:
       additionalProperties: false
       example:
+        browser_cache:
+          max_age: 19008185
+          behavior: ""
         name: name
         id: 0
         modules:
           edge_cache:
             max_age: 4622587
-            caching_for_post_enabled: true
-            caching_for_options_enabled: true
-            stale_cache_enabled: true
-            behavior: behavior
-            tiered_cache_region: tiered_cache_region
-            tiered_cache_enabled: true
-          browser_cache:
-            max_age: 19008185
-            behavior: behavior
-          slice_controls:
-            slice_tiered_caching_enabled: true
-            slice_edge_caching_enabled: true
-            slice_configuration_range: 577
-            slice_configuration_enabled: true
-          application_controls:
-            cache_by_cookies: cache_by_cookies
-            query_string_fields:
-            - query_string_fields
-            - query_string_fields
-            adaptive_delivery_action: adaptive_delivery_action
-            device_group:
-            - 5
-            - 5
-            query_string_sort_enabled: true
-            cookie_names:
-            - cookie_names
-            - cookie_names
-            cache_by_query_string: cache_by_query_string
+            large_file_cache:
+              offset: 1024
+              enabled: true
+            behavior: ""
+            stale_cache:
+              enabled: true
+          application_accelerator:
+            cache_vary_by_querystring:
+              behavior: ""
+              fields:
+              - fields
+              - fields
+              sort_enabled: true
+            cache_vary_by_devices:
+              device_group:
+              - 5
+              - 5
+              behavior: ""
+            cache_vary_by_method:
+            - null
+            - null
+            cache_vary_by_cookies:
+              cookie_names:
+              - cookie_names
+              - cookie_names
+              behavior: ""
+          tiered_cache: ""
       properties:
         id:
           format: int64
@@ -16739,147 +16585,446 @@ components:
           minLength: 1
           pattern: "^[a-zA-Z0-9 \\-\\.\\'\\,|]+$"
           type: string
+        browser_cache:
+          $ref: "#/components/schemas/BrowserCacheModule"
         modules:
-          $ref: "#/components/schemas/CacheSettingModules"
+          $ref: "#/components/schemas/CacheSettingsModules"
       required:
       - id
       - name
       title: CacheSetting
       type: object
-    CacheSettingModules:
-      additionalProperties: false
-      example:
-        edge_cache:
-          max_age: 4622587
-          caching_for_post_enabled: true
-          caching_for_options_enabled: true
-          stale_cache_enabled: true
-          behavior: behavior
-          tiered_cache_region: tiered_cache_region
-          tiered_cache_enabled: true
-        browser_cache:
-          max_age: 19008185
-          behavior: behavior
-        slice_controls:
-          slice_tiered_caching_enabled: true
-          slice_edge_caching_enabled: true
-          slice_configuration_range: 577
-          slice_configuration_enabled: true
-        application_controls:
-          cache_by_cookies: cache_by_cookies
-          query_string_fields:
-          - query_string_fields
-          - query_string_fields
-          adaptive_delivery_action: adaptive_delivery_action
-          device_group:
-          - 5
-          - 5
-          query_string_sort_enabled: true
-          cookie_names:
-          - cookie_names
-          - cookie_names
-          cache_by_query_string: cache_by_query_string
-      properties:
-        browser_cache:
-          $ref: "#/components/schemas/BrowserCacheModule"
-        edge_cache:
-          $ref: "#/components/schemas/EdgeCacheModule"
-        application_controls:
-          $ref: "#/components/schemas/ApplicationControlsModule"
-        slice_controls:
-          $ref: "#/components/schemas/SliceControlsModule"
-      title: CacheSettingModules
-      type: object
-    CacheSettingModulesRequest:
-      additionalProperties: false
-      example:
-        edge_cache:
-          max_age: 19008185
-          caching_for_post_enabled: true
-          caching_for_options_enabled: true
-          stale_cache_enabled: true
-          behavior: behavior
-          tiered_cache_region: tiered_cache_region
-          tiered_cache_enabled: true
-        browser_cache:
-          max_age: 2525491
-          behavior: behavior
-        slice_controls:
-          slice_tiered_caching_enabled: true
-          slice_edge_caching_enabled: true
-          slice_configuration_range: 610
-          slice_configuration_enabled: true
-        application_controls:
-          cache_by_cookies: cache_by_cookies
-          query_string_fields:
-          - query_string_fields
-          - query_string_fields
-          adaptive_delivery_action: adaptive_delivery_action
-          device_group:
-          - 1
-          - 1
-          query_string_sort_enabled: true
-          cookie_names:
-          - cookie_names
-          - cookie_names
-          cache_by_query_string: cache_by_query_string
-      properties:
-        browser_cache:
-          $ref: "#/components/schemas/BrowserCacheModuleRequest"
-        edge_cache:
-          $ref: "#/components/schemas/EdgeCacheModuleRequest"
-        application_controls:
-          $ref: "#/components/schemas/ApplicationControlsModuleRequest"
-        slice_controls:
-          $ref: "#/components/schemas/SliceControlsModuleRequest"
-      title: CacheSettingModulesRequest
-      type: object
     CacheSettingRequest:
       additionalProperties: false
       example:
+        browser_cache:
+          max_age: 2525491
+          behavior: ""
         name: name
         modules:
           edge_cache:
             max_age: 19008185
-            caching_for_post_enabled: true
-            caching_for_options_enabled: true
-            stale_cache_enabled: true
-            behavior: behavior
-            tiered_cache_region: tiered_cache_region
-            tiered_cache_enabled: true
-          browser_cache:
-            max_age: 2525491
-            behavior: behavior
-          slice_controls:
-            slice_tiered_caching_enabled: true
-            slice_edge_caching_enabled: true
-            slice_configuration_range: 610
-            slice_configuration_enabled: true
-          application_controls:
-            cache_by_cookies: cache_by_cookies
-            query_string_fields:
-            - query_string_fields
-            - query_string_fields
-            adaptive_delivery_action: adaptive_delivery_action
-            device_group:
-            - 1
-            - 1
-            query_string_sort_enabled: true
-            cookie_names:
-            - cookie_names
-            - cookie_names
-            cache_by_query_string: cache_by_query_string
+            large_file_cache:
+              offset: 1024
+              enabled: true
+            behavior: ""
+            stale_cache:
+              enabled: true
+          application_accelerator:
+            cache_vary_by_querystring:
+              behavior: ""
+              fields:
+              - fields
+              - fields
+              sort_enabled: true
+            cache_vary_by_devices:
+              device_group:
+              - 5
+              - 5
+              behavior: ""
+            cache_vary_by_method:
+            - null
+            - null
+            cache_vary_by_cookies:
+              cookie_names:
+              - cookie_names
+              - cookie_names
+              behavior: ""
+          tiered_cache: ""
       properties:
         name:
           maxLength: 250
           minLength: 1
           pattern: "^[a-zA-Z0-9 \\-\\.\\'\\,|]+$"
           type: string
+        browser_cache:
+          $ref: "#/components/schemas/BrowserCacheModuleRequest"
         modules:
-          $ref: "#/components/schemas/CacheSettingModulesRequest"
+          $ref: "#/components/schemas/CacheSettingsModulesRequest"
       required:
       - name
       title: CacheSettingRequest
+      type: object
+    CacheSettingsApplicationAcceleratorModule:
+      additionalProperties: false
+      example:
+        cache_vary_by_querystring:
+          behavior: ""
+          fields:
+          - fields
+          - fields
+          sort_enabled: true
+        cache_vary_by_devices:
+          device_group:
+          - 5
+          - 5
+          behavior: ""
+        cache_vary_by_method:
+        - null
+        - null
+        cache_vary_by_cookies:
+          cookie_names:
+          - cookie_names
+          - cookie_names
+          behavior: ""
+      properties:
+        cache_vary_by_method:
+          items:
+            $ref: "#/components/schemas/CacheVaryByMethodEnum"
+          maxItems: 2
+          type: array
+        cache_vary_by_querystring:
+          $ref: "#/components/schemas/CacheVaryByQuerystringModule"
+        cache_vary_by_cookies:
+          $ref: "#/components/schemas/CacheVaryByCookiesModule"
+        cache_vary_by_devices:
+          $ref: "#/components/schemas/CacheVaryByDevicesModule"
+      title: CacheSettingsApplicationAcceleratorModule
+      type: object
+    CacheSettingsApplicationAcceleratorModuleRequest:
+      additionalProperties: false
+      example:
+        cache_vary_by_querystring:
+          behavior: ""
+          fields:
+          - fields
+          - fields
+          sort_enabled: true
+        cache_vary_by_devices:
+          device_group:
+          - 5
+          - 5
+          behavior: ""
+        cache_vary_by_method:
+        - null
+        - null
+        cache_vary_by_cookies:
+          cookie_names:
+          - cookie_names
+          - cookie_names
+          behavior: ""
+      properties:
+        cache_vary_by_method:
+          items:
+            $ref: "#/components/schemas/CacheVaryByMethodEnum"
+          maxItems: 2
+          type: array
+        cache_vary_by_querystring:
+          $ref: "#/components/schemas/CacheVaryByQuerystringModuleRequest"
+        cache_vary_by_cookies:
+          $ref: "#/components/schemas/CacheVaryByCookiesModuleRequest"
+        cache_vary_by_devices:
+          $ref: "#/components/schemas/CacheVaryByDevicesModuleRequest"
+      title: CacheSettingsApplicationAcceleratorModuleRequest
+      type: object
+    CacheSettingsEdgeCacheModule:
+      additionalProperties: false
+      example:
+        max_age: 4622587
+        large_file_cache:
+          offset: 1024
+          enabled: true
+        behavior: ""
+        stale_cache:
+          enabled: true
+      properties:
+        behavior:
+          allOf:
+          - $ref: "#/components/schemas/CacheSettingsEdgeCacheModuleBehaviorEnum"
+        max_age:
+          description: "To use a value lower than 60s, the Application Acceleration\
+            \ module must be enabled on the Edge Application."
+          format: int64
+          maximum: 31536000
+          minimum: 0
+          type: integer
+        stale_cache:
+          $ref: "#/components/schemas/StateCacheModule"
+        large_file_cache:
+          $ref: "#/components/schemas/LargeFileCacheModule"
+      title: CacheSettingsEdgeCacheModule
+      type: object
+    CacheSettingsEdgeCacheModuleBehaviorEnum:
+      description: |-
+        * `honor` - Honor Origin Cache Settings
+        * `override` - Override Cache Settings
+      title: CacheSettingsEdgeCacheModuleBehaviorEnum
+      type: string
+    CacheSettingsEdgeCacheModuleRequest:
+      additionalProperties: false
+      example:
+        max_age: 19008185
+        large_file_cache:
+          offset: 1024
+          enabled: true
+        behavior: ""
+        stale_cache:
+          enabled: true
+      properties:
+        behavior:
+          allOf:
+          - $ref: "#/components/schemas/CacheSettingsEdgeCacheModuleBehaviorEnum"
+        max_age:
+          description: "To use a value lower than 60s, the Application Acceleration\
+            \ module must be enabled on the Edge Application."
+          format: int64
+          maximum: 31536000
+          minimum: 0
+          type: integer
+        stale_cache:
+          $ref: "#/components/schemas/StateCacheModuleRequest"
+        large_file_cache:
+          $ref: "#/components/schemas/LargeFileCacheModuleRequest"
+      title: CacheSettingsEdgeCacheModuleRequest
+      type: object
+    CacheSettingsModules:
+      additionalProperties: false
+      example:
+        edge_cache:
+          max_age: 4622587
+          large_file_cache:
+            offset: 1024
+            enabled: true
+          behavior: ""
+          stale_cache:
+            enabled: true
+        application_accelerator:
+          cache_vary_by_querystring:
+            behavior: ""
+            fields:
+            - fields
+            - fields
+            sort_enabled: true
+          cache_vary_by_devices:
+            device_group:
+            - 5
+            - 5
+            behavior: ""
+          cache_vary_by_method:
+          - null
+          - null
+          cache_vary_by_cookies:
+            cookie_names:
+            - cookie_names
+            - cookie_names
+            behavior: ""
+        tiered_cache: ""
+      properties:
+        edge_cache:
+          $ref: "#/components/schemas/CacheSettingsEdgeCacheModule"
+        tiered_cache:
+          allOf:
+          - $ref: "#/components/schemas/CacheSettingsTieredCacheModule"
+          nullable: true
+        application_accelerator:
+          $ref: "#/components/schemas/CacheSettingsApplicationAcceleratorModule"
+      title: CacheSettingsModules
+      type: object
+    CacheSettingsModulesRequest:
+      additionalProperties: false
+      example:
+        edge_cache:
+          max_age: 19008185
+          large_file_cache:
+            offset: 1024
+            enabled: true
+          behavior: ""
+          stale_cache:
+            enabled: true
+        application_accelerator:
+          cache_vary_by_querystring:
+            behavior: ""
+            fields:
+            - fields
+            - fields
+            sort_enabled: true
+          cache_vary_by_devices:
+            device_group:
+            - 5
+            - 5
+            behavior: ""
+          cache_vary_by_method:
+          - null
+          - null
+          cache_vary_by_cookies:
+            cookie_names:
+            - cookie_names
+            - cookie_names
+            behavior: ""
+        tiered_cache: ""
+      properties:
+        edge_cache:
+          $ref: "#/components/schemas/CacheSettingsEdgeCacheModuleRequest"
+        tiered_cache:
+          allOf:
+          - $ref: "#/components/schemas/CacheSettingsTieredCacheModuleRequest"
+          nullable: true
+        application_accelerator:
+          $ref: "#/components/schemas/CacheSettingsApplicationAcceleratorModuleRequest"
+      title: CacheSettingsModulesRequest
+      type: object
+    CacheSettingsTieredCacheModule:
+      additionalProperties: false
+      properties:
+        behavior:
+          allOf:
+          - $ref: "#/components/schemas/CacheSettingsTieredCacheModuleBehaviorEnum"
+          readOnly: true
+        max_age:
+          format: int64
+          maximum: 31536000
+          minimum: 0
+          readOnly: true
+          type: integer
+        topology:
+          description: |-
+            * `near-edge` - near-edge
+            * `br-east-1` - br-east-1
+            * `us-east-1` - us-east-1
+          title: TopologyEnum
+          type: string
+      required:
+      - behavior
+      - max_age
+      title: CacheSettingsTieredCacheModule
+      type: object
+    CacheSettingsTieredCacheModuleBehaviorEnum:
+      description: '* `override` - override'
+      title: CacheSettingsTieredCacheModuleBehaviorEnum
+      type: string
+    CacheSettingsTieredCacheModuleRequest:
+      additionalProperties: false
+      properties:
+        topology:
+          description: |-
+            * `near-edge` - near-edge
+            * `br-east-1` - br-east-1
+            * `us-east-1` - us-east-1
+          title: TopologyEnum
+          type: string
+      title: CacheSettingsTieredCacheModuleRequest
+      type: object
+    CacheVaryByCookiesModule:
+      additionalProperties: false
+      example:
+        cookie_names:
+        - cookie_names
+        - cookie_names
+        behavior: ""
+      properties:
+        behavior:
+          allOf:
+          - $ref: "#/components/schemas/BehaviorA69Enum"
+        cookie_names:
+          items:
+            type: string
+          type: array
+      title: CacheVaryByCookiesModule
+      type: object
+    CacheVaryByCookiesModuleRequest:
+      additionalProperties: false
+      example:
+        cookie_names:
+        - cookie_names
+        - cookie_names
+        behavior: ""
+      properties:
+        behavior:
+          allOf:
+          - $ref: "#/components/schemas/BehaviorA69Enum"
+        cookie_names:
+          items:
+            type: string
+          type: array
+      title: CacheVaryByCookiesModuleRequest
+      type: object
+    CacheVaryByDevicesModule:
+      additionalProperties: false
+      example:
+        device_group:
+        - 5
+        - 5
+        behavior: ""
+      properties:
+        behavior:
+          allOf:
+          - $ref: "#/components/schemas/CacheVaryByDevicesModuleBehaviorEnum"
+        device_group:
+          items:
+            format: int64
+            type: integer
+          type: array
+      title: CacheVaryByDevicesModule
+      type: object
+    CacheVaryByDevicesModuleBehaviorEnum:
+      description: |-
+        * `ignore` - ignore
+        * `allowlist` - allowlist
+      title: CacheVaryByDevicesModuleBehaviorEnum
+      type: string
+    CacheVaryByDevicesModuleRequest:
+      additionalProperties: false
+      example:
+        device_group:
+        - 5
+        - 5
+        behavior: ""
+      properties:
+        behavior:
+          allOf:
+          - $ref: "#/components/schemas/CacheVaryByDevicesModuleBehaviorEnum"
+        device_group:
+          items:
+            format: int64
+            type: integer
+          type: array
+      title: CacheVaryByDevicesModuleRequest
+      type: object
+    CacheVaryByMethodEnum:
+      description: |-
+        * `options` - options
+        * `post` - post
+      title: CacheVaryByMethodEnum
+      type: string
+    CacheVaryByQuerystringModule:
+      additionalProperties: false
+      example:
+        behavior: ""
+        fields:
+        - fields
+        - fields
+        sort_enabled: true
+      properties:
+        behavior:
+          allOf:
+          - $ref: "#/components/schemas/BehaviorA69Enum"
+        fields:
+          items:
+            type: string
+          type: array
+        sort_enabled:
+          type: boolean
+      title: CacheVaryByQuerystringModule
+      type: object
+    CacheVaryByQuerystringModuleRequest:
+      additionalProperties: false
+      example:
+        behavior: ""
+        fields:
+        - fields
+        - fields
+        sort_enabled: true
+      properties:
+        behavior:
+          allOf:
+          - $ref: "#/components/schemas/BehaviorA69Enum"
+        fields:
+          items:
+            type: string
+          type: array
+        sort_enabled:
+          type: boolean
+      title: CacheVaryByQuerystringModuleRequest
       type: object
     CiphersEnum:
       description: |-
@@ -19993,100 +20138,6 @@ components:
         * `redirect_to_302` - redirect_to_302
       title: EdgeApplicationRuleEngineStringTypeEnum
       type: string
-    EdgeCacheModule:
-      additionalProperties: false
-      example:
-        max_age: 4622587
-        caching_for_post_enabled: true
-        caching_for_options_enabled: true
-        stale_cache_enabled: true
-        behavior: behavior
-        tiered_cache_region: tiered_cache_region
-        tiered_cache_enabled: true
-      properties:
-        behavior:
-          description: |-
-            * `honor` - Honor Origin Cache Settings
-            * `override` - Override Cache Settings
-          title: EdgeCacheModuleBehaviorEnum
-          type: string
-        max_age:
-          format: int64
-          maximum: 31536000
-          minimum: 0
-          type: integer
-        caching_for_post_enabled:
-          type: boolean
-        caching_for_options_enabled:
-          type: boolean
-        stale_cache_enabled:
-          type: boolean
-        tiered_cache_enabled:
-          type: boolean
-        tiered_cache_region:
-          maxLength: 250
-          minLength: 1
-          pattern: .*
-          type: string
-      required:
-      - behavior
-      - caching_for_options_enabled
-      - caching_for_post_enabled
-      - max_age
-      - stale_cache_enabled
-      - tiered_cache_enabled
-      title: EdgeCacheModule
-      type: object
-    EdgeCacheModuleBehaviorEnum:
-      description: |-
-        * `honor` - Honor Origin Cache Settings
-        * `override` - Override Cache Settings
-      title: EdgeCacheModuleBehaviorEnum
-      type: string
-    EdgeCacheModuleRequest:
-      additionalProperties: false
-      example:
-        max_age: 19008185
-        caching_for_post_enabled: true
-        caching_for_options_enabled: true
-        stale_cache_enabled: true
-        behavior: behavior
-        tiered_cache_region: tiered_cache_region
-        tiered_cache_enabled: true
-      properties:
-        behavior:
-          description: |-
-            * `honor` - Honor Origin Cache Settings
-            * `override` - Override Cache Settings
-          title: EdgeCacheModuleBehaviorEnum
-          type: string
-        max_age:
-          format: int64
-          maximum: 31536000
-          minimum: 0
-          type: integer
-        caching_for_post_enabled:
-          type: boolean
-        caching_for_options_enabled:
-          type: boolean
-        stale_cache_enabled:
-          type: boolean
-        tiered_cache_enabled:
-          type: boolean
-        tiered_cache_region:
-          maxLength: 250
-          minLength: 1
-          pattern: .*
-          type: string
-      required:
-      - behavior
-      - caching_for_options_enabled
-      - caching_for_post_enabled
-      - max_age
-      - stale_cache_enabled
-      - tiered_cache_enabled
-      title: EdgeCacheModuleRequest
-      type: object
     EdgeConnectorHTTP:
       additionalProperties: false
       example:
@@ -22503,6 +22554,36 @@ components:
           type: string
       title: JSONAPIErrorSource
       type: object
+    LargeFileCacheModule:
+      additionalProperties: false
+      example:
+        offset: 1024
+        enabled: true
+      properties:
+        enabled:
+          type: boolean
+        offset:
+          format: int64
+          maximum: 1024
+          minimum: 1024
+          type: integer
+      title: LargeFileCacheModule
+      type: object
+    LargeFileCacheModuleRequest:
+      additionalProperties: false
+      example:
+        offset: 1024
+        enabled: true
+      properties:
+        enabled:
+          type: boolean
+        offset:
+          format: int64
+          maximum: 1024
+          minimum: 1024
+          type: integer
+      title: LargeFileCacheModuleRequest
+      type: object
     LayerEnum:
       description: |-
         * `edge_cache` - Edge Cache
@@ -24324,72 +24405,76 @@ components:
       example:
         count: 123
         results:
-        - name: name
+        - browser_cache:
+            max_age: 19008185
+            behavior: ""
+          name: name
           id: 0
           modules:
             edge_cache:
               max_age: 4622587
-              caching_for_post_enabled: true
-              caching_for_options_enabled: true
-              stale_cache_enabled: true
-              behavior: behavior
-              tiered_cache_region: tiered_cache_region
-              tiered_cache_enabled: true
-            browser_cache:
-              max_age: 19008185
-              behavior: behavior
-            slice_controls:
-              slice_tiered_caching_enabled: true
-              slice_edge_caching_enabled: true
-              slice_configuration_range: 577
-              slice_configuration_enabled: true
-            application_controls:
-              cache_by_cookies: cache_by_cookies
-              query_string_fields:
-              - query_string_fields
-              - query_string_fields
-              adaptive_delivery_action: adaptive_delivery_action
-              device_group:
-              - 5
-              - 5
-              query_string_sort_enabled: true
-              cookie_names:
-              - cookie_names
-              - cookie_names
-              cache_by_query_string: cache_by_query_string
-        - name: name
+              large_file_cache:
+                offset: 1024
+                enabled: true
+              behavior: ""
+              stale_cache:
+                enabled: true
+            application_accelerator:
+              cache_vary_by_querystring:
+                behavior: ""
+                fields:
+                - fields
+                - fields
+                sort_enabled: true
+              cache_vary_by_devices:
+                device_group:
+                - 5
+                - 5
+                behavior: ""
+              cache_vary_by_method:
+              - null
+              - null
+              cache_vary_by_cookies:
+                cookie_names:
+                - cookie_names
+                - cookie_names
+                behavior: ""
+            tiered_cache: ""
+        - browser_cache:
+            max_age: 19008185
+            behavior: ""
+          name: name
           id: 0
           modules:
             edge_cache:
               max_age: 4622587
-              caching_for_post_enabled: true
-              caching_for_options_enabled: true
-              stale_cache_enabled: true
-              behavior: behavior
-              tiered_cache_region: tiered_cache_region
-              tiered_cache_enabled: true
-            browser_cache:
-              max_age: 19008185
-              behavior: behavior
-            slice_controls:
-              slice_tiered_caching_enabled: true
-              slice_edge_caching_enabled: true
-              slice_configuration_range: 577
-              slice_configuration_enabled: true
-            application_controls:
-              cache_by_cookies: cache_by_cookies
-              query_string_fields:
-              - query_string_fields
-              - query_string_fields
-              adaptive_delivery_action: adaptive_delivery_action
-              device_group:
-              - 5
-              - 5
-              query_string_sort_enabled: true
-              cookie_names:
-              - cookie_names
-              - cookie_names
-              cache_by_query_string: cache_by_query_string
+              large_file_cache:
+                offset: 1024
+                enabled: true
+              behavior: ""
+              stale_cache:
+                enabled: true
+            application_accelerator:
+              cache_vary_by_querystring:
+                behavior: ""
+                fields:
+                - fields
+                - fields
+                sort_enabled: true
+              cache_vary_by_devices:
+                device_group:
+                - 5
+                - 5
+                behavior: ""
+              cache_vary_by_method:
+              - null
+              - null
+              cache_vary_by_cookies:
+                cookie_names:
+                - cookie_names
+                - cookie_names
+                behavior: ""
+            tiered_cache: ""
       properties:
         count:
           example: 123
@@ -24618,46 +24703,50 @@ components:
     PatchedCacheSettingRequest:
       additionalProperties: false
       example:
+        browser_cache:
+          max_age: 2525491
+          behavior: ""
         name: name
         modules:
           edge_cache:
             max_age: 19008185
-            caching_for_post_enabled: true
-            caching_for_options_enabled: true
-            stale_cache_enabled: true
-            behavior: behavior
-            tiered_cache_region: tiered_cache_region
-            tiered_cache_enabled: true
-          browser_cache:
-            max_age: 2525491
-            behavior: behavior
-          slice_controls:
-            slice_tiered_caching_enabled: true
-            slice_edge_caching_enabled: true
-            slice_configuration_range: 610
-            slice_configuration_enabled: true
-          application_controls:
-            cache_by_cookies: cache_by_cookies
-            query_string_fields:
-            - query_string_fields
-            - query_string_fields
-            adaptive_delivery_action: adaptive_delivery_action
-            device_group:
-            - 1
-            - 1
-            query_string_sort_enabled: true
-            cookie_names:
-            - cookie_names
-            - cookie_names
-            cache_by_query_string: cache_by_query_string
+            large_file_cache:
+              offset: 1024
+              enabled: true
+            behavior: ""
+            stale_cache:
+              enabled: true
+          application_accelerator:
+            cache_vary_by_querystring:
+              behavior: ""
+              fields:
+              - fields
+              - fields
+              sort_enabled: true
+            cache_vary_by_devices:
+              device_group:
+              - 5
+              - 5
+              behavior: ""
+            cache_vary_by_method:
+            - null
+            - null
+            cache_vary_by_cookies:
+              cookie_names:
+              - cookie_names
+              - cookie_names
+              behavior: ""
+          tiered_cache: ""
       properties:
         name:
           maxLength: 250
           minLength: 1
           pattern: "^[a-zA-Z0-9 \\-\\.\\'\\,|]+$"
           type: string
+        browser_cache:
+          $ref: "#/components/schemas/BrowserCacheModuleRequest"
         modules:
-          $ref: "#/components/schemas/CacheSettingModulesRequest"
+          $ref: "#/components/schemas/CacheSettingsModulesRequest"
       title: PatchedCacheSettingRequest
       type: object
     PatchedCustomPagesRequest:
@@ -25816,39 +25905,41 @@ components:
       additionalProperties: false
       example:
         data:
+          browser_cache:
+            max_age: 19008185
+            behavior: ""
           name: name
           id: 0
           modules:
             edge_cache:
               max_age: 4622587
-              caching_for_post_enabled: true
-              caching_for_options_enabled: true
-              stale_cache_enabled: true
-              behavior: behavior
-              tiered_cache_region: tiered_cache_region
-              tiered_cache_enabled: true
-            browser_cache:
-              max_age: 19008185
-              behavior: behavior
-            slice_controls:
-              slice_tiered_caching_enabled: true
-              slice_edge_caching_enabled: true
-              slice_configuration_range: 577
-              slice_configuration_enabled: true
-            application_controls:
-              cache_by_cookies: cache_by_cookies
-              query_string_fields:
-              - query_string_fields
-              - query_string_fields
-              adaptive_delivery_action: adaptive_delivery_action
-              device_group:
-              - 5
-              - 5
-              query_string_sort_enabled: true
-              cookie_names:
-              - cookie_names
-              - cookie_names
-              cache_by_query_string: cache_by_query_string
+              large_file_cache:
+                offset: 1024
+                enabled: true
+              behavior: ""
+              stale_cache:
+                enabled: true
+            application_accelerator:
+              cache_vary_by_querystring:
+                behavior: ""
+                fields:
+                - fields
+                - fields
+                sort_enabled: true
+              cache_vary_by_devices:
+                device_group:
+                - 5
+                - 5
+                behavior: ""
+              cache_vary_by_method:
+              - null
+              - null
+              cache_vary_by_cookies:
+                cookie_names:
+                - cookie_names
+                - cookie_names
+                behavior: ""
+            tiered_cache: ""
         state: state
       properties:
         state:
@@ -26895,6 +26986,13 @@ components:
     ResponseBadRequestCacheSetting:
       additionalProperties: false
       example:
+        browser_cache:
+          max_age:
+          - max_age
+          - max_age
+          behavior:
+          - behavior
+          - behavior
         name:
         - name
         - name
@@ -26907,64 +27005,55 @@ components:
             max_age:
             - max_age
             - max_age
-            caching_for_post_enabled:
-            - caching_for_post_enabled
-            - caching_for_post_enabled
-            caching_for_options_enabled:
-            - caching_for_options_enabled
-            - caching_for_options_enabled
-            stale_cache_enabled:
-            - stale_cache_enabled
-            - stale_cache_enabled
+            large_file_cache:
+              offset:
+              - offset
+              - offset
+              enabled:
+              - enabled
+              - enabled
             behavior:
             - behavior
             - behavior
-            tiered_cache_region:
-            - tiered_cache_region
-            - tiered_cache_region
-            tiered_cache_enabled:
-            - tiered_cache_enabled
-            - tiered_cache_enabled
-          browser_cache:
+            stale_cache:
+              enabled:
+              - enabled
+              - enabled
+          application_accelerator:
+            cache_vary_by_querystring:
+              behavior:
+              - behavior
+              - behavior
+              fields: null
+              sort_enabled:
+              - sort_enabled
+              - sort_enabled
+            cache_vary_by_devices:
+              device_group: null
+              behavior:
+              - behavior
+              - behavior
+            cache_vary_by_method:
+            - ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names
+            - ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names
+            cache_vary_by_cookies:
+              cookie_names: null
+              behavior:
+              - behavior
+              - behavior
+          tiered_cache:
             max_age:
             - max_age
             - max_age
+            topology:
+            - topology
+            - topology
             behavior:
             - behavior
             - behavior
-          slice_controls:
-            slice_tiered_caching_enabled:
-            - slice_tiered_caching_enabled
-            - slice_tiered_caching_enabled
-            slice_edge_caching_enabled:
-            - slice_edge_caching_enabled
-            - slice_edge_caching_enabled
-            slice_configuration_range:
-            - slice_configuration_range
-            - slice_configuration_range
-            slice_configuration_enabled:
-            - slice_configuration_enabled
-            - slice_configuration_enabled
-          application_controls:
-            cache_by_cookies:
-            - cache_by_cookies
-            - cache_by_cookies
-            query_string_fields:
-            - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
-            - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
-            adaptive_delivery_action:
-            - adaptive_delivery_action
-            - adaptive_delivery_action
-            device_group:
-            - device_group
-            - device_group
-            query_string_sort_enabled:
-            - query_string_sort_enabled
-            - query_string_sort_enabled
-            cookie_names: null
-            cache_by_query_string:
-            - cache_by_query_string
-            - cache_by_query_string
+            tiered_cache_enabled:
+            - tiered_cache_enabled
+            - tiered_cache_enabled
       properties:
         id:
           items:
@@ -26974,6 +27063,8 @@ components:
           items:
             type: string
           type: array
+        browser_cache:
+          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassBrowser_cacheField"
         modules:
           $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassModulesField"
         detail:
@@ -26983,64 +27074,149 @@ components:
           type: string
       title: ResponseBadRequestCacheSetting
       type: object
-    ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField:
+    ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField:
       additionalProperties: false
       example:
-        cache_by_cookies:
-        - cache_by_cookies
-        - cache_by_cookies
-        query_string_fields:
-        - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
-        - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
-        adaptive_delivery_action:
-        - adaptive_delivery_action
-        - adaptive_delivery_action
-        device_group:
-        - device_group
-        - device_group
-        query_string_sort_enabled:
-        - query_string_sort_enabled
-        - query_string_sort_enabled
         cookie_names: null
-        cache_by_query_string:
-        - cache_by_query_string
-        - cache_by_query_string
+        behavior:
+        - behavior
+        - behavior
       properties:
-        cache_by_query_string:
-          items:
-            type: string
-          type: array
-        query_string_fields:
-          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields"
-        query_string_sort_enabled:
-          items:
-            type: string
-          type: array
-        cache_by_cookies:
+        behavior:
           items:
             type: string
           type: array
         cookie_names:
-          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields"
-        adaptive_delivery_action:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names"
+      title: ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField
+      type: object
+    ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_devicesField:
+      additionalProperties: false
+      example:
+        device_group: null
+        behavior:
+        - behavior
+        - behavior
+      properties:
+        behavior:
           items:
             type: string
           type: array
         device_group:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names"
+      title: ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_devicesField
+      type: object
+    ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_querystringField:
+      additionalProperties: false
+      example:
+        behavior:
+        - behavior
+        - behavior
+        fields: null
+        sort_enabled:
+        - sort_enabled
+        - sort_enabled
+      properties:
+        behavior:
           items:
             type: string
           type: array
-      title: ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField
+        fields:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names"
+        sort_enabled:
+          items:
+            type: string
+          type: array
+      title: ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_querystringField
       type: object
-    ResponseBadRequestCacheSettingModulesSerializerBrowser_cacheField:
+    ResponseBadRequestCacheSettingsEdgeCacheModuleLarge_file_cacheField:
+      additionalProperties: false
+      example:
+        offset:
+        - offset
+        - offset
+        enabled:
+        - enabled
+        - enabled
+      properties:
+        enabled:
+          items:
+            type: string
+          type: array
+        offset:
+          items:
+            type: string
+          type: array
+      title: ResponseBadRequestCacheSettingsEdgeCacheModuleLarge_file_cacheField
+      type: object
+    ResponseBadRequestCacheSettingsEdgeCacheModuleStale_cacheField:
+      additionalProperties: false
+      example:
+        enabled:
+        - enabled
+        - enabled
+      properties:
+        enabled:
+          items:
+            type: string
+          type: array
+      title: ResponseBadRequestCacheSettingsEdgeCacheModuleStale_cacheField
+      type: object
+    ResponseBadRequestCacheSettingsModulesApplication_acceleratorField:
+      additionalProperties: false
+      example:
+        cache_vary_by_querystring:
+          behavior:
+          - behavior
+          - behavior
+          fields: null
+          sort_enabled:
+          - sort_enabled
+          - sort_enabled
+        cache_vary_by_devices:
+          device_group: null
+          behavior:
+          - behavior
+          - behavior
+        cache_vary_by_method:
+        - ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names
+        - ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names
+        cache_vary_by_cookies:
+          cookie_names: null
+          behavior:
+          - behavior
+          - behavior
+      properties:
+        cache_vary_by_method:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names"
+        cache_vary_by_querystring:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_querystringField"
+        cache_vary_by_cookies:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField"
+        cache_vary_by_devices:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_devicesField"
+      title: ResponseBadRequestCacheSettingsModulesApplication_acceleratorField
+      type: object
+    ResponseBadRequestCacheSettingsModulesEdge_cacheField:
       additionalProperties: false
       example:
         max_age:
         - max_age
         - max_age
+        large_file_cache:
+          offset:
+          - offset
+          - offset
+          enabled:
+          - enabled
+          - enabled
         behavior:
         - behavior
         - behavior
+        stale_cache:
+          enabled:
+          - enabled
+          - enabled
       properties:
         behavior:
           items:
@@ -27050,29 +27226,24 @@ components:
           items:
             type: string
           type: array
-      title: ResponseBadRequestCacheSettingModulesSerializerBrowser_cacheField
+        stale_cache:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingsEdgeCacheModuleStale_cacheField"
+        large_file_cache:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingsEdgeCacheModuleLarge_file_cacheField"
+      title: ResponseBadRequestCacheSettingsModulesEdge_cacheField
       type: object
-    ResponseBadRequestCacheSettingModulesSerializerEdge_cacheField:
+    ResponseBadRequestCacheSettingsModulesTiered_cacheField:
       additionalProperties: false
       example:
         max_age:
         - max_age
         - max_age
-        caching_for_post_enabled:
-        - caching_for_post_enabled
-        - caching_for_post_enabled
-        caching_for_options_enabled:
-        - caching_for_options_enabled
-        - caching_for_options_enabled
-        stale_cache_enabled:
-        - stale_cache_enabled
-        - stale_cache_enabled
+        topology:
+        - topology
+        - topology
         behavior:
         - behavior
         - behavior
-        tiered_cache_region:
-        - tiered_cache_region
-        - tiered_cache_region
         tiered_cache_enabled:
         - tiered_cache_enabled
         - tiered_cache_enabled
@@ -27085,15 +27256,7 @@ components:
           items:
             type: string
           type: array
-        caching_for_post_enabled:
-          items:
-            type: string
-          type: array
-        caching_for_options_enabled:
-          items:
-            type: string
-          type: array
-        stale_cache_enabled:
+        topology:
           items:
             type: string
           type: array
@@ -27101,45 +27264,7 @@ components:
           items:
             type: string
           type: array
-        tiered_cache_region:
-          items:
-            type: string
-          type: array
-      title: ResponseBadRequestCacheSettingModulesSerializerEdge_cacheField
-      type: object
-    ResponseBadRequestCacheSettingModulesSerializerSlice_controlsField:
-      additionalProperties: false
-      example:
-        slice_tiered_caching_enabled:
-        - slice_tiered_caching_enabled
-        - slice_tiered_caching_enabled
-        slice_edge_caching_enabled:
-        - slice_edge_caching_enabled
-        - slice_edge_caching_enabled
-        slice_configuration_range:
-        - slice_configuration_range
-        - slice_configuration_range
-        slice_configuration_enabled:
-        - slice_configuration_enabled
-        - slice_configuration_enabled
-      properties:
-        slice_configuration_enabled:
-          items:
-            type: string
-          type: array
-        slice_edge_caching_enabled:
-          items:
-            type: string
-          type: array
-        slice_tiered_caching_enabled:
-          items:
-            type: string
-          type: array
-        slice_configuration_range:
-          items:
-            type: string
-          type: array
-      title: ResponseBadRequestCacheSettingModulesSerializerSlice_controlsField
+      title: ResponseBadRequestCacheSettingsModulesTiered_cacheField
       type: object
     ResponseBadRequestEdgeApplication:
       additionalProperties: false
@@ -27171,64 +27296,55 @@ components:
             max_age:
             - max_age
             - max_age
-            caching_for_post_enabled:
-            - caching_for_post_enabled
-            - caching_for_post_enabled
-            caching_for_options_enabled:
-            - caching_for_options_enabled
-            - caching_for_options_enabled
-            stale_cache_enabled:
-            - stale_cache_enabled
-            - stale_cache_enabled
+            large_file_cache:
+              offset:
+              - offset
+              - offset
+              enabled:
+              - enabled
+              - enabled
             behavior:
             - behavior
             - behavior
-            tiered_cache_region:
-            - tiered_cache_region
-            - tiered_cache_region
-            tiered_cache_enabled:
-            - tiered_cache_enabled
-            - tiered_cache_enabled
-          browser_cache:
+            stale_cache:
+              enabled:
+              - enabled
+              - enabled
+          application_accelerator:
+            cache_vary_by_querystring:
+              behavior:
+              - behavior
+              - behavior
+              fields: null
+              sort_enabled:
+              - sort_enabled
+              - sort_enabled
+            cache_vary_by_devices:
+              device_group: null
+              behavior:
+              - behavior
+              - behavior
+            cache_vary_by_method:
+            - ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names
+            - ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names
+            cache_vary_by_cookies:
+              cookie_names: null
+              behavior:
+              - behavior
+              - behavior
+          tiered_cache:
             max_age:
             - max_age
             - max_age
+            topology:
+            - topology
+            - topology
             behavior:
             - behavior
             - behavior
-          slice_controls:
-            slice_tiered_caching_enabled:
-            - slice_tiered_caching_enabled
-            - slice_tiered_caching_enabled
-            slice_edge_caching_enabled:
-            - slice_edge_caching_enabled
-            - slice_edge_caching_enabled
-            slice_configuration_range:
-            - slice_configuration_range
-            - slice_configuration_range
-            slice_configuration_enabled:
-            - slice_configuration_enabled
-            - slice_configuration_enabled
-          application_controls:
-            cache_by_cookies:
-            - cache_by_cookies
-            - cache_by_cookies
-            query_string_fields:
-            - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
-            - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
-            adaptive_delivery_action:
-            - adaptive_delivery_action
-            - adaptive_delivery_action
-            device_group:
-            - device_group
-            - device_group
-            query_string_sort_enabled:
-            - query_string_sort_enabled
-            - query_string_sort_enabled
-            cookie_names: null
-            cache_by_query_string:
-            - cache_by_query_string
-            - cache_by_query_string
+            tiered_cache_enabled:
+            - tiered_cache_enabled
+            - tiered_cache_enabled
       properties:
         name:
           items:
@@ -27267,6 +27383,26 @@ components:
           type: string
       title: ResponseBadRequestEdgeApplication
       type: object
+    ResponseBadRequestSerializerMetaclassBrowser_cacheField:
+      additionalProperties: false
+      example:
+        max_age:
+        - max_age
+        - max_age
+        behavior:
+        - behavior
+        - behavior
+      properties:
+        behavior:
+          items:
+            type: string
+          type: array
+        max_age:
+          items:
+            type: string
+          type: array
+      title: ResponseBadRequestSerializerMetaclassBrowser_cacheField
+      type: object
     ResponseBadRequestSerializerMetaclassModulesField:
       additionalProperties: false
       example:
@@ -27274,73 +27410,62 @@ components:
           max_age:
           - max_age
           - max_age
-          caching_for_post_enabled:
-          - caching_for_post_enabled
-          - caching_for_post_enabled
-          caching_for_options_enabled:
-          - caching_for_options_enabled
-          - caching_for_options_enabled
-          stale_cache_enabled:
-          - stale_cache_enabled
-          - stale_cache_enabled
+          large_file_cache:
+            offset:
+            - offset
+            - offset
+            enabled:
+            - enabled
+            - enabled
           behavior:
           - behavior
           - behavior
-          tiered_cache_region:
-          - tiered_cache_region
-          - tiered_cache_region
-          tiered_cache_enabled:
-          - tiered_cache_enabled
-          - tiered_cache_enabled
-        browser_cache:
+          stale_cache:
+            enabled:
+            - enabled
+            - enabled
+        application_accelerator:
+          cache_vary_by_querystring:
+            behavior:
+            - behavior
+            - behavior
+            fields: null
+            sort_enabled:
+            - sort_enabled
+            - sort_enabled
+          cache_vary_by_devices:
+            device_group: null
+            behavior:
+            - behavior
+            - behavior
+          cache_vary_by_method:
+          - ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names
+          - ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names
+          cache_vary_by_cookies:
+            cookie_names: null
+            behavior:
+            - behavior
+            - behavior
+        tiered_cache:
           max_age:
           - max_age
           - max_age
+          topology:
+          - topology
+          - topology
           behavior:
           - behavior
           - behavior
-        slice_controls:
-          slice_tiered_caching_enabled:
-          - slice_tiered_caching_enabled
-          - slice_tiered_caching_enabled
-          slice_edge_caching_enabled:
-          - slice_edge_caching_enabled
-          - slice_edge_caching_enabled
-          slice_configuration_range:
-          - slice_configuration_range
-          - slice_configuration_range
-          slice_configuration_enabled:
-          - slice_configuration_enabled
-          - slice_configuration_enabled
-        application_controls:
-          cache_by_cookies:
-          - cache_by_cookies
-          - cache_by_cookies
-          query_string_fields:
-          - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
-          - ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields
-          adaptive_delivery_action:
-          - adaptive_delivery_action
-          - adaptive_delivery_action
-          device_group:
-          - device_group
-          - device_group
-          query_string_sort_enabled:
-          - query_string_sort_enabled
-          - query_string_sort_enabled
-          cookie_names: null
-          cache_by_query_string:
-          - cache_by_query_string
-          - cache_by_query_string
+          tiered_cache_enabled:
+          - tiered_cache_enabled
+          - tiered_cache_enabled
       properties:
-        browser_cache:
-          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerBrowser_cacheField"
         edge_cache:
-          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerEdge_cacheField"
-        application_controls:
-          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField"
-        slice_controls:
-          $ref: "#/components/schemas/ResponseBadRequestCacheSettingModulesSerializerSlice_controlsField"
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingsModulesEdge_cacheField"
+        tiered_cache:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingsModulesTiered_cacheField"
+        application_accelerator:
+          $ref: "#/components/schemas/ResponseBadRequestCacheSettingsModulesApplication_acceleratorField"
       title: ResponseBadRequestSerializerMetaclassModulesField
       type: object
     ResponseBadRequestSerializerMetaclassStrategyField:
@@ -28213,39 +28338,41 @@ components:
     ResponseListCacheSetting:
       additionalProperties: false
       example:
+        browser_cache:
+          max_age: 19008185
+          behavior: ""
         name: name
         id: 0
         modules:
           edge_cache:
             max_age: 4622587
-            caching_for_post_enabled: true
-            caching_for_options_enabled: true
-            stale_cache_enabled: true
-            behavior: behavior
-            tiered_cache_region: tiered_cache_region
-            tiered_cache_enabled: true
-          browser_cache:
-            max_age: 19008185
-            behavior: behavior
-          slice_controls:
-            slice_tiered_caching_enabled: true
-            slice_edge_caching_enabled: true
-            slice_configuration_range: 577
-            slice_configuration_enabled: true
-          application_controls:
-            cache_by_cookies: cache_by_cookies
-            query_string_fields:
-            - query_string_fields
-            - query_string_fields
-            adaptive_delivery_action: adaptive_delivery_action
-            device_group:
-            - 5
-            - 5
-            query_string_sort_enabled: true
-            cookie_names:
-            - cookie_names
-            - cookie_names
-            cache_by_query_string: cache_by_query_string
+            large_file_cache:
+              offset: 1024
+              enabled: true
+            behavior: ""
+            stale_cache:
+              enabled: true
+          application_accelerator:
+            cache_vary_by_querystring:
+              behavior: ""
+              fields:
+              - fields
+              - fields
+              sort_enabled: true
+            cache_vary_by_devices:
+              device_group:
+              - 5
+              - 5
+              behavior: ""
+            cache_vary_by_method:
+            - null
+            - null
+            cache_vary_by_cookies:
+              cookie_names:
+              - cookie_names
+              - cookie_names
+              behavior: ""
+          tiered_cache: ""
       properties:
         id:
           format: int64
@@ -28256,8 +28383,10 @@ components:
           minLength: 1
           pattern: "^[a-zA-Z0-9 \\-\\.\\'\\,|]+$"
           type: string
+        browser_cache:
+          $ref: "#/components/schemas/BrowserCacheModule"
         modules:
-          $ref: "#/components/schemas/CacheSettingModules"
+          $ref: "#/components/schemas/CacheSettingsModules"
       required:
       - id
       - name
@@ -28317,39 +28446,41 @@ components:
       additionalProperties: false
       example:
         data:
+          browser_cache:
+            max_age: 19008185
+            behavior: ""
           name: name
           id: 0
           modules:
             edge_cache:
               max_age: 4622587
-              caching_for_post_enabled: true
-              caching_for_options_enabled: true
-              stale_cache_enabled: true
-              behavior: behavior
-              tiered_cache_region: tiered_cache_region
-              tiered_cache_enabled: true
-            browser_cache:
-              max_age: 19008185
-              behavior: behavior
-            slice_controls:
-              slice_tiered_caching_enabled: true
-              slice_edge_caching_enabled: true
-              slice_configuration_range: 577
-              slice_configuration_enabled: true
-            application_controls:
-              cache_by_cookies: cache_by_cookies
-              query_string_fields:
-              - query_string_fields
-              - query_string_fields
-              adaptive_delivery_action: adaptive_delivery_action
-              device_group:
-              - 5
-              - 5
-              query_string_sort_enabled: true
-              cookie_names:
-              - cookie_names
-              - cookie_names
-              cache_by_query_string: cache_by_query_string
+              large_file_cache:
+                offset: 1024
+                enabled: true
+              behavior: ""
+              stale_cache:
+                enabled: true
+            application_accelerator:
+              cache_vary_by_querystring:
+                behavior: ""
+                fields:
+                - fields
+                - fields
+                sort_enabled: true
+              cache_vary_by_devices:
+                device_group:
+                - 5
+                - 5
+                behavior: ""
+              cache_vary_by_method:
+              - null
+              - null
+              cache_vary_by_cookies:
+                cookie_names:
+                - cookie_names
+                - cookie_names
+                behavior: ""
+            tiered_cache: ""
       properties:
         data:
           $ref: "#/components/schemas/CacheSetting"
@@ -29166,55 +29297,23 @@ components:
         * `backup` - Backup
       title: ServerRoleEnum
       type: string
-    SliceControlsModule:
+    StateCacheModule:
       additionalProperties: false
       example:
-        slice_tiered_caching_enabled: true
-        slice_edge_caching_enabled: true
-        slice_configuration_range: 577
-        slice_configuration_enabled: true
+        enabled: true
       properties:
-        slice_configuration_enabled:
+        enabled:
           type: boolean
-        slice_edge_caching_enabled:
-          type: boolean
-        slice_tiered_caching_enabled:
-          type: boolean
-        slice_configuration_range:
-          format: int64
-          maximum: 1024
-          minimum: 0
-          type: integer
-      required:
-      - slice_configuration_enabled
-      - slice_edge_caching_enabled
-      - slice_tiered_caching_enabled
-      title: SliceControlsModule
+      title: StateCacheModule
       type: object
-    SliceControlsModuleRequest:
+    StateCacheModuleRequest:
       additionalProperties: false
       example:
-        slice_tiered_caching_enabled: true
-        slice_edge_caching_enabled: true
-        slice_configuration_range: 610
-        slice_configuration_enabled: true
+        enabled: true
       properties:
-        slice_configuration_enabled:
+        enabled:
           type: boolean
-        slice_edge_caching_enabled:
-          type: boolean
-        slice_tiered_caching_enabled:
-          type: boolean
-        slice_configuration_range:
-          format: int64
-          maximum: 1024
-          minimum: 0
-          type: integer
-      required:
-      - slice_configuration_enabled
-      - slice_edge_caching_enabled
-      - slice_tiered_caching_enabled
-      title: SliceControlsModuleRequest
+      title: StateCacheModuleRequest
       type: object
     TLSWorkload:
       additionalProperties: false
@@ -29348,6 +29447,13 @@ components:
           type: boolean
       title: TieredCacheModuleRequest
       type: object
+    TopologyEnum:
+      description: |-
+        * `near-edge` - near-edge
+        * `br-east-1` - br-east-1
+        * `us-east-1` - us-east-1
+      title: TopologyEnum
+      type: string
     TransportPolicyEnum:
       description: |-
         * `preserve` - Preserve
@@ -30419,7 +30525,7 @@ components:
       oneOf:
       - $ref: "#/components/schemas/VerificationEnum"
       - $ref: "#/components/schemas/NullEnum"
-    ResponseBadRequestCacheSettingModulesSerializerApplication_controlsField_query_string_fields:
+    ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names:
       oneOf:
       - items:
           type: string
