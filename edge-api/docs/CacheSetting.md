@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int64** |  | [readonly] 
 **Name** | **string** |  | 
-**Modules** | Pointer to [**CacheSettingModules**](CacheSettingModules.md) |  | [optional] 
+**BrowserCache** | Pointer to [**BrowserCacheModule**](BrowserCacheModule.md) |  | [optional] 
+**Modules** | Pointer to [**CacheSettingsModules**](CacheSettingsModules.md) |  | [optional] 
 
 ## Methods
 
@@ -67,22 +68,47 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetBrowserCache
+
+`func (o *CacheSetting) GetBrowserCache() BrowserCacheModule`
+
+GetBrowserCache returns the BrowserCache field if non-nil, zero value otherwise.
+
+### GetBrowserCacheOk
+
+`func (o *CacheSetting) GetBrowserCacheOk() (*BrowserCacheModule, bool)`
+
+GetBrowserCacheOk returns a tuple with the BrowserCache field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrowserCache
+
+`func (o *CacheSetting) SetBrowserCache(v BrowserCacheModule)`
+
+SetBrowserCache sets BrowserCache field to given value.
+
+### HasBrowserCache
+
+`func (o *CacheSetting) HasBrowserCache() bool`
+
+HasBrowserCache returns a boolean if a field has been set.
+
 ### GetModules
 
-`func (o *CacheSetting) GetModules() CacheSettingModules`
+`func (o *CacheSetting) GetModules() CacheSettingsModules`
 
 GetModules returns the Modules field if non-nil, zero value otherwise.
 
 ### GetModulesOk
 
-`func (o *CacheSetting) GetModulesOk() (*CacheSettingModules, bool)`
+`func (o *CacheSetting) GetModulesOk() (*CacheSettingsModules, bool)`
 
 GetModulesOk returns a tuple with the Modules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModules
 
-`func (o *CacheSetting) SetModules(v CacheSettingModules)`
+`func (o *CacheSetting) SetModules(v CacheSettingsModules)`
 
 SetModules sets Modules field to given value.
 

@@ -20,7 +20,8 @@ var _ MappedNullable = &PatchedCacheSettingRequest{}
 // PatchedCacheSettingRequest struct for PatchedCacheSettingRequest
 type PatchedCacheSettingRequest struct {
 	Name *string `json:"name,omitempty" validate:"regexp=^[a-zA-Z0-9 \\\\-\\\\.\\\\'\\\\,|]+$"`
-	Modules *CacheSettingModulesRequest `json:"modules,omitempty"`
+	BrowserCache *BrowserCacheModuleRequest `json:"browser_cache,omitempty"`
+	Modules *CacheSettingsModulesRequest `json:"modules,omitempty"`
 }
 
 // NewPatchedCacheSettingRequest instantiates a new PatchedCacheSettingRequest object
@@ -72,10 +73,42 @@ func (o *PatchedCacheSettingRequest) SetName(v string) {
 	o.Name = &v
 }
 
+// GetBrowserCache returns the BrowserCache field value if set, zero value otherwise.
+func (o *PatchedCacheSettingRequest) GetBrowserCache() BrowserCacheModuleRequest {
+	if o == nil || IsNil(o.BrowserCache) {
+		var ret BrowserCacheModuleRequest
+		return ret
+	}
+	return *o.BrowserCache
+}
+
+// GetBrowserCacheOk returns a tuple with the BrowserCache field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedCacheSettingRequest) GetBrowserCacheOk() (*BrowserCacheModuleRequest, bool) {
+	if o == nil || IsNil(o.BrowserCache) {
+		return nil, false
+	}
+	return o.BrowserCache, true
+}
+
+// HasBrowserCache returns a boolean if a field has been set.
+func (o *PatchedCacheSettingRequest) HasBrowserCache() bool {
+	if o != nil && !IsNil(o.BrowserCache) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrowserCache gets a reference to the given BrowserCacheModuleRequest and assigns it to the BrowserCache field.
+func (o *PatchedCacheSettingRequest) SetBrowserCache(v BrowserCacheModuleRequest) {
+	o.BrowserCache = &v
+}
+
 // GetModules returns the Modules field value if set, zero value otherwise.
-func (o *PatchedCacheSettingRequest) GetModules() CacheSettingModulesRequest {
+func (o *PatchedCacheSettingRequest) GetModules() CacheSettingsModulesRequest {
 	if o == nil || IsNil(o.Modules) {
-		var ret CacheSettingModulesRequest
+		var ret CacheSettingsModulesRequest
 		return ret
 	}
 	return *o.Modules
@@ -83,7 +116,7 @@ func (o *PatchedCacheSettingRequest) GetModules() CacheSettingModulesRequest {
 
 // GetModulesOk returns a tuple with the Modules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedCacheSettingRequest) GetModulesOk() (*CacheSettingModulesRequest, bool) {
+func (o *PatchedCacheSettingRequest) GetModulesOk() (*CacheSettingsModulesRequest, bool) {
 	if o == nil || IsNil(o.Modules) {
 		return nil, false
 	}
@@ -99,8 +132,8 @@ func (o *PatchedCacheSettingRequest) HasModules() bool {
 	return false
 }
 
-// SetModules gets a reference to the given CacheSettingModulesRequest and assigns it to the Modules field.
-func (o *PatchedCacheSettingRequest) SetModules(v CacheSettingModulesRequest) {
+// SetModules gets a reference to the given CacheSettingsModulesRequest and assigns it to the Modules field.
+func (o *PatchedCacheSettingRequest) SetModules(v CacheSettingsModulesRequest) {
 	o.Modules = &v
 }
 
@@ -116,6 +149,9 @@ func (o PatchedCacheSettingRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.BrowserCache) {
+		toSerialize["browser_cache"] = o.BrowserCache
 	}
 	if !IsNil(o.Modules) {
 		toSerialize["modules"] = o.Modules

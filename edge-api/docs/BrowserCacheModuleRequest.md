@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Behavior** | **string** | * &#x60;honor&#x60; - Honor Origin Cache Headers * &#x60;override&#x60; - Override Cache Settings * &#x60;no-cache&#x60; - No Cache | 
-**MaxAge** | **int64** |  | 
+**Behavior** | Pointer to **string** | * &#x60;override&#x60; - override * &#x60;honor&#x60; - honor * &#x60;no-cache&#x60; - no-cache | [optional] 
+**MaxAge** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
 ### NewBrowserCacheModuleRequest
 
-`func NewBrowserCacheModuleRequest(behavior string, maxAge int64, ) *BrowserCacheModuleRequest`
+`func NewBrowserCacheModuleRequest() *BrowserCacheModuleRequest`
 
 NewBrowserCacheModuleRequest instantiates a new BrowserCacheModuleRequest object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetBehavior sets Behavior field to given value.
 
+### HasBehavior
+
+`func (o *BrowserCacheModuleRequest) HasBehavior() bool`
+
+HasBehavior returns a boolean if a field has been set.
 
 ### GetMaxAge
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetMaxAge sets MaxAge field to given value.
 
+### HasMaxAge
+
+`func (o *BrowserCacheModuleRequest) HasMaxAge() bool`
+
+HasMaxAge returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

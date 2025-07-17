@@ -19,10 +19,9 @@ var _ MappedNullable = &ResponseBadRequestSerializerMetaclassModulesField{}
 
 // ResponseBadRequestSerializerMetaclassModulesField struct for ResponseBadRequestSerializerMetaclassModulesField
 type ResponseBadRequestSerializerMetaclassModulesField struct {
-	BrowserCache *ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField `json:"browser_cache,omitempty"`
-	EdgeCache *ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField `json:"edge_cache,omitempty"`
-	ApplicationControls *ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField `json:"application_controls,omitempty"`
-	SliceControls *ResponseBadRequestCacheSettingModulesSerializerSliceControlsField `json:"slice_controls,omitempty"`
+	EdgeCache *ResponseBadRequestCacheSettingsModulesEdgeCacheField `json:"edge_cache,omitempty"`
+	TieredCache *ResponseBadRequestCacheSettingsModulesTieredCacheField `json:"tiered_cache,omitempty"`
+	ApplicationAccelerator *ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField `json:"application_accelerator,omitempty"`
 }
 
 // NewResponseBadRequestSerializerMetaclassModulesField instantiates a new ResponseBadRequestSerializerMetaclassModulesField object
@@ -42,42 +41,10 @@ func NewResponseBadRequestSerializerMetaclassModulesFieldWithDefaults() *Respons
 	return &this
 }
 
-// GetBrowserCache returns the BrowserCache field value if set, zero value otherwise.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) GetBrowserCache() ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField {
-	if o == nil || IsNil(o.BrowserCache) {
-		var ret ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField
-		return ret
-	}
-	return *o.BrowserCache
-}
-
-// GetBrowserCacheOk returns a tuple with the BrowserCache field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) GetBrowserCacheOk() (*ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField, bool) {
-	if o == nil || IsNil(o.BrowserCache) {
-		return nil, false
-	}
-	return o.BrowserCache, true
-}
-
-// HasBrowserCache returns a boolean if a field has been set.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) HasBrowserCache() bool {
-	if o != nil && !IsNil(o.BrowserCache) {
-		return true
-	}
-
-	return false
-}
-
-// SetBrowserCache gets a reference to the given ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField and assigns it to the BrowserCache field.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) SetBrowserCache(v ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField) {
-	o.BrowserCache = &v
-}
-
 // GetEdgeCache returns the EdgeCache field value if set, zero value otherwise.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) GetEdgeCache() ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField {
+func (o *ResponseBadRequestSerializerMetaclassModulesField) GetEdgeCache() ResponseBadRequestCacheSettingsModulesEdgeCacheField {
 	if o == nil || IsNil(o.EdgeCache) {
-		var ret ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField
+		var ret ResponseBadRequestCacheSettingsModulesEdgeCacheField
 		return ret
 	}
 	return *o.EdgeCache
@@ -85,7 +52,7 @@ func (o *ResponseBadRequestSerializerMetaclassModulesField) GetEdgeCache() Respo
 
 // GetEdgeCacheOk returns a tuple with the EdgeCache field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) GetEdgeCacheOk() (*ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField, bool) {
+func (o *ResponseBadRequestSerializerMetaclassModulesField) GetEdgeCacheOk() (*ResponseBadRequestCacheSettingsModulesEdgeCacheField, bool) {
 	if o == nil || IsNil(o.EdgeCache) {
 		return nil, false
 	}
@@ -101,73 +68,73 @@ func (o *ResponseBadRequestSerializerMetaclassModulesField) HasEdgeCache() bool 
 	return false
 }
 
-// SetEdgeCache gets a reference to the given ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField and assigns it to the EdgeCache field.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) SetEdgeCache(v ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField) {
+// SetEdgeCache gets a reference to the given ResponseBadRequestCacheSettingsModulesEdgeCacheField and assigns it to the EdgeCache field.
+func (o *ResponseBadRequestSerializerMetaclassModulesField) SetEdgeCache(v ResponseBadRequestCacheSettingsModulesEdgeCacheField) {
 	o.EdgeCache = &v
 }
 
-// GetApplicationControls returns the ApplicationControls field value if set, zero value otherwise.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) GetApplicationControls() ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField {
-	if o == nil || IsNil(o.ApplicationControls) {
-		var ret ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField
+// GetTieredCache returns the TieredCache field value if set, zero value otherwise.
+func (o *ResponseBadRequestSerializerMetaclassModulesField) GetTieredCache() ResponseBadRequestCacheSettingsModulesTieredCacheField {
+	if o == nil || IsNil(o.TieredCache) {
+		var ret ResponseBadRequestCacheSettingsModulesTieredCacheField
 		return ret
 	}
-	return *o.ApplicationControls
+	return *o.TieredCache
 }
 
-// GetApplicationControlsOk returns a tuple with the ApplicationControls field value if set, nil otherwise
+// GetTieredCacheOk returns a tuple with the TieredCache field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) GetApplicationControlsOk() (*ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField, bool) {
-	if o == nil || IsNil(o.ApplicationControls) {
+func (o *ResponseBadRequestSerializerMetaclassModulesField) GetTieredCacheOk() (*ResponseBadRequestCacheSettingsModulesTieredCacheField, bool) {
+	if o == nil || IsNil(o.TieredCache) {
 		return nil, false
 	}
-	return o.ApplicationControls, true
+	return o.TieredCache, true
 }
 
-// HasApplicationControls returns a boolean if a field has been set.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) HasApplicationControls() bool {
-	if o != nil && !IsNil(o.ApplicationControls) {
+// HasTieredCache returns a boolean if a field has been set.
+func (o *ResponseBadRequestSerializerMetaclassModulesField) HasTieredCache() bool {
+	if o != nil && !IsNil(o.TieredCache) {
 		return true
 	}
 
 	return false
 }
 
-// SetApplicationControls gets a reference to the given ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField and assigns it to the ApplicationControls field.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) SetApplicationControls(v ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField) {
-	o.ApplicationControls = &v
+// SetTieredCache gets a reference to the given ResponseBadRequestCacheSettingsModulesTieredCacheField and assigns it to the TieredCache field.
+func (o *ResponseBadRequestSerializerMetaclassModulesField) SetTieredCache(v ResponseBadRequestCacheSettingsModulesTieredCacheField) {
+	o.TieredCache = &v
 }
 
-// GetSliceControls returns the SliceControls field value if set, zero value otherwise.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) GetSliceControls() ResponseBadRequestCacheSettingModulesSerializerSliceControlsField {
-	if o == nil || IsNil(o.SliceControls) {
-		var ret ResponseBadRequestCacheSettingModulesSerializerSliceControlsField
+// GetApplicationAccelerator returns the ApplicationAccelerator field value if set, zero value otherwise.
+func (o *ResponseBadRequestSerializerMetaclassModulesField) GetApplicationAccelerator() ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField {
+	if o == nil || IsNil(o.ApplicationAccelerator) {
+		var ret ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField
 		return ret
 	}
-	return *o.SliceControls
+	return *o.ApplicationAccelerator
 }
 
-// GetSliceControlsOk returns a tuple with the SliceControls field value if set, nil otherwise
+// GetApplicationAcceleratorOk returns a tuple with the ApplicationAccelerator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) GetSliceControlsOk() (*ResponseBadRequestCacheSettingModulesSerializerSliceControlsField, bool) {
-	if o == nil || IsNil(o.SliceControls) {
+func (o *ResponseBadRequestSerializerMetaclassModulesField) GetApplicationAcceleratorOk() (*ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField, bool) {
+	if o == nil || IsNil(o.ApplicationAccelerator) {
 		return nil, false
 	}
-	return o.SliceControls, true
+	return o.ApplicationAccelerator, true
 }
 
-// HasSliceControls returns a boolean if a field has been set.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) HasSliceControls() bool {
-	if o != nil && !IsNil(o.SliceControls) {
+// HasApplicationAccelerator returns a boolean if a field has been set.
+func (o *ResponseBadRequestSerializerMetaclassModulesField) HasApplicationAccelerator() bool {
+	if o != nil && !IsNil(o.ApplicationAccelerator) {
 		return true
 	}
 
 	return false
 }
 
-// SetSliceControls gets a reference to the given ResponseBadRequestCacheSettingModulesSerializerSliceControlsField and assigns it to the SliceControls field.
-func (o *ResponseBadRequestSerializerMetaclassModulesField) SetSliceControls(v ResponseBadRequestCacheSettingModulesSerializerSliceControlsField) {
-	o.SliceControls = &v
+// SetApplicationAccelerator gets a reference to the given ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField and assigns it to the ApplicationAccelerator field.
+func (o *ResponseBadRequestSerializerMetaclassModulesField) SetApplicationAccelerator(v ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField) {
+	o.ApplicationAccelerator = &v
 }
 
 func (o ResponseBadRequestSerializerMetaclassModulesField) MarshalJSON() ([]byte, error) {
@@ -180,17 +147,14 @@ func (o ResponseBadRequestSerializerMetaclassModulesField) MarshalJSON() ([]byte
 
 func (o ResponseBadRequestSerializerMetaclassModulesField) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.BrowserCache) {
-		toSerialize["browser_cache"] = o.BrowserCache
-	}
 	if !IsNil(o.EdgeCache) {
 		toSerialize["edge_cache"] = o.EdgeCache
 	}
-	if !IsNil(o.ApplicationControls) {
-		toSerialize["application_controls"] = o.ApplicationControls
+	if !IsNil(o.TieredCache) {
+		toSerialize["tiered_cache"] = o.TieredCache
 	}
-	if !IsNil(o.SliceControls) {
-		toSerialize["slice_controls"] = o.SliceControls
+	if !IsNil(o.ApplicationAccelerator) {
+		toSerialize["application_accelerator"] = o.ApplicationAccelerator
 	}
 	return toSerialize, nil
 }

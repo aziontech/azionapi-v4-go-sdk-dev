@@ -4,10 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BrowserCache** | Pointer to [**ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField**](ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField.md) |  | [optional] 
-**EdgeCache** | Pointer to [**ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField**](ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField.md) |  | [optional] 
-**ApplicationControls** | Pointer to [**ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField**](ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField.md) |  | [optional] 
-**SliceControls** | Pointer to [**ResponseBadRequestCacheSettingModulesSerializerSliceControlsField**](ResponseBadRequestCacheSettingModulesSerializerSliceControlsField.md) |  | [optional] 
+**EdgeCache** | Pointer to [**ResponseBadRequestCacheSettingsModulesEdgeCacheField**](ResponseBadRequestCacheSettingsModulesEdgeCacheField.md) |  | [optional] 
+**TieredCache** | Pointer to [**ResponseBadRequestCacheSettingsModulesTieredCacheField**](ResponseBadRequestCacheSettingsModulesTieredCacheField.md) |  | [optional] 
+**ApplicationAccelerator** | Pointer to [**ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField**](ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField.md) |  | [optional] 
 
 ## Methods
 
@@ -28,47 +27,22 @@ NewResponseBadRequestSerializerMetaclassModulesFieldWithDefaults instantiates a 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetBrowserCache
-
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetBrowserCache() ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField`
-
-GetBrowserCache returns the BrowserCache field if non-nil, zero value otherwise.
-
-### GetBrowserCacheOk
-
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetBrowserCacheOk() (*ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField, bool)`
-
-GetBrowserCacheOk returns a tuple with the BrowserCache field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBrowserCache
-
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) SetBrowserCache(v ResponseBadRequestCacheSettingModulesSerializerBrowserCacheField)`
-
-SetBrowserCache sets BrowserCache field to given value.
-
-### HasBrowserCache
-
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) HasBrowserCache() bool`
-
-HasBrowserCache returns a boolean if a field has been set.
-
 ### GetEdgeCache
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetEdgeCache() ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetEdgeCache() ResponseBadRequestCacheSettingsModulesEdgeCacheField`
 
 GetEdgeCache returns the EdgeCache field if non-nil, zero value otherwise.
 
 ### GetEdgeCacheOk
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetEdgeCacheOk() (*ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField, bool)`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetEdgeCacheOk() (*ResponseBadRequestCacheSettingsModulesEdgeCacheField, bool)`
 
 GetEdgeCacheOk returns a tuple with the EdgeCache field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEdgeCache
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) SetEdgeCache(v ResponseBadRequestCacheSettingModulesSerializerEdgeCacheField)`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) SetEdgeCache(v ResponseBadRequestCacheSettingsModulesEdgeCacheField)`
 
 SetEdgeCache sets EdgeCache field to given value.
 
@@ -78,55 +52,55 @@ SetEdgeCache sets EdgeCache field to given value.
 
 HasEdgeCache returns a boolean if a field has been set.
 
-### GetApplicationControls
+### GetTieredCache
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetApplicationControls() ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetTieredCache() ResponseBadRequestCacheSettingsModulesTieredCacheField`
 
-GetApplicationControls returns the ApplicationControls field if non-nil, zero value otherwise.
+GetTieredCache returns the TieredCache field if non-nil, zero value otherwise.
 
-### GetApplicationControlsOk
+### GetTieredCacheOk
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetApplicationControlsOk() (*ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField, bool)`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetTieredCacheOk() (*ResponseBadRequestCacheSettingsModulesTieredCacheField, bool)`
 
-GetApplicationControlsOk returns a tuple with the ApplicationControls field if it's non-nil, zero value otherwise
+GetTieredCacheOk returns a tuple with the TieredCache field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetApplicationControls
+### SetTieredCache
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) SetApplicationControls(v ResponseBadRequestCacheSettingModulesSerializerApplicationControlsField)`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) SetTieredCache(v ResponseBadRequestCacheSettingsModulesTieredCacheField)`
 
-SetApplicationControls sets ApplicationControls field to given value.
+SetTieredCache sets TieredCache field to given value.
 
-### HasApplicationControls
+### HasTieredCache
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) HasApplicationControls() bool`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) HasTieredCache() bool`
 
-HasApplicationControls returns a boolean if a field has been set.
+HasTieredCache returns a boolean if a field has been set.
 
-### GetSliceControls
+### GetApplicationAccelerator
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetSliceControls() ResponseBadRequestCacheSettingModulesSerializerSliceControlsField`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetApplicationAccelerator() ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField`
 
-GetSliceControls returns the SliceControls field if non-nil, zero value otherwise.
+GetApplicationAccelerator returns the ApplicationAccelerator field if non-nil, zero value otherwise.
 
-### GetSliceControlsOk
+### GetApplicationAcceleratorOk
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetSliceControlsOk() (*ResponseBadRequestCacheSettingModulesSerializerSliceControlsField, bool)`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetApplicationAcceleratorOk() (*ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField, bool)`
 
-GetSliceControlsOk returns a tuple with the SliceControls field if it's non-nil, zero value otherwise
+GetApplicationAcceleratorOk returns a tuple with the ApplicationAccelerator field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSliceControls
+### SetApplicationAccelerator
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) SetSliceControls(v ResponseBadRequestCacheSettingModulesSerializerSliceControlsField)`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) SetApplicationAccelerator(v ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField)`
 
-SetSliceControls sets SliceControls field to given value.
+SetApplicationAccelerator sets ApplicationAccelerator field to given value.
 
-### HasSliceControls
+### HasApplicationAccelerator
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) HasSliceControls() bool`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) HasApplicationAccelerator() bool`
 
-HasSliceControls returns a boolean if a field has been set.
+HasApplicationAccelerator returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

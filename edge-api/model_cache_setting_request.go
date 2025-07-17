@@ -22,7 +22,8 @@ var _ MappedNullable = &CacheSettingRequest{}
 // CacheSettingRequest struct for CacheSettingRequest
 type CacheSettingRequest struct {
 	Name string `json:"name" validate:"regexp=^[a-zA-Z0-9 \\\\-\\\\.\\\\'\\\\,|]+$"`
-	Modules *CacheSettingModulesRequest `json:"modules,omitempty"`
+	BrowserCache *BrowserCacheModuleRequest `json:"browser_cache,omitempty"`
+	Modules *CacheSettingsModulesRequest `json:"modules,omitempty"`
 }
 
 type _CacheSettingRequest CacheSettingRequest
@@ -69,10 +70,42 @@ func (o *CacheSettingRequest) SetName(v string) {
 	o.Name = v
 }
 
+// GetBrowserCache returns the BrowserCache field value if set, zero value otherwise.
+func (o *CacheSettingRequest) GetBrowserCache() BrowserCacheModuleRequest {
+	if o == nil || IsNil(o.BrowserCache) {
+		var ret BrowserCacheModuleRequest
+		return ret
+	}
+	return *o.BrowserCache
+}
+
+// GetBrowserCacheOk returns a tuple with the BrowserCache field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CacheSettingRequest) GetBrowserCacheOk() (*BrowserCacheModuleRequest, bool) {
+	if o == nil || IsNil(o.BrowserCache) {
+		return nil, false
+	}
+	return o.BrowserCache, true
+}
+
+// HasBrowserCache returns a boolean if a field has been set.
+func (o *CacheSettingRequest) HasBrowserCache() bool {
+	if o != nil && !IsNil(o.BrowserCache) {
+		return true
+	}
+
+	return false
+}
+
+// SetBrowserCache gets a reference to the given BrowserCacheModuleRequest and assigns it to the BrowserCache field.
+func (o *CacheSettingRequest) SetBrowserCache(v BrowserCacheModuleRequest) {
+	o.BrowserCache = &v
+}
+
 // GetModules returns the Modules field value if set, zero value otherwise.
-func (o *CacheSettingRequest) GetModules() CacheSettingModulesRequest {
+func (o *CacheSettingRequest) GetModules() CacheSettingsModulesRequest {
 	if o == nil || IsNil(o.Modules) {
-		var ret CacheSettingModulesRequest
+		var ret CacheSettingsModulesRequest
 		return ret
 	}
 	return *o.Modules
@@ -80,7 +113,7 @@ func (o *CacheSettingRequest) GetModules() CacheSettingModulesRequest {
 
 // GetModulesOk returns a tuple with the Modules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CacheSettingRequest) GetModulesOk() (*CacheSettingModulesRequest, bool) {
+func (o *CacheSettingRequest) GetModulesOk() (*CacheSettingsModulesRequest, bool) {
 	if o == nil || IsNil(o.Modules) {
 		return nil, false
 	}
@@ -96,8 +129,8 @@ func (o *CacheSettingRequest) HasModules() bool {
 	return false
 }
 
-// SetModules gets a reference to the given CacheSettingModulesRequest and assigns it to the Modules field.
-func (o *CacheSettingRequest) SetModules(v CacheSettingModulesRequest) {
+// SetModules gets a reference to the given CacheSettingsModulesRequest and assigns it to the Modules field.
+func (o *CacheSettingRequest) SetModules(v CacheSettingsModulesRequest) {
 	o.Modules = &v
 }
 
@@ -112,6 +145,9 @@ func (o CacheSettingRequest) MarshalJSON() ([]byte, error) {
 func (o CacheSettingRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.BrowserCache) {
+		toSerialize["browser_cache"] = o.BrowserCache
+	}
 	if !IsNil(o.Modules) {
 		toSerialize["modules"] = o.Modules
 	}

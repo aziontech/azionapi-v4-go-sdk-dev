@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int64** |  | [readonly] 
 **Name** | **string** |  | 
-**Modules** | Pointer to [**CacheSettingModules**](CacheSettingModules.md) |  | [optional] 
+**BrowserCache** | Pointer to [**BrowserCacheModule**](BrowserCacheModule.md) |  | [optional] 
+**Modules** | Pointer to [**CacheSettingsModules**](CacheSettingsModules.md) |  | [optional] 
 
 ## Methods
 
@@ -67,22 +68,47 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
+### GetBrowserCache
+
+`func (o *ResponseListCacheSetting) GetBrowserCache() BrowserCacheModule`
+
+GetBrowserCache returns the BrowserCache field if non-nil, zero value otherwise.
+
+### GetBrowserCacheOk
+
+`func (o *ResponseListCacheSetting) GetBrowserCacheOk() (*BrowserCacheModule, bool)`
+
+GetBrowserCacheOk returns a tuple with the BrowserCache field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBrowserCache
+
+`func (o *ResponseListCacheSetting) SetBrowserCache(v BrowserCacheModule)`
+
+SetBrowserCache sets BrowserCache field to given value.
+
+### HasBrowserCache
+
+`func (o *ResponseListCacheSetting) HasBrowserCache() bool`
+
+HasBrowserCache returns a boolean if a field has been set.
+
 ### GetModules
 
-`func (o *ResponseListCacheSetting) GetModules() CacheSettingModules`
+`func (o *ResponseListCacheSetting) GetModules() CacheSettingsModules`
 
 GetModules returns the Modules field if non-nil, zero value otherwise.
 
 ### GetModulesOk
 
-`func (o *ResponseListCacheSetting) GetModulesOk() (*CacheSettingModules, bool)`
+`func (o *ResponseListCacheSetting) GetModulesOk() (*CacheSettingsModules, bool)`
 
 GetModulesOk returns a tuple with the Modules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetModules
 
-`func (o *ResponseListCacheSetting) SetModules(v CacheSettingModules)`
+`func (o *ResponseListCacheSetting) SetModules(v CacheSettingsModules)`
 
 SetModules sets Modules field to given value.
 
