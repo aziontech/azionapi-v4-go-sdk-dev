@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateCustomPage
 
-> ResponseCustomPages CreateCustomPage(ctx).CustomPagesRequest(customPagesRequest).Execute()
+> ResponseCustomPage CreateCustomPage(ctx).CustomPageRequest(customPageRequest).Execute()
 
 Create a Custom Page
 
@@ -34,16 +34,16 @@ import (
 )
 
 func main() {
-	customPagesRequest := *openapiclient.NewCustomPagesRequest("Name_example", []openapiclient.ItemPageRequest{*openapiclient.NewItemPageRequest("Code_example", openapiclient.PagePolymorphicRequest{PageConnectorRequest: openapiclient.NewPageConnectorRequest(*openapiclient.NewPageConnectorAttributesRequest(int64(123)))})}) // CustomPagesRequest | 
+	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequest{*openapiclient.NewPageRequest("Code_example", *openapiclient.NewPageConnectorRequest(*openapiclient.NewPageConnectorAttributesRequest(int64(123))))}) // CustomPageRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomPagesAPI.CreateCustomPage(context.Background()).CustomPagesRequest(customPagesRequest).Execute()
+	resp, r, err := apiClient.CustomPagesAPI.CreateCustomPage(context.Background()).CustomPageRequest(customPageRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.CreateCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateCustomPage`: ResponseCustomPages
+	// response from `CreateCustomPage`: ResponseCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.CreateCustomPage`: %v\n", resp)
 }
 ```
@@ -59,11 +59,11 @@ Other parameters are passed through a pointer to a apiCreateCustomPageRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **customPagesRequest** | [**CustomPagesRequest**](CustomPagesRequest.md) |  | 
+ **customPageRequest** | [**CustomPageRequest**](CustomPageRequest.md) |  | 
 
 ### Return type
 
-[**ResponseCustomPages**](ResponseCustomPages.md)
+[**ResponseCustomPage**](ResponseCustomPage.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DestroyCustomPage
 
-> ResponseDeleteCustomPages DestroyCustomPage(ctx, id).Execute()
+> ResponseDeleteCustomPage DestroyCustomPage(ctx, id).Execute()
 
 Destroy a Custom Page
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.DestroyCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DestroyCustomPage`: ResponseDeleteCustomPages
+	// response from `DestroyCustomPage`: ResponseDeleteCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.DestroyCustomPage`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteCustomPages**](ResponseDeleteCustomPages.md)
+[**ResponseDeleteCustomPage**](ResponseDeleteCustomPage.md)
 
 ### Authorization
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListCustomPages
 
-> PaginatedCustomPagesList ListCustomPages(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedCustomPageList ListCustomPages(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Custom Pages
 
@@ -171,7 +171,7 @@ import (
 
 func main() {
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, product_version, pages) (optional)
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, active, product_version, pages) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
@@ -183,7 +183,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.ListCustomPages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListCustomPages`: PaginatedCustomPagesList
+	// response from `ListCustomPages`: PaginatedCustomPageList
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.ListCustomPages`: %v\n", resp)
 }
 ```
@@ -200,14 +200,14 @@ Other parameters are passed through a pointer to a apiListCustomPagesRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **ordering** | **string** | Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, product_version, pages) | 
+ **ordering** | **string** | Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, active, product_version, pages) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
 
 ### Return type
 
-[**PaginatedCustomPagesList**](PaginatedCustomPagesList.md)
+[**PaginatedCustomPageList**](PaginatedCustomPageList.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateCustomPage
 
-> ResponseCustomPages PartialUpdateCustomPage(ctx, id).PatchedCustomPagesRequest(patchedCustomPagesRequest).Execute()
+> ResponseCustomPage PartialUpdateCustomPage(ctx, id).PatchedCustomPageRequest(patchedCustomPageRequest).Execute()
 
 Partially update a Custom Page
 
@@ -245,16 +245,16 @@ import (
 
 func main() {
 	id := "id_example" // string | 
-	patchedCustomPagesRequest := *openapiclient.NewPatchedCustomPagesRequest() // PatchedCustomPagesRequest |  (optional)
+	patchedCustomPageRequest := *openapiclient.NewPatchedCustomPageRequest() // PatchedCustomPageRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomPagesAPI.PartialUpdateCustomPage(context.Background(), id).PatchedCustomPagesRequest(patchedCustomPagesRequest).Execute()
+	resp, r, err := apiClient.CustomPagesAPI.PartialUpdateCustomPage(context.Background(), id).PatchedCustomPageRequest(patchedCustomPageRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.PartialUpdateCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateCustomPage`: ResponseCustomPages
+	// response from `PartialUpdateCustomPage`: ResponseCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.PartialUpdateCustomPage`: %v\n", resp)
 }
 ```
@@ -275,11 +275,11 @@ Other parameters are passed through a pointer to a apiPartialUpdateCustomPageReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedCustomPagesRequest** | [**PatchedCustomPagesRequest**](PatchedCustomPagesRequest.md) |  | 
+ **patchedCustomPageRequest** | [**PatchedCustomPageRequest**](PatchedCustomPageRequest.md) |  | 
 
 ### Return type
 
-[**ResponseCustomPages**](ResponseCustomPages.md)
+[**ResponseCustomPage**](ResponseCustomPage.md)
 
 ### Authorization
 
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveCustomPage
 
-> ResponseRetrieveCustomPages RetrieveCustomPage(ctx, id).Fields(fields).Execute()
+> ResponseRetrieveCustomPage RetrieveCustomPage(ctx, id).Fields(fields).Execute()
 
 Retrieve details of a Custom Page
 
@@ -326,7 +326,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.RetrieveCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveCustomPage`: ResponseRetrieveCustomPages
+	// response from `RetrieveCustomPage`: ResponseRetrieveCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.RetrieveCustomPage`: %v\n", resp)
 }
 ```
@@ -351,7 +351,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveCustomPages**](ResponseRetrieveCustomPages.md)
+[**ResponseRetrieveCustomPage**](ResponseRetrieveCustomPage.md)
 
 ### Authorization
 
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomPage
 
-> ResponseCustomPages UpdateCustomPage(ctx, id).CustomPagesRequest(customPagesRequest).Execute()
+> ResponseCustomPage UpdateCustomPage(ctx, id).CustomPageRequest(customPageRequest).Execute()
 
 Update a Custom Page
 
@@ -389,16 +389,16 @@ import (
 
 func main() {
 	id := "id_example" // string | 
-	customPagesRequest := *openapiclient.NewCustomPagesRequest("Name_example", []openapiclient.ItemPageRequest{*openapiclient.NewItemPageRequest("Code_example", openapiclient.PagePolymorphicRequest{PageConnectorRequest: openapiclient.NewPageConnectorRequest(*openapiclient.NewPageConnectorAttributesRequest(int64(123)))})}) // CustomPagesRequest | 
+	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequest{*openapiclient.NewPageRequest("Code_example", *openapiclient.NewPageConnectorRequest(*openapiclient.NewPageConnectorAttributesRequest(int64(123))))}) // CustomPageRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomPagesAPI.UpdateCustomPage(context.Background(), id).CustomPagesRequest(customPagesRequest).Execute()
+	resp, r, err := apiClient.CustomPagesAPI.UpdateCustomPage(context.Background(), id).CustomPageRequest(customPageRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.UpdateCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateCustomPage`: ResponseCustomPages
+	// response from `UpdateCustomPage`: ResponseCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.UpdateCustomPage`: %v\n", resp)
 }
 ```
@@ -419,11 +419,11 @@ Other parameters are passed through a pointer to a apiUpdateCustomPageRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **customPagesRequest** | [**CustomPagesRequest**](CustomPagesRequest.md) |  | 
+ **customPageRequest** | [**CustomPageRequest**](CustomPageRequest.md) |  | 
 
 ### Return type
 
-[**ResponseCustomPages**](ResponseCustomPages.md)
+[**ResponseCustomPage**](ResponseCustomPage.md)
 
 ### Authorization
 
