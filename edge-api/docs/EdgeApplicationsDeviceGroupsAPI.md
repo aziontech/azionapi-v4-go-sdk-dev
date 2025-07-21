@@ -4,18 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateDeviceGroup**](EdgeApplicationsDeviceGroupsAPI.md#CreateDeviceGroup) | **Post** /edge_application/applications/{edge_application_id}/device_groups | Create an Edge Applications Device Group
-[**DestroyDeviceGroups**](EdgeApplicationsDeviceGroupsAPI.md#DestroyDeviceGroups) | **Delete** /edge_application/applications/{edge_application_id}/device_groups/{id} | Destroy an Edge Applications Device Group
-[**ListDeviceGroups**](EdgeApplicationsDeviceGroupsAPI.md#ListDeviceGroups) | **Get** /edge_application/applications/{edge_application_id}/device_groups | List Edge Applications Device Groups
-[**PartialUpdateDeviceGroup**](EdgeApplicationsDeviceGroupsAPI.md#PartialUpdateDeviceGroup) | **Patch** /edge_application/applications/{edge_application_id}/device_groups/{id} | Partially update an Edge Applications Device Group
-[**RetrieveDeviceGroup**](EdgeApplicationsDeviceGroupsAPI.md#RetrieveDeviceGroup) | **Get** /edge_application/applications/{edge_application_id}/device_groups/{id} | Retrieve details of a Device Group
-[**UpdateDeviceGroup**](EdgeApplicationsDeviceGroupsAPI.md#UpdateDeviceGroup) | **Put** /edge_application/applications/{edge_application_id}/device_groups/{id} | Update an Edge Applications Device Group
+[**CreateDeviceGroup**](EdgeApplicationsDeviceGroupsAPI.md#CreateDeviceGroup) | **Post** /edge_application/applications/{application_id}/device_groups | Create an Edge Applications Device Group
+[**DestroyDeviceGroups**](EdgeApplicationsDeviceGroupsAPI.md#DestroyDeviceGroups) | **Delete** /edge_application/applications/{application_id}/device_groups/{id} | Destroy an Edge Applications Device Group
+[**ListDeviceGroups**](EdgeApplicationsDeviceGroupsAPI.md#ListDeviceGroups) | **Get** /edge_application/applications/{application_id}/device_groups | List Edge Applications Device Groups
+[**PartialUpdateDeviceGroup**](EdgeApplicationsDeviceGroupsAPI.md#PartialUpdateDeviceGroup) | **Patch** /edge_application/applications/{application_id}/device_groups/{id} | Partially update an Edge Applications Device Group
+[**RetrieveDeviceGroup**](EdgeApplicationsDeviceGroupsAPI.md#RetrieveDeviceGroup) | **Get** /edge_application/applications/{application_id}/device_groups/{id} | Retrieve details of a Device Group
+[**UpdateDeviceGroup**](EdgeApplicationsDeviceGroupsAPI.md#UpdateDeviceGroup) | **Put** /edge_application/applications/{application_id}/device_groups/{id} | Update an Edge Applications Device Group
 
 
 
 ## CreateDeviceGroup
 
-> ResponseEdgeApplicationDeviceGroups CreateDeviceGroup(ctx, edgeApplicationId).EdgeApplicationDeviceGroupsRequest(edgeApplicationDeviceGroupsRequest).Execute()
+> ResponseEdgeApplicationDeviceGroups CreateDeviceGroup(ctx, applicationId).EdgeApplicationDeviceGroupsRequest(edgeApplicationDeviceGroupsRequest).Execute()
 
 Create an Edge Applications Device Group
 
@@ -34,12 +34,12 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	edgeApplicationDeviceGroupsRequest := *openapiclient.NewEdgeApplicationDeviceGroupsRequest("Name_example", "UserAgent_example") // EdgeApplicationDeviceGroupsRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsDeviceGroupsAPI.CreateDeviceGroup(context.Background(), edgeApplicationId).EdgeApplicationDeviceGroupsRequest(edgeApplicationDeviceGroupsRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsDeviceGroupsAPI.CreateDeviceGroup(context.Background(), applicationId).EdgeApplicationDeviceGroupsRequest(edgeApplicationDeviceGroupsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsDeviceGroupsAPI.CreateDeviceGroup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DestroyDeviceGroups
 
-> ResponseEdgeApplicationDeviceGroups DestroyDeviceGroups(ctx, edgeApplicationId, id).Execute()
+> ResponseEdgeApplicationDeviceGroups DestroyDeviceGroups(ctx, applicationId, id).Execute()
 
 Destroy an Edge Applications Device Group
 
@@ -106,12 +106,12 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	id := "id_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsDeviceGroupsAPI.DestroyDeviceGroups(context.Background(), edgeApplicationId, id).Execute()
+	resp, r, err := apiClient.EdgeApplicationsDeviceGroupsAPI.DestroyDeviceGroups(context.Background(), applicationId, id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsDeviceGroupsAPI.DestroyDeviceGroups``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,7 +127,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **id** | **string** |  | 
 
 ### Other Parameters
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ListDeviceGroups
 
-> PaginatedEdgeApplicationDeviceGroupsList ListDeviceGroups(ctx, edgeApplicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedEdgeApplicationDeviceGroupsList ListDeviceGroups(ctx, applicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Edge Applications Device Groups
 
@@ -179,7 +179,7 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, id, user_agent) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -188,7 +188,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsDeviceGroupsAPI.ListDeviceGroups(context.Background(), edgeApplicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.EdgeApplicationsDeviceGroupsAPI.ListDeviceGroups(context.Background(), applicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsDeviceGroupsAPI.ListDeviceGroups``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,7 +204,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateDeviceGroup
 
-> ResponseEdgeApplicationDeviceGroups PartialUpdateDeviceGroup(ctx, edgeApplicationId, id).PatchedEdgeApplicationDeviceGroupsRequest(patchedEdgeApplicationDeviceGroupsRequest).Execute()
+> ResponseEdgeApplicationDeviceGroups PartialUpdateDeviceGroup(ctx, applicationId, id).PatchedEdgeApplicationDeviceGroupsRequest(patchedEdgeApplicationDeviceGroupsRequest).Execute()
 
 Partially update an Edge Applications Device Group
 
@@ -259,13 +259,13 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	id := "id_example" // string | 
 	patchedEdgeApplicationDeviceGroupsRequest := *openapiclient.NewPatchedEdgeApplicationDeviceGroupsRequest() // PatchedEdgeApplicationDeviceGroupsRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup(context.Background(), edgeApplicationId, id).PatchedEdgeApplicationDeviceGroupsRequest(patchedEdgeApplicationDeviceGroupsRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup(context.Background(), applicationId, id).PatchedEdgeApplicationDeviceGroupsRequest(patchedEdgeApplicationDeviceGroupsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,7 +281,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **id** | **string** |  | 
 
 ### Other Parameters
@@ -315,7 +315,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveDeviceGroup
 
-> ResponseRetrieveEdgeApplicationDeviceGroups RetrieveDeviceGroup(ctx, edgeApplicationId, id).Fields(fields).Execute()
+> ResponseRetrieveEdgeApplicationDeviceGroups RetrieveDeviceGroup(ctx, applicationId, id).Fields(fields).Execute()
 
 Retrieve details of a Device Group
 
@@ -334,13 +334,13 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	id := "id_example" // string | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsDeviceGroupsAPI.RetrieveDeviceGroup(context.Background(), edgeApplicationId, id).Fields(fields).Execute()
+	resp, r, err := apiClient.EdgeApplicationsDeviceGroupsAPI.RetrieveDeviceGroup(context.Background(), applicationId, id).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsDeviceGroupsAPI.RetrieveDeviceGroup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -356,7 +356,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **id** | **string** |  | 
 
 ### Other Parameters
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceGroup
 
-> ResponseEdgeApplicationDeviceGroups UpdateDeviceGroup(ctx, edgeApplicationId, id).EdgeApplicationDeviceGroupsRequest(edgeApplicationDeviceGroupsRequest).Execute()
+> ResponseEdgeApplicationDeviceGroups UpdateDeviceGroup(ctx, applicationId, id).EdgeApplicationDeviceGroupsRequest(edgeApplicationDeviceGroupsRequest).Execute()
 
 Update an Edge Applications Device Group
 
@@ -409,13 +409,13 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	id := "id_example" // string | 
 	edgeApplicationDeviceGroupsRequest := *openapiclient.NewEdgeApplicationDeviceGroupsRequest("Name_example", "UserAgent_example") // EdgeApplicationDeviceGroupsRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsDeviceGroupsAPI.UpdateDeviceGroup(context.Background(), edgeApplicationId, id).EdgeApplicationDeviceGroupsRequest(edgeApplicationDeviceGroupsRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsDeviceGroupsAPI.UpdateDeviceGroup(context.Background(), applicationId, id).EdgeApplicationDeviceGroupsRequest(edgeApplicationDeviceGroupsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsDeviceGroupsAPI.UpdateDeviceGroup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -431,7 +431,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **id** | **string** |  | 
 
 ### Other Parameters

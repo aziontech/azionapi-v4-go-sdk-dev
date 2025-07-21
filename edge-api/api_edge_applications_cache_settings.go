@@ -26,7 +26,7 @@ type EdgeApplicationsCacheSettingsAPIService service
 type ApiCreateCacheSettingRequest struct {
 	ctx context.Context
 	ApiService *EdgeApplicationsCacheSettingsAPIService
-	edgeApplicationId string
+	applicationId string
 	cacheSettingRequest *CacheSettingRequest
 }
 
@@ -45,14 +45,14 @@ CreateCacheSetting Create an Edge Applications Cache Setting
 Create a new Cache Setting in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param edgeApplicationId
+ @param applicationId
  @return ApiCreateCacheSettingRequest
 */
-func (a *EdgeApplicationsCacheSettingsAPIService) CreateCacheSetting(ctx context.Context, edgeApplicationId string) ApiCreateCacheSettingRequest {
+func (a *EdgeApplicationsCacheSettingsAPIService) CreateCacheSetting(ctx context.Context, applicationId string) ApiCreateCacheSettingRequest {
 	return ApiCreateCacheSettingRequest{
 		ApiService: a,
 		ctx: ctx,
-		edgeApplicationId: edgeApplicationId,
+		applicationId: applicationId,
 	}
 }
 
@@ -71,8 +71,8 @@ func (a *EdgeApplicationsCacheSettingsAPIService) CreateCacheSettingExecute(r Ap
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_application/applications/{edge_application_id}/cache_settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"edge_application_id"+"}", url.PathEscape(parameterValueToString(r.edgeApplicationId, "edgeApplicationId")), -1)
+	localVarPath := localBasePath + "/edge_application/applications/{application_id}/cache_settings"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -220,7 +220,7 @@ func (a *EdgeApplicationsCacheSettingsAPIService) CreateCacheSettingExecute(r Ap
 type ApiDestroyCacheSettingRequest struct {
 	ctx context.Context
 	ApiService *EdgeApplicationsCacheSettingsAPIService
-	edgeApplicationId string
+	applicationId string
 	id string
 }
 
@@ -234,15 +234,15 @@ DestroyCacheSetting Destroy an Edge Applications Cache Setting
 Destruction of a specific Cache Setting in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param edgeApplicationId
+ @param applicationId
  @param id
  @return ApiDestroyCacheSettingRequest
 */
-func (a *EdgeApplicationsCacheSettingsAPIService) DestroyCacheSetting(ctx context.Context, edgeApplicationId string, id string) ApiDestroyCacheSettingRequest {
+func (a *EdgeApplicationsCacheSettingsAPIService) DestroyCacheSetting(ctx context.Context, applicationId string, id string) ApiDestroyCacheSettingRequest {
 	return ApiDestroyCacheSettingRequest{
 		ApiService: a,
 		ctx: ctx,
-		edgeApplicationId: edgeApplicationId,
+		applicationId: applicationId,
 		id: id,
 	}
 }
@@ -262,8 +262,8 @@ func (a *EdgeApplicationsCacheSettingsAPIService) DestroyCacheSettingExecute(r A
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_application/applications/{edge_application_id}/cache_settings/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"edge_application_id"+"}", url.PathEscape(parameterValueToString(r.edgeApplicationId, "edgeApplicationId")), -1)
+	localVarPath := localBasePath + "/edge_application/applications/{application_id}/cache_settings/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -406,7 +406,7 @@ func (a *EdgeApplicationsCacheSettingsAPIService) DestroyCacheSettingExecute(r A
 type ApiListCacheSettingsRequest struct {
 	ctx context.Context
 	ApiService *EdgeApplicationsCacheSettingsAPIService
-	edgeApplicationId string
+	applicationId string
 	fields *string
 	ordering *string
 	page *int64
@@ -454,14 +454,14 @@ ListCacheSettings List all Edge Applications Cache Settings
 List all Cache Settings owned by your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param edgeApplicationId
+ @param applicationId
  @return ApiListCacheSettingsRequest
 */
-func (a *EdgeApplicationsCacheSettingsAPIService) ListCacheSettings(ctx context.Context, edgeApplicationId string) ApiListCacheSettingsRequest {
+func (a *EdgeApplicationsCacheSettingsAPIService) ListCacheSettings(ctx context.Context, applicationId string) ApiListCacheSettingsRequest {
 	return ApiListCacheSettingsRequest{
 		ApiService: a,
 		ctx: ctx,
-		edgeApplicationId: edgeApplicationId,
+		applicationId: applicationId,
 	}
 }
 
@@ -480,8 +480,8 @@ func (a *EdgeApplicationsCacheSettingsAPIService) ListCacheSettingsExecute(r Api
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_application/applications/{edge_application_id}/cache_settings"
-	localVarPath = strings.Replace(localVarPath, "{"+"edge_application_id"+"}", url.PathEscape(parameterValueToString(r.edgeApplicationId, "edgeApplicationId")), -1)
+	localVarPath := localBasePath + "/edge_application/applications/{application_id}/cache_settings"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -638,7 +638,7 @@ func (a *EdgeApplicationsCacheSettingsAPIService) ListCacheSettingsExecute(r Api
 type ApiPartialUpdateCacheSettingRequest struct {
 	ctx context.Context
 	ApiService *EdgeApplicationsCacheSettingsAPIService
-	edgeApplicationId string
+	applicationId string
 	id string
 	patchedCacheSettingRequest *PatchedCacheSettingRequest
 }
@@ -658,15 +658,15 @@ PartialUpdateCacheSetting Partially update an Edge Applications Cache Setting
 Update one or more fields of an existing Cache Setting without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param edgeApplicationId
+ @param applicationId
  @param id
  @return ApiPartialUpdateCacheSettingRequest
 */
-func (a *EdgeApplicationsCacheSettingsAPIService) PartialUpdateCacheSetting(ctx context.Context, edgeApplicationId string, id string) ApiPartialUpdateCacheSettingRequest {
+func (a *EdgeApplicationsCacheSettingsAPIService) PartialUpdateCacheSetting(ctx context.Context, applicationId string, id string) ApiPartialUpdateCacheSettingRequest {
 	return ApiPartialUpdateCacheSettingRequest{
 		ApiService: a,
 		ctx: ctx,
-		edgeApplicationId: edgeApplicationId,
+		applicationId: applicationId,
 		id: id,
 	}
 }
@@ -686,8 +686,8 @@ func (a *EdgeApplicationsCacheSettingsAPIService) PartialUpdateCacheSettingExecu
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_application/applications/{edge_application_id}/cache_settings/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"edge_application_id"+"}", url.PathEscape(parameterValueToString(r.edgeApplicationId, "edgeApplicationId")), -1)
+	localVarPath := localBasePath + "/edge_application/applications/{application_id}/cache_settings/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -833,7 +833,7 @@ func (a *EdgeApplicationsCacheSettingsAPIService) PartialUpdateCacheSettingExecu
 type ApiRetrieveCacheSettingRequest struct {
 	ctx context.Context
 	ApiService *EdgeApplicationsCacheSettingsAPIService
-	edgeApplicationId string
+	applicationId string
 	id string
 	fields *string
 }
@@ -854,15 +854,15 @@ RetrieveCacheSetting Retrieve details of an Edge Applications Cache Setting
 Retrieve details of a specific Cache Setting in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param edgeApplicationId
+ @param applicationId
  @param id
  @return ApiRetrieveCacheSettingRequest
 */
-func (a *EdgeApplicationsCacheSettingsAPIService) RetrieveCacheSetting(ctx context.Context, edgeApplicationId string, id string) ApiRetrieveCacheSettingRequest {
+func (a *EdgeApplicationsCacheSettingsAPIService) RetrieveCacheSetting(ctx context.Context, applicationId string, id string) ApiRetrieveCacheSettingRequest {
 	return ApiRetrieveCacheSettingRequest{
 		ApiService: a,
 		ctx: ctx,
-		edgeApplicationId: edgeApplicationId,
+		applicationId: applicationId,
 		id: id,
 	}
 }
@@ -882,8 +882,8 @@ func (a *EdgeApplicationsCacheSettingsAPIService) RetrieveCacheSettingExecute(r 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_application/applications/{edge_application_id}/cache_settings/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"edge_application_id"+"}", url.PathEscape(parameterValueToString(r.edgeApplicationId, "edgeApplicationId")), -1)
+	localVarPath := localBasePath + "/edge_application/applications/{application_id}/cache_settings/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1029,7 +1029,7 @@ func (a *EdgeApplicationsCacheSettingsAPIService) RetrieveCacheSettingExecute(r 
 type ApiUpdateCacheSettingRequest struct {
 	ctx context.Context
 	ApiService *EdgeApplicationsCacheSettingsAPIService
-	edgeApplicationId string
+	applicationId string
 	id string
 	cacheSettingRequest *CacheSettingRequest
 }
@@ -1049,15 +1049,15 @@ UpdateCacheSetting Update an Edge Applications Cache Setting
 Update an existing Cache Setting. This replaces the entire Cache Setting with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param edgeApplicationId
+ @param applicationId
  @param id
  @return ApiUpdateCacheSettingRequest
 */
-func (a *EdgeApplicationsCacheSettingsAPIService) UpdateCacheSetting(ctx context.Context, edgeApplicationId string, id string) ApiUpdateCacheSettingRequest {
+func (a *EdgeApplicationsCacheSettingsAPIService) UpdateCacheSetting(ctx context.Context, applicationId string, id string) ApiUpdateCacheSettingRequest {
 	return ApiUpdateCacheSettingRequest{
 		ApiService: a,
 		ctx: ctx,
-		edgeApplicationId: edgeApplicationId,
+		applicationId: applicationId,
 		id: id,
 	}
 }
@@ -1077,8 +1077,8 @@ func (a *EdgeApplicationsCacheSettingsAPIService) UpdateCacheSettingExecute(r Ap
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_application/applications/{edge_application_id}/cache_settings/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"edge_application_id"+"}", url.PathEscape(parameterValueToString(r.edgeApplicationId, "edgeApplicationId")), -1)
+	localVarPath := localBasePath + "/edge_application/applications/{application_id}/cache_settings/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)

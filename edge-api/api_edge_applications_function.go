@@ -26,7 +26,7 @@ type EdgeApplicationsFunctionAPIService service
 type ApiCreateEdgeApplicationFunctionInstanceRequest struct {
 	ctx context.Context
 	ApiService *EdgeApplicationsFunctionAPIService
-	edgeApplicationId string
+	applicationId string
 	edgeApplicationFunctionInstanceRequest *EdgeApplicationFunctionInstanceRequest
 }
 
@@ -45,14 +45,14 @@ CreateEdgeApplicationFunctionInstance Create an Edge Application Function Instan
 Create a new Function Instance for a specific Edge Application in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param edgeApplicationId
+ @param applicationId
  @return ApiCreateEdgeApplicationFunctionInstanceRequest
 */
-func (a *EdgeApplicationsFunctionAPIService) CreateEdgeApplicationFunctionInstance(ctx context.Context, edgeApplicationId string) ApiCreateEdgeApplicationFunctionInstanceRequest {
+func (a *EdgeApplicationsFunctionAPIService) CreateEdgeApplicationFunctionInstance(ctx context.Context, applicationId string) ApiCreateEdgeApplicationFunctionInstanceRequest {
 	return ApiCreateEdgeApplicationFunctionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
-		edgeApplicationId: edgeApplicationId,
+		applicationId: applicationId,
 	}
 }
 
@@ -71,8 +71,8 @@ func (a *EdgeApplicationsFunctionAPIService) CreateEdgeApplicationFunctionInstan
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_application/applications/{edge_application_id}/functions"
-	localVarPath = strings.Replace(localVarPath, "{"+"edge_application_id"+"}", url.PathEscape(parameterValueToString(r.edgeApplicationId, "edgeApplicationId")), -1)
+	localVarPath := localBasePath + "/edge_application/applications/{application_id}/functions"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -230,7 +230,7 @@ func (a *EdgeApplicationsFunctionAPIService) CreateEdgeApplicationFunctionInstan
 type ApiDestroyEdgeApplicationFunctionInstanceRequest struct {
 	ctx context.Context
 	ApiService *EdgeApplicationsFunctionAPIService
-	edgeApplicationId string
+	applicationId string
 	functionId string
 }
 
@@ -244,15 +244,15 @@ DestroyEdgeApplicationFunctionInstance Destroy an Edge Application Function Inst
 Destroy a specific Edge Application Function Instance in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param edgeApplicationId
+ @param applicationId
  @param functionId
  @return ApiDestroyEdgeApplicationFunctionInstanceRequest
 */
-func (a *EdgeApplicationsFunctionAPIService) DestroyEdgeApplicationFunctionInstance(ctx context.Context, edgeApplicationId string, functionId string) ApiDestroyEdgeApplicationFunctionInstanceRequest {
+func (a *EdgeApplicationsFunctionAPIService) DestroyEdgeApplicationFunctionInstance(ctx context.Context, applicationId string, functionId string) ApiDestroyEdgeApplicationFunctionInstanceRequest {
 	return ApiDestroyEdgeApplicationFunctionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
-		edgeApplicationId: edgeApplicationId,
+		applicationId: applicationId,
 		functionId: functionId,
 	}
 }
@@ -272,8 +272,8 @@ func (a *EdgeApplicationsFunctionAPIService) DestroyEdgeApplicationFunctionInsta
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_application/applications/{edge_application_id}/functions/{function_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"edge_application_id"+"}", url.PathEscape(parameterValueToString(r.edgeApplicationId, "edgeApplicationId")), -1)
+	localVarPath := localBasePath + "/edge_application/applications/{application_id}/functions/{function_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -427,7 +427,7 @@ func (a *EdgeApplicationsFunctionAPIService) DestroyEdgeApplicationFunctionInsta
 type ApiListEdgeApplicationFunctionInstancesRequest struct {
 	ctx context.Context
 	ApiService *EdgeApplicationsFunctionAPIService
-	edgeApplicationId string
+	applicationId string
 	fields *string
 	ordering *string
 	page *int64
@@ -475,14 +475,14 @@ ListEdgeApplicationFunctionInstances List Function Instances
 List all Function Instances for a specific Edge Application owned by your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param edgeApplicationId
+ @param applicationId
  @return ApiListEdgeApplicationFunctionInstancesRequest
 */
-func (a *EdgeApplicationsFunctionAPIService) ListEdgeApplicationFunctionInstances(ctx context.Context, edgeApplicationId string) ApiListEdgeApplicationFunctionInstancesRequest {
+func (a *EdgeApplicationsFunctionAPIService) ListEdgeApplicationFunctionInstances(ctx context.Context, applicationId string) ApiListEdgeApplicationFunctionInstancesRequest {
 	return ApiListEdgeApplicationFunctionInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
-		edgeApplicationId: edgeApplicationId,
+		applicationId: applicationId,
 	}
 }
 
@@ -501,8 +501,8 @@ func (a *EdgeApplicationsFunctionAPIService) ListEdgeApplicationFunctionInstance
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_application/applications/{edge_application_id}/functions"
-	localVarPath = strings.Replace(localVarPath, "{"+"edge_application_id"+"}", url.PathEscape(parameterValueToString(r.edgeApplicationId, "edgeApplicationId")), -1)
+	localVarPath := localBasePath + "/edge_application/applications/{application_id}/functions"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -670,7 +670,7 @@ func (a *EdgeApplicationsFunctionAPIService) ListEdgeApplicationFunctionInstance
 type ApiPartialUpdateEdgeApplicationFunctionInstanceRequest struct {
 	ctx context.Context
 	ApiService *EdgeApplicationsFunctionAPIService
-	edgeApplicationId string
+	applicationId string
 	functionId string
 	patchedEdgeApplicationFunctionInstanceRequest *PatchedEdgeApplicationFunctionInstanceRequest
 }
@@ -690,15 +690,15 @@ PartialUpdateEdgeApplicationFunctionInstance Partially update an Edge Applicatio
 Update one or more fields of an existing Edge Application Function Instance without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param edgeApplicationId
+ @param applicationId
  @param functionId
  @return ApiPartialUpdateEdgeApplicationFunctionInstanceRequest
 */
-func (a *EdgeApplicationsFunctionAPIService) PartialUpdateEdgeApplicationFunctionInstance(ctx context.Context, edgeApplicationId string, functionId string) ApiPartialUpdateEdgeApplicationFunctionInstanceRequest {
+func (a *EdgeApplicationsFunctionAPIService) PartialUpdateEdgeApplicationFunctionInstance(ctx context.Context, applicationId string, functionId string) ApiPartialUpdateEdgeApplicationFunctionInstanceRequest {
 	return ApiPartialUpdateEdgeApplicationFunctionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
-		edgeApplicationId: edgeApplicationId,
+		applicationId: applicationId,
 		functionId: functionId,
 	}
 }
@@ -718,8 +718,8 @@ func (a *EdgeApplicationsFunctionAPIService) PartialUpdateEdgeApplicationFunctio
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_application/applications/{edge_application_id}/functions/{function_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"edge_application_id"+"}", url.PathEscape(parameterValueToString(r.edgeApplicationId, "edgeApplicationId")), -1)
+	localVarPath := localBasePath + "/edge_application/applications/{application_id}/functions/{function_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -875,7 +875,7 @@ func (a *EdgeApplicationsFunctionAPIService) PartialUpdateEdgeApplicationFunctio
 type ApiRetrieveEdgeApplicationFunctionInstanceRequest struct {
 	ctx context.Context
 	ApiService *EdgeApplicationsFunctionAPIService
-	edgeApplicationId string
+	applicationId string
 	functionId string
 	fields *string
 }
@@ -896,15 +896,15 @@ RetrieveEdgeApplicationFunctionInstance Retrieve details of an Edge Application 
 Retrieve details of a specific Edge Application Function Instance in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param edgeApplicationId
+ @param applicationId
  @param functionId
  @return ApiRetrieveEdgeApplicationFunctionInstanceRequest
 */
-func (a *EdgeApplicationsFunctionAPIService) RetrieveEdgeApplicationFunctionInstance(ctx context.Context, edgeApplicationId string, functionId string) ApiRetrieveEdgeApplicationFunctionInstanceRequest {
+func (a *EdgeApplicationsFunctionAPIService) RetrieveEdgeApplicationFunctionInstance(ctx context.Context, applicationId string, functionId string) ApiRetrieveEdgeApplicationFunctionInstanceRequest {
 	return ApiRetrieveEdgeApplicationFunctionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
-		edgeApplicationId: edgeApplicationId,
+		applicationId: applicationId,
 		functionId: functionId,
 	}
 }
@@ -924,8 +924,8 @@ func (a *EdgeApplicationsFunctionAPIService) RetrieveEdgeApplicationFunctionInst
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_application/applications/{edge_application_id}/functions/{function_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"edge_application_id"+"}", url.PathEscape(parameterValueToString(r.edgeApplicationId, "edgeApplicationId")), -1)
+	localVarPath := localBasePath + "/edge_application/applications/{application_id}/functions/{function_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1082,7 +1082,7 @@ func (a *EdgeApplicationsFunctionAPIService) RetrieveEdgeApplicationFunctionInst
 type ApiUpdateEdgeApplicationFunctionInstanceRequest struct {
 	ctx context.Context
 	ApiService *EdgeApplicationsFunctionAPIService
-	edgeApplicationId string
+	applicationId string
 	functionId string
 	edgeApplicationFunctionInstanceRequest *EdgeApplicationFunctionInstanceRequest
 }
@@ -1102,15 +1102,15 @@ UpdateEdgeApplicationFunctionInstance Update an Edge Application Function Instan
 Update an existing Edge Application Function Instance. This replaces the entire Function Instance with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param edgeApplicationId
+ @param applicationId
  @param functionId
  @return ApiUpdateEdgeApplicationFunctionInstanceRequest
 */
-func (a *EdgeApplicationsFunctionAPIService) UpdateEdgeApplicationFunctionInstance(ctx context.Context, edgeApplicationId string, functionId string) ApiUpdateEdgeApplicationFunctionInstanceRequest {
+func (a *EdgeApplicationsFunctionAPIService) UpdateEdgeApplicationFunctionInstance(ctx context.Context, applicationId string, functionId string) ApiUpdateEdgeApplicationFunctionInstanceRequest {
 	return ApiUpdateEdgeApplicationFunctionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
-		edgeApplicationId: edgeApplicationId,
+		applicationId: applicationId,
 		functionId: functionId,
 	}
 }
@@ -1130,8 +1130,8 @@ func (a *EdgeApplicationsFunctionAPIService) UpdateEdgeApplicationFunctionInstan
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_application/applications/{edge_application_id}/functions/{function_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"edge_application_id"+"}", url.PathEscape(parameterValueToString(r.edgeApplicationId, "edgeApplicationId")), -1)
+	localVarPath := localBasePath + "/edge_application/applications/{application_id}/functions/{function_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

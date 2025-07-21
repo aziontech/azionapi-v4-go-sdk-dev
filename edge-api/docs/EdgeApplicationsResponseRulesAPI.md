@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**EdgeApplicationApiApplicationsResponseRulesCreate**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesCreate) | **Post** /edge_application/applications/{edge_application_id}/response_rules | Create an Edge Application Response Rule
-[**EdgeApplicationApiApplicationsResponseRulesDestroy**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesDestroy) | **Delete** /edge_application/applications/{edge_application_id}/response_rules/{id} | Destroy an Edge Application Response Rule
-[**EdgeApplicationApiApplicationsResponseRulesList**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesList) | **Get** /edge_application/applications/{edge_application_id}/response_rules | List Edge Application Response Rules
-[**EdgeApplicationApiApplicationsResponseRulesOrderUpdate**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesOrderUpdate) | **Put** /edge_application/applications/{edge_application_id}/response_rules/order | Ordering Edge Application Response Rules
-[**EdgeApplicationApiApplicationsResponseRulesPartialUpdate**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesPartialUpdate) | **Patch** /edge_application/applications/{edge_application_id}/response_rules/{id} | Partially update an Edge Application Response Rule
-[**EdgeApplicationApiApplicationsResponseRulesRetrieve**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesRetrieve) | **Get** /edge_application/applications/{edge_application_id}/response_rules/{id} | Retrieve details of an Edge Application Response Rule
-[**EdgeApplicationApiApplicationsResponseRulesUpdate**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesUpdate) | **Put** /edge_application/applications/{edge_application_id}/response_rules/{id} | Update an Edge Application Response Rule
+[**EdgeApplicationApiApplicationsResponseRulesCreate**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesCreate) | **Post** /edge_application/applications/{application_id}/response_rules | Create an Edge Application Response Rule
+[**EdgeApplicationApiApplicationsResponseRulesDestroy**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesDestroy) | **Delete** /edge_application/applications/{application_id}/response_rules/{id} | Destroy an Edge Application Response Rule
+[**EdgeApplicationApiApplicationsResponseRulesList**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesList) | **Get** /edge_application/applications/{application_id}/response_rules | List Edge Application Response Rules
+[**EdgeApplicationApiApplicationsResponseRulesOrderUpdate**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesOrderUpdate) | **Put** /edge_application/applications/{application_id}/response_rules/order | Ordering Edge Application Response Rules
+[**EdgeApplicationApiApplicationsResponseRulesPartialUpdate**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesPartialUpdate) | **Patch** /edge_application/applications/{application_id}/response_rules/{id} | Partially update an Edge Application Response Rule
+[**EdgeApplicationApiApplicationsResponseRulesRetrieve**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesRetrieve) | **Get** /edge_application/applications/{application_id}/response_rules/{id} | Retrieve details of an Edge Application Response Rule
+[**EdgeApplicationApiApplicationsResponseRulesUpdate**](EdgeApplicationsResponseRulesAPI.md#EdgeApplicationApiApplicationsResponseRulesUpdate) | **Put** /edge_application/applications/{application_id}/response_rules/{id} | Update an Edge Application Response Rule
 
 
 
 ## EdgeApplicationApiApplicationsResponseRulesCreate
 
-> ResponseEdgeApplicationResponsePhaseRuleEngine EdgeApplicationApiApplicationsResponseRulesCreate(ctx, edgeApplicationId).EdgeApplicationResponsePhaseRuleEngineRequest(edgeApplicationResponsePhaseRuleEngineRequest).Execute()
+> ResponseEdgeApplicationResponsePhaseRuleEngine EdgeApplicationApiApplicationsResponseRulesCreate(ctx, applicationId).EdgeApplicationResponsePhaseRuleEngineRequest(edgeApplicationResponsePhaseRuleEngineRequest).Execute()
 
 Create an Edge Application Response Rule
 
@@ -35,12 +35,12 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	edgeApplicationResponsePhaseRuleEngineRequest := *openapiclient.NewEdgeApplicationResponsePhaseRuleEngineRequest("Name_example", [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest{openapiclient.EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest{EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineAddResponseHeaderRequest: openapiclient.NewEdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineAddResponseHeaderRequest("Type_example", *openapiclient.NewEdgeApplicationRuleEngineAddResponseHeaderAttributesRequest("Value_example"))}}) // EdgeApplicationResponsePhaseRuleEngineRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesCreate(context.Background(), edgeApplicationId).EdgeApplicationResponsePhaseRuleEngineRequest(edgeApplicationResponsePhaseRuleEngineRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesCreate(context.Background(), applicationId).EdgeApplicationResponsePhaseRuleEngineRequest(edgeApplicationResponsePhaseRuleEngineRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,7 +56,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## EdgeApplicationApiApplicationsResponseRulesDestroy
 
-> ResponseDeleteEdgeApplicationResponsePhaseRuleEngine EdgeApplicationApiApplicationsResponseRulesDestroy(ctx, edgeApplicationId, id).Execute()
+> ResponseDeleteEdgeApplicationResponsePhaseRuleEngine EdgeApplicationApiApplicationsResponseRulesDestroy(ctx, applicationId, id).Execute()
 
 Destroy an Edge Application Response Rule
 
@@ -107,12 +107,12 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	id := "id_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesDestroy(context.Background(), edgeApplicationId, id).Execute()
+	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesDestroy(context.Background(), applicationId, id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesDestroy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -128,7 +128,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **id** | **string** |  | 
 
 ### Other Parameters
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ## EdgeApplicationApiApplicationsResponseRulesList
 
-> PaginatedEdgeApplicationResponsePhaseRuleEngineList EdgeApplicationApiApplicationsResponseRulesList(ctx, edgeApplicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedEdgeApplicationResponsePhaseRuleEngineList EdgeApplicationApiApplicationsResponseRulesList(ctx, applicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Edge Application Response Rules
 
@@ -180,7 +180,7 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, active, description, order, criteria, last_editor, last_modified, behaviors) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -189,7 +189,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesList(context.Background(), edgeApplicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesList(context.Background(), applicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -205,7 +205,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -241,7 +241,7 @@ Name | Type | Description  | Notes
 
 ## EdgeApplicationApiApplicationsResponseRulesOrderUpdate
 
-> PaginatedEdgeApplicationResponsePhaseRuleEngineList EdgeApplicationApiApplicationsResponseRulesOrderUpdate(ctx, edgeApplicationId).EdgeApplicationResponsePhaseRuleEngineOrderRequest(edgeApplicationResponsePhaseRuleEngineOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedEdgeApplicationResponsePhaseRuleEngineList EdgeApplicationApiApplicationsResponseRulesOrderUpdate(ctx, applicationId).EdgeApplicationResponsePhaseRuleEngineOrderRequest(edgeApplicationResponsePhaseRuleEngineOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 Ordering Edge Application Response Rules
 
@@ -260,7 +260,7 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	edgeApplicationResponsePhaseRuleEngineOrderRequest := *openapiclient.NewEdgeApplicationResponsePhaseRuleEngineOrderRequest([]int64{int64(123)}) // EdgeApplicationResponsePhaseRuleEngineOrderRequest | 
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: order) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -269,7 +269,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesOrderUpdate(context.Background(), edgeApplicationId).EdgeApplicationResponsePhaseRuleEngineOrderRequest(edgeApplicationResponsePhaseRuleEngineOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesOrderUpdate(context.Background(), applicationId).EdgeApplicationResponsePhaseRuleEngineOrderRequest(edgeApplicationResponsePhaseRuleEngineOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesOrderUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -285,7 +285,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ## EdgeApplicationApiApplicationsResponseRulesPartialUpdate
 
-> ResponseEdgeApplicationResponsePhaseRuleEngine EdgeApplicationApiApplicationsResponseRulesPartialUpdate(ctx, edgeApplicationId, id).PatchedEdgeApplicationResponsePhaseRuleEngineRequest(patchedEdgeApplicationResponsePhaseRuleEngineRequest).Execute()
+> ResponseEdgeApplicationResponsePhaseRuleEngine EdgeApplicationApiApplicationsResponseRulesPartialUpdate(ctx, applicationId, id).PatchedEdgeApplicationResponsePhaseRuleEngineRequest(patchedEdgeApplicationResponsePhaseRuleEngineRequest).Execute()
 
 Partially update an Edge Application Response Rule
 
@@ -340,13 +340,13 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	id := "id_example" // string | 
 	patchedEdgeApplicationResponsePhaseRuleEngineRequest := *openapiclient.NewPatchedEdgeApplicationResponsePhaseRuleEngineRequest() // PatchedEdgeApplicationResponsePhaseRuleEngineRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesPartialUpdate(context.Background(), edgeApplicationId, id).PatchedEdgeApplicationResponsePhaseRuleEngineRequest(patchedEdgeApplicationResponsePhaseRuleEngineRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesPartialUpdate(context.Background(), applicationId, id).PatchedEdgeApplicationResponsePhaseRuleEngineRequest(patchedEdgeApplicationResponsePhaseRuleEngineRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -362,7 +362,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **id** | **string** |  | 
 
 ### Other Parameters
@@ -396,7 +396,7 @@ Name | Type | Description  | Notes
 
 ## EdgeApplicationApiApplicationsResponseRulesRetrieve
 
-> ResponseRetrieveEdgeApplicationRequestPhaseRuleEngine EdgeApplicationApiApplicationsResponseRulesRetrieve(ctx, edgeApplicationId, id).Fields(fields).Execute()
+> ResponseRetrieveEdgeApplicationRequestPhaseRuleEngine EdgeApplicationApiApplicationsResponseRulesRetrieve(ctx, applicationId, id).Fields(fields).Execute()
 
 Retrieve details of an Edge Application Response Rule
 
@@ -415,13 +415,13 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	id := "id_example" // string | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesRetrieve(context.Background(), edgeApplicationId, id).Fields(fields).Execute()
+	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesRetrieve(context.Background(), applicationId, id).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesRetrieve``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -437,7 +437,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **id** | **string** |  | 
 
 ### Other Parameters
@@ -471,7 +471,7 @@ Name | Type | Description  | Notes
 
 ## EdgeApplicationApiApplicationsResponseRulesUpdate
 
-> ResponseEdgeApplicationResponsePhaseRuleEngine EdgeApplicationApiApplicationsResponseRulesUpdate(ctx, edgeApplicationId, id).EdgeApplicationResponsePhaseRuleEngineRequest(edgeApplicationResponsePhaseRuleEngineRequest).Execute()
+> ResponseEdgeApplicationResponsePhaseRuleEngine EdgeApplicationApiApplicationsResponseRulesUpdate(ctx, applicationId, id).EdgeApplicationResponsePhaseRuleEngineRequest(edgeApplicationResponsePhaseRuleEngineRequest).Execute()
 
 Update an Edge Application Response Rule
 
@@ -490,13 +490,13 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	id := "id_example" // string | 
 	edgeApplicationResponsePhaseRuleEngineRequest := *openapiclient.NewEdgeApplicationResponsePhaseRuleEngineRequest("Name_example", [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest{openapiclient.EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest{EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineAddResponseHeaderRequest: openapiclient.NewEdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineAddResponseHeaderRequest("Type_example", *openapiclient.NewEdgeApplicationRuleEngineAddResponseHeaderAttributesRequest("Value_example"))}}) // EdgeApplicationResponsePhaseRuleEngineRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesUpdate(context.Background(), edgeApplicationId, id).EdgeApplicationResponsePhaseRuleEngineRequest(edgeApplicationResponsePhaseRuleEngineRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesUpdate(context.Background(), applicationId, id).EdgeApplicationResponsePhaseRuleEngineRequest(edgeApplicationResponsePhaseRuleEngineRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -512,7 +512,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **id** | **string** |  | 
 
 ### Other Parameters

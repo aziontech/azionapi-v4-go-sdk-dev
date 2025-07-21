@@ -4,18 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateEdgeApplicationFunctionInstance**](EdgeApplicationsFunctionAPI.md#CreateEdgeApplicationFunctionInstance) | **Post** /edge_application/applications/{edge_application_id}/functions | Create an Edge Application Function Instance
-[**DestroyEdgeApplicationFunctionInstance**](EdgeApplicationsFunctionAPI.md#DestroyEdgeApplicationFunctionInstance) | **Delete** /edge_application/applications/{edge_application_id}/functions/{function_id} | Destroy an Edge Application Function Instance
-[**ListEdgeApplicationFunctionInstances**](EdgeApplicationsFunctionAPI.md#ListEdgeApplicationFunctionInstances) | **Get** /edge_application/applications/{edge_application_id}/functions | List Function Instances
-[**PartialUpdateEdgeApplicationFunctionInstance**](EdgeApplicationsFunctionAPI.md#PartialUpdateEdgeApplicationFunctionInstance) | **Patch** /edge_application/applications/{edge_application_id}/functions/{function_id} | Partially update an Edge Application Function Instance
-[**RetrieveEdgeApplicationFunctionInstance**](EdgeApplicationsFunctionAPI.md#RetrieveEdgeApplicationFunctionInstance) | **Get** /edge_application/applications/{edge_application_id}/functions/{function_id} | Retrieve details of an Edge Application Function Instance
-[**UpdateEdgeApplicationFunctionInstance**](EdgeApplicationsFunctionAPI.md#UpdateEdgeApplicationFunctionInstance) | **Put** /edge_application/applications/{edge_application_id}/functions/{function_id} | Update an Edge Application Function Instance
+[**CreateEdgeApplicationFunctionInstance**](EdgeApplicationsFunctionAPI.md#CreateEdgeApplicationFunctionInstance) | **Post** /edge_application/applications/{application_id}/functions | Create an Edge Application Function Instance
+[**DestroyEdgeApplicationFunctionInstance**](EdgeApplicationsFunctionAPI.md#DestroyEdgeApplicationFunctionInstance) | **Delete** /edge_application/applications/{application_id}/functions/{function_id} | Destroy an Edge Application Function Instance
+[**ListEdgeApplicationFunctionInstances**](EdgeApplicationsFunctionAPI.md#ListEdgeApplicationFunctionInstances) | **Get** /edge_application/applications/{application_id}/functions | List Function Instances
+[**PartialUpdateEdgeApplicationFunctionInstance**](EdgeApplicationsFunctionAPI.md#PartialUpdateEdgeApplicationFunctionInstance) | **Patch** /edge_application/applications/{application_id}/functions/{function_id} | Partially update an Edge Application Function Instance
+[**RetrieveEdgeApplicationFunctionInstance**](EdgeApplicationsFunctionAPI.md#RetrieveEdgeApplicationFunctionInstance) | **Get** /edge_application/applications/{application_id}/functions/{function_id} | Retrieve details of an Edge Application Function Instance
+[**UpdateEdgeApplicationFunctionInstance**](EdgeApplicationsFunctionAPI.md#UpdateEdgeApplicationFunctionInstance) | **Put** /edge_application/applications/{application_id}/functions/{function_id} | Update an Edge Application Function Instance
 
 
 
 ## CreateEdgeApplicationFunctionInstance
 
-> ResponseEdgeApplicationFunctionInstance CreateEdgeApplicationFunctionInstance(ctx, edgeApplicationId).EdgeApplicationFunctionInstanceRequest(edgeApplicationFunctionInstanceRequest).Execute()
+> ResponseEdgeApplicationFunctionInstance CreateEdgeApplicationFunctionInstance(ctx, applicationId).EdgeApplicationFunctionInstanceRequest(edgeApplicationFunctionInstanceRequest).Execute()
 
 Create an Edge Application Function Instance
 
@@ -34,12 +34,12 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	edgeApplicationFunctionInstanceRequest := *openapiclient.NewEdgeApplicationFunctionInstanceRequest("Name_example", int64(123)) // EdgeApplicationFunctionInstanceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsFunctionAPI.CreateEdgeApplicationFunctionInstance(context.Background(), edgeApplicationId).EdgeApplicationFunctionInstanceRequest(edgeApplicationFunctionInstanceRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsFunctionAPI.CreateEdgeApplicationFunctionInstance(context.Background(), applicationId).EdgeApplicationFunctionInstanceRequest(edgeApplicationFunctionInstanceRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsFunctionAPI.CreateEdgeApplicationFunctionInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DestroyEdgeApplicationFunctionInstance
 
-> ResponseDeleteEdgeApplicationFunctionInstance DestroyEdgeApplicationFunctionInstance(ctx, edgeApplicationId, functionId).Execute()
+> ResponseDeleteEdgeApplicationFunctionInstance DestroyEdgeApplicationFunctionInstance(ctx, applicationId, functionId).Execute()
 
 Destroy an Edge Application Function Instance
 
@@ -106,12 +106,12 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	functionId := "functionId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsFunctionAPI.DestroyEdgeApplicationFunctionInstance(context.Background(), edgeApplicationId, functionId).Execute()
+	resp, r, err := apiClient.EdgeApplicationsFunctionAPI.DestroyEdgeApplicationFunctionInstance(context.Background(), applicationId, functionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsFunctionAPI.DestroyEdgeApplicationFunctionInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,7 +127,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **functionId** | **string** |  | 
 
 ### Other Parameters
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ListEdgeApplicationFunctionInstances
 
-> PaginatedEdgeApplicationFunctionInstanceList ListEdgeApplicationFunctionInstances(ctx, edgeApplicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedEdgeApplicationFunctionInstanceList ListEdgeApplicationFunctionInstances(ctx, applicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Function Instances
 
@@ -179,7 +179,7 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, last_editor, last_modified, name, args, edge_function, active) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -188,7 +188,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsFunctionAPI.ListEdgeApplicationFunctionInstances(context.Background(), edgeApplicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.EdgeApplicationsFunctionAPI.ListEdgeApplicationFunctionInstances(context.Background(), applicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsFunctionAPI.ListEdgeApplicationFunctionInstances``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,7 +204,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateEdgeApplicationFunctionInstance
 
-> ResponseEdgeApplicationFunctionInstance PartialUpdateEdgeApplicationFunctionInstance(ctx, edgeApplicationId, functionId).PatchedEdgeApplicationFunctionInstanceRequest(patchedEdgeApplicationFunctionInstanceRequest).Execute()
+> ResponseEdgeApplicationFunctionInstance PartialUpdateEdgeApplicationFunctionInstance(ctx, applicationId, functionId).PatchedEdgeApplicationFunctionInstanceRequest(patchedEdgeApplicationFunctionInstanceRequest).Execute()
 
 Partially update an Edge Application Function Instance
 
@@ -259,13 +259,13 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	functionId := "functionId_example" // string | 
 	patchedEdgeApplicationFunctionInstanceRequest := *openapiclient.NewPatchedEdgeApplicationFunctionInstanceRequest() // PatchedEdgeApplicationFunctionInstanceRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsFunctionAPI.PartialUpdateEdgeApplicationFunctionInstance(context.Background(), edgeApplicationId, functionId).PatchedEdgeApplicationFunctionInstanceRequest(patchedEdgeApplicationFunctionInstanceRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsFunctionAPI.PartialUpdateEdgeApplicationFunctionInstance(context.Background(), applicationId, functionId).PatchedEdgeApplicationFunctionInstanceRequest(patchedEdgeApplicationFunctionInstanceRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsFunctionAPI.PartialUpdateEdgeApplicationFunctionInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,7 +281,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **functionId** | **string** |  | 
 
 ### Other Parameters
@@ -315,7 +315,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveEdgeApplicationFunctionInstance
 
-> ResponseRetrieveEdgeApplicationFunctionInstance RetrieveEdgeApplicationFunctionInstance(ctx, edgeApplicationId, functionId).Fields(fields).Execute()
+> ResponseRetrieveEdgeApplicationFunctionInstance RetrieveEdgeApplicationFunctionInstance(ctx, applicationId, functionId).Fields(fields).Execute()
 
 Retrieve details of an Edge Application Function Instance
 
@@ -334,13 +334,13 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	functionId := "functionId_example" // string | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsFunctionAPI.RetrieveEdgeApplicationFunctionInstance(context.Background(), edgeApplicationId, functionId).Fields(fields).Execute()
+	resp, r, err := apiClient.EdgeApplicationsFunctionAPI.RetrieveEdgeApplicationFunctionInstance(context.Background(), applicationId, functionId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsFunctionAPI.RetrieveEdgeApplicationFunctionInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -356,7 +356,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **functionId** | **string** |  | 
 
 ### Other Parameters
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 
 ## UpdateEdgeApplicationFunctionInstance
 
-> ResponseEdgeApplicationFunctionInstance UpdateEdgeApplicationFunctionInstance(ctx, edgeApplicationId, functionId).EdgeApplicationFunctionInstanceRequest(edgeApplicationFunctionInstanceRequest).Execute()
+> ResponseEdgeApplicationFunctionInstance UpdateEdgeApplicationFunctionInstance(ctx, applicationId, functionId).EdgeApplicationFunctionInstanceRequest(edgeApplicationFunctionInstanceRequest).Execute()
 
 Update an Edge Application Function Instance
 
@@ -409,13 +409,13 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	functionId := "functionId_example" // string | 
 	edgeApplicationFunctionInstanceRequest := *openapiclient.NewEdgeApplicationFunctionInstanceRequest("Name_example", int64(123)) // EdgeApplicationFunctionInstanceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsFunctionAPI.UpdateEdgeApplicationFunctionInstance(context.Background(), edgeApplicationId, functionId).EdgeApplicationFunctionInstanceRequest(edgeApplicationFunctionInstanceRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsFunctionAPI.UpdateEdgeApplicationFunctionInstance(context.Background(), applicationId, functionId).EdgeApplicationFunctionInstanceRequest(edgeApplicationFunctionInstanceRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsFunctionAPI.UpdateEdgeApplicationFunctionInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -431,7 +431,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **functionId** | **string** |  | 
 
 ### Other Parameters
