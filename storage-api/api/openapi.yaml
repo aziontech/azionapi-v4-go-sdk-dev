@@ -793,6 +793,14 @@ paths:
         \ Content-Type will be automatically detected."
       operationId: createObjectKey
       parameters:
+      - description: "The content type of the file (Example: application/octet-stream)."
+        explode: false
+        in: header
+        name: Content-Type
+        required: false
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: bucketName
@@ -950,6 +958,14 @@ paths:
         \ Content-Type will be automatically detected."
       operationId: updateObjectKey
       parameters:
+      - description: "The content type of the file (Example: application/octet-stream)."
+        explode: false
+        in: header
+        name: Content-Type
+        required: false
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: bucketName
