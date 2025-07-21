@@ -320,14 +320,606 @@ paths:
       summary: Create an Edge Application
       tags:
       - Edge Applications
-  /edge_application/applications/{edge_application_id}/cache_settings:
+  /edge_application/applications/{application_id}:
+    delete:
+      description: Destruction of a specific Edge Application in your account.
+      operationId: Destroy Edge Application
+      parameters:
+      - description: A unique integer value identifying the edge application.
+        explode: false
+        in: path
+        name: application_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteEdgeApplication"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncDeleteEdgeApplication"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Destroy an Edge Application
+      tags:
+      - Edge Applications
+    get:
+      description: Retrieve details of a specific Edge Application in your account.
+      operationId: Retrieve Edge Application
+      parameters:
+      - description: A unique integer value identifying the edge application.
+        explode: false
+        in: path
+        name: application_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRetrieveEdgeApplication"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve details of an Edge Application
+      tags:
+      - Edge Applications
+    patch:
+      description: Update one or more fields of an existing Edge Application without
+        affecting other fields.
+      operationId: Partial update Edge Application
+      parameters:
+      - description: A unique integer value identifying the edge application.
+        explode: false
+        in: path
+        name: application_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedEdgeApplicationRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseEdgeApplication"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncEdgeApplication"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Partially update an Edge Application
+      tags:
+      - Edge Applications
+    put:
+      description: Update an existing Edge Application. This replaces the entire Edge
+        Application with the new data provided.
+      operationId: Update Edge Application
+      parameters:
+      - description: A unique integer value identifying the edge application.
+        explode: false
+        in: path
+        name: application_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EdgeApplicationRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseEdgeApplication"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncEdgeApplication"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Update an Edge Application
+      tags:
+      - Edge Applications
+  /edge_application/applications/{application_id}/cache_settings:
     get:
       description: List all Cache Settings owned by your account.
       operationId: List Cache Settings
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -434,7 +1026,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -503,14 +1095,14 @@ paths:
       summary: Create an Edge Applications Cache Setting
       tags:
       - Edge Applications - Cache Settings
-  /edge_application/applications/{edge_application_id}/cache_settings/{id}:
+  /edge_application/applications/{application_id}/cache_settings/{id}:
     delete:
       description: Destruction of a specific Cache Setting in your account.
       operationId: Destroy Cache Setting
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -586,7 +1178,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -665,7 +1257,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -747,7 +1339,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -823,14 +1415,91 @@ paths:
       summary: Update an Edge Applications Cache Setting
       tags:
       - Edge Applications - Cache Settings
-  /edge_application/applications/{edge_application_id}/device_groups:
+  /edge_application/applications/{application_id}/clone:
+    post:
+      description: "Create a new Edge Application by performing a deep copy of an\
+        \ existing Edge Application, including its Cache Settings, Origins, Error\
+        \ Responses, Function Instances, and Rules Engine."
+      operationId: Clone Edge Application
+      parameters:
+      - explode: false
+        in: path
+        name: application_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CloneEdgeApplicationRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRetrieveEdgeApplication"
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestEdgeApplication"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncEdgeApplication"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Clone an Edge Application
+      tags:
+      - Edge Applications
+  /edge_application/applications/{application_id}/device_groups:
     get:
       description: List all Device Groups owned by your account.
       operationId: list_device_groups
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -1011,7 +1680,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -1154,14 +1823,14 @@ paths:
       summary: Create an Edge Applications Device Group
       tags:
       - Edge Applications - Device Groups
-  /edge_application/applications/{edge_application_id}/device_groups/{id}:
+  /edge_application/applications/{application_id}/device_groups/{id}:
     delete:
       description: Destruction of a specific Device Group in your account.
       operationId: destroy_device_groups
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -1311,7 +1980,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -1464,7 +2133,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -1620,7 +2289,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -1770,7 +2439,7 @@ paths:
       summary: Update an Edge Applications Device Group
       tags:
       - Edge Applications - Device Groups
-  /edge_application/applications/{edge_application_id}/functions:
+  /edge_application/applications/{application_id}/functions:
     get:
       description: List all Function Instances for a specific Edge Application owned
         by your account.
@@ -1778,7 +2447,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -1960,7 +2629,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -2103,14 +2772,14 @@ paths:
       summary: Create an Edge Application Function Instance
       tags:
       - Edge Applications - Function
-  /edge_application/applications/{edge_application_id}/functions/{function_id}:
+  /edge_application/applications/{application_id}/functions/{function_id}:
     delete:
       description: Destroy a specific Edge Application Function Instance in your account.
       operationId: destroy_edge_application_function_instance
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -2261,7 +2930,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -2414,7 +3083,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -2570,7 +3239,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -2720,14 +3389,14 @@ paths:
       summary: Update an Edge Application Function Instance
       tags:
       - Edge Applications - Function
-  /edge_application/applications/{edge_application_id}/request_rules:
+  /edge_application/applications/{application_id}/request_rules:
     get:
       description: List all Rules for a specific Edge Application owned by your account.
       operationId: edge_application_api_applications_request_rules_list
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -2908,7 +3577,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -3051,14 +3720,14 @@ paths:
       summary: Create an Edge Application Request Rule
       tags:
       - Edge Applications - Request Rules
-  /edge_application/applications/{edge_application_id}/request_rules/{id}:
+  /edge_application/applications/{application_id}/request_rules/{id}:
     delete:
       description: Destroy a specific Rule in your account.
       operationId: edge_application_api_applications_request_rules_destroy
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -3208,7 +3877,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -3361,7 +4030,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -3517,7 +4186,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -3667,7 +4336,7 @@ paths:
       summary: Update an Edge Application Request Rule
       tags:
       - Edge Applications - Request Rules
-  /edge_application/applications/{edge_application_id}/request_rules/order:
+  /edge_application/applications/{application_id}/request_rules/order:
     put:
       description: Reoder all Rules for a specific Edge Application owned by your
         account.
@@ -3675,7 +4344,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -3854,14 +4523,14 @@ paths:
       summary: Ordering Edge Application Request Rules
       tags:
       - Edge Applications - Request Rules
-  /edge_application/applications/{edge_application_id}/response_rules:
+  /edge_application/applications/{application_id}/response_rules:
     get:
       description: List all Rules for a specific Edge Application owned by your account.
       operationId: edge_application_api_applications_response_rules_list
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -4042,7 +4711,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -4185,14 +4854,14 @@ paths:
       summary: Create an Edge Application Response Rule
       tags:
       - Edge Applications - Response Rules
-  /edge_application/applications/{edge_application_id}/response_rules/{id}:
+  /edge_application/applications/{application_id}/response_rules/{id}:
     delete:
       description: Destroy a specific Rule in your account.
       operationId: edge_application_api_applications_response_rules_destroy
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -4342,7 +5011,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -4495,7 +5164,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -4651,7 +5320,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -4801,7 +5470,7 @@ paths:
       summary: Update an Edge Application Response Rule
       tags:
       - Edge Applications - Response Rules
-  /edge_application/applications/{edge_application_id}/response_rules/order:
+  /edge_application/applications/{application_id}/response_rules/order:
     put:
       description: Reoder all Rules for a specific Edge Application owned by your
         account.
@@ -4809,7 +5478,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: edge_application_id
+        name: application_id
         required: true
         schema:
           pattern: "^[1-9]\\d*$"
@@ -4988,667 +5657,6 @@ paths:
       summary: Ordering Edge Application Response Rules
       tags:
       - Edge Applications - Response Rules
-  /edge_application/applications/{global_id}:
-    delete:
-      description: Destruction of a specific Edge Application in your account.
-      operationId: Destroy Edge Application
-      parameters:
-      - explode: false
-        in: path
-        name: global_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteEdgeApplication"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteEdgeApplication"
-          description: ""
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Destroy an Edge Application
-      tags:
-      - Edge Applications
-    get:
-      description: Retrieve details of a specific Edge Application in your account.
-      operationId: Retrieve Edge Application
-      parameters:
-      - description: Comma-separated list of field names to include in the response.
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: false
-        in: path
-        name: global_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseRetrieveEdgeApplication"
-          description: ""
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Retrieve details of an Edge Application
-      tags:
-      - Edge Applications
-    patch:
-      description: Update one or more fields of an existing Edge Application without
-        affecting other fields.
-      operationId: Partial update Edge Application
-      parameters:
-      - explode: false
-        in: path
-        name: global_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/PatchedEdgeApplicationRequest"
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseEdgeApplication"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplication"
-          description: ""
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Partially update an Edge Application
-      tags:
-      - Edge Applications
-    put:
-      description: Update an existing Edge Application. This replaces the entire Edge
-        Application with the new data provided.
-      operationId: Update Edge Application
-      parameters:
-      - explode: false
-        in: path
-        name: global_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/EdgeApplicationRequest"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseEdgeApplication"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplication"
-          description: ""
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Update an Edge Application
-      tags:
-      - Edge Applications
-  /edge_application/applications/{global_id}/clone:
-    post:
-      description: "Create a new Edge Application by performing a deep copy of an\
-        \ existing Edge Application, including its Cache Settings, Origins, Error\
-        \ Responses, Function Instances, and Rules Engine."
-      operationId: Clone Edge Application
-      parameters:
-      - explode: false
-        in: path
-        name: global_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CloneEdgeApplicationRequest"
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseRetrieveEdgeApplication"
-          description: Created
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseBadRequestEdgeApplication"
-          description: Bad Request
-        "404":
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DefaultErrorResponse"
-          description: Not Found
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DefaultErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DefaultErrorResponse"
-          description: Too Many Requests
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DefaultErrorResponse"
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DefaultErrorResponse"
-          description: Forbidden
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplication"
-          description: Accepted
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Clone an Edge Application
-      tags:
-      - Edge Applications
   /edge_connector/connectors:
     get:
       description: List all Edge Connectors owned by your account.
@@ -22149,7 +22157,7 @@ components:
         path_prefix:
           description: "Optional prefix to add to all request paths (e.g., '/v1')."
           maxLength: 255
-          minLength: 1
+          minLength: 0
           pattern: .*
           type: string
         following_redirect:
@@ -22208,7 +22216,7 @@ components:
         path_prefix:
           description: "Optional prefix to add to all request paths (e.g., '/v1')."
           maxLength: 255
-          minLength: 1
+          minLength: 0
           pattern: .*
           type: string
         following_redirect:

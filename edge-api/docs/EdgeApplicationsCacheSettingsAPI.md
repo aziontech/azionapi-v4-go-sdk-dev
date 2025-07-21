@@ -4,18 +4,18 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCacheSetting**](EdgeApplicationsCacheSettingsAPI.md#CreateCacheSetting) | **Post** /edge_application/applications/{edge_application_id}/cache_settings | Create an Edge Applications Cache Setting
-[**DestroyCacheSetting**](EdgeApplicationsCacheSettingsAPI.md#DestroyCacheSetting) | **Delete** /edge_application/applications/{edge_application_id}/cache_settings/{id} | Destroy an Edge Applications Cache Setting
-[**ListCacheSettings**](EdgeApplicationsCacheSettingsAPI.md#ListCacheSettings) | **Get** /edge_application/applications/{edge_application_id}/cache_settings | List all Edge Applications Cache Settings
-[**PartialUpdateCacheSetting**](EdgeApplicationsCacheSettingsAPI.md#PartialUpdateCacheSetting) | **Patch** /edge_application/applications/{edge_application_id}/cache_settings/{id} | Partially update an Edge Applications Cache Setting
-[**RetrieveCacheSetting**](EdgeApplicationsCacheSettingsAPI.md#RetrieveCacheSetting) | **Get** /edge_application/applications/{edge_application_id}/cache_settings/{id} | Retrieve details of an Edge Applications Cache Setting
-[**UpdateCacheSetting**](EdgeApplicationsCacheSettingsAPI.md#UpdateCacheSetting) | **Put** /edge_application/applications/{edge_application_id}/cache_settings/{id} | Update an Edge Applications Cache Setting
+[**CreateCacheSetting**](EdgeApplicationsCacheSettingsAPI.md#CreateCacheSetting) | **Post** /edge_application/applications/{application_id}/cache_settings | Create an Edge Applications Cache Setting
+[**DestroyCacheSetting**](EdgeApplicationsCacheSettingsAPI.md#DestroyCacheSetting) | **Delete** /edge_application/applications/{application_id}/cache_settings/{id} | Destroy an Edge Applications Cache Setting
+[**ListCacheSettings**](EdgeApplicationsCacheSettingsAPI.md#ListCacheSettings) | **Get** /edge_application/applications/{application_id}/cache_settings | List all Edge Applications Cache Settings
+[**PartialUpdateCacheSetting**](EdgeApplicationsCacheSettingsAPI.md#PartialUpdateCacheSetting) | **Patch** /edge_application/applications/{application_id}/cache_settings/{id} | Partially update an Edge Applications Cache Setting
+[**RetrieveCacheSetting**](EdgeApplicationsCacheSettingsAPI.md#RetrieveCacheSetting) | **Get** /edge_application/applications/{application_id}/cache_settings/{id} | Retrieve details of an Edge Applications Cache Setting
+[**UpdateCacheSetting**](EdgeApplicationsCacheSettingsAPI.md#UpdateCacheSetting) | **Put** /edge_application/applications/{application_id}/cache_settings/{id} | Update an Edge Applications Cache Setting
 
 
 
 ## CreateCacheSetting
 
-> ResponseAsyncCacheSetting CreateCacheSetting(ctx, edgeApplicationId).CacheSettingRequest(cacheSettingRequest).Execute()
+> ResponseAsyncCacheSetting CreateCacheSetting(ctx, applicationId).CacheSettingRequest(cacheSettingRequest).Execute()
 
 Create an Edge Applications Cache Setting
 
@@ -34,12 +34,12 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	cacheSettingRequest := *openapiclient.NewCacheSettingRequest("Name_example") // CacheSettingRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsCacheSettingsAPI.CreateCacheSetting(context.Background(), edgeApplicationId).CacheSettingRequest(cacheSettingRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsCacheSettingsAPI.CreateCacheSetting(context.Background(), applicationId).CacheSettingRequest(cacheSettingRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsCacheSettingsAPI.CreateCacheSetting``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DestroyCacheSetting
 
-> ResponseAsyncDeleteCacheSetting DestroyCacheSetting(ctx, edgeApplicationId, id).Execute()
+> ResponseAsyncDeleteCacheSetting DestroyCacheSetting(ctx, applicationId, id).Execute()
 
 Destroy an Edge Applications Cache Setting
 
@@ -106,12 +106,12 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	id := "id_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsCacheSettingsAPI.DestroyCacheSetting(context.Background(), edgeApplicationId, id).Execute()
+	resp, r, err := apiClient.EdgeApplicationsCacheSettingsAPI.DestroyCacheSetting(context.Background(), applicationId, id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsCacheSettingsAPI.DestroyCacheSetting``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,7 +127,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **id** | **string** |  | 
 
 ### Other Parameters
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ListCacheSettings
 
-> PaginatedResponseListCacheSettingList ListCacheSettings(ctx, edgeApplicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedResponseListCacheSettingList ListCacheSettings(ctx, applicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List all Edge Applications Cache Settings
 
@@ -179,7 +179,7 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -188,7 +188,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsCacheSettingsAPI.ListCacheSettings(context.Background(), edgeApplicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.EdgeApplicationsCacheSettingsAPI.ListCacheSettings(context.Background(), applicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsCacheSettingsAPI.ListCacheSettings``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,7 +204,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateCacheSetting
 
-> ResponseAsyncCacheSetting PartialUpdateCacheSetting(ctx, edgeApplicationId, id).PatchedCacheSettingRequest(patchedCacheSettingRequest).Execute()
+> ResponseAsyncCacheSetting PartialUpdateCacheSetting(ctx, applicationId, id).PatchedCacheSettingRequest(patchedCacheSettingRequest).Execute()
 
 Partially update an Edge Applications Cache Setting
 
@@ -259,13 +259,13 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	id := "id_example" // string | 
 	patchedCacheSettingRequest := *openapiclient.NewPatchedCacheSettingRequest() // PatchedCacheSettingRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsCacheSettingsAPI.PartialUpdateCacheSetting(context.Background(), edgeApplicationId, id).PatchedCacheSettingRequest(patchedCacheSettingRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsCacheSettingsAPI.PartialUpdateCacheSetting(context.Background(), applicationId, id).PatchedCacheSettingRequest(patchedCacheSettingRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsCacheSettingsAPI.PartialUpdateCacheSetting``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -281,7 +281,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **id** | **string** |  | 
 
 ### Other Parameters
@@ -315,7 +315,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveCacheSetting
 
-> ResponseRetrieveCacheSetting RetrieveCacheSetting(ctx, edgeApplicationId, id).Fields(fields).Execute()
+> ResponseRetrieveCacheSetting RetrieveCacheSetting(ctx, applicationId, id).Fields(fields).Execute()
 
 Retrieve details of an Edge Applications Cache Setting
 
@@ -334,13 +334,13 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	id := "id_example" // string | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsCacheSettingsAPI.RetrieveCacheSetting(context.Background(), edgeApplicationId, id).Fields(fields).Execute()
+	resp, r, err := apiClient.EdgeApplicationsCacheSettingsAPI.RetrieveCacheSetting(context.Background(), applicationId, id).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsCacheSettingsAPI.RetrieveCacheSetting``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -356,7 +356,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **id** | **string** |  | 
 
 ### Other Parameters
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCacheSetting
 
-> ResponseAsyncCacheSetting UpdateCacheSetting(ctx, edgeApplicationId, id).CacheSettingRequest(cacheSettingRequest).Execute()
+> ResponseAsyncCacheSetting UpdateCacheSetting(ctx, applicationId, id).CacheSettingRequest(cacheSettingRequest).Execute()
 
 Update an Edge Applications Cache Setting
 
@@ -409,13 +409,13 @@ import (
 )
 
 func main() {
-	edgeApplicationId := "edgeApplicationId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	id := "id_example" // string | 
 	cacheSettingRequest := *openapiclient.NewCacheSettingRequest("Name_example") // CacheSettingRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsCacheSettingsAPI.UpdateCacheSetting(context.Background(), edgeApplicationId, id).CacheSettingRequest(cacheSettingRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsCacheSettingsAPI.UpdateCacheSetting(context.Background(), applicationId, id).CacheSettingRequest(cacheSettingRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsCacheSettingsAPI.UpdateCacheSetting``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -431,7 +431,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**edgeApplicationId** | **string** |  | 
+**applicationId** | **string** |  | 
 **id** | **string** |  | 
 
 ### Other Parameters

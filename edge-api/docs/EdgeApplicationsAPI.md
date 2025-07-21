@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CloneEdgeApplication**](EdgeApplicationsAPI.md#CloneEdgeApplication) | **Post** /edge_application/applications/{global_id}/clone | Clone an Edge Application
+[**CloneEdgeApplication**](EdgeApplicationsAPI.md#CloneEdgeApplication) | **Post** /edge_application/applications/{application_id}/clone | Clone an Edge Application
 [**CreateEdgeApplication**](EdgeApplicationsAPI.md#CreateEdgeApplication) | **Post** /edge_application/applications | Create an Edge Application
-[**DestroyEdgeApplication**](EdgeApplicationsAPI.md#DestroyEdgeApplication) | **Delete** /edge_application/applications/{global_id} | Destroy an Edge Application
+[**DestroyEdgeApplication**](EdgeApplicationsAPI.md#DestroyEdgeApplication) | **Delete** /edge_application/applications/{application_id} | Destroy an Edge Application
 [**ListEdgeApplications**](EdgeApplicationsAPI.md#ListEdgeApplications) | **Get** /edge_application/applications | List Edge Applications
-[**PartialUpdateEdgeApplication**](EdgeApplicationsAPI.md#PartialUpdateEdgeApplication) | **Patch** /edge_application/applications/{global_id} | Partially update an Edge Application
-[**RetrieveEdgeApplication**](EdgeApplicationsAPI.md#RetrieveEdgeApplication) | **Get** /edge_application/applications/{global_id} | Retrieve details of an Edge Application
-[**UpdateEdgeApplication**](EdgeApplicationsAPI.md#UpdateEdgeApplication) | **Put** /edge_application/applications/{global_id} | Update an Edge Application
+[**PartialUpdateEdgeApplication**](EdgeApplicationsAPI.md#PartialUpdateEdgeApplication) | **Patch** /edge_application/applications/{application_id} | Partially update an Edge Application
+[**RetrieveEdgeApplication**](EdgeApplicationsAPI.md#RetrieveEdgeApplication) | **Get** /edge_application/applications/{application_id} | Retrieve details of an Edge Application
+[**UpdateEdgeApplication**](EdgeApplicationsAPI.md#UpdateEdgeApplication) | **Put** /edge_application/applications/{application_id} | Update an Edge Application
 
 
 
 ## CloneEdgeApplication
 
-> ResponseRetrieveEdgeApplication CloneEdgeApplication(ctx, globalId).CloneEdgeApplicationRequest(cloneEdgeApplicationRequest).Execute()
+> ResponseRetrieveEdgeApplication CloneEdgeApplication(ctx, applicationId).CloneEdgeApplicationRequest(cloneEdgeApplicationRequest).Execute()
 
 Clone an Edge Application
 
@@ -35,12 +35,12 @@ import (
 )
 
 func main() {
-	globalId := "globalId_example" // string | 
+	applicationId := "applicationId_example" // string | 
 	cloneEdgeApplicationRequest := *openapiclient.NewCloneEdgeApplicationRequest("Name_example") // CloneEdgeApplicationRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsAPI.CloneEdgeApplication(context.Background(), globalId).CloneEdgeApplicationRequest(cloneEdgeApplicationRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsAPI.CloneEdgeApplication(context.Background(), applicationId).CloneEdgeApplicationRequest(cloneEdgeApplicationRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsAPI.CloneEdgeApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,7 +56,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**globalId** | **string** |  | 
+**applicationId** | **string** |  | 
 
 ### Other Parameters
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## DestroyEdgeApplication
 
-> ResponseDeleteEdgeApplication DestroyEdgeApplication(ctx, globalId).Execute()
+> ResponseDeleteEdgeApplication DestroyEdgeApplication(ctx, applicationId).Execute()
 
 Destroy an Edge Application
 
@@ -173,11 +173,11 @@ import (
 )
 
 func main() {
-	globalId := "globalId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the edge application.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsAPI.DestroyEdgeApplication(context.Background(), globalId).Execute()
+	resp, r, err := apiClient.EdgeApplicationsAPI.DestroyEdgeApplication(context.Background(), applicationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsAPI.DestroyEdgeApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -193,7 +193,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**globalId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the edge application. | 
 
 ### Other Parameters
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateEdgeApplication
 
-> ResponseEdgeApplication PartialUpdateEdgeApplication(ctx, globalId).PatchedEdgeApplicationRequest(patchedEdgeApplicationRequest).Execute()
+> ResponseEdgeApplication PartialUpdateEdgeApplication(ctx, applicationId).PatchedEdgeApplicationRequest(patchedEdgeApplicationRequest).Execute()
 
 Partially update an Edge Application
 
@@ -317,12 +317,12 @@ import (
 )
 
 func main() {
-	globalId := "globalId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the edge application.
 	patchedEdgeApplicationRequest := *openapiclient.NewPatchedEdgeApplicationRequest() // PatchedEdgeApplicationRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsAPI.PartialUpdateEdgeApplication(context.Background(), globalId).PatchedEdgeApplicationRequest(patchedEdgeApplicationRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsAPI.PartialUpdateEdgeApplication(context.Background(), applicationId).PatchedEdgeApplicationRequest(patchedEdgeApplicationRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsAPI.PartialUpdateEdgeApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -338,7 +338,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**globalId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the edge application. | 
 
 ### Other Parameters
 
@@ -370,7 +370,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveEdgeApplication
 
-> ResponseRetrieveEdgeApplication RetrieveEdgeApplication(ctx, globalId).Fields(fields).Execute()
+> ResponseRetrieveEdgeApplication RetrieveEdgeApplication(ctx, applicationId).Fields(fields).Execute()
 
 Retrieve details of an Edge Application
 
@@ -389,12 +389,12 @@ import (
 )
 
 func main() {
-	globalId := "globalId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the edge application.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsAPI.RetrieveEdgeApplication(context.Background(), globalId).Fields(fields).Execute()
+	resp, r, err := apiClient.EdgeApplicationsAPI.RetrieveEdgeApplication(context.Background(), applicationId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsAPI.RetrieveEdgeApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -410,7 +410,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**globalId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the edge application. | 
 
 ### Other Parameters
 
@@ -442,7 +442,7 @@ Name | Type | Description  | Notes
 
 ## UpdateEdgeApplication
 
-> ResponseEdgeApplication UpdateEdgeApplication(ctx, globalId).EdgeApplicationRequest(edgeApplicationRequest).Execute()
+> ResponseEdgeApplication UpdateEdgeApplication(ctx, applicationId).EdgeApplicationRequest(edgeApplicationRequest).Execute()
 
 Update an Edge Application
 
@@ -461,12 +461,12 @@ import (
 )
 
 func main() {
-	globalId := "globalId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the edge application.
 	edgeApplicationRequest := *openapiclient.NewEdgeApplicationRequest("Name_example") // EdgeApplicationRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeApplicationsAPI.UpdateEdgeApplication(context.Background(), globalId).EdgeApplicationRequest(edgeApplicationRequest).Execute()
+	resp, r, err := apiClient.EdgeApplicationsAPI.UpdateEdgeApplication(context.Background(), applicationId).EdgeApplicationRequest(edgeApplicationRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeApplicationsAPI.UpdateEdgeApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -482,7 +482,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**globalId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the edge application. | 
 
 ### Other Parameters
 
