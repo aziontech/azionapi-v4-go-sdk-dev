@@ -25730,12 +25730,13 @@ components:
       description: Serialize the incoming purge request.
       example:
         items:
-        - items
-        - items
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
         layer: ""
       properties:
         items:
           items:
+            format: uri
             minLength: 1
             type: string
           minItems: 1
@@ -25752,12 +25753,13 @@ components:
       description: Serialize the incoming purge request.
       example:
         items:
-        - items
-        - items
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
         layer: ""
       properties:
         items:
           items:
+            format: uri
             minLength: 1
             type: string
           minItems: 1
@@ -26704,8 +26706,8 @@ components:
       example:
         data:
           items:
-          - items
-          - items
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
           layer: ""
         state: state
       properties:
@@ -28299,8 +28301,8 @@ components:
       example:
         data:
           items:
-          - items
-          - items
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
           layer: ""
         state: state
       properties:
