@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateObjectKey
 
-> SuccessObjectOperation CreateObjectKey(ctx, bucketName, objectKey).Body(body).Execute()
+> SuccessObjectOperation CreateObjectKey(ctx, bucketName, objectKey).ContentType(contentType).Body(body).Execute()
 
 Create new object key.
 
@@ -35,11 +35,12 @@ import (
 func main() {
 	bucketName := "bucketName_example" // string | 
 	objectKey := "objectKey_example" // string | 
+	contentType := "contentType_example" // string | The content type of the file (Example: application/octet-stream). (optional)
 	body := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeStorageObjectsAPI.CreateObjectKey(context.Background(), bucketName, objectKey).Body(body).Execute()
+	resp, r, err := apiClient.EdgeStorageObjectsAPI.CreateObjectKey(context.Background(), bucketName, objectKey).ContentType(contentType).Body(body).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeStorageObjectsAPI.CreateObjectKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -67,6 +68,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **contentType** | **string** | The content type of the file (Example: application/octet-stream). | 
  **body** | ***os.File** |  | 
 
 ### Return type
@@ -313,7 +315,7 @@ Name | Type | Description  | Notes
 
 ## UpdateObjectKey
 
-> SuccessObjectOperation UpdateObjectKey(ctx, bucketName, objectKey).Body(body).Execute()
+> SuccessObjectOperation UpdateObjectKey(ctx, bucketName, objectKey).ContentType(contentType).Body(body).Execute()
 
 Update the object key.
 
@@ -334,11 +336,12 @@ import (
 func main() {
 	bucketName := "bucketName_example" // string | 
 	objectKey := "objectKey_example" // string | 
+	contentType := "contentType_example" // string | The content type of the file (Example: application/octet-stream). (optional)
 	body := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeStorageObjectsAPI.UpdateObjectKey(context.Background(), bucketName, objectKey).Body(body).Execute()
+	resp, r, err := apiClient.EdgeStorageObjectsAPI.UpdateObjectKey(context.Background(), bucketName, objectKey).ContentType(contentType).Body(body).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeStorageObjectsAPI.UpdateObjectKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -366,6 +369,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **contentType** | **string** | The content type of the file (Example: application/octet-stream). | 
  **body** | ***os.File** |  | 
 
 ### Return type
