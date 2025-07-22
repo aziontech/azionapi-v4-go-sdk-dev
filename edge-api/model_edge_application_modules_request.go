@@ -12,8 +12,6 @@ package edgeapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the EdgeApplicationModulesRequest type satisfies the MappedNullable interface at compile time
@@ -21,26 +19,19 @@ var _ MappedNullable = &EdgeApplicationModulesRequest{}
 
 // EdgeApplicationModulesRequest struct for EdgeApplicationModulesRequest
 type EdgeApplicationModulesRequest struct {
-	EdgeCache CacheModuleRequest `json:"edge_cache"`
-	EdgeFunctions EdgeFunctionModuleRequest `json:"edge_functions"`
-	ApplicationAccelerator ApplicationAcceleratorModuleRequest `json:"application_accelerator"`
-	ImageProcessor ImageProcessorModuleRequest `json:"image_processor"`
-	TieredCache TieredCacheModuleRequest `json:"tiered_cache"`
+	EdgeCache *CacheModuleRequest `json:"edge_cache,omitempty"`
+	EdgeFunctions *EdgeFunctionModuleRequest `json:"edge_functions,omitempty"`
+	ApplicationAccelerator *ApplicationAcceleratorModuleRequest `json:"application_accelerator,omitempty"`
+	ImageProcessor *ImageProcessorModuleRequest `json:"image_processor,omitempty"`
+	TieredCache *TieredCacheModuleRequest `json:"tiered_cache,omitempty"`
 }
-
-type _EdgeApplicationModulesRequest EdgeApplicationModulesRequest
 
 // NewEdgeApplicationModulesRequest instantiates a new EdgeApplicationModulesRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEdgeApplicationModulesRequest(edgeCache CacheModuleRequest, edgeFunctions EdgeFunctionModuleRequest, applicationAccelerator ApplicationAcceleratorModuleRequest, imageProcessor ImageProcessorModuleRequest, tieredCache TieredCacheModuleRequest) *EdgeApplicationModulesRequest {
+func NewEdgeApplicationModulesRequest() *EdgeApplicationModulesRequest {
 	this := EdgeApplicationModulesRequest{}
-	this.EdgeCache = edgeCache
-	this.EdgeFunctions = edgeFunctions
-	this.ApplicationAccelerator = applicationAccelerator
-	this.ImageProcessor = imageProcessor
-	this.TieredCache = tieredCache
 	return &this
 }
 
@@ -52,124 +43,164 @@ func NewEdgeApplicationModulesRequestWithDefaults() *EdgeApplicationModulesReque
 	return &this
 }
 
-// GetEdgeCache returns the EdgeCache field value
+// GetEdgeCache returns the EdgeCache field value if set, zero value otherwise.
 func (o *EdgeApplicationModulesRequest) GetEdgeCache() CacheModuleRequest {
-	if o == nil {
+	if o == nil || IsNil(o.EdgeCache) {
 		var ret CacheModuleRequest
 		return ret
 	}
-
-	return o.EdgeCache
+	return *o.EdgeCache
 }
 
-// GetEdgeCacheOk returns a tuple with the EdgeCache field value
+// GetEdgeCacheOk returns a tuple with the EdgeCache field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EdgeApplicationModulesRequest) GetEdgeCacheOk() (*CacheModuleRequest, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EdgeCache) {
 		return nil, false
 	}
-	return &o.EdgeCache, true
+	return o.EdgeCache, true
 }
 
-// SetEdgeCache sets field value
+// HasEdgeCache returns a boolean if a field has been set.
+func (o *EdgeApplicationModulesRequest) HasEdgeCache() bool {
+	if o != nil && !IsNil(o.EdgeCache) {
+		return true
+	}
+
+	return false
+}
+
+// SetEdgeCache gets a reference to the given CacheModuleRequest and assigns it to the EdgeCache field.
 func (o *EdgeApplicationModulesRequest) SetEdgeCache(v CacheModuleRequest) {
-	o.EdgeCache = v
+	o.EdgeCache = &v
 }
 
-// GetEdgeFunctions returns the EdgeFunctions field value
+// GetEdgeFunctions returns the EdgeFunctions field value if set, zero value otherwise.
 func (o *EdgeApplicationModulesRequest) GetEdgeFunctions() EdgeFunctionModuleRequest {
-	if o == nil {
+	if o == nil || IsNil(o.EdgeFunctions) {
 		var ret EdgeFunctionModuleRequest
 		return ret
 	}
-
-	return o.EdgeFunctions
+	return *o.EdgeFunctions
 }
 
-// GetEdgeFunctionsOk returns a tuple with the EdgeFunctions field value
+// GetEdgeFunctionsOk returns a tuple with the EdgeFunctions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EdgeApplicationModulesRequest) GetEdgeFunctionsOk() (*EdgeFunctionModuleRequest, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EdgeFunctions) {
 		return nil, false
 	}
-	return &o.EdgeFunctions, true
+	return o.EdgeFunctions, true
 }
 
-// SetEdgeFunctions sets field value
+// HasEdgeFunctions returns a boolean if a field has been set.
+func (o *EdgeApplicationModulesRequest) HasEdgeFunctions() bool {
+	if o != nil && !IsNil(o.EdgeFunctions) {
+		return true
+	}
+
+	return false
+}
+
+// SetEdgeFunctions gets a reference to the given EdgeFunctionModuleRequest and assigns it to the EdgeFunctions field.
 func (o *EdgeApplicationModulesRequest) SetEdgeFunctions(v EdgeFunctionModuleRequest) {
-	o.EdgeFunctions = v
+	o.EdgeFunctions = &v
 }
 
-// GetApplicationAccelerator returns the ApplicationAccelerator field value
+// GetApplicationAccelerator returns the ApplicationAccelerator field value if set, zero value otherwise.
 func (o *EdgeApplicationModulesRequest) GetApplicationAccelerator() ApplicationAcceleratorModuleRequest {
-	if o == nil {
+	if o == nil || IsNil(o.ApplicationAccelerator) {
 		var ret ApplicationAcceleratorModuleRequest
 		return ret
 	}
-
-	return o.ApplicationAccelerator
+	return *o.ApplicationAccelerator
 }
 
-// GetApplicationAcceleratorOk returns a tuple with the ApplicationAccelerator field value
+// GetApplicationAcceleratorOk returns a tuple with the ApplicationAccelerator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EdgeApplicationModulesRequest) GetApplicationAcceleratorOk() (*ApplicationAcceleratorModuleRequest, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ApplicationAccelerator) {
 		return nil, false
 	}
-	return &o.ApplicationAccelerator, true
+	return o.ApplicationAccelerator, true
 }
 
-// SetApplicationAccelerator sets field value
+// HasApplicationAccelerator returns a boolean if a field has been set.
+func (o *EdgeApplicationModulesRequest) HasApplicationAccelerator() bool {
+	if o != nil && !IsNil(o.ApplicationAccelerator) {
+		return true
+	}
+
+	return false
+}
+
+// SetApplicationAccelerator gets a reference to the given ApplicationAcceleratorModuleRequest and assigns it to the ApplicationAccelerator field.
 func (o *EdgeApplicationModulesRequest) SetApplicationAccelerator(v ApplicationAcceleratorModuleRequest) {
-	o.ApplicationAccelerator = v
+	o.ApplicationAccelerator = &v
 }
 
-// GetImageProcessor returns the ImageProcessor field value
+// GetImageProcessor returns the ImageProcessor field value if set, zero value otherwise.
 func (o *EdgeApplicationModulesRequest) GetImageProcessor() ImageProcessorModuleRequest {
-	if o == nil {
+	if o == nil || IsNil(o.ImageProcessor) {
 		var ret ImageProcessorModuleRequest
 		return ret
 	}
-
-	return o.ImageProcessor
+	return *o.ImageProcessor
 }
 
-// GetImageProcessorOk returns a tuple with the ImageProcessor field value
+// GetImageProcessorOk returns a tuple with the ImageProcessor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EdgeApplicationModulesRequest) GetImageProcessorOk() (*ImageProcessorModuleRequest, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ImageProcessor) {
 		return nil, false
 	}
-	return &o.ImageProcessor, true
+	return o.ImageProcessor, true
 }
 
-// SetImageProcessor sets field value
+// HasImageProcessor returns a boolean if a field has been set.
+func (o *EdgeApplicationModulesRequest) HasImageProcessor() bool {
+	if o != nil && !IsNil(o.ImageProcessor) {
+		return true
+	}
+
+	return false
+}
+
+// SetImageProcessor gets a reference to the given ImageProcessorModuleRequest and assigns it to the ImageProcessor field.
 func (o *EdgeApplicationModulesRequest) SetImageProcessor(v ImageProcessorModuleRequest) {
-	o.ImageProcessor = v
+	o.ImageProcessor = &v
 }
 
-// GetTieredCache returns the TieredCache field value
+// GetTieredCache returns the TieredCache field value if set, zero value otherwise.
 func (o *EdgeApplicationModulesRequest) GetTieredCache() TieredCacheModuleRequest {
-	if o == nil {
+	if o == nil || IsNil(o.TieredCache) {
 		var ret TieredCacheModuleRequest
 		return ret
 	}
-
-	return o.TieredCache
+	return *o.TieredCache
 }
 
-// GetTieredCacheOk returns a tuple with the TieredCache field value
+// GetTieredCacheOk returns a tuple with the TieredCache field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EdgeApplicationModulesRequest) GetTieredCacheOk() (*TieredCacheModuleRequest, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TieredCache) {
 		return nil, false
 	}
-	return &o.TieredCache, true
+	return o.TieredCache, true
 }
 
-// SetTieredCache sets field value
+// HasTieredCache returns a boolean if a field has been set.
+func (o *EdgeApplicationModulesRequest) HasTieredCache() bool {
+	if o != nil && !IsNil(o.TieredCache) {
+		return true
+	}
+
+	return false
+}
+
+// SetTieredCache gets a reference to the given TieredCacheModuleRequest and assigns it to the TieredCache field.
 func (o *EdgeApplicationModulesRequest) SetTieredCache(v TieredCacheModuleRequest) {
-	o.TieredCache = v
+	o.TieredCache = &v
 }
 
 func (o EdgeApplicationModulesRequest) MarshalJSON() ([]byte, error) {
@@ -182,53 +213,22 @@ func (o EdgeApplicationModulesRequest) MarshalJSON() ([]byte, error) {
 
 func (o EdgeApplicationModulesRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["edge_cache"] = o.EdgeCache
-	toSerialize["edge_functions"] = o.EdgeFunctions
-	toSerialize["application_accelerator"] = o.ApplicationAccelerator
-	toSerialize["image_processor"] = o.ImageProcessor
-	toSerialize["tiered_cache"] = o.TieredCache
+	if !IsNil(o.EdgeCache) {
+		toSerialize["edge_cache"] = o.EdgeCache
+	}
+	if !IsNil(o.EdgeFunctions) {
+		toSerialize["edge_functions"] = o.EdgeFunctions
+	}
+	if !IsNil(o.ApplicationAccelerator) {
+		toSerialize["application_accelerator"] = o.ApplicationAccelerator
+	}
+	if !IsNil(o.ImageProcessor) {
+		toSerialize["image_processor"] = o.ImageProcessor
+	}
+	if !IsNil(o.TieredCache) {
+		toSerialize["tiered_cache"] = o.TieredCache
+	}
 	return toSerialize, nil
-}
-
-func (o *EdgeApplicationModulesRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"edge_cache",
-		"edge_functions",
-		"application_accelerator",
-		"image_processor",
-		"tiered_cache",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varEdgeApplicationModulesRequest := _EdgeApplicationModulesRequest{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEdgeApplicationModulesRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = EdgeApplicationModulesRequest(varEdgeApplicationModulesRequest)
-
-	return err
 }
 
 type NullableEdgeApplicationModulesRequest struct {

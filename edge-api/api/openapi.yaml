@@ -16461,8 +16461,6 @@ components:
       type: object
     ApplicationAcceleratorModule:
       additionalProperties: false
-      example:
-        enabled: true
       properties:
         enabled:
           type: boolean
@@ -16470,8 +16468,6 @@ components:
       type: object
     ApplicationAcceleratorModuleRequest:
       additionalProperties: false
-      example:
-        enabled: true
       properties:
         enabled:
           type: boolean
@@ -16529,8 +16525,6 @@ components:
       type: object
     CacheModule:
       additionalProperties: false
-      example:
-        enabled: true
       properties:
         enabled:
           type: boolean
@@ -16538,8 +16532,6 @@ components:
       type: object
     CacheModuleRequest:
       additionalProperties: false
-      example:
-        enabled: true
       properties:
         enabled:
           type: boolean
@@ -17392,16 +17384,11 @@ components:
         id: 0
         last_modified: 2000-01-23T04:56:07.000+00:00
         modules:
-          edge_cache:
-            enabled: true
-          application_accelerator:
-            enabled: true
-          tiered_cache:
-            enabled: true
-          image_processor:
-            enabled: true
-          edge_functions:
-            enabled: true
+          edge_cache: ""
+          application_accelerator: ""
+          tiered_cache: ""
+          image_processor: ""
+          edge_functions: ""
       properties:
         id:
           format: int64
@@ -17916,65 +17903,53 @@ components:
     EdgeApplicationModules:
       additionalProperties: false
       example:
-        edge_cache:
-          enabled: true
-        application_accelerator:
-          enabled: true
-        tiered_cache:
-          enabled: true
-        image_processor:
-          enabled: true
-        edge_functions:
-          enabled: true
+        edge_cache: ""
+        application_accelerator: ""
+        tiered_cache: ""
+        image_processor: ""
+        edge_functions: ""
       properties:
         edge_cache:
-          $ref: "#/components/schemas/CacheModule"
+          allOf:
+          - $ref: "#/components/schemas/CacheModule"
         edge_functions:
-          $ref: "#/components/schemas/EdgeFunctionModule"
+          allOf:
+          - $ref: "#/components/schemas/EdgeFunctionModule"
         application_accelerator:
-          $ref: "#/components/schemas/ApplicationAcceleratorModule"
+          allOf:
+          - $ref: "#/components/schemas/ApplicationAcceleratorModule"
         image_processor:
-          $ref: "#/components/schemas/ImageProcessorModule"
+          allOf:
+          - $ref: "#/components/schemas/ImageProcessorModule"
         tiered_cache:
-          $ref: "#/components/schemas/TieredCacheModule"
-      required:
-      - application_accelerator
-      - edge_cache
-      - edge_functions
-      - image_processor
-      - tiered_cache
+          allOf:
+          - $ref: "#/components/schemas/TieredCacheModule"
       title: EdgeApplicationModules
       type: object
     EdgeApplicationModulesRequest:
       additionalProperties: false
       example:
-        edge_cache:
-          enabled: true
-        application_accelerator:
-          enabled: true
-        tiered_cache:
-          enabled: true
-        image_processor:
-          enabled: true
-        edge_functions:
-          enabled: true
+        edge_cache: ""
+        application_accelerator: ""
+        tiered_cache: ""
+        image_processor: ""
+        edge_functions: ""
       properties:
         edge_cache:
-          $ref: "#/components/schemas/CacheModuleRequest"
+          allOf:
+          - $ref: "#/components/schemas/CacheModuleRequest"
         edge_functions:
-          $ref: "#/components/schemas/EdgeFunctionModuleRequest"
+          allOf:
+          - $ref: "#/components/schemas/EdgeFunctionModuleRequest"
         application_accelerator:
-          $ref: "#/components/schemas/ApplicationAcceleratorModuleRequest"
+          allOf:
+          - $ref: "#/components/schemas/ApplicationAcceleratorModuleRequest"
         image_processor:
-          $ref: "#/components/schemas/ImageProcessorModuleRequest"
+          allOf:
+          - $ref: "#/components/schemas/ImageProcessorModuleRequest"
         tiered_cache:
-          $ref: "#/components/schemas/TieredCacheModuleRequest"
-      required:
-      - application_accelerator
-      - edge_cache
-      - edge_functions
-      - image_processor
-      - tiered_cache
+          allOf:
+          - $ref: "#/components/schemas/TieredCacheModuleRequest"
       title: EdgeApplicationModulesRequest
       type: object
     EdgeApplicationRequest:
@@ -17984,16 +17959,11 @@ components:
         name: name
         active: true
         modules:
-          edge_cache:
-            enabled: true
-          application_accelerator:
-            enabled: true
-          tiered_cache:
-            enabled: true
-          image_processor:
-            enabled: true
-          edge_functions:
-            enabled: true
+          edge_cache: ""
+          application_accelerator: ""
+          tiered_cache: ""
+          image_processor: ""
+          edge_functions: ""
       properties:
         name:
           maxLength: 100
@@ -21874,8 +21844,6 @@ components:
       type: object
     EdgeFunctionModule:
       additionalProperties: false
-      example:
-        enabled: true
       properties:
         enabled:
           type: boolean
@@ -21883,8 +21851,6 @@ components:
       type: object
     EdgeFunctionModuleRequest:
       additionalProperties: false
-      example:
-        enabled: true
       properties:
         enabled:
           type: boolean
@@ -22332,8 +22298,6 @@ components:
       type: string
     ImageProcessorModule:
       additionalProperties: false
-      example:
-        enabled: true
       properties:
         enabled:
           type: boolean
@@ -22341,8 +22305,6 @@ components:
       type: object
     ImageProcessorModuleRequest:
       additionalProperties: false
-      example:
-        enabled: true
       properties:
         enabled:
           type: boolean
@@ -23291,16 +23253,11 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
-            edge_cache:
-              enabled: true
-            application_accelerator:
-              enabled: true
-            tiered_cache:
-              enabled: true
-            image_processor:
-              enabled: true
-            edge_functions:
-              enabled: true
+            edge_cache: ""
+            application_accelerator: ""
+            tiered_cache: ""
+            image_processor: ""
+            edge_functions: ""
         - product_version: product_version
           debug: true
           last_editor: last_editor
@@ -23309,16 +23266,11 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
-            edge_cache:
-              enabled: true
-            application_accelerator:
-              enabled: true
-            tiered_cache:
-              enabled: true
-            image_processor:
-              enabled: true
-            edge_functions:
-              enabled: true
+            edge_cache: ""
+            application_accelerator: ""
+            tiered_cache: ""
+            image_processor: ""
+            edge_functions: ""
       properties:
         count:
           example: 123
@@ -24717,16 +24669,11 @@ components:
         name: name
         active: true
         modules:
-          edge_cache:
-            enabled: true
-          application_accelerator:
-            enabled: true
-          tiered_cache:
-            enabled: true
-          image_processor:
-            enabled: true
-          edge_functions:
-            enabled: true
+          edge_cache: ""
+          application_accelerator: ""
+          tiered_cache: ""
+          image_processor: ""
+          edge_functions: ""
       properties:
         name:
           maxLength: 100
@@ -26088,16 +26035,11 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
-            edge_cache:
-              enabled: true
-            application_accelerator:
-              enabled: true
-            tiered_cache:
-              enabled: true
-            image_processor:
-              enabled: true
-            edge_functions:
-              enabled: true
+            edge_cache: ""
+            application_accelerator: ""
+            tiered_cache: ""
+            image_processor: ""
+            edge_functions: ""
         state: state
       properties:
         state:
@@ -27626,16 +27568,11 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
-            edge_cache:
-              enabled: true
-            application_accelerator:
-              enabled: true
-            tiered_cache:
-              enabled: true
-            image_processor:
-              enabled: true
-            edge_functions:
-              enabled: true
+            edge_cache: ""
+            application_accelerator: ""
+            tiered_cache: ""
+            image_processor: ""
+            edge_functions: ""
         state: state
       properties:
         state:
@@ -28409,16 +28346,11 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
-            edge_cache:
-              enabled: true
-            application_accelerator:
-              enabled: true
-            tiered_cache:
-              enabled: true
-            image_processor:
-              enabled: true
-            edge_functions:
-              enabled: true
+            edge_cache: ""
+            application_accelerator: ""
+            tiered_cache: ""
+            image_processor: ""
+            edge_functions: ""
       properties:
         data:
           $ref: "#/components/schemas/EdgeApplication"
@@ -29304,8 +29236,6 @@ components:
       type: object
     TieredCacheModule:
       additionalProperties: false
-      example:
-        enabled: true
       properties:
         enabled:
           type: boolean
@@ -29313,8 +29243,6 @@ components:
       type: object
     TieredCacheModuleRequest:
       additionalProperties: false
-      example:
-        enabled: true
       properties:
         enabled:
           type: boolean

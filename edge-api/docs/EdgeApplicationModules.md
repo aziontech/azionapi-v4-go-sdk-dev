@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EdgeCache** | [**CacheModule**](CacheModule.md) |  | 
-**EdgeFunctions** | [**EdgeFunctionModule**](EdgeFunctionModule.md) |  | 
-**ApplicationAccelerator** | [**ApplicationAcceleratorModule**](ApplicationAcceleratorModule.md) |  | 
-**ImageProcessor** | [**ImageProcessorModule**](ImageProcessorModule.md) |  | 
-**TieredCache** | [**TieredCacheModule**](TieredCacheModule.md) |  | 
+**EdgeCache** | Pointer to [**CacheModule**](CacheModule.md) |  | [optional] 
+**EdgeFunctions** | Pointer to [**EdgeFunctionModule**](EdgeFunctionModule.md) |  | [optional] 
+**ApplicationAccelerator** | Pointer to [**ApplicationAcceleratorModule**](ApplicationAcceleratorModule.md) |  | [optional] 
+**ImageProcessor** | Pointer to [**ImageProcessorModule**](ImageProcessorModule.md) |  | [optional] 
+**TieredCache** | Pointer to [**TieredCacheModule**](TieredCacheModule.md) |  | [optional] 
 
 ## Methods
 
 ### NewEdgeApplicationModules
 
-`func NewEdgeApplicationModules(edgeCache CacheModule, edgeFunctions EdgeFunctionModule, applicationAccelerator ApplicationAcceleratorModule, imageProcessor ImageProcessorModule, tieredCache TieredCacheModule, ) *EdgeApplicationModules`
+`func NewEdgeApplicationModules() *EdgeApplicationModules`
 
 NewEdgeApplicationModules instantiates a new EdgeApplicationModules object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetEdgeCache sets EdgeCache field to given value.
 
+### HasEdgeCache
+
+`func (o *EdgeApplicationModules) HasEdgeCache() bool`
+
+HasEdgeCache returns a boolean if a field has been set.
 
 ### GetEdgeFunctions
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetEdgeFunctions sets EdgeFunctions field to given value.
 
+### HasEdgeFunctions
+
+`func (o *EdgeApplicationModules) HasEdgeFunctions() bool`
+
+HasEdgeFunctions returns a boolean if a field has been set.
 
 ### GetApplicationAccelerator
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetApplicationAccelerator sets ApplicationAccelerator field to given value.
 
+### HasApplicationAccelerator
+
+`func (o *EdgeApplicationModules) HasApplicationAccelerator() bool`
+
+HasApplicationAccelerator returns a boolean if a field has been set.
 
 ### GetImageProcessor
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetImageProcessor sets ImageProcessor field to given value.
 
+### HasImageProcessor
+
+`func (o *EdgeApplicationModules) HasImageProcessor() bool`
+
+HasImageProcessor returns a boolean if a field has been set.
 
 ### GetTieredCache
 
@@ -128,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetTieredCache sets TieredCache field to given value.
 
+### HasTieredCache
+
+`func (o *EdgeApplicationModules) HasTieredCache() bool`
+
+HasTieredCache returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
