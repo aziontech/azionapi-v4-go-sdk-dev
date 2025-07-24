@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int64** |  | [readonly] 
 **Name** | **string** |  | 
-**Language** | Pointer to **string** | * &#x60;javascript&#x60; - JavaScript * &#x60;lua&#x60; - Lua | [optional] 
+**Runtime** | Pointer to **string** | * &#x60;azion_js&#x60; - Azion JavaScript * &#x60;azion_lua&#x60; - Azion Lua | [optional] 
 **DefaultArgs** | Pointer to [**EdgeFunctionsDefaultArgs**](EdgeFunctionsDefaultArgs.md) |  | [optional] 
-**InitiatorType** | Pointer to **string** | * &#x60;edge_application&#x60; - Edge Application * &#x60;edge_firewall&#x60; - Edge Firewall | [optional] 
+**ExecutionEnvironment** | Pointer to **string** | * &#x60;application&#x60; - application * &#x60;firewall&#x60; - firewall | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **ReferenceCount** | **int64** |  | [readonly] 
 **Version** | **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | [readonly] 
@@ -76,30 +76,30 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetLanguage
+### GetRuntime
 
-`func (o *GetEdgeFunctions) GetLanguage() string`
+`func (o *GetEdgeFunctions) GetRuntime() string`
 
-GetLanguage returns the Language field if non-nil, zero value otherwise.
+GetRuntime returns the Runtime field if non-nil, zero value otherwise.
 
-### GetLanguageOk
+### GetRuntimeOk
 
-`func (o *GetEdgeFunctions) GetLanguageOk() (*string, bool)`
+`func (o *GetEdgeFunctions) GetRuntimeOk() (*string, bool)`
 
-GetLanguageOk returns a tuple with the Language field if it's non-nil, zero value otherwise
+GetRuntimeOk returns a tuple with the Runtime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLanguage
+### SetRuntime
 
-`func (o *GetEdgeFunctions) SetLanguage(v string)`
+`func (o *GetEdgeFunctions) SetRuntime(v string)`
 
-SetLanguage sets Language field to given value.
+SetRuntime sets Runtime field to given value.
 
-### HasLanguage
+### HasRuntime
 
-`func (o *GetEdgeFunctions) HasLanguage() bool`
+`func (o *GetEdgeFunctions) HasRuntime() bool`
 
-HasLanguage returns a boolean if a field has been set.
+HasRuntime returns a boolean if a field has been set.
 
 ### GetDefaultArgs
 
@@ -126,30 +126,30 @@ SetDefaultArgs sets DefaultArgs field to given value.
 
 HasDefaultArgs returns a boolean if a field has been set.
 
-### GetInitiatorType
+### GetExecutionEnvironment
 
-`func (o *GetEdgeFunctions) GetInitiatorType() string`
+`func (o *GetEdgeFunctions) GetExecutionEnvironment() string`
 
-GetInitiatorType returns the InitiatorType field if non-nil, zero value otherwise.
+GetExecutionEnvironment returns the ExecutionEnvironment field if non-nil, zero value otherwise.
 
-### GetInitiatorTypeOk
+### GetExecutionEnvironmentOk
 
-`func (o *GetEdgeFunctions) GetInitiatorTypeOk() (*string, bool)`
+`func (o *GetEdgeFunctions) GetExecutionEnvironmentOk() (*string, bool)`
 
-GetInitiatorTypeOk returns a tuple with the InitiatorType field if it's non-nil, zero value otherwise
+GetExecutionEnvironmentOk returns a tuple with the ExecutionEnvironment field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInitiatorType
+### SetExecutionEnvironment
 
-`func (o *GetEdgeFunctions) SetInitiatorType(v string)`
+`func (o *GetEdgeFunctions) SetExecutionEnvironment(v string)`
 
-SetInitiatorType sets InitiatorType field to given value.
+SetExecutionEnvironment sets ExecutionEnvironment field to given value.
 
-### HasInitiatorType
+### HasExecutionEnvironment
 
-`func (o *GetEdgeFunctions) HasInitiatorType() bool`
+`func (o *GetEdgeFunctions) HasExecutionEnvironment() bool`
 
-HasInitiatorType returns a boolean if a field has been set.
+HasExecutionEnvironment returns a boolean if a field has been set.
 
 ### GetActive
 

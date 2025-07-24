@@ -432,7 +432,7 @@ func (r ApiListEdgeFunctionsRequest) Fields(fields string) ApiListEdgeFunctionsR
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: id, name, language, json_args, initiator_type, active, last_editor, last_modified, product_version)
+// Which field to use when ordering the results. (Valid fields: id, name, language, json_args, runtime_environment, active, last_editor, last_modified, product_version)
 func (r ApiListEdgeFunctionsRequest) Ordering(ordering string) ApiListEdgeFunctionsRequest {
 	r.ordering = &ordering
 	return r

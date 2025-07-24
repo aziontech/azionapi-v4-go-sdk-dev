@@ -11695,7 +11695,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, name, language, json_args, initiator_type, active, last_editor, last_modified, product_version)
+          (Valid fields: id, name, language, json_args, runtime_environment, active, last_editor, last_modified, product_version)
         explode: true
         in: query
         name: ordering
@@ -21441,6 +21441,7 @@ components:
         ddos_protection:
           allOf:
           - $ref: "#/components/schemas/EdgeFirewallModule"
+          readOnly: true
         edge_functions:
           allOf:
           - $ref: "#/components/schemas/EdgeFirewallModule"
@@ -21450,19 +21451,17 @@ components:
         waf:
           allOf:
           - $ref: "#/components/schemas/EdgeFirewallModule"
+      required:
+      - ddos_protection
       title: EdgeFirewallModules
       type: object
     EdgeFirewallModulesRequest:
       additionalProperties: false
       example:
-        ddos_protection: ""
         network_protection: ""
         edge_functions: ""
         waf: ""
       properties:
-        ddos_protection:
-          allOf:
-          - $ref: "#/components/schemas/EdgeFirewallModuleRequest"
         edge_functions:
           allOf:
           - $ref: "#/components/schemas/EdgeFirewallModuleRequest"
@@ -21481,7 +21480,6 @@ components:
         name: name
         active: true
         modules:
-          ddos_protection: ""
           network_protection: ""
           edge_functions: ""
           waf: ""
@@ -21862,14 +21860,14 @@ components:
         product_version: product_version
         code: code
         last_editor: last_editor
+        runtime: ""
         active: true
-        language: ""
         version: version
         default_args:
           arg_01: value_01
-        initiator_type: ""
         vendor: vendor
         name: name
+        execution_environment: ""
         id: 0
         reference_count: 6
         last_modified: 2000-01-23T04:56:07.000+00:00
@@ -21883,19 +21881,20 @@ components:
           minLength: 1
           pattern: .*
           type: string
-        language:
+        runtime:
           allOf:
-          - $ref: "#/components/schemas/EdgeFunctionsLanguageEnum"
+          - $ref: "#/components/schemas/EdgeFunctionsRuntimeEnum"
         code:
+          description: "String containing the function code. Maximum size: 20MB."
           maxLength: 20971520
           minLength: 1
           pattern: .*
           type: string
         default_args:
           $ref: "#/components/schemas/EdgeFunctions_default_args"
-        initiator_type:
+        execution_environment:
           allOf:
-          - $ref: "#/components/schemas/InitiatorTypeEnum"
+          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
         active:
           type: boolean
         reference_count:
@@ -21936,39 +21935,36 @@ components:
       - version
       title: EdgeFunctions
       type: object
-    EdgeFunctionsLanguageEnum:
-      description: '* `javascript` - JavaScript'
-      title: EdgeFunctionsLanguageEnum
-      type: string
     EdgeFunctionsRequest:
       additionalProperties: false
       example:
         code: code
         name: name
+        runtime: ""
         active: true
-        language: ""
+        execution_environment: ""
         default_args:
           arg_01: value_01
-        initiator_type: ""
       properties:
         name:
           maxLength: 250
           minLength: 1
           pattern: .*
           type: string
-        language:
+        runtime:
           allOf:
-          - $ref: "#/components/schemas/EdgeFunctionsLanguageEnum"
+          - $ref: "#/components/schemas/EdgeFunctionsRuntimeEnum"
         code:
+          description: "String containing the function code. Maximum size: 20MB."
           maxLength: 20971520
           minLength: 1
           pattern: .*
           type: string
         default_args:
           $ref: "#/components/schemas/EdgeFunctions_default_args"
-        initiator_type:
+        execution_environment:
           allOf:
-          - $ref: "#/components/schemas/InitiatorTypeEnum"
+          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
         active:
           type: boolean
       required:
@@ -21976,9 +21972,19 @@ components:
       - name
       title: EdgeFunctionsRequest
       type: object
+    EdgeFunctionsRuntimeEnum:
+      description: '* `azion_js` - azion_js'
+      title: EdgeFunctionsRuntimeEnum
+      type: string
     EngineVersionEnum:
       description: '* `2021-Q3` - 2021-Q3'
       title: EngineVersionEnum
+      type: string
+    ExecutionEnvironmentEnum:
+      description: |-
+        * `application` - application
+        * `firewall` - firewall
+      title: ExecutionEnvironmentEnum
       type: string
     GetEdgeFunctions:
       additionalProperties: false
@@ -21987,15 +21993,15 @@ components:
         vendor: vendor
         last_editor: last_editor
         name: name
+        runtime: ""
         active: true
-        language: ""
+        execution_environment: ""
         id: 0
         reference_count: 6
         version: version
         last_modified: 2000-01-23T04:56:07.000+00:00
         default_args:
           arg_01: value_01
-        initiator_type: ""
       properties:
         id:
           format: int64
@@ -22006,14 +22012,14 @@ components:
           minLength: 1
           pattern: .*
           type: string
-        language:
+        runtime:
           allOf:
-          - $ref: "#/components/schemas/GetEdgeFunctionsLanguageEnum"
+          - $ref: "#/components/schemas/GetEdgeFunctionsRuntimeEnum"
         default_args:
           $ref: "#/components/schemas/EdgeFunctions_default_args"
-        initiator_type:
+        execution_environment:
           allOf:
-          - $ref: "#/components/schemas/InitiatorTypeEnum"
+          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
         active:
           type: boolean
         reference_count:
@@ -22053,11 +22059,11 @@ components:
       - version
       title: GetEdgeFunctions
       type: object
-    GetEdgeFunctionsLanguageEnum:
+    GetEdgeFunctionsRuntimeEnum:
       description: |-
-        * `javascript` - JavaScript
-        * `lua` - Lua
-      title: GetEdgeFunctionsLanguageEnum
+        * `azion_js` - Azion JavaScript
+        * `azion_lua` - Azion Lua
+      title: GetEdgeFunctionsRuntimeEnum
       type: string
     HMAC:
       additionalProperties: false
@@ -22317,12 +22323,6 @@ components:
       format: int64
       title: InfrastructureEnum
       type: integer
-    InitiatorTypeEnum:
-      description: |-
-        * `edge_application` - Edge Application
-        * `edge_firewall` - Edge Firewall
-      title: InitiatorTypeEnum
-      type: string
     JSONAPIErrorObject:
       additionalProperties: false
       description: Serializer for a single JSON:API error object.
@@ -24167,28 +24167,28 @@ components:
           vendor: vendor
           last_editor: last_editor
           name: name
+          runtime: ""
           active: true
-          language: ""
+          execution_environment: ""
           id: 0
           reference_count: 6
           version: version
           last_modified: 2000-01-23T04:56:07.000+00:00
           default_args:
             arg_01: value_01
-          initiator_type: ""
         - product_version: product_version
           vendor: vendor
           last_editor: last_editor
           name: name
+          runtime: ""
           active: true
-          language: ""
+          execution_environment: ""
           id: 0
           reference_count: 6
           version: version
           last_modified: 2000-01-23T04:56:07.000+00:00
           default_args:
             arg_01: value_01
-          initiator_type: ""
       properties:
         count:
           example: 123
@@ -25109,7 +25109,6 @@ components:
         name: name
         active: true
         modules:
-          ddos_protection: ""
           network_protection: ""
           edge_functions: ""
           waf: ""
@@ -25276,30 +25275,31 @@ components:
       example:
         code: code
         name: name
+        runtime: ""
         active: true
-        language: ""
+        execution_environment: ""
         default_args:
           arg_01: value_01
-        initiator_type: ""
       properties:
         name:
           maxLength: 250
           minLength: 1
           pattern: .*
           type: string
-        language:
+        runtime:
           allOf:
-          - $ref: "#/components/schemas/EdgeFunctionsLanguageEnum"
+          - $ref: "#/components/schemas/EdgeFunctionsRuntimeEnum"
         code:
+          description: "String containing the function code. Maximum size: 20MB."
           maxLength: 20971520
           minLength: 1
           pattern: .*
           type: string
         default_args:
           $ref: "#/components/schemas/EdgeFunctions_default_args"
-        initiator_type:
+        execution_environment:
           allOf:
-          - $ref: "#/components/schemas/InitiatorTypeEnum"
+          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
         active:
           type: boolean
       title: PatchedEdgeFunctionsRequest
@@ -26590,14 +26590,14 @@ components:
           product_version: product_version
           code: code
           last_editor: last_editor
+          runtime: ""
           active: true
-          language: ""
           version: version
           default_args:
             arg_01: value_01
-          initiator_type: ""
           vendor: vendor
           name: name
+          execution_environment: ""
           id: 0
           reference_count: 6
           last_modified: 2000-01-23T04:56:07.000+00:00
@@ -28123,14 +28123,14 @@ components:
           product_version: product_version
           code: code
           last_editor: last_editor
+          runtime: ""
           active: true
-          language: ""
           version: version
           default_args:
             arg_01: value_01
-          initiator_type: ""
           vendor: vendor
           name: name
+          execution_environment: ""
           id: 0
           reference_count: 6
           last_modified: 2000-01-23T04:56:07.000+00:00
@@ -28723,15 +28723,15 @@ components:
           vendor: vendor
           last_editor: last_editor
           name: name
+          runtime: ""
           active: true
-          language: ""
+          execution_environment: ""
           id: 0
           reference_count: 6
           version: version
           last_modified: 2000-01-23T04:56:07.000+00:00
           default_args:
             arg_01: value_01
-          initiator_type: ""
       properties:
         data:
           $ref: "#/components/schemas/GetEdgeFunctions"

@@ -19,7 +19,6 @@ var _ MappedNullable = &EdgeFirewallModulesRequest{}
 
 // EdgeFirewallModulesRequest struct for EdgeFirewallModulesRequest
 type EdgeFirewallModulesRequest struct {
-	DdosProtection *EdgeFirewallModuleRequest `json:"ddos_protection,omitempty"`
 	EdgeFunctions *EdgeFirewallModuleRequest `json:"edge_functions,omitempty"`
 	NetworkProtection *EdgeFirewallModuleRequest `json:"network_protection,omitempty"`
 	Waf *EdgeFirewallModuleRequest `json:"waf,omitempty"`
@@ -40,38 +39,6 @@ func NewEdgeFirewallModulesRequest() *EdgeFirewallModulesRequest {
 func NewEdgeFirewallModulesRequestWithDefaults() *EdgeFirewallModulesRequest {
 	this := EdgeFirewallModulesRequest{}
 	return &this
-}
-
-// GetDdosProtection returns the DdosProtection field value if set, zero value otherwise.
-func (o *EdgeFirewallModulesRequest) GetDdosProtection() EdgeFirewallModuleRequest {
-	if o == nil || IsNil(o.DdosProtection) {
-		var ret EdgeFirewallModuleRequest
-		return ret
-	}
-	return *o.DdosProtection
-}
-
-// GetDdosProtectionOk returns a tuple with the DdosProtection field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeFirewallModulesRequest) GetDdosProtectionOk() (*EdgeFirewallModuleRequest, bool) {
-	if o == nil || IsNil(o.DdosProtection) {
-		return nil, false
-	}
-	return o.DdosProtection, true
-}
-
-// HasDdosProtection returns a boolean if a field has been set.
-func (o *EdgeFirewallModulesRequest) HasDdosProtection() bool {
-	if o != nil && !IsNil(o.DdosProtection) {
-		return true
-	}
-
-	return false
-}
-
-// SetDdosProtection gets a reference to the given EdgeFirewallModuleRequest and assigns it to the DdosProtection field.
-func (o *EdgeFirewallModulesRequest) SetDdosProtection(v EdgeFirewallModuleRequest) {
-	o.DdosProtection = &v
 }
 
 // GetEdgeFunctions returns the EdgeFunctions field value if set, zero value otherwise.
@@ -180,9 +147,6 @@ func (o EdgeFirewallModulesRequest) MarshalJSON() ([]byte, error) {
 
 func (o EdgeFirewallModulesRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.DdosProtection) {
-		toSerialize["ddos_protection"] = o.DdosProtection
-	}
 	if !IsNil(o.EdgeFunctions) {
 		toSerialize["edge_functions"] = o.EdgeFunctions
 	}
