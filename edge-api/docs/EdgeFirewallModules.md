@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DdosProtection** | Pointer to [**EdgeFirewallModule**](EdgeFirewallModule.md) |  | [optional] 
+**DdosProtection** | [**EdgeFirewallModule**](EdgeFirewallModule.md) |  | [readonly] 
 **EdgeFunctions** | Pointer to [**EdgeFirewallModule**](EdgeFirewallModule.md) |  | [optional] 
 **NetworkProtection** | Pointer to [**EdgeFirewallModule**](EdgeFirewallModule.md) |  | [optional] 
 **Waf** | Pointer to [**EdgeFirewallModule**](EdgeFirewallModule.md) |  | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewEdgeFirewallModules
 
-`func NewEdgeFirewallModules() *EdgeFirewallModules`
+`func NewEdgeFirewallModules(ddosProtection EdgeFirewallModule, ) *EdgeFirewallModules`
 
 NewEdgeFirewallModules instantiates a new EdgeFirewallModules object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetDdosProtection sets DdosProtection field to given value.
 
-### HasDdosProtection
-
-`func (o *EdgeFirewallModules) HasDdosProtection() bool`
-
-HasDdosProtection returns a boolean if a field has been set.
 
 ### GetEdgeFunctions
 

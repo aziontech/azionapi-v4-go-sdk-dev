@@ -12,6 +12,8 @@ package edgeapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the EdgeFirewallModules type satisfies the MappedNullable interface at compile time
@@ -19,18 +21,21 @@ var _ MappedNullable = &EdgeFirewallModules{}
 
 // EdgeFirewallModules struct for EdgeFirewallModules
 type EdgeFirewallModules struct {
-	DdosProtection *EdgeFirewallModule `json:"ddos_protection,omitempty"`
+	DdosProtection EdgeFirewallModule `json:"ddos_protection"`
 	EdgeFunctions *EdgeFirewallModule `json:"edge_functions,omitempty"`
 	NetworkProtection *EdgeFirewallModule `json:"network_protection,omitempty"`
 	Waf *EdgeFirewallModule `json:"waf,omitempty"`
 }
 
+type _EdgeFirewallModules EdgeFirewallModules
+
 // NewEdgeFirewallModules instantiates a new EdgeFirewallModules object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEdgeFirewallModules() *EdgeFirewallModules {
+func NewEdgeFirewallModules(ddosProtection EdgeFirewallModule) *EdgeFirewallModules {
 	this := EdgeFirewallModules{}
+	this.DdosProtection = ddosProtection
 	return &this
 }
 
@@ -42,36 +47,28 @@ func NewEdgeFirewallModulesWithDefaults() *EdgeFirewallModules {
 	return &this
 }
 
-// GetDdosProtection returns the DdosProtection field value if set, zero value otherwise.
+// GetDdosProtection returns the DdosProtection field value
 func (o *EdgeFirewallModules) GetDdosProtection() EdgeFirewallModule {
-	if o == nil || IsNil(o.DdosProtection) {
+	if o == nil {
 		var ret EdgeFirewallModule
 		return ret
 	}
-	return *o.DdosProtection
+
+	return o.DdosProtection
 }
 
-// GetDdosProtectionOk returns a tuple with the DdosProtection field value if set, nil otherwise
+// GetDdosProtectionOk returns a tuple with the DdosProtection field value
 // and a boolean to check if the value has been set.
 func (o *EdgeFirewallModules) GetDdosProtectionOk() (*EdgeFirewallModule, bool) {
-	if o == nil || IsNil(o.DdosProtection) {
+	if o == nil {
 		return nil, false
 	}
-	return o.DdosProtection, true
+	return &o.DdosProtection, true
 }
 
-// HasDdosProtection returns a boolean if a field has been set.
-func (o *EdgeFirewallModules) HasDdosProtection() bool {
-	if o != nil && !IsNil(o.DdosProtection) {
-		return true
-	}
-
-	return false
-}
-
-// SetDdosProtection gets a reference to the given EdgeFirewallModule and assigns it to the DdosProtection field.
+// SetDdosProtection sets field value
 func (o *EdgeFirewallModules) SetDdosProtection(v EdgeFirewallModule) {
-	o.DdosProtection = &v
+	o.DdosProtection = v
 }
 
 // GetEdgeFunctions returns the EdgeFunctions field value if set, zero value otherwise.
@@ -180,9 +177,7 @@ func (o EdgeFirewallModules) MarshalJSON() ([]byte, error) {
 
 func (o EdgeFirewallModules) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.DdosProtection) {
-		toSerialize["ddos_protection"] = o.DdosProtection
-	}
+	toSerialize["ddos_protection"] = o.DdosProtection
 	if !IsNil(o.EdgeFunctions) {
 		toSerialize["edge_functions"] = o.EdgeFunctions
 	}
@@ -193,6 +188,43 @@ func (o EdgeFirewallModules) ToMap() (map[string]interface{}, error) {
 		toSerialize["waf"] = o.Waf
 	}
 	return toSerialize, nil
+}
+
+func (o *EdgeFirewallModules) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"ddos_protection",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEdgeFirewallModules := _EdgeFirewallModules{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varEdgeFirewallModules)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EdgeFirewallModules(varEdgeFirewallModules)
+
+	return err
 }
 
 type NullableEdgeFirewallModules struct {

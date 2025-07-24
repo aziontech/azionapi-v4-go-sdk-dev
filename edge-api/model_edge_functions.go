@@ -24,12 +24,13 @@ var _ MappedNullable = &EdgeFunctions{}
 type EdgeFunctions struct {
 	Id int64 `json:"id"`
 	Name string `json:"name" validate:"regexp=.*"`
-	// * `javascript` - JavaScript
-	Language *string `json:"language,omitempty"`
+	// * `azion_js` - azion_js
+	Runtime *string `json:"runtime,omitempty"`
+	// String containing the function code. Maximum size: 20MB.
 	Code string `json:"code" validate:"regexp=.*"`
 	DefaultArgs *EdgeFunctionsDefaultArgs `json:"default_args,omitempty"`
-	// * `edge_application` - Edge Application * `edge_firewall` - Edge Firewall
-	InitiatorType *string `json:"initiator_type,omitempty"`
+	// * `application` - application * `firewall` - firewall
+	ExecutionEnvironment *string `json:"execution_environment,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	ReferenceCount int64 `json:"reference_count"`
 	// Installed version, which may not be the latest if the vendor has released updates since installation.
@@ -116,36 +117,36 @@ func (o *EdgeFunctions) SetName(v string) {
 	o.Name = v
 }
 
-// GetLanguage returns the Language field value if set, zero value otherwise.
-func (o *EdgeFunctions) GetLanguage() string {
-	if o == nil || IsNil(o.Language) {
+// GetRuntime returns the Runtime field value if set, zero value otherwise.
+func (o *EdgeFunctions) GetRuntime() string {
+	if o == nil || IsNil(o.Runtime) {
 		var ret string
 		return ret
 	}
-	return *o.Language
+	return *o.Runtime
 }
 
-// GetLanguageOk returns a tuple with the Language field value if set, nil otherwise
+// GetRuntimeOk returns a tuple with the Runtime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetLanguageOk() (*string, bool) {
-	if o == nil || IsNil(o.Language) {
+func (o *EdgeFunctions) GetRuntimeOk() (*string, bool) {
+	if o == nil || IsNil(o.Runtime) {
 		return nil, false
 	}
-	return o.Language, true
+	return o.Runtime, true
 }
 
-// HasLanguage returns a boolean if a field has been set.
-func (o *EdgeFunctions) HasLanguage() bool {
-	if o != nil && !IsNil(o.Language) {
+// HasRuntime returns a boolean if a field has been set.
+func (o *EdgeFunctions) HasRuntime() bool {
+	if o != nil && !IsNil(o.Runtime) {
 		return true
 	}
 
 	return false
 }
 
-// SetLanguage gets a reference to the given string and assigns it to the Language field.
-func (o *EdgeFunctions) SetLanguage(v string) {
-	o.Language = &v
+// SetRuntime gets a reference to the given string and assigns it to the Runtime field.
+func (o *EdgeFunctions) SetRuntime(v string) {
+	o.Runtime = &v
 }
 
 // GetCode returns the Code field value
@@ -204,36 +205,36 @@ func (o *EdgeFunctions) SetDefaultArgs(v EdgeFunctionsDefaultArgs) {
 	o.DefaultArgs = &v
 }
 
-// GetInitiatorType returns the InitiatorType field value if set, zero value otherwise.
-func (o *EdgeFunctions) GetInitiatorType() string {
-	if o == nil || IsNil(o.InitiatorType) {
+// GetExecutionEnvironment returns the ExecutionEnvironment field value if set, zero value otherwise.
+func (o *EdgeFunctions) GetExecutionEnvironment() string {
+	if o == nil || IsNil(o.ExecutionEnvironment) {
 		var ret string
 		return ret
 	}
-	return *o.InitiatorType
+	return *o.ExecutionEnvironment
 }
 
-// GetInitiatorTypeOk returns a tuple with the InitiatorType field value if set, nil otherwise
+// GetExecutionEnvironmentOk returns a tuple with the ExecutionEnvironment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetInitiatorTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.InitiatorType) {
+func (o *EdgeFunctions) GetExecutionEnvironmentOk() (*string, bool) {
+	if o == nil || IsNil(o.ExecutionEnvironment) {
 		return nil, false
 	}
-	return o.InitiatorType, true
+	return o.ExecutionEnvironment, true
 }
 
-// HasInitiatorType returns a boolean if a field has been set.
-func (o *EdgeFunctions) HasInitiatorType() bool {
-	if o != nil && !IsNil(o.InitiatorType) {
+// HasExecutionEnvironment returns a boolean if a field has been set.
+func (o *EdgeFunctions) HasExecutionEnvironment() bool {
+	if o != nil && !IsNil(o.ExecutionEnvironment) {
 		return true
 	}
 
 	return false
 }
 
-// SetInitiatorType gets a reference to the given string and assigns it to the InitiatorType field.
-func (o *EdgeFunctions) SetInitiatorType(v string) {
-	o.InitiatorType = &v
+// SetExecutionEnvironment gets a reference to the given string and assigns it to the ExecutionEnvironment field.
+func (o *EdgeFunctions) SetExecutionEnvironment(v string) {
+	o.ExecutionEnvironment = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -424,15 +425,15 @@ func (o EdgeFunctions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
-	if !IsNil(o.Language) {
-		toSerialize["language"] = o.Language
+	if !IsNil(o.Runtime) {
+		toSerialize["runtime"] = o.Runtime
 	}
 	toSerialize["code"] = o.Code
 	if !IsNil(o.DefaultArgs) {
 		toSerialize["default_args"] = o.DefaultArgs
 	}
-	if !IsNil(o.InitiatorType) {
-		toSerialize["initiator_type"] = o.InitiatorType
+	if !IsNil(o.ExecutionEnvironment) {
+		toSerialize["execution_environment"] = o.ExecutionEnvironment
 	}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active

@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DdosProtection** | Pointer to [**EdgeFirewallModuleRequest**](EdgeFirewallModuleRequest.md) |  | [optional] 
 **EdgeFunctions** | Pointer to [**EdgeFirewallModuleRequest**](EdgeFirewallModuleRequest.md) |  | [optional] 
 **NetworkProtection** | Pointer to [**EdgeFirewallModuleRequest**](EdgeFirewallModuleRequest.md) |  | [optional] 
 **Waf** | Pointer to [**EdgeFirewallModuleRequest**](EdgeFirewallModuleRequest.md) |  | [optional] 
@@ -27,31 +26,6 @@ will change when the set of required properties is changed
 NewEdgeFirewallModulesRequestWithDefaults instantiates a new EdgeFirewallModulesRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetDdosProtection
-
-`func (o *EdgeFirewallModulesRequest) GetDdosProtection() EdgeFirewallModuleRequest`
-
-GetDdosProtection returns the DdosProtection field if non-nil, zero value otherwise.
-
-### GetDdosProtectionOk
-
-`func (o *EdgeFirewallModulesRequest) GetDdosProtectionOk() (*EdgeFirewallModuleRequest, bool)`
-
-GetDdosProtectionOk returns a tuple with the DdosProtection field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDdosProtection
-
-`func (o *EdgeFirewallModulesRequest) SetDdosProtection(v EdgeFirewallModuleRequest)`
-
-SetDdosProtection sets DdosProtection field to given value.
-
-### HasDdosProtection
-
-`func (o *EdgeFirewallModulesRequest) HasDdosProtection() bool`
-
-HasDdosProtection returns a boolean if a field has been set.
 
 ### GetEdgeFunctions
 
