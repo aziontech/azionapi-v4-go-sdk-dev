@@ -11734,7 +11734,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedGetEdgeFunctionsList"
+                $ref: "#/components/schemas/PaginatedEdgeFunctionsList"
           description: ""
         "401":
           content:
@@ -11868,13 +11868,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFunctions"
+                $ref: "#/components/schemas/ResponseEdgeFunctionsDoc"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFunctions"
+                $ref: "#/components/schemas/ResponseAsyncEdgeFunctionsDoc"
           description: ""
         "401":
           content:
@@ -12011,13 +12011,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteEdgeFunctions"
+                $ref: "#/components/schemas/ResponseDeleteEdgeFunctionsDoc"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteGetEdgeFunctions"
+                $ref: "#/components/schemas/ResponseAsyncDeleteEdgeFunctionsDoc"
           description: ""
         "401":
           content:
@@ -12161,7 +12161,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveGetEdgeFunctions"
+                $ref: "#/components/schemas/ResponseRetrieveEdgeFunctionsDoc"
           description: ""
         "401":
           content:
@@ -12303,13 +12303,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFunctions"
+                $ref: "#/components/schemas/ResponseEdgeFunctionsDoc"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFunctions"
+                $ref: "#/components/schemas/ResponseAsyncEdgeFunctionsDoc"
           description: ""
         "401":
           content:
@@ -12452,13 +12452,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFunctions"
+                $ref: "#/components/schemas/ResponseEdgeFunctionsDoc"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFunctions"
+                $ref: "#/components/schemas/ResponseAsyncEdgeFunctionsDoc"
           description: ""
         "401":
           content:
@@ -21860,8 +21860,8 @@ components:
         product_version: product_version
         code: code
         last_editor: last_editor
-        runtime: ""
         active: true
+        runtime: ""
         version: version
         default_args:
           arg_01: value_01
@@ -21881,34 +21881,6 @@ components:
           minLength: 1
           pattern: .*
           type: string
-        runtime:
-          allOf:
-          - $ref: "#/components/schemas/EdgeFunctionsRuntimeEnum"
-        code:
-          description: "String containing the function code. Maximum size: 20MB."
-          maxLength: 20971520
-          minLength: 1
-          pattern: .*
-          type: string
-        default_args:
-          $ref: "#/components/schemas/EdgeFunctions_default_args"
-        execution_environment:
-          allOf:
-          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
-        active:
-          type: boolean
-        reference_count:
-          format: int64
-          readOnly: true
-          type: integer
-        version:
-          description: "Installed version, which may not be the latest if the vendor\
-            \ has released updates since installation."
-          readOnly: true
-          type: string
-        vendor:
-          readOnly: true
-          type: string
         last_editor:
           maxLength: 250
           pattern: .*
@@ -21921,6 +21893,34 @@ components:
         product_version:
           maxLength: 50
           pattern: .*
+          readOnly: true
+          type: string
+        active:
+          type: boolean
+        runtime:
+          allOf:
+          - $ref: "#/components/schemas/RuntimeEnum"
+        execution_environment:
+          allOf:
+          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
+        code:
+          description: "String containing the function code. Maximum size: 20MB."
+          maxLength: 20971520
+          minLength: 1
+          pattern: .*
+          type: string
+        default_args:
+          $ref: "#/components/schemas/EdgeFunctions_default_args"
+        reference_count:
+          format: int64
+          readOnly: true
+          type: integer
+        version:
+          description: "Installed version, which may not be the latest if the vendor\
+            \ has released updates since installation."
+          readOnly: true
+          type: string
+        vendor:
           readOnly: true
           type: string
       required:
@@ -21940,8 +21940,8 @@ components:
       example:
         code: code
         name: name
-        runtime: ""
         active: true
+        runtime: ""
         execution_environment: ""
         default_args:
           arg_01: value_01
@@ -21951,9 +21951,14 @@ components:
           minLength: 1
           pattern: .*
           type: string
+        active:
+          type: boolean
         runtime:
           allOf:
-          - $ref: "#/components/schemas/EdgeFunctionsRuntimeEnum"
+          - $ref: "#/components/schemas/RuntimeEnum"
+        execution_environment:
+          allOf:
+          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
         code:
           description: "String containing the function code. Maximum size: 20MB."
           maxLength: 20971520
@@ -21962,108 +21967,20 @@ components:
           type: string
         default_args:
           $ref: "#/components/schemas/EdgeFunctions_default_args"
-        execution_environment:
-          allOf:
-          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
-        active:
-          type: boolean
       required:
       - code
       - name
       title: EdgeFunctionsRequest
       type: object
-    EdgeFunctionsRuntimeEnum:
-      description: '* `azion_js` - azion_js'
-      title: EdgeFunctionsRuntimeEnum
-      type: string
     EngineVersionEnum:
       description: '* `2021-Q3` - 2021-Q3'
       title: EngineVersionEnum
       type: string
     ExecutionEnvironmentEnum:
       description: |-
-        * `application` - application
-        * `firewall` - firewall
+        * `firewall` - Firewall
+        * `application` - Application
       title: ExecutionEnvironmentEnum
-      type: string
-    GetEdgeFunctions:
-      additionalProperties: false
-      example:
-        product_version: product_version
-        vendor: vendor
-        last_editor: last_editor
-        name: name
-        runtime: ""
-        active: true
-        execution_environment: ""
-        id: 0
-        reference_count: 6
-        version: version
-        last_modified: 2000-01-23T04:56:07.000+00:00
-        default_args:
-          arg_01: value_01
-      properties:
-        id:
-          format: int64
-          readOnly: true
-          type: integer
-        name:
-          maxLength: 250
-          minLength: 1
-          pattern: .*
-          type: string
-        runtime:
-          allOf:
-          - $ref: "#/components/schemas/GetEdgeFunctionsRuntimeEnum"
-        default_args:
-          $ref: "#/components/schemas/EdgeFunctions_default_args"
-        execution_environment:
-          allOf:
-          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
-        active:
-          type: boolean
-        reference_count:
-          format: int64
-          readOnly: true
-          type: integer
-        version:
-          description: "Installed version, which may not be the latest if the vendor\
-            \ has released updates since installation."
-          readOnly: true
-          type: string
-        vendor:
-          readOnly: true
-          type: string
-        last_editor:
-          maxLength: 250
-          pattern: .*
-          readOnly: true
-          type: string
-        last_modified:
-          format: date-time
-          readOnly: true
-          type: string
-        product_version:
-          maxLength: 50
-          pattern: .*
-          readOnly: true
-          type: string
-      required:
-      - id
-      - last_editor
-      - last_modified
-      - name
-      - product_version
-      - reference_count
-      - vendor
-      - version
-      title: GetEdgeFunctions
-      type: object
-    GetEdgeFunctionsRuntimeEnum:
-      description: |-
-        * `azion_js` - Azion JavaScript
-        * `azion_lua` - Azion Lua
-      title: GetEdgeFunctionsRuntimeEnum
       type: string
     HMAC:
       additionalProperties: false
@@ -24158,37 +24075,39 @@ components:
           type: array
       title: PaginatedEdgeFirewallRuleEngineList
       type: object
-    PaginatedGetEdgeFunctionsList:
+    PaginatedEdgeFunctionsList:
       additionalProperties: false
       example:
         count: 123
         results:
         - product_version: product_version
-          vendor: vendor
+          code: code
           last_editor: last_editor
-          name: name
-          runtime: ""
           active: true
+          runtime: ""
+          version: version
+          default_args:
+            arg_01: value_01
+          vendor: vendor
+          name: name
           execution_environment: ""
           id: 0
           reference_count: 6
-          version: version
           last_modified: 2000-01-23T04:56:07.000+00:00
-          default_args:
-            arg_01: value_01
         - product_version: product_version
-          vendor: vendor
+          code: code
           last_editor: last_editor
-          name: name
-          runtime: ""
           active: true
+          runtime: ""
+          version: version
+          default_args:
+            arg_01: value_01
+          vendor: vendor
+          name: name
           execution_environment: ""
           id: 0
           reference_count: 6
-          version: version
           last_modified: 2000-01-23T04:56:07.000+00:00
-          default_args:
-            arg_01: value_01
       properties:
         count:
           example: 123
@@ -24198,9 +24117,9 @@ components:
           type: integer
         results:
           items:
-            $ref: "#/components/schemas/GetEdgeFunctions"
+            $ref: "#/components/schemas/EdgeFunctions"
           type: array
-      title: PaginatedGetEdgeFunctionsList
+      title: PaginatedEdgeFunctionsList
       type: object
     PaginatedNetworkListList:
       additionalProperties: false
@@ -25275,8 +25194,8 @@ components:
       example:
         code: code
         name: name
-        runtime: ""
         active: true
+        runtime: ""
         execution_environment: ""
         default_args:
           arg_01: value_01
@@ -25286,9 +25205,14 @@ components:
           minLength: 1
           pattern: .*
           type: string
+        active:
+          type: boolean
         runtime:
           allOf:
-          - $ref: "#/components/schemas/EdgeFunctionsRuntimeEnum"
+          - $ref: "#/components/schemas/RuntimeEnum"
+        execution_environment:
+          allOf:
+          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
         code:
           description: "String containing the function code. Maximum size: 20MB."
           maxLength: 20971520
@@ -25297,11 +25221,6 @@ components:
           type: string
         default_args:
           $ref: "#/components/schemas/EdgeFunctions_default_args"
-        execution_environment:
-          allOf:
-          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
-        active:
-          type: boolean
       title: PatchedEdgeFunctionsRequest
       type: object
     PatchedNetworkListDetailRequest:
@@ -25951,7 +25870,7 @@ components:
           type: string
       title: ResponseAsyncDeleteEdgeFirewallRuleEngine
       type: object
-    ResponseAsyncDeleteGetEdgeFunctions:
+    ResponseAsyncDeleteEdgeFunctionsDoc:
       additionalProperties: false
       example:
         state: state
@@ -25961,7 +25880,7 @@ components:
           minLength: 1
           pattern: .*
           type: string
-      title: ResponseAsyncDeleteGetEdgeFunctions
+      title: ResponseAsyncDeleteEdgeFunctionsDoc
       type: object
     ResponseAsyncDeleteNetworkListDetail:
       additionalProperties: false
@@ -26583,15 +26502,15 @@ components:
       - data
       title: ResponseAsyncEdgeFirewallRuleEngine
       type: object
-    ResponseAsyncEdgeFunctions:
+    ResponseAsyncEdgeFunctionsDoc:
       additionalProperties: false
       example:
         data:
           product_version: product_version
           code: code
           last_editor: last_editor
-          runtime: ""
           active: true
+          runtime: ""
           version: version
           default_args:
             arg_01: value_01
@@ -26612,7 +26531,7 @@ components:
           $ref: "#/components/schemas/EdgeFunctions"
       required:
       - data
-      title: ResponseAsyncEdgeFunctions
+      title: ResponseAsyncEdgeFunctionsDoc
       type: object
     ResponseAsyncNetworkListDetail:
       additionalProperties: false
@@ -27508,7 +27427,7 @@ components:
           type: string
       title: ResponseDeleteEdgeFirewallRuleEngine
       type: object
-    ResponseDeleteEdgeFunctions:
+    ResponseDeleteEdgeFunctionsDoc:
       additionalProperties: false
       example:
         state: state
@@ -27518,7 +27437,7 @@ components:
           minLength: 1
           pattern: .*
           type: string
-      title: ResponseDeleteEdgeFunctions
+      title: ResponseDeleteEdgeFunctionsDoc
       type: object
     ResponseDeleteNetworkListDetail:
       additionalProperties: false
@@ -28116,15 +28035,15 @@ components:
       - data
       title: ResponseEdgeFirewallRuleEngine
       type: object
-    ResponseEdgeFunctions:
+    ResponseEdgeFunctionsDoc:
       additionalProperties: false
       example:
         data:
           product_version: product_version
           code: code
           last_editor: last_editor
-          runtime: ""
           active: true
+          runtime: ""
           version: version
           default_args:
             arg_01: value_01
@@ -28145,7 +28064,7 @@ components:
           $ref: "#/components/schemas/EdgeFunctions"
       required:
       - data
-      title: ResponseEdgeFunctions
+      title: ResponseEdgeFunctionsDoc
       type: object
     ResponseListCacheSetting:
       additionalProperties: false
@@ -28715,29 +28634,30 @@ components:
       - data
       title: ResponseRetrieveEdgeFirewallRuleEngine
       type: object
-    ResponseRetrieveGetEdgeFunctions:
+    ResponseRetrieveEdgeFunctionsDoc:
       additionalProperties: false
       example:
         data:
           product_version: product_version
-          vendor: vendor
+          code: code
           last_editor: last_editor
-          name: name
-          runtime: ""
           active: true
+          runtime: ""
+          version: version
+          default_args:
+            arg_01: value_01
+          vendor: vendor
+          name: name
           execution_environment: ""
           id: 0
           reference_count: 6
-          version: version
           last_modified: 2000-01-23T04:56:07.000+00:00
-          default_args:
-            arg_01: value_01
       properties:
         data:
-          $ref: "#/components/schemas/GetEdgeFunctions"
+          $ref: "#/components/schemas/EdgeFunctions"
       required:
       - data
-      title: ResponseRetrieveGetEdgeFunctions
+      title: ResponseRetrieveEdgeFunctionsDoc
       type: object
     ResponseRetrieveNetworkListDetail:
       additionalProperties: false
@@ -29087,6 +29007,10 @@ components:
       format: int64
       title: RulesetsEnum
       type: integer
+    RuntimeEnum:
+      description: '* `azion_js` - Azion JavaScript'
+      title: RuntimeEnum
+      type: string
     SensitivityEnum:
       description: |-
         * `highest` - Highest
