@@ -22,14 +22,14 @@ var _ MappedNullable = &EdgeFunctionsRequest{}
 // EdgeFunctionsRequest struct for EdgeFunctionsRequest
 type EdgeFunctionsRequest struct {
 	Name string `json:"name" validate:"regexp=.*"`
-	// * `azion_js` - azion_js
+	Active *bool `json:"active,omitempty"`
+	// * `azion_js` - Azion JavaScript
 	Runtime *string `json:"runtime,omitempty"`
+	// * `firewall` - Firewall * `application` - Application
+	ExecutionEnvironment *string `json:"execution_environment,omitempty"`
 	// String containing the function code. Maximum size: 20MB.
 	Code string `json:"code" validate:"regexp=.*"`
 	DefaultArgs *EdgeFunctionsDefaultArgs `json:"default_args,omitempty"`
-	// * `application` - application * `firewall` - firewall
-	ExecutionEnvironment *string `json:"execution_environment,omitempty"`
-	Active *bool `json:"active,omitempty"`
 }
 
 type _EdgeFunctionsRequest EdgeFunctionsRequest
@@ -77,6 +77,38 @@ func (o *EdgeFunctionsRequest) SetName(v string) {
 	o.Name = v
 }
 
+// GetActive returns the Active field value if set, zero value otherwise.
+func (o *EdgeFunctionsRequest) GetActive() bool {
+	if o == nil || IsNil(o.Active) {
+		var ret bool
+		return ret
+	}
+	return *o.Active
+}
+
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EdgeFunctionsRequest) GetActiveOk() (*bool, bool) {
+	if o == nil || IsNil(o.Active) {
+		return nil, false
+	}
+	return o.Active, true
+}
+
+// HasActive returns a boolean if a field has been set.
+func (o *EdgeFunctionsRequest) HasActive() bool {
+	if o != nil && !IsNil(o.Active) {
+		return true
+	}
+
+	return false
+}
+
+// SetActive gets a reference to the given bool and assigns it to the Active field.
+func (o *EdgeFunctionsRequest) SetActive(v bool) {
+	o.Active = &v
+}
+
 // GetRuntime returns the Runtime field value if set, zero value otherwise.
 func (o *EdgeFunctionsRequest) GetRuntime() string {
 	if o == nil || IsNil(o.Runtime) {
@@ -107,6 +139,38 @@ func (o *EdgeFunctionsRequest) HasRuntime() bool {
 // SetRuntime gets a reference to the given string and assigns it to the Runtime field.
 func (o *EdgeFunctionsRequest) SetRuntime(v string) {
 	o.Runtime = &v
+}
+
+// GetExecutionEnvironment returns the ExecutionEnvironment field value if set, zero value otherwise.
+func (o *EdgeFunctionsRequest) GetExecutionEnvironment() string {
+	if o == nil || IsNil(o.ExecutionEnvironment) {
+		var ret string
+		return ret
+	}
+	return *o.ExecutionEnvironment
+}
+
+// GetExecutionEnvironmentOk returns a tuple with the ExecutionEnvironment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EdgeFunctionsRequest) GetExecutionEnvironmentOk() (*string, bool) {
+	if o == nil || IsNil(o.ExecutionEnvironment) {
+		return nil, false
+	}
+	return o.ExecutionEnvironment, true
+}
+
+// HasExecutionEnvironment returns a boolean if a field has been set.
+func (o *EdgeFunctionsRequest) HasExecutionEnvironment() bool {
+	if o != nil && !IsNil(o.ExecutionEnvironment) {
+		return true
+	}
+
+	return false
+}
+
+// SetExecutionEnvironment gets a reference to the given string and assigns it to the ExecutionEnvironment field.
+func (o *EdgeFunctionsRequest) SetExecutionEnvironment(v string) {
+	o.ExecutionEnvironment = &v
 }
 
 // GetCode returns the Code field value
@@ -165,70 +229,6 @@ func (o *EdgeFunctionsRequest) SetDefaultArgs(v EdgeFunctionsDefaultArgs) {
 	o.DefaultArgs = &v
 }
 
-// GetExecutionEnvironment returns the ExecutionEnvironment field value if set, zero value otherwise.
-func (o *EdgeFunctionsRequest) GetExecutionEnvironment() string {
-	if o == nil || IsNil(o.ExecutionEnvironment) {
-		var ret string
-		return ret
-	}
-	return *o.ExecutionEnvironment
-}
-
-// GetExecutionEnvironmentOk returns a tuple with the ExecutionEnvironment field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeFunctionsRequest) GetExecutionEnvironmentOk() (*string, bool) {
-	if o == nil || IsNil(o.ExecutionEnvironment) {
-		return nil, false
-	}
-	return o.ExecutionEnvironment, true
-}
-
-// HasExecutionEnvironment returns a boolean if a field has been set.
-func (o *EdgeFunctionsRequest) HasExecutionEnvironment() bool {
-	if o != nil && !IsNil(o.ExecutionEnvironment) {
-		return true
-	}
-
-	return false
-}
-
-// SetExecutionEnvironment gets a reference to the given string and assigns it to the ExecutionEnvironment field.
-func (o *EdgeFunctionsRequest) SetExecutionEnvironment(v string) {
-	o.ExecutionEnvironment = &v
-}
-
-// GetActive returns the Active field value if set, zero value otherwise.
-func (o *EdgeFunctionsRequest) GetActive() bool {
-	if o == nil || IsNil(o.Active) {
-		var ret bool
-		return ret
-	}
-	return *o.Active
-}
-
-// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeFunctionsRequest) GetActiveOk() (*bool, bool) {
-	if o == nil || IsNil(o.Active) {
-		return nil, false
-	}
-	return o.Active, true
-}
-
-// HasActive returns a boolean if a field has been set.
-func (o *EdgeFunctionsRequest) HasActive() bool {
-	if o != nil && !IsNil(o.Active) {
-		return true
-	}
-
-	return false
-}
-
-// SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *EdgeFunctionsRequest) SetActive(v bool) {
-	o.Active = &v
-}
-
 func (o EdgeFunctionsRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -240,18 +240,18 @@ func (o EdgeFunctionsRequest) MarshalJSON() ([]byte, error) {
 func (o EdgeFunctionsRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
 	if !IsNil(o.Runtime) {
 		toSerialize["runtime"] = o.Runtime
-	}
-	toSerialize["code"] = o.Code
-	if !IsNil(o.DefaultArgs) {
-		toSerialize["default_args"] = o.DefaultArgs
 	}
 	if !IsNil(o.ExecutionEnvironment) {
 		toSerialize["execution_environment"] = o.ExecutionEnvironment
 	}
-	if !IsNil(o.Active) {
-		toSerialize["active"] = o.Active
+	toSerialize["code"] = o.Code
+	if !IsNil(o.DefaultArgs) {
+		toSerialize["default_args"] = o.DefaultArgs
 	}
 	return toSerialize, nil
 }

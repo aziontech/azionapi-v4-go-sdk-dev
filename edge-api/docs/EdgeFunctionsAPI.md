@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateEdgeFunction
 
-> ResponseEdgeFunctions CreateEdgeFunction(ctx).EdgeFunctionsRequest(edgeFunctionsRequest).Execute()
+> ResponseEdgeFunctionsDoc CreateEdgeFunction(ctx).EdgeFunctionsRequest(edgeFunctionsRequest).Execute()
 
 Create an Edge Function
 
@@ -43,7 +43,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeFunctionsAPI.CreateEdgeFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateEdgeFunction`: ResponseEdgeFunctions
+	// response from `CreateEdgeFunction`: ResponseEdgeFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `EdgeFunctionsAPI.CreateEdgeFunction`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseEdgeFunctions**](ResponseEdgeFunctions.md)
+[**ResponseEdgeFunctionsDoc**](ResponseEdgeFunctionsDoc.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DestroyEdgeFunction
 
-> ResponseDeleteEdgeFunctions DestroyEdgeFunction(ctx, id).Execute()
+> ResponseDeleteEdgeFunctionsDoc DestroyEdgeFunction(ctx, id).Execute()
 
 Destroy an Edge Function
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeFunctionsAPI.DestroyEdgeFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DestroyEdgeFunction`: ResponseDeleteEdgeFunctions
+	// response from `DestroyEdgeFunction`: ResponseDeleteEdgeFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `EdgeFunctionsAPI.DestroyEdgeFunction`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteEdgeFunctions**](ResponseDeleteEdgeFunctions.md)
+[**ResponseDeleteEdgeFunctionsDoc**](ResponseDeleteEdgeFunctionsDoc.md)
 
 ### Authorization
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListEdgeFunctions
 
-> PaginatedGetEdgeFunctionsList ListEdgeFunctions(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedEdgeFunctionsList ListEdgeFunctions(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Edge Functions
 
@@ -183,7 +183,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeFunctionsAPI.ListEdgeFunctions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListEdgeFunctions`: PaginatedGetEdgeFunctionsList
+	// response from `ListEdgeFunctions`: PaginatedEdgeFunctionsList
 	fmt.Fprintf(os.Stdout, "Response from `EdgeFunctionsAPI.ListEdgeFunctions`: %v\n", resp)
 }
 ```
@@ -207,7 +207,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedGetEdgeFunctionsList**](PaginatedGetEdgeFunctionsList.md)
+[**PaginatedEdgeFunctionsList**](PaginatedEdgeFunctionsList.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateEdgeFunction
 
-> ResponseEdgeFunctions PartialUpdateEdgeFunction(ctx, id).PatchedEdgeFunctionsRequest(patchedEdgeFunctionsRequest).Execute()
+> ResponseEdgeFunctionsDoc PartialUpdateEdgeFunction(ctx, id).PatchedEdgeFunctionsRequest(patchedEdgeFunctionsRequest).Execute()
 
 Partially update an Edge Function
 
@@ -254,7 +254,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeFunctionsAPI.PartialUpdateEdgeFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateEdgeFunction`: ResponseEdgeFunctions
+	// response from `PartialUpdateEdgeFunction`: ResponseEdgeFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `EdgeFunctionsAPI.PartialUpdateEdgeFunction`: %v\n", resp)
 }
 ```
@@ -279,7 +279,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseEdgeFunctions**](ResponseEdgeFunctions.md)
+[**ResponseEdgeFunctionsDoc**](ResponseEdgeFunctionsDoc.md)
 
 ### Authorization
 
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveEdgeFunction
 
-> ResponseRetrieveGetEdgeFunctions RetrieveEdgeFunction(ctx, id).Fields(fields).Execute()
+> ResponseRetrieveEdgeFunctionsDoc RetrieveEdgeFunction(ctx, id).Fields(fields).Execute()
 
 Retrieve details of an Edge Function
 
@@ -326,7 +326,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeFunctionsAPI.RetrieveEdgeFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveEdgeFunction`: ResponseRetrieveGetEdgeFunctions
+	// response from `RetrieveEdgeFunction`: ResponseRetrieveEdgeFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `EdgeFunctionsAPI.RetrieveEdgeFunction`: %v\n", resp)
 }
 ```
@@ -351,7 +351,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveGetEdgeFunctions**](ResponseRetrieveGetEdgeFunctions.md)
+[**ResponseRetrieveEdgeFunctionsDoc**](ResponseRetrieveEdgeFunctionsDoc.md)
 
 ### Authorization
 
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 ## UpdateEdgeFunction
 
-> ResponseEdgeFunctions UpdateEdgeFunction(ctx, id).EdgeFunctionsRequest(edgeFunctionsRequest).Execute()
+> ResponseEdgeFunctionsDoc UpdateEdgeFunction(ctx, id).EdgeFunctionsRequest(edgeFunctionsRequest).Execute()
 
 Update an Edge Function
 
@@ -398,7 +398,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EdgeFunctionsAPI.UpdateEdgeFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateEdgeFunction`: ResponseEdgeFunctions
+	// response from `UpdateEdgeFunction`: ResponseEdgeFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `EdgeFunctionsAPI.UpdateEdgeFunction`: %v\n", resp)
 }
 ```
@@ -423,7 +423,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseEdgeFunctions**](ResponseEdgeFunctions.md)
+[**ResponseEdgeFunctionsDoc**](ResponseEdgeFunctionsDoc.md)
 
 ### Authorization
 

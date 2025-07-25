@@ -34,7 +34,7 @@ func (r ApiCreateEdgeFunctionRequest) EdgeFunctionsRequest(edgeFunctionsRequest 
 	return r
 }
 
-func (r ApiCreateEdgeFunctionRequest) Execute() (*ResponseEdgeFunctions, *http.Response, error) {
+func (r ApiCreateEdgeFunctionRequest) Execute() (*ResponseEdgeFunctionsDoc, *http.Response, error) {
 	return r.ApiService.CreateEdgeFunctionExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *EdgeFunctionsAPIService) CreateEdgeFunction(ctx context.Context) ApiCre
 }
 
 // Execute executes the request
-//  @return ResponseEdgeFunctions
-func (a *EdgeFunctionsAPIService) CreateEdgeFunctionExecute(r ApiCreateEdgeFunctionRequest) (*ResponseEdgeFunctions, *http.Response, error) {
+//  @return ResponseEdgeFunctionsDoc
+func (a *EdgeFunctionsAPIService) CreateEdgeFunctionExecute(r ApiCreateEdgeFunctionRequest) (*ResponseEdgeFunctionsDoc, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseEdgeFunctions
+		localVarReturnValue  *ResponseEdgeFunctionsDoc
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeFunctionsAPIService.CreateEdgeFunction")
@@ -229,7 +229,7 @@ type ApiDestroyEdgeFunctionRequest struct {
 	id string
 }
 
-func (r ApiDestroyEdgeFunctionRequest) Execute() (*ResponseDeleteEdgeFunctions, *http.Response, error) {
+func (r ApiDestroyEdgeFunctionRequest) Execute() (*ResponseDeleteEdgeFunctionsDoc, *http.Response, error) {
 	return r.ApiService.DestroyEdgeFunctionExecute(r)
 }
 
@@ -251,13 +251,13 @@ func (a *EdgeFunctionsAPIService) DestroyEdgeFunction(ctx context.Context, id st
 }
 
 // Execute executes the request
-//  @return ResponseDeleteEdgeFunctions
-func (a *EdgeFunctionsAPIService) DestroyEdgeFunctionExecute(r ApiDestroyEdgeFunctionRequest) (*ResponseDeleteEdgeFunctions, *http.Response, error) {
+//  @return ResponseDeleteEdgeFunctionsDoc
+func (a *EdgeFunctionsAPIService) DestroyEdgeFunctionExecute(r ApiDestroyEdgeFunctionRequest) (*ResponseDeleteEdgeFunctionsDoc, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteEdgeFunctions
+		localVarReturnValue  *ResponseDeleteEdgeFunctionsDoc
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeFunctionsAPIService.DestroyEdgeFunction")
@@ -456,7 +456,7 @@ func (r ApiListEdgeFunctionsRequest) Search(search string) ApiListEdgeFunctionsR
 	return r
 }
 
-func (r ApiListEdgeFunctionsRequest) Execute() (*PaginatedGetEdgeFunctionsList, *http.Response, error) {
+func (r ApiListEdgeFunctionsRequest) Execute() (*PaginatedEdgeFunctionsList, *http.Response, error) {
 	return r.ApiService.ListEdgeFunctionsExecute(r)
 }
 
@@ -476,13 +476,13 @@ func (a *EdgeFunctionsAPIService) ListEdgeFunctions(ctx context.Context) ApiList
 }
 
 // Execute executes the request
-//  @return PaginatedGetEdgeFunctionsList
-func (a *EdgeFunctionsAPIService) ListEdgeFunctionsExecute(r ApiListEdgeFunctionsRequest) (*PaginatedGetEdgeFunctionsList, *http.Response, error) {
+//  @return PaginatedEdgeFunctionsList
+func (a *EdgeFunctionsAPIService) ListEdgeFunctionsExecute(r ApiListEdgeFunctionsRequest) (*PaginatedEdgeFunctionsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedGetEdgeFunctionsList
+		localVarReturnValue  *PaginatedEdgeFunctionsList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeFunctionsAPIService.ListEdgeFunctions")
@@ -667,7 +667,7 @@ func (r ApiPartialUpdateEdgeFunctionRequest) PatchedEdgeFunctionsRequest(patched
 	return r
 }
 
-func (r ApiPartialUpdateEdgeFunctionRequest) Execute() (*ResponseEdgeFunctions, *http.Response, error) {
+func (r ApiPartialUpdateEdgeFunctionRequest) Execute() (*ResponseEdgeFunctionsDoc, *http.Response, error) {
 	return r.ApiService.PartialUpdateEdgeFunctionExecute(r)
 }
 
@@ -689,13 +689,13 @@ func (a *EdgeFunctionsAPIService) PartialUpdateEdgeFunction(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return ResponseEdgeFunctions
-func (a *EdgeFunctionsAPIService) PartialUpdateEdgeFunctionExecute(r ApiPartialUpdateEdgeFunctionRequest) (*ResponseEdgeFunctions, *http.Response, error) {
+//  @return ResponseEdgeFunctionsDoc
+func (a *EdgeFunctionsAPIService) PartialUpdateEdgeFunctionExecute(r ApiPartialUpdateEdgeFunctionRequest) (*ResponseEdgeFunctionsDoc, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseEdgeFunctions
+		localVarReturnValue  *ResponseEdgeFunctionsDoc
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeFunctionsAPIService.PartialUpdateEdgeFunction")
@@ -869,7 +869,7 @@ func (r ApiRetrieveEdgeFunctionRequest) Fields(fields string) ApiRetrieveEdgeFun
 	return r
 }
 
-func (r ApiRetrieveEdgeFunctionRequest) Execute() (*ResponseRetrieveGetEdgeFunctions, *http.Response, error) {
+func (r ApiRetrieveEdgeFunctionRequest) Execute() (*ResponseRetrieveEdgeFunctionsDoc, *http.Response, error) {
 	return r.ApiService.RetrieveEdgeFunctionExecute(r)
 }
 
@@ -891,13 +891,13 @@ func (a *EdgeFunctionsAPIService) RetrieveEdgeFunction(ctx context.Context, id s
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveGetEdgeFunctions
-func (a *EdgeFunctionsAPIService) RetrieveEdgeFunctionExecute(r ApiRetrieveEdgeFunctionRequest) (*ResponseRetrieveGetEdgeFunctions, *http.Response, error) {
+//  @return ResponseRetrieveEdgeFunctionsDoc
+func (a *EdgeFunctionsAPIService) RetrieveEdgeFunctionExecute(r ApiRetrieveEdgeFunctionRequest) (*ResponseRetrieveEdgeFunctionsDoc, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveGetEdgeFunctions
+		localVarReturnValue  *ResponseRetrieveEdgeFunctionsDoc
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeFunctionsAPIService.RetrieveEdgeFunction")
@@ -1071,7 +1071,7 @@ func (r ApiUpdateEdgeFunctionRequest) EdgeFunctionsRequest(edgeFunctionsRequest 
 	return r
 }
 
-func (r ApiUpdateEdgeFunctionRequest) Execute() (*ResponseEdgeFunctions, *http.Response, error) {
+func (r ApiUpdateEdgeFunctionRequest) Execute() (*ResponseEdgeFunctionsDoc, *http.Response, error) {
 	return r.ApiService.UpdateEdgeFunctionExecute(r)
 }
 
@@ -1093,13 +1093,13 @@ func (a *EdgeFunctionsAPIService) UpdateEdgeFunction(ctx context.Context, id str
 }
 
 // Execute executes the request
-//  @return ResponseEdgeFunctions
-func (a *EdgeFunctionsAPIService) UpdateEdgeFunctionExecute(r ApiUpdateEdgeFunctionRequest) (*ResponseEdgeFunctions, *http.Response, error) {
+//  @return ResponseEdgeFunctionsDoc
+func (a *EdgeFunctionsAPIService) UpdateEdgeFunctionExecute(r ApiUpdateEdgeFunctionRequest) (*ResponseEdgeFunctionsDoc, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseEdgeFunctions
+		localVarReturnValue  *ResponseEdgeFunctionsDoc
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeFunctionsAPIService.UpdateEdgeFunction")

@@ -24,21 +24,21 @@ var _ MappedNullable = &EdgeFunctions{}
 type EdgeFunctions struct {
 	Id int64 `json:"id"`
 	Name string `json:"name" validate:"regexp=.*"`
-	// * `azion_js` - azion_js
+	LastEditor string `json:"last_editor" validate:"regexp=.*"`
+	LastModified time.Time `json:"last_modified"`
+	ProductVersion string `json:"product_version" validate:"regexp=.*"`
+	Active *bool `json:"active,omitempty"`
+	// * `azion_js` - Azion JavaScript
 	Runtime *string `json:"runtime,omitempty"`
+	// * `firewall` - Firewall * `application` - Application
+	ExecutionEnvironment *string `json:"execution_environment,omitempty"`
 	// String containing the function code. Maximum size: 20MB.
 	Code string `json:"code" validate:"regexp=.*"`
 	DefaultArgs *EdgeFunctionsDefaultArgs `json:"default_args,omitempty"`
-	// * `application` - application * `firewall` - firewall
-	ExecutionEnvironment *string `json:"execution_environment,omitempty"`
-	Active *bool `json:"active,omitempty"`
 	ReferenceCount int64 `json:"reference_count"`
 	// Installed version, which may not be the latest if the vendor has released updates since installation.
 	Version string `json:"version"`
 	Vendor string `json:"vendor"`
-	LastEditor string `json:"last_editor" validate:"regexp=.*"`
-	LastModified time.Time `json:"last_modified"`
-	ProductVersion string `json:"product_version" validate:"regexp=.*"`
 }
 
 type _EdgeFunctions EdgeFunctions
@@ -47,17 +47,17 @@ type _EdgeFunctions EdgeFunctions
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEdgeFunctions(id int64, name string, code string, referenceCount int64, version string, vendor string, lastEditor string, lastModified time.Time, productVersion string) *EdgeFunctions {
+func NewEdgeFunctions(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, code string, referenceCount int64, version string, vendor string) *EdgeFunctions {
 	this := EdgeFunctions{}
 	this.Id = id
 	this.Name = name
+	this.LastEditor = lastEditor
+	this.LastModified = lastModified
+	this.ProductVersion = productVersion
 	this.Code = code
 	this.ReferenceCount = referenceCount
 	this.Version = version
 	this.Vendor = vendor
-	this.LastEditor = lastEditor
-	this.LastModified = lastModified
-	this.ProductVersion = productVersion
 	return &this
 }
 
@@ -115,230 +115,6 @@ func (o *EdgeFunctions) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *EdgeFunctions) SetName(v string) {
 	o.Name = v
-}
-
-// GetRuntime returns the Runtime field value if set, zero value otherwise.
-func (o *EdgeFunctions) GetRuntime() string {
-	if o == nil || IsNil(o.Runtime) {
-		var ret string
-		return ret
-	}
-	return *o.Runtime
-}
-
-// GetRuntimeOk returns a tuple with the Runtime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetRuntimeOk() (*string, bool) {
-	if o == nil || IsNil(o.Runtime) {
-		return nil, false
-	}
-	return o.Runtime, true
-}
-
-// HasRuntime returns a boolean if a field has been set.
-func (o *EdgeFunctions) HasRuntime() bool {
-	if o != nil && !IsNil(o.Runtime) {
-		return true
-	}
-
-	return false
-}
-
-// SetRuntime gets a reference to the given string and assigns it to the Runtime field.
-func (o *EdgeFunctions) SetRuntime(v string) {
-	o.Runtime = &v
-}
-
-// GetCode returns the Code field value
-func (o *EdgeFunctions) GetCode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Code
-}
-
-// GetCodeOk returns a tuple with the Code field value
-// and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetCodeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Code, true
-}
-
-// SetCode sets field value
-func (o *EdgeFunctions) SetCode(v string) {
-	o.Code = v
-}
-
-// GetDefaultArgs returns the DefaultArgs field value if set, zero value otherwise.
-func (o *EdgeFunctions) GetDefaultArgs() EdgeFunctionsDefaultArgs {
-	if o == nil || IsNil(o.DefaultArgs) {
-		var ret EdgeFunctionsDefaultArgs
-		return ret
-	}
-	return *o.DefaultArgs
-}
-
-// GetDefaultArgsOk returns a tuple with the DefaultArgs field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetDefaultArgsOk() (*EdgeFunctionsDefaultArgs, bool) {
-	if o == nil || IsNil(o.DefaultArgs) {
-		return nil, false
-	}
-	return o.DefaultArgs, true
-}
-
-// HasDefaultArgs returns a boolean if a field has been set.
-func (o *EdgeFunctions) HasDefaultArgs() bool {
-	if o != nil && !IsNil(o.DefaultArgs) {
-		return true
-	}
-
-	return false
-}
-
-// SetDefaultArgs gets a reference to the given EdgeFunctionsDefaultArgs and assigns it to the DefaultArgs field.
-func (o *EdgeFunctions) SetDefaultArgs(v EdgeFunctionsDefaultArgs) {
-	o.DefaultArgs = &v
-}
-
-// GetExecutionEnvironment returns the ExecutionEnvironment field value if set, zero value otherwise.
-func (o *EdgeFunctions) GetExecutionEnvironment() string {
-	if o == nil || IsNil(o.ExecutionEnvironment) {
-		var ret string
-		return ret
-	}
-	return *o.ExecutionEnvironment
-}
-
-// GetExecutionEnvironmentOk returns a tuple with the ExecutionEnvironment field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetExecutionEnvironmentOk() (*string, bool) {
-	if o == nil || IsNil(o.ExecutionEnvironment) {
-		return nil, false
-	}
-	return o.ExecutionEnvironment, true
-}
-
-// HasExecutionEnvironment returns a boolean if a field has been set.
-func (o *EdgeFunctions) HasExecutionEnvironment() bool {
-	if o != nil && !IsNil(o.ExecutionEnvironment) {
-		return true
-	}
-
-	return false
-}
-
-// SetExecutionEnvironment gets a reference to the given string and assigns it to the ExecutionEnvironment field.
-func (o *EdgeFunctions) SetExecutionEnvironment(v string) {
-	o.ExecutionEnvironment = &v
-}
-
-// GetActive returns the Active field value if set, zero value otherwise.
-func (o *EdgeFunctions) GetActive() bool {
-	if o == nil || IsNil(o.Active) {
-		var ret bool
-		return ret
-	}
-	return *o.Active
-}
-
-// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetActiveOk() (*bool, bool) {
-	if o == nil || IsNil(o.Active) {
-		return nil, false
-	}
-	return o.Active, true
-}
-
-// HasActive returns a boolean if a field has been set.
-func (o *EdgeFunctions) HasActive() bool {
-	if o != nil && !IsNil(o.Active) {
-		return true
-	}
-
-	return false
-}
-
-// SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *EdgeFunctions) SetActive(v bool) {
-	o.Active = &v
-}
-
-// GetReferenceCount returns the ReferenceCount field value
-func (o *EdgeFunctions) GetReferenceCount() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.ReferenceCount
-}
-
-// GetReferenceCountOk returns a tuple with the ReferenceCount field value
-// and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetReferenceCountOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ReferenceCount, true
-}
-
-// SetReferenceCount sets field value
-func (o *EdgeFunctions) SetReferenceCount(v int64) {
-	o.ReferenceCount = v
-}
-
-// GetVersion returns the Version field value
-func (o *EdgeFunctions) GetVersion() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Version
-}
-
-// GetVersionOk returns a tuple with the Version field value
-// and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetVersionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Version, true
-}
-
-// SetVersion sets field value
-func (o *EdgeFunctions) SetVersion(v string) {
-	o.Version = v
-}
-
-// GetVendor returns the Vendor field value
-func (o *EdgeFunctions) GetVendor() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Vendor
-}
-
-// GetVendorOk returns a tuple with the Vendor field value
-// and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetVendorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Vendor, true
-}
-
-// SetVendor sets field value
-func (o *EdgeFunctions) SetVendor(v string) {
-	o.Vendor = v
 }
 
 // GetLastEditor returns the LastEditor field value
@@ -413,6 +189,230 @@ func (o *EdgeFunctions) SetProductVersion(v string) {
 	o.ProductVersion = v
 }
 
+// GetActive returns the Active field value if set, zero value otherwise.
+func (o *EdgeFunctions) GetActive() bool {
+	if o == nil || IsNil(o.Active) {
+		var ret bool
+		return ret
+	}
+	return *o.Active
+}
+
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EdgeFunctions) GetActiveOk() (*bool, bool) {
+	if o == nil || IsNil(o.Active) {
+		return nil, false
+	}
+	return o.Active, true
+}
+
+// HasActive returns a boolean if a field has been set.
+func (o *EdgeFunctions) HasActive() bool {
+	if o != nil && !IsNil(o.Active) {
+		return true
+	}
+
+	return false
+}
+
+// SetActive gets a reference to the given bool and assigns it to the Active field.
+func (o *EdgeFunctions) SetActive(v bool) {
+	o.Active = &v
+}
+
+// GetRuntime returns the Runtime field value if set, zero value otherwise.
+func (o *EdgeFunctions) GetRuntime() string {
+	if o == nil || IsNil(o.Runtime) {
+		var ret string
+		return ret
+	}
+	return *o.Runtime
+}
+
+// GetRuntimeOk returns a tuple with the Runtime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EdgeFunctions) GetRuntimeOk() (*string, bool) {
+	if o == nil || IsNil(o.Runtime) {
+		return nil, false
+	}
+	return o.Runtime, true
+}
+
+// HasRuntime returns a boolean if a field has been set.
+func (o *EdgeFunctions) HasRuntime() bool {
+	if o != nil && !IsNil(o.Runtime) {
+		return true
+	}
+
+	return false
+}
+
+// SetRuntime gets a reference to the given string and assigns it to the Runtime field.
+func (o *EdgeFunctions) SetRuntime(v string) {
+	o.Runtime = &v
+}
+
+// GetExecutionEnvironment returns the ExecutionEnvironment field value if set, zero value otherwise.
+func (o *EdgeFunctions) GetExecutionEnvironment() string {
+	if o == nil || IsNil(o.ExecutionEnvironment) {
+		var ret string
+		return ret
+	}
+	return *o.ExecutionEnvironment
+}
+
+// GetExecutionEnvironmentOk returns a tuple with the ExecutionEnvironment field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EdgeFunctions) GetExecutionEnvironmentOk() (*string, bool) {
+	if o == nil || IsNil(o.ExecutionEnvironment) {
+		return nil, false
+	}
+	return o.ExecutionEnvironment, true
+}
+
+// HasExecutionEnvironment returns a boolean if a field has been set.
+func (o *EdgeFunctions) HasExecutionEnvironment() bool {
+	if o != nil && !IsNil(o.ExecutionEnvironment) {
+		return true
+	}
+
+	return false
+}
+
+// SetExecutionEnvironment gets a reference to the given string and assigns it to the ExecutionEnvironment field.
+func (o *EdgeFunctions) SetExecutionEnvironment(v string) {
+	o.ExecutionEnvironment = &v
+}
+
+// GetCode returns the Code field value
+func (o *EdgeFunctions) GetCode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *EdgeFunctions) GetCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
+// SetCode sets field value
+func (o *EdgeFunctions) SetCode(v string) {
+	o.Code = v
+}
+
+// GetDefaultArgs returns the DefaultArgs field value if set, zero value otherwise.
+func (o *EdgeFunctions) GetDefaultArgs() EdgeFunctionsDefaultArgs {
+	if o == nil || IsNil(o.DefaultArgs) {
+		var ret EdgeFunctionsDefaultArgs
+		return ret
+	}
+	return *o.DefaultArgs
+}
+
+// GetDefaultArgsOk returns a tuple with the DefaultArgs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EdgeFunctions) GetDefaultArgsOk() (*EdgeFunctionsDefaultArgs, bool) {
+	if o == nil || IsNil(o.DefaultArgs) {
+		return nil, false
+	}
+	return o.DefaultArgs, true
+}
+
+// HasDefaultArgs returns a boolean if a field has been set.
+func (o *EdgeFunctions) HasDefaultArgs() bool {
+	if o != nil && !IsNil(o.DefaultArgs) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultArgs gets a reference to the given EdgeFunctionsDefaultArgs and assigns it to the DefaultArgs field.
+func (o *EdgeFunctions) SetDefaultArgs(v EdgeFunctionsDefaultArgs) {
+	o.DefaultArgs = &v
+}
+
+// GetReferenceCount returns the ReferenceCount field value
+func (o *EdgeFunctions) GetReferenceCount() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.ReferenceCount
+}
+
+// GetReferenceCountOk returns a tuple with the ReferenceCount field value
+// and a boolean to check if the value has been set.
+func (o *EdgeFunctions) GetReferenceCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReferenceCount, true
+}
+
+// SetReferenceCount sets field value
+func (o *EdgeFunctions) SetReferenceCount(v int64) {
+	o.ReferenceCount = v
+}
+
+// GetVersion returns the Version field value
+func (o *EdgeFunctions) GetVersion() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *EdgeFunctions) GetVersionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
+// SetVersion sets field value
+func (o *EdgeFunctions) SetVersion(v string) {
+	o.Version = v
+}
+
+// GetVendor returns the Vendor field value
+func (o *EdgeFunctions) GetVendor() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Vendor
+}
+
+// GetVendorOk returns a tuple with the Vendor field value
+// and a boolean to check if the value has been set.
+func (o *EdgeFunctions) GetVendorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Vendor, true
+}
+
+// SetVendor sets field value
+func (o *EdgeFunctions) SetVendor(v string) {
+	o.Vendor = v
+}
+
 func (o EdgeFunctions) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -425,25 +425,25 @@ func (o EdgeFunctions) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
+	toSerialize["last_editor"] = o.LastEditor
+	toSerialize["last_modified"] = o.LastModified
+	toSerialize["product_version"] = o.ProductVersion
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
 	if !IsNil(o.Runtime) {
 		toSerialize["runtime"] = o.Runtime
+	}
+	if !IsNil(o.ExecutionEnvironment) {
+		toSerialize["execution_environment"] = o.ExecutionEnvironment
 	}
 	toSerialize["code"] = o.Code
 	if !IsNil(o.DefaultArgs) {
 		toSerialize["default_args"] = o.DefaultArgs
 	}
-	if !IsNil(o.ExecutionEnvironment) {
-		toSerialize["execution_environment"] = o.ExecutionEnvironment
-	}
-	if !IsNil(o.Active) {
-		toSerialize["active"] = o.Active
-	}
 	toSerialize["reference_count"] = o.ReferenceCount
 	toSerialize["version"] = o.Version
 	toSerialize["vendor"] = o.Vendor
-	toSerialize["last_editor"] = o.LastEditor
-	toSerialize["last_modified"] = o.LastModified
-	toSerialize["product_version"] = o.ProductVersion
 	return toSerialize, nil
 }
 
@@ -454,13 +454,13 @@ func (o *EdgeFunctions) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"name",
+		"last_editor",
+		"last_modified",
+		"product_version",
 		"code",
 		"reference_count",
 		"version",
 		"vendor",
-		"last_editor",
-		"last_modified",
-		"product_version",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
-**Runtime** | Pointer to **string** | * &#x60;azion_js&#x60; - azion_js | [optional] 
+**Active** | Pointer to **bool** |  | [optional] 
+**Runtime** | Pointer to **string** | * &#x60;azion_js&#x60; - Azion JavaScript | [optional] 
+**ExecutionEnvironment** | Pointer to **string** | * &#x60;firewall&#x60; - Firewall * &#x60;application&#x60; - Application | [optional] 
 **Code** | Pointer to **string** | String containing the function code. Maximum size: 20MB. | [optional] 
 **DefaultArgs** | Pointer to [**EdgeFunctionsDefaultArgs**](EdgeFunctionsDefaultArgs.md) |  | [optional] 
-**ExecutionEnvironment** | Pointer to **string** | * &#x60;application&#x60; - application * &#x60;firewall&#x60; - firewall | [optional] 
-**Active** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -55,6 +55,31 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetActive
+
+`func (o *PatchedEdgeFunctionsRequest) GetActive() bool`
+
+GetActive returns the Active field if non-nil, zero value otherwise.
+
+### GetActiveOk
+
+`func (o *PatchedEdgeFunctionsRequest) GetActiveOk() (*bool, bool)`
+
+GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActive
+
+`func (o *PatchedEdgeFunctionsRequest) SetActive(v bool)`
+
+SetActive sets Active field to given value.
+
+### HasActive
+
+`func (o *PatchedEdgeFunctionsRequest) HasActive() bool`
+
+HasActive returns a boolean if a field has been set.
+
 ### GetRuntime
 
 `func (o *PatchedEdgeFunctionsRequest) GetRuntime() string`
@@ -79,6 +104,31 @@ SetRuntime sets Runtime field to given value.
 `func (o *PatchedEdgeFunctionsRequest) HasRuntime() bool`
 
 HasRuntime returns a boolean if a field has been set.
+
+### GetExecutionEnvironment
+
+`func (o *PatchedEdgeFunctionsRequest) GetExecutionEnvironment() string`
+
+GetExecutionEnvironment returns the ExecutionEnvironment field if non-nil, zero value otherwise.
+
+### GetExecutionEnvironmentOk
+
+`func (o *PatchedEdgeFunctionsRequest) GetExecutionEnvironmentOk() (*string, bool)`
+
+GetExecutionEnvironmentOk returns a tuple with the ExecutionEnvironment field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExecutionEnvironment
+
+`func (o *PatchedEdgeFunctionsRequest) SetExecutionEnvironment(v string)`
+
+SetExecutionEnvironment sets ExecutionEnvironment field to given value.
+
+### HasExecutionEnvironment
+
+`func (o *PatchedEdgeFunctionsRequest) HasExecutionEnvironment() bool`
+
+HasExecutionEnvironment returns a boolean if a field has been set.
 
 ### GetCode
 
@@ -129,56 +179,6 @@ SetDefaultArgs sets DefaultArgs field to given value.
 `func (o *PatchedEdgeFunctionsRequest) HasDefaultArgs() bool`
 
 HasDefaultArgs returns a boolean if a field has been set.
-
-### GetExecutionEnvironment
-
-`func (o *PatchedEdgeFunctionsRequest) GetExecutionEnvironment() string`
-
-GetExecutionEnvironment returns the ExecutionEnvironment field if non-nil, zero value otherwise.
-
-### GetExecutionEnvironmentOk
-
-`func (o *PatchedEdgeFunctionsRequest) GetExecutionEnvironmentOk() (*string, bool)`
-
-GetExecutionEnvironmentOk returns a tuple with the ExecutionEnvironment field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExecutionEnvironment
-
-`func (o *PatchedEdgeFunctionsRequest) SetExecutionEnvironment(v string)`
-
-SetExecutionEnvironment sets ExecutionEnvironment field to given value.
-
-### HasExecutionEnvironment
-
-`func (o *PatchedEdgeFunctionsRequest) HasExecutionEnvironment() bool`
-
-HasExecutionEnvironment returns a boolean if a field has been set.
-
-### GetActive
-
-`func (o *PatchedEdgeFunctionsRequest) GetActive() bool`
-
-GetActive returns the Active field if non-nil, zero value otherwise.
-
-### GetActiveOk
-
-`func (o *PatchedEdgeFunctionsRequest) GetActiveOk() (*bool, bool)`
-
-GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetActive
-
-`func (o *PatchedEdgeFunctionsRequest) SetActive(v bool)`
-
-SetActive sets Active field to given value.
-
-### HasActive
-
-`func (o *PatchedEdgeFunctionsRequest) HasActive() bool`
-
-HasActive returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -281,7 +281,6 @@ docs/EdgeFunctions.md
 docs/EdgeFunctionsAPI.md
 docs/EdgeFunctionsDefaultArgs.md
 docs/EdgeFunctionsRequest.md
-docs/GetEdgeFunctions.md
 docs/HMAC.md
 docs/HMACRequest.md
 docs/HTTPConnectionOptions.md
@@ -330,7 +329,7 @@ docs/PaginatedEdgeConnectorPolymorphicList.md
 docs/PaginatedEdgeFirewallFunctionInstanceList.md
 docs/PaginatedEdgeFirewallList.md
 docs/PaginatedEdgeFirewallRuleEngineList.md
-docs/PaginatedGetEdgeFunctionsList.md
+docs/PaginatedEdgeFunctionsList.md
 docs/PaginatedNetworkListList.md
 docs/PaginatedResponseListCacheSettingList.md
 docs/PaginatedWAFList.md
@@ -375,7 +374,7 @@ docs/ResponseAsyncDeleteEdgeConnectorPolymorphic.md
 docs/ResponseAsyncDeleteEdgeFirewall.md
 docs/ResponseAsyncDeleteEdgeFirewallFunctionInstance.md
 docs/ResponseAsyncDeleteEdgeFirewallRuleEngine.md
-docs/ResponseAsyncDeleteGetEdgeFunctions.md
+docs/ResponseAsyncDeleteEdgeFunctionsDoc.md
 docs/ResponseAsyncDeleteNetworkListDetail.md
 docs/ResponseAsyncDeleteWAF.md
 docs/ResponseAsyncDeleteWAFRule.md
@@ -390,7 +389,7 @@ docs/ResponseAsyncEdgeConnectorPolymorphic.md
 docs/ResponseAsyncEdgeFirewall.md
 docs/ResponseAsyncEdgeFirewallFunctionInstance.md
 docs/ResponseAsyncEdgeFirewallRuleEngine.md
-docs/ResponseAsyncEdgeFunctions.md
+docs/ResponseAsyncEdgeFunctionsDoc.md
 docs/ResponseAsyncNetworkListDetail.md
 docs/ResponseAsyncPurgeInput.md
 docs/ResponseAsyncWAF.md
@@ -422,7 +421,7 @@ docs/ResponseDeleteEdgeConnectorPolymorphic.md
 docs/ResponseDeleteEdgeFirewall.md
 docs/ResponseDeleteEdgeFirewallFunctionInstance.md
 docs/ResponseDeleteEdgeFirewallRuleEngine.md
-docs/ResponseDeleteEdgeFunctions.md
+docs/ResponseDeleteEdgeFunctionsDoc.md
 docs/ResponseDeleteNetworkListDetail.md
 docs/ResponseDeleteWAF.md
 docs/ResponseDeleteWAFRule.md
@@ -435,7 +434,7 @@ docs/ResponseEdgeConnectorPolymorphic.md
 docs/ResponseEdgeFirewall.md
 docs/ResponseEdgeFirewallFunctionInstance.md
 docs/ResponseEdgeFirewallRuleEngine.md
-docs/ResponseEdgeFunctions.md
+docs/ResponseEdgeFunctionsDoc.md
 docs/ResponseListCacheSetting.md
 docs/ResponseNetworkListDetail.md
 docs/ResponsePurgeInput.md
@@ -449,7 +448,7 @@ docs/ResponseRetrieveEdgeConnectorPolymorphic.md
 docs/ResponseRetrieveEdgeFirewall.md
 docs/ResponseRetrieveEdgeFirewallFunctionInstance.md
 docs/ResponseRetrieveEdgeFirewallRuleEngine.md
-docs/ResponseRetrieveGetEdgeFunctions.md
+docs/ResponseRetrieveEdgeFunctionsDoc.md
 docs/ResponseRetrieveNetworkListDetail.md
 docs/ResponseRetrieveWAF.md
 docs/ResponseRetrieveWAFRule.md
@@ -742,7 +741,6 @@ model_edge_function_module_request.go
 model_edge_functions.go
 model_edge_functions_default_args.go
 model_edge_functions_request.go
-model_get_edge_functions.go
 model_hmac.go
 model_hmac_request.go
 model_http_connection_options.go
@@ -790,7 +788,7 @@ model_paginated_edge_connector_polymorphic_list.go
 model_paginated_edge_firewall_function_instance_list.go
 model_paginated_edge_firewall_list.go
 model_paginated_edge_firewall_rule_engine_list.go
-model_paginated_get_edge_functions_list.go
+model_paginated_edge_functions_list.go
 model_paginated_network_list_list.go
 model_paginated_response_list_cache_setting_list.go
 model_paginated_waf_list.go
@@ -834,7 +832,7 @@ model_response_async_delete_edge_connector_polymorphic.go
 model_response_async_delete_edge_firewall.go
 model_response_async_delete_edge_firewall_function_instance.go
 model_response_async_delete_edge_firewall_rule_engine.go
-model_response_async_delete_get_edge_functions.go
+model_response_async_delete_edge_functions_doc.go
 model_response_async_delete_network_list_detail.go
 model_response_async_delete_waf.go
 model_response_async_delete_waf_rule.go
@@ -849,7 +847,7 @@ model_response_async_edge_connector_polymorphic.go
 model_response_async_edge_firewall.go
 model_response_async_edge_firewall_function_instance.go
 model_response_async_edge_firewall_rule_engine.go
-model_response_async_edge_functions.go
+model_response_async_edge_functions_doc.go
 model_response_async_network_list_detail.go
 model_response_async_purge_input.go
 model_response_async_waf.go
@@ -881,7 +879,7 @@ model_response_delete_edge_connector_polymorphic.go
 model_response_delete_edge_firewall.go
 model_response_delete_edge_firewall_function_instance.go
 model_response_delete_edge_firewall_rule_engine.go
-model_response_delete_edge_functions.go
+model_response_delete_edge_functions_doc.go
 model_response_delete_network_list_detail.go
 model_response_delete_waf.go
 model_response_delete_waf_rule.go
@@ -894,7 +892,7 @@ model_response_edge_connector_polymorphic.go
 model_response_edge_firewall.go
 model_response_edge_firewall_function_instance.go
 model_response_edge_firewall_rule_engine.go
-model_response_edge_functions.go
+model_response_edge_functions_doc.go
 model_response_list_cache_setting.go
 model_response_network_list_detail.go
 model_response_purge_input.go
@@ -908,7 +906,7 @@ model_response_retrieve_edge_connector_polymorphic.go
 model_response_retrieve_edge_firewall.go
 model_response_retrieve_edge_firewall_function_instance.go
 model_response_retrieve_edge_firewall_rule_engine.go
-model_response_retrieve_get_edge_functions.go
+model_response_retrieve_edge_functions_doc.go
 model_response_retrieve_network_list_detail.go
 model_response_retrieve_waf.go
 model_response_retrieve_waf_rule.go
