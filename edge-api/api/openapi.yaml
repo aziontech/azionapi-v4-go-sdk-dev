@@ -21905,7 +21905,7 @@ components:
           - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
         code:
           description: "String containing the function code. Maximum size: 20MB."
-          maxLength: 20971520
+          maxLength: 52428800
           minLength: 1
           pattern: .*
           type: string
@@ -21961,7 +21961,7 @@ components:
           - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
         code:
           description: "String containing the function code. Maximum size: 20MB."
-          maxLength: 20971520
+          maxLength: 52428800
           minLength: 1
           pattern: .*
           type: string
@@ -25215,7 +25215,7 @@ components:
           - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
         code:
           description: "String containing the function code. Maximum size: 20MB."
-          maxLength: 20971520
+          maxLength: 52428800
           minLength: 1
           pattern: .*
           type: string
