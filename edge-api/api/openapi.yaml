@@ -20794,6 +20794,7 @@ components:
           format: int64
           maximum: 2147483647
           minimum: 1
+          nullable: true
           type: integer
       required:
       - average_rate_limit
@@ -20821,6 +20822,7 @@ components:
           format: int64
           maximum: 2147483647
           minimum: 1
+          nullable: true
           type: integer
       required:
       - average_rate_limit
