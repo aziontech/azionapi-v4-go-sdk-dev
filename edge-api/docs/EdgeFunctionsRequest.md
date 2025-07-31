@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Runtime** | Pointer to **string** | * &#x60;azion_js&#x60; - Azion JavaScript | [optional] 
 **ExecutionEnvironment** | Pointer to **string** | * &#x60;firewall&#x60; - Firewall * &#x60;application&#x60; - Application | [optional] 
 **Code** | **string** | String containing the function code. Maximum size: 20MB. | 
-**DefaultArgs** | Pointer to [**EdgeFunctionsDefaultArgs**](EdgeFunctionsDefaultArgs.md) |  | [optional] 
+**DefaultArgs** | Pointer to **interface{}** |  | [optional] 
 
 ## Methods
 
@@ -147,20 +147,20 @@ SetCode sets Code field to given value.
 
 ### GetDefaultArgs
 
-`func (o *EdgeFunctionsRequest) GetDefaultArgs() EdgeFunctionsDefaultArgs`
+`func (o *EdgeFunctionsRequest) GetDefaultArgs() interface{}`
 
 GetDefaultArgs returns the DefaultArgs field if non-nil, zero value otherwise.
 
 ### GetDefaultArgsOk
 
-`func (o *EdgeFunctionsRequest) GetDefaultArgsOk() (*EdgeFunctionsDefaultArgs, bool)`
+`func (o *EdgeFunctionsRequest) GetDefaultArgsOk() (*interface{}, bool)`
 
 GetDefaultArgsOk returns a tuple with the DefaultArgs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultArgs
 
-`func (o *EdgeFunctionsRequest) SetDefaultArgs(v EdgeFunctionsDefaultArgs)`
+`func (o *EdgeFunctionsRequest) SetDefaultArgs(v interface{})`
 
 SetDefaultArgs sets DefaultArgs field to given value.
 
@@ -170,6 +170,16 @@ SetDefaultArgs sets DefaultArgs field to given value.
 
 HasDefaultArgs returns a boolean if a field has been set.
 
+### SetDefaultArgsNil
+
+`func (o *EdgeFunctionsRequest) SetDefaultArgsNil(b bool)`
+
+ SetDefaultArgsNil sets the value for DefaultArgs to be an explicit nil
+
+### UnsetDefaultArgs
+`func (o *EdgeFunctionsRequest) UnsetDefaultArgs()`
+
+UnsetDefaultArgs ensures that no value is present for DefaultArgs, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

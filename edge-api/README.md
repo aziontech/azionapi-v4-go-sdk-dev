@@ -436,7 +436,6 @@ Class | Method | HTTP request | Description
  - [EdgeFunctionModule](docs/EdgeFunctionModule.md)
  - [EdgeFunctionModuleRequest](docs/EdgeFunctionModuleRequest.md)
  - [EdgeFunctions](docs/EdgeFunctions.md)
- - [EdgeFunctionsDefaultArgs](docs/EdgeFunctionsDefaultArgs.md)
  - [EdgeFunctionsRequest](docs/EdgeFunctionsRequest.md)
  - [HMAC](docs/HMAC.md)
  - [HMACRequest](docs/HMACRequest.md)

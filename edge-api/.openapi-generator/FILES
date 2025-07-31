@@ -279,7 +279,6 @@ docs/EdgeFunctionModule.md
 docs/EdgeFunctionModuleRequest.md
 docs/EdgeFunctions.md
 docs/EdgeFunctionsAPI.md
-docs/EdgeFunctionsDefaultArgs.md
 docs/EdgeFunctionsRequest.md
 docs/HMAC.md
 docs/HMACRequest.md
@@ -739,7 +738,6 @@ model_edge_firewall_rule_engine_request.go
 model_edge_function_module.go
 model_edge_function_module_request.go
 model_edge_functions.go
-model_edge_functions_default_args.go
 model_edge_functions_request.go
 model_hmac.go
 model_hmac_request.go
