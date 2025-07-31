@@ -18801,7 +18801,7 @@ components:
       additionalProperties: true
       properties:
         value:
-          maxLength: 255
+          maxLength: 2000
           minLength: 1
           pattern: .*
           type: string
@@ -18813,7 +18813,7 @@ components:
       additionalProperties: true
       properties:
         value:
-          maxLength: 255
+          maxLength: 2000
           minLength: 1
           pattern: .*
           type: string
@@ -21865,8 +21865,7 @@ components:
         active: true
         runtime: ""
         version: version
-        default_args:
-          arg_01: value_01
+        default_args: ""
         vendor: vendor
         name: name
         execution_environment: ""
@@ -21911,8 +21910,7 @@ components:
           minLength: 1
           pattern: .*
           type: string
-        default_args:
-          $ref: "#/components/schemas/EdgeFunctions_default_args"
+        default_args: {}
         reference_count:
           format: int64
           readOnly: true
@@ -21945,8 +21943,7 @@ components:
         active: true
         runtime: ""
         execution_environment: ""
-        default_args:
-          arg_01: value_01
+        default_args: ""
       properties:
         name:
           maxLength: 250
@@ -21967,8 +21964,7 @@ components:
           minLength: 1
           pattern: .*
           type: string
-        default_args:
-          $ref: "#/components/schemas/EdgeFunctions_default_args"
+        default_args: {}
       required:
       - code
       - name
@@ -24088,8 +24084,7 @@ components:
           active: true
           runtime: ""
           version: version
-          default_args:
-            arg_01: value_01
+          default_args: ""
           vendor: vendor
           name: name
           execution_environment: ""
@@ -24102,8 +24097,7 @@ components:
           active: true
           runtime: ""
           version: version
-          default_args:
-            arg_01: value_01
+          default_args: ""
           vendor: vendor
           name: name
           execution_environment: ""
@@ -25199,8 +25193,7 @@ components:
         active: true
         runtime: ""
         execution_environment: ""
-        default_args:
-          arg_01: value_01
+        default_args: ""
       properties:
         name:
           maxLength: 250
@@ -25221,8 +25214,7 @@ components:
           minLength: 1
           pattern: .*
           type: string
-        default_args:
-          $ref: "#/components/schemas/EdgeFunctions_default_args"
+        default_args: {}
       title: PatchedEdgeFunctionsRequest
       type: object
     PatchedNetworkListDetailRequest:
@@ -26514,8 +26506,7 @@ components:
           active: true
           runtime: ""
           version: version
-          default_args:
-            arg_01: value_01
+          default_args: ""
           vendor: vendor
           name: name
           execution_environment: ""
@@ -28047,8 +28038,7 @@ components:
           active: true
           runtime: ""
           version: version
-          default_args:
-            arg_01: value_01
+          default_args: ""
           vendor: vendor
           name: name
           execution_environment: ""
@@ -28646,8 +28636,7 @@ components:
           active: true
           runtime: ""
           version: version
-          default_args:
-            arg_01: value_01
+          default_args: ""
           vendor: vendor
           name: name
           execution_environment: ""
@@ -29524,7 +29513,6 @@ components:
         name:
           maxLength: 255
           minLength: 1
-          nullable: true
           pattern: "[a-zA-Z0-9<>?()]+"
           type: string
       required:
@@ -29552,7 +29540,6 @@ components:
         name:
           maxLength: 255
           minLength: 1
-          nullable: true
           pattern: "[a-zA-Z0-9<>?()]+"
           type: string
       required:
@@ -29573,7 +29560,6 @@ components:
         value:
           maxLength: 255
           minLength: 1
-          nullable: true
           pattern: "[a-zA-Z0-9<>?()]+"
           type: string
       required:
@@ -29601,7 +29587,6 @@ components:
         value:
           maxLength: 255
           minLength: 1
-          nullable: true
           pattern: "[a-zA-Z0-9<>?()]+"
           type: string
       required:
@@ -30230,17 +30215,6 @@ components:
         Args to be accessed by the Edge Function.
         - args must be a JSON object or an array.
         - If there are no args being informed, the function default_args will be used.
-      example:
-        arg_01: value_01
-      properties:
-        arg:
-          type: object
-      type: object
-    EdgeFunctions_default_args:
-      description: |
-        Args to be accessed by the Edge Function.
-        - default_args must be a JSON object or an array.
-        - If there are no args being informed, an empty JSON object will be used.
       example:
         arg_01: value_01
       properties:

@@ -27,7 +27,7 @@ type PatchedEdgeFunctionsRequest struct {
 	ExecutionEnvironment *string `json:"execution_environment,omitempty"`
 	// String containing the function code. Maximum size: 20MB.
 	Code *string `json:"code,omitempty" validate:"regexp=.*"`
-	DefaultArgs *EdgeFunctionsDefaultArgs `json:"default_args,omitempty"`
+	DefaultArgs interface{} `json:"default_args,omitempty"`
 }
 
 // NewPatchedEdgeFunctionsRequest instantiates a new PatchedEdgeFunctionsRequest object
@@ -207,22 +207,23 @@ func (o *PatchedEdgeFunctionsRequest) SetCode(v string) {
 	o.Code = &v
 }
 
-// GetDefaultArgs returns the DefaultArgs field value if set, zero value otherwise.
-func (o *PatchedEdgeFunctionsRequest) GetDefaultArgs() EdgeFunctionsDefaultArgs {
-	if o == nil || IsNil(o.DefaultArgs) {
-		var ret EdgeFunctionsDefaultArgs
+// GetDefaultArgs returns the DefaultArgs field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedEdgeFunctionsRequest) GetDefaultArgs() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.DefaultArgs
+	return o.DefaultArgs
 }
 
 // GetDefaultArgsOk returns a tuple with the DefaultArgs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedEdgeFunctionsRequest) GetDefaultArgsOk() (*EdgeFunctionsDefaultArgs, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedEdgeFunctionsRequest) GetDefaultArgsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.DefaultArgs) {
 		return nil, false
 	}
-	return o.DefaultArgs, true
+	return &o.DefaultArgs, true
 }
 
 // HasDefaultArgs returns a boolean if a field has been set.
@@ -234,9 +235,9 @@ func (o *PatchedEdgeFunctionsRequest) HasDefaultArgs() bool {
 	return false
 }
 
-// SetDefaultArgs gets a reference to the given EdgeFunctionsDefaultArgs and assigns it to the DefaultArgs field.
-func (o *PatchedEdgeFunctionsRequest) SetDefaultArgs(v EdgeFunctionsDefaultArgs) {
-	o.DefaultArgs = &v
+// SetDefaultArgs gets a reference to the given interface{} and assigns it to the DefaultArgs field.
+func (o *PatchedEdgeFunctionsRequest) SetDefaultArgs(v interface{}) {
+	o.DefaultArgs = v
 }
 
 func (o PatchedEdgeFunctionsRequest) MarshalJSON() ([]byte, error) {
@@ -264,7 +265,7 @@ func (o PatchedEdgeFunctionsRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Code) {
 		toSerialize["code"] = o.Code
 	}
-	if !IsNil(o.DefaultArgs) {
+	if o.DefaultArgs != nil {
 		toSerialize["default_args"] = o.DefaultArgs
 	}
 	return toSerialize, nil

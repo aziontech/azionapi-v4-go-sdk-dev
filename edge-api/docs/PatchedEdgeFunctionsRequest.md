@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Runtime** | Pointer to **string** | * &#x60;azion_js&#x60; - Azion JavaScript | [optional] 
 **ExecutionEnvironment** | Pointer to **string** | * &#x60;firewall&#x60; - Firewall * &#x60;application&#x60; - Application | [optional] 
 **Code** | Pointer to **string** | String containing the function code. Maximum size: 20MB. | [optional] 
-**DefaultArgs** | Pointer to [**EdgeFunctionsDefaultArgs**](EdgeFunctionsDefaultArgs.md) |  | [optional] 
+**DefaultArgs** | Pointer to **interface{}** |  | [optional] 
 
 ## Methods
 
@@ -157,20 +157,20 @@ HasCode returns a boolean if a field has been set.
 
 ### GetDefaultArgs
 
-`func (o *PatchedEdgeFunctionsRequest) GetDefaultArgs() EdgeFunctionsDefaultArgs`
+`func (o *PatchedEdgeFunctionsRequest) GetDefaultArgs() interface{}`
 
 GetDefaultArgs returns the DefaultArgs field if non-nil, zero value otherwise.
 
 ### GetDefaultArgsOk
 
-`func (o *PatchedEdgeFunctionsRequest) GetDefaultArgsOk() (*EdgeFunctionsDefaultArgs, bool)`
+`func (o *PatchedEdgeFunctionsRequest) GetDefaultArgsOk() (*interface{}, bool)`
 
 GetDefaultArgsOk returns a tuple with the DefaultArgs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultArgs
 
-`func (o *PatchedEdgeFunctionsRequest) SetDefaultArgs(v EdgeFunctionsDefaultArgs)`
+`func (o *PatchedEdgeFunctionsRequest) SetDefaultArgs(v interface{})`
 
 SetDefaultArgs sets DefaultArgs field to given value.
 
@@ -180,6 +180,16 @@ SetDefaultArgs sets DefaultArgs field to given value.
 
 HasDefaultArgs returns a boolean if a field has been set.
 
+### SetDefaultArgsNil
+
+`func (o *PatchedEdgeFunctionsRequest) SetDefaultArgsNil(b bool)`
+
+ SetDefaultArgsNil sets the value for DefaultArgs to be an explicit nil
+
+### UnsetDefaultArgs
+`func (o *PatchedEdgeFunctionsRequest) UnsetDefaultArgs()`
+
+UnsetDefaultArgs ensures that no value is present for DefaultArgs, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

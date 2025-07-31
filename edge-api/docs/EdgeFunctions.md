@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Runtime** | Pointer to **string** | * &#x60;azion_js&#x60; - Azion JavaScript | [optional] 
 **ExecutionEnvironment** | Pointer to **string** | * &#x60;firewall&#x60; - Firewall * &#x60;application&#x60; - Application | [optional] 
 **Code** | **string** | String containing the function code. Maximum size: 20MB. | 
-**DefaultArgs** | Pointer to [**EdgeFunctionsDefaultArgs**](EdgeFunctionsDefaultArgs.md) |  | [optional] 
+**DefaultArgs** | Pointer to **interface{}** |  | [optional] 
 **ReferenceCount** | **int64** |  | [readonly] 
 **Version** | **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | [readonly] 
 **Vendor** | **string** |  | [readonly] 
@@ -234,20 +234,20 @@ SetCode sets Code field to given value.
 
 ### GetDefaultArgs
 
-`func (o *EdgeFunctions) GetDefaultArgs() EdgeFunctionsDefaultArgs`
+`func (o *EdgeFunctions) GetDefaultArgs() interface{}`
 
 GetDefaultArgs returns the DefaultArgs field if non-nil, zero value otherwise.
 
 ### GetDefaultArgsOk
 
-`func (o *EdgeFunctions) GetDefaultArgsOk() (*EdgeFunctionsDefaultArgs, bool)`
+`func (o *EdgeFunctions) GetDefaultArgsOk() (*interface{}, bool)`
 
 GetDefaultArgsOk returns a tuple with the DefaultArgs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultArgs
 
-`func (o *EdgeFunctions) SetDefaultArgs(v EdgeFunctionsDefaultArgs)`
+`func (o *EdgeFunctions) SetDefaultArgs(v interface{})`
 
 SetDefaultArgs sets DefaultArgs field to given value.
 
@@ -257,6 +257,16 @@ SetDefaultArgs sets DefaultArgs field to given value.
 
 HasDefaultArgs returns a boolean if a field has been set.
 
+### SetDefaultArgsNil
+
+`func (o *EdgeFunctions) SetDefaultArgsNil(b bool)`
+
+ SetDefaultArgsNil sets the value for DefaultArgs to be an explicit nil
+
+### UnsetDefaultArgs
+`func (o *EdgeFunctions) UnsetDefaultArgs()`
+
+UnsetDefaultArgs ensures that no value is present for DefaultArgs, not even an explicit nil
 ### GetReferenceCount
 
 `func (o *EdgeFunctions) GetReferenceCount() int64`
