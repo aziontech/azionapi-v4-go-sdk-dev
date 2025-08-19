@@ -21,7 +21,7 @@ var _ MappedNullable = &ResponseAsyncCredential{}
 
 // ResponseAsyncCredential struct for ResponseAsyncCredential
 type ResponseAsyncCredential struct {
-	State *string `json:"state,omitempty" validate:"regexp=.*"`
+	State *string `json:"state,omitempty"`
 	Data Credential `json:"data"`
 }
 

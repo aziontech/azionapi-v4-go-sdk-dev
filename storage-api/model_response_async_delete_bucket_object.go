@@ -19,7 +19,7 @@ var _ MappedNullable = &ResponseAsyncDeleteBucketObject{}
 
 // ResponseAsyncDeleteBucketObject struct for ResponseAsyncDeleteBucketObject
 type ResponseAsyncDeleteBucketObject struct {
-	State *string `json:"state,omitempty" validate:"regexp=.*"`
+	State *string `json:"state,omitempty"`
 }
 
 // NewResponseAsyncDeleteBucketObject instantiates a new ResponseAsyncDeleteBucketObject object

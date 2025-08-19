@@ -1868,7 +1868,6 @@ components:
         name:
           maxLength: 63
           minLength: 6
-          readOnly: true
           type: string
         edge_access:
           description: |-
@@ -1878,17 +1877,13 @@ components:
           title: EdgeAccessEnum
           type: string
         last_editor:
-          readOnly: true
           type: string
         last_modified:
           format: date-time
-          readOnly: true
           type: string
         product_version:
           maxLength: 50
           minLength: 3
-          pattern: \d+\.\d+
-          readOnly: true
           type: string
       required:
       - edge_access
@@ -1910,7 +1905,6 @@ components:
         name:
           maxLength: 63
           minLength: 6
-          pattern: ".{6,63}"
           type: string
         edge_access:
           description: |-
@@ -1920,17 +1914,13 @@ components:
           title: EdgeAccessEnum
           type: string
         last_editor:
-          readOnly: true
           type: string
         last_modified:
           format: date-time
-          readOnly: true
           type: string
         product_version:
           maxLength: 50
           minLength: 3
-          pattern: \d+\.\d+
-          readOnly: true
           type: string
       required:
       - edge_access
@@ -1949,7 +1939,6 @@ components:
         name:
           maxLength: 63
           minLength: 6
-          pattern: ".{6,63}"
           type: string
         edge_access:
           description: |-
@@ -1971,16 +1960,13 @@ components:
         key: key
       properties:
         key:
-          readOnly: true
           type: string
         last_modified:
           format: date-time
-          readOnly: true
           type: string
         size:
           description: Size of the object in bytes
           format: int64
-          readOnly: true
           type: integer
       required:
       - key
@@ -2008,13 +1994,10 @@ components:
         name:
           maxLength: 100
           minLength: 1
-          pattern: "^[a-zA-Z0-9\\-]+$"
           type: string
         access_key:
-          readOnly: true
           type: string
         secret_key:
-          readOnly: true
           type: string
         capabilities:
           items:
@@ -2023,14 +2006,12 @@ components:
         bucket:
           maxLength: 63
           minLength: 6
-          pattern: ".{6,63}"
           type: string
         expiration_date:
           format: date-time
           type: string
         last_editor:
           nullable: true
-          readOnly: true
           type: string
         last_modified:
           format: date-time
@@ -2057,7 +2038,6 @@ components:
         name:
           maxLength: 100
           minLength: 1
-          pattern: "^[a-zA-Z0-9\\-]+$"
           type: string
         capabilities:
           items:
@@ -2066,7 +2046,6 @@ components:
         bucket:
           maxLength: 63
           minLength: 6
-          pattern: ".{6,63}"
           type: string
         expiration_date:
           format: date-time
@@ -2084,7 +2063,6 @@ components:
         detail:
           maxLength: 4096
           minLength: 1
-          pattern: .*
           type: string
       title: DefaultErrorResponse
       type: object
@@ -2110,26 +2088,22 @@ components:
           description: The HTTP status code applicable to this problem
           maxLength: 3
           minLength: 3
-          pattern: "^\\d{3}$"
           type: string
         code:
           description: An application-specific error code
           maxLength: 5
           minLength: 5
-          pattern: "^\\d{5}$"
           type: string
         title:
           description: "A short, human-readable summary of the problem"
           maxLength: 4096
           minLength: 1
-          pattern: ^.*$
           type: string
         detail:
           description: A human-readable explanation specific to this occurrence of
             the problem
           maxLength: 4096
           minLength: 1
-          pattern: ^.*$
           type: string
         source:
           allOf:
@@ -2175,19 +2149,16 @@ components:
             the error
           maxLength: 4096
           minLength: 1
-          pattern: "^(/[^/]+)+$"
           type: string
         parameter:
           description: URI query parameter that caused the error
           maxLength: 4096
           minLength: 1
-          pattern: ^.*$
           type: string
         header:
           description: Request header name that caused the error
           maxLength: 4096
           minLength: 1
-          pattern: ^.*$
           type: string
       title: JSONAPIErrorSource
       type: object
@@ -2199,13 +2170,6 @@ components:
         object_key:
           maxLength: 1024
           minLength: 1
-          pattern: "^[0-9a-zA-Z!\\\"\\~\\-\\_\\.\\*\\'\\(\\)\\&\\$\\@\\=\\;\\/\\:\\\
-            +\\,\\\\\\{\\}\\^\\`\\[\\]\\>\\<\\|\\ \\%\\u00c0\\u00c1\\u00c2\\u00c3\\\
-            u00c4\\u00c7\\u00c8\\u00c9\\u00ca\\u00cb\\u00cc\\u00cd\\u00ce\\u00cf\\\
-            u00d1\\u00d2\\u00d3\\u00d4\\u00d5\\u00d6\\u00d9\\u00da\\u00db\\u00dc\\\
-            u00dd\\u00e0\\u00e1\\u00e2\\u00e3\\u00e4\\u00e7\\u00e8\\u00e9\\u00ea\\\
-            u00ec\\u00ed\\u00ee\\u00f1\\u00f2\\u00f3\\u00f4\\u00f5\\u00f6\\u00f9\\\
-            u00fa\\u00fb\\u00fc\\u00fd\\u00eb\\u00ef]+$"
           type: string
       required:
       - object_key
@@ -2219,13 +2183,6 @@ components:
         object_key:
           maxLength: 1024
           minLength: 1
-          pattern: "^[0-9a-zA-Z!\\\"\\~\\-\\_\\.\\*\\'\\(\\)\\&\\$\\@\\=\\;\\/\\:\\\
-            +\\,\\\\\\{\\}\\^\\`\\[\\]\\>\\<\\|\\ \\%\\u00c0\\u00c1\\u00c2\\u00c3\\\
-            u00c4\\u00c7\\u00c8\\u00c9\\u00ca\\u00cb\\u00cc\\u00cd\\u00ce\\u00cf\\\
-            u00d1\\u00d2\\u00d3\\u00d4\\u00d5\\u00d6\\u00d9\\u00da\\u00db\\u00dc\\\
-            u00dd\\u00e0\\u00e1\\u00e2\\u00e3\\u00e4\\u00e7\\u00e8\\u00e9\\u00ea\\\
-            u00ec\\u00ed\\u00ee\\u00f1\\u00f2\\u00f3\\u00f4\\u00f5\\u00f6\\u00f9\\\
-            u00fa\\u00fb\\u00fc\\u00fd\\u00eb\\u00ef]+$"
           type: string
       required:
       - object_key
@@ -2331,7 +2288,6 @@ components:
         state:
           maxLength: 8
           minLength: 1
-          pattern: .*
           type: string
         data:
           $ref: "#/components/schemas/BucketCreate"
@@ -2358,7 +2314,6 @@ components:
         state:
           maxLength: 8
           minLength: 1
-          pattern: .*
           type: string
         data:
           $ref: "#/components/schemas/Credential"
@@ -2374,7 +2329,6 @@ components:
         state:
           maxLength: 8
           minLength: 1
-          pattern: .*
           type: string
       title: ResponseAsyncDeleteBucketCreate
       type: object
@@ -2386,7 +2340,6 @@ components:
         state:
           maxLength: 8
           minLength: 1
-          pattern: .*
           type: string
       title: ResponseAsyncDeleteBucketObject
       type: object
@@ -2398,7 +2351,6 @@ components:
         state:
           maxLength: 8
           minLength: 1
-          pattern: .*
           type: string
       title: ResponseAsyncDeleteCredential
       type: object
@@ -2445,7 +2397,6 @@ components:
         detail:
           maxLength: 4096
           minLength: 1
-          pattern: .*
           type: string
       title: ResponseBadRequestBucket
       type: object
@@ -2490,7 +2441,6 @@ components:
         detail:
           maxLength: 4096
           minLength: 1
-          pattern: .*
           type: string
       title: ResponseBadRequestCredential
       type: object
@@ -2508,7 +2458,6 @@ components:
         state:
           maxLength: 8
           minLength: 1
-          pattern: .*
           type: string
         data:
           $ref: "#/components/schemas/BucketCreate"
@@ -2532,7 +2481,6 @@ components:
           maxLength: 255
           minLength: 0
           nullable: true
-          pattern: ".{0,255}"
           type: string
         results:
           items:
@@ -2562,7 +2510,6 @@ components:
         state:
           maxLength: 8
           minLength: 1
-          pattern: .*
           type: string
         data:
           $ref: "#/components/schemas/Credential"
@@ -2578,7 +2525,6 @@ components:
         state:
           maxLength: 8
           minLength: 1
-          pattern: .*
           type: string
       title: ResponseDeleteBucketCreate
       type: object
@@ -2590,7 +2536,6 @@ components:
         state:
           maxLength: 8
           minLength: 1
-          pattern: .*
           type: string
       title: ResponseDeleteBucketObject
       type: object
@@ -2611,13 +2556,10 @@ components:
         name:
           maxLength: 100
           minLength: 1
-          pattern: "^[a-zA-Z0-9\\-]+$"
           type: string
         access_key:
-          readOnly: true
           type: string
         secret_key:
-          readOnly: true
           type: string
         capabilities:
           items:
@@ -2626,14 +2568,12 @@ components:
         bucket:
           maxLength: 63
           minLength: 6
-          pattern: ".{6,63}"
           type: string
         expiration_date:
           format: date-time
           type: string
         last_editor:
           nullable: true
-          readOnly: true
           type: string
         last_modified:
           format: date-time
@@ -2694,7 +2634,6 @@ components:
         state:
           maxLength: 8
           minLength: 1
-          pattern: .*
           type: string
         data:
           $ref: "#/components/schemas/ObjectResponseData"
@@ -2712,7 +2651,6 @@ components:
         state:
           maxLength: 8
           minLength: 1
-          pattern: .*
           type: string
         data:
           $ref: "#/components/schemas/ObjectResponseAsyncData"

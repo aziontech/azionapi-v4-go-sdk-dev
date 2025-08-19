@@ -27,7 +27,7 @@ type Bucket struct {
 	EdgeAccess string `json:"edge_access"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
-	ProductVersion string `json:"product_version" validate:"regexp=\\\\d+\\\\.\\\\d+"`
+	ProductVersion string `json:"product_version"`
 }
 
 type _Bucket Bucket

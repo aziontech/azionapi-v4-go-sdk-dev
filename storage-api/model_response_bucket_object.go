@@ -21,7 +21,7 @@ var _ MappedNullable = &ResponseBucketObject{}
 
 // ResponseBucketObject struct for ResponseBucketObject
 type ResponseBucketObject struct {
-	ContinuationToken NullableString `json:"continuation_token" validate:"regexp=.{0,255}"`
+	ContinuationToken NullableString `json:"continuation_token"`
 	Results []BucketObject `json:"results"`
 }
 

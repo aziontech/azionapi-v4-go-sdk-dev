@@ -21,7 +21,7 @@ var _ MappedNullable = &SuccessObjectOperationAsync{}
 
 // SuccessObjectOperationAsync struct for SuccessObjectOperationAsync
 type SuccessObjectOperationAsync struct {
-	State *string `json:"state,omitempty" validate:"regexp=.*"`
+	State *string `json:"state,omitempty"`
 	Data ObjectResponseAsyncData `json:"data"`
 }
 

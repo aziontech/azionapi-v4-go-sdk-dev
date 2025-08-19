@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**AccessKey** | **string** |  | [readonly] 
-**SecretKey** | **string** |  | [readonly] 
+**AccessKey** | **string** |  | 
+**SecretKey** | **string** |  | 
 **Capabilities** | **[]string** |  | 
 **Bucket** | Pointer to **string** |  | [optional] 
 **ExpirationDate** | Pointer to **time.Time** |  | [optional] 
-**LastEditor** | **NullableString** |  | [readonly] 
+**LastEditor** | **NullableString** |  | 
 **LastModified** | **time.Time** |  | 
 
 ## Methods
