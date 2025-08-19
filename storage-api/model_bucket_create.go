@@ -22,12 +22,12 @@ var _ MappedNullable = &BucketCreate{}
 
 // BucketCreate struct for BucketCreate
 type BucketCreate struct {
-	Name string `json:"name" validate:"regexp=.{6,63}"`
+	Name string `json:"name"`
 	// * `read_only` - read_only * `read_write` - read_write * `restricted` - restricted
 	EdgeAccess string `json:"edge_access"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
-	ProductVersion string `json:"product_version" validate:"regexp=\\\\d+\\\\.\\\\d+"`
+	ProductVersion string `json:"product_version"`
 }
 
 type _BucketCreate BucketCreate

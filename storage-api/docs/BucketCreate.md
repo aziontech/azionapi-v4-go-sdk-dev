@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **EdgeAccess** | **string** | * &#x60;read_only&#x60; - read_only * &#x60;read_write&#x60; - read_write * &#x60;restricted&#x60; - restricted | 
-**LastEditor** | **string** |  | [readonly] 
-**LastModified** | **time.Time** |  | [readonly] 
-**ProductVersion** | **string** |  | [readonly] 
+**LastEditor** | **string** |  | 
+**LastModified** | **time.Time** |  | 
+**ProductVersion** | **string** |  | 
 
 ## Methods
 

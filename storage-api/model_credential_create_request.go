@@ -22,9 +22,9 @@ var _ MappedNullable = &CredentialCreateRequest{}
 
 // CredentialCreateRequest struct for CredentialCreateRequest
 type CredentialCreateRequest struct {
-	Name string `json:"name" validate:"regexp=^[a-zA-Z0-9\\\\-]+$"`
+	Name string `json:"name"`
 	Capabilities []string `json:"capabilities"`
-	Bucket *string `json:"bucket,omitempty" validate:"regexp=.{6,63}"`
+	Bucket *string `json:"bucket,omitempty"`
 	ExpirationDate *time.Time `json:"expiration_date,omitempty"`
 }
 

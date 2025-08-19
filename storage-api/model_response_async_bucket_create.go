@@ -21,7 +21,7 @@ var _ MappedNullable = &ResponseAsyncBucketCreate{}
 
 // ResponseAsyncBucketCreate struct for ResponseAsyncBucketCreate
 type ResponseAsyncBucketCreate struct {
-	State *string `json:"state,omitempty" validate:"regexp=.*"`
+	State *string `json:"state,omitempty"`
 	Data BucketCreate `json:"data"`
 }
 

@@ -24,7 +24,7 @@ type ResponseBadRequestBucket struct {
 	LastEditor []string `json:"last_editor,omitempty"`
 	LastModified []string `json:"last_modified,omitempty"`
 	ProductVersion []string `json:"product_version,omitempty"`
-	Detail *string `json:"detail,omitempty" validate:"regexp=.*"`
+	Detail *string `json:"detail,omitempty"`
 }
 
 // NewResponseBadRequestBucket instantiates a new ResponseBadRequestBucket object

@@ -19,7 +19,7 @@ var _ MappedNullable = &ResponseAsyncDeleteCredential{}
 
 // ResponseAsyncDeleteCredential struct for ResponseAsyncDeleteCredential
 type ResponseAsyncDeleteCredential struct {
-	State *string `json:"state,omitempty" validate:"regexp=.*"`
+	State *string `json:"state,omitempty"`
 }
 
 // NewResponseAsyncDeleteCredential instantiates a new ResponseAsyncDeleteCredential object

@@ -24,7 +24,7 @@ type ResponseBadRequestCredential struct {
 	LastModified []string `json:"last_modified,omitempty"`
 	Capabilities *ResponseBadRequestCredentialCapabilities `json:"capabilities,omitempty"`
 	Bucket []string `json:"bucket,omitempty"`
-	Detail *string `json:"detail,omitempty" validate:"regexp=.*"`
+	Detail *string `json:"detail,omitempty"`
 }
 
 // NewResponseBadRequestCredential instantiates a new ResponseBadRequestCredential object

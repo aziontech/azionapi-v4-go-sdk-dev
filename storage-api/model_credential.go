@@ -22,11 +22,11 @@ var _ MappedNullable = &Credential{}
 
 // Credential struct for Credential
 type Credential struct {
-	Name string `json:"name" validate:"regexp=^[a-zA-Z0-9\\\\-]+$"`
+	Name string `json:"name"`
 	AccessKey string `json:"access_key"`
 	SecretKey string `json:"secret_key"`
 	Capabilities []string `json:"capabilities"`
-	Bucket *string `json:"bucket,omitempty" validate:"regexp=.{6,63}"`
+	Bucket *string `json:"bucket,omitempty"`
 	ExpirationDate *time.Time `json:"expiration_date,omitempty"`
 	LastEditor NullableString `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
