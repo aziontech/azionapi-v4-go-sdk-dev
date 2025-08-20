@@ -8,8 +8,8 @@ servers:
 paths:
   /edge_application/applications:
     get:
-      description: List all Edge Applications owned by your account.
-      operationId: List Edge Applications
+      description: List all Applications owned by your account.
+      operationId: List Applications
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -60,7 +60,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedEdgeApplicationList"
+                $ref: "#/components/schemas/PaginatedApplicationList"
           description: ""
         "401":
           content:
@@ -177,30 +177,30 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: List Edge Applications
+      summary: List Applications
       tags:
-      - Edge Applications
+      - Applications
     post:
-      description: Create a new Edge Application in your account.
-      operationId: Create Edge Application
+      description: Create a new Application in your account.
+      operationId: Create Application
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeApplicationRequest"
+              $ref: "#/components/schemas/ApplicationRequest"
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeApplication"
+                $ref: "#/components/schemas/ResponseApplication"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplication"
+                $ref: "#/components/schemas/ResponseAsyncApplication"
           description: ""
         "401":
           content:
@@ -317,15 +317,15 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Create an Edge Application
+      summary: Create an Application
       tags:
-      - Edge Applications
+      - Applications
   /edge_application/applications/{application_id}:
     delete:
-      description: Destruction of a specific Edge Application in your account.
-      operationId: Destroy Edge Application
+      description: Destruction of a specific Application in your account.
+      operationId: Destroy Application
       parameters:
-      - description: A unique integer value identifying the edge application.
+      - description: A unique integer value identifying the application.
         explode: false
         in: path
         name: application_id
@@ -339,13 +339,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteEdgeApplication"
+                $ref: "#/components/schemas/ResponseDeleteApplication"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteEdgeApplication"
+                $ref: "#/components/schemas/ResponseAsyncDeleteApplication"
           description: ""
         "401":
           content:
@@ -462,14 +462,14 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Destroy an Edge Application
+      summary: Destroy an Application
       tags:
-      - Edge Applications
+      - Applications
     get:
-      description: Retrieve details of a specific Edge Application in your account.
-      operationId: Retrieve Edge Application
+      description: Retrieve details of a specific Application in your account.
+      operationId: Retrieve Application
       parameters:
-      - description: A unique integer value identifying the edge application.
+      - description: A unique integer value identifying the application.
         explode: false
         in: path
         name: application_id
@@ -491,7 +491,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveEdgeApplication"
+                $ref: "#/components/schemas/ResponseRetrieveApplication"
           description: ""
         "401":
           content:
@@ -608,15 +608,15 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Retrieve details of an Edge Application
+      summary: Retrieve details of an Application
       tags:
-      - Edge Applications
+      - Applications
     patch:
-      description: Update one or more fields of an existing Edge Application without
-        affecting other fields.
-      operationId: Partial update Edge Application
+      description: Update one or more fields of an existing Application without affecting
+        other fields.
+      operationId: Partial update Application
       parameters:
-      - description: A unique integer value identifying the edge application.
+      - description: A unique integer value identifying the application.
         explode: false
         in: path
         name: application_id
@@ -629,19 +629,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PatchedEdgeApplicationRequest"
+              $ref: "#/components/schemas/PatchedApplicationRequest"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeApplication"
+                $ref: "#/components/schemas/ResponseApplication"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplication"
+                $ref: "#/components/schemas/ResponseAsyncApplication"
           description: ""
         "401":
           content:
@@ -758,15 +758,15 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Partially update an Edge Application
+      summary: Partially update an Application
       tags:
-      - Edge Applications
+      - Applications
     put:
-      description: Update an existing Edge Application. This replaces the entire Edge
-        Application with the new data provided.
-      operationId: Update Edge Application
+      description: Update an existing Application. This replaces the entire Application
+        with the new data provided.
+      operationId: Update Application
       parameters:
-      - description: A unique integer value identifying the edge application.
+      - description: A unique integer value identifying the application.
         explode: false
         in: path
         name: application_id
@@ -779,20 +779,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeApplicationRequest"
+              $ref: "#/components/schemas/ApplicationRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeApplication"
+                $ref: "#/components/schemas/ResponseApplication"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplication"
+                $ref: "#/components/schemas/ResponseAsyncApplication"
           description: ""
         "401":
           content:
@@ -909,9 +909,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Update an Edge Application
+      summary: Update an Application
       tags:
-      - Edge Applications
+      - Applications
   /edge_application/applications/{application_id}/cache_settings:
     get:
       description: List all Cache Settings owned by your account.
@@ -1411,10 +1411,10 @@ paths:
       - Edge Applications - Cache Settings
   /edge_application/applications/{application_id}/clone:
     post:
-      description: "Create a new Edge Application by performing a deep copy of an\
-        \ existing Edge Application, including its Cache Settings, Origins, Error\
-        \ Responses, Function Instances, and Rules Engine."
-      operationId: Clone Edge Application
+      description: "Create a new Application by performing a deep copy of an existing\
+        \ Application, including its Cache Settings, Origins, Error Responses, Function\
+        \ Instances, and Rules Engine."
+      operationId: Clone Application
       parameters:
       - explode: false
         in: path
@@ -1427,20 +1427,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CloneEdgeApplicationRequest"
+              $ref: "#/components/schemas/CloneApplicationRequest"
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveEdgeApplication"
+                $ref: "#/components/schemas/ResponseRetrieveApplication"
           description: Created
         "400":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseBadRequestEdgeApplication"
+                $ref: "#/components/schemas/ResponseBadRequestApplication"
           description: Bad Request
         "404":
           description: Not Found
@@ -1478,14 +1478,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplication"
+                $ref: "#/components/schemas/ResponseAsyncApplication"
           description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Clone an Edge Application
+      summary: Clone an Application
       tags:
-      - Edge Applications
+      - Applications
   /edge_application/applications/{application_id}/device_groups:
     get:
       description: List all Device Groups owned by your account.
@@ -16398,6 +16398,53 @@ components:
       - address
       title: AddressRequest
       type: object
+    Application:
+      additionalProperties: false
+      example:
+        product_version: product_version
+        debug: true
+        last_editor: last_editor
+        name: name
+        active: true
+        id: 0
+        last_modified: 2000-01-23T04:56:07.000+00:00
+        modules:
+          edge_cache: ""
+          application_accelerator: ""
+          tiered_cache: ""
+          image_processor: ""
+          edge_functions: ""
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        last_editor:
+          maxLength: 250
+          minLength: 1
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        modules:
+          $ref: "#/components/schemas/ApplicationModules"
+        active:
+          type: boolean
+        debug:
+          type: boolean
+        product_version:
+          type: string
+      required:
+      - id
+      - last_editor
+      - last_modified
+      - name
+      - product_version
+      title: Application
+      type: object
     ApplicationAcceleratorModule:
       additionalProperties: false
       properties:
@@ -16411,6 +16458,85 @@ components:
         enabled:
           type: boolean
       title: ApplicationAcceleratorModuleRequest
+      type: object
+    ApplicationModules:
+      additionalProperties: false
+      example:
+        edge_cache: ""
+        application_accelerator: ""
+        tiered_cache: ""
+        image_processor: ""
+        edge_functions: ""
+      properties:
+        edge_cache:
+          allOf:
+          - $ref: "#/components/schemas/CacheModule"
+        edge_functions:
+          allOf:
+          - $ref: "#/components/schemas/EdgeFunctionModule"
+        application_accelerator:
+          allOf:
+          - $ref: "#/components/schemas/ApplicationAcceleratorModule"
+        image_processor:
+          allOf:
+          - $ref: "#/components/schemas/ImageProcessorModule"
+        tiered_cache:
+          allOf:
+          - $ref: "#/components/schemas/TieredCacheModule"
+      title: ApplicationModules
+      type: object
+    ApplicationModulesRequest:
+      additionalProperties: false
+      example:
+        edge_cache: ""
+        application_accelerator: ""
+        tiered_cache: ""
+        image_processor: ""
+        edge_functions: ""
+      properties:
+        edge_cache:
+          allOf:
+          - $ref: "#/components/schemas/CacheModuleRequest"
+        edge_functions:
+          allOf:
+          - $ref: "#/components/schemas/EdgeFunctionModuleRequest"
+        application_accelerator:
+          allOf:
+          - $ref: "#/components/schemas/ApplicationAcceleratorModuleRequest"
+        image_processor:
+          allOf:
+          - $ref: "#/components/schemas/ImageProcessorModuleRequest"
+        tiered_cache:
+          allOf:
+          - $ref: "#/components/schemas/TieredCacheModuleRequest"
+      title: ApplicationModulesRequest
+      type: object
+    ApplicationRequest:
+      additionalProperties: false
+      example:
+        debug: true
+        name: name
+        active: true
+        modules:
+          edge_cache: ""
+          application_accelerator: ""
+          tiered_cache: ""
+          image_processor: ""
+          edge_functions: ""
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        modules:
+          $ref: "#/components/schemas/ApplicationModulesRequest"
+        active:
+          type: boolean
+        debug:
+          type: boolean
+      required:
+      - name
+      title: ApplicationRequest
       type: object
     BehaviorA69Enum:
       description: |-
@@ -16973,7 +17099,7 @@ components:
       format: int64
       title: CiphersEnum
       type: integer
-    CloneEdgeApplicationRequest:
+    CloneApplicationRequest:
       additionalProperties: false
       example:
         name: name
@@ -16984,7 +17110,7 @@ components:
           type: string
       required:
       - name
-      title: CloneEdgeApplicationRequest
+      title: CloneApplicationRequest
       type: object
     CloneEdgeFirewallRequest:
       additionalProperties: false
@@ -17291,53 +17417,6 @@ components:
       required:
       - value
       title: EdgeApllicationRuleEngineRewriteRequestAttributesRequest
-      type: object
-    EdgeApplication:
-      additionalProperties: false
-      example:
-        product_version: product_version
-        debug: true
-        last_editor: last_editor
-        name: name
-        active: true
-        id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
-        modules:
-          edge_cache: ""
-          application_accelerator: ""
-          tiered_cache: ""
-          image_processor: ""
-          edge_functions: ""
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        last_editor:
-          maxLength: 250
-          minLength: 1
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-        modules:
-          $ref: "#/components/schemas/EdgeApplicationModules"
-        active:
-          type: boolean
-        debug:
-          type: boolean
-        product_version:
-          type: string
-      required:
-      - id
-      - last_editor
-      - last_modified
-      - name
-      - product_version
-      title: EdgeApplication
       type: object
     EdgeApplicationCriterionField:
       additionalProperties: false
@@ -17797,85 +17876,6 @@ components:
       - edge_function
       - name
       title: EdgeApplicationFunctionInstanceRequest
-      type: object
-    EdgeApplicationModules:
-      additionalProperties: false
-      example:
-        edge_cache: ""
-        application_accelerator: ""
-        tiered_cache: ""
-        image_processor: ""
-        edge_functions: ""
-      properties:
-        edge_cache:
-          allOf:
-          - $ref: "#/components/schemas/CacheModule"
-        edge_functions:
-          allOf:
-          - $ref: "#/components/schemas/EdgeFunctionModule"
-        application_accelerator:
-          allOf:
-          - $ref: "#/components/schemas/ApplicationAcceleratorModule"
-        image_processor:
-          allOf:
-          - $ref: "#/components/schemas/ImageProcessorModule"
-        tiered_cache:
-          allOf:
-          - $ref: "#/components/schemas/TieredCacheModule"
-      title: EdgeApplicationModules
-      type: object
-    EdgeApplicationModulesRequest:
-      additionalProperties: false
-      example:
-        edge_cache: ""
-        application_accelerator: ""
-        tiered_cache: ""
-        image_processor: ""
-        edge_functions: ""
-      properties:
-        edge_cache:
-          allOf:
-          - $ref: "#/components/schemas/CacheModuleRequest"
-        edge_functions:
-          allOf:
-          - $ref: "#/components/schemas/EdgeFunctionModuleRequest"
-        application_accelerator:
-          allOf:
-          - $ref: "#/components/schemas/ApplicationAcceleratorModuleRequest"
-        image_processor:
-          allOf:
-          - $ref: "#/components/schemas/ImageProcessorModuleRequest"
-        tiered_cache:
-          allOf:
-          - $ref: "#/components/schemas/TieredCacheModuleRequest"
-      title: EdgeApplicationModulesRequest
-      type: object
-    EdgeApplicationRequest:
-      additionalProperties: false
-      example:
-        debug: true
-        name: name
-        active: true
-        modules:
-          edge_cache: ""
-          application_accelerator: ""
-          tiered_cache: ""
-          image_processor: ""
-          edge_functions: ""
-      properties:
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        modules:
-          $ref: "#/components/schemas/EdgeApplicationModulesRequest"
-        active:
-          type: boolean
-        debug:
-          type: boolean
-      required:
-      - name
-      title: EdgeApplicationRequest
       type: object
     EdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
@@ -18564,7 +18564,7 @@ components:
       additionalProperties: true
       properties:
         value:
-          maxLength: 255
+          maxLength: 2000
           minLength: 1
           type: string
       required:
@@ -18575,7 +18575,7 @@ components:
       additionalProperties: true
       properties:
         value:
-          maxLength: 255
+          maxLength: 2000
           minLength: 1
           type: string
       required:
@@ -19450,7 +19450,7 @@ components:
       additionalProperties: true
       properties:
         value:
-          maxLength: 255
+          maxLength: 2000
           minLength: 1
           type: string
       required:
@@ -19461,7 +19461,7 @@ components:
       additionalProperties: true
       properties:
         value:
-          maxLength: 255
+          maxLength: 2000
           minLength: 1
           type: string
       required:
@@ -19889,7 +19889,7 @@ components:
       additionalProperties: true
       properties:
         value:
-          maxLength: 255
+          maxLength: 2000
           minLength: 1
           type: string
       required:
@@ -22734,6 +22734,50 @@ components:
       - page
       title: PageRequest
       type: object
+    PaginatedApplicationList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - product_version: product_version
+          debug: true
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          modules:
+            edge_cache: ""
+            application_accelerator: ""
+            tiered_cache: ""
+            image_processor: ""
+            edge_functions: ""
+        - product_version: product_version
+          debug: true
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          modules:
+            edge_cache: ""
+            application_accelerator: ""
+            tiered_cache: ""
+            image_processor: ""
+            edge_functions: ""
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/Application"
+          type: array
+      title: PaginatedApplicationList
+      type: object
     PaginatedCustomPageList:
       additionalProperties: false
       example:
@@ -22853,50 +22897,6 @@ components:
             $ref: "#/components/schemas/EdgeApplicationFunctionInstance"
           type: array
       title: PaginatedEdgeApplicationFunctionInstanceList
-      type: object
-    PaginatedEdgeApplicationList:
-      additionalProperties: false
-      example:
-        count: 123
-        results:
-        - product_version: product_version
-          debug: true
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          modules:
-            edge_cache: ""
-            application_accelerator: ""
-            tiered_cache: ""
-            image_processor: ""
-            edge_functions: ""
-        - product_version: product_version
-          debug: true
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          modules:
-            edge_cache: ""
-            application_accelerator: ""
-            tiered_cache: ""
-            image_processor: ""
-            edge_functions: ""
-      properties:
-        count:
-          example: 123
-          format: int64
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        results:
-          items:
-            $ref: "#/components/schemas/EdgeApplication"
-          type: array
-      title: PaginatedEdgeApplicationList
       type: object
     PaginatedEdgeApplicationRequestPhaseRuleEngineList:
       additionalProperties: false
@@ -24144,6 +24144,31 @@ components:
           type: array
       title: PaginatedWorkloadList
       type: object
+    PatchedApplicationRequest:
+      additionalProperties: false
+      example:
+        debug: true
+        name: name
+        active: true
+        modules:
+          edge_cache: ""
+          application_accelerator: ""
+          tiered_cache: ""
+          image_processor: ""
+          edge_functions: ""
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        modules:
+          $ref: "#/components/schemas/ApplicationModulesRequest"
+        active:
+          type: boolean
+        debug:
+          type: boolean
+      title: PatchedApplicationRequest
+      type: object
     PatchedCacheSettingRequest:
       additionalProperties: false
       example:
@@ -24266,31 +24291,6 @@ components:
         active:
           type: boolean
       title: PatchedEdgeApplicationFunctionInstanceRequest
-      type: object
-    PatchedEdgeApplicationRequest:
-      additionalProperties: false
-      example:
-        debug: true
-        name: name
-        active: true
-        modules:
-          edge_cache: ""
-          application_accelerator: ""
-          tiered_cache: ""
-          image_processor: ""
-          edge_functions: ""
-      properties:
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        modules:
-          $ref: "#/components/schemas/EdgeApplicationModulesRequest"
-        active:
-          type: boolean
-        debug:
-          type: boolean
-      title: PatchedEdgeApplicationRequest
       type: object
     PatchedEdgeApplicationRequestPhaseRuleEngineRequest:
       additionalProperties: false
@@ -25306,6 +25306,64 @@ components:
         * `br-east-3` - br-east-3
       title: RegionEnum
       type: string
+    ResponseApplication:
+      additionalProperties: false
+      example:
+        data:
+          product_version: product_version
+          debug: true
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          modules:
+            edge_cache: ""
+            application_accelerator: ""
+            tiered_cache: ""
+            image_processor: ""
+            edge_functions: ""
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Application"
+      required:
+      - data
+      title: ResponseApplication
+      type: object
+    ResponseAsyncApplication:
+      additionalProperties: false
+      example:
+        data:
+          product_version: product_version
+          debug: true
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          modules:
+            edge_cache: ""
+            application_accelerator: ""
+            tiered_cache: ""
+            image_processor: ""
+            edge_functions: ""
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Application"
+      required:
+      - data
+      title: ResponseAsyncApplication
+      type: object
     ResponseAsyncCacheSetting:
       additionalProperties: false
       example:
@@ -25396,6 +25454,17 @@ components:
       - data
       title: ResponseAsyncCustomPage
       type: object
+    ResponseAsyncDeleteApplication:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseAsyncDeleteApplication
+      type: object
     ResponseAsyncDeleteCacheSetting:
       additionalProperties: false
       example:
@@ -25417,17 +25486,6 @@ components:
           minLength: 1
           type: string
       title: ResponseAsyncDeleteCustomPage
-      type: object
-    ResponseAsyncDeleteEdgeApplication:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteEdgeApplication
       type: object
     ResponseAsyncDeleteEdgeApplicationDeviceGroups:
       additionalProperties: false
@@ -25582,35 +25640,6 @@ components:
           minLength: 1
           type: string
       title: ResponseAsyncDeleteWorkloadDeployment
-      type: object
-    ResponseAsyncEdgeApplication:
-      additionalProperties: false
-      example:
-        data:
-          product_version: product_version
-          debug: true
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          modules:
-            edge_cache: ""
-            application_accelerator: ""
-            tiered_cache: ""
-            image_processor: ""
-            edge_functions: ""
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/EdgeApplication"
-      required:
-      - data
-      title: ResponseAsyncEdgeApplication
       type: object
     ResponseAsyncEdgeApplicationDeviceGroups:
       additionalProperties: false
@@ -26343,6 +26372,122 @@ components:
       - data
       title: ResponseAsyncWorkloadDeployment
       type: object
+    ResponseBadRequestApplication:
+      additionalProperties: false
+      example:
+        product_version:
+        - product_version
+        - product_version
+        debug:
+        - debug
+        - debug
+        last_editor:
+        - last_editor
+        - last_editor
+        name:
+        - name
+        - name
+        active:
+        - active
+        - active
+        id:
+        - id
+        - id
+        detail: detail
+        last_modified:
+        - last_modified
+        - last_modified
+        modules:
+          edge_cache:
+            max_age:
+            - max_age
+            - max_age
+            large_file_cache:
+              offset:
+              - offset
+              - offset
+              enabled:
+              - enabled
+              - enabled
+            behavior:
+            - behavior
+            - behavior
+            stale_cache:
+              enabled:
+              - enabled
+              - enabled
+          application_accelerator:
+            cache_vary_by_querystring:
+              behavior:
+              - behavior
+              - behavior
+              fields: null
+              sort_enabled:
+              - sort_enabled
+              - sort_enabled
+            cache_vary_by_devices:
+              device_group: null
+              behavior:
+              - behavior
+              - behavior
+            cache_vary_by_method:
+            - ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names
+            - ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names
+            cache_vary_by_cookies:
+              cookie_names: null
+              behavior:
+              - behavior
+              - behavior
+          tiered_cache:
+            max_age:
+            - max_age
+            - max_age
+            topology:
+            - topology
+            - topology
+            behavior:
+            - behavior
+            - behavior
+            tiered_cache_enabled:
+            - tiered_cache_enabled
+            - tiered_cache_enabled
+      properties:
+        name:
+          items:
+            type: string
+          type: array
+        id:
+          items:
+            type: string
+          type: array
+        last_editor:
+          items:
+            type: string
+          type: array
+        last_modified:
+          items:
+            type: string
+          type: array
+        modules:
+          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassModulesField"
+        active:
+          items:
+            type: string
+          type: array
+        debug:
+          items:
+            type: string
+          type: array
+        product_version:
+          items:
+            type: string
+          type: array
+        detail:
+          maxLength: 4096
+          minLength: 1
+          type: string
+      title: ResponseBadRequestApplication
+      type: object
     ResponseBadRequestCacheSetting:
       additionalProperties: false
       example:
@@ -26625,122 +26770,6 @@ components:
           type: array
       title: ResponseBadRequestCacheSettingsModulesTiered_cacheField
       type: object
-    ResponseBadRequestEdgeApplication:
-      additionalProperties: false
-      example:
-        product_version:
-        - product_version
-        - product_version
-        debug:
-        - debug
-        - debug
-        last_editor:
-        - last_editor
-        - last_editor
-        name:
-        - name
-        - name
-        active:
-        - active
-        - active
-        id:
-        - id
-        - id
-        detail: detail
-        last_modified:
-        - last_modified
-        - last_modified
-        modules:
-          edge_cache:
-            max_age:
-            - max_age
-            - max_age
-            large_file_cache:
-              offset:
-              - offset
-              - offset
-              enabled:
-              - enabled
-              - enabled
-            behavior:
-            - behavior
-            - behavior
-            stale_cache:
-              enabled:
-              - enabled
-              - enabled
-          application_accelerator:
-            cache_vary_by_querystring:
-              behavior:
-              - behavior
-              - behavior
-              fields: null
-              sort_enabled:
-              - sort_enabled
-              - sort_enabled
-            cache_vary_by_devices:
-              device_group: null
-              behavior:
-              - behavior
-              - behavior
-            cache_vary_by_method:
-            - ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names
-            - ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCache_vary_by_cookiesField_cookie_names
-            cache_vary_by_cookies:
-              cookie_names: null
-              behavior:
-              - behavior
-              - behavior
-          tiered_cache:
-            max_age:
-            - max_age
-            - max_age
-            topology:
-            - topology
-            - topology
-            behavior:
-            - behavior
-            - behavior
-            tiered_cache_enabled:
-            - tiered_cache_enabled
-            - tiered_cache_enabled
-      properties:
-        name:
-          items:
-            type: string
-          type: array
-        id:
-          items:
-            type: string
-          type: array
-        last_editor:
-          items:
-            type: string
-          type: array
-        last_modified:
-          items:
-            type: string
-          type: array
-        modules:
-          $ref: "#/components/schemas/ResponseBadRequestSerializerMetaclassModulesField"
-        active:
-          items:
-            type: string
-          type: array
-        debug:
-          items:
-            type: string
-          type: array
-        product_version:
-          items:
-            type: string
-          type: array
-        detail:
-          maxLength: 4096
-          minLength: 1
-          type: string
-      title: ResponseBadRequestEdgeApplication
-      type: object
     ResponseBadRequestSerializerMetaclassBrowser_cacheField:
       additionalProperties: false
       example:
@@ -26937,6 +26966,17 @@ components:
       - data
       title: ResponseCustomPage
       type: object
+    ResponseDeleteApplication:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteApplication
+      type: object
     ResponseDeleteCustomPage:
       additionalProperties: false
       example:
@@ -26947,17 +26987,6 @@ components:
           minLength: 1
           type: string
       title: ResponseDeleteCustomPage
-      type: object
-    ResponseDeleteEdgeApplication:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeleteEdgeApplication
       type: object
     ResponseDeleteEdgeApplicationFunctionInstance:
       additionalProperties: false
@@ -27079,35 +27108,6 @@ components:
           minLength: 1
           type: string
       title: ResponseDeleteWAFRule
-      type: object
-    ResponseEdgeApplication:
-      additionalProperties: false
-      example:
-        data:
-          product_version: product_version
-          debug: true
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          modules:
-            edge_cache: ""
-            application_accelerator: ""
-            tiered_cache: ""
-            image_processor: ""
-            edge_functions: ""
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/EdgeApplication"
-      required:
-      - data
-      title: ResponseEdgeApplication
       type: object
     ResponseEdgeApplicationDeviceGroups:
       additionalProperties: false
@@ -27761,6 +27761,30 @@ components:
       - data
       title: ResponsePurgeInput
       type: object
+    ResponseRetrieveApplication:
+      additionalProperties: false
+      example:
+        data:
+          product_version: product_version
+          debug: true
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          modules:
+            edge_cache: ""
+            application_accelerator: ""
+            tiered_cache: ""
+            image_processor: ""
+            edge_functions: ""
+      properties:
+        data:
+          $ref: "#/components/schemas/Application"
+      required:
+      - data
+      title: ResponseRetrieveApplication
+      type: object
     ResponseRetrieveCacheSetting:
       additionalProperties: false
       example:
@@ -27840,30 +27864,6 @@ components:
       required:
       - data
       title: ResponseRetrieveCustomPage
-      type: object
-    ResponseRetrieveEdgeApplication:
-      additionalProperties: false
-      example:
-        data:
-          product_version: product_version
-          debug: true
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          modules:
-            edge_cache: ""
-            application_accelerator: ""
-            tiered_cache: ""
-            image_processor: ""
-            edge_functions: ""
-      properties:
-        data:
-          $ref: "#/components/schemas/EdgeApplication"
-      required:
-      - data
-      title: ResponseRetrieveEdgeApplication
       type: object
     ResponseRetrieveEdgeApplicationDeviceGroups:
       additionalProperties: false

@@ -78,19 +78,19 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ApplicationsAPI* | [**CloneApplication**](docs/ApplicationsAPI.md#cloneapplication) | **Post** /edge_application/applications/{application_id}/clone | Clone an Application
+*ApplicationsAPI* | [**CreateApplication**](docs/ApplicationsAPI.md#createapplication) | **Post** /edge_application/applications | Create an Application
+*ApplicationsAPI* | [**DestroyApplication**](docs/ApplicationsAPI.md#destroyapplication) | **Delete** /edge_application/applications/{application_id} | Destroy an Application
+*ApplicationsAPI* | [**ListApplications**](docs/ApplicationsAPI.md#listapplications) | **Get** /edge_application/applications | List Applications
+*ApplicationsAPI* | [**PartialUpdateApplication**](docs/ApplicationsAPI.md#partialupdateapplication) | **Patch** /edge_application/applications/{application_id} | Partially update an Application
+*ApplicationsAPI* | [**RetrieveApplication**](docs/ApplicationsAPI.md#retrieveapplication) | **Get** /edge_application/applications/{application_id} | Retrieve details of an Application
+*ApplicationsAPI* | [**UpdateApplication**](docs/ApplicationsAPI.md#updateapplication) | **Put** /edge_application/applications/{application_id} | Update an Application
 *CustomPagesAPI* | [**CreateCustomPage**](docs/CustomPagesAPI.md#createcustompage) | **Post** /workspace/custom_pages | Create a Custom Page
 *CustomPagesAPI* | [**DestroyCustomPage**](docs/CustomPagesAPI.md#destroycustompage) | **Delete** /workspace/custom_pages/{id} | Destroy a Custom Page
 *CustomPagesAPI* | [**ListCustomPages**](docs/CustomPagesAPI.md#listcustompages) | **Get** /workspace/custom_pages | List Custom Pages
 *CustomPagesAPI* | [**PartialUpdateCustomPage**](docs/CustomPagesAPI.md#partialupdatecustompage) | **Patch** /workspace/custom_pages/{id} | Partially update a Custom Page
 *CustomPagesAPI* | [**RetrieveCustomPage**](docs/CustomPagesAPI.md#retrievecustompage) | **Get** /workspace/custom_pages/{id} | Retrieve details of a Custom Page
 *CustomPagesAPI* | [**UpdateCustomPage**](docs/CustomPagesAPI.md#updatecustompage) | **Put** /workspace/custom_pages/{id} | Update a Custom Page
-*EdgeApplicationsAPI* | [**CloneEdgeApplication**](docs/EdgeApplicationsAPI.md#cloneedgeapplication) | **Post** /edge_application/applications/{application_id}/clone | Clone an Edge Application
-*EdgeApplicationsAPI* | [**CreateEdgeApplication**](docs/EdgeApplicationsAPI.md#createedgeapplication) | **Post** /edge_application/applications | Create an Edge Application
-*EdgeApplicationsAPI* | [**DestroyEdgeApplication**](docs/EdgeApplicationsAPI.md#destroyedgeapplication) | **Delete** /edge_application/applications/{application_id} | Destroy an Edge Application
-*EdgeApplicationsAPI* | [**ListEdgeApplications**](docs/EdgeApplicationsAPI.md#listedgeapplications) | **Get** /edge_application/applications | List Edge Applications
-*EdgeApplicationsAPI* | [**PartialUpdateEdgeApplication**](docs/EdgeApplicationsAPI.md#partialupdateedgeapplication) | **Patch** /edge_application/applications/{application_id} | Partially update an Edge Application
-*EdgeApplicationsAPI* | [**RetrieveEdgeApplication**](docs/EdgeApplicationsAPI.md#retrieveedgeapplication) | **Get** /edge_application/applications/{application_id} | Retrieve details of an Edge Application
-*EdgeApplicationsAPI* | [**UpdateEdgeApplication**](docs/EdgeApplicationsAPI.md#updateedgeapplication) | **Put** /edge_application/applications/{application_id} | Update an Edge Application
 *EdgeApplicationsCacheSettingsAPI* | [**CreateCacheSetting**](docs/EdgeApplicationsCacheSettingsAPI.md#createcachesetting) | **Post** /edge_application/applications/{application_id}/cache_settings | Create an Edge Applications Cache Setting
 *EdgeApplicationsCacheSettingsAPI* | [**DestroyCacheSetting**](docs/EdgeApplicationsCacheSettingsAPI.md#destroycachesetting) | **Delete** /edge_application/applications/{application_id}/cache_settings/{id} | Destroy an Edge Applications Cache Setting
 *EdgeApplicationsCacheSettingsAPI* | [**ListCacheSettings**](docs/EdgeApplicationsCacheSettingsAPI.md#listcachesettings) | **Get** /edge_application/applications/{application_id}/cache_settings | List all Edge Applications Cache Settings
@@ -201,8 +201,12 @@ Class | Method | HTTP request | Description
  - [AddressModules](docs/AddressModules.md)
  - [AddressModulesRequest](docs/AddressModulesRequest.md)
  - [AddressRequest](docs/AddressRequest.md)
+ - [Application](docs/Application.md)
  - [ApplicationAcceleratorModule](docs/ApplicationAcceleratorModule.md)
  - [ApplicationAcceleratorModuleRequest](docs/ApplicationAcceleratorModuleRequest.md)
+ - [ApplicationModules](docs/ApplicationModules.md)
+ - [ApplicationModulesRequest](docs/ApplicationModulesRequest.md)
+ - [ApplicationRequest](docs/ApplicationRequest.md)
  - [BrowserCacheModule](docs/BrowserCacheModule.md)
  - [BrowserCacheModuleRequest](docs/BrowserCacheModuleRequest.md)
  - [CacheModule](docs/CacheModule.md)
@@ -223,7 +227,7 @@ Class | Method | HTTP request | Description
  - [CacheVaryByDevicesModuleRequest](docs/CacheVaryByDevicesModuleRequest.md)
  - [CacheVaryByQuerystringModule](docs/CacheVaryByQuerystringModule.md)
  - [CacheVaryByQuerystringModuleRequest](docs/CacheVaryByQuerystringModuleRequest.md)
- - [CloneEdgeApplicationRequest](docs/CloneEdgeApplicationRequest.md)
+ - [CloneApplicationRequest](docs/CloneApplicationRequest.md)
  - [CloneEdgeFirewallRequest](docs/CloneEdgeFirewallRequest.md)
  - [CloneWAFRequest](docs/CloneWAFRequest.md)
  - [CustomPage](docs/CustomPage.md)
@@ -238,7 +242,6 @@ Class | Method | HTTP request | Description
  - [DeploymentStrategyShared](docs/DeploymentStrategyShared.md)
  - [EdgeApllicationRuleEngineRewriteRequestAttributes](docs/EdgeApllicationRuleEngineRewriteRequestAttributes.md)
  - [EdgeApllicationRuleEngineRewriteRequestAttributesRequest](docs/EdgeApllicationRuleEngineRewriteRequestAttributesRequest.md)
- - [EdgeApplication](docs/EdgeApplication.md)
  - [EdgeApplicationCriterionField](docs/EdgeApplicationCriterionField.md)
  - [EdgeApplicationCriterionFieldRequest](docs/EdgeApplicationCriterionFieldRequest.md)
  - [EdgeApplicationCriterionPolymorphicArgument](docs/EdgeApplicationCriterionPolymorphicArgument.md)
@@ -247,9 +250,6 @@ Class | Method | HTTP request | Description
  - [EdgeApplicationDeviceGroupsRequest](docs/EdgeApplicationDeviceGroupsRequest.md)
  - [EdgeApplicationFunctionInstance](docs/EdgeApplicationFunctionInstance.md)
  - [EdgeApplicationFunctionInstanceRequest](docs/EdgeApplicationFunctionInstanceRequest.md)
- - [EdgeApplicationModules](docs/EdgeApplicationModules.md)
- - [EdgeApplicationModulesRequest](docs/EdgeApplicationModulesRequest.md)
- - [EdgeApplicationRequest](docs/EdgeApplicationRequest.md)
  - [EdgeApplicationRequestPhaseBehaviorCaptureMatchGroups](docs/EdgeApplicationRequestPhaseBehaviorCaptureMatchGroups.md)
  - [EdgeApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest](docs/EdgeApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest.md)
  - [EdgeApplicationRequestPhaseBehaviorWithArgs](docs/EdgeApplicationRequestPhaseBehaviorWithArgs.md)
@@ -474,10 +474,10 @@ Class | Method | HTTP request | Description
  - [PageConnectorAttributesRequest](docs/PageConnectorAttributesRequest.md)
  - [PageConnectorRequest](docs/PageConnectorRequest.md)
  - [PageRequest](docs/PageRequest.md)
+ - [PaginatedApplicationList](docs/PaginatedApplicationList.md)
  - [PaginatedCustomPageList](docs/PaginatedCustomPageList.md)
  - [PaginatedEdgeApplicationDeviceGroupsList](docs/PaginatedEdgeApplicationDeviceGroupsList.md)
  - [PaginatedEdgeApplicationFunctionInstanceList](docs/PaginatedEdgeApplicationFunctionInstanceList.md)
- - [PaginatedEdgeApplicationList](docs/PaginatedEdgeApplicationList.md)
  - [PaginatedEdgeApplicationRequestPhaseRuleEngineList](docs/PaginatedEdgeApplicationRequestPhaseRuleEngineList.md)
  - [PaginatedEdgeApplicationResponsePhaseRuleEngineList](docs/PaginatedEdgeApplicationResponsePhaseRuleEngineList.md)
  - [PaginatedEdgeConnectorPolymorphicList](docs/PaginatedEdgeConnectorPolymorphicList.md)
@@ -491,11 +491,11 @@ Class | Method | HTTP request | Description
  - [PaginatedWAFRuleList](docs/PaginatedWAFRuleList.md)
  - [PaginatedWorkloadDeploymentList](docs/PaginatedWorkloadDeploymentList.md)
  - [PaginatedWorkloadList](docs/PaginatedWorkloadList.md)
+ - [PatchedApplicationRequest](docs/PatchedApplicationRequest.md)
  - [PatchedCacheSettingRequest](docs/PatchedCacheSettingRequest.md)
  - [PatchedCustomPageRequest](docs/PatchedCustomPageRequest.md)
  - [PatchedEdgeApplicationDeviceGroupsRequest](docs/PatchedEdgeApplicationDeviceGroupsRequest.md)
  - [PatchedEdgeApplicationFunctionInstanceRequest](docs/PatchedEdgeApplicationFunctionInstanceRequest.md)
- - [PatchedEdgeApplicationRequest](docs/PatchedEdgeApplicationRequest.md)
  - [PatchedEdgeApplicationRequestPhaseRuleEngineRequest](docs/PatchedEdgeApplicationRequestPhaseRuleEngineRequest.md)
  - [PatchedEdgeApplicationResponsePhaseRuleEngineRequest](docs/PatchedEdgeApplicationResponsePhaseRuleEngineRequest.md)
  - [PatchedEdgeConnectorHTTPRequest](docs/PatchedEdgeConnectorHTTPRequest.md)
@@ -515,11 +515,13 @@ Class | Method | HTTP request | Description
  - [ProtocolsRequest](docs/ProtocolsRequest.md)
  - [PurgeInput](docs/PurgeInput.md)
  - [PurgeInputRequest](docs/PurgeInputRequest.md)
+ - [ResponseApplication](docs/ResponseApplication.md)
+ - [ResponseAsyncApplication](docs/ResponseAsyncApplication.md)
  - [ResponseAsyncCacheSetting](docs/ResponseAsyncCacheSetting.md)
  - [ResponseAsyncCustomPage](docs/ResponseAsyncCustomPage.md)
+ - [ResponseAsyncDeleteApplication](docs/ResponseAsyncDeleteApplication.md)
  - [ResponseAsyncDeleteCacheSetting](docs/ResponseAsyncDeleteCacheSetting.md)
  - [ResponseAsyncDeleteCustomPage](docs/ResponseAsyncDeleteCustomPage.md)
- - [ResponseAsyncDeleteEdgeApplication](docs/ResponseAsyncDeleteEdgeApplication.md)
  - [ResponseAsyncDeleteEdgeApplicationDeviceGroups](docs/ResponseAsyncDeleteEdgeApplicationDeviceGroups.md)
  - [ResponseAsyncDeleteEdgeApplicationFunctionInstance](docs/ResponseAsyncDeleteEdgeApplicationFunctionInstance.md)
  - [ResponseAsyncDeleteEdgeApplicationRequestPhaseRuleEngine](docs/ResponseAsyncDeleteEdgeApplicationRequestPhaseRuleEngine.md)
@@ -534,7 +536,6 @@ Class | Method | HTTP request | Description
  - [ResponseAsyncDeleteWAFRule](docs/ResponseAsyncDeleteWAFRule.md)
  - [ResponseAsyncDeleteWorkload](docs/ResponseAsyncDeleteWorkload.md)
  - [ResponseAsyncDeleteWorkloadDeployment](docs/ResponseAsyncDeleteWorkloadDeployment.md)
- - [ResponseAsyncEdgeApplication](docs/ResponseAsyncEdgeApplication.md)
  - [ResponseAsyncEdgeApplicationDeviceGroups](docs/ResponseAsyncEdgeApplicationDeviceGroups.md)
  - [ResponseAsyncEdgeApplicationFunctionInstance](docs/ResponseAsyncEdgeApplicationFunctionInstance.md)
  - [ResponseAsyncEdgeApplicationRequestPhaseRuleEngine](docs/ResponseAsyncEdgeApplicationRequestPhaseRuleEngine.md)
@@ -550,6 +551,7 @@ Class | Method | HTTP request | Description
  - [ResponseAsyncWAFRule](docs/ResponseAsyncWAFRule.md)
  - [ResponseAsyncWorkload](docs/ResponseAsyncWorkload.md)
  - [ResponseAsyncWorkloadDeployment](docs/ResponseAsyncWorkloadDeployment.md)
+ - [ResponseBadRequestApplication](docs/ResponseBadRequestApplication.md)
  - [ResponseBadRequestCacheSetting](docs/ResponseBadRequestCacheSetting.md)
  - [ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCacheVaryByCookiesField](docs/ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCacheVaryByCookiesField.md)
  - [ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCacheVaryByCookiesFieldCookieNames](docs/ResponseBadRequestCacheSettingsApplicationAcceleratorModuleCacheVaryByCookiesFieldCookieNames.md)
@@ -560,14 +562,13 @@ Class | Method | HTTP request | Description
  - [ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField](docs/ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField.md)
  - [ResponseBadRequestCacheSettingsModulesEdgeCacheField](docs/ResponseBadRequestCacheSettingsModulesEdgeCacheField.md)
  - [ResponseBadRequestCacheSettingsModulesTieredCacheField](docs/ResponseBadRequestCacheSettingsModulesTieredCacheField.md)
- - [ResponseBadRequestEdgeApplication](docs/ResponseBadRequestEdgeApplication.md)
  - [ResponseBadRequestSerializerMetaclassBrowserCacheField](docs/ResponseBadRequestSerializerMetaclassBrowserCacheField.md)
  - [ResponseBadRequestSerializerMetaclassModulesField](docs/ResponseBadRequestSerializerMetaclassModulesField.md)
  - [ResponseBadRequestSerializerMetaclassStrategyField](docs/ResponseBadRequestSerializerMetaclassStrategyField.md)
  - [ResponseBadRequestWorkloadDeployment](docs/ResponseBadRequestWorkloadDeployment.md)
  - [ResponseCustomPage](docs/ResponseCustomPage.md)
+ - [ResponseDeleteApplication](docs/ResponseDeleteApplication.md)
  - [ResponseDeleteCustomPage](docs/ResponseDeleteCustomPage.md)
- - [ResponseDeleteEdgeApplication](docs/ResponseDeleteEdgeApplication.md)
  - [ResponseDeleteEdgeApplicationFunctionInstance](docs/ResponseDeleteEdgeApplicationFunctionInstance.md)
  - [ResponseDeleteEdgeApplicationRequestPhaseRuleEngine](docs/ResponseDeleteEdgeApplicationRequestPhaseRuleEngine.md)
  - [ResponseDeleteEdgeApplicationResponsePhaseRuleEngine](docs/ResponseDeleteEdgeApplicationResponsePhaseRuleEngine.md)
@@ -579,7 +580,6 @@ Class | Method | HTTP request | Description
  - [ResponseDeleteNetworkListDetail](docs/ResponseDeleteNetworkListDetail.md)
  - [ResponseDeleteWAF](docs/ResponseDeleteWAF.md)
  - [ResponseDeleteWAFRule](docs/ResponseDeleteWAFRule.md)
- - [ResponseEdgeApplication](docs/ResponseEdgeApplication.md)
  - [ResponseEdgeApplicationDeviceGroups](docs/ResponseEdgeApplicationDeviceGroups.md)
  - [ResponseEdgeApplicationFunctionInstance](docs/ResponseEdgeApplicationFunctionInstance.md)
  - [ResponseEdgeApplicationRequestPhaseRuleEngine](docs/ResponseEdgeApplicationRequestPhaseRuleEngine.md)
@@ -592,9 +592,9 @@ Class | Method | HTTP request | Description
  - [ResponseListCacheSetting](docs/ResponseListCacheSetting.md)
  - [ResponseNetworkListDetail](docs/ResponseNetworkListDetail.md)
  - [ResponsePurgeInput](docs/ResponsePurgeInput.md)
+ - [ResponseRetrieveApplication](docs/ResponseRetrieveApplication.md)
  - [ResponseRetrieveCacheSetting](docs/ResponseRetrieveCacheSetting.md)
  - [ResponseRetrieveCustomPage](docs/ResponseRetrieveCustomPage.md)
- - [ResponseRetrieveEdgeApplication](docs/ResponseRetrieveEdgeApplication.md)
  - [ResponseRetrieveEdgeApplicationDeviceGroups](docs/ResponseRetrieveEdgeApplicationDeviceGroups.md)
  - [ResponseRetrieveEdgeApplicationFunctionInstance](docs/ResponseRetrieveEdgeApplicationFunctionInstance.md)
  - [ResponseRetrieveEdgeApplicationRequestPhaseRuleEngine](docs/ResponseRetrieveEdgeApplicationRequestPhaseRuleEngine.md)
