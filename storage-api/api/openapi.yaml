@@ -1,10 +1,10 @@
 openapi: 3.0.3
 info:
-  description: REST API OpenAPI documentation for the Edge Storage
+  description: REST API OpenAPI documentation for the Storage
   license:
     name: MIT
     url: https://github.com/aziontech/azionapi-v4-openapi/blob/main/LICENSE
-  title: edge-storage-api
+  title: storage-api
   version: 1.0.0 (v1)
 servers:
 - url: /
