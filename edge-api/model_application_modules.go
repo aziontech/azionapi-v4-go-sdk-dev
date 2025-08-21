@@ -19,7 +19,7 @@ var _ MappedNullable = &ApplicationModules{}
 
 // ApplicationModules struct for ApplicationModules
 type ApplicationModules struct {
-	Cache *CacheModule `json:"cache,omitempty"`
+	EdgeCache *CacheModule `json:"edge_cache,omitempty"`
 	Functions *EdgeFunctionModule `json:"functions,omitempty"`
 	ApplicationAccelerator *ApplicationAcceleratorModule `json:"application_accelerator,omitempty"`
 	ImageProcessor *ImageProcessorModule `json:"image_processor,omitempty"`
@@ -43,36 +43,36 @@ func NewApplicationModulesWithDefaults() *ApplicationModules {
 	return &this
 }
 
-// GetCache returns the Cache field value if set, zero value otherwise.
-func (o *ApplicationModules) GetCache() CacheModule {
-	if o == nil || IsNil(o.Cache) {
+// GetEdgeCache returns the EdgeCache field value if set, zero value otherwise.
+func (o *ApplicationModules) GetEdgeCache() CacheModule {
+	if o == nil || IsNil(o.EdgeCache) {
 		var ret CacheModule
 		return ret
 	}
-	return *o.Cache
+	return *o.EdgeCache
 }
 
-// GetCacheOk returns a tuple with the Cache field value if set, nil otherwise
+// GetEdgeCacheOk returns a tuple with the EdgeCache field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationModules) GetCacheOk() (*CacheModule, bool) {
-	if o == nil || IsNil(o.Cache) {
+func (o *ApplicationModules) GetEdgeCacheOk() (*CacheModule, bool) {
+	if o == nil || IsNil(o.EdgeCache) {
 		return nil, false
 	}
-	return o.Cache, true
+	return o.EdgeCache, true
 }
 
-// HasCache returns a boolean if a field has been set.
-func (o *ApplicationModules) HasCache() bool {
-	if o != nil && !IsNil(o.Cache) {
+// HasEdgeCache returns a boolean if a field has been set.
+func (o *ApplicationModules) HasEdgeCache() bool {
+	if o != nil && !IsNil(o.EdgeCache) {
 		return true
 	}
 
 	return false
 }
 
-// SetCache gets a reference to the given CacheModule and assigns it to the Cache field.
-func (o *ApplicationModules) SetCache(v CacheModule) {
-	o.Cache = &v
+// SetEdgeCache gets a reference to the given CacheModule and assigns it to the EdgeCache field.
+func (o *ApplicationModules) SetEdgeCache(v CacheModule) {
+	o.EdgeCache = &v
 }
 
 // GetFunctions returns the Functions field value if set, zero value otherwise.
@@ -213,8 +213,8 @@ func (o ApplicationModules) MarshalJSON() ([]byte, error) {
 
 func (o ApplicationModules) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Cache) {
-		toSerialize["cache"] = o.Cache
+	if !IsNil(o.EdgeCache) {
+		toSerialize["edge_cache"] = o.EdgeCache
 	}
 	if !IsNil(o.Functions) {
 		toSerialize["functions"] = o.Functions

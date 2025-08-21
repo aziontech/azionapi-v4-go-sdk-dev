@@ -1547,7 +1547,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedEdgeApplicationDeviceGroupsList"
+                $ref: "#/components/schemas/PaginatedApplicationDeviceGroupsList"
           description: ""
         "401":
           content:
@@ -1664,9 +1664,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: List Edge Applications Device Groups
+      summary: List Applications Device Groups
       tags:
-      - Edge Applications - Device Groups
+      - Applications - Device Groups
     post:
       description: Create a new Device Group in your account.
       operationId: create_device_group
@@ -1682,20 +1682,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeApplicationDeviceGroupsRequest"
+              $ref: "#/components/schemas/ApplicationDeviceGroupsRequest"
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeApplicationDeviceGroups"
+                $ref: "#/components/schemas/ResponseApplicationDeviceGroups"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplicationDeviceGroups"
+                $ref: "#/components/schemas/ResponseAsyncApplicationDeviceGroups"
           description: ""
         "401":
           content:
@@ -1812,9 +1812,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Create an Edge Applications Device Group
+      summary: Create an Applications Device Group
       tags:
-      - Edge Applications - Device Groups
+      - Applications - Device Groups
   /edge_application/applications/{application_id}/device_groups/{id}:
     delete:
       description: Destruction of a specific Device Group in your account.
@@ -1839,13 +1839,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeApplicationDeviceGroups"
+                $ref: "#/components/schemas/ResponseApplicationDeviceGroups"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteEdgeApplicationDeviceGroups"
+                $ref: "#/components/schemas/ResponseAsyncDeleteApplicationDeviceGroups"
           description: ""
         "401":
           content:
@@ -1962,9 +1962,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Destroy an Edge Applications Device Group
+      summary: Destroy an Applications Device Group
       tags:
-      - Edge Applications - Device Groups
+      - Applications - Device Groups
     get:
       description: Retrieve details of a specific Device Group in your account.
       operationId: retrieve_device_group
@@ -1996,7 +1996,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveEdgeApplicationDeviceGroups"
+                $ref: "#/components/schemas/ResponseRetrieveApplicationDeviceGroups"
           description: ""
         "401":
           content:
@@ -2115,7 +2115,7 @@ paths:
       - BearerAuth: []
       summary: Retrieve details of a Device Group
       tags:
-      - Edge Applications - Device Groups
+      - Applications - Device Groups
     patch:
       description: Update one or more fields of an existing Device Group without affecting
         other fields.
@@ -2139,19 +2139,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PatchedEdgeApplicationDeviceGroupsRequest"
+              $ref: "#/components/schemas/PatchedApplicationDeviceGroupsRequest"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeApplicationDeviceGroups"
+                $ref: "#/components/schemas/ResponseApplicationDeviceGroups"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplicationDeviceGroups"
+                $ref: "#/components/schemas/ResponseAsyncApplicationDeviceGroups"
           description: ""
         "401":
           content:
@@ -2268,9 +2268,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Partially update an Edge Applications Device Group
+      summary: Partially update an Applications Device Group
       tags:
-      - Edge Applications - Device Groups
+      - Applications - Device Groups
     put:
       description: Update an existing Device Group. This replaces the entire Device
         Group with the new data provided.
@@ -2294,20 +2294,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeApplicationDeviceGroupsRequest"
+              $ref: "#/components/schemas/ApplicationDeviceGroupsRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeApplicationDeviceGroups"
+                $ref: "#/components/schemas/ResponseApplicationDeviceGroups"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplicationDeviceGroups"
+                $ref: "#/components/schemas/ResponseAsyncApplicationDeviceGroups"
           description: ""
         "401":
           content:
@@ -2424,9 +2424,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Update an Edge Applications Device Group
+      summary: Update an Applications Device Group
       tags:
-      - Edge Applications - Device Groups
+      - Applications - Device Groups
   /edge_application/applications/{application_id}/functions:
     get:
       description: List all Function Instances for a specific Application owned by
@@ -6523,8 +6523,8 @@ paths:
       - Edge Connectors
   /edge_firewall/firewalls:
     get:
-      description: List all Edge Firewalls owned by your account.
-      operationId: List Edge Firewalls
+      description: List all Firewalls owned by your account.
+      operationId: List Firewalls
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -6575,7 +6575,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedEdgeFirewallList"
+                $ref: "#/components/schemas/PaginatedFirewallList"
           description: ""
         "401":
           content:
@@ -6692,30 +6692,30 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: List Edge Firewalls
+      summary: List Firewalls
       tags:
-      - Edge Firewalls
+      - Firewalls
     post:
-      description: Create a new Edge Firewall for your account.
-      operationId: Create Edge Firewall
+      description: Create a new Firewall for your account.
+      operationId: Create Firewall
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeFirewallRequest"
+              $ref: "#/components/schemas/FirewallRequest"
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFirewall"
+                $ref: "#/components/schemas/ResponseFirewall"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFirewall"
+                $ref: "#/components/schemas/ResponseAsyncFirewall"
           description: ""
         "401":
           content:
@@ -6832,9 +6832,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Create an Edge Firewall
+      summary: Create an Firewall
       tags:
-      - Edge Firewalls
+      - Firewalls
   /edge_firewall/firewalls/{edge_firewall_id}/functions:
     get:
       description: List all Function Instances for a specific Firewall owned by your
@@ -7781,8 +7781,8 @@ paths:
       - Firewalls - Function
   /edge_firewall/firewalls/{edge_firewall_id}/request_rules:
     get:
-      description: List all Rules for a specific Edge Firewall owned by your account.
-      operationId: List Edge Firewall Rules
+      description: List all Rules for a specific Firewall owned by your account.
+      operationId: List Firewall Rules
       parameters:
       - explode: false
         in: path
@@ -7840,7 +7840,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedEdgeFirewallRuleEngineList"
+                $ref: "#/components/schemas/PaginatedFirewallRuleEngineList"
           description: ""
         "401":
           content:
@@ -7957,12 +7957,12 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: List Edge Firewall Rules
+      summary: List Firewall Rules
       tags:
-      - Edge Firewalls - Rules Engine
+      - Firewalls - Rules Engine
     post:
-      description: Create a new Rule for a specific Edge Firewall in your account.
-      operationId: Create Edge Firewall Rule
+      description: Create a new Rule for a specific Firewall in your account.
+      operationId: Create Firewall Rule
       parameters:
       - explode: false
         in: path
@@ -7975,20 +7975,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeFirewallRuleEngineRequest"
+              $ref: "#/components/schemas/FirewallRuleEngineRequest"
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFirewallRuleEngine"
+                $ref: "#/components/schemas/ResponseFirewallRuleEngine"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFirewallRuleEngine"
+                $ref: "#/components/schemas/ResponseAsyncFirewallRuleEngine"
           description: ""
         "401":
           content:
@@ -8105,13 +8105,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Create an Edge Firewall Rule
+      summary: Create an Firewall Rule
       tags:
-      - Edge Firewalls - Rules Engine
+      - Firewalls - Rules Engine
   /edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id}:
     delete:
       description: Destroy a specific Rule in your account.
-      operationId: Destroy Edge Firewall Rule
+      operationId: Destroy Firewall Rule
       parameters:
       - explode: false
         in: path
@@ -8132,13 +8132,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteEdgeFirewallRuleEngine"
+                $ref: "#/components/schemas/ResponseDeleteFirewallRuleEngine"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteEdgeFirewallRuleEngine"
+                $ref: "#/components/schemas/ResponseAsyncDeleteFirewallRuleEngine"
           description: ""
         "401":
           content:
@@ -8255,12 +8255,12 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Destroy an Edge Firewall Rule
+      summary: Destroy an Firewall Rule
       tags:
-      - Edge Firewalls - Rules Engine
+      - Firewalls - Rules Engine
     get:
       description: Retrieve details of a specific Rule in your account.
-      operationId: Retrieve Edge Firewall Rule
+      operationId: Retrieve Firewall Rule
       parameters:
       - explode: false
         in: path
@@ -8289,7 +8289,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveEdgeFirewallRuleEngine"
+                $ref: "#/components/schemas/ResponseRetrieveFirewallRuleEngine"
           description: ""
         "401":
           content:
@@ -8406,13 +8406,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Retrieve details of an Edge Firewall Rule
+      summary: Retrieve details of an Firewall Rule
       tags:
-      - Edge Firewalls - Rules Engine
+      - Firewalls - Rules Engine
     patch:
-      description: Update one or more fields of an existing Edge Firewall Rule without
+      description: Update one or more fields of an existing Firewall Rule without
         affecting other fields.
-      operationId: Partial update Edge Firewall Rule
+      operationId: Partial update Firewall Rule
       parameters:
       - explode: false
         in: path
@@ -8432,19 +8432,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PatchedEdgeFirewallRuleEngineRequest"
+              $ref: "#/components/schemas/PatchedFirewallRuleEngineRequest"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFirewallRuleEngine"
+                $ref: "#/components/schemas/ResponseFirewallRuleEngine"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFirewallRuleEngine"
+                $ref: "#/components/schemas/ResponseAsyncFirewallRuleEngine"
           description: ""
         "401":
           content:
@@ -8561,13 +8561,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Partially update an Edge Firewall Rule
+      summary: Partially update an Firewall Rule
       tags:
-      - Edge Firewalls - Rules Engine
+      - Firewalls - Rules Engine
     put:
       description: Update an existing Rule. This replaces the entire Rule with the
         new data provided.
-      operationId: Update Edge Firewall Rule
+      operationId: Update Firewall Rule
       parameters:
       - explode: false
         in: path
@@ -8587,20 +8587,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeFirewallRuleEngineRequest"
+              $ref: "#/components/schemas/FirewallRuleEngineRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFirewallRuleEngine"
+                $ref: "#/components/schemas/ResponseFirewallRuleEngine"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFirewallRuleEngine"
+                $ref: "#/components/schemas/ResponseAsyncFirewallRuleEngine"
           description: ""
         "401":
           content:
@@ -8717,13 +8717,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Update an Edge Firewall Rule
+      summary: Update an Firewall Rule
       tags:
-      - Edge Firewalls - Rules Engine
+      - Firewalls - Rules Engine
   /edge_firewall/firewalls/{edge_firewall_id}/request_rules/order:
     put:
-      description: Reoder all Rules for a specific Edge Firewall owned by your account.
-      operationId: Order Edge Firewall Rules
+      description: Reoder all Rules for a specific Firewall owned by your account.
+      operationId: Order Firewall Rules
       parameters:
       - explode: false
         in: path
@@ -8772,20 +8772,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeFirewallRuleEngineOrderRequest"
+              $ref: "#/components/schemas/FirewallRuleEngineOrderRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedEdgeFirewallRuleEngineList"
+                $ref: "#/components/schemas/PaginatedFirewallRuleEngineList"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedEdgeFirewallRuleEngineList"
+                $ref: "#/components/schemas/PaginatedFirewallRuleEngineList"
           description: ""
         "400":
           content:
@@ -8902,13 +8902,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Ordering Edge Firewall Rules
+      summary: Ordering Firewall Rules
       tags:
-      - Edge Firewalls - Rules Engine
+      - Firewalls - Rules Engine
   /edge_firewall/firewalls/{id}:
     delete:
-      description: Destruction of a specific Edge Firewall in your account.
-      operationId: Destroy Edge Firewall
+      description: Destruction of a specific Firewall in your account.
+      operationId: Destroy Firewall
       parameters:
       - explode: false
         in: path
@@ -8922,13 +8922,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteEdgeFirewall"
+                $ref: "#/components/schemas/ResponseDeleteFirewall"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteEdgeFirewall"
+                $ref: "#/components/schemas/ResponseAsyncDeleteFirewall"
           description: ""
         "401":
           content:
@@ -9045,12 +9045,12 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Destroy an Edge Firewall
+      summary: Destroy an Firewall
       tags:
-      - Edge Firewalls
+      - Firewalls
     get:
-      description: Retrieve details from a specific Edge Firewall in your account.
-      operationId: Retrieve Edge Firewall
+      description: Retrieve details from a specific Firewall in your account.
+      operationId: Retrieve Firewall
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -9072,7 +9072,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveEdgeFirewall"
+                $ref: "#/components/schemas/ResponseRetrieveFirewall"
           description: ""
         "401":
           content:
@@ -9189,13 +9189,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Retrieve details from an Edge Firewall
+      summary: Retrieve details from an Firewall
       tags:
-      - Edge Firewalls
+      - Firewalls
     patch:
-      description: Update one or more fields of an existing Edge Firewall without
-        affecting other fields.
-      operationId: Partial update Edge Firewall
+      description: Update one or more fields of an existing Firewall without affecting
+        other fields.
+      operationId: Partial update Firewall
       parameters:
       - explode: false
         in: path
@@ -9208,19 +9208,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PatchedEdgeFirewallRequest"
+              $ref: "#/components/schemas/PatchedFirewallRequest"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFirewall"
+                $ref: "#/components/schemas/ResponseFirewall"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFirewall"
+                $ref: "#/components/schemas/ResponseAsyncFirewall"
           description: ""
         "401":
           content:
@@ -9337,13 +9337,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Partially update an Edge Firewall
+      summary: Partially update an Firewall
       tags:
-      - Edge Firewalls
+      - Firewalls
     put:
-      description: Update an existing Edge Firewall. This replaces the entire Edge
-        Firewall with the new data provided.
-      operationId: Update Edge Firewall
+      description: Update an existing Firewall. This replaces the entire Firewall
+        with the new data provided.
+      operationId: Update Firewall
       parameters:
       - explode: false
         in: path
@@ -9356,20 +9356,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeFirewallRequest"
+              $ref: "#/components/schemas/FirewallRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFirewall"
+                $ref: "#/components/schemas/ResponseFirewall"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFirewall"
+                $ref: "#/components/schemas/ResponseAsyncFirewall"
           description: ""
         "401":
           content:
@@ -9486,14 +9486,14 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Update an Edge Firewall
+      summary: Update an Firewall
       tags:
-      - Edge Firewalls
+      - Firewalls
   /edge_firewall/firewalls/{id}/clone:
     post:
-      description: "Create a new Edge Firewall by performing a deep copy of an existing\
-        \ Edge Firewall, including its Function Instances and Rules Engine."
-      operationId: Clone Edge Firewall
+      description: "Create a new Firewall by performing a deep copy of an existing\
+        \ Firewall, including its Function Instances and Rules Engine."
+      operationId: Clone Firewall
       parameters:
       - explode: false
         in: path
@@ -9506,20 +9506,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CloneEdgeFirewallRequest"
+              $ref: "#/components/schemas/CloneFirewallRequest"
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFirewall"
+                $ref: "#/components/schemas/ResponseFirewall"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFirewall"
+                $ref: "#/components/schemas/ResponseAsyncFirewall"
           description: ""
         "401":
           content:
@@ -9636,9 +9636,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Clone an Edge Firewall
+      summary: Clone an Firewall
       tags:
-      - Edge Firewalls
+      - Firewalls
   /edge_firewall/wafs:
     get:
       description: List all WAFs owned by your account.
@@ -16409,8 +16409,8 @@ components:
         id: 0
         last_modified: 2000-01-23T04:56:07.000+00:00
         modules:
+          edge_cache: ""
           application_accelerator: ""
-          cache: ""
           functions: ""
           tiered_cache: ""
           image_processor: ""
@@ -16458,6 +16458,51 @@ components:
         enabled:
           type: boolean
       title: ApplicationAcceleratorModuleRequest
+      type: object
+    ApplicationDeviceGroups:
+      additionalProperties: false
+      example:
+        name: name
+        id: 0
+        user_agent: user_agent
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 250
+          minLength: 1
+          type: string
+        user_agent:
+          description: Enter a valid regular expression pattern to identify user agents.
+          maxLength: 512
+          minLength: 1
+          type: string
+      required:
+      - id
+      - name
+      - user_agent
+      title: ApplicationDeviceGroups
+      type: object
+    ApplicationDeviceGroupsRequest:
+      additionalProperties: false
+      example:
+        name: name
+        user_agent: user_agent
+      properties:
+        name:
+          maxLength: 250
+          minLength: 1
+          type: string
+        user_agent:
+          description: Enter a valid regular expression pattern to identify user agents.
+          maxLength: 512
+          minLength: 1
+          type: string
+      required:
+      - name
+      - user_agent
+      title: ApplicationDeviceGroupsRequest
       type: object
     ApplicationFunctionInstance:
       additionalProperties: false
@@ -16529,13 +16574,13 @@ components:
     ApplicationModules:
       additionalProperties: false
       example:
+        edge_cache: ""
         application_accelerator: ""
-        cache: ""
         functions: ""
         tiered_cache: ""
         image_processor: ""
       properties:
-        cache:
+        edge_cache:
           allOf:
           - $ref: "#/components/schemas/CacheModule"
         functions:
@@ -16555,13 +16600,13 @@ components:
     ApplicationModulesRequest:
       additionalProperties: false
       example:
+        edge_cache: ""
         application_accelerator: ""
-        cache: ""
         functions: ""
         tiered_cache: ""
         image_processor: ""
       properties:
-        cache:
+        edge_cache:
           allOf:
           - $ref: "#/components/schemas/CacheModuleRequest"
         functions:
@@ -16585,8 +16630,8 @@ components:
         name: name
         active: true
         modules:
+          edge_cache: ""
           application_accelerator: ""
-          cache: ""
           functions: ""
           tiered_cache: ""
           image_processor: ""
@@ -17179,7 +17224,7 @@ components:
       - name
       title: CloneApplicationRequest
       type: object
-    CloneEdgeFirewallRequest:
+    CloneFirewallRequest:
       additionalProperties: false
       example:
         name: name
@@ -17190,7 +17235,7 @@ components:
           type: string
       required:
       - name
-      title: CloneEdgeFirewallRequest
+      title: CloneFirewallRequest
       type: object
     CloneWAFRequest:
       additionalProperties: false
@@ -17832,51 +17877,6 @@ components:
         type: integer
       - type: string
       title: EdgeApplicationCriterionPolymorphicArgumentRequest
-    EdgeApplicationDeviceGroups:
-      additionalProperties: false
-      example:
-        name: name
-        id: 0
-        user_agent: user_agent
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 250
-          minLength: 1
-          type: string
-        user_agent:
-          description: Enter a valid regular expression pattern to identify user agents.
-          maxLength: 512
-          minLength: 1
-          type: string
-      required:
-      - id
-      - name
-      - user_agent
-      title: EdgeApplicationDeviceGroups
-      type: object
-    EdgeApplicationDeviceGroupsRequest:
-      additionalProperties: false
-      example:
-        name: name
-        user_agent: user_agent
-      properties:
-        name:
-          maxLength: 250
-          minLength: 1
-          type: string
-        user_agent:
-          description: Enter a valid regular expression pattern to identify user agents.
-          maxLength: 512
-          minLength: 1
-          type: string
-      required:
-      - name
-      - user_agent
-      title: EdgeApplicationDeviceGroupsRequest
-      type: object
     EdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
       example:
@@ -20319,584 +20319,6 @@ components:
       - type
       title: EdgeConnectorStorageRequest
       type: object
-    EdgeFirewall:
-      additionalProperties: false
-      example:
-        product_version: product_version
-        debug: true
-        last_editor: last_editor
-        name: name
-        active: true
-        id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
-        modules:
-          ddos_protection: ""
-          network_protection: ""
-          edge_functions: ""
-          waf: ""
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 250
-          minLength: 1
-          type: string
-        modules:
-          $ref: "#/components/schemas/EdgeFirewallModules"
-        debug:
-          type: boolean
-        active:
-          type: boolean
-        last_editor:
-          maxLength: 250
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-        product_version:
-          maxLength: 50
-          minLength: 3
-          type: string
-      required:
-      - id
-      - last_editor
-      - last_modified
-      - name
-      - product_version
-      title: EdgeFirewall
-      type: object
-    EdgeFirewallBehaviorNoArguments:
-      additionalProperties: true
-      description: Behaviors without arguments
-      properties:
-        type:
-          description: |-
-            * `deny` - deny
-            * `drop` - drop
-          title: EdgeFirewallBehaviorNoArgumentsTypeEnum
-          type: string
-      required:
-      - type
-      title: EdgeFirewallBehaviorNoArguments
-      type: object
-    EdgeFirewallBehaviorNoArgumentsRequest:
-      additionalProperties: true
-      description: Behaviors without arguments
-      properties:
-        type:
-          description: |-
-            * `deny` - deny
-            * `drop` - drop
-          title: EdgeFirewallBehaviorNoArgumentsTypeEnum
-          type: string
-      required:
-      - type
-      title: EdgeFirewallBehaviorNoArgumentsRequest
-      type: object
-    EdgeFirewallBehaviorNoArgumentsTypeEnum:
-      description: |-
-        * `deny` - deny
-        * `drop` - drop
-      title: EdgeFirewallBehaviorNoArgumentsTypeEnum
-      type: string
-    EdgeFirewallBehaviorRunFunction:
-      additionalProperties: true
-      description: Run a function
-      properties:
-        type:
-          description: '* `run_function` - run_function'
-          title: Type689Enum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/EdgeFirewallBehaviorRunFunctionAttributes"
-      required:
-      - attributes
-      - type
-      title: EdgeFirewallBehaviorRunFunction
-      type: object
-    EdgeFirewallBehaviorRunFunctionAttributes:
-      additionalProperties: true
-      properties:
-        value:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-      required:
-      - value
-      title: EdgeFirewallBehaviorRunFunctionAttributes
-      type: object
-    EdgeFirewallBehaviorRunFunctionAttributesRequest:
-      additionalProperties: true
-      properties:
-        value:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-      required:
-      - value
-      title: EdgeFirewallBehaviorRunFunctionAttributesRequest
-      type: object
-    EdgeFirewallBehaviorRunFunctionRequest:
-      additionalProperties: true
-      description: Run a function
-      properties:
-        type:
-          description: '* `run_function` - run_function'
-          title: Type689Enum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/EdgeFirewallBehaviorRunFunctionAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: EdgeFirewallBehaviorRunFunctionRequest
-      type: object
-    EdgeFirewallBehaviorSetCustomResponse:
-      additionalProperties: true
-      description: Set a custom response
-      properties:
-        type:
-          description: '* `set_custom_response` - set_custom_response'
-          title: EdgeFirewallBehaviorSetCustomResponseTypeEnum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/EdgeFirewallBehaviorSetCustomResponseAttributes"
-      required:
-      - attributes
-      - type
-      title: EdgeFirewallBehaviorSetCustomResponse
-      type: object
-    EdgeFirewallBehaviorSetCustomResponseAttributes:
-      additionalProperties: true
-      properties:
-        status_code:
-          format: int64
-          maximum: 499
-          minimum: 200
-          type: integer
-        content_type:
-          maxLength: 255
-          minLength: 0
-          type: string
-        content_body:
-          maxLength: 500
-          minLength: 0
-          type: string
-      required:
-      - status_code
-      title: EdgeFirewallBehaviorSetCustomResponseAttributes
-      type: object
-    EdgeFirewallBehaviorSetCustomResponseAttributesRequest:
-      additionalProperties: true
-      properties:
-        status_code:
-          format: int64
-          maximum: 499
-          minimum: 200
-          type: integer
-        content_type:
-          maxLength: 255
-          minLength: 0
-          type: string
-        content_body:
-          maxLength: 500
-          minLength: 0
-          type: string
-      required:
-      - status_code
-      title: EdgeFirewallBehaviorSetCustomResponseAttributesRequest
-      type: object
-    EdgeFirewallBehaviorSetCustomResponseRequest:
-      additionalProperties: true
-      description: Set a custom response
-      properties:
-        type:
-          description: '* `set_custom_response` - set_custom_response'
-          title: EdgeFirewallBehaviorSetCustomResponseTypeEnum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/EdgeFirewallBehaviorSetCustomResponseAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: EdgeFirewallBehaviorSetCustomResponseRequest
-      type: object
-    EdgeFirewallBehaviorSetCustomResponseTypeEnum:
-      description: '* `set_custom_response` - set_custom_response'
-      title: EdgeFirewallBehaviorSetCustomResponseTypeEnum
-      type: string
-    EdgeFirewallBehaviorSetRateLimit:
-      additionalProperties: true
-      description: Set a rate limit
-      properties:
-        type:
-          description: '* `set_rate_limit` - set_rate_limit'
-          title: EdgeFirewallBehaviorSetRateLimitTypeEnum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimitAttributes"
-      required:
-      - attributes
-      - type
-      title: EdgeFirewallBehaviorSetRateLimit
-      type: object
-    EdgeFirewallBehaviorSetRateLimitAttributes:
-      additionalProperties: true
-      properties:
-        type:
-          allOf:
-          - $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimitAttributesTypeEnum"
-        limit_by:
-          description: |-
-            * `client_ip` - client_ip
-            * `global` - global
-          title: LimitByEnum
-          type: string
-        average_rate_limit:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        maximum_burst_size:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          nullable: true
-          type: integer
-      required:
-      - average_rate_limit
-      - limit_by
-      title: EdgeFirewallBehaviorSetRateLimitAttributes
-      type: object
-    EdgeFirewallBehaviorSetRateLimitAttributesRequest:
-      additionalProperties: true
-      properties:
-        type:
-          allOf:
-          - $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimitAttributesTypeEnum"
-        limit_by:
-          description: |-
-            * `client_ip` - client_ip
-            * `global` - global
-          title: LimitByEnum
-          type: string
-        average_rate_limit:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        maximum_burst_size:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          nullable: true
-          type: integer
-      required:
-      - average_rate_limit
-      - limit_by
-      title: EdgeFirewallBehaviorSetRateLimitAttributesRequest
-      type: object
-    EdgeFirewallBehaviorSetRateLimitAttributesTypeEnum:
-      description: |-
-        * `second` - second
-        * `minute` - minute
-      title: EdgeFirewallBehaviorSetRateLimitAttributesTypeEnum
-      type: string
-    EdgeFirewallBehaviorSetRateLimitRequest:
-      additionalProperties: true
-      description: Set a rate limit
-      properties:
-        type:
-          description: '* `set_rate_limit` - set_rate_limit'
-          title: EdgeFirewallBehaviorSetRateLimitTypeEnum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimitAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: EdgeFirewallBehaviorSetRateLimitRequest
-      type: object
-    EdgeFirewallBehaviorSetRateLimitTypeEnum:
-      description: '* `set_rate_limit` - set_rate_limit'
-      title: EdgeFirewallBehaviorSetRateLimitTypeEnum
-      type: string
-    EdgeFirewallBehaviorSetWaf:
-      additionalProperties: true
-      description: Set a WAF
-      properties:
-        type:
-          description: '* `set_waf` - set_waf'
-          title: EdgeFirewallBehaviorSetWafTypeEnum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/EdgeFirewallBehaviorSetWafAttributes"
-      required:
-      - attributes
-      - type
-      title: EdgeFirewallBehaviorSetWaf
-      type: object
-    EdgeFirewallBehaviorSetWafAttributes:
-      additionalProperties: true
-      properties:
-        waf_id:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        mode:
-          description: |-
-            * `logging` - logging
-            * `blocking` - blocking
-          title: ModeEnum
-          type: string
-      required:
-      - mode
-      - waf_id
-      title: EdgeFirewallBehaviorSetWafAttributes
-      type: object
-    EdgeFirewallBehaviorSetWafAttributesRequest:
-      additionalProperties: true
-      properties:
-        waf_id:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        mode:
-          description: |-
-            * `logging` - logging
-            * `blocking` - blocking
-          title: ModeEnum
-          type: string
-      required:
-      - mode
-      - waf_id
-      title: EdgeFirewallBehaviorSetWafAttributesRequest
-      type: object
-    EdgeFirewallBehaviorSetWafRequest:
-      additionalProperties: true
-      description: Set a WAF
-      properties:
-        type:
-          description: '* `set_waf` - set_waf'
-          title: EdgeFirewallBehaviorSetWafTypeEnum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/EdgeFirewallBehaviorSetWafAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: EdgeFirewallBehaviorSetWafRequest
-      type: object
-    EdgeFirewallBehaviorSetWafTypeEnum:
-      description: '* `set_waf` - set_waf'
-      title: EdgeFirewallBehaviorSetWafTypeEnum
-      type: string
-    EdgeFirewallBehaviorTagEvent:
-      additionalProperties: true
-      description: Tag event
-      properties:
-        type:
-          description: '* `tag_event` - tag_event'
-          title: EdgeFirewallBehaviorTagEventTypeEnum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/EdgeFirewallBehaviorTagEventAttributes"
-      required:
-      - attributes
-      - type
-      title: EdgeFirewallBehaviorTagEvent
-      type: object
-    EdgeFirewallBehaviorTagEventAttributes:
-      additionalProperties: true
-      properties:
-        value:
-          maxLength: 128
-          minLength: 1
-          type: string
-      required:
-      - value
-      title: EdgeFirewallBehaviorTagEventAttributes
-      type: object
-    EdgeFirewallBehaviorTagEventAttributesRequest:
-      additionalProperties: true
-      properties:
-        value:
-          maxLength: 128
-          minLength: 1
-          type: string
-      required:
-      - value
-      title: EdgeFirewallBehaviorTagEventAttributesRequest
-      type: object
-    EdgeFirewallBehaviorTagEventRequest:
-      additionalProperties: true
-      description: Tag event
-      properties:
-        type:
-          description: '* `tag_event` - tag_event'
-          title: EdgeFirewallBehaviorTagEventTypeEnum
-          type: string
-        attributes:
-          $ref: "#/components/schemas/EdgeFirewallBehaviorTagEventAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: EdgeFirewallBehaviorTagEventRequest
-      type: object
-    EdgeFirewallBehaviorTagEventTypeEnum:
-      description: '* `tag_event` - tag_event'
-      title: EdgeFirewallBehaviorTagEventTypeEnum
-      type: string
-    EdgeFirewallBehaviors:
-      additionalProperties: true
-      discriminator:
-        mapping:
-          deny: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments"
-          drop: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments"
-          set_custom_response: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponse"
-          set_rate_limit: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimit"
-          tag_event: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEvent"
-          set_waf: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf"
-          run_function: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponse"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimit"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEvent"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction"
-      title: EdgeFirewallBehaviors
-    EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorNoArguments"
-      example:
-        type: type
-      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArguments
-    EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorNoArgumentsRequest"
-      example:
-        type: type
-      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest
-    EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorRunFunction"
-      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunction
-    EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorRunFunctionRequest"
-      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest
-    EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponse:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorSetCustomResponse"
-      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponse
-    EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponseRequest:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorSetCustomResponseRequest"
-      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponseRequest
-    EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimit:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimit"
-      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimit
-    EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimitRequest:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorSetRateLimitRequest"
-      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimitRequest
-    EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorSetWaf"
-      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWaf
-    EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWafRequest:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorSetWafRequest"
-      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWafRequest
-    EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEvent:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorTagEvent"
-      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEvent
-    EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEventRequest:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsShared"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorTagEventRequest"
-      title: EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEventRequest
-    EdgeFirewallBehaviorsRequest:
-      additionalProperties: true
-      discriminator:
-        mapping:
-          deny: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest"
-          drop: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest"
-          set_custom_response: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponseRequest"
-          set_rate_limit: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimitRequest"
-          tag_event: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEventRequest"
-          set_waf: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWafRequest"
-          run_function: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorNoArgumentsRequest"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetCustomResponseRequest"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetRateLimitRequest"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorTagEventRequest"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorSetWafRequest"
-      - $ref: "#/components/schemas/EdgeFirewallBehaviorsEdgeFirewallBehaviorRunFunctionRequest"
-      title: EdgeFirewallBehaviorsRequest
-    EdgeFirewallBehaviorsShared:
-      additionalProperties: true
-      description: |-
-        Polymorphic serializer base class.
-
-        Note that the discriminator field must exist at the same depth as the mapped
-        serializer fields for the OpenAPI introspection. See
-        https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/ for
-        more information. As such, it's not possible to define something like:
-
-        {
-            "object_type": "foo",
-            "polymorphic_context": {
-                <foo-specific fields>
-            }
-        }
-
-        without explicitly wrapping this in a parent serializer, i.e. -
-        ``polymorphic_context`` can not be a PolymorphicSerializer itself, as it requires
-        access to the ``object_type`` in the parent scope.
-      properties:
-        type:
-          maxLength: 255
-          minLength: 1
-          type: string
-      required:
-      - type
-      title: EdgeFirewallBehaviorsShared
-      type: object
     EdgeFirewallCriterionField:
       additionalProperties: false
       description: |-
@@ -21100,79 +20522,849 @@ components:
         type: integer
       - type: string
       title: EdgeFirewallCriterionPolymorphicArgumentRequest
-    EdgeFirewallModule:
+    EdgeFunctionModule:
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+      title: EdgeFunctionModule
+      type: object
+    EdgeFunctionModuleRequest:
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+      title: EdgeFunctionModuleRequest
+      type: object
+    EdgeFunctions:
+      additionalProperties: false
+      example:
+        product_version: product_version
+        code: code
+        last_editor: last_editor
+        active: true
+        runtime: ""
+        version: version
+        default_args: ""
+        vendor: vendor
+        name: name
+        execution_environment: ""
+        id: 0
+        reference_count: 6
+        last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 250
+          minLength: 1
+          type: string
+        last_editor:
+          maxLength: 250
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        product_version:
+          maxLength: 50
+          type: string
+        active:
+          type: boolean
+        runtime:
+          allOf:
+          - $ref: "#/components/schemas/RuntimeEnum"
+        execution_environment:
+          allOf:
+          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
+        code:
+          description: "String containing the function code. Maximum size: 20MB."
+          maxLength: 52428800
+          minLength: 1
+          type: string
+        default_args: {}
+        reference_count:
+          format: int64
+          type: integer
+        version:
+          description: "Installed version, which may not be the latest if the vendor\
+            \ has released updates since installation."
+          type: string
+        vendor:
+          type: string
+      required:
+      - code
+      - id
+      - last_editor
+      - last_modified
+      - name
+      - product_version
+      - reference_count
+      - vendor
+      - version
+      title: EdgeFunctions
+      type: object
+    EdgeFunctionsRequest:
+      additionalProperties: false
+      example:
+        code: code
+        name: name
+        active: true
+        runtime: ""
+        execution_environment: ""
+        default_args: ""
+      properties:
+        name:
+          maxLength: 250
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        runtime:
+          allOf:
+          - $ref: "#/components/schemas/RuntimeEnum"
+        execution_environment:
+          allOf:
+          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
+        code:
+          description: "String containing the function code. Maximum size: 20MB."
+          maxLength: 52428800
+          minLength: 1
+          type: string
+        default_args: {}
+      required:
+      - code
+      - name
+      title: EdgeFunctionsRequest
+      type: object
+    EngineVersionEnum:
+      description: '* `2021-Q3` - 2021-Q3'
+      title: EngineVersionEnum
+      type: string
+    ExecutionEnvironmentEnum:
+      description: |-
+        * `firewall` - Firewall
+        * `application` - Application
+      title: ExecutionEnvironmentEnum
+      type: string
+    Firewall:
+      additionalProperties: false
+      example:
+        product_version: product_version
+        debug: true
+        last_editor: last_editor
+        name: name
+        active: true
+        id: 0
+        last_modified: 2000-01-23T04:56:07.000+00:00
+        modules:
+          ddos_protection: ""
+          functions: ""
+          network_protection: ""
+          waf: ""
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 250
+          minLength: 1
+          type: string
+        modules:
+          $ref: "#/components/schemas/FirewallModules"
+        debug:
+          type: boolean
+        active:
+          type: boolean
+        last_editor:
+          maxLength: 250
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        product_version:
+          maxLength: 50
+          minLength: 3
+          type: string
+      required:
+      - id
+      - last_editor
+      - last_modified
+      - name
+      - product_version
+      title: Firewall
+      type: object
+    FirewallBehaviorNoArguments:
+      additionalProperties: true
+      description: Behaviors without arguments
+      properties:
+        type:
+          description: |-
+            * `deny` - deny
+            * `drop` - drop
+          title: FirewallBehaviorNoArgumentsTypeEnum
+          type: string
+      required:
+      - type
+      title: FirewallBehaviorNoArguments
+      type: object
+    FirewallBehaviorNoArgumentsRequest:
+      additionalProperties: true
+      description: Behaviors without arguments
+      properties:
+        type:
+          description: |-
+            * `deny` - deny
+            * `drop` - drop
+          title: FirewallBehaviorNoArgumentsTypeEnum
+          type: string
+      required:
+      - type
+      title: FirewallBehaviorNoArgumentsRequest
+      type: object
+    FirewallBehaviorNoArgumentsTypeEnum:
+      description: |-
+        * `deny` - deny
+        * `drop` - drop
+      title: FirewallBehaviorNoArgumentsTypeEnum
+      type: string
+    FirewallBehaviorRunFunction:
+      additionalProperties: true
+      description: Run a function
+      properties:
+        type:
+          description: '* `run_function` - run_function'
+          title: Type689Enum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorRunFunctionAttributes"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorRunFunction
+      type: object
+    FirewallBehaviorRunFunctionAttributes:
+      additionalProperties: true
+      properties:
+        value:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+      required:
+      - value
+      title: FirewallBehaviorRunFunctionAttributes
+      type: object
+    FirewallBehaviorRunFunctionAttributesRequest:
+      additionalProperties: true
+      properties:
+        value:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+      required:
+      - value
+      title: FirewallBehaviorRunFunctionAttributesRequest
+      type: object
+    FirewallBehaviorRunFunctionRequest:
+      additionalProperties: true
+      description: Run a function
+      properties:
+        type:
+          description: '* `run_function` - run_function'
+          title: Type689Enum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorRunFunctionAttributesRequest"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorRunFunctionRequest
+      type: object
+    FirewallBehaviorSetCustomResponse:
+      additionalProperties: true
+      description: Set a custom response
+      properties:
+        type:
+          description: '* `set_custom_response` - set_custom_response'
+          title: FirewallBehaviorSetCustomResponseTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseAttributes"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorSetCustomResponse
+      type: object
+    FirewallBehaviorSetCustomResponseAttributes:
+      additionalProperties: true
+      properties:
+        status_code:
+          format: int64
+          maximum: 499
+          minimum: 200
+          type: integer
+        content_type:
+          maxLength: 255
+          minLength: 0
+          type: string
+        content_body:
+          maxLength: 500
+          minLength: 0
+          type: string
+      required:
+      - status_code
+      title: FirewallBehaviorSetCustomResponseAttributes
+      type: object
+    FirewallBehaviorSetCustomResponseAttributesRequest:
+      additionalProperties: true
+      properties:
+        status_code:
+          format: int64
+          maximum: 499
+          minimum: 200
+          type: integer
+        content_type:
+          maxLength: 255
+          minLength: 0
+          type: string
+        content_body:
+          maxLength: 500
+          minLength: 0
+          type: string
+      required:
+      - status_code
+      title: FirewallBehaviorSetCustomResponseAttributesRequest
+      type: object
+    FirewallBehaviorSetCustomResponseRequest:
+      additionalProperties: true
+      description: Set a custom response
+      properties:
+        type:
+          description: '* `set_custom_response` - set_custom_response'
+          title: FirewallBehaviorSetCustomResponseTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseAttributesRequest"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorSetCustomResponseRequest
+      type: object
+    FirewallBehaviorSetCustomResponseTypeEnum:
+      description: '* `set_custom_response` - set_custom_response'
+      title: FirewallBehaviorSetCustomResponseTypeEnum
+      type: string
+    FirewallBehaviorSetRateLimit:
+      additionalProperties: true
+      description: Set a rate limit
+      properties:
+        type:
+          description: '* `set_rate_limit` - set_rate_limit'
+          title: FirewallBehaviorSetRateLimitTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorSetRateLimitAttributes"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorSetRateLimit
+      type: object
+    FirewallBehaviorSetRateLimitAttributes:
+      additionalProperties: true
+      properties:
+        type:
+          allOf:
+          - $ref: "#/components/schemas/FirewallBehaviorSetRateLimitAttributesTypeEnum"
+        limit_by:
+          description: |-
+            * `client_ip` - client_ip
+            * `global` - global
+          title: LimitByEnum
+          type: string
+        average_rate_limit:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        maximum_burst_size:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+          type: integer
+      required:
+      - average_rate_limit
+      - limit_by
+      title: FirewallBehaviorSetRateLimitAttributes
+      type: object
+    FirewallBehaviorSetRateLimitAttributesRequest:
+      additionalProperties: true
+      properties:
+        type:
+          allOf:
+          - $ref: "#/components/schemas/FirewallBehaviorSetRateLimitAttributesTypeEnum"
+        limit_by:
+          description: |-
+            * `client_ip` - client_ip
+            * `global` - global
+          title: LimitByEnum
+          type: string
+        average_rate_limit:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        maximum_burst_size:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          nullable: true
+          type: integer
+      required:
+      - average_rate_limit
+      - limit_by
+      title: FirewallBehaviorSetRateLimitAttributesRequest
+      type: object
+    FirewallBehaviorSetRateLimitAttributesTypeEnum:
+      description: |-
+        * `second` - second
+        * `minute` - minute
+      title: FirewallBehaviorSetRateLimitAttributesTypeEnum
+      type: string
+    FirewallBehaviorSetRateLimitRequest:
+      additionalProperties: true
+      description: Set a rate limit
+      properties:
+        type:
+          description: '* `set_rate_limit` - set_rate_limit'
+          title: FirewallBehaviorSetRateLimitTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorSetRateLimitAttributesRequest"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorSetRateLimitRequest
+      type: object
+    FirewallBehaviorSetRateLimitTypeEnum:
+      description: '* `set_rate_limit` - set_rate_limit'
+      title: FirewallBehaviorSetRateLimitTypeEnum
+      type: string
+    FirewallBehaviorSetWaf:
+      additionalProperties: true
+      description: Set a WAF
+      properties:
+        type:
+          description: '* `set_waf` - set_waf'
+          title: FirewallBehaviorSetWafTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorSetWafAttributes"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorSetWaf
+      type: object
+    FirewallBehaviorSetWafAttributes:
+      additionalProperties: true
+      properties:
+        waf_id:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        mode:
+          description: |-
+            * `logging` - logging
+            * `blocking` - blocking
+          title: ModeEnum
+          type: string
+      required:
+      - mode
+      - waf_id
+      title: FirewallBehaviorSetWafAttributes
+      type: object
+    FirewallBehaviorSetWafAttributesRequest:
+      additionalProperties: true
+      properties:
+        waf_id:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        mode:
+          description: |-
+            * `logging` - logging
+            * `blocking` - blocking
+          title: ModeEnum
+          type: string
+      required:
+      - mode
+      - waf_id
+      title: FirewallBehaviorSetWafAttributesRequest
+      type: object
+    FirewallBehaviorSetWafRequest:
+      additionalProperties: true
+      description: Set a WAF
+      properties:
+        type:
+          description: '* `set_waf` - set_waf'
+          title: FirewallBehaviorSetWafTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorSetWafAttributesRequest"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorSetWafRequest
+      type: object
+    FirewallBehaviorSetWafTypeEnum:
+      description: '* `set_waf` - set_waf'
+      title: FirewallBehaviorSetWafTypeEnum
+      type: string
+    FirewallBehaviorTagEvent:
+      additionalProperties: true
+      description: Tag event
+      properties:
+        type:
+          description: '* `tag_event` - tag_event'
+          title: FirewallBehaviorTagEventTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorTagEventAttributes"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorTagEvent
+      type: object
+    FirewallBehaviorTagEventAttributes:
+      additionalProperties: true
+      properties:
+        value:
+          maxLength: 128
+          minLength: 1
+          type: string
+      required:
+      - value
+      title: FirewallBehaviorTagEventAttributes
+      type: object
+    FirewallBehaviorTagEventAttributesRequest:
+      additionalProperties: true
+      properties:
+        value:
+          maxLength: 128
+          minLength: 1
+          type: string
+      required:
+      - value
+      title: FirewallBehaviorTagEventAttributesRequest
+      type: object
+    FirewallBehaviorTagEventRequest:
+      additionalProperties: true
+      description: Tag event
+      properties:
+        type:
+          description: '* `tag_event` - tag_event'
+          title: FirewallBehaviorTagEventTypeEnum
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorTagEventAttributesRequest"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorTagEventRequest
+      type: object
+    FirewallBehaviorTagEventTypeEnum:
+      description: '* `tag_event` - tag_event'
+      title: FirewallBehaviorTagEventTypeEnum
+      type: string
+    FirewallBehaviors:
+      additionalProperties: true
+      discriminator:
+        mapping:
+          deny: "#/components/schemas/FirewallBehaviorsFirewallBehaviorNoArguments"
+          drop: "#/components/schemas/FirewallBehaviorsFirewallBehaviorNoArguments"
+          set_custom_response: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetCustomResponse"
+          set_rate_limit: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetRateLimit"
+          tag_event: "#/components/schemas/FirewallBehaviorsFirewallBehaviorTagEvent"
+          set_waf: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetWaf"
+          run_function: "#/components/schemas/FirewallBehaviorsFirewallBehaviorRunFunction"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorNoArguments"
+      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetCustomResponse"
+      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetRateLimit"
+      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorTagEvent"
+      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetWaf"
+      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorRunFunction"
+      title: FirewallBehaviors
+    FirewallBehaviorsFirewallBehaviorNoArguments:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsShared"
+      - $ref: "#/components/schemas/FirewallBehaviorNoArguments"
+      example:
+        type: type
+      title: FirewallBehaviorsFirewallBehaviorNoArguments
+    FirewallBehaviorsFirewallBehaviorNoArgumentsRequest:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsShared"
+      - $ref: "#/components/schemas/FirewallBehaviorNoArgumentsRequest"
+      example:
+        type: type
+      title: FirewallBehaviorsFirewallBehaviorNoArgumentsRequest
+    FirewallBehaviorsFirewallBehaviorRunFunction:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsShared"
+      - $ref: "#/components/schemas/FirewallBehaviorRunFunction"
+      title: FirewallBehaviorsFirewallBehaviorRunFunction
+    FirewallBehaviorsFirewallBehaviorRunFunctionRequest:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsShared"
+      - $ref: "#/components/schemas/FirewallBehaviorRunFunctionRequest"
+      title: FirewallBehaviorsFirewallBehaviorRunFunctionRequest
+    FirewallBehaviorsFirewallBehaviorSetCustomResponse:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsShared"
+      - $ref: "#/components/schemas/FirewallBehaviorSetCustomResponse"
+      title: FirewallBehaviorsFirewallBehaviorSetCustomResponse
+    FirewallBehaviorsFirewallBehaviorSetCustomResponseRequest:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsShared"
+      - $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseRequest"
+      title: FirewallBehaviorsFirewallBehaviorSetCustomResponseRequest
+    FirewallBehaviorsFirewallBehaviorSetRateLimit:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsShared"
+      - $ref: "#/components/schemas/FirewallBehaviorSetRateLimit"
+      title: FirewallBehaviorsFirewallBehaviorSetRateLimit
+    FirewallBehaviorsFirewallBehaviorSetRateLimitRequest:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsShared"
+      - $ref: "#/components/schemas/FirewallBehaviorSetRateLimitRequest"
+      title: FirewallBehaviorsFirewallBehaviorSetRateLimitRequest
+    FirewallBehaviorsFirewallBehaviorSetWaf:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsShared"
+      - $ref: "#/components/schemas/FirewallBehaviorSetWaf"
+      title: FirewallBehaviorsFirewallBehaviorSetWaf
+    FirewallBehaviorsFirewallBehaviorSetWafRequest:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsShared"
+      - $ref: "#/components/schemas/FirewallBehaviorSetWafRequest"
+      title: FirewallBehaviorsFirewallBehaviorSetWafRequest
+    FirewallBehaviorsFirewallBehaviorTagEvent:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsShared"
+      - $ref: "#/components/schemas/FirewallBehaviorTagEvent"
+      title: FirewallBehaviorsFirewallBehaviorTagEvent
+    FirewallBehaviorsFirewallBehaviorTagEventRequest:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsShared"
+      - $ref: "#/components/schemas/FirewallBehaviorTagEventRequest"
+      title: FirewallBehaviorsFirewallBehaviorTagEventRequest
+    FirewallBehaviorsRequest:
+      additionalProperties: true
+      discriminator:
+        mapping:
+          deny: "#/components/schemas/FirewallBehaviorsFirewallBehaviorNoArgumentsRequest"
+          drop: "#/components/schemas/FirewallBehaviorsFirewallBehaviorNoArgumentsRequest"
+          set_custom_response: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetCustomResponseRequest"
+          set_rate_limit: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetRateLimitRequest"
+          tag_event: "#/components/schemas/FirewallBehaviorsFirewallBehaviorTagEventRequest"
+          set_waf: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetWafRequest"
+          run_function: "#/components/schemas/FirewallBehaviorsFirewallBehaviorRunFunctionRequest"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorNoArgumentsRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetCustomResponseRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetRateLimitRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorTagEventRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetWafRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorRunFunctionRequest"
+      title: FirewallBehaviorsRequest
+    FirewallBehaviorsShared:
+      additionalProperties: true
+      description: |-
+        Polymorphic serializer base class.
+
+        Note that the discriminator field must exist at the same depth as the mapped
+        serializer fields for the OpenAPI introspection. See
+        https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/ for
+        more information. As such, it's not possible to define something like:
+
+        {
+            "object_type": "foo",
+            "polymorphic_context": {
+                <foo-specific fields>
+            }
+        }
+
+        without explicitly wrapping this in a parent serializer, i.e. -
+        ``polymorphic_context`` can not be a PolymorphicSerializer itself, as it requires
+        access to the ``object_type`` in the parent scope.
+      properties:
+        type:
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - type
+      title: FirewallBehaviorsShared
+      type: object
+    FirewallFunctionInstance:
+      additionalProperties: false
+      description: Serializer for Firewall Function Instances
+      example:
+        args: ""
+        function: 5559347081229897728
+        last_editor: last_editor
+        name: name
+        active: true
+        id: 0
+        last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        args: {}
+        function:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        active:
+          type: boolean
+        last_editor:
+          maxLength: 250
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+      required:
+      - function
+      - id
+      - last_editor
+      - last_modified
+      - name
+      title: FirewallFunctionInstance
+      type: object
+    FirewallFunctionInstanceRequest:
+      additionalProperties: false
+      description: Serializer for Firewall Function Instances
+      example:
+        args: ""
+        function: 738633633822310400
+        name: name
+        active: true
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        args: {}
+        function:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        active:
+          type: boolean
+      required:
+      - function
+      - name
+      title: FirewallFunctionInstanceRequest
+      type: object
+    FirewallModule:
       additionalProperties: false
       description: |-
-        Serializer for individual modules in EdgeFirewall.
+        Serializer for individual modules in Firewall.
 
         Handles serialization and deserialization of module settings with an enabled flag.
       properties:
         enabled:
           type: boolean
-      title: EdgeFirewallModule
+      title: FirewallModule
       type: object
-    EdgeFirewallModuleRequest:
+    FirewallModuleRequest:
       additionalProperties: false
       description: |-
-        Serializer for individual modules in EdgeFirewall.
+        Serializer for individual modules in Firewall.
 
         Handles serialization and deserialization of module settings with an enabled flag.
       properties:
         enabled:
           type: boolean
-      title: EdgeFirewallModuleRequest
+      title: FirewallModuleRequest
       type: object
-    EdgeFirewallModules:
+    FirewallModules:
       additionalProperties: false
       example:
         ddos_protection: ""
+        functions: ""
         network_protection: ""
-        edge_functions: ""
         waf: ""
       properties:
         ddos_protection:
           allOf:
-          - $ref: "#/components/schemas/EdgeFirewallModule"
-        edge_functions:
+          - $ref: "#/components/schemas/FirewallModule"
+        functions:
           allOf:
-          - $ref: "#/components/schemas/EdgeFirewallModule"
+          - $ref: "#/components/schemas/FirewallModule"
         network_protection:
           allOf:
-          - $ref: "#/components/schemas/EdgeFirewallModule"
+          - $ref: "#/components/schemas/FirewallModule"
         waf:
           allOf:
-          - $ref: "#/components/schemas/EdgeFirewallModule"
+          - $ref: "#/components/schemas/FirewallModule"
       required:
       - ddos_protection
-      title: EdgeFirewallModules
+      title: FirewallModules
       type: object
-    EdgeFirewallModulesRequest:
+    FirewallModulesRequest:
       additionalProperties: false
       example:
+        functions: ""
         network_protection: ""
-        edge_functions: ""
         waf: ""
       properties:
-        edge_functions:
+        functions:
           allOf:
-          - $ref: "#/components/schemas/EdgeFirewallModuleRequest"
+          - $ref: "#/components/schemas/FirewallModuleRequest"
         network_protection:
           allOf:
-          - $ref: "#/components/schemas/EdgeFirewallModuleRequest"
+          - $ref: "#/components/schemas/FirewallModuleRequest"
         waf:
           allOf:
-          - $ref: "#/components/schemas/EdgeFirewallModuleRequest"
-      title: EdgeFirewallModulesRequest
+          - $ref: "#/components/schemas/FirewallModuleRequest"
+      title: FirewallModulesRequest
       type: object
-    EdgeFirewallRequest:
+    FirewallRequest:
       additionalProperties: false
       example:
         debug: true
         name: name
         active: true
         modules:
+          functions: ""
           network_protection: ""
-          edge_functions: ""
           waf: ""
       properties:
         name:
@@ -21180,16 +21372,16 @@ components:
           minLength: 1
           type: string
         modules:
-          $ref: "#/components/schemas/EdgeFirewallModulesRequest"
+          $ref: "#/components/schemas/FirewallModulesRequest"
         debug:
           type: boolean
         active:
           type: boolean
       required:
       - name
-      title: EdgeFirewallRequest
+      title: FirewallRequest
       type: object
-    EdgeFirewallRuleEngine:
+    FirewallRuleEngine:
       additionalProperties: false
       example:
         criteria:
@@ -21334,7 +21526,7 @@ components:
           type: array
         behaviors:
           items:
-            $ref: "#/components/schemas/EdgeFirewallBehaviors"
+            $ref: "#/components/schemas/FirewallBehaviors"
           maxItems: 10
           minItems: 1
           type: array
@@ -21355,9 +21547,9 @@ components:
       - last_modified
       - name
       - order
-      title: EdgeFirewallRuleEngine
+      title: FirewallRuleEngine
       type: object
-    EdgeFirewallRuleEngineOrderRequest:
+    FirewallRuleEngineOrderRequest:
       additionalProperties: false
       example:
         order:
@@ -21373,9 +21565,9 @@ components:
           type: array
       required:
       - order
-      title: EdgeFirewallRuleEngineOrderRequest
+      title: FirewallRuleEngineOrderRequest
       type: object
-    EdgeFirewallRuleEngineRequest:
+    FirewallRuleEngineRequest:
       additionalProperties: false
       example:
         criteria:
@@ -21507,7 +21699,7 @@ components:
           type: array
         behaviors:
           items:
-            $ref: "#/components/schemas/EdgeFirewallBehaviorsRequest"
+            $ref: "#/components/schemas/FirewallBehaviorsRequest"
           maxItems: 10
           minItems: 1
           type: array
@@ -21519,199 +21711,7 @@ components:
       - behaviors
       - criteria
       - name
-      title: EdgeFirewallRuleEngineRequest
-      type: object
-    EdgeFunctionModule:
-      additionalProperties: false
-      properties:
-        enabled:
-          type: boolean
-      title: EdgeFunctionModule
-      type: object
-    EdgeFunctionModuleRequest:
-      additionalProperties: false
-      properties:
-        enabled:
-          type: boolean
-      title: EdgeFunctionModuleRequest
-      type: object
-    EdgeFunctions:
-      additionalProperties: false
-      example:
-        product_version: product_version
-        code: code
-        last_editor: last_editor
-        active: true
-        runtime: ""
-        version: version
-        default_args: ""
-        vendor: vendor
-        name: name
-        execution_environment: ""
-        id: 0
-        reference_count: 6
-        last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 250
-          minLength: 1
-          type: string
-        last_editor:
-          maxLength: 250
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-        product_version:
-          maxLength: 50
-          type: string
-        active:
-          type: boolean
-        runtime:
-          allOf:
-          - $ref: "#/components/schemas/RuntimeEnum"
-        execution_environment:
-          allOf:
-          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
-        code:
-          description: "String containing the function code. Maximum size: 20MB."
-          maxLength: 52428800
-          minLength: 1
-          type: string
-        default_args: {}
-        reference_count:
-          format: int64
-          type: integer
-        version:
-          description: "Installed version, which may not be the latest if the vendor\
-            \ has released updates since installation."
-          type: string
-        vendor:
-          type: string
-      required:
-      - code
-      - id
-      - last_editor
-      - last_modified
-      - name
-      - product_version
-      - reference_count
-      - vendor
-      - version
-      title: EdgeFunctions
-      type: object
-    EdgeFunctionsRequest:
-      additionalProperties: false
-      example:
-        code: code
-        name: name
-        active: true
-        runtime: ""
-        execution_environment: ""
-        default_args: ""
-      properties:
-        name:
-          maxLength: 250
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-        runtime:
-          allOf:
-          - $ref: "#/components/schemas/RuntimeEnum"
-        execution_environment:
-          allOf:
-          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
-        code:
-          description: "String containing the function code. Maximum size: 20MB."
-          maxLength: 52428800
-          minLength: 1
-          type: string
-        default_args: {}
-      required:
-      - code
-      - name
-      title: EdgeFunctionsRequest
-      type: object
-    EngineVersionEnum:
-      description: '* `2021-Q3` - 2021-Q3'
-      title: EngineVersionEnum
-      type: string
-    ExecutionEnvironmentEnum:
-      description: |-
-        * `firewall` - Firewall
-        * `application` - Application
-      title: ExecutionEnvironmentEnum
-      type: string
-    FirewallFunctionInstance:
-      additionalProperties: false
-      description: Serializer for Firewall Function Instances
-      example:
-        args: ""
-        function: 5559347081229897728
-        last_editor: last_editor
-        name: name
-        active: true
-        id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        args: {}
-        function:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        active:
-          type: boolean
-        last_editor:
-          maxLength: 250
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-      required:
-      - function
-      - id
-      - last_editor
-      - last_modified
-      - name
-      title: FirewallFunctionInstance
-      type: object
-    FirewallFunctionInstanceRequest:
-      additionalProperties: false
-      description: Serializer for Firewall Function Instances
-      example:
-        args: ""
-        function: 738633633822310400
-        name: name
-        active: true
-      properties:
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        args: {}
-        function:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        active:
-          type: boolean
-      required:
-      - function
-      - name
-      title: FirewallFunctionInstanceRequest
+      title: FirewallRuleEngineRequest
       type: object
     HMAC:
       additionalProperties: false
@@ -22734,6 +22734,30 @@ components:
       - page
       title: PageRequest
       type: object
+    PaginatedApplicationDeviceGroupsList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - name: name
+          id: 0
+          user_agent: user_agent
+        - name: name
+          id: 0
+          user_agent: user_agent
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/ApplicationDeviceGroups"
+          type: array
+      title: PaginatedApplicationDeviceGroupsList
+      type: object
     PaginatedApplicationFunctionInstanceList:
       additionalProperties: false
       example:
@@ -22779,8 +22803,8 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
+            edge_cache: ""
             application_accelerator: ""
-            cache: ""
             functions: ""
             tiered_cache: ""
             image_processor: ""
@@ -22792,8 +22816,8 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
+            edge_cache: ""
             application_accelerator: ""
-            cache: ""
             functions: ""
             tiered_cache: ""
             image_processor: ""
@@ -22873,30 +22897,6 @@ components:
             $ref: "#/components/schemas/CustomPage"
           type: array
       title: PaginatedCustomPageList
-      type: object
-    PaginatedEdgeApplicationDeviceGroupsList:
-      additionalProperties: false
-      example:
-        count: 123
-        results:
-        - name: name
-          id: 0
-          user_agent: user_agent
-        - name: name
-          id: 0
-          user_agent: user_agent
-      properties:
-        count:
-          example: 123
-          format: int64
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        results:
-          items:
-            $ref: "#/components/schemas/EdgeApplicationDeviceGroups"
-          type: array
-      title: PaginatedEdgeApplicationDeviceGroupsList
       type: object
     PaginatedEdgeApplicationRequestPhaseRuleEngineList:
       additionalProperties: false
@@ -23450,294 +23450,6 @@ components:
           type: array
       title: PaginatedEdgeConnectorPolymorphicList
       type: object
-    PaginatedEdgeFirewallList:
-      additionalProperties: false
-      example:
-        count: 123
-        results:
-        - product_version: product_version
-          debug: true
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          modules:
-            ddos_protection: ""
-            network_protection: ""
-            edge_functions: ""
-            waf: ""
-        - product_version: product_version
-          debug: true
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          modules:
-            ddos_protection: ""
-            network_protection: ""
-            edge_functions: ""
-            waf: ""
-      properties:
-        count:
-          example: 123
-          format: int64
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        results:
-          items:
-            $ref: "#/components/schemas/EdgeFirewall"
-          type: array
-      title: PaginatedEdgeFirewallList
-      type: object
-    PaginatedEdgeFirewallRuleEngineList:
-      additionalProperties: false
-      example:
-        count: 123
-        results:
-        - criteria:
-          - - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-          - - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-          - - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-          - - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-          - - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-          behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          last_editor: last_editor
-          name: name
-          active: true
-          description: description
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          order: 119
-        - criteria:
-          - - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-          - - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-          - - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-          - - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-          - - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-            - argument: ""
-              conditional: conditional
-              variable: variable
-              operator: operator
-          behaviors:
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          - type: type
-          last_editor: last_editor
-          name: name
-          active: true
-          description: description
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          order: 119
-      properties:
-        count:
-          example: 123
-          format: int64
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        results:
-          items:
-            $ref: "#/components/schemas/EdgeFirewallRuleEngine"
-          type: array
-      title: PaginatedEdgeFirewallRuleEngineList
-      type: object
     PaginatedEdgeFunctionsList:
       additionalProperties: false
       example:
@@ -23813,6 +23525,294 @@ components:
             $ref: "#/components/schemas/FirewallFunctionInstance"
           type: array
       title: PaginatedFirewallFunctionInstanceList
+      type: object
+    PaginatedFirewallList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - product_version: product_version
+          debug: true
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          modules:
+            ddos_protection: ""
+            functions: ""
+            network_protection: ""
+            waf: ""
+        - product_version: product_version
+          debug: true
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          modules:
+            ddos_protection: ""
+            functions: ""
+            network_protection: ""
+            waf: ""
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/Firewall"
+          type: array
+      title: PaginatedFirewallList
+      type: object
+    PaginatedFirewallRuleEngineList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - criteria:
+          - - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+          - - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+          - - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+          - - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+          - - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          last_editor: last_editor
+          name: name
+          active: true
+          description: description
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          order: 119
+        - criteria:
+          - - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+          - - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+          - - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+          - - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+          - - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+            - argument: ""
+              conditional: conditional
+              variable: variable
+              operator: operator
+          behaviors:
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          - type: type
+          last_editor: last_editor
+          name: name
+          active: true
+          description: description
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          order: 119
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/FirewallRuleEngine"
+          type: array
+      title: PaginatedFirewallRuleEngineList
       type: object
     PaginatedNetworkListList:
       additionalProperties: false
@@ -24144,6 +24144,23 @@ components:
           type: array
       title: PaginatedWorkloadList
       type: object
+    PatchedApplicationDeviceGroupsRequest:
+      additionalProperties: false
+      example:
+        name: name
+        user_agent: user_agent
+      properties:
+        name:
+          maxLength: 250
+          minLength: 1
+          type: string
+        user_agent:
+          description: Enter a valid regular expression pattern to identify user agents.
+          maxLength: 512
+          minLength: 1
+          type: string
+      title: PatchedApplicationDeviceGroupsRequest
+      type: object
     PatchedApplicationFunctionInstanceRequest:
       additionalProperties: false
       description: Serializer for Application Function Instances
@@ -24174,8 +24191,8 @@ components:
         name: name
         active: true
         modules:
+          edge_cache: ""
           application_accelerator: ""
-          cache: ""
           functions: ""
           tiered_cache: ""
           image_processor: ""
@@ -24274,23 +24291,6 @@ components:
             $ref: "#/components/schemas/PageRequest"
           type: array
       title: PatchedCustomPageRequest
-      type: object
-    PatchedEdgeApplicationDeviceGroupsRequest:
-      additionalProperties: false
-      example:
-        name: name
-        user_agent: user_agent
-      properties:
-        name:
-          maxLength: 250
-          minLength: 1
-          type: string
-        user_agent:
-          description: Enter a valid regular expression pattern to identify user agents.
-          maxLength: 512
-          minLength: 1
-          type: string
-      title: PatchedEdgeApplicationDeviceGroupsRequest
       type: object
     PatchedEdgeApplicationRequestPhaseRuleEngineRequest:
       additionalProperties: false
@@ -24673,15 +24673,68 @@ components:
           $ref: "#/components/schemas/EdgeConnectorStorageAttributesRequest"
       title: PatchedEdgeConnectorStorageRequest
       type: object
-    PatchedEdgeFirewallRequest:
+    PatchedEdgeFunctionsRequest:
+      additionalProperties: false
+      example:
+        code: code
+        name: name
+        active: true
+        runtime: ""
+        execution_environment: ""
+        default_args: ""
+      properties:
+        name:
+          maxLength: 250
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        runtime:
+          allOf:
+          - $ref: "#/components/schemas/RuntimeEnum"
+        execution_environment:
+          allOf:
+          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
+        code:
+          description: "String containing the function code. Maximum size: 20MB."
+          maxLength: 52428800
+          minLength: 1
+          type: string
+        default_args: {}
+      title: PatchedEdgeFunctionsRequest
+      type: object
+    PatchedFirewallFunctionInstanceRequest:
+      additionalProperties: false
+      description: Serializer for Firewall Function Instances
+      example:
+        args: ""
+        function: 738633633822310400
+        name: name
+        active: true
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        args: {}
+        function:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        active:
+          type: boolean
+      title: PatchedFirewallFunctionInstanceRequest
+      type: object
+    PatchedFirewallRequest:
       additionalProperties: false
       example:
         debug: true
         name: name
         active: true
         modules:
+          functions: ""
           network_protection: ""
-          edge_functions: ""
           waf: ""
       properties:
         name:
@@ -24689,14 +24742,14 @@ components:
           minLength: 1
           type: string
         modules:
-          $ref: "#/components/schemas/EdgeFirewallModulesRequest"
+          $ref: "#/components/schemas/FirewallModulesRequest"
         debug:
           type: boolean
         active:
           type: boolean
-      title: PatchedEdgeFirewallRequest
+      title: PatchedFirewallRequest
       type: object
-    PatchedEdgeFirewallRuleEngineRequest:
+    PatchedFirewallRuleEngineRequest:
       additionalProperties: false
       example:
         criteria:
@@ -24828,7 +24881,7 @@ components:
           type: array
         behaviors:
           items:
-            $ref: "#/components/schemas/EdgeFirewallBehaviorsRequest"
+            $ref: "#/components/schemas/FirewallBehaviorsRequest"
           maxItems: 10
           minItems: 1
           type: array
@@ -24836,60 +24889,7 @@ components:
           maxLength: 1000
           minLength: 0
           type: string
-      title: PatchedEdgeFirewallRuleEngineRequest
-      type: object
-    PatchedEdgeFunctionsRequest:
-      additionalProperties: false
-      example:
-        code: code
-        name: name
-        active: true
-        runtime: ""
-        execution_environment: ""
-        default_args: ""
-      properties:
-        name:
-          maxLength: 250
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-        runtime:
-          allOf:
-          - $ref: "#/components/schemas/RuntimeEnum"
-        execution_environment:
-          allOf:
-          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
-        code:
-          description: "String containing the function code. Maximum size: 20MB."
-          maxLength: 52428800
-          minLength: 1
-          type: string
-        default_args: {}
-      title: PatchedEdgeFunctionsRequest
-      type: object
-    PatchedFirewallFunctionInstanceRequest:
-      additionalProperties: false
-      description: Serializer for Firewall Function Instances
-      example:
-        args: ""
-        function: 738633633822310400
-        name: name
-        active: true
-      properties:
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        args: {}
-        function:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        active:
-          type: boolean
-      title: PatchedFirewallFunctionInstanceRequest
+      title: PatchedFirewallRuleEngineRequest
       type: object
     PatchedNetworkListDetailRequest:
       additionalProperties: false
@@ -25318,8 +25318,8 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
+            edge_cache: ""
             application_accelerator: ""
-            cache: ""
             functions: ""
             tiered_cache: ""
             image_processor: ""
@@ -25334,6 +25334,25 @@ components:
       required:
       - data
       title: ResponseApplication
+      type: object
+    ResponseApplicationDeviceGroups:
+      additionalProperties: false
+      example:
+        data:
+          name: name
+          id: 0
+          user_agent: user_agent
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/ApplicationDeviceGroups"
+      required:
+      - data
+      title: ResponseApplicationDeviceGroups
       type: object
     ResponseApplicationFunctionInstance:
       additionalProperties: false
@@ -25370,8 +25389,8 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
+            edge_cache: ""
             application_accelerator: ""
-            cache: ""
             functions: ""
             tiered_cache: ""
             image_processor: ""
@@ -25386,6 +25405,25 @@ components:
       required:
       - data
       title: ResponseAsyncApplication
+      type: object
+    ResponseAsyncApplicationDeviceGroups:
+      additionalProperties: false
+      example:
+        data:
+          name: name
+          id: 0
+          user_agent: user_agent
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/ApplicationDeviceGroups"
+      required:
+      - data
+      title: ResponseAsyncApplicationDeviceGroups
       type: object
     ResponseAsyncApplicationFunctionInstance:
       additionalProperties: false
@@ -25511,6 +25549,17 @@ components:
           type: string
       title: ResponseAsyncDeleteApplication
       type: object
+    ResponseAsyncDeleteApplicationDeviceGroups:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseAsyncDeleteApplicationDeviceGroups
+      type: object
     ResponseAsyncDeleteApplicationFunctionInstance:
       additionalProperties: false
       example:
@@ -25543,17 +25592,6 @@ components:
           minLength: 1
           type: string
       title: ResponseAsyncDeleteCustomPage
-      type: object
-    ResponseAsyncDeleteEdgeApplicationDeviceGroups:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteEdgeApplicationDeviceGroups
       type: object
     ResponseAsyncDeleteEdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
@@ -25588,28 +25626,6 @@ components:
           type: string
       title: ResponseAsyncDeleteEdgeConnectorPolymorphic
       type: object
-    ResponseAsyncDeleteEdgeFirewall:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteEdgeFirewall
-      type: object
-    ResponseAsyncDeleteEdgeFirewallRuleEngine:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteEdgeFirewallRuleEngine
-      type: object
     ResponseAsyncDeleteEdgeFunctionsDoc:
       additionalProperties: false
       example:
@@ -25621,6 +25637,17 @@ components:
           type: string
       title: ResponseAsyncDeleteEdgeFunctionsDoc
       type: object
+    ResponseAsyncDeleteFirewall:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseAsyncDeleteFirewall
+      type: object
     ResponseAsyncDeleteFirewallFunctionInstance:
       additionalProperties: false
       example:
@@ -25631,6 +25658,17 @@ components:
           minLength: 1
           type: string
       title: ResponseAsyncDeleteFirewallFunctionInstance
+      type: object
+    ResponseAsyncDeleteFirewallRuleEngine:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseAsyncDeleteFirewallRuleEngine
       type: object
     ResponseAsyncDeleteNetworkListDetail:
       additionalProperties: false
@@ -25686,25 +25724,6 @@ components:
           minLength: 1
           type: string
       title: ResponseAsyncDeleteWorkloadDeployment
-      type: object
-    ResponseAsyncEdgeApplicationDeviceGroups:
-      additionalProperties: false
-      example:
-        data:
-          name: name
-          id: 0
-          user_agent: user_agent
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/EdgeApplicationDeviceGroups"
-      required:
-      - data
-      title: ResponseAsyncEdgeApplicationDeviceGroups
       type: object
     ResponseAsyncEdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
@@ -26003,7 +26022,36 @@ components:
       - data
       title: ResponseAsyncEdgeConnectorPolymorphic
       type: object
-    ResponseAsyncEdgeFirewall:
+    ResponseAsyncEdgeFunctionsDoc:
+      additionalProperties: false
+      example:
+        data:
+          product_version: product_version
+          code: code
+          last_editor: last_editor
+          active: true
+          runtime: ""
+          version: version
+          default_args: ""
+          vendor: vendor
+          name: name
+          execution_environment: ""
+          id: 0
+          reference_count: 6
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/EdgeFunctions"
+      required:
+      - data
+      title: ResponseAsyncEdgeFunctionsDoc
+      type: object
+    ResponseAsyncFirewall:
       additionalProperties: false
       example:
         data:
@@ -26016,8 +26064,8 @@ components:
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
             ddos_protection: ""
+            functions: ""
             network_protection: ""
-            edge_functions: ""
             waf: ""
         state: state
       properties:
@@ -26026,12 +26074,35 @@ components:
           minLength: 1
           type: string
         data:
-          $ref: "#/components/schemas/EdgeFirewall"
+          $ref: "#/components/schemas/Firewall"
       required:
       - data
-      title: ResponseAsyncEdgeFirewall
+      title: ResponseAsyncFirewall
       type: object
-    ResponseAsyncEdgeFirewallRuleEngine:
+    ResponseAsyncFirewallFunctionInstance:
+      additionalProperties: false
+      example:
+        data:
+          args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/FirewallFunctionInstance"
+      required:
+      - data
+      title: ResponseAsyncFirewallFunctionInstance
+      type: object
+    ResponseAsyncFirewallRuleEngine:
       additionalProperties: false
       example:
         data:
@@ -26156,62 +26227,10 @@ components:
           minLength: 1
           type: string
         data:
-          $ref: "#/components/schemas/EdgeFirewallRuleEngine"
+          $ref: "#/components/schemas/FirewallRuleEngine"
       required:
       - data
-      title: ResponseAsyncEdgeFirewallRuleEngine
-      type: object
-    ResponseAsyncEdgeFunctionsDoc:
-      additionalProperties: false
-      example:
-        data:
-          product_version: product_version
-          code: code
-          last_editor: last_editor
-          active: true
-          runtime: ""
-          version: version
-          default_args: ""
-          vendor: vendor
-          name: name
-          execution_environment: ""
-          id: 0
-          reference_count: 6
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/EdgeFunctions"
-      required:
-      - data
-      title: ResponseAsyncEdgeFunctionsDoc
-      type: object
-    ResponseAsyncFirewallFunctionInstance:
-      additionalProperties: false
-      example:
-        data:
-          args: ""
-          function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/FirewallFunctionInstance"
-      required:
-      - data
-      title: ResponseAsyncFirewallFunctionInstance
+      title: ResponseAsyncFirewallRuleEngine
       type: object
     ResponseAsyncNetworkListDetail:
       additionalProperties: false
@@ -27055,28 +27074,6 @@ components:
           type: string
       title: ResponseDeleteEdgeConnectorPolymorphic
       type: object
-    ResponseDeleteEdgeFirewall:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeleteEdgeFirewall
-      type: object
-    ResponseDeleteEdgeFirewallRuleEngine:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeleteEdgeFirewallRuleEngine
-      type: object
     ResponseDeleteEdgeFunctionsDoc:
       additionalProperties: false
       example:
@@ -27088,6 +27085,17 @@ components:
           type: string
       title: ResponseDeleteEdgeFunctionsDoc
       type: object
+    ResponseDeleteFirewall:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteFirewall
+      type: object
     ResponseDeleteFirewallFunctionInstance:
       additionalProperties: false
       example:
@@ -27098,6 +27106,17 @@ components:
           minLength: 1
           type: string
       title: ResponseDeleteFirewallFunctionInstance
+      type: object
+    ResponseDeleteFirewallRuleEngine:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteFirewallRuleEngine
       type: object
     ResponseDeleteNetworkListDetail:
       additionalProperties: false
@@ -27131,25 +27150,6 @@ components:
           minLength: 1
           type: string
       title: ResponseDeleteWAFRule
-      type: object
-    ResponseEdgeApplicationDeviceGroups:
-      additionalProperties: false
-      example:
-        data:
-          name: name
-          id: 0
-          user_agent: user_agent
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/EdgeApplicationDeviceGroups"
-      required:
-      - data
-      title: ResponseEdgeApplicationDeviceGroups
       type: object
     ResponseEdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
@@ -27448,7 +27448,36 @@ components:
       - data
       title: ResponseEdgeConnectorPolymorphic
       type: object
-    ResponseEdgeFirewall:
+    ResponseEdgeFunctionsDoc:
+      additionalProperties: false
+      example:
+        data:
+          product_version: product_version
+          code: code
+          last_editor: last_editor
+          active: true
+          runtime: ""
+          version: version
+          default_args: ""
+          vendor: vendor
+          name: name
+          execution_environment: ""
+          id: 0
+          reference_count: 6
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/EdgeFunctions"
+      required:
+      - data
+      title: ResponseEdgeFunctionsDoc
+      type: object
+    ResponseFirewall:
       additionalProperties: false
       example:
         data:
@@ -27461,8 +27490,8 @@ components:
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
             ddos_protection: ""
+            functions: ""
             network_protection: ""
-            edge_functions: ""
             waf: ""
         state: state
       properties:
@@ -27471,12 +27500,35 @@ components:
           minLength: 1
           type: string
         data:
-          $ref: "#/components/schemas/EdgeFirewall"
+          $ref: "#/components/schemas/Firewall"
       required:
       - data
-      title: ResponseEdgeFirewall
+      title: ResponseFirewall
       type: object
-    ResponseEdgeFirewallRuleEngine:
+    ResponseFirewallFunctionInstance:
+      additionalProperties: false
+      example:
+        data:
+          args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/FirewallFunctionInstance"
+      required:
+      - data
+      title: ResponseFirewallFunctionInstance
+      type: object
+    ResponseFirewallRuleEngine:
       additionalProperties: false
       example:
         data:
@@ -27601,62 +27653,10 @@ components:
           minLength: 1
           type: string
         data:
-          $ref: "#/components/schemas/EdgeFirewallRuleEngine"
+          $ref: "#/components/schemas/FirewallRuleEngine"
       required:
       - data
-      title: ResponseEdgeFirewallRuleEngine
-      type: object
-    ResponseEdgeFunctionsDoc:
-      additionalProperties: false
-      example:
-        data:
-          product_version: product_version
-          code: code
-          last_editor: last_editor
-          active: true
-          runtime: ""
-          version: version
-          default_args: ""
-          vendor: vendor
-          name: name
-          execution_environment: ""
-          id: 0
-          reference_count: 6
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/EdgeFunctions"
-      required:
-      - data
-      title: ResponseEdgeFunctionsDoc
-      type: object
-    ResponseFirewallFunctionInstance:
-      additionalProperties: false
-      example:
-        data:
-          args: ""
-          function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/FirewallFunctionInstance"
-      required:
-      - data
-      title: ResponseFirewallFunctionInstance
+      title: ResponseFirewallRuleEngine
       type: object
     ResponseListCacheSetting:
       additionalProperties: false
@@ -27773,8 +27773,8 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
+            edge_cache: ""
             application_accelerator: ""
-            cache: ""
             functions: ""
             tiered_cache: ""
             image_processor: ""
@@ -27784,6 +27784,20 @@ components:
       required:
       - data
       title: ResponseRetrieveApplication
+      type: object
+    ResponseRetrieveApplicationDeviceGroups:
+      additionalProperties: false
+      example:
+        data:
+          name: name
+          id: 0
+          user_agent: user_agent
+      properties:
+        data:
+          $ref: "#/components/schemas/ApplicationDeviceGroups"
+      required:
+      - data
+      title: ResponseRetrieveApplicationDeviceGroups
       type: object
     ResponseRetrieveApplicationFunctionInstance:
       additionalProperties: false
@@ -27882,20 +27896,6 @@ components:
       required:
       - data
       title: ResponseRetrieveCustomPage
-      type: object
-    ResponseRetrieveEdgeApplicationDeviceGroups:
-      additionalProperties: false
-      example:
-        data:
-          name: name
-          id: 0
-          user_agent: user_agent
-      properties:
-        data:
-          $ref: "#/components/schemas/EdgeApplicationDeviceGroups"
-      required:
-      - data
-      title: ResponseRetrieveEdgeApplicationDeviceGroups
       type: object
     ResponseRetrieveEdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
@@ -28054,7 +28054,31 @@ components:
       - data
       title: ResponseRetrieveEdgeConnectorPolymorphic
       type: object
-    ResponseRetrieveEdgeFirewall:
+    ResponseRetrieveEdgeFunctionsDoc:
+      additionalProperties: false
+      example:
+        data:
+          product_version: product_version
+          code: code
+          last_editor: last_editor
+          active: true
+          runtime: ""
+          version: version
+          default_args: ""
+          vendor: vendor
+          name: name
+          execution_environment: ""
+          id: 0
+          reference_count: 6
+          last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: "#/components/schemas/EdgeFunctions"
+      required:
+      - data
+      title: ResponseRetrieveEdgeFunctionsDoc
+      type: object
+    ResponseRetrieveFirewall:
       additionalProperties: false
       example:
         data:
@@ -28067,17 +28091,35 @@ components:
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
             ddos_protection: ""
+            functions: ""
             network_protection: ""
-            edge_functions: ""
             waf: ""
       properties:
         data:
-          $ref: "#/components/schemas/EdgeFirewall"
+          $ref: "#/components/schemas/Firewall"
       required:
       - data
-      title: ResponseRetrieveEdgeFirewall
+      title: ResponseRetrieveFirewall
       type: object
-    ResponseRetrieveEdgeFirewallRuleEngine:
+    ResponseRetrieveFirewallFunctionInstance:
+      additionalProperties: false
+      example:
+        data:
+          args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: "#/components/schemas/FirewallFunctionInstance"
+      required:
+      - data
+      title: ResponseRetrieveFirewallFunctionInstance
+      type: object
+    ResponseRetrieveFirewallRuleEngine:
       additionalProperties: false
       example:
         data:
@@ -28197,52 +28239,10 @@ components:
           order: 119
       properties:
         data:
-          $ref: "#/components/schemas/EdgeFirewallRuleEngine"
+          $ref: "#/components/schemas/FirewallRuleEngine"
       required:
       - data
-      title: ResponseRetrieveEdgeFirewallRuleEngine
-      type: object
-    ResponseRetrieveEdgeFunctionsDoc:
-      additionalProperties: false
-      example:
-        data:
-          product_version: product_version
-          code: code
-          last_editor: last_editor
-          active: true
-          runtime: ""
-          version: version
-          default_args: ""
-          vendor: vendor
-          name: name
-          execution_environment: ""
-          id: 0
-          reference_count: 6
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        data:
-          $ref: "#/components/schemas/EdgeFunctions"
-      required:
-      - data
-      title: ResponseRetrieveEdgeFunctionsDoc
-      type: object
-    ResponseRetrieveFirewallFunctionInstance:
-      additionalProperties: false
-      example:
-        data:
-          args: ""
-          function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        data:
-          $ref: "#/components/schemas/FirewallFunctionInstance"
-      required:
-      - data
-      title: ResponseRetrieveFirewallFunctionInstance
+      title: ResponseRetrieveFirewallRuleEngine
       type: object
     ResponseRetrieveNetworkListDetail:
       additionalProperties: false
