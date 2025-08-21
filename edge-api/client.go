@@ -51,13 +51,13 @@ type APIClient struct {
 
 	ApplicationsAPI *ApplicationsAPIService
 
+	ApplicationsDeviceGroupsAPI *ApplicationsDeviceGroupsAPIService
+
 	ApplicationsFunctionAPI *ApplicationsFunctionAPIService
 
 	CustomPagesAPI *CustomPagesAPIService
 
 	EdgeApplicationsCacheSettingsAPI *EdgeApplicationsCacheSettingsAPIService
-
-	EdgeApplicationsDeviceGroupsAPI *EdgeApplicationsDeviceGroupsAPIService
 
 	EdgeApplicationsRequestRulesAPI *EdgeApplicationsRequestRulesAPIService
 
@@ -65,13 +65,13 @@ type APIClient struct {
 
 	EdgeConnectorsAPI *EdgeConnectorsAPIService
 
-	EdgeFirewallsAPI *EdgeFirewallsAPIService
-
-	EdgeFirewallsRulesEngineAPI *EdgeFirewallsRulesEngineAPIService
-
 	EdgeFunctionsAPI *EdgeFunctionsAPIService
 
+	FirewallsAPI *FirewallsAPIService
+
 	FirewallsFunctionAPI *FirewallsFunctionAPIService
+
+	FirewallsRulesEngineAPI *FirewallsRulesEngineAPIService
 
 	NetworkListsAPI *NetworkListsAPIService
 
@@ -103,17 +103,17 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.ApplicationsAPI = (*ApplicationsAPIService)(&c.common)
+	c.ApplicationsDeviceGroupsAPI = (*ApplicationsDeviceGroupsAPIService)(&c.common)
 	c.ApplicationsFunctionAPI = (*ApplicationsFunctionAPIService)(&c.common)
 	c.CustomPagesAPI = (*CustomPagesAPIService)(&c.common)
 	c.EdgeApplicationsCacheSettingsAPI = (*EdgeApplicationsCacheSettingsAPIService)(&c.common)
-	c.EdgeApplicationsDeviceGroupsAPI = (*EdgeApplicationsDeviceGroupsAPIService)(&c.common)
 	c.EdgeApplicationsRequestRulesAPI = (*EdgeApplicationsRequestRulesAPIService)(&c.common)
 	c.EdgeApplicationsResponseRulesAPI = (*EdgeApplicationsResponseRulesAPIService)(&c.common)
 	c.EdgeConnectorsAPI = (*EdgeConnectorsAPIService)(&c.common)
-	c.EdgeFirewallsAPI = (*EdgeFirewallsAPIService)(&c.common)
-	c.EdgeFirewallsRulesEngineAPI = (*EdgeFirewallsRulesEngineAPIService)(&c.common)
 	c.EdgeFunctionsAPI = (*EdgeFunctionsAPIService)(&c.common)
+	c.FirewallsAPI = (*FirewallsAPIService)(&c.common)
 	c.FirewallsFunctionAPI = (*FirewallsFunctionAPIService)(&c.common)
+	c.FirewallsRulesEngineAPI = (*FirewallsRulesEngineAPIService)(&c.common)
 	c.NetworkListsAPI = (*NetworkListsAPIService)(&c.common)
 	c.PurgeAPI = (*PurgeAPIService)(&c.common)
 	c.WAFsAPI = (*WAFsAPIService)(&c.common)

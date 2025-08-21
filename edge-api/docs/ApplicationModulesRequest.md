@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cache** | Pointer to [**CacheModuleRequest**](CacheModuleRequest.md) |  | [optional] 
+**EdgeCache** | Pointer to [**CacheModuleRequest**](CacheModuleRequest.md) |  | [optional] 
 **Functions** | Pointer to [**EdgeFunctionModuleRequest**](EdgeFunctionModuleRequest.md) |  | [optional] 
 **ApplicationAccelerator** | Pointer to [**ApplicationAcceleratorModuleRequest**](ApplicationAcceleratorModuleRequest.md) |  | [optional] 
 **ImageProcessor** | Pointer to [**ImageProcessorModuleRequest**](ImageProcessorModuleRequest.md) |  | [optional] 
@@ -29,30 +29,30 @@ NewApplicationModulesRequestWithDefaults instantiates a new ApplicationModulesRe
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCache
+### GetEdgeCache
 
-`func (o *ApplicationModulesRequest) GetCache() CacheModuleRequest`
+`func (o *ApplicationModulesRequest) GetEdgeCache() CacheModuleRequest`
 
-GetCache returns the Cache field if non-nil, zero value otherwise.
+GetEdgeCache returns the EdgeCache field if non-nil, zero value otherwise.
 
-### GetCacheOk
+### GetEdgeCacheOk
 
-`func (o *ApplicationModulesRequest) GetCacheOk() (*CacheModuleRequest, bool)`
+`func (o *ApplicationModulesRequest) GetEdgeCacheOk() (*CacheModuleRequest, bool)`
 
-GetCacheOk returns a tuple with the Cache field if it's non-nil, zero value otherwise
+GetEdgeCacheOk returns a tuple with the EdgeCache field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCache
+### SetEdgeCache
 
-`func (o *ApplicationModulesRequest) SetCache(v CacheModuleRequest)`
+`func (o *ApplicationModulesRequest) SetEdgeCache(v CacheModuleRequest)`
 
-SetCache sets Cache field to given value.
+SetEdgeCache sets EdgeCache field to given value.
 
-### HasCache
+### HasEdgeCache
 
-`func (o *ApplicationModulesRequest) HasCache() bool`
+`func (o *ApplicationModulesRequest) HasEdgeCache() bool`
 
-HasCache returns a boolean if a field has been set.
+HasEdgeCache returns a boolean if a field has been set.
 
 ### GetFunctions
 
