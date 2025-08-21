@@ -1,7 +1,7 @@
 /*
-edge-storage-api
+storage-api
 
-REST API OpenAPI documentation for the Edge Storage
+REST API OpenAPI documentation for the Storage
 
 API version: 1.0.0 (v1)
 */
@@ -41,7 +41,7 @@ var (
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the edge-storage-api API v1.0.0 (v1)
+// APIClient manages communication with the storage-api API v1.0.0 (v1)
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration

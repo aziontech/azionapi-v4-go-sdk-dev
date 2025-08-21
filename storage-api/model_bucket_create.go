@@ -1,7 +1,7 @@
 /*
-edge-storage-api
+storage-api
 
-REST API OpenAPI documentation for the Edge Storage
+REST API OpenAPI documentation for the Storage
 
 API version: 1.0.0 (v1)
 */
