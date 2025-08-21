@@ -85,6 +85,12 @@ Class | Method | HTTP request | Description
 *ApplicationsAPI* | [**PartialUpdateApplication**](docs/ApplicationsAPI.md#partialupdateapplication) | **Patch** /edge_application/applications/{application_id} | Partially update an Application
 *ApplicationsAPI* | [**RetrieveApplication**](docs/ApplicationsAPI.md#retrieveapplication) | **Get** /edge_application/applications/{application_id} | Retrieve details of an Application
 *ApplicationsAPI* | [**UpdateApplication**](docs/ApplicationsAPI.md#updateapplication) | **Put** /edge_application/applications/{application_id} | Update an Application
+*ApplicationsFunctionAPI* | [**CreateApplicationFunctionInstance**](docs/ApplicationsFunctionAPI.md#createapplicationfunctioninstance) | **Post** /edge_application/applications/{application_id}/functions | Create an Application Function Instance
+*ApplicationsFunctionAPI* | [**DestroyApplicationFunctionInstance**](docs/ApplicationsFunctionAPI.md#destroyapplicationfunctioninstance) | **Delete** /edge_application/applications/{application_id}/functions/{function_id} | Destroy an Application Function Instance
+*ApplicationsFunctionAPI* | [**ListApplicationFunctionInstances**](docs/ApplicationsFunctionAPI.md#listapplicationfunctioninstances) | **Get** /edge_application/applications/{application_id}/functions | List Function Instances
+*ApplicationsFunctionAPI* | [**PartialUpdateApplicationFunctionInstance**](docs/ApplicationsFunctionAPI.md#partialupdateapplicationfunctioninstance) | **Patch** /edge_application/applications/{application_id}/functions/{function_id} | Partially update an Application Function Instance
+*ApplicationsFunctionAPI* | [**RetrieveApplicationFunctionInstance**](docs/ApplicationsFunctionAPI.md#retrieveapplicationfunctioninstance) | **Get** /edge_application/applications/{application_id}/functions/{function_id} | Retrieve details of an Application Function Instance
+*ApplicationsFunctionAPI* | [**UpdateApplicationFunctionInstance**](docs/ApplicationsFunctionAPI.md#updateapplicationfunctioninstance) | **Put** /edge_application/applications/{application_id}/functions/{function_id} | Update an Edge Application Function Instance
 *CustomPagesAPI* | [**CreateCustomPage**](docs/CustomPagesAPI.md#createcustompage) | **Post** /workspace/custom_pages | Create a Custom Page
 *CustomPagesAPI* | [**DestroyCustomPage**](docs/CustomPagesAPI.md#destroycustompage) | **Delete** /workspace/custom_pages/{id} | Destroy a Custom Page
 *CustomPagesAPI* | [**ListCustomPages**](docs/CustomPagesAPI.md#listcustompages) | **Get** /workspace/custom_pages | List Custom Pages
@@ -103,12 +109,6 @@ Class | Method | HTTP request | Description
 *EdgeApplicationsDeviceGroupsAPI* | [**PartialUpdateDeviceGroup**](docs/EdgeApplicationsDeviceGroupsAPI.md#partialupdatedevicegroup) | **Patch** /edge_application/applications/{application_id}/device_groups/{id} | Partially update an Edge Applications Device Group
 *EdgeApplicationsDeviceGroupsAPI* | [**RetrieveDeviceGroup**](docs/EdgeApplicationsDeviceGroupsAPI.md#retrievedevicegroup) | **Get** /edge_application/applications/{application_id}/device_groups/{id} | Retrieve details of a Device Group
 *EdgeApplicationsDeviceGroupsAPI* | [**UpdateDeviceGroup**](docs/EdgeApplicationsDeviceGroupsAPI.md#updatedevicegroup) | **Put** /edge_application/applications/{application_id}/device_groups/{id} | Update an Edge Applications Device Group
-*EdgeApplicationsFunctionAPI* | [**CreateEdgeApplicationFunctionInstance**](docs/EdgeApplicationsFunctionAPI.md#createedgeapplicationfunctioninstance) | **Post** /edge_application/applications/{application_id}/functions | Create an Edge Application Function Instance
-*EdgeApplicationsFunctionAPI* | [**DestroyEdgeApplicationFunctionInstance**](docs/EdgeApplicationsFunctionAPI.md#destroyedgeapplicationfunctioninstance) | **Delete** /edge_application/applications/{application_id}/functions/{function_id} | Destroy an Edge Application Function Instance
-*EdgeApplicationsFunctionAPI* | [**ListEdgeApplicationFunctionInstances**](docs/EdgeApplicationsFunctionAPI.md#listedgeapplicationfunctioninstances) | **Get** /edge_application/applications/{application_id}/functions | List Function Instances
-*EdgeApplicationsFunctionAPI* | [**PartialUpdateEdgeApplicationFunctionInstance**](docs/EdgeApplicationsFunctionAPI.md#partialupdateedgeapplicationfunctioninstance) | **Patch** /edge_application/applications/{application_id}/functions/{function_id} | Partially update an Edge Application Function Instance
-*EdgeApplicationsFunctionAPI* | [**RetrieveEdgeApplicationFunctionInstance**](docs/EdgeApplicationsFunctionAPI.md#retrieveedgeapplicationfunctioninstance) | **Get** /edge_application/applications/{application_id}/functions/{function_id} | Retrieve details of an Edge Application Function Instance
-*EdgeApplicationsFunctionAPI* | [**UpdateEdgeApplicationFunctionInstance**](docs/EdgeApplicationsFunctionAPI.md#updateedgeapplicationfunctioninstance) | **Put** /edge_application/applications/{application_id}/functions/{function_id} | Update an Edge Application Function Instance
 *EdgeApplicationsRequestRulesAPI* | [**EdgeApplicationApiApplicationsRequestRulesCreate**](docs/EdgeApplicationsRequestRulesAPI.md#edgeapplicationapiapplicationsrequestrulescreate) | **Post** /edge_application/applications/{application_id}/request_rules | Create an Edge Application Request Rule
 *EdgeApplicationsRequestRulesAPI* | [**EdgeApplicationApiApplicationsRequestRulesDestroy**](docs/EdgeApplicationsRequestRulesAPI.md#edgeapplicationapiapplicationsrequestrulesdestroy) | **Delete** /edge_application/applications/{application_id}/request_rules/{id} | Destroy an Edge Application Request Rule
 *EdgeApplicationsRequestRulesAPI* | [**EdgeApplicationApiApplicationsRequestRulesList**](docs/EdgeApplicationsRequestRulesAPI.md#edgeapplicationapiapplicationsrequestruleslist) | **Get** /edge_application/applications/{application_id}/request_rules | List Edge Application Request Rules
@@ -136,12 +136,6 @@ Class | Method | HTTP request | Description
 *EdgeFirewallsAPI* | [**PartialUpdateEdgeFirewall**](docs/EdgeFirewallsAPI.md#partialupdateedgefirewall) | **Patch** /edge_firewall/firewalls/{id} | Partially update an Edge Firewall
 *EdgeFirewallsAPI* | [**RetrieveEdgeFirewall**](docs/EdgeFirewallsAPI.md#retrieveedgefirewall) | **Get** /edge_firewall/firewalls/{id} | Retrieve details from an Edge Firewall
 *EdgeFirewallsAPI* | [**UpdateEdgeFirewall**](docs/EdgeFirewallsAPI.md#updateedgefirewall) | **Put** /edge_firewall/firewalls/{id} | Update an Edge Firewall
-*EdgeFirewallsFunctionAPI* | [**CreateEdgeFirewallFunction**](docs/EdgeFirewallsFunctionAPI.md#createedgefirewallfunction) | **Post** /edge_firewall/firewalls/{edge_firewall_id}/functions | Create an Edge Firewall Function
-*EdgeFirewallsFunctionAPI* | [**DestroyEdgeFirewallFunction**](docs/EdgeFirewallsFunctionAPI.md#destroyedgefirewallfunction) | **Delete** /edge_firewall/firewalls/{edge_firewall_id}/functions/{id} | Destroy an Edge Firewall Function
-*EdgeFirewallsFunctionAPI* | [**ListEdgeFirewallFunction**](docs/EdgeFirewallsFunctionAPI.md#listedgefirewallfunction) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/functions | List Edge Firewall Function
-*EdgeFirewallsFunctionAPI* | [**PartialUpdateEdgeFirewallFunction**](docs/EdgeFirewallsFunctionAPI.md#partialupdateedgefirewallfunction) | **Patch** /edge_firewall/firewalls/{edge_firewall_id}/functions/{id} | Partially update an Edge Firewall Function
-*EdgeFirewallsFunctionAPI* | [**RetrieveEdgeFirewallFunction**](docs/EdgeFirewallsFunctionAPI.md#retrieveedgefirewallfunction) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/functions/{id} | Retrieve details of an Edge Firewall Function
-*EdgeFirewallsFunctionAPI* | [**UpdateEdgeFirewallFunction**](docs/EdgeFirewallsFunctionAPI.md#updateedgefirewallfunction) | **Put** /edge_firewall/firewalls/{edge_firewall_id}/functions/{id} | Update an Edge Firewall Function
 *EdgeFirewallsRulesEngineAPI* | [**CreateEdgeFirewallRule**](docs/EdgeFirewallsRulesEngineAPI.md#createedgefirewallrule) | **Post** /edge_firewall/firewalls/{edge_firewall_id}/request_rules | Create an Edge Firewall Rule
 *EdgeFirewallsRulesEngineAPI* | [**DestroyEdgeFirewallRule**](docs/EdgeFirewallsRulesEngineAPI.md#destroyedgefirewallrule) | **Delete** /edge_firewall/firewalls/{edge_firewall_id}/request_rules/{id} | Destroy an Edge Firewall Rule
 *EdgeFirewallsRulesEngineAPI* | [**ListEdgeFirewallRules**](docs/EdgeFirewallsRulesEngineAPI.md#listedgefirewallrules) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/request_rules | List Edge Firewall Rules
@@ -155,6 +149,12 @@ Class | Method | HTTP request | Description
 *EdgeFunctionsAPI* | [**PartialUpdateEdgeFunction**](docs/EdgeFunctionsAPI.md#partialupdateedgefunction) | **Patch** /edge_functions/functions/{id} | Partially update an Edge Function
 *EdgeFunctionsAPI* | [**RetrieveEdgeFunction**](docs/EdgeFunctionsAPI.md#retrieveedgefunction) | **Get** /edge_functions/functions/{id} | Retrieve details of an Edge Function
 *EdgeFunctionsAPI* | [**UpdateEdgeFunction**](docs/EdgeFunctionsAPI.md#updateedgefunction) | **Put** /edge_functions/functions/{id} | Update an Edge Function
+*FirewallsFunctionAPI* | [**CreateFirewallFunction**](docs/FirewallsFunctionAPI.md#createfirewallfunction) | **Post** /edge_firewall/firewalls/{edge_firewall_id}/functions | Create an Firewall Function
+*FirewallsFunctionAPI* | [**DestroyFirewallFunction**](docs/FirewallsFunctionAPI.md#destroyfirewallfunction) | **Delete** /edge_firewall/firewalls/{edge_firewall_id}/functions/{id} | Destroy an Firewall Function
+*FirewallsFunctionAPI* | [**ListFirewallFunction**](docs/FirewallsFunctionAPI.md#listfirewallfunction) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/functions | List Firewall Function
+*FirewallsFunctionAPI* | [**PartialUpdateFirewallFunction**](docs/FirewallsFunctionAPI.md#partialupdatefirewallfunction) | **Patch** /edge_firewall/firewalls/{edge_firewall_id}/functions/{id} | Partially update an Firewall Function
+*FirewallsFunctionAPI* | [**RetrieveFirewallFunction**](docs/FirewallsFunctionAPI.md#retrievefirewallfunction) | **Get** /edge_firewall/firewalls/{edge_firewall_id}/functions/{id} | Retrieve details of an Firewall Function
+*FirewallsFunctionAPI* | [**UpdateFirewallFunction**](docs/FirewallsFunctionAPI.md#updatefirewallfunction) | **Put** /edge_firewall/firewalls/{edge_firewall_id}/functions/{id} | Update an Firewall Function
 *NetworkListsAPI* | [**CreateNetworkList**](docs/NetworkListsAPI.md#createnetworklist) | **Post** /workspace/network_lists | Create a Network List
 *NetworkListsAPI* | [**DestroyNetworkList**](docs/NetworkListsAPI.md#destroynetworklist) | **Delete** /workspace/network_lists/{id} | Destroy a Network List
 *NetworkListsAPI* | [**ListNetworkLists**](docs/NetworkListsAPI.md#listnetworklists) | **Get** /workspace/network_lists | List Network Lists
@@ -204,6 +204,8 @@ Class | Method | HTTP request | Description
  - [Application](docs/Application.md)
  - [ApplicationAcceleratorModule](docs/ApplicationAcceleratorModule.md)
  - [ApplicationAcceleratorModuleRequest](docs/ApplicationAcceleratorModuleRequest.md)
+ - [ApplicationFunctionInstance](docs/ApplicationFunctionInstance.md)
+ - [ApplicationFunctionInstanceRequest](docs/ApplicationFunctionInstanceRequest.md)
  - [ApplicationModules](docs/ApplicationModules.md)
  - [ApplicationModulesRequest](docs/ApplicationModulesRequest.md)
  - [ApplicationRequest](docs/ApplicationRequest.md)
@@ -248,8 +250,6 @@ Class | Method | HTTP request | Description
  - [EdgeApplicationCriterionPolymorphicArgumentRequest](docs/EdgeApplicationCriterionPolymorphicArgumentRequest.md)
  - [EdgeApplicationDeviceGroups](docs/EdgeApplicationDeviceGroups.md)
  - [EdgeApplicationDeviceGroupsRequest](docs/EdgeApplicationDeviceGroupsRequest.md)
- - [EdgeApplicationFunctionInstance](docs/EdgeApplicationFunctionInstance.md)
- - [EdgeApplicationFunctionInstanceRequest](docs/EdgeApplicationFunctionInstanceRequest.md)
  - [EdgeApplicationRequestPhaseBehaviorCaptureMatchGroups](docs/EdgeApplicationRequestPhaseBehaviorCaptureMatchGroups.md)
  - [EdgeApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest](docs/EdgeApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest.md)
  - [EdgeApplicationRequestPhaseBehaviorWithArgs](docs/EdgeApplicationRequestPhaseBehaviorWithArgs.md)
@@ -423,8 +423,6 @@ Class | Method | HTTP request | Description
  - [EdgeFirewallCriterionFieldRequest](docs/EdgeFirewallCriterionFieldRequest.md)
  - [EdgeFirewallCriterionPolymorphicArgument](docs/EdgeFirewallCriterionPolymorphicArgument.md)
  - [EdgeFirewallCriterionPolymorphicArgumentRequest](docs/EdgeFirewallCriterionPolymorphicArgumentRequest.md)
- - [EdgeFirewallFunctionInstance](docs/EdgeFirewallFunctionInstance.md)
- - [EdgeFirewallFunctionInstanceRequest](docs/EdgeFirewallFunctionInstanceRequest.md)
  - [EdgeFirewallModule](docs/EdgeFirewallModule.md)
  - [EdgeFirewallModuleRequest](docs/EdgeFirewallModuleRequest.md)
  - [EdgeFirewallModules](docs/EdgeFirewallModules.md)
@@ -437,6 +435,8 @@ Class | Method | HTTP request | Description
  - [EdgeFunctionModuleRequest](docs/EdgeFunctionModuleRequest.md)
  - [EdgeFunctions](docs/EdgeFunctions.md)
  - [EdgeFunctionsRequest](docs/EdgeFunctionsRequest.md)
+ - [FirewallFunctionInstance](docs/FirewallFunctionInstance.md)
+ - [FirewallFunctionInstanceRequest](docs/FirewallFunctionInstanceRequest.md)
  - [HMAC](docs/HMAC.md)
  - [HMACRequest](docs/HMACRequest.md)
  - [HTTPConnectionOptions](docs/HTTPConnectionOptions.md)
@@ -474,38 +474,38 @@ Class | Method | HTTP request | Description
  - [PageConnectorAttributesRequest](docs/PageConnectorAttributesRequest.md)
  - [PageConnectorRequest](docs/PageConnectorRequest.md)
  - [PageRequest](docs/PageRequest.md)
+ - [PaginatedApplicationFunctionInstanceList](docs/PaginatedApplicationFunctionInstanceList.md)
  - [PaginatedApplicationList](docs/PaginatedApplicationList.md)
  - [PaginatedCustomPageList](docs/PaginatedCustomPageList.md)
  - [PaginatedEdgeApplicationDeviceGroupsList](docs/PaginatedEdgeApplicationDeviceGroupsList.md)
- - [PaginatedEdgeApplicationFunctionInstanceList](docs/PaginatedEdgeApplicationFunctionInstanceList.md)
  - [PaginatedEdgeApplicationRequestPhaseRuleEngineList](docs/PaginatedEdgeApplicationRequestPhaseRuleEngineList.md)
  - [PaginatedEdgeApplicationResponsePhaseRuleEngineList](docs/PaginatedEdgeApplicationResponsePhaseRuleEngineList.md)
  - [PaginatedEdgeConnectorPolymorphicList](docs/PaginatedEdgeConnectorPolymorphicList.md)
- - [PaginatedEdgeFirewallFunctionInstanceList](docs/PaginatedEdgeFirewallFunctionInstanceList.md)
  - [PaginatedEdgeFirewallList](docs/PaginatedEdgeFirewallList.md)
  - [PaginatedEdgeFirewallRuleEngineList](docs/PaginatedEdgeFirewallRuleEngineList.md)
  - [PaginatedEdgeFunctionsList](docs/PaginatedEdgeFunctionsList.md)
+ - [PaginatedFirewallFunctionInstanceList](docs/PaginatedFirewallFunctionInstanceList.md)
  - [PaginatedNetworkListList](docs/PaginatedNetworkListList.md)
  - [PaginatedResponseListCacheSettingList](docs/PaginatedResponseListCacheSettingList.md)
  - [PaginatedWAFList](docs/PaginatedWAFList.md)
  - [PaginatedWAFRuleList](docs/PaginatedWAFRuleList.md)
  - [PaginatedWorkloadDeploymentList](docs/PaginatedWorkloadDeploymentList.md)
  - [PaginatedWorkloadList](docs/PaginatedWorkloadList.md)
+ - [PatchedApplicationFunctionInstanceRequest](docs/PatchedApplicationFunctionInstanceRequest.md)
  - [PatchedApplicationRequest](docs/PatchedApplicationRequest.md)
  - [PatchedCacheSettingRequest](docs/PatchedCacheSettingRequest.md)
  - [PatchedCustomPageRequest](docs/PatchedCustomPageRequest.md)
  - [PatchedEdgeApplicationDeviceGroupsRequest](docs/PatchedEdgeApplicationDeviceGroupsRequest.md)
- - [PatchedEdgeApplicationFunctionInstanceRequest](docs/PatchedEdgeApplicationFunctionInstanceRequest.md)
  - [PatchedEdgeApplicationRequestPhaseRuleEngineRequest](docs/PatchedEdgeApplicationRequestPhaseRuleEngineRequest.md)
  - [PatchedEdgeApplicationResponsePhaseRuleEngineRequest](docs/PatchedEdgeApplicationResponsePhaseRuleEngineRequest.md)
  - [PatchedEdgeConnectorHTTPRequest](docs/PatchedEdgeConnectorHTTPRequest.md)
  - [PatchedEdgeConnectorLiveIngestRequest](docs/PatchedEdgeConnectorLiveIngestRequest.md)
  - [PatchedEdgeConnectorPolymorphicRequest](docs/PatchedEdgeConnectorPolymorphicRequest.md)
  - [PatchedEdgeConnectorStorageRequest](docs/PatchedEdgeConnectorStorageRequest.md)
- - [PatchedEdgeFirewallFunctionInstanceRequest](docs/PatchedEdgeFirewallFunctionInstanceRequest.md)
  - [PatchedEdgeFirewallRequest](docs/PatchedEdgeFirewallRequest.md)
  - [PatchedEdgeFirewallRuleEngineRequest](docs/PatchedEdgeFirewallRuleEngineRequest.md)
  - [PatchedEdgeFunctionsRequest](docs/PatchedEdgeFunctionsRequest.md)
+ - [PatchedFirewallFunctionInstanceRequest](docs/PatchedFirewallFunctionInstanceRequest.md)
  - [PatchedNetworkListDetailRequest](docs/PatchedNetworkListDetailRequest.md)
  - [PatchedWAFRequest](docs/PatchedWAFRequest.md)
  - [PatchedWAFRuleRequest](docs/PatchedWAFRuleRequest.md)
@@ -516,35 +516,36 @@ Class | Method | HTTP request | Description
  - [PurgeInput](docs/PurgeInput.md)
  - [PurgeInputRequest](docs/PurgeInputRequest.md)
  - [ResponseApplication](docs/ResponseApplication.md)
+ - [ResponseApplicationFunctionInstance](docs/ResponseApplicationFunctionInstance.md)
  - [ResponseAsyncApplication](docs/ResponseAsyncApplication.md)
+ - [ResponseAsyncApplicationFunctionInstance](docs/ResponseAsyncApplicationFunctionInstance.md)
  - [ResponseAsyncCacheSetting](docs/ResponseAsyncCacheSetting.md)
  - [ResponseAsyncCustomPage](docs/ResponseAsyncCustomPage.md)
  - [ResponseAsyncDeleteApplication](docs/ResponseAsyncDeleteApplication.md)
+ - [ResponseAsyncDeleteApplicationFunctionInstance](docs/ResponseAsyncDeleteApplicationFunctionInstance.md)
  - [ResponseAsyncDeleteCacheSetting](docs/ResponseAsyncDeleteCacheSetting.md)
  - [ResponseAsyncDeleteCustomPage](docs/ResponseAsyncDeleteCustomPage.md)
  - [ResponseAsyncDeleteEdgeApplicationDeviceGroups](docs/ResponseAsyncDeleteEdgeApplicationDeviceGroups.md)
- - [ResponseAsyncDeleteEdgeApplicationFunctionInstance](docs/ResponseAsyncDeleteEdgeApplicationFunctionInstance.md)
  - [ResponseAsyncDeleteEdgeApplicationRequestPhaseRuleEngine](docs/ResponseAsyncDeleteEdgeApplicationRequestPhaseRuleEngine.md)
  - [ResponseAsyncDeleteEdgeApplicationResponsePhaseRuleEngine](docs/ResponseAsyncDeleteEdgeApplicationResponsePhaseRuleEngine.md)
  - [ResponseAsyncDeleteEdgeConnectorPolymorphic](docs/ResponseAsyncDeleteEdgeConnectorPolymorphic.md)
  - [ResponseAsyncDeleteEdgeFirewall](docs/ResponseAsyncDeleteEdgeFirewall.md)
- - [ResponseAsyncDeleteEdgeFirewallFunctionInstance](docs/ResponseAsyncDeleteEdgeFirewallFunctionInstance.md)
  - [ResponseAsyncDeleteEdgeFirewallRuleEngine](docs/ResponseAsyncDeleteEdgeFirewallRuleEngine.md)
  - [ResponseAsyncDeleteEdgeFunctionsDoc](docs/ResponseAsyncDeleteEdgeFunctionsDoc.md)
+ - [ResponseAsyncDeleteFirewallFunctionInstance](docs/ResponseAsyncDeleteFirewallFunctionInstance.md)
  - [ResponseAsyncDeleteNetworkListDetail](docs/ResponseAsyncDeleteNetworkListDetail.md)
  - [ResponseAsyncDeleteWAF](docs/ResponseAsyncDeleteWAF.md)
  - [ResponseAsyncDeleteWAFRule](docs/ResponseAsyncDeleteWAFRule.md)
  - [ResponseAsyncDeleteWorkload](docs/ResponseAsyncDeleteWorkload.md)
  - [ResponseAsyncDeleteWorkloadDeployment](docs/ResponseAsyncDeleteWorkloadDeployment.md)
  - [ResponseAsyncEdgeApplicationDeviceGroups](docs/ResponseAsyncEdgeApplicationDeviceGroups.md)
- - [ResponseAsyncEdgeApplicationFunctionInstance](docs/ResponseAsyncEdgeApplicationFunctionInstance.md)
  - [ResponseAsyncEdgeApplicationRequestPhaseRuleEngine](docs/ResponseAsyncEdgeApplicationRequestPhaseRuleEngine.md)
  - [ResponseAsyncEdgeApplicationResponsePhaseRuleEngine](docs/ResponseAsyncEdgeApplicationResponsePhaseRuleEngine.md)
  - [ResponseAsyncEdgeConnectorPolymorphic](docs/ResponseAsyncEdgeConnectorPolymorphic.md)
  - [ResponseAsyncEdgeFirewall](docs/ResponseAsyncEdgeFirewall.md)
- - [ResponseAsyncEdgeFirewallFunctionInstance](docs/ResponseAsyncEdgeFirewallFunctionInstance.md)
  - [ResponseAsyncEdgeFirewallRuleEngine](docs/ResponseAsyncEdgeFirewallRuleEngine.md)
  - [ResponseAsyncEdgeFunctionsDoc](docs/ResponseAsyncEdgeFunctionsDoc.md)
+ - [ResponseAsyncFirewallFunctionInstance](docs/ResponseAsyncFirewallFunctionInstance.md)
  - [ResponseAsyncNetworkListDetail](docs/ResponseAsyncNetworkListDetail.md)
  - [ResponseAsyncPurgeInput](docs/ResponseAsyncPurgeInput.md)
  - [ResponseAsyncWAF](docs/ResponseAsyncWAF.md)
@@ -568,41 +569,40 @@ Class | Method | HTTP request | Description
  - [ResponseBadRequestWorkloadDeployment](docs/ResponseBadRequestWorkloadDeployment.md)
  - [ResponseCustomPage](docs/ResponseCustomPage.md)
  - [ResponseDeleteApplication](docs/ResponseDeleteApplication.md)
+ - [ResponseDeleteApplicationFunctionInstance](docs/ResponseDeleteApplicationFunctionInstance.md)
  - [ResponseDeleteCustomPage](docs/ResponseDeleteCustomPage.md)
- - [ResponseDeleteEdgeApplicationFunctionInstance](docs/ResponseDeleteEdgeApplicationFunctionInstance.md)
  - [ResponseDeleteEdgeApplicationRequestPhaseRuleEngine](docs/ResponseDeleteEdgeApplicationRequestPhaseRuleEngine.md)
  - [ResponseDeleteEdgeApplicationResponsePhaseRuleEngine](docs/ResponseDeleteEdgeApplicationResponsePhaseRuleEngine.md)
  - [ResponseDeleteEdgeConnectorPolymorphic](docs/ResponseDeleteEdgeConnectorPolymorphic.md)
  - [ResponseDeleteEdgeFirewall](docs/ResponseDeleteEdgeFirewall.md)
- - [ResponseDeleteEdgeFirewallFunctionInstance](docs/ResponseDeleteEdgeFirewallFunctionInstance.md)
  - [ResponseDeleteEdgeFirewallRuleEngine](docs/ResponseDeleteEdgeFirewallRuleEngine.md)
  - [ResponseDeleteEdgeFunctionsDoc](docs/ResponseDeleteEdgeFunctionsDoc.md)
+ - [ResponseDeleteFirewallFunctionInstance](docs/ResponseDeleteFirewallFunctionInstance.md)
  - [ResponseDeleteNetworkListDetail](docs/ResponseDeleteNetworkListDetail.md)
  - [ResponseDeleteWAF](docs/ResponseDeleteWAF.md)
  - [ResponseDeleteWAFRule](docs/ResponseDeleteWAFRule.md)
  - [ResponseEdgeApplicationDeviceGroups](docs/ResponseEdgeApplicationDeviceGroups.md)
- - [ResponseEdgeApplicationFunctionInstance](docs/ResponseEdgeApplicationFunctionInstance.md)
  - [ResponseEdgeApplicationRequestPhaseRuleEngine](docs/ResponseEdgeApplicationRequestPhaseRuleEngine.md)
  - [ResponseEdgeApplicationResponsePhaseRuleEngine](docs/ResponseEdgeApplicationResponsePhaseRuleEngine.md)
  - [ResponseEdgeConnectorPolymorphic](docs/ResponseEdgeConnectorPolymorphic.md)
  - [ResponseEdgeFirewall](docs/ResponseEdgeFirewall.md)
- - [ResponseEdgeFirewallFunctionInstance](docs/ResponseEdgeFirewallFunctionInstance.md)
  - [ResponseEdgeFirewallRuleEngine](docs/ResponseEdgeFirewallRuleEngine.md)
  - [ResponseEdgeFunctionsDoc](docs/ResponseEdgeFunctionsDoc.md)
+ - [ResponseFirewallFunctionInstance](docs/ResponseFirewallFunctionInstance.md)
  - [ResponseListCacheSetting](docs/ResponseListCacheSetting.md)
  - [ResponseNetworkListDetail](docs/ResponseNetworkListDetail.md)
  - [ResponsePurgeInput](docs/ResponsePurgeInput.md)
  - [ResponseRetrieveApplication](docs/ResponseRetrieveApplication.md)
+ - [ResponseRetrieveApplicationFunctionInstance](docs/ResponseRetrieveApplicationFunctionInstance.md)
  - [ResponseRetrieveCacheSetting](docs/ResponseRetrieveCacheSetting.md)
  - [ResponseRetrieveCustomPage](docs/ResponseRetrieveCustomPage.md)
  - [ResponseRetrieveEdgeApplicationDeviceGroups](docs/ResponseRetrieveEdgeApplicationDeviceGroups.md)
- - [ResponseRetrieveEdgeApplicationFunctionInstance](docs/ResponseRetrieveEdgeApplicationFunctionInstance.md)
  - [ResponseRetrieveEdgeApplicationRequestPhaseRuleEngine](docs/ResponseRetrieveEdgeApplicationRequestPhaseRuleEngine.md)
  - [ResponseRetrieveEdgeConnectorPolymorphic](docs/ResponseRetrieveEdgeConnectorPolymorphic.md)
  - [ResponseRetrieveEdgeFirewall](docs/ResponseRetrieveEdgeFirewall.md)
- - [ResponseRetrieveEdgeFirewallFunctionInstance](docs/ResponseRetrieveEdgeFirewallFunctionInstance.md)
  - [ResponseRetrieveEdgeFirewallRuleEngine](docs/ResponseRetrieveEdgeFirewallRuleEngine.md)
  - [ResponseRetrieveEdgeFunctionsDoc](docs/ResponseRetrieveEdgeFunctionsDoc.md)
+ - [ResponseRetrieveFirewallFunctionInstance](docs/ResponseRetrieveFirewallFunctionInstance.md)
  - [ResponseRetrieveNetworkListDetail](docs/ResponseRetrieveNetworkListDetail.md)
  - [ResponseRetrieveWAF](docs/ResponseRetrieveWAF.md)
  - [ResponseRetrieveWAFRule](docs/ResponseRetrieveWAFRule.md)

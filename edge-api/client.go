@@ -51,13 +51,13 @@ type APIClient struct {
 
 	ApplicationsAPI *ApplicationsAPIService
 
+	ApplicationsFunctionAPI *ApplicationsFunctionAPIService
+
 	CustomPagesAPI *CustomPagesAPIService
 
 	EdgeApplicationsCacheSettingsAPI *EdgeApplicationsCacheSettingsAPIService
 
 	EdgeApplicationsDeviceGroupsAPI *EdgeApplicationsDeviceGroupsAPIService
-
-	EdgeApplicationsFunctionAPI *EdgeApplicationsFunctionAPIService
 
 	EdgeApplicationsRequestRulesAPI *EdgeApplicationsRequestRulesAPIService
 
@@ -67,11 +67,11 @@ type APIClient struct {
 
 	EdgeFirewallsAPI *EdgeFirewallsAPIService
 
-	EdgeFirewallsFunctionAPI *EdgeFirewallsFunctionAPIService
-
 	EdgeFirewallsRulesEngineAPI *EdgeFirewallsRulesEngineAPIService
 
 	EdgeFunctionsAPI *EdgeFunctionsAPIService
+
+	FirewallsFunctionAPI *FirewallsFunctionAPIService
 
 	NetworkListsAPI *NetworkListsAPIService
 
@@ -103,17 +103,17 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.ApplicationsAPI = (*ApplicationsAPIService)(&c.common)
+	c.ApplicationsFunctionAPI = (*ApplicationsFunctionAPIService)(&c.common)
 	c.CustomPagesAPI = (*CustomPagesAPIService)(&c.common)
 	c.EdgeApplicationsCacheSettingsAPI = (*EdgeApplicationsCacheSettingsAPIService)(&c.common)
 	c.EdgeApplicationsDeviceGroupsAPI = (*EdgeApplicationsDeviceGroupsAPIService)(&c.common)
-	c.EdgeApplicationsFunctionAPI = (*EdgeApplicationsFunctionAPIService)(&c.common)
 	c.EdgeApplicationsRequestRulesAPI = (*EdgeApplicationsRequestRulesAPIService)(&c.common)
 	c.EdgeApplicationsResponseRulesAPI = (*EdgeApplicationsResponseRulesAPIService)(&c.common)
 	c.EdgeConnectorsAPI = (*EdgeConnectorsAPIService)(&c.common)
 	c.EdgeFirewallsAPI = (*EdgeFirewallsAPIService)(&c.common)
-	c.EdgeFirewallsFunctionAPI = (*EdgeFirewallsFunctionAPIService)(&c.common)
 	c.EdgeFirewallsRulesEngineAPI = (*EdgeFirewallsRulesEngineAPIService)(&c.common)
 	c.EdgeFunctionsAPI = (*EdgeFunctionsAPIService)(&c.common)
+	c.FirewallsFunctionAPI = (*FirewallsFunctionAPIService)(&c.common)
 	c.NetworkListsAPI = (*NetworkListsAPIService)(&c.common)
 	c.PurgeAPI = (*PurgeAPIService)(&c.common)
 	c.WAFsAPI = (*WAFsAPIService)(&c.common)

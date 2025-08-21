@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EdgeCache** | Pointer to [**CacheModule**](CacheModule.md) |  | [optional] 
-**EdgeFunctions** | Pointer to [**EdgeFunctionModule**](EdgeFunctionModule.md) |  | [optional] 
+**Cache** | Pointer to [**CacheModule**](CacheModule.md) |  | [optional] 
+**Functions** | Pointer to [**EdgeFunctionModule**](EdgeFunctionModule.md) |  | [optional] 
 **ApplicationAccelerator** | Pointer to [**ApplicationAcceleratorModule**](ApplicationAcceleratorModule.md) |  | [optional] 
 **ImageProcessor** | Pointer to [**ImageProcessorModule**](ImageProcessorModule.md) |  | [optional] 
 **TieredCache** | Pointer to [**TieredCacheModule**](TieredCacheModule.md) |  | [optional] 
@@ -29,55 +29,55 @@ NewApplicationModulesWithDefaults instantiates a new ApplicationModules object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetEdgeCache
+### GetCache
 
-`func (o *ApplicationModules) GetEdgeCache() CacheModule`
+`func (o *ApplicationModules) GetCache() CacheModule`
 
-GetEdgeCache returns the EdgeCache field if non-nil, zero value otherwise.
+GetCache returns the Cache field if non-nil, zero value otherwise.
 
-### GetEdgeCacheOk
+### GetCacheOk
 
-`func (o *ApplicationModules) GetEdgeCacheOk() (*CacheModule, bool)`
+`func (o *ApplicationModules) GetCacheOk() (*CacheModule, bool)`
 
-GetEdgeCacheOk returns a tuple with the EdgeCache field if it's non-nil, zero value otherwise
+GetCacheOk returns a tuple with the Cache field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEdgeCache
+### SetCache
 
-`func (o *ApplicationModules) SetEdgeCache(v CacheModule)`
+`func (o *ApplicationModules) SetCache(v CacheModule)`
 
-SetEdgeCache sets EdgeCache field to given value.
+SetCache sets Cache field to given value.
 
-### HasEdgeCache
+### HasCache
 
-`func (o *ApplicationModules) HasEdgeCache() bool`
+`func (o *ApplicationModules) HasCache() bool`
 
-HasEdgeCache returns a boolean if a field has been set.
+HasCache returns a boolean if a field has been set.
 
-### GetEdgeFunctions
+### GetFunctions
 
-`func (o *ApplicationModules) GetEdgeFunctions() EdgeFunctionModule`
+`func (o *ApplicationModules) GetFunctions() EdgeFunctionModule`
 
-GetEdgeFunctions returns the EdgeFunctions field if non-nil, zero value otherwise.
+GetFunctions returns the Functions field if non-nil, zero value otherwise.
 
-### GetEdgeFunctionsOk
+### GetFunctionsOk
 
-`func (o *ApplicationModules) GetEdgeFunctionsOk() (*EdgeFunctionModule, bool)`
+`func (o *ApplicationModules) GetFunctionsOk() (*EdgeFunctionModule, bool)`
 
-GetEdgeFunctionsOk returns a tuple with the EdgeFunctions field if it's non-nil, zero value otherwise
+GetFunctionsOk returns a tuple with the Functions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEdgeFunctions
+### SetFunctions
 
-`func (o *ApplicationModules) SetEdgeFunctions(v EdgeFunctionModule)`
+`func (o *ApplicationModules) SetFunctions(v EdgeFunctionModule)`
 
-SetEdgeFunctions sets EdgeFunctions field to given value.
+SetFunctions sets Functions field to given value.
 
-### HasEdgeFunctions
+### HasFunctions
 
-`func (o *ApplicationModules) HasEdgeFunctions() bool`
+`func (o *ApplicationModules) HasFunctions() bool`
 
-HasEdgeFunctions returns a boolean if a field has been set.
+HasFunctions returns a boolean if a field has been set.
 
 ### GetApplicationAccelerator
 

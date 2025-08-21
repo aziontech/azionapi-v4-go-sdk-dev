@@ -2429,9 +2429,9 @@ paths:
       - Edge Applications - Device Groups
   /edge_application/applications/{application_id}/functions:
     get:
-      description: List all Function Instances for a specific Edge Application owned
-        by your account.
-      operationId: list_edge_application_function_instances
+      description: List all Function Instances for a specific Application owned by
+        your account.
+      operationId: list_application_function_instances
       parameters:
       - explode: false
         in: path
@@ -2450,7 +2450,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, last_editor, last_modified, name, args, edge_function, active)
+          (Valid fields: id, last_editor, last_modified, name, args, function, active)
         explode: true
         in: query
         name: ordering
@@ -2489,7 +2489,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedEdgeApplicationFunctionInstanceList"
+                $ref: "#/components/schemas/PaginatedApplicationFunctionInstanceList"
           description: ""
         "401":
           content:
@@ -2608,11 +2608,11 @@ paths:
       - BearerAuth: []
       summary: List Function Instances
       tags:
-      - Edge Applications - Function
+      - Applications - Function
     post:
-      description: Create a new Function Instance for a specific Edge Application
-        in your account.
-      operationId: create_edge_application_function_instance
+      description: Create a new Function Instance for a specific Application in your
+        account.
+      operationId: create_application_function_instance
       parameters:
       - explode: false
         in: path
@@ -2625,20 +2625,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeApplicationFunctionInstanceRequest"
+              $ref: "#/components/schemas/ApplicationFunctionInstanceRequest"
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeApplicationFunctionInstance"
+                $ref: "#/components/schemas/ResponseApplicationFunctionInstance"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplicationFunctionInstance"
+                $ref: "#/components/schemas/ResponseAsyncApplicationFunctionInstance"
           description: ""
         "401":
           content:
@@ -2755,13 +2755,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Create an Edge Application Function Instance
+      summary: Create an Application Function Instance
       tags:
-      - Edge Applications - Function
+      - Applications - Function
   /edge_application/applications/{application_id}/functions/{function_id}:
     delete:
-      description: Destroy a specific Edge Application Function Instance in your account.
-      operationId: destroy_edge_application_function_instance
+      description: Destroy a specific Application Function Instance in your account.
+      operationId: destroy_application_function_instance
       parameters:
       - explode: false
         in: path
@@ -2782,13 +2782,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteEdgeApplicationFunctionInstance"
+                $ref: "#/components/schemas/ResponseDeleteApplicationFunctionInstance"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteEdgeApplicationFunctionInstance"
+                $ref: "#/components/schemas/ResponseAsyncDeleteApplicationFunctionInstance"
           description: ""
         "401":
           content:
@@ -2905,13 +2905,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Destroy an Edge Application Function Instance
+      summary: Destroy an Application Function Instance
       tags:
-      - Edge Applications - Function
+      - Applications - Function
     get:
-      description: Retrieve details of a specific Edge Application Function Instance
-        in your account.
-      operationId: retrieve_edge_application_function_instance
+      description: Retrieve details of a specific Application Function Instance in
+        your account.
+      operationId: retrieve_application_function_instance
       parameters:
       - explode: false
         in: path
@@ -2940,7 +2940,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveEdgeApplicationFunctionInstance"
+                $ref: "#/components/schemas/ResponseRetrieveApplicationFunctionInstance"
           description: ""
         "401":
           content:
@@ -3057,13 +3057,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Retrieve details of an Edge Application Function Instance
+      summary: Retrieve details of an Application Function Instance
       tags:
-      - Edge Applications - Function
+      - Applications - Function
     patch:
-      description: Update one or more fields of an existing Edge Application Function
-        Instance without affecting other fields.
-      operationId: partial_update_edge_application_function_instance
+      description: Update one or more fields of an existing Application Function Instance
+        without affecting other fields.
+      operationId: partial_update_application_function_instance
       parameters:
       - explode: false
         in: path
@@ -3083,19 +3083,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PatchedEdgeApplicationFunctionInstanceRequest"
+              $ref: "#/components/schemas/PatchedApplicationFunctionInstanceRequest"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeApplicationFunctionInstance"
+                $ref: "#/components/schemas/ResponseApplicationFunctionInstance"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplicationFunctionInstance"
+                $ref: "#/components/schemas/ResponseAsyncApplicationFunctionInstance"
           description: ""
         "401":
           content:
@@ -3212,13 +3212,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Partially update an Edge Application Function Instance
+      summary: Partially update an Application Function Instance
       tags:
-      - Edge Applications - Function
+      - Applications - Function
     put:
-      description: Update an existing Edge Application Function Instance. This replaces
+      description: Update an existing Application Function Instance. This replaces
         the entire Function Instance with the new data provided.
-      operationId: update_edge_application_function_instance
+      operationId: update_application_function_instance
       parameters:
       - explode: false
         in: path
@@ -3238,20 +3238,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeApplicationFunctionInstanceRequest"
+              $ref: "#/components/schemas/ApplicationFunctionInstanceRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeApplicationFunctionInstance"
+                $ref: "#/components/schemas/ResponseApplicationFunctionInstance"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeApplicationFunctionInstance"
+                $ref: "#/components/schemas/ResponseAsyncApplicationFunctionInstance"
           description: ""
         "401":
           content:
@@ -3370,7 +3370,7 @@ paths:
       - BearerAuth: []
       summary: Update an Edge Application Function Instance
       tags:
-      - Edge Applications - Function
+      - Applications - Function
   /edge_application/applications/{application_id}/request_rules:
     get:
       description: List all Rules for a specific Edge Application owned by your account.
@@ -6837,9 +6837,9 @@ paths:
       - Edge Firewalls
   /edge_firewall/firewalls/{edge_firewall_id}/functions:
     get:
-      description: List all Function Instances for a specific Edge Firewall owned
-        by your account.
-      operationId: List Edge Firewall Function
+      description: List all Function Instances for a specific Firewall owned by your
+        account.
+      operationId: List Firewall Function
       parameters:
       - explode: false
         in: path
@@ -6858,7 +6858,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, last_editor, last_modified, name, args, edge_function, active)
+          (Valid fields: id, last_editor, last_modified, name, args, function, active)
         explode: true
         in: query
         name: ordering
@@ -6897,7 +6897,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedEdgeFirewallFunctionInstanceList"
+                $ref: "#/components/schemas/PaginatedFirewallFunctionInstanceList"
           description: ""
         "401":
           content:
@@ -7014,13 +7014,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: List Edge Firewall Function
+      summary: List Firewall Function
       tags:
-      - Edge Firewalls - Function
+      - Firewalls - Function
     post:
-      description: Create a new Function Instance for a specific Edge Firewall in
-        your account.
-      operationId: Create Edge Firewall Function
+      description: Create a new Function Instance for a specific Firewall in your
+        account.
+      operationId: Create Firewall Function
       parameters:
       - explode: false
         in: path
@@ -7033,20 +7033,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeFirewallFunctionInstanceRequest"
+              $ref: "#/components/schemas/FirewallFunctionInstanceRequest"
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFirewallFunctionInstance"
+                $ref: "#/components/schemas/ResponseFirewallFunctionInstance"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFirewallFunctionInstance"
+                $ref: "#/components/schemas/ResponseAsyncFirewallFunctionInstance"
           description: ""
         "401":
           content:
@@ -7163,13 +7163,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Create an Edge Firewall Function
+      summary: Create an Firewall Function
       tags:
-      - Edge Firewalls - Function
+      - Firewalls - Function
   /edge_firewall/firewalls/{edge_firewall_id}/functions/{id}:
     delete:
-      description: Destroy a specific Edge Firewall Function Instance in your account.
-      operationId: Destroy Edge Firewall Function
+      description: Destroy a specific Firewall Function Instance in your account.
+      operationId: Destroy Firewall Function
       parameters:
       - explode: false
         in: path
@@ -7190,13 +7190,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteEdgeFirewallFunctionInstance"
+                $ref: "#/components/schemas/ResponseDeleteFirewallFunctionInstance"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteEdgeFirewallFunctionInstance"
+                $ref: "#/components/schemas/ResponseAsyncDeleteFirewallFunctionInstance"
           description: ""
         "401":
           content:
@@ -7313,13 +7313,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Destroy an Edge Firewall Function
+      summary: Destroy an Firewall Function
       tags:
-      - Edge Firewalls - Function
+      - Firewalls - Function
     get:
-      description: Retrieve details of a specific Edge Firewall Function Instance
-        in your account.
-      operationId: Retrieve Edge Firewall Function
+      description: Retrieve details of a specific Firewall Function Instance in your
+        account.
+      operationId: Retrieve Firewall Function
       parameters:
       - explode: false
         in: path
@@ -7348,7 +7348,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveEdgeFirewallFunctionInstance"
+                $ref: "#/components/schemas/ResponseRetrieveFirewallFunctionInstance"
           description: ""
         "401":
           content:
@@ -7465,13 +7465,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Retrieve details of an Edge Firewall Function
+      summary: Retrieve details of an Firewall Function
       tags:
-      - Edge Firewalls - Function
+      - Firewalls - Function
     patch:
-      description: Update one or more fields of an existing Edge Firewall Function
-        Instance without affecting other fields.
-      operationId: Partial update Edge Firewall Function
+      description: Update one or more fields of an existing Firewall Function Instance
+        without affecting other fields.
+      operationId: Partial update Firewall Function
       parameters:
       - explode: false
         in: path
@@ -7491,19 +7491,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PatchedEdgeFirewallFunctionInstanceRequest"
+              $ref: "#/components/schemas/PatchedFirewallFunctionInstanceRequest"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFirewallFunctionInstance"
+                $ref: "#/components/schemas/ResponseFirewallFunctionInstance"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFirewallFunctionInstance"
+                $ref: "#/components/schemas/ResponseAsyncFirewallFunctionInstance"
           description: ""
         "401":
           content:
@@ -7620,13 +7620,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Partially update an Edge Firewall Function
+      summary: Partially update an Firewall Function
       tags:
-      - Edge Firewalls - Function
+      - Firewalls - Function
     put:
-      description: Update an existing Edge Firewall Function Instance. This replaces
-        the entire Function Instance with the new data provided.
-      operationId: Update Edge Firewall Function
+      description: Update an existing Firewall Function Instance. This replaces the
+        entire Function Instance with the new data provided.
+      operationId: Update Firewall Function
       parameters:
       - explode: false
         in: path
@@ -7646,20 +7646,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeFirewallFunctionInstanceRequest"
+              $ref: "#/components/schemas/FirewallFunctionInstanceRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeFirewallFunctionInstance"
+                $ref: "#/components/schemas/ResponseFirewallFunctionInstance"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeFirewallFunctionInstance"
+                $ref: "#/components/schemas/ResponseAsyncFirewallFunctionInstance"
           description: ""
         "401":
           content:
@@ -7776,9 +7776,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Update an Edge Firewall Function
+      summary: Update an Firewall Function
       tags:
-      - Edge Firewalls - Function
+      - Firewalls - Function
   /edge_firewall/firewalls/{edge_firewall_id}/request_rules:
     get:
       description: List all Rules for a specific Edge Firewall owned by your account.
@@ -16409,11 +16409,11 @@ components:
         id: 0
         last_modified: 2000-01-23T04:56:07.000+00:00
         modules:
-          edge_cache: ""
           application_accelerator: ""
+          cache: ""
+          functions: ""
           tiered_cache: ""
           image_processor: ""
-          edge_functions: ""
       properties:
         id:
           format: int64
@@ -16459,19 +16459,86 @@ components:
           type: boolean
       title: ApplicationAcceleratorModuleRequest
       type: object
+    ApplicationFunctionInstance:
+      additionalProperties: false
+      description: Serializer for Application Function Instances
+      example:
+        args: ""
+        function: 5559347081229897728
+        last_editor: last_editor
+        name: name
+        active: true
+        id: 0
+        last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        args: {}
+        function:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        active:
+          type: boolean
+        last_editor:
+          maxLength: 250
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+      required:
+      - function
+      - id
+      - last_editor
+      - last_modified
+      - name
+      title: ApplicationFunctionInstance
+      type: object
+    ApplicationFunctionInstanceRequest:
+      additionalProperties: false
+      description: Serializer for Application Function Instances
+      example:
+        args: ""
+        function: 738633633822310400
+        name: name
+        active: true
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        args: {}
+        function:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        active:
+          type: boolean
+      required:
+      - function
+      - name
+      title: ApplicationFunctionInstanceRequest
+      type: object
     ApplicationModules:
       additionalProperties: false
       example:
-        edge_cache: ""
         application_accelerator: ""
+        cache: ""
+        functions: ""
         tiered_cache: ""
         image_processor: ""
-        edge_functions: ""
       properties:
-        edge_cache:
+        cache:
           allOf:
           - $ref: "#/components/schemas/CacheModule"
-        edge_functions:
+        functions:
           allOf:
           - $ref: "#/components/schemas/EdgeFunctionModule"
         application_accelerator:
@@ -16488,16 +16555,16 @@ components:
     ApplicationModulesRequest:
       additionalProperties: false
       example:
-        edge_cache: ""
         application_accelerator: ""
+        cache: ""
+        functions: ""
         tiered_cache: ""
         image_processor: ""
-        edge_functions: ""
       properties:
-        edge_cache:
+        cache:
           allOf:
           - $ref: "#/components/schemas/CacheModuleRequest"
-        edge_functions:
+        functions:
           allOf:
           - $ref: "#/components/schemas/EdgeFunctionModuleRequest"
         application_accelerator:
@@ -16518,11 +16585,11 @@ components:
         name: name
         active: true
         modules:
-          edge_cache: ""
           application_accelerator: ""
+          cache: ""
+          functions: ""
           tiered_cache: ""
           image_processor: ""
-          edge_functions: ""
       properties:
         name:
           maxLength: 100
@@ -17809,73 +17876,6 @@ components:
       - name
       - user_agent
       title: EdgeApplicationDeviceGroupsRequest
-      type: object
-    EdgeApplicationFunctionInstance:
-      additionalProperties: false
-      description: Serializer for Edge Application Function Instances
-      example:
-        args: ""
-        edge_function: 5559347081229897728
-        last_editor: last_editor
-        name: name
-        active: true
-        id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        args: {}
-        edge_function:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        active:
-          type: boolean
-        last_editor:
-          maxLength: 250
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-      required:
-      - edge_function
-      - id
-      - last_editor
-      - last_modified
-      - name
-      title: EdgeApplicationFunctionInstance
-      type: object
-    EdgeApplicationFunctionInstanceRequest:
-      additionalProperties: false
-      description: Serializer for Edge Application Function Instances
-      example:
-        args: ""
-        edge_function: 738633633822310400
-        name: name
-        active: true
-      properties:
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        args: {}
-        edge_function:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        active:
-          type: boolean
-      required:
-      - edge_function
-      - name
-      title: EdgeApplicationFunctionInstanceRequest
       type: object
     EdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
@@ -21100,73 +21100,6 @@ components:
         type: integer
       - type: string
       title: EdgeFirewallCriterionPolymorphicArgumentRequest
-    EdgeFirewallFunctionInstance:
-      additionalProperties: false
-      description: Serializer for Edge Firewall Function Instances
-      example:
-        args: ""
-        edge_function: 5559347081229897728
-        last_editor: last_editor
-        name: name
-        active: true
-        id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        args: {}
-        edge_function:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        active:
-          type: boolean
-        last_editor:
-          maxLength: 250
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-      required:
-      - edge_function
-      - id
-      - last_editor
-      - last_modified
-      - name
-      title: EdgeFirewallFunctionInstance
-      type: object
-    EdgeFirewallFunctionInstanceRequest:
-      additionalProperties: false
-      description: Serializer for Edge Firewall Function Instances
-      example:
-        args: ""
-        edge_function: 738633633822310400
-        name: name
-        active: true
-      properties:
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        args: {}
-        edge_function:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        active:
-          type: boolean
-      required:
-      - edge_function
-      - name
-      title: EdgeFirewallFunctionInstanceRequest
-      type: object
     EdgeFirewallModule:
       additionalProperties: false
       description: |-
@@ -21713,6 +21646,73 @@ components:
         * `application` - Application
       title: ExecutionEnvironmentEnum
       type: string
+    FirewallFunctionInstance:
+      additionalProperties: false
+      description: Serializer for Firewall Function Instances
+      example:
+        args: ""
+        function: 5559347081229897728
+        last_editor: last_editor
+        name: name
+        active: true
+        id: 0
+        last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        args: {}
+        function:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        active:
+          type: boolean
+        last_editor:
+          maxLength: 250
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+      required:
+      - function
+      - id
+      - last_editor
+      - last_modified
+      - name
+      title: FirewallFunctionInstance
+      type: object
+    FirewallFunctionInstanceRequest:
+      additionalProperties: false
+      description: Serializer for Firewall Function Instances
+      example:
+        args: ""
+        function: 738633633822310400
+        name: name
+        active: true
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        args: {}
+        function:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        active:
+          type: boolean
+      required:
+      - function
+      - name
+      title: FirewallFunctionInstanceRequest
+      type: object
     HMAC:
       additionalProperties: false
       properties:
@@ -22734,6 +22734,38 @@ components:
       - page
       title: PageRequest
       type: object
+    PaginatedApplicationFunctionInstanceList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        - args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/ApplicationFunctionInstance"
+          type: array
+      title: PaginatedApplicationFunctionInstanceList
+      type: object
     PaginatedApplicationList:
       additionalProperties: false
       example:
@@ -22747,11 +22779,11 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
-            edge_cache: ""
             application_accelerator: ""
+            cache: ""
+            functions: ""
             tiered_cache: ""
             image_processor: ""
-            edge_functions: ""
         - product_version: product_version
           debug: true
           last_editor: last_editor
@@ -22760,11 +22792,11 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
-            edge_cache: ""
             application_accelerator: ""
+            cache: ""
+            functions: ""
             tiered_cache: ""
             image_processor: ""
-            edge_functions: ""
       properties:
         count:
           example: 123
@@ -22865,38 +22897,6 @@ components:
             $ref: "#/components/schemas/EdgeApplicationDeviceGroups"
           type: array
       title: PaginatedEdgeApplicationDeviceGroupsList
-      type: object
-    PaginatedEdgeApplicationFunctionInstanceList:
-      additionalProperties: false
-      example:
-        count: 123
-        results:
-        - args: ""
-          edge_function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        - args: ""
-          edge_function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        count:
-          example: 123
-          format: int64
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        results:
-          items:
-            $ref: "#/components/schemas/EdgeApplicationFunctionInstance"
-          type: array
-      title: PaginatedEdgeApplicationFunctionInstanceList
       type: object
     PaginatedEdgeApplicationRequestPhaseRuleEngineList:
       additionalProperties: false
@@ -23450,38 +23450,6 @@ components:
           type: array
       title: PaginatedEdgeConnectorPolymorphicList
       type: object
-    PaginatedEdgeFirewallFunctionInstanceList:
-      additionalProperties: false
-      example:
-        count: 123
-        results:
-        - args: ""
-          edge_function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        - args: ""
-          edge_function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        count:
-          example: 123
-          format: int64
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        results:
-          items:
-            $ref: "#/components/schemas/EdgeFirewallFunctionInstance"
-          type: array
-      title: PaginatedEdgeFirewallFunctionInstanceList
-      type: object
     PaginatedEdgeFirewallList:
       additionalProperties: false
       example:
@@ -23814,6 +23782,38 @@ components:
           type: array
       title: PaginatedEdgeFunctionsList
       type: object
+    PaginatedFirewallFunctionInstanceList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        - args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/FirewallFunctionInstance"
+          type: array
+      title: PaginatedFirewallFunctionInstanceList
+      type: object
     PaginatedNetworkListList:
       additionalProperties: false
       example:
@@ -24144,6 +24144,29 @@ components:
           type: array
       title: PaginatedWorkloadList
       type: object
+    PatchedApplicationFunctionInstanceRequest:
+      additionalProperties: false
+      description: Serializer for Application Function Instances
+      example:
+        args: ""
+        function: 738633633822310400
+        name: name
+        active: true
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        args: {}
+        function:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        active:
+          type: boolean
+      title: PatchedApplicationFunctionInstanceRequest
+      type: object
     PatchedApplicationRequest:
       additionalProperties: false
       example:
@@ -24151,11 +24174,11 @@ components:
         name: name
         active: true
         modules:
-          edge_cache: ""
           application_accelerator: ""
+          cache: ""
+          functions: ""
           tiered_cache: ""
           image_processor: ""
-          edge_functions: ""
       properties:
         name:
           maxLength: 100
@@ -24268,29 +24291,6 @@ components:
           minLength: 1
           type: string
       title: PatchedEdgeApplicationDeviceGroupsRequest
-      type: object
-    PatchedEdgeApplicationFunctionInstanceRequest:
-      additionalProperties: false
-      description: Serializer for Edge Application Function Instances
-      example:
-        args: ""
-        edge_function: 738633633822310400
-        name: name
-        active: true
-      properties:
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        args: {}
-        edge_function:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        active:
-          type: boolean
-      title: PatchedEdgeApplicationFunctionInstanceRequest
       type: object
     PatchedEdgeApplicationRequestPhaseRuleEngineRequest:
       additionalProperties: false
@@ -24673,29 +24673,6 @@ components:
           $ref: "#/components/schemas/EdgeConnectorStorageAttributesRequest"
       title: PatchedEdgeConnectorStorageRequest
       type: object
-    PatchedEdgeFirewallFunctionInstanceRequest:
-      additionalProperties: false
-      description: Serializer for Edge Firewall Function Instances
-      example:
-        args: ""
-        edge_function: 738633633822310400
-        name: name
-        active: true
-      properties:
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        args: {}
-        edge_function:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
-        active:
-          type: boolean
-      title: PatchedEdgeFirewallFunctionInstanceRequest
-      type: object
     PatchedEdgeFirewallRequest:
       additionalProperties: false
       example:
@@ -24890,6 +24867,29 @@ components:
           type: string
         default_args: {}
       title: PatchedEdgeFunctionsRequest
+      type: object
+    PatchedFirewallFunctionInstanceRequest:
+      additionalProperties: false
+      description: Serializer for Firewall Function Instances
+      example:
+        args: ""
+        function: 738633633822310400
+        name: name
+        active: true
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        args: {}
+        function:
+          format: int64
+          maximum: 9223372036854775807
+          minimum: 1
+          type: integer
+        active:
+          type: boolean
+      title: PatchedFirewallFunctionInstanceRequest
       type: object
     PatchedNetworkListDetailRequest:
       additionalProperties: false
@@ -25318,11 +25318,11 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
-            edge_cache: ""
             application_accelerator: ""
+            cache: ""
+            functions: ""
             tiered_cache: ""
             image_processor: ""
-            edge_functions: ""
         state: state
       properties:
         state:
@@ -25334,6 +25334,29 @@ components:
       required:
       - data
       title: ResponseApplication
+      type: object
+    ResponseApplicationFunctionInstance:
+      additionalProperties: false
+      example:
+        data:
+          args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/ApplicationFunctionInstance"
+      required:
+      - data
+      title: ResponseApplicationFunctionInstance
       type: object
     ResponseAsyncApplication:
       additionalProperties: false
@@ -25347,11 +25370,11 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
-            edge_cache: ""
             application_accelerator: ""
+            cache: ""
+            functions: ""
             tiered_cache: ""
             image_processor: ""
-            edge_functions: ""
         state: state
       properties:
         state:
@@ -25363,6 +25386,29 @@ components:
       required:
       - data
       title: ResponseAsyncApplication
+      type: object
+    ResponseAsyncApplicationFunctionInstance:
+      additionalProperties: false
+      example:
+        data:
+          args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/ApplicationFunctionInstance"
+      required:
+      - data
+      title: ResponseAsyncApplicationFunctionInstance
       type: object
     ResponseAsyncCacheSetting:
       additionalProperties: false
@@ -25465,6 +25511,17 @@ components:
           type: string
       title: ResponseAsyncDeleteApplication
       type: object
+    ResponseAsyncDeleteApplicationFunctionInstance:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseAsyncDeleteApplicationFunctionInstance
+      type: object
     ResponseAsyncDeleteCacheSetting:
       additionalProperties: false
       example:
@@ -25497,17 +25554,6 @@ components:
           minLength: 1
           type: string
       title: ResponseAsyncDeleteEdgeApplicationDeviceGroups
-      type: object
-    ResponseAsyncDeleteEdgeApplicationFunctionInstance:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteEdgeApplicationFunctionInstance
       type: object
     ResponseAsyncDeleteEdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
@@ -25553,17 +25599,6 @@ components:
           type: string
       title: ResponseAsyncDeleteEdgeFirewall
       type: object
-    ResponseAsyncDeleteEdgeFirewallFunctionInstance:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteEdgeFirewallFunctionInstance
-      type: object
     ResponseAsyncDeleteEdgeFirewallRuleEngine:
       additionalProperties: false
       example:
@@ -25585,6 +25620,17 @@ components:
           minLength: 1
           type: string
       title: ResponseAsyncDeleteEdgeFunctionsDoc
+      type: object
+    ResponseAsyncDeleteFirewallFunctionInstance:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseAsyncDeleteFirewallFunctionInstance
       type: object
     ResponseAsyncDeleteNetworkListDetail:
       additionalProperties: false
@@ -25659,29 +25705,6 @@ components:
       required:
       - data
       title: ResponseAsyncEdgeApplicationDeviceGroups
-      type: object
-    ResponseAsyncEdgeApplicationFunctionInstance:
-      additionalProperties: false
-      example:
-        data:
-          args: ""
-          edge_function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/EdgeApplicationFunctionInstance"
-      required:
-      - data
-      title: ResponseAsyncEdgeApplicationFunctionInstance
       type: object
     ResponseAsyncEdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
@@ -26008,29 +26031,6 @@ components:
       - data
       title: ResponseAsyncEdgeFirewall
       type: object
-    ResponseAsyncEdgeFirewallFunctionInstance:
-      additionalProperties: false
-      example:
-        data:
-          args: ""
-          edge_function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/EdgeFirewallFunctionInstance"
-      required:
-      - data
-      title: ResponseAsyncEdgeFirewallFunctionInstance
-      type: object
     ResponseAsyncEdgeFirewallRuleEngine:
       additionalProperties: false
       example:
@@ -26189,6 +26189,29 @@ components:
       required:
       - data
       title: ResponseAsyncEdgeFunctionsDoc
+      type: object
+    ResponseAsyncFirewallFunctionInstance:
+      additionalProperties: false
+      example:
+        data:
+          args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/FirewallFunctionInstance"
+      required:
+      - data
+      title: ResponseAsyncFirewallFunctionInstance
       type: object
     ResponseAsyncNetworkListDetail:
       additionalProperties: false
@@ -26977,6 +27000,17 @@ components:
           type: string
       title: ResponseDeleteApplication
       type: object
+    ResponseDeleteApplicationFunctionInstance:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteApplicationFunctionInstance
+      type: object
     ResponseDeleteCustomPage:
       additionalProperties: false
       example:
@@ -26987,17 +27021,6 @@ components:
           minLength: 1
           type: string
       title: ResponseDeleteCustomPage
-      type: object
-    ResponseDeleteEdgeApplicationFunctionInstance:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeleteEdgeApplicationFunctionInstance
       type: object
     ResponseDeleteEdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
@@ -27043,17 +27066,6 @@ components:
           type: string
       title: ResponseDeleteEdgeFirewall
       type: object
-    ResponseDeleteEdgeFirewallFunctionInstance:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeleteEdgeFirewallFunctionInstance
-      type: object
     ResponseDeleteEdgeFirewallRuleEngine:
       additionalProperties: false
       example:
@@ -27075,6 +27087,17 @@ components:
           minLength: 1
           type: string
       title: ResponseDeleteEdgeFunctionsDoc
+      type: object
+    ResponseDeleteFirewallFunctionInstance:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteFirewallFunctionInstance
       type: object
     ResponseDeleteNetworkListDetail:
       additionalProperties: false
@@ -27127,29 +27150,6 @@ components:
       required:
       - data
       title: ResponseEdgeApplicationDeviceGroups
-      type: object
-    ResponseEdgeApplicationFunctionInstance:
-      additionalProperties: false
-      example:
-        data:
-          args: ""
-          edge_function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/EdgeApplicationFunctionInstance"
-      required:
-      - data
-      title: ResponseEdgeApplicationFunctionInstance
       type: object
     ResponseEdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
@@ -27476,29 +27476,6 @@ components:
       - data
       title: ResponseEdgeFirewall
       type: object
-    ResponseEdgeFirewallFunctionInstance:
-      additionalProperties: false
-      example:
-        data:
-          args: ""
-          edge_function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/EdgeFirewallFunctionInstance"
-      required:
-      - data
-      title: ResponseEdgeFirewallFunctionInstance
-      type: object
     ResponseEdgeFirewallRuleEngine:
       additionalProperties: false
       example:
@@ -27658,6 +27635,29 @@ components:
       - data
       title: ResponseEdgeFunctionsDoc
       type: object
+    ResponseFirewallFunctionInstance:
+      additionalProperties: false
+      example:
+        data:
+          args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/FirewallFunctionInstance"
+      required:
+      - data
+      title: ResponseFirewallFunctionInstance
+      type: object
     ResponseListCacheSetting:
       additionalProperties: false
       example:
@@ -27773,17 +27773,35 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
-            edge_cache: ""
             application_accelerator: ""
+            cache: ""
+            functions: ""
             tiered_cache: ""
             image_processor: ""
-            edge_functions: ""
       properties:
         data:
           $ref: "#/components/schemas/Application"
       required:
       - data
       title: ResponseRetrieveApplication
+      type: object
+    ResponseRetrieveApplicationFunctionInstance:
+      additionalProperties: false
+      example:
+        data:
+          args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: "#/components/schemas/ApplicationFunctionInstance"
+      required:
+      - data
+      title: ResponseRetrieveApplicationFunctionInstance
       type: object
     ResponseRetrieveCacheSetting:
       additionalProperties: false
@@ -27878,24 +27896,6 @@ components:
       required:
       - data
       title: ResponseRetrieveEdgeApplicationDeviceGroups
-      type: object
-    ResponseRetrieveEdgeApplicationFunctionInstance:
-      additionalProperties: false
-      example:
-        data:
-          args: ""
-          edge_function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        data:
-          $ref: "#/components/schemas/EdgeApplicationFunctionInstance"
-      required:
-      - data
-      title: ResponseRetrieveEdgeApplicationFunctionInstance
       type: object
     ResponseRetrieveEdgeApplicationRequestPhaseRuleEngine:
       additionalProperties: false
@@ -28077,24 +28077,6 @@ components:
       - data
       title: ResponseRetrieveEdgeFirewall
       type: object
-    ResponseRetrieveEdgeFirewallFunctionInstance:
-      additionalProperties: false
-      example:
-        data:
-          args: ""
-          edge_function: 5559347081229897728
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        data:
-          $ref: "#/components/schemas/EdgeFirewallFunctionInstance"
-      required:
-      - data
-      title: ResponseRetrieveEdgeFirewallFunctionInstance
-      type: object
     ResponseRetrieveEdgeFirewallRuleEngine:
       additionalProperties: false
       example:
@@ -28243,6 +28225,24 @@ components:
       required:
       - data
       title: ResponseRetrieveEdgeFunctionsDoc
+      type: object
+    ResponseRetrieveFirewallFunctionInstance:
+      additionalProperties: false
+      example:
+        data:
+          args: ""
+          function: 5559347081229897728
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: "#/components/schemas/FirewallFunctionInstance"
+      required:
+      - data
+      title: ResponseRetrieveFirewallFunctionInstance
       type: object
     ResponseRetrieveNetworkListDetail:
       additionalProperties: false
