@@ -1016,9 +1016,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: List all Edge Applications Cache Settings
+      summary: List all Applications Cache Settings
       tags:
-      - Edge Applications - Cache Settings
+      - Applications - Cache Settings
     post:
       description: Create a new Cache Setting in your account.
       operationId: Create Cache Setting
@@ -1090,9 +1090,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Create an Edge Applications Cache Setting
+      summary: Create an Applications Cache Setting
       tags:
-      - Edge Applications - Cache Settings
+      - Applications - Cache Settings
   /edge_application/applications/{application_id}/cache_settings/{id}:
     delete:
       description: Destruction of a specific Cache Setting in your account.
@@ -1166,9 +1166,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Destroy an Edge Applications Cache Setting
+      summary: Destroy an Applications Cache Setting
       tags:
-      - Edge Applications - Cache Settings
+      - Applications - Cache Settings
     get:
       description: Retrieve details of a specific Cache Setting in your account.
       operationId: Retrieve Cache Setting
@@ -1243,9 +1243,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Retrieve details of an Edge Applications Cache Setting
+      summary: Retrieve details of an Applications Cache Setting
       tags:
-      - Edge Applications - Cache Settings
+      - Applications - Cache Settings
     patch:
       description: Update one or more fields of an existing Cache Setting without
         affecting other fields.
@@ -1324,9 +1324,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Partially update an Edge Applications Cache Setting
+      summary: Partially update an Applications Cache Setting
       tags:
-      - Edge Applications - Cache Settings
+      - Applications - Cache Settings
     put:
       description: Update an existing Cache Setting. This replaces the entire Cache
         Setting with the new data provided.
@@ -1406,9 +1406,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Update an Edge Applications Cache Setting
+      summary: Update an Applications Cache Setting
       tags:
-      - Edge Applications - Cache Settings
+      - Applications - Cache Settings
   /edge_application/applications/{application_id}/clone:
     post:
       description: "Create a new Application by performing a deep copy of an existing\
@@ -5625,8 +5625,8 @@ paths:
       - Applications - Response Rules
   /edge_connector/connectors:
     get:
-      description: List all Edge Connectors owned by your account.
-      operationId: list_edge_connectors
+      description: List all Connectors owned by your account.
+      operationId: list_connectors
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -5677,7 +5677,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedEdgeConnectorPolymorphicList"
+                $ref: "#/components/schemas/PaginatedConnectorPolymorphicList"
           description: ""
         "401":
           content:
@@ -5794,29 +5794,29 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: List Edge Connectors
+      summary: List Connectors
       tags:
-      - Edge Connectors
+      - Connectors
     post:
-      description: Create a new Edge Connector in your account.
-      operationId: create_edge_connector
+      description: Create a new Connector in your account.
+      operationId: create_connector
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeConnectorPolymorphicRequest"
+              $ref: "#/components/schemas/ConnectorPolymorphicRequest"
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeConnectorPolymorphic"
+                $ref: "#/components/schemas/ResponseConnectorPolymorphic"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeConnectorPolymorphic"
+                $ref: "#/components/schemas/ResponseAsyncConnectorPolymorphic"
           description: ""
         "401":
           content:
@@ -5933,13 +5933,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Create an Edge Connector
+      summary: Create an Connector
       tags:
-      - Edge Connectors
+      - Connectors
   /edge_connector/connectors/{id}:
     delete:
-      description: Destruction of a specific Edge Connector in your account.
-      operationId: destroy_edge_connector
+      description: Destruction of a specific Connector in your account.
+      operationId: destroy_connector
       parameters:
       - explode: false
         in: path
@@ -5953,13 +5953,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteEdgeConnectorPolymorphic"
+                $ref: "#/components/schemas/ResponseDeleteConnectorPolymorphic"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteEdgeConnectorPolymorphic"
+                $ref: "#/components/schemas/ResponseAsyncDeleteConnectorPolymorphic"
           description: ""
         "401":
           content:
@@ -6076,12 +6076,12 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Destroy an Edge Connector
+      summary: Destroy an Connector
       tags:
-      - Edge Connectors
+      - Connectors
     get:
-      description: Retrieve details of a specific Edge Connector in your account.
-      operationId: retrieve_edge_connector
+      description: Retrieve details of a specific Connector in your account.
+      operationId: retrieve_connector
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -6103,7 +6103,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveEdgeConnectorPolymorphic"
+                $ref: "#/components/schemas/ResponseRetrieveConnectorPolymorphic"
           description: ""
         "401":
           content:
@@ -6220,13 +6220,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Retrieve details of an Edge Connector
+      summary: Retrieve details of an Connector
       tags:
-      - Edge Connectors
+      - Connectors
     patch:
-      description: Update one or more fields of an existing Edge Connector without
-        affecting other fields.
-      operationId: partial_update_edge_connector
+      description: Update one or more fields of an existing Connector without affecting
+        other fields.
+      operationId: partial_update_connector
       parameters:
       - explode: false
         in: path
@@ -6239,19 +6239,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PatchedEdgeConnectorPolymorphicRequest"
+              $ref: "#/components/schemas/PatchedConnectorPolymorphicRequest"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeConnectorPolymorphic"
+                $ref: "#/components/schemas/ResponseConnectorPolymorphic"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeConnectorPolymorphic"
+                $ref: "#/components/schemas/ResponseAsyncConnectorPolymorphic"
           description: ""
         "401":
           content:
@@ -6368,13 +6368,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Partially update an Edge Connector
+      summary: Partially update an Connector
       tags:
-      - Edge Connectors
+      - Connectors
     put:
-      description: Update an existing Edge Connector. This replaces the entire Edge
-        Connector with the new data provided.
-      operationId: update_edge_connector
+      description: Update an existing Connector. This replaces the entire Connector
+        with the new data provided.
+      operationId: update_connector
       parameters:
       - explode: false
         in: path
@@ -6387,19 +6387,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/EdgeConnectorPolymorphicRequest"
+              $ref: "#/components/schemas/ConnectorPolymorphicRequest"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseEdgeConnectorPolymorphic"
+                $ref: "#/components/schemas/ResponseConnectorPolymorphic"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncEdgeConnectorPolymorphic"
+                $ref: "#/components/schemas/ResponseAsyncConnectorPolymorphic"
           description: ""
         "401":
           content:
@@ -6516,9 +6516,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Update an Edge Connector
+      summary: Update an Connector
       tags:
-      - Edge Connectors
+      - Connectors
   /edge_firewall/firewalls:
     get:
       description: List all Firewalls owned by your account.
@@ -19390,6 +19390,406 @@ components:
         * `and` - and
       title: ConditionalEnum
       type: string
+    ConnectorHTTP:
+      additionalProperties: false
+      example:
+        product_version: product_version
+        last_editor: last_editor
+        name: name
+        active: true
+        attributes:
+          addresses:
+          - https_port: 9607
+            address: address
+            active: true
+            http_port: 39501
+            modules: ""
+          - https_port: 9607
+            address: address
+            active: true
+            http_port: 39501
+            modules: ""
+          connection_options: ""
+          modules: ""
+        id: 0
+        type: ""
+        last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        last_editor:
+          maxLength: 250
+          minLength: 1
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        active:
+          type: boolean
+        product_version:
+          maxLength: 50
+          minLength: 3
+          type: string
+        type:
+          allOf:
+          - $ref: "#/components/schemas/Type15cEnum"
+          description: |-
+            Type of the connector
+
+            * `http` - HTTP
+            * `storage` - Storage
+            * `live_ingest` - Live Ingest
+        attributes:
+          $ref: "#/components/schemas/ConnectorHTTPAttributes"
+      required:
+      - attributes
+      - id
+      - last_editor
+      - last_modified
+      - name
+      - product_version
+      - type
+      title: ConnectorHTTP
+      type: object
+    ConnectorHTTPAttributes:
+      additionalProperties: false
+      example:
+        addresses:
+        - https_port: 9607
+          address: address
+          active: true
+          http_port: 39501
+          modules: ""
+        - https_port: 9607
+          address: address
+          active: true
+          http_port: 39501
+          modules: ""
+        connection_options: ""
+        modules: ""
+      properties:
+        addresses:
+          items:
+            $ref: "#/components/schemas/Address"
+          type: array
+        connection_options:
+          allOf:
+          - $ref: "#/components/schemas/HTTPConnectionOptions"
+        modules:
+          allOf:
+          - $ref: "#/components/schemas/HTTPModules"
+      required:
+      - addresses
+      title: ConnectorHTTPAttributes
+      type: object
+    ConnectorHTTPAttributesRequest:
+      additionalProperties: false
+      example:
+        addresses:
+        - https_port: 39501
+          address: address
+          active: true
+          http_port: 5249
+          modules: ""
+        - https_port: 39501
+          address: address
+          active: true
+          http_port: 5249
+          modules: ""
+        connection_options: ""
+        modules: ""
+      properties:
+        addresses:
+          items:
+            $ref: "#/components/schemas/AddressRequest"
+          type: array
+        connection_options:
+          allOf:
+          - $ref: "#/components/schemas/HTTPConnectionOptionsRequest"
+        modules:
+          allOf:
+          - $ref: "#/components/schemas/HTTPModulesRequest"
+      required:
+      - addresses
+      title: ConnectorHTTPAttributesRequest
+      type: object
+    ConnectorHTTPRequest:
+      additionalProperties: false
+      example:
+        name: name
+        active: true
+        attributes:
+          addresses:
+          - https_port: 39501
+            address: address
+            active: true
+            http_port: 5249
+            modules: ""
+          - https_port: 39501
+            address: address
+            active: true
+            http_port: 5249
+            modules: ""
+          connection_options: ""
+          modules: ""
+        type: ""
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        type:
+          allOf:
+          - $ref: "#/components/schemas/Type15cEnum"
+          description: |-
+            Type of the connector
+
+            * `http` - HTTP
+            * `storage` - Storage
+            * `live_ingest` - Live Ingest
+        attributes:
+          $ref: "#/components/schemas/ConnectorHTTPAttributesRequest"
+      required:
+      - attributes
+      - name
+      - type
+      title: ConnectorHTTPRequest
+      type: object
+    ConnectorLiveIngest:
+      additionalProperties: false
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        last_editor:
+          maxLength: 250
+          minLength: 1
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        active:
+          type: boolean
+        product_version:
+          maxLength: 50
+          minLength: 3
+          type: string
+        type:
+          allOf:
+          - $ref: "#/components/schemas/Type15cEnum"
+          description: |-
+            Type of the connector
+
+            * `http` - HTTP
+            * `storage` - Storage
+            * `live_ingest` - Live Ingest
+        attributes:
+          $ref: "#/components/schemas/ConnectorLiveIngestAttributes"
+      required:
+      - attributes
+      - id
+      - last_editor
+      - last_modified
+      - name
+      - product_version
+      - type
+      title: ConnectorLiveIngest
+      type: object
+    ConnectorLiveIngestAttributes:
+      additionalProperties: false
+      properties:
+        region:
+          description: |-
+            * `us-east-1` - us-east-1
+            * `us-east-2` - us-east-2
+            * `br-east-1` - br-east-1
+            * `br-east-2` - br-east-2
+            * `br-east-3` - br-east-3
+          title: RegionEnum
+          type: string
+      required:
+      - region
+      title: ConnectorLiveIngestAttributes
+      type: object
+    ConnectorLiveIngestAttributesRequest:
+      additionalProperties: false
+      properties:
+        region:
+          description: |-
+            * `us-east-1` - us-east-1
+            * `us-east-2` - us-east-2
+            * `br-east-1` - br-east-1
+            * `br-east-2` - br-east-2
+            * `br-east-3` - br-east-3
+          title: RegionEnum
+          type: string
+      required:
+      - region
+      title: ConnectorLiveIngestAttributesRequest
+      type: object
+    ConnectorLiveIngestRequest:
+      additionalProperties: false
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        type:
+          allOf:
+          - $ref: "#/components/schemas/Type15cEnum"
+          description: |-
+            Type of the connector
+
+            * `http` - HTTP
+            * `storage` - Storage
+            * `live_ingest` - Live Ingest
+        attributes:
+          $ref: "#/components/schemas/ConnectorLiveIngestAttributesRequest"
+      required:
+      - attributes
+      - name
+      - type
+      title: ConnectorLiveIngestRequest
+      type: object
+    ConnectorPolymorphic:
+      additionalProperties: true
+      discriminator:
+        mapping:
+          http: "#/components/schemas/ConnectorHTTP"
+          storage: "#/components/schemas/ConnectorStorage"
+          live_ingest: "#/components/schemas/ConnectorLiveIngest"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/ConnectorHTTP"
+      - $ref: "#/components/schemas/ConnectorStorage"
+      - $ref: "#/components/schemas/ConnectorLiveIngest"
+      title: ConnectorPolymorphic
+    ConnectorPolymorphicRequest:
+      additionalProperties: true
+      discriminator:
+        mapping:
+          http: "#/components/schemas/ConnectorHTTPRequest"
+          storage: "#/components/schemas/ConnectorStorageRequest"
+          live_ingest: "#/components/schemas/ConnectorLiveIngestRequest"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/ConnectorHTTPRequest"
+      - $ref: "#/components/schemas/ConnectorStorageRequest"
+      - $ref: "#/components/schemas/ConnectorLiveIngestRequest"
+      title: ConnectorPolymorphicRequest
+    ConnectorStorage:
+      additionalProperties: false
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        last_editor:
+          maxLength: 250
+          minLength: 1
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        active:
+          type: boolean
+        product_version:
+          maxLength: 50
+          minLength: 3
+          type: string
+        type:
+          allOf:
+          - $ref: "#/components/schemas/Type15cEnum"
+          description: |-
+            Type of the connector
+
+            * `http` - HTTP
+            * `storage` - Storage
+            * `live_ingest` - Live Ingest
+        attributes:
+          $ref: "#/components/schemas/ConnectorStorageAttributes"
+      required:
+      - attributes
+      - id
+      - last_editor
+      - last_modified
+      - name
+      - product_version
+      - type
+      title: ConnectorStorage
+      type: object
+    ConnectorStorageAttributes:
+      additionalProperties: false
+      properties:
+        bucket:
+          maxLength: 255
+          minLength: 1
+          type: string
+        prefix:
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - bucket
+      title: ConnectorStorageAttributes
+      type: object
+    ConnectorStorageAttributesRequest:
+      additionalProperties: false
+      properties:
+        bucket:
+          maxLength: 255
+          minLength: 1
+          type: string
+        prefix:
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - bucket
+      title: ConnectorStorageAttributesRequest
+      type: object
+    ConnectorStorageRequest:
+      additionalProperties: false
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        type:
+          allOf:
+          - $ref: "#/components/schemas/Type15cEnum"
+          description: |-
+            Type of the connector
+
+            * `http` - HTTP
+            * `storage` - Storage
+            * `live_ingest` - Live Ingest
+        attributes:
+          $ref: "#/components/schemas/ConnectorStorageAttributesRequest"
+      required:
+      - attributes
+      - name
+      - type
+      title: ConnectorStorageRequest
+      type: object
     CustomPage:
       additionalProperties: false
       example:
@@ -19500,16 +19900,16 @@ components:
     DefaultDeploymentStrategyAttrs:
       additionalProperties: false
       example:
+        application: 5559347081229897728
+        firewall: 1
         custom_page: 1
-        edge_firewall: 1
-        edge_application: 5559347081229897728
       properties:
-        edge_application:
+        application:
           format: int64
           maximum: 9223372036854775807
           minimum: 1
           type: integer
-        edge_firewall:
+        firewall:
           format: int64
           nullable: true
           type: integer
@@ -19519,22 +19919,22 @@ components:
           nullable: true
           type: integer
       required:
-      - edge_application
+      - application
       title: DefaultDeploymentStrategyAttrs
       type: object
     DefaultDeploymentStrategyAttrsRequest:
       additionalProperties: false
       example:
+        application: 738633633822310400
+        firewall: 6
         custom_page: 1
-        edge_firewall: 6
-        edge_application: 738633633822310400
       properties:
-        edge_application:
+        application:
           format: int64
           maximum: 9223372036854775807
           minimum: 1
           type: integer
-        edge_firewall:
+        firewall:
           format: int64
           nullable: true
           type: integer
@@ -19544,7 +19944,7 @@ components:
           nullable: true
           type: integer
       required:
-      - edge_application
+      - application
       title: DefaultDeploymentStrategyAttrsRequest
       type: object
     DefaultDeploymentStrategyRequest:
@@ -19576,9 +19976,9 @@ components:
       - $ref: "#/components/schemas/DefaultDeploymentStrategy"
       example:
         attributes:
+          application: 5559347081229897728
+          firewall: 1
           custom_page: 1
-          edge_firewall: 1
-          edge_application: 5559347081229897728
         type: type
       title: DeploymentStrategyDefaultDeploymentStrategy
     DeploymentStrategyDefaultDeploymentStrategyRequest:
@@ -19588,9 +19988,9 @@ components:
       - $ref: "#/components/schemas/DefaultDeploymentStrategyRequest"
       example:
         attributes:
+          application: 738633633822310400
+          firewall: 6
           custom_page: 1
-          edge_firewall: 6
-          edge_application: 738633633822310400
         type: type
       title: DeploymentStrategyDefaultDeploymentStrategyRequest
     DeploymentStrategyRequest:
@@ -19961,406 +20361,6 @@ components:
         type: integer
       - type: string
       title: EdgeApplicationCriterionPolymorphicArgumentRequest
-    EdgeConnectorHTTP:
-      additionalProperties: false
-      example:
-        product_version: product_version
-        last_editor: last_editor
-        name: name
-        active: true
-        attributes:
-          addresses:
-          - https_port: 9607
-            address: address
-            active: true
-            http_port: 39501
-            modules: ""
-          - https_port: 9607
-            address: address
-            active: true
-            http_port: 39501
-            modules: ""
-          connection_options: ""
-          modules: ""
-        id: 0
-        type: ""
-        last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        last_editor:
-          maxLength: 250
-          minLength: 1
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-        active:
-          type: boolean
-        product_version:
-          maxLength: 50
-          minLength: 3
-          type: string
-        type:
-          allOf:
-          - $ref: "#/components/schemas/Type625Enum"
-          description: |-
-            Type of the edge connector
-
-            * `http` - HTTP
-            * `edge_storage` - Edge Storage
-            * `live_ingest` - Live Ingest
-        attributes:
-          $ref: "#/components/schemas/EdgeConnectorHTTPAttributes"
-      required:
-      - attributes
-      - id
-      - last_editor
-      - last_modified
-      - name
-      - product_version
-      - type
-      title: EdgeConnectorHTTP
-      type: object
-    EdgeConnectorHTTPAttributes:
-      additionalProperties: false
-      example:
-        addresses:
-        - https_port: 9607
-          address: address
-          active: true
-          http_port: 39501
-          modules: ""
-        - https_port: 9607
-          address: address
-          active: true
-          http_port: 39501
-          modules: ""
-        connection_options: ""
-        modules: ""
-      properties:
-        addresses:
-          items:
-            $ref: "#/components/schemas/Address"
-          type: array
-        connection_options:
-          allOf:
-          - $ref: "#/components/schemas/HTTPConnectionOptions"
-        modules:
-          allOf:
-          - $ref: "#/components/schemas/HTTPModules"
-      required:
-      - addresses
-      title: EdgeConnectorHTTPAttributes
-      type: object
-    EdgeConnectorHTTPAttributesRequest:
-      additionalProperties: false
-      example:
-        addresses:
-        - https_port: 39501
-          address: address
-          active: true
-          http_port: 5249
-          modules: ""
-        - https_port: 39501
-          address: address
-          active: true
-          http_port: 5249
-          modules: ""
-        connection_options: ""
-        modules: ""
-      properties:
-        addresses:
-          items:
-            $ref: "#/components/schemas/AddressRequest"
-          type: array
-        connection_options:
-          allOf:
-          - $ref: "#/components/schemas/HTTPConnectionOptionsRequest"
-        modules:
-          allOf:
-          - $ref: "#/components/schemas/HTTPModulesRequest"
-      required:
-      - addresses
-      title: EdgeConnectorHTTPAttributesRequest
-      type: object
-    EdgeConnectorHTTPRequest:
-      additionalProperties: false
-      example:
-        name: name
-        active: true
-        attributes:
-          addresses:
-          - https_port: 39501
-            address: address
-            active: true
-            http_port: 5249
-            modules: ""
-          - https_port: 39501
-            address: address
-            active: true
-            http_port: 5249
-            modules: ""
-          connection_options: ""
-          modules: ""
-        type: ""
-      properties:
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-        type:
-          allOf:
-          - $ref: "#/components/schemas/Type625Enum"
-          description: |-
-            Type of the edge connector
-
-            * `http` - HTTP
-            * `edge_storage` - Edge Storage
-            * `live_ingest` - Live Ingest
-        attributes:
-          $ref: "#/components/schemas/EdgeConnectorHTTPAttributesRequest"
-      required:
-      - attributes
-      - name
-      - type
-      title: EdgeConnectorHTTPRequest
-      type: object
-    EdgeConnectorLiveIngest:
-      additionalProperties: false
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        last_editor:
-          maxLength: 250
-          minLength: 1
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-        active:
-          type: boolean
-        product_version:
-          maxLength: 50
-          minLength: 3
-          type: string
-        type:
-          allOf:
-          - $ref: "#/components/schemas/Type625Enum"
-          description: |-
-            Type of the edge connector
-
-            * `http` - HTTP
-            * `edge_storage` - Edge Storage
-            * `live_ingest` - Live Ingest
-        attributes:
-          $ref: "#/components/schemas/EdgeConnectorLiveIngestAttributes"
-      required:
-      - attributes
-      - id
-      - last_editor
-      - last_modified
-      - name
-      - product_version
-      - type
-      title: EdgeConnectorLiveIngest
-      type: object
-    EdgeConnectorLiveIngestAttributes:
-      additionalProperties: false
-      properties:
-        region:
-          description: |-
-            * `us-east-1` - us-east-1
-            * `us-east-2` - us-east-2
-            * `br-east-1` - br-east-1
-            * `br-east-2` - br-east-2
-            * `br-east-3` - br-east-3
-          title: RegionEnum
-          type: string
-      required:
-      - region
-      title: EdgeConnectorLiveIngestAttributes
-      type: object
-    EdgeConnectorLiveIngestAttributesRequest:
-      additionalProperties: false
-      properties:
-        region:
-          description: |-
-            * `us-east-1` - us-east-1
-            * `us-east-2` - us-east-2
-            * `br-east-1` - br-east-1
-            * `br-east-2` - br-east-2
-            * `br-east-3` - br-east-3
-          title: RegionEnum
-          type: string
-      required:
-      - region
-      title: EdgeConnectorLiveIngestAttributesRequest
-      type: object
-    EdgeConnectorLiveIngestRequest:
-      additionalProperties: false
-      properties:
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-        type:
-          allOf:
-          - $ref: "#/components/schemas/Type625Enum"
-          description: |-
-            Type of the edge connector
-
-            * `http` - HTTP
-            * `edge_storage` - Edge Storage
-            * `live_ingest` - Live Ingest
-        attributes:
-          $ref: "#/components/schemas/EdgeConnectorLiveIngestAttributesRequest"
-      required:
-      - attributes
-      - name
-      - type
-      title: EdgeConnectorLiveIngestRequest
-      type: object
-    EdgeConnectorPolymorphic:
-      additionalProperties: true
-      discriminator:
-        mapping:
-          http: "#/components/schemas/EdgeConnectorHTTP"
-          edge_storage: "#/components/schemas/EdgeConnectorStorage"
-          live_ingest: "#/components/schemas/EdgeConnectorLiveIngest"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/EdgeConnectorHTTP"
-      - $ref: "#/components/schemas/EdgeConnectorStorage"
-      - $ref: "#/components/schemas/EdgeConnectorLiveIngest"
-      title: EdgeConnectorPolymorphic
-    EdgeConnectorPolymorphicRequest:
-      additionalProperties: true
-      discriminator:
-        mapping:
-          http: "#/components/schemas/EdgeConnectorHTTPRequest"
-          edge_storage: "#/components/schemas/EdgeConnectorStorageRequest"
-          live_ingest: "#/components/schemas/EdgeConnectorLiveIngestRequest"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/EdgeConnectorHTTPRequest"
-      - $ref: "#/components/schemas/EdgeConnectorStorageRequest"
-      - $ref: "#/components/schemas/EdgeConnectorLiveIngestRequest"
-      title: EdgeConnectorPolymorphicRequest
-    EdgeConnectorStorage:
-      additionalProperties: false
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        last_editor:
-          maxLength: 250
-          minLength: 1
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-        active:
-          type: boolean
-        product_version:
-          maxLength: 50
-          minLength: 3
-          type: string
-        type:
-          allOf:
-          - $ref: "#/components/schemas/Type625Enum"
-          description: |-
-            Type of the edge connector
-
-            * `http` - HTTP
-            * `edge_storage` - Edge Storage
-            * `live_ingest` - Live Ingest
-        attributes:
-          $ref: "#/components/schemas/EdgeConnectorStorageAttributes"
-      required:
-      - attributes
-      - id
-      - last_editor
-      - last_modified
-      - name
-      - product_version
-      - type
-      title: EdgeConnectorStorage
-      type: object
-    EdgeConnectorStorageAttributes:
-      additionalProperties: false
-      properties:
-        bucket:
-          maxLength: 255
-          minLength: 1
-          type: string
-        prefix:
-          maxLength: 255
-          minLength: 1
-          type: string
-      required:
-      - bucket
-      title: EdgeConnectorStorageAttributes
-      type: object
-    EdgeConnectorStorageAttributesRequest:
-      additionalProperties: false
-      properties:
-        bucket:
-          maxLength: 255
-          minLength: 1
-          type: string
-        prefix:
-          maxLength: 255
-          minLength: 1
-          type: string
-      required:
-      - bucket
-      title: EdgeConnectorStorageAttributesRequest
-      type: object
-    EdgeConnectorStorageRequest:
-      additionalProperties: false
-      properties:
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-        type:
-          allOf:
-          - $ref: "#/components/schemas/Type625Enum"
-          description: |-
-            Type of the edge connector
-
-            * `http` - HTTP
-            * `edge_storage` - Edge Storage
-            * `live_ingest` - Live Ingest
-        attributes:
-          $ref: "#/components/schemas/EdgeConnectorStorageAttributesRequest"
-      required:
-      - attributes
-      - name
-      - type
-      title: EdgeConnectorStorageRequest
-      type: object
     EdgeFirewallCriterionField:
       additionalProperties: false
       description: |-
@@ -23474,6 +23474,66 @@ components:
           type: array
       title: PaginatedApplicationResponsePhaseRuleEngineList
       type: object
+    PaginatedConnectorPolymorphicList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - product_version: product_version
+          last_editor: last_editor
+          name: name
+          active: true
+          attributes:
+            addresses:
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            connection_options: ""
+            modules: ""
+          id: 0
+          type: ""
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        - product_version: product_version
+          last_editor: last_editor
+          name: name
+          active: true
+          attributes:
+            addresses:
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            connection_options: ""
+            modules: ""
+          id: 0
+          type: ""
+          last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/ConnectorPolymorphic"
+          type: array
+      title: PaginatedConnectorPolymorphicList
+      type: object
     PaginatedCustomPageList:
       additionalProperties: false
       example:
@@ -23537,66 +23597,6 @@ components:
             $ref: "#/components/schemas/CustomPage"
           type: array
       title: PaginatedCustomPageList
-      type: object
-    PaginatedEdgeConnectorPolymorphicList:
-      additionalProperties: false
-      example:
-        count: 123
-        results:
-        - product_version: product_version
-          last_editor: last_editor
-          name: name
-          active: true
-          attributes:
-            addresses:
-            - https_port: 9607
-              address: address
-              active: true
-              http_port: 39501
-              modules: ""
-            - https_port: 9607
-              address: address
-              active: true
-              http_port: 39501
-              modules: ""
-            connection_options: ""
-            modules: ""
-          id: 0
-          type: ""
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        - product_version: product_version
-          last_editor: last_editor
-          name: name
-          active: true
-          attributes:
-            addresses:
-            - https_port: 9607
-              address: address
-              active: true
-              http_port: 39501
-              modules: ""
-            - https_port: 9607
-              address: address
-              active: true
-              http_port: 39501
-              modules: ""
-            connection_options: ""
-            modules: ""
-          id: 0
-          type: ""
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        count:
-          example: 123
-          format: int64
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        results:
-          items:
-            $ref: "#/components/schemas/EdgeConnectorPolymorphic"
-          type: array
-      title: PaginatedEdgeConnectorPolymorphicList
       type: object
     PaginatedEdgeFunctionsList:
       additionalProperties: false
@@ -24300,9 +24300,9 @@ components:
           id: 0
           strategy:
             attributes:
+              application: 5559347081229897728
+              firewall: 1
               custom_page: 1
-              edge_firewall: 1
-              edge_application: 5559347081229897728
             type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
         - current: true
@@ -24312,9 +24312,9 @@ components:
           id: 0
           strategy:
             attributes:
+              application: 5559347081229897728
+              firewall: 1
               custom_page: 1
-              edge_firewall: 1
-              edge_application: 5559347081229897728
             type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -24791,6 +24791,103 @@ components:
           $ref: "#/components/schemas/CacheSettingsModulesRequest"
       title: PatchedCacheSettingRequest
       type: object
+    PatchedConnectorHTTPRequest:
+      additionalProperties: false
+      example:
+        name: name
+        active: true
+        attributes:
+          addresses:
+          - https_port: 39501
+            address: address
+            active: true
+            http_port: 5249
+            modules: ""
+          - https_port: 39501
+            address: address
+            active: true
+            http_port: 5249
+            modules: ""
+          connection_options: ""
+          modules: ""
+        type: ""
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        type:
+          allOf:
+          - $ref: "#/components/schemas/Type15cEnum"
+          description: |-
+            Type of the connector
+
+            * `http` - HTTP
+            * `storage` - Storage
+            * `live_ingest` - Live Ingest
+        attributes:
+          $ref: "#/components/schemas/ConnectorHTTPAttributesRequest"
+      title: PatchedConnectorHTTPRequest
+      type: object
+    PatchedConnectorLiveIngestRequest:
+      additionalProperties: false
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        type:
+          allOf:
+          - $ref: "#/components/schemas/Type15cEnum"
+          description: |-
+            Type of the connector
+
+            * `http` - HTTP
+            * `storage` - Storage
+            * `live_ingest` - Live Ingest
+        attributes:
+          $ref: "#/components/schemas/ConnectorLiveIngestAttributesRequest"
+      title: PatchedConnectorLiveIngestRequest
+      type: object
+    PatchedConnectorPolymorphicRequest:
+      additionalProperties: true
+      discriminator:
+        mapping:
+          http: "#/components/schemas/PatchedConnectorHTTPRequest"
+          storage: "#/components/schemas/PatchedConnectorStorageRequest"
+          live_ingest: "#/components/schemas/PatchedConnectorLiveIngestRequest"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/PatchedConnectorHTTPRequest"
+      - $ref: "#/components/schemas/PatchedConnectorStorageRequest"
+      - $ref: "#/components/schemas/PatchedConnectorLiveIngestRequest"
+      title: PatchedConnectorPolymorphicRequest
+    PatchedConnectorStorageRequest:
+      additionalProperties: false
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        type:
+          allOf:
+          - $ref: "#/components/schemas/Type15cEnum"
+          description: |-
+            Type of the connector
+
+            * `http` - HTTP
+            * `storage` - Storage
+            * `live_ingest` - Live Ingest
+        attributes:
+          $ref: "#/components/schemas/ConnectorStorageAttributesRequest"
+      title: PatchedConnectorStorageRequest
+      type: object
     PatchedCustomPageRequest:
       additionalProperties: false
       example:
@@ -24825,103 +24922,6 @@ components:
             $ref: "#/components/schemas/PageRequest"
           type: array
       title: PatchedCustomPageRequest
-      type: object
-    PatchedEdgeConnectorHTTPRequest:
-      additionalProperties: false
-      example:
-        name: name
-        active: true
-        attributes:
-          addresses:
-          - https_port: 39501
-            address: address
-            active: true
-            http_port: 5249
-            modules: ""
-          - https_port: 39501
-            address: address
-            active: true
-            http_port: 5249
-            modules: ""
-          connection_options: ""
-          modules: ""
-        type: ""
-      properties:
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-        type:
-          allOf:
-          - $ref: "#/components/schemas/Type625Enum"
-          description: |-
-            Type of the edge connector
-
-            * `http` - HTTP
-            * `edge_storage` - Edge Storage
-            * `live_ingest` - Live Ingest
-        attributes:
-          $ref: "#/components/schemas/EdgeConnectorHTTPAttributesRequest"
-      title: PatchedEdgeConnectorHTTPRequest
-      type: object
-    PatchedEdgeConnectorLiveIngestRequest:
-      additionalProperties: false
-      properties:
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-        type:
-          allOf:
-          - $ref: "#/components/schemas/Type625Enum"
-          description: |-
-            Type of the edge connector
-
-            * `http` - HTTP
-            * `edge_storage` - Edge Storage
-            * `live_ingest` - Live Ingest
-        attributes:
-          $ref: "#/components/schemas/EdgeConnectorLiveIngestAttributesRequest"
-      title: PatchedEdgeConnectorLiveIngestRequest
-      type: object
-    PatchedEdgeConnectorPolymorphicRequest:
-      additionalProperties: true
-      discriminator:
-        mapping:
-          http: "#/components/schemas/PatchedEdgeConnectorHTTPRequest"
-          edge_storage: "#/components/schemas/PatchedEdgeConnectorStorageRequest"
-          live_ingest: "#/components/schemas/PatchedEdgeConnectorLiveIngestRequest"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/PatchedEdgeConnectorHTTPRequest"
-      - $ref: "#/components/schemas/PatchedEdgeConnectorStorageRequest"
-      - $ref: "#/components/schemas/PatchedEdgeConnectorLiveIngestRequest"
-      title: PatchedEdgeConnectorPolymorphicRequest
-    PatchedEdgeConnectorStorageRequest:
-      additionalProperties: false
-      properties:
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-        type:
-          allOf:
-          - $ref: "#/components/schemas/Type625Enum"
-          description: |-
-            Type of the edge connector
-
-            * `http` - HTTP
-            * `edge_storage` - Edge Storage
-            * `live_ingest` - Live Ingest
-        attributes:
-          $ref: "#/components/schemas/EdgeConnectorStorageAttributesRequest"
-      title: PatchedEdgeConnectorStorageRequest
       type: object
     PatchedEdgeFunctionsRequest:
       additionalProperties: false
@@ -25473,9 +25473,9 @@ components:
         active: true
         strategy:
           attributes:
+            application: 738633633822310400
+            firewall: 6
             custom_page: 1
-            edge_firewall: 6
-            edge_application: 738633633822310400
           type: type
       properties:
         name:
@@ -26322,6 +26322,43 @@ components:
       - data
       title: ResponseAsyncCacheSetting
       type: object
+    ResponseAsyncConnectorPolymorphic:
+      additionalProperties: false
+      example:
+        data:
+          product_version: product_version
+          last_editor: last_editor
+          name: name
+          active: true
+          attributes:
+            addresses:
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            connection_options: ""
+            modules: ""
+          id: 0
+          type: ""
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/ConnectorPolymorphic"
+      required:
+      - data
+      title: ResponseAsyncConnectorPolymorphic
+      type: object
     ResponseAsyncCustomPage:
       additionalProperties: false
       example:
@@ -26427,6 +26464,17 @@ components:
           type: string
       title: ResponseAsyncDeleteCacheSetting
       type: object
+    ResponseAsyncDeleteConnectorPolymorphic:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseAsyncDeleteConnectorPolymorphic
+      type: object
     ResponseAsyncDeleteCustomPage:
       additionalProperties: false
       example:
@@ -26437,17 +26485,6 @@ components:
           minLength: 1
           type: string
       title: ResponseAsyncDeleteCustomPage
-      type: object
-    ResponseAsyncDeleteEdgeConnectorPolymorphic:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteEdgeConnectorPolymorphic
       type: object
     ResponseAsyncDeleteFirewall:
       additionalProperties: false
@@ -26547,43 +26584,6 @@ components:
           minLength: 1
           type: string
       title: ResponseAsyncDeleteWorkloadDeployment
-      type: object
-    ResponseAsyncEdgeConnectorPolymorphic:
-      additionalProperties: false
-      example:
-        data:
-          product_version: product_version
-          last_editor: last_editor
-          name: name
-          active: true
-          attributes:
-            addresses:
-            - https_port: 9607
-              address: address
-              active: true
-              http_port: 39501
-              modules: ""
-            - https_port: 9607
-              address: address
-              active: true
-              http_port: 39501
-              modules: ""
-            connection_options: ""
-            modules: ""
-          id: 0
-          type: ""
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/EdgeConnectorPolymorphic"
-      required:
-      - data
-      title: ResponseAsyncEdgeConnectorPolymorphic
       type: object
     ResponseAsyncFirewall:
       additionalProperties: false
@@ -27011,9 +27011,9 @@ components:
           id: 0
           strategy:
             attributes:
+              application: 5559347081229897728
+              firewall: 1
               custom_page: 1
-              edge_firewall: 1
-              edge_application: 5559347081229897728
             type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
@@ -27583,6 +27583,43 @@ components:
           type: string
       title: ResponseBadRequestWorkloadDeployment
       type: object
+    ResponseConnectorPolymorphic:
+      additionalProperties: false
+      example:
+        data:
+          product_version: product_version
+          last_editor: last_editor
+          name: name
+          active: true
+          attributes:
+            addresses:
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            connection_options: ""
+            modules: ""
+          id: 0
+          type: ""
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/ConnectorPolymorphic"
+      required:
+      - data
+      title: ResponseConnectorPolymorphic
+      type: object
     ResponseCustomPage:
       additionalProperties: false
       example:
@@ -27666,6 +27703,17 @@ components:
           type: string
       title: ResponseDeleteApplicationResponsePhaseRuleEngine
       type: object
+    ResponseDeleteConnectorPolymorphic:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteConnectorPolymorphic
+      type: object
     ResponseDeleteCustomPage:
       additionalProperties: false
       example:
@@ -27676,17 +27724,6 @@ components:
           minLength: 1
           type: string
       title: ResponseDeleteCustomPage
-      type: object
-    ResponseDeleteEdgeConnectorPolymorphic:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeleteEdgeConnectorPolymorphic
       type: object
     ResponseDeleteFirewall:
       additionalProperties: false
@@ -27764,43 +27801,6 @@ components:
           minLength: 1
           type: string
       title: ResponseDeleteWAFRule
-      type: object
-    ResponseEdgeConnectorPolymorphic:
-      additionalProperties: false
-      example:
-        data:
-          product_version: product_version
-          last_editor: last_editor
-          name: name
-          active: true
-          attributes:
-            addresses:
-            - https_port: 9607
-              address: address
-              active: true
-              http_port: 39501
-              modules: ""
-            - https_port: 9607
-              address: address
-              active: true
-              http_port: 39501
-              modules: ""
-            connection_options: ""
-            modules: ""
-          id: 0
-          type: ""
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/EdgeConnectorPolymorphic"
-      required:
-      - data
-      title: ResponseEdgeConnectorPolymorphic
       type: object
     ResponseFirewall:
       additionalProperties: false
@@ -28393,6 +28393,38 @@ components:
       - data
       title: ResponseRetrieveCacheSetting
       type: object
+    ResponseRetrieveConnectorPolymorphic:
+      additionalProperties: false
+      example:
+        data:
+          product_version: product_version
+          last_editor: last_editor
+          name: name
+          active: true
+          attributes:
+            addresses:
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            - https_port: 9607
+              address: address
+              active: true
+              http_port: 39501
+              modules: ""
+            connection_options: ""
+            modules: ""
+          id: 0
+          type: ""
+          last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: "#/components/schemas/ConnectorPolymorphic"
+      required:
+      - data
+      title: ResponseRetrieveConnectorPolymorphic
+      type: object
     ResponseRetrieveCustomPage:
       additionalProperties: false
       example:
@@ -28426,38 +28458,6 @@ components:
       required:
       - data
       title: ResponseRetrieveCustomPage
-      type: object
-    ResponseRetrieveEdgeConnectorPolymorphic:
-      additionalProperties: false
-      example:
-        data:
-          product_version: product_version
-          last_editor: last_editor
-          name: name
-          active: true
-          attributes:
-            addresses:
-            - https_port: 9607
-              address: address
-              active: true
-              http_port: 39501
-              modules: ""
-            - https_port: 9607
-              address: address
-              active: true
-              http_port: 39501
-              modules: ""
-            connection_options: ""
-            modules: ""
-          id: 0
-          type: ""
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        data:
-          $ref: "#/components/schemas/EdgeConnectorPolymorphic"
-      required:
-      - data
-      title: ResponseRetrieveEdgeConnectorPolymorphic
       type: object
     ResponseRetrieveFirewall:
       additionalProperties: false
@@ -28825,9 +28825,9 @@ components:
           id: 0
           strategy:
             attributes:
+              application: 5559347081229897728
+              firewall: 1
               custom_page: 1
-              edge_firewall: 1
-              edge_application: 5559347081229897728
             type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -28954,9 +28954,9 @@ components:
           id: 0
           strategy:
             attributes:
+              application: 5559347081229897728
+              firewall: 1
               custom_page: 1
-              edge_firewall: 1
-              edge_application: 5559347081229897728
             type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
@@ -29223,19 +29223,19 @@ components:
         * `force_http` - Force HTTP
       title: TransportPolicyEnum
       type: string
+    Type15cEnum:
+      description: |-
+        * `http` - HTTP
+        * `storage` - Storage
+        * `live_ingest` - Live Ingest
+      title: Type15cEnum
+      type: string
     Type528Enum:
       description: |-
         * `asn` - ASN
         * `countries` - Countries
         * `ip_cidr` - IP/CIDR
       title: Type528Enum
-      type: string
-    Type625Enum:
-      description: |-
-        * `http` - HTTP
-        * `edge_storage` - Edge Storage
-        * `live_ingest` - Live Ingest
-      title: Type625Enum
       type: string
     Type689Enum:
       description: '* `run_function` - run_function'
@@ -30109,9 +30109,9 @@ components:
         id: 0
         strategy:
           attributes:
+            application: 5559347081229897728
+            firewall: 1
             custom_page: 1
-            edge_firewall: 1
-            edge_application: 5559347081229897728
           type: type
         last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -30151,9 +30151,9 @@ components:
         active: true
         strategy:
           attributes:
+            application: 738633633822310400
+            firewall: 6
             custom_page: 1
-            edge_firewall: 6
-            edge_application: 738633633822310400
           type: type
       properties:
         name:
