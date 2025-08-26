@@ -19,7 +19,7 @@ var _ MappedNullable = &PaginatedOpenAPISchemaList{}
 
 // PaginatedOpenAPISchemaList struct for PaginatedOpenAPISchemaList
 type PaginatedOpenAPISchemaList struct {
-	Count   *int64          `json:"count,omitempty"`
+	Count *int64 `json:"count,omitempty"`
 	Results []OpenAPISchema `json:"results,omitempty"`
 }
 
@@ -105,7 +105,7 @@ func (o *PaginatedOpenAPISchemaList) SetResults(v []OpenAPISchema) {
 }
 
 func (o PaginatedOpenAPISchemaList) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,3 +158,5 @@ func (v *NullablePaginatedOpenAPISchemaList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

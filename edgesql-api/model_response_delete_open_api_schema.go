@@ -19,7 +19,7 @@ var _ MappedNullable = &ResponseDeleteOpenAPISchema{}
 
 // ResponseDeleteOpenAPISchema struct for ResponseDeleteOpenAPISchema
 type ResponseDeleteOpenAPISchema struct {
-	State *string `json:"state,omitempty" validate:"regexp=.*"`
+	State *string `json:"state,omitempty"`
 }
 
 // NewResponseDeleteOpenAPISchema instantiates a new ResponseDeleteOpenAPISchema object
@@ -72,7 +72,7 @@ func (o *ResponseDeleteOpenAPISchema) SetState(v string) {
 }
 
 func (o ResponseDeleteOpenAPISchema) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -122,3 +122,5 @@ func (v *NullableResponseDeleteOpenAPISchema) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
