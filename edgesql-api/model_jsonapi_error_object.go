@@ -20,13 +20,13 @@ var _ MappedNullable = &JSONAPIErrorObject{}
 // JSONAPIErrorObject Serializer for a single JSON:API error object.
 type JSONAPIErrorObject struct {
 	// The HTTP status code applicable to this problem
-	Status *string `json:"status,omitempty" validate:"regexp=^\\\\d{3}$"`
+	Status *string `json:"status,omitempty"`
 	// An application-specific error code
-	Code *string `json:"code,omitempty" validate:"regexp=^\\\\d{5}$"`
+	Code *string `json:"code,omitempty"`
 	// A short, human-readable summary of the problem
-	Title *string `json:"title,omitempty" validate:"regexp=^.*$"`
+	Title *string `json:"title,omitempty"`
 	// A human-readable explanation specific to this occurrence of the problem
-	Detail *string `json:"detail,omitempty" validate:"regexp=^.*$"`
+	Detail *string `json:"detail,omitempty"`
 	// References to the primary source of the error
 	Source *JSONAPIErrorSource `json:"source,omitempty"`
 	// Non-standard meta-information about the error
@@ -244,7 +244,7 @@ func (o *JSONAPIErrorObject) SetMeta(v interface{}) {
 }
 
 func (o JSONAPIErrorObject) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -309,3 +309,5 @@ func (v *NullableJSONAPIErrorObject) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

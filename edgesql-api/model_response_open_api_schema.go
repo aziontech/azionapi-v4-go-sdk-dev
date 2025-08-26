@@ -11,8 +11,8 @@ API version: 1.0.0
 package edgesqlapi
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,8 +21,8 @@ var _ MappedNullable = &ResponseOpenAPISchema{}
 
 // ResponseOpenAPISchema struct for ResponseOpenAPISchema
 type ResponseOpenAPISchema struct {
-	State *string       `json:"state,omitempty" validate:"regexp=.*"`
-	Data  OpenAPISchema `json:"data"`
+	State *string `json:"state,omitempty"`
+	Data OpenAPISchema `json:"data"`
 }
 
 type _ResponseOpenAPISchema ResponseOpenAPISchema
@@ -102,7 +102,7 @@ func (o *ResponseOpenAPISchema) SetData(v OpenAPISchema) {
 }
 
 func (o ResponseOpenAPISchema) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -131,10 +131,10 @@ func (o *ResponseOpenAPISchema) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -190,3 +190,5 @@ func (v *NullableResponseOpenAPISchema) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
