@@ -51,6 +51,8 @@ type APIClient struct {
 
 	ApplicationsAPI *ApplicationsAPIService
 
+	ApplicationsCacheSettingsAPI *ApplicationsCacheSettingsAPIService
+
 	ApplicationsDeviceGroupsAPI *ApplicationsDeviceGroupsAPIService
 
 	ApplicationsFunctionAPI *ApplicationsFunctionAPIService
@@ -59,11 +61,9 @@ type APIClient struct {
 
 	ApplicationsResponseRulesAPI *ApplicationsResponseRulesAPIService
 
+	ConnectorsAPI *ConnectorsAPIService
+
 	CustomPagesAPI *CustomPagesAPIService
-
-	EdgeApplicationsCacheSettingsAPI *EdgeApplicationsCacheSettingsAPIService
-
-	EdgeConnectorsAPI *EdgeConnectorsAPIService
 
 	FirewallsAPI *FirewallsAPIService
 
@@ -103,13 +103,13 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.ApplicationsAPI = (*ApplicationsAPIService)(&c.common)
+	c.ApplicationsCacheSettingsAPI = (*ApplicationsCacheSettingsAPIService)(&c.common)
 	c.ApplicationsDeviceGroupsAPI = (*ApplicationsDeviceGroupsAPIService)(&c.common)
 	c.ApplicationsFunctionAPI = (*ApplicationsFunctionAPIService)(&c.common)
 	c.ApplicationsRequestRulesAPI = (*ApplicationsRequestRulesAPIService)(&c.common)
 	c.ApplicationsResponseRulesAPI = (*ApplicationsResponseRulesAPIService)(&c.common)
+	c.ConnectorsAPI = (*ConnectorsAPIService)(&c.common)
 	c.CustomPagesAPI = (*CustomPagesAPIService)(&c.common)
-	c.EdgeApplicationsCacheSettingsAPI = (*EdgeApplicationsCacheSettingsAPIService)(&c.common)
-	c.EdgeConnectorsAPI = (*EdgeConnectorsAPIService)(&c.common)
 	c.FirewallsAPI = (*FirewallsAPIService)(&c.common)
 	c.FirewallsFunctionAPI = (*FirewallsFunctionAPIService)(&c.common)
 	c.FirewallsRulesEngineAPI = (*FirewallsRulesEngineAPIService)(&c.common)
