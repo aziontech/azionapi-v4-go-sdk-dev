@@ -364,7 +364,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponseBucketObjectList"
+                items:
+                  $ref: "#/components/schemas/ResponseBucketObject"
+                type: array
           description: ""
         "400":
           content:
@@ -2216,12 +2218,6 @@ components:
           type: array
       title: PaginatedBucketList
       type: object
-    PaginatedResponseBucketObjectList:
-      additionalProperties: false
-      items:
-        $ref: "#/components/schemas/ResponseBucketObject"
-      title: PaginatedResponseBucketObjectList
-      type: array
     PaginatedResponseListCredentialList:
       additionalProperties: false
       example:
