@@ -1,0 +1,46 @@
+name: (Prod) Merge yaml files into a single openapi file
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  merge_open_api:
+    runs-on:  ["self-hosted", "stage"]
+    container:
+      image: python:3-alpine3.19
+    steps:
+      - name: Install SO deps
+        run: |
+          apk update
+          apk add curl bash wget
+          
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Merge schemas
+        run: |
+          pip install -r schemas_processor/requirements.txt
+          python schemas_processor/processor.py https://api.azion.com/v4
+          cp output/merged.yaml openapi.yaml
+          rm -rf output
+
+      - name: Install Azion CLI
+        env:
+          CLI_VERSION: "4.1.4"
+        run: | 
+          wget "https://github.com/aziontech/azion/releases/download/${CLI_VERSION}/azion_${CLI_VERSION}_linux_amd64.apk"
+          apk add --allow-untrusted azion_${CLI_VERSION}_linux_amd64.apk
+
+      - name: Save schema PR on Edge Storage
+        env:
+          BUCKET_NAME: 'storage-open-apiv4-prod'
+        run: |
+          CLI_TOKEN=${{ secrets.AZIONMANAGER_SERVICE_USER_TOKEN  }}
+          azion -t $CLI_TOKEN
+          azion create edge-storage object --bucket-name $BUCKET_NAME --object-key 'openapi.yaml' --source 'openapi.yaml'
+          for file in *.yaml; do
+            azion create edge-storage object --bucket-name $BUCKET_NAME --object-key "$file" --source "$file"
+          done
