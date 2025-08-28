@@ -323,8 +323,8 @@ paths:
       - Edge Storage - Buckets
   /edge_storage/buckets/{bucketName}/objects:
     get:
-      description: List buckets objects
-      operationId: listObjectKeys
+      description: List objects from bucket
+      operationId: listObjects
       parameters:
       - explode: false
         in: path
@@ -364,7 +364,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponseBucketObjectList"
+                $ref: "#/components/schemas/ResponseBucketObject"
           description: ""
         "400":
           content:
@@ -481,7 +481,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: List buckets objects
+      summary: List objects from bucket
       tags:
       - Edge Storage - Objects
   /edge_storage/buckets/{bucketName}/objects/{objectKey}:
@@ -2216,12 +2216,6 @@ components:
           type: array
       title: PaginatedBucketList
       type: object
-    PaginatedResponseBucketObjectList:
-      additionalProperties: false
-      items:
-        $ref: "#/components/schemas/ResponseBucketObject"
-      title: PaginatedResponseBucketObjectList
-      type: array
     PaginatedResponseListCredentialList:
       additionalProperties: false
       example:

@@ -90,7 +90,7 @@ Class | Method | HTTP request | Description
 *EdgeStorageObjectsAPI* | [**CreateObjectKey**](docs/EdgeStorageObjectsAPI.md#createobjectkey) | **Post** /edge_storage/buckets/{bucketName}/objects/{objectKey} | Create new object key.
 *EdgeStorageObjectsAPI* | [**DeleteObjectKey**](docs/EdgeStorageObjectsAPI.md#deleteobjectkey) | **Delete** /edge_storage/buckets/{bucketName}/objects/{objectKey} | Delete object key
 *EdgeStorageObjectsAPI* | [**DownloadObject**](docs/EdgeStorageObjectsAPI.md#downloadobject) | **Get** /edge_storage/buckets/{bucketName}/objects/{objectKey} | Download object
-*EdgeStorageObjectsAPI* | [**ListObjectKeys**](docs/EdgeStorageObjectsAPI.md#listobjectkeys) | **Get** /edge_storage/buckets/{bucketName}/objects | List buckets objects
+*EdgeStorageObjectsAPI* | [**ListObjects**](docs/EdgeStorageObjectsAPI.md#listobjects) | **Get** /edge_storage/buckets/{bucketName}/objects | List objects from bucket
 *EdgeStorageObjectsAPI* | [**UpdateObjectKey**](docs/EdgeStorageObjectsAPI.md#updateobjectkey) | **Put** /edge_storage/buckets/{bucketName}/objects/{objectKey} | Update the object key.
 
 
