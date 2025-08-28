@@ -643,7 +643,7 @@ func (a *EdgeStorageObjectsAPIService) DownloadObjectExecute(r ApiDownloadObject
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListObjectKeysRequest struct {
+type ApiListObjectsRequest struct {
 	ctx context.Context
 	ApiService *EdgeStorageObjectsAPIService
 	bucketName string
@@ -653,38 +653,38 @@ type ApiListObjectKeysRequest struct {
 }
 
 // A continuation token for the next page of records.
-func (r ApiListObjectKeysRequest) ContinuationToken(continuationToken string) ApiListObjectKeysRequest {
+func (r ApiListObjectsRequest) ContinuationToken(continuationToken string) ApiListObjectsRequest {
 	r.continuationToken = &continuationToken
 	return r
 }
 
 // Comma-separated list of field names to include in the response.
-func (r ApiListObjectKeysRequest) Fields(fields string) ApiListObjectKeysRequest {
+func (r ApiListObjectsRequest) Fields(fields string) ApiListObjectsRequest {
 	r.fields = &fields
 	return r
 }
 
 // Number of results to be returned on the page. Limited to 1000 objects.
-func (r ApiListObjectKeysRequest) MaxObjectCount(maxObjectCount int64) ApiListObjectKeysRequest {
+func (r ApiListObjectsRequest) MaxObjectCount(maxObjectCount int64) ApiListObjectsRequest {
 	r.maxObjectCount = &maxObjectCount
 	return r
 }
 
-func (r ApiListObjectKeysRequest) Execute() ([]ResponseBucketObject, *http.Response, error) {
-	return r.ApiService.ListObjectKeysExecute(r)
+func (r ApiListObjectsRequest) Execute() (*ResponseBucketObject, *http.Response, error) {
+	return r.ApiService.ListObjectsExecute(r)
 }
 
 /*
-ListObjectKeys List buckets objects
+ListObjects List objects from bucket
 
-List buckets objects
+List objects from bucket
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param bucketName
- @return ApiListObjectKeysRequest
+ @return ApiListObjectsRequest
 */
-func (a *EdgeStorageObjectsAPIService) ListObjectKeys(ctx context.Context, bucketName string) ApiListObjectKeysRequest {
-	return ApiListObjectKeysRequest{
+func (a *EdgeStorageObjectsAPIService) ListObjects(ctx context.Context, bucketName string) ApiListObjectsRequest {
+	return ApiListObjectsRequest{
 		ApiService: a,
 		ctx: ctx,
 		bucketName: bucketName,
@@ -692,16 +692,16 @@ func (a *EdgeStorageObjectsAPIService) ListObjectKeys(ctx context.Context, bucke
 }
 
 // Execute executes the request
-//  @return []ResponseBucketObject
-func (a *EdgeStorageObjectsAPIService) ListObjectKeysExecute(r ApiListObjectKeysRequest) ([]ResponseBucketObject, *http.Response, error) {
+//  @return ResponseBucketObject
+func (a *EdgeStorageObjectsAPIService) ListObjectsExecute(r ApiListObjectsRequest) (*ResponseBucketObject, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ResponseBucketObject
+		localVarReturnValue  *ResponseBucketObject
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageObjectsAPIService.ListObjectKeys")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EdgeStorageObjectsAPIService.ListObjects")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

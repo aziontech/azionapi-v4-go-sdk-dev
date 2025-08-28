@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateObjectKey**](EdgeStorageObjectsAPI.md#CreateObjectKey) | **Post** /edge_storage/buckets/{bucketName}/objects/{objectKey} | Create new object key.
 [**DeleteObjectKey**](EdgeStorageObjectsAPI.md#DeleteObjectKey) | **Delete** /edge_storage/buckets/{bucketName}/objects/{objectKey} | Delete object key
 [**DownloadObject**](EdgeStorageObjectsAPI.md#DownloadObject) | **Get** /edge_storage/buckets/{bucketName}/objects/{objectKey} | Download object
-[**ListObjectKeys**](EdgeStorageObjectsAPI.md#ListObjectKeys) | **Get** /edge_storage/buckets/{bucketName}/objects | List buckets objects
+[**ListObjects**](EdgeStorageObjectsAPI.md#ListObjects) | **Get** /edge_storage/buckets/{bucketName}/objects | List objects from bucket
 [**UpdateObjectKey**](EdgeStorageObjectsAPI.md#UpdateObjectKey) | **Put** /edge_storage/buckets/{bucketName}/objects/{objectKey} | Update the object key.
 
 
@@ -237,11 +237,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListObjectKeys
+## ListObjects
 
-> []ResponseBucketObject ListObjectKeys(ctx, bucketName).ContinuationToken(continuationToken).Fields(fields).MaxObjectCount(maxObjectCount).Execute()
+> ResponseBucketObject ListObjects(ctx, bucketName).ContinuationToken(continuationToken).Fields(fields).MaxObjectCount(maxObjectCount).Execute()
 
-List buckets objects
+List objects from bucket
 
 
 
@@ -265,13 +265,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EdgeStorageObjectsAPI.ListObjectKeys(context.Background(), bucketName).ContinuationToken(continuationToken).Fields(fields).MaxObjectCount(maxObjectCount).Execute()
+	resp, r, err := apiClient.EdgeStorageObjectsAPI.ListObjects(context.Background(), bucketName).ContinuationToken(continuationToken).Fields(fields).MaxObjectCount(maxObjectCount).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `EdgeStorageObjectsAPI.ListObjectKeys``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `EdgeStorageObjectsAPI.ListObjects``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListObjectKeys`: []ResponseBucketObject
-	fmt.Fprintf(os.Stdout, "Response from `EdgeStorageObjectsAPI.ListObjectKeys`: %v\n", resp)
+	// response from `ListObjects`: ResponseBucketObject
+	fmt.Fprintf(os.Stdout, "Response from `EdgeStorageObjectsAPI.ListObjects`: %v\n", resp)
 }
 ```
 
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListObjectKeysRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListObjectsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]ResponseBucketObject**](ResponseBucketObject.md)
+[**ResponseBucketObject**](ResponseBucketObject.md)
 
 ### Authorization
 
