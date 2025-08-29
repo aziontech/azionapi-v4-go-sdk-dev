@@ -12,7 +12,6 @@ package edgeapi
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ApplicationRuleEngineStringAttributes type satisfies the MappedNullable interface at compile time
@@ -20,7 +19,7 @@ var _ MappedNullable = &ApplicationRuleEngineStringAttributes{}
 
 // ApplicationRuleEngineStringAttributes struct for ApplicationRuleEngineStringAttributes
 type ApplicationRuleEngineStringAttributes struct {
-	Value string `json:"value"`
+	Value *ApplicationRuleEngineStringAttributesValue `json:"value,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -30,9 +29,8 @@ type _ApplicationRuleEngineStringAttributes ApplicationRuleEngineStringAttribute
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplicationRuleEngineStringAttributes(value string) *ApplicationRuleEngineStringAttributes {
+func NewApplicationRuleEngineStringAttributes() *ApplicationRuleEngineStringAttributes {
 	this := ApplicationRuleEngineStringAttributes{}
-	this.Value = value
 	return &this
 }
 
@@ -44,28 +42,36 @@ func NewApplicationRuleEngineStringAttributesWithDefaults() *ApplicationRuleEngi
 	return &this
 }
 
-// GetValue returns the Value field value
-func (o *ApplicationRuleEngineStringAttributes) GetValue() string {
-	if o == nil {
-		var ret string
+// GetValue returns the Value field value if set, zero value otherwise.
+func (o *ApplicationRuleEngineStringAttributes) GetValue() ApplicationRuleEngineStringAttributesValue {
+	if o == nil || IsNil(o.Value) {
+		var ret ApplicationRuleEngineStringAttributesValue
 		return ret
 	}
-
-	return o.Value
+	return *o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationRuleEngineStringAttributes) GetValueOk() (*string, bool) {
-	if o == nil {
+func (o *ApplicationRuleEngineStringAttributes) GetValueOk() (*ApplicationRuleEngineStringAttributesValue, bool) {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
-	return &o.Value, true
+	return o.Value, true
 }
 
-// SetValue sets field value
-func (o *ApplicationRuleEngineStringAttributes) SetValue(v string) {
-	o.Value = v
+// HasValue returns a boolean if a field has been set.
+func (o *ApplicationRuleEngineStringAttributes) HasValue() bool {
+	if o != nil && !IsNil(o.Value) {
+		return true
+	}
+
+	return false
+}
+
+// SetValue gets a reference to the given ApplicationRuleEngineStringAttributesValue and assigns it to the Value field.
+func (o *ApplicationRuleEngineStringAttributes) SetValue(v ApplicationRuleEngineStringAttributesValue) {
+	o.Value = &v
 }
 
 func (o ApplicationRuleEngineStringAttributes) MarshalJSON() ([]byte, error) {
@@ -78,7 +84,9 @@ func (o ApplicationRuleEngineStringAttributes) MarshalJSON() ([]byte, error) {
 
 func (o ApplicationRuleEngineStringAttributes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["value"] = o.Value
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -88,27 +96,6 @@ func (o ApplicationRuleEngineStringAttributes) ToMap() (map[string]interface{}, 
 }
 
 func (o *ApplicationRuleEngineStringAttributes) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"value",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varApplicationRuleEngineStringAttributes := _ApplicationRuleEngineStringAttributes{}
 
 	err = json.Unmarshal(data, &varApplicationRuleEngineStringAttributes)

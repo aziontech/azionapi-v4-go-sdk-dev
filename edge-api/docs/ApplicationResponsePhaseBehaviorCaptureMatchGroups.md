@@ -1,4 +1,4 @@
-# ApplicationRuleEngineResponsePhaseBehaviorsRequest
+# ApplicationResponsePhaseBehaviorCaptureMatchGroups
 
 ## Properties
 
@@ -9,59 +9,59 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewApplicationRuleEngineResponsePhaseBehaviorsRequest
+### NewApplicationResponsePhaseBehaviorCaptureMatchGroups
 
-`func NewApplicationRuleEngineResponsePhaseBehaviorsRequest(type_ string, attributes ApplicationRuleEngineCaptureMatchGroupsAttributes, ) *ApplicationRuleEngineResponsePhaseBehaviorsRequest`
+`func NewApplicationResponsePhaseBehaviorCaptureMatchGroups(type_ string, attributes ApplicationRuleEngineCaptureMatchGroupsAttributes, ) *ApplicationResponsePhaseBehaviorCaptureMatchGroups`
 
-NewApplicationRuleEngineResponsePhaseBehaviorsRequest instantiates a new ApplicationRuleEngineResponsePhaseBehaviorsRequest object
+NewApplicationResponsePhaseBehaviorCaptureMatchGroups instantiates a new ApplicationResponsePhaseBehaviorCaptureMatchGroups object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewApplicationRuleEngineResponsePhaseBehaviorsRequestWithDefaults
+### NewApplicationResponsePhaseBehaviorCaptureMatchGroupsWithDefaults
 
-`func NewApplicationRuleEngineResponsePhaseBehaviorsRequestWithDefaults() *ApplicationRuleEngineResponsePhaseBehaviorsRequest`
+`func NewApplicationResponsePhaseBehaviorCaptureMatchGroupsWithDefaults() *ApplicationResponsePhaseBehaviorCaptureMatchGroups`
 
-NewApplicationRuleEngineResponsePhaseBehaviorsRequestWithDefaults instantiates a new ApplicationRuleEngineResponsePhaseBehaviorsRequest object
+NewApplicationResponsePhaseBehaviorCaptureMatchGroupsWithDefaults instantiates a new ApplicationResponsePhaseBehaviorCaptureMatchGroups object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetType
 
-`func (o *ApplicationRuleEngineResponsePhaseBehaviorsRequest) GetType() string`
+`func (o *ApplicationResponsePhaseBehaviorCaptureMatchGroups) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ApplicationRuleEngineResponsePhaseBehaviorsRequest) GetTypeOk() (*string, bool)`
+`func (o *ApplicationResponsePhaseBehaviorCaptureMatchGroups) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *ApplicationRuleEngineResponsePhaseBehaviorsRequest) SetType(v string)`
+`func (o *ApplicationResponsePhaseBehaviorCaptureMatchGroups) SetType(v string)`
 
 SetType sets Type field to given value.
 
 
 ### GetAttributes
 
-`func (o *ApplicationRuleEngineResponsePhaseBehaviorsRequest) GetAttributes() ApplicationRuleEngineCaptureMatchGroupsAttributes`
+`func (o *ApplicationResponsePhaseBehaviorCaptureMatchGroups) GetAttributes() ApplicationRuleEngineCaptureMatchGroupsAttributes`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *ApplicationRuleEngineResponsePhaseBehaviorsRequest) GetAttributesOk() (*ApplicationRuleEngineCaptureMatchGroupsAttributes, bool)`
+`func (o *ApplicationResponsePhaseBehaviorCaptureMatchGroups) GetAttributesOk() (*ApplicationRuleEngineCaptureMatchGroupsAttributes, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *ApplicationRuleEngineResponsePhaseBehaviorsRequest) SetAttributes(v ApplicationRuleEngineCaptureMatchGroupsAttributes)`
+`func (o *ApplicationResponsePhaseBehaviorCaptureMatchGroups) SetAttributes(v ApplicationRuleEngineCaptureMatchGroupsAttributes)`
 
 SetAttributes sets Attributes field to given value.
 

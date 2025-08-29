@@ -17787,41 +17787,32 @@ components:
       additionalProperties: true
       discriminator:
         mapping:
-          deny: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgs"
-          no_content: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgs"
-          deliver: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgs"
-          finish_request_phase: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgs"
-          redirect_to_301: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineString"
-          redirect_to_302: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineString"
-          forward_cookies: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgs"
-          optimize_images: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgs"
-          bypass_cache: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgs"
-          enable_gzip: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgs"
+          deny: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs"
+          no_content: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs"
+          deliver: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs"
+          finish_request_phase: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs"
+          redirect_to_301: "#/components/schemas/ApplicationRequestPhaseBehaviorWithArgs"
+          redirect_to_302: "#/components/schemas/ApplicationRequestPhaseBehaviorWithArgs"
+          forward_cookies: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs"
+          optimize_images: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs"
+          bypass_cache: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs"
+          enable_gzip: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs"
           filter_request_cookie: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterRequestCookie"
           run_function: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRunFunction"
           set_origin: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetOrigin"
-          redirect_http_to_https: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgs"
+          redirect_http_to_https: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs"
           set_connector: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetConnector"
           set_cache_policy: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetCachePolicy"
           rewrite_request: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRewriteRequest"
           add_request_header: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddHeader"
           filter_request_header: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterHeader"
-          capture_match_groups: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineCaptureMatchGroups"
+          capture_match_groups: "#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroups"
           add_request_cookie: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddRequestCookie"
         propertyName: type
       oneOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgs"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineString"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterRequestCookie"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRunFunction"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetOrigin"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetConnector"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetCachePolicy"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRewriteRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddHeader"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterHeader"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineCaptureMatchGroups"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddRequestCookie"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorWithArgs"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroups"
       title: ApplicationRuleEngineRequestPhaseBehaviors
     ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddHeader:
       additionalProperties: true
@@ -17829,187 +17820,181 @@ components:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineAddHeader"
       title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddHeader
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddHeaderRequest:
+    ApplicationRequestPhaseBehaviorAddHeaderRequest:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineAddHeaderRequest"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddHeaderRequest
+      title: ApplicationRequestPhaseBehaviorAddHeaderRequest
     ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddRequestCookie:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineAddRequestCookie"
       title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddRequestCookie
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddRequestCookieRequest:
+    ApplicationRequestPhaseBehaviorAddRequestCookieRequest:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineAddRequestCookieRequest"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddRequestCookieRequest
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineCaptureMatchGroups:
+      title: ApplicationRequestPhaseBehaviorAddRequestCookieRequest
+    ApplicationRequestPhaseBehaviorCaptureMatchGroups:
       additionalProperties: true
       allOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
-      - $ref: "#/components/schemas/ApplicationRuleEngineCaptureMatchGroups"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineCaptureMatchGroups
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineCaptureMatchGroupsRequest:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineCaptureMatchGroupsRequest"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineCaptureMatchGroupsRequest
+      title: ApplicationRequestPhaseBehaviorCaptureMatchGroups
+    ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest:
+      additionalProperties: true
+      allOf:
+      - $ref: "#/components/schemas/ApplicationRuleEngineCaptureMatchGroupsRequest"
+      title: ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest
     ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterHeader:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineFilterHeader"
       title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterHeader
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterHeaderRequest:
+    ApplicationRequestPhaseBehaviorFilterHeaderRequest:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineFilterHeaderRequest"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterHeaderRequest
+      title: ApplicationRequestPhaseBehaviorFilterHeaderRequest
     ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterRequestCookie:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineFilterRequestCookie"
       title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterRequestCookie
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterRequestCookieRequest:
+    ApplicationRequestPhaseBehaviorFilterRequestCookieRequest:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineFilterRequestCookieRequest"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterRequestCookieRequest
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgs:
-      additionalProperties: true
+      title: ApplicationRequestPhaseBehaviorFilterRequestCookieRequest
+    ApplicationRequestPhaseBehaviorWithoutArgs:
+      additionalProperties: false
       allOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineNoArgs"
       example:
         type: type
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgs
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest:
+      title: ApplicationRequestPhaseBehaviorWithoutArgs
+    ApplicationRequestPhaseBehaviorWithoutArgsRequest:
       additionalProperties: true
       allOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
-      - $ref: "#/components/schemas/ApplicationRuleEngineNoArgsRequest"
+      - $ref: "#/components/schemas/ApplicationRuleEngineNoArgs"
       example:
         type: type
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest
+      title: ApplicationRequestPhaseBehaviorWithoutArgsRequest
     ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRewriteRequest:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineRewriteRequest"
       title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRewriteRequest
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRewriteRequestRequest:
+    ApplicationRequestPhaseBehaviorRewriteRequestRequest:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineRewriteRequestRequest"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRewriteRequestRequest
+      title: ApplicationRequestPhaseBehaviorRewriteRequestRequest
     ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRunFunction:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineRunFunction"
       title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRunFunction
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRunFunctionRequest:
+    ApplicationRequestPhaseBehaviorRunFunctionRequest:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineRunFunctionRequest"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRunFunctionRequest
+      title: ApplicationRequestPhaseBehaviorRunFunctionRequest
     ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetCachePolicy:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineSetCachePolicy"
       title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetCachePolicy
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetCachePolicyRequest:
+    ApplicationRequestPhaseBehaviorSetCachePolicyRequest:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineSetCachePolicyRequest"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetCachePolicyRequest
+      title: ApplicationRequestPhaseBehaviorSetCachePolicyRequest
     ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetConnector:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineSetConnector"
       title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetConnector
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetConnectorRequest:
+    ApplicationRequestPhaseBehaviorSetConnectorRequest:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineSetConnectorRequest"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetConnectorRequest
+      title: ApplicationRequestPhaseBehaviorSetConnectorRequest
     ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetOrigin:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineSetOrigin"
       title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetOrigin
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetOriginRequest:
+    ApplicationRequestPhaseBehaviorSetOriginRequest:
       additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineSetOriginRequest"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetOriginRequest
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineString:
+      title: ApplicationRequestPhaseBehaviorSetOriginRequest
+    ApplicationRequestPhaseBehaviorWithArgs:
       additionalProperties: true
       allOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineString"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineString
-    ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineStringRequest:
+      title: ApplicationRequestPhaseBehaviorWithArgs
+    ApplicationRequestPhaseBehaviorWithArgsRequest:
       additionalProperties: true
       allOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsShared"
-      - $ref: "#/components/schemas/ApplicationRuleEngineStringRequest"
-      title: ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineStringRequest
+      - $ref: "#/components/schemas/ApplicationRuleEngineString"
+      title: ApplicationRequestPhaseBehaviorWithArgsRequest
     ApplicationRuleEngineRequestPhaseBehaviorsRequest:
       additionalProperties: true
       discriminator:
         mapping:
-          deny: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest"
-          no_content: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest"
-          deliver: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest"
-          finish_request_phase: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest"
-          redirect_to_301: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineStringRequest"
-          redirect_to_302: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineStringRequest"
-          forward_cookies: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest"
-          optimize_images: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest"
-          bypass_cache: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest"
-          enable_gzip: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest"
-          filter_request_cookie: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterRequestCookieRequest"
-          run_function: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRunFunctionRequest"
-          set_origin: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetOriginRequest"
-          redirect_http_to_https: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest"
-          set_connector: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetConnectorRequest"
-          set_cache_policy: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetCachePolicyRequest"
-          rewrite_request: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRewriteRequestRequest"
-          add_request_header: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddHeaderRequest"
-          filter_request_header: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterHeaderRequest"
-          capture_match_groups: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineCaptureMatchGroupsRequest"
-          add_request_cookie: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddRequestCookieRequest"
+          deny: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest"
+          no_content: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest"
+          deliver: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest"
+          finish_request_phase: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest"
+          redirect_to_301: "#/components/schemas/ApplicationRequestPhaseBehaviorWithArgsRequest"
+          redirect_to_302: "#/components/schemas/ApplicationRequestPhaseBehaviorWithArgsRequest"
+          forward_cookies: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest"
+          optimize_images: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest"
+          bypass_cache: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest"
+          enable_gzip: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest"
+          filter_request_cookie: "#/components/schemas/ApplicationRequestPhaseBehaviorFilterRequestCookieRequest"
+          run_function: "#/components/schemas/ApplicationRequestPhaseBehaviorRunFunctionRequest"
+          set_origin: "#/components/schemas/ApplicationRequestPhaseBehaviorSetOriginRequest"
+          redirect_http_to_https: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest"
+          set_connector: "#/components/schemas/ApplicationRequestPhaseBehaviorSetConnectorRequest"
+          set_cache_policy: "#/components/schemas/ApplicationRequestPhaseBehaviorSetCachePolicyRequest"
+          rewrite_request: "#/components/schemas/ApplicationRequestPhaseBehaviorRewriteRequestRequest"
+          add_request_header: "#/components/schemas/ApplicationRequestPhaseBehaviorAddHeaderRequest"
+          filter_request_header: "#/components/schemas/ApplicationRequestPhaseBehaviorFilterHeaderRequest"
+          capture_match_groups: "#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest"
+          add_request_cookie: "#/components/schemas/ApplicationRequestPhaseBehaviorAddRequestCookieRequest"
         propertyName: type
       oneOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineStringRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterRequestCookieRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRunFunctionRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetOriginRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetConnectorRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetCachePolicyRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRewriteRequestRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddHeaderRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterHeaderRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineCaptureMatchGroupsRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddRequestCookieRequest"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorWithArgsRequest"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorAddHeaderRequest"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorAddRequestCookieRequest"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorFilterHeaderRequest"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorFilterRequestCookieRequest"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorRewriteRequestRequest"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorRunFunctionRequest"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorSetCachePolicyRequest"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorSetConnectorRequest"
+      - $ref: "#/components/schemas/ApplicationRequestPhaseBehaviorSetOriginRequest"
       title: ApplicationRuleEngineRequestPhaseBehaviorsRequest
     ApplicationRuleEngineRequestPhaseBehaviorsShared:
       additionalProperties: true
@@ -18078,25 +18063,21 @@ components:
       additionalProperties: true
       discriminator:
         mapping:
-          enable_gzip: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs"
-          deliver: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs"
-          redirect_to_301: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString"
-          redirect_to_302: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString"
-          filter_response_cookie: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString"
+          enable_gzip: "#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgs"
+          deliver: "#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgs"
+          redirect_to_301: "#/components/schemas/ApplicationResponsePhaseBehaviorWithArgs"
+          redirect_to_302: "#/components/schemas/ApplicationResponsePhaseBehaviorWithArgs"
+          filter_response_cookie: "#/components/schemas/ApplicationResponsePhaseBehaviorWithArgs"
           run_function: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse"
           set_cookie: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie"
           add_response_header: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader"
           filter_response_header: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader"
-          capture_match_groups: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups"
+          capture_match_groups: "#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroups"
         propertyName: type
       oneOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups"
+      - $ref: "#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgs"
+      - $ref: "#/components/schemas/ApplicationResponsePhaseBehaviorWithArgs"
+      - $ref: "#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroups"
       title: ApplicationRuleEngineResponsePhaseBehaviors
     ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader:
       additionalProperties: true
@@ -18110,18 +18091,16 @@ components:
       - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineAddResponseHeaderRequest"
       title: ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeaderRequest
-    ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups:
+    ApplicationResponsePhaseBehaviorCaptureMatchGroups:
       additionalProperties: true
       allOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineCaptureMatchGroups"
-      title: ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups
-    ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroupsRequest:
+      title: ApplicationResponsePhaseBehaviorCaptureMatchGroups
+    ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest:
       additionalProperties: true
       allOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsShared"
-      - $ref: "#/components/schemas/ApplicationRuleEngineCaptureMatchGroupsRequest"
-      title: ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroupsRequest
+      - $ref: "#/components/schemas/ApplicationRuleEngineCaptureMatchGroups"
+      title: ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest
     ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader:
       additionalProperties: true
       allOf:
@@ -18134,34 +18113,30 @@ components:
       - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsShared"
       - $ref: "#/components/schemas/ApplicationRuleEngineFilterResponseHeaderRequest"
       title: ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeaderRequest
-    ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs:
-      additionalProperties: true
+    ApplicationResponsePhaseBehaviorWithoutArgs:
+      additionalProperties: false
       allOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsShared"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponseNoArgs"
+      - $ref: "#/components/schemas/ApplicationRuleEngineNoArgs"
       example:
         type: type
-      title: ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs
-    ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgsRequest:
+      title: ApplicationResponsePhaseBehaviorWithoutArgs
+    ApplicationResponsePhaseBehaviorWithoutArgsRequest:
       additionalProperties: true
       allOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsShared"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponseNoArgsRequest"
+      - $ref: "#/components/schemas/ApplicationRuleEngineNoArgs"
       example:
         type: type
-      title: ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgsRequest
-    ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString:
+      title: ApplicationResponsePhaseBehaviorWithoutArgsRequest
+    ApplicationResponsePhaseBehaviorWithArgs:
       additionalProperties: true
       allOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsShared"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponseString"
-      title: ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString
-    ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseStringRequest:
+      - $ref: "#/components/schemas/ApplicationRuleEngineString"
+      title: ApplicationResponsePhaseBehaviorWithArgs
+    ApplicationResponsePhaseBehaviorWithArgsRequest:
       additionalProperties: true
       allOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsShared"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponseStringRequest"
-      title: ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseStringRequest
+      - $ref: "#/components/schemas/ApplicationRuleEngineString"
+      title: ApplicationResponsePhaseBehaviorWithArgsRequest
     ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse:
       additionalProperties: true
       allOf:
@@ -18190,25 +18165,21 @@ components:
       additionalProperties: true
       discriminator:
         mapping:
-          enable_gzip: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgsRequest"
-          deliver: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgsRequest"
-          redirect_to_301: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseStringRequest"
-          redirect_to_302: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseStringRequest"
-          filter_response_cookie: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseStringRequest"
+          enable_gzip: "#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgsRequest"
+          deliver: "#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgsRequest"
+          redirect_to_301: "#/components/schemas/ApplicationResponsePhaseBehaviorWithArgsRequest"
+          redirect_to_302: "#/components/schemas/ApplicationResponsePhaseBehaviorWithArgsRequest"
+          filter_response_cookie: "#/components/schemas/ApplicationResponsePhaseBehaviorWithArgsRequest"
           run_function: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponseRequest"
           set_cookie: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookieRequest"
           add_response_header: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeaderRequest"
           filter_response_header: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeaderRequest"
-          capture_match_groups: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroupsRequest"
+          capture_match_groups: "#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest"
         propertyName: type
       oneOf:
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgsRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseStringRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponseRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookieRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeaderRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeaderRequest"
-      - $ref: "#/components/schemas/ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroupsRequest"
+      - $ref: "#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgsRequest"
+      - $ref: "#/components/schemas/ApplicationResponsePhaseBehaviorWithArgsRequest"
+      - $ref: "#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest"
       title: ApplicationRuleEngineResponsePhaseBehaviorsRequest
     ApplicationRuleEngineResponsePhaseBehaviorsShared:
       additionalProperties: true
@@ -18715,11 +18686,7 @@ components:
       additionalProperties: true
       properties:
         value:
-          maxLength: 2000
-          minLength: 1
-          type: string
-      required:
-      - value
+          $ref: "#/components/schemas/ApplicationRuleEngineStringAttributes_value"
       title: ApplicationRuleEngineStringAttributes
       type: object
     ApplicationRuleEngineStringAttributesRequest:
@@ -30221,6 +30188,11 @@ components:
       - name
       title: WorkloadRequest
       type: object
+    ApplicationRuleEngineStringAttributes_value:
+      oneOf:
+      - type: string
+      - format: int64
+        type: integer
     EdgeFunctions_azion_form:
       description: |
         JSON schema to be rendered as a json args form.

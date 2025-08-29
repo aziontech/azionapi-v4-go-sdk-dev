@@ -18,61 +18,29 @@ import (
 
 // ApplicationRuleEngineResponsePhaseBehaviors - struct for ApplicationRuleEngineResponsePhaseBehaviors
 type ApplicationRuleEngineResponsePhaseBehaviors struct {
-	ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader
-	ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups
-	ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader
-	ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs
-	ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString
-	ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse
-	ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie
+	ApplicationResponsePhaseBehaviorCaptureMatchGroups *ApplicationResponsePhaseBehaviorCaptureMatchGroups
+	ApplicationResponsePhaseBehaviorWithArgs *ApplicationResponsePhaseBehaviorWithArgs
+	ApplicationResponsePhaseBehaviorWithoutArgs *ApplicationResponsePhaseBehaviorWithoutArgs
 }
 
-// ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeaderAsApplicationRuleEngineResponsePhaseBehaviors is a convenience function that returns ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader wrapped in ApplicationRuleEngineResponsePhaseBehaviors
-func ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeaderAsApplicationRuleEngineResponsePhaseBehaviors(v *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader) ApplicationRuleEngineResponsePhaseBehaviors {
+// ApplicationResponsePhaseBehaviorCaptureMatchGroupsAsApplicationRuleEngineResponsePhaseBehaviors is a convenience function that returns ApplicationResponsePhaseBehaviorCaptureMatchGroups wrapped in ApplicationRuleEngineResponsePhaseBehaviors
+func ApplicationResponsePhaseBehaviorCaptureMatchGroupsAsApplicationRuleEngineResponsePhaseBehaviors(v *ApplicationResponsePhaseBehaviorCaptureMatchGroups) ApplicationRuleEngineResponsePhaseBehaviors {
 	return ApplicationRuleEngineResponsePhaseBehaviors{
-		ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader: v,
+		ApplicationResponsePhaseBehaviorCaptureMatchGroups: v,
 	}
 }
 
-// ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroupsAsApplicationRuleEngineResponsePhaseBehaviors is a convenience function that returns ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups wrapped in ApplicationRuleEngineResponsePhaseBehaviors
-func ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroupsAsApplicationRuleEngineResponsePhaseBehaviors(v *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups) ApplicationRuleEngineResponsePhaseBehaviors {
+// ApplicationResponsePhaseBehaviorWithArgsAsApplicationRuleEngineResponsePhaseBehaviors is a convenience function that returns ApplicationResponsePhaseBehaviorWithArgs wrapped in ApplicationRuleEngineResponsePhaseBehaviors
+func ApplicationResponsePhaseBehaviorWithArgsAsApplicationRuleEngineResponsePhaseBehaviors(v *ApplicationResponsePhaseBehaviorWithArgs) ApplicationRuleEngineResponsePhaseBehaviors {
 	return ApplicationRuleEngineResponsePhaseBehaviors{
-		ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups: v,
+		ApplicationResponsePhaseBehaviorWithArgs: v,
 	}
 }
 
-// ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeaderAsApplicationRuleEngineResponsePhaseBehaviors is a convenience function that returns ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader wrapped in ApplicationRuleEngineResponsePhaseBehaviors
-func ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeaderAsApplicationRuleEngineResponsePhaseBehaviors(v *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader) ApplicationRuleEngineResponsePhaseBehaviors {
+// ApplicationResponsePhaseBehaviorWithoutArgsAsApplicationRuleEngineResponsePhaseBehaviors is a convenience function that returns ApplicationResponsePhaseBehaviorWithoutArgs wrapped in ApplicationRuleEngineResponsePhaseBehaviors
+func ApplicationResponsePhaseBehaviorWithoutArgsAsApplicationRuleEngineResponsePhaseBehaviors(v *ApplicationResponsePhaseBehaviorWithoutArgs) ApplicationRuleEngineResponsePhaseBehaviors {
 	return ApplicationRuleEngineResponsePhaseBehaviors{
-		ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader: v,
-	}
-}
-
-// ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgsAsApplicationRuleEngineResponsePhaseBehaviors is a convenience function that returns ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs wrapped in ApplicationRuleEngineResponsePhaseBehaviors
-func ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgsAsApplicationRuleEngineResponsePhaseBehaviors(v *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs) ApplicationRuleEngineResponsePhaseBehaviors {
-	return ApplicationRuleEngineResponsePhaseBehaviors{
-		ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs: v,
-	}
-}
-
-// ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseStringAsApplicationRuleEngineResponsePhaseBehaviors is a convenience function that returns ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString wrapped in ApplicationRuleEngineResponsePhaseBehaviors
-func ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseStringAsApplicationRuleEngineResponsePhaseBehaviors(v *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString) ApplicationRuleEngineResponsePhaseBehaviors {
-	return ApplicationRuleEngineResponsePhaseBehaviors{
-		ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString: v,
-	}
-}
-
-// ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponseAsApplicationRuleEngineResponsePhaseBehaviors is a convenience function that returns ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse wrapped in ApplicationRuleEngineResponsePhaseBehaviors
-func ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponseAsApplicationRuleEngineResponsePhaseBehaviors(v *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse) ApplicationRuleEngineResponsePhaseBehaviors {
-	return ApplicationRuleEngineResponsePhaseBehaviors{
-		ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse: v,
-	}
-}
-
-// ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookieAsApplicationRuleEngineResponsePhaseBehaviors is a convenience function that returns ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie wrapped in ApplicationRuleEngineResponsePhaseBehaviors
-func ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookieAsApplicationRuleEngineResponsePhaseBehaviors(v *ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie) ApplicationRuleEngineResponsePhaseBehaviors {
-	return ApplicationRuleEngineResponsePhaseBehaviors{
-		ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie: v,
+		ApplicationResponsePhaseBehaviorWithoutArgs: v,
 	}
 }
 
@@ -81,134 +49,62 @@ func ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookieAs
 func (dst *ApplicationRuleEngineResponsePhaseBehaviors) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader
-	err = newStrictDecoder(data).Decode(&dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader)
+	// try to unmarshal data into ApplicationResponsePhaseBehaviorCaptureMatchGroups
+	err = newStrictDecoder(data).Decode(&dst.ApplicationResponsePhaseBehaviorCaptureMatchGroups)
 	if err == nil {
-		jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader, _ := json.Marshal(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader)
-		if string(jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader) == "{}" { // empty struct
-			dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader = nil
+		jsonApplicationResponsePhaseBehaviorCaptureMatchGroups, _ := json.Marshal(dst.ApplicationResponsePhaseBehaviorCaptureMatchGroups)
+		if string(jsonApplicationResponsePhaseBehaviorCaptureMatchGroups) == "{}" { // empty struct
+			dst.ApplicationResponsePhaseBehaviorCaptureMatchGroups = nil
 		} else {
-			if err = validator.Validate(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader); err != nil {
-				dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader = nil
+			if err = validator.Validate(dst.ApplicationResponsePhaseBehaviorCaptureMatchGroups); err != nil {
+				dst.ApplicationResponsePhaseBehaviorCaptureMatchGroups = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader = nil
+		dst.ApplicationResponsePhaseBehaviorCaptureMatchGroups = nil
 	}
 
-	// try to unmarshal data into ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups
-	err = newStrictDecoder(data).Decode(&dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups)
+	// try to unmarshal data into ApplicationResponsePhaseBehaviorWithArgs
+	err = newStrictDecoder(data).Decode(&dst.ApplicationResponsePhaseBehaviorWithArgs)
 	if err == nil {
-		jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups, _ := json.Marshal(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups)
-		if string(jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups) == "{}" { // empty struct
-			dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups = nil
+		jsonApplicationResponsePhaseBehaviorWithArgs, _ := json.Marshal(dst.ApplicationResponsePhaseBehaviorWithArgs)
+		if string(jsonApplicationResponsePhaseBehaviorWithArgs) == "{}" { // empty struct
+			dst.ApplicationResponsePhaseBehaviorWithArgs = nil
 		} else {
-			if err = validator.Validate(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups); err != nil {
-				dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups = nil
+			if err = validator.Validate(dst.ApplicationResponsePhaseBehaviorWithArgs); err != nil {
+				dst.ApplicationResponsePhaseBehaviorWithArgs = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups = nil
+		dst.ApplicationResponsePhaseBehaviorWithArgs = nil
 	}
 
-	// try to unmarshal data into ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader
-	err = newStrictDecoder(data).Decode(&dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader)
+	// try to unmarshal data into ApplicationResponsePhaseBehaviorWithoutArgs
+	err = newStrictDecoder(data).Decode(&dst.ApplicationResponsePhaseBehaviorWithoutArgs)
 	if err == nil {
-		jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader, _ := json.Marshal(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader)
-		if string(jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader) == "{}" { // empty struct
-			dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader = nil
+		jsonApplicationResponsePhaseBehaviorWithoutArgs, _ := json.Marshal(dst.ApplicationResponsePhaseBehaviorWithoutArgs)
+		if string(jsonApplicationResponsePhaseBehaviorWithoutArgs) == "{}" { // empty struct
+			dst.ApplicationResponsePhaseBehaviorWithoutArgs = nil
 		} else {
-			if err = validator.Validate(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader); err != nil {
-				dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader = nil
+			if err = validator.Validate(dst.ApplicationResponsePhaseBehaviorWithoutArgs); err != nil {
+				dst.ApplicationResponsePhaseBehaviorWithoutArgs = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader = nil
-	}
-
-	// try to unmarshal data into ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs
-	err = newStrictDecoder(data).Decode(&dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs)
-	if err == nil {
-		jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs, _ := json.Marshal(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs)
-		if string(jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs) == "{}" { // empty struct
-			dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs = nil
-		} else {
-			if err = validator.Validate(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs); err != nil {
-				dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs = nil
-	}
-
-	// try to unmarshal data into ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString
-	err = newStrictDecoder(data).Decode(&dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString)
-	if err == nil {
-		jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString, _ := json.Marshal(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString)
-		if string(jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString) == "{}" { // empty struct
-			dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString = nil
-		} else {
-			if err = validator.Validate(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString); err != nil {
-				dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString = nil
-	}
-
-	// try to unmarshal data into ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse
-	err = newStrictDecoder(data).Decode(&dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse)
-	if err == nil {
-		jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse, _ := json.Marshal(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse)
-		if string(jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse) == "{}" { // empty struct
-			dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse = nil
-		} else {
-			if err = validator.Validate(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse); err != nil {
-				dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse = nil
-	}
-
-	// try to unmarshal data into ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie
-	err = newStrictDecoder(data).Decode(&dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie)
-	if err == nil {
-		jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie, _ := json.Marshal(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie)
-		if string(jsonApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie) == "{}" { // empty struct
-			dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie = nil
-		} else {
-			if err = validator.Validate(dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie); err != nil {
-				dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie = nil
+		dst.ApplicationResponsePhaseBehaviorWithoutArgs = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader = nil
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups = nil
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader = nil
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs = nil
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString = nil
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse = nil
-		dst.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie = nil
+		dst.ApplicationResponsePhaseBehaviorCaptureMatchGroups = nil
+		dst.ApplicationResponsePhaseBehaviorWithArgs = nil
+		dst.ApplicationResponsePhaseBehaviorWithoutArgs = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(ApplicationRuleEngineResponsePhaseBehaviors)")
 	} else if match == 1 {
@@ -220,32 +116,16 @@ func (dst *ApplicationRuleEngineResponsePhaseBehaviors) UnmarshalJSON(data []byt
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src ApplicationRuleEngineResponsePhaseBehaviors) MarshalJSON() ([]byte, error) {
-	if src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader != nil {
-		return json.Marshal(&src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader)
+	if src.ApplicationResponsePhaseBehaviorCaptureMatchGroups != nil {
+		return json.Marshal(&src.ApplicationResponsePhaseBehaviorCaptureMatchGroups)
 	}
 
-	if src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups != nil {
-		return json.Marshal(&src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups)
+	if src.ApplicationResponsePhaseBehaviorWithArgs != nil {
+		return json.Marshal(&src.ApplicationResponsePhaseBehaviorWithArgs)
 	}
 
-	if src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader != nil {
-		return json.Marshal(&src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader)
-	}
-
-	if src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs != nil {
-		return json.Marshal(&src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs)
-	}
-
-	if src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString != nil {
-		return json.Marshal(&src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString)
-	}
-
-	if src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse != nil {
-		return json.Marshal(&src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse)
-	}
-
-	if src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie != nil {
-		return json.Marshal(&src.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie)
+	if src.ApplicationResponsePhaseBehaviorWithoutArgs != nil {
+		return json.Marshal(&src.ApplicationResponsePhaseBehaviorWithoutArgs)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -256,32 +136,16 @@ func (obj *ApplicationRuleEngineResponsePhaseBehaviors) GetActualInstance() (int
 	if obj == nil {
 		return nil
 	}
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader != nil {
-		return obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader
+	if obj.ApplicationResponsePhaseBehaviorCaptureMatchGroups != nil {
+		return obj.ApplicationResponsePhaseBehaviorCaptureMatchGroups
 	}
 
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups != nil {
-		return obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups
+	if obj.ApplicationResponsePhaseBehaviorWithArgs != nil {
+		return obj.ApplicationResponsePhaseBehaviorWithArgs
 	}
 
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader != nil {
-		return obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader
-	}
-
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs != nil {
-		return obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs
-	}
-
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString != nil {
-		return obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString
-	}
-
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse != nil {
-		return obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse
-	}
-
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie != nil {
-		return obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie
+	if obj.ApplicationResponsePhaseBehaviorWithoutArgs != nil {
+		return obj.ApplicationResponsePhaseBehaviorWithoutArgs
 	}
 
 	// all schemas are nil
@@ -290,32 +154,16 @@ func (obj *ApplicationRuleEngineResponsePhaseBehaviors) GetActualInstance() (int
 
 // Get the actual instance value
 func (obj ApplicationRuleEngineResponsePhaseBehaviors) GetActualInstanceValue() (interface{}) {
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader != nil {
-		return *obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineAddResponseHeader
+	if obj.ApplicationResponsePhaseBehaviorCaptureMatchGroups != nil {
+		return *obj.ApplicationResponsePhaseBehaviorCaptureMatchGroups
 	}
 
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups != nil {
-		return *obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineCaptureMatchGroups
+	if obj.ApplicationResponsePhaseBehaviorWithArgs != nil {
+		return *obj.ApplicationResponsePhaseBehaviorWithArgs
 	}
 
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader != nil {
-		return *obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineFilterResponseHeader
-	}
-
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs != nil {
-		return *obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseNoArgs
-	}
-
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString != nil {
-		return *obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineResponseString
-	}
-
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse != nil {
-		return *obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineRunFunctionResponse
-	}
-
-	if obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie != nil {
-		return *obj.ApplicationRuleEngineResponsePhaseBehaviorsApplicationRuleEngineSetCookie
+	if obj.ApplicationResponsePhaseBehaviorWithoutArgs != nil {
+		return *obj.ApplicationResponsePhaseBehaviorWithoutArgs
 	}
 
 	// all schemas are nil

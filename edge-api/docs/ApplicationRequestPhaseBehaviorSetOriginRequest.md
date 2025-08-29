@@ -1,4 +1,4 @@
-# ApplicationRuleEngineRequestPhaseBehaviorsRequest
+# ApplicationRequestPhaseBehaviorSetOriginRequest
 
 ## Properties
 
@@ -9,59 +9,59 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewApplicationRuleEngineRequestPhaseBehaviorsRequest
+### NewApplicationRequestPhaseBehaviorSetOriginRequest
 
-`func NewApplicationRuleEngineRequestPhaseBehaviorsRequest(type_ string, attributes ApplicationRuleEngineSetOriginAttributesRequest, ) *ApplicationRuleEngineRequestPhaseBehaviorsRequest`
+`func NewApplicationRequestPhaseBehaviorSetOriginRequest(type_ string, attributes ApplicationRuleEngineSetOriginAttributesRequest, ) *ApplicationRequestPhaseBehaviorSetOriginRequest`
 
-NewApplicationRuleEngineRequestPhaseBehaviorsRequest instantiates a new ApplicationRuleEngineRequestPhaseBehaviorsRequest object
+NewApplicationRequestPhaseBehaviorSetOriginRequest instantiates a new ApplicationRequestPhaseBehaviorSetOriginRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewApplicationRuleEngineRequestPhaseBehaviorsRequestWithDefaults
+### NewApplicationRequestPhaseBehaviorSetOriginRequestWithDefaults
 
-`func NewApplicationRuleEngineRequestPhaseBehaviorsRequestWithDefaults() *ApplicationRuleEngineRequestPhaseBehaviorsRequest`
+`func NewApplicationRequestPhaseBehaviorSetOriginRequestWithDefaults() *ApplicationRequestPhaseBehaviorSetOriginRequest`
 
-NewApplicationRuleEngineRequestPhaseBehaviorsRequestWithDefaults instantiates a new ApplicationRuleEngineRequestPhaseBehaviorsRequest object
+NewApplicationRequestPhaseBehaviorSetOriginRequestWithDefaults instantiates a new ApplicationRequestPhaseBehaviorSetOriginRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetType
 
-`func (o *ApplicationRuleEngineRequestPhaseBehaviorsRequest) GetType() string`
+`func (o *ApplicationRequestPhaseBehaviorSetOriginRequest) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ApplicationRuleEngineRequestPhaseBehaviorsRequest) GetTypeOk() (*string, bool)`
+`func (o *ApplicationRequestPhaseBehaviorSetOriginRequest) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *ApplicationRuleEngineRequestPhaseBehaviorsRequest) SetType(v string)`
+`func (o *ApplicationRequestPhaseBehaviorSetOriginRequest) SetType(v string)`
 
 SetType sets Type field to given value.
 
 
 ### GetAttributes
 
-`func (o *ApplicationRuleEngineRequestPhaseBehaviorsRequest) GetAttributes() ApplicationRuleEngineSetOriginAttributesRequest`
+`func (o *ApplicationRequestPhaseBehaviorSetOriginRequest) GetAttributes() ApplicationRuleEngineSetOriginAttributesRequest`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *ApplicationRuleEngineRequestPhaseBehaviorsRequest) GetAttributesOk() (*ApplicationRuleEngineSetOriginAttributesRequest, bool)`
+`func (o *ApplicationRequestPhaseBehaviorSetOriginRequest) GetAttributesOk() (*ApplicationRuleEngineSetOriginAttributesRequest, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *ApplicationRuleEngineRequestPhaseBehaviorsRequest) SetAttributes(v ApplicationRuleEngineSetOriginAttributesRequest)`
+`func (o *ApplicationRequestPhaseBehaviorSetOriginRequest) SetAttributes(v ApplicationRuleEngineSetOriginAttributesRequest)`
 
 SetAttributes sets Attributes field to given value.
 
