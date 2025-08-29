@@ -8,19 +8,33 @@ def replace_strings_in_yaml(content):
     Replace specific strings in the YAML content.
     """
     replacements = {
-        "EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgsRequest": "EdgeApplicationRequestPhaseBehaviorWithoutArgsRequest",
-        "EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineStringRequest": "EdgeApplicationRequestPhaseBehaviorWithArgsRequest",
-        "EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineCaptureMatchGroupsRequest": "EdgeApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest",
-        "EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgs": "EdgeApplicationRequestPhaseBehaviorWithoutArgs",
-        "EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineString": "EdgeApplicationRequestPhaseBehaviorWithArgs",
-        "EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineCaptureMatchGroups": "EdgeApplicationRequestPhaseBehaviorCaptureMatchGroups",
-        "EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgsRequest": "EdgeApplicationResponsePhaseBehaviorWithoutArgsRequest",
-        "EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseStringRequest": "EdgeApplicationResponsePhaseBehaviorWithArgsRequest",
-        "EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineCaptureMatchGroupsRequest":  "EdgeApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest",
-        "EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgs": "EdgeApplicationResponsePhaseBehaviorWithoutArgs",
-        "EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseString": "EdgeApplicationResponsePhaseBehaviorWithArgs",
-        "EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineCaptureMatchGroups":  "EdgeApplicationResponsePhaseBehaviorCaptureMatchGroups"
+        # Old replacements
+        "EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgsRequest": "ApplicationRequestPhaseBehaviorWithoutArgsRequest",
+        "EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineStringRequest": "ApplicationRequestPhaseBehaviorWithArgsRequest",
+        "EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineCaptureMatchGroupsRequest": "ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest",
+        "EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineNoArgs": "ApplicationRequestPhaseBehaviorWithoutArgs",
+        "EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineString": "ApplicationRequestPhaseBehaviorWithArgs",
+        "EdgeApplicationRuleEngineRequestPhaseBehaviorsEdgeApplicationRuleEngineCaptureMatchGroups": "ApplicationRequestPhaseBehaviorCaptureMatchGroups",
+        "EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgsRequest": "ApplicationResponsePhaseBehaviorWithoutArgsRequest",
+        "EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseStringRequest": "ApplicationResponsePhaseBehaviorWithArgsRequest",
+        "EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineCaptureMatchGroupsRequest":  "ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest",
+        "EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseNoArgs": "ApplicationResponsePhaseBehaviorWithoutArgs",
+        "EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineResponseString": "ApplicationResponsePhaseBehaviorWithArgs",
+        "EdgeApplicationRuleEngineResponsePhaseBehaviorsEdgeApplicationRuleEngineCaptureMatchGroups":  "ApplicationResponsePhaseBehaviorCaptureMatchGroups",
         
+        # New replacements with updated naming convention (removed Edge prefix)
+        "ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddHeaderRequest": "ApplicationRequestPhaseBehaviorAddHeaderRequest",
+        "ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineAddRequestCookieRequest": "ApplicationRequestPhaseBehaviorAddRequestCookieRequest",
+        "ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineCaptureMatchGroupsRequest": "ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest",
+        "ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterHeaderRequest": "ApplicationRequestPhaseBehaviorFilterHeaderRequest",
+        "ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineFilterRequestCookieRequest": "ApplicationRequestPhaseBehaviorFilterRequestCookieRequest",
+        "ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineNoArgsRequest": "ApplicationRequestPhaseBehaviorNoArgsRequest",
+        "ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRewriteRequestRequest": "ApplicationRequestPhaseBehaviorRewriteRequestRequest",
+        "ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineRunFunctionRequest": "ApplicationRequestPhaseBehaviorRunFunctionRequest",
+        "ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetCachePolicyRequest": "ApplicationRequestPhaseBehaviorSetCachePolicyRequest",
+        "ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetConnectorRequest": "ApplicationRequestPhaseBehaviorSetConnectorRequest",
+        "ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineSetOriginRequest": "ApplicationRequestPhaseBehaviorSetOriginRequest",
+        "ApplicationRuleEngineRequestPhaseBehaviorsApplicationRuleEngineStringRequest": "ApplicationRequestPhaseBehaviorStringRequest"
     }
     
     # Perform string replacements
@@ -43,15 +57,15 @@ def modify_request_phase_behaviors(data):
         
     # Check if the specific schemas we need to modify exist
     required_schemas = [
-        'EdgeApplicationRuleEngineRequestPhaseBehaviors',
-        'EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest',
-        'EdgeApplicationRequestPhaseBehaviorWithoutArgs',
-        'EdgeApplicationRequestPhaseBehaviorWithArgs',
-        'EdgeApplicationRequestPhaseBehaviorCaptureMatchGroups',
-        'EdgeApplicationRequestPhaseBehaviorWithoutArgsRequest',
-        'EdgeApplicationRequestPhaseBehaviorWithArgsRequest',
-        'EdgeApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest',
-        'EdgeApplicationRuleEngineStringAttributes'
+        'ApplicationRuleEngineRequestPhaseBehaviors',
+        'ApplicationRuleEngineRequestPhaseBehaviorsRequest',
+        'ApplicationRequestPhaseBehaviorWithoutArgs',
+        'ApplicationRequestPhaseBehaviorWithArgs',
+        'ApplicationRequestPhaseBehaviorCaptureMatchGroups',
+        'ApplicationRequestPhaseBehaviorWithoutArgsRequest',
+        'ApplicationRequestPhaseBehaviorWithArgsRequest',
+        'ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest',
+        'ApplicationRuleEngineStringAttributes'
     ]
     
     for schema in required_schemas:
@@ -60,35 +74,35 @@ def modify_request_phase_behaviors(data):
             return
     
     allowed_refs = [
-        {'$ref': '#/components/schemas/EdgeApplicationRequestPhaseBehaviorWithoutArgs'},
-        {'$ref': '#/components/schemas/EdgeApplicationRequestPhaseBehaviorWithArgs'},
-        # {'$ref': '#/components/schemas/EdgeApplicationRequestPhaseBehaviorCaptureMatchGroups'}
+        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs'},
+        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithArgs'},
+        # {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroups'}
     ]
     
     allowed_refs_request = [
-        {'$ref': '#/components/schemas/EdgeApplicationRequestPhaseBehaviorWithoutArgsRequest'},
-        {'$ref': '#/components/schemas/EdgeApplicationRequestPhaseBehaviorWithArgsRequest'},
-        {'$ref': '#/components/schemas/EdgeApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest'}
+        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest'},
+        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithArgsRequest'},
+        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest'}
     ]
 
     # Update oneOfs
-    data['components']['schemas']['EdgeApplicationRuleEngineRequestPhaseBehaviors']['oneOf'] = allowed_refs
-    data['components']['schemas']['EdgeApplicationRuleEngineRequestPhaseBehaviorsRequest']['oneOf'] = allowed_refs_request
+    data['components']['schemas']['ApplicationRuleEngineRequestPhaseBehaviors']['oneOf'] = allowed_refs
+    data['components']['schemas']['ApplicationRuleEngineRequestPhaseBehaviorsRequest']['oneOf'] = allowed_refs_request
     
     # Remove additionalProperties from withoutArgs struct to prevent problems
-    if data['components']['schemas']['EdgeApplicationRequestPhaseBehaviorWithoutArgs'].get('additionalProperties', False):
-        data['components']['schemas']['EdgeApplicationRequestPhaseBehaviorWithoutArgs']['additionalProperties'] = False
+    if data['components']['schemas']['ApplicationRequestPhaseBehaviorWithoutArgs'].get('additionalProperties', False):
+        data['components']['schemas']['ApplicationRequestPhaseBehaviorWithoutArgs']['additionalProperties'] = False
     
     # Adapt allOf behavior schema
-    data['components']['schemas']['EdgeApplicationRequestPhaseBehaviorWithoutArgs']['allOf'] = [{'$ref': '#/components/schemas/EdgeApplicationRuleEngineNoArgs'}] 
-    data['components']['schemas']['EdgeApplicationRequestPhaseBehaviorWithArgs']['allOf'] = [{'$ref': '#/components/schemas/EdgeApplicationRuleEngineString'}]
-    data['components']['schemas']['EdgeApplicationRequestPhaseBehaviorCaptureMatchGroups']['allOf'] = [{'$ref': '#/components/schemas/EdgeApplicationRuleEngineCaptureMatchGroupsRequest'}]
-    data['components']['schemas']['EdgeApplicationRequestPhaseBehaviorWithoutArgsRequest']['allOf'] = [{'$ref': '#/components/schemas/EdgeApplicationRuleEngineNoArgs'}] 
-    data['components']['schemas']['EdgeApplicationRequestPhaseBehaviorWithArgsRequest']['allOf'] = [{'$ref': '#/components/schemas/EdgeApplicationRuleEngineString'}]
-    data['components']['schemas']['EdgeApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest']['allOf'] = [{'$ref': '#/components/schemas/EdgeApplicationRuleEngineCaptureMatchGroupsRequest'}]
+    data['components']['schemas']['ApplicationRequestPhaseBehaviorWithoutArgs']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineNoArgs'}] 
+    data['components']['schemas']['ApplicationRequestPhaseBehaviorWithArgs']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineString'}]
+    data['components']['schemas']['ApplicationRequestPhaseBehaviorCaptureMatchGroups']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineCaptureMatchGroupsRequest'}]
+    data['components']['schemas']['ApplicationRequestPhaseBehaviorWithoutArgsRequest']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineNoArgs'}] 
+    data['components']['schemas']['ApplicationRequestPhaseBehaviorWithArgsRequest']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineString'}]
+    data['components']['schemas']['ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineCaptureMatchGroupsRequest'}]
     
     # Adapt value field validation
-    data['components']['schemas']['EdgeApplicationRuleEngineStringAttributes']['properties']['value'] = {
+    data['components']['schemas']['ApplicationRuleEngineStringAttributes']['properties']['value'] = {
         "oneOf": [
             { "type": "string" },
             { "type": "integer", "format": "int64" }
@@ -96,8 +110,8 @@ def modify_request_phase_behaviors(data):
     }
     
     # Remove Required Fields
-    if 'required' in data['components']['schemas']['EdgeApplicationRuleEngineStringAttributes']:
-        del data['components']['schemas']['EdgeApplicationRuleEngineStringAttributes']['required']
+    if 'required' in data['components']['schemas']['ApplicationRuleEngineStringAttributes']:
+        del data['components']['schemas']['ApplicationRuleEngineStringAttributes']['required']
 
     print("✅ Successfully modified Request Phase Behaviors")
 
@@ -114,14 +128,14 @@ def modify_response_phase_behaviors(data):
         
     # Check if the specific schemas we need to modify exist
     required_schemas = [
-        'EdgeApplicationRuleEngineResponsePhaseBehaviors',
-        'EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest',
-        'EdgeApplicationResponsePhaseBehaviorWithoutArgs',
-        'EdgeApplicationResponsePhaseBehaviorWithArgs',
-        'EdgeApplicationResponsePhaseBehaviorCaptureMatchGroups',
-        'EdgeApplicationResponsePhaseBehaviorWithoutArgsRequest',
-        'EdgeApplicationResponsePhaseBehaviorWithArgsRequest',
-        'EdgeApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest'
+        'ApplicationRuleEngineResponsePhaseBehaviors',
+        'ApplicationRuleEngineResponsePhaseBehaviorsRequest',
+        'ApplicationResponsePhaseBehaviorWithoutArgs',
+        'ApplicationResponsePhaseBehaviorWithArgs',
+        'ApplicationResponsePhaseBehaviorCaptureMatchGroups',
+        'ApplicationResponsePhaseBehaviorWithoutArgsRequest',
+        'ApplicationResponsePhaseBehaviorWithArgsRequest',
+        'ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest'
     ]
     
     for schema in required_schemas:
@@ -130,32 +144,32 @@ def modify_response_phase_behaviors(data):
             return
     
     allowed_refs = [
-        {'$ref': '#/components/schemas/EdgeApplicationResponsePhaseBehaviorWithoutArgs'},
-        {'$ref': '#/components/schemas/EdgeApplicationResponsePhaseBehaviorWithArgs'},
-        # {'$ref': '#/components/schemas/EdgeApplicationResponsePhaseBehaviorCaptureMatchGroups'}
+        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgs'},
+        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithArgs'},
+        # {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroups'}
     ]
     
     allowed_refs_request = [
-        {'$ref': '#/components/schemas/EdgeApplicationResponsePhaseBehaviorWithoutArgsRequest'},
-        {'$ref': '#/components/schemas/EdgeApplicationResponsePhaseBehaviorWithArgsRequest'},
-        {'$ref': '#/components/schemas/EdgeApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest'}
+        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgsRequest'},
+        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithArgsRequest'},
+        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest'}
     ]
 
     # Update oneOfs
-    data['components']['schemas']['EdgeApplicationRuleEngineResponsePhaseBehaviors']['oneOf'] = allowed_refs
-    data['components']['schemas']['EdgeApplicationRuleEngineResponsePhaseBehaviorsRequest']['oneOf'] = allowed_refs_request
+    data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviors']['oneOf'] = allowed_refs
+    data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviorsRequest']['oneOf'] = allowed_refs_request
     
     # Remove additionalProperties from withoutArgs struct to prevent problems
-    if data['components']['schemas']['EdgeApplicationResponsePhaseBehaviorWithoutArgs'].get('additionalProperties', False):
-        data['components']['schemas']['EdgeApplicationResponsePhaseBehaviorWithoutArgs']['additionalProperties'] = False
+    if data['components']['schemas']['ApplicationResponsePhaseBehaviorWithoutArgs'].get('additionalProperties', False):
+        data['components']['schemas']['ApplicationResponsePhaseBehaviorWithoutArgs']['additionalProperties'] = False
     
     # Adapt allOf behavior schema
-    data['components']['schemas']['EdgeApplicationResponsePhaseBehaviorWithoutArgs']['allOf'] = [{'$ref': '#/components/schemas/EdgeApplicationRuleEngineNoArgs'}] 
-    data['components']['schemas']['EdgeApplicationResponsePhaseBehaviorWithArgs']['allOf'] = [{'$ref': '#/components/schemas/EdgeApplicationRuleEngineString'}]
-    data['components']['schemas']['EdgeApplicationResponsePhaseBehaviorCaptureMatchGroups']['allOf'] = [{'$ref': '#/components/schemas/EdgeApplicationRuleEngineCaptureMatchGroups'}]
-    data['components']['schemas']['EdgeApplicationResponsePhaseBehaviorWithoutArgsRequest']['allOf'] = [{'$ref': '#/components/schemas/EdgeApplicationRuleEngineNoArgs'}] 
-    data['components']['schemas']['EdgeApplicationResponsePhaseBehaviorWithArgsRequest']['allOf'] = [{'$ref': '#/components/schemas/EdgeApplicationRuleEngineString'}]
-    data['components']['schemas']['EdgeApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest']['allOf'] = [{'$ref': '#/components/schemas/EdgeApplicationRuleEngineCaptureMatchGroups'}]
+    data['components']['schemas']['ApplicationResponsePhaseBehaviorWithoutArgs']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineNoArgs'}] 
+    data['components']['schemas']['ApplicationResponsePhaseBehaviorWithArgs']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineString'}]
+    data['components']['schemas']['ApplicationResponsePhaseBehaviorCaptureMatchGroups']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineCaptureMatchGroups'}]
+    data['components']['schemas']['ApplicationResponsePhaseBehaviorWithoutArgsRequest']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineNoArgs'}] 
+    data['components']['schemas']['ApplicationResponsePhaseBehaviorWithArgsRequest']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineString'}]
+    data['components']['schemas']['ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineCaptureMatchGroups'}]
 
 
     print("✅ Successfully modified Response Phase Behaviors")
