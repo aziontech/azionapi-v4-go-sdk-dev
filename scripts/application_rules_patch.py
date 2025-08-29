@@ -54,64 +54,64 @@ def modify_request_phase_behaviors(data):
     if 'components' not in data or 'schemas' not in data['components']:
         print("⚠️ No components.schemas found in YAML, skipping request phase behaviors modification")
         return
-        
-    # Check if the specific schemas we need to modify exist
-    required_schemas = [
-        'ApplicationRuleEngineRequestPhaseBehaviors',
-        'ApplicationRuleEngineRequestPhaseBehaviorsRequest',
-        'ApplicationRequestPhaseBehaviorWithoutArgs',
-        'ApplicationRequestPhaseBehaviorWithArgs',
-        'ApplicationRequestPhaseBehaviorCaptureMatchGroups',
-        'ApplicationRequestPhaseBehaviorWithoutArgsRequest',
-        'ApplicationRequestPhaseBehaviorWithArgsRequest',
+    
+    # Define all the behavior request types we need to handle
+    behavior_request_types = [
+        'ApplicationRequestPhaseBehaviorAddHeaderRequest',
+        'ApplicationRequestPhaseBehaviorAddRequestCookieRequest',
         'ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest',
-        'ApplicationRuleEngineStringAttributes'
+        'ApplicationRequestPhaseBehaviorFilterHeaderRequest',
+        'ApplicationRequestPhaseBehaviorFilterRequestCookieRequest',
+        'ApplicationRequestPhaseBehaviorNoArgsRequest',
+        'ApplicationRequestPhaseBehaviorRewriteRequestRequest',
+        'ApplicationRequestPhaseBehaviorRunFunctionRequest',
+        'ApplicationRequestPhaseBehaviorSetCachePolicyRequest',
+        'ApplicationRequestPhaseBehaviorSetConnectorRequest',
+        'ApplicationRequestPhaseBehaviorSetOriginRequest',
+        'ApplicationRequestPhaseBehaviorStringRequest'
     ]
     
-    for schema in required_schemas:
+    # Check if the ApplicationRuleEngineRequestPhaseBehaviorsRequest schema exists
+    if 'ApplicationRuleEngineRequestPhaseBehaviorsRequest' not in data['components']['schemas']:
+        print("⚠️ Schema ApplicationRuleEngineRequestPhaseBehaviorsRequest not found in YAML, skipping request phase behaviors modification")
+        return
+    
+    # Check if the behavior request types exist
+    missing_schemas = []
+    for schema in behavior_request_types:
         if schema not in data['components']['schemas']:
-            print(f"⚠️ Schema {schema} not found in YAML, skipping request phase behaviors modification")
-            return
+            missing_schemas.append(schema)
     
-    allowed_refs = [
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithArgs'},
-        # {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroups'}
-    ]
+    if missing_schemas:
+        print(f"⚠️ The following schemas are missing: {', '.join(missing_schemas)}")
+        print("Continuing with available schemas...")
     
-    allowed_refs_request = [
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithArgsRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest'}
-    ]
-
-    # Update oneOfs
-    data['components']['schemas']['ApplicationRuleEngineRequestPhaseBehaviors']['oneOf'] = allowed_refs
-    data['components']['schemas']['ApplicationRuleEngineRequestPhaseBehaviorsRequest']['oneOf'] = allowed_refs_request
+    # Create properties for the ApplicationRuleEngineRequestPhaseBehaviorsRequest schema
+    properties = {}
+    for behavior_type in behavior_request_types:
+        if behavior_type in data['components']['schemas']:
+            properties[behavior_type] = {
+                "$ref": f"#/components/schemas/{behavior_type}"
+            }
     
-    # Remove additionalProperties from withoutArgs struct to prevent problems
-    if data['components']['schemas']['ApplicationRequestPhaseBehaviorWithoutArgs'].get('additionalProperties', False):
-        data['components']['schemas']['ApplicationRequestPhaseBehaviorWithoutArgs']['additionalProperties'] = False
-    
-    # Adapt allOf behavior schema
-    data['components']['schemas']['ApplicationRequestPhaseBehaviorWithoutArgs']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineNoArgs'}] 
-    data['components']['schemas']['ApplicationRequestPhaseBehaviorWithArgs']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineString'}]
-    data['components']['schemas']['ApplicationRequestPhaseBehaviorCaptureMatchGroups']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineCaptureMatchGroupsRequest'}]
-    data['components']['schemas']['ApplicationRequestPhaseBehaviorWithoutArgsRequest']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineNoArgs'}] 
-    data['components']['schemas']['ApplicationRequestPhaseBehaviorWithArgsRequest']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineString'}]
-    data['components']['schemas']['ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineCaptureMatchGroupsRequest'}]
-    
-    # Adapt value field validation
-    data['components']['schemas']['ApplicationRuleEngineStringAttributes']['properties']['value'] = {
-        "oneOf": [
-            { "type": "string" },
-            { "type": "integer", "format": "int64" }
-        ]
+    # Update the ApplicationRuleEngineRequestPhaseBehaviorsRequest schema
+    data['components']['schemas']['ApplicationRuleEngineRequestPhaseBehaviorsRequest'] = {
+        "type": "object",
+        "properties": properties
     }
     
-    # Remove Required Fields
-    if 'required' in data['components']['schemas']['ApplicationRuleEngineStringAttributes']:
-        del data['components']['schemas']['ApplicationRuleEngineStringAttributes']['required']
+    # Adapt value field validation if the schema exists
+    if 'ApplicationRuleEngineStringAttributes' in data['components']['schemas']:
+        data['components']['schemas']['ApplicationRuleEngineStringAttributes']['properties']['value'] = {
+            "oneOf": [
+                { "type": "string" },
+                { "type": "integer", "format": "int64" }
+            ]
+        }
+        
+        # Remove Required Fields
+        if 'required' in data['components']['schemas']['ApplicationRuleEngineStringAttributes']:
+            del data['components']['schemas']['ApplicationRuleEngineStringAttributes']['required']
 
     print("✅ Successfully modified Request Phase Behaviors")
 
@@ -125,52 +125,50 @@ def modify_response_phase_behaviors(data):
     if 'components' not in data or 'schemas' not in data['components']:
         print("⚠️ No components.schemas found in YAML, skipping response phase behaviors modification")
         return
-        
-    # Check if the specific schemas we need to modify exist
-    required_schemas = [
-        'ApplicationRuleEngineResponsePhaseBehaviors',
-        'ApplicationRuleEngineResponsePhaseBehaviorsRequest',
-        'ApplicationResponsePhaseBehaviorWithoutArgs',
-        'ApplicationResponsePhaseBehaviorWithArgs',
-        'ApplicationResponsePhaseBehaviorCaptureMatchGroups',
-        'ApplicationResponsePhaseBehaviorWithoutArgsRequest',
-        'ApplicationResponsePhaseBehaviorWithArgsRequest',
-        'ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest'
+    
+    # Define all the behavior request types we need to handle
+    behavior_request_types = [
+        'ApplicationResponsePhaseBehaviorAddHeaderRequest',
+        'ApplicationResponsePhaseBehaviorAddResponseCookieRequest',
+        'ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest',
+        'ApplicationResponsePhaseBehaviorFilterHeaderRequest',
+        'ApplicationResponsePhaseBehaviorFilterResponseCookieRequest',
+        'ApplicationResponsePhaseBehaviorNoArgsRequest',
+        'ApplicationResponsePhaseBehaviorRedirectRequest',
+        'ApplicationResponsePhaseBehaviorRewriteResponseRequest',
+        'ApplicationResponsePhaseBehaviorRunFunctionRequest',
+        'ApplicationResponsePhaseBehaviorSetCachePolicyRequest',
+        'ApplicationResponsePhaseBehaviorStringRequest'
     ]
     
-    for schema in required_schemas:
+    # Check if the ApplicationRuleEngineResponsePhaseBehaviorsRequest schema exists
+    if 'ApplicationRuleEngineResponsePhaseBehaviorsRequest' not in data['components']['schemas']:
+        print("⚠️ Schema ApplicationRuleEngineResponsePhaseBehaviorsRequest not found in YAML, skipping response phase behaviors modification")
+        return
+    
+    # Check if the behavior request types exist
+    missing_schemas = []
+    for schema in behavior_request_types:
         if schema not in data['components']['schemas']:
-            print(f"⚠️ Schema {schema} not found in YAML, skipping response phase behaviors modification")
-            return
+            missing_schemas.append(schema)
     
-    allowed_refs = [
-        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgs'},
-        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithArgs'},
-        # {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroups'}
-    ]
+    if missing_schemas:
+        print(f"⚠️ The following schemas are missing: {', '.join(missing_schemas)}")
+        print("Continuing with available schemas...")
     
-    allowed_refs_request = [
-        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgsRequest'},
-        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithArgsRequest'},
-        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest'}
-    ]
-
-    # Update oneOfs
-    data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviors']['oneOf'] = allowed_refs
-    data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviorsRequest']['oneOf'] = allowed_refs_request
+    # Create properties for the ApplicationRuleEngineResponsePhaseBehaviorsRequest schema
+    properties = {}
+    for behavior_type in behavior_request_types:
+        if behavior_type in data['components']['schemas']:
+            properties[behavior_type] = {
+                "$ref": f"#/components/schemas/{behavior_type}"
+            }
     
-    # Remove additionalProperties from withoutArgs struct to prevent problems
-    if data['components']['schemas']['ApplicationResponsePhaseBehaviorWithoutArgs'].get('additionalProperties', False):
-        data['components']['schemas']['ApplicationResponsePhaseBehaviorWithoutArgs']['additionalProperties'] = False
-    
-    # Adapt allOf behavior schema
-    data['components']['schemas']['ApplicationResponsePhaseBehaviorWithoutArgs']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineNoArgs'}] 
-    data['components']['schemas']['ApplicationResponsePhaseBehaviorWithArgs']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineString'}]
-    data['components']['schemas']['ApplicationResponsePhaseBehaviorCaptureMatchGroups']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineCaptureMatchGroups'}]
-    data['components']['schemas']['ApplicationResponsePhaseBehaviorWithoutArgsRequest']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineNoArgs'}] 
-    data['components']['schemas']['ApplicationResponsePhaseBehaviorWithArgsRequest']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineString'}]
-    data['components']['schemas']['ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest']['allOf'] = [{'$ref': '#/components/schemas/ApplicationRuleEngineCaptureMatchGroups'}]
-
+    # Update the ApplicationRuleEngineResponsePhaseBehaviorsRequest schema
+    data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviorsRequest'] = {
+        "type": "object",
+        "properties": properties
+    }
 
     print("✅ Successfully modified Response Phase Behaviors")
 
@@ -212,4 +210,3 @@ if __name__ == "__main__":
     
     yaml_file_path = sys.argv[1]
     process_yaml_file(yaml_file_path)
-
