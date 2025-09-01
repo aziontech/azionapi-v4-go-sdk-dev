@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Args** | Pointer to **interface{}** |  | [optional] 
+**AzionForm** | Pointer to [**ApplicationFunctionInstanceAzionForm**](ApplicationFunctionInstanceAzionForm.md) |  | [optional] 
 **Function** | **int64** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 
@@ -83,6 +84,31 @@ HasArgs returns a boolean if a field has been set.
 `func (o *ApplicationFunctionInstanceRequest) UnsetArgs()`
 
 UnsetArgs ensures that no value is present for Args, not even an explicit nil
+### GetAzionForm
+
+`func (o *ApplicationFunctionInstanceRequest) GetAzionForm() ApplicationFunctionInstanceAzionForm`
+
+GetAzionForm returns the AzionForm field if non-nil, zero value otherwise.
+
+### GetAzionFormOk
+
+`func (o *ApplicationFunctionInstanceRequest) GetAzionFormOk() (*ApplicationFunctionInstanceAzionForm, bool)`
+
+GetAzionFormOk returns a tuple with the AzionForm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAzionForm
+
+`func (o *ApplicationFunctionInstanceRequest) SetAzionForm(v ApplicationFunctionInstanceAzionForm)`
+
+SetAzionForm sets AzionForm field to given value.
+
+### HasAzionForm
+
+`func (o *ApplicationFunctionInstanceRequest) HasAzionForm() bool`
+
+HasAzionForm returns a boolean if a field has been set.
+
 ### GetFunction
 
 `func (o *ApplicationFunctionInstanceRequest) GetFunction() int64`

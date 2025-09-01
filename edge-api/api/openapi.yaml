@@ -2450,7 +2450,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, last_editor, last_modified, name, args, function, active)
+          (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active)
         explode: true
         in: query
         name: ordering
@@ -6856,7 +6856,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, last_editor, last_modified, name, args, function, active)
+          (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active)
         explode: true
         in: query
         name: ordering
@@ -16512,6 +16512,57 @@ components:
         name: name
         active: true
         id: 0
+        azion_form:
+          type: object
+          properties:
+            domain:
+              type: string
+              title: Domain
+              description: Domain where the cookie will be valid (use '.' at the beginning
+                for subdomains)
+            max_age:
+              type: integer
+              title: Max Age (seconds)
+              description: Cookie lifetime in seconds
+              minimum: 1
+              maximum: 31536000
+              format: int64
+            path:
+              type: string
+              title: Path
+              description: Path where the cookie will be valid
+            values:
+              type: array
+              title: Test Variations
+              description: List of A/B test variations with their respective weights
+              minItems: 2
+              maxItems: 10
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    title: Variation Value
+                    description: Unique variation identifier
+                    minLength: 1
+                    maxLength: 50
+                  weight:
+                    type: integer
+                    title: Weight
+                    description: Variance weight (higher weight = higher probability)
+                    minimum: 1
+                    maximum: 100
+                    format: int64
+                required:
+                - value
+                - weight
+                additionalProperties: false
+          required:
+          - domain
+          - max_age
+          - path
+          - values
+          additionalProperties: false
         last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -16522,6 +16573,8 @@ components:
           minLength: 1
           type: string
         args: {}
+        azion_form:
+          $ref: "#/components/schemas/ApplicationFunctionInstance_azion_form"
         function:
           format: int64
           maximum: 9223372036854775807
@@ -16551,12 +16604,65 @@ components:
         function: 738633633822310400
         name: name
         active: true
+        azion_form:
+          type: object
+          properties:
+            domain:
+              type: string
+              title: Domain
+              description: Domain where the cookie will be valid (use '.' at the beginning
+                for subdomains)
+            max_age:
+              type: integer
+              title: Max Age (seconds)
+              description: Cookie lifetime in seconds
+              minimum: 1
+              maximum: 31536000
+              format: int64
+            path:
+              type: string
+              title: Path
+              description: Path where the cookie will be valid
+            values:
+              type: array
+              title: Test Variations
+              description: List of A/B test variations with their respective weights
+              minItems: 2
+              maxItems: 10
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    title: Variation Value
+                    description: Unique variation identifier
+                    minLength: 1
+                    maxLength: 50
+                  weight:
+                    type: integer
+                    title: Weight
+                    description: Variance weight (higher weight = higher probability)
+                    minimum: 1
+                    maximum: 100
+                    format: int64
+                required:
+                - value
+                - weight
+                additionalProperties: false
+          required:
+          - domain
+          - max_age
+          - path
+          - values
+          additionalProperties: false
       properties:
         name:
           maxLength: 100
           minLength: 1
           type: string
         args: {}
+        azion_form:
+          $ref: "#/components/schemas/ApplicationFunctionInstance_azion_form"
         function:
           format: int64
           maximum: 9223372036854775807
@@ -20644,7 +20750,7 @@ components:
           type: string
         default_args: {}
         azion_form:
-          $ref: "#/components/schemas/EdgeFunctions_azion_form"
+          $ref: "#/components/schemas/ApplicationFunctionInstance_azion_form"
         reference_count:
           format: int64
           type: integer
@@ -20746,7 +20852,7 @@ components:
           type: string
         default_args: {}
         azion_form:
-          $ref: "#/components/schemas/EdgeFunctions_azion_form"
+          $ref: "#/components/schemas/ApplicationFunctionInstance_azion_form"
       required:
       - code
       - name
@@ -21350,6 +21456,57 @@ components:
         name: name
         active: true
         id: 0
+        azion_form:
+          type: object
+          properties:
+            domain:
+              type: string
+              title: Domain
+              description: Domain where the cookie will be valid (use '.' at the beginning
+                for subdomains)
+            max_age:
+              type: integer
+              title: Max Age (seconds)
+              description: Cookie lifetime in seconds
+              minimum: 1
+              maximum: 31536000
+              format: int64
+            path:
+              type: string
+              title: Path
+              description: Path where the cookie will be valid
+            values:
+              type: array
+              title: Test Variations
+              description: List of A/B test variations with their respective weights
+              minItems: 2
+              maxItems: 10
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    title: Variation Value
+                    description: Unique variation identifier
+                    minLength: 1
+                    maxLength: 50
+                  weight:
+                    type: integer
+                    title: Weight
+                    description: Variance weight (higher weight = higher probability)
+                    minimum: 1
+                    maximum: 100
+                    format: int64
+                required:
+                - value
+                - weight
+                additionalProperties: false
+          required:
+          - domain
+          - max_age
+          - path
+          - values
+          additionalProperties: false
         last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -21360,6 +21517,8 @@ components:
           minLength: 1
           type: string
         args: {}
+        azion_form:
+          $ref: "#/components/schemas/ApplicationFunctionInstance_azion_form"
         function:
           format: int64
           maximum: 9223372036854775807
@@ -21389,12 +21548,65 @@ components:
         function: 738633633822310400
         name: name
         active: true
+        azion_form:
+          type: object
+          properties:
+            domain:
+              type: string
+              title: Domain
+              description: Domain where the cookie will be valid (use '.' at the beginning
+                for subdomains)
+            max_age:
+              type: integer
+              title: Max Age (seconds)
+              description: Cookie lifetime in seconds
+              minimum: 1
+              maximum: 31536000
+              format: int64
+            path:
+              type: string
+              title: Path
+              description: Path where the cookie will be valid
+            values:
+              type: array
+              title: Test Variations
+              description: List of A/B test variations with their respective weights
+              minItems: 2
+              maxItems: 10
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    title: Variation Value
+                    description: Unique variation identifier
+                    minLength: 1
+                    maxLength: 50
+                  weight:
+                    type: integer
+                    title: Weight
+                    description: Variance weight (higher weight = higher probability)
+                    minimum: 1
+                    maximum: 100
+                    format: int64
+                required:
+                - value
+                - weight
+                additionalProperties: false
+          required:
+          - domain
+          - max_age
+          - path
+          - values
+          additionalProperties: false
       properties:
         name:
           maxLength: 100
           minLength: 1
           type: string
         args: {}
+        azion_form:
+          $ref: "#/components/schemas/ApplicationFunctionInstance_azion_form"
         function:
           format: int64
           maximum: 9223372036854775807
@@ -22884,6 +23096,57 @@ components:
           name: name
           active: true
           id: 0
+          azion_form:
+            type: object
+            properties:
+              domain:
+                type: string
+                title: Domain
+                description: Domain where the cookie will be valid (use '.' at the
+                  beginning for subdomains)
+              max_age:
+                type: integer
+                title: Max Age (seconds)
+                description: Cookie lifetime in seconds
+                minimum: 1
+                maximum: 31536000
+                format: int64
+              path:
+                type: string
+                title: Path
+                description: Path where the cookie will be valid
+              values:
+                type: array
+                title: Test Variations
+                description: List of A/B test variations with their respective weights
+                minItems: 2
+                maxItems: 10
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                      title: Variation Value
+                      description: Unique variation identifier
+                      minLength: 1
+                      maxLength: 50
+                    weight:
+                      type: integer
+                      title: Weight
+                      description: Variance weight (higher weight = higher probability)
+                      minimum: 1
+                      maximum: 100
+                      format: int64
+                  required:
+                  - value
+                  - weight
+                  additionalProperties: false
+            required:
+            - domain
+            - max_age
+            - path
+            - values
+            additionalProperties: false
           last_modified: 2000-01-23T04:56:07.000+00:00
         - args: ""
           function: 5559347081229897728
@@ -22891,6 +23154,57 @@ components:
           name: name
           active: true
           id: 0
+          azion_form:
+            type: object
+            properties:
+              domain:
+                type: string
+                title: Domain
+                description: Domain where the cookie will be valid (use '.' at the
+                  beginning for subdomains)
+              max_age:
+                type: integer
+                title: Max Age (seconds)
+                description: Cookie lifetime in seconds
+                minimum: 1
+                maximum: 31536000
+                format: int64
+              path:
+                type: string
+                title: Path
+                description: Path where the cookie will be valid
+              values:
+                type: array
+                title: Test Variations
+                description: List of A/B test variations with their respective weights
+                minItems: 2
+                maxItems: 10
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                      title: Variation Value
+                      description: Unique variation identifier
+                      minLength: 1
+                      maxLength: 50
+                    weight:
+                      type: integer
+                      title: Weight
+                      description: Variance weight (higher weight = higher probability)
+                      minimum: 1
+                      maximum: 100
+                      format: int64
+                  required:
+                  - value
+                  - weight
+                  additionalProperties: false
+            required:
+            - domain
+            - max_age
+            - path
+            - values
+            additionalProperties: false
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
@@ -23722,6 +24036,57 @@ components:
           name: name
           active: true
           id: 0
+          azion_form:
+            type: object
+            properties:
+              domain:
+                type: string
+                title: Domain
+                description: Domain where the cookie will be valid (use '.' at the
+                  beginning for subdomains)
+              max_age:
+                type: integer
+                title: Max Age (seconds)
+                description: Cookie lifetime in seconds
+                minimum: 1
+                maximum: 31536000
+                format: int64
+              path:
+                type: string
+                title: Path
+                description: Path where the cookie will be valid
+              values:
+                type: array
+                title: Test Variations
+                description: List of A/B test variations with their respective weights
+                minItems: 2
+                maxItems: 10
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                      title: Variation Value
+                      description: Unique variation identifier
+                      minLength: 1
+                      maxLength: 50
+                    weight:
+                      type: integer
+                      title: Weight
+                      description: Variance weight (higher weight = higher probability)
+                      minimum: 1
+                      maximum: 100
+                      format: int64
+                  required:
+                  - value
+                  - weight
+                  additionalProperties: false
+            required:
+            - domain
+            - max_age
+            - path
+            - values
+            additionalProperties: false
           last_modified: 2000-01-23T04:56:07.000+00:00
         - args: ""
           function: 5559347081229897728
@@ -23729,6 +24094,57 @@ components:
           name: name
           active: true
           id: 0
+          azion_form:
+            type: object
+            properties:
+              domain:
+                type: string
+                title: Domain
+                description: Domain where the cookie will be valid (use '.' at the
+                  beginning for subdomains)
+              max_age:
+                type: integer
+                title: Max Age (seconds)
+                description: Cookie lifetime in seconds
+                minimum: 1
+                maximum: 31536000
+                format: int64
+              path:
+                type: string
+                title: Path
+                description: Path where the cookie will be valid
+              values:
+                type: array
+                title: Test Variations
+                description: List of A/B test variations with their respective weights
+                minItems: 2
+                maxItems: 10
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                      title: Variation Value
+                      description: Unique variation identifier
+                      minLength: 1
+                      maxLength: 50
+                    weight:
+                      type: integer
+                      title: Weight
+                      description: Variance weight (higher weight = higher probability)
+                      minimum: 1
+                      maximum: 100
+                      format: int64
+                  required:
+                  - value
+                  - weight
+                  additionalProperties: false
+            required:
+            - domain
+            - max_age
+            - path
+            - values
+            additionalProperties: false
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
@@ -24386,12 +24802,65 @@ components:
         function: 738633633822310400
         name: name
         active: true
+        azion_form:
+          type: object
+          properties:
+            domain:
+              type: string
+              title: Domain
+              description: Domain where the cookie will be valid (use '.' at the beginning
+                for subdomains)
+            max_age:
+              type: integer
+              title: Max Age (seconds)
+              description: Cookie lifetime in seconds
+              minimum: 1
+              maximum: 31536000
+              format: int64
+            path:
+              type: string
+              title: Path
+              description: Path where the cookie will be valid
+            values:
+              type: array
+              title: Test Variations
+              description: List of A/B test variations with their respective weights
+              minItems: 2
+              maxItems: 10
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    title: Variation Value
+                    description: Unique variation identifier
+                    minLength: 1
+                    maxLength: 50
+                  weight:
+                    type: integer
+                    title: Weight
+                    description: Variance weight (higher weight = higher probability)
+                    minimum: 1
+                    maximum: 100
+                    format: int64
+                required:
+                - value
+                - weight
+                additionalProperties: false
+          required:
+          - domain
+          - max_age
+          - path
+          - values
+          additionalProperties: false
       properties:
         name:
           maxLength: 100
           minLength: 1
           type: string
         args: {}
+        azion_form:
+          $ref: "#/components/schemas/ApplicationFunctionInstance_azion_form"
         function:
           format: int64
           maximum: 9223372036854775807
@@ -24970,7 +25439,7 @@ components:
           type: string
         default_args: {}
         azion_form:
-          $ref: "#/components/schemas/EdgeFunctions_azion_form"
+          $ref: "#/components/schemas/ApplicationFunctionInstance_azion_form"
       title: PatchedEdgeFunctionsRequest
       type: object
     PatchedFirewallFunctionInstanceRequest:
@@ -24981,12 +25450,65 @@ components:
         function: 738633633822310400
         name: name
         active: true
+        azion_form:
+          type: object
+          properties:
+            domain:
+              type: string
+              title: Domain
+              description: Domain where the cookie will be valid (use '.' at the beginning
+                for subdomains)
+            max_age:
+              type: integer
+              title: Max Age (seconds)
+              description: Cookie lifetime in seconds
+              minimum: 1
+              maximum: 31536000
+              format: int64
+            path:
+              type: string
+              title: Path
+              description: Path where the cookie will be valid
+            values:
+              type: array
+              title: Test Variations
+              description: List of A/B test variations with their respective weights
+              minItems: 2
+              maxItems: 10
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    title: Variation Value
+                    description: Unique variation identifier
+                    minLength: 1
+                    maxLength: 50
+                  weight:
+                    type: integer
+                    title: Weight
+                    description: Variance weight (higher weight = higher probability)
+                    minimum: 1
+                    maximum: 100
+                    format: int64
+                required:
+                - value
+                - weight
+                additionalProperties: false
+          required:
+          - domain
+          - max_age
+          - path
+          - values
+          additionalProperties: false
       properties:
         name:
           maxLength: 100
           minLength: 1
           type: string
         args: {}
+        azion_form:
+          $ref: "#/components/schemas/ApplicationFunctionInstance_azion_form"
         function:
           format: int64
           maximum: 9223372036854775807
@@ -25634,6 +26156,57 @@ components:
           name: name
           active: true
           id: 0
+          azion_form:
+            type: object
+            properties:
+              domain:
+                type: string
+                title: Domain
+                description: Domain where the cookie will be valid (use '.' at the
+                  beginning for subdomains)
+              max_age:
+                type: integer
+                title: Max Age (seconds)
+                description: Cookie lifetime in seconds
+                minimum: 1
+                maximum: 31536000
+                format: int64
+              path:
+                type: string
+                title: Path
+                description: Path where the cookie will be valid
+              values:
+                type: array
+                title: Test Variations
+                description: List of A/B test variations with their respective weights
+                minItems: 2
+                maxItems: 10
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                      title: Variation Value
+                      description: Unique variation identifier
+                      minLength: 1
+                      maxLength: 50
+                    weight:
+                      type: integer
+                      title: Weight
+                      description: Variance weight (higher weight = higher probability)
+                      minimum: 1
+                      maximum: 100
+                      format: int64
+                  required:
+                  - value
+                  - weight
+                  additionalProperties: false
+            required:
+            - domain
+            - max_age
+            - path
+            - values
+            additionalProperties: false
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -25965,6 +26538,57 @@ components:
           name: name
           active: true
           id: 0
+          azion_form:
+            type: object
+            properties:
+              domain:
+                type: string
+                title: Domain
+                description: Domain where the cookie will be valid (use '.' at the
+                  beginning for subdomains)
+              max_age:
+                type: integer
+                title: Max Age (seconds)
+                description: Cookie lifetime in seconds
+                minimum: 1
+                maximum: 31536000
+                format: int64
+              path:
+                type: string
+                title: Path
+                description: Path where the cookie will be valid
+              values:
+                type: array
+                title: Test Variations
+                description: List of A/B test variations with their respective weights
+                minItems: 2
+                maxItems: 10
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                      title: Variation Value
+                      description: Unique variation identifier
+                      minLength: 1
+                      maxLength: 50
+                    weight:
+                      type: integer
+                      title: Weight
+                      description: Variance weight (higher weight = higher probability)
+                      minimum: 1
+                      maximum: 100
+                      format: int64
+                  required:
+                  - value
+                  - weight
+                  additionalProperties: false
+            required:
+            - domain
+            - max_age
+            - path
+            - values
+            additionalProperties: false
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -26590,6 +27214,57 @@ components:
           name: name
           active: true
           id: 0
+          azion_form:
+            type: object
+            properties:
+              domain:
+                type: string
+                title: Domain
+                description: Domain where the cookie will be valid (use '.' at the
+                  beginning for subdomains)
+              max_age:
+                type: integer
+                title: Max Age (seconds)
+                description: Cookie lifetime in seconds
+                minimum: 1
+                maximum: 31536000
+                format: int64
+              path:
+                type: string
+                title: Path
+                description: Path where the cookie will be valid
+              values:
+                type: array
+                title: Test Variations
+                description: List of A/B test variations with their respective weights
+                minItems: 2
+                maxItems: 10
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                      title: Variation Value
+                      description: Unique variation identifier
+                      minLength: 1
+                      maxLength: 50
+                    weight:
+                      type: integer
+                      title: Weight
+                      description: Variance weight (higher weight = higher probability)
+                      minimum: 1
+                      maximum: 100
+                      format: int64
+                  required:
+                  - value
+                  - weight
+                  additionalProperties: false
+            required:
+            - domain
+            - max_age
+            - path
+            - values
+            additionalProperties: false
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -27807,6 +28482,57 @@ components:
           name: name
           active: true
           id: 0
+          azion_form:
+            type: object
+            properties:
+              domain:
+                type: string
+                title: Domain
+                description: Domain where the cookie will be valid (use '.' at the
+                  beginning for subdomains)
+              max_age:
+                type: integer
+                title: Max Age (seconds)
+                description: Cookie lifetime in seconds
+                minimum: 1
+                maximum: 31536000
+                format: int64
+              path:
+                type: string
+                title: Path
+                description: Path where the cookie will be valid
+              values:
+                type: array
+                title: Test Variations
+                description: List of A/B test variations with their respective weights
+                minItems: 2
+                maxItems: 10
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                      title: Variation Value
+                      description: Unique variation identifier
+                      minLength: 1
+                      maxLength: 50
+                    weight:
+                      type: integer
+                      title: Weight
+                      description: Variance weight (higher weight = higher probability)
+                      minimum: 1
+                      maximum: 100
+                      format: int64
+                  required:
+                  - value
+                  - weight
+                  additionalProperties: false
+            required:
+            - domain
+            - max_age
+            - path
+            - values
+            additionalProperties: false
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -28181,6 +28907,57 @@ components:
           name: name
           active: true
           id: 0
+          azion_form:
+            type: object
+            properties:
+              domain:
+                type: string
+                title: Domain
+                description: Domain where the cookie will be valid (use '.' at the
+                  beginning for subdomains)
+              max_age:
+                type: integer
+                title: Max Age (seconds)
+                description: Cookie lifetime in seconds
+                minimum: 1
+                maximum: 31536000
+                format: int64
+              path:
+                type: string
+                title: Path
+                description: Path where the cookie will be valid
+              values:
+                type: array
+                title: Test Variations
+                description: List of A/B test variations with their respective weights
+                minItems: 2
+                maxItems: 10
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                      title: Variation Value
+                      description: Unique variation identifier
+                      minLength: 1
+                      maxLength: 50
+                    weight:
+                      type: integer
+                      title: Weight
+                      description: Variance weight (higher weight = higher probability)
+                      minimum: 1
+                      maximum: 100
+                      format: int64
+                  required:
+                  - value
+                  - weight
+                  additionalProperties: false
+            required:
+            - domain
+            - max_age
+            - path
+            - values
+            additionalProperties: false
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
@@ -28459,6 +29236,57 @@ components:
           name: name
           active: true
           id: 0
+          azion_form:
+            type: object
+            properties:
+              domain:
+                type: string
+                title: Domain
+                description: Domain where the cookie will be valid (use '.' at the
+                  beginning for subdomains)
+              max_age:
+                type: integer
+                title: Max Age (seconds)
+                description: Cookie lifetime in seconds
+                minimum: 1
+                maximum: 31536000
+                format: int64
+              path:
+                type: string
+                title: Path
+                description: Path where the cookie will be valid
+              values:
+                type: array
+                title: Test Variations
+                description: List of A/B test variations with their respective weights
+                minItems: 2
+                maxItems: 10
+                items:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                      title: Variation Value
+                      description: Unique variation identifier
+                      minLength: 1
+                      maxLength: 50
+                    weight:
+                      type: integer
+                      title: Weight
+                      description: Variance weight (higher weight = higher probability)
+                      minimum: 1
+                      maximum: 100
+                      format: int64
+                  required:
+                  - value
+                  - weight
+                  additionalProperties: false
+            required:
+            - domain
+            - max_age
+            - path
+            - values
+            additionalProperties: false
           last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
@@ -30188,12 +31016,7 @@ components:
       - name
       title: WorkloadRequest
       type: object
-    ApplicationRuleEngineStringAttributes_value:
-      oneOf:
-      - type: string
-      - format: int64
-        type: integer
-    EdgeFunctions_azion_form:
+    ApplicationFunctionInstance_azion_form:
       description: |
         JSON schema to be rendered as a json args form.
         - azion_form must be a JSON schema.
@@ -30253,6 +31076,11 @@ components:
         arg:
           type: object
       type: object
+    ApplicationRuleEngineStringAttributes_value:
+      oneOf:
+      - type: string
+      - format: int64
+        type: integer
     MTLS_verification:
       nullable: true
       oneOf:

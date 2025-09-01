@@ -441,7 +441,7 @@ func (r ApiListApplicationFunctionInstancesRequest) Fields(fields string) ApiLis
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: id, last_editor, last_modified, name, args, function, active)
+// Which field to use when ordering the results. (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active)
 func (r ApiListApplicationFunctionInstancesRequest) Ordering(ordering string) ApiListApplicationFunctionInstancesRequest {
 	r.ordering = &ordering
 	return r
