@@ -441,7 +441,7 @@ func (r ApiListFirewallFunctionRequest) Fields(fields string) ApiListFirewallFun
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: id, last_editor, last_modified, name, args, function, active)
+// Which field to use when ordering the results. (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active)
 func (r ApiListFirewallFunctionRequest) Ordering(ordering string) ApiListFirewallFunctionRequest {
 	r.ordering = &ordering
 	return r
