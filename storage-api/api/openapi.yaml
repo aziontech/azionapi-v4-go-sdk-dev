@@ -1974,6 +1974,7 @@ components:
       additionalProperties: false
       example:
         size: 0
+        is_folder: true
         last_modified: 2000-01-23T04:56:07.000+00:00
         key: key
       properties:
@@ -1986,7 +1987,11 @@ components:
           description: Size of the object in bytes
           format: int64
           type: integer
+        is_folder:
+          description: Whether this entry represents a folder
+          type: boolean
       required:
+      - is_folder
       - key
       - last_modified
       - size
@@ -2483,9 +2488,11 @@ components:
         continuation_token: continuation_token
         results:
         - size: 0
+          is_folder: true
           last_modified: 2000-01-23T04:56:07.000+00:00
           key: key
         - size: 0
+          is_folder: true
           last_modified: 2000-01-23T04:56:07.000+00:00
           key: key
       properties:
