@@ -1,0 +1,3486 @@
+openapi: 3.0.3
+info:
+  description: REST API OpenAPI documentation for the Orchestrator
+  title: Orchestrator
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /edge_orchestrator/edge_nodes:
+    get:
+      description: List all Edge Nodes of your account.
+      operationId: list Edge Nodes
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Search by hash_id
+        explode: true
+        in: query
+        name: hash_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Search by name
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: name, id)
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A numeric value that indicates the number of items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedResponseListNodesList"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodes"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: List Edge Nodes
+      tags:
+      - Orchestrator - Edge Nodes
+  /edge_orchestrator/edge_nodes/{nodeId}:
+    delete:
+      description: Delete an Edge Node.
+      operationId: delete Edge Node
+      parameters:
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncDeleteNodes"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncDeleteNodes"
+          description: Accepted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodes"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Delete an Edge Node
+      tags:
+      - Orchestrator - Edge Nodes
+    get:
+      description: Retrieve details of a specific Edge Node in your account.
+      operationId: retrieve Edge Node
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRetrieveNodes"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodes"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve details of an Edge Node
+      tags:
+      - Orchestrator - Edge Nodes
+    patch:
+      description: Update one or more fields of an existing Edge Node without affecting
+        other fields.
+      operationId: partial update Edge Node
+      parameters:
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedNodesRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncNodes"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodes"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncNodes"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Partially update an Edge Node
+      tags:
+      - Orchestrator - Edge Nodes
+    put:
+      description: Update an existing Edge Node. This replaces the entire Edge Node
+        with the new data provided.
+      operationId: update Edge Node
+      parameters:
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NodesRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncNodes"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodes"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncNodes"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Update an Edge Node
+      tags:
+      - Orchestrator - Edge Nodes
+  /edge_orchestrator/edge_nodes/{nodeId}/:
+    get:
+      description: Retrieve details of a specific Edge Node in your account.
+      operationId: retrieve Edge Node2
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRetrieveNodes"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodes"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve details of an Edge Node
+      tags:
+      - Orchestrator - Edge Nodes
+    patch:
+      description: Update one or more fields of an existing Edge Node without affecting
+        other fields.
+      operationId: partial update Edge Node2
+      parameters:
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedNodesRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncNodes"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodes"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncNodes"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Partially update an Edge Node
+      tags:
+      - Orchestrator - Edge Nodes
+    put:
+      description: Update an existing Edge Node. This replaces the entire Edge Node
+        with the new data provided.
+      operationId: update Edge Node2
+      parameters:
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NodesRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncNodes"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodes"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncNodes"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Update an Edge Node
+      tags:
+      - Orchestrator - Edge Nodes
+  /edge_orchestrator/edge_nodes/{nodeId}/groups:
+    get:
+      description: List all Groups of an Edge Node.
+      operationId: list Edge Node Groups by ID
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: name, id)
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A numeric value that indicates the number of items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedResponseListNodeGroupsByIdList"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodeGroupsById"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: List Edge Node Groups by id
+      tags:
+      - Orchestrator - Edge Node Groups
+    post:
+      description: Create a bind between Node and Group.
+      operationId: bind Edge Node Group
+      parameters:
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NodeGroupsByIdRequest"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncNodeGroupsById"
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodeGroupsById"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncNodeGroupsById"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Bind Node Group
+      tags:
+      - Orchestrator - Edge Node Groups
+  /edge_orchestrator/edge_nodes/{nodeId}/services:
+    get:
+      description: List all Services from an Edge Node.
+      operationId: list Edge Node Services
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: service_name, id)
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A numeric value that indicates the number of items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedResponseListNodeServicesList"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodeServices"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: List Node Services
+      tags:
+      - Orchestrator - Edge Node Services
+    post:
+      description: Create a bind between Node and Service.
+      operationId: bind Edge Node Services
+      parameters:
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NodeServicesRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncNodeServices"
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodeServices"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncNodeServices"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Bind Node Service
+      tags:
+      - Orchestrator - Edge Node Services
+  /edge_orchestrator/edge_nodes/{nodeId}/services/{bindId}:
+    delete:
+      description: Remove the bind between Node and Service.
+      operationId: unbind Edge Node Service
+      parameters:
+      - explode: false
+        in: path
+        name: bindId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncDeleteNodeServiceBind"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncDeleteNodeServiceBind"
+          description: Accepted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodeServiceBind"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Unbind Node Service
+      tags:
+      - Orchestrator - Edge Node Services
+    get:
+      description: Retrieve details of a specific Edge Node Service Bind in your account.
+      operationId: retrieve Edge Node Service Bind
+      parameters:
+      - explode: false
+        in: path
+        name: bindId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: nodeId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRetrieveNodeServiceBind"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestNodeServiceBind"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve details of an Edge Node Service Bind
+      tags:
+      - Orchestrator - Edge Node Services
+  /edge_orchestrator/edge_nodes/groups:
+    get:
+      description: List all Groups of an Edge Node.
+      operationId: list Edge Node Groups
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: name, id)
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedNodeGroupsList"
+          description: ""
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: List Edge Node Groups
+      tags:
+      - Orchestrator - Edge Node Groups
+    post:
+      description: Create an Edge Node Group.
+      operationId: create Edge Node Group
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NodeGroupsRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NodeGroups"
+          description: ""
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Create Edge Node Group
+      tags:
+      - Orchestrator - Edge Node Groups
+  /edge_orchestrator/edge_nodes/groups/{groupId}:
+    delete:
+      description: Remove an Edge Node Group.
+      operationId: remove Edge Node Group
+      parameters:
+      - explode: false
+        in: path
+        name: groupId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Remove Node Group
+      tags:
+      - Orchestrator - Edge Node Groups
+  /edge_orchestrator/edge_services:
+    get:
+      description: Get the list of Edge Services of your account.
+      operationId: list Edge Services
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Search by name
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Field to order by, use '-' for descending"
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Page number for pagination
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A numeric value that indicates the number of items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedResponseListServicesList"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestServices"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: List Edge Services
+      tags:
+      - Orchestrator - Edge Services
+    post:
+      description: Create an Edge Service.
+      operationId: create Edge Service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ServicesRequest"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncServices"
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestServices"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncServices"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Create Edge Service
+      tags:
+      - Orchestrator - Edge Services
+  /edge_orchestrator/edge_services/{serviceId}:
+    delete:
+      description: Destruction of a specific Edge Service in your account.
+      operationId: destroy Edge Service
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncDeleteServices"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncDeleteServices"
+          description: Accepted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestServices"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Destroy an Edge Service
+      tags:
+      - Orchestrator - Edge Services
+    get:
+      description: Retrieve details of a specific Edge Service in your account.
+      operationId: retrieve Edge Service
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRetrieveServices"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestServices"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve details of an Edge Service
+      tags:
+      - Orchestrator - Edge Services
+    patch:
+      description: Update one or more fields of an existing Edge Service without affecting
+        other fields.
+      operationId: partial update Edge Service
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedServicesRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncServices"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestServices"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncServices"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Partially update an Edge Service
+      tags:
+      - Orchestrator - Edge Services
+    put:
+      description: Update an existing Edge Service replacing all fields.
+      operationId: update Edge Service
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ServicesRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncServices"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseBadRequestServices"
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncServices"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Update an Edge Service
+      tags:
+      - Orchestrator - Edge Services
+  /edge_orchestrator/edge_services/{serviceId}/resources:
+    get:
+      description: List all resources of a Service owned by your account.
+      operationId: list Resources of a Service
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: name, id)
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedServiceResourceList"
+          description: ""
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: List Service Resources
+      tags:
+      - Orchestrator - Edge Service Resources
+    post:
+      description: Create a Resource on a Service.
+      operationId: create Resource
+      parameters:
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ServiceResourceRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceResource"
+          description: ""
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Create Service Resource
+      tags:
+      - Orchestrator - Edge Service Resources
+  /edge_orchestrator/edge_services/{serviceId}/resources/{resourceId}:
+    delete:
+      description: Delete Resource from your account.
+      operationId: delete Resource
+      parameters:
+      - explode: false
+        in: path
+        name: resourceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Delete Resource
+      tags:
+      - Orchestrator - Edge Service Resources
+    get:
+      description: Retrieve details of a specific Resource in your account.
+      operationId: retrieve Resource
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: resourceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceResourceId"
+          description: ""
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve details of a Resource
+      tags:
+      - Orchestrator - Edge Service Resources
+    put:
+      description: Update Resource in your account.
+      operationId: update Resource
+      parameters:
+      - explode: false
+        in: path
+        name: resourceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ServiceResourceIdRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceResourceId"
+          description: ""
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Update Resource
+      tags:
+      - Orchestrator - Edge Service Resources
+  /edge_orchestrator/edge_services/{serviceId}/resources/{resourceId}/content:
+    get:
+      description: Retrieve content of a resource.
+      operationId: retrieve Resource Content
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: resourceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Content"
+          description: ""
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve content of a Resource
+      tags:
+      - Orchestrator - Edge Service Resources
+    put:
+      description: Upload content of a Resource.
+      operationId: upload Resource Content
+      parameters:
+      - explode: false
+        in: path
+        name: resourceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContentRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Content"
+          description: ""
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Upload content of a Resource
+      tags:
+      - Orchestrator - Edge Service Resources
+components:
+  schemas:
+    BlankEnum:
+      title: BlankEnum
+      type: string
+    Content:
+      additionalProperties: false
+      example:
+        content_type: content_type
+        last_editor: last_editor
+        name: name
+        id: 0
+        content_hash: content_hash
+        last_modified: last_modified
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        content_type:
+          maxLength: 50
+          minLength: 1
+          type: string
+        content_hash:
+          maxLength: 50
+          minLength: 1
+          type: string
+        last_editor:
+          type: string
+        last_modified:
+          type: string
+      required:
+      - content_hash
+      - content_type
+      - id
+      - last_editor
+      - last_modified
+      - name
+      title: Content
+      type: object
+    ContentRequest:
+      additionalProperties: false
+      example:
+        content_type: content_type
+        name: name
+        content_hash: content_hash
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        content_type:
+          maxLength: 50
+          minLength: 1
+          type: string
+        content_hash:
+          maxLength: 50
+          minLength: 1
+          type: string
+      required:
+      - content_hash
+      - content_type
+      - name
+      title: ContentRequest
+      type: object
+    DefaultErrorResponse:
+      additionalProperties: false
+      example:
+        detail: detail
+      properties:
+        detail:
+          maxLength: 4096
+          minLength: 1
+          type: string
+      title: DefaultErrorResponse
+      type: object
+    NodeGroups:
+      additionalProperties: false
+      example:
+        name: name
+        active: true
+        id: 0
+        ref_count: 6
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 100
+          type: string
+        ref_count:
+          format: int64
+          type: integer
+        active:
+          type: boolean
+      required:
+      - id
+      - name
+      - ref_count
+      title: NodeGroups
+      type: object
+    NodeGroupsById:
+      additionalProperties: false
+      example:
+        name: name
+        id: 0
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 100
+          type: string
+      required:
+      - id
+      title: NodeGroupsById
+      type: object
+    NodeGroupsByIdRequest:
+      additionalProperties: false
+      example:
+        node_group: 0
+        name: name
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        node_group:
+          format: int64
+          type: integer
+          writeOnly: true
+      title: NodeGroupsByIdRequest
+      type: object
+    NodeGroupsRequest:
+      additionalProperties: false
+      example:
+        name: name
+        active: true
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+      required:
+      - name
+      title: NodeGroupsRequest
+      type: object
+    NodeServiceBind:
+      additionalProperties: false
+      example:
+        service_name: service_name
+        service_id: 6
+        last_editor: last_editor
+        active: true
+        id: 0
+        last_modified: last_modified
+      properties:
+        id:
+          format: int64
+          type: integer
+        service_name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        service_id:
+          format: int64
+          type: integer
+        active:
+          type: boolean
+        last_editor:
+          type: string
+        last_modified:
+          type: string
+      required:
+      - active
+      - id
+      - last_editor
+      - last_modified
+      - service_id
+      - service_name
+      title: NodeServiceBind
+      type: object
+    NodeServices:
+      additionalProperties: false
+      example:
+        service_name: service_name
+        service_id: 6
+        last_editor: last_editor
+        active: true
+        id: 0
+        last_modified: last_modified
+      properties:
+        id:
+          format: int64
+          type: integer
+        service_name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        service_id:
+          format: int64
+          type: integer
+        active:
+          type: boolean
+        last_editor:
+          type: string
+        last_modified:
+          type: string
+      required:
+      - last_editor
+      - last_modified
+      - service_id
+      title: NodeServices
+      type: object
+    NodeServicesRequest:
+      additionalProperties: false
+      example:
+        service_name: service_name
+        service_id: 6
+        active: true
+        id: 0
+      properties:
+        id:
+          format: int64
+          type: integer
+        service_name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        service_id:
+          format: int64
+          type: integer
+        active:
+          type: boolean
+      required:
+      - service_id
+      title: NodeServicesRequest
+      type: object
+    Nodes:
+      additionalProperties: false
+      example:
+        product_version: product_version
+        last_editor: last_editor
+        name: name
+        active: true
+        id: 0
+        last_modified: last_modified
+        modules: ""
+        hash_id: hash_id
+        status: status
+      properties:
+        id:
+          format: int64
+          type: integer
+        hash_id:
+          type: string
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        status:
+          description: |-
+            * `waiting_authorization` - waiting_authorization
+            * `authorized` - authorized
+          title: StatusEnum
+          type: string
+        active:
+          type: boolean
+        last_editor:
+          type: string
+        last_modified:
+          type: string
+        modules: {}
+        product_version:
+          maxLength: 50
+          minLength: 3
+          type: string
+      required:
+      - active
+      - hash_id
+      - id
+      - last_editor
+      - last_modified
+      - name
+      - product_version
+      - status
+      title: Nodes
+      type: object
+    NodesRequest:
+      additionalProperties: false
+      example:
+        name: name
+        modules: ""
+        status: status
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        status:
+          description: |-
+            * `waiting_authorization` - waiting_authorization
+            * `authorized` - authorized
+          title: StatusEnum
+          type: string
+        modules: {}
+      required:
+      - name
+      - status
+      title: NodesRequest
+      type: object
+    PaginatedNodeGroupsList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - name: name
+          active: true
+          id: 0
+          ref_count: 6
+        - name: name
+          active: true
+          id: 0
+          ref_count: 6
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/NodeGroups"
+          type: array
+      title: PaginatedNodeGroupsList
+      type: object
+    PaginatedResponseListNodeGroupsByIdList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - name: name
+          id: 0
+        - name: name
+          id: 0
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/ResponseListNodeGroupsById"
+          type: array
+      title: PaginatedResponseListNodeGroupsByIdList
+      type: object
+    PaginatedResponseListNodeServicesList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - service_name: service_name
+          service_id: 6
+          last_editor: last_editor
+          active: true
+          id: 0
+          last_modified: last_modified
+        - service_name: service_name
+          service_id: 6
+          last_editor: last_editor
+          active: true
+          id: 0
+          last_modified: last_modified
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/ResponseListNodeServices"
+          type: array
+      title: PaginatedResponseListNodeServicesList
+      type: object
+    PaginatedResponseListNodesList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - product_version: product_version
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: last_modified
+          modules: ""
+          hash_id: hash_id
+          status: status
+        - product_version: product_version
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: last_modified
+          modules: ""
+          hash_id: hash_id
+          status: status
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/ResponseListNodes"
+          type: array
+      title: PaginatedResponseListNodesList
+      type: object
+    PaginatedResponseListServicesList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - min_version: min_version
+          product_version: product_version
+          permissions: 6
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          ref_count: 1
+          last_modified: last_modified
+        - min_version: min_version
+          product_version: product_version
+          permissions: 6
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          ref_count: 1
+          last_modified: last_modified
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/ResponseListServices"
+          type: array
+      title: PaginatedResponseListServicesList
+      type: object
+    PaginatedServiceResourceList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - content_type: content_type
+          is_template: true
+          last_editor: last_editor
+          name: name
+          file_owner: file_owner
+          active: true
+          file_group: file_group
+          id: 0
+          content_hash: content_hash
+          ref_count: 6
+          last_modified: last_modified
+          file_mode: file_mode
+        - content_type: content_type
+          is_template: true
+          last_editor: last_editor
+          name: name
+          file_owner: file_owner
+          active: true
+          file_group: file_group
+          id: 0
+          content_hash: content_hash
+          ref_count: 6
+          last_modified: last_modified
+          file_mode: file_mode
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/ServiceResource"
+          type: array
+      title: PaginatedServiceResourceList
+      type: object
+    PatchedNodesRequest:
+      additionalProperties: false
+      example:
+        name: name
+        modules: ""
+        status: status
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        status:
+          description: |-
+            * `waiting_authorization` - waiting_authorization
+            * `authorized` - authorized
+          title: StatusEnum
+          type: string
+        modules: {}
+      title: PatchedNodesRequest
+      type: object
+    PatchedServicesRequest:
+      additionalProperties: false
+      example:
+        min_version: min_version
+        permissions: 0
+        name: name
+        active: true
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        min_version:
+          maxLength: 50
+          minLength: 1
+          type: string
+        permissions:
+          format: int64
+          type: integer
+      title: PatchedServicesRequest
+      type: object
+    ResponseAsyncDeleteNodeServiceBind:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseAsyncDeleteNodeServiceBind
+      type: object
+    ResponseAsyncDeleteNodes:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseAsyncDeleteNodes
+      type: object
+    ResponseAsyncDeleteServices:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseAsyncDeleteServices
+      type: object
+    ResponseAsyncNodeGroupsById:
+      additionalProperties: false
+      example:
+        data:
+          name: name
+          id: 0
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/NodeGroupsById"
+      required:
+      - data
+      title: ResponseAsyncNodeGroupsById
+      type: object
+    ResponseAsyncNodeServices:
+      additionalProperties: false
+      example:
+        data:
+          service_name: service_name
+          service_id: 6
+          last_editor: last_editor
+          active: true
+          id: 0
+          last_modified: last_modified
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/NodeServices"
+      required:
+      - data
+      title: ResponseAsyncNodeServices
+      type: object
+    ResponseAsyncNodes:
+      additionalProperties: false
+      example:
+        data:
+          product_version: product_version
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: last_modified
+          modules: ""
+          hash_id: hash_id
+          status: status
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Nodes"
+      required:
+      - data
+      title: ResponseAsyncNodes
+      type: object
+    ResponseAsyncServices:
+      additionalProperties: false
+      example:
+        data:
+          min_version: min_version
+          product_version: product_version
+          permissions: 6
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          ref_count: 1
+          last_modified: last_modified
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Services"
+      required:
+      - data
+      title: ResponseAsyncServices
+      type: object
+    ResponseBadRequestNodeGroupsById:
+      additionalProperties: false
+      example:
+        node_group:
+        - node_group
+        - node_group
+        name:
+        - name
+        - name
+        id:
+        - id
+        - id
+        detail: detail
+      properties:
+        id:
+          items:
+            type: string
+          type: array
+        name:
+          items:
+            type: string
+          type: array
+        node_group:
+          items:
+            type: string
+          type: array
+        detail:
+          maxLength: 4096
+          minLength: 1
+          type: string
+      title: ResponseBadRequestNodeGroupsById
+      type: object
+    ResponseBadRequestNodeServiceBind:
+      additionalProperties: false
+      example:
+        service_name:
+        - service_name
+        - service_name
+        service_id:
+        - service_id
+        - service_id
+        last_editor:
+        - last_editor
+        - last_editor
+        active:
+        - active
+        - active
+        id:
+        - id
+        - id
+        detail: detail
+        last_modified:
+        - last_modified
+        - last_modified
+      properties:
+        id:
+          items:
+            type: string
+          type: array
+        service_name:
+          items:
+            type: string
+          type: array
+        service_id:
+          items:
+            type: string
+          type: array
+        active:
+          items:
+            type: string
+          type: array
+        last_editor:
+          items:
+            type: string
+          type: array
+        last_modified:
+          items:
+            type: string
+          type: array
+        detail:
+          maxLength: 4096
+          minLength: 1
+          type: string
+      title: ResponseBadRequestNodeServiceBind
+      type: object
+    ResponseBadRequestNodeServices:
+      additionalProperties: false
+      example:
+        service_name:
+        - service_name
+        - service_name
+        service_id:
+        - service_id
+        - service_id
+        last_editor:
+        - last_editor
+        - last_editor
+        active:
+        - active
+        - active
+        id:
+        - id
+        - id
+        detail: detail
+        last_modified:
+        - last_modified
+        - last_modified
+      properties:
+        id:
+          items:
+            type: string
+          type: array
+        service_name:
+          items:
+            type: string
+          type: array
+        service_id:
+          items:
+            type: string
+          type: array
+        active:
+          items:
+            type: string
+          type: array
+        last_editor:
+          items:
+            type: string
+          type: array
+        last_modified:
+          items:
+            type: string
+          type: array
+        detail:
+          maxLength: 4096
+          minLength: 1
+          type: string
+      title: ResponseBadRequestNodeServices
+      type: object
+    ResponseBadRequestNodes:
+      additionalProperties: false
+      example:
+        product_version:
+        - product_version
+        - product_version
+        last_editor:
+        - last_editor
+        - last_editor
+        name:
+        - name
+        - name
+        active:
+        - active
+        - active
+        id:
+        - id
+        - id
+        detail: detail
+        last_modified:
+        - last_modified
+        - last_modified
+        modules:
+        - modules
+        - modules
+        hash_id:
+        - hash_id
+        - hash_id
+        status:
+        - status
+        - status
+      properties:
+        id:
+          items:
+            type: string
+          type: array
+        hash_id:
+          items:
+            type: string
+          type: array
+        name:
+          items:
+            type: string
+          type: array
+        status:
+          items:
+            type: string
+          type: array
+        active:
+          items:
+            type: string
+          type: array
+        last_editor:
+          items:
+            type: string
+          type: array
+        last_modified:
+          items:
+            type: string
+          type: array
+        modules:
+          items:
+            type: string
+          type: array
+        product_version:
+          items:
+            type: string
+          type: array
+        detail:
+          maxLength: 4096
+          minLength: 1
+          type: string
+      title: ResponseBadRequestNodes
+      type: object
+    ResponseBadRequestServices:
+      additionalProperties: false
+      example:
+        min_version:
+        - min_version
+        - min_version
+        product_version:
+        - product_version
+        - product_version
+        permissions:
+        - permissions
+        - permissions
+        last_editor:
+        - last_editor
+        - last_editor
+        name:
+        - name
+        - name
+        active:
+        - active
+        - active
+        id:
+        - id
+        - id
+        detail: detail
+        ref_count:
+        - ref_count
+        - ref_count
+        last_modified:
+        - last_modified
+        - last_modified
+      properties:
+        id:
+          items:
+            type: string
+          type: array
+        name:
+          items:
+            type: string
+          type: array
+        active:
+          items:
+            type: string
+          type: array
+        min_version:
+          items:
+            type: string
+          type: array
+        permissions:
+          items:
+            type: string
+          type: array
+        last_editor:
+          items:
+            type: string
+          type: array
+        last_modified:
+          items:
+            type: string
+          type: array
+        ref_count:
+          items:
+            type: string
+          type: array
+        product_version:
+          items:
+            type: string
+          type: array
+        detail:
+          maxLength: 4096
+          minLength: 1
+          type: string
+      title: ResponseBadRequestServices
+      type: object
+    ResponseListNodeGroupsById:
+      additionalProperties: false
+      example:
+        name: name
+        id: 0
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 100
+          type: string
+      required:
+      - id
+      title: ResponseListNodeGroupsById
+      type: object
+    ResponseListNodeServices:
+      additionalProperties: false
+      example:
+        service_name: service_name
+        service_id: 6
+        last_editor: last_editor
+        active: true
+        id: 0
+        last_modified: last_modified
+      properties:
+        id:
+          format: int64
+          type: integer
+        service_name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        service_id:
+          format: int64
+          type: integer
+        active:
+          type: boolean
+        last_editor:
+          type: string
+        last_modified:
+          type: string
+      required:
+      - last_editor
+      - last_modified
+      - service_id
+      title: ResponseListNodeServices
+      type: object
+    ResponseListNodes:
+      additionalProperties: false
+      example:
+        product_version: product_version
+        last_editor: last_editor
+        name: name
+        active: true
+        id: 0
+        last_modified: last_modified
+        modules: ""
+        hash_id: hash_id
+        status: status
+      properties:
+        id:
+          format: int64
+          type: integer
+        hash_id:
+          type: string
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        status:
+          description: |-
+            * `waiting_authorization` - waiting_authorization
+            * `authorized` - authorized
+          title: StatusEnum
+          type: string
+        active:
+          type: boolean
+        last_editor:
+          type: string
+        last_modified:
+          type: string
+        modules: {}
+        product_version:
+          maxLength: 50
+          minLength: 3
+          type: string
+      required:
+      - active
+      - hash_id
+      - id
+      - last_editor
+      - last_modified
+      - name
+      - product_version
+      - status
+      title: ResponseListNodes
+      type: object
+    ResponseListServices:
+      additionalProperties: false
+      example:
+        min_version: min_version
+        product_version: product_version
+        permissions: 6
+        last_editor: last_editor
+        name: name
+        active: true
+        id: 0
+        ref_count: 1
+        last_modified: last_modified
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        min_version:
+          maxLength: 50
+          minLength: 1
+          type: string
+        permissions:
+          format: int64
+          type: integer
+        last_editor:
+          type: string
+        last_modified:
+          type: string
+        ref_count:
+          format: int64
+          type: integer
+        product_version:
+          maxLength: 50
+          minLength: 3
+          type: string
+      required:
+      - id
+      - last_editor
+      - last_modified
+      - product_version
+      - ref_count
+      title: ResponseListServices
+      type: object
+    ResponseRetrieveNodeServiceBind:
+      additionalProperties: false
+      example:
+        data:
+          service_name: service_name
+          service_id: 6
+          last_editor: last_editor
+          active: true
+          id: 0
+          last_modified: last_modified
+      properties:
+        data:
+          $ref: "#/components/schemas/NodeServiceBind"
+      required:
+      - data
+      title: ResponseRetrieveNodeServiceBind
+      type: object
+    ResponseRetrieveNodes:
+      additionalProperties: false
+      example:
+        data:
+          product_version: product_version
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: last_modified
+          modules: ""
+          hash_id: hash_id
+          status: status
+      properties:
+        data:
+          $ref: "#/components/schemas/Nodes"
+      required:
+      - data
+      title: ResponseRetrieveNodes
+      type: object
+    ResponseRetrieveServices:
+      additionalProperties: false
+      example:
+        data:
+          min_version: min_version
+          product_version: product_version
+          permissions: 6
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          ref_count: 1
+          last_modified: last_modified
+      properties:
+        data:
+          $ref: "#/components/schemas/Services"
+      required:
+      - data
+      title: ResponseRetrieveServices
+      type: object
+    ServiceResource:
+      additionalProperties: false
+      example:
+        content_type: content_type
+        is_template: true
+        last_editor: last_editor
+        name: name
+        file_owner: file_owner
+        active: true
+        file_group: file_group
+        id: 0
+        content_hash: content_hash
+        ref_count: 6
+        last_modified: last_modified
+        file_mode: file_mode
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        content_hash:
+          maxLength: 150
+          minLength: 1
+          type: string
+        content_type:
+          maxLength: 50
+          minLength: 1
+          type: string
+        file_group:
+          maxLength: 50
+          minLength: 1
+          type: string
+        file_mode:
+          maxLength: 4
+          minLength: 1
+          type: string
+        file_owner:
+          maxLength: 50
+          minLength: 1
+          type: string
+        is_template:
+          type: boolean
+        active:
+          type: boolean
+        last_editor:
+          type: string
+        last_modified:
+          type: string
+        ref_count:
+          format: int64
+          type: integer
+      required:
+      - active
+      - content_hash
+      - content_type
+      - file_group
+      - file_mode
+      - file_owner
+      - id
+      - is_template
+      - last_editor
+      - last_modified
+      - name
+      - ref_count
+      title: ServiceResource
+      type: object
+    ServiceResourceId:
+      additionalProperties: false
+      example:
+        is_template: true
+        last_editor: last_editor
+        active: true
+        file_owner: file_owner
+        trigger: null
+        content: content
+        file_mode: file_mode
+        content_type: content_type
+        name: name
+        file_group: file_group
+        id: 0
+        content_hash: content_hash
+        last_modified: last_modified
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        content_hash:
+          maxLength: 50
+          minLength: 1
+          type: string
+        content_type:
+          maxLength: 50
+          minLength: 1
+          type: string
+        trigger:
+          $ref: "#/components/schemas/ServiceResourceId_trigger"
+        content:
+          maxLength: 50
+          minLength: 1
+          type: string
+        is_template:
+          type: boolean
+        active:
+          type: boolean
+        file_group:
+          maxLength: 50
+          minLength: 1
+          type: string
+        file_mode:
+          maxLength: 50
+          minLength: 1
+          type: string
+        file_owner:
+          maxLength: 50
+          minLength: 1
+          type: string
+        last_editor:
+          type: string
+        last_modified:
+          type: string
+      required:
+      - active
+      - content_hash
+      - file_group
+      - file_mode
+      - file_owner
+      - id
+      - is_template
+      - last_editor
+      - last_modified
+      - name
+      title: ServiceResourceId
+      type: object
+    ServiceResourceIdRequest:
+      additionalProperties: false
+      example:
+        content_type: content_type
+        name: name
+        file_owner: file_owner
+        file_group: file_group
+        trigger: null
+        content: content
+        file_mode: file_mode
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        content_type:
+          maxLength: 50
+          minLength: 1
+          type: string
+        trigger:
+          $ref: "#/components/schemas/ServiceResourceId_trigger"
+        content:
+          maxLength: 50
+          minLength: 1
+          type: string
+        file_group:
+          maxLength: 50
+          minLength: 1
+          type: string
+        file_mode:
+          maxLength: 50
+          minLength: 1
+          type: string
+        file_owner:
+          maxLength: 50
+          minLength: 1
+          type: string
+      required:
+      - file_group
+      - file_mode
+      - file_owner
+      - name
+      title: ServiceResourceIdRequest
+      type: object
+    ServiceResourceRequest:
+      additionalProperties: false
+      example:
+        content_type: content_type
+        name: name
+        file_owner: file_owner
+        file_group: file_group
+        file_mode: file_mode
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        content_type:
+          maxLength: 50
+          minLength: 1
+          type: string
+        file_group:
+          maxLength: 50
+          minLength: 1
+          type: string
+        file_mode:
+          maxLength: 4
+          minLength: 1
+          type: string
+        file_owner:
+          maxLength: 50
+          minLength: 1
+          type: string
+      required:
+      - content_type
+      - file_group
+      - file_mode
+      - file_owner
+      - name
+      title: ServiceResourceRequest
+      type: object
+    Services:
+      additionalProperties: false
+      example:
+        min_version: min_version
+        product_version: product_version
+        permissions: 6
+        last_editor: last_editor
+        name: name
+        active: true
+        id: 0
+        ref_count: 1
+        last_modified: last_modified
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        min_version:
+          maxLength: 50
+          minLength: 1
+          type: string
+        permissions:
+          format: int64
+          type: integer
+        last_editor:
+          type: string
+        last_modified:
+          type: string
+        ref_count:
+          format: int64
+          type: integer
+        product_version:
+          maxLength: 50
+          minLength: 3
+          type: string
+      required:
+      - id
+      - last_editor
+      - last_modified
+      - product_version
+      - ref_count
+      title: Services
+      type: object
+    ServicesRequest:
+      additionalProperties: false
+      example:
+        min_version: min_version
+        permissions: 0
+        name: name
+        active: true
+      properties:
+        name:
+          maxLength: 50
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        min_version:
+          maxLength: 50
+          minLength: 1
+          type: string
+        permissions:
+          format: int64
+          type: integer
+      title: ServicesRequest
+      type: object
+    StatusEnum:
+      description: |-
+        * `waiting_authorization` - waiting_authorization
+        * `authorized` - authorized
+      title: StatusEnum
+      type: string
+    TriggerEnum:
+      description: "* `` - \n* `install` - install\n* `uninstall` - uninstall\n* `reload`\
+        \ - reload"
+      title: TriggerEnum
+      type: string
+    ServiceResourceId_trigger:
+      oneOf:
+      - $ref: "#/components/schemas/TriggerEnum"
+      - $ref: "#/components/schemas/BlankEnum"
+  securitySchemes:
+    BearerAuth:
+      scheme: bearer
+      type: http
+    TokenAuth:
+      description: Token-based authentication with required prefix "Token"
+      in: header
+      name: Authorization
+      type: apiKey
