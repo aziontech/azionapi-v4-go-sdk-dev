@@ -22391,7 +22391,7 @@ components:
       type: object
     LayerEnum:
       description: |-
-        * `edge_cache` - Edge Cache
+        * `cache` - Cache
         * `tiered_cache` - Tiered Cache
       title: LayerEnum
       type: string
