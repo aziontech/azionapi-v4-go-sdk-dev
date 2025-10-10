@@ -1,0 +1,1319 @@
+openapi: 3.0.3
+info:
+  title: AI-Studio-API
+  version: 1.0.0
+  description: REST API OpenAPI documentation for the AI-Studio-API
+paths:
+  /v4/workspace/ai/kb:
+    get:
+      operationId: kbList
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - kb
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedKnowledgeBaseList'
+          description: ''
+    post:
+      operationId: kbCreate
+      tags:
+      - kb
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeBaseRequest'
+        required: true
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeBase'
+          description: ''
+  /v4/workspace/ai/kb/{kbId}:
+    get:
+      operationId: kbRetrieve
+      parameters:
+      - in: path
+        name: kbId
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this knowledge base.
+        required: true
+      tags:
+      - kb
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeBase'
+          description: ''
+    put:
+      operationId: kbUpdate
+      parameters:
+      - in: path
+        name: kbId
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this knowledge base.
+        required: true
+      tags:
+      - kb
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeBaseRequest'
+        required: true
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeBase'
+          description: ''
+    patch:
+      operationId: kbPartialUpdate
+      parameters:
+      - in: path
+        name: kbId
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this knowledge base.
+        required: true
+      tags:
+      - kb
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedKnowledgeBaseRequest'
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KnowledgeBase'
+          description: ''
+    delete:
+      operationId: kbDestroy
+      parameters:
+      - in: path
+        name: kbId
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this knowledge base.
+        required: true
+      tags:
+      - kb
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /v4/workspace/ai/kb/{kbId}/documents:
+    get:
+      operationId: kbDocumentsList
+      parameters:
+      - in: path
+        name: kbId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - kb
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDocumentList'
+          description: ''
+    post:
+      operationId: kbDocumentsCreate
+      parameters:
+      - in: path
+        name: kbId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - kb
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DocumentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DocumentRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentRequest'
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+          description: ''
+  /v4/workspace/ai/kb/{kbId}/documents/{documentId}:
+    get:
+      operationId: kbDocumentsRetrieve
+      parameters:
+      - in: path
+        name: documentId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      - in: path
+        name: kbId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - kb
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+          description: ''
+    put:
+      operationId: kbDocumentsUpdate
+      parameters:
+      - in: path
+        name: documentId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      - in: path
+        name: kbId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - kb
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DocumentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DocumentRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentRequest'
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+          description: ''
+    delete:
+      operationId: kbDocumentsDestroy
+      parameters:
+      - in: path
+        name: documentId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      - in: path
+        name: kbId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - kb
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /v4/workspace/ai/kb/{kbId}/documents/{documentId}/chunks:
+    get:
+      operationId: kbDocumentsChunksRetrieve
+      parameters:
+      - in: path
+        name: documentId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      - in: path
+        name: kbId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - kb
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /v4/workspace/ai/threads:
+    get:
+      operationId: threadsList
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - threads
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedChatThreadList'
+          description: ''
+    post:
+      operationId: threadsCreate
+      tags:
+      - threads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatThreadRequest'
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatThread'
+          description: ''
+  /v4/workspace/ai/threads/{threadId}:
+    get:
+      operationId: threadsRetrieve
+      parameters:
+      - in: path
+        name: threadId
+        schema:
+          type: string
+        required: true
+      tags:
+      - threads
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatThread'
+          description: ''
+    put:
+      operationId: threadsUpdate
+      parameters:
+      - in: path
+        name: threadId
+        schema:
+          type: string
+        required: true
+      tags:
+      - threads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatThreadRequest'
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatThread'
+          description: ''
+    patch:
+      operationId: threadsPartialUpdate
+      parameters:
+      - in: path
+        name: threadId
+        schema:
+          type: string
+        required: true
+      tags:
+      - threads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedChatThreadRequest'
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatThread'
+          description: ''
+    delete:
+      operationId: threadsDestroy
+      parameters:
+      - in: path
+        name: threadId
+        schema:
+          type: string
+        required: true
+      tags:
+      - threads
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /v4/workspace/ai/threads/{threadId}/messages:
+    get:
+      operationId: threadsMessagesList
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: path
+        name: threadId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - threads
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMessageList'
+          description: ''
+    post:
+      operationId: threadsMessagesCreate
+      parameters:
+      - in: path
+        name: threadId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - threads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageRequest'
+        required: true
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+          description: ''
+  /v4/workspace/ai/threads/{threadId}/messages/{messageId}:
+    get:
+      operationId: threadsMessagesRetrieve
+      parameters:
+      - in: path
+        name: messageId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      - in: path
+        name: threadId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - threads
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+          description: ''
+    put:
+      operationId: threadsMessagesUpdate
+      parameters:
+      - in: path
+        name: messageId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      - in: path
+        name: threadId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - threads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageRequest'
+        required: true
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+          description: ''
+    delete:
+      operationId: threadsMessagesDestroy
+      parameters:
+      - in: path
+        name: messageId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      - in: path
+        name: threadId
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - threads
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /v4/workspace/ai/tools:
+    get:
+      operationId: toolsList
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - tools
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedToolList'
+          description: ''
+    post:
+      operationId: toolsCreate
+      tags:
+      - tools
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ToolRequest'
+        required: true
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+          description: ''
+  /v4/workspace/ai/tools/{toolId}:
+    get:
+      operationId: toolsRetrieve
+      parameters:
+      - in: path
+        name: toolId
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this tool.
+        required: true
+      tags:
+      - tools
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+          description: ''
+    put:
+      operationId: toolsUpdate
+      parameters:
+      - in: path
+        name: toolId
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this tool.
+        required: true
+      tags:
+      - tools
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ToolRequest'
+        required: true
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+          description: ''
+    patch:
+      operationId: toolsPartialUpdate
+      parameters:
+      - in: path
+        name: toolId
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this tool.
+        required: true
+      tags:
+      - tools
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedToolRequest'
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+          description: ''
+    delete:
+      operationId: toolsDestroy
+      parameters:
+      - in: path
+        name: toolId
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this tool.
+        required: true
+      tags:
+      - tools
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /v4/workspace/ai/tools/{toolId}/kb:
+    get:
+      operationId: toolsKbRetrieve
+      parameters:
+      - in: path
+        name: toolId
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this tool.
+        required: true
+      tags:
+      - tools
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+          description: ''
+    post:
+      operationId: toolsKbCreate
+      parameters:
+      - in: path
+        name: toolId
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this tool.
+        required: true
+      tags:
+      - tools
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ToolRequest'
+        required: true
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tool'
+          description: ''
+  /v4/workspace/ai/tools/{toolId}/kb/{kbId}:
+    delete:
+      operationId: toolsKbDestroy
+      parameters:
+      - in: path
+        name: kbId
+        schema:
+          type: string
+        required: true
+      - in: path
+        name: toolId
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this tool.
+        required: true
+      tags:
+      - tools
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    ChatThread:
+      type: object
+      properties:
+        thread_id:
+          type: string
+          format: uuid
+          readOnly: true
+        account_id:
+          type: integer
+          readOnly: true
+          nullable: true
+        created_by:
+          type: string
+          readOnly: true
+          nullable: true
+        updated_by:
+          type: string
+          readOnly: true
+          nullable: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - account_id
+      - created_at
+      - created_by
+      - thread_id
+      - updated_at
+      - updated_by
+      title: ChatThread
+      additionalProperties: false
+    ChatThreadRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+      title: ChatThreadRequest
+      additionalProperties: false
+    Document:
+      type: object
+      properties:
+        document_id:
+          type: string
+          format: uuid
+          readOnly: true
+        kb_id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        source_uri:
+          type: string
+          maxLength: 1024
+        chunk_strategy:
+          type: object
+          additionalProperties: {}
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - document_id
+      - kb_id
+      - updated_at
+      title: Document
+      additionalProperties: false
+    DocumentRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        source_uri:
+          type: string
+          maxLength: 1024
+        chunk_strategy:
+          type: object
+          additionalProperties: {}
+      title: DocumentRequest
+      additionalProperties: false
+    EmbeddingModelEnum:
+      enum:
+      - text-embedding-3-small
+      type: string
+      description: '* `text-embedding-3-small` - text-embedding-3-small'
+      title: EmbeddingModelEnum
+      additionalProperties: false
+    KnowledgeBase:
+      type: object
+      properties:
+        kb_id:
+          type: string
+          format: uuid
+          readOnly: true
+        account_id:
+          type: integer
+          readOnly: true
+          nullable: true
+        created_by:
+          type: string
+          readOnly: true
+          nullable: true
+        updated_by:
+          type: string
+          readOnly: true
+          nullable: true
+        name:
+          type: string
+          pattern: ^[A-Za-z0-9-]{6,50}$
+        description:
+          type: string
+        embedding_model:
+          allOf:
+          - $ref: '#/components/schemas/EmbeddingModelEnum'
+          default: text-embedding-3-small
+        edgesql_db_id:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - account_id
+      - created_at
+      - created_by
+      - edgesql_db_id
+      - kb_id
+      - name
+      - updated_at
+      - updated_by
+      title: KnowledgeBase
+      additionalProperties: false
+    KnowledgeBaseRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          pattern: ^[A-Za-z0-9-]{6,50}$
+        description:
+          type: string
+        embedding_model:
+          allOf:
+          - $ref: '#/components/schemas/EmbeddingModelEnum'
+          default: text-embedding-3-small
+      required:
+      - name
+      title: KnowledgeBaseRequest
+      additionalProperties: false
+    Message:
+      type: object
+      properties:
+        message_id:
+          type: string
+          format: uuid
+          readOnly: true
+        thread_id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_by:
+          type: string
+          readOnly: true
+          nullable: true
+        updated_by:
+          type: string
+          readOnly: true
+          nullable: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        message:
+          type: object
+          additionalProperties: {}
+        metadata:
+          type: object
+          additionalProperties: {}
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - created_by
+      - message
+      - message_id
+      - thread_id
+      - updated_at
+      - updated_by
+      title: Message
+      additionalProperties: false
+    MessageRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        message:
+          type: object
+          additionalProperties: {}
+        metadata:
+          type: object
+          additionalProperties: {}
+      required:
+      - message
+      title: MessageRequest
+      additionalProperties: false
+    PaginatedChatThreadList:
+      type: object
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChatThread'
+      title: PaginatedChatThreadList
+      additionalProperties: false
+    PaginatedDocumentList:
+      type: object
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+      title: PaginatedDocumentList
+      additionalProperties: false
+    PaginatedKnowledgeBaseList:
+      type: object
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/KnowledgeBase'
+      title: PaginatedKnowledgeBaseList
+      additionalProperties: false
+    PaginatedMessageList:
+      type: object
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+      title: PaginatedMessageList
+      additionalProperties: false
+    PaginatedToolList:
+      type: object
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tool'
+      title: PaginatedToolList
+      additionalProperties: false
+    PatchedChatThreadRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+      title: PatchedChatThreadRequest
+      additionalProperties: false
+    PatchedKnowledgeBaseRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          pattern: ^[A-Za-z0-9-]{6,50}$
+        description:
+          type: string
+        embedding_model:
+          allOf:
+          - $ref: '#/components/schemas/EmbeddingModelEnum'
+          default: text-embedding-3-small
+      title: PatchedKnowledgeBaseRequest
+      additionalProperties: false
+    PatchedToolRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+        type:
+          type: string
+          minLength: 1
+          maxLength: 100
+        json_schema:
+          type: object
+          additionalProperties: {}
+        active:
+          type: boolean
+      title: PatchedToolRequest
+      additionalProperties: false
+    Tool:
+      type: object
+      properties:
+        tool_id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        type:
+          type: string
+          maxLength: 100
+        json_schema:
+          type: object
+          additionalProperties: {}
+        active:
+          type: boolean
+        kbs:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - kbs
+      - name
+      - tool_id
+      - type
+      - updated_at
+      title: Tool
+      additionalProperties: false
+    ToolRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+        type:
+          type: string
+          minLength: 1
+          maxLength: 100
+        json_schema:
+          type: object
+          additionalProperties: {}
+        active:
+          type: boolean
+      required:
+      - name
+      - type
+      title: ToolRequest
+      additionalProperties: false
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
