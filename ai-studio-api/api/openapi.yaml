@@ -1,0 +1,1615 @@
+openapi: 3.0.3
+info:
+  description: REST API OpenAPI documentation for the AI-Studio-API
+  title: AI-Studio-API
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /v4/workspace/ai/kb:
+    get:
+      operationId: kbList
+      parameters:
+      - description: Which field to use when ordering the results.
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedKnowledgeBaseList"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - kb
+    post:
+      operationId: kbCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KnowledgeBaseRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KnowledgeBase"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - kb
+  /v4/workspace/ai/kb/{kbId}:
+    delete:
+      operationId: kbDestroy
+      parameters:
+      - description: A UUID string identifying this knowledge base.
+        explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - kb
+    get:
+      operationId: kbRetrieve
+      parameters:
+      - description: A UUID string identifying this knowledge base.
+        explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KnowledgeBase"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - kb
+    patch:
+      operationId: kbPartialUpdate
+      parameters:
+      - description: A UUID string identifying this knowledge base.
+        explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedKnowledgeBaseRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KnowledgeBase"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - kb
+    put:
+      operationId: kbUpdate
+      parameters:
+      - description: A UUID string identifying this knowledge base.
+        explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KnowledgeBaseRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KnowledgeBase"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - kb
+  /v4/workspace/ai/kb/{kbId}/documents:
+    get:
+      operationId: kbDocumentsList
+      parameters:
+      - explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - description: Which field to use when ordering the results.
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedDocumentList"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - kb
+    post:
+      operationId: kbDocumentsCreate
+      parameters:
+      - explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/DocumentRequest"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/DocumentRequest"
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DocumentRequest"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - kb
+  /v4/workspace/ai/kb/{kbId}/documents/{documentId}:
+    delete:
+      operationId: kbDocumentsDestroy
+      parameters:
+      - explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - kb
+    get:
+      operationId: kbDocumentsRetrieve
+      parameters:
+      - explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - kb
+    put:
+      operationId: kbDocumentsUpdate
+      parameters:
+      - explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/DocumentRequest"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/DocumentRequest"
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DocumentRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - kb
+  /v4/workspace/ai/kb/{kbId}/documents/{documentId}/chunks:
+    get:
+      operationId: kbDocumentsChunksRetrieve
+      parameters:
+      - explode: false
+        in: path
+        name: documentId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: No response body
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - kb
+  /v4/workspace/ai/threads:
+    get:
+      operationId: threadsList
+      parameters:
+      - description: Which field to use when ordering the results.
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedChatThreadList"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - threads
+    post:
+      operationId: threadsCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChatThreadRequest"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChatThread"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - threads
+  /v4/workspace/ai/threads/{threadId}:
+    delete:
+      operationId: threadsDestroy
+      parameters:
+      - explode: false
+        in: path
+        name: threadId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - threads
+    get:
+      operationId: threadsRetrieve
+      parameters:
+      - explode: false
+        in: path
+        name: threadId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChatThread"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - threads
+    patch:
+      operationId: threadsPartialUpdate
+      parameters:
+      - explode: false
+        in: path
+        name: threadId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedChatThreadRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChatThread"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - threads
+    put:
+      operationId: threadsUpdate
+      parameters:
+      - explode: false
+        in: path
+        name: threadId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChatThreadRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChatThread"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - threads
+  /v4/workspace/ai/threads/{threadId}/messages:
+    get:
+      operationId: threadsMessagesList
+      parameters:
+      - description: Which field to use when ordering the results.
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: threadId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedMessageList"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - threads
+    post:
+      operationId: threadsMessagesCreate
+      parameters:
+      - explode: false
+        in: path
+        name: threadId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MessageRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Message"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - threads
+  /v4/workspace/ai/threads/{threadId}/messages/{messageId}:
+    delete:
+      operationId: threadsMessagesDestroy
+      parameters:
+      - explode: false
+        in: path
+        name: messageId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: threadId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - threads
+    get:
+      operationId: threadsMessagesRetrieve
+      parameters:
+      - explode: false
+        in: path
+        name: messageId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: threadId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Message"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - threads
+    put:
+      operationId: threadsMessagesUpdate
+      parameters:
+      - explode: false
+        in: path
+        name: messageId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: threadId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MessageRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Message"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - threads
+  /v4/workspace/ai/tools:
+    get:
+      operationId: toolsList
+      parameters:
+      - description: Which field to use when ordering the results.
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedToolList"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - tools
+    post:
+      operationId: toolsCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ToolRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tool"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - tools
+  /v4/workspace/ai/tools/{toolId}:
+    delete:
+      operationId: toolsDestroy
+      parameters:
+      - description: A UUID string identifying this tool.
+        explode: false
+        in: path
+        name: toolId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - tools
+    get:
+      operationId: toolsRetrieve
+      parameters:
+      - description: A UUID string identifying this tool.
+        explode: false
+        in: path
+        name: toolId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tool"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - tools
+    patch:
+      operationId: toolsPartialUpdate
+      parameters:
+      - description: A UUID string identifying this tool.
+        explode: false
+        in: path
+        name: toolId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedToolRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tool"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - tools
+    put:
+      operationId: toolsUpdate
+      parameters:
+      - description: A UUID string identifying this tool.
+        explode: false
+        in: path
+        name: toolId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ToolRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tool"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - tools
+  /v4/workspace/ai/tools/{toolId}/kb:
+    get:
+      operationId: toolsKbRetrieve
+      parameters:
+      - description: A UUID string identifying this tool.
+        explode: false
+        in: path
+        name: toolId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tool"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - tools
+    post:
+      operationId: toolsKbCreate
+      parameters:
+      - description: A UUID string identifying this tool.
+        explode: false
+        in: path
+        name: toolId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ToolRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tool"
+          description: ""
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - tools
+  /v4/workspace/ai/tools/{toolId}/kb/{kbId}:
+    delete:
+      operationId: toolsKbDestroy
+      parameters:
+      - explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A UUID string identifying this tool.
+        explode: false
+        in: path
+        name: toolId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: No response body
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - tools
+components:
+  schemas:
+    ChatThread:
+      additionalProperties: false
+      example:
+        thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        account_id: 0
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        updated_by: updated_by
+        name: name
+        description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
+        created_by: created_by
+      properties:
+        thread_id:
+          format: uuid
+          type: string
+        account_id:
+          format: int64
+          nullable: true
+          type: integer
+        created_by:
+          nullable: true
+          type: string
+        updated_by:
+          nullable: true
+          type: string
+        name:
+          maxLength: 255
+          type: string
+        description:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - account_id
+      - created_at
+      - created_by
+      - thread_id
+      - updated_at
+      - updated_by
+      title: ChatThread
+      type: object
+    ChatThreadRequest:
+      additionalProperties: false
+      example:
+        name: name
+        description: description
+      properties:
+        name:
+          maxLength: 255
+          type: string
+        description:
+          type: string
+      title: ChatThreadRequest
+      type: object
+    Document:
+      additionalProperties: false
+      example:
+        kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        name: name
+        description: description
+        chunk_strategy:
+          key: ""
+        created_at: 2000-01-23T04:56:07.000+00:00
+        document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        type: type
+        source_uri: source_uri
+      properties:
+        document_id:
+          format: uuid
+          type: string
+        kb_id:
+          format: uuid
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        source_uri:
+          maxLength: 1024
+          type: string
+        chunk_strategy:
+          additionalProperties: {}
+          type: object
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - created_at
+      - document_id
+      - kb_id
+      - updated_at
+      title: Document
+      type: object
+    DocumentRequest:
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        source_uri:
+          maxLength: 1024
+          type: string
+        chunk_strategy:
+          additionalProperties: {}
+          type: object
+      title: DocumentRequest
+      type: object
+    EmbeddingModelEnum:
+      description: '* `text-embedding-3-small` - text-embedding-3-small'
+      title: EmbeddingModelEnum
+      type: string
+    KnowledgeBase:
+      additionalProperties: false
+      example:
+        kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        account_id: 0
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        updated_by: updated_by
+        name: name
+        embedding_model: ""
+        description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
+        edgesql_db_id: edgesql_db_id
+        created_by: created_by
+      properties:
+        kb_id:
+          format: uuid
+          type: string
+        account_id:
+          format: int64
+          nullable: true
+          type: integer
+        created_by:
+          nullable: true
+          type: string
+        updated_by:
+          nullable: true
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        embedding_model:
+          allOf:
+          - $ref: "#/components/schemas/EmbeddingModelEnum"
+        edgesql_db_id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - account_id
+      - created_at
+      - created_by
+      - edgesql_db_id
+      - kb_id
+      - name
+      - updated_at
+      - updated_by
+      title: KnowledgeBase
+      type: object
+    KnowledgeBaseRequest:
+      additionalProperties: false
+      example:
+        name: name
+        embedding_model: ""
+        description: description
+      properties:
+        name:
+          minLength: 1
+          type: string
+        description:
+          type: string
+        embedding_model:
+          allOf:
+          - $ref: "#/components/schemas/EmbeddingModelEnum"
+      required:
+      - name
+      title: KnowledgeBaseRequest
+      type: object
+    Message:
+      additionalProperties: false
+      example:
+        thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        metadata:
+          key: ""
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        updated_by: updated_by
+        name: name
+        description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
+        message_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        message:
+          key: ""
+        created_by: created_by
+      properties:
+        message_id:
+          format: uuid
+          type: string
+        thread_id:
+          format: uuid
+          type: string
+        created_by:
+          nullable: true
+          type: string
+        updated_by:
+          nullable: true
+          type: string
+        name:
+          maxLength: 255
+          type: string
+        description:
+          type: string
+        message:
+          additionalProperties: {}
+          type: object
+        metadata:
+          additionalProperties: {}
+          type: object
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - created_at
+      - created_by
+      - message
+      - message_id
+      - thread_id
+      - updated_at
+      - updated_by
+      title: Message
+      type: object
+    MessageRequest:
+      additionalProperties: false
+      example:
+        metadata:
+          key: ""
+        name: name
+        description: description
+        message:
+          key: ""
+      properties:
+        name:
+          maxLength: 255
+          type: string
+        description:
+          type: string
+        message:
+          additionalProperties: {}
+          type: object
+        metadata:
+          additionalProperties: {}
+          type: object
+      required:
+      - message
+      title: MessageRequest
+      type: object
+    PaginatedChatThreadList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          account_id: 0
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          updated_by: updated_by
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          created_by: created_by
+        - thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          account_id: 0
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          updated_by: updated_by
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          created_by: created_by
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/ChatThread"
+          type: array
+      title: PaginatedChatThreadList
+      type: object
+    PaginatedDocumentList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          description: description
+          chunk_strategy:
+            key: ""
+          created_at: 2000-01-23T04:56:07.000+00:00
+          document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          source_uri: source_uri
+        - kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          description: description
+          chunk_strategy:
+            key: ""
+          created_at: 2000-01-23T04:56:07.000+00:00
+          document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          type: type
+          source_uri: source_uri
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/Document"
+          type: array
+      title: PaginatedDocumentList
+      type: object
+    PaginatedKnowledgeBaseList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          account_id: 0
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          updated_by: updated_by
+          name: name
+          embedding_model: ""
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          edgesql_db_id: edgesql_db_id
+          created_by: created_by
+        - kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          account_id: 0
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          updated_by: updated_by
+          name: name
+          embedding_model: ""
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          edgesql_db_id: edgesql_db_id
+          created_by: created_by
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/KnowledgeBase"
+          type: array
+      title: PaginatedKnowledgeBaseList
+      type: object
+    PaginatedMessageList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metadata:
+            key: ""
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          updated_by: updated_by
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          message_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          message:
+            key: ""
+          created_by: created_by
+        - thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          metadata:
+            key: ""
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          updated_by: updated_by
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          message_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          message:
+            key: ""
+          created_by: created_by
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/Message"
+          type: array
+      title: PaginatedMessageList
+      type: object
+    PaginatedToolList:
+      additionalProperties: false
+      example:
+        count: 123
+        results:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          json_schema:
+            key: ""
+          name: name
+          tool_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          description: description
+          active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          kbs: kbs
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          json_schema:
+            key: ""
+          name: name
+          tool_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          description: description
+          active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          kbs: kbs
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/Tool"
+          type: array
+      title: PaginatedToolList
+      type: object
+    PatchedChatThreadRequest:
+      additionalProperties: false
+      example:
+        name: name
+        description: description
+      properties:
+        name:
+          maxLength: 255
+          type: string
+        description:
+          type: string
+      title: PatchedChatThreadRequest
+      type: object
+    PatchedKnowledgeBaseRequest:
+      additionalProperties: false
+      example:
+        name: name
+        embedding_model: ""
+        description: description
+      properties:
+        name:
+          minLength: 1
+          type: string
+        description:
+          type: string
+        embedding_model:
+          allOf:
+          - $ref: "#/components/schemas/EmbeddingModelEnum"
+      title: PatchedKnowledgeBaseRequest
+      type: object
+    PatchedToolRequest:
+      additionalProperties: false
+      example:
+        json_schema:
+          key: ""
+        name: name
+        description: description
+        active: true
+        type: type
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        description:
+          type: string
+        type:
+          maxLength: 100
+          minLength: 1
+          type: string
+        json_schema:
+          additionalProperties: {}
+          type: object
+        active:
+          type: boolean
+      title: PatchedToolRequest
+      type: object
+    Tool:
+      additionalProperties: false
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        json_schema:
+          key: ""
+        name: name
+        tool_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        description: description
+        active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
+        type: type
+        kbs: kbs
+      properties:
+        tool_id:
+          format: uuid
+          type: string
+        name:
+          maxLength: 255
+          type: string
+        description:
+          type: string
+        type:
+          maxLength: 100
+          type: string
+        json_schema:
+          additionalProperties: {}
+          type: object
+        active:
+          type: boolean
+        kbs:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - created_at
+      - kbs
+      - name
+      - tool_id
+      - type
+      - updated_at
+      title: Tool
+      type: object
+    ToolRequest:
+      additionalProperties: false
+      example:
+        json_schema:
+          key: ""
+        name: name
+        description: description
+        active: true
+        type: type
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        description:
+          type: string
+        type:
+          maxLength: 100
+          minLength: 1
+          type: string
+        json_schema:
+          additionalProperties: {}
+          type: object
+        active:
+          type: boolean
+      required:
+      - name
+      - type
+      title: ToolRequest
+      type: object
+  securitySchemes:
+    tokenAuth:
+      description: Token-based authentication with required prefix "Token"
+      in: header
+      name: Authorization
+      type: apiKey
