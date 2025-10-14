@@ -4,24 +4,24 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**KbCreate**](KbAPI.md#KbCreate) | **Post** /v4/workspace/ai/kb | 
-[**KbDestroy**](KbAPI.md#KbDestroy) | **Delete** /v4/workspace/ai/kb/{kbId} | 
-[**KbDocumentsChunksRetrieve**](KbAPI.md#KbDocumentsChunksRetrieve) | **Get** /v4/workspace/ai/kb/{kbId}/documents/{documentId}/chunks | 
-[**KbDocumentsCreate**](KbAPI.md#KbDocumentsCreate) | **Post** /v4/workspace/ai/kb/{kbId}/documents | 
-[**KbDocumentsDestroy**](KbAPI.md#KbDocumentsDestroy) | **Delete** /v4/workspace/ai/kb/{kbId}/documents/{documentId} | 
-[**KbDocumentsList**](KbAPI.md#KbDocumentsList) | **Get** /v4/workspace/ai/kb/{kbId}/documents | 
-[**KbDocumentsRetrieve**](KbAPI.md#KbDocumentsRetrieve) | **Get** /v4/workspace/ai/kb/{kbId}/documents/{documentId} | 
-[**KbDocumentsUpdate**](KbAPI.md#KbDocumentsUpdate) | **Put** /v4/workspace/ai/kb/{kbId}/documents/{documentId} | 
-[**KbList**](KbAPI.md#KbList) | **Get** /v4/workspace/ai/kb | 
-[**KbPartialUpdate**](KbAPI.md#KbPartialUpdate) | **Patch** /v4/workspace/ai/kb/{kbId} | 
-[**KbRetrieve**](KbAPI.md#KbRetrieve) | **Get** /v4/workspace/ai/kb/{kbId} | 
-[**KbUpdate**](KbAPI.md#KbUpdate) | **Put** /v4/workspace/ai/kb/{kbId} | 
+[**KbCreate**](KbAPI.md#KbCreate) | **Post** /workspace/ai/kb | 
+[**KbDestroy**](KbAPI.md#KbDestroy) | **Delete** /workspace/ai/kb/{kbId} | 
+[**KbDocumentsChunksList**](KbAPI.md#KbDocumentsChunksList) | **Get** /workspace/ai/kb/{kbId}/documents/{documentId}/chunks | 
+[**KbDocumentsCreate**](KbAPI.md#KbDocumentsCreate) | **Post** /workspace/ai/kb/{kbId}/documents | 
+[**KbDocumentsDestroy**](KbAPI.md#KbDocumentsDestroy) | **Delete** /workspace/ai/kb/{kbId}/documents/{documentId} | 
+[**KbDocumentsList**](KbAPI.md#KbDocumentsList) | **Get** /workspace/ai/kb/{kbId}/documents | 
+[**KbDocumentsRetrieve**](KbAPI.md#KbDocumentsRetrieve) | **Get** /workspace/ai/kb/{kbId}/documents/{documentId} | 
+[**KbDocumentsUpdate**](KbAPI.md#KbDocumentsUpdate) | **Put** /workspace/ai/kb/{kbId}/documents/{documentId} | 
+[**KbList**](KbAPI.md#KbList) | **Get** /workspace/ai/kb | 
+[**KbPartialUpdate**](KbAPI.md#KbPartialUpdate) | **Patch** /workspace/ai/kb/{kbId} | 
+[**KbRetrieve**](KbAPI.md#KbRetrieve) | **Get** /workspace/ai/kb/{kbId} | 
+[**KbUpdate**](KbAPI.md#KbUpdate) | **Put** /workspace/ai/kb/{kbId} | 
 
 
 
 ## KbCreate
 
-> KnowledgeBase KbCreate(ctx).KnowledgeBaseRequest(knowledgeBaseRequest).Execute()
+> ResponseKnowledgeBase KbCreate(ctx).KnowledgeBaseRequest(knowledgeBaseRequest).Execute()
 
 
 
@@ -47,7 +47,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `KbAPI.KbCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `KbCreate`: KnowledgeBase
+	// response from `KbCreate`: ResponseKnowledgeBase
 	fmt.Fprintf(os.Stdout, "Response from `KbAPI.KbCreate`: %v\n", resp)
 }
 ```
@@ -67,11 +67,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**KnowledgeBase**](KnowledgeBase.md)
+[**ResponseKnowledgeBase**](ResponseKnowledgeBase.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 ## KbDestroy
 
-> KbDestroy(ctx, kbId).Execute()
+> ResponseDeleteKnowledgeBase KbDestroy(ctx, kbId).Execute()
 
 
 
@@ -106,11 +106,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.KbAPI.KbDestroy(context.Background(), kbId).Execute()
+	resp, r, err := apiClient.KbAPI.KbDestroy(context.Background(), kbId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KbAPI.KbDestroy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `KbDestroy`: ResponseDeleteKnowledgeBase
+	fmt.Fprintf(os.Stdout, "Response from `KbAPI.KbDestroy`: %v\n", resp)
 }
 ```
 
@@ -133,25 +135,25 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**ResponseDeleteKnowledgeBase**](ResponseDeleteKnowledgeBase.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## KbDocumentsChunksRetrieve
+## KbDocumentsChunksList
 
-> KbDocumentsChunksRetrieve(ctx, documentId, kbId).Execute()
+> PaginatedChunkList KbDocumentsChunksList(ctx, documentId, kbId).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 
 
@@ -170,14 +172,20 @@ import (
 func main() {
 	documentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	kbId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
+	page := int64(789) // int64 | A page number within the paginated result set. (optional)
+	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
+	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.KbAPI.KbDocumentsChunksRetrieve(context.Background(), documentId, kbId).Execute()
+	resp, r, err := apiClient.KbAPI.KbDocumentsChunksList(context.Background(), documentId, kbId).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `KbAPI.KbDocumentsChunksRetrieve``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `KbAPI.KbDocumentsChunksList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `KbDocumentsChunksList`: PaginatedChunkList
+	fmt.Fprintf(os.Stdout, "Response from `KbAPI.KbDocumentsChunksList`: %v\n", resp)
 }
 ```
 
@@ -192,26 +200,30 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiKbDocumentsChunksRetrieveRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiKbDocumentsChunksListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **ordering** | **string** | Which field to use when ordering the results. | 
+ **page** | **int64** | A page number within the paginated result set. | 
+ **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
+ **search** | **string** | A search term. | 
 
 ### Return type
 
- (empty response body)
+[**PaginatedChunkList**](PaginatedChunkList.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -220,7 +232,7 @@ Name | Type | Description  | Notes
 
 ## KbDocumentsCreate
 
-> Document KbDocumentsCreate(ctx, kbId).Name(name).Description(description).Type_(type_).SourceUri(sourceUri).ChunkStrategy(chunkStrategy).Execute()
+> ResponseDocument KbDocumentsCreate(ctx, kbId).Name(name).Description(description).Type_(type_).SourceUri(sourceUri).ChunkStrategy(chunkStrategy).Execute()
 
 
 
@@ -251,7 +263,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `KbAPI.KbDocumentsCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `KbDocumentsCreate`: Document
+	// response from `KbDocumentsCreate`: ResponseDocument
 	fmt.Fprintf(os.Stdout, "Response from `KbAPI.KbDocumentsCreate`: %v\n", resp)
 }
 ```
@@ -280,11 +292,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Document**](Document.md)
+[**ResponseDocument**](ResponseDocument.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -298,7 +310,7 @@ Name | Type | Description  | Notes
 
 ## KbDocumentsDestroy
 
-> KbDocumentsDestroy(ctx, documentId, kbId).Execute()
+> ResponseDeleteDocument KbDocumentsDestroy(ctx, documentId, kbId).Execute()
 
 
 
@@ -320,11 +332,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.KbAPI.KbDocumentsDestroy(context.Background(), documentId, kbId).Execute()
+	resp, r, err := apiClient.KbAPI.KbDocumentsDestroy(context.Background(), documentId, kbId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KbAPI.KbDocumentsDestroy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `KbDocumentsDestroy`: ResponseDeleteDocument
+	fmt.Fprintf(os.Stdout, "Response from `KbAPI.KbDocumentsDestroy`: %v\n", resp)
 }
 ```
 
@@ -349,16 +363,16 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**ResponseDeleteDocument**](ResponseDeleteDocument.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -387,7 +401,7 @@ func main() {
 	kbId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | Number of results to return per page. (optional)
+	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -420,7 +434,7 @@ Name | Type | Description  | Notes
 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | Number of results to return per page. | 
+ **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
 
 ### Return type
@@ -429,7 +443,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -443,7 +457,7 @@ Name | Type | Description  | Notes
 
 ## KbDocumentsRetrieve
 
-> Document KbDocumentsRetrieve(ctx, documentId, kbId).Execute()
+> ResponseRetrieveDocument KbDocumentsRetrieve(ctx, documentId, kbId).Execute()
 
 
 
@@ -470,7 +484,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `KbAPI.KbDocumentsRetrieve``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `KbDocumentsRetrieve`: Document
+	// response from `KbDocumentsRetrieve`: ResponseRetrieveDocument
 	fmt.Fprintf(os.Stdout, "Response from `KbAPI.KbDocumentsRetrieve`: %v\n", resp)
 }
 ```
@@ -496,11 +510,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Document**](Document.md)
+[**ResponseRetrieveDocument**](ResponseRetrieveDocument.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -514,7 +528,7 @@ Name | Type | Description  | Notes
 
 ## KbDocumentsUpdate
 
-> Document KbDocumentsUpdate(ctx, documentId, kbId).Name(name).Description(description).Type_(type_).SourceUri(sourceUri).ChunkStrategy(chunkStrategy).Execute()
+> ResponseDocument KbDocumentsUpdate(ctx, documentId, kbId).Name(name).Description(description).Type_(type_).SourceUri(sourceUri).ChunkStrategy(chunkStrategy).Execute()
 
 
 
@@ -546,7 +560,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `KbAPI.KbDocumentsUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `KbDocumentsUpdate`: Document
+	// response from `KbDocumentsUpdate`: ResponseDocument
 	fmt.Fprintf(os.Stdout, "Response from `KbAPI.KbDocumentsUpdate`: %v\n", resp)
 }
 ```
@@ -577,11 +591,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Document**](Document.md)
+[**ResponseDocument**](ResponseDocument.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -614,7 +628,7 @@ import (
 func main() {
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | Number of results to return per page. (optional)
+	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -642,7 +656,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | Number of results to return per page. | 
+ **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
 
 ### Return type
@@ -651,7 +665,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -665,7 +679,7 @@ Name | Type | Description  | Notes
 
 ## KbPartialUpdate
 
-> KnowledgeBase KbPartialUpdate(ctx, kbId).PatchedKnowledgeBaseRequest(patchedKnowledgeBaseRequest).Execute()
+> ResponseKnowledgeBase KbPartialUpdate(ctx, kbId).PatchedKnowledgeBaseRequest(patchedKnowledgeBaseRequest).Execute()
 
 
 
@@ -692,7 +706,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `KbAPI.KbPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `KbPartialUpdate`: KnowledgeBase
+	// response from `KbPartialUpdate`: ResponseKnowledgeBase
 	fmt.Fprintf(os.Stdout, "Response from `KbAPI.KbPartialUpdate`: %v\n", resp)
 }
 ```
@@ -717,11 +731,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**KnowledgeBase**](KnowledgeBase.md)
+[**ResponseKnowledgeBase**](ResponseKnowledgeBase.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -735,7 +749,7 @@ Name | Type | Description  | Notes
 
 ## KbRetrieve
 
-> KnowledgeBase KbRetrieve(ctx, kbId).Execute()
+> ResponseRetrieveKnowledgeBase KbRetrieve(ctx, kbId).Execute()
 
 
 
@@ -761,7 +775,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `KbAPI.KbRetrieve``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `KbRetrieve`: KnowledgeBase
+	// response from `KbRetrieve`: ResponseRetrieveKnowledgeBase
 	fmt.Fprintf(os.Stdout, "Response from `KbAPI.KbRetrieve`: %v\n", resp)
 }
 ```
@@ -785,11 +799,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**KnowledgeBase**](KnowledgeBase.md)
+[**ResponseRetrieveKnowledgeBase**](ResponseRetrieveKnowledgeBase.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -803,7 +817,7 @@ Name | Type | Description  | Notes
 
 ## KbUpdate
 
-> KnowledgeBase KbUpdate(ctx, kbId).KnowledgeBaseRequest(knowledgeBaseRequest).Execute()
+> ResponseKnowledgeBase KbUpdate(ctx, kbId).KnowledgeBaseRequest(knowledgeBaseRequest).Execute()
 
 
 
@@ -830,7 +844,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `KbAPI.KbUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `KbUpdate`: KnowledgeBase
+	// response from `KbUpdate`: ResponseKnowledgeBase
 	fmt.Fprintf(os.Stdout, "Response from `KbAPI.KbUpdate`: %v\n", resp)
 }
 ```
@@ -855,11 +869,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**KnowledgeBase**](KnowledgeBase.md)
+[**ResponseKnowledgeBase**](ResponseKnowledgeBase.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
