@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ToolsCreate**](ToolsAPI.md#ToolsCreate) | **Post** /v4/workspace/ai/tools | 
-[**ToolsDestroy**](ToolsAPI.md#ToolsDestroy) | **Delete** /v4/workspace/ai/tools/{toolId} | 
-[**ToolsKbCreate**](ToolsAPI.md#ToolsKbCreate) | **Post** /v4/workspace/ai/tools/{toolId}/kb | 
-[**ToolsKbDestroy**](ToolsAPI.md#ToolsKbDestroy) | **Delete** /v4/workspace/ai/tools/{toolId}/kb/{kbId} | 
-[**ToolsKbRetrieve**](ToolsAPI.md#ToolsKbRetrieve) | **Get** /v4/workspace/ai/tools/{toolId}/kb | 
-[**ToolsList**](ToolsAPI.md#ToolsList) | **Get** /v4/workspace/ai/tools | 
-[**ToolsPartialUpdate**](ToolsAPI.md#ToolsPartialUpdate) | **Patch** /v4/workspace/ai/tools/{toolId} | 
-[**ToolsRetrieve**](ToolsAPI.md#ToolsRetrieve) | **Get** /v4/workspace/ai/tools/{toolId} | 
-[**ToolsUpdate**](ToolsAPI.md#ToolsUpdate) | **Put** /v4/workspace/ai/tools/{toolId} | 
+[**ToolsCreate**](ToolsAPI.md#ToolsCreate) | **Post** /workspace/ai/tools | 
+[**ToolsDestroy**](ToolsAPI.md#ToolsDestroy) | **Delete** /workspace/ai/tools/{toolId} | 
+[**ToolsKbCreate**](ToolsAPI.md#ToolsKbCreate) | **Post** /workspace/ai/tools/{toolId}/kb | 
+[**ToolsKbDestroy**](ToolsAPI.md#ToolsKbDestroy) | **Delete** /workspace/ai/tools/{toolId}/kb/{kbId} | 
+[**ToolsKbList**](ToolsAPI.md#ToolsKbList) | **Get** /workspace/ai/tools/{toolId}/kb | 
+[**ToolsList**](ToolsAPI.md#ToolsList) | **Get** /workspace/ai/tools | 
+[**ToolsPartialUpdate**](ToolsAPI.md#ToolsPartialUpdate) | **Patch** /workspace/ai/tools/{toolId} | 
+[**ToolsRetrieve**](ToolsAPI.md#ToolsRetrieve) | **Get** /workspace/ai/tools/{toolId} | 
+[**ToolsUpdate**](ToolsAPI.md#ToolsUpdate) | **Put** /workspace/ai/tools/{toolId} | 
 
 
 
 ## ToolsCreate
 
-> Tool ToolsCreate(ctx).ToolRequest(toolRequest).Execute()
+> ResponseTool ToolsCreate(ctx).ToolRequest(toolRequest).Execute()
 
 
 
@@ -44,7 +44,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.ToolsCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ToolsCreate`: Tool
+	// response from `ToolsCreate`: ResponseTool
 	fmt.Fprintf(os.Stdout, "Response from `ToolsAPI.ToolsCreate`: %v\n", resp)
 }
 ```
@@ -64,11 +64,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tool**](Tool.md)
+[**ResponseTool**](ResponseTool.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## ToolsDestroy
 
-> ToolsDestroy(ctx, toolId).Execute()
+> ResponseDeleteTool ToolsDestroy(ctx, toolId).Execute()
 
 
 
@@ -103,11 +103,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ToolsAPI.ToolsDestroy(context.Background(), toolId).Execute()
+	resp, r, err := apiClient.ToolsAPI.ToolsDestroy(context.Background(), toolId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.ToolsDestroy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `ToolsDestroy`: ResponseDeleteTool
+	fmt.Fprintf(os.Stdout, "Response from `ToolsAPI.ToolsDestroy`: %v\n", resp)
 }
 ```
 
@@ -130,16 +132,16 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**ResponseDeleteTool**](ResponseDeleteTool.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -148,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## ToolsKbCreate
 
-> Tool ToolsKbCreate(ctx, toolId).ToolRequest(toolRequest).Execute()
+> ToolKBLink ToolsKbCreate(ctx, toolId).ToolRequest(toolRequest).Execute()
 
 
 
@@ -175,7 +177,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.ToolsKbCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ToolsKbCreate`: Tool
+	// response from `ToolsKbCreate`: ToolKBLink
 	fmt.Fprintf(os.Stdout, "Response from `ToolsAPI.ToolsKbCreate`: %v\n", resp)
 }
 ```
@@ -200,11 +202,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tool**](Tool.md)
+[**ToolKBLink**](ToolKBLink.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -273,21 +275,21 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## ToolsKbRetrieve
+## ToolsKbList
 
-> Tool ToolsKbRetrieve(ctx, toolId).Execute()
+> PaginatedKnowledgeBaseList ToolsKbList(ctx, toolId).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 
 
@@ -305,16 +307,20 @@ import (
 
 func main() {
 	toolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | A UUID string identifying this tool.
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
+	page := int64(789) // int64 | A page number within the paginated result set. (optional)
+	pageSize := int64(789) // int64 | Number of results to return per page. (optional)
+	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ToolsAPI.ToolsKbRetrieve(context.Background(), toolId).Execute()
+	resp, r, err := apiClient.ToolsAPI.ToolsKbList(context.Background(), toolId).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.ToolsKbRetrieve``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.ToolsKbList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ToolsKbRetrieve`: Tool
-	fmt.Fprintf(os.Stdout, "Response from `ToolsAPI.ToolsKbRetrieve`: %v\n", resp)
+	// response from `ToolsKbList`: PaginatedKnowledgeBaseList
+	fmt.Fprintf(os.Stdout, "Response from `ToolsAPI.ToolsKbList`: %v\n", resp)
 }
 ```
 
@@ -328,20 +334,24 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiToolsKbRetrieveRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiToolsKbListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **ordering** | **string** | Which field to use when ordering the results. | 
+ **page** | **int64** | A page number within the paginated result set. | 
+ **pageSize** | **int64** | Number of results to return per page. | 
+ **search** | **string** | A search term. | 
 
 ### Return type
 
-[**Tool**](Tool.md)
+[**PaginatedKnowledgeBaseList**](PaginatedKnowledgeBaseList.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -374,7 +384,7 @@ import (
 func main() {
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | Number of results to return per page. (optional)
+	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -402,7 +412,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | Number of results to return per page. | 
+ **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
 
 ### Return type
@@ -411,7 +421,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -425,7 +435,7 @@ Name | Type | Description  | Notes
 
 ## ToolsPartialUpdate
 
-> Tool ToolsPartialUpdate(ctx, toolId).PatchedToolRequest(patchedToolRequest).Execute()
+> ResponseTool ToolsPartialUpdate(ctx, toolId).PatchedToolRequest(patchedToolRequest).Execute()
 
 
 
@@ -452,7 +462,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.ToolsPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ToolsPartialUpdate`: Tool
+	// response from `ToolsPartialUpdate`: ResponseTool
 	fmt.Fprintf(os.Stdout, "Response from `ToolsAPI.ToolsPartialUpdate`: %v\n", resp)
 }
 ```
@@ -477,11 +487,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tool**](Tool.md)
+[**ResponseTool**](ResponseTool.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -495,7 +505,7 @@ Name | Type | Description  | Notes
 
 ## ToolsRetrieve
 
-> Tool ToolsRetrieve(ctx, toolId).Execute()
+> ResponseRetrieveTool ToolsRetrieve(ctx, toolId).Execute()
 
 
 
@@ -521,7 +531,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.ToolsRetrieve``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ToolsRetrieve`: Tool
+	// response from `ToolsRetrieve`: ResponseRetrieveTool
 	fmt.Fprintf(os.Stdout, "Response from `ToolsAPI.ToolsRetrieve`: %v\n", resp)
 }
 ```
@@ -545,11 +555,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tool**](Tool.md)
+[**ResponseRetrieveTool**](ResponseRetrieveTool.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
@@ -563,7 +573,7 @@ Name | Type | Description  | Notes
 
 ## ToolsUpdate
 
-> Tool ToolsUpdate(ctx, toolId).ToolRequest(toolRequest).Execute()
+> ResponseTool ToolsUpdate(ctx, toolId).ToolRequest(toolRequest).Execute()
 
 
 
@@ -590,7 +600,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsAPI.ToolsUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ToolsUpdate`: Tool
+	// response from `ToolsUpdate`: ResponseTool
 	fmt.Fprintf(os.Stdout, "Response from `ToolsAPI.ToolsUpdate`: %v\n", resp)
 }
 ```
@@ -615,11 +625,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Tool**](Tool.md)
+[**ResponseTool**](ResponseTool.md)
 
 ### Authorization
 
-[tokenAuth](../README.md#tokenAuth)
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
 
 ### HTTP request headers
 
