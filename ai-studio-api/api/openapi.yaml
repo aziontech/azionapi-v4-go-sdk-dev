@@ -1,15 +1,24 @@
 openapi: 3.0.3
 info:
-  description: REST API OpenAPI documentation for the AI-Studio-API
-  title: AI-Studio-API
+  description: REST API OpenAPI documentation for the ai-studio-api
+  title: ai-studio-api
   version: 1.0.0
 servers:
 - url: /
 paths:
-  /workspace/ai/kb:
+  /workspace/ai/kbs:
     get:
-      operationId: kbList
+      description: List all knowledge bases owned by your account.
+      operationId: list knowledge bases
       parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Which field to use when ordering the results.
         explode: true
         in: query
@@ -166,10 +175,12 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: List knowledge bases
       tags:
-      - kb
+      - AI Studio - Knowledge Bases
     post:
-      operationId: kbCreate
+      description: Create a new knowledge base for your account.
+      operationId: create knowledge base
       requestBody:
         content:
           application/json:
@@ -304,11 +315,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Create a knowledge base
       tags:
-      - kb
-  /workspace/ai/kb/{kbId}:
+      - AI Studio - Knowledge Bases
+  /workspace/ai/kbs/{kbId}:
     delete:
-      operationId: kbDestroy
+      description: Destruction of a specific knowledge base in your account.
+      operationId: destroy a knowledge base
       parameters:
       - description: A UUID string identifying this knowledge base.
         explode: false
@@ -447,11 +460,21 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Destroy a knowledge base
       tags:
-      - kb
+      - AI Studio - Knowledge Bases
     get:
-      operationId: kbRetrieve
+      description: Retrieve details from a specific knowledge base in your account.
+      operationId: retrive knowledge base
       parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - description: A UUID string identifying this knowledge base.
         explode: false
         in: path
@@ -583,10 +606,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Retrieve details from a knowledge base
       tags:
-      - kb
+      - AI Studio - Knowledge Bases
     patch:
-      operationId: kbPartialUpdate
+      description: Update one or more fields of an existing knowledge base without
+        affecting other fields.
+      operationId: partial update knowledge base
       parameters:
       - description: A UUID string identifying this knowledge base.
         explode: false
@@ -730,10 +756,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Partially update a knowledge base
       tags:
-      - kb
+      - AI Studio - Knowledge Bases
     put:
-      operationId: kbUpdate
+      description: Update an existing knowledge base. This replaces the entire knowledge
+        base with the new data provided.
+      operationId: update knowledge base
       parameters:
       - description: A UUID string identifying this knowledge base.
         explode: false
@@ -878,12 +907,22 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Update a knowledge base
       tags:
-      - kb
-  /workspace/ai/kb/{kbId}/documents:
+      - AI Studio - Knowledge Bases
+  /workspace/ai/kbs/{kbId}/documents:
     get:
-      operationId: kbDocumentsList
+      description: List all documents owned by your account.
+      operationId: list documents
       parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - explode: false
         in: path
         name: kbId
@@ -1048,10 +1087,12 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: List documents
       tags:
-      - kb
+      - AI Studio - Documents
     post:
-      operationId: kbDocumentsCreate
+      description: Create a new document for your account.
+      operationId: create document
       parameters:
       - explode: false
         in: path
@@ -1200,11 +1241,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Create a document
       tags:
-      - kb
-  /workspace/ai/kb/{kbId}/documents/{documentId}:
+      - AI Studio - Documents
+  /workspace/ai/kbs/{kbId}/documents/{documentId}:
     delete:
-      operationId: kbDocumentsDestroy
+      description: Destruction of a specific document in your account.
+      operationId: destroy a document
       parameters:
       - explode: false
         in: path
@@ -1350,10 +1393,12 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Destroy a document
       tags:
-      - kb
+      - AI Studio - Documents
     get:
-      operationId: kbDocumentsRetrieve
+      description: Retrieve details from a specific document in your account.
+      operationId: retrive document
       parameters:
       - explode: false
         in: path
@@ -1363,6 +1408,14 @@ paths:
           format: uuid
           type: string
         style: simple
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - explode: false
         in: path
         name: kbId
@@ -1493,10 +1546,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Retrieve details from a document
       tags:
-      - kb
+      - AI Studio - Documents
     put:
-      operationId: kbDocumentsUpdate
+      description: Update an existing document. This replaces the entire document
+        with the new data provided.
+      operationId: update document
       parameters:
       - explode: false
         in: path
@@ -1653,11 +1709,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Update a document
       tags:
-      - kb
-  /workspace/ai/kb/{kbId}/documents/{documentId}/chunks:
+      - AI Studio - Documents
+  /workspace/ai/kbs/{kbId}/documents/{documentId}/chunks:
     get:
-      operationId: kbDocumentsChunksList
+      description: List all chunks owned by your account.
+      operationId: list chunks
       parameters:
       - explode: false
         in: path
@@ -1667,6 +1725,14 @@ paths:
           format: uuid
           type: string
         style: simple
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - explode: false
         in: path
         name: kbId
@@ -1831,12 +1897,22 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: List chunks
       tags:
-      - kb
+      - AI Studio - Chunks
   /workspace/ai/threads:
     get:
-      operationId: threadsList
+      description: List all chat threads owned by your account.
+      operationId: list chat threads
       parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Which field to use when ordering the results.
         explode: true
         in: query
@@ -1993,10 +2069,12 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: List chat threads
       tags:
-      - threads
+      - AI Studio - Chat Threads
     post:
-      operationId: threadsCreate
+      description: Create a new chat thread for your account.
+      operationId: create chat thread
       requestBody:
         content:
           application/json:
@@ -2130,11 +2208,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Create a chat thread
       tags:
-      - threads
+      - AI Studio - Chat Threads
   /workspace/ai/threads/{threadId}:
     delete:
-      operationId: threadsDestroy
+      description: Destruction of a specific chat thread in your account.
+      operationId: destroy a chat thread
       parameters:
       - explode: false
         in: path
@@ -2271,11 +2351,21 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Destroy a chat thread
       tags:
-      - threads
+      - AI Studio - Chat Threads
     get:
-      operationId: threadsRetrieve
+      description: Retrieve details from a specific chat thread in your account.
+      operationId: retrive chat thread
       parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - explode: false
         in: path
         name: threadId
@@ -2405,10 +2495,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Retrieve details from a chat thread
       tags:
-      - threads
+      - AI Studio - Chat Threads
     patch:
-      operationId: threadsPartialUpdate
+      description: Update one or more fields of an existing chat thread without affecting
+        other fields.
+      operationId: partial update chat thread
       parameters:
       - explode: false
         in: path
@@ -2550,10 +2643,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Partially update a chat thread
       tags:
-      - threads
+      - AI Studio - Chat Threads
     put:
-      operationId: threadsUpdate
+      description: Update an existing chat thread. This replaces the entire chat thread
+        with the new data provided.
+      operationId: update chat thread
       parameters:
       - explode: false
         in: path
@@ -2695,12 +2791,22 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Update a chat thread
       tags:
-      - threads
+      - AI Studio - Chat Threads
   /workspace/ai/threads/{threadId}/messages:
     get:
-      operationId: threadsMessagesList
+      description: List all messages owned by your account.
+      operationId: list messages
       parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Which field to use when ordering the results.
         explode: true
         in: query
@@ -2865,10 +2971,12 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: List messages
       tags:
-      - threads
+      - AI Studio - Messages
     post:
-      operationId: threadsMessagesCreate
+      description: Create a new message for your account.
+      operationId: create message
       parameters:
       - explode: false
         in: path
@@ -3012,11 +3120,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Create a message
       tags:
-      - threads
+      - AI Studio - Messages
   /workspace/ai/threads/{threadId}/messages/{messageId}:
     delete:
-      operationId: threadsMessagesDestroy
+      description: Destruction of a specific message in your account.
+      operationId: destroy a message
       parameters:
       - explode: false
         in: path
@@ -3162,11 +3272,21 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Destroy a message
       tags:
-      - threads
+      - AI Studio - Messages
     get:
-      operationId: threadsMessagesRetrieve
+      description: Retrieve details from a specific message in your account.
+      operationId: retrive message
       parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - explode: false
         in: path
         name: messageId
@@ -3305,10 +3425,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Retrieve details from a message
       tags:
-      - threads
+      - AI Studio - Messages
     put:
-      operationId: threadsMessagesUpdate
+      description: Update an existing message. This replaces the entire message with
+        the new data provided.
+      operationId: update message
       parameters:
       - explode: false
         in: path
@@ -3460,12 +3583,22 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Update a message
       tags:
-      - threads
+      - AI Studio - Messages
   /workspace/ai/tools:
     get:
-      operationId: toolsList
+      description: List all tools owned by your account.
+      operationId: list tools
       parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Which field to use when ordering the results.
         explode: true
         in: query
@@ -3622,10 +3755,12 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: List tools
       tags:
-      - tools
+      - AI Studio - Tools
     post:
-      operationId: toolsCreate
+      description: Create a new tool for your account.
+      operationId: create tool
       requestBody:
         content:
           application/json:
@@ -3760,11 +3895,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Create a tool
       tags:
-      - tools
+      - AI Studio - Tools
   /workspace/ai/tools/{toolId}:
     delete:
-      operationId: toolsDestroy
+      description: Destruction of a specific tool in your account.
+      operationId: destroy a tool
       parameters:
       - description: A UUID string identifying this tool.
         explode: false
@@ -3903,11 +4040,21 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Destroy a tool
       tags:
-      - tools
+      - AI Studio - Tools
     get:
-      operationId: toolsRetrieve
+      description: Retrieve details from a specific tool in your account.
+      operationId: retrive tool
       parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - description: A UUID string identifying this tool.
         explode: false
         in: path
@@ -4039,10 +4186,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Retrieve details from a tool
       tags:
-      - tools
+      - AI Studio - Tools
     patch:
-      operationId: toolsPartialUpdate
+      description: Update one or more fields of an existing tool without affecting
+        other fields.
+      operationId: partial update tool
       parameters:
       - description: A UUID string identifying this tool.
         explode: false
@@ -4186,10 +4336,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Partially update a tool
       tags:
-      - tools
+      - AI Studio - Tools
     put:
-      operationId: toolsUpdate
+      description: Update an existing tool. This replaces the entire tool with the
+        new data provided.
+      operationId: update tool
       parameters:
       - description: A UUID string identifying this tool.
         explode: false
@@ -4334,12 +4487,22 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Update a tool
       tags:
-      - tools
-  /workspace/ai/tools/{toolId}/kb:
+      - AI Studio - Tools
+  /workspace/ai/tools/{toolId}/kbs:
     get:
-      operationId: toolsKbList
+      description: List all knowledge bases linked to a specific tool in your account.
+      operationId: list knowledge bases linked to a tool
       parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Which field to use when ordering the results.
         explode: true
         in: query
@@ -4505,10 +4668,12 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: List knowledge bases linked to a tool
       tags:
-      - tools
+      - AI Studio - Tools
     post:
-      operationId: toolsKbCreate
+      description: Add a new knowledge base to a specific tool for your account.
+      operationId: add knowledge base to a tool
       parameters:
       - description: A UUID string identifying this tool.
         explode: false
@@ -4647,11 +4812,13 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Add a knowledge base to a tool
       tags:
-      - tools
-  /workspace/ai/tools/{toolId}/kb/{kbId}:
+      - AI Studio - Tools
+  /workspace/ai/tools/{toolId}/kbs/{kbId}:
     delete:
-      operationId: toolsKbDestroy
+      description: Remove a specific knowledge base from a tool in your account.
+      operationId: remove knowledge base from a tool
       parameters:
       - explode: false
         in: path
@@ -4787,8 +4954,9 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
+      summary: Remove a knowledge base from a tool
       tags:
-      - tools
+      - AI Studio - Tools
 components:
   schemas:
     ChatThread:

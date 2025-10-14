@@ -1,7 +1,7 @@
 /*
-AI-Studio-API
+ai-studio-api
 
-REST API OpenAPI documentation for the AI-Studio-API
+REST API OpenAPI documentation for the ai-studio-api
 
 API version: 1.0.0
 */
@@ -41,7 +41,7 @@ var (
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the AI-Studio-API API v1.0.0
+// APIClient manages communication with the ai-studio-api API v1.0.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -49,11 +49,17 @@ type APIClient struct {
 
 	// API Services
 
-	KbAPI *KbAPIService
+	AIStudioChatThreadsAPI *AIStudioChatThreadsAPIService
 
-	ThreadsAPI *ThreadsAPIService
+	AIStudioChunksAPI *AIStudioChunksAPIService
 
-	ToolsAPI *ToolsAPIService
+	AIStudioDocumentsAPI *AIStudioDocumentsAPIService
+
+	AIStudioKnowledgeBasesAPI *AIStudioKnowledgeBasesAPIService
+
+	AIStudioMessagesAPI *AIStudioMessagesAPIService
+
+	AIStudioToolsAPI *AIStudioToolsAPIService
 }
 
 type service struct {
@@ -72,9 +78,12 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.KbAPI = (*KbAPIService)(&c.common)
-	c.ThreadsAPI = (*ThreadsAPIService)(&c.common)
-	c.ToolsAPI = (*ToolsAPIService)(&c.common)
+	c.AIStudioChatThreadsAPI = (*AIStudioChatThreadsAPIService)(&c.common)
+	c.AIStudioChunksAPI = (*AIStudioChunksAPIService)(&c.common)
+	c.AIStudioDocumentsAPI = (*AIStudioDocumentsAPIService)(&c.common)
+	c.AIStudioKnowledgeBasesAPI = (*AIStudioKnowledgeBasesAPIService)(&c.common)
+	c.AIStudioMessagesAPI = (*AIStudioMessagesAPIService)(&c.common)
+	c.AIStudioToolsAPI = (*AIStudioToolsAPIService)(&c.common)
 
 	return c
 }

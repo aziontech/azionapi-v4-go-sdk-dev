@@ -1,7 +1,7 @@
 /*
-AI-Studio-API
+ai-studio-api
 
-REST API OpenAPI documentation for the AI-Studio-API
+REST API OpenAPI documentation for the ai-studio-api
 
 API version: 1.0.0
 */
