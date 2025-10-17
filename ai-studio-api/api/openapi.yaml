@@ -5068,6 +5068,7 @@ components:
         document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         type: type
         source_uri: source_uri
+        status: ""
       properties:
         document_id:
           format: uuid
@@ -5087,6 +5088,9 @@ components:
         chunk_strategy:
           additionalProperties: {}
           type: object
+        status:
+          allOf:
+          - $ref: "#/components/schemas/StatusEnum"
         created_at:
           format: date-time
           type: string
@@ -5097,6 +5101,7 @@ components:
       - created_at
       - document_id
       - kb_id
+      - status
       - updated_at
       title: Document
       type: object
@@ -5452,6 +5457,7 @@ components:
           document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
           source_uri: source_uri
+          status: ""
         - kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           updated_at: 2000-01-23T04:56:07.000+00:00
           name: name
@@ -5462,6 +5468,7 @@ components:
           document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
           source_uri: source_uri
+          status: ""
       properties:
         count:
           example: 123
@@ -5743,6 +5750,7 @@ components:
           document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
           source_uri: source_uri
+          status: ""
         state: state
       properties:
         state:
@@ -5928,6 +5936,7 @@ components:
           document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
           source_uri: source_uri
+          status: ""
         state: state
       properties:
         state:
@@ -6027,6 +6036,7 @@ components:
           document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
           source_uri: source_uri
+          status: ""
       properties:
         data:
           $ref: "#/components/schemas/Document"
@@ -6125,6 +6135,14 @@ components:
       - data
       title: ResponseTool
       type: object
+    StatusEnum:
+      description: |-
+        * `creating` - creating
+        * `processing` - processing
+        * `created` - created
+        * `error` - error
+      title: StatusEnum
+      type: string
     Tool:
       additionalProperties: false
       example:
