@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cache** | Pointer to [**ResponseBadRequestCacheSettingsModulesCacheField**](ResponseBadRequestCacheSettingsModulesCacheField.md) |  | [optional] 
+**EdgeCache** | Pointer to [**ResponseBadRequestCacheSettingsModulesEdgeCacheField**](ResponseBadRequestCacheSettingsModulesEdgeCacheField.md) |  | [optional] 
+**TieredCache** | Pointer to [**ResponseBadRequestCacheSettingsModulesTieredCacheField**](ResponseBadRequestCacheSettingsModulesTieredCacheField.md) |  | [optional] 
 **ApplicationAccelerator** | Pointer to [**ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField**](ResponseBadRequestCacheSettingsModulesApplicationAcceleratorField.md) |  | [optional] 
 
 ## Methods
@@ -26,30 +27,55 @@ NewResponseBadRequestSerializerMetaclassModulesFieldWithDefaults instantiates a 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCache
+### GetEdgeCache
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetCache() ResponseBadRequestCacheSettingsModulesCacheField`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetEdgeCache() ResponseBadRequestCacheSettingsModulesEdgeCacheField`
 
-GetCache returns the Cache field if non-nil, zero value otherwise.
+GetEdgeCache returns the EdgeCache field if non-nil, zero value otherwise.
 
-### GetCacheOk
+### GetEdgeCacheOk
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetCacheOk() (*ResponseBadRequestCacheSettingsModulesCacheField, bool)`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetEdgeCacheOk() (*ResponseBadRequestCacheSettingsModulesEdgeCacheField, bool)`
 
-GetCacheOk returns a tuple with the Cache field if it's non-nil, zero value otherwise
+GetEdgeCacheOk returns a tuple with the EdgeCache field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCache
+### SetEdgeCache
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) SetCache(v ResponseBadRequestCacheSettingsModulesCacheField)`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) SetEdgeCache(v ResponseBadRequestCacheSettingsModulesEdgeCacheField)`
 
-SetCache sets Cache field to given value.
+SetEdgeCache sets EdgeCache field to given value.
 
-### HasCache
+### HasEdgeCache
 
-`func (o *ResponseBadRequestSerializerMetaclassModulesField) HasCache() bool`
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) HasEdgeCache() bool`
 
-HasCache returns a boolean if a field has been set.
+HasEdgeCache returns a boolean if a field has been set.
+
+### GetTieredCache
+
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetTieredCache() ResponseBadRequestCacheSettingsModulesTieredCacheField`
+
+GetTieredCache returns the TieredCache field if non-nil, zero value otherwise.
+
+### GetTieredCacheOk
+
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) GetTieredCacheOk() (*ResponseBadRequestCacheSettingsModulesTieredCacheField, bool)`
+
+GetTieredCacheOk returns a tuple with the TieredCache field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTieredCache
+
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) SetTieredCache(v ResponseBadRequestCacheSettingsModulesTieredCacheField)`
+
+SetTieredCache sets TieredCache field to given value.
+
+### HasTieredCache
+
+`func (o *ResponseBadRequestSerializerMetaclassModulesField) HasTieredCache() bool`
+
+HasTieredCache returns a boolean if a field has been set.
 
 ### GetApplicationAccelerator
 
