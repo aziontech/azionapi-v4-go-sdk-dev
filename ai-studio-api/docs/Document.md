@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** |  | [optional] 
 **SourceUri** | Pointer to **string** |  | [optional] 
 **ChunkStrategy** | Pointer to **map[string]interface{}** |  | [optional] 
+**Status** | **string** | * &#x60;creating&#x60; - creating * &#x60;processing&#x60; - processing * &#x60;created&#x60; - created * &#x60;error&#x60; - error | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
 
@@ -18,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewDocument
 
-`func NewDocument(documentId string, kbId string, createdAt time.Time, updatedAt time.Time, ) *Document`
+`func NewDocument(documentId string, kbId string, status string, createdAt time.Time, updatedAt time.Time, ) *Document`
 
 NewDocument instantiates a new Document object
 This constructor will assign default values to properties that have it defined,
@@ -197,6 +198,26 @@ SetChunkStrategy sets ChunkStrategy field to given value.
 `func (o *Document) HasChunkStrategy() bool`
 
 HasChunkStrategy returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *Document) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *Document) GetStatusOk() (*string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *Document) SetStatus(v string)`
+
+SetStatus sets Status field to given value.
+
 
 ### GetCreatedAt
 

@@ -29,6 +29,8 @@ type Document struct {
 	Type *string `json:"type,omitempty"`
 	SourceUri *string `json:"source_uri,omitempty"`
 	ChunkStrategy map[string]interface{} `json:"chunk_strategy,omitempty"`
+	// * `creating` - creating * `processing` - processing * `created` - created * `error` - error
+	Status string `json:"status"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
@@ -39,10 +41,11 @@ type _Document Document
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDocument(documentId string, kbId string, createdAt time.Time, updatedAt time.Time) *Document {
+func NewDocument(documentId string, kbId string, status string, createdAt time.Time, updatedAt time.Time) *Document {
 	this := Document{}
 	this.DocumentId = documentId
 	this.KbId = kbId
+	this.Status = status
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
 	return &this
@@ -264,6 +267,30 @@ func (o *Document) SetChunkStrategy(v map[string]interface{}) {
 	o.ChunkStrategy = v
 }
 
+// GetStatus returns the Status field value
+func (o *Document) GetStatus() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *Document) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *Document) SetStatus(v string) {
+	o.Status = v
+}
+
 // GetCreatedAt returns the CreatedAt field value
 func (o *Document) GetCreatedAt() time.Time {
 	if o == nil {
@@ -339,6 +366,7 @@ func (o Document) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ChunkStrategy) {
 		toSerialize["chunk_strategy"] = o.ChunkStrategy
 	}
+	toSerialize["status"] = o.Status
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
 	return toSerialize, nil
@@ -351,6 +379,7 @@ func (o *Document) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"document_id",
 		"kb_id",
+		"status",
 		"created_at",
 		"updated_at",
 	}
