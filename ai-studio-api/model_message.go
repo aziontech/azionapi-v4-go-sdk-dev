@@ -24,14 +24,12 @@ var _ MappedNullable = &Message{}
 type Message struct {
 	MessageId string `json:"message_id"`
 	ThreadId string `json:"thread_id"`
-	CreatedBy NullableString `json:"created_by"`
-	UpdatedBy NullableString `json:"updated_by"`
+	LastEditor string `json:"last_editor"`
 	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Message map[string]interface{} `json:"message"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	LastModified time.Time `json:"last_modified"`
 }
 
 type _Message Message
@@ -40,15 +38,13 @@ type _Message Message
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessage(messageId string, threadId string, createdBy NullableString, updatedBy NullableString, message map[string]interface{}, createdAt time.Time, updatedAt time.Time) *Message {
+func NewMessage(messageId string, threadId string, lastEditor string, message map[string]interface{}, lastModified time.Time) *Message {
 	this := Message{}
 	this.MessageId = messageId
 	this.ThreadId = threadId
-	this.CreatedBy = createdBy
-	this.UpdatedBy = updatedBy
+	this.LastEditor = lastEditor
 	this.Message = message
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
+	this.LastModified = lastModified
 	return &this
 }
 
@@ -108,56 +104,28 @@ func (o *Message) SetThreadId(v string) {
 	o.ThreadId = v
 }
 
-// GetCreatedBy returns the CreatedBy field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *Message) GetCreatedBy() string {
-	if o == nil || o.CreatedBy.Get() == nil {
+// GetLastEditor returns the LastEditor field value
+func (o *Message) GetLastEditor() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.CreatedBy.Get()
+	return o.LastEditor
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field value
+// GetLastEditorOk returns a tuple with the LastEditor field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Message) GetCreatedByOk() (*string, bool) {
+func (o *Message) GetLastEditorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.CreatedBy.Get(), o.CreatedBy.IsSet()
+	return &o.LastEditor, true
 }
 
-// SetCreatedBy sets field value
-func (o *Message) SetCreatedBy(v string) {
-	o.CreatedBy.Set(&v)
-}
-
-// GetUpdatedBy returns the UpdatedBy field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *Message) GetUpdatedBy() string {
-	if o == nil || o.UpdatedBy.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.UpdatedBy.Get()
-}
-
-// GetUpdatedByOk returns a tuple with the UpdatedBy field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Message) GetUpdatedByOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.UpdatedBy.Get(), o.UpdatedBy.IsSet()
-}
-
-// SetUpdatedBy sets field value
-func (o *Message) SetUpdatedBy(v string) {
-	o.UpdatedBy.Set(&v)
+// SetLastEditor sets field value
+func (o *Message) SetLastEditor(v string) {
+	o.LastEditor = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -280,52 +248,28 @@ func (o *Message) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *Message) GetCreatedAt() time.Time {
+// GetLastModified returns the LastModified field value
+func (o *Message) GetLastModified() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
 	}
 
-	return o.CreatedAt
+	return o.LastModified
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
-func (o *Message) GetCreatedAtOk() (*time.Time, bool) {
+func (o *Message) GetLastModifiedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return &o.LastModified, true
 }
 
-// SetCreatedAt sets field value
-func (o *Message) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
-}
-
-// GetUpdatedAt returns the UpdatedAt field value
-func (o *Message) GetUpdatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
-// and a boolean to check if the value has been set.
-func (o *Message) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UpdatedAt, true
-}
-
-// SetUpdatedAt sets field value
-func (o *Message) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = v
+// SetLastModified sets field value
+func (o *Message) SetLastModified(v time.Time) {
+	o.LastModified = v
 }
 
 func (o Message) MarshalJSON() ([]byte, error) {
@@ -340,8 +284,7 @@ func (o Message) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["message_id"] = o.MessageId
 	toSerialize["thread_id"] = o.ThreadId
-	toSerialize["created_by"] = o.CreatedBy.Get()
-	toSerialize["updated_by"] = o.UpdatedBy.Get()
+	toSerialize["last_editor"] = o.LastEditor
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -352,8 +295,7 @@ func (o Message) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
+	toSerialize["last_modified"] = o.LastModified
 	return toSerialize, nil
 }
 
@@ -364,11 +306,9 @@ func (o *Message) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"message_id",
 		"thread_id",
-		"created_by",
-		"updated_by",
+		"last_editor",
 		"message",
-		"created_at",
-		"updated_at",
+		"last_modified",
 	}
 
 	allProperties := make(map[string]interface{})

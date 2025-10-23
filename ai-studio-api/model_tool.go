@@ -29,8 +29,8 @@ type Tool struct {
 	JsonSchema map[string]interface{} `json:"json_schema,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	Kbs string `json:"kbs"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	LastEditor string `json:"last_editor"`
+	LastModified time.Time `json:"last_modified"`
 }
 
 type _Tool Tool
@@ -39,14 +39,14 @@ type _Tool Tool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTool(toolId string, name string, type_ string, kbs string, createdAt time.Time, updatedAt time.Time) *Tool {
+func NewTool(toolId string, name string, type_ string, kbs string, lastEditor string, lastModified time.Time) *Tool {
 	this := Tool{}
 	this.ToolId = toolId
 	this.Name = name
 	this.Type = type_
 	this.Kbs = kbs
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
+	this.LastEditor = lastEditor
+	this.LastModified = lastModified
 	return &this
 }
 
@@ -250,52 +250,52 @@ func (o *Tool) SetKbs(v string) {
 	o.Kbs = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *Tool) GetCreatedAt() time.Time {
+// GetLastEditor returns the LastEditor field value
+func (o *Tool) GetLastEditor() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LastEditor
+}
+
+// GetLastEditorOk returns a tuple with the LastEditor field value
+// and a boolean to check if the value has been set.
+func (o *Tool) GetLastEditorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastEditor, true
+}
+
+// SetLastEditor sets field value
+func (o *Tool) SetLastEditor(v string) {
+	o.LastEditor = v
+}
+
+// GetLastModified returns the LastModified field value
+func (o *Tool) GetLastModified() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
 	}
 
-	return o.CreatedAt
+	return o.LastModified
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
-func (o *Tool) GetCreatedAtOk() (*time.Time, bool) {
+func (o *Tool) GetLastModifiedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return &o.LastModified, true
 }
 
-// SetCreatedAt sets field value
-func (o *Tool) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
-}
-
-// GetUpdatedAt returns the UpdatedAt field value
-func (o *Tool) GetUpdatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
-// and a boolean to check if the value has been set.
-func (o *Tool) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UpdatedAt, true
-}
-
-// SetUpdatedAt sets field value
-func (o *Tool) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = v
+// SetLastModified sets field value
+func (o *Tool) SetLastModified(v time.Time) {
+	o.LastModified = v
 }
 
 func (o Tool) MarshalJSON() ([]byte, error) {
@@ -321,8 +321,8 @@ func (o Tool) ToMap() (map[string]interface{}, error) {
 		toSerialize["active"] = o.Active
 	}
 	toSerialize["kbs"] = o.Kbs
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
+	toSerialize["last_editor"] = o.LastEditor
+	toSerialize["last_modified"] = o.LastModified
 	return toSerialize, nil
 }
 
@@ -335,8 +335,8 @@ func (o *Tool) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"type",
 		"kbs",
-		"created_at",
-		"updated_at",
+		"last_editor",
+		"last_modified",
 	}
 
 	allProperties := make(map[string]interface{})

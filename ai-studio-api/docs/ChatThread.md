@@ -6,18 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ThreadId** | **string** |  | 
 **AccountId** | **NullableInt64** |  | 
-**CreatedBy** | **NullableString** |  | 
-**UpdatedBy** | **NullableString** |  | 
+**LastEditor** | **string** |  | 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
-**CreatedAt** | **time.Time** |  | 
-**UpdatedAt** | **time.Time** |  | 
+**LastModified** | **time.Time** |  | 
 
 ## Methods
 
 ### NewChatThread
 
-`func NewChatThread(threadId string, accountId NullableInt64, createdBy NullableString, updatedBy NullableString, createdAt time.Time, updatedAt time.Time, ) *ChatThread`
+`func NewChatThread(threadId string, accountId NullableInt64, lastEditor string, lastModified time.Time, ) *ChatThread`
 
 NewChatThread instantiates a new ChatThread object
 This constructor will assign default values to properties that have it defined,
@@ -82,66 +80,26 @@ SetAccountId sets AccountId field to given value.
 `func (o *ChatThread) UnsetAccountId()`
 
 UnsetAccountId ensures that no value is present for AccountId, not even an explicit nil
-### GetCreatedBy
+### GetLastEditor
 
-`func (o *ChatThread) GetCreatedBy() string`
+`func (o *ChatThread) GetLastEditor() string`
 
-GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
 
-### GetCreatedByOk
+### GetLastEditorOk
 
-`func (o *ChatThread) GetCreatedByOk() (*string, bool)`
+`func (o *ChatThread) GetLastEditorOk() (*string, bool)`
 
-GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedBy
+### SetLastEditor
 
-`func (o *ChatThread) SetCreatedBy(v string)`
+`func (o *ChatThread) SetLastEditor(v string)`
 
-SetCreatedBy sets CreatedBy field to given value.
-
-
-### SetCreatedByNil
-
-`func (o *ChatThread) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *ChatThread) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
-### GetUpdatedBy
-
-`func (o *ChatThread) GetUpdatedBy() string`
-
-GetUpdatedBy returns the UpdatedBy field if non-nil, zero value otherwise.
-
-### GetUpdatedByOk
-
-`func (o *ChatThread) GetUpdatedByOk() (*string, bool)`
-
-GetUpdatedByOk returns a tuple with the UpdatedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedBy
-
-`func (o *ChatThread) SetUpdatedBy(v string)`
-
-SetUpdatedBy sets UpdatedBy field to given value.
+SetLastEditor sets LastEditor field to given value.
 
 
-### SetUpdatedByNil
-
-`func (o *ChatThread) SetUpdatedByNil(b bool)`
-
- SetUpdatedByNil sets the value for UpdatedBy to be an explicit nil
-
-### UnsetUpdatedBy
-`func (o *ChatThread) UnsetUpdatedBy()`
-
-UnsetUpdatedBy ensures that no value is present for UpdatedBy, not even an explicit nil
 ### GetName
 
 `func (o *ChatThread) GetName() string`
@@ -192,44 +150,24 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetCreatedAt
+### GetLastModified
 
-`func (o *ChatThread) GetCreatedAt() time.Time`
+`func (o *ChatThread) GetLastModified() time.Time`
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+GetLastModified returns the LastModified field if non-nil, zero value otherwise.
 
-### GetCreatedAtOk
+### GetLastModifiedOk
 
-`func (o *ChatThread) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *ChatThread) GetLastModifiedOk() (*time.Time, bool)`
 
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+GetLastModifiedOk returns a tuple with the LastModified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedAt
+### SetLastModified
 
-`func (o *ChatThread) SetCreatedAt(v time.Time)`
+`func (o *ChatThread) SetLastModified(v time.Time)`
 
-SetCreatedAt sets CreatedAt field to given value.
-
-
-### GetUpdatedAt
-
-`func (o *ChatThread) GetUpdatedAt() time.Time`
-
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
-
-### GetUpdatedAtOk
-
-`func (o *ChatThread) GetUpdatedAtOk() (*time.Time, bool)`
-
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedAt
-
-`func (o *ChatThread) SetUpdatedAt(v time.Time)`
-
-SetUpdatedAt sets UpdatedAt field to given value.
+SetLastModified sets LastModified field to given value.
 
 
 

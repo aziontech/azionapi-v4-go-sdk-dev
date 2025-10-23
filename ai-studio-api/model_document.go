@@ -24,6 +24,7 @@ var _ MappedNullable = &Document{}
 type Document struct {
 	DocumentId string `json:"document_id"`
 	KbId string `json:"kb_id"`
+	LastEditor string `json:"last_editor"`
 	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Type *string `json:"type,omitempty"`
@@ -31,8 +32,7 @@ type Document struct {
 	ChunkStrategy map[string]interface{} `json:"chunk_strategy,omitempty"`
 	// * `creating` - creating * `processing` - processing * `created` - created * `error` - error
 	Status string `json:"status"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	LastModified time.Time `json:"last_modified"`
 }
 
 type _Document Document
@@ -41,13 +41,13 @@ type _Document Document
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDocument(documentId string, kbId string, status string, createdAt time.Time, updatedAt time.Time) *Document {
+func NewDocument(documentId string, kbId string, lastEditor string, status string, lastModified time.Time) *Document {
 	this := Document{}
 	this.DocumentId = documentId
 	this.KbId = kbId
+	this.LastEditor = lastEditor
 	this.Status = status
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
+	this.LastModified = lastModified
 	return &this
 }
 
@@ -105,6 +105,30 @@ func (o *Document) GetKbIdOk() (*string, bool) {
 // SetKbId sets field value
 func (o *Document) SetKbId(v string) {
 	o.KbId = v
+}
+
+// GetLastEditor returns the LastEditor field value
+func (o *Document) GetLastEditor() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LastEditor
+}
+
+// GetLastEditorOk returns a tuple with the LastEditor field value
+// and a boolean to check if the value has been set.
+func (o *Document) GetLastEditorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastEditor, true
+}
+
+// SetLastEditor sets field value
+func (o *Document) SetLastEditor(v string) {
+	o.LastEditor = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -291,52 +315,28 @@ func (o *Document) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-func (o *Document) GetCreatedAt() time.Time {
+// GetLastModified returns the LastModified field value
+func (o *Document) GetLastModified() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
 	}
 
-	return o.CreatedAt
+	return o.LastModified
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
-func (o *Document) GetCreatedAtOk() (*time.Time, bool) {
+func (o *Document) GetLastModifiedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return &o.LastModified, true
 }
 
-// SetCreatedAt sets field value
-func (o *Document) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
-}
-
-// GetUpdatedAt returns the UpdatedAt field value
-func (o *Document) GetUpdatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
-// and a boolean to check if the value has been set.
-func (o *Document) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UpdatedAt, true
-}
-
-// SetUpdatedAt sets field value
-func (o *Document) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = v
+// SetLastModified sets field value
+func (o *Document) SetLastModified(v time.Time) {
+	o.LastModified = v
 }
 
 func (o Document) MarshalJSON() ([]byte, error) {
@@ -351,6 +351,7 @@ func (o Document) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["document_id"] = o.DocumentId
 	toSerialize["kb_id"] = o.KbId
+	toSerialize["last_editor"] = o.LastEditor
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -367,8 +368,7 @@ func (o Document) ToMap() (map[string]interface{}, error) {
 		toSerialize["chunk_strategy"] = o.ChunkStrategy
 	}
 	toSerialize["status"] = o.Status
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
+	toSerialize["last_modified"] = o.LastModified
 	return toSerialize, nil
 }
 
@@ -379,9 +379,9 @@ func (o *Document) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"document_id",
 		"kb_id",
+		"last_editor",
 		"status",
-		"created_at",
-		"updated_at",
+		"last_modified",
 	}
 
 	allProperties := make(map[string]interface{})

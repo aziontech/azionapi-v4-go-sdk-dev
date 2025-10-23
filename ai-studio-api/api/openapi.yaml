@@ -4964,12 +4964,10 @@ components:
       example:
         thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         account_id: 0
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        updated_by: updated_by
+        last_editor: last_editor
         name: name
         description: description
-        created_at: 2000-01-23T04:56:07.000+00:00
-        created_by: created_by
+        last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         thread_id:
           format: uuid
@@ -4978,30 +4976,21 @@ components:
           format: int64
           nullable: true
           type: integer
-        created_by:
-          nullable: true
-          type: string
-        updated_by:
-          nullable: true
+        last_editor:
           type: string
         name:
           maxLength: 255
           type: string
         description:
           type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
+        last_modified:
           format: date-time
           type: string
       required:
       - account_id
-      - created_at
-      - created_by
+      - last_editor
+      - last_modified
       - thread_id
-      - updated_at
-      - updated_by
       title: ChatThread
       type: object
     ChatThreadRequest:
@@ -5059,15 +5048,15 @@ components:
       additionalProperties: false
       example:
         kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        updated_at: 2000-01-23T04:56:07.000+00:00
+        last_editor: last_editor
         name: name
         description: description
         chunk_strategy:
           key: ""
-        created_at: 2000-01-23T04:56:07.000+00:00
         document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         type: type
         source_uri: source_uri
+        last_modified: 2000-01-23T04:56:07.000+00:00
         status: ""
       properties:
         document_id:
@@ -5075,6 +5064,8 @@ components:
           type: string
         kb_id:
           format: uuid
+          type: string
+        last_editor:
           type: string
         name:
           type: string
@@ -5091,18 +5082,15 @@ components:
         status:
           allOf:
           - $ref: "#/components/schemas/StatusEnum"
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
+        last_modified:
           format: date-time
           type: string
       required:
-      - created_at
       - document_id
       - kb_id
+      - last_editor
+      - last_modified
       - status
-      - updated_at
       title: Document
       type: object
     DocumentRequest:
@@ -5225,14 +5213,12 @@ components:
       example:
         kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         account_id: 0
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        updated_by: updated_by
+        last_editor: last_editor
         name: name
         embedding_model: ""
         description: description
-        created_at: 2000-01-23T04:56:07.000+00:00
         edgesql_db_id: edgesql_db_id
-        created_by: created_by
+        last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         kb_id:
           format: uuid
@@ -5241,11 +5227,7 @@ components:
           format: int64
           nullable: true
           type: integer
-        created_by:
-          nullable: true
-          type: string
-        updated_by:
-          nullable: true
+        last_editor:
           type: string
         name:
           type: string
@@ -5256,21 +5238,16 @@ components:
           - $ref: "#/components/schemas/EmbeddingModelEnum"
         edgesql_db_id:
           type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
+        last_modified:
           format: date-time
           type: string
       required:
       - account_id
-      - created_at
-      - created_by
       - edgesql_db_id
       - kb_id
+      - last_editor
+      - last_modified
       - name
-      - updated_at
-      - updated_by
       title: KnowledgeBase
       type: object
     KnowledgeBaseRequest:
@@ -5298,15 +5275,13 @@ components:
         thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         metadata:
           key: ""
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        updated_by: updated_by
+        last_editor: last_editor
         name: name
         description: description
-        created_at: 2000-01-23T04:56:07.000+00:00
         message_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         message:
           key: ""
-        created_by: created_by
+        last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         message_id:
           format: uuid
@@ -5314,11 +5289,7 @@ components:
         thread_id:
           format: uuid
           type: string
-        created_by:
-          nullable: true
-          type: string
-        updated_by:
-          nullable: true
+        last_editor:
           type: string
         name:
           maxLength: 255
@@ -5331,20 +5302,15 @@ components:
         metadata:
           additionalProperties: {}
           type: object
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
+        last_modified:
           format: date-time
           type: string
       required:
-      - created_at
-      - created_by
+      - last_editor
+      - last_modified
       - message
       - message_id
       - thread_id
-      - updated_at
-      - updated_by
       title: Message
       type: object
     MessageRequest:
@@ -5379,20 +5345,16 @@ components:
         results:
         - thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           account_id: 0
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
         - thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           account_id: 0
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           example: 123
@@ -5448,26 +5410,26 @@ components:
         count: 123
         results:
         - kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          updated_at: 2000-01-23T04:56:07.000+00:00
+          last_editor: last_editor
           name: name
           description: description
           chunk_strategy:
             key: ""
-          created_at: 2000-01-23T04:56:07.000+00:00
           document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
           source_uri: source_uri
+          last_modified: 2000-01-23T04:56:07.000+00:00
           status: ""
         - kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          updated_at: 2000-01-23T04:56:07.000+00:00
+          last_editor: last_editor
           name: name
           description: description
           chunk_strategy:
             key: ""
-          created_at: 2000-01-23T04:56:07.000+00:00
           document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
           source_uri: source_uri
+          last_modified: 2000-01-23T04:56:07.000+00:00
           status: ""
       properties:
         count:
@@ -5489,24 +5451,20 @@ components:
         results:
         - kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           account_id: 0
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           embedding_model: ""
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
           edgesql_db_id: edgesql_db_id
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
         - kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           account_id: 0
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           embedding_model: ""
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
           edgesql_db_id: edgesql_db_id
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           example: 123
@@ -5528,27 +5486,23 @@ components:
         - thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           metadata:
             key: ""
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
           message_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           message:
             key: ""
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
         - thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           metadata:
             key: ""
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
           message_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           message:
             key: ""
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           example: 123
@@ -5567,26 +5521,26 @@ components:
       example:
         count: 123
         results:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          json_schema:
+        - json_schema:
             key: ""
+          last_editor: last_editor
           name: name
           tool_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           description: description
           active: true
-          created_at: 2000-01-23T04:56:07.000+00:00
           type: type
           kbs: kbs
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          json_schema:
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        - json_schema:
             key: ""
+          last_editor: last_editor
           name: name
           tool_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           description: description
           active: true
-          created_at: 2000-01-23T04:56:07.000+00:00
           type: type
           kbs: kbs
+          last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         count:
           example: 123
@@ -5663,12 +5617,10 @@ components:
         data:
           thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           account_id: 0
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
         state:
@@ -5741,15 +5693,15 @@ components:
       example:
         data:
           kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          updated_at: 2000-01-23T04:56:07.000+00:00
+          last_editor: last_editor
           name: name
           description: description
           chunk_strategy:
             key: ""
-          created_at: 2000-01-23T04:56:07.000+00:00
           document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
           source_uri: source_uri
+          last_modified: 2000-01-23T04:56:07.000+00:00
           status: ""
         state: state
       properties:
@@ -5769,14 +5721,12 @@ components:
         data:
           kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           account_id: 0
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           embedding_model: ""
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
           edgesql_db_id: edgesql_db_id
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
         state:
@@ -5796,15 +5746,13 @@ components:
           thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           metadata:
             key: ""
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
           message_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           message:
             key: ""
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
         state:
@@ -5821,16 +5769,16 @@ components:
       additionalProperties: false
       example:
         data:
-          updated_at: 2000-01-23T04:56:07.000+00:00
           json_schema:
             key: ""
+          last_editor: last_editor
           name: name
           tool_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           description: description
           active: true
-          created_at: 2000-01-23T04:56:07.000+00:00
           type: type
           kbs: kbs
+          last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
         state:
@@ -5849,12 +5797,10 @@ components:
         data:
           thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           account_id: 0
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
         state:
@@ -5927,15 +5873,15 @@ components:
       example:
         data:
           kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          updated_at: 2000-01-23T04:56:07.000+00:00
+          last_editor: last_editor
           name: name
           description: description
           chunk_strategy:
             key: ""
-          created_at: 2000-01-23T04:56:07.000+00:00
           document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
           source_uri: source_uri
+          last_modified: 2000-01-23T04:56:07.000+00:00
           status: ""
         state: state
       properties:
@@ -5955,14 +5901,12 @@ components:
         data:
           kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           account_id: 0
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           embedding_model: ""
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
           edgesql_db_id: edgesql_db_id
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
         state:
@@ -5982,15 +5926,13 @@ components:
           thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           metadata:
             key: ""
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
           message_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           message:
             key: ""
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
         state:
@@ -6009,12 +5951,10 @@ components:
         data:
           thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           account_id: 0
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           $ref: "#/components/schemas/ChatThread"
@@ -6027,15 +5967,15 @@ components:
       example:
         data:
           kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          updated_at: 2000-01-23T04:56:07.000+00:00
+          last_editor: last_editor
           name: name
           description: description
           chunk_strategy:
             key: ""
-          created_at: 2000-01-23T04:56:07.000+00:00
           document_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           type: type
           source_uri: source_uri
+          last_modified: 2000-01-23T04:56:07.000+00:00
           status: ""
       properties:
         data:
@@ -6050,14 +5990,12 @@ components:
         data:
           kb_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           account_id: 0
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           embedding_model: ""
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
           edgesql_db_id: edgesql_db_id
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           $ref: "#/components/schemas/KnowledgeBase"
@@ -6072,15 +6010,13 @@ components:
           thread_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           metadata:
             key: ""
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          updated_by: updated_by
+          last_editor: last_editor
           name: name
           description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
           message_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           message:
             key: ""
-          created_by: created_by
+          last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           $ref: "#/components/schemas/Message"
@@ -6092,16 +6028,16 @@ components:
       additionalProperties: false
       example:
         data:
-          updated_at: 2000-01-23T04:56:07.000+00:00
           json_schema:
             key: ""
+          last_editor: last_editor
           name: name
           tool_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           description: description
           active: true
-          created_at: 2000-01-23T04:56:07.000+00:00
           type: type
           kbs: kbs
+          last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           $ref: "#/components/schemas/Tool"
@@ -6113,16 +6049,16 @@ components:
       additionalProperties: false
       example:
         data:
-          updated_at: 2000-01-23T04:56:07.000+00:00
           json_schema:
             key: ""
+          last_editor: last_editor
           name: name
           tool_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           description: description
           active: true
-          created_at: 2000-01-23T04:56:07.000+00:00
           type: type
           kbs: kbs
+          last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
         state:
@@ -6146,16 +6082,16 @@ components:
     Tool:
       additionalProperties: false
       example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
         json_schema:
           key: ""
+        last_editor: last_editor
         name: name
         tool_id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         description: description
         active: true
-        created_at: 2000-01-23T04:56:07.000+00:00
         type: type
         kbs: kbs
+        last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         tool_id:
           format: uuid
@@ -6175,19 +6111,18 @@ components:
           type: boolean
         kbs:
           type: string
-        created_at:
-          format: date-time
+        last_editor:
           type: string
-        updated_at:
+        last_modified:
           format: date-time
           type: string
       required:
-      - created_at
       - kbs
+      - last_editor
+      - last_modified
       - name
       - tool_id
       - type
-      - updated_at
       title: Tool
       type: object
     ToolKBLink:
