@@ -6,20 +6,20 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DocumentId** | **string** |  | 
 **KbId** | **string** |  | 
+**LastEditor** | **string** |  | 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **SourceUri** | Pointer to **string** |  | [optional] 
 **ChunkStrategy** | Pointer to **map[string]interface{}** |  | [optional] 
 **Status** | **string** | * &#x60;creating&#x60; - creating * &#x60;processing&#x60; - processing * &#x60;created&#x60; - created * &#x60;error&#x60; - error | 
-**CreatedAt** | **time.Time** |  | 
-**UpdatedAt** | **time.Time** |  | 
+**LastModified** | **time.Time** |  | 
 
 ## Methods
 
 ### NewDocument
 
-`func NewDocument(documentId string, kbId string, status string, createdAt time.Time, updatedAt time.Time, ) *Document`
+`func NewDocument(documentId string, kbId string, lastEditor string, status string, lastModified time.Time, ) *Document`
 
 NewDocument instantiates a new Document object
 This constructor will assign default values to properties that have it defined,
@@ -72,6 +72,26 @@ and a boolean to check if the value has been set.
 `func (o *Document) SetKbId(v string)`
 
 SetKbId sets KbId field to given value.
+
+
+### GetLastEditor
+
+`func (o *Document) GetLastEditor() string`
+
+GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
+
+### GetLastEditorOk
+
+`func (o *Document) GetLastEditorOk() (*string, bool)`
+
+GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastEditor
+
+`func (o *Document) SetLastEditor(v string)`
+
+SetLastEditor sets LastEditor field to given value.
 
 
 ### GetName
@@ -219,44 +239,24 @@ and a boolean to check if the value has been set.
 SetStatus sets Status field to given value.
 
 
-### GetCreatedAt
+### GetLastModified
 
-`func (o *Document) GetCreatedAt() time.Time`
+`func (o *Document) GetLastModified() time.Time`
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+GetLastModified returns the LastModified field if non-nil, zero value otherwise.
 
-### GetCreatedAtOk
+### GetLastModifiedOk
 
-`func (o *Document) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *Document) GetLastModifiedOk() (*time.Time, bool)`
 
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+GetLastModifiedOk returns a tuple with the LastModified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedAt
+### SetLastModified
 
-`func (o *Document) SetCreatedAt(v time.Time)`
+`func (o *Document) SetLastModified(v time.Time)`
 
-SetCreatedAt sets CreatedAt field to given value.
-
-
-### GetUpdatedAt
-
-`func (o *Document) GetUpdatedAt() time.Time`
-
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
-
-### GetUpdatedAtOk
-
-`func (o *Document) GetUpdatedAtOk() (*time.Time, bool)`
-
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedAt
-
-`func (o *Document) SetUpdatedAt(v time.Time)`
-
-SetUpdatedAt sets UpdatedAt field to given value.
+SetLastModified sets LastModified field to given value.
 
 
 

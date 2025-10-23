@@ -11,14 +11,14 @@ Name | Type | Description | Notes
 **JsonSchema** | Pointer to **map[string]interface{}** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **Kbs** | **string** |  | 
-**CreatedAt** | **time.Time** |  | 
-**UpdatedAt** | **time.Time** |  | 
+**LastEditor** | **string** |  | 
+**LastModified** | **time.Time** |  | 
 
 ## Methods
 
 ### NewTool
 
-`func NewTool(toolId string, name string, type_ string, kbs string, createdAt time.Time, updatedAt time.Time, ) *Tool`
+`func NewTool(toolId string, name string, type_ string, kbs string, lastEditor string, lastModified time.Time, ) *Tool`
 
 NewTool instantiates a new Tool object
 This constructor will assign default values to properties that have it defined,
@@ -188,44 +188,44 @@ and a boolean to check if the value has been set.
 SetKbs sets Kbs field to given value.
 
 
-### GetCreatedAt
+### GetLastEditor
 
-`func (o *Tool) GetCreatedAt() time.Time`
+`func (o *Tool) GetLastEditor() string`
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
 
-### GetCreatedAtOk
+### GetLastEditorOk
 
-`func (o *Tool) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *Tool) GetLastEditorOk() (*string, bool)`
 
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedAt
+### SetLastEditor
 
-`func (o *Tool) SetCreatedAt(v time.Time)`
+`func (o *Tool) SetLastEditor(v string)`
 
-SetCreatedAt sets CreatedAt field to given value.
+SetLastEditor sets LastEditor field to given value.
 
 
-### GetUpdatedAt
+### GetLastModified
 
-`func (o *Tool) GetUpdatedAt() time.Time`
+`func (o *Tool) GetLastModified() time.Time`
 
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+GetLastModified returns the LastModified field if non-nil, zero value otherwise.
 
-### GetUpdatedAtOk
+### GetLastModifiedOk
 
-`func (o *Tool) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *Tool) GetLastModifiedOk() (*time.Time, bool)`
 
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+GetLastModifiedOk returns a tuple with the LastModified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpdatedAt
+### SetLastModified
 
-`func (o *Tool) SetUpdatedAt(v time.Time)`
+`func (o *Tool) SetLastModified(v time.Time)`
 
-SetUpdatedAt sets UpdatedAt field to given value.
+SetLastModified sets LastModified field to given value.
 
 
 

@@ -6,20 +6,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **KbId** | **string** |  | 
 **AccountId** | **NullableInt64** |  | 
-**CreatedBy** | **NullableString** |  | 
-**UpdatedBy** | **NullableString** |  | 
+**LastEditor** | **string** |  | 
 **Name** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **EmbeddingModel** | Pointer to **string** | * &#x60;text-embedding-3-small&#x60; - text-embedding-3-small | [optional] 
 **EdgesqlDbId** | **string** |  | 
-**CreatedAt** | **time.Time** |  | 
-**UpdatedAt** | **time.Time** |  | 
+**LastModified** | **time.Time** |  | 
 
 ## Methods
 
 ### NewKnowledgeBase
 
-`func NewKnowledgeBase(kbId string, accountId NullableInt64, createdBy NullableString, updatedBy NullableString, name string, edgesqlDbId string, createdAt time.Time, updatedAt time.Time, ) *KnowledgeBase`
+`func NewKnowledgeBase(kbId string, accountId NullableInt64, lastEditor string, name string, edgesqlDbId string, lastModified time.Time, ) *KnowledgeBase`
 
 NewKnowledgeBase instantiates a new KnowledgeBase object
 This constructor will assign default values to properties that have it defined,
@@ -84,66 +82,26 @@ SetAccountId sets AccountId field to given value.
 `func (o *KnowledgeBase) UnsetAccountId()`
 
 UnsetAccountId ensures that no value is present for AccountId, not even an explicit nil
-### GetCreatedBy
+### GetLastEditor
 
-`func (o *KnowledgeBase) GetCreatedBy() string`
+`func (o *KnowledgeBase) GetLastEditor() string`
 
-GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
 
-### GetCreatedByOk
+### GetLastEditorOk
 
-`func (o *KnowledgeBase) GetCreatedByOk() (*string, bool)`
+`func (o *KnowledgeBase) GetLastEditorOk() (*string, bool)`
 
-GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedBy
+### SetLastEditor
 
-`func (o *KnowledgeBase) SetCreatedBy(v string)`
+`func (o *KnowledgeBase) SetLastEditor(v string)`
 
-SetCreatedBy sets CreatedBy field to given value.
-
-
-### SetCreatedByNil
-
-`func (o *KnowledgeBase) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *KnowledgeBase) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
-### GetUpdatedBy
-
-`func (o *KnowledgeBase) GetUpdatedBy() string`
-
-GetUpdatedBy returns the UpdatedBy field if non-nil, zero value otherwise.
-
-### GetUpdatedByOk
-
-`func (o *KnowledgeBase) GetUpdatedByOk() (*string, bool)`
-
-GetUpdatedByOk returns a tuple with the UpdatedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedBy
-
-`func (o *KnowledgeBase) SetUpdatedBy(v string)`
-
-SetUpdatedBy sets UpdatedBy field to given value.
+SetLastEditor sets LastEditor field to given value.
 
 
-### SetUpdatedByNil
-
-`func (o *KnowledgeBase) SetUpdatedByNil(b bool)`
-
- SetUpdatedByNil sets the value for UpdatedBy to be an explicit nil
-
-### UnsetUpdatedBy
-`func (o *KnowledgeBase) UnsetUpdatedBy()`
-
-UnsetUpdatedBy ensures that no value is present for UpdatedBy, not even an explicit nil
 ### GetName
 
 `func (o *KnowledgeBase) GetName() string`
@@ -234,44 +192,24 @@ and a boolean to check if the value has been set.
 SetEdgesqlDbId sets EdgesqlDbId field to given value.
 
 
-### GetCreatedAt
+### GetLastModified
 
-`func (o *KnowledgeBase) GetCreatedAt() time.Time`
+`func (o *KnowledgeBase) GetLastModified() time.Time`
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+GetLastModified returns the LastModified field if non-nil, zero value otherwise.
 
-### GetCreatedAtOk
+### GetLastModifiedOk
 
-`func (o *KnowledgeBase) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *KnowledgeBase) GetLastModifiedOk() (*time.Time, bool)`
 
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+GetLastModifiedOk returns a tuple with the LastModified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedAt
+### SetLastModified
 
-`func (o *KnowledgeBase) SetCreatedAt(v time.Time)`
+`func (o *KnowledgeBase) SetLastModified(v time.Time)`
 
-SetCreatedAt sets CreatedAt field to given value.
-
-
-### GetUpdatedAt
-
-`func (o *KnowledgeBase) GetUpdatedAt() time.Time`
-
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
-
-### GetUpdatedAtOk
-
-`func (o *KnowledgeBase) GetUpdatedAtOk() (*time.Time, bool)`
-
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedAt
-
-`func (o *KnowledgeBase) SetUpdatedAt(v time.Time)`
-
-SetUpdatedAt sets UpdatedAt field to given value.
+SetLastModified sets LastModified field to given value.
 
 
 

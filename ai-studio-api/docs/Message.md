@@ -6,20 +6,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MessageId** | **string** |  | 
 **ThreadId** | **string** |  | 
-**CreatedBy** | **NullableString** |  | 
-**UpdatedBy** | **NullableString** |  | 
+**LastEditor** | **string** |  | 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Message** | **map[string]interface{}** |  | 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
-**CreatedAt** | **time.Time** |  | 
-**UpdatedAt** | **time.Time** |  | 
+**LastModified** | **time.Time** |  | 
 
 ## Methods
 
 ### NewMessage
 
-`func NewMessage(messageId string, threadId string, createdBy NullableString, updatedBy NullableString, message map[string]interface{}, createdAt time.Time, updatedAt time.Time, ) *Message`
+`func NewMessage(messageId string, threadId string, lastEditor string, message map[string]interface{}, lastModified time.Time, ) *Message`
 
 NewMessage instantiates a new Message object
 This constructor will assign default values to properties that have it defined,
@@ -74,66 +72,26 @@ and a boolean to check if the value has been set.
 SetThreadId sets ThreadId field to given value.
 
 
-### GetCreatedBy
+### GetLastEditor
 
-`func (o *Message) GetCreatedBy() string`
+`func (o *Message) GetLastEditor() string`
 
-GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
 
-### GetCreatedByOk
+### GetLastEditorOk
 
-`func (o *Message) GetCreatedByOk() (*string, bool)`
+`func (o *Message) GetLastEditorOk() (*string, bool)`
 
-GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedBy
+### SetLastEditor
 
-`func (o *Message) SetCreatedBy(v string)`
+`func (o *Message) SetLastEditor(v string)`
 
-SetCreatedBy sets CreatedBy field to given value.
-
-
-### SetCreatedByNil
-
-`func (o *Message) SetCreatedByNil(b bool)`
-
- SetCreatedByNil sets the value for CreatedBy to be an explicit nil
-
-### UnsetCreatedBy
-`func (o *Message) UnsetCreatedBy()`
-
-UnsetCreatedBy ensures that no value is present for CreatedBy, not even an explicit nil
-### GetUpdatedBy
-
-`func (o *Message) GetUpdatedBy() string`
-
-GetUpdatedBy returns the UpdatedBy field if non-nil, zero value otherwise.
-
-### GetUpdatedByOk
-
-`func (o *Message) GetUpdatedByOk() (*string, bool)`
-
-GetUpdatedByOk returns a tuple with the UpdatedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedBy
-
-`func (o *Message) SetUpdatedBy(v string)`
-
-SetUpdatedBy sets UpdatedBy field to given value.
+SetLastEditor sets LastEditor field to given value.
 
 
-### SetUpdatedByNil
-
-`func (o *Message) SetUpdatedByNil(b bool)`
-
- SetUpdatedByNil sets the value for UpdatedBy to be an explicit nil
-
-### UnsetUpdatedBy
-`func (o *Message) UnsetUpdatedBy()`
-
-UnsetUpdatedBy ensures that no value is present for UpdatedBy, not even an explicit nil
 ### GetName
 
 `func (o *Message) GetName() string`
@@ -229,44 +187,24 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
-### GetCreatedAt
+### GetLastModified
 
-`func (o *Message) GetCreatedAt() time.Time`
+`func (o *Message) GetLastModified() time.Time`
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+GetLastModified returns the LastModified field if non-nil, zero value otherwise.
 
-### GetCreatedAtOk
+### GetLastModifiedOk
 
-`func (o *Message) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *Message) GetLastModifiedOk() (*time.Time, bool)`
 
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+GetLastModifiedOk returns a tuple with the LastModified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedAt
+### SetLastModified
 
-`func (o *Message) SetCreatedAt(v time.Time)`
+`func (o *Message) SetLastModified(v time.Time)`
 
-SetCreatedAt sets CreatedAt field to given value.
-
-
-### GetUpdatedAt
-
-`func (o *Message) GetUpdatedAt() time.Time`
-
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
-
-### GetUpdatedAtOk
-
-`func (o *Message) GetUpdatedAtOk() (*time.Time, bool)`
-
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedAt
-
-`func (o *Message) SetUpdatedAt(v time.Time)`
-
-SetUpdatedAt sets UpdatedAt field to given value.
+SetLastModified sets LastModified field to given value.
 
 
 
