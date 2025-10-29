@@ -22,8 +22,8 @@ var _ MappedNullable = &Message{}
 
 // Message struct for Message
 type Message struct {
-	MessageId string `json:"message_id"`
-	ThreadId string `json:"thread_id"`
+	MessageId int64 `json:"message_id"`
+	ThreadId int64 `json:"thread_id"`
 	LastEditor string `json:"last_editor"`
 	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -38,7 +38,7 @@ type _Message Message
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessage(messageId string, threadId string, lastEditor string, message map[string]interface{}, lastModified time.Time) *Message {
+func NewMessage(messageId int64, threadId int64, lastEditor string, message map[string]interface{}, lastModified time.Time) *Message {
 	this := Message{}
 	this.MessageId = messageId
 	this.ThreadId = threadId
@@ -57,9 +57,9 @@ func NewMessageWithDefaults() *Message {
 }
 
 // GetMessageId returns the MessageId field value
-func (o *Message) GetMessageId() string {
+func (o *Message) GetMessageId() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -68,7 +68,7 @@ func (o *Message) GetMessageId() string {
 
 // GetMessageIdOk returns a tuple with the MessageId field value
 // and a boolean to check if the value has been set.
-func (o *Message) GetMessageIdOk() (*string, bool) {
+func (o *Message) GetMessageIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,14 +76,14 @@ func (o *Message) GetMessageIdOk() (*string, bool) {
 }
 
 // SetMessageId sets field value
-func (o *Message) SetMessageId(v string) {
+func (o *Message) SetMessageId(v int64) {
 	o.MessageId = v
 }
 
 // GetThreadId returns the ThreadId field value
-func (o *Message) GetThreadId() string {
+func (o *Message) GetThreadId() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -92,7 +92,7 @@ func (o *Message) GetThreadId() string {
 
 // GetThreadIdOk returns a tuple with the ThreadId field value
 // and a boolean to check if the value has been set.
-func (o *Message) GetThreadIdOk() (*string, bool) {
+func (o *Message) GetThreadIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *Message) GetThreadIdOk() (*string, bool) {
 }
 
 // SetThreadId sets field value
-func (o *Message) SetThreadId(v string) {
+func (o *Message) SetThreadId(v int64) {
 	o.ThreadId = v
 }
 

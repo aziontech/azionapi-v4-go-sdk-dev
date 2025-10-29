@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DocumentId** | **string** |  | 
-**KbId** | **string** |  | 
-**LastEditor** | **string** |  | 
+**DocumentId** | **int64** |  | 
+**KbId** | **int64** |  | 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **SourceUri** | Pointer to **string** |  | [optional] 
 **ChunkStrategy** | Pointer to **map[string]interface{}** |  | [optional] 
-**Status** | **string** | * &#x60;creating&#x60; - creating * &#x60;processing&#x60; - processing * &#x60;created&#x60; - created * &#x60;error&#x60; - error | 
+**Status** | **string** | * &#x60;queued&#x60; - queued * &#x60;processing&#x60; - processing * &#x60;indexed&#x60; - indexed | 
 **LastModified** | **time.Time** |  | 
+**LastEditor** | **string** |  | 
 
 ## Methods
 
 ### NewDocument
 
-`func NewDocument(documentId string, kbId string, lastEditor string, status string, lastModified time.Time, ) *Document`
+`func NewDocument(documentId int64, kbId int64, status string, lastModified time.Time, lastEditor string, ) *Document`
 
 NewDocument instantiates a new Document object
 This constructor will assign default values to properties that have it defined,
@@ -36,62 +36,42 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDocumentId
 
-`func (o *Document) GetDocumentId() string`
+`func (o *Document) GetDocumentId() int64`
 
 GetDocumentId returns the DocumentId field if non-nil, zero value otherwise.
 
 ### GetDocumentIdOk
 
-`func (o *Document) GetDocumentIdOk() (*string, bool)`
+`func (o *Document) GetDocumentIdOk() (*int64, bool)`
 
 GetDocumentIdOk returns a tuple with the DocumentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDocumentId
 
-`func (o *Document) SetDocumentId(v string)`
+`func (o *Document) SetDocumentId(v int64)`
 
 SetDocumentId sets DocumentId field to given value.
 
 
 ### GetKbId
 
-`func (o *Document) GetKbId() string`
+`func (o *Document) GetKbId() int64`
 
 GetKbId returns the KbId field if non-nil, zero value otherwise.
 
 ### GetKbIdOk
 
-`func (o *Document) GetKbIdOk() (*string, bool)`
+`func (o *Document) GetKbIdOk() (*int64, bool)`
 
 GetKbIdOk returns a tuple with the KbId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKbId
 
-`func (o *Document) SetKbId(v string)`
+`func (o *Document) SetKbId(v int64)`
 
 SetKbId sets KbId field to given value.
-
-
-### GetLastEditor
-
-`func (o *Document) GetLastEditor() string`
-
-GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
-
-### GetLastEditorOk
-
-`func (o *Document) GetLastEditorOk() (*string, bool)`
-
-GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastEditor
-
-`func (o *Document) SetLastEditor(v string)`
-
-SetLastEditor sets LastEditor field to given value.
 
 
 ### GetName
@@ -257,6 +237,26 @@ and a boolean to check if the value has been set.
 `func (o *Document) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
+
+
+### GetLastEditor
+
+`func (o *Document) GetLastEditor() string`
+
+GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
+
+### GetLastEditorOk
+
+`func (o *Document) GetLastEditorOk() (*string, bool)`
+
+GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastEditor
+
+`func (o *Document) SetLastEditor(v string)`
+
+SetLastEditor sets LastEditor field to given value.
 
 
 

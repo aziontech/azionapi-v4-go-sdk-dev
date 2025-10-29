@@ -22,7 +22,7 @@ var _ MappedNullable = &Chunk{}
 // Chunk struct for Chunk
 type Chunk struct {
 	ChunkId int64 `json:"chunk_id"`
-	DocumentId string `json:"document_id"`
+	DocumentId int64 `json:"document_id"`
 	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Embedding map[string]interface{} `json:"embedding,omitempty"`
@@ -36,7 +36,7 @@ type _Chunk Chunk
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChunk(chunkId int64, documentId string, content string) *Chunk {
+func NewChunk(chunkId int64, documentId int64, content string) *Chunk {
 	this := Chunk{}
 	this.ChunkId = chunkId
 	this.DocumentId = documentId
@@ -77,9 +77,9 @@ func (o *Chunk) SetChunkId(v int64) {
 }
 
 // GetDocumentId returns the DocumentId field value
-func (o *Chunk) GetDocumentId() string {
+func (o *Chunk) GetDocumentId() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -88,7 +88,7 @@ func (o *Chunk) GetDocumentId() string {
 
 // GetDocumentIdOk returns a tuple with the DocumentId field value
 // and a boolean to check if the value has been set.
-func (o *Chunk) GetDocumentIdOk() (*string, bool) {
+func (o *Chunk) GetDocumentIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *Chunk) GetDocumentIdOk() (*string, bool) {
 }
 
 // SetDocumentId sets field value
-func (o *Chunk) SetDocumentId(v string) {
+func (o *Chunk) SetDocumentId(v int64) {
 	o.DocumentId = v
 }
 

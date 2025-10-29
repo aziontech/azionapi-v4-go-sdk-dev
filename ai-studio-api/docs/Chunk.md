@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ChunkId** | **int64** |  | 
-**DocumentId** | **string** |  | 
+**DocumentId** | **int64** |  | 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Embedding** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewChunk
 
-`func NewChunk(chunkId int64, documentId string, content string, ) *Chunk`
+`func NewChunk(chunkId int64, documentId int64, content string, ) *Chunk`
 
 NewChunk instantiates a new Chunk object
 This constructor will assign default values to properties that have it defined,
@@ -53,20 +53,20 @@ SetChunkId sets ChunkId field to given value.
 
 ### GetDocumentId
 
-`func (o *Chunk) GetDocumentId() string`
+`func (o *Chunk) GetDocumentId() int64`
 
 GetDocumentId returns the DocumentId field if non-nil, zero value otherwise.
 
 ### GetDocumentIdOk
 
-`func (o *Chunk) GetDocumentIdOk() (*string, bool)`
+`func (o *Chunk) GetDocumentIdOk() (*int64, bool)`
 
 GetDocumentIdOk returns a tuple with the DocumentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDocumentId
 
-`func (o *Chunk) SetDocumentId(v string)`
+`func (o *Chunk) SetDocumentId(v int64)`
 
 SetDocumentId sets DocumentId field to given value.
 

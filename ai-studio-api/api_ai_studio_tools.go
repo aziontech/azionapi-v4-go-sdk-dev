@@ -45,7 +45,7 @@ AddKnowledgeBaseToATool Add a knowledge base to a tool
 Add a new knowledge base to a specific tool for your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param toolId A UUID string identifying this tool.
+ @param toolId
  @return ApiAddKnowledgeBaseToAToolRequest
 */
 func (a *AIStudioToolsAPIService) AddKnowledgeBaseToATool(ctx context.Context, toolId string) ApiAddKnowledgeBaseToAToolRequest {
@@ -443,7 +443,7 @@ DestroyATool Destroy a tool
 Destruction of a specific tool in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param toolId A UUID string identifying this tool.
+ @param toolId
  @return ApiDestroyAToolRequest
 */
 func (a *AIStudioToolsAPIService) DestroyATool(ctx context.Context, toolId string) ApiDestroyAToolRequest {
@@ -671,7 +671,7 @@ ListKnowledgeBasesLinkedToATool List knowledge bases linked to a tool
 List all knowledge bases linked to a specific tool in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param toolId A UUID string identifying this tool.
+ @param toolId
  @return ApiListKnowledgeBasesLinkedToAToolRequest
 */
 func (a *AIStudioToolsAPIService) ListKnowledgeBasesLinkedToATool(ctx context.Context, toolId string) ApiListKnowledgeBasesLinkedToAToolRequest {
@@ -1124,7 +1124,7 @@ PartialUpdateTool Partially update a tool
 Update one or more fields of an existing tool without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param toolId A UUID string identifying this tool.
+ @param toolId
  @return ApiPartialUpdateToolRequest
 */
 func (a *AIStudioToolsAPIService) PartialUpdateTool(ctx context.Context, toolId string) ApiPartialUpdateToolRequest {
@@ -1322,7 +1322,7 @@ Remove a specific knowledge base from a tool in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param kbId
- @param toolId A UUID string identifying this tool.
+ @param toolId
  @return ApiRemoveKnowledgeBaseFromAToolRequest
 */
 func (a *AIStudioToolsAPIService) RemoveKnowledgeBaseFromATool(ctx context.Context, kbId string, toolId string) ApiRemoveKnowledgeBaseFromAToolRequest {
@@ -1513,7 +1513,7 @@ RetriveTool Retrieve details from a tool
 Retrieve details from a specific tool in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param toolId A UUID string identifying this tool.
+ @param toolId
  @return ApiRetriveToolRequest
 */
 func (a *AIStudioToolsAPIService) RetriveTool(ctx context.Context, toolId string) ApiRetriveToolRequest {
@@ -1715,7 +1715,7 @@ UpdateTool Update a tool
 Update an existing tool. This replaces the entire tool with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param toolId A UUID string identifying this tool.
+ @param toolId
  @return ApiUpdateToolRequest
 */
 func (a *AIStudioToolsAPIService) UpdateTool(ctx context.Context, toolId string) ApiUpdateToolRequest {

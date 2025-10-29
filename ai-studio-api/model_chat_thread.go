@@ -22,12 +22,12 @@ var _ MappedNullable = &ChatThread{}
 
 // ChatThread struct for ChatThread
 type ChatThread struct {
-	ThreadId string `json:"thread_id"`
+	ThreadId int64 `json:"thread_id"`
 	AccountId NullableInt64 `json:"account_id"`
-	LastEditor string `json:"last_editor"`
 	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
 	LastModified time.Time `json:"last_modified"`
+	LastEditor string `json:"last_editor"`
 }
 
 type _ChatThread ChatThread
@@ -36,12 +36,12 @@ type _ChatThread ChatThread
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChatThread(threadId string, accountId NullableInt64, lastEditor string, lastModified time.Time) *ChatThread {
+func NewChatThread(threadId int64, accountId NullableInt64, lastModified time.Time, lastEditor string) *ChatThread {
 	this := ChatThread{}
 	this.ThreadId = threadId
 	this.AccountId = accountId
-	this.LastEditor = lastEditor
 	this.LastModified = lastModified
+	this.LastEditor = lastEditor
 	return &this
 }
 
@@ -54,9 +54,9 @@ func NewChatThreadWithDefaults() *ChatThread {
 }
 
 // GetThreadId returns the ThreadId field value
-func (o *ChatThread) GetThreadId() string {
+func (o *ChatThread) GetThreadId() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -65,7 +65,7 @@ func (o *ChatThread) GetThreadId() string {
 
 // GetThreadIdOk returns a tuple with the ThreadId field value
 // and a boolean to check if the value has been set.
-func (o *ChatThread) GetThreadIdOk() (*string, bool) {
+func (o *ChatThread) GetThreadIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -73,7 +73,7 @@ func (o *ChatThread) GetThreadIdOk() (*string, bool) {
 }
 
 // SetThreadId sets field value
-func (o *ChatThread) SetThreadId(v string) {
+func (o *ChatThread) SetThreadId(v int64) {
 	o.ThreadId = v
 }
 
@@ -101,30 +101,6 @@ func (o *ChatThread) GetAccountIdOk() (*int64, bool) {
 // SetAccountId sets field value
 func (o *ChatThread) SetAccountId(v int64) {
 	o.AccountId.Set(&v)
-}
-
-// GetLastEditor returns the LastEditor field value
-func (o *ChatThread) GetLastEditor() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.LastEditor
-}
-
-// GetLastEditorOk returns a tuple with the LastEditor field value
-// and a boolean to check if the value has been set.
-func (o *ChatThread) GetLastEditorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastEditor, true
-}
-
-// SetLastEditor sets field value
-func (o *ChatThread) SetLastEditor(v string) {
-	o.LastEditor = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -215,6 +191,30 @@ func (o *ChatThread) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
+// GetLastEditor returns the LastEditor field value
+func (o *ChatThread) GetLastEditor() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LastEditor
+}
+
+// GetLastEditorOk returns a tuple with the LastEditor field value
+// and a boolean to check if the value has been set.
+func (o *ChatThread) GetLastEditorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastEditor, true
+}
+
+// SetLastEditor sets field value
+func (o *ChatThread) SetLastEditor(v string) {
+	o.LastEditor = v
+}
+
 func (o ChatThread) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -227,7 +227,6 @@ func (o ChatThread) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["thread_id"] = o.ThreadId
 	toSerialize["account_id"] = o.AccountId.Get()
-	toSerialize["last_editor"] = o.LastEditor
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -235,6 +234,7 @@ func (o ChatThread) ToMap() (map[string]interface{}, error) {
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["last_modified"] = o.LastModified
+	toSerialize["last_editor"] = o.LastEditor
 	return toSerialize, nil
 }
 
@@ -245,8 +245,8 @@ func (o *ChatThread) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"thread_id",
 		"account_id",
-		"last_editor",
 		"last_modified",
+		"last_editor",
 	}
 
 	allProperties := make(map[string]interface{})

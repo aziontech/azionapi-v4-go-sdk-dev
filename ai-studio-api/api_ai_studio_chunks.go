@@ -26,8 +26,8 @@ type AIStudioChunksAPIService service
 type ApiListChunksRequest struct {
 	ctx context.Context
 	ApiService *AIStudioChunksAPIService
-	documentId string
-	kbId string
+	documentId int64
+	kbId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -79,7 +79,7 @@ List all chunks owned by your account.
  @param kbId
  @return ApiListChunksRequest
 */
-func (a *AIStudioChunksAPIService) ListChunks(ctx context.Context, documentId string, kbId string) ApiListChunksRequest {
+func (a *AIStudioChunksAPIService) ListChunks(ctx context.Context, documentId int64, kbId int64) ApiListChunksRequest {
 	return ApiListChunksRequest{
 		ApiService: a,
 		ctx: ctx,

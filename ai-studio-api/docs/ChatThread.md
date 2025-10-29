@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ThreadId** | **string** |  | 
+**ThreadId** | **int64** |  | 
 **AccountId** | **NullableInt64** |  | 
-**LastEditor** | **string** |  | 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **LastModified** | **time.Time** |  | 
+**LastEditor** | **string** |  | 
 
 ## Methods
 
 ### NewChatThread
 
-`func NewChatThread(threadId string, accountId NullableInt64, lastEditor string, lastModified time.Time, ) *ChatThread`
+`func NewChatThread(threadId int64, accountId NullableInt64, lastModified time.Time, lastEditor string, ) *ChatThread`
 
 NewChatThread instantiates a new ChatThread object
 This constructor will assign default values to properties that have it defined,
@@ -32,20 +32,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetThreadId
 
-`func (o *ChatThread) GetThreadId() string`
+`func (o *ChatThread) GetThreadId() int64`
 
 GetThreadId returns the ThreadId field if non-nil, zero value otherwise.
 
 ### GetThreadIdOk
 
-`func (o *ChatThread) GetThreadIdOk() (*string, bool)`
+`func (o *ChatThread) GetThreadIdOk() (*int64, bool)`
 
 GetThreadIdOk returns a tuple with the ThreadId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetThreadId
 
-`func (o *ChatThread) SetThreadId(v string)`
+`func (o *ChatThread) SetThreadId(v int64)`
 
 SetThreadId sets ThreadId field to given value.
 
@@ -80,26 +80,6 @@ SetAccountId sets AccountId field to given value.
 `func (o *ChatThread) UnsetAccountId()`
 
 UnsetAccountId ensures that no value is present for AccountId, not even an explicit nil
-### GetLastEditor
-
-`func (o *ChatThread) GetLastEditor() string`
-
-GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
-
-### GetLastEditorOk
-
-`func (o *ChatThread) GetLastEditorOk() (*string, bool)`
-
-GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastEditor
-
-`func (o *ChatThread) SetLastEditor(v string)`
-
-SetLastEditor sets LastEditor field to given value.
-
-
 ### GetName
 
 `func (o *ChatThread) GetName() string`
@@ -168,6 +148,26 @@ and a boolean to check if the value has been set.
 `func (o *ChatThread) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
+
+
+### GetLastEditor
+
+`func (o *ChatThread) GetLastEditor() string`
+
+GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
+
+### GetLastEditorOk
+
+`func (o *ChatThread) GetLastEditorOk() (*string, bool)`
+
+GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastEditor
+
+`func (o *ChatThread) SetLastEditor(v string)`
+
+SetLastEditor sets LastEditor field to given value.
 
 
 

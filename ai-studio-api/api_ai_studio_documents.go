@@ -26,7 +26,7 @@ type AIStudioDocumentsAPIService service
 type ApiCreateDocumentRequest struct {
 	ctx context.Context
 	ApiService *AIStudioDocumentsAPIService
-	kbId string
+	kbId int64
 	name *string
 	description *string
 	type_ *string
@@ -72,7 +72,7 @@ Create a new document for your account.
  @param kbId
  @return ApiCreateDocumentRequest
 */
-func (a *AIStudioDocumentsAPIService) CreateDocument(ctx context.Context, kbId string) ApiCreateDocumentRequest {
+func (a *AIStudioDocumentsAPIService) CreateDocument(ctx context.Context, kbId int64) ApiCreateDocumentRequest {
 	return ApiCreateDocumentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -264,8 +264,8 @@ func (a *AIStudioDocumentsAPIService) CreateDocumentExecute(r ApiCreateDocumentR
 type ApiDestroyADocumentRequest struct {
 	ctx context.Context
 	ApiService *AIStudioDocumentsAPIService
-	documentId string
-	kbId string
+	documentId int64
+	kbId int64
 }
 
 func (r ApiDestroyADocumentRequest) Execute() (*ResponseDeleteDocument, *http.Response, error) {
@@ -282,7 +282,7 @@ Destruction of a specific document in your account.
  @param kbId
  @return ApiDestroyADocumentRequest
 */
-func (a *AIStudioDocumentsAPIService) DestroyADocument(ctx context.Context, documentId string, kbId string) ApiDestroyADocumentRequest {
+func (a *AIStudioDocumentsAPIService) DestroyADocument(ctx context.Context, documentId int64, kbId int64) ApiDestroyADocumentRequest {
 	return ApiDestroyADocumentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -461,7 +461,7 @@ func (a *AIStudioDocumentsAPIService) DestroyADocumentExecute(r ApiDestroyADocum
 type ApiListDocumentsRequest struct {
 	ctx context.Context
 	ApiService *AIStudioDocumentsAPIService
-	kbId string
+	kbId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -512,7 +512,7 @@ List all documents owned by your account.
  @param kbId
  @return ApiListDocumentsRequest
 */
-func (a *AIStudioDocumentsAPIService) ListDocuments(ctx context.Context, kbId string) ApiListDocumentsRequest {
+func (a *AIStudioDocumentsAPIService) ListDocuments(ctx context.Context, kbId int64) ApiListDocumentsRequest {
 	return ApiListDocumentsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -704,8 +704,8 @@ func (a *AIStudioDocumentsAPIService) ListDocumentsExecute(r ApiListDocumentsReq
 type ApiRetriveDocumentRequest struct {
 	ctx context.Context
 	ApiService *AIStudioDocumentsAPIService
-	documentId string
-	kbId string
+	documentId int64
+	kbId int64
 	fields *string
 }
 
@@ -729,7 +729,7 @@ Retrieve details from a specific document in your account.
  @param kbId
  @return ApiRetriveDocumentRequest
 */
-func (a *AIStudioDocumentsAPIService) RetriveDocument(ctx context.Context, documentId string, kbId string) ApiRetriveDocumentRequest {
+func (a *AIStudioDocumentsAPIService) RetriveDocument(ctx context.Context, documentId int64, kbId int64) ApiRetriveDocumentRequest {
 	return ApiRetriveDocumentRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -911,8 +911,8 @@ func (a *AIStudioDocumentsAPIService) RetriveDocumentExecute(r ApiRetriveDocumen
 type ApiUpdateDocumentRequest struct {
 	ctx context.Context
 	ApiService *AIStudioDocumentsAPIService
-	documentId string
-	kbId string
+	documentId int64
+	kbId int64
 	name *string
 	description *string
 	type_ *string
@@ -959,7 +959,7 @@ Update an existing document. This replaces the entire document with the new data
  @param kbId
  @return ApiUpdateDocumentRequest
 */
-func (a *AIStudioDocumentsAPIService) UpdateDocument(ctx context.Context, documentId string, kbId string) ApiUpdateDocumentRequest {
+func (a *AIStudioDocumentsAPIService) UpdateDocument(ctx context.Context, documentId int64, kbId int64) ApiUpdateDocumentRequest {
 	return ApiUpdateDocumentRequest{
 		ApiService: a,
 		ctx: ctx,

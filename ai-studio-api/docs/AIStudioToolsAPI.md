@@ -37,7 +37,7 @@ import (
 )
 
 func main() {
-	toolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | A UUID string identifying this tool.
+	toolId := "toolId_example" // string | 
 	toolRequest := *openapiclient.NewToolRequest("Name_example", "Type_example") // ToolRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -58,7 +58,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** | A UUID string identifying this tool. | 
+**toolId** | **string** |  | 
 
 ### Other Parameters
 
@@ -175,7 +175,7 @@ import (
 )
 
 func main() {
-	toolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | A UUID string identifying this tool.
+	toolId := "toolId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -195,7 +195,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** | A UUID string identifying this tool. | 
+**toolId** | **string** |  | 
 
 ### Other Parameters
 
@@ -245,7 +245,7 @@ import (
 )
 
 func main() {
-	toolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | A UUID string identifying this tool.
+	toolId := "toolId_example" // string | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -270,7 +270,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** | A UUID string identifying this tool. | 
+**toolId** | **string** |  | 
 
 ### Other Parameters
 
@@ -399,7 +399,7 @@ import (
 )
 
 func main() {
-	toolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | A UUID string identifying this tool.
+	toolId := "toolId_example" // string | 
 	patchedToolRequest := *openapiclient.NewPatchedToolRequest() // PatchedToolRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -420,7 +420,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** | A UUID string identifying this tool. | 
+**toolId** | **string** |  | 
 
 ### Other Parameters
 
@@ -472,7 +472,7 @@ import (
 
 func main() {
 	kbId := "kbId_example" // string | 
-	toolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | A UUID string identifying this tool.
+	toolId := "toolId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -491,7 +491,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **kbId** | **string** |  | 
-**toolId** | **string** | A UUID string identifying this tool. | 
+**toolId** | **string** |  | 
 
 ### Other Parameters
 
@@ -542,7 +542,7 @@ import (
 )
 
 func main() {
-	toolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | A UUID string identifying this tool.
+	toolId := "toolId_example" // string | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -563,7 +563,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** | A UUID string identifying this tool. | 
+**toolId** | **string** |  | 
 
 ### Other Parameters
 
@@ -614,7 +614,7 @@ import (
 )
 
 func main() {
-	toolId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | A UUID string identifying this tool.
+	toolId := "toolId_example" // string | 
 	toolRequest := *openapiclient.NewToolRequest("Name_example", "Type_example") // ToolRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -635,7 +635,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** | A UUID string identifying this tool. | 
+**toolId** | **string** |  | 
 
 ### Other Parameters
 

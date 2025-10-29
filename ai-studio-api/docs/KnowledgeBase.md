@@ -4,20 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**KbId** | **string** |  | 
+**KbId** | **int64** |  | 
 **AccountId** | **NullableInt64** |  | 
-**LastEditor** | **string** |  | 
 **Name** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **EmbeddingModel** | Pointer to **string** | * &#x60;text-embedding-3-small&#x60; - text-embedding-3-small | [optional] 
-**EdgesqlDbId** | **string** |  | 
+**SqlId** | **string** |  | 
+**SqlDbName** | **string** |  | 
+**StorageName** | **string** |  | 
 **LastModified** | **time.Time** |  | 
+**LastEditor** | **string** |  | 
 
 ## Methods
 
 ### NewKnowledgeBase
 
-`func NewKnowledgeBase(kbId string, accountId NullableInt64, lastEditor string, name string, edgesqlDbId string, lastModified time.Time, ) *KnowledgeBase`
+`func NewKnowledgeBase(kbId int64, accountId NullableInt64, name string, sqlId string, sqlDbName string, storageName string, lastModified time.Time, lastEditor string, ) *KnowledgeBase`
 
 NewKnowledgeBase instantiates a new KnowledgeBase object
 This constructor will assign default values to properties that have it defined,
@@ -34,20 +36,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetKbId
 
-`func (o *KnowledgeBase) GetKbId() string`
+`func (o *KnowledgeBase) GetKbId() int64`
 
 GetKbId returns the KbId field if non-nil, zero value otherwise.
 
 ### GetKbIdOk
 
-`func (o *KnowledgeBase) GetKbIdOk() (*string, bool)`
+`func (o *KnowledgeBase) GetKbIdOk() (*int64, bool)`
 
 GetKbIdOk returns a tuple with the KbId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKbId
 
-`func (o *KnowledgeBase) SetKbId(v string)`
+`func (o *KnowledgeBase) SetKbId(v int64)`
 
 SetKbId sets KbId field to given value.
 
@@ -82,26 +84,6 @@ SetAccountId sets AccountId field to given value.
 `func (o *KnowledgeBase) UnsetAccountId()`
 
 UnsetAccountId ensures that no value is present for AccountId, not even an explicit nil
-### GetLastEditor
-
-`func (o *KnowledgeBase) GetLastEditor() string`
-
-GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
-
-### GetLastEditorOk
-
-`func (o *KnowledgeBase) GetLastEditorOk() (*string, bool)`
-
-GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastEditor
-
-`func (o *KnowledgeBase) SetLastEditor(v string)`
-
-SetLastEditor sets LastEditor field to given value.
-
-
 ### GetName
 
 `func (o *KnowledgeBase) GetName() string`
@@ -172,24 +154,64 @@ SetEmbeddingModel sets EmbeddingModel field to given value.
 
 HasEmbeddingModel returns a boolean if a field has been set.
 
-### GetEdgesqlDbId
+### GetSqlId
 
-`func (o *KnowledgeBase) GetEdgesqlDbId() string`
+`func (o *KnowledgeBase) GetSqlId() string`
 
-GetEdgesqlDbId returns the EdgesqlDbId field if non-nil, zero value otherwise.
+GetSqlId returns the SqlId field if non-nil, zero value otherwise.
 
-### GetEdgesqlDbIdOk
+### GetSqlIdOk
 
-`func (o *KnowledgeBase) GetEdgesqlDbIdOk() (*string, bool)`
+`func (o *KnowledgeBase) GetSqlIdOk() (*string, bool)`
 
-GetEdgesqlDbIdOk returns a tuple with the EdgesqlDbId field if it's non-nil, zero value otherwise
+GetSqlIdOk returns a tuple with the SqlId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEdgesqlDbId
+### SetSqlId
 
-`func (o *KnowledgeBase) SetEdgesqlDbId(v string)`
+`func (o *KnowledgeBase) SetSqlId(v string)`
 
-SetEdgesqlDbId sets EdgesqlDbId field to given value.
+SetSqlId sets SqlId field to given value.
+
+
+### GetSqlDbName
+
+`func (o *KnowledgeBase) GetSqlDbName() string`
+
+GetSqlDbName returns the SqlDbName field if non-nil, zero value otherwise.
+
+### GetSqlDbNameOk
+
+`func (o *KnowledgeBase) GetSqlDbNameOk() (*string, bool)`
+
+GetSqlDbNameOk returns a tuple with the SqlDbName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSqlDbName
+
+`func (o *KnowledgeBase) SetSqlDbName(v string)`
+
+SetSqlDbName sets SqlDbName field to given value.
+
+
+### GetStorageName
+
+`func (o *KnowledgeBase) GetStorageName() string`
+
+GetStorageName returns the StorageName field if non-nil, zero value otherwise.
+
+### GetStorageNameOk
+
+`func (o *KnowledgeBase) GetStorageNameOk() (*string, bool)`
+
+GetStorageNameOk returns a tuple with the StorageName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStorageName
+
+`func (o *KnowledgeBase) SetStorageName(v string)`
+
+SetStorageName sets StorageName field to given value.
 
 
 ### GetLastModified
@@ -210,6 +232,26 @@ and a boolean to check if the value has been set.
 `func (o *KnowledgeBase) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
+
+
+### GetLastEditor
+
+`func (o *KnowledgeBase) GetLastEditor() string`
+
+GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
+
+### GetLastEditorOk
+
+`func (o *KnowledgeBase) GetLastEditorOk() (*string, bool)`
+
+GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastEditor
+
+`func (o *KnowledgeBase) SetLastEditor(v string)`
+
+SetLastEditor sets LastEditor field to given value.
 
 
 
