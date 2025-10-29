@@ -26,7 +26,7 @@ type AIStudioToolsAPIService service
 type ApiAddKnowledgeBaseToAToolRequest struct {
 	ctx context.Context
 	ApiService *AIStudioToolsAPIService
-	toolId string
+	toolId int64
 	toolRequest *ToolRequest
 }
 
@@ -48,7 +48,7 @@ Add a new knowledge base to a specific tool for your account.
  @param toolId
  @return ApiAddKnowledgeBaseToAToolRequest
 */
-func (a *AIStudioToolsAPIService) AddKnowledgeBaseToATool(ctx context.Context, toolId string) ApiAddKnowledgeBaseToAToolRequest {
+func (a *AIStudioToolsAPIService) AddKnowledgeBaseToATool(ctx context.Context, toolId int64) ApiAddKnowledgeBaseToAToolRequest {
 	return ApiAddKnowledgeBaseToAToolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -430,7 +430,7 @@ func (a *AIStudioToolsAPIService) CreateToolExecute(r ApiCreateToolRequest) (*Re
 type ApiDestroyAToolRequest struct {
 	ctx context.Context
 	ApiService *AIStudioToolsAPIService
-	toolId string
+	toolId int64
 }
 
 func (r ApiDestroyAToolRequest) Execute() (*ResponseDeleteTool, *http.Response, error) {
@@ -446,7 +446,7 @@ Destruction of a specific tool in your account.
  @param toolId
  @return ApiDestroyAToolRequest
 */
-func (a *AIStudioToolsAPIService) DestroyATool(ctx context.Context, toolId string) ApiDestroyAToolRequest {
+func (a *AIStudioToolsAPIService) DestroyATool(ctx context.Context, toolId int64) ApiDestroyAToolRequest {
 	return ApiDestroyAToolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -623,7 +623,7 @@ func (a *AIStudioToolsAPIService) DestroyAToolExecute(r ApiDestroyAToolRequest) 
 type ApiListKnowledgeBasesLinkedToAToolRequest struct {
 	ctx context.Context
 	ApiService *AIStudioToolsAPIService
-	toolId string
+	toolId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -674,7 +674,7 @@ List all knowledge bases linked to a specific tool in your account.
  @param toolId
  @return ApiListKnowledgeBasesLinkedToAToolRequest
 */
-func (a *AIStudioToolsAPIService) ListKnowledgeBasesLinkedToATool(ctx context.Context, toolId string) ApiListKnowledgeBasesLinkedToAToolRequest {
+func (a *AIStudioToolsAPIService) ListKnowledgeBasesLinkedToATool(ctx context.Context, toolId int64) ApiListKnowledgeBasesLinkedToAToolRequest {
 	return ApiListKnowledgeBasesLinkedToAToolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1105,7 +1105,7 @@ func (a *AIStudioToolsAPIService) ListToolsExecute(r ApiListToolsRequest) (*Pagi
 type ApiPartialUpdateToolRequest struct {
 	ctx context.Context
 	ApiService *AIStudioToolsAPIService
-	toolId string
+	toolId int64
 	patchedToolRequest *PatchedToolRequest
 }
 
@@ -1127,7 +1127,7 @@ Update one or more fields of an existing tool without affecting other fields.
  @param toolId
  @return ApiPartialUpdateToolRequest
 */
-func (a *AIStudioToolsAPIService) PartialUpdateTool(ctx context.Context, toolId string) ApiPartialUpdateToolRequest {
+func (a *AIStudioToolsAPIService) PartialUpdateTool(ctx context.Context, toolId int64) ApiPartialUpdateToolRequest {
 	return ApiPartialUpdateToolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1307,8 +1307,8 @@ func (a *AIStudioToolsAPIService) PartialUpdateToolExecute(r ApiPartialUpdateToo
 type ApiRemoveKnowledgeBaseFromAToolRequest struct {
 	ctx context.Context
 	ApiService *AIStudioToolsAPIService
-	kbId string
-	toolId string
+	kbId int64
+	toolId int64
 }
 
 func (r ApiRemoveKnowledgeBaseFromAToolRequest) Execute() (*http.Response, error) {
@@ -1325,7 +1325,7 @@ Remove a specific knowledge base from a tool in your account.
  @param toolId
  @return ApiRemoveKnowledgeBaseFromAToolRequest
 */
-func (a *AIStudioToolsAPIService) RemoveKnowledgeBaseFromATool(ctx context.Context, kbId string, toolId string) ApiRemoveKnowledgeBaseFromAToolRequest {
+func (a *AIStudioToolsAPIService) RemoveKnowledgeBaseFromATool(ctx context.Context, kbId int64, toolId int64) ApiRemoveKnowledgeBaseFromAToolRequest {
 	return ApiRemoveKnowledgeBaseFromAToolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1493,7 +1493,7 @@ func (a *AIStudioToolsAPIService) RemoveKnowledgeBaseFromAToolExecute(r ApiRemov
 type ApiRetriveToolRequest struct {
 	ctx context.Context
 	ApiService *AIStudioToolsAPIService
-	toolId string
+	toolId int64
 	fields *string
 }
 
@@ -1516,7 +1516,7 @@ Retrieve details from a specific tool in your account.
  @param toolId
  @return ApiRetriveToolRequest
 */
-func (a *AIStudioToolsAPIService) RetriveTool(ctx context.Context, toolId string) ApiRetriveToolRequest {
+func (a *AIStudioToolsAPIService) RetriveTool(ctx context.Context, toolId int64) ApiRetriveToolRequest {
 	return ApiRetriveToolRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1696,7 +1696,7 @@ func (a *AIStudioToolsAPIService) RetriveToolExecute(r ApiRetriveToolRequest) (*
 type ApiUpdateToolRequest struct {
 	ctx context.Context
 	ApiService *AIStudioToolsAPIService
-	toolId string
+	toolId int64
 	toolRequest *ToolRequest
 }
 
@@ -1718,7 +1718,7 @@ Update an existing tool. This replaces the entire tool with the new data provide
  @param toolId
  @return ApiUpdateToolRequest
 */
-func (a *AIStudioToolsAPIService) UpdateTool(ctx context.Context, toolId string) ApiUpdateToolRequest {
+func (a *AIStudioToolsAPIService) UpdateTool(ctx context.Context, toolId int64) ApiUpdateToolRequest {
 	return ApiUpdateToolRequest{
 		ApiService: a,
 		ctx: ctx,

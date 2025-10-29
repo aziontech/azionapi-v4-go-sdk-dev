@@ -37,7 +37,7 @@ import (
 )
 
 func main() {
-	toolId := "toolId_example" // string | 
+	toolId := int64(789) // int64 | 
 	toolRequest := *openapiclient.NewToolRequest("Name_example", "Type_example") // ToolRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -58,7 +58,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** |  | 
+**toolId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -175,7 +175,7 @@ import (
 )
 
 func main() {
-	toolId := "toolId_example" // string | 
+	toolId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -195,7 +195,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** |  | 
+**toolId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -245,7 +245,7 @@ import (
 )
 
 func main() {
-	toolId := "toolId_example" // string | 
+	toolId := int64(789) // int64 | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -270,7 +270,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** |  | 
+**toolId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -399,7 +399,7 @@ import (
 )
 
 func main() {
-	toolId := "toolId_example" // string | 
+	toolId := int64(789) // int64 | 
 	patchedToolRequest := *openapiclient.NewPatchedToolRequest() // PatchedToolRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -420,7 +420,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** |  | 
+**toolId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -471,8 +471,8 @@ import (
 )
 
 func main() {
-	kbId := "kbId_example" // string | 
-	toolId := "toolId_example" // string | 
+	kbId := int64(789) // int64 | 
+	toolId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -490,8 +490,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**kbId** | **string** |  | 
-**toolId** | **string** |  | 
+**kbId** | **int64** |  | 
+**toolId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -542,7 +542,7 @@ import (
 )
 
 func main() {
-	toolId := "toolId_example" // string | 
+	toolId := int64(789) // int64 | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -563,7 +563,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** |  | 
+**toolId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -614,7 +614,7 @@ import (
 )
 
 func main() {
-	toolId := "toolId_example" // string | 
+	toolId := int64(789) // int64 | 
 	toolRequest := *openapiclient.NewToolRequest("Name_example", "Type_example") // ToolRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -635,7 +635,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**toolId** | **string** |  | 
+**toolId** | **int64** |  | 
 
 ### Other Parameters
 
