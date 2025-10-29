@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	threadId := "threadId_example" // string | 
+	threadId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**threadId** | **string** |  | 
+**threadId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -244,7 +244,7 @@ import (
 )
 
 func main() {
-	threadId := "threadId_example" // string | 
+	threadId := int64(789) // int64 | 
 	patchedChatThreadRequest := *openapiclient.NewPatchedChatThreadRequest() // PatchedChatThreadRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -265,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**threadId** | **string** |  | 
+**threadId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -316,7 +316,7 @@ import (
 )
 
 func main() {
-	threadId := "threadId_example" // string | 
+	threadId := int64(789) // int64 | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -337,7 +337,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**threadId** | **string** |  | 
+**threadId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -388,7 +388,7 @@ import (
 )
 
 func main() {
-	threadId := "threadId_example" // string | 
+	threadId := int64(789) // int64 | 
 	chatThreadRequest := *openapiclient.NewChatThreadRequest() // ChatThreadRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -409,7 +409,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**threadId** | **string** |  | 
+**threadId** | **int64** |  | 
 
 ### Other Parameters
 

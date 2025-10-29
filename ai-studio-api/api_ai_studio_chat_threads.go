@@ -223,7 +223,7 @@ func (a *AIStudioChatThreadsAPIService) CreateChatThreadExecute(r ApiCreateChatT
 type ApiDestroyAChatThreadRequest struct {
 	ctx context.Context
 	ApiService *AIStudioChatThreadsAPIService
-	threadId string
+	threadId int64
 }
 
 func (r ApiDestroyAChatThreadRequest) Execute() (*ResponseDeleteChatThread, *http.Response, error) {
@@ -239,7 +239,7 @@ Destruction of a specific chat thread in your account.
  @param threadId
  @return ApiDestroyAChatThreadRequest
 */
-func (a *AIStudioChatThreadsAPIService) DestroyAChatThread(ctx context.Context, threadId string) ApiDestroyAChatThreadRequest {
+func (a *AIStudioChatThreadsAPIService) DestroyAChatThread(ctx context.Context, threadId int64) ApiDestroyAChatThreadRequest {
 	return ApiDestroyAChatThreadRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -655,7 +655,7 @@ func (a *AIStudioChatThreadsAPIService) ListChatThreadsExecute(r ApiListChatThre
 type ApiPartialUpdateChatThreadRequest struct {
 	ctx context.Context
 	ApiService *AIStudioChatThreadsAPIService
-	threadId string
+	threadId int64
 	patchedChatThreadRequest *PatchedChatThreadRequest
 }
 
@@ -677,7 +677,7 @@ Update one or more fields of an existing chat thread without affecting other fie
  @param threadId
  @return ApiPartialUpdateChatThreadRequest
 */
-func (a *AIStudioChatThreadsAPIService) PartialUpdateChatThread(ctx context.Context, threadId string) ApiPartialUpdateChatThreadRequest {
+func (a *AIStudioChatThreadsAPIService) PartialUpdateChatThread(ctx context.Context, threadId int64) ApiPartialUpdateChatThreadRequest {
 	return ApiPartialUpdateChatThreadRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -857,7 +857,7 @@ func (a *AIStudioChatThreadsAPIService) PartialUpdateChatThreadExecute(r ApiPart
 type ApiRetriveChatThreadRequest struct {
 	ctx context.Context
 	ApiService *AIStudioChatThreadsAPIService
-	threadId string
+	threadId int64
 	fields *string
 }
 
@@ -880,7 +880,7 @@ Retrieve details from a specific chat thread in your account.
  @param threadId
  @return ApiRetriveChatThreadRequest
 */
-func (a *AIStudioChatThreadsAPIService) RetriveChatThread(ctx context.Context, threadId string) ApiRetriveChatThreadRequest {
+func (a *AIStudioChatThreadsAPIService) RetriveChatThread(ctx context.Context, threadId int64) ApiRetriveChatThreadRequest {
 	return ApiRetriveChatThreadRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1060,7 +1060,7 @@ func (a *AIStudioChatThreadsAPIService) RetriveChatThreadExecute(r ApiRetriveCha
 type ApiUpdateChatThreadRequest struct {
 	ctx context.Context
 	ApiService *AIStudioChatThreadsAPIService
-	threadId string
+	threadId int64
 	chatThreadRequest *ChatThreadRequest
 }
 
@@ -1082,7 +1082,7 @@ Update an existing chat thread. This replaces the entire chat thread with the ne
  @param threadId
  @return ApiUpdateChatThreadRequest
 */
-func (a *AIStudioChatThreadsAPIService) UpdateChatThread(ctx context.Context, threadId string) ApiUpdateChatThreadRequest {
+func (a *AIStudioChatThreadsAPIService) UpdateChatThread(ctx context.Context, threadId int64) ApiUpdateChatThreadRequest {
 	return ApiUpdateChatThreadRequest{
 		ApiService: a,
 		ctx: ctx,
