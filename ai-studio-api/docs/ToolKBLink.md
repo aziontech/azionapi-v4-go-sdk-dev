@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ToolKbId** | **string** |  | 
-**KbId** | **string** |  | 
+**ToolKbId** | **int64** |  | 
+**KbId** | **int64** |  | 
 
 ## Methods
 
 ### NewToolKBLink
 
-`func NewToolKBLink(toolKbId string, kbId string, ) *ToolKBLink`
+`func NewToolKBLink(toolKbId int64, kbId int64, ) *ToolKBLink`
 
 NewToolKBLink instantiates a new ToolKBLink object
 This constructor will assign default values to properties that have it defined,
@@ -28,40 +28,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetToolKbId
 
-`func (o *ToolKBLink) GetToolKbId() string`
+`func (o *ToolKBLink) GetToolKbId() int64`
 
 GetToolKbId returns the ToolKbId field if non-nil, zero value otherwise.
 
 ### GetToolKbIdOk
 
-`func (o *ToolKBLink) GetToolKbIdOk() (*string, bool)`
+`func (o *ToolKBLink) GetToolKbIdOk() (*int64, bool)`
 
 GetToolKbIdOk returns a tuple with the ToolKbId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetToolKbId
 
-`func (o *ToolKBLink) SetToolKbId(v string)`
+`func (o *ToolKBLink) SetToolKbId(v int64)`
 
 SetToolKbId sets ToolKbId field to given value.
 
 
 ### GetKbId
 
-`func (o *ToolKBLink) GetKbId() string`
+`func (o *ToolKBLink) GetKbId() int64`
 
 GetKbId returns the KbId field if non-nil, zero value otherwise.
 
 ### GetKbIdOk
 
-`func (o *ToolKBLink) GetKbIdOk() (*string, bool)`
+`func (o *ToolKBLink) GetKbIdOk() (*int64, bool)`
 
 GetKbIdOk returns a tuple with the KbId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKbId
 
-`func (o *ToolKBLink) SetKbId(v string)`
+`func (o *ToolKBLink) SetKbId(v int64)`
 
 SetKbId sets KbId field to given value.
 

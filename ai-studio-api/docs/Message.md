@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MessageId** | **string** |  | 
-**ThreadId** | **string** |  | 
+**MessageId** | **int64** |  | 
+**ThreadId** | **int64** |  | 
 **LastEditor** | **string** |  | 
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewMessage
 
-`func NewMessage(messageId string, threadId string, lastEditor string, message map[string]interface{}, lastModified time.Time, ) *Message`
+`func NewMessage(messageId int64, threadId int64, lastEditor string, message map[string]interface{}, lastModified time.Time, ) *Message`
 
 NewMessage instantiates a new Message object
 This constructor will assign default values to properties that have it defined,
@@ -34,40 +34,40 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMessageId
 
-`func (o *Message) GetMessageId() string`
+`func (o *Message) GetMessageId() int64`
 
 GetMessageId returns the MessageId field if non-nil, zero value otherwise.
 
 ### GetMessageIdOk
 
-`func (o *Message) GetMessageIdOk() (*string, bool)`
+`func (o *Message) GetMessageIdOk() (*int64, bool)`
 
 GetMessageIdOk returns a tuple with the MessageId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMessageId
 
-`func (o *Message) SetMessageId(v string)`
+`func (o *Message) SetMessageId(v int64)`
 
 SetMessageId sets MessageId field to given value.
 
 
 ### GetThreadId
 
-`func (o *Message) GetThreadId() string`
+`func (o *Message) GetThreadId() int64`
 
 GetThreadId returns the ThreadId field if non-nil, zero value otherwise.
 
 ### GetThreadIdOk
 
-`func (o *Message) GetThreadIdOk() (*string, bool)`
+`func (o *Message) GetThreadIdOk() (*int64, bool)`
 
 GetThreadIdOk returns a tuple with the ThreadId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetThreadId
 
-`func (o *Message) SetThreadId(v string)`
+`func (o *Message) SetThreadId(v int64)`
 
 SetThreadId sets ThreadId field to given value.
 

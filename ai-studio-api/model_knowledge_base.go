@@ -22,15 +22,17 @@ var _ MappedNullable = &KnowledgeBase{}
 
 // KnowledgeBase struct for KnowledgeBase
 type KnowledgeBase struct {
-	KbId string `json:"kb_id"`
+	KbId int64 `json:"kb_id"`
 	AccountId NullableInt64 `json:"account_id"`
-	LastEditor string `json:"last_editor"`
 	Name string `json:"name"`
 	Description *string `json:"description,omitempty"`
 	// * `text-embedding-3-small` - text-embedding-3-small
 	EmbeddingModel *string `json:"embedding_model,omitempty"`
-	EdgesqlDbId string `json:"edgesql_db_id"`
+	SqlId string `json:"sql_id"`
+	SqlDbName string `json:"sql_db_name"`
+	StorageName string `json:"storage_name"`
 	LastModified time.Time `json:"last_modified"`
+	LastEditor string `json:"last_editor"`
 }
 
 type _KnowledgeBase KnowledgeBase
@@ -39,14 +41,16 @@ type _KnowledgeBase KnowledgeBase
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKnowledgeBase(kbId string, accountId NullableInt64, lastEditor string, name string, edgesqlDbId string, lastModified time.Time) *KnowledgeBase {
+func NewKnowledgeBase(kbId int64, accountId NullableInt64, name string, sqlId string, sqlDbName string, storageName string, lastModified time.Time, lastEditor string) *KnowledgeBase {
 	this := KnowledgeBase{}
 	this.KbId = kbId
 	this.AccountId = accountId
-	this.LastEditor = lastEditor
 	this.Name = name
-	this.EdgesqlDbId = edgesqlDbId
+	this.SqlId = sqlId
+	this.SqlDbName = sqlDbName
+	this.StorageName = storageName
 	this.LastModified = lastModified
+	this.LastEditor = lastEditor
 	return &this
 }
 
@@ -59,9 +63,9 @@ func NewKnowledgeBaseWithDefaults() *KnowledgeBase {
 }
 
 // GetKbId returns the KbId field value
-func (o *KnowledgeBase) GetKbId() string {
+func (o *KnowledgeBase) GetKbId() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -70,7 +74,7 @@ func (o *KnowledgeBase) GetKbId() string {
 
 // GetKbIdOk returns a tuple with the KbId field value
 // and a boolean to check if the value has been set.
-func (o *KnowledgeBase) GetKbIdOk() (*string, bool) {
+func (o *KnowledgeBase) GetKbIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -78,7 +82,7 @@ func (o *KnowledgeBase) GetKbIdOk() (*string, bool) {
 }
 
 // SetKbId sets field value
-func (o *KnowledgeBase) SetKbId(v string) {
+func (o *KnowledgeBase) SetKbId(v int64) {
 	o.KbId = v
 }
 
@@ -106,30 +110,6 @@ func (o *KnowledgeBase) GetAccountIdOk() (*int64, bool) {
 // SetAccountId sets field value
 func (o *KnowledgeBase) SetAccountId(v int64) {
 	o.AccountId.Set(&v)
-}
-
-// GetLastEditor returns the LastEditor field value
-func (o *KnowledgeBase) GetLastEditor() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.LastEditor
-}
-
-// GetLastEditorOk returns a tuple with the LastEditor field value
-// and a boolean to check if the value has been set.
-func (o *KnowledgeBase) GetLastEditorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastEditor, true
-}
-
-// SetLastEditor sets field value
-func (o *KnowledgeBase) SetLastEditor(v string) {
-	o.LastEditor = v
 }
 
 // GetName returns the Name field value
@@ -220,28 +200,76 @@ func (o *KnowledgeBase) SetEmbeddingModel(v string) {
 	o.EmbeddingModel = &v
 }
 
-// GetEdgesqlDbId returns the EdgesqlDbId field value
-func (o *KnowledgeBase) GetEdgesqlDbId() string {
+// GetSqlId returns the SqlId field value
+func (o *KnowledgeBase) GetSqlId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.EdgesqlDbId
+	return o.SqlId
 }
 
-// GetEdgesqlDbIdOk returns a tuple with the EdgesqlDbId field value
+// GetSqlIdOk returns a tuple with the SqlId field value
 // and a boolean to check if the value has been set.
-func (o *KnowledgeBase) GetEdgesqlDbIdOk() (*string, bool) {
+func (o *KnowledgeBase) GetSqlIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.EdgesqlDbId, true
+	return &o.SqlId, true
 }
 
-// SetEdgesqlDbId sets field value
-func (o *KnowledgeBase) SetEdgesqlDbId(v string) {
-	o.EdgesqlDbId = v
+// SetSqlId sets field value
+func (o *KnowledgeBase) SetSqlId(v string) {
+	o.SqlId = v
+}
+
+// GetSqlDbName returns the SqlDbName field value
+func (o *KnowledgeBase) GetSqlDbName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SqlDbName
+}
+
+// GetSqlDbNameOk returns a tuple with the SqlDbName field value
+// and a boolean to check if the value has been set.
+func (o *KnowledgeBase) GetSqlDbNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SqlDbName, true
+}
+
+// SetSqlDbName sets field value
+func (o *KnowledgeBase) SetSqlDbName(v string) {
+	o.SqlDbName = v
+}
+
+// GetStorageName returns the StorageName field value
+func (o *KnowledgeBase) GetStorageName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.StorageName
+}
+
+// GetStorageNameOk returns a tuple with the StorageName field value
+// and a boolean to check if the value has been set.
+func (o *KnowledgeBase) GetStorageNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StorageName, true
+}
+
+// SetStorageName sets field value
+func (o *KnowledgeBase) SetStorageName(v string) {
+	o.StorageName = v
 }
 
 // GetLastModified returns the LastModified field value
@@ -268,6 +296,30 @@ func (o *KnowledgeBase) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
+// GetLastEditor returns the LastEditor field value
+func (o *KnowledgeBase) GetLastEditor() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LastEditor
+}
+
+// GetLastEditorOk returns a tuple with the LastEditor field value
+// and a boolean to check if the value has been set.
+func (o *KnowledgeBase) GetLastEditorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastEditor, true
+}
+
+// SetLastEditor sets field value
+func (o *KnowledgeBase) SetLastEditor(v string) {
+	o.LastEditor = v
+}
+
 func (o KnowledgeBase) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -280,7 +332,6 @@ func (o KnowledgeBase) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["kb_id"] = o.KbId
 	toSerialize["account_id"] = o.AccountId.Get()
-	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -288,8 +339,11 @@ func (o KnowledgeBase) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.EmbeddingModel) {
 		toSerialize["embedding_model"] = o.EmbeddingModel
 	}
-	toSerialize["edgesql_db_id"] = o.EdgesqlDbId
+	toSerialize["sql_id"] = o.SqlId
+	toSerialize["sql_db_name"] = o.SqlDbName
+	toSerialize["storage_name"] = o.StorageName
 	toSerialize["last_modified"] = o.LastModified
+	toSerialize["last_editor"] = o.LastEditor
 	return toSerialize, nil
 }
 
@@ -300,10 +354,12 @@ func (o *KnowledgeBase) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"kb_id",
 		"account_id",
-		"last_editor",
 		"name",
-		"edgesql_db_id",
+		"sql_id",
+		"sql_db_name",
+		"storage_name",
 		"last_modified",
+		"last_editor",
 	}
 
 	allProperties := make(map[string]interface{})

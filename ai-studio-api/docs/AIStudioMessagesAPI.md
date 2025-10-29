@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	threadId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	threadId := int64(789) // int64 | 
 	messageRequest := *openapiclient.NewMessageRequest(map[string]interface{}{"key": interface{}(123)}) // MessageRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -54,7 +54,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**threadId** | **string** |  | 
+**threadId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -105,8 +105,8 @@ import (
 )
 
 func main() {
-	messageId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-	threadId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	messageId := int64(789) // int64 | 
+	threadId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -126,8 +126,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**messageId** | **string** |  | 
-**threadId** | **string** |  | 
+**messageId** | **int64** |  | 
+**threadId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -178,7 +178,7 @@ import (
 )
 
 func main() {
-	threadId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	threadId := int64(789) // int64 | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -203,7 +203,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**threadId** | **string** |  | 
+**threadId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -258,8 +258,8 @@ import (
 )
 
 func main() {
-	messageId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-	threadId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	messageId := int64(789) // int64 | 
+	threadId := int64(789) // int64 | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -280,8 +280,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**messageId** | **string** |  | 
-**threadId** | **string** |  | 
+**messageId** | **int64** |  | 
+**threadId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -333,8 +333,8 @@ import (
 )
 
 func main() {
-	messageId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-	threadId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	messageId := int64(789) // int64 | 
+	threadId := int64(789) // int64 | 
 	messageRequest := *openapiclient.NewMessageRequest(map[string]interface{}{"key": interface{}(123)}) // MessageRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -355,8 +355,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**messageId** | **string** |  | 
-**threadId** | **string** |  | 
+**messageId** | **int64** |  | 
+**threadId** | **int64** |  | 
 
 ### Other Parameters
 

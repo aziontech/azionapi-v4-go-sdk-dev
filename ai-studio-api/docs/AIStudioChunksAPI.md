@@ -29,8 +29,8 @@ import (
 )
 
 func main() {
-	documentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-	kbId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	documentId := int64(789) // int64 | 
+	kbId := int64(789) // int64 | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -55,8 +55,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**documentId** | **string** |  | 
-**kbId** | **string** |  | 
+**documentId** | **int64** |  | 
+**kbId** | **int64** |  | 
 
 ### Other Parameters
 

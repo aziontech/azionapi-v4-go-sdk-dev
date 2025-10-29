@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ToolId** | **string** |  | 
+**ToolId** | **int64** |  | 
 **Name** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Type** | **string** |  | 
 **JsonSchema** | Pointer to **map[string]interface{}** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **Kbs** | **string** |  | 
-**LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
+**LastEditor** | **string** |  | 
 
 ## Methods
 
 ### NewTool
 
-`func NewTool(toolId string, name string, type_ string, kbs string, lastEditor string, lastModified time.Time, ) *Tool`
+`func NewTool(toolId int64, name string, type_ string, kbs string, lastModified time.Time, lastEditor string, ) *Tool`
 
 NewTool instantiates a new Tool object
 This constructor will assign default values to properties that have it defined,
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetToolId
 
-`func (o *Tool) GetToolId() string`
+`func (o *Tool) GetToolId() int64`
 
 GetToolId returns the ToolId field if non-nil, zero value otherwise.
 
 ### GetToolIdOk
 
-`func (o *Tool) GetToolIdOk() (*string, bool)`
+`func (o *Tool) GetToolIdOk() (*int64, bool)`
 
 GetToolIdOk returns a tuple with the ToolId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetToolId
 
-`func (o *Tool) SetToolId(v string)`
+`func (o *Tool) SetToolId(v int64)`
 
 SetToolId sets ToolId field to given value.
 
@@ -188,26 +188,6 @@ and a boolean to check if the value has been set.
 SetKbs sets Kbs field to given value.
 
 
-### GetLastEditor
-
-`func (o *Tool) GetLastEditor() string`
-
-GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
-
-### GetLastEditorOk
-
-`func (o *Tool) GetLastEditorOk() (*string, bool)`
-
-GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastEditor
-
-`func (o *Tool) SetLastEditor(v string)`
-
-SetLastEditor sets LastEditor field to given value.
-
-
 ### GetLastModified
 
 `func (o *Tool) GetLastModified() time.Time`
@@ -226,6 +206,26 @@ and a boolean to check if the value has been set.
 `func (o *Tool) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
+
+
+### GetLastEditor
+
+`func (o *Tool) GetLastEditor() string`
+
+GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
+
+### GetLastEditorOk
+
+`func (o *Tool) GetLastEditorOk() (*string, bool)`
+
+GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastEditor
+
+`func (o *Tool) SetLastEditor(v string)`
+
+SetLastEditor sets LastEditor field to given value.
 
 
 

@@ -22,17 +22,17 @@ var _ MappedNullable = &Document{}
 
 // Document struct for Document
 type Document struct {
-	DocumentId string `json:"document_id"`
-	KbId string `json:"kb_id"`
-	LastEditor string `json:"last_editor"`
+	DocumentId int64 `json:"document_id"`
+	KbId int64 `json:"kb_id"`
 	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Type *string `json:"type,omitempty"`
 	SourceUri *string `json:"source_uri,omitempty"`
 	ChunkStrategy map[string]interface{} `json:"chunk_strategy,omitempty"`
-	// * `creating` - creating * `processing` - processing * `created` - created * `error` - error
+	// * `queued` - queued * `processing` - processing * `indexed` - indexed
 	Status string `json:"status"`
 	LastModified time.Time `json:"last_modified"`
+	LastEditor string `json:"last_editor"`
 }
 
 type _Document Document
@@ -41,13 +41,13 @@ type _Document Document
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDocument(documentId string, kbId string, lastEditor string, status string, lastModified time.Time) *Document {
+func NewDocument(documentId int64, kbId int64, status string, lastModified time.Time, lastEditor string) *Document {
 	this := Document{}
 	this.DocumentId = documentId
 	this.KbId = kbId
-	this.LastEditor = lastEditor
 	this.Status = status
 	this.LastModified = lastModified
+	this.LastEditor = lastEditor
 	return &this
 }
 
@@ -60,9 +60,9 @@ func NewDocumentWithDefaults() *Document {
 }
 
 // GetDocumentId returns the DocumentId field value
-func (o *Document) GetDocumentId() string {
+func (o *Document) GetDocumentId() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -71,7 +71,7 @@ func (o *Document) GetDocumentId() string {
 
 // GetDocumentIdOk returns a tuple with the DocumentId field value
 // and a boolean to check if the value has been set.
-func (o *Document) GetDocumentIdOk() (*string, bool) {
+func (o *Document) GetDocumentIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -79,14 +79,14 @@ func (o *Document) GetDocumentIdOk() (*string, bool) {
 }
 
 // SetDocumentId sets field value
-func (o *Document) SetDocumentId(v string) {
+func (o *Document) SetDocumentId(v int64) {
 	o.DocumentId = v
 }
 
 // GetKbId returns the KbId field value
-func (o *Document) GetKbId() string {
+func (o *Document) GetKbId() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -95,7 +95,7 @@ func (o *Document) GetKbId() string {
 
 // GetKbIdOk returns a tuple with the KbId field value
 // and a boolean to check if the value has been set.
-func (o *Document) GetKbIdOk() (*string, bool) {
+func (o *Document) GetKbIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -103,32 +103,8 @@ func (o *Document) GetKbIdOk() (*string, bool) {
 }
 
 // SetKbId sets field value
-func (o *Document) SetKbId(v string) {
+func (o *Document) SetKbId(v int64) {
 	o.KbId = v
-}
-
-// GetLastEditor returns the LastEditor field value
-func (o *Document) GetLastEditor() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.LastEditor
-}
-
-// GetLastEditorOk returns a tuple with the LastEditor field value
-// and a boolean to check if the value has been set.
-func (o *Document) GetLastEditorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastEditor, true
-}
-
-// SetLastEditor sets field value
-func (o *Document) SetLastEditor(v string) {
-	o.LastEditor = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -339,6 +315,30 @@ func (o *Document) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
+// GetLastEditor returns the LastEditor field value
+func (o *Document) GetLastEditor() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LastEditor
+}
+
+// GetLastEditorOk returns a tuple with the LastEditor field value
+// and a boolean to check if the value has been set.
+func (o *Document) GetLastEditorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastEditor, true
+}
+
+// SetLastEditor sets field value
+func (o *Document) SetLastEditor(v string) {
+	o.LastEditor = v
+}
+
 func (o Document) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -351,7 +351,6 @@ func (o Document) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["document_id"] = o.DocumentId
 	toSerialize["kb_id"] = o.KbId
-	toSerialize["last_editor"] = o.LastEditor
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -369,6 +368,7 @@ func (o Document) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["status"] = o.Status
 	toSerialize["last_modified"] = o.LastModified
+	toSerialize["last_editor"] = o.LastEditor
 	return toSerialize, nil
 }
 
@@ -379,9 +379,9 @@ func (o *Document) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"document_id",
 		"kb_id",
-		"last_editor",
 		"status",
 		"last_modified",
+		"last_editor",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -239,7 +239,7 @@ DestroyAKnowledgeBase Destroy a knowledge base
 Destruction of a specific knowledge base in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param kbId A UUID string identifying this knowledge base.
+ @param kbId
  @return ApiDestroyAKnowledgeBaseRequest
 */
 func (a *AIStudioKnowledgeBasesAPIService) DestroyAKnowledgeBase(ctx context.Context, kbId string) ApiDestroyAKnowledgeBaseRequest {
@@ -677,7 +677,7 @@ PartialUpdateKnowledgeBase Partially update a knowledge base
 Update one or more fields of an existing knowledge base without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param kbId A UUID string identifying this knowledge base.
+ @param kbId
  @return ApiPartialUpdateKnowledgeBaseRequest
 */
 func (a *AIStudioKnowledgeBasesAPIService) PartialUpdateKnowledgeBase(ctx context.Context, kbId string) ApiPartialUpdateKnowledgeBaseRequest {
@@ -880,7 +880,7 @@ RetriveKnowledgeBase Retrieve details from a knowledge base
 Retrieve details from a specific knowledge base in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param kbId A UUID string identifying this knowledge base.
+ @param kbId
  @return ApiRetriveKnowledgeBaseRequest
 */
 func (a *AIStudioKnowledgeBasesAPIService) RetriveKnowledgeBase(ctx context.Context, kbId string) ApiRetriveKnowledgeBaseRequest {
@@ -1082,7 +1082,7 @@ UpdateKnowledgeBase Update a knowledge base
 Update an existing knowledge base. This replaces the entire knowledge base with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param kbId A UUID string identifying this knowledge base.
+ @param kbId
  @return ApiUpdateKnowledgeBaseRequest
 */
 func (a *AIStudioKnowledgeBasesAPIService) UpdateKnowledgeBase(ctx context.Context, kbId string) ApiUpdateKnowledgeBaseRequest {

@@ -21,8 +21,8 @@ var _ MappedNullable = &ToolKBLink{}
 
 // ToolKBLink struct for ToolKBLink
 type ToolKBLink struct {
-	ToolKbId string `json:"tool_kb_id"`
-	KbId string `json:"kb_id"`
+	ToolKbId int64 `json:"tool_kb_id"`
+	KbId int64 `json:"kb_id"`
 }
 
 type _ToolKBLink ToolKBLink
@@ -31,7 +31,7 @@ type _ToolKBLink ToolKBLink
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewToolKBLink(toolKbId string, kbId string) *ToolKBLink {
+func NewToolKBLink(toolKbId int64, kbId int64) *ToolKBLink {
 	this := ToolKBLink{}
 	this.ToolKbId = toolKbId
 	this.KbId = kbId
@@ -47,9 +47,9 @@ func NewToolKBLinkWithDefaults() *ToolKBLink {
 }
 
 // GetToolKbId returns the ToolKbId field value
-func (o *ToolKBLink) GetToolKbId() string {
+func (o *ToolKBLink) GetToolKbId() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -58,7 +58,7 @@ func (o *ToolKBLink) GetToolKbId() string {
 
 // GetToolKbIdOk returns a tuple with the ToolKbId field value
 // and a boolean to check if the value has been set.
-func (o *ToolKBLink) GetToolKbIdOk() (*string, bool) {
+func (o *ToolKBLink) GetToolKbIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,14 +66,14 @@ func (o *ToolKBLink) GetToolKbIdOk() (*string, bool) {
 }
 
 // SetToolKbId sets field value
-func (o *ToolKBLink) SetToolKbId(v string) {
+func (o *ToolKBLink) SetToolKbId(v int64) {
 	o.ToolKbId = v
 }
 
 // GetKbId returns the KbId field value
-func (o *ToolKBLink) GetKbId() string {
+func (o *ToolKBLink) GetKbId() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -82,7 +82,7 @@ func (o *ToolKBLink) GetKbId() string {
 
 // GetKbIdOk returns a tuple with the KbId field value
 // and a boolean to check if the value has been set.
-func (o *ToolKBLink) GetKbIdOk() (*string, bool) {
+func (o *ToolKBLink) GetKbIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,7 +90,7 @@ func (o *ToolKBLink) GetKbIdOk() (*string, bool) {
 }
 
 // SetKbId sets field value
-func (o *ToolKBLink) SetKbId(v string) {
+func (o *ToolKBLink) SetKbId(v int64) {
 	o.KbId = v
 }
 

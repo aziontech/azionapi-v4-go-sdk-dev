@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	kbId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | A UUID string identifying this knowledge base.
+	kbId := "kbId_example" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**kbId** | **string** | A UUID string identifying this knowledge base. | 
+**kbId** | **string** |  | 
 
 ### Other Parameters
 
@@ -244,7 +244,7 @@ import (
 )
 
 func main() {
-	kbId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | A UUID string identifying this knowledge base.
+	kbId := "kbId_example" // string | 
 	patchedKnowledgeBaseRequest := *openapiclient.NewPatchedKnowledgeBaseRequest() // PatchedKnowledgeBaseRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -265,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**kbId** | **string** | A UUID string identifying this knowledge base. | 
+**kbId** | **string** |  | 
 
 ### Other Parameters
 
@@ -316,7 +316,7 @@ import (
 )
 
 func main() {
-	kbId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | A UUID string identifying this knowledge base.
+	kbId := "kbId_example" // string | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -337,7 +337,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**kbId** | **string** | A UUID string identifying this knowledge base. | 
+**kbId** | **string** |  | 
 
 ### Other Parameters
 
@@ -388,7 +388,7 @@ import (
 )
 
 func main() {
-	kbId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | A UUID string identifying this knowledge base.
+	kbId := "kbId_example" // string | 
 	knowledgeBaseRequest := *openapiclient.NewKnowledgeBaseRequest("Name_example") // KnowledgeBaseRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -409,7 +409,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**kbId** | **string** | A UUID string identifying this knowledge base. | 
+**kbId** | **string** |  | 
 
 ### Other Parameters
 

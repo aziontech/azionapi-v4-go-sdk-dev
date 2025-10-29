@@ -22,15 +22,15 @@ var _ MappedNullable = &Tool{}
 
 // Tool struct for Tool
 type Tool struct {
-	ToolId string `json:"tool_id"`
+	ToolId int64 `json:"tool_id"`
 	Name string `json:"name"`
 	Description *string `json:"description,omitempty"`
 	Type string `json:"type"`
 	JsonSchema map[string]interface{} `json:"json_schema,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	Kbs string `json:"kbs"`
-	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
+	LastEditor string `json:"last_editor"`
 }
 
 type _Tool Tool
@@ -39,14 +39,14 @@ type _Tool Tool
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTool(toolId string, name string, type_ string, kbs string, lastEditor string, lastModified time.Time) *Tool {
+func NewTool(toolId int64, name string, type_ string, kbs string, lastModified time.Time, lastEditor string) *Tool {
 	this := Tool{}
 	this.ToolId = toolId
 	this.Name = name
 	this.Type = type_
 	this.Kbs = kbs
-	this.LastEditor = lastEditor
 	this.LastModified = lastModified
+	this.LastEditor = lastEditor
 	return &this
 }
 
@@ -59,9 +59,9 @@ func NewToolWithDefaults() *Tool {
 }
 
 // GetToolId returns the ToolId field value
-func (o *Tool) GetToolId() string {
+func (o *Tool) GetToolId() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -70,7 +70,7 @@ func (o *Tool) GetToolId() string {
 
 // GetToolIdOk returns a tuple with the ToolId field value
 // and a boolean to check if the value has been set.
-func (o *Tool) GetToolIdOk() (*string, bool) {
+func (o *Tool) GetToolIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -78,7 +78,7 @@ func (o *Tool) GetToolIdOk() (*string, bool) {
 }
 
 // SetToolId sets field value
-func (o *Tool) SetToolId(v string) {
+func (o *Tool) SetToolId(v int64) {
 	o.ToolId = v
 }
 
@@ -250,30 +250,6 @@ func (o *Tool) SetKbs(v string) {
 	o.Kbs = v
 }
 
-// GetLastEditor returns the LastEditor field value
-func (o *Tool) GetLastEditor() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.LastEditor
-}
-
-// GetLastEditorOk returns a tuple with the LastEditor field value
-// and a boolean to check if the value has been set.
-func (o *Tool) GetLastEditorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastEditor, true
-}
-
-// SetLastEditor sets field value
-func (o *Tool) SetLastEditor(v string) {
-	o.LastEditor = v
-}
-
 // GetLastModified returns the LastModified field value
 func (o *Tool) GetLastModified() time.Time {
 	if o == nil {
@@ -296,6 +272,30 @@ func (o *Tool) GetLastModifiedOk() (*time.Time, bool) {
 // SetLastModified sets field value
 func (o *Tool) SetLastModified(v time.Time) {
 	o.LastModified = v
+}
+
+// GetLastEditor returns the LastEditor field value
+func (o *Tool) GetLastEditor() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LastEditor
+}
+
+// GetLastEditorOk returns a tuple with the LastEditor field value
+// and a boolean to check if the value has been set.
+func (o *Tool) GetLastEditorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastEditor, true
+}
+
+// SetLastEditor sets field value
+func (o *Tool) SetLastEditor(v string) {
+	o.LastEditor = v
 }
 
 func (o Tool) MarshalJSON() ([]byte, error) {
@@ -321,8 +321,8 @@ func (o Tool) ToMap() (map[string]interface{}, error) {
 		toSerialize["active"] = o.Active
 	}
 	toSerialize["kbs"] = o.Kbs
-	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
+	toSerialize["last_editor"] = o.LastEditor
 	return toSerialize, nil
 }
 
@@ -335,8 +335,8 @@ func (o *Tool) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"type",
 		"kbs",
-		"last_editor",
 		"last_modified",
+		"last_editor",
 	}
 
 	allProperties := make(map[string]interface{})

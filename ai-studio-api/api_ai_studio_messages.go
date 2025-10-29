@@ -26,7 +26,7 @@ type AIStudioMessagesAPIService service
 type ApiCreateMessageRequest struct {
 	ctx context.Context
 	ApiService *AIStudioMessagesAPIService
-	threadId string
+	threadId int64
 	messageRequest *MessageRequest
 }
 
@@ -48,7 +48,7 @@ Create a new message for your account.
  @param threadId
  @return ApiCreateMessageRequest
 */
-func (a *AIStudioMessagesAPIService) CreateMessage(ctx context.Context, threadId string) ApiCreateMessageRequest {
+func (a *AIStudioMessagesAPIService) CreateMessage(ctx context.Context, threadId int64) ApiCreateMessageRequest {
 	return ApiCreateMessageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -230,8 +230,8 @@ func (a *AIStudioMessagesAPIService) CreateMessageExecute(r ApiCreateMessageRequ
 type ApiDestroyAMessageRequest struct {
 	ctx context.Context
 	ApiService *AIStudioMessagesAPIService
-	messageId string
-	threadId string
+	messageId int64
+	threadId int64
 }
 
 func (r ApiDestroyAMessageRequest) Execute() (*ResponseDeleteMessage, *http.Response, error) {
@@ -248,7 +248,7 @@ Destruction of a specific message in your account.
  @param threadId
  @return ApiDestroyAMessageRequest
 */
-func (a *AIStudioMessagesAPIService) DestroyAMessage(ctx context.Context, messageId string, threadId string) ApiDestroyAMessageRequest {
+func (a *AIStudioMessagesAPIService) DestroyAMessage(ctx context.Context, messageId int64, threadId int64) ApiDestroyAMessageRequest {
 	return ApiDestroyAMessageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -427,7 +427,7 @@ func (a *AIStudioMessagesAPIService) DestroyAMessageExecute(r ApiDestroyAMessage
 type ApiListMessagesRequest struct {
 	ctx context.Context
 	ApiService *AIStudioMessagesAPIService
-	threadId string
+	threadId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -478,7 +478,7 @@ List all messages owned by your account.
  @param threadId
  @return ApiListMessagesRequest
 */
-func (a *AIStudioMessagesAPIService) ListMessages(ctx context.Context, threadId string) ApiListMessagesRequest {
+func (a *AIStudioMessagesAPIService) ListMessages(ctx context.Context, threadId int64) ApiListMessagesRequest {
 	return ApiListMessagesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -670,8 +670,8 @@ func (a *AIStudioMessagesAPIService) ListMessagesExecute(r ApiListMessagesReques
 type ApiRetriveMessageRequest struct {
 	ctx context.Context
 	ApiService *AIStudioMessagesAPIService
-	messageId string
-	threadId string
+	messageId int64
+	threadId int64
 	fields *string
 }
 
@@ -695,7 +695,7 @@ Retrieve details from a specific message in your account.
  @param threadId
  @return ApiRetriveMessageRequest
 */
-func (a *AIStudioMessagesAPIService) RetriveMessage(ctx context.Context, messageId string, threadId string) ApiRetriveMessageRequest {
+func (a *AIStudioMessagesAPIService) RetriveMessage(ctx context.Context, messageId int64, threadId int64) ApiRetriveMessageRequest {
 	return ApiRetriveMessageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -877,8 +877,8 @@ func (a *AIStudioMessagesAPIService) RetriveMessageExecute(r ApiRetriveMessageRe
 type ApiUpdateMessageRequest struct {
 	ctx context.Context
 	ApiService *AIStudioMessagesAPIService
-	messageId string
-	threadId string
+	messageId int64
+	threadId int64
 	messageRequest *MessageRequest
 }
 
@@ -901,7 +901,7 @@ Update an existing message. This replaces the entire message with the new data p
  @param threadId
  @return ApiUpdateMessageRequest
 */
-func (a *AIStudioMessagesAPIService) UpdateMessage(ctx context.Context, messageId string, threadId string) ApiUpdateMessageRequest {
+func (a *AIStudioMessagesAPIService) UpdateMessage(ctx context.Context, messageId int64, threadId int64) ApiUpdateMessageRequest {
 	return ApiUpdateMessageRequest{
 		ApiService: a,
 		ctx: ctx,
