@@ -22394,7 +22394,7 @@ components:
       type: object
     LayerEnum:
       description: |-
-        * `edge_cache` - Edge Cache
+        * `cache` - Cache
         * `tiered_cache` - Tiered Cache
       title: LayerEnum
       type: string
@@ -22494,18 +22494,19 @@ components:
       type: object
     MTLS:
       additionalProperties: false
-      example:
-        certificate: 1
-        crl:
-        - 1
-        - 1
-        - 1
-        - 1
-        - 1
-        verification: null
       properties:
-        verification:
-          $ref: "#/components/schemas/MTLS_verification"
+        enabled:
+          nullable: true
+          type: boolean
+        config:
+          allOf:
+          - $ref: "#/components/schemas/MTLSConfig"
+          nullable: true
+      title: MTLS
+      type: object
+    MTLSConfig:
+      additionalProperties: false
+      properties:
         certificate:
           format: int64
           minimum: 1
@@ -22519,35 +22520,40 @@ components:
           maxItems: 100
           nullable: true
           type: array
-      title: MTLS
+        verification:
+          $ref: "#/components/schemas/MTLSConfig_verification"
+      title: MTLSConfig
+      type: object
+    MTLSConfigRequest:
+      additionalProperties: false
+      properties:
+        certificate:
+          format: int64
+          minimum: 1
+          nullable: true
+          type: integer
+        crl:
+          items:
+            format: int64
+            minimum: 1
+            type: integer
+          maxItems: 100
+          nullable: true
+          type: array
+        verification:
+          $ref: "#/components/schemas/MTLSConfig_verification"
+      title: MTLSConfigRequest
       type: object
     MTLSRequest:
       additionalProperties: false
-      example:
-        certificate: 1
-        crl:
-        - 1
-        - 1
-        - 1
-        - 1
-        - 1
-        verification: null
       properties:
-        verification:
-          $ref: "#/components/schemas/MTLS_verification"
-        certificate:
-          format: int64
-          minimum: 1
+        enabled:
           nullable: true
-          type: integer
-        crl:
-          items:
-            format: int64
-            minimum: 1
-            type: integer
-          maxItems: 100
+          type: boolean
+        config:
+          allOf:
+          - $ref: "#/components/schemas/MTLSConfigRequest"
           nullable: true
-          type: array
       title: MTLSRequest
       type: object
     MethodEnum:
@@ -24708,15 +24714,7 @@ components:
           id: 0
           protocols: ""
           last_modified: 2000-01-23T04:56:07.000+00:00
-          mtls:
-            certificate: 1
-            crl:
-            - 1
-            - 1
-            - 1
-            - 1
-            - 1
-            verification: null
+          mtls: ""
         - product_version: product_version
           last_editor: last_editor
           active: true
@@ -24731,15 +24729,7 @@ components:
           id: 0
           protocols: ""
           last_modified: 2000-01-23T04:56:07.000+00:00
-          mtls:
-            certificate: 1
-            crl:
-            - 1
-            - 1
-            - 1
-            - 1
-            - 1
-            verification: null
+          mtls: ""
       properties:
         count:
           example: 123
@@ -25966,15 +25956,7 @@ components:
         workload_domain_allow_access: true
         tls: ""
         protocols: ""
-        mtls:
-          certificate: 1
-          crl:
-          - 1
-          - 1
-          - 1
-          - 1
-          - 1
-          verification: null
+        mtls: ""
       properties:
         name:
           maxLength: 100
@@ -25992,7 +25974,8 @@ components:
           allOf:
           - $ref: "#/components/schemas/ProtocolsRequest"
         mtls:
-          $ref: "#/components/schemas/MTLSRequest"
+          allOf:
+          - $ref: "#/components/schemas/MTLSRequest"
         domains:
           items:
             minLength: 1
@@ -27594,15 +27577,7 @@ components:
           id: 0
           protocols: ""
           last_modified: 2000-01-23T04:56:07.000+00:00
-          mtls:
-            certificate: 1
-            crl:
-            - 1
-            - 1
-            - 1
-            - 1
-            - 1
-            verification: null
+          mtls: ""
         state: state
       properties:
         state:
@@ -29540,15 +29515,7 @@ components:
           id: 0
           protocols: ""
           last_modified: 2000-01-23T04:56:07.000+00:00
-          mtls:
-            certificate: 1
-            crl:
-            - 1
-            - 1
-            - 1
-            - 1
-            - 1
-            verification: null
+          mtls: ""
       properties:
         data:
           $ref: "#/components/schemas/Workload"
@@ -29664,15 +29631,7 @@ components:
           id: 0
           protocols: ""
           last_modified: 2000-01-23T04:56:07.000+00:00
-          mtls:
-            certificate: 1
-            crl:
-            - 1
-            - 1
-            - 1
-            - 1
-            - 1
-            verification: null
+          mtls: ""
         state: state
       properties:
         state:
@@ -30771,15 +30730,7 @@ components:
         id: 0
         protocols: ""
         last_modified: 2000-01-23T04:56:07.000+00:00
-        mtls:
-          certificate: 1
-          crl:
-          - 1
-          - 1
-          - 1
-          - 1
-          - 1
-          verification: null
+        mtls: ""
       properties:
         id:
           format: int64
@@ -30807,7 +30758,8 @@ components:
           allOf:
           - $ref: "#/components/schemas/Protocols"
         mtls:
-          $ref: "#/components/schemas/MTLS"
+          allOf:
+          - $ref: "#/components/schemas/MTLS"
         domains:
           items:
             type: string
@@ -30911,15 +30863,7 @@ components:
         workload_domain_allow_access: true
         tls: ""
         protocols: ""
-        mtls:
-          certificate: 1
-          crl:
-          - 1
-          - 1
-          - 1
-          - 1
-          - 1
-          verification: null
+        mtls: ""
       properties:
         name:
           maxLength: 100
@@ -30937,7 +30881,8 @@ components:
           allOf:
           - $ref: "#/components/schemas/ProtocolsRequest"
         mtls:
-          $ref: "#/components/schemas/MTLSRequest"
+          allOf:
+          - $ref: "#/components/schemas/MTLSRequest"
         domains:
           items:
             minLength: 1
@@ -31014,7 +30959,7 @@ components:
       - type: string
       - format: int64
         type: integer
-    MTLS_verification:
+    MTLSConfig_verification:
       nullable: true
       oneOf:
       - $ref: "#/components/schemas/VerificationEnum"
