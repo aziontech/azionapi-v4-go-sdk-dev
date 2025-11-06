@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: KV API
+  version: 1.0.0
+  description: REST API OpenAPI documentation for the KV API
+paths:
+  /storage/kv/namespaces:
+    get:
+      operationId: storageKvNamespacesRetrieve
+      description: |-
+        List namespaces with pagination (KISS principle)
+
+        Security: Only returns namespaces that belong to the authenticated user's account_id.
+        Doesn't matter who created the namespaces, only account ownership matters.
+      tags:
+      - storage
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: storageKvNamespacesCreate
+      description: Create a new namespace (KISS principle)
+      tags:
+      - storage
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          description: No response body
+  /storage/kv/namespaces/:
+    get:
+      operationId: storageKvNamespacesRetrieve2
+      description: |-
+        List namespaces with pagination (KISS principle)
+
+        Security: Only returns namespaces that belong to the authenticated user's account_id.
+        Doesn't matter who created the namespaces, only account ownership matters.
+      tags:
+      - storage
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: storageKvNamespacesCreate2
+      description: Create a new namespace (KISS principle)
+      tags:
+      - storage
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          description: No response body
+  /storage/kv/namespaces/{id}/:
+    get:
+      operationId: storageKvNamespacesRetrieve3
+      description: |-
+        Retrieve a specific namespace (KISS principle)
+
+        Security: Only returns namespaces that belong to the authenticated user's account_id.
+        Doesn't matter who created the namespace, only account ownership matters.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - storage
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+components:
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
