@@ -1,89 +1,94 @@
 openapi: 3.0.3
 info:
+  description: REST API OpenAPI documentation for the KV API
   title: KV API
   version: 1.0.0
-  description: REST API OpenAPI documentation for the KV API
+servers:
+- url: /
 paths:
   /storage/kv/namespaces:
     get:
-      operationId: storageKvNamespacesRetrieve
       description: |-
         List namespaces with pagination (KISS principle)
 
         Security: Only returns namespaces that belong to the authenticated user's account_id.
         Doesn't matter who created the namespaces, only account ownership matters.
-      tags:
-      - storage
+      operationId: storageKvNamespacesRetrieve
+      responses:
+        "200":
+          description: No response body
       security:
       - tokenAuth: []
       - tokenAuth: []
-      responses:
-        '200':
-          description: No response body
+      tags:
+      - storage
     post:
-      operationId: storageKvNamespacesCreate
       description: Create a new namespace (KISS principle)
-      tags:
-      - storage
+      operationId: storageKvNamespacesCreate
+      responses:
+        "201":
+          description: No response body
       security:
       - tokenAuth: []
       - tokenAuth: []
-      responses:
-        '201':
-          description: No response body
+      tags:
+      - storage
   /storage/kv/namespaces/:
     get:
-      operationId: storageKvNamespacesRetrieve2
       description: |-
         List namespaces with pagination (KISS principle)
 
         Security: Only returns namespaces that belong to the authenticated user's account_id.
         Doesn't matter who created the namespaces, only account ownership matters.
-      tags:
-      - storage
+      operationId: storageKvNamespacesRetrieve2
+      responses:
+        "200":
+          description: No response body
       security:
       - tokenAuth: []
       - tokenAuth: []
-      responses:
-        '200':
-          description: No response body
+      tags:
+      - storage
     post:
-      operationId: storageKvNamespacesCreate2
       description: Create a new namespace (KISS principle)
-      tags:
-      - storage
+      operationId: storageKvNamespacesCreate2
+      responses:
+        "201":
+          description: No response body
       security:
       - tokenAuth: []
       - tokenAuth: []
-      responses:
-        '201':
-          description: No response body
+      tags:
+      - storage
   /storage/kv/namespaces/{id}/:
     get:
-      operationId: storageKvNamespacesRetrieve3
       description: |-
         Retrieve a specific namespace (KISS principle)
 
         Security: Only returns namespaces that belong to the authenticated user's account_id.
         Doesn't matter who created the namespace, only account ownership matters.
+      operationId: storageKvNamespacesRetrieve3
       parameters:
-      - in: path
+      - explode: false
+        in: path
         name: id
+        required: true
         schema:
           type: string
-        required: true
-      tags:
-      - storage
+        style: simple
+      responses:
+        "200":
+          description: No response body
       security:
       - tokenAuth: []
       - tokenAuth: []
-      responses:
-        '200':
-          description: No response body
+      tags:
+      - storage
 components:
+  schemas: {}
   securitySchemes:
     tokenAuth:
-      type: apiKey
+      description: Token-based authentication with required prefix "Token"
       in: header
       name: Authorization
-      description: Token-based authentication with required prefix "Token"
+      type: apiKey
