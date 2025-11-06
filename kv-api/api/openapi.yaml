@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  description: REST API OpenAPI documentation for the KV API
+  title: KV API
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /storage/kv/namespaces:
+    get:
+      description: |-
+        List namespaces with pagination (KISS principle)
+
+        Security: Only returns namespaces that belong to the authenticated user's account_id.
+        Doesn't matter who created the namespaces, only account ownership matters.
+      operationId: storageKvNamespacesRetrieve
+      responses:
+        "200":
+          description: No response body
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - storage
+    post:
+      description: Create a new namespace (KISS principle)
+      operationId: storageKvNamespacesCreate
+      responses:
+        "201":
+          description: No response body
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - storage
+  /storage/kv/namespaces/:
+    get:
+      description: |-
+        List namespaces with pagination (KISS principle)
+
+        Security: Only returns namespaces that belong to the authenticated user's account_id.
+        Doesn't matter who created the namespaces, only account ownership matters.
+      operationId: storageKvNamespacesRetrieve2
+      responses:
+        "200":
+          description: No response body
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - storage
+    post:
+      description: Create a new namespace (KISS principle)
+      operationId: storageKvNamespacesCreate2
+      responses:
+        "201":
+          description: No response body
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - storage
+  /storage/kv/namespaces/{id}/:
+    get:
+      description: |-
+        Retrieve a specific namespace (KISS principle)
+
+        Security: Only returns namespaces that belong to the authenticated user's account_id.
+        Doesn't matter who created the namespace, only account ownership matters.
+      operationId: storageKvNamespacesRetrieve3
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: No response body
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      tags:
+      - storage
+components:
+  schemas: {}
+  securitySchemes:
+    tokenAuth:
+      description: Token-based authentication with required prefix "Token"
+      in: header
+      name: Authorization
+      type: apiKey
