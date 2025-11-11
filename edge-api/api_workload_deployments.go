@@ -217,29 +217,29 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDestroyWorkloadDeploymentRequest struct {
+type ApiDeleteWorkloadDeploymentRequest struct {
 	ctx context.Context
 	ApiService *WorkloadDeploymentsAPIService
 	deploymentId int64
 	workloadId int64
 }
 
-func (r ApiDestroyWorkloadDeploymentRequest) Execute() (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
-	return r.ApiService.DestroyWorkloadDeploymentExecute(r)
+func (r ApiDeleteWorkloadDeploymentRequest) Execute() (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
+	return r.ApiService.DeleteWorkloadDeploymentExecute(r)
 }
 
 /*
-DestroyWorkloadDeployment Destroy a Workload Deployment
+DeleteWorkloadDeployment Delete a Workload Deployment
 
-Destruction of a specific Workload Deployment in your account.
+Delete a specific Workload Deployment in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param deploymentId
  @param workloadId
- @return ApiDestroyWorkloadDeploymentRequest
+ @return ApiDeleteWorkloadDeploymentRequest
 */
-func (a *WorkloadDeploymentsAPIService) DestroyWorkloadDeployment(ctx context.Context, deploymentId int64, workloadId int64) ApiDestroyWorkloadDeploymentRequest {
-	return ApiDestroyWorkloadDeploymentRequest{
+func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeployment(ctx context.Context, deploymentId int64, workloadId int64) ApiDeleteWorkloadDeploymentRequest {
+	return ApiDeleteWorkloadDeploymentRequest{
 		ApiService: a,
 		ctx: ctx,
 		deploymentId: deploymentId,
@@ -249,7 +249,7 @@ func (a *WorkloadDeploymentsAPIService) DestroyWorkloadDeployment(ctx context.Co
 
 // Execute executes the request
 //  @return ResponseAsyncDeleteWorkloadDeployment
-func (a *WorkloadDeploymentsAPIService) DestroyWorkloadDeploymentExecute(r ApiDestroyWorkloadDeploymentRequest) (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
+func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDeleteWorkloadDeploymentRequest) (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -257,7 +257,7 @@ func (a *WorkloadDeploymentsAPIService) DestroyWorkloadDeploymentExecute(r ApiDe
 		localVarReturnValue  *ResponseAsyncDeleteWorkloadDeployment
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.DestroyWorkloadDeployment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.DeleteWorkloadDeployment")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

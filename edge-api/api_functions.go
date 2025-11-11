@@ -68,7 +68,7 @@ func (a *FunctionsAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_functions/functions"
+	localVarPath := localBasePath + "/workspace/functions"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -223,27 +223,27 @@ func (a *FunctionsAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDestroyFunctionRequest struct {
+type ApiDeleteFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsAPIService
 	id string
 }
 
-func (r ApiDestroyFunctionRequest) Execute() (*ResponseDeleteFunctionsDoc, *http.Response, error) {
-	return r.ApiService.DestroyFunctionExecute(r)
+func (r ApiDeleteFunctionRequest) Execute() (*ResponseDeleteFunctionsDoc, *http.Response, error) {
+	return r.ApiService.DeleteFunctionExecute(r)
 }
 
 /*
-DestroyFunction Destroy an Function
+DeleteFunction Delete an Function
 
-Destroy a specific Function in your account.
+Delete a specific Function in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiDestroyFunctionRequest
+ @return ApiDeleteFunctionRequest
 */
-func (a *FunctionsAPIService) DestroyFunction(ctx context.Context, id string) ApiDestroyFunctionRequest {
-	return ApiDestroyFunctionRequest{
+func (a *FunctionsAPIService) DeleteFunction(ctx context.Context, id string) ApiDeleteFunctionRequest {
+	return ApiDeleteFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -252,7 +252,7 @@ func (a *FunctionsAPIService) DestroyFunction(ctx context.Context, id string) Ap
 
 // Execute executes the request
 //  @return ResponseDeleteFunctionsDoc
-func (a *FunctionsAPIService) DestroyFunctionExecute(r ApiDestroyFunctionRequest) (*ResponseDeleteFunctionsDoc, *http.Response, error) {
+func (a *FunctionsAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (*ResponseDeleteFunctionsDoc, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -260,12 +260,12 @@ func (a *FunctionsAPIService) DestroyFunctionExecute(r ApiDestroyFunctionRequest
 		localVarReturnValue  *ResponseDeleteFunctionsDoc
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionsAPIService.DestroyFunction")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionsAPIService.DeleteFunction")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_functions/functions/{id}"
+	localVarPath := localBasePath + "/workspace/functions/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -490,7 +490,7 @@ func (a *FunctionsAPIService) ListFunctionsExecute(r ApiListFunctionsRequest) (*
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_functions/functions"
+	localVarPath := localBasePath + "/workspace/functions"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -703,7 +703,7 @@ func (a *FunctionsAPIService) PartialUpdateFunctionExecute(r ApiPartialUpdateFun
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_functions/functions/{id}"
+	localVarPath := localBasePath + "/workspace/functions/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -905,7 +905,7 @@ func (a *FunctionsAPIService) RetrieveFunctionExecute(r ApiRetrieveFunctionReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_functions/functions/{id}"
+	localVarPath := localBasePath + "/workspace/functions/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1107,7 +1107,7 @@ func (a *FunctionsAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_functions/functions/{id}"
+	localVarPath := localBasePath + "/workspace/functions/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)

@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateFunction**](FunctionsAPI.md#CreateFunction) | **Post** /edge_functions/functions | Create an Function
-[**DestroyFunction**](FunctionsAPI.md#DestroyFunction) | **Delete** /edge_functions/functions/{id} | Destroy an Function
-[**ListFunctions**](FunctionsAPI.md#ListFunctions) | **Get** /edge_functions/functions | List Functions
-[**PartialUpdateFunction**](FunctionsAPI.md#PartialUpdateFunction) | **Patch** /edge_functions/functions/{id} | Partially update an Function
-[**RetrieveFunction**](FunctionsAPI.md#RetrieveFunction) | **Get** /edge_functions/functions/{id} | Retrieve details of an Function
-[**UpdateFunction**](FunctionsAPI.md#UpdateFunction) | **Put** /edge_functions/functions/{id} | Update an Function
+[**CreateFunction**](FunctionsAPI.md#CreateFunction) | **Post** /workspace/functions | Create an Function
+[**DeleteFunction**](FunctionsAPI.md#DeleteFunction) | **Delete** /workspace/functions/{id} | Delete an Function
+[**ListFunctions**](FunctionsAPI.md#ListFunctions) | **Get** /workspace/functions | List Functions
+[**PartialUpdateFunction**](FunctionsAPI.md#PartialUpdateFunction) | **Patch** /workspace/functions/{id} | Partially update an Function
+[**RetrieveFunction**](FunctionsAPI.md#RetrieveFunction) | **Get** /workspace/functions/{id} | Retrieve details of an Function
+[**UpdateFunction**](FunctionsAPI.md#UpdateFunction) | **Put** /workspace/functions/{id} | Update an Function
 
 
 
@@ -79,11 +79,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DestroyFunction
+## DeleteFunction
 
-> ResponseDeleteFunctionsDoc DestroyFunction(ctx, id).Execute()
+> ResponseDeleteFunctionsDoc DeleteFunction(ctx, id).Execute()
 
-Destroy an Function
+Delete an Function
 
 
 
@@ -104,13 +104,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FunctionsAPI.DestroyFunction(context.Background(), id).Execute()
+	resp, r, err := apiClient.FunctionsAPI.DeleteFunction(context.Background(), id).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.DestroyFunction``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.DeleteFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DestroyFunction`: ResponseDeleteFunctionsDoc
-	fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.DestroyFunction`: %v\n", resp)
+	// response from `DeleteFunction`: ResponseDeleteFunctionsDoc
+	fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.DeleteFunction`: %v\n", resp)
 }
 ```
 
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDestroyFunctionRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteFunctionRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
