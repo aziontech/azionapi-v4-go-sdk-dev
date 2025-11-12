@@ -11941,14 +11941,14 @@ paths:
       summary: Create an Function
       tags:
       - Functions
-  /workspace/functions/{id}:
+  /workspace/functions/{function_id}:
     delete:
       description: Delete a specific Function in your account.
       operationId: Delete Function
       parameters:
       - explode: false
         in: path
-        name: id
+        name: function_id
         required: true
         schema:
           type: string
@@ -12098,7 +12098,7 @@ paths:
         style: form
       - explode: false
         in: path
-        name: id
+        name: function_id
         required: true
         schema:
           type: string
@@ -12235,7 +12235,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: id
+        name: function_id
         required: true
         schema:
           type: string
@@ -12383,7 +12383,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: id
+        name: function_id
         required: true
         schema:
           type: string
