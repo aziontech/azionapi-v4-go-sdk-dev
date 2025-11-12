@@ -1,0 +1,440 @@
+# \MetricsFoldersAPI
+
+All URIs are relative to *http://localhost*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**CreateFolder**](MetricsFoldersAPI.md#CreateFolder) | **Post** /metrics/folders | Create a new folder
+[**DeleteFolder**](MetricsFoldersAPI.md#DeleteFolder) | **Delete** /metrics/folders/{folderId} | Delete a folder
+[**ListFolders**](MetricsFoldersAPI.md#ListFolders) | **Get** /metrics/folders | List of the folders
+[**PartialUpdateFolder**](MetricsFoldersAPI.md#PartialUpdateFolder) | **Patch** /metrics/folders/{folderId} | Partially update a folder
+[**RetrieveFolder**](MetricsFoldersAPI.md#RetrieveFolder) | **Get** /metrics/folders/{folderId} | Retrieve details from a folder
+[**UpdateFolder**](MetricsFoldersAPI.md#UpdateFolder) | **Put** /metrics/folders/{folderId} | Update a folder
+
+
+
+## CreateFolder
+
+> ResponseFolder CreateFolder(ctx).FolderRequest(folderRequest).Execute()
+
+Create a new folder
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	folderRequest := *openapiclient.NewFolderRequest("Name_example", "Scope_example") // FolderRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsFoldersAPI.CreateFolder(context.Background()).FolderRequest(folderRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.CreateFolder``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateFolder`: ResponseFolder
+	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.CreateFolder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateFolderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderRequest** | [**FolderRequest**](FolderRequest.md) |  | 
+
+### Return type
+
+[**ResponseFolder**](ResponseFolder.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteFolder
+
+> ResponseDeleteFolder DeleteFolder(ctx, folderId).Execute()
+
+Delete a folder
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	folderId := "folderId_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsFoldersAPI.DeleteFolder(context.Background(), folderId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.DeleteFolder``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteFolder`: ResponseDeleteFolder
+	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.DeleteFolder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**folderId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteFolderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**ResponseDeleteFolder**](ResponseDeleteFolder.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListFolders
+
+> PaginatedResponseListFolderList ListFolders(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+
+List of the folders
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
+	page := int64(789) // int64 | A page number within the paginated result set. (optional)
+	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
+	search := "search_example" // string | A search term. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsFoldersAPI.ListFolders(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.ListFolders``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListFolders`: PaginatedResponseListFolderList
+	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.ListFolders`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListFoldersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **ordering** | **string** | Which field to use when ordering the results. | 
+ **page** | **int64** | A page number within the paginated result set. | 
+ **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
+ **search** | **string** | A search term. | 
+
+### Return type
+
+[**PaginatedResponseListFolderList**](PaginatedResponseListFolderList.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PartialUpdateFolder
+
+> ResponseFolder PartialUpdateFolder(ctx, folderId).PatchedFolderRequest(patchedFolderRequest).Execute()
+
+Partially update a folder
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	folderId := "folderId_example" // string | 
+	patchedFolderRequest := *openapiclient.NewPatchedFolderRequest() // PatchedFolderRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsFoldersAPI.PartialUpdateFolder(context.Background(), folderId).PatchedFolderRequest(patchedFolderRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.PartialUpdateFolder``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PartialUpdateFolder`: ResponseFolder
+	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.PartialUpdateFolder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**folderId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPartialUpdateFolderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **patchedFolderRequest** | [**PatchedFolderRequest**](PatchedFolderRequest.md) |  | 
+
+### Return type
+
+[**ResponseFolder**](ResponseFolder.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RetrieveFolder
+
+> ResponseRetrieveFolder RetrieveFolder(ctx, folderId).Fields(fields).Execute()
+
+Retrieve details from a folder
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	folderId := "folderId_example" // string | 
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsFoldersAPI.RetrieveFolder(context.Background(), folderId).Fields(fields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.RetrieveFolder``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RetrieveFolder`: ResponseRetrieveFolder
+	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.RetrieveFolder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**folderId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRetrieveFolderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fields** | **string** | Comma-separated list of field names to include in the response. | 
+
+### Return type
+
+[**ResponseRetrieveFolder**](ResponseRetrieveFolder.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateFolder
+
+> ResponseFolder UpdateFolder(ctx, folderId).FolderRequest(folderRequest).Execute()
+
+Update a folder
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	folderId := "folderId_example" // string | 
+	folderRequest := *openapiclient.NewFolderRequest("Name_example", "Scope_example") // FolderRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsFoldersAPI.UpdateFolder(context.Background(), folderId).FolderRequest(folderRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.UpdateFolder``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateFolder`: ResponseFolder
+	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.UpdateFolder`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**folderId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateFolderRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **folderRequest** | [**FolderRequest**](FolderRequest.md) |  | 
+
+### Return type
+
+[**ResponseFolder**](ResponseFolder.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
