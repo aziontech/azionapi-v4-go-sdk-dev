@@ -150,11 +150,11 @@ Class | Method | HTTP request | Description
 *FirewallsRulesEngineAPI* | [**RetrieveFirewallRule**](docs/FirewallsRulesEngineAPI.md#retrievefirewallrule) | **Get** /workspace/firewalls/{firewall_id}/request_rules/{id} | Retrieve details of an Firewall Rule
 *FirewallsRulesEngineAPI* | [**UpdateFirewallRule**](docs/FirewallsRulesEngineAPI.md#updatefirewallrule) | **Put** /workspace/firewalls/{firewall_id}/request_rules/{id} | Update an Firewall Rule
 *FunctionsAPI* | [**CreateFunction**](docs/FunctionsAPI.md#createfunction) | **Post** /workspace/functions | Create an Function
-*FunctionsAPI* | [**DeleteFunction**](docs/FunctionsAPI.md#deletefunction) | **Delete** /workspace/functions/{id} | Delete an Function
+*FunctionsAPI* | [**DeleteFunction**](docs/FunctionsAPI.md#deletefunction) | **Delete** /workspace/functions/{function_id} | Delete an Function
 *FunctionsAPI* | [**ListFunctions**](docs/FunctionsAPI.md#listfunctions) | **Get** /workspace/functions | List Functions
-*FunctionsAPI* | [**PartialUpdateFunction**](docs/FunctionsAPI.md#partialupdatefunction) | **Patch** /workspace/functions/{id} | Partially update an Function
-*FunctionsAPI* | [**RetrieveFunction**](docs/FunctionsAPI.md#retrievefunction) | **Get** /workspace/functions/{id} | Retrieve details of an Function
-*FunctionsAPI* | [**UpdateFunction**](docs/FunctionsAPI.md#updatefunction) | **Put** /workspace/functions/{id} | Update an Function
+*FunctionsAPI* | [**PartialUpdateFunction**](docs/FunctionsAPI.md#partialupdatefunction) | **Patch** /workspace/functions/{function_id} | Partially update an Function
+*FunctionsAPI* | [**RetrieveFunction**](docs/FunctionsAPI.md#retrievefunction) | **Get** /workspace/functions/{function_id} | Retrieve details of an Function
+*FunctionsAPI* | [**UpdateFunction**](docs/FunctionsAPI.md#updatefunction) | **Put** /workspace/functions/{function_id} | Update an Function
 *NetworkListsAPI* | [**CreateNetworkList**](docs/NetworkListsAPI.md#createnetworklist) | **Post** /workspace/network_lists | Create a Network List
 *NetworkListsAPI* | [**DeleteNetworkList**](docs/NetworkListsAPI.md#deletenetworklist) | **Delete** /workspace/network_lists/{network_list_id} | Delete a Network List
 *NetworkListsAPI* | [**ListNetworkLists**](docs/NetworkListsAPI.md#listnetworklists) | **Get** /workspace/network_lists | List Network Lists

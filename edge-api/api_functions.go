@@ -226,7 +226,7 @@ func (a *FunctionsAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 type ApiDeleteFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsAPIService
-	id string
+	functionId string
 }
 
 func (r ApiDeleteFunctionRequest) Execute() (*ResponseDeleteFunctionsDoc, *http.Response, error) {
@@ -239,14 +239,14 @@ DeleteFunction Delete an Function
 Delete a specific Function in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param functionId
  @return ApiDeleteFunctionRequest
 */
-func (a *FunctionsAPIService) DeleteFunction(ctx context.Context, id string) ApiDeleteFunctionRequest {
+func (a *FunctionsAPIService) DeleteFunction(ctx context.Context, functionId string) ApiDeleteFunctionRequest {
 	return ApiDeleteFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		functionId: functionId,
 	}
 }
 
@@ -265,8 +265,8 @@ func (a *FunctionsAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/functions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/workspace/functions/{function_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -658,7 +658,7 @@ func (a *FunctionsAPIService) ListFunctionsExecute(r ApiListFunctionsRequest) (*
 type ApiPartialUpdateFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsAPIService
-	id string
+	functionId string
 	patchedEdgeFunctionsRequest *PatchedEdgeFunctionsRequest
 }
 
@@ -677,14 +677,14 @@ PartialUpdateFunction Partially update an Function
 Update one or more fields of an existing Function without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param functionId
  @return ApiPartialUpdateFunctionRequest
 */
-func (a *FunctionsAPIService) PartialUpdateFunction(ctx context.Context, id string) ApiPartialUpdateFunctionRequest {
+func (a *FunctionsAPIService) PartialUpdateFunction(ctx context.Context, functionId string) ApiPartialUpdateFunctionRequest {
 	return ApiPartialUpdateFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		functionId: functionId,
 	}
 }
 
@@ -703,8 +703,8 @@ func (a *FunctionsAPIService) PartialUpdateFunctionExecute(r ApiPartialUpdateFun
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/functions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/workspace/functions/{function_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -859,7 +859,7 @@ func (a *FunctionsAPIService) PartialUpdateFunctionExecute(r ApiPartialUpdateFun
 type ApiRetrieveFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsAPIService
-	id string
+	functionId string
 	fields *string
 }
 
@@ -879,14 +879,14 @@ RetrieveFunction Retrieve details of an Function
 Retrieve details of a specific Function in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param functionId
  @return ApiRetrieveFunctionRequest
 */
-func (a *FunctionsAPIService) RetrieveFunction(ctx context.Context, id string) ApiRetrieveFunctionRequest {
+func (a *FunctionsAPIService) RetrieveFunction(ctx context.Context, functionId string) ApiRetrieveFunctionRequest {
 	return ApiRetrieveFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		functionId: functionId,
 	}
 }
 
@@ -905,8 +905,8 @@ func (a *FunctionsAPIService) RetrieveFunctionExecute(r ApiRetrieveFunctionReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/functions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/workspace/functions/{function_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1062,7 +1062,7 @@ func (a *FunctionsAPIService) RetrieveFunctionExecute(r ApiRetrieveFunctionReque
 type ApiUpdateFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsAPIService
-	id string
+	functionId string
 	edgeFunctionsRequest *EdgeFunctionsRequest
 }
 
@@ -1081,14 +1081,14 @@ UpdateFunction Update an Function
 Update an existing Function. This replaces the entire Function with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param functionId
  @return ApiUpdateFunctionRequest
 */
-func (a *FunctionsAPIService) UpdateFunction(ctx context.Context, id string) ApiUpdateFunctionRequest {
+func (a *FunctionsAPIService) UpdateFunction(ctx context.Context, functionId string) ApiUpdateFunctionRequest {
 	return ApiUpdateFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		functionId: functionId,
 	}
 }
 
@@ -1107,8 +1107,8 @@ func (a *FunctionsAPIService) UpdateFunctionExecute(r ApiUpdateFunctionRequest) 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/functions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/workspace/functions/{function_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
