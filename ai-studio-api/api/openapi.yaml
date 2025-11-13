@@ -902,6 +902,151 @@ paths:
       summary: Update a knowledge base
       tags:
       - AI Studio - Knowledge Bases
+  /workspace/ai/kbs/{kbId}/ask:
+    post:
+      description: Ask a question. The agent will use RAG over this knowledge base
+        and answer with context.
+      operationId: ask knowledge base
+      parameters:
+      - explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KBAskRequestRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KBAskResponse"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Ask the knowledge base
+      tags:
+      - AI Studio - Knowledge Bases
   /workspace/ai/kbs/{kbId}/documents:
     get:
       description: List all documents owned by your account.
@@ -1892,6 +2037,155 @@ paths:
       summary: List chunks
       tags:
       - AI Studio - Chunks
+  /workspace/ai/kbs/{kbId}/query:
+    post:
+      description: Query a specific chunk from a knowledge base in your account.
+      operationId: query chunk from knowledge base
+      parameters:
+      - explode: false
+        in: path
+        name: kbId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              QueryRequest:
+                value:
+                  query: how to deploy
+                  top_k: 5
+            schema:
+              $ref: "#/components/schemas/KBQueryRequestRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KBQueryResponse"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Query a chunk from a knowledge base
+      tags:
+      - AI Studio - Knowledge Bases
   /workspace/ai/threads:
     get:
       description: List all chat threads owned by your account.
@@ -5197,6 +5491,130 @@ components:
           minLength: 1
           type: string
       title: JSONAPIErrorSource
+      type: object
+    KBAskRequestRequest:
+      additionalProperties: false
+      example:
+        question: question
+        top_k: 1
+        model: model
+      properties:
+        question:
+          minLength: 1
+          type: string
+        top_k:
+          format: int64
+          minimum: 1
+          type: integer
+        model:
+          nullable: true
+          type: string
+      required:
+      - question
+      title: KBAskRequestRequest
+      type: object
+    KBAskResponse:
+      additionalProperties: false
+      example:
+        answer: answer
+        context:
+        - similarity: 0.8008281904610115
+          source: source
+          title: title
+          search_type: search_type
+          chunk_id: chunk_id
+          content: content
+        - similarity: 0.8008281904610115
+          source: source
+          title: title
+          search_type: search_type
+          chunk_id: chunk_id
+          content: content
+      properties:
+        answer:
+          type: string
+        context:
+          items:
+            $ref: "#/components/schemas/KBQueryResult"
+          type: array
+      required:
+      - answer
+      - context
+      title: KBAskResponse
+      type: object
+    KBQueryRequestRequest:
+      additionalProperties: false
+      example:
+        query: query
+        top_k: 1
+      properties:
+        query:
+          minLength: 1
+          type: string
+        top_k:
+          format: int64
+          minimum: 1
+          type: integer
+      required:
+      - query
+      title: KBQueryRequestRequest
+      type: object
+    KBQueryResponse:
+      additionalProperties: false
+      example:
+        results:
+        - similarity: 0.8008281904610115
+          source: source
+          title: title
+          search_type: search_type
+          chunk_id: chunk_id
+          content: content
+        - similarity: 0.8008281904610115
+          source: source
+          title: title
+          search_type: search_type
+          chunk_id: chunk_id
+          content: content
+      properties:
+        results:
+          items:
+            $ref: "#/components/schemas/KBQueryResult"
+          type: array
+      required:
+      - results
+      title: KBQueryResponse
+      type: object
+    KBQueryResult:
+      additionalProperties: false
+      example:
+        similarity: 0.8008281904610115
+        source: source
+        title: title
+        search_type: search_type
+        chunk_id: chunk_id
+        content: content
+      properties:
+        chunk_id:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+        source:
+          type: string
+        similarity:
+          format: double
+          nullable: true
+          type: number
+        search_type:
+          type: string
+      required:
+      - chunk_id
+      - content
+      - search_type
+      - source
+      - title
+      title: KBQueryResult
       type: object
     KnowledgeBase:
       additionalProperties: false

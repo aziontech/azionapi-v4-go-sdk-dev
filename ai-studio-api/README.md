@@ -90,10 +90,12 @@ Class | Method | HTTP request | Description
 *AIStudioDocumentsAPI* | [**ListDocuments**](docs/AIStudioDocumentsAPI.md#listdocuments) | **Get** /workspace/ai/kbs/{kbId}/documents | List documents
 *AIStudioDocumentsAPI* | [**RetriveDocument**](docs/AIStudioDocumentsAPI.md#retrivedocument) | **Get** /workspace/ai/kbs/{kbId}/documents/{documentId} | Retrieve details from a document
 *AIStudioDocumentsAPI* | [**UpdateDocument**](docs/AIStudioDocumentsAPI.md#updatedocument) | **Put** /workspace/ai/kbs/{kbId}/documents/{documentId} | Update a document
+*AIStudioKnowledgeBasesAPI* | [**AskKnowledgeBase**](docs/AIStudioKnowledgeBasesAPI.md#askknowledgebase) | **Post** /workspace/ai/kbs/{kbId}/ask | Ask the knowledge base
 *AIStudioKnowledgeBasesAPI* | [**CreateKnowledgeBase**](docs/AIStudioKnowledgeBasesAPI.md#createknowledgebase) | **Post** /workspace/ai/kbs | Create a knowledge base
 *AIStudioKnowledgeBasesAPI* | [**DestroyAKnowledgeBase**](docs/AIStudioKnowledgeBasesAPI.md#destroyaknowledgebase) | **Delete** /workspace/ai/kbs/{kbId} | Destroy a knowledge base
 *AIStudioKnowledgeBasesAPI* | [**ListKnowledgeBases**](docs/AIStudioKnowledgeBasesAPI.md#listknowledgebases) | **Get** /workspace/ai/kbs | List knowledge bases
 *AIStudioKnowledgeBasesAPI* | [**PartialUpdateKnowledgeBase**](docs/AIStudioKnowledgeBasesAPI.md#partialupdateknowledgebase) | **Patch** /workspace/ai/kbs/{kbId} | Partially update a knowledge base
+*AIStudioKnowledgeBasesAPI* | [**QueryChunkFromKnowledgeBase**](docs/AIStudioKnowledgeBasesAPI.md#querychunkfromknowledgebase) | **Post** /workspace/ai/kbs/{kbId}/query | Query a chunk from a knowledge base
 *AIStudioKnowledgeBasesAPI* | [**RetriveKnowledgeBase**](docs/AIStudioKnowledgeBasesAPI.md#retriveknowledgebase) | **Get** /workspace/ai/kbs/{kbId} | Retrieve details from a knowledge base
 *AIStudioKnowledgeBasesAPI* | [**UpdateKnowledgeBase**](docs/AIStudioKnowledgeBasesAPI.md#updateknowledgebase) | **Put** /workspace/ai/kbs/{kbId} | Update a knowledge base
 *AIStudioMessagesAPI* | [**CreateMessage**](docs/AIStudioMessagesAPI.md#createmessage) | **Post** /workspace/ai/threads/{threadId}/messages | Create a message
@@ -122,6 +124,11 @@ Class | Method | HTTP request | Description
  - [JSONAPIErrorObject](docs/JSONAPIErrorObject.md)
  - [JSONAPIErrorResponse](docs/JSONAPIErrorResponse.md)
  - [JSONAPIErrorSource](docs/JSONAPIErrorSource.md)
+ - [KBAskRequestRequest](docs/KBAskRequestRequest.md)
+ - [KBAskResponse](docs/KBAskResponse.md)
+ - [KBQueryRequestRequest](docs/KBQueryRequestRequest.md)
+ - [KBQueryResponse](docs/KBQueryResponse.md)
+ - [KBQueryResult](docs/KBQueryResult.md)
  - [KnowledgeBase](docs/KnowledgeBase.md)
  - [KnowledgeBaseRequest](docs/KnowledgeBaseRequest.md)
  - [Message](docs/Message.md)

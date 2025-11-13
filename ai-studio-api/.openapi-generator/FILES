@@ -24,6 +24,11 @@ docs/DocumentRequest.md
 docs/JSONAPIErrorObject.md
 docs/JSONAPIErrorResponse.md
 docs/JSONAPIErrorSource.md
+docs/KBAskRequestRequest.md
+docs/KBAskResponse.md
+docs/KBQueryRequestRequest.md
+docs/KBQueryResponse.md
+docs/KBQueryResult.md
 docs/KnowledgeBase.md
 docs/KnowledgeBaseRequest.md
 docs/Message.md
@@ -76,6 +81,11 @@ model_document_request.go
 model_jsonapi_error_object.go
 model_jsonapi_error_response.go
 model_jsonapi_error_source.go
+model_kb_ask_request_request.go
+model_kb_ask_response.go
+model_kb_query_request_request.go
+model_kb_query_response.go
+model_kb_query_result.go
 model_knowledge_base.go
 model_knowledge_base_request.go
 model_message.go
