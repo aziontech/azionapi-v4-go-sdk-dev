@@ -4,13 +4,87 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AskKnowledgeBase**](AIStudioKnowledgeBasesAPI.md#AskKnowledgeBase) | **Post** /workspace/ai/kbs/{kbId}/ask | Ask the knowledge base
 [**CreateKnowledgeBase**](AIStudioKnowledgeBasesAPI.md#CreateKnowledgeBase) | **Post** /workspace/ai/kbs | Create a knowledge base
 [**DestroyAKnowledgeBase**](AIStudioKnowledgeBasesAPI.md#DestroyAKnowledgeBase) | **Delete** /workspace/ai/kbs/{kbId} | Destroy a knowledge base
 [**ListKnowledgeBases**](AIStudioKnowledgeBasesAPI.md#ListKnowledgeBases) | **Get** /workspace/ai/kbs | List knowledge bases
 [**PartialUpdateKnowledgeBase**](AIStudioKnowledgeBasesAPI.md#PartialUpdateKnowledgeBase) | **Patch** /workspace/ai/kbs/{kbId} | Partially update a knowledge base
+[**QueryChunkFromKnowledgeBase**](AIStudioKnowledgeBasesAPI.md#QueryChunkFromKnowledgeBase) | **Post** /workspace/ai/kbs/{kbId}/query | Query a chunk from a knowledge base
 [**RetriveKnowledgeBase**](AIStudioKnowledgeBasesAPI.md#RetriveKnowledgeBase) | **Get** /workspace/ai/kbs/{kbId} | Retrieve details from a knowledge base
 [**UpdateKnowledgeBase**](AIStudioKnowledgeBasesAPI.md#UpdateKnowledgeBase) | **Put** /workspace/ai/kbs/{kbId} | Update a knowledge base
 
+
+
+## AskKnowledgeBase
+
+> KBAskResponse AskKnowledgeBase(ctx, kbId).KBAskRequestRequest(kBAskRequestRequest).Execute()
+
+Ask the knowledge base
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	kbId := int64(789) // int64 | 
+	kBAskRequestRequest := *openapiclient.NewKBAskRequestRequest("Question_example") // KBAskRequestRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AIStudioKnowledgeBasesAPI.AskKnowledgeBase(context.Background(), kbId).KBAskRequestRequest(kBAskRequestRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioKnowledgeBasesAPI.AskKnowledgeBase``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AskKnowledgeBase`: KBAskResponse
+	fmt.Fprintf(os.Stdout, "Response from `AIStudioKnowledgeBasesAPI.AskKnowledgeBase`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**kbId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAskKnowledgeBaseRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **kBAskRequestRequest** | [**KBAskRequestRequest**](KBAskRequestRequest.md) |  | 
+
+### Return type
+
+[**KBAskResponse**](KBAskResponse.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateKnowledgeBase
@@ -280,6 +354,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ResponseKnowledgeBase**](ResponseKnowledgeBase.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## QueryChunkFromKnowledgeBase
+
+> KBQueryResponse QueryChunkFromKnowledgeBase(ctx, kbId).KBQueryRequestRequest(kBQueryRequestRequest).Execute()
+
+Query a chunk from a knowledge base
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	kbId := int64(789) // int64 | 
+	kBQueryRequestRequest := *openapiclient.NewKBQueryRequestRequest("Query_example") // KBQueryRequestRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AIStudioKnowledgeBasesAPI.QueryChunkFromKnowledgeBase(context.Background(), kbId).KBQueryRequestRequest(kBQueryRequestRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AIStudioKnowledgeBasesAPI.QueryChunkFromKnowledgeBase``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `QueryChunkFromKnowledgeBase`: KBQueryResponse
+	fmt.Fprintf(os.Stdout, "Response from `AIStudioKnowledgeBasesAPI.QueryChunkFromKnowledgeBase`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**kbId** | **int64** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiQueryChunkFromKnowledgeBaseRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **kBQueryRequestRequest** | [**KBQueryRequestRequest**](KBQueryRequestRequest.md) |  | 
+
+### Return type
+
+[**KBQueryResponse**](KBQueryResponse.md)
 
 ### Authorization
 
