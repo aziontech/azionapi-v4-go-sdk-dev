@@ -6830,7 +6830,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Create an Firewall
+      summary: Create a Firewall
       tags:
       - Firewalls
   /workspace/firewalls/{firewall_id}:
@@ -6973,7 +6973,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Delete an Firewall
+      summary: Delete a Firewall
       tags:
       - Firewalls
     get:
@@ -7117,7 +7117,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Retrieve details from an Firewall
+      summary: Retrieve details from a Firewall
       tags:
       - Firewalls
     patch:
@@ -7265,7 +7265,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Partially update an Firewall
+      summary: Partially update a Firewall
       tags:
       - Firewalls
     put:
@@ -7414,7 +7414,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Update an Firewall
+      summary: Update a Firewall
       tags:
       - Firewalls
   /workspace/firewalls/{firewall_id}/clone:
@@ -7564,7 +7564,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Clone an Firewall
+      summary: Clone a Firewall
       tags:
       - Firewalls
   /workspace/firewalls/{firewall_id}/functions:
