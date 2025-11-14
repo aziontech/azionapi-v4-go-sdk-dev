@@ -4,13 +4,13 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CloneFirewall**](FirewallsAPI.md#CloneFirewall) | **Post** /workspace/firewalls/{firewall_id}/clone | Clone an Firewall
-[**CreateFirewall**](FirewallsAPI.md#CreateFirewall) | **Post** /workspace/firewalls | Create an Firewall
-[**DeleteFirewall**](FirewallsAPI.md#DeleteFirewall) | **Delete** /workspace/firewalls/{firewall_id} | Delete an Firewall
+[**CloneFirewall**](FirewallsAPI.md#CloneFirewall) | **Post** /workspace/firewalls/{firewall_id}/clone | Clone a Firewall
+[**CreateFirewall**](FirewallsAPI.md#CreateFirewall) | **Post** /workspace/firewalls | Create a Firewall
+[**DeleteFirewall**](FirewallsAPI.md#DeleteFirewall) | **Delete** /workspace/firewalls/{firewall_id} | Delete a Firewall
 [**ListFirewalls**](FirewallsAPI.md#ListFirewalls) | **Get** /workspace/firewalls | List Firewalls
-[**PartialUpdateFirewall**](FirewallsAPI.md#PartialUpdateFirewall) | **Patch** /workspace/firewalls/{firewall_id} | Partially update an Firewall
-[**RetrieveFirewall**](FirewallsAPI.md#RetrieveFirewall) | **Get** /workspace/firewalls/{firewall_id} | Retrieve details from an Firewall
-[**UpdateFirewall**](FirewallsAPI.md#UpdateFirewall) | **Put** /workspace/firewalls/{firewall_id} | Update an Firewall
+[**PartialUpdateFirewall**](FirewallsAPI.md#PartialUpdateFirewall) | **Patch** /workspace/firewalls/{firewall_id} | Partially update a Firewall
+[**RetrieveFirewall**](FirewallsAPI.md#RetrieveFirewall) | **Get** /workspace/firewalls/{firewall_id} | Retrieve details from a Firewall
+[**UpdateFirewall**](FirewallsAPI.md#UpdateFirewall) | **Put** /workspace/firewalls/{firewall_id} | Update a Firewall
 
 
 
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 > ResponseFirewall CloneFirewall(ctx, firewallId).CloneFirewallRequest(cloneFirewallRequest).Execute()
 
-Clone an Firewall
+Clone a Firewall
 
 
 
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 > ResponseFirewall CreateFirewall(ctx).FirewallRequest(firewallRequest).Execute()
 
-Create an Firewall
+Create a Firewall
 
 
 
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 > ResponseDeleteFirewall DeleteFirewall(ctx, firewallId).Execute()
 
-Delete an Firewall
+Delete a Firewall
 
 
 
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 > ResponseFirewall PartialUpdateFirewall(ctx, firewallId).PatchedFirewallRequest(patchedFirewallRequest).Execute()
 
-Partially update an Firewall
+Partially update a Firewall
 
 
 
@@ -372,7 +372,7 @@ Name | Type | Description  | Notes
 
 > ResponseRetrieveFirewall RetrieveFirewall(ctx, firewallId).Fields(fields).Execute()
 
-Retrieve details from an Firewall
+Retrieve details from a Firewall
 
 
 
@@ -444,7 +444,7 @@ Name | Type | Description  | Notes
 
 > ResponseFirewall UpdateFirewall(ctx, firewallId).FirewallRequest(firewallRequest).Execute()
 
-Update an Firewall
+Update a Firewall
 
 
 

@@ -40,7 +40,7 @@ func (r ApiCloneFirewallRequest) Execute() (*ResponseFirewall, *http.Response, e
 }
 
 /*
-CloneFirewall Clone an Firewall
+CloneFirewall Clone a Firewall
 
 Create a new Firewall by performing a deep copy of an existing Firewall, including its Function Instances and Rules Engine.
 
@@ -243,7 +243,7 @@ func (r ApiCreateFirewallRequest) Execute() (*ResponseFirewall, *http.Response, 
 }
 
 /*
-CreateFirewall Create an Firewall
+CreateFirewall Create a Firewall
 
 Create a new Firewall for your account.
 
@@ -438,7 +438,7 @@ func (r ApiDeleteFirewallRequest) Execute() (*ResponseDeleteFirewall, *http.Resp
 }
 
 /*
-DeleteFirewall Delete an Firewall
+DeleteFirewall Delete a Firewall
 
 Delete a specific Firewall in your account.
 
@@ -876,7 +876,7 @@ func (r ApiPartialUpdateFirewallRequest) Execute() (*ResponseFirewall, *http.Res
 }
 
 /*
-PartialUpdateFirewall Partially update an Firewall
+PartialUpdateFirewall Partially update a Firewall
 
 Update one or more fields of an existing Firewall without affecting other fields.
 
@@ -1078,7 +1078,7 @@ func (r ApiRetrieveFirewallRequest) Execute() (*ResponseRetrieveFirewall, *http.
 }
 
 /*
-RetrieveFirewall Retrieve details from an Firewall
+RetrieveFirewall Retrieve details from a Firewall
 
 Retrieve details from a specific Firewall in your account.
 
@@ -1280,7 +1280,7 @@ func (r ApiUpdateFirewallRequest) Execute() (*ResponseFirewall, *http.Response, 
 }
 
 /*
-UpdateFirewall Update an Firewall
+UpdateFirewall Update a Firewall
 
 Update an existing Firewall. This replaces the entire Firewall with the new data provided.
 

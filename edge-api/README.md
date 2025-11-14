@@ -129,13 +129,13 @@ Class | Method | HTTP request | Description
 *CustomPagesAPI* | [**PartialUpdateCustomPage**](docs/CustomPagesAPI.md#partialupdatecustompage) | **Patch** /workspace/custom_pages/{custom_page_id} | Partially update a Custom Page
 *CustomPagesAPI* | [**RetrieveCustomPage**](docs/CustomPagesAPI.md#retrievecustompage) | **Get** /workspace/custom_pages/{custom_page_id} | Retrieve details of a Custom Page
 *CustomPagesAPI* | [**UpdateCustomPage**](docs/CustomPagesAPI.md#updatecustompage) | **Put** /workspace/custom_pages/{custom_page_id} | Update a Custom Page
-*FirewallsAPI* | [**CloneFirewall**](docs/FirewallsAPI.md#clonefirewall) | **Post** /workspace/firewalls/{firewall_id}/clone | Clone an Firewall
-*FirewallsAPI* | [**CreateFirewall**](docs/FirewallsAPI.md#createfirewall) | **Post** /workspace/firewalls | Create an Firewall
-*FirewallsAPI* | [**DeleteFirewall**](docs/FirewallsAPI.md#deletefirewall) | **Delete** /workspace/firewalls/{firewall_id} | Delete an Firewall
+*FirewallsAPI* | [**CloneFirewall**](docs/FirewallsAPI.md#clonefirewall) | **Post** /workspace/firewalls/{firewall_id}/clone | Clone a Firewall
+*FirewallsAPI* | [**CreateFirewall**](docs/FirewallsAPI.md#createfirewall) | **Post** /workspace/firewalls | Create a Firewall
+*FirewallsAPI* | [**DeleteFirewall**](docs/FirewallsAPI.md#deletefirewall) | **Delete** /workspace/firewalls/{firewall_id} | Delete a Firewall
 *FirewallsAPI* | [**ListFirewalls**](docs/FirewallsAPI.md#listfirewalls) | **Get** /workspace/firewalls | List Firewalls
-*FirewallsAPI* | [**PartialUpdateFirewall**](docs/FirewallsAPI.md#partialupdatefirewall) | **Patch** /workspace/firewalls/{firewall_id} | Partially update an Firewall
-*FirewallsAPI* | [**RetrieveFirewall**](docs/FirewallsAPI.md#retrievefirewall) | **Get** /workspace/firewalls/{firewall_id} | Retrieve details from an Firewall
-*FirewallsAPI* | [**UpdateFirewall**](docs/FirewallsAPI.md#updatefirewall) | **Put** /workspace/firewalls/{firewall_id} | Update an Firewall
+*FirewallsAPI* | [**PartialUpdateFirewall**](docs/FirewallsAPI.md#partialupdatefirewall) | **Patch** /workspace/firewalls/{firewall_id} | Partially update a Firewall
+*FirewallsAPI* | [**RetrieveFirewall**](docs/FirewallsAPI.md#retrievefirewall) | **Get** /workspace/firewalls/{firewall_id} | Retrieve details from a Firewall
+*FirewallsAPI* | [**UpdateFirewall**](docs/FirewallsAPI.md#updatefirewall) | **Put** /workspace/firewalls/{firewall_id} | Update a Firewall
 *FirewallsFunctionAPI* | [**CreateFirewallFunction**](docs/FirewallsFunctionAPI.md#createfirewallfunction) | **Post** /workspace/firewalls/{firewall_id}/functions | Create an Firewall Function
 *FirewallsFunctionAPI* | [**DeleteFirewallFunction**](docs/FirewallsFunctionAPI.md#deletefirewallfunction) | **Delete** /workspace/firewalls/{firewall_id}/functions/{function_id} | Delete an Firewall Function
 *FirewallsFunctionAPI* | [**ListFirewallFunction**](docs/FirewallsFunctionAPI.md#listfirewallfunction) | **Get** /workspace/firewalls/{firewall_id}/functions | List Firewall Function
