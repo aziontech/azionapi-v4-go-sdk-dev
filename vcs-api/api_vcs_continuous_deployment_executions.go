@@ -26,7 +26,7 @@ type VCSContinuousDeploymentExecutionsAPIService service
 type ApiCreateExecutionRequest struct {
 	ctx context.Context
 	ApiService *VCSContinuousDeploymentExecutionsAPIService
-	id int64
+	continuousDeploymentId int64
 }
 
 func (r ApiCreateExecutionRequest) Execute() (*ResponseExecution, *http.Response, error) {
@@ -39,14 +39,14 @@ CreateExecution Create a execution
 Create a new continuous deployment execution.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param continuousDeploymentId
  @return ApiCreateExecutionRequest
 */
-func (a *VCSContinuousDeploymentExecutionsAPIService) CreateExecution(ctx context.Context, id int64) ApiCreateExecutionRequest {
+func (a *VCSContinuousDeploymentExecutionsAPIService) CreateExecution(ctx context.Context, continuousDeploymentId int64) ApiCreateExecutionRequest {
 	return ApiCreateExecutionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		continuousDeploymentId: continuousDeploymentId,
 	}
 }
 
@@ -65,8 +65,8 @@ func (a *VCSContinuousDeploymentExecutionsAPIService) CreateExecutionExecute(r A
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/vcs/continuous_deployments/{id}/executions"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/vcs/continuous_deployments/{continuous_deployment_id}/executions"
+	localVarPath = strings.Replace(localVarPath, "{"+"continuous_deployment_id"+"}", url.PathEscape(parameterValueToString(r.continuousDeploymentId, "continuousDeploymentId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -220,7 +220,7 @@ func (a *VCSContinuousDeploymentExecutionsAPIService) CreateExecutionExecute(r A
 type ApiListExecutionsRequest struct {
 	ctx context.Context
 	ApiService *VCSContinuousDeploymentExecutionsAPIService
-	id int64
+	continuousDeploymentId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -268,14 +268,14 @@ ListExecutions List executions
 List all continuous deployment executions.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param continuousDeploymentId
  @return ApiListExecutionsRequest
 */
-func (a *VCSContinuousDeploymentExecutionsAPIService) ListExecutions(ctx context.Context, id int64) ApiListExecutionsRequest {
+func (a *VCSContinuousDeploymentExecutionsAPIService) ListExecutions(ctx context.Context, continuousDeploymentId int64) ApiListExecutionsRequest {
 	return ApiListExecutionsRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		continuousDeploymentId: continuousDeploymentId,
 	}
 }
 
@@ -294,8 +294,8 @@ func (a *VCSContinuousDeploymentExecutionsAPIService) ListExecutionsExecute(r Ap
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/vcs/continuous_deployments/{id}/executions"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/vcs/continuous_deployments/{continuous_deployment_id}/executions"
+	localVarPath = strings.Replace(localVarPath, "{"+"continuous_deployment_id"+"}", url.PathEscape(parameterValueToString(r.continuousDeploymentId, "continuousDeploymentId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

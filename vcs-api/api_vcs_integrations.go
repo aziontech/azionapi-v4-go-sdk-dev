@@ -661,7 +661,7 @@ func (a *VCSIntegrationsAPIService) RetrieveIntegrationExecute(r ApiRetrieveInte
 type ApiRetrieveRepositoriesRequest struct {
 	ctx context.Context
 	ApiService *VCSIntegrationsAPIService
-	id int64
+	integrationId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -709,14 +709,14 @@ RetrieveRepositories List integration repositories.
 Retrieve repositories for a specific integration.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param integrationId
  @return ApiRetrieveRepositoriesRequest
 */
-func (a *VCSIntegrationsAPIService) RetrieveRepositories(ctx context.Context, id int64) ApiRetrieveRepositoriesRequest {
+func (a *VCSIntegrationsAPIService) RetrieveRepositories(ctx context.Context, integrationId int64) ApiRetrieveRepositoriesRequest {
 	return ApiRetrieveRepositoriesRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		integrationId: integrationId,
 	}
 }
 
@@ -735,8 +735,8 @@ func (a *VCSIntegrationsAPIService) RetrieveRepositoriesExecute(r ApiRetrieveRep
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/vcs/integrations/{id}/repositories"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/vcs/integrations/{integration_id}/repositories"
+	localVarPath = strings.Replace(localVarPath, "{"+"integration_id"+"}", url.PathEscape(parameterValueToString(r.integrationId, "integrationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

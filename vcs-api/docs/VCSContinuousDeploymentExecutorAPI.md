@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RetrieveExecutor**](VCSContinuousDeploymentExecutorAPI.md#RetrieveExecutor) | **Get** /vcs/continuous_deployments/{id}/executor | Retrieve details from a executor
-[**UpdateExecutor**](VCSContinuousDeploymentExecutorAPI.md#UpdateExecutor) | **Put** /vcs/continuous_deployments/{id}/executor | Update a executor
+[**RetrieveExecutor**](VCSContinuousDeploymentExecutorAPI.md#RetrieveExecutor) | **Get** /vcs/continuous_deployments/{continuous_deployment_id}/executor | Retrieve details from a executor
+[**UpdateExecutor**](VCSContinuousDeploymentExecutorAPI.md#UpdateExecutor) | **Put** /vcs/continuous_deployments/{continuous_deployment_id}/executor | Update a executor
 
 
 
 ## RetrieveExecutor
 
-> ResponseRetrieveExecutor RetrieveExecutor(ctx, id).Fields(fields).Execute()
+> ResponseRetrieveExecutor RetrieveExecutor(ctx, continuousDeploymentId).Fields(fields).Execute()
 
 Retrieve details from a executor
 
@@ -30,12 +30,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | 
+	continuousDeploymentId := int64(789) // int64 | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSContinuousDeploymentExecutorAPI.RetrieveExecutor(context.Background(), id).Fields(fields).Execute()
+	resp, r, err := apiClient.VCSContinuousDeploymentExecutorAPI.RetrieveExecutor(context.Background(), continuousDeploymentId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentExecutorAPI.RetrieveExecutor``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -51,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** |  | 
+**continuousDeploymentId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## UpdateExecutor
 
-> ResponseExecutor UpdateExecutor(ctx, id).Execute()
+> ResponseExecutor UpdateExecutor(ctx, continuousDeploymentId).Execute()
 
 Update a executor
 
@@ -102,11 +102,11 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | 
+	continuousDeploymentId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSContinuousDeploymentExecutorAPI.UpdateExecutor(context.Background(), id).Execute()
+	resp, r, err := apiClient.VCSContinuousDeploymentExecutorAPI.UpdateExecutor(context.Background(), continuousDeploymentId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentExecutorAPI.UpdateExecutor``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -122,7 +122,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** |  | 
+**continuousDeploymentId** | **int64** |  | 
 
 ### Other Parameters
 

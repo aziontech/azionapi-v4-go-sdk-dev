@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -101,10 +100,4 @@ model_response_retrieve_execution_script.go
 model_response_retrieve_executor.go
 model_response_retrieve_integration.go
 response.go
-test/api_vcs_continuous_deployment_executions_test.go
-test/api_vcs_continuous_deployment_executor_test.go
-test/api_vcs_continuous_deployments_test.go
-test/api_vcs_execution_scripts_test.go
-test/api_vcs_integrations_test.go
-test/api_vcs_providers_test.go
 utils.go

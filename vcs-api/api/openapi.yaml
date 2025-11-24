@@ -900,11 +900,19 @@ paths:
       summary: Update a continuous deployment
       tags:
       - VCS - Continuous Deployments
-  /vcs/continuous_deployments/{id}/executions:
+  /vcs/continuous_deployments/{continuous_deployment_id}/executions:
     get:
       description: List all continuous deployment executions.
       operationId: List executions
       parameters:
+      - explode: false
+        in: path
+        name: continuous_deployment_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -913,14 +921,6 @@ paths:
         schema:
           type: string
         style: form
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
       - description: Which field to use when ordering the results.
         explode: true
         in: query
@@ -1086,7 +1086,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: id
+        name: continuous_deployment_id
         required: true
         schema:
           format: int64
@@ -1223,11 +1223,19 @@ paths:
       summary: Create a execution
       tags:
       - VCS - Continuous Deployment Executions
-  /vcs/continuous_deployments/{id}/executor:
+  /vcs/continuous_deployments/{continuous_deployment_id}/executor:
     get:
       description: Retrieve details from a specific continuous deployment executor.
       operationId: Retrieve executor
       parameters:
+      - explode: false
+        in: path
+        name: continuous_deployment_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -1236,14 +1244,6 @@ paths:
         schema:
           type: string
         style: form
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
       responses:
         "200":
           content:
@@ -1375,7 +1375,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: id
+        name: continuous_deployment_id
         required: true
         schema:
           format: int64
@@ -2018,207 +2018,6 @@ paths:
       summary: List integrations
       tags:
       - VCS - Integrations
-  /vcs/integrations/{id}/repositories:
-    get:
-      description: Retrieve repositories for a specific integration.
-      operationId: Retrieve repositories
-      parameters:
-      - description: Comma-separated list of field names to include in the response.
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
-      - description: Which field to use when ordering the results.
-        explode: true
-        in: query
-        name: ordering
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: A page number within the paginated result set.
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: A numeric value that indicates the number of items per page.
-        explode: true
-        in: query
-        name: page_size
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: A search term.
-        explode: true
-        in: query
-        name: search
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              examples:
-                ExampleResponseForRetrievingRepositories.:
-                  summary: Example response for retrieving repositories.
-                  value:
-                    count: 123
-                    results:
-                    - count: 2
-                      links:
-                        next: https://example.com/api/integrations/uuid/repositories?page=2
-                        prev: null
-                        first: https://example.com/api/integrations/uuid/repositories?page=1
-                        last: https://example.com/api/integrations/uuid/repositories?page=2
-                      results:
-                      - id: "1"
-                        name: Repository 1
-                        visibility: public
-                        url: https://github.com/example/repository1
-                      - id: "2"
-                        name: Repository 2
-                        visibility: private
-                        url: https://github.com/example/repository2
-              schema:
-                $ref: "#/components/schemas/PaginatedResponseListRepositoryList"
-          description: Ok
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: List integration repositories.
-      tags:
-      - VCS - Integrations
   /vcs/integrations/{integration_id}:
     delete:
       description: Delete a specific account integration.
@@ -2504,6 +2303,207 @@ paths:
       - TokenAuth: []
       - BearerAuth: []
       summary: Retrieve details from a integration
+      tags:
+      - VCS - Integrations
+  /vcs/integrations/{integration_id}/repositories:
+    get:
+      description: Retrieve repositories for a specific integration.
+      operationId: Retrieve repositories
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: integration_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Which field to use when ordering the results.
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A numeric value that indicates the number of items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ExampleResponseForRetrievingRepositories.:
+                  summary: Example response for retrieving repositories.
+                  value:
+                    count: 123
+                    results:
+                    - count: 2
+                      links:
+                        next: https://example.com/api/integrations/uuid/repositories?page=2
+                        prev: null
+                        first: https://example.com/api/integrations/uuid/repositories?page=1
+                        last: https://example.com/api/integrations/uuid/repositories?page=2
+                      results:
+                      - id: "1"
+                        name: Repository 1
+                        visibility: public
+                        url: https://github.com/example/repository1
+                      - id: "2"
+                        name: Repository 2
+                        visibility: private
+                        url: https://github.com/example/repository2
+              schema:
+                $ref: "#/components/schemas/PaginatedResponseListRepositoryList"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: List integration repositories.
       tags:
       - VCS - Integrations
   /vcs/providers:

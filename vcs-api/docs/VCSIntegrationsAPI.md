@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**DeleteIntegration**](VCSIntegrationsAPI.md#DeleteIntegration) | **Delete** /vcs/integrations/{integration_id} | Delete an integration
 [**ListIntegrations**](VCSIntegrationsAPI.md#ListIntegrations) | **Get** /vcs/integrations | List integrations
 [**RetrieveIntegration**](VCSIntegrationsAPI.md#RetrieveIntegration) | **Get** /vcs/integrations/{integration_id} | Retrieve details from a integration
-[**RetrieveRepositories**](VCSIntegrationsAPI.md#RetrieveRepositories) | **Get** /vcs/integrations/{id}/repositories | List integration repositories.
+[**RetrieveRepositories**](VCSIntegrationsAPI.md#RetrieveRepositories) | **Get** /vcs/integrations/{integration_id}/repositories | List integration repositories.
 
 
 
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveRepositories
 
-> PaginatedResponseListRepositoryList RetrieveRepositories(ctx, id).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedResponseListRepositoryList RetrieveRepositories(ctx, integrationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List integration repositories.
 
@@ -248,7 +248,7 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | 
+	integrationId := int64(789) // int64 | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -257,7 +257,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSIntegrationsAPI.RetrieveRepositories(context.Background(), id).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.VCSIntegrationsAPI.RetrieveRepositories(context.Background(), integrationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSIntegrationsAPI.RetrieveRepositories``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -273,7 +273,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** |  | 
+**integrationId** | **int64** |  | 
 
 ### Other Parameters
 

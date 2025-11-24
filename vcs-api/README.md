@@ -78,10 +78,10 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*VCSContinuousDeploymentExecutionsAPI* | [**CreateExecution**](docs/VCSContinuousDeploymentExecutionsAPI.md#createexecution) | **Post** /vcs/continuous_deployments/{id}/executions | Create a execution
-*VCSContinuousDeploymentExecutionsAPI* | [**ListExecutions**](docs/VCSContinuousDeploymentExecutionsAPI.md#listexecutions) | **Get** /vcs/continuous_deployments/{id}/executions | List executions
-*VCSContinuousDeploymentExecutorAPI* | [**RetrieveExecutor**](docs/VCSContinuousDeploymentExecutorAPI.md#retrieveexecutor) | **Get** /vcs/continuous_deployments/{id}/executor | Retrieve details from a executor
-*VCSContinuousDeploymentExecutorAPI* | [**UpdateExecutor**](docs/VCSContinuousDeploymentExecutorAPI.md#updateexecutor) | **Put** /vcs/continuous_deployments/{id}/executor | Update a executor
+*VCSContinuousDeploymentExecutionsAPI* | [**CreateExecution**](docs/VCSContinuousDeploymentExecutionsAPI.md#createexecution) | **Post** /vcs/continuous_deployments/{continuous_deployment_id}/executions | Create a execution
+*VCSContinuousDeploymentExecutionsAPI* | [**ListExecutions**](docs/VCSContinuousDeploymentExecutionsAPI.md#listexecutions) | **Get** /vcs/continuous_deployments/{continuous_deployment_id}/executions | List executions
+*VCSContinuousDeploymentExecutorAPI* | [**RetrieveExecutor**](docs/VCSContinuousDeploymentExecutorAPI.md#retrieveexecutor) | **Get** /vcs/continuous_deployments/{continuous_deployment_id}/executor | Retrieve details from a executor
+*VCSContinuousDeploymentExecutorAPI* | [**UpdateExecutor**](docs/VCSContinuousDeploymentExecutorAPI.md#updateexecutor) | **Put** /vcs/continuous_deployments/{continuous_deployment_id}/executor | Update a executor
 *VCSContinuousDeploymentsAPI* | [**CreateContinuousDeployment**](docs/VCSContinuousDeploymentsAPI.md#createcontinuousdeployment) | **Post** /vcs/continuous_deployments | Create a continuous deployment
 *VCSContinuousDeploymentsAPI* | [**DeleteContinuousDeployment**](docs/VCSContinuousDeploymentsAPI.md#deletecontinuousdeployment) | **Delete** /vcs/continuous_deployments/{continuous_deployment_id} | Delete a continuous deployment
 *VCSContinuousDeploymentsAPI* | [**ListContinuousDeployments**](docs/VCSContinuousDeploymentsAPI.md#listcontinuousdeployments) | **Get** /vcs/continuous_deployments | List continuous deployments
@@ -93,7 +93,7 @@ Class | Method | HTTP request | Description
 *VCSIntegrationsAPI* | [**DeleteIntegration**](docs/VCSIntegrationsAPI.md#deleteintegration) | **Delete** /vcs/integrations/{integration_id} | Delete an integration
 *VCSIntegrationsAPI* | [**ListIntegrations**](docs/VCSIntegrationsAPI.md#listintegrations) | **Get** /vcs/integrations | List integrations
 *VCSIntegrationsAPI* | [**RetrieveIntegration**](docs/VCSIntegrationsAPI.md#retrieveintegration) | **Get** /vcs/integrations/{integration_id} | Retrieve details from a integration
-*VCSIntegrationsAPI* | [**RetrieveRepositories**](docs/VCSIntegrationsAPI.md#retrieverepositories) | **Get** /vcs/integrations/{id}/repositories | List integration repositories.
+*VCSIntegrationsAPI* | [**RetrieveRepositories**](docs/VCSIntegrationsAPI.md#retrieverepositories) | **Get** /vcs/integrations/{integration_id}/repositories | List integration repositories.
 *VCSProvidersAPI* | [**ListProviders**](docs/VCSProvidersAPI.md#listproviders) | **Get** /vcs/providers | List providers
 
 
