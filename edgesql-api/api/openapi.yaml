@@ -9,7 +9,7 @@ paths:
   /edge_sql/databases:
     get:
       description: List all databases owned by your account.
-      operationId: list databases
+      operationId: List databases
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -182,7 +182,7 @@ paths:
       - SQL
     post:
       description: Create a new database for your account.
-      operationId: create database
+      operationId: Create database
       requestBody:
         content:
           application/json:
@@ -336,17 +336,19 @@ paths:
       summary: Create a database
       tags:
       - SQL
-  /edge_sql/databases/{id}:
+  /edge_sql/databases/{database_id}:
     delete:
-      description: Schedule the destruction of a specific database in your account.
-      operationId: destroy database
+      description: Schedule the deletion of a specific database in your account.
+      operationId: Delete database
       parameters:
-      - explode: false
+      - description: A unique integer value identifying this database.
+        explode: false
         in: path
-        name: id
+        name: database_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       responses:
         "200":
@@ -476,13 +478,22 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Destroy a database
+      summary: Delete a database
       tags:
       - SQL
     get:
       description: Retrieve details from a specific database in your account.
-      operationId: retrieve database
+      operationId: Retrieve database
       parameters:
+      - description: A unique integer value identifying this database.
+        explode: false
+        in: path
+        name: database_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -491,13 +502,6 @@ paths:
         schema:
           type: string
         style: form
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
       responses:
         "200":
           content:
@@ -623,14 +627,15 @@ paths:
       summary: Retrieve details from a database
       tags:
       - SQL
-  /edge_sql/databases/{id}/query:
+  /edge_sql/databases/{database_id}/query:
     post:
       description: Execute a query into a database for your account.
-      operationId: execute query
+      operationId: Execute query
       parameters:
-      - explode: false
+      - description: A unique integer value identifying this database.
+        explode: false
         in: path
-        name: id
+        name: database_id
         required: true
         schema:
           format: int64
@@ -812,7 +817,8 @@ components:
       description: Serializer for a single JSON:API error object.
       example:
         code: code
-        meta: ""
+        meta:
+          key: ""
         detail: detail
         source: ""
         title: title
@@ -844,7 +850,9 @@ components:
           - $ref: "#/components/schemas/JSONAPIErrorSource"
           description: References to the primary source of the error
         meta:
+          additionalProperties: {}
           description: Non-standard meta-information about the error
+          type: object
       title: JSONAPIErrorObject
       type: object
     JSONAPIErrorResponse:
@@ -853,13 +861,15 @@ components:
       example:
         errors:
         - code: code
-          meta: ""
+          meta:
+            key: ""
           detail: detail
           source: ""
           title: title
           status: status
         - code: code
-          meta: ""
+          meta:
+            key: ""
           detail: detail
           source: ""
           title: title
