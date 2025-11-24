@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCredential
 
-> ResponseAsyncDeleteCredential DeleteCredential(ctx, id).Execute()
+> ResponseDeleteCredential DeleteCredential(ctx, id).Execute()
 
 Delete a credential
 
@@ -107,7 +107,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageCredentialsAPI.DeleteCredential``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCredential`: ResponseAsyncDeleteCredential
+	// response from `DeleteCredential`: ResponseDeleteCredential
 	fmt.Fprintf(os.Stdout, "Response from `StorageCredentialsAPI.DeleteCredential`: %v\n", resp)
 }
 ```
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteCredential**](ResponseAsyncDeleteCredential.md)
+[**ResponseDeleteCredential**](ResponseDeleteCredential.md)
 
 ### Authorization
 
