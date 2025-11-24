@@ -234,36 +234,36 @@ func (a *SQLAPIService) CreateDatabaseExecute(r ApiCreateDatabaseRequest) (*Resp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDestroyDatabaseRequest struct {
+type ApiDeleteDatabaseRequest struct {
 	ctx context.Context
 	ApiService *SQLAPIService
-	id string
+	databaseId int64
 }
 
-func (r ApiDestroyDatabaseRequest) Execute() (*ResponseDeleteOpenAPISchema, *http.Response, error) {
-	return r.ApiService.DestroyDatabaseExecute(r)
+func (r ApiDeleteDatabaseRequest) Execute() (*ResponseDeleteOpenAPISchema, *http.Response, error) {
+	return r.ApiService.DeleteDatabaseExecute(r)
 }
 
 /*
-DestroyDatabase Destroy a database
+DeleteDatabase Delete a database
 
-Schedule the destruction of a specific database in your account.
+Schedule the deletion of a specific database in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiDestroyDatabaseRequest
+ @param databaseId A unique integer value identifying this database.
+ @return ApiDeleteDatabaseRequest
 */
-func (a *SQLAPIService) DestroyDatabase(ctx context.Context, id string) ApiDestroyDatabaseRequest {
-	return ApiDestroyDatabaseRequest{
+func (a *SQLAPIService) DeleteDatabase(ctx context.Context, databaseId int64) ApiDeleteDatabaseRequest {
+	return ApiDeleteDatabaseRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		databaseId: databaseId,
 	}
 }
 
 // Execute executes the request
 //  @return ResponseDeleteOpenAPISchema
-func (a *SQLAPIService) DestroyDatabaseExecute(r ApiDestroyDatabaseRequest) (*ResponseDeleteOpenAPISchema, *http.Response, error) {
+func (a *SQLAPIService) DeleteDatabaseExecute(r ApiDeleteDatabaseRequest) (*ResponseDeleteOpenAPISchema, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -271,13 +271,13 @@ func (a *SQLAPIService) DestroyDatabaseExecute(r ApiDestroyDatabaseRequest) (*Re
 		localVarReturnValue  *ResponseDeleteOpenAPISchema
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SQLAPIService.DestroyDatabase")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SQLAPIService.DeleteDatabase")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_sql/databases/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/edge_sql/databases/{database_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"database_id"+"}", url.PathEscape(parameterValueToString(r.databaseId, "databaseId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -430,7 +430,7 @@ func (a *SQLAPIService) DestroyDatabaseExecute(r ApiDestroyDatabaseRequest) (*Re
 type ApiExecuteQueryRequest struct {
 	ctx context.Context
 	ApiService *SQLAPIService
-	id int64
+	databaseId int64
 	sQLStatementsRequest *SQLStatementsRequest
 }
 
@@ -449,14 +449,14 @@ ExecuteQuery Execute a query into a database
 Execute a query into a database for your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param databaseId A unique integer value identifying this database.
  @return ApiExecuteQueryRequest
 */
-func (a *SQLAPIService) ExecuteQuery(ctx context.Context, id int64) ApiExecuteQueryRequest {
+func (a *SQLAPIService) ExecuteQuery(ctx context.Context, databaseId int64) ApiExecuteQueryRequest {
 	return ApiExecuteQueryRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		databaseId: databaseId,
 	}
 }
 
@@ -475,8 +475,8 @@ func (a *SQLAPIService) ExecuteQueryExecute(r ApiExecuteQueryRequest) (*Response
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_sql/databases/{id}/query"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/edge_sql/databases/{database_id}/query"
+	localVarPath = strings.Replace(localVarPath, "{"+"database_id"+"}", url.PathEscape(parameterValueToString(r.databaseId, "databaseId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -884,7 +884,7 @@ func (a *SQLAPIService) ListDatabasesExecute(r ApiListDatabasesRequest) (*Pagina
 type ApiRetrieveDatabaseRequest struct {
 	ctx context.Context
 	ApiService *SQLAPIService
-	id string
+	databaseId int64
 	fields *string
 }
 
@@ -904,14 +904,14 @@ RetrieveDatabase Retrieve details from a database
 Retrieve details from a specific database in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param databaseId A unique integer value identifying this database.
  @return ApiRetrieveDatabaseRequest
 */
-func (a *SQLAPIService) RetrieveDatabase(ctx context.Context, id string) ApiRetrieveDatabaseRequest {
+func (a *SQLAPIService) RetrieveDatabase(ctx context.Context, databaseId int64) ApiRetrieveDatabaseRequest {
 	return ApiRetrieveDatabaseRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		databaseId: databaseId,
 	}
 }
 
@@ -930,8 +930,8 @@ func (a *SQLAPIService) RetrieveDatabaseExecute(r ApiRetrieveDatabaseRequest) (*
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_sql/databases/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/edge_sql/databases/{database_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"database_id"+"}", url.PathEscape(parameterValueToString(r.databaseId, "databaseId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

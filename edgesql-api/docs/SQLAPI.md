@@ -5,10 +5,10 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateDatabase**](SQLAPI.md#CreateDatabase) | **Post** /edge_sql/databases | Create a database
-[**DestroyDatabase**](SQLAPI.md#DestroyDatabase) | **Delete** /edge_sql/databases/{id} | Destroy a database
-[**ExecuteQuery**](SQLAPI.md#ExecuteQuery) | **Post** /edge_sql/databases/{id}/query | Execute a query into a database
+[**DeleteDatabase**](SQLAPI.md#DeleteDatabase) | **Delete** /edge_sql/databases/{database_id} | Delete a database
+[**ExecuteQuery**](SQLAPI.md#ExecuteQuery) | **Post** /edge_sql/databases/{database_id}/query | Execute a query into a database
 [**ListDatabases**](SQLAPI.md#ListDatabases) | **Get** /edge_sql/databases | List databases
-[**RetrieveDatabase**](SQLAPI.md#RetrieveDatabase) | **Get** /edge_sql/databases/{id} | Retrieve details from a database
+[**RetrieveDatabase**](SQLAPI.md#RetrieveDatabase) | **Get** /edge_sql/databases/{database_id} | Retrieve details from a database
 
 
 
@@ -78,11 +78,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DestroyDatabase
+## DeleteDatabase
 
-> ResponseDeleteOpenAPISchema DestroyDatabase(ctx, id).Execute()
+> ResponseDeleteOpenAPISchema DeleteDatabase(ctx, databaseId).Execute()
 
-Destroy a database
+Delete a database
 
 
 
@@ -99,17 +99,17 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	databaseId := int64(789) // int64 | A unique integer value identifying this database.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SQLAPI.DestroyDatabase(context.Background(), id).Execute()
+	resp, r, err := apiClient.SQLAPI.DeleteDatabase(context.Background(), databaseId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.DestroyDatabase``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.DeleteDatabase``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DestroyDatabase`: ResponseDeleteOpenAPISchema
-	fmt.Fprintf(os.Stdout, "Response from `SQLAPI.DestroyDatabase`: %v\n", resp)
+	// response from `DeleteDatabase`: ResponseDeleteOpenAPISchema
+	fmt.Fprintf(os.Stdout, "Response from `SQLAPI.DeleteDatabase`: %v\n", resp)
 }
 ```
 
@@ -119,11 +119,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**databaseId** | **int64** | A unique integer value identifying this database. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDestroyDatabaseRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteDatabaseRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## ExecuteQuery
 
-> ResponseSQLResult ExecuteQuery(ctx, id).SQLStatementsRequest(sQLStatementsRequest).Execute()
+> ResponseSQLResult ExecuteQuery(ctx, databaseId).SQLStatementsRequest(sQLStatementsRequest).Execute()
 
 Execute a query into a database
 
@@ -169,12 +169,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | 
+	databaseId := int64(789) // int64 | A unique integer value identifying this database.
 	sQLStatementsRequest := *openapiclient.NewSQLStatementsRequest([]string{"Statements_example"}) // SQLStatementsRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SQLAPI.ExecuteQuery(context.Background(), id).SQLStatementsRequest(sQLStatementsRequest).Execute()
+	resp, r, err := apiClient.SQLAPI.ExecuteQuery(context.Background(), databaseId).SQLStatementsRequest(sQLStatementsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.ExecuteQuery``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -190,7 +190,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** |  | 
+**databaseId** | **int64** | A unique integer value identifying this database. | 
 
 ### Other Parameters
 
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveDatabase
 
-> ResponseRetrieveOpenAPISchema RetrieveDatabase(ctx, id).Fields(fields).Execute()
+> ResponseRetrieveOpenAPISchema RetrieveDatabase(ctx, databaseId).Fields(fields).Execute()
 
 Retrieve details from a database
 
@@ -315,12 +315,12 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	databaseId := int64(789) // int64 | A unique integer value identifying this database.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SQLAPI.RetrieveDatabase(context.Background(), id).Fields(fields).Execute()
+	resp, r, err := apiClient.SQLAPI.RetrieveDatabase(context.Background(), databaseId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.RetrieveDatabase``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -336,7 +336,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**databaseId** | **int64** | A unique integer value identifying this database. | 
 
 ### Other Parameters
 
