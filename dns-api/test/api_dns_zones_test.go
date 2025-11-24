@@ -34,13 +34,13 @@ func Test_dnsapi_DNSZonesAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test DNSZonesAPIService DestroyDnsZone", func(t *testing.T) {
+	t.Run("Test DNSZonesAPIService DeleteDnsZone", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var zoneId string
 
-		resp, httpRes, err := apiClient.DNSZonesAPI.DestroyDnsZone(context.Background(), zoneId).Execute()
+		resp, httpRes, err := apiClient.DNSZonesAPI.DeleteDnsZone(context.Background(), zoneId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

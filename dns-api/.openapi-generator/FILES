@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -78,4 +79,7 @@ model_update_zone_request.go
 model_zone.go
 model_zone_request.go
 response.go
+test/api_dns_records_test.go
+test/api_dns_zones_test.go
+test/api_dnsdnssec_test.go
 utils.go
