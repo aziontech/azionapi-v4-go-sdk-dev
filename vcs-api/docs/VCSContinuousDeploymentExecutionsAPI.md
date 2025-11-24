@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateExecution**](VCSContinuousDeploymentExecutionsAPI.md#CreateExecution) | **Post** /vcs/continuous_deployments/{id}/executions | Create a execution
-[**ListExecutions**](VCSContinuousDeploymentExecutionsAPI.md#ListExecutions) | **Get** /vcs/continuous_deployments/{id}/executions | List executions
+[**CreateExecution**](VCSContinuousDeploymentExecutionsAPI.md#CreateExecution) | **Post** /vcs/continuous_deployments/{continuous_deployment_id}/executions | Create a execution
+[**ListExecutions**](VCSContinuousDeploymentExecutionsAPI.md#ListExecutions) | **Get** /vcs/continuous_deployments/{continuous_deployment_id}/executions | List executions
 
 
 
 ## CreateExecution
 
-> ResponseExecution CreateExecution(ctx, id).Execute()
+> ResponseExecution CreateExecution(ctx, continuousDeploymentId).Execute()
 
 Create a execution
 
@@ -30,11 +30,11 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | 
+	continuousDeploymentId := int64(789) // int64 | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSContinuousDeploymentExecutionsAPI.CreateExecution(context.Background(), id).Execute()
+	resp, r, err := apiClient.VCSContinuousDeploymentExecutionsAPI.CreateExecution(context.Background(), continuousDeploymentId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentExecutionsAPI.CreateExecution``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,7 +50,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** |  | 
+**continuousDeploymentId** | **int64** |  | 
 
 ### Other Parameters
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## ListExecutions
 
-> PaginatedResponseListExecutionList ListExecutions(ctx, id).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedResponseListExecutionList ListExecutions(ctx, continuousDeploymentId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List executions
 
@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | 
+	continuousDeploymentId := int64(789) // int64 | 
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -109,7 +109,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSContinuousDeploymentExecutionsAPI.ListExecutions(context.Background(), id).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.VCSContinuousDeploymentExecutionsAPI.ListExecutions(context.Background(), continuousDeploymentId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentExecutionsAPI.ListExecutions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,7 +125,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** |  | 
+**continuousDeploymentId** | **int64** |  | 
 
 ### Other Parameters
 
