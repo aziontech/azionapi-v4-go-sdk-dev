@@ -1,0 +1,284 @@
+# único, estrito, sem overrides
+extends: spectral:oas
+
+functions:
+  - ./checkEndpointStatusCodes
+  - ./checkQueryStringsPagination
+  - ./checkNumberMinimumLimit
+  - ./checkNumberMaximumLimit
+  - ./checkStringMinLength
+  - ./checkStringMaxLength
+  - ./checkStringPattern
+  - ./checkFieldsQueryParam
+  - ./checkContentTypeResponse
+  - ./checkStateDeletedResource
+  - ./checkSearchParameter
+  - ./checkOrderingParameter
+  - ./checkResourceIDUsage
+  - ./checkPathEndsWithSForList
+  - ./checkDataObjectType
+  - ./checkDataKeysPresence
+
+rules:
+  azion-mandatory-query-string-pagination:
+    message: "{{error}}"
+    severity: error
+    given: "$.paths[?(@property != '/api/schema')]"
+    then:
+      function: checkQueryStringsPagination
+
+  azion-mandatory-status-codes:
+    message: "{{error}}"
+    severity: error
+    given: "$.paths[?(@property != '/api/schema')].*"
+    then:
+      function: checkEndpointStatusCodes
+
+  azion-number-minimum-limit-rule:
+    message: "{{error}}"
+    severity: error
+    given: "$.components.schemas.*.properties.*"
+    then:
+      function: checkNumberMinimumLimit
+
+  azion-number-maximum-limit-rule:
+    message: "{{error}}"
+    severity: error
+    given: "$.components.schemas.*.properties.*"
+    then:
+      function: checkNumberMaximumLimit
+
+  azion-string-minlength-properties-rule:
+    message: "{{error}}"
+    severity: error
+    given: "$.components.schemas.*.properties.*"
+    then:
+      function: checkStringMinLength
+
+  azion-string-maxlength-properties-rule:
+    message: "{{error}}"
+    severity: error
+    given: "$.components.schemas.*.properties.*"
+    then:
+      function: checkStringMaxLength
+
+  azion-string-pattern-properties-rule:
+    message: "{{error}}"
+    severity: error
+    given: "$.components.schemas.*.properties.*"
+    then:
+      function: checkStringPattern
+
+  azion-query-param-fields-rule:
+    message: "{{error}}"
+    severity: error
+    given: "$.paths"
+    then:
+      function: checkFieldsQueryParam
+
+  azion-match-content-type-response:
+    message: "{{error}}"
+    severity: error
+    given: "$.paths[?(@property != '/api/schema')].*.responses.*.content"
+    then:
+      function: checkContentTypeResponse
+
+  azion-sps-paths-valid-uri:
+    message: "{{error}}"
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "api|v4|^[^/]*\/[^/]*$|/$"
+
+  azion-sps-invalid-status-code:
+    message: "{{error}}"
+    severity: error
+    given: $.paths...responses.*~
+    then:
+      function: enumeration
+      functionOptions:
+        values: ["200","201","202","204","400","401","403","404","405","406","409","422","429"]
+
+  azion-deleted-resource-state-validation:
+    message: "{{error}}"
+    severity: error
+    given: "$.paths.*.*.responses.*"
+    then:
+      function: checkStateDeletedResource
+
+  azion-match-search-parameter:
+    message: "{{error}}"
+    severity: error
+    given: "$.paths.*.*.parameters[*][?(@.in == 'query' && @.name == 'search')]"
+    then:
+      function: checkSearchParameter
+
+  azion-match-ordering-parameter:
+    message: "{{error}}"
+    severity: error
+    given: "$.paths.*.*.parameters[*][?(@.in == 'query' && @.name == 'ordering')]"
+    then:
+      function: checkOrderingParameter
+
+  azion-date-time-format-rule:
+    message: "{{error}}"
+    severity: error
+    given: "$.components.schemas.*.properties.last_modified"
+    then:
+      - function: checkStringPattern
+        pattern: "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+
+  azion-has-key-error-response:
+    message: "{{error}}"
+    severity: error
+    given: "$.responses[*]"
+    then:
+      field: content.application/json.schema.properties.detail
+      function: truthy
+
+  azion-match-type-error-response:
+    message: "{{error}}"
+    severity: error
+    given: "$.responses[*]"
+    then:
+      field: content.application/json.schema.properties.detail.type
+      function: schema
+      functionOptions:
+        schema:
+          type: string
+
+  azion-validate-count-and-results:
+    message: "{{error}}"
+    severity: error
+    given: "$.responses[*]"
+    then:
+      - field: content.application/json.schema.properties.detail.properties
+        function: schema
+        functionOptions:
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+              results:
+                type: array
+
+  azion-service-name-pattern:
+    message: "{{error}}"
+    severity: error
+    given: "$.info.title"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*-api$"
+
+  azion-authorization-header:
+    message: "{{error}}"
+    severity: error
+    given: "$.paths.*.*.security"
+    then:
+      function: truthy
+
+  azion-endpoint-uri-method-validation:
+    message: "{{error}}"
+    severity: error
+    given: $.paths.*~
+    then:
+      - function: pattern
+        functionOptions:
+          notMatch: "/.*(GET|POST|PUT|PATCH|DELETE).*/i"
+
+  azion-validate-resource-id-usage:
+    message: "{{error}}"
+    severity: error
+    given: "$.paths"
+    then:
+      function: checkResourceIDUsage
+
+  azion-endpoint-ddd-and-snake:
+    message: "{{error}}"
+    severity: error
+    given: $.paths.*~
+    then:
+      - function: pattern
+        functionOptions:
+          match: "^(/[a-z][a-z0-9]+(_[a-z][a-z0-9]+)*){2,}($|/({[a-z][a-zA-Z0-9_]+}|[a-z][a-z0-9]+(_[a-z0-9]+)*)+)*$"
+
+  azion-path-naming-convention:
+    message: "{{error}}"
+    severity: warn
+    given: $.paths
+    then:
+      function: checkPathEndsWithSForList
+
+  azion-data-object-type-rule:
+    message: "{{error}}"
+    severity: error
+    given: "$.responses[*].content.application/json.schema"
+    then:
+      function: checkDataObjectType
+
+  azion-data-keys-presence-rule:
+    message: "{{error}}"
+    severity: error
+    given: "$.responses[*].content.application/json.schema"
+    then:
+      function: checkDataKeysPresence
+
+  azion-delete-response-codes:
+    description: A delete operation should have 204 or 202, and must not return 200.
+    message: A delete operation should return 204 or 202, and avoid 200.
+    severity: error
+    given: $.paths[*].delete.responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ['204']
+            - required: ['202']
+          not:
+            required: ['200']
+
+  azion-204-no-response-body:
+    description: A 204 response must have no response body.
+    severity: error
+    given: $.paths[*][*].responses.204
+    then:
+      field: content
+      function: falsy
+
+  azion-header-disallowed:
+    description: Authorization, Content-Type, and Accept headers must not be defined as header parameters.
+    message: 'Header parameter "{{value}}" must not be defined explicitly.'
+    severity: error
+    given:
+      - $.paths[*].parameters[?(@.in == 'header')]
+      - $.paths.*[get,put,post,patch,delete,options,head].parameters[?(@.in == 'header')]
+    then:
+      function: pattern
+      field: name
+      functionOptions:
+        notMatch: '/^(authorization|content-type|accept)$/i'
+
+  azion-operation-id-pattern:
+    description: operationId must follow a consistent naming convention (snake_case).
+    severity: error
+    given: $.paths.*[get,put,post,patch,delete,options,head]
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-z0-9]*(_[a-z0-9]+)*$'
+
+  azion-boolean-naming-convention:
+    description: Boolean property names must not start with the 'is' prefix.
+    severity: error
+    given: $..properties[*][?(@ && @.type == 'boolean')]^
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: '^is[A-Z]'
