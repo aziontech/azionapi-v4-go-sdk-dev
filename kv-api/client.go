@@ -1,5 +1,5 @@
 /*
-KV API
+kv-api
 
 REST API OpenAPI documentation for the KV API
 
@@ -41,7 +41,7 @@ var (
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the KV API API v1.0.0
+// APIClient manages communication with the kv-api API v1.0.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -49,7 +49,7 @@ type APIClient struct {
 
 	// API Services
 
-	StorageAPI *StorageAPIService
+	NamespacesAPI *NamespacesAPIService
 }
 
 type service struct {
@@ -68,7 +68,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.StorageAPI = (*StorageAPIService)(&c.common)
+	c.NamespacesAPI = (*NamespacesAPIService)(&c.common)
 
 	return c
 }

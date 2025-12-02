@@ -1,91 +1,302 @@
 openapi: 3.0.3
 info:
   description: REST API OpenAPI documentation for the KV API
-  title: KV API
+  title: kv-api
   version: 1.0.0
 servers:
 - url: /
 paths:
   /storage/kv/namespaces:
     get:
-      description: |-
-        List namespaces with pagination (KISS principle)
-
-        Security: Only returns namespaces that belong to the authenticated user's account_id.
-        Doesn't matter who created the namespaces, only account ownership matters.
-      operationId: storageKvNamespacesRetrieve
-      responses:
-        "200":
-          description: No response body
-      security:
-      - tokenAuth: []
-      - tokenAuth: []
-      tags:
-      - storage
-    post:
-      description: Create a new namespace (KISS principle)
-      operationId: storageKvNamespacesCreate
-      responses:
-        "201":
-          description: No response body
-      security:
-      - tokenAuth: []
-      - tokenAuth: []
-      tags:
-      - storage
-  /storage/kv/namespaces/:
-    get:
-      description: |-
-        List namespaces with pagination (KISS principle)
-
-        Security: Only returns namespaces that belong to the authenticated user's account_id.
-        Doesn't matter who created the namespaces, only account ownership matters.
-      operationId: storageKvNamespacesRetrieve2
-      responses:
-        "200":
-          description: No response body
-      security:
-      - tokenAuth: []
-      - tokenAuth: []
-      tags:
-      - storage
-    post:
-      description: Create a new namespace (KISS principle)
-      operationId: storageKvNamespacesCreate2
-      responses:
-        "201":
-          description: No response body
-      security:
-      - tokenAuth: []
-      - tokenAuth: []
-      tags:
-      - storage
-  /storage/kv/namespaces/{id}/:
-    get:
-      description: |-
-        Retrieve a specific namespace (KISS principle)
-
-        Security: Only returns namespaces that belong to the authenticated user's account_id.
-        Doesn't matter who created the namespace, only account ownership matters.
-      operationId: storageKvNamespacesRetrieve3
+      description: Returns a paginated list of namespaces for the authenticated account.
+      operationId: storage_kv_namespaces_list
       parameters:
-      - explode: false
+      - description: Comma-separated list of fields to include in the response
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Page number for pagination
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Number of items per page
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/NamespaceListResponse"
+                type: array
+          description: Paginated list of namespaces
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation error
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal server error
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      summary: List namespaces
+      tags:
+      - namespaces
+    post:
+      description: Creates a new namespace in the authenticated account.
+      operationId: storage_kv_namespaces_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NamespaceCreateRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NamespaceResponse"
+          description: Namespace created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation error
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal server error
+      security:
+      - tokenAuth: []
+      - tokenAuth: []
+      summary: Create namespace
+      tags:
+      - namespaces
+  /storage/kv/namespaces/{namespace}:
+    get:
+      description: "Returns a specific namespace by name, if it belongs to the authenticated\
+        \ account."
+      operationId: storage_kv_namespaces_retrieve
+      parameters:
+      - description: Comma-separated list of fields to include in the response
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The unique identifier (name) of the namespace
+        explode: false
         in: path
-        name: id
+        name: namespace
         required: true
         schema:
           type: string
         style: simple
       responses:
         "200":
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NamespaceResponse"
+          description: Namespace details
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Namespace not found
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation error
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal server error
       security:
       - tokenAuth: []
       - tokenAuth: []
+      summary: Retrieve namespace
       tags:
-      - storage
+      - namespaces
 components:
-  schemas: {}
+  schemas:
+    ErrorDetail:
+      example:
+        code: code
+        details:
+          key: ""
+        message: message
+      properties:
+        code:
+          maxLength: 100
+          minLength: 1
+          type: string
+        message:
+          maxLength: 500
+          minLength: 1
+          type: string
+        details:
+          additionalProperties: {}
+          type: object
+      required:
+      - code
+      - message
+      type: object
+    ErrorResponse:
+      example:
+        state: state
+        error:
+          code: code
+          details:
+            key: ""
+          message: message
+      properties:
+        state:
+          description: '* `error` - error'
+          type: string
+          x-extensible-enum:
+          - error
+        error:
+          $ref: "#/components/schemas/ErrorDetail"
+      required:
+      - error
+      - state
+      type: object
+    NamespaceCreateRequest:
+      example:
+        name: name
+      properties:
+        name:
+          maxLength: 63
+          minLength: 3
+          type: string
+      required:
+      - name
+      type: object
+    NamespaceListResponse:
+      example:
+        pagination:
+          has_previous: true
+          total_count: 146581297
+          has_next: true
+          page: 80083
+          total_pages: 596212
+          page_size: 603
+        results:
+        - name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        - name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        results:
+          items:
+            $ref: "#/components/schemas/NamespaceResponse"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+      required:
+      - pagination
+      - results
+      type: object
+    NamespaceResponse:
+      example:
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        name:
+          maxLength: 63
+          minLength: 3
+          type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
+        last_modified:
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - created_at
+      - last_modified
+      - name
+      type: object
+    Pagination:
+      example:
+        has_previous: true
+        total_count: 146581297
+        has_next: true
+        page: 80083
+        total_pages: 596212
+        page_size: 603
+      properties:
+        page:
+          format: int64
+          maximum: 999999
+          minimum: 1
+          type: integer
+        page_size:
+          format: int64
+          maximum: 1000
+          minimum: 1
+          type: integer
+        total_count:
+          format: int64
+          maximum: 999999999
+          minimum: 0
+          type: integer
+        total_pages:
+          format: int64
+          maximum: 999999
+          minimum: 0
+          type: integer
+        has_next:
+          type: boolean
+        has_previous:
+          type: boolean
+      required:
+      - has_next
+      - has_previous
+      - page
+      - page_size
+      - total_count
+      - total_pages
+      type: object
   securitySchemes:
     tokenAuth:
       description: Token-based authentication with required prefix "Token"

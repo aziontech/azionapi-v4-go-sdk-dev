@@ -1,5 +1,5 @@
 /*
-KV API
+kv-api
 
 REST API OpenAPI documentation for the KV API
 
