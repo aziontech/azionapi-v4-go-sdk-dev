@@ -738,12 +738,21 @@ paths:
       summary: Create a new account
       tags:
       - Accounts - Descendants
-  /account/accounts/{id}:
+  /account/accounts/{account_id}:
     get:
       description: Retrieve detailed information of a specific account under the logged-in
         user's account.
       operationId: retrieve_descendant_account
       parameters:
+      - description: A unique integer value identifying the account.
+        explode: false
+        in: path
+        name: account_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -752,15 +761,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: A unique integer value identifying the account.
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
       responses:
         "200":
           content:
@@ -895,7 +895,7 @@ paths:
       - description: A unique integer value identifying the account.
         explode: false
         in: path
-        name: id
+        name: account_id
         required: true
         schema:
           format: int64
@@ -1046,7 +1046,7 @@ paths:
       - description: A unique integer value identifying the account.
         explode: false
         in: path
-        name: id
+        name: account_id
         required: true
         schema:
           format: int64
@@ -1188,12 +1188,21 @@ paths:
       summary: Update account details
       tags:
       - Accounts - Descendants
-  /account/accounts/{id}/info:
+  /account/accounts/{account_id}/info:
     get:
       description: Retrieve detailed information about your account or a specific
         child account under your logged-in account.
       operationId: retrieve_account_info_details
       parameters:
+      - description: A unique integer value identifying the account.
+        explode: false
+        in: path
+        name: account_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -1202,15 +1211,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: A unique integer value identifying the account.
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
       responses:
         "200":
           content:
@@ -1347,7 +1347,7 @@ paths:
       - description: A unique integer value identifying the account.
         explode: false
         in: path
-        name: id
+        name: account_id
         required: true
         schema:
           format: int64

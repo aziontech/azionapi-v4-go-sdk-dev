@@ -26,7 +26,7 @@ type AccountsInfoAPIService service
 type ApiRetrieveAccountInfoDetailsRequest struct {
 	ctx context.Context
 	ApiService *AccountsInfoAPIService
-	id int64
+	accountId int64
 	fields *string
 }
 
@@ -46,14 +46,14 @@ RetrieveAccountInfoDetails Retrieve account information details
 Retrieve detailed information about your account or a specific child account under your logged-in account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id A unique integer value identifying the account.
+ @param accountId A unique integer value identifying the account.
  @return ApiRetrieveAccountInfoDetailsRequest
 */
-func (a *AccountsInfoAPIService) RetrieveAccountInfoDetails(ctx context.Context, id int64) ApiRetrieveAccountInfoDetailsRequest {
+func (a *AccountsInfoAPIService) RetrieveAccountInfoDetails(ctx context.Context, accountId int64) ApiRetrieveAccountInfoDetailsRequest {
 	return ApiRetrieveAccountInfoDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		accountId: accountId,
 	}
 }
 
@@ -72,8 +72,8 @@ func (a *AccountsInfoAPIService) RetrieveAccountInfoDetailsExecute(r ApiRetrieve
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/account/accounts/{id}/info"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/account/accounts/{account_id}/info"
+	localVarPath = strings.Replace(localVarPath, "{"+"account_id"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -229,7 +229,7 @@ func (a *AccountsInfoAPIService) RetrieveAccountInfoDetailsExecute(r ApiRetrieve
 type ApiUpdateAccountInfoDetailsRequest struct {
 	ctx context.Context
 	ApiService *AccountsInfoAPIService
-	id int64
+	accountId int64
 	updateAccountInfoDetailsRequest *UpdateAccountInfoDetailsRequest
 }
 
@@ -248,14 +248,14 @@ UpdateAccountInfoDetails Update account information details
 Update the information details about your account or a specific child account under your logged-in account. This operation allows replacing the entire account info data with new values. In this operation, you can also clear all detailed information of an account by providing an empty dictionary in the `info` field.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id A unique integer value identifying the account.
+ @param accountId A unique integer value identifying the account.
  @return ApiUpdateAccountInfoDetailsRequest
 */
-func (a *AccountsInfoAPIService) UpdateAccountInfoDetails(ctx context.Context, id int64) ApiUpdateAccountInfoDetailsRequest {
+func (a *AccountsInfoAPIService) UpdateAccountInfoDetails(ctx context.Context, accountId int64) ApiUpdateAccountInfoDetailsRequest {
 	return ApiUpdateAccountInfoDetailsRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		accountId: accountId,
 	}
 }
 
@@ -274,8 +274,8 @@ func (a *AccountsInfoAPIService) UpdateAccountInfoDetailsExecute(r ApiUpdateAcco
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/account/accounts/{id}/info"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/account/accounts/{account_id}/info"
+	localVarPath = strings.Replace(localVarPath, "{"+"account_id"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

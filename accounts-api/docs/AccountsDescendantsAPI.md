@@ -6,9 +6,9 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateDescendantAccount**](AccountsDescendantsAPI.md#CreateDescendantAccount) | **Post** /account/accounts | Create a new account
 [**ListDescendantsAccounts**](AccountsDescendantsAPI.md#ListDescendantsAccounts) | **Get** /account/accounts | List accounts
-[**PartialUpdateDescendantAccount**](AccountsDescendantsAPI.md#PartialUpdateDescendantAccount) | **Patch** /account/accounts/{id} | Partially update account details
-[**RetrieveDescendantAccount**](AccountsDescendantsAPI.md#RetrieveDescendantAccount) | **Get** /account/accounts/{id} | Retrieve account details
-[**UpdateDescendantAccount**](AccountsDescendantsAPI.md#UpdateDescendantAccount) | **Put** /account/accounts/{id} | Update account details
+[**PartialUpdateDescendantAccount**](AccountsDescendantsAPI.md#PartialUpdateDescendantAccount) | **Patch** /account/accounts/{account_id} | Partially update account details
+[**RetrieveDescendantAccount**](AccountsDescendantsAPI.md#RetrieveDescendantAccount) | **Get** /account/accounts/{account_id} | Retrieve account details
+[**UpdateDescendantAccount**](AccountsDescendantsAPI.md#UpdateDescendantAccount) | **Put** /account/accounts/{account_id} | Update account details
 
 
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateDescendantAccount
 
-> ResponseAccount PartialUpdateDescendantAccount(ctx, id).PatchedAccountRequest(patchedAccountRequest).Execute()
+> ResponseAccount PartialUpdateDescendantAccount(ctx, accountId).PatchedAccountRequest(patchedAccountRequest).Execute()
 
 Partially update account details
 
@@ -173,12 +173,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | A unique integer value identifying the account.
+	accountId := int64(789) // int64 | A unique integer value identifying the account.
 	patchedAccountRequest := openapiclient.PatchedAccountRequest{PatchedBrandRequest: openapiclient.NewPatchedBrandRequest()} // PatchedAccountRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountsDescendantsAPI.PartialUpdateDescendantAccount(context.Background(), id).PatchedAccountRequest(patchedAccountRequest).Execute()
+	resp, r, err := apiClient.AccountsDescendantsAPI.PartialUpdateDescendantAccount(context.Background(), accountId).PatchedAccountRequest(patchedAccountRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountsDescendantsAPI.PartialUpdateDescendantAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -194,7 +194,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | A unique integer value identifying the account. | 
+**accountId** | **int64** | A unique integer value identifying the account. | 
 
 ### Other Parameters
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveDescendantAccount
 
-> ResponseRetrieveAccount RetrieveDescendantAccount(ctx, id).Fields(fields).Execute()
+> ResponseRetrieveAccount RetrieveDescendantAccount(ctx, accountId).Fields(fields).Execute()
 
 Retrieve account details
 
@@ -245,12 +245,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | A unique integer value identifying the account.
+	accountId := int64(789) // int64 | A unique integer value identifying the account.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountsDescendantsAPI.RetrieveDescendantAccount(context.Background(), id).Fields(fields).Execute()
+	resp, r, err := apiClient.AccountsDescendantsAPI.RetrieveDescendantAccount(context.Background(), accountId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountsDescendantsAPI.RetrieveDescendantAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -266,7 +266,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | A unique integer value identifying the account. | 
+**accountId** | **int64** | A unique integer value identifying the account. | 
 
 ### Other Parameters
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDescendantAccount
 
-> ResponseAccount UpdateDescendantAccount(ctx, id).AccountRequest(accountRequest).Execute()
+> ResponseAccount UpdateDescendantAccount(ctx, accountId).AccountRequest(accountRequest).Execute()
 
 Update account details
 
@@ -317,12 +317,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | A unique integer value identifying the account.
+	accountId := int64(789) // int64 | A unique integer value identifying the account.
 	accountRequest := openapiclient.AccountRequest{BrandRequest: openapiclient.NewBrandRequest("Name_example", "Type_example")} // AccountRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountsDescendantsAPI.UpdateDescendantAccount(context.Background(), id).AccountRequest(accountRequest).Execute()
+	resp, r, err := apiClient.AccountsDescendantsAPI.UpdateDescendantAccount(context.Background(), accountId).AccountRequest(accountRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountsDescendantsAPI.UpdateDescendantAccount``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -338,7 +338,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | A unique integer value identifying the account. | 
+**accountId** | **int64** | A unique integer value identifying the account. | 
 
 ### Other Parameters
 

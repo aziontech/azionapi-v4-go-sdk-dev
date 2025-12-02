@@ -80,11 +80,11 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccountsDescendantsAPI* | [**CreateDescendantAccount**](docs/AccountsDescendantsAPI.md#createdescendantaccount) | **Post** /account/accounts | Create a new account
 *AccountsDescendantsAPI* | [**ListDescendantsAccounts**](docs/AccountsDescendantsAPI.md#listdescendantsaccounts) | **Get** /account/accounts | List accounts
-*AccountsDescendantsAPI* | [**PartialUpdateDescendantAccount**](docs/AccountsDescendantsAPI.md#partialupdatedescendantaccount) | **Patch** /account/accounts/{id} | Partially update account details
-*AccountsDescendantsAPI* | [**RetrieveDescendantAccount**](docs/AccountsDescendantsAPI.md#retrievedescendantaccount) | **Get** /account/accounts/{id} | Retrieve account details
-*AccountsDescendantsAPI* | [**UpdateDescendantAccount**](docs/AccountsDescendantsAPI.md#updatedescendantaccount) | **Put** /account/accounts/{id} | Update account details
-*AccountsInfoAPI* | [**RetrieveAccountInfoDetails**](docs/AccountsInfoAPI.md#retrieveaccountinfodetails) | **Get** /account/accounts/{id}/info | Retrieve account information details
-*AccountsInfoAPI* | [**UpdateAccountInfoDetails**](docs/AccountsInfoAPI.md#updateaccountinfodetails) | **Put** /account/accounts/{id}/info | Update account information details
+*AccountsDescendantsAPI* | [**PartialUpdateDescendantAccount**](docs/AccountsDescendantsAPI.md#partialupdatedescendantaccount) | **Patch** /account/accounts/{account_id} | Partially update account details
+*AccountsDescendantsAPI* | [**RetrieveDescendantAccount**](docs/AccountsDescendantsAPI.md#retrievedescendantaccount) | **Get** /account/accounts/{account_id} | Retrieve account details
+*AccountsDescendantsAPI* | [**UpdateDescendantAccount**](docs/AccountsDescendantsAPI.md#updatedescendantaccount) | **Put** /account/accounts/{account_id} | Update account details
+*AccountsInfoAPI* | [**RetrieveAccountInfoDetails**](docs/AccountsInfoAPI.md#retrieveaccountinfodetails) | **Get** /account/accounts/{account_id}/info | Retrieve account information details
+*AccountsInfoAPI* | [**UpdateAccountInfoDetails**](docs/AccountsInfoAPI.md#updateaccountinfodetails) | **Put** /account/accounts/{account_id}/info | Update account information details
 *AccountsLoggedInAPI* | [**PartialUpdateLoggedAccount**](docs/AccountsLoggedInAPI.md#partialupdateloggedaccount) | **Patch** /account/account | Partially update logged account details
 *AccountsLoggedInAPI* | [**RetrieveLoggedAccountDetails**](docs/AccountsLoggedInAPI.md#retrieveloggedaccountdetails) | **Get** /account/account | Retrieve logged account details
 *AccountsLoggedInAPI* | [**UpdateLoggedAccount**](docs/AccountsLoggedInAPI.md#updateloggedaccount) | **Put** /account/account | Update logged account details

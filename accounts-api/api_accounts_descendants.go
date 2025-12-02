@@ -463,7 +463,7 @@ func (a *AccountsDescendantsAPIService) ListDescendantsAccountsExecute(r ApiList
 type ApiPartialUpdateDescendantAccountRequest struct {
 	ctx context.Context
 	ApiService *AccountsDescendantsAPIService
-	id int64
+	accountId int64
 	patchedAccountRequest *PatchedAccountRequest
 }
 
@@ -482,14 +482,14 @@ PartialUpdateDescendantAccount Partially update account details
 Update specific fields of an account under the logged-in user's account. Only editable fields, such as `name`, can be updated with this operation.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id A unique integer value identifying the account.
+ @param accountId A unique integer value identifying the account.
  @return ApiPartialUpdateDescendantAccountRequest
 */
-func (a *AccountsDescendantsAPIService) PartialUpdateDescendantAccount(ctx context.Context, id int64) ApiPartialUpdateDescendantAccountRequest {
+func (a *AccountsDescendantsAPIService) PartialUpdateDescendantAccount(ctx context.Context, accountId int64) ApiPartialUpdateDescendantAccountRequest {
 	return ApiPartialUpdateDescendantAccountRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		accountId: accountId,
 	}
 }
 
@@ -508,8 +508,8 @@ func (a *AccountsDescendantsAPIService) PartialUpdateDescendantAccountExecute(r 
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/account/accounts/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/account/accounts/{account_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"account_id"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -665,7 +665,7 @@ func (a *AccountsDescendantsAPIService) PartialUpdateDescendantAccountExecute(r 
 type ApiRetrieveDescendantAccountRequest struct {
 	ctx context.Context
 	ApiService *AccountsDescendantsAPIService
-	id int64
+	accountId int64
 	fields *string
 }
 
@@ -685,14 +685,14 @@ RetrieveDescendantAccount Retrieve account details
 Retrieve detailed information of a specific account under the logged-in user's account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id A unique integer value identifying the account.
+ @param accountId A unique integer value identifying the account.
  @return ApiRetrieveDescendantAccountRequest
 */
-func (a *AccountsDescendantsAPIService) RetrieveDescendantAccount(ctx context.Context, id int64) ApiRetrieveDescendantAccountRequest {
+func (a *AccountsDescendantsAPIService) RetrieveDescendantAccount(ctx context.Context, accountId int64) ApiRetrieveDescendantAccountRequest {
 	return ApiRetrieveDescendantAccountRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		accountId: accountId,
 	}
 }
 
@@ -711,8 +711,8 @@ func (a *AccountsDescendantsAPIService) RetrieveDescendantAccountExecute(r ApiRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/account/accounts/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/account/accounts/{account_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"account_id"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -868,7 +868,7 @@ func (a *AccountsDescendantsAPIService) RetrieveDescendantAccountExecute(r ApiRe
 type ApiUpdateDescendantAccountRequest struct {
 	ctx context.Context
 	ApiService *AccountsDescendantsAPIService
-	id int64
+	accountId int64
 	accountRequest *AccountRequest
 }
 
@@ -887,14 +887,14 @@ UpdateDescendantAccount Update account details
 Update the information of a specific account under the logged-in user's account. This operation allows replacing the entire account data with new values.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id A unique integer value identifying the account.
+ @param accountId A unique integer value identifying the account.
  @return ApiUpdateDescendantAccountRequest
 */
-func (a *AccountsDescendantsAPIService) UpdateDescendantAccount(ctx context.Context, id int64) ApiUpdateDescendantAccountRequest {
+func (a *AccountsDescendantsAPIService) UpdateDescendantAccount(ctx context.Context, accountId int64) ApiUpdateDescendantAccountRequest {
 	return ApiUpdateDescendantAccountRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		accountId: accountId,
 	}
 }
 
@@ -913,8 +913,8 @@ func (a *AccountsDescendantsAPIService) UpdateDescendantAccountExecute(r ApiUpda
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/account/accounts/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/account/accounts/{account_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"account_id"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
