@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateDatabase**](SQLAPI.md#CreateDatabase) | **Post** /edge_sql/databases | Create a database
-[**DeleteDatabase**](SQLAPI.md#DeleteDatabase) | **Delete** /edge_sql/databases/{database_id} | Delete a database
-[**ExecuteQuery**](SQLAPI.md#ExecuteQuery) | **Post** /edge_sql/databases/{database_id}/query | Execute a query into a database
-[**ListDatabases**](SQLAPI.md#ListDatabases) | **Get** /edge_sql/databases | List databases
-[**RetrieveDatabase**](SQLAPI.md#RetrieveDatabase) | **Get** /edge_sql/databases/{database_id} | Retrieve details from a database
+[**CreateDatabase**](SQLAPI.md#CreateDatabase) | **Post** /edge_sql/api/databases | Create a database
+[**DeleteDatabase**](SQLAPI.md#DeleteDatabase) | **Delete** /edge_sql/api/databases/{database_id} | Delete a database
+[**ExecuteQuery**](SQLAPI.md#ExecuteQuery) | **Post** /edge_sql/api/databases/{database_id}/query | Execute a query into a database
+[**ListDatabases**](SQLAPI.md#ListDatabases) | **Get** /edge_sql/api/databases | List databases
+[**RetrieveDatabase**](SQLAPI.md#RetrieveDatabase) | **Get** /edge_sql/api/databases/{database_id} | Retrieve details from a database
 
 
 
 ## CreateDatabase
 
-> ResponseOpenAPISchema CreateDatabase(ctx).DatabaseRequest(databaseRequest).Execute()
+> ResponseDatabaseDetail CreateDatabase(ctx).DatabaseRequest(databaseRequest).Execute()
 
 Create a database
 
@@ -42,7 +42,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.CreateDatabase``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateDatabase`: ResponseOpenAPISchema
+	// response from `CreateDatabase`: ResponseDatabaseDetail
 	fmt.Fprintf(os.Stdout, "Response from `SQLAPI.CreateDatabase`: %v\n", resp)
 }
 ```
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseOpenAPISchema**](ResponseOpenAPISchema.md)
+[**ResponseDatabaseDetail**](ResponseDatabaseDetail.md)
 
 ### Authorization
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDatabase
 
-> ResponseDeleteOpenAPISchema DeleteDatabase(ctx, databaseId).Execute()
+> ResponseAsyncDeleteDatabaseDetail DeleteDatabase(ctx, databaseId).Execute()
 
 Delete a database
 
@@ -108,7 +108,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.DeleteDatabase``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteDatabase`: ResponseDeleteOpenAPISchema
+	// response from `DeleteDatabase`: ResponseAsyncDeleteDatabaseDetail
 	fmt.Fprintf(os.Stdout, "Response from `SQLAPI.DeleteDatabase`: %v\n", resp)
 }
 ```
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteOpenAPISchema**](ResponseDeleteOpenAPISchema.md)
+[**ResponseAsyncDeleteDatabaseDetail**](ResponseAsyncDeleteDatabaseDetail.md)
 
 ### Authorization
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## ListDatabases
 
-> PaginatedOpenAPISchemaList ListDatabases(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedDatabaseDetailList ListDatabases(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List databases
 
@@ -254,7 +254,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.ListDatabases``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListDatabases`: PaginatedOpenAPISchemaList
+	// response from `ListDatabases`: PaginatedDatabaseDetailList
 	fmt.Fprintf(os.Stdout, "Response from `SQLAPI.ListDatabases`: %v\n", resp)
 }
 ```
@@ -278,7 +278,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedOpenAPISchemaList**](PaginatedOpenAPISchemaList.md)
+[**PaginatedDatabaseDetailList**](PaginatedDatabaseDetailList.md)
 
 ### Authorization
 
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveDatabase
 
-> ResponseRetrieveOpenAPISchema RetrieveDatabase(ctx, databaseId).Fields(fields).Execute()
+> ResponseRetrieveDatabaseDetail RetrieveDatabase(ctx, databaseId).Fields(fields).Execute()
 
 Retrieve details from a database
 
@@ -325,7 +325,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.RetrieveDatabase``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveDatabase`: ResponseRetrieveOpenAPISchema
+	// response from `RetrieveDatabase`: ResponseRetrieveDatabaseDetail
 	fmt.Fprintf(os.Stdout, "Response from `SQLAPI.RetrieveDatabase`: %v\n", resp)
 }
 ```
@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveOpenAPISchema**](ResponseRetrieveOpenAPISchema.md)
+[**ResponseRetrieveDatabaseDetail**](ResponseRetrieveDatabaseDetail.md)
 
 ### Authorization
 
