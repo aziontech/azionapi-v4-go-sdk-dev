@@ -78,15 +78,19 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*StorageAPI* | [**StorageKvNamespacesCreate**](docs/StorageAPI.md#storagekvnamespacescreate) | **Post** /storage/kv/namespaces | 
-*StorageAPI* | [**StorageKvNamespacesCreate2**](docs/StorageAPI.md#storagekvnamespacescreate2) | **Post** /storage/kv/namespaces/ | 
-*StorageAPI* | [**StorageKvNamespacesRetrieve**](docs/StorageAPI.md#storagekvnamespacesretrieve) | **Get** /storage/kv/namespaces | 
-*StorageAPI* | [**StorageKvNamespacesRetrieve2**](docs/StorageAPI.md#storagekvnamespacesretrieve2) | **Get** /storage/kv/namespaces/ | 
-*StorageAPI* | [**StorageKvNamespacesRetrieve3**](docs/StorageAPI.md#storagekvnamespacesretrieve3) | **Get** /storage/kv/namespaces/{id}/ | 
+*NamespacesAPI* | [**StorageKvNamespacesCreate**](docs/NamespacesAPI.md#storagekvnamespacescreate) | **Post** /storage/kv/namespaces | Create namespace
+*NamespacesAPI* | [**StorageKvNamespacesList**](docs/NamespacesAPI.md#storagekvnamespaceslist) | **Get** /storage/kv/namespaces | List namespaces
+*NamespacesAPI* | [**StorageKvNamespacesRetrieve**](docs/NamespacesAPI.md#storagekvnamespacesretrieve) | **Get** /storage/kv/namespaces/{namespace} | Retrieve namespace
 
 
 ## Documentation For Models
 
+ - [ErrorDetail](docs/ErrorDetail.md)
+ - [ErrorResponse](docs/ErrorResponse.md)
+ - [NamespaceCreateRequest](docs/NamespaceCreateRequest.md)
+ - [NamespaceListResponse](docs/NamespaceListResponse.md)
+ - [NamespaceResponse](docs/NamespaceResponse.md)
+ - [Pagination](docs/Pagination.md)
 
 
 ## Documentation For Authorization
