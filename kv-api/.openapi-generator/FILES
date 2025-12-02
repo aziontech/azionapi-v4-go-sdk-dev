@@ -2,15 +2,15 @@
 .travis.yml
 README.md
 api/openapi.yaml
-api_namespaces.go
+api_kv_namespaces.go
 client.go
 configuration.go
 docs/ErrorDetail.md
 docs/ErrorResponse.md
+docs/KVNamespacesAPI.md
 docs/NamespaceCreateRequest.md
 docs/NamespaceListResponse.md
 docs/NamespaceResponse.md
-docs/NamespacesAPI.md
 docs/Pagination.md
 git_push.sh
 go.mod
@@ -22,5 +22,5 @@ model_namespace_list_response.go
 model_namespace_response.go
 model_pagination.go
 response.go
-test/api_namespaces_test.go
+test/api_kv_namespaces_test.go
 utils.go

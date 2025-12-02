@@ -49,7 +49,7 @@ type APIClient struct {
 
 	// API Services
 
-	NamespacesAPI *NamespacesAPIService
+	KVNamespacesAPI *KVNamespacesAPIService
 }
 
 type service struct {
@@ -68,7 +68,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.NamespacesAPI = (*NamespacesAPIService)(&c.common)
+	c.KVNamespacesAPI = (*KVNamespacesAPIService)(&c.common)
 
 	return c
 }

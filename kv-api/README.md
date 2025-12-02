@@ -78,9 +78,9 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*NamespacesAPI* | [**StorageKvNamespacesCreate**](docs/NamespacesAPI.md#storagekvnamespacescreate) | **Post** /storage/kv/namespaces | Create namespace
-*NamespacesAPI* | [**StorageKvNamespacesList**](docs/NamespacesAPI.md#storagekvnamespaceslist) | **Get** /storage/kv/namespaces | List namespaces
-*NamespacesAPI* | [**StorageKvNamespacesRetrieve**](docs/NamespacesAPI.md#storagekvnamespacesretrieve) | **Get** /storage/kv/namespaces/{namespace} | Retrieve namespace
+*KVNamespacesAPI* | [**StorageKvNamespacesCreate**](docs/KVNamespacesAPI.md#storagekvnamespacescreate) | **Post** /storage/kv/namespaces | Create namespace
+*KVNamespacesAPI* | [**StorageKvNamespacesList**](docs/KVNamespacesAPI.md#storagekvnamespaceslist) | **Get** /storage/kv/namespaces | List namespaces
+*KVNamespacesAPI* | [**StorageKvNamespacesRetrieve**](docs/KVNamespacesAPI.md#storagekvnamespacesretrieve) | **Get** /storage/kv/namespaces/{namespace} | Retrieve namespace
 
 
 ## Documentation For Models

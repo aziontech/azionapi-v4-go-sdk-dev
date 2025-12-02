@@ -63,7 +63,7 @@ paths:
       - tokenAuth: []
       summary: List namespaces
       tags:
-      - namespaces
+      - KV - Namespaces
     post:
       description: Creates a new namespace in the authenticated account.
       operationId: storage_kv_namespaces_create
@@ -97,7 +97,7 @@ paths:
       - tokenAuth: []
       summary: Create namespace
       tags:
-      - namespaces
+      - KV - Namespaces
   /storage/kv/namespaces/{namespace}:
     get:
       description: "Returns a specific namespace by name, if it belongs to the authenticated\
@@ -150,7 +150,7 @@ paths:
       - tokenAuth: []
       summary: Retrieve namespace
       tags:
-      - namespaces
+      - KV - Namespaces
 components:
   schemas:
     ErrorDetail:
