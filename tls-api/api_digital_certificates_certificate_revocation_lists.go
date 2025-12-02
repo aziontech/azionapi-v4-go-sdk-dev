@@ -23,31 +23,31 @@ import (
 // DigitalCertificatesCertificateRevocationListsAPIService DigitalCertificatesCertificateRevocationListsAPI service
 type DigitalCertificatesCertificateRevocationListsAPIService service
 
-type ApiCreateCertificateRevocationListsCRLRequest struct {
+type ApiCreateCertificateRevocationListRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificateRevocationListsAPIService
-	certificateRevocationListRequest *CertificateRevocationListRequest
+	certificateRevocationList *CertificateRevocationList
 }
 
-func (r ApiCreateCertificateRevocationListsCRLRequest) CertificateRevocationListRequest(certificateRevocationListRequest CertificateRevocationListRequest) ApiCreateCertificateRevocationListsCRLRequest {
-	r.certificateRevocationListRequest = &certificateRevocationListRequest
+func (r ApiCreateCertificateRevocationListRequest) CertificateRevocationList(certificateRevocationList CertificateRevocationList) ApiCreateCertificateRevocationListRequest {
+	r.certificateRevocationList = &certificateRevocationList
 	return r
 }
 
-func (r ApiCreateCertificateRevocationListsCRLRequest) Execute() (*ResponseCertificateRevocationList, *http.Response, error) {
-	return r.ApiService.CreateCertificateRevocationListsCRLExecute(r)
+func (r ApiCreateCertificateRevocationListRequest) Execute() (*ResponseCertificateRevocationList, *http.Response, error) {
+	return r.ApiService.CreateCertificateRevocationListExecute(r)
 }
 
 /*
-CreateCertificateRevocationListsCRL Create a certificate revocation lists (CRL)
+CreateCertificateRevocationList Create a certificate revocation lists (CRL)
 
 Create a new certificate revocation lists (CRL) for your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateCertificateRevocationListsCRLRequest
+ @return ApiCreateCertificateRevocationListRequest
 */
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertificateRevocationListsCRL(ctx context.Context) ApiCreateCertificateRevocationListsCRLRequest {
-	return ApiCreateCertificateRevocationListsCRLRequest{
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertificateRevocationList(ctx context.Context) ApiCreateCertificateRevocationListRequest {
+	return ApiCreateCertificateRevocationListRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -55,7 +55,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertific
 
 // Execute executes the request
 //  @return ResponseCertificateRevocationList
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertificateRevocationListsCRLExecute(r ApiCreateCertificateRevocationListsCRLRequest) (*ResponseCertificateRevocationList, *http.Response, error) {
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertificateRevocationListExecute(r ApiCreateCertificateRevocationListRequest) (*ResponseCertificateRevocationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -63,7 +63,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertific
 		localVarReturnValue  *ResponseCertificateRevocationList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.CreateCertificateRevocationListsCRL")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.CreateCertificateRevocationList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -73,8 +73,8 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertific
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.certificateRevocationListRequest == nil {
-		return localVarReturnValue, nil, reportError("certificateRevocationListRequest is required and must be specified")
+	if r.certificateRevocationList == nil {
+		return localVarReturnValue, nil, reportError("certificateRevocationList is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -95,7 +95,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertific
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.certificateRevocationListRequest
+	localVarPostBody = r.certificateRevocationList
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -223,27 +223,27 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertific
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDestroyCertificateRevocationListsCRLRequest struct {
+type ApiDeleteCertificateRevocationListRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificateRevocationListsAPIService
-	id string
+	id int64
 }
 
-func (r ApiDestroyCertificateRevocationListsCRLRequest) Execute() (*ResponseDeleteCertificateRevocationList, *http.Response, error) {
-	return r.ApiService.DestroyCertificateRevocationListsCRLExecute(r)
+func (r ApiDeleteCertificateRevocationListRequest) Execute() (*ResponseAsyncDeleteCertificateRevocationList, *http.Response, error) {
+	return r.ApiService.DeleteCertificateRevocationListExecute(r)
 }
 
 /*
-DestroyCertificateRevocationListsCRL Destroy a certificate revocation lists (CRL)
+DeleteCertificateRevocationList Delete a certificate revocation list
 
-Destruction of a specific certificate revocation lists (CRL) in your account.
+Delete a specific certificate revocation list in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiDestroyCertificateRevocationListsCRLRequest
+ @param id The unique identifier of the certificate revocation list
+ @return ApiDeleteCertificateRevocationListRequest
 */
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) DestroyCertificateRevocationListsCRL(ctx context.Context, id string) ApiDestroyCertificateRevocationListsCRLRequest {
-	return ApiDestroyCertificateRevocationListsCRLRequest{
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) DeleteCertificateRevocationList(ctx context.Context, id int64) ApiDeleteCertificateRevocationListRequest {
+	return ApiDeleteCertificateRevocationListRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -251,16 +251,16 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) DestroyCertifi
 }
 
 // Execute executes the request
-//  @return ResponseDeleteCertificateRevocationList
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) DestroyCertificateRevocationListsCRLExecute(r ApiDestroyCertificateRevocationListsCRLRequest) (*ResponseDeleteCertificateRevocationList, *http.Response, error) {
+//  @return ResponseAsyncDeleteCertificateRevocationList
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) DeleteCertificateRevocationListExecute(r ApiDeleteCertificateRevocationListRequest) (*ResponseAsyncDeleteCertificateRevocationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteCertificateRevocationList
+		localVarReturnValue  *ResponseAsyncDeleteCertificateRevocationList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.DestroyCertificateRevocationListsCRL")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.DeleteCertificateRevocationList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -416,7 +416,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) DestroyCertifi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListCertificateRevocationListsCRLRequest struct {
+type ApiListCertificateRevocationListsRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificateRevocationListsAPIService
 	fields *string
@@ -427,49 +427,49 @@ type ApiListCertificateRevocationListsCRLRequest struct {
 }
 
 // Comma-separated list of field names to include in the response.
-func (r ApiListCertificateRevocationListsCRLRequest) Fields(fields string) ApiListCertificateRevocationListsCRLRequest {
+func (r ApiListCertificateRevocationListsRequest) Fields(fields string) ApiListCertificateRevocationListsRequest {
 	r.fields = &fields
 	return r
 }
 
 // Which field to use when ordering the results. (Valid fields: name, active, last_editor, last_modified, product_version, issuer, last_update, next_update, crl)
-func (r ApiListCertificateRevocationListsCRLRequest) Ordering(ordering string) ApiListCertificateRevocationListsCRLRequest {
+func (r ApiListCertificateRevocationListsRequest) Ordering(ordering string) ApiListCertificateRevocationListsRequest {
 	r.ordering = &ordering
 	return r
 }
 
 // A page number within the paginated result set.
-func (r ApiListCertificateRevocationListsCRLRequest) Page(page int64) ApiListCertificateRevocationListsCRLRequest {
+func (r ApiListCertificateRevocationListsRequest) Page(page int64) ApiListCertificateRevocationListsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListCertificateRevocationListsCRLRequest) PageSize(pageSize int64) ApiListCertificateRevocationListsCRLRequest {
+func (r ApiListCertificateRevocationListsRequest) PageSize(pageSize int64) ApiListCertificateRevocationListsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // A search term.
-func (r ApiListCertificateRevocationListsCRLRequest) Search(search string) ApiListCertificateRevocationListsCRLRequest {
+func (r ApiListCertificateRevocationListsRequest) Search(search string) ApiListCertificateRevocationListsRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiListCertificateRevocationListsCRLRequest) Execute() (*PaginatedCertificateRevocationListList, *http.Response, error) {
-	return r.ApiService.ListCertificateRevocationListsCRLExecute(r)
+func (r ApiListCertificateRevocationListsRequest) Execute() (*PaginatedCertificateRevocationListList, *http.Response, error) {
+	return r.ApiService.ListCertificateRevocationListsExecute(r)
 }
 
 /*
-ListCertificateRevocationListsCRL List certificate revocation lists (CRL)
+ListCertificateRevocationLists List certificate revocation lists (CRL)
 
 List all certificate revocation lists (CRL) owned by your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListCertificateRevocationListsCRLRequest
+ @return ApiListCertificateRevocationListsRequest
 */
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) ListCertificateRevocationListsCRL(ctx context.Context) ApiListCertificateRevocationListsCRLRequest {
-	return ApiListCertificateRevocationListsCRLRequest{
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) ListCertificateRevocationLists(ctx context.Context) ApiListCertificateRevocationListsRequest {
+	return ApiListCertificateRevocationListsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -477,7 +477,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) ListCertificat
 
 // Execute executes the request
 //  @return PaginatedCertificateRevocationListList
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) ListCertificateRevocationListsCRLExecute(r ApiListCertificateRevocationListsCRLRequest) (*PaginatedCertificateRevocationListList, *http.Response, error) {
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) ListCertificateRevocationListsExecute(r ApiListCertificateRevocationListsRequest) (*PaginatedCertificateRevocationListList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -485,7 +485,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) ListCertificat
 		localVarReturnValue  *PaginatedCertificateRevocationListList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.ListCertificateRevocationListsCRL")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.ListCertificateRevocationLists")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -655,33 +655,33 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) ListCertificat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPartialUpdateCertificateRevocationListsCRLRequest struct {
+type ApiPartialUpdateCertificateRevocationListRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificateRevocationListsAPIService
-	id string
-	patchedCertificateRevocationListRequest *PatchedCertificateRevocationListRequest
+	id int64
+	patchedCertificateRevocationList *PatchedCertificateRevocationList
 }
 
-func (r ApiPartialUpdateCertificateRevocationListsCRLRequest) PatchedCertificateRevocationListRequest(patchedCertificateRevocationListRequest PatchedCertificateRevocationListRequest) ApiPartialUpdateCertificateRevocationListsCRLRequest {
-	r.patchedCertificateRevocationListRequest = &patchedCertificateRevocationListRequest
+func (r ApiPartialUpdateCertificateRevocationListRequest) PatchedCertificateRevocationList(patchedCertificateRevocationList PatchedCertificateRevocationList) ApiPartialUpdateCertificateRevocationListRequest {
+	r.patchedCertificateRevocationList = &patchedCertificateRevocationList
 	return r
 }
 
-func (r ApiPartialUpdateCertificateRevocationListsCRLRequest) Execute() (*ResponseCertificateRevocationList, *http.Response, error) {
-	return r.ApiService.PartialUpdateCertificateRevocationListsCRLExecute(r)
+func (r ApiPartialUpdateCertificateRevocationListRequest) Execute() (*ResponseCertificateRevocationList, *http.Response, error) {
+	return r.ApiService.PartialUpdateCertificateRevocationListExecute(r)
 }
 
 /*
-PartialUpdateCertificateRevocationListsCRL Update a certificate revocation lists (CRL)
+PartialUpdateCertificateRevocationList Update a certificate revocation lists (CRL)
 
 Update one or more fields of an existing certificate revocation lists (CRL) without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiPartialUpdateCertificateRevocationListsCRLRequest
+ @param id The unique identifier of the certificate revocation list
+ @return ApiPartialUpdateCertificateRevocationListRequest
 */
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateCertificateRevocationListsCRL(ctx context.Context, id string) ApiPartialUpdateCertificateRevocationListsCRLRequest {
-	return ApiPartialUpdateCertificateRevocationListsCRLRequest{
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateCertificateRevocationList(ctx context.Context, id int64) ApiPartialUpdateCertificateRevocationListRequest {
+	return ApiPartialUpdateCertificateRevocationListRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -690,7 +690,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateC
 
 // Execute executes the request
 //  @return ResponseCertificateRevocationList
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateCertificateRevocationListsCRLExecute(r ApiPartialUpdateCertificateRevocationListsCRLRequest) (*ResponseCertificateRevocationList, *http.Response, error) {
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateCertificateRevocationListExecute(r ApiPartialUpdateCertificateRevocationListRequest) (*ResponseCertificateRevocationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -698,7 +698,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateC
 		localVarReturnValue  *ResponseCertificateRevocationList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.PartialUpdateCertificateRevocationListsCRL")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.PartialUpdateCertificateRevocationList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -728,7 +728,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedCertificateRevocationListRequest
+	localVarPostBody = r.patchedCertificateRevocationList
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -856,34 +856,34 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiRetriveCertificateRevocationListsCRLRequest struct {
+type ApiRetrieveCertificateRevocationListRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificateRevocationListsAPIService
-	id string
+	id int64
 	fields *string
 }
 
 // Comma-separated list of field names to include in the response.
-func (r ApiRetriveCertificateRevocationListsCRLRequest) Fields(fields string) ApiRetriveCertificateRevocationListsCRLRequest {
+func (r ApiRetrieveCertificateRevocationListRequest) Fields(fields string) ApiRetrieveCertificateRevocationListRequest {
 	r.fields = &fields
 	return r
 }
 
-func (r ApiRetriveCertificateRevocationListsCRLRequest) Execute() (*ResponseRetrieveCertificateRevocationList, *http.Response, error) {
-	return r.ApiService.RetriveCertificateRevocationListsCRLExecute(r)
+func (r ApiRetrieveCertificateRevocationListRequest) Execute() (*ResponseRetrieveCertificateRevocationList, *http.Response, error) {
+	return r.ApiService.RetrieveCertificateRevocationListExecute(r)
 }
 
 /*
-RetriveCertificateRevocationListsCRL Retrieve details from a certificate revocation lists (CRL)
+RetrieveCertificateRevocationList Retrieve details from a certificate revocation lists (CRL)
 
 Retrieve details from a specific certificate revocation lists (CRL) in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiRetriveCertificateRevocationListsCRLRequest
+ @param id The unique identifier of the certificate revocation list
+ @return ApiRetrieveCertificateRevocationListRequest
 */
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetriveCertificateRevocationListsCRL(ctx context.Context, id string) ApiRetriveCertificateRevocationListsCRLRequest {
-	return ApiRetriveCertificateRevocationListsCRLRequest{
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetrieveCertificateRevocationList(ctx context.Context, id int64) ApiRetrieveCertificateRevocationListRequest {
+	return ApiRetrieveCertificateRevocationListRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -892,7 +892,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetriveCertifi
 
 // Execute executes the request
 //  @return ResponseRetrieveCertificateRevocationList
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetriveCertificateRevocationListsCRLExecute(r ApiRetriveCertificateRevocationListsCRLRequest) (*ResponseRetrieveCertificateRevocationList, *http.Response, error) {
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetrieveCertificateRevocationListExecute(r ApiRetrieveCertificateRevocationListRequest) (*ResponseRetrieveCertificateRevocationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -900,7 +900,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetriveCertifi
 		localVarReturnValue  *ResponseRetrieveCertificateRevocationList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.RetriveCertificateRevocationListsCRL")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.RetrieveCertificateRevocationList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1059,33 +1059,33 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetriveCertifi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateCertificateRevocationListsCRLRequest struct {
+type ApiUpdateCertificateRevocationListRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificateRevocationListsAPIService
-	id string
-	certificateRevocationListRequest *CertificateRevocationListRequest
+	id int64
+	certificateRevocationList *CertificateRevocationList
 }
 
-func (r ApiUpdateCertificateRevocationListsCRLRequest) CertificateRevocationListRequest(certificateRevocationListRequest CertificateRevocationListRequest) ApiUpdateCertificateRevocationListsCRLRequest {
-	r.certificateRevocationListRequest = &certificateRevocationListRequest
+func (r ApiUpdateCertificateRevocationListRequest) CertificateRevocationList(certificateRevocationList CertificateRevocationList) ApiUpdateCertificateRevocationListRequest {
+	r.certificateRevocationList = &certificateRevocationList
 	return r
 }
 
-func (r ApiUpdateCertificateRevocationListsCRLRequest) Execute() (*ResponseCertificateRevocationList, *http.Response, error) {
-	return r.ApiService.UpdateCertificateRevocationListsCRLExecute(r)
+func (r ApiUpdateCertificateRevocationListRequest) Execute() (*ResponseCertificateRevocationList, *http.Response, error) {
+	return r.ApiService.UpdateCertificateRevocationListExecute(r)
 }
 
 /*
-UpdateCertificateRevocationListsCRL Update a certificate revocation lists (CRL)
+UpdateCertificateRevocationList Update a certificate revocation lists (CRL)
 
 Update an existing certificate revocation lists (CRL).  This replaces the entire certificate with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiUpdateCertificateRevocationListsCRLRequest
+ @param id The unique identifier of the certificate revocation list
+ @return ApiUpdateCertificateRevocationListRequest
 */
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertificateRevocationListsCRL(ctx context.Context, id string) ApiUpdateCertificateRevocationListsCRLRequest {
-	return ApiUpdateCertificateRevocationListsCRLRequest{
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertificateRevocationList(ctx context.Context, id int64) ApiUpdateCertificateRevocationListRequest {
+	return ApiUpdateCertificateRevocationListRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -1094,7 +1094,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertific
 
 // Execute executes the request
 //  @return ResponseCertificateRevocationList
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertificateRevocationListsCRLExecute(r ApiUpdateCertificateRevocationListsCRLRequest) (*ResponseCertificateRevocationList, *http.Response, error) {
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertificateRevocationListExecute(r ApiUpdateCertificateRevocationListRequest) (*ResponseCertificateRevocationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1102,7 +1102,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertific
 		localVarReturnValue  *ResponseCertificateRevocationList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.UpdateCertificateRevocationListsCRL")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.UpdateCertificateRevocationList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1113,8 +1113,8 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertific
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.certificateRevocationListRequest == nil {
-		return localVarReturnValue, nil, reportError("certificateRevocationListRequest is required and must be specified")
+	if r.certificateRevocationList == nil {
+		return localVarReturnValue, nil, reportError("certificateRevocationList is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1135,7 +1135,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertific
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.certificateRevocationListRequest
+	localVarPostBody = r.certificateRevocationList
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

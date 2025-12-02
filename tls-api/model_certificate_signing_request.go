@@ -17,11 +17,11 @@ import (
 	"fmt"
 )
 
-// checks if the Certificate type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Certificate{}
+// checks if the CertificateSigningRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CertificateSigningRequest{}
 
-// Certificate struct for Certificate
-type Certificate struct {
+// CertificateSigningRequest struct for CertificateSigningRequest
+type CertificateSigningRequest struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
 	Certificate NullableString `json:"certificate,omitempty"`
@@ -40,7 +40,8 @@ type Certificate struct {
 	Challenge string `json:"challenge"`
 	// * `lets_encrypt` - lets_encrypt
 	Authority string `json:"authority"`
-	KeyAlgorithm string `json:"key_algorithm"`
+	// * `rsa_2048` - 2048-bit RSA * `rsa_4096` - 4096-bit RSA * `ecc_384` - 384-bit Prime Field Curve
+	KeyAlgorithm *string `json:"key_algorithm,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	ProductVersion string `json:"product_version"`
 	LastEditor string `json:"last_editor"`
@@ -48,16 +49,24 @@ type Certificate struct {
 	LastModified time.Time `json:"last_modified"`
 	// Timestamp indicating when the managed certificate was renewed on our platform.
 	RenewedAt NullableTime `json:"renewed_at"`
+	CommonName string `json:"common_name"`
+	AlternativeNames []string `json:"alternative_names,omitempty"`
+	Country string `json:"country"`
+	State string `json:"state"`
+	Locality string `json:"locality"`
+	Organization string `json:"organization"`
+	OrganizationUnity string `json:"organization_unity"`
+	Email string `json:"email"`
 }
 
-type _Certificate Certificate
+type _CertificateSigningRequest CertificateSigningRequest
 
-// NewCertificate instantiates a new Certificate object
+// NewCertificateSigningRequest instantiates a new CertificateSigningRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificate(id int64, name string, issuer NullableString, subjectName []string, validity NullableString, managed bool, status string, statusDetail string, csr NullableString, challenge string, authority string, keyAlgorithm string, productVersion string, lastEditor string, lastModified time.Time, renewedAt NullableTime) *Certificate {
-	this := Certificate{}
+func NewCertificateSigningRequest(id int64, name string, issuer NullableString, subjectName []string, validity NullableString, managed bool, status string, statusDetail string, csr NullableString, challenge string, authority string, productVersion string, lastEditor string, lastModified time.Time, renewedAt NullableTime, commonName string, country string, state string, locality string, organization string, organizationUnity string, email string) *CertificateSigningRequest {
+	this := CertificateSigningRequest{}
 	this.Id = id
 	this.Name = name
 	this.Issuer = issuer
@@ -69,24 +78,30 @@ func NewCertificate(id int64, name string, issuer NullableString, subjectName []
 	this.Csr = csr
 	this.Challenge = challenge
 	this.Authority = authority
-	this.KeyAlgorithm = keyAlgorithm
 	this.ProductVersion = productVersion
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
 	this.RenewedAt = renewedAt
+	this.CommonName = commonName
+	this.Country = country
+	this.State = state
+	this.Locality = locality
+	this.Organization = organization
+	this.OrganizationUnity = organizationUnity
+	this.Email = email
 	return &this
 }
 
-// NewCertificateWithDefaults instantiates a new Certificate object
+// NewCertificateSigningRequestWithDefaults instantiates a new CertificateSigningRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCertificateWithDefaults() *Certificate {
-	this := Certificate{}
+func NewCertificateSigningRequestWithDefaults() *CertificateSigningRequest {
+	this := CertificateSigningRequest{}
 	return &this
 }
 
 // GetId returns the Id field value
-func (o *Certificate) GetId() int64 {
+func (o *CertificateSigningRequest) GetId() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -97,7 +112,7 @@ func (o *Certificate) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetIdOk() (*int64, bool) {
+func (o *CertificateSigningRequest) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -105,12 +120,12 @@ func (o *Certificate) GetIdOk() (*int64, bool) {
 }
 
 // SetId sets field value
-func (o *Certificate) SetId(v int64) {
+func (o *CertificateSigningRequest) SetId(v int64) {
 	o.Id = v
 }
 
 // GetName returns the Name field value
-func (o *Certificate) GetName() string {
+func (o *CertificateSigningRequest) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -121,7 +136,7 @@ func (o *Certificate) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetNameOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -129,12 +144,12 @@ func (o *Certificate) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *Certificate) SetName(v string) {
+func (o *CertificateSigningRequest) SetName(v string) {
 	o.Name = v
 }
 
 // GetCertificate returns the Certificate field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Certificate) GetCertificate() string {
+func (o *CertificateSigningRequest) GetCertificate() string {
 	if o == nil || IsNil(o.Certificate.Get()) {
 		var ret string
 		return ret
@@ -145,7 +160,7 @@ func (o *Certificate) GetCertificate() string {
 // GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Certificate) GetCertificateOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetCertificateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -153,7 +168,7 @@ func (o *Certificate) GetCertificateOk() (*string, bool) {
 }
 
 // HasCertificate returns a boolean if a field has been set.
-func (o *Certificate) HasCertificate() bool {
+func (o *CertificateSigningRequest) HasCertificate() bool {
 	if o != nil && o.Certificate.IsSet() {
 		return true
 	}
@@ -162,21 +177,21 @@ func (o *Certificate) HasCertificate() bool {
 }
 
 // SetCertificate gets a reference to the given NullableString and assigns it to the Certificate field.
-func (o *Certificate) SetCertificate(v string) {
+func (o *CertificateSigningRequest) SetCertificate(v string) {
 	o.Certificate.Set(&v)
 }
 // SetCertificateNil sets the value for Certificate to be an explicit nil
-func (o *Certificate) SetCertificateNil() {
+func (o *CertificateSigningRequest) SetCertificateNil() {
 	o.Certificate.Set(nil)
 }
 
 // UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
-func (o *Certificate) UnsetCertificate() {
+func (o *CertificateSigningRequest) UnsetCertificate() {
 	o.Certificate.Unset()
 }
 
 // GetPrivateKey returns the PrivateKey field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Certificate) GetPrivateKey() string {
+func (o *CertificateSigningRequest) GetPrivateKey() string {
 	if o == nil || IsNil(o.PrivateKey.Get()) {
 		var ret string
 		return ret
@@ -187,7 +202,7 @@ func (o *Certificate) GetPrivateKey() string {
 // GetPrivateKeyOk returns a tuple with the PrivateKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Certificate) GetPrivateKeyOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetPrivateKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -195,7 +210,7 @@ func (o *Certificate) GetPrivateKeyOk() (*string, bool) {
 }
 
 // HasPrivateKey returns a boolean if a field has been set.
-func (o *Certificate) HasPrivateKey() bool {
+func (o *CertificateSigningRequest) HasPrivateKey() bool {
 	if o != nil && o.PrivateKey.IsSet() {
 		return true
 	}
@@ -204,22 +219,22 @@ func (o *Certificate) HasPrivateKey() bool {
 }
 
 // SetPrivateKey gets a reference to the given NullableString and assigns it to the PrivateKey field.
-func (o *Certificate) SetPrivateKey(v string) {
+func (o *CertificateSigningRequest) SetPrivateKey(v string) {
 	o.PrivateKey.Set(&v)
 }
 // SetPrivateKeyNil sets the value for PrivateKey to be an explicit nil
-func (o *Certificate) SetPrivateKeyNil() {
+func (o *CertificateSigningRequest) SetPrivateKeyNil() {
 	o.PrivateKey.Set(nil)
 }
 
 // UnsetPrivateKey ensures that no value is present for PrivateKey, not even an explicit nil
-func (o *Certificate) UnsetPrivateKey() {
+func (o *CertificateSigningRequest) UnsetPrivateKey() {
 	o.PrivateKey.Unset()
 }
 
 // GetIssuer returns the Issuer field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *Certificate) GetIssuer() string {
+func (o *CertificateSigningRequest) GetIssuer() string {
 	if o == nil || o.Issuer.Get() == nil {
 		var ret string
 		return ret
@@ -231,7 +246,7 @@ func (o *Certificate) GetIssuer() string {
 // GetIssuerOk returns a tuple with the Issuer field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Certificate) GetIssuerOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetIssuerOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -239,12 +254,12 @@ func (o *Certificate) GetIssuerOk() (*string, bool) {
 }
 
 // SetIssuer sets field value
-func (o *Certificate) SetIssuer(v string) {
+func (o *CertificateSigningRequest) SetIssuer(v string) {
 	o.Issuer.Set(&v)
 }
 
 // GetSubjectName returns the SubjectName field value
-func (o *Certificate) GetSubjectName() []string {
+func (o *CertificateSigningRequest) GetSubjectName() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -255,7 +270,7 @@ func (o *Certificate) GetSubjectName() []string {
 
 // GetSubjectNameOk returns a tuple with the SubjectName field value
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetSubjectNameOk() ([]string, bool) {
+func (o *CertificateSigningRequest) GetSubjectNameOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -263,13 +278,13 @@ func (o *Certificate) GetSubjectNameOk() ([]string, bool) {
 }
 
 // SetSubjectName sets field value
-func (o *Certificate) SetSubjectName(v []string) {
+func (o *CertificateSigningRequest) SetSubjectName(v []string) {
 	o.SubjectName = v
 }
 
 // GetValidity returns the Validity field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *Certificate) GetValidity() string {
+func (o *CertificateSigningRequest) GetValidity() string {
 	if o == nil || o.Validity.Get() == nil {
 		var ret string
 		return ret
@@ -281,7 +296,7 @@ func (o *Certificate) GetValidity() string {
 // GetValidityOk returns a tuple with the Validity field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Certificate) GetValidityOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetValidityOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -289,12 +304,12 @@ func (o *Certificate) GetValidityOk() (*string, bool) {
 }
 
 // SetValidity sets field value
-func (o *Certificate) SetValidity(v string) {
+func (o *CertificateSigningRequest) SetValidity(v string) {
 	o.Validity.Set(&v)
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *Certificate) GetType() string {
+func (o *CertificateSigningRequest) GetType() string {
 	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
@@ -304,7 +319,7 @@ func (o *Certificate) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetTypeOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -312,7 +327,7 @@ func (o *Certificate) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *Certificate) HasType() bool {
+func (o *CertificateSigningRequest) HasType() bool {
 	if o != nil && !IsNil(o.Type) {
 		return true
 	}
@@ -321,12 +336,12 @@ func (o *Certificate) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *Certificate) SetType(v string) {
+func (o *CertificateSigningRequest) SetType(v string) {
 	o.Type = &v
 }
 
 // GetManaged returns the Managed field value
-func (o *Certificate) GetManaged() bool {
+func (o *CertificateSigningRequest) GetManaged() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -337,7 +352,7 @@ func (o *Certificate) GetManaged() bool {
 
 // GetManagedOk returns a tuple with the Managed field value
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetManagedOk() (*bool, bool) {
+func (o *CertificateSigningRequest) GetManagedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -345,12 +360,12 @@ func (o *Certificate) GetManagedOk() (*bool, bool) {
 }
 
 // SetManaged sets field value
-func (o *Certificate) SetManaged(v bool) {
+func (o *CertificateSigningRequest) SetManaged(v bool) {
 	o.Managed = v
 }
 
 // GetStatus returns the Status field value
-func (o *Certificate) GetStatus() string {
+func (o *CertificateSigningRequest) GetStatus() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -361,7 +376,7 @@ func (o *Certificate) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetStatusOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetStatusOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -369,12 +384,12 @@ func (o *Certificate) GetStatusOk() (*string, bool) {
 }
 
 // SetStatus sets field value
-func (o *Certificate) SetStatus(v string) {
+func (o *CertificateSigningRequest) SetStatus(v string) {
 	o.Status = v
 }
 
 // GetStatusDetail returns the StatusDetail field value
-func (o *Certificate) GetStatusDetail() string {
+func (o *CertificateSigningRequest) GetStatusDetail() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -385,7 +400,7 @@ func (o *Certificate) GetStatusDetail() string {
 
 // GetStatusDetailOk returns a tuple with the StatusDetail field value
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetStatusDetailOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetStatusDetailOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -393,13 +408,13 @@ func (o *Certificate) GetStatusDetailOk() (*string, bool) {
 }
 
 // SetStatusDetail sets field value
-func (o *Certificate) SetStatusDetail(v string) {
+func (o *CertificateSigningRequest) SetStatusDetail(v string) {
 	o.StatusDetail = v
 }
 
 // GetCsr returns the Csr field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *Certificate) GetCsr() string {
+func (o *CertificateSigningRequest) GetCsr() string {
 	if o == nil || o.Csr.Get() == nil {
 		var ret string
 		return ret
@@ -411,7 +426,7 @@ func (o *Certificate) GetCsr() string {
 // GetCsrOk returns a tuple with the Csr field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Certificate) GetCsrOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetCsrOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -419,12 +434,12 @@ func (o *Certificate) GetCsrOk() (*string, bool) {
 }
 
 // SetCsr sets field value
-func (o *Certificate) SetCsr(v string) {
+func (o *CertificateSigningRequest) SetCsr(v string) {
 	o.Csr.Set(&v)
 }
 
 // GetChallenge returns the Challenge field value
-func (o *Certificate) GetChallenge() string {
+func (o *CertificateSigningRequest) GetChallenge() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -435,7 +450,7 @@ func (o *Certificate) GetChallenge() string {
 
 // GetChallengeOk returns a tuple with the Challenge field value
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetChallengeOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetChallengeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -443,12 +458,12 @@ func (o *Certificate) GetChallengeOk() (*string, bool) {
 }
 
 // SetChallenge sets field value
-func (o *Certificate) SetChallenge(v string) {
+func (o *CertificateSigningRequest) SetChallenge(v string) {
 	o.Challenge = v
 }
 
 // GetAuthority returns the Authority field value
-func (o *Certificate) GetAuthority() string {
+func (o *CertificateSigningRequest) GetAuthority() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -459,7 +474,7 @@ func (o *Certificate) GetAuthority() string {
 
 // GetAuthorityOk returns a tuple with the Authority field value
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetAuthorityOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetAuthorityOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -467,36 +482,44 @@ func (o *Certificate) GetAuthorityOk() (*string, bool) {
 }
 
 // SetAuthority sets field value
-func (o *Certificate) SetAuthority(v string) {
+func (o *CertificateSigningRequest) SetAuthority(v string) {
 	o.Authority = v
 }
 
-// GetKeyAlgorithm returns the KeyAlgorithm field value
-func (o *Certificate) GetKeyAlgorithm() string {
-	if o == nil {
+// GetKeyAlgorithm returns the KeyAlgorithm field value if set, zero value otherwise.
+func (o *CertificateSigningRequest) GetKeyAlgorithm() string {
+	if o == nil || IsNil(o.KeyAlgorithm) {
 		var ret string
 		return ret
 	}
-
-	return o.KeyAlgorithm
+	return *o.KeyAlgorithm
 }
 
-// GetKeyAlgorithmOk returns a tuple with the KeyAlgorithm field value
+// GetKeyAlgorithmOk returns a tuple with the KeyAlgorithm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetKeyAlgorithmOk() (*string, bool) {
-	if o == nil {
+func (o *CertificateSigningRequest) GetKeyAlgorithmOk() (*string, bool) {
+	if o == nil || IsNil(o.KeyAlgorithm) {
 		return nil, false
 	}
-	return &o.KeyAlgorithm, true
+	return o.KeyAlgorithm, true
 }
 
-// SetKeyAlgorithm sets field value
-func (o *Certificate) SetKeyAlgorithm(v string) {
-	o.KeyAlgorithm = v
+// HasKeyAlgorithm returns a boolean if a field has been set.
+func (o *CertificateSigningRequest) HasKeyAlgorithm() bool {
+	if o != nil && !IsNil(o.KeyAlgorithm) {
+		return true
+	}
+
+	return false
+}
+
+// SetKeyAlgorithm gets a reference to the given string and assigns it to the KeyAlgorithm field.
+func (o *CertificateSigningRequest) SetKeyAlgorithm(v string) {
+	o.KeyAlgorithm = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *Certificate) GetActive() bool {
+func (o *CertificateSigningRequest) GetActive() bool {
 	if o == nil || IsNil(o.Active) {
 		var ret bool
 		return ret
@@ -506,7 +529,7 @@ func (o *Certificate) GetActive() bool {
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetActiveOk() (*bool, bool) {
+func (o *CertificateSigningRequest) GetActiveOk() (*bool, bool) {
 	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
@@ -514,7 +537,7 @@ func (o *Certificate) GetActiveOk() (*bool, bool) {
 }
 
 // HasActive returns a boolean if a field has been set.
-func (o *Certificate) HasActive() bool {
+func (o *CertificateSigningRequest) HasActive() bool {
 	if o != nil && !IsNil(o.Active) {
 		return true
 	}
@@ -523,12 +546,12 @@ func (o *Certificate) HasActive() bool {
 }
 
 // SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *Certificate) SetActive(v bool) {
+func (o *CertificateSigningRequest) SetActive(v bool) {
 	o.Active = &v
 }
 
 // GetProductVersion returns the ProductVersion field value
-func (o *Certificate) GetProductVersion() string {
+func (o *CertificateSigningRequest) GetProductVersion() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -539,7 +562,7 @@ func (o *Certificate) GetProductVersion() string {
 
 // GetProductVersionOk returns a tuple with the ProductVersion field value
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetProductVersionOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetProductVersionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -547,12 +570,12 @@ func (o *Certificate) GetProductVersionOk() (*string, bool) {
 }
 
 // SetProductVersion sets field value
-func (o *Certificate) SetProductVersion(v string) {
+func (o *CertificateSigningRequest) SetProductVersion(v string) {
 	o.ProductVersion = v
 }
 
 // GetLastEditor returns the LastEditor field value
-func (o *Certificate) GetLastEditor() string {
+func (o *CertificateSigningRequest) GetLastEditor() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -563,7 +586,7 @@ func (o *Certificate) GetLastEditor() string {
 
 // GetLastEditorOk returns a tuple with the LastEditor field value
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetLastEditorOk() (*string, bool) {
+func (o *CertificateSigningRequest) GetLastEditorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -571,12 +594,12 @@ func (o *Certificate) GetLastEditorOk() (*string, bool) {
 }
 
 // SetLastEditor sets field value
-func (o *Certificate) SetLastEditor(v string) {
+func (o *CertificateSigningRequest) SetLastEditor(v string) {
 	o.LastEditor = v
 }
 
 // GetLastModified returns the LastModified field value
-func (o *Certificate) GetLastModified() time.Time {
+func (o *CertificateSigningRequest) GetLastModified() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -587,7 +610,7 @@ func (o *Certificate) GetLastModified() time.Time {
 
 // GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
-func (o *Certificate) GetLastModifiedOk() (*time.Time, bool) {
+func (o *CertificateSigningRequest) GetLastModifiedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -595,13 +618,13 @@ func (o *Certificate) GetLastModifiedOk() (*time.Time, bool) {
 }
 
 // SetLastModified sets field value
-func (o *Certificate) SetLastModified(v time.Time) {
+func (o *CertificateSigningRequest) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
 // GetRenewedAt returns the RenewedAt field value
 // If the value is explicit nil, the zero value for time.Time will be returned
-func (o *Certificate) GetRenewedAt() time.Time {
+func (o *CertificateSigningRequest) GetRenewedAt() time.Time {
 	if o == nil || o.RenewedAt.Get() == nil {
 		var ret time.Time
 		return ret
@@ -613,7 +636,7 @@ func (o *Certificate) GetRenewedAt() time.Time {
 // GetRenewedAtOk returns a tuple with the RenewedAt field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Certificate) GetRenewedAtOk() (*time.Time, bool) {
+func (o *CertificateSigningRequest) GetRenewedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -621,11 +644,211 @@ func (o *Certificate) GetRenewedAtOk() (*time.Time, bool) {
 }
 
 // SetRenewedAt sets field value
-func (o *Certificate) SetRenewedAt(v time.Time) {
+func (o *CertificateSigningRequest) SetRenewedAt(v time.Time) {
 	o.RenewedAt.Set(&v)
 }
 
-func (o Certificate) MarshalJSON() ([]byte, error) {
+// GetCommonName returns the CommonName field value
+func (o *CertificateSigningRequest) GetCommonName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CommonName
+}
+
+// GetCommonNameOk returns a tuple with the CommonName field value
+// and a boolean to check if the value has been set.
+func (o *CertificateSigningRequest) GetCommonNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CommonName, true
+}
+
+// SetCommonName sets field value
+func (o *CertificateSigningRequest) SetCommonName(v string) {
+	o.CommonName = v
+}
+
+// GetAlternativeNames returns the AlternativeNames field value if set, zero value otherwise.
+func (o *CertificateSigningRequest) GetAlternativeNames() []string {
+	if o == nil || IsNil(o.AlternativeNames) {
+		var ret []string
+		return ret
+	}
+	return o.AlternativeNames
+}
+
+// GetAlternativeNamesOk returns a tuple with the AlternativeNames field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CertificateSigningRequest) GetAlternativeNamesOk() ([]string, bool) {
+	if o == nil || IsNil(o.AlternativeNames) {
+		return nil, false
+	}
+	return o.AlternativeNames, true
+}
+
+// HasAlternativeNames returns a boolean if a field has been set.
+func (o *CertificateSigningRequest) HasAlternativeNames() bool {
+	if o != nil && !IsNil(o.AlternativeNames) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlternativeNames gets a reference to the given []string and assigns it to the AlternativeNames field.
+func (o *CertificateSigningRequest) SetAlternativeNames(v []string) {
+	o.AlternativeNames = v
+}
+
+// GetCountry returns the Country field value
+func (o *CertificateSigningRequest) GetCountry() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Country
+}
+
+// GetCountryOk returns a tuple with the Country field value
+// and a boolean to check if the value has been set.
+func (o *CertificateSigningRequest) GetCountryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Country, true
+}
+
+// SetCountry sets field value
+func (o *CertificateSigningRequest) SetCountry(v string) {
+	o.Country = v
+}
+
+// GetState returns the State field value
+func (o *CertificateSigningRequest) GetState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *CertificateSigningRequest) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
+// SetState sets field value
+func (o *CertificateSigningRequest) SetState(v string) {
+	o.State = v
+}
+
+// GetLocality returns the Locality field value
+func (o *CertificateSigningRequest) GetLocality() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Locality
+}
+
+// GetLocalityOk returns a tuple with the Locality field value
+// and a boolean to check if the value has been set.
+func (o *CertificateSigningRequest) GetLocalityOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Locality, true
+}
+
+// SetLocality sets field value
+func (o *CertificateSigningRequest) SetLocality(v string) {
+	o.Locality = v
+}
+
+// GetOrganization returns the Organization field value
+func (o *CertificateSigningRequest) GetOrganization() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Organization
+}
+
+// GetOrganizationOk returns a tuple with the Organization field value
+// and a boolean to check if the value has been set.
+func (o *CertificateSigningRequest) GetOrganizationOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Organization, true
+}
+
+// SetOrganization sets field value
+func (o *CertificateSigningRequest) SetOrganization(v string) {
+	o.Organization = v
+}
+
+// GetOrganizationUnity returns the OrganizationUnity field value
+func (o *CertificateSigningRequest) GetOrganizationUnity() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.OrganizationUnity
+}
+
+// GetOrganizationUnityOk returns a tuple with the OrganizationUnity field value
+// and a boolean to check if the value has been set.
+func (o *CertificateSigningRequest) GetOrganizationUnityOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.OrganizationUnity, true
+}
+
+// SetOrganizationUnity sets field value
+func (o *CertificateSigningRequest) SetOrganizationUnity(v string) {
+	o.OrganizationUnity = v
+}
+
+// GetEmail returns the Email field value
+func (o *CertificateSigningRequest) GetEmail() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Email
+}
+
+// GetEmailOk returns a tuple with the Email field value
+// and a boolean to check if the value has been set.
+func (o *CertificateSigningRequest) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Email, true
+}
+
+// SetEmail sets field value
+func (o *CertificateSigningRequest) SetEmail(v string) {
+	o.Email = v
+}
+
+func (o CertificateSigningRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -633,7 +856,7 @@ func (o Certificate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o Certificate) ToMap() (map[string]interface{}, error) {
+func (o CertificateSigningRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
@@ -655,7 +878,9 @@ func (o Certificate) ToMap() (map[string]interface{}, error) {
 	toSerialize["csr"] = o.Csr.Get()
 	toSerialize["challenge"] = o.Challenge
 	toSerialize["authority"] = o.Authority
-	toSerialize["key_algorithm"] = o.KeyAlgorithm
+	if !IsNil(o.KeyAlgorithm) {
+		toSerialize["key_algorithm"] = o.KeyAlgorithm
+	}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
@@ -663,10 +888,20 @@ func (o Certificate) ToMap() (map[string]interface{}, error) {
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
 	toSerialize["renewed_at"] = o.RenewedAt.Get()
+	toSerialize["common_name"] = o.CommonName
+	if !IsNil(o.AlternativeNames) {
+		toSerialize["alternative_names"] = o.AlternativeNames
+	}
+	toSerialize["country"] = o.Country
+	toSerialize["state"] = o.State
+	toSerialize["locality"] = o.Locality
+	toSerialize["organization"] = o.Organization
+	toSerialize["organization_unity"] = o.OrganizationUnity
+	toSerialize["email"] = o.Email
 	return toSerialize, nil
 }
 
-func (o *Certificate) UnmarshalJSON(data []byte) (err error) {
+func (o *CertificateSigningRequest) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -682,11 +917,17 @@ func (o *Certificate) UnmarshalJSON(data []byte) (err error) {
 		"csr",
 		"challenge",
 		"authority",
-		"key_algorithm",
 		"product_version",
 		"last_editor",
 		"last_modified",
 		"renewed_at",
+		"common_name",
+		"country",
+		"state",
+		"locality",
+		"organization",
+		"organization_unity",
+		"email",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -703,53 +944,53 @@ func (o *Certificate) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varCertificate := _Certificate{}
+	varCertificateSigningRequest := _CertificateSigningRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCertificate)
+	err = decoder.Decode(&varCertificateSigningRequest)
 
 	if err != nil {
 		return err
 	}
 
-	*o = Certificate(varCertificate)
+	*o = CertificateSigningRequest(varCertificateSigningRequest)
 
 	return err
 }
 
-type NullableCertificate struct {
-	value *Certificate
+type NullableCertificateSigningRequest struct {
+	value *CertificateSigningRequest
 	isSet bool
 }
 
-func (v NullableCertificate) Get() *Certificate {
+func (v NullableCertificateSigningRequest) Get() *CertificateSigningRequest {
 	return v.value
 }
 
-func (v *NullableCertificate) Set(val *Certificate) {
+func (v *NullableCertificateSigningRequest) Set(val *CertificateSigningRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCertificate) IsSet() bool {
+func (v NullableCertificateSigningRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCertificate) Unset() {
+func (v *NullableCertificateSigningRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCertificate(val *Certificate) *NullableCertificate {
-	return &NullableCertificate{value: val, isSet: true}
+func NewNullableCertificateSigningRequest(val *CertificateSigningRequest) *NullableCertificateSigningRequest {
+	return &NullableCertificateSigningRequest{value: val, isSet: true}
 }
 
-func (v NullableCertificate) MarshalJSON() ([]byte, error) {
+func (v NullableCertificateSigningRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCertificate) UnmarshalJSON(src []byte) error {
+func (v *NullableCertificateSigningRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

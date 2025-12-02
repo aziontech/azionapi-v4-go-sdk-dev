@@ -1,4 +1,4 @@
-# CertificateRequest
+# CertificateSigningRequest
 
 ## Properties
 
@@ -26,592 +26,682 @@ Name | Type | Description | Notes
 **RenewedAt** | **NullableTime** | Timestamp indicating when the managed certificate was renewed on our platform. | 
 **CommonName** | **string** |  | 
 **AlternativeNames** | Pointer to **[]string** |  | [optional] 
-**SourceCertificate** | Pointer to **NullableInt64** |  | [optional] 
+**Country** | **string** |  | 
+**State** | **string** |  | 
+**Locality** | **string** |  | 
+**Organization** | **string** |  | 
+**OrganizationUnity** | **string** |  | 
+**Email** | **string** |  | 
 
 ## Methods
 
-### NewCertificateRequest
+### NewCertificateSigningRequest
 
-`func NewCertificateRequest(id int64, name string, issuer NullableString, subjectName []string, validity NullableString, managed bool, status string, statusDetail string, csr NullableString, challenge string, authority string, productVersion string, lastEditor string, lastModified time.Time, renewedAt NullableTime, commonName string, ) *CertificateRequest`
+`func NewCertificateSigningRequest(id int64, name string, issuer NullableString, subjectName []string, validity NullableString, managed bool, status string, statusDetail string, csr NullableString, challenge string, authority string, productVersion string, lastEditor string, lastModified time.Time, renewedAt NullableTime, commonName string, country string, state string, locality string, organization string, organizationUnity string, email string, ) *CertificateSigningRequest`
 
-NewCertificateRequest instantiates a new CertificateRequest object
+NewCertificateSigningRequest instantiates a new CertificateSigningRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCertificateRequestWithDefaults
+### NewCertificateSigningRequestWithDefaults
 
-`func NewCertificateRequestWithDefaults() *CertificateRequest`
+`func NewCertificateSigningRequestWithDefaults() *CertificateSigningRequest`
 
-NewCertificateRequestWithDefaults instantiates a new CertificateRequest object
+NewCertificateSigningRequestWithDefaults instantiates a new CertificateSigningRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *CertificateRequest) GetId() int64`
+`func (o *CertificateSigningRequest) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *CertificateRequest) GetIdOk() (*int64, bool)`
+`func (o *CertificateSigningRequest) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *CertificateRequest) SetId(v int64)`
+`func (o *CertificateSigningRequest) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetName
 
-`func (o *CertificateRequest) GetName() string`
+`func (o *CertificateSigningRequest) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *CertificateRequest) GetNameOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *CertificateRequest) SetName(v string)`
+`func (o *CertificateSigningRequest) SetName(v string)`
 
 SetName sets Name field to given value.
 
 
 ### GetCertificate
 
-`func (o *CertificateRequest) GetCertificate() string`
+`func (o *CertificateSigningRequest) GetCertificate() string`
 
 GetCertificate returns the Certificate field if non-nil, zero value otherwise.
 
 ### GetCertificateOk
 
-`func (o *CertificateRequest) GetCertificateOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetCertificateOk() (*string, bool)`
 
 GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCertificate
 
-`func (o *CertificateRequest) SetCertificate(v string)`
+`func (o *CertificateSigningRequest) SetCertificate(v string)`
 
 SetCertificate sets Certificate field to given value.
 
 ### HasCertificate
 
-`func (o *CertificateRequest) HasCertificate() bool`
+`func (o *CertificateSigningRequest) HasCertificate() bool`
 
 HasCertificate returns a boolean if a field has been set.
 
 ### SetCertificateNil
 
-`func (o *CertificateRequest) SetCertificateNil(b bool)`
+`func (o *CertificateSigningRequest) SetCertificateNil(b bool)`
 
  SetCertificateNil sets the value for Certificate to be an explicit nil
 
 ### UnsetCertificate
-`func (o *CertificateRequest) UnsetCertificate()`
+`func (o *CertificateSigningRequest) UnsetCertificate()`
 
 UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
 ### GetPrivateKey
 
-`func (o *CertificateRequest) GetPrivateKey() string`
+`func (o *CertificateSigningRequest) GetPrivateKey() string`
 
 GetPrivateKey returns the PrivateKey field if non-nil, zero value otherwise.
 
 ### GetPrivateKeyOk
 
-`func (o *CertificateRequest) GetPrivateKeyOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetPrivateKeyOk() (*string, bool)`
 
 GetPrivateKeyOk returns a tuple with the PrivateKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrivateKey
 
-`func (o *CertificateRequest) SetPrivateKey(v string)`
+`func (o *CertificateSigningRequest) SetPrivateKey(v string)`
 
 SetPrivateKey sets PrivateKey field to given value.
 
 ### HasPrivateKey
 
-`func (o *CertificateRequest) HasPrivateKey() bool`
+`func (o *CertificateSigningRequest) HasPrivateKey() bool`
 
 HasPrivateKey returns a boolean if a field has been set.
 
 ### SetPrivateKeyNil
 
-`func (o *CertificateRequest) SetPrivateKeyNil(b bool)`
+`func (o *CertificateSigningRequest) SetPrivateKeyNil(b bool)`
 
  SetPrivateKeyNil sets the value for PrivateKey to be an explicit nil
 
 ### UnsetPrivateKey
-`func (o *CertificateRequest) UnsetPrivateKey()`
+`func (o *CertificateSigningRequest) UnsetPrivateKey()`
 
 UnsetPrivateKey ensures that no value is present for PrivateKey, not even an explicit nil
 ### GetIssuer
 
-`func (o *CertificateRequest) GetIssuer() string`
+`func (o *CertificateSigningRequest) GetIssuer() string`
 
 GetIssuer returns the Issuer field if non-nil, zero value otherwise.
 
 ### GetIssuerOk
 
-`func (o *CertificateRequest) GetIssuerOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetIssuerOk() (*string, bool)`
 
 GetIssuerOk returns a tuple with the Issuer field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIssuer
 
-`func (o *CertificateRequest) SetIssuer(v string)`
+`func (o *CertificateSigningRequest) SetIssuer(v string)`
 
 SetIssuer sets Issuer field to given value.
 
 
 ### SetIssuerNil
 
-`func (o *CertificateRequest) SetIssuerNil(b bool)`
+`func (o *CertificateSigningRequest) SetIssuerNil(b bool)`
 
  SetIssuerNil sets the value for Issuer to be an explicit nil
 
 ### UnsetIssuer
-`func (o *CertificateRequest) UnsetIssuer()`
+`func (o *CertificateSigningRequest) UnsetIssuer()`
 
 UnsetIssuer ensures that no value is present for Issuer, not even an explicit nil
 ### GetSubjectName
 
-`func (o *CertificateRequest) GetSubjectName() []string`
+`func (o *CertificateSigningRequest) GetSubjectName() []string`
 
 GetSubjectName returns the SubjectName field if non-nil, zero value otherwise.
 
 ### GetSubjectNameOk
 
-`func (o *CertificateRequest) GetSubjectNameOk() (*[]string, bool)`
+`func (o *CertificateSigningRequest) GetSubjectNameOk() (*[]string, bool)`
 
 GetSubjectNameOk returns a tuple with the SubjectName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubjectName
 
-`func (o *CertificateRequest) SetSubjectName(v []string)`
+`func (o *CertificateSigningRequest) SetSubjectName(v []string)`
 
 SetSubjectName sets SubjectName field to given value.
 
 
 ### GetValidity
 
-`func (o *CertificateRequest) GetValidity() string`
+`func (o *CertificateSigningRequest) GetValidity() string`
 
 GetValidity returns the Validity field if non-nil, zero value otherwise.
 
 ### GetValidityOk
 
-`func (o *CertificateRequest) GetValidityOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetValidityOk() (*string, bool)`
 
 GetValidityOk returns a tuple with the Validity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValidity
 
-`func (o *CertificateRequest) SetValidity(v string)`
+`func (o *CertificateSigningRequest) SetValidity(v string)`
 
 SetValidity sets Validity field to given value.
 
 
 ### SetValidityNil
 
-`func (o *CertificateRequest) SetValidityNil(b bool)`
+`func (o *CertificateSigningRequest) SetValidityNil(b bool)`
 
  SetValidityNil sets the value for Validity to be an explicit nil
 
 ### UnsetValidity
-`func (o *CertificateRequest) UnsetValidity()`
+`func (o *CertificateSigningRequest) UnsetValidity()`
 
 UnsetValidity ensures that no value is present for Validity, not even an explicit nil
 ### GetType
 
-`func (o *CertificateRequest) GetType() string`
+`func (o *CertificateSigningRequest) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *CertificateRequest) GetTypeOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *CertificateRequest) SetType(v string)`
+`func (o *CertificateSigningRequest) SetType(v string)`
 
 SetType sets Type field to given value.
 
 ### HasType
 
-`func (o *CertificateRequest) HasType() bool`
+`func (o *CertificateSigningRequest) HasType() bool`
 
 HasType returns a boolean if a field has been set.
 
 ### GetManaged
 
-`func (o *CertificateRequest) GetManaged() bool`
+`func (o *CertificateSigningRequest) GetManaged() bool`
 
 GetManaged returns the Managed field if non-nil, zero value otherwise.
 
 ### GetManagedOk
 
-`func (o *CertificateRequest) GetManagedOk() (*bool, bool)`
+`func (o *CertificateSigningRequest) GetManagedOk() (*bool, bool)`
 
 GetManagedOk returns a tuple with the Managed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetManaged
 
-`func (o *CertificateRequest) SetManaged(v bool)`
+`func (o *CertificateSigningRequest) SetManaged(v bool)`
 
 SetManaged sets Managed field to given value.
 
 
 ### GetStatus
 
-`func (o *CertificateRequest) GetStatus() string`
+`func (o *CertificateSigningRequest) GetStatus() string`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *CertificateRequest) GetStatusOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *CertificateRequest) SetStatus(v string)`
+`func (o *CertificateSigningRequest) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
 
 
 ### GetStatusDetail
 
-`func (o *CertificateRequest) GetStatusDetail() string`
+`func (o *CertificateSigningRequest) GetStatusDetail() string`
 
 GetStatusDetail returns the StatusDetail field if non-nil, zero value otherwise.
 
 ### GetStatusDetailOk
 
-`func (o *CertificateRequest) GetStatusDetailOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetStatusDetailOk() (*string, bool)`
 
 GetStatusDetailOk returns a tuple with the StatusDetail field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatusDetail
 
-`func (o *CertificateRequest) SetStatusDetail(v string)`
+`func (o *CertificateSigningRequest) SetStatusDetail(v string)`
 
 SetStatusDetail sets StatusDetail field to given value.
 
 
 ### GetCsr
 
-`func (o *CertificateRequest) GetCsr() string`
+`func (o *CertificateSigningRequest) GetCsr() string`
 
 GetCsr returns the Csr field if non-nil, zero value otherwise.
 
 ### GetCsrOk
 
-`func (o *CertificateRequest) GetCsrOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetCsrOk() (*string, bool)`
 
 GetCsrOk returns a tuple with the Csr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCsr
 
-`func (o *CertificateRequest) SetCsr(v string)`
+`func (o *CertificateSigningRequest) SetCsr(v string)`
 
 SetCsr sets Csr field to given value.
 
 
 ### SetCsrNil
 
-`func (o *CertificateRequest) SetCsrNil(b bool)`
+`func (o *CertificateSigningRequest) SetCsrNil(b bool)`
 
  SetCsrNil sets the value for Csr to be an explicit nil
 
 ### UnsetCsr
-`func (o *CertificateRequest) UnsetCsr()`
+`func (o *CertificateSigningRequest) UnsetCsr()`
 
 UnsetCsr ensures that no value is present for Csr, not even an explicit nil
 ### GetChallenge
 
-`func (o *CertificateRequest) GetChallenge() string`
+`func (o *CertificateSigningRequest) GetChallenge() string`
 
 GetChallenge returns the Challenge field if non-nil, zero value otherwise.
 
 ### GetChallengeOk
 
-`func (o *CertificateRequest) GetChallengeOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetChallengeOk() (*string, bool)`
 
 GetChallengeOk returns a tuple with the Challenge field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChallenge
 
-`func (o *CertificateRequest) SetChallenge(v string)`
+`func (o *CertificateSigningRequest) SetChallenge(v string)`
 
 SetChallenge sets Challenge field to given value.
 
 
 ### GetAuthority
 
-`func (o *CertificateRequest) GetAuthority() string`
+`func (o *CertificateSigningRequest) GetAuthority() string`
 
 GetAuthority returns the Authority field if non-nil, zero value otherwise.
 
 ### GetAuthorityOk
 
-`func (o *CertificateRequest) GetAuthorityOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetAuthorityOk() (*string, bool)`
 
 GetAuthorityOk returns a tuple with the Authority field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAuthority
 
-`func (o *CertificateRequest) SetAuthority(v string)`
+`func (o *CertificateSigningRequest) SetAuthority(v string)`
 
 SetAuthority sets Authority field to given value.
 
 
 ### GetKeyAlgorithm
 
-`func (o *CertificateRequest) GetKeyAlgorithm() string`
+`func (o *CertificateSigningRequest) GetKeyAlgorithm() string`
 
 GetKeyAlgorithm returns the KeyAlgorithm field if non-nil, zero value otherwise.
 
 ### GetKeyAlgorithmOk
 
-`func (o *CertificateRequest) GetKeyAlgorithmOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetKeyAlgorithmOk() (*string, bool)`
 
 GetKeyAlgorithmOk returns a tuple with the KeyAlgorithm field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKeyAlgorithm
 
-`func (o *CertificateRequest) SetKeyAlgorithm(v string)`
+`func (o *CertificateSigningRequest) SetKeyAlgorithm(v string)`
 
 SetKeyAlgorithm sets KeyAlgorithm field to given value.
 
 ### HasKeyAlgorithm
 
-`func (o *CertificateRequest) HasKeyAlgorithm() bool`
+`func (o *CertificateSigningRequest) HasKeyAlgorithm() bool`
 
 HasKeyAlgorithm returns a boolean if a field has been set.
 
 ### GetActive
 
-`func (o *CertificateRequest) GetActive() bool`
+`func (o *CertificateSigningRequest) GetActive() bool`
 
 GetActive returns the Active field if non-nil, zero value otherwise.
 
 ### GetActiveOk
 
-`func (o *CertificateRequest) GetActiveOk() (*bool, bool)`
+`func (o *CertificateSigningRequest) GetActiveOk() (*bool, bool)`
 
 GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetActive
 
-`func (o *CertificateRequest) SetActive(v bool)`
+`func (o *CertificateSigningRequest) SetActive(v bool)`
 
 SetActive sets Active field to given value.
 
 ### HasActive
 
-`func (o *CertificateRequest) HasActive() bool`
+`func (o *CertificateSigningRequest) HasActive() bool`
 
 HasActive returns a boolean if a field has been set.
 
 ### GetProductVersion
 
-`func (o *CertificateRequest) GetProductVersion() string`
+`func (o *CertificateSigningRequest) GetProductVersion() string`
 
 GetProductVersion returns the ProductVersion field if non-nil, zero value otherwise.
 
 ### GetProductVersionOk
 
-`func (o *CertificateRequest) GetProductVersionOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetProductVersionOk() (*string, bool)`
 
 GetProductVersionOk returns a tuple with the ProductVersion field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProductVersion
 
-`func (o *CertificateRequest) SetProductVersion(v string)`
+`func (o *CertificateSigningRequest) SetProductVersion(v string)`
 
 SetProductVersion sets ProductVersion field to given value.
 
 
 ### GetLastEditor
 
-`func (o *CertificateRequest) GetLastEditor() string`
+`func (o *CertificateSigningRequest) GetLastEditor() string`
 
 GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
 
 ### GetLastEditorOk
 
-`func (o *CertificateRequest) GetLastEditorOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetLastEditorOk() (*string, bool)`
 
 GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastEditor
 
-`func (o *CertificateRequest) SetLastEditor(v string)`
+`func (o *CertificateSigningRequest) SetLastEditor(v string)`
 
 SetLastEditor sets LastEditor field to given value.
 
 
 ### GetLastModified
 
-`func (o *CertificateRequest) GetLastModified() time.Time`
+`func (o *CertificateSigningRequest) GetLastModified() time.Time`
 
 GetLastModified returns the LastModified field if non-nil, zero value otherwise.
 
 ### GetLastModifiedOk
 
-`func (o *CertificateRequest) GetLastModifiedOk() (*time.Time, bool)`
+`func (o *CertificateSigningRequest) GetLastModifiedOk() (*time.Time, bool)`
 
 GetLastModifiedOk returns a tuple with the LastModified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastModified
 
-`func (o *CertificateRequest) SetLastModified(v time.Time)`
+`func (o *CertificateSigningRequest) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
 
 
 ### GetRenewedAt
 
-`func (o *CertificateRequest) GetRenewedAt() time.Time`
+`func (o *CertificateSigningRequest) GetRenewedAt() time.Time`
 
 GetRenewedAt returns the RenewedAt field if non-nil, zero value otherwise.
 
 ### GetRenewedAtOk
 
-`func (o *CertificateRequest) GetRenewedAtOk() (*time.Time, bool)`
+`func (o *CertificateSigningRequest) GetRenewedAtOk() (*time.Time, bool)`
 
 GetRenewedAtOk returns a tuple with the RenewedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRenewedAt
 
-`func (o *CertificateRequest) SetRenewedAt(v time.Time)`
+`func (o *CertificateSigningRequest) SetRenewedAt(v time.Time)`
 
 SetRenewedAt sets RenewedAt field to given value.
 
 
 ### SetRenewedAtNil
 
-`func (o *CertificateRequest) SetRenewedAtNil(b bool)`
+`func (o *CertificateSigningRequest) SetRenewedAtNil(b bool)`
 
  SetRenewedAtNil sets the value for RenewedAt to be an explicit nil
 
 ### UnsetRenewedAt
-`func (o *CertificateRequest) UnsetRenewedAt()`
+`func (o *CertificateSigningRequest) UnsetRenewedAt()`
 
 UnsetRenewedAt ensures that no value is present for RenewedAt, not even an explicit nil
 ### GetCommonName
 
-`func (o *CertificateRequest) GetCommonName() string`
+`func (o *CertificateSigningRequest) GetCommonName() string`
 
 GetCommonName returns the CommonName field if non-nil, zero value otherwise.
 
 ### GetCommonNameOk
 
-`func (o *CertificateRequest) GetCommonNameOk() (*string, bool)`
+`func (o *CertificateSigningRequest) GetCommonNameOk() (*string, bool)`
 
 GetCommonNameOk returns a tuple with the CommonName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCommonName
 
-`func (o *CertificateRequest) SetCommonName(v string)`
+`func (o *CertificateSigningRequest) SetCommonName(v string)`
 
 SetCommonName sets CommonName field to given value.
 
 
 ### GetAlternativeNames
 
-`func (o *CertificateRequest) GetAlternativeNames() []string`
+`func (o *CertificateSigningRequest) GetAlternativeNames() []string`
 
 GetAlternativeNames returns the AlternativeNames field if non-nil, zero value otherwise.
 
 ### GetAlternativeNamesOk
 
-`func (o *CertificateRequest) GetAlternativeNamesOk() (*[]string, bool)`
+`func (o *CertificateSigningRequest) GetAlternativeNamesOk() (*[]string, bool)`
 
 GetAlternativeNamesOk returns a tuple with the AlternativeNames field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAlternativeNames
 
-`func (o *CertificateRequest) SetAlternativeNames(v []string)`
+`func (o *CertificateSigningRequest) SetAlternativeNames(v []string)`
 
 SetAlternativeNames sets AlternativeNames field to given value.
 
 ### HasAlternativeNames
 
-`func (o *CertificateRequest) HasAlternativeNames() bool`
+`func (o *CertificateSigningRequest) HasAlternativeNames() bool`
 
 HasAlternativeNames returns a boolean if a field has been set.
 
-### GetSourceCertificate
+### GetCountry
 
-`func (o *CertificateRequest) GetSourceCertificate() int64`
+`func (o *CertificateSigningRequest) GetCountry() string`
 
-GetSourceCertificate returns the SourceCertificate field if non-nil, zero value otherwise.
+GetCountry returns the Country field if non-nil, zero value otherwise.
 
-### GetSourceCertificateOk
+### GetCountryOk
 
-`func (o *CertificateRequest) GetSourceCertificateOk() (*int64, bool)`
+`func (o *CertificateSigningRequest) GetCountryOk() (*string, bool)`
 
-GetSourceCertificateOk returns a tuple with the SourceCertificate field if it's non-nil, zero value otherwise
+GetCountryOk returns a tuple with the Country field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetSourceCertificate
+### SetCountry
 
-`func (o *CertificateRequest) SetSourceCertificate(v int64)`
+`func (o *CertificateSigningRequest) SetCountry(v string)`
 
-SetSourceCertificate sets SourceCertificate field to given value.
+SetCountry sets Country field to given value.
 
-### HasSourceCertificate
 
-`func (o *CertificateRequest) HasSourceCertificate() bool`
+### GetState
 
-HasSourceCertificate returns a boolean if a field has been set.
+`func (o *CertificateSigningRequest) GetState() string`
 
-### SetSourceCertificateNil
+GetState returns the State field if non-nil, zero value otherwise.
 
-`func (o *CertificateRequest) SetSourceCertificateNil(b bool)`
+### GetStateOk
 
- SetSourceCertificateNil sets the value for SourceCertificate to be an explicit nil
+`func (o *CertificateSigningRequest) GetStateOk() (*string, bool)`
 
-### UnsetSourceCertificate
-`func (o *CertificateRequest) UnsetSourceCertificate()`
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
 
-UnsetSourceCertificate ensures that no value is present for SourceCertificate, not even an explicit nil
+### SetState
+
+`func (o *CertificateSigningRequest) SetState(v string)`
+
+SetState sets State field to given value.
+
+
+### GetLocality
+
+`func (o *CertificateSigningRequest) GetLocality() string`
+
+GetLocality returns the Locality field if non-nil, zero value otherwise.
+
+### GetLocalityOk
+
+`func (o *CertificateSigningRequest) GetLocalityOk() (*string, bool)`
+
+GetLocalityOk returns a tuple with the Locality field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocality
+
+`func (o *CertificateSigningRequest) SetLocality(v string)`
+
+SetLocality sets Locality field to given value.
+
+
+### GetOrganization
+
+`func (o *CertificateSigningRequest) GetOrganization() string`
+
+GetOrganization returns the Organization field if non-nil, zero value otherwise.
+
+### GetOrganizationOk
+
+`func (o *CertificateSigningRequest) GetOrganizationOk() (*string, bool)`
+
+GetOrganizationOk returns a tuple with the Organization field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganization
+
+`func (o *CertificateSigningRequest) SetOrganization(v string)`
+
+SetOrganization sets Organization field to given value.
+
+
+### GetOrganizationUnity
+
+`func (o *CertificateSigningRequest) GetOrganizationUnity() string`
+
+GetOrganizationUnity returns the OrganizationUnity field if non-nil, zero value otherwise.
+
+### GetOrganizationUnityOk
+
+`func (o *CertificateSigningRequest) GetOrganizationUnityOk() (*string, bool)`
+
+GetOrganizationUnityOk returns a tuple with the OrganizationUnity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrganizationUnity
+
+`func (o *CertificateSigningRequest) SetOrganizationUnity(v string)`
+
+SetOrganizationUnity sets OrganizationUnity field to given value.
+
+
+### GetEmail
+
+`func (o *CertificateSigningRequest) GetEmail() string`
+
+GetEmail returns the Email field if non-nil, zero value otherwise.
+
+### GetEmailOk
+
+`func (o *CertificateSigningRequest) GetEmailOk() (*string, bool)`
+
+GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmail
+
+`func (o *CertificateSigningRequest) SetEmail(v string)`
+
+SetEmail sets Email field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

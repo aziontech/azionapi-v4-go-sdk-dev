@@ -26,11 +26,11 @@ type DigitalCertificatesCertificatesAPIService service
 type ApiCreateCertificateRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificatesAPIService
-	certificateRequest *CertificateRequest
+	certificate *Certificate
 }
 
-func (r ApiCreateCertificateRequest) CertificateRequest(certificateRequest CertificateRequest) ApiCreateCertificateRequest {
-	r.certificateRequest = &certificateRequest
+func (r ApiCreateCertificateRequest) Certificate(certificate Certificate) ApiCreateCertificateRequest {
+	r.certificate = &certificate
 	return r
 }
 
@@ -73,8 +73,8 @@ func (a *DigitalCertificatesCertificatesAPIService) CreateCertificateExecute(r A
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.certificateRequest == nil {
-		return localVarReturnValue, nil, reportError("certificateRequest is required and must be specified")
+	if r.certificate == nil {
+		return localVarReturnValue, nil, reportError("certificate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -95,7 +95,7 @@ func (a *DigitalCertificatesCertificatesAPIService) CreateCertificateExecute(r A
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.certificateRequest
+	localVarPostBody = r.certificate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -223,27 +223,27 @@ func (a *DigitalCertificatesCertificatesAPIService) CreateCertificateExecute(r A
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDestroyCertificateRequest struct {
+type ApiDeleteCertificateRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificatesAPIService
-	id string
+	id int64
 }
 
-func (r ApiDestroyCertificateRequest) Execute() (*ResponseDeleteCertificate, *http.Response, error) {
-	return r.ApiService.DestroyCertificateExecute(r)
+func (r ApiDeleteCertificateRequest) Execute() (*ResponseAsyncDeleteCertificate, *http.Response, error) {
+	return r.ApiService.DeleteCertificateExecute(r)
 }
 
 /*
-DestroyCertificate Destroy a certificate
+DeleteCertificate Delete a certificate
 
-Destruction of a specific certificate in your account.
+Delete a specific certificate in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiDestroyCertificateRequest
+ @param id The unique identifier of the certificate
+ @return ApiDeleteCertificateRequest
 */
-func (a *DigitalCertificatesCertificatesAPIService) DestroyCertificate(ctx context.Context, id string) ApiDestroyCertificateRequest {
-	return ApiDestroyCertificateRequest{
+func (a *DigitalCertificatesCertificatesAPIService) DeleteCertificate(ctx context.Context, id int64) ApiDeleteCertificateRequest {
+	return ApiDeleteCertificateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -251,16 +251,16 @@ func (a *DigitalCertificatesCertificatesAPIService) DestroyCertificate(ctx conte
 }
 
 // Execute executes the request
-//  @return ResponseDeleteCertificate
-func (a *DigitalCertificatesCertificatesAPIService) DestroyCertificateExecute(r ApiDestroyCertificateRequest) (*ResponseDeleteCertificate, *http.Response, error) {
+//  @return ResponseAsyncDeleteCertificate
+func (a *DigitalCertificatesCertificatesAPIService) DeleteCertificateExecute(r ApiDeleteCertificateRequest) (*ResponseAsyncDeleteCertificate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteCertificate
+		localVarReturnValue  *ResponseAsyncDeleteCertificate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificatesAPIService.DestroyCertificate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificatesAPIService.DeleteCertificate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -658,12 +658,12 @@ func (a *DigitalCertificatesCertificatesAPIService) ListCertificatesExecute(r Ap
 type ApiPartialUpdateCertificateRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificatesAPIService
-	id string
-	patchedCertificateRequest *PatchedCertificateRequest
+	id int64
+	patchedCertificate *PatchedCertificate
 }
 
-func (r ApiPartialUpdateCertificateRequest) PatchedCertificateRequest(patchedCertificateRequest PatchedCertificateRequest) ApiPartialUpdateCertificateRequest {
-	r.patchedCertificateRequest = &patchedCertificateRequest
+func (r ApiPartialUpdateCertificateRequest) PatchedCertificate(patchedCertificate PatchedCertificate) ApiPartialUpdateCertificateRequest {
+	r.patchedCertificate = &patchedCertificate
 	return r
 }
 
@@ -677,10 +677,10 @@ PartialUpdateCertificate Partially update a certificate
 Update one or more fields of an existing certificate without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param id The unique identifier of the certificate
  @return ApiPartialUpdateCertificateRequest
 */
-func (a *DigitalCertificatesCertificatesAPIService) PartialUpdateCertificate(ctx context.Context, id string) ApiPartialUpdateCertificateRequest {
+func (a *DigitalCertificatesCertificatesAPIService) PartialUpdateCertificate(ctx context.Context, id int64) ApiPartialUpdateCertificateRequest {
 	return ApiPartialUpdateCertificateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -728,7 +728,7 @@ func (a *DigitalCertificatesCertificatesAPIService) PartialUpdateCertificateExec
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedCertificateRequest
+	localVarPostBody = r.patchedCertificate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -857,34 +857,34 @@ func (a *DigitalCertificatesCertificatesAPIService) PartialUpdateCertificateExec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiRetriveCertificateRequest struct {
+type ApiRetrieveCertificateRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificatesAPIService
-	id string
+	id int64
 	fields *string
 }
 
 // Comma-separated list of field names to include in the response.
-func (r ApiRetriveCertificateRequest) Fields(fields string) ApiRetriveCertificateRequest {
+func (r ApiRetrieveCertificateRequest) Fields(fields string) ApiRetrieveCertificateRequest {
 	r.fields = &fields
 	return r
 }
 
-func (r ApiRetriveCertificateRequest) Execute() (*ResponseRetrieveCertificate, *http.Response, error) {
-	return r.ApiService.RetriveCertificateExecute(r)
+func (r ApiRetrieveCertificateRequest) Execute() (*ResponseRetrieveCertificate, *http.Response, error) {
+	return r.ApiService.RetrieveCertificateExecute(r)
 }
 
 /*
-RetriveCertificate Retrieve details from a certificate
+RetrieveCertificate Retrieve details from a certificate
 
 Retrieve details from a specific certificate in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiRetriveCertificateRequest
+ @param id The unique identifier of the certificate
+ @return ApiRetrieveCertificateRequest
 */
-func (a *DigitalCertificatesCertificatesAPIService) RetriveCertificate(ctx context.Context, id string) ApiRetriveCertificateRequest {
-	return ApiRetriveCertificateRequest{
+func (a *DigitalCertificatesCertificatesAPIService) RetrieveCertificate(ctx context.Context, id int64) ApiRetrieveCertificateRequest {
+	return ApiRetrieveCertificateRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -893,7 +893,7 @@ func (a *DigitalCertificatesCertificatesAPIService) RetriveCertificate(ctx conte
 
 // Execute executes the request
 //  @return ResponseRetrieveCertificate
-func (a *DigitalCertificatesCertificatesAPIService) RetriveCertificateExecute(r ApiRetriveCertificateRequest) (*ResponseRetrieveCertificate, *http.Response, error) {
+func (a *DigitalCertificatesCertificatesAPIService) RetrieveCertificateExecute(r ApiRetrieveCertificateRequest) (*ResponseRetrieveCertificate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -901,7 +901,7 @@ func (a *DigitalCertificatesCertificatesAPIService) RetriveCertificateExecute(r 
 		localVarReturnValue  *ResponseRetrieveCertificate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificatesAPIService.RetriveCertificate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificatesAPIService.RetrieveCertificate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1063,12 +1063,12 @@ func (a *DigitalCertificatesCertificatesAPIService) RetriveCertificateExecute(r 
 type ApiUpdateCertificateRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificatesAPIService
-	id string
-	certificateRequest *CertificateRequest
+	id int64
+	certificate *Certificate
 }
 
-func (r ApiUpdateCertificateRequest) CertificateRequest(certificateRequest CertificateRequest) ApiUpdateCertificateRequest {
-	r.certificateRequest = &certificateRequest
+func (r ApiUpdateCertificateRequest) Certificate(certificate Certificate) ApiUpdateCertificateRequest {
+	r.certificate = &certificate
 	return r
 }
 
@@ -1082,10 +1082,10 @@ UpdateCertificate Update a certificate
 Update an existing certificate. This replaces the entire certificate with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param id The unique identifier of the certificate
  @return ApiUpdateCertificateRequest
 */
-func (a *DigitalCertificatesCertificatesAPIService) UpdateCertificate(ctx context.Context, id string) ApiUpdateCertificateRequest {
+func (a *DigitalCertificatesCertificatesAPIService) UpdateCertificate(ctx context.Context, id int64) ApiUpdateCertificateRequest {
 	return ApiUpdateCertificateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1114,8 +1114,8 @@ func (a *DigitalCertificatesCertificatesAPIService) UpdateCertificateExecute(r A
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.certificateRequest == nil {
-		return localVarReturnValue, nil, reportError("certificateRequest is required and must be specified")
+	if r.certificate == nil {
+		return localVarReturnValue, nil, reportError("certificate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1136,7 +1136,7 @@ func (a *DigitalCertificatesCertificatesAPIService) UpdateCertificateExecute(r A
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.certificateRequest
+	localVarPostBody = r.certificate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
