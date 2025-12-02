@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateDatabase**](SQLAPI.md#CreateDatabase) | **Post** /edge_sql/api/databases | Create a database
-[**DeleteDatabase**](SQLAPI.md#DeleteDatabase) | **Delete** /edge_sql/api/databases/{database_id} | Delete a database
-[**ExecuteQuery**](SQLAPI.md#ExecuteQuery) | **Post** /edge_sql/api/databases/{database_id}/query | Execute a query into a database
-[**ListDatabases**](SQLAPI.md#ListDatabases) | **Get** /edge_sql/api/databases | List databases
-[**RetrieveDatabase**](SQLAPI.md#RetrieveDatabase) | **Get** /edge_sql/api/databases/{database_id} | Retrieve details from a database
+[**CreateDatabase**](SQLAPI.md#CreateDatabase) | **Post** /sql/databases | Create a database
+[**DeleteDatabase**](SQLAPI.md#DeleteDatabase) | **Delete** /sql/databases/{database_id} | Delete a database
+[**ExecuteQuery**](SQLAPI.md#ExecuteQuery) | **Post** /sql/databases/{database_id}/query | Execute a query into a database
+[**ListDatabases**](SQLAPI.md#ListDatabases) | **Get** /sql/databases | List databases
+[**RetrieveDatabase**](SQLAPI.md#RetrieveDatabase) | **Get** /sql/databases/{database_id} | Retrieve details from a database
 
 
 

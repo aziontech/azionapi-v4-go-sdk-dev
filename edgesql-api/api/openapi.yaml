@@ -6,7 +6,7 @@ info:
 servers:
 - url: /
 paths:
-  /edge_sql/api/databases:
+  /sql/databases:
     get:
       description: List all databases owned by your account.
       operationId: list_databases
@@ -336,7 +336,7 @@ paths:
       summary: Create a database
       tags:
       - SQL
-  /edge_sql/api/databases/{database_id}:
+  /sql/databases/{database_id}:
     delete:
       description: Schedule the deletion of a specific database in your account.
       operationId: delete_database
@@ -623,7 +623,7 @@ paths:
       summary: Retrieve details from a database
       tags:
       - SQL
-  /edge_sql/api/databases/{database_id}/query:
+  /sql/databases/{database_id}/query:
     post:
       description: Execute a query into a database for your account.
       operationId: execute_query
