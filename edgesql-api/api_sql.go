@@ -68,7 +68,7 @@ func (a *SQLAPIService) CreateDatabaseExecute(r ApiCreateDatabaseRequest) (*Resp
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_sql/api/databases"
+	localVarPath := localBasePath + "/sql/databases"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -276,7 +276,7 @@ func (a *SQLAPIService) DeleteDatabaseExecute(r ApiDeleteDatabaseRequest) (*Resp
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_sql/api/databases/{database_id}"
+	localVarPath := localBasePath + "/sql/databases/{database_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"database_id"+"}", url.PathEscape(parameterValueToString(r.databaseId, "databaseId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -475,7 +475,7 @@ func (a *SQLAPIService) ExecuteQueryExecute(r ApiExecuteQueryRequest) (*Response
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_sql/api/databases/{database_id}/query"
+	localVarPath := localBasePath + "/sql/databases/{database_id}/query"
 	localVarPath = strings.Replace(localVarPath, "{"+"database_id"+"}", url.PathEscape(parameterValueToString(r.databaseId, "databaseId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -716,7 +716,7 @@ func (a *SQLAPIService) ListDatabasesExecute(r ApiListDatabasesRequest) (*Pagina
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_sql/api/databases"
+	localVarPath := localBasePath + "/sql/databases"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -930,7 +930,7 @@ func (a *SQLAPIService) RetrieveDatabaseExecute(r ApiRetrieveDatabaseRequest) (*
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_sql/api/databases/{database_id}"
+	localVarPath := localBasePath + "/sql/databases/{database_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"database_id"+"}", url.PathEscape(parameterValueToString(r.databaseId, "databaseId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
