@@ -1,527 +1,607 @@
-# Certificate
+# PatchedCertificate
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
-**Name** | **string** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Certificate** | Pointer to **NullableString** |  | [optional] 
 **PrivateKey** | Pointer to **NullableString** |  | [optional] 
-**Issuer** | **NullableString** |  | 
-**SubjectName** | **[]string** |  | 
-**Validity** | **NullableString** |  | 
+**Issuer** | Pointer to **NullableString** |  | [optional] 
+**SubjectName** | Pointer to **[]string** |  | [optional] 
+**Validity** | Pointer to **NullableString** |  | [optional] 
 **Type** | Pointer to **string** | The value can&#39;t be changed after the certificate creation.  * &#x60;edge_certificate&#x60; - Edge Certificate * &#x60;trusted_ca_certificate&#x60; - Trusted CA Certificate | [optional] 
-**Managed** | **bool** |  | 
-**Status** | **string** | * &#x60;challenge_verification&#x60; - Challenge Verification * &#x60;active&#x60; - Active * &#x60;pending&#x60; - Pending * &#x60;failed&#x60; - Failed | 
-**StatusDetail** | **string** |  | 
-**Csr** | **NullableString** |  | 
-**Challenge** | **string** | * &#x60;dns&#x60; - Uses DNS to solve the ACME challenge. * &#x60;http&#x60; - Uses HTTP to solve the ACME challenge. | 
-**Authority** | **string** | * &#x60;lets_encrypt&#x60; - lets_encrypt | 
-**KeyAlgorithm** | **string** |  | 
+**Managed** | Pointer to **bool** |  | [optional] 
+**Status** | Pointer to **string** | * &#x60;challenge_verification&#x60; - Challenge Verification * &#x60;active&#x60; - Active * &#x60;pending&#x60; - Pending * &#x60;failed&#x60; - Failed | [optional] 
+**StatusDetail** | Pointer to **string** |  | [optional] 
+**Csr** | Pointer to **NullableString** |  | [optional] 
+**Challenge** | Pointer to **string** | * &#x60;dns&#x60; - Uses DNS to solve the ACME challenge. * &#x60;http&#x60; - Uses HTTP to solve the ACME challenge. | [optional] 
+**Authority** | Pointer to **string** | * &#x60;lets_encrypt&#x60; - lets_encrypt | [optional] 
+**KeyAlgorithm** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**ProductVersion** | **string** |  | 
-**LastEditor** | **string** |  | 
-**LastModified** | **time.Time** | Timestamp of the last modification made to the certificate content on the platform. | 
-**RenewedAt** | **NullableTime** | Timestamp indicating when the managed certificate was renewed on our platform. | 
+**ProductVersion** | Pointer to **string** |  | [optional] 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **time.Time** | Timestamp of the last modification made to the certificate content on the platform. | [optional] 
+**RenewedAt** | Pointer to **NullableTime** | Timestamp indicating when the managed certificate was renewed on our platform. | [optional] 
 
 ## Methods
 
-### NewCertificate
+### NewPatchedCertificate
 
-`func NewCertificate(id int64, name string, issuer NullableString, subjectName []string, validity NullableString, managed bool, status string, statusDetail string, csr NullableString, challenge string, authority string, keyAlgorithm string, productVersion string, lastEditor string, lastModified time.Time, renewedAt NullableTime, ) *Certificate`
+`func NewPatchedCertificate() *PatchedCertificate`
 
-NewCertificate instantiates a new Certificate object
+NewPatchedCertificate instantiates a new PatchedCertificate object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCertificateWithDefaults
+### NewPatchedCertificateWithDefaults
 
-`func NewCertificateWithDefaults() *Certificate`
+`func NewPatchedCertificateWithDefaults() *PatchedCertificate`
 
-NewCertificateWithDefaults instantiates a new Certificate object
+NewPatchedCertificateWithDefaults instantiates a new PatchedCertificate object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Certificate) GetId() int64`
+`func (o *PatchedCertificate) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Certificate) GetIdOk() (*int64, bool)`
+`func (o *PatchedCertificate) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Certificate) SetId(v int64)`
+`func (o *PatchedCertificate) SetId(v int64)`
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *PatchedCertificate) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
-`func (o *Certificate) GetName() string`
+`func (o *PatchedCertificate) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *Certificate) GetNameOk() (*string, bool)`
+`func (o *PatchedCertificate) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *Certificate) SetName(v string)`
+`func (o *PatchedCertificate) SetName(v string)`
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *PatchedCertificate) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetCertificate
 
-`func (o *Certificate) GetCertificate() string`
+`func (o *PatchedCertificate) GetCertificate() string`
 
 GetCertificate returns the Certificate field if non-nil, zero value otherwise.
 
 ### GetCertificateOk
 
-`func (o *Certificate) GetCertificateOk() (*string, bool)`
+`func (o *PatchedCertificate) GetCertificateOk() (*string, bool)`
 
 GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCertificate
 
-`func (o *Certificate) SetCertificate(v string)`
+`func (o *PatchedCertificate) SetCertificate(v string)`
 
 SetCertificate sets Certificate field to given value.
 
 ### HasCertificate
 
-`func (o *Certificate) HasCertificate() bool`
+`func (o *PatchedCertificate) HasCertificate() bool`
 
 HasCertificate returns a boolean if a field has been set.
 
 ### SetCertificateNil
 
-`func (o *Certificate) SetCertificateNil(b bool)`
+`func (o *PatchedCertificate) SetCertificateNil(b bool)`
 
  SetCertificateNil sets the value for Certificate to be an explicit nil
 
 ### UnsetCertificate
-`func (o *Certificate) UnsetCertificate()`
+`func (o *PatchedCertificate) UnsetCertificate()`
 
 UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
 ### GetPrivateKey
 
-`func (o *Certificate) GetPrivateKey() string`
+`func (o *PatchedCertificate) GetPrivateKey() string`
 
 GetPrivateKey returns the PrivateKey field if non-nil, zero value otherwise.
 
 ### GetPrivateKeyOk
 
-`func (o *Certificate) GetPrivateKeyOk() (*string, bool)`
+`func (o *PatchedCertificate) GetPrivateKeyOk() (*string, bool)`
 
 GetPrivateKeyOk returns a tuple with the PrivateKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrivateKey
 
-`func (o *Certificate) SetPrivateKey(v string)`
+`func (o *PatchedCertificate) SetPrivateKey(v string)`
 
 SetPrivateKey sets PrivateKey field to given value.
 
 ### HasPrivateKey
 
-`func (o *Certificate) HasPrivateKey() bool`
+`func (o *PatchedCertificate) HasPrivateKey() bool`
 
 HasPrivateKey returns a boolean if a field has been set.
 
 ### SetPrivateKeyNil
 
-`func (o *Certificate) SetPrivateKeyNil(b bool)`
+`func (o *PatchedCertificate) SetPrivateKeyNil(b bool)`
 
  SetPrivateKeyNil sets the value for PrivateKey to be an explicit nil
 
 ### UnsetPrivateKey
-`func (o *Certificate) UnsetPrivateKey()`
+`func (o *PatchedCertificate) UnsetPrivateKey()`
 
 UnsetPrivateKey ensures that no value is present for PrivateKey, not even an explicit nil
 ### GetIssuer
 
-`func (o *Certificate) GetIssuer() string`
+`func (o *PatchedCertificate) GetIssuer() string`
 
 GetIssuer returns the Issuer field if non-nil, zero value otherwise.
 
 ### GetIssuerOk
 
-`func (o *Certificate) GetIssuerOk() (*string, bool)`
+`func (o *PatchedCertificate) GetIssuerOk() (*string, bool)`
 
 GetIssuerOk returns a tuple with the Issuer field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIssuer
 
-`func (o *Certificate) SetIssuer(v string)`
+`func (o *PatchedCertificate) SetIssuer(v string)`
 
 SetIssuer sets Issuer field to given value.
 
+### HasIssuer
+
+`func (o *PatchedCertificate) HasIssuer() bool`
+
+HasIssuer returns a boolean if a field has been set.
 
 ### SetIssuerNil
 
-`func (o *Certificate) SetIssuerNil(b bool)`
+`func (o *PatchedCertificate) SetIssuerNil(b bool)`
 
  SetIssuerNil sets the value for Issuer to be an explicit nil
 
 ### UnsetIssuer
-`func (o *Certificate) UnsetIssuer()`
+`func (o *PatchedCertificate) UnsetIssuer()`
 
 UnsetIssuer ensures that no value is present for Issuer, not even an explicit nil
 ### GetSubjectName
 
-`func (o *Certificate) GetSubjectName() []string`
+`func (o *PatchedCertificate) GetSubjectName() []string`
 
 GetSubjectName returns the SubjectName field if non-nil, zero value otherwise.
 
 ### GetSubjectNameOk
 
-`func (o *Certificate) GetSubjectNameOk() (*[]string, bool)`
+`func (o *PatchedCertificate) GetSubjectNameOk() (*[]string, bool)`
 
 GetSubjectNameOk returns a tuple with the SubjectName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubjectName
 
-`func (o *Certificate) SetSubjectName(v []string)`
+`func (o *PatchedCertificate) SetSubjectName(v []string)`
 
 SetSubjectName sets SubjectName field to given value.
 
+### HasSubjectName
+
+`func (o *PatchedCertificate) HasSubjectName() bool`
+
+HasSubjectName returns a boolean if a field has been set.
 
 ### GetValidity
 
-`func (o *Certificate) GetValidity() string`
+`func (o *PatchedCertificate) GetValidity() string`
 
 GetValidity returns the Validity field if non-nil, zero value otherwise.
 
 ### GetValidityOk
 
-`func (o *Certificate) GetValidityOk() (*string, bool)`
+`func (o *PatchedCertificate) GetValidityOk() (*string, bool)`
 
 GetValidityOk returns a tuple with the Validity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValidity
 
-`func (o *Certificate) SetValidity(v string)`
+`func (o *PatchedCertificate) SetValidity(v string)`
 
 SetValidity sets Validity field to given value.
 
+### HasValidity
+
+`func (o *PatchedCertificate) HasValidity() bool`
+
+HasValidity returns a boolean if a field has been set.
 
 ### SetValidityNil
 
-`func (o *Certificate) SetValidityNil(b bool)`
+`func (o *PatchedCertificate) SetValidityNil(b bool)`
 
  SetValidityNil sets the value for Validity to be an explicit nil
 
 ### UnsetValidity
-`func (o *Certificate) UnsetValidity()`
+`func (o *PatchedCertificate) UnsetValidity()`
 
 UnsetValidity ensures that no value is present for Validity, not even an explicit nil
 ### GetType
 
-`func (o *Certificate) GetType() string`
+`func (o *PatchedCertificate) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *Certificate) GetTypeOk() (*string, bool)`
+`func (o *PatchedCertificate) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *Certificate) SetType(v string)`
+`func (o *PatchedCertificate) SetType(v string)`
 
 SetType sets Type field to given value.
 
 ### HasType
 
-`func (o *Certificate) HasType() bool`
+`func (o *PatchedCertificate) HasType() bool`
 
 HasType returns a boolean if a field has been set.
 
 ### GetManaged
 
-`func (o *Certificate) GetManaged() bool`
+`func (o *PatchedCertificate) GetManaged() bool`
 
 GetManaged returns the Managed field if non-nil, zero value otherwise.
 
 ### GetManagedOk
 
-`func (o *Certificate) GetManagedOk() (*bool, bool)`
+`func (o *PatchedCertificate) GetManagedOk() (*bool, bool)`
 
 GetManagedOk returns a tuple with the Managed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetManaged
 
-`func (o *Certificate) SetManaged(v bool)`
+`func (o *PatchedCertificate) SetManaged(v bool)`
 
 SetManaged sets Managed field to given value.
 
+### HasManaged
+
+`func (o *PatchedCertificate) HasManaged() bool`
+
+HasManaged returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *Certificate) GetStatus() string`
+`func (o *PatchedCertificate) GetStatus() string`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *Certificate) GetStatusOk() (*string, bool)`
+`func (o *PatchedCertificate) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *Certificate) SetStatus(v string)`
+`func (o *PatchedCertificate) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *PatchedCertificate) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetStatusDetail
 
-`func (o *Certificate) GetStatusDetail() string`
+`func (o *PatchedCertificate) GetStatusDetail() string`
 
 GetStatusDetail returns the StatusDetail field if non-nil, zero value otherwise.
 
 ### GetStatusDetailOk
 
-`func (o *Certificate) GetStatusDetailOk() (*string, bool)`
+`func (o *PatchedCertificate) GetStatusDetailOk() (*string, bool)`
 
 GetStatusDetailOk returns a tuple with the StatusDetail field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatusDetail
 
-`func (o *Certificate) SetStatusDetail(v string)`
+`func (o *PatchedCertificate) SetStatusDetail(v string)`
 
 SetStatusDetail sets StatusDetail field to given value.
 
+### HasStatusDetail
+
+`func (o *PatchedCertificate) HasStatusDetail() bool`
+
+HasStatusDetail returns a boolean if a field has been set.
 
 ### GetCsr
 
-`func (o *Certificate) GetCsr() string`
+`func (o *PatchedCertificate) GetCsr() string`
 
 GetCsr returns the Csr field if non-nil, zero value otherwise.
 
 ### GetCsrOk
 
-`func (o *Certificate) GetCsrOk() (*string, bool)`
+`func (o *PatchedCertificate) GetCsrOk() (*string, bool)`
 
 GetCsrOk returns a tuple with the Csr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCsr
 
-`func (o *Certificate) SetCsr(v string)`
+`func (o *PatchedCertificate) SetCsr(v string)`
 
 SetCsr sets Csr field to given value.
 
+### HasCsr
+
+`func (o *PatchedCertificate) HasCsr() bool`
+
+HasCsr returns a boolean if a field has been set.
 
 ### SetCsrNil
 
-`func (o *Certificate) SetCsrNil(b bool)`
+`func (o *PatchedCertificate) SetCsrNil(b bool)`
 
  SetCsrNil sets the value for Csr to be an explicit nil
 
 ### UnsetCsr
-`func (o *Certificate) UnsetCsr()`
+`func (o *PatchedCertificate) UnsetCsr()`
 
 UnsetCsr ensures that no value is present for Csr, not even an explicit nil
 ### GetChallenge
 
-`func (o *Certificate) GetChallenge() string`
+`func (o *PatchedCertificate) GetChallenge() string`
 
 GetChallenge returns the Challenge field if non-nil, zero value otherwise.
 
 ### GetChallengeOk
 
-`func (o *Certificate) GetChallengeOk() (*string, bool)`
+`func (o *PatchedCertificate) GetChallengeOk() (*string, bool)`
 
 GetChallengeOk returns a tuple with the Challenge field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChallenge
 
-`func (o *Certificate) SetChallenge(v string)`
+`func (o *PatchedCertificate) SetChallenge(v string)`
 
 SetChallenge sets Challenge field to given value.
 
+### HasChallenge
+
+`func (o *PatchedCertificate) HasChallenge() bool`
+
+HasChallenge returns a boolean if a field has been set.
 
 ### GetAuthority
 
-`func (o *Certificate) GetAuthority() string`
+`func (o *PatchedCertificate) GetAuthority() string`
 
 GetAuthority returns the Authority field if non-nil, zero value otherwise.
 
 ### GetAuthorityOk
 
-`func (o *Certificate) GetAuthorityOk() (*string, bool)`
+`func (o *PatchedCertificate) GetAuthorityOk() (*string, bool)`
 
 GetAuthorityOk returns a tuple with the Authority field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAuthority
 
-`func (o *Certificate) SetAuthority(v string)`
+`func (o *PatchedCertificate) SetAuthority(v string)`
 
 SetAuthority sets Authority field to given value.
 
+### HasAuthority
+
+`func (o *PatchedCertificate) HasAuthority() bool`
+
+HasAuthority returns a boolean if a field has been set.
 
 ### GetKeyAlgorithm
 
-`func (o *Certificate) GetKeyAlgorithm() string`
+`func (o *PatchedCertificate) GetKeyAlgorithm() string`
 
 GetKeyAlgorithm returns the KeyAlgorithm field if non-nil, zero value otherwise.
 
 ### GetKeyAlgorithmOk
 
-`func (o *Certificate) GetKeyAlgorithmOk() (*string, bool)`
+`func (o *PatchedCertificate) GetKeyAlgorithmOk() (*string, bool)`
 
 GetKeyAlgorithmOk returns a tuple with the KeyAlgorithm field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetKeyAlgorithm
 
-`func (o *Certificate) SetKeyAlgorithm(v string)`
+`func (o *PatchedCertificate) SetKeyAlgorithm(v string)`
 
 SetKeyAlgorithm sets KeyAlgorithm field to given value.
 
+### HasKeyAlgorithm
+
+`func (o *PatchedCertificate) HasKeyAlgorithm() bool`
+
+HasKeyAlgorithm returns a boolean if a field has been set.
 
 ### GetActive
 
-`func (o *Certificate) GetActive() bool`
+`func (o *PatchedCertificate) GetActive() bool`
 
 GetActive returns the Active field if non-nil, zero value otherwise.
 
 ### GetActiveOk
 
-`func (o *Certificate) GetActiveOk() (*bool, bool)`
+`func (o *PatchedCertificate) GetActiveOk() (*bool, bool)`
 
 GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetActive
 
-`func (o *Certificate) SetActive(v bool)`
+`func (o *PatchedCertificate) SetActive(v bool)`
 
 SetActive sets Active field to given value.
 
 ### HasActive
 
-`func (o *Certificate) HasActive() bool`
+`func (o *PatchedCertificate) HasActive() bool`
 
 HasActive returns a boolean if a field has been set.
 
 ### GetProductVersion
 
-`func (o *Certificate) GetProductVersion() string`
+`func (o *PatchedCertificate) GetProductVersion() string`
 
 GetProductVersion returns the ProductVersion field if non-nil, zero value otherwise.
 
 ### GetProductVersionOk
 
-`func (o *Certificate) GetProductVersionOk() (*string, bool)`
+`func (o *PatchedCertificate) GetProductVersionOk() (*string, bool)`
 
 GetProductVersionOk returns a tuple with the ProductVersion field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProductVersion
 
-`func (o *Certificate) SetProductVersion(v string)`
+`func (o *PatchedCertificate) SetProductVersion(v string)`
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *PatchedCertificate) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 ### GetLastEditor
 
-`func (o *Certificate) GetLastEditor() string`
+`func (o *PatchedCertificate) GetLastEditor() string`
 
 GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
 
 ### GetLastEditorOk
 
-`func (o *Certificate) GetLastEditorOk() (*string, bool)`
+`func (o *PatchedCertificate) GetLastEditorOk() (*string, bool)`
 
 GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastEditor
 
-`func (o *Certificate) SetLastEditor(v string)`
+`func (o *PatchedCertificate) SetLastEditor(v string)`
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *PatchedCertificate) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
-`func (o *Certificate) GetLastModified() time.Time`
+`func (o *PatchedCertificate) GetLastModified() time.Time`
 
 GetLastModified returns the LastModified field if non-nil, zero value otherwise.
 
 ### GetLastModifiedOk
 
-`func (o *Certificate) GetLastModifiedOk() (*time.Time, bool)`
+`func (o *PatchedCertificate) GetLastModifiedOk() (*time.Time, bool)`
 
 GetLastModifiedOk returns a tuple with the LastModified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastModified
 
-`func (o *Certificate) SetLastModified(v time.Time)`
+`func (o *PatchedCertificate) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *PatchedCertificate) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetRenewedAt
 
-`func (o *Certificate) GetRenewedAt() time.Time`
+`func (o *PatchedCertificate) GetRenewedAt() time.Time`
 
 GetRenewedAt returns the RenewedAt field if non-nil, zero value otherwise.
 
 ### GetRenewedAtOk
 
-`func (o *Certificate) GetRenewedAtOk() (*time.Time, bool)`
+`func (o *PatchedCertificate) GetRenewedAtOk() (*time.Time, bool)`
 
 GetRenewedAtOk returns a tuple with the RenewedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRenewedAt
 
-`func (o *Certificate) SetRenewedAt(v time.Time)`
+`func (o *PatchedCertificate) SetRenewedAt(v time.Time)`
 
 SetRenewedAt sets RenewedAt field to given value.
 
+### HasRenewedAt
+
+`func (o *PatchedCertificate) HasRenewedAt() bool`
+
+HasRenewedAt returns a boolean if a field has been set.
 
 ### SetRenewedAtNil
 
-`func (o *Certificate) SetRenewedAtNil(b bool)`
+`func (o *PatchedCertificate) SetRenewedAtNil(b bool)`
 
  SetRenewedAtNil sets the value for RenewedAt to be an explicit nil
 
 ### UnsetRenewedAt
-`func (o *Certificate) UnsetRenewedAt()`
+`func (o *PatchedCertificate) UnsetRenewedAt()`
 
 UnsetRenewedAt ensures that no value is present for RenewedAt, not even an explicit nil
 
