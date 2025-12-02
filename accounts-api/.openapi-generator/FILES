@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -83,7 +82,4 @@ model_update_account_info_details_request.go
 model_workspace.go
 model_workspace_request.go
 response.go
-test/api_accounts_descendants_test.go
-test/api_accounts_info_test.go
-test/api_accounts_logged_in_test.go
 utils.go

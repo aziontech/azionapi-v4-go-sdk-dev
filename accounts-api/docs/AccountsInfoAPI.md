@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RetrieveAccountInfoDetails**](AccountsInfoAPI.md#RetrieveAccountInfoDetails) | **Get** /account/accounts/{id}/info | Retrieve account information details
-[**UpdateAccountInfoDetails**](AccountsInfoAPI.md#UpdateAccountInfoDetails) | **Put** /account/accounts/{id}/info | Update account information details
+[**RetrieveAccountInfoDetails**](AccountsInfoAPI.md#RetrieveAccountInfoDetails) | **Get** /account/accounts/{account_id}/info | Retrieve account information details
+[**UpdateAccountInfoDetails**](AccountsInfoAPI.md#UpdateAccountInfoDetails) | **Put** /account/accounts/{account_id}/info | Update account information details
 
 
 
 ## RetrieveAccountInfoDetails
 
-> ResponseRetrieveAccountInfo RetrieveAccountInfoDetails(ctx, id).Fields(fields).Execute()
+> ResponseRetrieveAccountInfo RetrieveAccountInfoDetails(ctx, accountId).Fields(fields).Execute()
 
 Retrieve account information details
 
@@ -30,12 +30,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | A unique integer value identifying the account.
+	accountId := int64(789) // int64 | A unique integer value identifying the account.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountsInfoAPI.RetrieveAccountInfoDetails(context.Background(), id).Fields(fields).Execute()
+	resp, r, err := apiClient.AccountsInfoAPI.RetrieveAccountInfoDetails(context.Background(), accountId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountsInfoAPI.RetrieveAccountInfoDetails``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -51,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | A unique integer value identifying the account. | 
+**accountId** | **int64** | A unique integer value identifying the account. | 
 
 ### Other Parameters
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## UpdateAccountInfoDetails
 
-> ResponseAccountInfo UpdateAccountInfoDetails(ctx, id).UpdateAccountInfoDetailsRequest(updateAccountInfoDetailsRequest).Execute()
+> ResponseAccountInfo UpdateAccountInfoDetails(ctx, accountId).UpdateAccountInfoDetailsRequest(updateAccountInfoDetailsRequest).Execute()
 
 Update account information details
 
@@ -102,12 +102,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | A unique integer value identifying the account.
+	accountId := int64(789) // int64 | A unique integer value identifying the account.
 	updateAccountInfoDetailsRequest := *openapiclient.NewUpdateAccountInfoDetailsRequest() // UpdateAccountInfoDetailsRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountsInfoAPI.UpdateAccountInfoDetails(context.Background(), id).UpdateAccountInfoDetailsRequest(updateAccountInfoDetailsRequest).Execute()
+	resp, r, err := apiClient.AccountsInfoAPI.UpdateAccountInfoDetails(context.Background(), accountId).UpdateAccountInfoDetailsRequest(updateAccountInfoDetailsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountsInfoAPI.UpdateAccountInfoDetails``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,7 +123,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | A unique integer value identifying the account. | 
+**accountId** | **int64** | A unique integer value identifying the account. | 
 
 ### Other Parameters
 
