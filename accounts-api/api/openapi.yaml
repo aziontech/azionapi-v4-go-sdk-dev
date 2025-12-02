@@ -1,0 +1,2452 @@
+openapi: 3.0.3
+info:
+  description: REST API OpenAPI documentation for the Accounts API
+  title: accounts-api
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /account/account:
+    get:
+      description: Retrieve detailed information about the currently logged-in user's
+        account.
+      operationId: retrieve_logged_account_details
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRetrieveAccount"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve logged account details
+      tags:
+      - Accounts - Logged In
+    patch:
+      description: "Partially update specific fields of the currently logged-in user's\
+        \ account. Only editable fields, such as `name`, can be updated with this\
+        \ operation."
+      operationId: partial_update_logged_account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedAccountRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAccount"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncAccount"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Partially update logged account details
+      tags:
+      - Accounts - Logged In
+    put:
+      description: Update the details of the currently logged-in user's account. This
+        operation allows replacing the entire account data with new values.
+      operationId: update_logged_account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAccount"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncAccount"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Update logged account details
+      tags:
+      - Accounts - Logged In
+  /account/accounts:
+    get:
+      description: List all accounts that are descendants of the logged-in user's
+        account.
+      operationId: list_descendants_accounts
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Which field to use when ordering the results.
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A numeric value that indicates the number of items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedResponseListAccountList"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: List accounts
+      tags:
+      - Accounts - Descendants
+    post:
+      description: Create a new sub-account under the logged-in user's account.
+      operationId: create_descendant_account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAccountRequest"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAccount"
+          description: Created
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncAccount"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Create a new account
+      tags:
+      - Accounts - Descendants
+  /account/accounts/{id}:
+    get:
+      description: Retrieve detailed information of a specific account under the logged-in
+        user's account.
+      operationId: retrieve_descendant_account
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A unique integer value identifying the account.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRetrieveAccount"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve account details
+      tags:
+      - Accounts - Descendants
+    patch:
+      description: "Update specific fields of an account under the logged-in user's\
+        \ account. Only editable fields, such as `name`, can be updated with this\
+        \ operation."
+      operationId: partial_update_descendant_account
+      parameters:
+      - description: A unique integer value identifying the account.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchedAccountRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAccount"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncAccount"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Partially update account details
+      tags:
+      - Accounts - Descendants
+    put:
+      description: Update the information of a specific account under the logged-in
+        user's account. This operation allows replacing the entire account data with
+        new values.
+      operationId: update_descendant_account
+      parameters:
+      - description: A unique integer value identifying the account.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAccount"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncAccount"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Update account details
+      tags:
+      - Accounts - Descendants
+  /account/accounts/{id}/info:
+    get:
+      description: Retrieve detailed information about your account or a specific
+        child account under your logged-in account.
+      operationId: retrieve_account_info_details
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A unique integer value identifying the account.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRetrieveAccountInfo"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve account information details
+      tags:
+      - Accounts - Info
+    put:
+      description: "Update the information details about your account or a specific\
+        \ child account under your logged-in account. This operation allows replacing\
+        \ the entire account info data with new values. In this operation, you can\
+        \ also clear all detailed information of an account by providing an empty\
+        \ dictionary in the `info` field."
+      operationId: update_account_info_details
+      parameters:
+      - description: A unique integer value identifying the account.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/update_account_info_details_request"
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: "#/components/schemas/update_account_info_details_request"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/update_account_info_details_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAccountInfo"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncAccountInfo"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Update account information details
+      tags:
+      - Accounts - Info
+components:
+  schemas:
+    Account:
+      discriminator:
+        mapping:
+          Brand: "#/components/schemas/Brand"
+          Organization: "#/components/schemas/Organization"
+          Reseller: "#/components/schemas/Reseller"
+          Workspace: "#/components/schemas/Workspace"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/Brand"
+      - $ref: "#/components/schemas/Organization"
+      - $ref: "#/components/schemas/Reseller"
+      - $ref: "#/components/schemas/Workspace"
+    AccountInfo:
+      example:
+        info:
+          key: ""
+      properties:
+        info:
+          additionalProperties: {}
+          nullable: true
+          type: object
+      required:
+      - info
+      type: object
+    AccountRequest:
+      discriminator:
+        mapping:
+          Brand: "#/components/schemas/BrandRequest"
+          Organization: "#/components/schemas/OrganizationRequest"
+          Reseller: "#/components/schemas/ResellerRequest"
+          Workspace: "#/components/schemas/WorkspaceRequest"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/BrandRequest"
+      - $ref: "#/components/schemas/OrganizationRequest"
+      - $ref: "#/components/schemas/ResellerRequest"
+      - $ref: "#/components/schemas/WorkspaceRequest"
+    Brand:
+      example:
+        parent_id: 6
+        created: 2000-01-23T04:56:07.000+00:00
+        last_editor: last_editor
+        name: name
+        active: true
+        id: 0
+        type: type
+        last_modified: 2000-01-23T04:56:07.000+00:00
+        info:
+          key: ""
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        last_editor:
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        parent_id:
+          format: int64
+          type: integer
+        created:
+          format: date-time
+          type: string
+        info:
+          additionalProperties: {}
+          type: object
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      required:
+      - active
+      - created
+      - id
+      - info
+      - last_editor
+      - last_modified
+      - name
+      - parent_id
+      - type
+      type: object
+    BrandRequest:
+      example:
+        name: name
+        type: type
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      required:
+      - name
+      - type
+      type: object
+    CreateAccountRequest:
+      discriminator:
+        mapping:
+          Brand: "#/components/schemas/CreateBrandRequest"
+          Organization: "#/components/schemas/CreateOrganizationRequest"
+          Reseller: "#/components/schemas/CreateResellerRequest"
+          Workspace: "#/components/schemas/CreateWorkspaceRequest"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/CreateBrandRequest"
+      - $ref: "#/components/schemas/CreateOrganizationRequest"
+      - $ref: "#/components/schemas/CreateResellerRequest"
+      - $ref: "#/components/schemas/CreateWorkspaceRequest"
+    CreateBrandRequest:
+      description: |-
+        Mixin to validate parent-child relationships between different account types.
+
+        Rules:
+        - Brand: Can only have Reseller children and no parent
+        - Reseller: Can only have Organization children and Brand parent
+        - Organization: Can only have Workspace children and Reseller parent
+        - Workspace: Cannot have children, parent must be an Organization
+      example:
+        parent_id: 171976545
+        name: name
+        type: type
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        parent_id:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      required:
+      - name
+      - parent_id
+      - type
+      type: object
+    CreateOrganizationRequest:
+      description: |-
+        Mixin to validate parent-child relationships between different account types.
+
+        Rules:
+        - Brand: Can only have Reseller children and no parent
+        - Reseller: Can only have Organization children and Brand parent
+        - Organization: Can only have Workspace children and Reseller parent
+        - Workspace: Cannot have children, parent must be an Organization
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        parent_id:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      required:
+      - name
+      - parent_id
+      - type
+      type: object
+    CreateResellerRequest:
+      description: |-
+        Mixin to validate parent-child relationships between different account types.
+
+        Rules:
+        - Brand: Can only have Reseller children and no parent
+        - Reseller: Can only have Organization children and Brand parent
+        - Organization: Can only have Workspace children and Reseller parent
+        - Workspace: Cannot have children, parent must be an Organization
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        parent_id:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        currency_iso_code:
+          description: |-
+            * `USD` - USD
+            * `BRL` - BRL
+          type: string
+          x-extensible-enum:
+          - USD
+          - BRL
+        terms_of_service_url:
+          maxLength: 255
+          minLength: 1
+          type: string
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      required:
+      - currency_iso_code
+      - name
+      - parent_id
+      - type
+      type: object
+    CreateWorkspaceRequest:
+      description: |-
+        Mixin to validate parent-child relationships between different account types.
+
+        Rules:
+        - Brand: Can only have Reseller children and no parent
+        - Reseller: Can only have Organization children and Brand parent
+        - Organization: Can only have Workspace children and Reseller parent
+        - Workspace: Cannot have children, parent must be an Organization
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        parent_id:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      required:
+      - name
+      - parent_id
+      - type
+      type: object
+    JSONAPIErrorObject:
+      description: Serializer for a single JSON:API error object.
+      example:
+        code: code
+        meta:
+          key: ""
+        detail: detail
+        source: ""
+        title: title
+        status: status
+      properties:
+        status:
+          description: The HTTP status code applicable to this problem
+          maxLength: 3
+          minLength: 3
+          type: string
+        code:
+          description: An application-specific error code
+          maxLength: 5
+          minLength: 5
+          type: string
+        title:
+          description: "A short, human-readable summary of the problem"
+          maxLength: 4096
+          minLength: 1
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of
+            the problem
+          maxLength: 4096
+          minLength: 1
+          type: string
+        source:
+          allOf:
+          - $ref: "#/components/schemas/JSONAPIErrorSource"
+          description: References to the primary source of the error
+        meta:
+          additionalProperties: {}
+          description: Non-standard meta-information about the error
+          type: object
+      type: object
+    JSONAPIErrorResponse:
+      description: Serializer for a JSON:API error response.
+      example:
+        errors:
+        - code: code
+          meta:
+            key: ""
+          detail: detail
+          source: ""
+          title: title
+          status: status
+        - code: code
+          meta:
+            key: ""
+          detail: detail
+          source: ""
+          title: title
+          status: status
+      properties:
+        errors:
+          description: Array of error objects
+          items:
+            $ref: "#/components/schemas/JSONAPIErrorObject"
+          type: array
+      required:
+      - errors
+      type: object
+    JSONAPIErrorSource:
+      description: Serializer for the 'source' object in a JSON:API error.
+      properties:
+        pointer:
+          description: JSON Pointer to the value in the request document that caused
+            the error
+          maxLength: 4096
+          minLength: 1
+          type: string
+        parameter:
+          description: URI query parameter that caused the error
+          maxLength: 4096
+          minLength: 1
+          type: string
+        header:
+          description: Request header name that caused the error
+          maxLength: 4096
+          minLength: 1
+          type: string
+      type: object
+    Organization:
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        last_editor:
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        parent_id:
+          format: int64
+          type: integer
+        created:
+          format: date-time
+          type: string
+        info:
+          additionalProperties: {}
+          type: object
+        status:
+          description: |-
+            * `active` - Active account status, can be used for regular operations.
+            * `suspended` - Suspended account status, for accounts with limited access to support and payments only.
+            * `disabled` - Disabled account status, services are offline, user can only access support.
+            * `closed` - Closed account status, services are offline but can be reactivated.
+          type: string
+          x-extensible-enum:
+          - active
+          - suspended
+          - disabled
+          - closed
+        reason:
+          description: |-
+            * `trial` - Trial account status, currently on a trial period.
+            * `online` - Online account status, used for online sales operations.
+            * `regular` - Regular account status, indicates the customer has an active contract.
+            * `overdue` - Overdue status, the account failed necessary payments after retries.
+            * `quarantine` - Quarantine status, the account is suspended due to suspected misuse or security breach.
+            * `violation` - Violation status, temporarily suspended due to administrative, technical, security, or policy violations.
+            * `idle` - Idle status, the account was removed due to inactivity.
+            * `terminated` - Terminated status, the account was shut down by the service provider.
+            * `voluntary` - Voluntary status, the account was canceled by its owner.
+          type: string
+          x-extensible-enum:
+          - trial
+          - online
+          - regular
+          - overdue
+          - quarantine
+          - violation
+          - idle
+          - terminated
+          - voluntary
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      required:
+      - active
+      - created
+      - id
+      - info
+      - last_editor
+      - last_modified
+      - name
+      - parent_id
+      - reason
+      - status
+      - type
+      type: object
+    OrganizationRequest:
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      required:
+      - name
+      - type
+      type: object
+    PaginatedResponseListAccountList:
+      example:
+        count: 123
+        results:
+        - parent_id: 6
+          created: 2000-01-23T04:56:07.000+00:00
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          type: type
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          info:
+            key: ""
+        - parent_id: 6
+          created: 2000-01-23T04:56:07.000+00:00
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          type: type
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          info:
+            key: ""
+      properties:
+        count:
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/ResponseListAccount"
+          type: array
+      type: object
+    PatchedAccountRequest:
+      discriminator:
+        mapping:
+          Brand: "#/components/schemas/PatchedBrandRequest"
+          Organization: "#/components/schemas/PatchedOrganizationRequest"
+          Reseller: "#/components/schemas/PatchedResellerRequest"
+          Workspace: "#/components/schemas/PatchedWorkspaceRequest"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/PatchedBrandRequest"
+      - $ref: "#/components/schemas/PatchedOrganizationRequest"
+      - $ref: "#/components/schemas/PatchedResellerRequest"
+      - $ref: "#/components/schemas/PatchedWorkspaceRequest"
+    PatchedBrandRequest:
+      example:
+        name: name
+        type: type
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      type: object
+    PatchedOrganizationRequest:
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      type: object
+    PatchedResellerRequest:
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        currency_iso_code:
+          description: |-
+            * `USD` - USD
+            * `BRL` - BRL
+          type: string
+          x-extensible-enum:
+          - USD
+          - BRL
+        terms_of_service_url:
+          maxLength: 255
+          minLength: 1
+          type: string
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      type: object
+    PatchedWorkspaceRequest:
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      type: object
+    Reseller:
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        last_editor:
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        parent_id:
+          format: int64
+          type: integer
+        created:
+          format: date-time
+          type: string
+        info:
+          additionalProperties: {}
+          type: object
+        currency_iso_code:
+          description: |-
+            * `USD` - USD
+            * `BRL` - BRL
+          type: string
+          x-extensible-enum:
+          - USD
+          - BRL
+        terms_of_service_url:
+          maxLength: 255
+          minLength: 1
+          type: string
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      required:
+      - active
+      - created
+      - currency_iso_code
+      - id
+      - info
+      - last_editor
+      - last_modified
+      - name
+      - parent_id
+      - type
+      type: object
+    ResellerRequest:
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        currency_iso_code:
+          description: |-
+            * `USD` - USD
+            * `BRL` - BRL
+          type: string
+          x-extensible-enum:
+          - USD
+          - BRL
+        terms_of_service_url:
+          maxLength: 255
+          minLength: 1
+          type: string
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      required:
+      - currency_iso_code
+      - name
+      - type
+      type: object
+    ResponseAccount:
+      example:
+        data:
+          parent_id: 6
+          created: 2000-01-23T04:56:07.000+00:00
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          type: type
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          info:
+            key: ""
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Account"
+      required:
+      - data
+      type: object
+    ResponseAccountInfo:
+      example:
+        data:
+          info:
+            key: ""
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/AccountInfo"
+      required:
+      - data
+      type: object
+    ResponseAsyncAccount:
+      example:
+        data:
+          parent_id: 6
+          created: 2000-01-23T04:56:07.000+00:00
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          type: type
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          info:
+            key: ""
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Account"
+      required:
+      - data
+      type: object
+    ResponseAsyncAccountInfo:
+      example:
+        data:
+          info:
+            key: ""
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/AccountInfo"
+      required:
+      - data
+      type: object
+    ResponseListAccount:
+      discriminator:
+        mapping:
+          Brand: "#/components/schemas/Brand"
+          Organization: "#/components/schemas/Organization"
+          Reseller: "#/components/schemas/Reseller"
+          Workspace: "#/components/schemas/Workspace"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/Brand"
+      - $ref: "#/components/schemas/Organization"
+      - $ref: "#/components/schemas/Reseller"
+      - $ref: "#/components/schemas/Workspace"
+    ResponseRetrieveAccount:
+      example:
+        data:
+          parent_id: 6
+          created: 2000-01-23T04:56:07.000+00:00
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          type: type
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          info:
+            key: ""
+      properties:
+        data:
+          $ref: "#/components/schemas/Account"
+      required:
+      - data
+      type: object
+    ResponseRetrieveAccountInfo:
+      example:
+        data:
+          info:
+            key: ""
+      properties:
+        data:
+          $ref: "#/components/schemas/AccountInfo"
+      required:
+      - data
+      type: object
+    Workspace:
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        last_editor:
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        parent_id:
+          format: int64
+          type: integer
+        created:
+          format: date-time
+          type: string
+        info:
+          additionalProperties: {}
+          type: object
+        workspace_id:
+          type: string
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      required:
+      - active
+      - created
+      - id
+      - info
+      - last_editor
+      - last_modified
+      - name
+      - parent_id
+      - type
+      - workspace_id
+      type: object
+    WorkspaceRequest:
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        type:
+          description: |-
+            * `Brand` - Brand
+            * `Reseller` - Reseller
+            * `Organization` - Organization
+            * `Workspace` - Workspace
+          type: string
+          x-extensible-enum:
+          - Brand
+          - Reseller
+          - Organization
+          - Workspace
+      required:
+      - name
+      - type
+      type: object
+    AccountInfoRequest:
+      additionalProperties: false
+      properties:
+        industry:
+          description: "The industry type. Common values: Education, Energy, Finance,\
+            \ Games, Health, Media, Public Sector, Retail, Services, Technology, Telecom,\
+            \ Transportation, Other."
+          title: Industry
+          type: string
+        company_size:
+          description: The size of the company. Must be an integer greater than or
+            equal to 1.
+          format: int64
+          minimum: 1
+          type: integer
+      title: AccountInfoRequest
+      type: object
+    update_account_info_details_request:
+      properties:
+        info:
+          $ref: "#/components/schemas/AccountInfoRequest"
+      type: object
+  securitySchemes:
+    BearerAuth:
+      scheme: bearer
+      type: http
+    TokenAuth:
+      description: Token-based authentication with required prefix "Token"
+      in: header
+      name: Authorization
+      type: apiKey
