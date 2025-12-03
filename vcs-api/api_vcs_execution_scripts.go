@@ -27,7 +27,7 @@ type ApiListExecutionScriptsRequest struct {
 	ctx context.Context
 	ApiService *VCSExecutionScriptsAPIService
 	fields *string
-	id *int64
+	id *[]string
 	name *string
 	ordering *string
 	page *int64
@@ -41,7 +41,8 @@ func (r ApiListExecutionScriptsRequest) Fields(fields string) ApiListExecutionSc
 	return r
 }
 
-func (r ApiListExecutionScriptsRequest) Id(id int64) ApiListExecutionScriptsRequest {
+// Multiple values may be separated by commas.
+func (r ApiListExecutionScriptsRequest) Id(id []string) ApiListExecutionScriptsRequest {
 	r.id = &id
 	return r
 }
@@ -119,7 +120,7 @@ func (a *VCSExecutionScriptsAPIService) ListExecutionScriptsExecute(r ApiListExe
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "csv")
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")

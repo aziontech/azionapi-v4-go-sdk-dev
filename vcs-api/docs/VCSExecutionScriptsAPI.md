@@ -31,7 +31,7 @@ import (
 
 func main() {
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := int64(789) // int64 |  (optional)
+	id := []string{"Inner_example"} // []string | Multiple values may be separated by commas. (optional)
 	name := "name_example" // string |  (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -62,7 +62,7 @@ Other parameters are passed through a pointer to a apiListExecutionScriptsReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **int64** |  | 
+ **id** | **[]string** | Multiple values may be separated by commas. | 
  **name** | **string** |  | 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 

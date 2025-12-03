@@ -26,7 +26,7 @@ type ApiListProvidersRequest struct {
 	ctx context.Context
 	ApiService *VCSProvidersAPIService
 	fields *string
-	id *string
+	id *[]string
 	name *string
 	ordering *string
 	page *int64
@@ -40,7 +40,8 @@ func (r ApiListProvidersRequest) Fields(fields string) ApiListProvidersRequest {
 	return r
 }
 
-func (r ApiListProvidersRequest) Id(id string) ApiListProvidersRequest {
+// Multiple values may be separated by commas.
+func (r ApiListProvidersRequest) Id(id []string) ApiListProvidersRequest {
 	r.id = &id
 	return r
 }
@@ -118,7 +119,7 @@ func (a *VCSProvidersAPIService) ListProvidersExecute(r ApiListProvidersRequest)
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "csv")
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
