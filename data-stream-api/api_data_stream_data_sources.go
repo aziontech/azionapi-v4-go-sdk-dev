@@ -28,11 +28,13 @@ type ApiListDataSourcesRequest struct {
 	active *bool
 	fields *string
 	name *string
+	nameIcontains *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
 	slug *string
+	slugIexact *string
 }
 
 func (r ApiListDataSourcesRequest) Active(active bool) ApiListDataSourcesRequest {
@@ -51,7 +53,12 @@ func (r ApiListDataSourcesRequest) Name(name string) ApiListDataSourcesRequest {
 	return r
 }
 
-// Which field to use when ordering the results.
+func (r ApiListDataSourcesRequest) NameIcontains(nameIcontains string) ApiListDataSourcesRequest {
+	r.nameIcontains = &nameIcontains
+	return r
+}
+
+// Which field to use when ordering the results. (Valid fields: slug, name, active)
 func (r ApiListDataSourcesRequest) Ordering(ordering string) ApiListDataSourcesRequest {
 	r.ordering = &ordering
 	return r
@@ -77,6 +84,11 @@ func (r ApiListDataSourcesRequest) Search(search string) ApiListDataSourcesReque
 
 func (r ApiListDataSourcesRequest) Slug(slug string) ApiListDataSourcesRequest {
 	r.slug = &slug
+	return r
+}
+
+func (r ApiListDataSourcesRequest) SlugIexact(slugIexact string) ApiListDataSourcesRequest {
+	r.slugIexact = &slugIexact
 	return r
 }
 
@@ -129,6 +141,9 @@ func (a *DataStreamDataSourcesAPIService) ListDataSourcesExecute(r ApiListDataSo
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
+	if r.nameIcontains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "form", "")
+	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
 	}
@@ -143,6 +158,9 @@ func (a *DataStreamDataSourcesAPIService) ListDataSourcesExecute(r ApiListDataSo
 	}
 	if r.slug != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "slug", r.slug, "form", "")
+	}
+	if r.slugIexact != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "slug__iexact", r.slugIexact, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
