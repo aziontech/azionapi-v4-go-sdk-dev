@@ -1,5 +1,5 @@
 /*
-Metrics API
+metrics-api
 
 REST API OpenAPI documentation for the Metrics API
 
@@ -227,10 +227,10 @@ func (a *MetricsLibraryReportsAPIService) CreateLibraryReportExecute(r ApiCreate
 type ApiDeleteLibraryReportRequest struct {
 	ctx context.Context
 	ApiService *MetricsLibraryReportsAPIService
-	libraryReportId string
+	libraryReportId int64
 }
 
-func (r ApiDeleteLibraryReportRequest) Execute() (*ResponseDeleteReport, *http.Response, error) {
+func (r ApiDeleteLibraryReportRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteLibraryReportExecute(r)
 }
 
@@ -240,10 +240,10 @@ DeleteLibraryReport Delete a library report
 Delete a specific library report.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param libraryReportId
+ @param libraryReportId The unique identifier of the library report
  @return ApiDeleteLibraryReportRequest
 */
-func (a *MetricsLibraryReportsAPIService) DeleteLibraryReport(ctx context.Context, libraryReportId string) ApiDeleteLibraryReportRequest {
+func (a *MetricsLibraryReportsAPIService) DeleteLibraryReport(ctx context.Context, libraryReportId int64) ApiDeleteLibraryReportRequest {
 	return ApiDeleteLibraryReportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -252,18 +252,16 @@ func (a *MetricsLibraryReportsAPIService) DeleteLibraryReport(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return ResponseDeleteReport
-func (a *MetricsLibraryReportsAPIService) DeleteLibraryReportExecute(r ApiDeleteLibraryReportRequest) (*ResponseDeleteReport, *http.Response, error) {
+func (a *MetricsLibraryReportsAPIService) DeleteLibraryReportExecute(r ApiDeleteLibraryReportRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteReport
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsLibraryReportsAPIService.DeleteLibraryReport")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/metrics/library/reports/{libraryReportId}"
@@ -272,6 +270,12 @@ func (a *MetricsLibraryReportsAPIService) DeleteLibraryReportExecute(r ApiDelete
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.libraryReportId < 1 {
+		return nil, reportError("libraryReportId must be greater than 1")
+	}
+	if r.libraryReportId > 2147483647 {
+		return nil, reportError("libraryReportId must be less than 2147483647")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -283,7 +287,7 @@ func (a *MetricsLibraryReportsAPIService) DeleteLibraryReportExecute(r ApiDelete
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -306,19 +310,19 @@ func (a *MetricsLibraryReportsAPIService) DeleteLibraryReportExecute(r ApiDelete
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -326,95 +330,10 @@ func (a *MetricsLibraryReportsAPIService) DeleteLibraryReportExecute(r ApiDelete
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiListLibraryReportsRequest struct {
@@ -659,7 +578,7 @@ func (a *MetricsLibraryReportsAPIService) ListLibraryReportsExecute(r ApiListLib
 type ApiRetrieveLibraryReportRequest struct {
 	ctx context.Context
 	ApiService *MetricsLibraryReportsAPIService
-	libraryReportId string
+	libraryReportId int64
 	fields *string
 }
 
@@ -679,10 +598,10 @@ RetrieveLibraryReport Retrieve details from a library report
 Retrieve details from a specific library report.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param libraryReportId
+ @param libraryReportId The unique identifier of the library report
  @return ApiRetrieveLibraryReportRequest
 */
-func (a *MetricsLibraryReportsAPIService) RetrieveLibraryReport(ctx context.Context, libraryReportId string) ApiRetrieveLibraryReportRequest {
+func (a *MetricsLibraryReportsAPIService) RetrieveLibraryReport(ctx context.Context, libraryReportId int64) ApiRetrieveLibraryReportRequest {
 	return ApiRetrieveLibraryReportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -711,6 +630,12 @@ func (a *MetricsLibraryReportsAPIService) RetrieveLibraryReportExecute(r ApiRetr
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.libraryReportId < 1 {
+		return localVarReturnValue, nil, reportError("libraryReportId must be greater than 1")
+	}
+	if r.libraryReportId > 2147483647 {
+		return localVarReturnValue, nil, reportError("libraryReportId must be less than 2147483647")
+	}
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
@@ -862,7 +787,7 @@ func (a *MetricsLibraryReportsAPIService) RetrieveLibraryReportExecute(r ApiRetr
 type ApiUpdateLibraryReportRequest struct {
 	ctx context.Context
 	ApiService *MetricsLibraryReportsAPIService
-	libraryReportId string
+	libraryReportId int64
 	libraryReportRequest *LibraryReportRequest
 }
 
@@ -881,10 +806,10 @@ UpdateLibraryReport Update a library report
 Update an existing library report. This replaces the entire report with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param libraryReportId
+ @param libraryReportId The unique identifier of the library report
  @return ApiUpdateLibraryReportRequest
 */
-func (a *MetricsLibraryReportsAPIService) UpdateLibraryReport(ctx context.Context, libraryReportId string) ApiUpdateLibraryReportRequest {
+func (a *MetricsLibraryReportsAPIService) UpdateLibraryReport(ctx context.Context, libraryReportId int64) ApiUpdateLibraryReportRequest {
 	return ApiUpdateLibraryReportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -913,6 +838,12 @@ func (a *MetricsLibraryReportsAPIService) UpdateLibraryReportExecute(r ApiUpdate
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.libraryReportId < 1 {
+		return localVarReturnValue, nil, reportError("libraryReportId must be greater than 1")
+	}
+	if r.libraryReportId > 2147483647 {
+		return localVarReturnValue, nil, reportError("libraryReportId must be less than 2147483647")
+	}
 	if r.libraryReportRequest == nil {
 		return localVarReturnValue, nil, reportError("libraryReportRequest is required and must be specified")
 	}

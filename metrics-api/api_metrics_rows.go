@@ -1,5 +1,5 @@
 /*
-Metrics API
+metrics-api
 
 REST API OpenAPI documentation for the Metrics API
 
@@ -26,8 +26,8 @@ type MetricsRowsAPIService service
 type ApiCreateRowRequest struct {
 	ctx context.Context
 	ApiService *MetricsRowsAPIService
-	dashboardId string
-	folderId string
+	dashboardId int64
+	folderId int64
 	rowRequest *RowRequest
 }
 
@@ -46,11 +46,11 @@ CreateRow Create a new row
 Create a new row in dashboard.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
  @return ApiCreateRowRequest
 */
-func (a *MetricsRowsAPIService) CreateRow(ctx context.Context, dashboardId string, folderId string) ApiCreateRowRequest {
+func (a *MetricsRowsAPIService) CreateRow(ctx context.Context, dashboardId int64, folderId int64) ApiCreateRowRequest {
 	return ApiCreateRowRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -81,6 +81,18 @@ func (a *MetricsRowsAPIService) CreateRowExecute(r ApiCreateRowRequest) (*Respon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
 	if r.rowRequest == nil {
 		return localVarReturnValue, nil, reportError("rowRequest is required and must be specified")
 	}
@@ -235,12 +247,12 @@ func (a *MetricsRowsAPIService) CreateRowExecute(r ApiCreateRowRequest) (*Respon
 type ApiDeleteRowRequest struct {
 	ctx context.Context
 	ApiService *MetricsRowsAPIService
-	dashboardId string
-	folderId string
+	dashboardId int64
+	folderId int64
 	rowId int64
 }
 
-func (r ApiDeleteRowRequest) Execute() (*ResponseDeleteRow, *http.Response, error) {
+func (r ApiDeleteRowRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteRowExecute(r)
 }
 
@@ -250,12 +262,12 @@ DeleteRow Delete a row
 Delete a specific row.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
- @param rowId A unique integer value identifying this row.
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
+ @param rowId The unique identifier of the row
  @return ApiDeleteRowRequest
 */
-func (a *MetricsRowsAPIService) DeleteRow(ctx context.Context, dashboardId string, folderId string, rowId int64) ApiDeleteRowRequest {
+func (a *MetricsRowsAPIService) DeleteRow(ctx context.Context, dashboardId int64, folderId int64, rowId int64) ApiDeleteRowRequest {
 	return ApiDeleteRowRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -266,18 +278,16 @@ func (a *MetricsRowsAPIService) DeleteRow(ctx context.Context, dashboardId strin
 }
 
 // Execute executes the request
-//  @return ResponseDeleteRow
-func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*ResponseDeleteRow, *http.Response, error) {
+func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteRow
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRowsAPIService.DeleteRow")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/metrics/folders/{folderId}/dashboards/{dashboardId}/rows/{rowId}"
@@ -288,6 +298,24 @@ func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*Respon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return nil, reportError("folderId must be less than 2147483647")
+	}
+	if r.rowId < 1 {
+		return nil, reportError("rowId must be greater than 1")
+	}
+	if r.rowId > 2147483647 {
+		return nil, reportError("rowId must be less than 2147483647")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -299,7 +327,7 @@ func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*Respon
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -322,19 +350,19 @@ func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*Respon
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -342,102 +370,17 @@ func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*Respon
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiListRowsRequest struct {
 	ctx context.Context
 	ApiService *MetricsRowsAPIService
-	dashboardId string
-	folderId string
+	dashboardId int64
+	folderId int64
 	fields *string
 	id *int64
 	ordering *string
@@ -453,6 +396,7 @@ func (r ApiListRowsRequest) Fields(fields string) ApiListRowsRequest {
 	return r
 }
 
+// Filter by row ID
 func (r ApiListRowsRequest) Id(id int64) ApiListRowsRequest {
 	r.id = &id
 	return r
@@ -482,6 +426,7 @@ func (r ApiListRowsRequest) Search(search string) ApiListRowsRequest {
 	return r
 }
 
+// Filter by row title
 func (r ApiListRowsRequest) Title(title string) ApiListRowsRequest {
 	r.title = &title
 	return r
@@ -497,11 +442,11 @@ ListRows List of the rows
 List all rows in dashboards.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
  @return ApiListRowsRequest
 */
-func (a *MetricsRowsAPIService) ListRows(ctx context.Context, dashboardId string, folderId string) ApiListRowsRequest {
+func (a *MetricsRowsAPIService) ListRows(ctx context.Context, dashboardId int64, folderId int64) ApiListRowsRequest {
 	return ApiListRowsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -532,6 +477,18 @@ func (a *MetricsRowsAPIService) ListRowsExecute(r ApiListRowsRequest) (*Paginate
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
@@ -701,8 +658,8 @@ func (a *MetricsRowsAPIService) ListRowsExecute(r ApiListRowsRequest) (*Paginate
 type ApiOrderingRowRequest struct {
 	ctx context.Context
 	ApiService *MetricsRowsAPIService
-	dashboardId string
-	folderId string
+	dashboardId int64
+	folderId int64
 	orderRequest *OrderRequest
 }
 
@@ -721,11 +678,11 @@ OrderingRow Ordering rows in dashboard
 Reorder all rows for a specific Dahsboard.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
  @return ApiOrderingRowRequest
 */
-func (a *MetricsRowsAPIService) OrderingRow(ctx context.Context, dashboardId string, folderId string) ApiOrderingRowRequest {
+func (a *MetricsRowsAPIService) OrderingRow(ctx context.Context, dashboardId int64, folderId int64) ApiOrderingRowRequest {
 	return ApiOrderingRowRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -756,6 +713,18 @@ func (a *MetricsRowsAPIService) OrderingRowExecute(r ApiOrderingRowRequest) (*Re
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
 	if r.orderRequest == nil {
 		return localVarReturnValue, nil, reportError("orderRequest is required and must be specified")
 	}
@@ -909,8 +878,8 @@ func (a *MetricsRowsAPIService) OrderingRowExecute(r ApiOrderingRowRequest) (*Re
 type ApiRetrieveRowRequest struct {
 	ctx context.Context
 	ApiService *MetricsRowsAPIService
-	dashboardId string
-	folderId string
+	dashboardId int64
+	folderId int64
 	rowId int64
 	fields *string
 }
@@ -931,12 +900,12 @@ RetrieveRow Retrieve details from a row
 Retrieve details from a specific row.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
- @param rowId A unique integer value identifying this row.
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
+ @param rowId The unique identifier of the row
  @return ApiRetrieveRowRequest
 */
-func (a *MetricsRowsAPIService) RetrieveRow(ctx context.Context, dashboardId string, folderId string, rowId int64) ApiRetrieveRowRequest {
+func (a *MetricsRowsAPIService) RetrieveRow(ctx context.Context, dashboardId int64, folderId int64, rowId int64) ApiRetrieveRowRequest {
 	return ApiRetrieveRowRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -969,6 +938,24 @@ func (a *MetricsRowsAPIService) RetrieveRowExecute(r ApiRetrieveRowRequest) (*Re
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
+	if r.rowId < 1 {
+		return localVarReturnValue, nil, reportError("rowId must be greater than 1")
+	}
+	if r.rowId > 2147483647 {
+		return localVarReturnValue, nil, reportError("rowId must be less than 2147483647")
+	}
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
@@ -1120,8 +1107,8 @@ func (a *MetricsRowsAPIService) RetrieveRowExecute(r ApiRetrieveRowRequest) (*Re
 type ApiUpdateRowRequest struct {
 	ctx context.Context
 	ApiService *MetricsRowsAPIService
-	dashboardId string
-	folderId string
+	dashboardId int64
+	folderId int64
 	rowId int64
 	rowRequest *RowRequest
 }
@@ -1141,12 +1128,12 @@ UpdateRow Update a row
 Update an existing row. 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
- @param rowId A unique integer value identifying this row.
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
+ @param rowId The unique identifier of the row
  @return ApiUpdateRowRequest
 */
-func (a *MetricsRowsAPIService) UpdateRow(ctx context.Context, dashboardId string, folderId string, rowId int64) ApiUpdateRowRequest {
+func (a *MetricsRowsAPIService) UpdateRow(ctx context.Context, dashboardId int64, folderId int64, rowId int64) ApiUpdateRowRequest {
 	return ApiUpdateRowRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1179,6 +1166,24 @@ func (a *MetricsRowsAPIService) UpdateRowExecute(r ApiUpdateRowRequest) (*Respon
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
+	if r.rowId < 1 {
+		return localVarReturnValue, nil, reportError("rowId must be greater than 1")
+	}
+	if r.rowId > 2147483647 {
+		return localVarReturnValue, nil, reportError("rowId must be less than 2147483647")
+	}
 	if r.rowRequest == nil {
 		return localVarReturnValue, nil, reportError("rowRequest is required and must be specified")
 	}

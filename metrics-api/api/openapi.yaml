@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   description: REST API OpenAPI documentation for the Metrics API
-  title: Metrics API
+  title: metrics-api
   version: 1.0.0
 servers:
 - url: /
@@ -9,7 +9,7 @@ paths:
   /metrics/folders:
     get:
       description: List all folders for your user.
-      operationId: listFolders
+      operationId: list_folders
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -17,6 +17,7 @@ paths:
         name: fields
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       - description: Which field to use when ordering the results.
@@ -25,6 +26,7 @@ paths:
         name: ordering
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       - description: A page number within the paginated result set.
@@ -34,6 +36,8 @@ paths:
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -43,6 +47,8 @@ paths:
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: A search term.
@@ -51,6 +57,7 @@ paths:
         name: search
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       responses:
@@ -180,7 +187,7 @@ paths:
       - Metrics - Folders
     post:
       description: Create a new folder in a given scope.
-      operationId: createFolder
+      operationId: create_folder
       requestBody:
         content:
           application/json:
@@ -321,140 +328,22 @@ paths:
   /metrics/folders/{folderId}:
     delete:
       description: Delete a specific folder.
-      operationId: deleteFolder
+      operationId: delete_folder
       parameters:
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteFolder"
-          description: Ok
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteFolder"
-          description: Accepted
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
+        "204":
+          description: No response body
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -463,7 +352,7 @@ paths:
       - Metrics - Folders
     get:
       description: Retrieve details from a specific folder.
-      operationId: retrieveFolder
+      operationId: retrieve_folder
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -471,14 +360,19 @@ paths:
         name: fields
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       responses:
         "200":
@@ -608,14 +502,18 @@ paths:
     patch:
       description: Update one or more fields of an existing folder without affecting
         other fields.
-      operationId: partialUpdateFolder
+      operationId: partial_update_folder
       parameters:
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       requestBody:
         content:
@@ -756,14 +654,18 @@ paths:
     put:
       description: Update an existing folder. This replaces the entire folder with
         the new data provided.
-      operationId: updateFolder
+      operationId: update_folder
       parameters:
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       requestBody:
         content:
@@ -905,7 +807,7 @@ paths:
   /metrics/folders/{folderId}/dashboards:
     get:
       description: List all dashboards for your user.
-      operationId: listDashboards
+      operationId: list_dashboards
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -913,14 +815,19 @@ paths:
         name: fields
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       - description: Which field to use when ordering the results.
         explode: true
@@ -928,6 +835,7 @@ paths:
         name: ordering
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       - description: A page number within the paginated result set.
@@ -937,6 +845,8 @@ paths:
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -946,6 +856,8 @@ paths:
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: A search term.
@@ -954,6 +866,7 @@ paths:
         name: search
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       responses:
@@ -1083,14 +996,18 @@ paths:
       - Metrics - Dashboard
     post:
       description: Create a new dashboard in a given scope.
-      operationId: createDashboard
+      operationId: create_dashboard
       parameters:
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       requestBody:
         content:
@@ -1232,147 +1149,33 @@ paths:
   /metrics/folders/{folderId}/dashboards/{dashboardId}:
     delete:
       description: Delete a specific dashboard.
-      operationId: deleteDashboard
+      operationId: delete_dashboard
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteDashboard"
-          description: Ok
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteDashboard"
-          description: Accepted
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
+        "204":
+          description: No response body
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1381,14 +1184,18 @@ paths:
       - Metrics - Dashboard
     get:
       description: Retrieve details from a specific dashboard.
-      operationId: retrieveDashboard
+      operationId: retrieve_dashboard
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -1396,14 +1203,19 @@ paths:
         name: fields
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       responses:
         "200":
@@ -1533,21 +1345,29 @@ paths:
     patch:
       description: Update one or more fields of an existing dashboard without affecting
         other fields.
-      operationId: partialUpdateDashboard
+      operationId: partial_update_dashboard
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       requestBody:
         content:
@@ -1688,21 +1508,29 @@ paths:
     put:
       description: Update an existing dashboard. This replaces the entire dashboard
         with the new data provided.
-      operationId: updateDashboard
+      operationId: update_dashboard
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       requestBody:
         content:
@@ -1844,14 +1672,18 @@ paths:
   /metrics/folders/{folderId}/dashboards/{dashboardId}/rows:
     get:
       description: List all rows in dashboards.
-      operationId: listRows
+      operationId: list_rows
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -1859,21 +1691,29 @@ paths:
         name: fields
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: true
+      - description: Filter by row ID
+        explode: true
         in: query
         name: id
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: Which field to use when ordering the results.
@@ -1882,6 +1722,7 @@ paths:
         name: ordering
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       - description: A page number within the paginated result set.
@@ -1891,6 +1732,8 @@ paths:
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -1900,6 +1743,8 @@ paths:
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: A search term.
@@ -1908,13 +1753,16 @@ paths:
         name: search
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
-      - explode: true
+      - description: Filter by row title
+        explode: true
         in: query
         name: title
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       responses:
@@ -2044,21 +1892,29 @@ paths:
       - Metrics - Rows
     post:
       description: Create a new row in dashboard.
-      operationId: createRow
+      operationId: create_row
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       requestBody:
         content:
@@ -2200,156 +2056,44 @@ paths:
   /metrics/folders/{folderId}/dashboards/{dashboardId}/rows/{rowId}:
     delete:
       description: Delete a specific row.
-      operationId: deleteRow
+      operationId: delete_row
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - description: A unique integer value identifying this row.
+      - description: The unique identifier of the row
         explode: false
         in: path
         name: rowId
         required: true
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteRow"
-          description: Ok
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteRow"
-          description: Accepted
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
+        "204":
+          description: No response body
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -2358,14 +2102,18 @@ paths:
       - Metrics - Rows
     get:
       description: Retrieve details from a specific row.
-      operationId: retrieveRow
+      operationId: retrieve_row
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -2373,22 +2121,29 @@ paths:
         name: fields
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - description: A unique integer value identifying this row.
+      - description: The unique identifier of the row
         explode: false
         in: path
         name: rowId
         required: true
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: simple
       responses:
@@ -2518,29 +2273,39 @@ paths:
       - Metrics - Rows
     put:
       description: 'Update an existing row. '
-      operationId: updateRow
+      operationId: update_row
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - description: A unique integer value identifying this row.
+      - description: The unique identifier of the row
         explode: false
         in: path
         name: rowId
         required: true
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: simple
       requestBody:
@@ -2683,14 +2448,18 @@ paths:
   /metrics/folders/{folderId}/dashboards/{dashboardId}/rows/{rowId}/reports:
     get:
       description: List all reports for your user.
-      operationId: listReports
+      operationId: list_reports
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -2698,14 +2467,19 @@ paths:
         name: fields
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       - description: Which field to use when ordering the results.
         explode: true
@@ -2713,6 +2487,7 @@ paths:
         name: ordering
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       - description: A page number within the paginated result set.
@@ -2722,6 +2497,8 @@ paths:
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -2731,14 +2508,20 @@ paths:
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
-      - explode: false
+      - description: The unique identifier of the row
+        explode: false
         in: path
         name: rowId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       - description: A search term.
         explode: true
@@ -2746,6 +2529,7 @@ paths:
         name: search
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       responses:
@@ -2875,28 +2659,40 @@ paths:
       - Metrics - Reports
     post:
       description: Create a new report in a given scope.
-      operationId: createReport
+      operationId: create_report
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the row
+        explode: false
         in: path
         name: rowId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       requestBody:
         content:
@@ -3038,161 +2834,55 @@ paths:
   /metrics/folders/{folderId}/dashboards/{dashboardId}/rows/{rowId}/reports/{reportId}:
     delete:
       description: Delete a specific report.
-      operationId: deleteReport
+      operationId: delete_report
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the report
+        explode: false
         in: path
         name: reportId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the row
+        explode: false
         in: path
         name: rowId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteReport"
-          description: Ok
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteReport"
-          description: Accepted
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
+        "204":
+          description: No response body
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -3201,14 +2891,18 @@ paths:
       - Metrics - Reports
     get:
       description: Retrieve details from a specific report.
-      operationId: retrieveReport
+      operationId: retrieve_report
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -3216,28 +2910,41 @@ paths:
         name: fields
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the report
+        explode: false
         in: path
         name: reportId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the row
+        explode: false
         in: path
         name: rowId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       responses:
         "200":
@@ -3367,35 +3074,51 @@ paths:
     put:
       description: Update an existing report. This replaces the entire report with
         the new data provided.
-      operationId: updateReport
+      operationId: update_report
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the report
+        explode: false
         in: path
         name: reportId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the row
+        explode: false
         in: path
         name: rowId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       requestBody:
         content:
@@ -3537,28 +3260,40 @@ paths:
   /metrics/folders/{folderId}/dashboards/{dashboardId}/rows/{rowId}/reports/order:
     put:
       description: Reorder all reports for a specific Row.
-      operationId: orderingReport
+      operationId: ordering_report
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the row
+        explode: false
         in: path
         name: rowId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       requestBody:
         content:
@@ -3700,21 +3435,29 @@ paths:
   /metrics/folders/{folderId}/dashboards/{dashboardId}/rows/order:
     put:
       description: Reorder all rows for a specific Dahsboard.
-      operationId: orderingRow
+      operationId: ordering_row
       parameters:
-      - explode: false
+      - description: The unique identifier of the dashboard
+        explode: false
         in: path
         name: dashboardId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
-      - explode: false
+      - description: The unique identifier of the folder
+        explode: false
         in: path
         name: folderId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       requestBody:
         content:
@@ -3856,7 +3599,7 @@ paths:
   /metrics/library/reports:
     get:
       description: List all library reports for your user.
-      operationId: listLibraryReports
+      operationId: list_library_reports
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -3864,6 +3607,7 @@ paths:
         name: fields
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       - description: Which field to use when ordering the results.
@@ -3872,6 +3616,7 @@ paths:
         name: ordering
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       - description: A page number within the paginated result set.
@@ -3881,6 +3626,8 @@ paths:
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -3890,6 +3637,8 @@ paths:
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: A search term.
@@ -3898,6 +3647,7 @@ paths:
         name: search
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       responses:
@@ -4027,7 +3777,7 @@ paths:
       - Metrics - Library Reports
     post:
       description: Create a new library report in a given scope.
-      operationId: createLibraryReport
+      operationId: create_library_report
       requestBody:
         content:
           application/json:
@@ -4168,140 +3918,22 @@ paths:
   /metrics/library/reports/{libraryReportId}:
     delete:
       description: Delete a specific library report.
-      operationId: deleteLibraryReport
+      operationId: delete_library_report
       parameters:
-      - explode: false
+      - description: The unique identifier of the library report
+        explode: false
         in: path
         name: libraryReportId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteReport"
-          description: Ok
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteReport"
-          description: Accepted
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
+        "204":
+          description: No response body
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -4310,7 +3942,7 @@ paths:
       - Metrics - Library Reports
     get:
       description: Retrieve details from a specific library report.
-      operationId: retrieveLibraryReport
+      operationId: retrieve_library_report
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -4318,14 +3950,19 @@ paths:
         name: fields
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
-      - explode: false
+      - description: The unique identifier of the library report
+        explode: false
         in: path
         name: libraryReportId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       responses:
         "200":
@@ -4455,14 +4092,18 @@ paths:
     put:
       description: Update an existing library report. This replaces the entire report
         with the new data provided.
-      operationId: updateLibraryReport
+      operationId: update_library_report
       parameters:
-      - explode: false
+      - description: The unique identifier of the library report
+        explode: false
         in: path
         name: libraryReportId
         required: true
         schema:
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: simple
       requestBody:
         content:
@@ -4604,14 +4245,17 @@ paths:
   /metrics/recommendations:
     get:
       description: List all recommendations for your user.
-      operationId: listRecommendations
+      operationId: list_recommendations
       parameters:
-      - explode: true
+      - description: Filter by dashboard ID
+        explode: true
         in: query
         name: dashboard
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: Comma-separated list of field names to include in the response.
@@ -4620,14 +4264,18 @@ paths:
         name: fields
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
-      - explode: true
+      - description: Filter by recommendation ID
+        explode: true
         in: query
         name: id
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: Which field to use when ordering the results.
@@ -4636,6 +4284,7 @@ paths:
         name: ordering
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       - description: A page number within the paginated result set.
@@ -4645,6 +4294,8 @@ paths:
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -4654,6 +4305,8 @@ paths:
         required: false
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: form
       - description: A search term.
@@ -4662,6 +4315,7 @@ paths:
         name: search
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       responses:
@@ -4791,7 +4445,7 @@ paths:
       - Metrics - Recommendations
     post:
       description: Create a new recommendation.
-      operationId: createRecommendation
+      operationId: create_recommendation
       requestBody:
         content:
           application/json:
@@ -4932,142 +4586,22 @@ paths:
   /metrics/recommendations/{recommendationId}:
     delete:
       description: Delete a specific recommendation.
-      operationId: deleteRecommendation
+      operationId: delete_recommendation
       parameters:
-      - description: A unique integer value identifying this recommendation.
+      - description: The unique identifier of the recommendation
         explode: false
         in: path
         name: recommendationId
         required: true
         schema:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteFolder"
-          description: Ok
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteFolder"
-          description: Accepted
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
+        "204":
+          description: No response body
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -5077,24 +4611,23 @@ paths:
 components:
   schemas:
     AggregatedField:
-      additionalProperties: false
       example:
         variable: variable
         aggregation: aggregation
       properties:
         aggregation:
           maxLength: 255
+          minLength: 1
           type: string
         variable:
           maxLength: 255
+          minLength: 1
           type: string
       required:
       - aggregation
       - variable
-      title: AggregatedField
       type: object
     AggregatedFieldRequest:
-      additionalProperties: false
       example:
         variable: variable
         aggregation: aggregation
@@ -5110,21 +4643,13 @@ components:
       required:
       - aggregation
       - variable
-      title: AggregatedFieldRequest
       type: object
-    AggregationTypeEnum:
-      description: |-
-        * `avg` - Aggregation by average.
-        * `sum` - Aggregation by sum.
-      title: AggregationTypeEnum
-      type: string
     BaseQuery:
-      additionalProperties: false
       description: |-
         Base Serializer for validating and processing queries associated with reports.
         Contains generic validations applied to all types of reports.
       example:
-        max_y_axis: 5
+        max_y_axis: 1280358509
         calculated_fields:
         - calculated_fields
         - calculated_fields
@@ -5134,7 +4659,7 @@ components:
         - group_by
         - group_by
         order_direction: order_direction
-        id: 6
+        id: 1294386359
         filters:
           key: ""
         dataset: dataset
@@ -5146,9 +4671,12 @@ components:
       properties:
         id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         dataset:
           maxLength: 150
+          minLength: 1
           type: string
         filters:
           additionalProperties: {}
@@ -5156,6 +4684,7 @@ components:
         group_by:
           items:
             maxLength: 255
+            minLength: 1
             type: string
           type: array
         limit:
@@ -5170,18 +4699,23 @@ components:
         calculated_fields:
           items:
             maxLength: 255
+            minLength: 1
             type: string
           type: array
         order_direction:
           description: |-
             * `asc` - Ascending order, sets the order from smallest to largest.
             * `desc` - Descending order, sets the order from largest to smallest.
-          title: OrderDirectionEnum
           type: string
+          x-extensible-enum:
+          - asc
+          - desc
         top_x:
           type: boolean
         max_y_axis:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           nullable: true
           type: integer
       required:
@@ -5189,15 +4723,13 @@ components:
       - id
       - limit
       - order_direction
-      title: BaseQuery
       type: object
     BaseQueryRequest:
-      additionalProperties: false
       description: |-
         Base Serializer for validating and processing queries associated with reports.
         Contains generic validations applied to all types of reports.
       example:
-        max_y_axis: 6
+        max_y_axis: 1294386359
         calculated_fields:
         - calculated_fields
         - calculated_fields
@@ -5248,60 +4780,61 @@ components:
           description: |-
             * `asc` - Ascending order, sets the order from smallest to largest.
             * `desc` - Descending order, sets the order from largest to smallest.
-          title: OrderDirectionEnum
           type: string
+          x-extensible-enum:
+          - asc
+          - desc
         top_x:
           type: boolean
         max_y_axis:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           nullable: true
           type: integer
       required:
       - dataset
       - limit
       - order_direction
-      title: BaseQueryRequest
       type: object
-    ComparisonTypeEnum:
-      description: |-
-        * `inverse` - The lower the value, the better the result or performance.
-        * `neutral` - There is no general rule to say whether a value is good or bad, as it depends on the context.
-        * `regular` - The higher the value, the better the result or performance.
-      title: ComparisonTypeEnum
-      type: string
     Dashboard:
-      additionalProperties: false
       example:
         scope: scope
         name: name
-        id: 0
-        folder_id: 6
+        id: 171976545
+        folder_id: 1294386359
       properties:
         id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         name:
           maxLength: 255
+          minLength: 1
           type: string
         scope:
           description: |-
             * `azion` - Items that have Azion scope can be shared to any account that has access permission.
             * `account` - Items that have Account scope can only be shared with account users.
             * `user` - Items that have User scope will only be available to the account user.
-          title: ScopeEnum
           type: string
+          x-extensible-enum:
+          - azion
+          - account
+          - user
         folder_id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
       required:
       - folder_id
       - id
       - name
       - scope
-      title: Dashboard
       type: object
     DashboardRequest:
-      additionalProperties: false
       example:
         scope: scope
         name: name
@@ -5315,50 +4848,46 @@ components:
             * `azion` - Items that have Azion scope can be shared to any account that has access permission.
             * `account` - Items that have Account scope can only be shared with account users.
             * `user` - Items that have User scope will only be available to the account user.
-          title: ScopeEnum
           type: string
+          x-extensible-enum:
+          - azion
+          - account
+          - user
       required:
       - name
       - scope
-      title: DashboardRequest
       type: object
-    DataUnitEnum:
-      description: |-
-        * `bits-per-second` - Sets the data unit to bits per second.
-        * `bytes` - Sets the data unit to bytes.
-        * `count` - Sets the data unit to counter.
-        * `per-second` - Sets the data unit to per second.
-        * `percentage` - Sets the data unit to percentage.
-      title: DataUnitEnum
-      type: string
     Folder:
-      additionalProperties: false
       example:
         scope: scope
         name: name
-        id: 0
+        id: 171976545
       properties:
         id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         name:
           maxLength: 255
+          minLength: 1
           type: string
         scope:
           description: |-
             * `azion` - Items that have Azion scope can be shared to any account that has access permission.
             * `account` - Items that have Account scope can only be shared with account users.
             * `user` - Items that have User scope will only be available to the account user.
-          title: ScopeEnum
           type: string
+          x-extensible-enum:
+          - azion
+          - account
+          - user
       required:
       - id
       - name
       - scope
-      title: Folder
       type: object
     FolderRequest:
-      additionalProperties: false
       example:
         scope: scope
         name: name
@@ -5372,15 +4901,16 @@ components:
             * `azion` - Items that have Azion scope can be shared to any account that has access permission.
             * `account` - Items that have Account scope can only be shared with account users.
             * `user` - Items that have User scope will only be available to the account user.
-          title: ScopeEnum
           type: string
+          x-extensible-enum:
+          - azion
+          - account
+          - user
       required:
       - name
       - scope
-      title: FolderRequest
       type: object
     JSONAPIErrorObject:
-      additionalProperties: false
       description: Serializer for a single JSON:API error object.
       example:
         code: code
@@ -5420,10 +4950,8 @@ components:
           additionalProperties: {}
           description: Non-standard meta-information about the error
           type: object
-      title: JSONAPIErrorObject
       type: object
     JSONAPIErrorResponse:
-      additionalProperties: false
       description: Serializer for a JSON:API error response.
       example:
         errors:
@@ -5449,10 +4977,8 @@ components:
           type: array
       required:
       - errors
-      title: JSONAPIErrorResponse
       type: object
     JSONAPIErrorSource:
-      additionalProperties: false
       description: Serializer for the 'source' object in a JSON:API error.
       properties:
         pointer:
@@ -5471,10 +4997,8 @@ components:
           maxLength: 4096
           minLength: 1
           type: string
-      title: JSONAPIErrorSource
       type: object
     LibraryReportRequest:
-      additionalProperties: false
       example:
         aggregation_type: aggregation_type
         library: true
@@ -5487,7 +5011,7 @@ components:
         help_center_path: help_center_path
         type: type
         queries:
-        - max_y_axis: 6
+        - max_y_axis: 1294386359
           calculated_fields:
           - calculated_fields
           - calculated_fields
@@ -5505,7 +5029,7 @@ components:
             aggregation: aggregation
           - variable: variable
             aggregation: aggregation
-        - max_y_axis: 6
+        - max_y_axis: 1294386359
           calculated_fields:
           - calculated_fields
           - calculated_fields
@@ -5540,8 +5064,13 @@ components:
                         frequency distribution analysis, ideal for highlighting highest or lowest values.
             * `pie` - Pie chart report type, used for composition analysis, comparing parts of a whole,
                         visualizing percentages. Ideal for showing the distribution of a data set into parts.
-          title: TypeEnum
           type: string
+          x-extensible-enum:
+          - big-numbers
+          - line
+          - map
+          - ordered-bar
+          - pie
         x_axis:
           maxLength: 100
           minLength: 1
@@ -5550,8 +5079,10 @@ components:
           description: |-
             * `avg` - Aggregation by average.
             * `sum` - Aggregation by sum.
-          title: AggregationTypeEnum
           type: string
+          x-extensible-enum:
+          - avg
+          - sum
         data_unit:
           description: |-
             * `bits-per-second` - Sets the data unit to bits per second.
@@ -5559,8 +5090,13 @@ components:
             * `count` - Sets the data unit to counter.
             * `per-second` - Sets the data unit to per second.
             * `percentage` - Sets the data unit to percentage.
-          title: DataUnitEnum
           type: string
+          x-extensible-enum:
+          - bits-per-second
+          - bytes
+          - count
+          - per-second
+          - percentage
         queries:
           items:
             $ref: "#/components/schemas/BaseQueryRequest"
@@ -5576,8 +5112,11 @@ components:
             * `azion` - Items that have Azion scope can be shared to any account that has access permission.
             * `account` - Items that have Account scope can only be shared with account users.
             * `user` - Items that have User scope will only be available to the account user.
-          title: ScopeEnum
           type: string
+          x-extensible-enum:
+          - azion
+          - account
+          - user
         rotated:
           type: boolean
         comparison_type:
@@ -5585,8 +5124,11 @@ components:
             * `inverse` - The lower the value, the better the result or performance.
             * `neutral` - There is no general rule to say whether a value is good or bad, as it depends on the context.
             * `regular` - The higher the value, the better the result or performance.
-          title: ComparisonTypeEnum
           type: string
+          x-extensible-enum:
+          - inverse
+          - neutral
+          - regular
         help_center_path:
           maxLength: 255
           minLength: 1
@@ -5600,59 +5142,51 @@ components:
       - queries
       - scope
       - type
-      title: LibraryReportRequest
       type: object
     Order:
-      additionalProperties: false
       example:
         order:
-        - 0
-        - 0
+        - 171976545
+        - 171976545
       properties:
         order:
           items:
             format: int64
+            maximum: 2147483647
+            minimum: 1
             type: integer
           type: array
       required:
       - order
-      title: Order
       type: object
-    OrderDirectionEnum:
-      description: |-
-        * `asc` - Ascending order, sets the order from smallest to largest.
-        * `desc` - Descending order, sets the order from largest to smallest.
-      title: OrderDirectionEnum
-      type: string
     OrderRequest:
-      additionalProperties: false
       example:
         order:
-        - 0
-        - 0
+        - 171976545
+        - 171976545
       properties:
         order:
           items:
             format: int64
+            maximum: 2147483647
+            minimum: 1
             type: integer
           type: array
       required:
       - order
-      title: OrderRequest
       type: object
     PaginatedResponseListDashboardList:
-      additionalProperties: false
       example:
         count: 123
         results:
         - scope: scope
           name: name
-          id: 0
-          folder_id: 6
+          id: 171976545
+          folder_id: 1294386359
         - scope: scope
           name: name
-          id: 0
-          folder_id: 6
+          id: 171976545
+          folder_id: 1294386359
       properties:
         count:
           example: 123
@@ -5664,19 +5198,17 @@ components:
           items:
             $ref: "#/components/schemas/ResponseListDashboard"
           type: array
-      title: PaginatedResponseListDashboardList
       type: object
     PaginatedResponseListFolderList:
-      additionalProperties: false
       example:
         count: 123
         results:
         - scope: scope
           name: name
-          id: 0
+          id: 171976545
         - scope: scope
           name: name
-          id: 0
+          id: 171976545
       properties:
         count:
           example: 123
@@ -5688,10 +5220,8 @@ components:
           items:
             $ref: "#/components/schemas/ResponseListFolder"
           type: array
-      title: PaginatedResponseListFolderList
       type: object
     PaginatedResponseListReportList:
-      additionalProperties: false
       example:
         count: 123
         results:
@@ -5701,7 +5231,7 @@ components:
           rotated: true
           type: type
           queries:
-          - max_y_axis: 5
+          - max_y_axis: 1280358509
             calculated_fields:
             - calculated_fields
             - calculated_fields
@@ -5711,7 +5241,7 @@ components:
             - group_by
             - group_by
             order_direction: order_direction
-            id: 6
+            id: 1294386359
             filters:
               key: ""
             dataset: dataset
@@ -5720,7 +5250,7 @@ components:
               aggregation: aggregation
             - variable: variable
               aggregation: aggregation
-          - max_y_axis: 5
+          - max_y_axis: 1280358509
             calculated_fields:
             - calculated_fields
             - calculated_fields
@@ -5730,7 +5260,7 @@ components:
             - group_by
             - group_by
             order_direction: order_direction
-            id: 6
+            id: 1294386359
             filters:
               key: ""
             dataset: dataset
@@ -5744,7 +5274,7 @@ components:
           library: true
           name: name
           help_center_path: help_center_path
-          id: 0
+          id: 171976545
           order: order
         - comparison_type: comparison_type
           x_axis: x_axis
@@ -5752,7 +5282,7 @@ components:
           rotated: true
           type: type
           queries:
-          - max_y_axis: 5
+          - max_y_axis: 1280358509
             calculated_fields:
             - calculated_fields
             - calculated_fields
@@ -5762,7 +5292,7 @@ components:
             - group_by
             - group_by
             order_direction: order_direction
-            id: 6
+            id: 1294386359
             filters:
               key: ""
             dataset: dataset
@@ -5771,7 +5301,7 @@ components:
               aggregation: aggregation
             - variable: variable
               aggregation: aggregation
-          - max_y_axis: 5
+          - max_y_axis: 1280358509
             calculated_fields:
             - calculated_fields
             - calculated_fields
@@ -5781,7 +5311,7 @@ components:
             - group_by
             - group_by
             order_direction: order_direction
-            id: 6
+            id: 1294386359
             filters:
               key: ""
             dataset: dataset
@@ -5795,7 +5325,7 @@ components:
           library: true
           name: name
           help_center_path: help_center_path
-          id: 0
+          id: 171976545
           order: order
       properties:
         count:
@@ -5808,19 +5338,17 @@ components:
           items:
             $ref: "#/components/schemas/ResponseListReport"
           type: array
-      title: PaginatedResponseListReportList
       type: object
     PaginatedResponseListRowList:
-      additionalProperties: false
       example:
         count: 123
         results:
-        - id: 0
+        - id: 171976545
           title: title
-          order: 6
-        - id: 0
+          order: 1294386359
+        - id: 171976545
           title: title
-          order: 6
+          order: 1294386359
       properties:
         count:
           example: 123
@@ -5832,10 +5360,8 @@ components:
           items:
             $ref: "#/components/schemas/ResponseListRow"
           type: array
-      title: PaginatedResponseListRowList
       type: object
     PatchedDashboardRequest:
-      additionalProperties: false
       example:
         scope: scope
         name: name
@@ -5849,12 +5375,13 @@ components:
             * `azion` - Items that have Azion scope can be shared to any account that has access permission.
             * `account` - Items that have Account scope can only be shared with account users.
             * `user` - Items that have User scope will only be available to the account user.
-          title: ScopeEnum
           type: string
-      title: PatchedDashboardRequest
+          x-extensible-enum:
+          - azion
+          - account
+          - user
       type: object
     PatchedFolderRequest:
-      additionalProperties: false
       example:
         scope: scope
         name: name
@@ -5868,25 +5395,26 @@ components:
             * `azion` - Items that have Azion scope can be shared to any account that has access permission.
             * `account` - Items that have Account scope can only be shared with account users.
             * `user` - Items that have User scope will only be available to the account user.
-          title: ScopeEnum
           type: string
-      title: PatchedFolderRequest
+          x-extensible-enum:
+          - azion
+          - account
+          - user
       type: object
     RecommendationRequest:
-      additionalProperties: false
       example:
-        dashboard_id: 0
+        dashboard_id: 171976545
       properties:
         dashboard_id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
           writeOnly: true
       required:
       - dashboard_id
-      title: RecommendationRequest
       type: object
     Report:
-      additionalProperties: false
       example:
         comparison_type: comparison_type
         x_axis: x_axis
@@ -5894,7 +5422,7 @@ components:
         rotated: true
         type: type
         queries:
-        - max_y_axis: 5
+        - max_y_axis: 1280358509
           calculated_fields:
           - calculated_fields
           - calculated_fields
@@ -5904,7 +5432,7 @@ components:
           - group_by
           - group_by
           order_direction: order_direction
-          id: 6
+          id: 1294386359
           filters:
             key: ""
           dataset: dataset
@@ -5913,7 +5441,7 @@ components:
             aggregation: aggregation
           - variable: variable
             aggregation: aggregation
-        - max_y_axis: 5
+        - max_y_axis: 1280358509
           calculated_fields:
           - calculated_fields
           - calculated_fields
@@ -5923,7 +5451,7 @@ components:
           - group_by
           - group_by
           order_direction: order_direction
-          id: 6
+          id: 1294386359
           filters:
             key: ""
           dataset: dataset
@@ -5937,14 +5465,17 @@ components:
         library: true
         name: name
         help_center_path: help_center_path
-        id: 0
+        id: 171976545
         order: order
       properties:
         id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         description:
           maxLength: 150
+          minLength: 1
           type: string
         type:
           description: |-
@@ -5957,17 +5488,25 @@ components:
                         frequency distribution analysis, ideal for highlighting highest or lowest values.
             * `pie` - Pie chart report type, used for composition analysis, comparing parts of a whole,
                         visualizing percentages. Ideal for showing the distribution of a data set into parts.
-          title: TypeEnum
           type: string
+          x-extensible-enum:
+          - big-numbers
+          - line
+          - map
+          - ordered-bar
+          - pie
         x_axis:
           maxLength: 100
+          minLength: 1
           type: string
         aggregation_type:
           description: |-
             * `avg` - Aggregation by average.
             * `sum` - Aggregation by sum.
-          title: AggregationTypeEnum
           type: string
+          x-extensible-enum:
+          - avg
+          - sum
         data_unit:
           description: |-
             * `bits-per-second` - Sets the data unit to bits per second.
@@ -5975,16 +5514,23 @@ components:
             * `count` - Sets the data unit to counter.
             * `per-second` - Sets the data unit to per second.
             * `percentage` - Sets the data unit to percentage.
-          title: DataUnitEnum
           type: string
+          x-extensible-enum:
+          - bits-per-second
+          - bytes
+          - count
+          - per-second
+          - percentage
         queries:
           items:
             $ref: "#/components/schemas/BaseQuery"
           type: array
         order:
+          minLength: 1
           type: string
         name:
           maxLength: 255
+          minLength: 1
           type: string
         rotated:
           type: boolean
@@ -5993,10 +5539,14 @@ components:
             * `inverse` - The lower the value, the better the result or performance.
             * `neutral` - There is no general rule to say whether a value is good or bad, as it depends on the context.
             * `regular` - The higher the value, the better the result or performance.
-          title: ComparisonTypeEnum
           type: string
+          x-extensible-enum:
+          - inverse
+          - neutral
+          - regular
         help_center_path:
           maxLength: 255
+          minLength: 1
           nullable: true
           type: string
         library:
@@ -6010,23 +5560,21 @@ components:
       - order
       - queries
       - type
-      title: Report
       type: object
     ReportRequest:
-      additionalProperties: false
       example:
         aggregation_type: aggregation_type
         library: true
         comparison_type: comparison_type
         x_axis: x_axis
-        columns: 1
+        columns: 2
         name: name
         description: description
         rotated: true
         help_center_path: help_center_path
         type: type
         queries:
-        - max_y_axis: 6
+        - max_y_axis: 1294386359
           calculated_fields:
           - calculated_fields
           - calculated_fields
@@ -6044,7 +5592,7 @@ components:
             aggregation: aggregation
           - variable: variable
             aggregation: aggregation
-        - max_y_axis: 6
+        - max_y_axis: 1294386359
           calculated_fields:
           - calculated_fields
           - calculated_fields
@@ -6079,8 +5627,13 @@ components:
                         frequency distribution analysis, ideal for highlighting highest or lowest values.
             * `pie` - Pie chart report type, used for composition analysis, comparing parts of a whole,
                         visualizing percentages. Ideal for showing the distribution of a data set into parts.
-          title: TypeEnum
           type: string
+          x-extensible-enum:
+          - big-numbers
+          - line
+          - map
+          - ordered-bar
+          - pie
         x_axis:
           maxLength: 100
           minLength: 1
@@ -6089,8 +5642,10 @@ components:
           description: |-
             * `avg` - Aggregation by average.
             * `sum` - Aggregation by sum.
-          title: AggregationTypeEnum
           type: string
+          x-extensible-enum:
+          - avg
+          - sum
         data_unit:
           description: |-
             * `bits-per-second` - Sets the data unit to bits per second.
@@ -6098,8 +5653,13 @@ components:
             * `count` - Sets the data unit to counter.
             * `per-second` - Sets the data unit to per second.
             * `percentage` - Sets the data unit to percentage.
-          title: DataUnitEnum
           type: string
+          x-extensible-enum:
+          - bits-per-second
+          - bytes
+          - count
+          - per-second
+          - percentage
         queries:
           items:
             $ref: "#/components/schemas/BaseQueryRequest"
@@ -6107,6 +5667,7 @@ components:
         columns:
           format: int64
           maximum: 12
+          minimum: 1
           type: integer
           writeOnly: true
         name:
@@ -6120,8 +5681,11 @@ components:
             * `inverse` - The lower the value, the better the result or performance.
             * `neutral` - There is no general rule to say whether a value is good or bad, as it depends on the context.
             * `regular` - The higher the value, the better the result or performance.
-          title: ComparisonTypeEnum
           type: string
+          x-extensible-enum:
+          - inverse
+          - neutral
+          - regular
         help_center_path:
           maxLength: 255
           minLength: 1
@@ -6137,16 +5701,14 @@ components:
       - name
       - queries
       - type
-      title: ReportRequest
       type: object
     ResponseAsyncDashboard:
-      additionalProperties: false
       example:
         data:
           scope: scope
           name: name
-          id: 0
-          folder_id: 6
+          id: 171976545
+          folder_id: 1294386359
         state: state
       properties:
         state:
@@ -6157,59 +5719,13 @@ components:
           $ref: "#/components/schemas/Dashboard"
       required:
       - data
-      title: ResponseAsyncDashboard
-      type: object
-    ResponseAsyncDeleteDashboard:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteDashboard
-      type: object
-    ResponseAsyncDeleteFolder:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteFolder
-      type: object
-    ResponseAsyncDeleteReport:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteReport
-      type: object
-    ResponseAsyncDeleteRow:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteRow
       type: object
     ResponseAsyncFolder:
-      additionalProperties: false
       example:
         data:
           scope: scope
           name: name
-          id: 0
+          id: 171976545
         state: state
       properties:
         state:
@@ -6220,15 +5736,13 @@ components:
           $ref: "#/components/schemas/Folder"
       required:
       - data
-      title: ResponseAsyncFolder
       type: object
     ResponseAsyncOrder:
-      additionalProperties: false
       example:
         data:
           order:
-          - 0
-          - 0
+          - 171976545
+          - 171976545
         state: state
       properties:
         state:
@@ -6239,10 +5753,8 @@ components:
           $ref: "#/components/schemas/Order"
       required:
       - data
-      title: ResponseAsyncOrder
       type: object
     ResponseAsyncReport:
-      additionalProperties: false
       example:
         data:
           comparison_type: comparison_type
@@ -6251,7 +5763,7 @@ components:
           rotated: true
           type: type
           queries:
-          - max_y_axis: 5
+          - max_y_axis: 1280358509
             calculated_fields:
             - calculated_fields
             - calculated_fields
@@ -6261,7 +5773,7 @@ components:
             - group_by
             - group_by
             order_direction: order_direction
-            id: 6
+            id: 1294386359
             filters:
               key: ""
             dataset: dataset
@@ -6270,7 +5782,7 @@ components:
               aggregation: aggregation
             - variable: variable
               aggregation: aggregation
-          - max_y_axis: 5
+          - max_y_axis: 1280358509
             calculated_fields:
             - calculated_fields
             - calculated_fields
@@ -6280,7 +5792,7 @@ components:
             - group_by
             - group_by
             order_direction: order_direction
-            id: 6
+            id: 1294386359
             filters:
               key: ""
             dataset: dataset
@@ -6294,7 +5806,7 @@ components:
           library: true
           name: name
           help_center_path: help_center_path
-          id: 0
+          id: 171976545
           order: order
         state: state
       properties:
@@ -6306,15 +5818,13 @@ components:
           $ref: "#/components/schemas/Report"
       required:
       - data
-      title: ResponseAsyncReport
       type: object
     ResponseAsyncRow:
-      additionalProperties: false
       example:
         data:
-          id: 0
+          id: 171976545
           title: title
-          order: 6
+          order: 1294386359
         state: state
       properties:
         state:
@@ -6325,16 +5835,14 @@ components:
           $ref: "#/components/schemas/Row"
       required:
       - data
-      title: ResponseAsyncRow
       type: object
     ResponseDashboard:
-      additionalProperties: false
       example:
         data:
           scope: scope
           name: name
-          id: 0
-          folder_id: 6
+          id: 171976545
+          folder_id: 1294386359
         state: state
       properties:
         state:
@@ -6345,59 +5853,13 @@ components:
           $ref: "#/components/schemas/Dashboard"
       required:
       - data
-      title: ResponseDashboard
-      type: object
-    ResponseDeleteDashboard:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeleteDashboard
-      type: object
-    ResponseDeleteFolder:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeleteFolder
-      type: object
-    ResponseDeleteReport:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeleteReport
-      type: object
-    ResponseDeleteRow:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeleteRow
       type: object
     ResponseFolder:
-      additionalProperties: false
       example:
         data:
           scope: scope
           name: name
-          id: 0
+          id: 171976545
         state: state
       properties:
         state:
@@ -6408,67 +5870,75 @@ components:
           $ref: "#/components/schemas/Folder"
       required:
       - data
-      title: ResponseFolder
       type: object
     ResponseListDashboard:
-      additionalProperties: false
       example:
         scope: scope
         name: name
-        id: 0
-        folder_id: 6
+        id: 171976545
+        folder_id: 1294386359
       properties:
         id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         name:
           maxLength: 255
+          minLength: 1
           type: string
         scope:
           description: |-
             * `azion` - Items that have Azion scope can be shared to any account that has access permission.
             * `account` - Items that have Account scope can only be shared with account users.
             * `user` - Items that have User scope will only be available to the account user.
-          title: ScopeEnum
           type: string
+          x-extensible-enum:
+          - azion
+          - account
+          - user
         folder_id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
       required:
       - folder_id
       - id
       - name
       - scope
-      title: ResponseListDashboard
       type: object
     ResponseListFolder:
-      additionalProperties: false
       example:
         scope: scope
         name: name
-        id: 0
+        id: 171976545
       properties:
         id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         name:
           maxLength: 255
+          minLength: 1
           type: string
         scope:
           description: |-
             * `azion` - Items that have Azion scope can be shared to any account that has access permission.
             * `account` - Items that have Account scope can only be shared with account users.
             * `user` - Items that have User scope will only be available to the account user.
-          title: ScopeEnum
           type: string
+          x-extensible-enum:
+          - azion
+          - account
+          - user
       required:
       - id
       - name
       - scope
-      title: ResponseListFolder
       type: object
     ResponseListReport:
-      additionalProperties: false
       example:
         comparison_type: comparison_type
         x_axis: x_axis
@@ -6476,7 +5946,7 @@ components:
         rotated: true
         type: type
         queries:
-        - max_y_axis: 5
+        - max_y_axis: 1280358509
           calculated_fields:
           - calculated_fields
           - calculated_fields
@@ -6486,7 +5956,7 @@ components:
           - group_by
           - group_by
           order_direction: order_direction
-          id: 6
+          id: 1294386359
           filters:
             key: ""
           dataset: dataset
@@ -6495,7 +5965,7 @@ components:
             aggregation: aggregation
           - variable: variable
             aggregation: aggregation
-        - max_y_axis: 5
+        - max_y_axis: 1280358509
           calculated_fields:
           - calculated_fields
           - calculated_fields
@@ -6505,7 +5975,7 @@ components:
           - group_by
           - group_by
           order_direction: order_direction
-          id: 6
+          id: 1294386359
           filters:
             key: ""
           dataset: dataset
@@ -6519,14 +5989,17 @@ components:
         library: true
         name: name
         help_center_path: help_center_path
-        id: 0
+        id: 171976545
         order: order
       properties:
         id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         description:
           maxLength: 150
+          minLength: 1
           type: string
         type:
           description: |-
@@ -6539,17 +6012,25 @@ components:
                         frequency distribution analysis, ideal for highlighting highest or lowest values.
             * `pie` - Pie chart report type, used for composition analysis, comparing parts of a whole,
                         visualizing percentages. Ideal for showing the distribution of a data set into parts.
-          title: TypeEnum
           type: string
+          x-extensible-enum:
+          - big-numbers
+          - line
+          - map
+          - ordered-bar
+          - pie
         x_axis:
           maxLength: 100
+          minLength: 1
           type: string
         aggregation_type:
           description: |-
             * `avg` - Aggregation by average.
             * `sum` - Aggregation by sum.
-          title: AggregationTypeEnum
           type: string
+          x-extensible-enum:
+          - avg
+          - sum
         data_unit:
           description: |-
             * `bits-per-second` - Sets the data unit to bits per second.
@@ -6557,16 +6038,23 @@ components:
             * `count` - Sets the data unit to counter.
             * `per-second` - Sets the data unit to per second.
             * `percentage` - Sets the data unit to percentage.
-          title: DataUnitEnum
           type: string
+          x-extensible-enum:
+          - bits-per-second
+          - bytes
+          - count
+          - per-second
+          - percentage
         queries:
           items:
             $ref: "#/components/schemas/BaseQuery"
           type: array
         order:
+          minLength: 1
           type: string
         name:
           maxLength: 255
+          minLength: 1
           type: string
         rotated:
           type: boolean
@@ -6575,10 +6063,14 @@ components:
             * `inverse` - The lower the value, the better the result or performance.
             * `neutral` - There is no general rule to say whether a value is good or bad, as it depends on the context.
             * `regular` - The higher the value, the better the result or performance.
-          title: ComparisonTypeEnum
           type: string
+          x-extensible-enum:
+          - inverse
+          - neutral
+          - regular
         help_center_path:
           maxLength: 255
+          minLength: 1
           nullable: true
           type: string
         library:
@@ -6592,37 +6084,38 @@ components:
       - order
       - queries
       - type
-      title: ResponseListReport
       type: object
     ResponseListRow:
-      additionalProperties: false
       example:
-        id: 0
+        id: 171976545
         title: title
-        order: 6
+        order: 1294386359
       properties:
         id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         title:
           maxLength: 255
+          minLength: 1
           type: string
         order:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
       required:
       - id
       - order
       - title
-      title: ResponseListRow
       type: object
     ResponseOrder:
-      additionalProperties: false
       example:
         data:
           order:
-          - 0
-          - 0
+          - 171976545
+          - 171976545
         state: state
       properties:
         state:
@@ -6633,10 +6126,8 @@ components:
           $ref: "#/components/schemas/Order"
       required:
       - data
-      title: ResponseOrder
       type: object
     ResponseReport:
-      additionalProperties: false
       example:
         data:
           comparison_type: comparison_type
@@ -6645,7 +6136,7 @@ components:
           rotated: true
           type: type
           queries:
-          - max_y_axis: 5
+          - max_y_axis: 1280358509
             calculated_fields:
             - calculated_fields
             - calculated_fields
@@ -6655,7 +6146,7 @@ components:
             - group_by
             - group_by
             order_direction: order_direction
-            id: 6
+            id: 1294386359
             filters:
               key: ""
             dataset: dataset
@@ -6664,7 +6155,7 @@ components:
               aggregation: aggregation
             - variable: variable
               aggregation: aggregation
-          - max_y_axis: 5
+          - max_y_axis: 1280358509
             calculated_fields:
             - calculated_fields
             - calculated_fields
@@ -6674,7 +6165,7 @@ components:
             - group_by
             - group_by
             order_direction: order_direction
-            id: 6
+            id: 1294386359
             filters:
               key: ""
             dataset: dataset
@@ -6688,7 +6179,7 @@ components:
           library: true
           name: name
           help_center_path: help_center_path
-          id: 0
+          id: 171976545
           order: order
         state: state
       properties:
@@ -6700,39 +6191,33 @@ components:
           $ref: "#/components/schemas/Report"
       required:
       - data
-      title: ResponseReport
       type: object
     ResponseRetrieveDashboard:
-      additionalProperties: false
       example:
         data:
           scope: scope
           name: name
-          id: 0
-          folder_id: 6
+          id: 171976545
+          folder_id: 1294386359
       properties:
         data:
           $ref: "#/components/schemas/Dashboard"
       required:
       - data
-      title: ResponseRetrieveDashboard
       type: object
     ResponseRetrieveFolder:
-      additionalProperties: false
       example:
         data:
           scope: scope
           name: name
-          id: 0
+          id: 171976545
       properties:
         data:
           $ref: "#/components/schemas/Folder"
       required:
       - data
-      title: ResponseRetrieveFolder
       type: object
     ResponseRetrieveReport:
-      additionalProperties: false
       example:
         data:
           comparison_type: comparison_type
@@ -6741,7 +6226,7 @@ components:
           rotated: true
           type: type
           queries:
-          - max_y_axis: 5
+          - max_y_axis: 1280358509
             calculated_fields:
             - calculated_fields
             - calculated_fields
@@ -6751,7 +6236,7 @@ components:
             - group_by
             - group_by
             order_direction: order_direction
-            id: 6
+            id: 1294386359
             filters:
               key: ""
             dataset: dataset
@@ -6760,7 +6245,7 @@ components:
               aggregation: aggregation
             - variable: variable
               aggregation: aggregation
-          - max_y_axis: 5
+          - max_y_axis: 1280358509
             calculated_fields:
             - calculated_fields
             - calculated_fields
@@ -6770,7 +6255,7 @@ components:
             - group_by
             - group_by
             order_direction: order_direction
-            id: 6
+            id: 1294386359
             filters:
               key: ""
             dataset: dataset
@@ -6784,36 +6269,32 @@ components:
           library: true
           name: name
           help_center_path: help_center_path
-          id: 0
+          id: 171976545
           order: order
       properties:
         data:
           $ref: "#/components/schemas/Report"
       required:
       - data
-      title: ResponseRetrieveReport
       type: object
     ResponseRetrieveRow:
-      additionalProperties: false
       example:
         data:
-          id: 0
+          id: 171976545
           title: title
-          order: 6
+          order: 1294386359
       properties:
         data:
           $ref: "#/components/schemas/Row"
       required:
       - data
-      title: ResponseRetrieveRow
       type: object
     ResponseRow:
-      additionalProperties: false
       example:
         data:
-          id: 0
+          id: 171976545
           title: title
-          order: 6
+          order: 1294386359
         state: state
       properties:
         state:
@@ -6824,32 +6305,33 @@ components:
           $ref: "#/components/schemas/Row"
       required:
       - data
-      title: ResponseRow
       type: object
     Row:
-      additionalProperties: false
       example:
-        id: 0
+        id: 171976545
         title: title
-        order: 6
+        order: 1294386359
       properties:
         id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         title:
           maxLength: 255
+          minLength: 1
           type: string
         order:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
       required:
       - id
       - order
       - title
-      title: Row
       type: object
     RowRequest:
-      additionalProperties: false
       example:
         title: title
       properties:
@@ -6859,28 +6341,7 @@ components:
           type: string
       required:
       - title
-      title: RowRequest
       type: object
-    ScopeEnum:
-      description: |-
-        * `azion` - Items that have Azion scope can be shared to any account that has access permission.
-        * `account` - Items that have Account scope can only be shared with account users.
-        * `user` - Items that have User scope will only be available to the account user.
-      title: ScopeEnum
-      type: string
-    TypeEnum:
-      description: |-
-        * `big-numbers` - Big numbers report type, used for key performance indicators (KPIs).
-                    Ideal for highlighting a single numeric value in a visually striking way.
-        * `line` - Line report type, used for time series analysis, ideal for showing trends, growth or decrease.
-        * `map` - Map report type, used for geographic analysis, visualization of demographic data,
-                    monitoring of events in different locations.
-        * `ordered-bar` - Ordered bar report type, used for category ranking, performance comparison,
-                    frequency distribution analysis, ideal for highlighting highest or lowest values.
-        * `pie` - Pie chart report type, used for composition analysis, comparing parts of a whole,
-                    visualizing percentages. Ideal for showing the distribution of a data set into parts.
-      title: TypeEnum
-      type: string
   securitySchemes:
     BearerAuth:
       scheme: bearer
