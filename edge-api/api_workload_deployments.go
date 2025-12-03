@@ -35,7 +35,7 @@ func (r ApiCreateWorkloadDeploymentRequest) WorkloadDeploymentRequest(workloadDe
 	return r
 }
 
-func (r ApiCreateWorkloadDeploymentRequest) Execute() (*ResponseAsyncWorkloadDeployment, *http.Response, error) {
+func (r ApiCreateWorkloadDeploymentRequest) Execute() (*ResponseWorkloadDeployment, *http.Response, error) {
 	return r.ApiService.CreateWorkloadDeploymentExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeployment(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseAsyncWorkloadDeployment
-func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCreateWorkloadDeploymentRequest) (*ResponseAsyncWorkloadDeployment, *http.Response, error) {
+//  @return ResponseWorkloadDeployment
+func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCreateWorkloadDeploymentRequest) (*ResponseWorkloadDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncWorkloadDeployment
+		localVarReturnValue  *ResponseWorkloadDeployment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.CreateWorkloadDeployment")
@@ -137,7 +137,18 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ResponseBadRequestWorkloadDeployment
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -148,7 +159,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -159,7 +170,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -170,7 +181,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -181,7 +192,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -192,7 +203,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -224,7 +235,7 @@ type ApiDeleteWorkloadDeploymentRequest struct {
 	workloadId int64
 }
 
-func (r ApiDeleteWorkloadDeploymentRequest) Execute() (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
+func (r ApiDeleteWorkloadDeploymentRequest) Execute() (*ResponseDeleteWorkloadDeployment, *http.Response, error) {
 	return r.ApiService.DeleteWorkloadDeploymentExecute(r)
 }
 
@@ -248,13 +259,13 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeployment(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteWorkloadDeployment
-func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDeleteWorkloadDeploymentRequest) (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
+//  @return ResponseDeleteWorkloadDeployment
+func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDeleteWorkloadDeploymentRequest) (*ResponseDeleteWorkloadDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteWorkloadDeployment
+		localVarReturnValue  *ResponseDeleteWorkloadDeployment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.DeleteWorkloadDeployment")
@@ -324,7 +335,18 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ResponseBadRequestWorkloadDeployment
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -335,7 +357,7 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -346,7 +368,7 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -357,7 +379,7 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -368,7 +390,7 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -379,7 +401,7 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

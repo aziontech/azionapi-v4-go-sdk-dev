@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateWorkloadDeployment
 
-> ResponseAsyncWorkloadDeployment CreateWorkloadDeployment(ctx, workloadId).WorkloadDeploymentRequest(workloadDeploymentRequest).Execute()
+> ResponseWorkloadDeployment CreateWorkloadDeployment(ctx, workloadId).WorkloadDeploymentRequest(workloadDeploymentRequest).Execute()
 
 Create a Workload Deployment
 
@@ -44,7 +44,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.CreateWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateWorkloadDeployment`: ResponseAsyncWorkloadDeployment
+	// response from `CreateWorkloadDeployment`: ResponseWorkloadDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.CreateWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncWorkloadDeployment**](ResponseAsyncWorkloadDeployment.md)
+[**ResponseWorkloadDeployment**](ResponseWorkloadDeployment.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWorkloadDeployment
 
-> ResponseAsyncDeleteWorkloadDeployment DeleteWorkloadDeployment(ctx, deploymentId, workloadId).Execute()
+> ResponseDeleteWorkloadDeployment DeleteWorkloadDeployment(ctx, deploymentId, workloadId).Execute()
 
 Delete a Workload Deployment
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.DeleteWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteWorkloadDeployment`: ResponseAsyncDeleteWorkloadDeployment
+	// response from `DeleteWorkloadDeployment`: ResponseDeleteWorkloadDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.DeleteWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteWorkloadDeployment**](ResponseAsyncDeleteWorkloadDeployment.md)
+[**ResponseDeleteWorkloadDeployment**](ResponseDeleteWorkloadDeployment.md)
 
 ### Authorization
 

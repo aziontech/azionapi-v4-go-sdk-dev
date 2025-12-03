@@ -35,7 +35,7 @@ func (r ApiCreateCacheSettingRequest) CacheSettingRequest(cacheSettingRequest Ca
 	return r
 }
 
-func (r ApiCreateCacheSettingRequest) Execute() (*ResponseAsyncCacheSetting, *http.Response, error) {
+func (r ApiCreateCacheSettingRequest) Execute() (*ResponseCacheSetting, *http.Response, error) {
 	return r.ApiService.CreateCacheSettingExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *ApplicationsCacheSettingsAPIService) CreateCacheSetting(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseAsyncCacheSetting
-func (a *ApplicationsCacheSettingsAPIService) CreateCacheSettingExecute(r ApiCreateCacheSettingRequest) (*ResponseAsyncCacheSetting, *http.Response, error) {
+//  @return ResponseCacheSetting
+func (a *ApplicationsCacheSettingsAPIService) CreateCacheSettingExecute(r ApiCreateCacheSettingRequest) (*ResponseCacheSetting, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncCacheSetting
+		localVarReturnValue  *ResponseCacheSetting
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsCacheSettingsAPIService.CreateCacheSetting")
@@ -137,7 +137,18 @@ func (a *ApplicationsCacheSettingsAPIService) CreateCacheSettingExecute(r ApiCre
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ResponseBadRequestCacheSetting
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -148,7 +159,7 @@ func (a *ApplicationsCacheSettingsAPIService) CreateCacheSettingExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -159,7 +170,7 @@ func (a *ApplicationsCacheSettingsAPIService) CreateCacheSettingExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -170,7 +181,7 @@ func (a *ApplicationsCacheSettingsAPIService) CreateCacheSettingExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -181,7 +192,7 @@ func (a *ApplicationsCacheSettingsAPIService) CreateCacheSettingExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -192,7 +203,7 @@ func (a *ApplicationsCacheSettingsAPIService) CreateCacheSettingExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -224,7 +235,7 @@ type ApiDeleteCacheSettingRequest struct {
 	cacheSettingId string
 }
 
-func (r ApiDeleteCacheSettingRequest) Execute() (*ResponseAsyncDeleteCacheSetting, *http.Response, error) {
+func (r ApiDeleteCacheSettingRequest) Execute() (*ResponseDeleteCacheSetting, *http.Response, error) {
 	return r.ApiService.DeleteCacheSettingExecute(r)
 }
 
@@ -248,13 +259,13 @@ func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSetting(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteCacheSetting
-func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDeleteCacheSettingRequest) (*ResponseAsyncDeleteCacheSetting, *http.Response, error) {
+//  @return ResponseDeleteCacheSetting
+func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDeleteCacheSettingRequest) (*ResponseDeleteCacheSetting, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteCacheSetting
+		localVarReturnValue  *ResponseDeleteCacheSetting
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsCacheSettingsAPIService.DeleteCacheSetting")
@@ -324,7 +335,18 @@ func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDel
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ResponseBadRequestCacheSetting
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -335,7 +357,7 @@ func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -346,7 +368,7 @@ func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -357,7 +379,7 @@ func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -368,7 +390,7 @@ func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -379,7 +401,7 @@ func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -556,7 +578,18 @@ func (a *ApplicationsCacheSettingsAPIService) ListCacheSettingsExecute(r ApiList
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ResponseBadRequestCacheSetting
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -567,7 +600,7 @@ func (a *ApplicationsCacheSettingsAPIService) ListCacheSettingsExecute(r ApiList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -578,7 +611,7 @@ func (a *ApplicationsCacheSettingsAPIService) ListCacheSettingsExecute(r ApiList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -589,7 +622,7 @@ func (a *ApplicationsCacheSettingsAPIService) ListCacheSettingsExecute(r ApiList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -600,7 +633,7 @@ func (a *ApplicationsCacheSettingsAPIService) ListCacheSettingsExecute(r ApiList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -611,7 +644,7 @@ func (a *ApplicationsCacheSettingsAPIService) ListCacheSettingsExecute(r ApiList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -648,7 +681,7 @@ func (r ApiPartialUpdateCacheSettingRequest) PatchedCacheSettingRequest(patchedC
 	return r
 }
 
-func (r ApiPartialUpdateCacheSettingRequest) Execute() (*ResponseAsyncCacheSetting, *http.Response, error) {
+func (r ApiPartialUpdateCacheSettingRequest) Execute() (*ResponseCacheSetting, *http.Response, error) {
 	return r.ApiService.PartialUpdateCacheSettingExecute(r)
 }
 
@@ -672,13 +705,13 @@ func (a *ApplicationsCacheSettingsAPIService) PartialUpdateCacheSetting(ctx cont
 }
 
 // Execute executes the request
-//  @return ResponseAsyncCacheSetting
-func (a *ApplicationsCacheSettingsAPIService) PartialUpdateCacheSettingExecute(r ApiPartialUpdateCacheSettingRequest) (*ResponseAsyncCacheSetting, *http.Response, error) {
+//  @return ResponseCacheSetting
+func (a *ApplicationsCacheSettingsAPIService) PartialUpdateCacheSettingExecute(r ApiPartialUpdateCacheSettingRequest) (*ResponseCacheSetting, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncCacheSetting
+		localVarReturnValue  *ResponseCacheSetting
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsCacheSettingsAPIService.PartialUpdateCacheSetting")
@@ -750,7 +783,18 @@ func (a *ApplicationsCacheSettingsAPIService) PartialUpdateCacheSettingExecute(r
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ResponseBadRequestCacheSetting
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -761,7 +805,7 @@ func (a *ApplicationsCacheSettingsAPIService) PartialUpdateCacheSettingExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -772,7 +816,7 @@ func (a *ApplicationsCacheSettingsAPIService) PartialUpdateCacheSettingExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -783,7 +827,7 @@ func (a *ApplicationsCacheSettingsAPIService) PartialUpdateCacheSettingExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -794,7 +838,7 @@ func (a *ApplicationsCacheSettingsAPIService) PartialUpdateCacheSettingExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -805,7 +849,7 @@ func (a *ApplicationsCacheSettingsAPIService) PartialUpdateCacheSettingExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -947,7 +991,18 @@ func (a *ApplicationsCacheSettingsAPIService) RetrieveCacheSettingExecute(r ApiR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ResponseBadRequestCacheSetting
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -958,7 +1013,7 @@ func (a *ApplicationsCacheSettingsAPIService) RetrieveCacheSettingExecute(r ApiR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -969,7 +1024,7 @@ func (a *ApplicationsCacheSettingsAPIService) RetrieveCacheSettingExecute(r ApiR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -980,7 +1035,7 @@ func (a *ApplicationsCacheSettingsAPIService) RetrieveCacheSettingExecute(r ApiR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -991,7 +1046,7 @@ func (a *ApplicationsCacheSettingsAPIService) RetrieveCacheSettingExecute(r ApiR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1002,7 +1057,7 @@ func (a *ApplicationsCacheSettingsAPIService) RetrieveCacheSettingExecute(r ApiR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1039,7 +1094,7 @@ func (r ApiUpdateCacheSettingRequest) CacheSettingRequest(cacheSettingRequest Ca
 	return r
 }
 
-func (r ApiUpdateCacheSettingRequest) Execute() (*ResponseAsyncCacheSetting, *http.Response, error) {
+func (r ApiUpdateCacheSettingRequest) Execute() (*ResponseCacheSetting, *http.Response, error) {
 	return r.ApiService.UpdateCacheSettingExecute(r)
 }
 
@@ -1063,13 +1118,13 @@ func (a *ApplicationsCacheSettingsAPIService) UpdateCacheSetting(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseAsyncCacheSetting
-func (a *ApplicationsCacheSettingsAPIService) UpdateCacheSettingExecute(r ApiUpdateCacheSettingRequest) (*ResponseAsyncCacheSetting, *http.Response, error) {
+//  @return ResponseCacheSetting
+func (a *ApplicationsCacheSettingsAPIService) UpdateCacheSettingExecute(r ApiUpdateCacheSettingRequest) (*ResponseCacheSetting, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncCacheSetting
+		localVarReturnValue  *ResponseCacheSetting
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsCacheSettingsAPIService.UpdateCacheSetting")
@@ -1144,7 +1199,18 @@ func (a *ApplicationsCacheSettingsAPIService) UpdateCacheSettingExecute(r ApiUpd
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ResponseBadRequestCacheSetting
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1155,7 +1221,7 @@ func (a *ApplicationsCacheSettingsAPIService) UpdateCacheSettingExecute(r ApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1166,7 +1232,7 @@ func (a *ApplicationsCacheSettingsAPIService) UpdateCacheSettingExecute(r ApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1177,7 +1243,7 @@ func (a *ApplicationsCacheSettingsAPIService) UpdateCacheSettingExecute(r ApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1188,7 +1254,7 @@ func (a *ApplicationsCacheSettingsAPIService) UpdateCacheSettingExecute(r ApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1199,7 +1265,7 @@ func (a *ApplicationsCacheSettingsAPIService) UpdateCacheSettingExecute(r ApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
