@@ -1,81 +1,87 @@
 openapi: 3.0.3
 info:
+  description: REST API OpenAPI documentation for the User API
   title: users-api
   version: 1.0.0
-  description: REST API OpenAPI documentation for the User API
+servers:
+- url: /
 paths:
   /identity/users/{user_id}/lockout:
     delete:
-      operationId: destroy_lockout_user
       description: Destroy Lockout info from user.
-      summary: Unlock user
+      operationId: destroy_lockout_user
       parameters:
-      - in: path
+      - description: A unique integer value identifying the user.
+        explode: false
+        in: path
         name: user_id
-        schema:
-          type: integer
-        description: A unique integer value identifying the user.
         required: true
-      tags:
-      - Users - Lockout
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: No response body
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Found
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Too Many Requests
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultErrorResponse"
+          description: Forbidden
       security:
       - TokenAuth: []
       - BearerAuth: []
-      responses:
-        '204':
-          description: No response body
-        '400':
-          description: Bad Request
-        '404':
-          description: Not Found
-        '405':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DefaultErrorResponse'
-          description: Not Found
-        '406':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DefaultErrorResponse'
-          description: Not Acceptable
-        '429':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DefaultErrorResponse'
-          description: Too Many Requests
-        '401':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DefaultErrorResponse'
-          description: Unauthorized
-        '403':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DefaultErrorResponse'
-          description: Forbidden
+      summary: Unlock user
+      tags:
+      - Users - Lockout
 components:
   schemas:
     DefaultErrorResponse:
-      type: object
+      additionalProperties: false
+      example:
+        detail: detail
       properties:
         detail:
-          type: string
-          pattern: .*
           maxLength: 4096
           minLength: 1
+          type: string
       title: DefaultErrorResponse
-      additionalProperties: false
+      type: object
   securitySchemes:
     BearerAuth:
-      type: http
       scheme: bearer
+      type: http
     TokenAuth:
-      type: apiKey
+      description: Token-based authentication with required prefix "Token"
       in: header
       name: Authorization
-      description: Token-based authentication with required prefix "Token"
+      type: apiKey
