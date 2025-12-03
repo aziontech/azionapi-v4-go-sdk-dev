@@ -1525,13 +1525,16 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: id
         required: false
         schema:
-          format: int64
-          type: integer
+          items:
+            format: uuid
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
@@ -2519,12 +2522,15 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Multiple values may be separated by commas.
+        explode: false
         in: query
         name: id
         required: false
         schema:
-          type: string
+          items:
+            type: string
+          type: array
         style: form
       - explode: true
         in: query
