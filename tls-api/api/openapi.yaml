@@ -320,7 +320,7 @@ paths:
       summary: Create a certificate
       tags:
       - Digital Certificates - Certificates
-  /digital_certificates/certificates/{id}:
+  /digital_certificates/certificates/{certificate_id}:
     delete:
       description: Delete a specific certificate in your account.
       operationId: delete_certificate
@@ -328,7 +328,7 @@ paths:
       - description: The unique identifier of the certificate
         explode: false
         in: path
-        name: id
+        name: certificate_id
         required: true
         schema:
           format: int64
@@ -465,6 +465,15 @@ paths:
       description: Retrieve details from a specific certificate in your account.
       operationId: retrieve_certificate
       parameters:
+      - description: The unique identifier of the certificate
+        explode: false
+        in: path
+        name: certificate_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -473,15 +482,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: The unique identifier of the certificate
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
       responses:
         "200":
           content:
@@ -615,7 +615,7 @@ paths:
       - description: The unique identifier of the certificate
         explode: false
         in: path
-        name: id
+        name: certificate_id
         required: true
         schema:
           format: int64
@@ -765,7 +765,7 @@ paths:
       - description: The unique identifier of the certificate
         explode: false
         in: path
-        name: id
+        name: certificate_id
         required: true
         schema:
           format: int64
@@ -1357,7 +1357,7 @@ paths:
       summary: Create a certificate revocation lists (CRL)
       tags:
       - Digital Certificates - Certificate Revocation Lists
-  /digital_certificates/crls/{id}:
+  /digital_certificates/crls/{crl_id}:
     delete:
       description: Delete a specific certificate revocation list in your account.
       operationId: delete_certificate_revocation_list
@@ -1365,7 +1365,7 @@ paths:
       - description: The unique identifier of the certificate revocation list
         explode: false
         in: path
-        name: id
+        name: crl_id
         required: true
         schema:
           format: int64
@@ -1503,6 +1503,15 @@ paths:
         in your account.
       operationId: retrieve_certificate_revocation_list
       parameters:
+      - description: The unique identifier of the certificate revocation list
+        explode: false
+        in: path
+        name: crl_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -1511,15 +1520,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: The unique identifier of the certificate revocation list
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
       responses:
         "200":
           content:
@@ -1653,7 +1653,7 @@ paths:
       - description: The unique identifier of the certificate revocation list
         explode: false
         in: path
-        name: id
+        name: crl_id
         required: true
         schema:
           format: int64
@@ -1803,7 +1803,7 @@ paths:
       - description: The unique identifier of the certificate revocation list
         explode: false
         in: path
-        name: id
+        name: crl_id
         required: true
         schema:
           format: int64

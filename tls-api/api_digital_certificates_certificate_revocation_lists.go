@@ -226,7 +226,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertific
 type ApiDeleteCertificateRevocationListRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificateRevocationListsAPIService
-	id int64
+	crlId int64
 }
 
 func (r ApiDeleteCertificateRevocationListRequest) Execute() (*ResponseAsyncDeleteCertificateRevocationList, *http.Response, error) {
@@ -239,14 +239,14 @@ DeleteCertificateRevocationList Delete a certificate revocation list
 Delete a specific certificate revocation list in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The unique identifier of the certificate revocation list
+ @param crlId The unique identifier of the certificate revocation list
  @return ApiDeleteCertificateRevocationListRequest
 */
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) DeleteCertificateRevocationList(ctx context.Context, id int64) ApiDeleteCertificateRevocationListRequest {
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) DeleteCertificateRevocationList(ctx context.Context, crlId int64) ApiDeleteCertificateRevocationListRequest {
 	return ApiDeleteCertificateRevocationListRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		crlId: crlId,
 	}
 }
 
@@ -265,8 +265,8 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) DeleteCertific
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/crls/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/digital_certificates/crls/{crl_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"crl_id"+"}", url.PathEscape(parameterValueToString(r.crlId, "crlId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -658,7 +658,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) ListCertificat
 type ApiPartialUpdateCertificateRevocationListRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificateRevocationListsAPIService
-	id int64
+	crlId int64
 	patchedCertificateRevocationList *PatchedCertificateRevocationList
 }
 
@@ -677,14 +677,14 @@ PartialUpdateCertificateRevocationList Update a certificate revocation lists (CR
 Update one or more fields of an existing certificate revocation lists (CRL) without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The unique identifier of the certificate revocation list
+ @param crlId The unique identifier of the certificate revocation list
  @return ApiPartialUpdateCertificateRevocationListRequest
 */
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateCertificateRevocationList(ctx context.Context, id int64) ApiPartialUpdateCertificateRevocationListRequest {
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateCertificateRevocationList(ctx context.Context, crlId int64) ApiPartialUpdateCertificateRevocationListRequest {
 	return ApiPartialUpdateCertificateRevocationListRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		crlId: crlId,
 	}
 }
 
@@ -703,8 +703,8 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateC
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/crls/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/digital_certificates/crls/{crl_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"crl_id"+"}", url.PathEscape(parameterValueToString(r.crlId, "crlId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -859,7 +859,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateC
 type ApiRetrieveCertificateRevocationListRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificateRevocationListsAPIService
-	id int64
+	crlId int64
 	fields *string
 }
 
@@ -879,14 +879,14 @@ RetrieveCertificateRevocationList Retrieve details from a certificate revocation
 Retrieve details from a specific certificate revocation lists (CRL) in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The unique identifier of the certificate revocation list
+ @param crlId The unique identifier of the certificate revocation list
  @return ApiRetrieveCertificateRevocationListRequest
 */
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetrieveCertificateRevocationList(ctx context.Context, id int64) ApiRetrieveCertificateRevocationListRequest {
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetrieveCertificateRevocationList(ctx context.Context, crlId int64) ApiRetrieveCertificateRevocationListRequest {
 	return ApiRetrieveCertificateRevocationListRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		crlId: crlId,
 	}
 }
 
@@ -905,8 +905,8 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetrieveCertif
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/crls/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/digital_certificates/crls/{crl_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"crl_id"+"}", url.PathEscape(parameterValueToString(r.crlId, "crlId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1062,7 +1062,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetrieveCertif
 type ApiUpdateCertificateRevocationListRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificateRevocationListsAPIService
-	id int64
+	crlId int64
 	certificateRevocationList *CertificateRevocationList
 }
 
@@ -1081,14 +1081,14 @@ UpdateCertificateRevocationList Update a certificate revocation lists (CRL)
 Update an existing certificate revocation lists (CRL).  This replaces the entire certificate with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The unique identifier of the certificate revocation list
+ @param crlId The unique identifier of the certificate revocation list
  @return ApiUpdateCertificateRevocationListRequest
 */
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertificateRevocationList(ctx context.Context, id int64) ApiUpdateCertificateRevocationListRequest {
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertificateRevocationList(ctx context.Context, crlId int64) ApiUpdateCertificateRevocationListRequest {
 	return ApiUpdateCertificateRevocationListRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		crlId: crlId,
 	}
 }
 
@@ -1107,8 +1107,8 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertific
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/crls/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/digital_certificates/crls/{crl_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"crl_id"+"}", url.PathEscape(parameterValueToString(r.crlId, "crlId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
