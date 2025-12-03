@@ -1,5 +1,5 @@
 /*
-Metrics API
+metrics-api
 
 REST API OpenAPI documentation for the Metrics API
 
@@ -26,7 +26,7 @@ type MetricsDashboardAPIService service
 type ApiCreateDashboardRequest struct {
 	ctx context.Context
 	ApiService *MetricsDashboardAPIService
-	folderId string
+	folderId int64
 	dashboardRequest *DashboardRequest
 }
 
@@ -45,10 +45,10 @@ CreateDashboard Create a new dashboard
 Create a new dashboard in a given scope.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param folderId
+ @param folderId The unique identifier of the folder
  @return ApiCreateDashboardRequest
 */
-func (a *MetricsDashboardAPIService) CreateDashboard(ctx context.Context, folderId string) ApiCreateDashboardRequest {
+func (a *MetricsDashboardAPIService) CreateDashboard(ctx context.Context, folderId int64) ApiCreateDashboardRequest {
 	return ApiCreateDashboardRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -77,6 +77,12 @@ func (a *MetricsDashboardAPIService) CreateDashboardExecute(r ApiCreateDashboard
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
 	if r.dashboardRequest == nil {
 		return localVarReturnValue, nil, reportError("dashboardRequest is required and must be specified")
 	}
@@ -231,11 +237,11 @@ func (a *MetricsDashboardAPIService) CreateDashboardExecute(r ApiCreateDashboard
 type ApiDeleteDashboardRequest struct {
 	ctx context.Context
 	ApiService *MetricsDashboardAPIService
-	dashboardId string
-	folderId string
+	dashboardId int64
+	folderId int64
 }
 
-func (r ApiDeleteDashboardRequest) Execute() (*ResponseDeleteDashboard, *http.Response, error) {
+func (r ApiDeleteDashboardRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteDashboardExecute(r)
 }
 
@@ -245,11 +251,11 @@ DeleteDashboard Delete a dashboard
 Delete a specific dashboard.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
  @return ApiDeleteDashboardRequest
 */
-func (a *MetricsDashboardAPIService) DeleteDashboard(ctx context.Context, dashboardId string, folderId string) ApiDeleteDashboardRequest {
+func (a *MetricsDashboardAPIService) DeleteDashboard(ctx context.Context, dashboardId int64, folderId int64) ApiDeleteDashboardRequest {
 	return ApiDeleteDashboardRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -259,18 +265,16 @@ func (a *MetricsDashboardAPIService) DeleteDashboard(ctx context.Context, dashbo
 }
 
 // Execute executes the request
-//  @return ResponseDeleteDashboard
-func (a *MetricsDashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboardRequest) (*ResponseDeleteDashboard, *http.Response, error) {
+func (a *MetricsDashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboardRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteDashboard
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsDashboardAPIService.DeleteDashboard")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/metrics/folders/{folderId}/dashboards/{dashboardId}"
@@ -280,6 +284,18 @@ func (a *MetricsDashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboard
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return nil, reportError("folderId must be less than 2147483647")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -291,7 +307,7 @@ func (a *MetricsDashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboard
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -314,19 +330,19 @@ func (a *MetricsDashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboard
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -334,101 +350,16 @@ func (a *MetricsDashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboard
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiListDashboardsRequest struct {
 	ctx context.Context
 	ApiService *MetricsDashboardAPIService
-	folderId string
+	folderId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -476,10 +407,10 @@ ListDashboards List of the dashboards
 List all dashboards for your user.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param folderId
+ @param folderId The unique identifier of the folder
  @return ApiListDashboardsRequest
 */
-func (a *MetricsDashboardAPIService) ListDashboards(ctx context.Context, folderId string) ApiListDashboardsRequest {
+func (a *MetricsDashboardAPIService) ListDashboards(ctx context.Context, folderId int64) ApiListDashboardsRequest {
 	return ApiListDashboardsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -508,6 +439,12 @@ func (a *MetricsDashboardAPIService) ListDashboardsExecute(r ApiListDashboardsRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
@@ -671,8 +608,8 @@ func (a *MetricsDashboardAPIService) ListDashboardsExecute(r ApiListDashboardsRe
 type ApiPartialUpdateDashboardRequest struct {
 	ctx context.Context
 	ApiService *MetricsDashboardAPIService
-	dashboardId string
-	folderId string
+	dashboardId int64
+	folderId int64
 	patchedDashboardRequest *PatchedDashboardRequest
 }
 
@@ -691,11 +628,11 @@ PartialUpdateDashboard Partially update a dashboard
 Update one or more fields of an existing dashboard without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
  @return ApiPartialUpdateDashboardRequest
 */
-func (a *MetricsDashboardAPIService) PartialUpdateDashboard(ctx context.Context, dashboardId string, folderId string) ApiPartialUpdateDashboardRequest {
+func (a *MetricsDashboardAPIService) PartialUpdateDashboard(ctx context.Context, dashboardId int64, folderId int64) ApiPartialUpdateDashboardRequest {
 	return ApiPartialUpdateDashboardRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -726,6 +663,18 @@ func (a *MetricsDashboardAPIService) PartialUpdateDashboardExecute(r ApiPartialU
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -877,8 +826,8 @@ func (a *MetricsDashboardAPIService) PartialUpdateDashboardExecute(r ApiPartialU
 type ApiRetrieveDashboardRequest struct {
 	ctx context.Context
 	ApiService *MetricsDashboardAPIService
-	dashboardId string
-	folderId string
+	dashboardId int64
+	folderId int64
 	fields *string
 }
 
@@ -898,11 +847,11 @@ RetrieveDashboard Retrieve details from a dashboard
 Retrieve details from a specific dashboard.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
  @return ApiRetrieveDashboardRequest
 */
-func (a *MetricsDashboardAPIService) RetrieveDashboard(ctx context.Context, dashboardId string, folderId string) ApiRetrieveDashboardRequest {
+func (a *MetricsDashboardAPIService) RetrieveDashboard(ctx context.Context, dashboardId int64, folderId int64) ApiRetrieveDashboardRequest {
 	return ApiRetrieveDashboardRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -933,6 +882,18 @@ func (a *MetricsDashboardAPIService) RetrieveDashboardExecute(r ApiRetrieveDashb
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
@@ -1084,8 +1045,8 @@ func (a *MetricsDashboardAPIService) RetrieveDashboardExecute(r ApiRetrieveDashb
 type ApiUpdateDashboardRequest struct {
 	ctx context.Context
 	ApiService *MetricsDashboardAPIService
-	dashboardId string
-	folderId string
+	dashboardId int64
+	folderId int64
 	dashboardRequest *DashboardRequest
 }
 
@@ -1104,11 +1065,11 @@ UpdateDashboard Update a dashboard
 Update an existing dashboard. This replaces the entire dashboard with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
  @return ApiUpdateDashboardRequest
 */
-func (a *MetricsDashboardAPIService) UpdateDashboard(ctx context.Context, dashboardId string, folderId string) ApiUpdateDashboardRequest {
+func (a *MetricsDashboardAPIService) UpdateDashboard(ctx context.Context, dashboardId int64, folderId int64) ApiUpdateDashboardRequest {
 	return ApiUpdateDashboardRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1139,6 +1100,18 @@ func (a *MetricsDashboardAPIService) UpdateDashboardExecute(r ApiUpdateDashboard
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
 	if r.dashboardRequest == nil {
 		return localVarReturnValue, nil, reportError("dashboardRequest is required and must be specified")
 	}

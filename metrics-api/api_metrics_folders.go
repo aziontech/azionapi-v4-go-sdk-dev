@@ -1,5 +1,5 @@
 /*
-Metrics API
+metrics-api
 
 REST API OpenAPI documentation for the Metrics API
 
@@ -227,10 +227,10 @@ func (a *MetricsFoldersAPIService) CreateFolderExecute(r ApiCreateFolderRequest)
 type ApiDeleteFolderRequest struct {
 	ctx context.Context
 	ApiService *MetricsFoldersAPIService
-	folderId string
+	folderId int64
 }
 
-func (r ApiDeleteFolderRequest) Execute() (*ResponseDeleteFolder, *http.Response, error) {
+func (r ApiDeleteFolderRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteFolderExecute(r)
 }
 
@@ -240,10 +240,10 @@ DeleteFolder Delete a folder
 Delete a specific folder.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param folderId
+ @param folderId The unique identifier of the folder
  @return ApiDeleteFolderRequest
 */
-func (a *MetricsFoldersAPIService) DeleteFolder(ctx context.Context, folderId string) ApiDeleteFolderRequest {
+func (a *MetricsFoldersAPIService) DeleteFolder(ctx context.Context, folderId int64) ApiDeleteFolderRequest {
 	return ApiDeleteFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -252,18 +252,16 @@ func (a *MetricsFoldersAPIService) DeleteFolder(ctx context.Context, folderId st
 }
 
 // Execute executes the request
-//  @return ResponseDeleteFolder
-func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest) (*ResponseDeleteFolder, *http.Response, error) {
+func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteFolder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsFoldersAPIService.DeleteFolder")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/metrics/folders/{folderId}"
@@ -272,6 +270,12 @@ func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.folderId < 1 {
+		return nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return nil, reportError("folderId must be less than 2147483647")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -283,7 +287,7 @@ func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -306,19 +310,19 @@ func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest)
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -326,95 +330,10 @@ func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiListFoldersRequest struct {
@@ -659,7 +578,7 @@ func (a *MetricsFoldersAPIService) ListFoldersExecute(r ApiListFoldersRequest) (
 type ApiPartialUpdateFolderRequest struct {
 	ctx context.Context
 	ApiService *MetricsFoldersAPIService
-	folderId string
+	folderId int64
 	patchedFolderRequest *PatchedFolderRequest
 }
 
@@ -678,10 +597,10 @@ PartialUpdateFolder Partially update a folder
 Update one or more fields of an existing folder without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param folderId
+ @param folderId The unique identifier of the folder
  @return ApiPartialUpdateFolderRequest
 */
-func (a *MetricsFoldersAPIService) PartialUpdateFolder(ctx context.Context, folderId string) ApiPartialUpdateFolderRequest {
+func (a *MetricsFoldersAPIService) PartialUpdateFolder(ctx context.Context, folderId int64) ApiPartialUpdateFolderRequest {
 	return ApiPartialUpdateFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -710,6 +629,12 @@ func (a *MetricsFoldersAPIService) PartialUpdateFolderExecute(r ApiPartialUpdate
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -861,7 +786,7 @@ func (a *MetricsFoldersAPIService) PartialUpdateFolderExecute(r ApiPartialUpdate
 type ApiRetrieveFolderRequest struct {
 	ctx context.Context
 	ApiService *MetricsFoldersAPIService
-	folderId string
+	folderId int64
 	fields *string
 }
 
@@ -881,10 +806,10 @@ RetrieveFolder Retrieve details from a folder
 Retrieve details from a specific folder.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param folderId
+ @param folderId The unique identifier of the folder
  @return ApiRetrieveFolderRequest
 */
-func (a *MetricsFoldersAPIService) RetrieveFolder(ctx context.Context, folderId string) ApiRetrieveFolderRequest {
+func (a *MetricsFoldersAPIService) RetrieveFolder(ctx context.Context, folderId int64) ApiRetrieveFolderRequest {
 	return ApiRetrieveFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -913,6 +838,12 @@ func (a *MetricsFoldersAPIService) RetrieveFolderExecute(r ApiRetrieveFolderRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
@@ -1064,7 +995,7 @@ func (a *MetricsFoldersAPIService) RetrieveFolderExecute(r ApiRetrieveFolderRequ
 type ApiUpdateFolderRequest struct {
 	ctx context.Context
 	ApiService *MetricsFoldersAPIService
-	folderId string
+	folderId int64
 	folderRequest *FolderRequest
 }
 
@@ -1083,10 +1014,10 @@ UpdateFolder Update a folder
 Update an existing folder. This replaces the entire folder with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param folderId
+ @param folderId The unique identifier of the folder
  @return ApiUpdateFolderRequest
 */
-func (a *MetricsFoldersAPIService) UpdateFolder(ctx context.Context, folderId string) ApiUpdateFolderRequest {
+func (a *MetricsFoldersAPIService) UpdateFolder(ctx context.Context, folderId int64) ApiUpdateFolderRequest {
 	return ApiUpdateFolderRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1115,6 +1046,12 @@ func (a *MetricsFoldersAPIService) UpdateFolderExecute(r ApiUpdateFolderRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
 	if r.folderRequest == nil {
 		return localVarReturnValue, nil, reportError("folderRequest is required and must be specified")
 	}

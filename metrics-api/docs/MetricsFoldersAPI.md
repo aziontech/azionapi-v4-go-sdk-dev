@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFolder
 
-> ResponseDeleteFolder DeleteFolder(ctx, folderId).Execute()
+> DeleteFolder(ctx, folderId).Execute()
 
 Delete a folder
 
@@ -100,17 +100,15 @@ import (
 )
 
 func main() {
-	folderId := "folderId_example" // string | 
+	folderId := int64(789) // int64 | The unique identifier of the folder
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsFoldersAPI.DeleteFolder(context.Background(), folderId).Execute()
+	r, err := apiClient.MetricsFoldersAPI.DeleteFolder(context.Background(), folderId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.DeleteFolder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteFolder`: ResponseDeleteFolder
-	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.DeleteFolder`: %v\n", resp)
 }
 ```
 
@@ -120,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**folderId** | **string** |  | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 
@@ -133,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteFolder**](ResponseDeleteFolder.md)
+ (empty response body)
 
 ### Authorization
 
@@ -142,7 +140,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -244,7 +242,7 @@ import (
 )
 
 func main() {
-	folderId := "folderId_example" // string | 
+	folderId := int64(789) // int64 | The unique identifier of the folder
 	patchedFolderRequest := *openapiclient.NewPatchedFolderRequest() // PatchedFolderRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -265,7 +263,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**folderId** | **string** |  | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 
@@ -316,7 +314,7 @@ import (
 )
 
 func main() {
-	folderId := "folderId_example" // string | 
+	folderId := int64(789) // int64 | The unique identifier of the folder
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -337,7 +335,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**folderId** | **string** |  | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 
@@ -388,7 +386,7 @@ import (
 )
 
 func main() {
-	folderId := "folderId_example" // string | 
+	folderId := int64(789) // int64 | The unique identifier of the folder
 	folderRequest := *openapiclient.NewFolderRequest("Name_example", "Scope_example") // FolderRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -409,7 +407,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**folderId** | **string** |  | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 

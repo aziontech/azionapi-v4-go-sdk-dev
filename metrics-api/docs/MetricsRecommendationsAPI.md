@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRecommendation
 
-> ResponseDeleteFolder DeleteRecommendation(ctx, recommendationId).Execute()
+> DeleteRecommendation(ctx, recommendationId).Execute()
 
 Delete a recommendation
 
@@ -97,17 +97,15 @@ import (
 )
 
 func main() {
-	recommendationId := int64(789) // int64 | A unique integer value identifying this recommendation.
+	recommendationId := int64(789) // int64 | The unique identifier of the recommendation
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsRecommendationsAPI.DeleteRecommendation(context.Background(), recommendationId).Execute()
+	r, err := apiClient.MetricsRecommendationsAPI.DeleteRecommendation(context.Background(), recommendationId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRecommendationsAPI.DeleteRecommendation``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteRecommendation`: ResponseDeleteFolder
-	fmt.Fprintf(os.Stdout, "Response from `MetricsRecommendationsAPI.DeleteRecommendation`: %v\n", resp)
 }
 ```
 
@@ -117,7 +115,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**recommendationId** | **int64** | A unique integer value identifying this recommendation. | 
+**recommendationId** | **int64** | The unique identifier of the recommendation | 
 
 ### Other Parameters
 
@@ -130,7 +128,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteFolder**](ResponseDeleteFolder.md)
+ (empty response body)
 
 ### Authorization
 
@@ -139,7 +137,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -167,9 +165,9 @@ import (
 )
 
 func main() {
-	dashboard := int64(789) // int64 |  (optional)
+	dashboard := int64(789) // int64 | Filter by dashboard ID (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := int64(789) // int64 |  (optional)
+	id := int64(789) // int64 | Filter by recommendation ID (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -198,9 +196,9 @@ Other parameters are passed through a pointer to a apiListRecommendationsRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dashboard** | **int64** |  | 
+ **dashboard** | **int64** | Filter by dashboard ID | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **int64** |  | 
+ **id** | **int64** | Filter by recommendation ID | 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

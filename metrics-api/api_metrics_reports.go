@@ -1,5 +1,5 @@
 /*
-Metrics API
+metrics-api
 
 REST API OpenAPI documentation for the Metrics API
 
@@ -26,9 +26,9 @@ type MetricsReportsAPIService service
 type ApiCreateReportRequest struct {
 	ctx context.Context
 	ApiService *MetricsReportsAPIService
-	dashboardId string
-	folderId string
-	rowId string
+	dashboardId int64
+	folderId int64
+	rowId int64
 	reportRequest *ReportRequest
 }
 
@@ -47,12 +47,12 @@ CreateReport Create a new report
 Create a new report in a given scope.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
- @param rowId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
+ @param rowId The unique identifier of the row
  @return ApiCreateReportRequest
 */
-func (a *MetricsReportsAPIService) CreateReport(ctx context.Context, dashboardId string, folderId string, rowId string) ApiCreateReportRequest {
+func (a *MetricsReportsAPIService) CreateReport(ctx context.Context, dashboardId int64, folderId int64, rowId int64) ApiCreateReportRequest {
 	return ApiCreateReportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -85,6 +85,24 @@ func (a *MetricsReportsAPIService) CreateReportExecute(r ApiCreateReportRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
+	if r.rowId < 1 {
+		return localVarReturnValue, nil, reportError("rowId must be greater than 1")
+	}
+	if r.rowId > 2147483647 {
+		return localVarReturnValue, nil, reportError("rowId must be less than 2147483647")
+	}
 	if r.reportRequest == nil {
 		return localVarReturnValue, nil, reportError("reportRequest is required and must be specified")
 	}
@@ -239,13 +257,13 @@ func (a *MetricsReportsAPIService) CreateReportExecute(r ApiCreateReportRequest)
 type ApiDeleteReportRequest struct {
 	ctx context.Context
 	ApiService *MetricsReportsAPIService
-	dashboardId string
-	folderId string
-	reportId string
-	rowId string
+	dashboardId int64
+	folderId int64
+	reportId int64
+	rowId int64
 }
 
-func (r ApiDeleteReportRequest) Execute() (*ResponseDeleteReport, *http.Response, error) {
+func (r ApiDeleteReportRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteReportExecute(r)
 }
 
@@ -255,13 +273,13 @@ DeleteReport Delete a report
 Delete a specific report.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
- @param reportId
- @param rowId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
+ @param reportId The unique identifier of the report
+ @param rowId The unique identifier of the row
  @return ApiDeleteReportRequest
 */
-func (a *MetricsReportsAPIService) DeleteReport(ctx context.Context, dashboardId string, folderId string, reportId string, rowId string) ApiDeleteReportRequest {
+func (a *MetricsReportsAPIService) DeleteReport(ctx context.Context, dashboardId int64, folderId int64, reportId int64, rowId int64) ApiDeleteReportRequest {
 	return ApiDeleteReportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -273,18 +291,16 @@ func (a *MetricsReportsAPIService) DeleteReport(ctx context.Context, dashboardId
 }
 
 // Execute executes the request
-//  @return ResponseDeleteReport
-func (a *MetricsReportsAPIService) DeleteReportExecute(r ApiDeleteReportRequest) (*ResponseDeleteReport, *http.Response, error) {
+func (a *MetricsReportsAPIService) DeleteReportExecute(r ApiDeleteReportRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteReport
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsReportsAPIService.DeleteReport")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/metrics/folders/{folderId}/dashboards/{dashboardId}/rows/{rowId}/reports/{reportId}"
@@ -296,6 +312,30 @@ func (a *MetricsReportsAPIService) DeleteReportExecute(r ApiDeleteReportRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return nil, reportError("folderId must be less than 2147483647")
+	}
+	if r.reportId < 1 {
+		return nil, reportError("reportId must be greater than 1")
+	}
+	if r.reportId > 2147483647 {
+		return nil, reportError("reportId must be less than 2147483647")
+	}
+	if r.rowId < 1 {
+		return nil, reportError("rowId must be greater than 1")
+	}
+	if r.rowId > 2147483647 {
+		return nil, reportError("rowId must be less than 2147483647")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -307,7 +347,7 @@ func (a *MetricsReportsAPIService) DeleteReportExecute(r ApiDeleteReportRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -330,19 +370,19 @@ func (a *MetricsReportsAPIService) DeleteReportExecute(r ApiDeleteReportRequest)
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -350,103 +390,18 @@ func (a *MetricsReportsAPIService) DeleteReportExecute(r ApiDeleteReportRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiListReportsRequest struct {
 	ctx context.Context
 	ApiService *MetricsReportsAPIService
-	dashboardId string
-	folderId string
-	rowId string
+	dashboardId int64
+	folderId int64
+	rowId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -494,12 +449,12 @@ ListReports List of reports
 List all reports for your user.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
- @param rowId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
+ @param rowId The unique identifier of the row
  @return ApiListReportsRequest
 */
-func (a *MetricsReportsAPIService) ListReports(ctx context.Context, dashboardId string, folderId string, rowId string) ApiListReportsRequest {
+func (a *MetricsReportsAPIService) ListReports(ctx context.Context, dashboardId int64, folderId int64, rowId int64) ApiListReportsRequest {
 	return ApiListReportsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -532,6 +487,24 @@ func (a *MetricsReportsAPIService) ListReportsExecute(r ApiListReportsRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
+	if r.rowId < 1 {
+		return localVarReturnValue, nil, reportError("rowId must be greater than 1")
+	}
+	if r.rowId > 2147483647 {
+		return localVarReturnValue, nil, reportError("rowId must be less than 2147483647")
+	}
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
@@ -695,9 +668,9 @@ func (a *MetricsReportsAPIService) ListReportsExecute(r ApiListReportsRequest) (
 type ApiOrderingReportRequest struct {
 	ctx context.Context
 	ApiService *MetricsReportsAPIService
-	dashboardId string
-	folderId string
-	rowId string
+	dashboardId int64
+	folderId int64
+	rowId int64
 	orderRequest *OrderRequest
 }
 
@@ -716,12 +689,12 @@ OrderingReport Ordering reports in row
 Reorder all reports for a specific Row.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
- @param rowId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
+ @param rowId The unique identifier of the row
  @return ApiOrderingReportRequest
 */
-func (a *MetricsReportsAPIService) OrderingReport(ctx context.Context, dashboardId string, folderId string, rowId string) ApiOrderingReportRequest {
+func (a *MetricsReportsAPIService) OrderingReport(ctx context.Context, dashboardId int64, folderId int64, rowId int64) ApiOrderingReportRequest {
 	return ApiOrderingReportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -754,6 +727,24 @@ func (a *MetricsReportsAPIService) OrderingReportExecute(r ApiOrderingReportRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
+	if r.rowId < 1 {
+		return localVarReturnValue, nil, reportError("rowId must be greater than 1")
+	}
+	if r.rowId > 2147483647 {
+		return localVarReturnValue, nil, reportError("rowId must be less than 2147483647")
+	}
 	if r.orderRequest == nil {
 		return localVarReturnValue, nil, reportError("orderRequest is required and must be specified")
 	}
@@ -907,10 +898,10 @@ func (a *MetricsReportsAPIService) OrderingReportExecute(r ApiOrderingReportRequ
 type ApiRetrieveReportRequest struct {
 	ctx context.Context
 	ApiService *MetricsReportsAPIService
-	dashboardId string
-	folderId string
-	reportId string
-	rowId string
+	dashboardId int64
+	folderId int64
+	reportId int64
+	rowId int64
 	fields *string
 }
 
@@ -930,13 +921,13 @@ RetrieveReport Retrieve details from a report
 Retrieve details from a specific report.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
- @param reportId
- @param rowId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
+ @param reportId The unique identifier of the report
+ @param rowId The unique identifier of the row
  @return ApiRetrieveReportRequest
 */
-func (a *MetricsReportsAPIService) RetrieveReport(ctx context.Context, dashboardId string, folderId string, reportId string, rowId string) ApiRetrieveReportRequest {
+func (a *MetricsReportsAPIService) RetrieveReport(ctx context.Context, dashboardId int64, folderId int64, reportId int64, rowId int64) ApiRetrieveReportRequest {
 	return ApiRetrieveReportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -971,6 +962,30 @@ func (a *MetricsReportsAPIService) RetrieveReportExecute(r ApiRetrieveReportRequ
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
+	if r.reportId < 1 {
+		return localVarReturnValue, nil, reportError("reportId must be greater than 1")
+	}
+	if r.reportId > 2147483647 {
+		return localVarReturnValue, nil, reportError("reportId must be less than 2147483647")
+	}
+	if r.rowId < 1 {
+		return localVarReturnValue, nil, reportError("rowId must be greater than 1")
+	}
+	if r.rowId > 2147483647 {
+		return localVarReturnValue, nil, reportError("rowId must be less than 2147483647")
+	}
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
@@ -1122,10 +1137,10 @@ func (a *MetricsReportsAPIService) RetrieveReportExecute(r ApiRetrieveReportRequ
 type ApiUpdateReportRequest struct {
 	ctx context.Context
 	ApiService *MetricsReportsAPIService
-	dashboardId string
-	folderId string
-	reportId string
-	rowId string
+	dashboardId int64
+	folderId int64
+	reportId int64
+	rowId int64
 	reportRequest *ReportRequest
 }
 
@@ -1144,13 +1159,13 @@ UpdateReport Update a report
 Update an existing report. This replaces the entire report with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dashboardId
- @param folderId
- @param reportId
- @param rowId
+ @param dashboardId The unique identifier of the dashboard
+ @param folderId The unique identifier of the folder
+ @param reportId The unique identifier of the report
+ @param rowId The unique identifier of the row
  @return ApiUpdateReportRequest
 */
-func (a *MetricsReportsAPIService) UpdateReport(ctx context.Context, dashboardId string, folderId string, reportId string, rowId string) ApiUpdateReportRequest {
+func (a *MetricsReportsAPIService) UpdateReport(ctx context.Context, dashboardId int64, folderId int64, reportId int64, rowId int64) ApiUpdateReportRequest {
 	return ApiUpdateReportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1185,6 +1200,30 @@ func (a *MetricsReportsAPIService) UpdateReportExecute(r ApiUpdateReportRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.dashboardId < 1 {
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
+	}
+	if r.dashboardId > 2147483647 {
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
+	}
+	if r.folderId < 1 {
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
+	}
+	if r.folderId > 2147483647 {
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
+	}
+	if r.reportId < 1 {
+		return localVarReturnValue, nil, reportError("reportId must be greater than 1")
+	}
+	if r.reportId > 2147483647 {
+		return localVarReturnValue, nil, reportError("reportId must be less than 2147483647")
+	}
+	if r.rowId < 1 {
+		return localVarReturnValue, nil, reportError("rowId must be greater than 1")
+	}
+	if r.rowId > 2147483647 {
+		return localVarReturnValue, nil, reportError("rowId must be less than 2147483647")
+	}
 	if r.reportRequest == nil {
 		return localVarReturnValue, nil, reportError("reportRequest is required and must be specified")
 	}

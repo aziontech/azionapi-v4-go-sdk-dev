@@ -34,8 +34,8 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
-	folderId := "folderId_example" // string | 
+	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
+	folderId := int64(789) // int64 | The unique identifier of the folder
 	rowRequest := *openapiclient.NewRowRequest("Title_example") // RowRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -56,8 +56,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
-**folderId** | **string** |  | 
+**dashboardId** | **int64** | The unique identifier of the dashboard | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRow
 
-> ResponseDeleteRow DeleteRow(ctx, dashboardId, folderId, rowId).Execute()
+> DeleteRow(ctx, dashboardId, folderId, rowId).Execute()
 
 Delete a row
 
@@ -109,19 +109,17 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
-	folderId := "folderId_example" // string | 
-	rowId := int64(789) // int64 | A unique integer value identifying this row.
+	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
+	folderId := int64(789) // int64 | The unique identifier of the folder
+	rowId := int64(789) // int64 | The unique identifier of the row
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsRowsAPI.DeleteRow(context.Background(), dashboardId, folderId, rowId).Execute()
+	r, err := apiClient.MetricsRowsAPI.DeleteRow(context.Background(), dashboardId, folderId, rowId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.DeleteRow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteRow`: ResponseDeleteRow
-	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.DeleteRow`: %v\n", resp)
 }
 ```
 
@@ -131,9 +129,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
-**folderId** | **string** |  | 
-**rowId** | **int64** | A unique integer value identifying this row. | 
+**dashboardId** | **int64** | The unique identifier of the dashboard | 
+**folderId** | **int64** | The unique identifier of the folder | 
+**rowId** | **int64** | The unique identifier of the row | 
 
 ### Other Parameters
 
@@ -148,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteRow**](ResponseDeleteRow.md)
+ (empty response body)
 
 ### Authorization
 
@@ -157,7 +155,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -185,15 +183,15 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
-	folderId := "folderId_example" // string | 
+	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
+	folderId := int64(789) // int64 | The unique identifier of the folder
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := int64(789) // int64 |  (optional)
+	id := int64(789) // int64 | Filter by row ID (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
-	title := "title_example" // string |  (optional)
+	title := "title_example" // string | Filter by row title (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -213,8 +211,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
-**folderId** | **string** |  | 
+**dashboardId** | **int64** | The unique identifier of the dashboard | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 
@@ -226,12 +224,12 @@ Name | Type | Description  | Notes
 
 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **int64** |  | 
+ **id** | **int64** | Filter by row ID | 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
- **title** | **string** |  | 
+ **title** | **string** | Filter by row title | 
 
 ### Return type
 
@@ -272,8 +270,8 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
-	folderId := "folderId_example" // string | 
+	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
+	folderId := int64(789) // int64 | The unique identifier of the folder
 	orderRequest := *openapiclient.NewOrderRequest([]int64{int64(123)}) // OrderRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -294,8 +292,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
-**folderId** | **string** |  | 
+**dashboardId** | **int64** | The unique identifier of the dashboard | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 
@@ -347,9 +345,9 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
-	folderId := "folderId_example" // string | 
-	rowId := int64(789) // int64 | A unique integer value identifying this row.
+	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
+	folderId := int64(789) // int64 | The unique identifier of the folder
+	rowId := int64(789) // int64 | The unique identifier of the row
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -370,9 +368,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
-**folderId** | **string** |  | 
-**rowId** | **int64** | A unique integer value identifying this row. | 
+**dashboardId** | **int64** | The unique identifier of the dashboard | 
+**folderId** | **int64** | The unique identifier of the folder | 
+**rowId** | **int64** | The unique identifier of the row | 
 
 ### Other Parameters
 
@@ -425,9 +423,9 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
-	folderId := "folderId_example" // string | 
-	rowId := int64(789) // int64 | A unique integer value identifying this row.
+	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
+	folderId := int64(789) // int64 | The unique identifier of the folder
+	rowId := int64(789) // int64 | The unique identifier of the row
 	rowRequest := *openapiclient.NewRowRequest("Title_example") // RowRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -448,9 +446,9 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
-**folderId** | **string** |  | 
-**rowId** | **int64** | A unique integer value identifying this row. | 
+**dashboardId** | **int64** | The unique identifier of the dashboard | 
+**folderId** | **int64** | The unique identifier of the folder | 
+**rowId** | **int64** | The unique identifier of the row | 
 
 ### Other Parameters
 

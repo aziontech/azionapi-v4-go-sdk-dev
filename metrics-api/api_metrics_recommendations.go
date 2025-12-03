@@ -1,5 +1,5 @@
 /*
-Metrics API
+metrics-api
 
 REST API OpenAPI documentation for the Metrics API
 
@@ -230,7 +230,7 @@ type ApiDeleteRecommendationRequest struct {
 	recommendationId int64
 }
 
-func (r ApiDeleteRecommendationRequest) Execute() (*ResponseDeleteFolder, *http.Response, error) {
+func (r ApiDeleteRecommendationRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteRecommendationExecute(r)
 }
 
@@ -240,7 +240,7 @@ DeleteRecommendation Delete a recommendation
 Delete a specific recommendation.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param recommendationId A unique integer value identifying this recommendation.
+ @param recommendationId The unique identifier of the recommendation
  @return ApiDeleteRecommendationRequest
 */
 func (a *MetricsRecommendationsAPIService) DeleteRecommendation(ctx context.Context, recommendationId int64) ApiDeleteRecommendationRequest {
@@ -252,18 +252,16 @@ func (a *MetricsRecommendationsAPIService) DeleteRecommendation(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return ResponseDeleteFolder
-func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDeleteRecommendationRequest) (*ResponseDeleteFolder, *http.Response, error) {
+func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDeleteRecommendationRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteFolder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRecommendationsAPIService.DeleteRecommendation")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/metrics/recommendations/{recommendationId}"
@@ -272,6 +270,12 @@ func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDele
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.recommendationId < 1 {
+		return nil, reportError("recommendationId must be greater than 1")
+	}
+	if r.recommendationId > 2147483647 {
+		return nil, reportError("recommendationId must be less than 2147483647")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -283,7 +287,7 @@ func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDele
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -306,19 +310,19 @@ func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDele
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -326,95 +330,10 @@ func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDele
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiListRecommendationsRequest struct {
@@ -429,6 +348,7 @@ type ApiListRecommendationsRequest struct {
 	search *string
 }
 
+// Filter by dashboard ID
 func (r ApiListRecommendationsRequest) Dashboard(dashboard int64) ApiListRecommendationsRequest {
 	r.dashboard = &dashboard
 	return r
@@ -440,6 +360,7 @@ func (r ApiListRecommendationsRequest) Fields(fields string) ApiListRecommendati
 	return r
 }
 
+// Filter by recommendation ID
 func (r ApiListRecommendationsRequest) Id(id int64) ApiListRecommendationsRequest {
 	r.id = &id
 	return r

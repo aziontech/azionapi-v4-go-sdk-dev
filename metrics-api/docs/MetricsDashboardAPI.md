@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	folderId := "folderId_example" // string | 
+	folderId := int64(789) // int64 | The unique identifier of the folder
 	dashboardRequest := *openapiclient.NewDashboardRequest("Name_example", "Scope_example") // DashboardRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -55,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**folderId** | **string** |  | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDashboard
 
-> ResponseDeleteDashboard DeleteDashboard(ctx, dashboardId, folderId).Execute()
+> DeleteDashboard(ctx, dashboardId, folderId).Execute()
 
 Delete a dashboard
 
@@ -106,18 +106,16 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
-	folderId := "folderId_example" // string | 
+	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
+	folderId := int64(789) // int64 | The unique identifier of the folder
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsDashboardAPI.DeleteDashboard(context.Background(), dashboardId, folderId).Execute()
+	r, err := apiClient.MetricsDashboardAPI.DeleteDashboard(context.Background(), dashboardId, folderId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsDashboardAPI.DeleteDashboard``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteDashboard`: ResponseDeleteDashboard
-	fmt.Fprintf(os.Stdout, "Response from `MetricsDashboardAPI.DeleteDashboard`: %v\n", resp)
 }
 ```
 
@@ -127,8 +125,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
-**folderId** | **string** |  | 
+**dashboardId** | **int64** | The unique identifier of the dashboard | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 
@@ -142,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteDashboard**](ResponseDeleteDashboard.md)
+ (empty response body)
 
 ### Authorization
 
@@ -151,7 +149,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -179,7 +177,7 @@ import (
 )
 
 func main() {
-	folderId := "folderId_example" // string | 
+	folderId := int64(789) // int64 | The unique identifier of the folder
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -204,7 +202,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**folderId** | **string** |  | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 
@@ -259,8 +257,8 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
-	folderId := "folderId_example" // string | 
+	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
+	folderId := int64(789) // int64 | The unique identifier of the folder
 	patchedDashboardRequest := *openapiclient.NewPatchedDashboardRequest() // PatchedDashboardRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -281,8 +279,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
-**folderId** | **string** |  | 
+**dashboardId** | **int64** | The unique identifier of the dashboard | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 
@@ -334,8 +332,8 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
-	folderId := "folderId_example" // string | 
+	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
+	folderId := int64(789) // int64 | The unique identifier of the folder
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -356,8 +354,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
-**folderId** | **string** |  | 
+**dashboardId** | **int64** | The unique identifier of the dashboard | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 
@@ -409,8 +407,8 @@ import (
 )
 
 func main() {
-	dashboardId := "dashboardId_example" // string | 
-	folderId := "folderId_example" // string | 
+	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
+	folderId := int64(789) // int64 | The unique identifier of the folder
 	dashboardRequest := *openapiclient.NewDashboardRequest("Name_example", "Scope_example") // DashboardRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -431,8 +429,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**dashboardId** | **string** |  | 
-**folderId** | **string** |  | 
+**dashboardId** | **int64** | The unique identifier of the dashboard | 
+**folderId** | **int64** | The unique identifier of the folder | 
 
 ### Other Parameters
 

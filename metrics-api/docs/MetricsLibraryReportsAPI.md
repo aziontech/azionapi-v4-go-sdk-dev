@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## DeleteLibraryReport
 
-> ResponseDeleteReport DeleteLibraryReport(ctx, libraryReportId).Execute()
+> DeleteLibraryReport(ctx, libraryReportId).Execute()
 
 Delete a library report
 
@@ -99,17 +99,15 @@ import (
 )
 
 func main() {
-	libraryReportId := "libraryReportId_example" // string | 
+	libraryReportId := int64(789) // int64 | The unique identifier of the library report
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsLibraryReportsAPI.DeleteLibraryReport(context.Background(), libraryReportId).Execute()
+	r, err := apiClient.MetricsLibraryReportsAPI.DeleteLibraryReport(context.Background(), libraryReportId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsLibraryReportsAPI.DeleteLibraryReport``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteLibraryReport`: ResponseDeleteReport
-	fmt.Fprintf(os.Stdout, "Response from `MetricsLibraryReportsAPI.DeleteLibraryReport`: %v\n", resp)
 }
 ```
 
@@ -119,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**libraryReportId** | **string** |  | 
+**libraryReportId** | **int64** | The unique identifier of the library report | 
 
 ### Other Parameters
 
@@ -132,7 +130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteReport**](ResponseDeleteReport.md)
+ (empty response body)
 
 ### Authorization
 
@@ -141,7 +139,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -243,7 +241,7 @@ import (
 )
 
 func main() {
-	libraryReportId := "libraryReportId_example" // string | 
+	libraryReportId := int64(789) // int64 | The unique identifier of the library report
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -264,7 +262,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**libraryReportId** | **string** |  | 
+**libraryReportId** | **int64** | The unique identifier of the library report | 
 
 ### Other Parameters
 
@@ -315,7 +313,7 @@ import (
 )
 
 func main() {
-	libraryReportId := "libraryReportId_example" // string | 
+	libraryReportId := int64(789) // int64 | The unique identifier of the library report
 	libraryReportRequest := *openapiclient.NewLibraryReportRequest("Description_example", "Type_example", "AggregationType_example", "DataUnit_example", []openapiclient.BaseQueryRequest{*openapiclient.NewBaseQueryRequest("Dataset_example", int64(123), "OrderDirection_example")}, "Name_example", "Scope_example") // LibraryReportRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -336,7 +334,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**libraryReportId** | **string** |  | 
+**libraryReportId** | **int64** | The unique identifier of the library report | 
 
 ### Other Parameters
 
