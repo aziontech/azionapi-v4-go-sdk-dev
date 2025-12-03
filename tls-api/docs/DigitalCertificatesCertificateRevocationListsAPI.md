@@ -5,11 +5,11 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#CreateCertificateRevocationList) | **Post** /digital_certificates/crls | Create a certificate revocation lists (CRL)
-[**DeleteCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#DeleteCertificateRevocationList) | **Delete** /digital_certificates/crls/{id} | Delete a certificate revocation list
+[**DeleteCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#DeleteCertificateRevocationList) | **Delete** /digital_certificates/crls/{crl_id} | Delete a certificate revocation list
 [**ListCertificateRevocationLists**](DigitalCertificatesCertificateRevocationListsAPI.md#ListCertificateRevocationLists) | **Get** /digital_certificates/crls | List certificate revocation lists (CRL)
-[**PartialUpdateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#PartialUpdateCertificateRevocationList) | **Patch** /digital_certificates/crls/{id} | Update a certificate revocation lists (CRL)
-[**RetrieveCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#RetrieveCertificateRevocationList) | **Get** /digital_certificates/crls/{id} | Retrieve details from a certificate revocation lists (CRL)
-[**UpdateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#UpdateCertificateRevocationList) | **Put** /digital_certificates/crls/{id} | Update a certificate revocation lists (CRL)
+[**PartialUpdateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#PartialUpdateCertificateRevocationList) | **Patch** /digital_certificates/crls/{crl_id} | Update a certificate revocation lists (CRL)
+[**RetrieveCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#RetrieveCertificateRevocationList) | **Get** /digital_certificates/crls/{crl_id} | Retrieve details from a certificate revocation lists (CRL)
+[**UpdateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#UpdateCertificateRevocationList) | **Put** /digital_certificates/crls/{crl_id} | Update a certificate revocation lists (CRL)
 
 
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCertificateRevocationList
 
-> ResponseAsyncDeleteCertificateRevocationList DeleteCertificateRevocationList(ctx, id).Execute()
+> ResponseAsyncDeleteCertificateRevocationList DeleteCertificateRevocationList(ctx, crlId).Execute()
 
 Delete a certificate revocation list
 
@@ -101,11 +101,11 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The unique identifier of the certificate revocation list
+	crlId := int64(789) // int64 | The unique identifier of the certificate revocation list
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.DeleteCertificateRevocationList(context.Background(), id).Execute()
+	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.DeleteCertificateRevocationList(context.Background(), crlId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.DeleteCertificateRevocationList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The unique identifier of the certificate revocation list | 
+**crlId** | **int64** | The unique identifier of the certificate revocation list | 
 
 ### Other Parameters
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateCertificateRevocationList
 
-> ResponseCertificateRevocationList PartialUpdateCertificateRevocationList(ctx, id).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
+> ResponseCertificateRevocationList PartialUpdateCertificateRevocationList(ctx, crlId).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
 
 Update a certificate revocation lists (CRL)
 
@@ -245,12 +245,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The unique identifier of the certificate revocation list
+	crlId := int64(789) // int64 | The unique identifier of the certificate revocation list
 	patchedCertificateRevocationList := *openapiclient.NewPatchedCertificateRevocationList() // PatchedCertificateRevocationList |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.PartialUpdateCertificateRevocationList(context.Background(), id).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
+	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.PartialUpdateCertificateRevocationList(context.Background(), crlId).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.PartialUpdateCertificateRevocationList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -266,7 +266,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The unique identifier of the certificate revocation list | 
+**crlId** | **int64** | The unique identifier of the certificate revocation list | 
 
 ### Other Parameters
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveCertificateRevocationList
 
-> ResponseRetrieveCertificateRevocationList RetrieveCertificateRevocationList(ctx, id).Fields(fields).Execute()
+> ResponseRetrieveCertificateRevocationList RetrieveCertificateRevocationList(ctx, crlId).Fields(fields).Execute()
 
 Retrieve details from a certificate revocation lists (CRL)
 
@@ -317,12 +317,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The unique identifier of the certificate revocation list
+	crlId := int64(789) // int64 | The unique identifier of the certificate revocation list
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.RetrieveCertificateRevocationList(context.Background(), id).Fields(fields).Execute()
+	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.RetrieveCertificateRevocationList(context.Background(), crlId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.RetrieveCertificateRevocationList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -338,7 +338,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The unique identifier of the certificate revocation list | 
+**crlId** | **int64** | The unique identifier of the certificate revocation list | 
 
 ### Other Parameters
 
@@ -370,7 +370,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCertificateRevocationList
 
-> ResponseCertificateRevocationList UpdateCertificateRevocationList(ctx, id).CertificateRevocationList(certificateRevocationList).Execute()
+> ResponseCertificateRevocationList UpdateCertificateRevocationList(ctx, crlId).CertificateRevocationList(certificateRevocationList).Execute()
 
 Update a certificate revocation lists (CRL)
 
@@ -390,12 +390,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The unique identifier of the certificate revocation list
+	crlId := int64(789) // int64 | The unique identifier of the certificate revocation list
 	certificateRevocationList := *openapiclient.NewCertificateRevocationList(int64(123), "Name_example", "LastEditor_example", time.Now(), "ProductVersion_example", "Issuer_example", time.Now(), time.Now(), "Crl_example") // CertificateRevocationList | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.UpdateCertificateRevocationList(context.Background(), id).CertificateRevocationList(certificateRevocationList).Execute()
+	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.UpdateCertificateRevocationList(context.Background(), crlId).CertificateRevocationList(certificateRevocationList).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.UpdateCertificateRevocationList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -411,7 +411,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The unique identifier of the certificate revocation list | 
+**crlId** | **int64** | The unique identifier of the certificate revocation list | 
 
 ### Other Parameters
 

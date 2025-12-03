@@ -226,7 +226,7 @@ func (a *DigitalCertificatesCertificatesAPIService) CreateCertificateExecute(r A
 type ApiDeleteCertificateRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificatesAPIService
-	id int64
+	certificateId int64
 }
 
 func (r ApiDeleteCertificateRequest) Execute() (*ResponseAsyncDeleteCertificate, *http.Response, error) {
@@ -239,14 +239,14 @@ DeleteCertificate Delete a certificate
 Delete a specific certificate in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The unique identifier of the certificate
+ @param certificateId The unique identifier of the certificate
  @return ApiDeleteCertificateRequest
 */
-func (a *DigitalCertificatesCertificatesAPIService) DeleteCertificate(ctx context.Context, id int64) ApiDeleteCertificateRequest {
+func (a *DigitalCertificatesCertificatesAPIService) DeleteCertificate(ctx context.Context, certificateId int64) ApiDeleteCertificateRequest {
 	return ApiDeleteCertificateRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		certificateId: certificateId,
 	}
 }
 
@@ -265,8 +265,8 @@ func (a *DigitalCertificatesCertificatesAPIService) DeleteCertificateExecute(r A
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/certificates/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/digital_certificates/certificates/{certificate_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"certificate_id"+"}", url.PathEscape(parameterValueToString(r.certificateId, "certificateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -658,7 +658,7 @@ func (a *DigitalCertificatesCertificatesAPIService) ListCertificatesExecute(r Ap
 type ApiPartialUpdateCertificateRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificatesAPIService
-	id int64
+	certificateId int64
 	patchedCertificate *PatchedCertificate
 }
 
@@ -677,14 +677,14 @@ PartialUpdateCertificate Partially update a certificate
 Update one or more fields of an existing certificate without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The unique identifier of the certificate
+ @param certificateId The unique identifier of the certificate
  @return ApiPartialUpdateCertificateRequest
 */
-func (a *DigitalCertificatesCertificatesAPIService) PartialUpdateCertificate(ctx context.Context, id int64) ApiPartialUpdateCertificateRequest {
+func (a *DigitalCertificatesCertificatesAPIService) PartialUpdateCertificate(ctx context.Context, certificateId int64) ApiPartialUpdateCertificateRequest {
 	return ApiPartialUpdateCertificateRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		certificateId: certificateId,
 	}
 }
 
@@ -703,8 +703,8 @@ func (a *DigitalCertificatesCertificatesAPIService) PartialUpdateCertificateExec
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/certificates/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/digital_certificates/certificates/{certificate_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"certificate_id"+"}", url.PathEscape(parameterValueToString(r.certificateId, "certificateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -860,7 +860,7 @@ func (a *DigitalCertificatesCertificatesAPIService) PartialUpdateCertificateExec
 type ApiRetrieveCertificateRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificatesAPIService
-	id int64
+	certificateId int64
 	fields *string
 }
 
@@ -880,14 +880,14 @@ RetrieveCertificate Retrieve details from a certificate
 Retrieve details from a specific certificate in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The unique identifier of the certificate
+ @param certificateId The unique identifier of the certificate
  @return ApiRetrieveCertificateRequest
 */
-func (a *DigitalCertificatesCertificatesAPIService) RetrieveCertificate(ctx context.Context, id int64) ApiRetrieveCertificateRequest {
+func (a *DigitalCertificatesCertificatesAPIService) RetrieveCertificate(ctx context.Context, certificateId int64) ApiRetrieveCertificateRequest {
 	return ApiRetrieveCertificateRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		certificateId: certificateId,
 	}
 }
 
@@ -906,8 +906,8 @@ func (a *DigitalCertificatesCertificatesAPIService) RetrieveCertificateExecute(r
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/certificates/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/digital_certificates/certificates/{certificate_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"certificate_id"+"}", url.PathEscape(parameterValueToString(r.certificateId, "certificateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1063,7 +1063,7 @@ func (a *DigitalCertificatesCertificatesAPIService) RetrieveCertificateExecute(r
 type ApiUpdateCertificateRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificatesAPIService
-	id int64
+	certificateId int64
 	certificate *Certificate
 }
 
@@ -1082,14 +1082,14 @@ UpdateCertificate Update a certificate
 Update an existing certificate. This replaces the entire certificate with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The unique identifier of the certificate
+ @param certificateId The unique identifier of the certificate
  @return ApiUpdateCertificateRequest
 */
-func (a *DigitalCertificatesCertificatesAPIService) UpdateCertificate(ctx context.Context, id int64) ApiUpdateCertificateRequest {
+func (a *DigitalCertificatesCertificatesAPIService) UpdateCertificate(ctx context.Context, certificateId int64) ApiUpdateCertificateRequest {
 	return ApiUpdateCertificateRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		certificateId: certificateId,
 	}
 }
 
@@ -1108,8 +1108,8 @@ func (a *DigitalCertificatesCertificatesAPIService) UpdateCertificateExecute(r A
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/certificates/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/digital_certificates/certificates/{certificate_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"certificate_id"+"}", url.PathEscape(parameterValueToString(r.certificateId, "certificateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

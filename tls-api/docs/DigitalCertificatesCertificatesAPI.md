@@ -5,11 +5,11 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateCertificate**](DigitalCertificatesCertificatesAPI.md#CreateCertificate) | **Post** /digital_certificates/certificates | Create a certificate
-[**DeleteCertificate**](DigitalCertificatesCertificatesAPI.md#DeleteCertificate) | **Delete** /digital_certificates/certificates/{id} | Delete a certificate
+[**DeleteCertificate**](DigitalCertificatesCertificatesAPI.md#DeleteCertificate) | **Delete** /digital_certificates/certificates/{certificate_id} | Delete a certificate
 [**ListCertificates**](DigitalCertificatesCertificatesAPI.md#ListCertificates) | **Get** /digital_certificates/certificates | List certificates
-[**PartialUpdateCertificate**](DigitalCertificatesCertificatesAPI.md#PartialUpdateCertificate) | **Patch** /digital_certificates/certificates/{id} | Partially update a certificate
-[**RetrieveCertificate**](DigitalCertificatesCertificatesAPI.md#RetrieveCertificate) | **Get** /digital_certificates/certificates/{id} | Retrieve details from a certificate
-[**UpdateCertificate**](DigitalCertificatesCertificatesAPI.md#UpdateCertificate) | **Put** /digital_certificates/certificates/{id} | Update a certificate
+[**PartialUpdateCertificate**](DigitalCertificatesCertificatesAPI.md#PartialUpdateCertificate) | **Patch** /digital_certificates/certificates/{certificate_id} | Partially update a certificate
+[**RetrieveCertificate**](DigitalCertificatesCertificatesAPI.md#RetrieveCertificate) | **Get** /digital_certificates/certificates/{certificate_id} | Retrieve details from a certificate
+[**UpdateCertificate**](DigitalCertificatesCertificatesAPI.md#UpdateCertificate) | **Put** /digital_certificates/certificates/{certificate_id} | Update a certificate
 
 
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCertificate
 
-> ResponseAsyncDeleteCertificate DeleteCertificate(ctx, id).Execute()
+> ResponseAsyncDeleteCertificate DeleteCertificate(ctx, certificateId).Execute()
 
 Delete a certificate
 
@@ -101,11 +101,11 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The unique identifier of the certificate
+	certificateId := int64(789) // int64 | The unique identifier of the certificate
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.DeleteCertificate(context.Background(), id).Execute()
+	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.DeleteCertificate(context.Background(), certificateId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.DeleteCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The unique identifier of the certificate | 
+**certificateId** | **int64** | The unique identifier of the certificate | 
 
 ### Other Parameters
 
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateCertificate
 
-> ResponseCertificate PartialUpdateCertificate(ctx, id).PatchedCertificate(patchedCertificate).Execute()
+> ResponseCertificate PartialUpdateCertificate(ctx, certificateId).PatchedCertificate(patchedCertificate).Execute()
 
 Partially update a certificate
 
@@ -245,12 +245,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The unique identifier of the certificate
+	certificateId := int64(789) // int64 | The unique identifier of the certificate
 	patchedCertificate := *openapiclient.NewPatchedCertificate() // PatchedCertificate |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.PartialUpdateCertificate(context.Background(), id).PatchedCertificate(patchedCertificate).Execute()
+	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.PartialUpdateCertificate(context.Background(), certificateId).PatchedCertificate(patchedCertificate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.PartialUpdateCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -266,7 +266,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The unique identifier of the certificate | 
+**certificateId** | **int64** | The unique identifier of the certificate | 
 
 ### Other Parameters
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveCertificate
 
-> ResponseRetrieveCertificate RetrieveCertificate(ctx, id).Fields(fields).Execute()
+> ResponseRetrieveCertificate RetrieveCertificate(ctx, certificateId).Fields(fields).Execute()
 
 Retrieve details from a certificate
 
@@ -317,12 +317,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The unique identifier of the certificate
+	certificateId := int64(789) // int64 | The unique identifier of the certificate
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.RetrieveCertificate(context.Background(), id).Fields(fields).Execute()
+	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.RetrieveCertificate(context.Background(), certificateId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.RetrieveCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -338,7 +338,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The unique identifier of the certificate | 
+**certificateId** | **int64** | The unique identifier of the certificate | 
 
 ### Other Parameters
 
@@ -370,7 +370,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCertificate
 
-> ResponseCertificate UpdateCertificate(ctx, id).Certificate(certificate).Execute()
+> ResponseCertificate UpdateCertificate(ctx, certificateId).Certificate(certificate).Execute()
 
 Update a certificate
 
@@ -390,12 +390,12 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The unique identifier of the certificate
+	certificateId := int64(789) // int64 | The unique identifier of the certificate
 	certificate := *openapiclient.NewCertificate(int64(123), "Name_example", "Issuer_example", []string{"SubjectName_example"}, "Validity_example", false, "Status_example", "StatusDetail_example", "Csr_example", "Challenge_example", "Authority_example", "KeyAlgorithm_example", "ProductVersion_example", "LastEditor_example", time.Now(), time.Now()) // Certificate | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.UpdateCertificate(context.Background(), id).Certificate(certificate).Execute()
+	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.UpdateCertificate(context.Background(), certificateId).Certificate(certificate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.UpdateCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -411,7 +411,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The unique identifier of the certificate | 
+**certificateId** | **int64** | The unique identifier of the certificate | 
 
 ### Other Parameters
 
