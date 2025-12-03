@@ -1,0 +1,81 @@
+openapi: 3.0.3
+info:
+  title: users-api
+  version: 1.0.0
+  description: REST API OpenAPI documentation for the User API
+paths:
+  /identity/users/{user_id}/lockout:
+    delete:
+      operationId: destroy_lockout_user
+      description: Destroy Lockout info from user.
+      summary: Unlock user
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        description: A unique integer value identifying the user.
+        required: true
+      tags:
+      - Users - Lockout
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '204':
+          description: No response body
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+components:
+  schemas:
+    DefaultErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          pattern: .*
+          maxLength: 4096
+          minLength: 1
+      title: DefaultErrorResponse
+      additionalProperties: false
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
