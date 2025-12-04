@@ -237,7 +237,7 @@ func (r ApiListDescendantsAccountsRequest) Fields(fields string) ApiListDescenda
 	return r
 }
 
-// Which field to use when ordering the results.
+// Which field to use when ordering the results. (Valid fields: id, name, active, last_editor, last_modified, parent_id, created)
 func (r ApiListDescendantsAccountsRequest) Ordering(ordering string) ApiListDescendantsAccountsRequest {
 	r.ordering = &ordering
 	return r
