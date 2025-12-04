@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFunction
 
-> ResponseDeleteFunctionsDoc DeleteFunction(ctx, functionId).Execute()
+> ResponseAsyncDeleteFunctionsDoc DeleteFunction(ctx, functionId).Execute()
 
 Delete an Function
 
@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	functionId := "functionId_example" // string | 
+	functionId := int64(789) // int64 | A unique integer value identifying the edge function.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.DeleteFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteFunction`: ResponseDeleteFunctionsDoc
+	// response from `DeleteFunction`: ResponseAsyncDeleteFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.DeleteFunction`: %v\n", resp)
 }
 ```
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **string** |  | 
+**functionId** | **int64** | A unique integer value identifying the edge function. | 
 
 ### Other Parameters
 
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteFunctionsDoc**](ResponseDeleteFunctionsDoc.md)
+[**ResponseAsyncDeleteFunctionsDoc**](ResponseAsyncDeleteFunctionsDoc.md)
 
 ### Authorization
 
@@ -244,7 +244,7 @@ import (
 )
 
 func main() {
-	functionId := "functionId_example" // string | 
+	functionId := int64(789) // int64 | A unique integer value identifying the edge function.
 	patchedEdgeFunctionsRequest := *openapiclient.NewPatchedEdgeFunctionsRequest() // PatchedEdgeFunctionsRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -265,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **string** |  | 
+**functionId** | **int64** | A unique integer value identifying the edge function. | 
 
 ### Other Parameters
 
@@ -316,7 +316,7 @@ import (
 )
 
 func main() {
-	functionId := "functionId_example" // string | 
+	functionId := int64(789) // int64 | A unique integer value identifying the edge function.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -337,7 +337,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **string** |  | 
+**functionId** | **int64** | A unique integer value identifying the edge function. | 
 
 ### Other Parameters
 
@@ -388,7 +388,7 @@ import (
 )
 
 func main() {
-	functionId := "functionId_example" // string | 
+	functionId := int64(789) // int64 | A unique integer value identifying the edge function.
 	edgeFunctionsRequest := *openapiclient.NewEdgeFunctionsRequest("Name_example", "Code_example") // EdgeFunctionsRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -409,7 +409,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **string** |  | 
+**functionId** | **int64** | A unique integer value identifying the edge function. | 
 
 ### Other Parameters
 

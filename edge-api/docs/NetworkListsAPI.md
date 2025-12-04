@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteNetworkList
 
-> ResponseDeleteNetworkListDetail DeleteNetworkList(ctx, networkListId).Execute()
+> ResponseAsyncDeleteNetworkListDetail DeleteNetworkList(ctx, networkListId).Execute()
 
 Delete a Network List
 
@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	networkListId := "networkListId_example" // string | 
+	networkListId := int64(789) // int64 | A unique integer value identifying the network list.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.DeleteNetworkList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteNetworkList`: ResponseDeleteNetworkListDetail
+	// response from `DeleteNetworkList`: ResponseAsyncDeleteNetworkListDetail
 	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.DeleteNetworkList`: %v\n", resp)
 }
 ```
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **string** |  | 
+**networkListId** | **int64** | A unique integer value identifying the network list. | 
 
 ### Other Parameters
 
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteNetworkListDetail**](ResponseDeleteNetworkListDetail.md)
+[**ResponseAsyncDeleteNetworkListDetail**](ResponseAsyncDeleteNetworkListDetail.md)
 
 ### Authorization
 
@@ -244,7 +244,7 @@ import (
 )
 
 func main() {
-	networkListId := "networkListId_example" // string | 
+	networkListId := int64(789) // int64 | A unique integer value identifying the network list.
 	patchedNetworkListDetailRequest := *openapiclient.NewPatchedNetworkListDetailRequest() // PatchedNetworkListDetailRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -265,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **string** |  | 
+**networkListId** | **int64** | A unique integer value identifying the network list. | 
 
 ### Other Parameters
 
@@ -316,7 +316,7 @@ import (
 )
 
 func main() {
-	networkListId := "networkListId_example" // string | 
+	networkListId := int64(789) // int64 | A unique integer value identifying the network list.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ipv4 := true // bool | Filter by IPv4. Only applicable for network lists of type 'ip_cidr'. (optional)
 	ipv6 := true // bool | Filter by IPv6. Only applicable for network lists of type 'ip_cidr'. (optional)
@@ -339,7 +339,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **string** |  | 
+**networkListId** | **int64** | A unique integer value identifying the network list. | 
 
 ### Other Parameters
 
@@ -392,7 +392,7 @@ import (
 )
 
 func main() {
-	networkListId := "networkListId_example" // string | 
+	networkListId := int64(789) // int64 | A unique integer value identifying the network list.
 	networkListDetailRequest := *openapiclient.NewNetworkListDetailRequest("Name_example", "Type_example", []string{"Items_example"}) // NetworkListDetailRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -413,7 +413,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**networkListId** | **string** |  | 
+**networkListId** | **int64** | A unique integer value identifying the network list. | 
 
 ### Other Parameters
 

@@ -26,7 +26,7 @@ type FirewallsAPIService service
 type ApiCloneFirewallRequest struct {
 	ctx context.Context
 	ApiService *FirewallsAPIService
-	firewallId string
+	firewallId int64
 	cloneFirewallRequest *CloneFirewallRequest
 }
 
@@ -45,10 +45,10 @@ CloneFirewall Clone a Firewall
 Create a new Firewall by performing a deep copy of an existing Firewall, including its Function Instances and Rules Engine.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param firewallId
+ @param firewallId A unique integer value identifying the edge firewall.
  @return ApiCloneFirewallRequest
 */
-func (a *FirewallsAPIService) CloneFirewall(ctx context.Context, firewallId string) ApiCloneFirewallRequest {
+func (a *FirewallsAPIService) CloneFirewall(ctx context.Context, firewallId int64) ApiCloneFirewallRequest {
 	return ApiCloneFirewallRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -430,10 +430,10 @@ func (a *FirewallsAPIService) CreateFirewallExecute(r ApiCreateFirewallRequest) 
 type ApiDeleteFirewallRequest struct {
 	ctx context.Context
 	ApiService *FirewallsAPIService
-	firewallId string
+	firewallId int64
 }
 
-func (r ApiDeleteFirewallRequest) Execute() (*ResponseDeleteFirewall, *http.Response, error) {
+func (r ApiDeleteFirewallRequest) Execute() (*ResponseAsyncDeleteFirewall, *http.Response, error) {
 	return r.ApiService.DeleteFirewallExecute(r)
 }
 
@@ -443,10 +443,10 @@ DeleteFirewall Delete a Firewall
 Delete a specific Firewall in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param firewallId
+ @param firewallId A unique integer value identifying the edge firewall.
  @return ApiDeleteFirewallRequest
 */
-func (a *FirewallsAPIService) DeleteFirewall(ctx context.Context, firewallId string) ApiDeleteFirewallRequest {
+func (a *FirewallsAPIService) DeleteFirewall(ctx context.Context, firewallId int64) ApiDeleteFirewallRequest {
 	return ApiDeleteFirewallRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -455,13 +455,13 @@ func (a *FirewallsAPIService) DeleteFirewall(ctx context.Context, firewallId str
 }
 
 // Execute executes the request
-//  @return ResponseDeleteFirewall
-func (a *FirewallsAPIService) DeleteFirewallExecute(r ApiDeleteFirewallRequest) (*ResponseDeleteFirewall, *http.Response, error) {
+//  @return ResponseAsyncDeleteFirewall
+func (a *FirewallsAPIService) DeleteFirewallExecute(r ApiDeleteFirewallRequest) (*ResponseAsyncDeleteFirewall, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteFirewall
+		localVarReturnValue  *ResponseAsyncDeleteFirewall
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirewallsAPIService.DeleteFirewall")
@@ -862,7 +862,7 @@ func (a *FirewallsAPIService) ListFirewallsExecute(r ApiListFirewallsRequest) (*
 type ApiPartialUpdateFirewallRequest struct {
 	ctx context.Context
 	ApiService *FirewallsAPIService
-	firewallId string
+	firewallId int64
 	patchedFirewallRequest *PatchedFirewallRequest
 }
 
@@ -881,10 +881,10 @@ PartialUpdateFirewall Partially update a Firewall
 Update one or more fields of an existing Firewall without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param firewallId
+ @param firewallId A unique integer value identifying the edge firewall.
  @return ApiPartialUpdateFirewallRequest
 */
-func (a *FirewallsAPIService) PartialUpdateFirewall(ctx context.Context, firewallId string) ApiPartialUpdateFirewallRequest {
+func (a *FirewallsAPIService) PartialUpdateFirewall(ctx context.Context, firewallId int64) ApiPartialUpdateFirewallRequest {
 	return ApiPartialUpdateFirewallRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1063,7 +1063,7 @@ func (a *FirewallsAPIService) PartialUpdateFirewallExecute(r ApiPartialUpdateFir
 type ApiRetrieveFirewallRequest struct {
 	ctx context.Context
 	ApiService *FirewallsAPIService
-	firewallId string
+	firewallId int64
 	fields *string
 }
 
@@ -1083,10 +1083,10 @@ RetrieveFirewall Retrieve details from a Firewall
 Retrieve details from a specific Firewall in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param firewallId
+ @param firewallId A unique integer value identifying the edge firewall.
  @return ApiRetrieveFirewallRequest
 */
-func (a *FirewallsAPIService) RetrieveFirewall(ctx context.Context, firewallId string) ApiRetrieveFirewallRequest {
+func (a *FirewallsAPIService) RetrieveFirewall(ctx context.Context, firewallId int64) ApiRetrieveFirewallRequest {
 	return ApiRetrieveFirewallRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1266,7 +1266,7 @@ func (a *FirewallsAPIService) RetrieveFirewallExecute(r ApiRetrieveFirewallReque
 type ApiUpdateFirewallRequest struct {
 	ctx context.Context
 	ApiService *FirewallsAPIService
-	firewallId string
+	firewallId int64
 	firewallRequest *FirewallRequest
 }
 
@@ -1285,10 +1285,10 @@ UpdateFirewall Update a Firewall
 Update an existing Firewall. This replaces the entire Firewall with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param firewallId
+ @param firewallId A unique integer value identifying the edge firewall.
  @return ApiUpdateFirewallRequest
 */
-func (a *FirewallsAPIService) UpdateFirewall(ctx context.Context, firewallId string) ApiUpdateFirewallRequest {
+func (a *FirewallsAPIService) UpdateFirewall(ctx context.Context, firewallId int64) ApiUpdateFirewallRequest {
 	return ApiUpdateFirewallRequest{
 		ApiService: a,
 		ctx: ctx,

@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CloneWAF**](WAFsAPI.md#CloneWAF) | **Post** /workspace/wafs/{waf_id}/clone | Clone a Web Application Firewall (WAF)
-[**CreateWAF**](WAFsAPI.md#CreateWAF) | **Post** /workspace/wafs | Create a Web Application Firewall (WAF)
-[**DeleteWAF**](WAFsAPI.md#DeleteWAF) | **Delete** /workspace/wafs/{waf_id} | Delete a Web Application Firewall (WAF)
-[**ListWAFs**](WAFsAPI.md#ListWAFs) | **Get** /workspace/wafs | List Web Application Firewalls (WAFs)
-[**PartialUpdateWAF**](WAFsAPI.md#PartialUpdateWAF) | **Patch** /workspace/wafs/{waf_id} | Partially update a Web Application Firewall (WAF)
-[**RetrieveWAF**](WAFsAPI.md#RetrieveWAF) | **Get** /workspace/wafs/{waf_id} | Retrieve details from a Web Application Firewall (WAF)
-[**UpdateWAF**](WAFsAPI.md#UpdateWAF) | **Put** /workspace/wafs/{waf_id} | Update a Web Application Firewall (WAF)
+[**CloneWaf**](WAFsAPI.md#CloneWaf) | **Post** /workspace/wafs/{waf_id}/clone | Clone a Web Application Firewall (WAF)
+[**CreateWaf**](WAFsAPI.md#CreateWaf) | **Post** /workspace/wafs | Create a Web Application Firewall (WAF)
+[**DeleteWaf**](WAFsAPI.md#DeleteWaf) | **Delete** /workspace/wafs/{waf_id} | Delete a Web Application Firewall (WAF)
+[**ListWafs**](WAFsAPI.md#ListWafs) | **Get** /workspace/wafs | List Web Application Firewalls (WAFs)
+[**PartialUpdateWaf**](WAFsAPI.md#PartialUpdateWaf) | **Patch** /workspace/wafs/{waf_id} | Partially update a Web Application Firewall (WAF)
+[**RetrieveWaf**](WAFsAPI.md#RetrieveWaf) | **Get** /workspace/wafs/{waf_id} | Retrieve details from a Web Application Firewall (WAF)
+[**UpdateWaf**](WAFsAPI.md#UpdateWaf) | **Put** /workspace/wafs/{waf_id} | Update a Web Application Firewall (WAF)
 
 
 
-## CloneWAF
+## CloneWaf
 
-> ResponseWAF CloneWAF(ctx, wafId).CloneWAFRequest(cloneWAFRequest).Execute()
+> ResponseWAF CloneWaf(ctx, wafId).CloneWAFRequest(cloneWAFRequest).Execute()
 
 Clone a Web Application Firewall (WAF)
 
@@ -35,18 +35,18 @@ import (
 )
 
 func main() {
-	wafId := "wafId_example" // string | 
+	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
 	cloneWAFRequest := *openapiclient.NewCloneWAFRequest("Name_example") // CloneWAFRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.CloneWAF(context.Background(), wafId).CloneWAFRequest(cloneWAFRequest).Execute()
+	resp, r, err := apiClient.WAFsAPI.CloneWaf(context.Background(), wafId).CloneWAFRequest(cloneWAFRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.CloneWAF``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.CloneWaf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CloneWAF`: ResponseWAF
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.CloneWAF`: %v\n", resp)
+	// response from `CloneWaf`: ResponseWAF
+	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.CloneWaf`: %v\n", resp)
 }
 ```
 
@@ -56,11 +56,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**wafId** | **string** |  | 
+**wafId** | **int64** | A unique integer value identifying the WAF. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCloneWAFRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCloneWafRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -86,9 +86,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateWAF
+## CreateWaf
 
-> ResponseWAF CreateWAF(ctx).WAFRequest(wAFRequest).Execute()
+> ResponseWAF CreateWaf(ctx).WAFRequest(wAFRequest).Execute()
 
 Create a Web Application Firewall (WAF)
 
@@ -111,13 +111,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.CreateWAF(context.Background()).WAFRequest(wAFRequest).Execute()
+	resp, r, err := apiClient.WAFsAPI.CreateWaf(context.Background()).WAFRequest(wAFRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.CreateWAF``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.CreateWaf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateWAF`: ResponseWAF
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.CreateWAF`: %v\n", resp)
+	// response from `CreateWaf`: ResponseWAF
+	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.CreateWaf`: %v\n", resp)
 }
 ```
 
@@ -127,7 +127,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateWAFRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateWafRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -152,9 +152,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeleteWAF
+## DeleteWaf
 
-> ResponseDeleteWAF DeleteWAF(ctx, wafId).Execute()
+> ResponseAsyncDeleteWAF DeleteWaf(ctx, wafId).Execute()
 
 Delete a Web Application Firewall (WAF)
 
@@ -173,17 +173,17 @@ import (
 )
 
 func main() {
-	wafId := "wafId_example" // string | 
+	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.DeleteWAF(context.Background(), wafId).Execute()
+	resp, r, err := apiClient.WAFsAPI.DeleteWaf(context.Background(), wafId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.DeleteWAF``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.DeleteWaf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteWAF`: ResponseDeleteWAF
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.DeleteWAF`: %v\n", resp)
+	// response from `DeleteWaf`: ResponseAsyncDeleteWAF
+	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.DeleteWaf`: %v\n", resp)
 }
 ```
 
@@ -193,11 +193,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**wafId** | **string** |  | 
+**wafId** | **int64** | A unique integer value identifying the WAF. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteWAFRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteWafRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteWAF**](ResponseDeleteWAF.md)
+[**ResponseAsyncDeleteWAF**](ResponseAsyncDeleteWAF.md)
 
 ### Authorization
 
@@ -222,9 +222,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListWAFs
+## ListWafs
 
-> PaginatedWAFList ListWAFs(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedWAFList ListWafs(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Web Application Firewalls (WAFs)
 
@@ -251,13 +251,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.ListWAFs(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.WAFsAPI.ListWafs(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.ListWAFs``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.ListWafs``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListWAFs`: PaginatedWAFList
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.ListWAFs`: %v\n", resp)
+	// response from `ListWafs`: PaginatedWAFList
+	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.ListWafs`: %v\n", resp)
 }
 ```
 
@@ -267,7 +267,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListWAFsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListWafsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -296,9 +296,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PartialUpdateWAF
+## PartialUpdateWaf
 
-> ResponseWAF PartialUpdateWAF(ctx, wafId).PatchedWAFRequest(patchedWAFRequest).Execute()
+> ResponseWAF PartialUpdateWaf(ctx, wafId).PatchedWAFRequest(patchedWAFRequest).Execute()
 
 Partially update a Web Application Firewall (WAF)
 
@@ -317,18 +317,18 @@ import (
 )
 
 func main() {
-	wafId := "wafId_example" // string | 
+	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
 	patchedWAFRequest := *openapiclient.NewPatchedWAFRequest() // PatchedWAFRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.PartialUpdateWAF(context.Background(), wafId).PatchedWAFRequest(patchedWAFRequest).Execute()
+	resp, r, err := apiClient.WAFsAPI.PartialUpdateWaf(context.Background(), wafId).PatchedWAFRequest(patchedWAFRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.PartialUpdateWAF``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.PartialUpdateWaf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateWAF`: ResponseWAF
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.PartialUpdateWAF`: %v\n", resp)
+	// response from `PartialUpdateWaf`: ResponseWAF
+	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.PartialUpdateWaf`: %v\n", resp)
 }
 ```
 
@@ -338,11 +338,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**wafId** | **string** |  | 
+**wafId** | **int64** | A unique integer value identifying the WAF. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPartialUpdateWAFRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPartialUpdateWafRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -368,9 +368,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## RetrieveWAF
+## RetrieveWaf
 
-> ResponseRetrieveWAF RetrieveWAF(ctx, wafId).Fields(fields).Execute()
+> ResponseRetrieveWAF RetrieveWaf(ctx, wafId).Fields(fields).Execute()
 
 Retrieve details from a Web Application Firewall (WAF)
 
@@ -389,18 +389,18 @@ import (
 )
 
 func main() {
-	wafId := "wafId_example" // string | 
+	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.RetrieveWAF(context.Background(), wafId).Fields(fields).Execute()
+	resp, r, err := apiClient.WAFsAPI.RetrieveWaf(context.Background(), wafId).Fields(fields).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.RetrieveWAF``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.RetrieveWaf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveWAF`: ResponseRetrieveWAF
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.RetrieveWAF`: %v\n", resp)
+	// response from `RetrieveWaf`: ResponseRetrieveWAF
+	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.RetrieveWaf`: %v\n", resp)
 }
 ```
 
@@ -410,11 +410,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**wafId** | **string** |  | 
+**wafId** | **int64** | A unique integer value identifying the WAF. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRetrieveWAFRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRetrieveWafRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -440,9 +440,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateWAF
+## UpdateWaf
 
-> ResponseWAF UpdateWAF(ctx, wafId).WAFRequest(wAFRequest).Execute()
+> ResponseWAF UpdateWaf(ctx, wafId).WAFRequest(wAFRequest).Execute()
 
 Update a Web Application Firewall (WAF)
 
@@ -461,18 +461,18 @@ import (
 )
 
 func main() {
-	wafId := "wafId_example" // string | 
+	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
 	wAFRequest := *openapiclient.NewWAFRequest("Name_example") // WAFRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.UpdateWAF(context.Background(), wafId).WAFRequest(wAFRequest).Execute()
+	resp, r, err := apiClient.WAFsAPI.UpdateWaf(context.Background(), wafId).WAFRequest(wAFRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.UpdateWAF``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.UpdateWaf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateWAF`: ResponseWAF
-	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.UpdateWAF`: %v\n", resp)
+	// response from `UpdateWaf`: ResponseWAF
+	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.UpdateWaf`: %v\n", resp)
 }
 ```
 
@@ -482,11 +482,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**wafId** | **string** |  | 
+**wafId** | **int64** | A unique integer value identifying the WAF. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateWAFRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateWafRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

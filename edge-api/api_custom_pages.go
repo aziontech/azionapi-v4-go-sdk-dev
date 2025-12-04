@@ -226,10 +226,10 @@ func (a *CustomPagesAPIService) CreateCustomPageExecute(r ApiCreateCustomPageReq
 type ApiDeleteCustomPageRequest struct {
 	ctx context.Context
 	ApiService *CustomPagesAPIService
-	customPageId string
+	customPageId int64
 }
 
-func (r ApiDeleteCustomPageRequest) Execute() (*ResponseDeleteCustomPage, *http.Response, error) {
+func (r ApiDeleteCustomPageRequest) Execute() (*ResponseAsyncDeleteCustomPage, *http.Response, error) {
 	return r.ApiService.DeleteCustomPageExecute(r)
 }
 
@@ -239,10 +239,10 @@ DeleteCustomPage Delete a Custom Page
 Delete a specific Custom Page in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customPageId
+ @param customPageId A unique integer value identifying the custom page.
  @return ApiDeleteCustomPageRequest
 */
-func (a *CustomPagesAPIService) DeleteCustomPage(ctx context.Context, customPageId string) ApiDeleteCustomPageRequest {
+func (a *CustomPagesAPIService) DeleteCustomPage(ctx context.Context, customPageId int64) ApiDeleteCustomPageRequest {
 	return ApiDeleteCustomPageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -251,13 +251,13 @@ func (a *CustomPagesAPIService) DeleteCustomPage(ctx context.Context, customPage
 }
 
 // Execute executes the request
-//  @return ResponseDeleteCustomPage
-func (a *CustomPagesAPIService) DeleteCustomPageExecute(r ApiDeleteCustomPageRequest) (*ResponseDeleteCustomPage, *http.Response, error) {
+//  @return ResponseAsyncDeleteCustomPage
+func (a *CustomPagesAPIService) DeleteCustomPageExecute(r ApiDeleteCustomPageRequest) (*ResponseAsyncDeleteCustomPage, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteCustomPage
+		localVarReturnValue  *ResponseAsyncDeleteCustomPage
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomPagesAPIService.DeleteCustomPage")
@@ -658,7 +658,7 @@ func (a *CustomPagesAPIService) ListCustomPagesExecute(r ApiListCustomPagesReque
 type ApiPartialUpdateCustomPageRequest struct {
 	ctx context.Context
 	ApiService *CustomPagesAPIService
-	customPageId string
+	customPageId int64
 	patchedCustomPageRequest *PatchedCustomPageRequest
 }
 
@@ -677,10 +677,10 @@ PartialUpdateCustomPage Partially update a Custom Page
 Update one or more fields of an existing Custom Page without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customPageId
+ @param customPageId A unique integer value identifying the custom page.
  @return ApiPartialUpdateCustomPageRequest
 */
-func (a *CustomPagesAPIService) PartialUpdateCustomPage(ctx context.Context, customPageId string) ApiPartialUpdateCustomPageRequest {
+func (a *CustomPagesAPIService) PartialUpdateCustomPage(ctx context.Context, customPageId int64) ApiPartialUpdateCustomPageRequest {
 	return ApiPartialUpdateCustomPageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -859,7 +859,7 @@ func (a *CustomPagesAPIService) PartialUpdateCustomPageExecute(r ApiPartialUpdat
 type ApiRetrieveCustomPageRequest struct {
 	ctx context.Context
 	ApiService *CustomPagesAPIService
-	customPageId string
+	customPageId int64
 	fields *string
 }
 
@@ -879,10 +879,10 @@ RetrieveCustomPage Retrieve details of a Custom Page
 Retrieve details of a specific Custom Page in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customPageId
+ @param customPageId A unique integer value identifying the custom page.
  @return ApiRetrieveCustomPageRequest
 */
-func (a *CustomPagesAPIService) RetrieveCustomPage(ctx context.Context, customPageId string) ApiRetrieveCustomPageRequest {
+func (a *CustomPagesAPIService) RetrieveCustomPage(ctx context.Context, customPageId int64) ApiRetrieveCustomPageRequest {
 	return ApiRetrieveCustomPageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1062,7 +1062,7 @@ func (a *CustomPagesAPIService) RetrieveCustomPageExecute(r ApiRetrieveCustomPag
 type ApiUpdateCustomPageRequest struct {
 	ctx context.Context
 	ApiService *CustomPagesAPIService
-	customPageId string
+	customPageId int64
 	customPageRequest *CustomPageRequest
 }
 
@@ -1081,10 +1081,10 @@ UpdateCustomPage Update a Custom Page
 Update an existing Custom Page. This replaces the entire Custom Page with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customPageId
+ @param customPageId A unique integer value identifying the custom page.
  @return ApiUpdateCustomPageRequest
 */
-func (a *CustomPagesAPIService) UpdateCustomPage(ctx context.Context, customPageId string) ApiUpdateCustomPageRequest {
+func (a *CustomPagesAPIService) UpdateCustomPage(ctx context.Context, customPageId int64) ApiUpdateCustomPageRequest {
 	return ApiUpdateCustomPageRequest{
 		ApiService: a,
 		ctx: ctx,

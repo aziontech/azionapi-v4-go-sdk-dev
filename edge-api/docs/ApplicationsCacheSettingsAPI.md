@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	cacheSettingRequest := *openapiclient.NewCacheSettingRequest("Name_example") // CacheSettingRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -55,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
 
 ### Other Parameters
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCacheSetting
 
-> ResponseDeleteCacheSetting DeleteCacheSetting(ctx, applicationId, cacheSettingId).Execute()
+> ResponseAsyncDeleteCacheSetting DeleteCacheSetting(ctx, applicationId, cacheSettingId).Execute()
 
 Delete an Applications Cache Setting
 
@@ -106,8 +106,8 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	cacheSettingId := "cacheSettingId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	cacheSettingId := int64(789) // int64 | A unique integer value identifying the cache setting.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsCacheSettingsAPI.DeleteCacheSetting``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCacheSetting`: ResponseDeleteCacheSetting
+	// response from `DeleteCacheSetting`: ResponseAsyncDeleteCacheSetting
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsCacheSettingsAPI.DeleteCacheSetting`: %v\n", resp)
 }
 ```
@@ -127,8 +127,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**cacheSettingId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**cacheSettingId** | **int64** | A unique integer value identifying the cache setting. | 
 
 ### Other Parameters
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteCacheSetting**](ResponseDeleteCacheSetting.md)
+[**ResponseAsyncDeleteCacheSetting**](ResponseAsyncDeleteCacheSetting.md)
 
 ### Authorization
 
@@ -179,7 +179,7 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -204,7 +204,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
 
 ### Other Parameters
 
@@ -259,8 +259,8 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	cacheSettingId := "cacheSettingId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	cacheSettingId := int64(789) // int64 | A unique integer value identifying the cache setting.
 	patchedCacheSettingRequest := *openapiclient.NewPatchedCacheSettingRequest() // PatchedCacheSettingRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -281,8 +281,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**cacheSettingId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**cacheSettingId** | **int64** | A unique integer value identifying the cache setting. | 
 
 ### Other Parameters
 
@@ -334,8 +334,8 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	cacheSettingId := "cacheSettingId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	cacheSettingId := int64(789) // int64 | A unique integer value identifying the cache setting.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -356,8 +356,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**cacheSettingId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**cacheSettingId** | **int64** | A unique integer value identifying the cache setting. | 
 
 ### Other Parameters
 
@@ -409,8 +409,8 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	cacheSettingId := "cacheSettingId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	cacheSettingId := int64(789) // int64 | A unique integer value identifying the cache setting.
 	cacheSettingRequest := *openapiclient.NewCacheSettingRequest("Name_example") // CacheSettingRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -431,8 +431,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**cacheSettingId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**cacheSettingId** | **int64** | A unique integer value identifying the cache setting. | 
 
 ### Other Parameters
 

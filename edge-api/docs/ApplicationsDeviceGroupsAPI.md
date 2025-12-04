@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	applicationDeviceGroupsRequest := *openapiclient.NewApplicationDeviceGroupsRequest("Name_example", "UserAgent_example") // ApplicationDeviceGroupsRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -55,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
 
 ### Other Parameters
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDeviceGroups
 
-> ResponseApplicationDeviceGroups DeleteDeviceGroups(ctx, applicationId, deviceGroupId).Execute()
+> ResponseAsyncDeleteApplicationDeviceGroups DeleteDeviceGroups(ctx, applicationId, deviceGroupId).Execute()
 
 Delete an Applications Device Group
 
@@ -106,8 +106,8 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	deviceGroupId := "deviceGroupId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.DeleteDeviceGroups``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteDeviceGroups`: ResponseApplicationDeviceGroups
+	// response from `DeleteDeviceGroups`: ResponseAsyncDeleteApplicationDeviceGroups
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.DeleteDeviceGroups`: %v\n", resp)
 }
 ```
@@ -127,8 +127,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**deviceGroupId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**deviceGroupId** | **int64** | A unique integer value identifying the device group. | 
 
 ### Other Parameters
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseApplicationDeviceGroups**](ResponseApplicationDeviceGroups.md)
+[**ResponseAsyncDeleteApplicationDeviceGroups**](ResponseAsyncDeleteApplicationDeviceGroups.md)
 
 ### Authorization
 
@@ -179,7 +179,7 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, id, user_agent) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -204,7 +204,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
 
 ### Other Parameters
 
@@ -259,8 +259,8 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	deviceGroupId := "deviceGroupId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
 	patchedApplicationDeviceGroupsRequest := *openapiclient.NewPatchedApplicationDeviceGroupsRequest() // PatchedApplicationDeviceGroupsRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -281,8 +281,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**deviceGroupId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**deviceGroupId** | **int64** | A unique integer value identifying the device group. | 
 
 ### Other Parameters
 
@@ -334,8 +334,8 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	deviceGroupId := "deviceGroupId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -356,8 +356,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**deviceGroupId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**deviceGroupId** | **int64** | A unique integer value identifying the device group. | 
 
 ### Other Parameters
 
@@ -409,8 +409,8 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	deviceGroupId := "deviceGroupId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
 	applicationDeviceGroupsRequest := *openapiclient.NewApplicationDeviceGroupsRequest("Name_example", "UserAgent_example") // ApplicationDeviceGroupsRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -431,8 +431,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**deviceGroupId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**deviceGroupId** | **int64** | A unique integer value identifying the device group. | 
 
 ### Other Parameters
 

@@ -26,7 +26,7 @@ type ApplicationsCacheSettingsAPIService service
 type ApiCreateCacheSettingRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsCacheSettingsAPIService
-	applicationId string
+	applicationId int64
 	cacheSettingRequest *CacheSettingRequest
 }
 
@@ -45,10 +45,10 @@ CreateCacheSetting Create an Applications Cache Setting
 Create a new Cache Setting in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
+ @param applicationId A unique integer value identifying the application.
  @return ApiCreateCacheSettingRequest
 */
-func (a *ApplicationsCacheSettingsAPIService) CreateCacheSetting(ctx context.Context, applicationId string) ApiCreateCacheSettingRequest {
+func (a *ApplicationsCacheSettingsAPIService) CreateCacheSetting(ctx context.Context, applicationId int64) ApiCreateCacheSettingRequest {
 	return ApiCreateCacheSettingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -231,11 +231,11 @@ func (a *ApplicationsCacheSettingsAPIService) CreateCacheSettingExecute(r ApiCre
 type ApiDeleteCacheSettingRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsCacheSettingsAPIService
-	applicationId string
-	cacheSettingId string
+	applicationId int64
+	cacheSettingId int64
 }
 
-func (r ApiDeleteCacheSettingRequest) Execute() (*ResponseDeleteCacheSetting, *http.Response, error) {
+func (r ApiDeleteCacheSettingRequest) Execute() (*ResponseAsyncDeleteCacheSetting, *http.Response, error) {
 	return r.ApiService.DeleteCacheSettingExecute(r)
 }
 
@@ -245,11 +245,11 @@ DeleteCacheSetting Delete an Applications Cache Setting
 Delete a specific Cache Setting in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param cacheSettingId
+ @param applicationId A unique integer value identifying the application.
+ @param cacheSettingId A unique integer value identifying the cache setting.
  @return ApiDeleteCacheSettingRequest
 */
-func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSetting(ctx context.Context, applicationId string, cacheSettingId string) ApiDeleteCacheSettingRequest {
+func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSetting(ctx context.Context, applicationId int64, cacheSettingId int64) ApiDeleteCacheSettingRequest {
 	return ApiDeleteCacheSettingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -259,13 +259,13 @@ func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSetting(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseDeleteCacheSetting
-func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDeleteCacheSettingRequest) (*ResponseDeleteCacheSetting, *http.Response, error) {
+//  @return ResponseAsyncDeleteCacheSetting
+func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDeleteCacheSettingRequest) (*ResponseAsyncDeleteCacheSetting, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteCacheSetting
+		localVarReturnValue  *ResponseAsyncDeleteCacheSetting
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsCacheSettingsAPIService.DeleteCacheSetting")
@@ -334,6 +334,28 @@ func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDel
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -387,28 +409,6 @@ func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDel
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -428,7 +428,7 @@ func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDel
 type ApiListCacheSettingsRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsCacheSettingsAPIService
-	applicationId string
+	applicationId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -476,10 +476,10 @@ ListCacheSettings List all Applications Cache Settings
 List all Cache Settings owned by your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
+ @param applicationId A unique integer value identifying the application.
  @return ApiListCacheSettingsRequest
 */
-func (a *ApplicationsCacheSettingsAPIService) ListCacheSettings(ctx context.Context, applicationId string) ApiListCacheSettingsRequest {
+func (a *ApplicationsCacheSettingsAPIService) ListCacheSettings(ctx context.Context, applicationId int64) ApiListCacheSettingsRequest {
 	return ApiListCacheSettingsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -671,8 +671,8 @@ func (a *ApplicationsCacheSettingsAPIService) ListCacheSettingsExecute(r ApiList
 type ApiPartialUpdateCacheSettingRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsCacheSettingsAPIService
-	applicationId string
-	cacheSettingId string
+	applicationId int64
+	cacheSettingId int64
 	patchedCacheSettingRequest *PatchedCacheSettingRequest
 }
 
@@ -691,11 +691,11 @@ PartialUpdateCacheSetting Partially update an Applications Cache Setting
 Update one or more fields of an existing Cache Setting without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param cacheSettingId
+ @param applicationId A unique integer value identifying the application.
+ @param cacheSettingId A unique integer value identifying the cache setting.
  @return ApiPartialUpdateCacheSettingRequest
 */
-func (a *ApplicationsCacheSettingsAPIService) PartialUpdateCacheSetting(ctx context.Context, applicationId string, cacheSettingId string) ApiPartialUpdateCacheSettingRequest {
+func (a *ApplicationsCacheSettingsAPIService) PartialUpdateCacheSetting(ctx context.Context, applicationId int64, cacheSettingId int64) ApiPartialUpdateCacheSettingRequest {
 	return ApiPartialUpdateCacheSettingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -877,8 +877,8 @@ func (a *ApplicationsCacheSettingsAPIService) PartialUpdateCacheSettingExecute(r
 type ApiRetrieveCacheSettingRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsCacheSettingsAPIService
-	applicationId string
-	cacheSettingId string
+	applicationId int64
+	cacheSettingId int64
 	fields *string
 }
 
@@ -898,11 +898,11 @@ RetrieveCacheSetting Retrieve details of an Applications Cache Setting
 Retrieve details of a specific Cache Setting in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param cacheSettingId
+ @param applicationId A unique integer value identifying the application.
+ @param cacheSettingId A unique integer value identifying the cache setting.
  @return ApiRetrieveCacheSettingRequest
 */
-func (a *ApplicationsCacheSettingsAPIService) RetrieveCacheSetting(ctx context.Context, applicationId string, cacheSettingId string) ApiRetrieveCacheSettingRequest {
+func (a *ApplicationsCacheSettingsAPIService) RetrieveCacheSetting(ctx context.Context, applicationId int64, cacheSettingId int64) ApiRetrieveCacheSettingRequest {
 	return ApiRetrieveCacheSettingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1084,8 +1084,8 @@ func (a *ApplicationsCacheSettingsAPIService) RetrieveCacheSettingExecute(r ApiR
 type ApiUpdateCacheSettingRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsCacheSettingsAPIService
-	applicationId string
-	cacheSettingId string
+	applicationId int64
+	cacheSettingId int64
 	cacheSettingRequest *CacheSettingRequest
 }
 
@@ -1104,11 +1104,11 @@ UpdateCacheSetting Update an Applications Cache Setting
 Update an existing Cache Setting. This replaces the entire Cache Setting with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param cacheSettingId
+ @param applicationId A unique integer value identifying the application.
+ @param cacheSettingId A unique integer value identifying the cache setting.
  @return ApiUpdateCacheSettingRequest
 */
-func (a *ApplicationsCacheSettingsAPIService) UpdateCacheSetting(ctx context.Context, applicationId string, cacheSettingId string) ApiUpdateCacheSettingRequest {
+func (a *ApplicationsCacheSettingsAPIService) UpdateCacheSetting(ctx context.Context, applicationId int64, cacheSettingId int64) ApiUpdateCacheSettingRequest {
 	return ApiUpdateCacheSettingRequest{
 		ApiService: a,
 		ctx: ctx,

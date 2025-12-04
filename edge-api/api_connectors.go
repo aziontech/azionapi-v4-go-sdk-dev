@@ -223,10 +223,10 @@ func (a *ConnectorsAPIService) CreateConnectorExecute(r ApiCreateConnectorReques
 type ApiDeleteConnectorRequest struct {
 	ctx context.Context
 	ApiService *ConnectorsAPIService
-	connectorId string
+	connectorId int64
 }
 
-func (r ApiDeleteConnectorRequest) Execute() (*ResponseDeleteConnectorPolymorphic, *http.Response, error) {
+func (r ApiDeleteConnectorRequest) Execute() (*ResponseAsyncDeleteConnectorPolymorphic, *http.Response, error) {
 	return r.ApiService.DeleteConnectorExecute(r)
 }
 
@@ -236,10 +236,10 @@ DeleteConnector Delete an Connector
 Delete a specific Connector in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectorId
+ @param connectorId A unique integer value identifying the edge connector.
  @return ApiDeleteConnectorRequest
 */
-func (a *ConnectorsAPIService) DeleteConnector(ctx context.Context, connectorId string) ApiDeleteConnectorRequest {
+func (a *ConnectorsAPIService) DeleteConnector(ctx context.Context, connectorId int64) ApiDeleteConnectorRequest {
 	return ApiDeleteConnectorRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -248,13 +248,13 @@ func (a *ConnectorsAPIService) DeleteConnector(ctx context.Context, connectorId 
 }
 
 // Execute executes the request
-//  @return ResponseDeleteConnectorPolymorphic
-func (a *ConnectorsAPIService) DeleteConnectorExecute(r ApiDeleteConnectorRequest) (*ResponseDeleteConnectorPolymorphic, *http.Response, error) {
+//  @return ResponseAsyncDeleteConnectorPolymorphic
+func (a *ConnectorsAPIService) DeleteConnectorExecute(r ApiDeleteConnectorRequest) (*ResponseAsyncDeleteConnectorPolymorphic, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteConnectorPolymorphic
+		localVarReturnValue  *ResponseAsyncDeleteConnectorPolymorphic
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectorsAPIService.DeleteConnector")
@@ -655,7 +655,7 @@ func (a *ConnectorsAPIService) ListConnectorsExecute(r ApiListConnectorsRequest)
 type ApiPartialUpdateConnectorRequest struct {
 	ctx context.Context
 	ApiService *ConnectorsAPIService
-	connectorId string
+	connectorId int64
 	patchedConnectorPolymorphicRequest *PatchedConnectorPolymorphicRequest
 }
 
@@ -674,10 +674,10 @@ PartialUpdateConnector Partially update an Connector
 Update one or more fields of an existing Connector without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectorId
+ @param connectorId A unique integer value identifying the edge connector.
  @return ApiPartialUpdateConnectorRequest
 */
-func (a *ConnectorsAPIService) PartialUpdateConnector(ctx context.Context, connectorId string) ApiPartialUpdateConnectorRequest {
+func (a *ConnectorsAPIService) PartialUpdateConnector(ctx context.Context, connectorId int64) ApiPartialUpdateConnectorRequest {
 	return ApiPartialUpdateConnectorRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -856,7 +856,7 @@ func (a *ConnectorsAPIService) PartialUpdateConnectorExecute(r ApiPartialUpdateC
 type ApiRetrieveConnectorRequest struct {
 	ctx context.Context
 	ApiService *ConnectorsAPIService
-	connectorId string
+	connectorId int64
 	fields *string
 }
 
@@ -876,10 +876,10 @@ RetrieveConnector Retrieve details of an Connector
 Retrieve details of a specific Connector in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectorId
+ @param connectorId A unique integer value identifying the edge connector.
  @return ApiRetrieveConnectorRequest
 */
-func (a *ConnectorsAPIService) RetrieveConnector(ctx context.Context, connectorId string) ApiRetrieveConnectorRequest {
+func (a *ConnectorsAPIService) RetrieveConnector(ctx context.Context, connectorId int64) ApiRetrieveConnectorRequest {
 	return ApiRetrieveConnectorRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1059,7 +1059,7 @@ func (a *ConnectorsAPIService) RetrieveConnectorExecute(r ApiRetrieveConnectorRe
 type ApiUpdateConnectorRequest struct {
 	ctx context.Context
 	ApiService *ConnectorsAPIService
-	connectorId string
+	connectorId int64
 	connectorPolymorphicRequest *ConnectorPolymorphicRequest
 }
 
@@ -1078,10 +1078,10 @@ UpdateConnector Update an Connector
 Update an existing Connector. This replaces the entire Connector with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectorId
+ @param connectorId A unique integer value identifying the edge connector.
  @return ApiUpdateConnectorRequest
 */
-func (a *ConnectorsAPIService) UpdateConnector(ctx context.Context, connectorId string) ApiUpdateConnectorRequest {
+func (a *ConnectorsAPIService) UpdateConnector(ctx context.Context, connectorId int64) ApiUpdateConnectorRequest {
 	return ApiUpdateConnectorRequest{
 		ApiService: a,
 		ctx: ctx,

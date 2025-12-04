@@ -26,7 +26,7 @@ type ApplicationsFunctionAPIService service
 type ApiCreateApplicationFunctionInstanceRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsFunctionAPIService
-	applicationId string
+	applicationId int64
 	applicationFunctionInstanceRequest *ApplicationFunctionInstanceRequest
 }
 
@@ -45,10 +45,10 @@ CreateApplicationFunctionInstance Create an Application Function Instance
 Create a new Function Instance for a specific Application in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
+ @param applicationId A unique integer value identifying the application.
  @return ApiCreateApplicationFunctionInstanceRequest
 */
-func (a *ApplicationsFunctionAPIService) CreateApplicationFunctionInstance(ctx context.Context, applicationId string) ApiCreateApplicationFunctionInstanceRequest {
+func (a *ApplicationsFunctionAPIService) CreateApplicationFunctionInstance(ctx context.Context, applicationId int64) ApiCreateApplicationFunctionInstanceRequest {
 	return ApiCreateApplicationFunctionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -230,11 +230,11 @@ func (a *ApplicationsFunctionAPIService) CreateApplicationFunctionInstanceExecut
 type ApiDeleteApplicationFunctionInstanceRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsFunctionAPIService
-	applicationId string
-	functionId string
+	applicationId int64
+	functionId int64
 }
 
-func (r ApiDeleteApplicationFunctionInstanceRequest) Execute() (*ResponseDeleteApplicationFunctionInstance, *http.Response, error) {
+func (r ApiDeleteApplicationFunctionInstanceRequest) Execute() (*ResponseAsyncDeleteApplicationFunctionInstance, *http.Response, error) {
 	return r.ApiService.DeleteApplicationFunctionInstanceExecute(r)
 }
 
@@ -244,11 +244,11 @@ DeleteApplicationFunctionInstance Delete an Application Function Instance
 Delete a specific Application Function Instance in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param functionId
+ @param applicationId A unique integer value identifying the application.
+ @param functionId A unique integer value identifying the function instance.
  @return ApiDeleteApplicationFunctionInstanceRequest
 */
-func (a *ApplicationsFunctionAPIService) DeleteApplicationFunctionInstance(ctx context.Context, applicationId string, functionId string) ApiDeleteApplicationFunctionInstanceRequest {
+func (a *ApplicationsFunctionAPIService) DeleteApplicationFunctionInstance(ctx context.Context, applicationId int64, functionId int64) ApiDeleteApplicationFunctionInstanceRequest {
 	return ApiDeleteApplicationFunctionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -258,13 +258,13 @@ func (a *ApplicationsFunctionAPIService) DeleteApplicationFunctionInstance(ctx c
 }
 
 // Execute executes the request
-//  @return ResponseDeleteApplicationFunctionInstance
-func (a *ApplicationsFunctionAPIService) DeleteApplicationFunctionInstanceExecute(r ApiDeleteApplicationFunctionInstanceRequest) (*ResponseDeleteApplicationFunctionInstance, *http.Response, error) {
+//  @return ResponseAsyncDeleteApplicationFunctionInstance
+func (a *ApplicationsFunctionAPIService) DeleteApplicationFunctionInstanceExecute(r ApiDeleteApplicationFunctionInstanceRequest) (*ResponseAsyncDeleteApplicationFunctionInstance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteApplicationFunctionInstance
+		localVarReturnValue  *ResponseAsyncDeleteApplicationFunctionInstance
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsFunctionAPIService.DeleteApplicationFunctionInstance")
@@ -427,7 +427,7 @@ func (a *ApplicationsFunctionAPIService) DeleteApplicationFunctionInstanceExecut
 type ApiListApplicationFunctionInstancesRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsFunctionAPIService
-	applicationId string
+	applicationId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -475,10 +475,10 @@ ListApplicationFunctionInstances List Function Instances
 List all Function Instances for a specific Application owned by your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
+ @param applicationId A unique integer value identifying the application.
  @return ApiListApplicationFunctionInstancesRequest
 */
-func (a *ApplicationsFunctionAPIService) ListApplicationFunctionInstances(ctx context.Context, applicationId string) ApiListApplicationFunctionInstancesRequest {
+func (a *ApplicationsFunctionAPIService) ListApplicationFunctionInstances(ctx context.Context, applicationId int64) ApiListApplicationFunctionInstancesRequest {
 	return ApiListApplicationFunctionInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -670,8 +670,8 @@ func (a *ApplicationsFunctionAPIService) ListApplicationFunctionInstancesExecute
 type ApiPartialUpdateApplicationFunctionInstanceRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsFunctionAPIService
-	applicationId string
-	functionId string
+	applicationId int64
+	functionId int64
 	patchedApplicationFunctionInstanceRequest *PatchedApplicationFunctionInstanceRequest
 }
 
@@ -690,11 +690,11 @@ PartialUpdateApplicationFunctionInstance Partially update an Application Functio
 Update one or more fields of an existing Application Function Instance without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param functionId
+ @param applicationId A unique integer value identifying the application.
+ @param functionId A unique integer value identifying the function instance.
  @return ApiPartialUpdateApplicationFunctionInstanceRequest
 */
-func (a *ApplicationsFunctionAPIService) PartialUpdateApplicationFunctionInstance(ctx context.Context, applicationId string, functionId string) ApiPartialUpdateApplicationFunctionInstanceRequest {
+func (a *ApplicationsFunctionAPIService) PartialUpdateApplicationFunctionInstance(ctx context.Context, applicationId int64, functionId int64) ApiPartialUpdateApplicationFunctionInstanceRequest {
 	return ApiPartialUpdateApplicationFunctionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -875,8 +875,8 @@ func (a *ApplicationsFunctionAPIService) PartialUpdateApplicationFunctionInstanc
 type ApiRetrieveApplicationFunctionInstanceRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsFunctionAPIService
-	applicationId string
-	functionId string
+	applicationId int64
+	functionId int64
 	fields *string
 }
 
@@ -896,11 +896,11 @@ RetrieveApplicationFunctionInstance Retrieve details of an Application Function 
 Retrieve details of a specific Application Function Instance in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param functionId
+ @param applicationId A unique integer value identifying the application.
+ @param functionId A unique integer value identifying the function instance.
  @return ApiRetrieveApplicationFunctionInstanceRequest
 */
-func (a *ApplicationsFunctionAPIService) RetrieveApplicationFunctionInstance(ctx context.Context, applicationId string, functionId string) ApiRetrieveApplicationFunctionInstanceRequest {
+func (a *ApplicationsFunctionAPIService) RetrieveApplicationFunctionInstance(ctx context.Context, applicationId int64, functionId int64) ApiRetrieveApplicationFunctionInstanceRequest {
 	return ApiRetrieveApplicationFunctionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1082,8 +1082,8 @@ func (a *ApplicationsFunctionAPIService) RetrieveApplicationFunctionInstanceExec
 type ApiUpdateApplicationFunctionInstanceRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsFunctionAPIService
-	applicationId string
-	functionId string
+	applicationId int64
+	functionId int64
 	applicationFunctionInstanceRequest *ApplicationFunctionInstanceRequest
 }
 
@@ -1102,11 +1102,11 @@ UpdateApplicationFunctionInstance Update an Edge Application Function Instance
 Update an existing Application Function Instance. This replaces the entire Function Instance with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param functionId
+ @param applicationId A unique integer value identifying the application.
+ @param functionId A unique integer value identifying the function instance.
  @return ApiUpdateApplicationFunctionInstanceRequest
 */
-func (a *ApplicationsFunctionAPIService) UpdateApplicationFunctionInstance(ctx context.Context, applicationId string, functionId string) ApiUpdateApplicationFunctionInstanceRequest {
+func (a *ApplicationsFunctionAPIService) UpdateApplicationFunctionInstance(ctx context.Context, applicationId int64, functionId int64) ApiUpdateApplicationFunctionInstanceRequest {
 	return ApiUpdateApplicationFunctionInstanceRequest{
 		ApiService: a,
 		ctx: ctx,

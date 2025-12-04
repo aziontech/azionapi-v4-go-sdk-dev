@@ -26,7 +26,7 @@ type FirewallsFunctionAPIService service
 type ApiCreateFirewallFunctionRequest struct {
 	ctx context.Context
 	ApiService *FirewallsFunctionAPIService
-	firewallId string
+	firewallId int64
 	firewallFunctionInstanceRequest *FirewallFunctionInstanceRequest
 }
 
@@ -45,10 +45,10 @@ CreateFirewallFunction Create an Firewall Function
 Create a new Function Instance for a specific Firewall in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param firewallId
+ @param firewallId A unique integer value identifying the firewall.
  @return ApiCreateFirewallFunctionRequest
 */
-func (a *FirewallsFunctionAPIService) CreateFirewallFunction(ctx context.Context, firewallId string) ApiCreateFirewallFunctionRequest {
+func (a *FirewallsFunctionAPIService) CreateFirewallFunction(ctx context.Context, firewallId int64) ApiCreateFirewallFunctionRequest {
 	return ApiCreateFirewallFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -230,11 +230,11 @@ func (a *FirewallsFunctionAPIService) CreateFirewallFunctionExecute(r ApiCreateF
 type ApiDeleteFirewallFunctionRequest struct {
 	ctx context.Context
 	ApiService *FirewallsFunctionAPIService
-	firewallId string
-	functionId string
+	firewallId int64
+	functionId int64
 }
 
-func (r ApiDeleteFirewallFunctionRequest) Execute() (*ResponseDeleteFirewallFunctionInstance, *http.Response, error) {
+func (r ApiDeleteFirewallFunctionRequest) Execute() (*ResponseAsyncDeleteFirewallFunctionInstance, *http.Response, error) {
 	return r.ApiService.DeleteFirewallFunctionExecute(r)
 }
 
@@ -244,11 +244,11 @@ DeleteFirewallFunction Delete an Firewall Function
 Delete a specific Firewall Function Instance in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param firewallId
- @param functionId
+ @param firewallId A unique integer value identifying the firewall.
+ @param functionId A unique integer value identifying the function instance.
  @return ApiDeleteFirewallFunctionRequest
 */
-func (a *FirewallsFunctionAPIService) DeleteFirewallFunction(ctx context.Context, firewallId string, functionId string) ApiDeleteFirewallFunctionRequest {
+func (a *FirewallsFunctionAPIService) DeleteFirewallFunction(ctx context.Context, firewallId int64, functionId int64) ApiDeleteFirewallFunctionRequest {
 	return ApiDeleteFirewallFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -258,13 +258,13 @@ func (a *FirewallsFunctionAPIService) DeleteFirewallFunction(ctx context.Context
 }
 
 // Execute executes the request
-//  @return ResponseDeleteFirewallFunctionInstance
-func (a *FirewallsFunctionAPIService) DeleteFirewallFunctionExecute(r ApiDeleteFirewallFunctionRequest) (*ResponseDeleteFirewallFunctionInstance, *http.Response, error) {
+//  @return ResponseAsyncDeleteFirewallFunctionInstance
+func (a *FirewallsFunctionAPIService) DeleteFirewallFunctionExecute(r ApiDeleteFirewallFunctionRequest) (*ResponseAsyncDeleteFirewallFunctionInstance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteFirewallFunctionInstance
+		localVarReturnValue  *ResponseAsyncDeleteFirewallFunctionInstance
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirewallsFunctionAPIService.DeleteFirewallFunction")
@@ -427,7 +427,7 @@ func (a *FirewallsFunctionAPIService) DeleteFirewallFunctionExecute(r ApiDeleteF
 type ApiListFirewallFunctionRequest struct {
 	ctx context.Context
 	ApiService *FirewallsFunctionAPIService
-	firewallId string
+	firewallId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -475,10 +475,10 @@ ListFirewallFunction List Firewall Function
 List all Function Instances for a specific Firewall owned by your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param firewallId
+ @param firewallId A unique integer value identifying the firewall.
  @return ApiListFirewallFunctionRequest
 */
-func (a *FirewallsFunctionAPIService) ListFirewallFunction(ctx context.Context, firewallId string) ApiListFirewallFunctionRequest {
+func (a *FirewallsFunctionAPIService) ListFirewallFunction(ctx context.Context, firewallId int64) ApiListFirewallFunctionRequest {
 	return ApiListFirewallFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -670,8 +670,8 @@ func (a *FirewallsFunctionAPIService) ListFirewallFunctionExecute(r ApiListFirew
 type ApiPartialUpdateFirewallFunctionRequest struct {
 	ctx context.Context
 	ApiService *FirewallsFunctionAPIService
-	firewallId string
-	functionId string
+	firewallId int64
+	functionId int64
 	patchedFirewallFunctionInstanceRequest *PatchedFirewallFunctionInstanceRequest
 }
 
@@ -690,11 +690,11 @@ PartialUpdateFirewallFunction Partially update an Firewall Function
 Update one or more fields of an existing Firewall Function Instance without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param firewallId
- @param functionId
+ @param firewallId A unique integer value identifying the firewall.
+ @param functionId A unique integer value identifying the function instance.
  @return ApiPartialUpdateFirewallFunctionRequest
 */
-func (a *FirewallsFunctionAPIService) PartialUpdateFirewallFunction(ctx context.Context, firewallId string, functionId string) ApiPartialUpdateFirewallFunctionRequest {
+func (a *FirewallsFunctionAPIService) PartialUpdateFirewallFunction(ctx context.Context, firewallId int64, functionId int64) ApiPartialUpdateFirewallFunctionRequest {
 	return ApiPartialUpdateFirewallFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -875,8 +875,8 @@ func (a *FirewallsFunctionAPIService) PartialUpdateFirewallFunctionExecute(r Api
 type ApiRetrieveFirewallFunctionRequest struct {
 	ctx context.Context
 	ApiService *FirewallsFunctionAPIService
-	firewallId string
-	functionId string
+	firewallId int64
+	functionId int64
 	fields *string
 }
 
@@ -896,11 +896,11 @@ RetrieveFirewallFunction Retrieve details of an Firewall Function
 Retrieve details of a specific Firewall Function Instance in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param firewallId
- @param functionId
+ @param firewallId A unique integer value identifying the firewall.
+ @param functionId A unique integer value identifying the function instance.
  @return ApiRetrieveFirewallFunctionRequest
 */
-func (a *FirewallsFunctionAPIService) RetrieveFirewallFunction(ctx context.Context, firewallId string, functionId string) ApiRetrieveFirewallFunctionRequest {
+func (a *FirewallsFunctionAPIService) RetrieveFirewallFunction(ctx context.Context, firewallId int64, functionId int64) ApiRetrieveFirewallFunctionRequest {
 	return ApiRetrieveFirewallFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1082,8 +1082,8 @@ func (a *FirewallsFunctionAPIService) RetrieveFirewallFunctionExecute(r ApiRetri
 type ApiUpdateFirewallFunctionRequest struct {
 	ctx context.Context
 	ApiService *FirewallsFunctionAPIService
-	firewallId string
-	functionId string
+	firewallId int64
+	functionId int64
 	firewallFunctionInstanceRequest *FirewallFunctionInstanceRequest
 }
 
@@ -1102,11 +1102,11 @@ UpdateFirewallFunction Update an Firewall Function
 Update an existing Firewall Function Instance. This replaces the entire Function Instance with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param firewallId
- @param functionId
+ @param firewallId A unique integer value identifying the firewall.
+ @param functionId A unique integer value identifying the function instance.
  @return ApiUpdateFirewallFunctionRequest
 */
-func (a *FirewallsFunctionAPIService) UpdateFirewallFunction(ctx context.Context, firewallId string, functionId string) ApiUpdateFirewallFunctionRequest {
+func (a *FirewallsFunctionAPIService) UpdateFirewallFunction(ctx context.Context, firewallId int64, functionId int64) ApiUpdateFirewallFunctionRequest {
 	return ApiUpdateFirewallFunctionRequest{
 		ApiService: a,
 		ctx: ctx,

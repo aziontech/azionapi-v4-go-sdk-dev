@@ -226,10 +226,10 @@ func (a *FunctionsAPIService) CreateFunctionExecute(r ApiCreateFunctionRequest) 
 type ApiDeleteFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsAPIService
-	functionId string
+	functionId int64
 }
 
-func (r ApiDeleteFunctionRequest) Execute() (*ResponseDeleteFunctionsDoc, *http.Response, error) {
+func (r ApiDeleteFunctionRequest) Execute() (*ResponseAsyncDeleteFunctionsDoc, *http.Response, error) {
 	return r.ApiService.DeleteFunctionExecute(r)
 }
 
@@ -239,10 +239,10 @@ DeleteFunction Delete an Function
 Delete a specific Function in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param functionId
+ @param functionId A unique integer value identifying the edge function.
  @return ApiDeleteFunctionRequest
 */
-func (a *FunctionsAPIService) DeleteFunction(ctx context.Context, functionId string) ApiDeleteFunctionRequest {
+func (a *FunctionsAPIService) DeleteFunction(ctx context.Context, functionId int64) ApiDeleteFunctionRequest {
 	return ApiDeleteFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -251,13 +251,13 @@ func (a *FunctionsAPIService) DeleteFunction(ctx context.Context, functionId str
 }
 
 // Execute executes the request
-//  @return ResponseDeleteFunctionsDoc
-func (a *FunctionsAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (*ResponseDeleteFunctionsDoc, *http.Response, error) {
+//  @return ResponseAsyncDeleteFunctionsDoc
+func (a *FunctionsAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (*ResponseAsyncDeleteFunctionsDoc, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteFunctionsDoc
+		localVarReturnValue  *ResponseAsyncDeleteFunctionsDoc
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionsAPIService.DeleteFunction")
@@ -658,7 +658,7 @@ func (a *FunctionsAPIService) ListFunctionsExecute(r ApiListFunctionsRequest) (*
 type ApiPartialUpdateFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsAPIService
-	functionId string
+	functionId int64
 	patchedEdgeFunctionsRequest *PatchedEdgeFunctionsRequest
 }
 
@@ -677,10 +677,10 @@ PartialUpdateFunction Partially update an Function
 Update one or more fields of an existing Function without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param functionId
+ @param functionId A unique integer value identifying the edge function.
  @return ApiPartialUpdateFunctionRequest
 */
-func (a *FunctionsAPIService) PartialUpdateFunction(ctx context.Context, functionId string) ApiPartialUpdateFunctionRequest {
+func (a *FunctionsAPIService) PartialUpdateFunction(ctx context.Context, functionId int64) ApiPartialUpdateFunctionRequest {
 	return ApiPartialUpdateFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -859,7 +859,7 @@ func (a *FunctionsAPIService) PartialUpdateFunctionExecute(r ApiPartialUpdateFun
 type ApiRetrieveFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsAPIService
-	functionId string
+	functionId int64
 	fields *string
 }
 
@@ -879,10 +879,10 @@ RetrieveFunction Retrieve details of an Function
 Retrieve details of a specific Function in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param functionId
+ @param functionId A unique integer value identifying the edge function.
  @return ApiRetrieveFunctionRequest
 */
-func (a *FunctionsAPIService) RetrieveFunction(ctx context.Context, functionId string) ApiRetrieveFunctionRequest {
+func (a *FunctionsAPIService) RetrieveFunction(ctx context.Context, functionId int64) ApiRetrieveFunctionRequest {
 	return ApiRetrieveFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1062,7 +1062,7 @@ func (a *FunctionsAPIService) RetrieveFunctionExecute(r ApiRetrieveFunctionReque
 type ApiUpdateFunctionRequest struct {
 	ctx context.Context
 	ApiService *FunctionsAPIService
-	functionId string
+	functionId int64
 	edgeFunctionsRequest *EdgeFunctionsRequest
 }
 
@@ -1081,10 +1081,10 @@ UpdateFunction Update an Function
 Update an existing Function. This replaces the entire Function with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param functionId
+ @param functionId A unique integer value identifying the edge function.
  @return ApiUpdateFunctionRequest
 */
-func (a *FunctionsAPIService) UpdateFunction(ctx context.Context, functionId string) ApiUpdateFunctionRequest {
+func (a *FunctionsAPIService) UpdateFunction(ctx context.Context, functionId int64) ApiUpdateFunctionRequest {
 	return ApiUpdateFunctionRequest{
 		ApiService: a,
 		ctx: ctx,
