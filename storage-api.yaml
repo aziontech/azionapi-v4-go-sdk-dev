@@ -1,0 +1,10 @@
+openapi: 3.0.3
+info:
+  title: storage-api
+  version: 1.0.0
+  description: REST API OpenAPI documentation for the Storage
+  license:
+    name: MIT
+    url: https://github.com/aziontech/azionapi-v4-openapi/blob/main/LICENSE
+paths: {}
+components: {}
