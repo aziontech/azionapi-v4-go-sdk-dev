@@ -45,7 +45,7 @@ CreateWorkloadDeployment Create a Workload Deployment
 Create a new Workload Deployment in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param workloadId
+ @param workloadId A unique integer value identifying the workload.
  @return ApiCreateWorkloadDeploymentRequest
 */
 func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeployment(ctx context.Context, workloadId int64) ApiCreateWorkloadDeploymentRequest {
@@ -136,6 +136,28 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -189,29 +211,6 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -235,7 +234,7 @@ type ApiDeleteWorkloadDeploymentRequest struct {
 	workloadId int64
 }
 
-func (r ApiDeleteWorkloadDeploymentRequest) Execute() (*ResponseDeleteWorkloadDeployment, *http.Response, error) {
+func (r ApiDeleteWorkloadDeploymentRequest) Execute() (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
 	return r.ApiService.DeleteWorkloadDeploymentExecute(r)
 }
 
@@ -245,8 +244,8 @@ DeleteWorkloadDeployment Delete a Workload Deployment
 Delete a specific Workload Deployment in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param deploymentId
- @param workloadId
+ @param deploymentId A unique integer value identifying the deployment.
+ @param workloadId A unique integer value identifying the workload.
  @return ApiDeleteWorkloadDeploymentRequest
 */
 func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeployment(ctx context.Context, deploymentId int64, workloadId int64) ApiDeleteWorkloadDeploymentRequest {
@@ -259,13 +258,13 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeployment(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseDeleteWorkloadDeployment
-func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDeleteWorkloadDeploymentRequest) (*ResponseDeleteWorkloadDeployment, *http.Response, error) {
+//  @return ResponseAsyncDeleteWorkloadDeployment
+func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDeleteWorkloadDeploymentRequest) (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteWorkloadDeployment
+		localVarReturnValue  *ResponseAsyncDeleteWorkloadDeployment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.DeleteWorkloadDeployment")
@@ -334,6 +333,28 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -379,28 +400,6 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -476,7 +475,7 @@ ListWorkloadDeployments List Workload Deployments
 List all Workload Deployments related to your account's Workloads.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param workloadId
+ @param workloadId A unique integer value identifying the workload.
  @return ApiListWorkloadDeploymentsRequest
 */
 func (a *WorkloadDeploymentsAPIService) ListWorkloadDeployments(ctx context.Context, workloadId int64) ApiListWorkloadDeploymentsRequest {
@@ -691,8 +690,8 @@ PartialUpdateWorkloadDeployment Partially update a Workload Deployment
 Update one or more fields of an existing Workload Deployment without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param deploymentId
- @param workloadId
+ @param deploymentId A unique integer value identifying the deployment.
+ @param workloadId A unique integer value identifying the workload.
  @return ApiPartialUpdateWorkloadDeploymentRequest
 */
 func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeployment(ctx context.Context, deploymentId int64, workloadId int64) ApiPartialUpdateWorkloadDeploymentRequest {
@@ -897,8 +896,8 @@ RetrieveWorkloadDeployment Retrieve details of a Workload Deployment
 Retrieve details of a specific Workload Deployment in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param deploymentId
- @param workloadId
+ @param deploymentId A unique integer value identifying the deployment.
+ @param workloadId A unique integer value identifying the workload.
  @return ApiRetrieveWorkloadDeploymentRequest
 */
 func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeployment(ctx context.Context, deploymentId int64, workloadId int64) ApiRetrieveWorkloadDeploymentRequest {
@@ -1103,8 +1102,8 @@ UpdateWorkloadDeployment Update a Workload Deployment
 Update an existing Workload Deployment. This replaces the entire Workload Deployment with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param deploymentId
- @param workloadId
+ @param deploymentId A unique integer value identifying the deployment.
+ @param workloadId A unique integer value identifying the workload.
  @return ApiUpdateWorkloadDeploymentRequest
 */
 func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeployment(ctx context.Context, deploymentId int64, workloadId int64) ApiUpdateWorkloadDeploymentRequest {

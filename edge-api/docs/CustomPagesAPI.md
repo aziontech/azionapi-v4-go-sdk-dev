@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCustomPage
 
-> ResponseDeleteCustomPage DeleteCustomPage(ctx, customPageId).Execute()
+> ResponseAsyncDeleteCustomPage DeleteCustomPage(ctx, customPageId).Execute()
 
 Delete a Custom Page
 
@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	customPageId := "customPageId_example" // string | 
+	customPageId := int64(789) // int64 | A unique integer value identifying the custom page.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.DeleteCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCustomPage`: ResponseDeleteCustomPage
+	// response from `DeleteCustomPage`: ResponseAsyncDeleteCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.DeleteCustomPage`: %v\n", resp)
 }
 ```
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **string** |  | 
+**customPageId** | **int64** | A unique integer value identifying the custom page. | 
 
 ### Other Parameters
 
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteCustomPage**](ResponseDeleteCustomPage.md)
+[**ResponseAsyncDeleteCustomPage**](ResponseAsyncDeleteCustomPage.md)
 
 ### Authorization
 
@@ -244,7 +244,7 @@ import (
 )
 
 func main() {
-	customPageId := "customPageId_example" // string | 
+	customPageId := int64(789) // int64 | A unique integer value identifying the custom page.
 	patchedCustomPageRequest := *openapiclient.NewPatchedCustomPageRequest() // PatchedCustomPageRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -265,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **string** |  | 
+**customPageId** | **int64** | A unique integer value identifying the custom page. | 
 
 ### Other Parameters
 
@@ -316,7 +316,7 @@ import (
 )
 
 func main() {
-	customPageId := "customPageId_example" // string | 
+	customPageId := int64(789) // int64 | A unique integer value identifying the custom page.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -337,7 +337,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **string** |  | 
+**customPageId** | **int64** | A unique integer value identifying the custom page. | 
 
 ### Other Parameters
 
@@ -388,7 +388,7 @@ import (
 )
 
 func main() {
-	customPageId := "customPageId_example" // string | 
+	customPageId := int64(789) // int64 | A unique integer value identifying the custom page.
 	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequest{*openapiclient.NewPageRequest("Code_example", *openapiclient.NewPageConnectorRequest(*openapiclient.NewPageConnectorAttributesRequest(int64(123))))}) // CustomPageRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -409,7 +409,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customPageId** | **string** |  | 
+**customPageId** | **int64** | A unique integer value identifying the custom page. | 
 
 ### Other Parameters
 

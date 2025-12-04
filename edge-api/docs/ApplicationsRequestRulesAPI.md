@@ -4,19 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteApplicationRequestRule**](ApplicationsRequestRulesAPI.md#DeleteApplicationRequestRule) | **Delete** /workspace/applications/{application_id}/request_rules/{id} | Delete an Application Request Rule
+[**DeleteApplicationRequestRule**](ApplicationsRequestRulesAPI.md#DeleteApplicationRequestRule) | **Delete** /workspace/applications/{application_id}/request_rules/{rule_id} | Delete an Application Request Rule
 [**EdgeApplicationApiApplicationsRequestRulesCreate**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesCreate) | **Post** /workspace/applications/{application_id}/request_rules | Create an Application Request Rule
 [**EdgeApplicationApiApplicationsRequestRulesList**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesList) | **Get** /workspace/applications/{application_id}/request_rules | List Application Request Rules
 [**EdgeApplicationApiApplicationsRequestRulesOrderUpdate**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesOrderUpdate) | **Put** /workspace/applications/{application_id}/request_rules/order | Ordering Application Request Rules
-[**EdgeApplicationApiApplicationsRequestRulesPartialUpdate**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesPartialUpdate) | **Patch** /workspace/applications/{application_id}/request_rules/{id} | Partially update an Application Request Rule
-[**EdgeApplicationApiApplicationsRequestRulesRetrieve**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesRetrieve) | **Get** /workspace/applications/{application_id}/request_rules/{id} | Retrieve details of an Application Request Rule
-[**EdgeApplicationApiApplicationsRequestRulesUpdate**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesUpdate) | **Put** /workspace/applications/{application_id}/request_rules/{id} | Update an Application Request Rule
+[**EdgeApplicationApiApplicationsRequestRulesPartialUpdate**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesPartialUpdate) | **Patch** /workspace/applications/{application_id}/request_rules/{rule_id} | Partially update an Application Request Rule
+[**EdgeApplicationApiApplicationsRequestRulesRetrieve**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesRetrieve) | **Get** /workspace/applications/{application_id}/request_rules/{rule_id} | Retrieve details of an Application Request Rule
+[**EdgeApplicationApiApplicationsRequestRulesUpdate**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesUpdate) | **Put** /workspace/applications/{application_id}/request_rules/{rule_id} | Update an Application Request Rule
 
 
 
 ## DeleteApplicationRequestRule
 
-> ResponseDeleteApplicationRequestPhaseRuleEngine DeleteApplicationRequestRule(ctx, applicationId, id).Execute()
+> ResponseAsyncDeleteApplicationRequestPhaseRuleEngine DeleteApplicationRequestRule(ctx, applicationId, ruleId).Execute()
 
 Delete an Application Request Rule
 
@@ -35,17 +35,17 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	id := "id_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	ruleId := int64(789) // int64 | A unique integer value identifying the rule.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.DeleteApplicationRequestRule(context.Background(), applicationId, id).Execute()
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.DeleteApplicationRequestRule(context.Background(), applicationId, ruleId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.DeleteApplicationRequestRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteApplicationRequestRule`: ResponseDeleteApplicationRequestPhaseRuleEngine
+	// response from `DeleteApplicationRequestRule`: ResponseAsyncDeleteApplicationRequestPhaseRuleEngine
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.DeleteApplicationRequestRule`: %v\n", resp)
 }
 ```
@@ -56,8 +56,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**id** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**ruleId** | **int64** | A unique integer value identifying the rule. | 
 
 ### Other Parameters
 
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteApplicationRequestPhaseRuleEngine**](ResponseDeleteApplicationRequestPhaseRuleEngine.md)
+[**ResponseAsyncDeleteApplicationRequestPhaseRuleEngine**](ResponseAsyncDeleteApplicationRequestPhaseRuleEngine.md)
 
 ### Authorization
 
@@ -108,7 +108,7 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	applicationRequestPhaseRuleEngineRequest := *openapiclient.NewApplicationRequestPhaseRuleEngineRequest("Name_example", [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{ApplicationRequestPhaseBehaviorAddHeaderRequest: openapiclient.NewApplicationRequestPhaseBehaviorAddHeaderRequest("Type_example", *openapiclient.NewApplicationRuleEngineAddHeaderAttributesRequest("Value_example"))}}) // ApplicationRequestPhaseRuleEngineRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -129,7 +129,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
 
 ### Other Parameters
 
@@ -180,7 +180,7 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, active, description, order, criteria, last_editor, last_modified, behaviors) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -205,7 +205,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
 
 ### Other Parameters
 
@@ -260,7 +260,7 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	applicationRequestPhaseRuleEngineOrderRequest := *openapiclient.NewApplicationRequestPhaseRuleEngineOrderRequest([]int64{int64(123)}) // ApplicationRequestPhaseRuleEngineOrderRequest | 
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: order) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -285,7 +285,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
 
 ### Other Parameters
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ## EdgeApplicationApiApplicationsRequestRulesPartialUpdate
 
-> ResponseApplicationRequestPhaseRuleEngine EdgeApplicationApiApplicationsRequestRulesPartialUpdate(ctx, applicationId, id).PatchedApplicationRequestPhaseRuleEngineRequest(patchedApplicationRequestPhaseRuleEngineRequest).Execute()
+> ResponseApplicationRequestPhaseRuleEngine EdgeApplicationApiApplicationsRequestRulesPartialUpdate(ctx, applicationId, ruleId).PatchedApplicationRequestPhaseRuleEngineRequest(patchedApplicationRequestPhaseRuleEngineRequest).Execute()
 
 Partially update an Application Request Rule
 
@@ -340,13 +340,13 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	id := "id_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	ruleId := int64(789) // int64 | A unique integer value identifying the rule.
 	patchedApplicationRequestPhaseRuleEngineRequest := *openapiclient.NewPatchedApplicationRequestPhaseRuleEngineRequest() // PatchedApplicationRequestPhaseRuleEngineRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesPartialUpdate(context.Background(), applicationId, id).PatchedApplicationRequestPhaseRuleEngineRequest(patchedApplicationRequestPhaseRuleEngineRequest).Execute()
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesPartialUpdate(context.Background(), applicationId, ruleId).PatchedApplicationRequestPhaseRuleEngineRequest(patchedApplicationRequestPhaseRuleEngineRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesPartialUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -362,8 +362,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**id** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**ruleId** | **int64** | A unique integer value identifying the rule. | 
 
 ### Other Parameters
 
@@ -396,7 +396,7 @@ Name | Type | Description  | Notes
 
 ## EdgeApplicationApiApplicationsRequestRulesRetrieve
 
-> ResponseRetrieveApplicationRequestPhaseRuleEngine EdgeApplicationApiApplicationsRequestRulesRetrieve(ctx, applicationId, id).Fields(fields).Execute()
+> ResponseRetrieveApplicationRequestPhaseRuleEngine EdgeApplicationApiApplicationsRequestRulesRetrieve(ctx, applicationId, ruleId).Fields(fields).Execute()
 
 Retrieve details of an Application Request Rule
 
@@ -415,13 +415,13 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	id := "id_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	ruleId := int64(789) // int64 | A unique integer value identifying the rule.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesRetrieve(context.Background(), applicationId, id).Fields(fields).Execute()
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesRetrieve(context.Background(), applicationId, ruleId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesRetrieve``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -437,8 +437,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**id** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**ruleId** | **int64** | A unique integer value identifying the rule. | 
 
 ### Other Parameters
 
@@ -471,7 +471,7 @@ Name | Type | Description  | Notes
 
 ## EdgeApplicationApiApplicationsRequestRulesUpdate
 
-> ResponseApplicationRequestPhaseRuleEngine EdgeApplicationApiApplicationsRequestRulesUpdate(ctx, applicationId, id).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
+> ResponseApplicationRequestPhaseRuleEngine EdgeApplicationApiApplicationsRequestRulesUpdate(ctx, applicationId, ruleId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
 
 Update an Application Request Rule
 
@@ -490,13 +490,13 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	id := "id_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	ruleId := int64(789) // int64 | A unique integer value identifying the rule.
 	applicationRequestPhaseRuleEngineRequest := *openapiclient.NewApplicationRequestPhaseRuleEngineRequest("Name_example", [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{ApplicationRequestPhaseBehaviorAddHeaderRequest: openapiclient.NewApplicationRequestPhaseBehaviorAddHeaderRequest("Type_example", *openapiclient.NewApplicationRuleEngineAddHeaderAttributesRequest("Value_example"))}}) // ApplicationRequestPhaseRuleEngineRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesUpdate(context.Background(), applicationId, id).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesUpdate(context.Background(), applicationId, ruleId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -512,8 +512,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**id** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**ruleId** | **int64** | A unique integer value identifying the rule. | 
 
 ### Other Parameters
 

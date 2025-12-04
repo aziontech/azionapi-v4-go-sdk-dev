@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	applicationFunctionInstanceRequest := *openapiclient.NewApplicationFunctionInstanceRequest("Name_example", int64(123)) // ApplicationFunctionInstanceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -55,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
 
 ### Other Parameters
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApplicationFunctionInstance
 
-> ResponseDeleteApplicationFunctionInstance DeleteApplicationFunctionInstance(ctx, applicationId, functionId).Execute()
+> ResponseAsyncDeleteApplicationFunctionInstance DeleteApplicationFunctionInstance(ctx, applicationId, functionId).Execute()
 
 Delete an Application Function Instance
 
@@ -106,8 +106,8 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	functionId := "functionId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsFunctionAPI.DeleteApplicationFunctionInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteApplicationFunctionInstance`: ResponseDeleteApplicationFunctionInstance
+	// response from `DeleteApplicationFunctionInstance`: ResponseAsyncDeleteApplicationFunctionInstance
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsFunctionAPI.DeleteApplicationFunctionInstance`: %v\n", resp)
 }
 ```
@@ -127,8 +127,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**functionId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**functionId** | **int64** | A unique integer value identifying the function instance. | 
 
 ### Other Parameters
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteApplicationFunctionInstance**](ResponseDeleteApplicationFunctionInstance.md)
+[**ResponseAsyncDeleteApplicationFunctionInstance**](ResponseAsyncDeleteApplicationFunctionInstance.md)
 
 ### Authorization
 
@@ -179,7 +179,7 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -204,7 +204,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
 
 ### Other Parameters
 
@@ -259,8 +259,8 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	functionId := "functionId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
 	patchedApplicationFunctionInstanceRequest := *openapiclient.NewPatchedApplicationFunctionInstanceRequest() // PatchedApplicationFunctionInstanceRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -281,8 +281,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**functionId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**functionId** | **int64** | A unique integer value identifying the function instance. | 
 
 ### Other Parameters
 
@@ -334,8 +334,8 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	functionId := "functionId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -356,8 +356,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**functionId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**functionId** | **int64** | A unique integer value identifying the function instance. | 
 
 ### Other Parameters
 
@@ -409,8 +409,8 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
-	functionId := "functionId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
 	applicationFunctionInstanceRequest := *openapiclient.NewApplicationFunctionInstanceRequest("Name_example", int64(123)) // ApplicationFunctionInstanceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -431,8 +431,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
-**functionId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**functionId** | **int64** | A unique integer value identifying the function instance. | 
 
 ### Other Parameters
 

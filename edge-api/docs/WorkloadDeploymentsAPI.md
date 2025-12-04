@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	workloadId := int64(789) // int64 | 
+	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
 	workloadDeploymentRequest := *openapiclient.NewWorkloadDeploymentRequest("Name_example", *openapiclient.NewDeploymentStrategyDefaultDeploymentStrategyRequest("Type_example", *openapiclient.NewDefaultDeploymentStrategyAttrsRequest(int64(123)))) // WorkloadDeploymentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -55,7 +55,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workloadId** | **int64** |  | 
+**workloadId** | **int64** | A unique integer value identifying the workload. | 
 
 ### Other Parameters
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWorkloadDeployment
 
-> ResponseDeleteWorkloadDeployment DeleteWorkloadDeployment(ctx, deploymentId, workloadId).Execute()
+> ResponseAsyncDeleteWorkloadDeployment DeleteWorkloadDeployment(ctx, deploymentId, workloadId).Execute()
 
 Delete a Workload Deployment
 
@@ -106,8 +106,8 @@ import (
 )
 
 func main() {
-	deploymentId := int64(789) // int64 | 
-	workloadId := int64(789) // int64 | 
+	deploymentId := int64(789) // int64 | A unique integer value identifying the deployment.
+	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.DeleteWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteWorkloadDeployment`: ResponseDeleteWorkloadDeployment
+	// response from `DeleteWorkloadDeployment`: ResponseAsyncDeleteWorkloadDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.DeleteWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -127,8 +127,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deploymentId** | **int64** |  | 
-**workloadId** | **int64** |  | 
+**deploymentId** | **int64** | A unique integer value identifying the deployment. | 
+**workloadId** | **int64** | A unique integer value identifying the workload. | 
 
 ### Other Parameters
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteWorkloadDeployment**](ResponseDeleteWorkloadDeployment.md)
+[**ResponseAsyncDeleteWorkloadDeployment**](ResponseAsyncDeleteWorkloadDeployment.md)
 
 ### Authorization
 
@@ -179,7 +179,7 @@ import (
 )
 
 func main() {
-	workloadId := int64(789) // int64 | 
+	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, active, last_editor, last_modified, current) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -204,7 +204,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workloadId** | **int64** |  | 
+**workloadId** | **int64** | A unique integer value identifying the workload. | 
 
 ### Other Parameters
 
@@ -259,8 +259,8 @@ import (
 )
 
 func main() {
-	deploymentId := int64(789) // int64 | 
-	workloadId := int64(789) // int64 | 
+	deploymentId := int64(789) // int64 | A unique integer value identifying the deployment.
+	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
 	patchedWorkloadDeploymentRequest := *openapiclient.NewPatchedWorkloadDeploymentRequest() // PatchedWorkloadDeploymentRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -281,8 +281,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deploymentId** | **int64** |  | 
-**workloadId** | **int64** |  | 
+**deploymentId** | **int64** | A unique integer value identifying the deployment. | 
+**workloadId** | **int64** | A unique integer value identifying the workload. | 
 
 ### Other Parameters
 
@@ -334,8 +334,8 @@ import (
 )
 
 func main() {
-	deploymentId := int64(789) // int64 | 
-	workloadId := int64(789) // int64 | 
+	deploymentId := int64(789) // int64 | A unique integer value identifying the deployment.
+	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -356,8 +356,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deploymentId** | **int64** |  | 
-**workloadId** | **int64** |  | 
+**deploymentId** | **int64** | A unique integer value identifying the deployment. | 
+**workloadId** | **int64** | A unique integer value identifying the workload. | 
 
 ### Other Parameters
 
@@ -409,8 +409,8 @@ import (
 )
 
 func main() {
-	deploymentId := int64(789) // int64 | 
-	workloadId := int64(789) // int64 | 
+	deploymentId := int64(789) // int64 | A unique integer value identifying the deployment.
+	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
 	workloadDeploymentRequest := *openapiclient.NewWorkloadDeploymentRequest("Name_example", *openapiclient.NewDeploymentStrategyDefaultDeploymentStrategyRequest("Type_example", *openapiclient.NewDefaultDeploymentStrategyAttrsRequest(int64(123)))) // WorkloadDeploymentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -431,8 +431,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deploymentId** | **int64** |  | 
-**workloadId** | **int64** |  | 
+**deploymentId** | **int64** | A unique integer value identifying the deployment. | 
+**workloadId** | **int64** | A unique integer value identifying the workload. | 
 
 ### Other Parameters
 

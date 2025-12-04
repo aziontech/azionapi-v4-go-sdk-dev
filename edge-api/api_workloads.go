@@ -239,7 +239,7 @@ DeleteWorkload Delete an Workload
 Delete a specific Workload in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param workloadId
+ @param workloadId A unique integer value identifying the workload.
  @return ApiDeleteWorkloadRequest
 */
 func (a *WorkloadsAPIService) DeleteWorkload(ctx context.Context, workloadId int64) ApiDeleteWorkloadRequest {
@@ -677,7 +677,7 @@ PartialUpdateWorkload Partially update an Workload
 Update one or more fields of an existing Workload without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param workloadId
+ @param workloadId A unique integer value identifying the workload.
  @return ApiPartialUpdateWorkloadRequest
 */
 func (a *WorkloadsAPIService) PartialUpdateWorkload(ctx context.Context, workloadId int64) ApiPartialUpdateWorkloadRequest {
@@ -879,7 +879,7 @@ RetrieveWorkload Retrieve details of an Workload
 Retrieve details of a specific Workload in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param workloadId
+ @param workloadId A unique integer value identifying the workload.
  @return ApiRetrieveWorkloadRequest
 */
 func (a *WorkloadsAPIService) RetrieveWorkload(ctx context.Context, workloadId int64) ApiRetrieveWorkloadRequest {
@@ -1081,7 +1081,7 @@ UpdateWorkload Update an Workload
 Update an existing Workload. This replaces the entire Workload with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param workloadId
+ @param workloadId A unique integer value identifying the workload.
  @return ApiUpdateWorkloadRequest
 */
 func (a *WorkloadsAPIService) UpdateWorkload(ctx context.Context, workloadId int64) ApiUpdateWorkloadRequest {

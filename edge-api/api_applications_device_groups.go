@@ -26,7 +26,7 @@ type ApplicationsDeviceGroupsAPIService service
 type ApiCreateDeviceGroupRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsDeviceGroupsAPIService
-	applicationId string
+	applicationId int64
 	applicationDeviceGroupsRequest *ApplicationDeviceGroupsRequest
 }
 
@@ -45,10 +45,10 @@ CreateDeviceGroup Create an Applications Device Group
 Create a new Device Group in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
+ @param applicationId A unique integer value identifying the application.
  @return ApiCreateDeviceGroupRequest
 */
-func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroup(ctx context.Context, applicationId string) ApiCreateDeviceGroupRequest {
+func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroup(ctx context.Context, applicationId int64) ApiCreateDeviceGroupRequest {
 	return ApiCreateDeviceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -230,11 +230,11 @@ func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreat
 type ApiDeleteDeviceGroupsRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsDeviceGroupsAPIService
-	applicationId string
-	deviceGroupId string
+	applicationId int64
+	deviceGroupId int64
 }
 
-func (r ApiDeleteDeviceGroupsRequest) Execute() (*ResponseApplicationDeviceGroups, *http.Response, error) {
+func (r ApiDeleteDeviceGroupsRequest) Execute() (*ResponseAsyncDeleteApplicationDeviceGroups, *http.Response, error) {
 	return r.ApiService.DeleteDeviceGroupsExecute(r)
 }
 
@@ -244,11 +244,11 @@ DeleteDeviceGroups Delete an Applications Device Group
 Delete a specific Device Group in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param deviceGroupId
+ @param applicationId A unique integer value identifying the application.
+ @param deviceGroupId A unique integer value identifying the device group.
  @return ApiDeleteDeviceGroupsRequest
 */
-func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroups(ctx context.Context, applicationId string, deviceGroupId string) ApiDeleteDeviceGroupsRequest {
+func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroups(ctx context.Context, applicationId int64, deviceGroupId int64) ApiDeleteDeviceGroupsRequest {
 	return ApiDeleteDeviceGroupsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -258,13 +258,13 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroups(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return ResponseApplicationDeviceGroups
-func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDeleteDeviceGroupsRequest) (*ResponseApplicationDeviceGroups, *http.Response, error) {
+//  @return ResponseAsyncDeleteApplicationDeviceGroups
+func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDeleteDeviceGroupsRequest) (*ResponseAsyncDeleteApplicationDeviceGroups, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseApplicationDeviceGroups
+		localVarReturnValue  *ResponseAsyncDeleteApplicationDeviceGroups
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsDeviceGroupsAPIService.DeleteDeviceGroups")
@@ -427,7 +427,7 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDele
 type ApiListDeviceGroupsRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsDeviceGroupsAPIService
-	applicationId string
+	applicationId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -475,10 +475,10 @@ ListDeviceGroups List Applications Device Groups
 List all Device Groups owned by your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
+ @param applicationId A unique integer value identifying the application.
  @return ApiListDeviceGroupsRequest
 */
-func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroups(ctx context.Context, applicationId string) ApiListDeviceGroupsRequest {
+func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroups(ctx context.Context, applicationId int64) ApiListDeviceGroupsRequest {
 	return ApiListDeviceGroupsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -670,8 +670,8 @@ func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroupsExecute(r ApiListDe
 type ApiPartialUpdateDeviceGroupRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsDeviceGroupsAPIService
-	applicationId string
-	deviceGroupId string
+	applicationId int64
+	deviceGroupId int64
 	patchedApplicationDeviceGroupsRequest *PatchedApplicationDeviceGroupsRequest
 }
 
@@ -690,11 +690,11 @@ PartialUpdateDeviceGroup Partially update an Applications Device Group
 Update one or more fields of an existing Device Group without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param deviceGroupId
+ @param applicationId A unique integer value identifying the application.
+ @param deviceGroupId A unique integer value identifying the device group.
  @return ApiPartialUpdateDeviceGroupRequest
 */
-func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroup(ctx context.Context, applicationId string, deviceGroupId string) ApiPartialUpdateDeviceGroupRequest {
+func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroup(ctx context.Context, applicationId int64, deviceGroupId int64) ApiPartialUpdateDeviceGroupRequest {
 	return ApiPartialUpdateDeviceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -875,8 +875,8 @@ func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroupExecute(r A
 type ApiRetrieveDeviceGroupRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsDeviceGroupsAPIService
-	applicationId string
-	deviceGroupId string
+	applicationId int64
+	deviceGroupId int64
 	fields *string
 }
 
@@ -896,11 +896,11 @@ RetrieveDeviceGroup Retrieve details of a Device Group
 Retrieve details of a specific Device Group in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param deviceGroupId
+ @param applicationId A unique integer value identifying the application.
+ @param deviceGroupId A unique integer value identifying the device group.
  @return ApiRetrieveDeviceGroupRequest
 */
-func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroup(ctx context.Context, applicationId string, deviceGroupId string) ApiRetrieveDeviceGroupRequest {
+func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroup(ctx context.Context, applicationId int64, deviceGroupId int64) ApiRetrieveDeviceGroupRequest {
 	return ApiRetrieveDeviceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1082,8 +1082,8 @@ func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroupExecute(r ApiRet
 type ApiUpdateDeviceGroupRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsDeviceGroupsAPIService
-	applicationId string
-	deviceGroupId string
+	applicationId int64
+	deviceGroupId int64
 	applicationDeviceGroupsRequest *ApplicationDeviceGroupsRequest
 }
 
@@ -1102,11 +1102,11 @@ UpdateDeviceGroup Update an Applications Device Group
 Update an existing Device Group. This replaces the entire Device Group with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param deviceGroupId
+ @param applicationId A unique integer value identifying the application.
+ @param deviceGroupId A unique integer value identifying the device group.
  @return ApiUpdateDeviceGroupRequest
 */
-func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroup(ctx context.Context, applicationId string, deviceGroupId string) ApiUpdateDeviceGroupRequest {
+func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroup(ctx context.Context, applicationId int64, deviceGroupId int64) ApiUpdateDeviceGroupRequest {
 	return ApiUpdateDeviceGroupRequest{
 		ApiService: a,
 		ctx: ctx,

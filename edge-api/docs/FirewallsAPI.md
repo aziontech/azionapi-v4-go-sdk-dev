@@ -35,7 +35,7 @@ import (
 )
 
 func main() {
-	firewallId := "firewallId_example" // string | 
+	firewallId := int64(789) // int64 | A unique integer value identifying the edge firewall.
 	cloneFirewallRequest := *openapiclient.NewCloneFirewallRequest("Name_example") // CloneFirewallRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -56,7 +56,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **string** |  | 
+**firewallId** | **int64** | A unique integer value identifying the edge firewall. | 
 
 ### Other Parameters
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFirewall
 
-> ResponseDeleteFirewall DeleteFirewall(ctx, firewallId).Execute()
+> ResponseAsyncDeleteFirewall DeleteFirewall(ctx, firewallId).Execute()
 
 Delete a Firewall
 
@@ -173,7 +173,7 @@ import (
 )
 
 func main() {
-	firewallId := "firewallId_example" // string | 
+	firewallId := int64(789) // int64 | A unique integer value identifying the edge firewall.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -182,7 +182,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.DeleteFirewall``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteFirewall`: ResponseDeleteFirewall
+	// response from `DeleteFirewall`: ResponseAsyncDeleteFirewall
 	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.DeleteFirewall`: %v\n", resp)
 }
 ```
@@ -193,7 +193,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **string** |  | 
+**firewallId** | **int64** | A unique integer value identifying the edge firewall. | 
 
 ### Other Parameters
 
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteFirewall**](ResponseDeleteFirewall.md)
+[**ResponseAsyncDeleteFirewall**](ResponseAsyncDeleteFirewall.md)
 
 ### Authorization
 
@@ -317,7 +317,7 @@ import (
 )
 
 func main() {
-	firewallId := "firewallId_example" // string | 
+	firewallId := int64(789) // int64 | A unique integer value identifying the edge firewall.
 	patchedFirewallRequest := *openapiclient.NewPatchedFirewallRequest() // PatchedFirewallRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -338,7 +338,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **string** |  | 
+**firewallId** | **int64** | A unique integer value identifying the edge firewall. | 
 
 ### Other Parameters
 
@@ -389,7 +389,7 @@ import (
 )
 
 func main() {
-	firewallId := "firewallId_example" // string | 
+	firewallId := int64(789) // int64 | A unique integer value identifying the edge firewall.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -410,7 +410,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **string** |  | 
+**firewallId** | **int64** | A unique integer value identifying the edge firewall. | 
 
 ### Other Parameters
 
@@ -461,7 +461,7 @@ import (
 )
 
 func main() {
-	firewallId := "firewallId_example" // string | 
+	firewallId := int64(789) // int64 | A unique integer value identifying the edge firewall.
 	firewallRequest := *openapiclient.NewFirewallRequest("Name_example") // FirewallRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -482,7 +482,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **string** |  | 
+**firewallId** | **int64** | A unique integer value identifying the edge firewall. | 
 
 ### Other Parameters
 

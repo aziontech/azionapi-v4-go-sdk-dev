@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteConnector
 
-> ResponseDeleteConnectorPolymorphic DeleteConnector(ctx, connectorId).Execute()
+> ResponseAsyncDeleteConnectorPolymorphic DeleteConnector(ctx, connectorId).Execute()
 
 Delete an Connector
 
@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	connectorId := "connectorId_example" // string | 
+	connectorId := int64(789) // int64 | A unique integer value identifying the edge connector.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorsAPI.DeleteConnector``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteConnector`: ResponseDeleteConnectorPolymorphic
+	// response from `DeleteConnector`: ResponseAsyncDeleteConnectorPolymorphic
 	fmt.Fprintf(os.Stdout, "Response from `ConnectorsAPI.DeleteConnector`: %v\n", resp)
 }
 ```
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectorId** | **string** |  | 
+**connectorId** | **int64** | A unique integer value identifying the edge connector. | 
 
 ### Other Parameters
 
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteConnectorPolymorphic**](ResponseDeleteConnectorPolymorphic.md)
+[**ResponseAsyncDeleteConnectorPolymorphic**](ResponseAsyncDeleteConnectorPolymorphic.md)
 
 ### Authorization
 
@@ -244,7 +244,7 @@ import (
 )
 
 func main() {
-	connectorId := "connectorId_example" // string | 
+	connectorId := int64(789) // int64 | A unique integer value identifying the edge connector.
 	patchedConnectorPolymorphicRequest := openapiclient.PatchedConnectorPolymorphicRequest{PatchedConnectorHTTPRequest: openapiclient.NewPatchedConnectorHTTPRequest()} // PatchedConnectorPolymorphicRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -265,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectorId** | **string** |  | 
+**connectorId** | **int64** | A unique integer value identifying the edge connector. | 
 
 ### Other Parameters
 
@@ -316,7 +316,7 @@ import (
 )
 
 func main() {
-	connectorId := "connectorId_example" // string | 
+	connectorId := int64(789) // int64 | A unique integer value identifying the edge connector.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -337,7 +337,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectorId** | **string** |  | 
+**connectorId** | **int64** | A unique integer value identifying the edge connector. | 
 
 ### Other Parameters
 
@@ -388,7 +388,7 @@ import (
 )
 
 func main() {
-	connectorId := "connectorId_example" // string | 
+	connectorId := int64(789) // int64 | A unique integer value identifying the edge connector.
 	connectorPolymorphicRequest := openapiclient.ConnectorPolymorphicRequest{ConnectorHTTPRequest: openapiclient.NewConnectorHTTPRequest("Name_example", "Type_example", *openapiclient.NewConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // ConnectorPolymorphicRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -409,7 +409,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectorId** | **string** |  | 
+**connectorId** | **int64** | A unique integer value identifying the edge connector. | 
 
 ### Other Parameters
 

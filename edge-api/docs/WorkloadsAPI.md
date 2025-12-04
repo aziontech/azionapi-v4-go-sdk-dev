@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	workloadId := int64(789) // int64 | 
+	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workloadId** | **int64** |  | 
+**workloadId** | **int64** | A unique integer value identifying the workload. | 
 
 ### Other Parameters
 
@@ -244,7 +244,7 @@ import (
 )
 
 func main() {
-	workloadId := int64(789) // int64 | 
+	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
 	patchedWorkloadRequest := *openapiclient.NewPatchedWorkloadRequest() // PatchedWorkloadRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -265,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workloadId** | **int64** |  | 
+**workloadId** | **int64** | A unique integer value identifying the workload. | 
 
 ### Other Parameters
 
@@ -316,7 +316,7 @@ import (
 )
 
 func main() {
-	workloadId := int64(789) // int64 | 
+	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -337,7 +337,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workloadId** | **int64** |  | 
+**workloadId** | **int64** | A unique integer value identifying the workload. | 
 
 ### Other Parameters
 
@@ -388,7 +388,7 @@ import (
 )
 
 func main() {
-	workloadId := int64(789) // int64 | 
+	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
 	workloadRequest := *openapiclient.NewWorkloadRequest("Name_example") // WorkloadRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -409,7 +409,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**workloadId** | **int64** |  | 
+**workloadId** | **int64** | A unique integer value identifying the workload. | 
 
 ### Other Parameters
 

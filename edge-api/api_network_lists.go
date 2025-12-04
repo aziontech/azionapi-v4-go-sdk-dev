@@ -226,10 +226,10 @@ func (a *NetworkListsAPIService) CreateNetworkListExecute(r ApiCreateNetworkList
 type ApiDeleteNetworkListRequest struct {
 	ctx context.Context
 	ApiService *NetworkListsAPIService
-	networkListId string
+	networkListId int64
 }
 
-func (r ApiDeleteNetworkListRequest) Execute() (*ResponseDeleteNetworkListDetail, *http.Response, error) {
+func (r ApiDeleteNetworkListRequest) Execute() (*ResponseAsyncDeleteNetworkListDetail, *http.Response, error) {
 	return r.ApiService.DeleteNetworkListExecute(r)
 }
 
@@ -239,10 +239,10 @@ DeleteNetworkList Delete a Network List
 Delete a specific Network List in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkListId
+ @param networkListId A unique integer value identifying the network list.
  @return ApiDeleteNetworkListRequest
 */
-func (a *NetworkListsAPIService) DeleteNetworkList(ctx context.Context, networkListId string) ApiDeleteNetworkListRequest {
+func (a *NetworkListsAPIService) DeleteNetworkList(ctx context.Context, networkListId int64) ApiDeleteNetworkListRequest {
 	return ApiDeleteNetworkListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -251,13 +251,13 @@ func (a *NetworkListsAPIService) DeleteNetworkList(ctx context.Context, networkL
 }
 
 // Execute executes the request
-//  @return ResponseDeleteNetworkListDetail
-func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkListRequest) (*ResponseDeleteNetworkListDetail, *http.Response, error) {
+//  @return ResponseAsyncDeleteNetworkListDetail
+func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkListRequest) (*ResponseAsyncDeleteNetworkListDetail, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteNetworkListDetail
+		localVarReturnValue  *ResponseAsyncDeleteNetworkListDetail
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkListsAPIService.DeleteNetworkList")
@@ -658,7 +658,7 @@ func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRe
 type ApiPartialUpdateNetworkListRequest struct {
 	ctx context.Context
 	ApiService *NetworkListsAPIService
-	networkListId string
+	networkListId int64
 	patchedNetworkListDetailRequest *PatchedNetworkListDetailRequest
 }
 
@@ -677,10 +677,10 @@ PartialUpdateNetworkList Partially update a Network List
 Update one or more fields of an existing Network List without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkListId
+ @param networkListId A unique integer value identifying the network list.
  @return ApiPartialUpdateNetworkListRequest
 */
-func (a *NetworkListsAPIService) PartialUpdateNetworkList(ctx context.Context, networkListId string) ApiPartialUpdateNetworkListRequest {
+func (a *NetworkListsAPIService) PartialUpdateNetworkList(ctx context.Context, networkListId int64) ApiPartialUpdateNetworkListRequest {
 	return ApiPartialUpdateNetworkListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -859,7 +859,7 @@ func (a *NetworkListsAPIService) PartialUpdateNetworkListExecute(r ApiPartialUpd
 type ApiRetrieveNetworkListRequest struct {
 	ctx context.Context
 	ApiService *NetworkListsAPIService
-	networkListId string
+	networkListId int64
 	fields *string
 	ipv4 *bool
 	ipv6 *bool
@@ -893,10 +893,10 @@ RetrieveNetworkList Retrieve details of a Network List
 Retrieve details of a specific Network List in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkListId
+ @param networkListId A unique integer value identifying the network list.
  @return ApiRetrieveNetworkListRequest
 */
-func (a *NetworkListsAPIService) RetrieveNetworkList(ctx context.Context, networkListId string) ApiRetrieveNetworkListRequest {
+func (a *NetworkListsAPIService) RetrieveNetworkList(ctx context.Context, networkListId int64) ApiRetrieveNetworkListRequest {
 	return ApiRetrieveNetworkListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1082,7 +1082,7 @@ func (a *NetworkListsAPIService) RetrieveNetworkListExecute(r ApiRetrieveNetwork
 type ApiUpdateNetworkListRequest struct {
 	ctx context.Context
 	ApiService *NetworkListsAPIService
-	networkListId string
+	networkListId int64
 	networkListDetailRequest *NetworkListDetailRequest
 }
 
@@ -1101,10 +1101,10 @@ UpdateNetworkList Update a Network List
 Update an existing Network List. This replaces the entire Network List with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param networkListId
+ @param networkListId A unique integer value identifying the network list.
  @return ApiUpdateNetworkListRequest
 */
-func (a *NetworkListsAPIService) UpdateNetworkList(ctx context.Context, networkListId string) ApiUpdateNetworkListRequest {
+func (a *NetworkListsAPIService) UpdateNetworkList(ctx context.Context, networkListId int64) ApiUpdateNetworkListRequest {
 	return ApiUpdateNetworkListRequest{
 		ApiService: a,
 		ctx: ctx,

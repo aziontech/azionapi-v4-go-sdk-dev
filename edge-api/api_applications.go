@@ -26,7 +26,7 @@ type ApplicationsAPIService service
 type ApiCloneApplicationRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsAPIService
-	applicationId string
+	applicationId int64
 	cloneApplicationRequest *CloneApplicationRequest
 }
 
@@ -35,7 +35,7 @@ func (r ApiCloneApplicationRequest) CloneApplicationRequest(cloneApplicationRequ
 	return r
 }
 
-func (r ApiCloneApplicationRequest) Execute() (*ResponseRetrieveApplication, *http.Response, error) {
+func (r ApiCloneApplicationRequest) Execute() (*ResponseApplication, *http.Response, error) {
 	return r.ApiService.CloneApplicationExecute(r)
 }
 
@@ -45,10 +45,10 @@ CloneApplication Clone an Application
 Create a new Application by performing a deep copy of an existing Application, including its Cache Settings, Origins, Error Responses, Function Instances, and Rules Engine.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
+ @param applicationId A unique integer value identifying the application.
  @return ApiCloneApplicationRequest
 */
-func (a *ApplicationsAPIService) CloneApplication(ctx context.Context, applicationId string) ApiCloneApplicationRequest {
+func (a *ApplicationsAPIService) CloneApplication(ctx context.Context, applicationId int64) ApiCloneApplicationRequest {
 	return ApiCloneApplicationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -57,13 +57,13 @@ func (a *ApplicationsAPIService) CloneApplication(ctx context.Context, applicati
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveApplication
-func (a *ApplicationsAPIService) CloneApplicationExecute(r ApiCloneApplicationRequest) (*ResponseRetrieveApplication, *http.Response, error) {
+//  @return ResponseApplication
+func (a *ApplicationsAPIService) CloneApplicationExecute(r ApiCloneApplicationRequest) (*ResponseApplication, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveApplication
+		localVarReturnValue  *ResponseApplication
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsAPIService.CloneApplication")
@@ -136,6 +136,28 @@ func (a *ApplicationsAPIService) CloneApplicationExecute(r ApiCloneApplicationRe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -189,29 +211,6 @@ func (a *ApplicationsAPIService) CloneApplicationExecute(r ApiCloneApplicationRe
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -434,7 +433,7 @@ type ApiDeleteApplicationRequest struct {
 	applicationId int64
 }
 
-func (r ApiDeleteApplicationRequest) Execute() (*ResponseDeleteApplication, *http.Response, error) {
+func (r ApiDeleteApplicationRequest) Execute() (*ResponseAsyncDeleteApplication, *http.Response, error) {
 	return r.ApiService.DeleteApplicationExecute(r)
 }
 
@@ -456,13 +455,13 @@ func (a *ApplicationsAPIService) DeleteApplication(ctx context.Context, applicat
 }
 
 // Execute executes the request
-//  @return ResponseDeleteApplication
-func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplicationRequest) (*ResponseDeleteApplication, *http.Response, error) {
+//  @return ResponseAsyncDeleteApplication
+func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplicationRequest) (*ResponseAsyncDeleteApplication, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteApplication
+		localVarReturnValue  *ResponseAsyncDeleteApplication
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsAPIService.DeleteApplication")

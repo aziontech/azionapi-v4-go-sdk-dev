@@ -26,11 +26,11 @@ type ApplicationsRequestRulesAPIService service
 type ApiDeleteApplicationRequestRuleRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsRequestRulesAPIService
-	applicationId string
-	id string
+	applicationId int64
+	ruleId int64
 }
 
-func (r ApiDeleteApplicationRequestRuleRequest) Execute() (*ResponseDeleteApplicationRequestPhaseRuleEngine, *http.Response, error) {
+func (r ApiDeleteApplicationRequestRuleRequest) Execute() (*ResponseAsyncDeleteApplicationRequestPhaseRuleEngine, *http.Response, error) {
 	return r.ApiService.DeleteApplicationRequestRuleExecute(r)
 }
 
@@ -40,27 +40,27 @@ DeleteApplicationRequestRule Delete an Application Request Rule
 Delete a specific Rule in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param id
+ @param applicationId A unique integer value identifying the application.
+ @param ruleId A unique integer value identifying the rule.
  @return ApiDeleteApplicationRequestRuleRequest
 */
-func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRule(ctx context.Context, applicationId string, id string) ApiDeleteApplicationRequestRuleRequest {
+func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRule(ctx context.Context, applicationId int64, ruleId int64) ApiDeleteApplicationRequestRuleRequest {
 	return ApiDeleteApplicationRequestRuleRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
-		id: id,
+		ruleId: ruleId,
 	}
 }
 
 // Execute executes the request
-//  @return ResponseDeleteApplicationRequestPhaseRuleEngine
-func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute(r ApiDeleteApplicationRequestRuleRequest) (*ResponseDeleteApplicationRequestPhaseRuleEngine, *http.Response, error) {
+//  @return ResponseAsyncDeleteApplicationRequestPhaseRuleEngine
+func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute(r ApiDeleteApplicationRequestRuleRequest) (*ResponseAsyncDeleteApplicationRequestPhaseRuleEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteApplicationRequestPhaseRuleEngine
+		localVarReturnValue  *ResponseAsyncDeleteApplicationRequestPhaseRuleEngine
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsRequestRulesAPIService.DeleteApplicationRequestRule")
@@ -68,9 +68,9 @@ func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{application_id}/request_rules/{id}"
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/request_rules/{rule_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -223,7 +223,7 @@ func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute
 type ApiEdgeApplicationApiApplicationsRequestRulesCreateRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsRequestRulesAPIService
-	applicationId string
+	applicationId int64
 	applicationRequestPhaseRuleEngineRequest *ApplicationRequestPhaseRuleEngineRequest
 }
 
@@ -242,10 +242,10 @@ EdgeApplicationApiApplicationsRequestRulesCreate Create an Application Request R
 Create a new Rule for a specific Application in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
+ @param applicationId A unique integer value identifying the application.
  @return ApiEdgeApplicationApiApplicationsRequestRulesCreateRequest
 */
-func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsRequestRulesCreate(ctx context.Context, applicationId string) ApiEdgeApplicationApiApplicationsRequestRulesCreateRequest {
+func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsRequestRulesCreate(ctx context.Context, applicationId int64) ApiEdgeApplicationApiApplicationsRequestRulesCreateRequest {
 	return ApiEdgeApplicationApiApplicationsRequestRulesCreateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -427,7 +427,7 @@ func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsReque
 type ApiEdgeApplicationApiApplicationsRequestRulesListRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsRequestRulesAPIService
-	applicationId string
+	applicationId int64
 	fields *string
 	ordering *string
 	page *int64
@@ -475,10 +475,10 @@ EdgeApplicationApiApplicationsRequestRulesList List Application Request Rules
 List all Rules for a specific Application owned by your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
+ @param applicationId A unique integer value identifying the application.
  @return ApiEdgeApplicationApiApplicationsRequestRulesListRequest
 */
-func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsRequestRulesList(ctx context.Context, applicationId string) ApiEdgeApplicationApiApplicationsRequestRulesListRequest {
+func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsRequestRulesList(ctx context.Context, applicationId int64) ApiEdgeApplicationApiApplicationsRequestRulesListRequest {
 	return ApiEdgeApplicationApiApplicationsRequestRulesListRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -670,7 +670,7 @@ func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsReque
 type ApiEdgeApplicationApiApplicationsRequestRulesOrderUpdateRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsRequestRulesAPIService
-	applicationId string
+	applicationId int64
 	applicationRequestPhaseRuleEngineOrderRequest *ApplicationRequestPhaseRuleEngineOrderRequest
 	ordering *string
 	page *int64
@@ -717,10 +717,10 @@ EdgeApplicationApiApplicationsRequestRulesOrderUpdate Ordering Application Reque
 Reoder all Rules for a specific Application owned by your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
+ @param applicationId A unique integer value identifying the application.
  @return ApiEdgeApplicationApiApplicationsRequestRulesOrderUpdateRequest
 */
-func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsRequestRulesOrderUpdate(ctx context.Context, applicationId string) ApiEdgeApplicationApiApplicationsRequestRulesOrderUpdateRequest {
+func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsRequestRulesOrderUpdate(ctx context.Context, applicationId int64) ApiEdgeApplicationApiApplicationsRequestRulesOrderUpdateRequest {
 	return ApiEdgeApplicationApiApplicationsRequestRulesOrderUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -914,8 +914,8 @@ func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsReque
 type ApiEdgeApplicationApiApplicationsRequestRulesPartialUpdateRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsRequestRulesAPIService
-	applicationId string
-	id string
+	applicationId int64
+	ruleId int64
 	patchedApplicationRequestPhaseRuleEngineRequest *PatchedApplicationRequestPhaseRuleEngineRequest
 }
 
@@ -934,16 +934,16 @@ EdgeApplicationApiApplicationsRequestRulesPartialUpdate Partially update an Appl
 Update one or more fields of an existing Application Rule  without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param id
+ @param applicationId A unique integer value identifying the application.
+ @param ruleId A unique integer value identifying the rule.
  @return ApiEdgeApplicationApiApplicationsRequestRulesPartialUpdateRequest
 */
-func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsRequestRulesPartialUpdate(ctx context.Context, applicationId string, id string) ApiEdgeApplicationApiApplicationsRequestRulesPartialUpdateRequest {
+func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsRequestRulesPartialUpdate(ctx context.Context, applicationId int64, ruleId int64) ApiEdgeApplicationApiApplicationsRequestRulesPartialUpdateRequest {
 	return ApiEdgeApplicationApiApplicationsRequestRulesPartialUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
-		id: id,
+		ruleId: ruleId,
 	}
 }
 
@@ -962,9 +962,9 @@ func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{application_id}/request_rules/{id}"
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/request_rules/{rule_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1119,8 +1119,8 @@ func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsReque
 type ApiEdgeApplicationApiApplicationsRequestRulesRetrieveRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsRequestRulesAPIService
-	applicationId string
-	id string
+	applicationId int64
+	ruleId int64
 	fields *string
 }
 
@@ -1140,16 +1140,16 @@ EdgeApplicationApiApplicationsRequestRulesRetrieve Retrieve details of an Applic
 Retrieve details of a specific Rule in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param id
+ @param applicationId A unique integer value identifying the application.
+ @param ruleId A unique integer value identifying the rule.
  @return ApiEdgeApplicationApiApplicationsRequestRulesRetrieveRequest
 */
-func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsRequestRulesRetrieve(ctx context.Context, applicationId string, id string) ApiEdgeApplicationApiApplicationsRequestRulesRetrieveRequest {
+func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsRequestRulesRetrieve(ctx context.Context, applicationId int64, ruleId int64) ApiEdgeApplicationApiApplicationsRequestRulesRetrieveRequest {
 	return ApiEdgeApplicationApiApplicationsRequestRulesRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
-		id: id,
+		ruleId: ruleId,
 	}
 }
 
@@ -1168,9 +1168,9 @@ func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{application_id}/request_rules/{id}"
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/request_rules/{rule_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1326,8 +1326,8 @@ func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsReque
 type ApiEdgeApplicationApiApplicationsRequestRulesUpdateRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsRequestRulesAPIService
-	applicationId string
-	id string
+	applicationId int64
+	ruleId int64
 	applicationRequestPhaseRuleEngineRequest *ApplicationRequestPhaseRuleEngineRequest
 }
 
@@ -1346,16 +1346,16 @@ EdgeApplicationApiApplicationsRequestRulesUpdate Update an Application Request R
 Update an existing Rule. This replaces the entire Rule with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId
- @param id
+ @param applicationId A unique integer value identifying the application.
+ @param ruleId A unique integer value identifying the rule.
  @return ApiEdgeApplicationApiApplicationsRequestRulesUpdateRequest
 */
-func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsRequestRulesUpdate(ctx context.Context, applicationId string, id string) ApiEdgeApplicationApiApplicationsRequestRulesUpdateRequest {
+func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsRequestRulesUpdate(ctx context.Context, applicationId int64, ruleId int64) ApiEdgeApplicationApiApplicationsRequestRulesUpdateRequest {
 	return ApiEdgeApplicationApiApplicationsRequestRulesUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
-		id: id,
+		ruleId: ruleId,
 	}
 }
 
@@ -1374,9 +1374,9 @@ func (a *ApplicationsRequestRulesAPIService) EdgeApplicationApiApplicationsReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{application_id}/request_rules/{id}"
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/request_rules/{rule_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

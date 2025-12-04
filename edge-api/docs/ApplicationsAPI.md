@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CloneApplication
 
-> ResponseRetrieveApplication CloneApplication(ctx, applicationId).CloneApplicationRequest(cloneApplicationRequest).Execute()
+> ResponseApplication CloneApplication(ctx, applicationId).CloneApplicationRequest(cloneApplicationRequest).Execute()
 
 Clone an Application
 
@@ -35,7 +35,7 @@ import (
 )
 
 func main() {
-	applicationId := "applicationId_example" // string | 
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	cloneApplicationRequest := *openapiclient.NewCloneApplicationRequest("Name_example") // CloneApplicationRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -45,7 +45,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.CloneApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CloneApplication`: ResponseRetrieveApplication
+	// response from `CloneApplication`: ResponseApplication
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.CloneApplication`: %v\n", resp)
 }
 ```
@@ -56,7 +56,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **string** |  | 
+**applicationId** | **int64** | A unique integer value identifying the application. | 
 
 ### Other Parameters
 
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveApplication**](ResponseRetrieveApplication.md)
+[**ResponseApplication**](ResponseApplication.md)
 
 ### Authorization
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApplication
 
-> ResponseDeleteApplication DeleteApplication(ctx, applicationId).Execute()
+> ResponseAsyncDeleteApplication DeleteApplication(ctx, applicationId).Execute()
 
 Delete an Application
 
@@ -182,7 +182,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.DeleteApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteApplication`: ResponseDeleteApplication
+	// response from `DeleteApplication`: ResponseAsyncDeleteApplication
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.DeleteApplication`: %v\n", resp)
 }
 ```
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteApplication**](ResponseDeleteApplication.md)
+[**ResponseAsyncDeleteApplication**](ResponseAsyncDeleteApplication.md)
 
 ### Authorization
 
