@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateBucket**](StorageBucketsAPI.md#CreateBucket) | **Post** /edge_storage/buckets | Create a new bucket
 [**DeleteBucket**](StorageBucketsAPI.md#DeleteBucket) | **Delete** /edge_storage/buckets/{name} | Delete a bucket
 [**ListBuckets**](StorageBucketsAPI.md#ListBuckets) | **Get** /edge_storage/buckets | List buckets
-[**RetrieveBucket**](StorageBucketsAPI.md#RetrieveBucket) | **Get** /edge_storage/buckets/{name} | Retrieve details from a bucket
+[**RetrieveBucket**](StorageBucketsAPI.md#RetrieveBucket) | **Get** /edge_storage/buckets/{name} | Retrieve a bucket
 [**UpdateBucket**](StorageBucketsAPI.md#UpdateBucket) | **Patch** /edge_storage/buckets/{name} | Update bucket info
 
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## DeleteBucket
 
-> ResponseDeleteBucketCreate DeleteBucket(ctx, name).Execute()
+> ResponseAsyncDeleteBucketCreate DeleteBucket(ctx, name).Execute()
 
 Delete a bucket
 
@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	name := "name_example" // string | 
+	name := "name_example" // string | The name of the bucket
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -108,7 +108,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageBucketsAPI.DeleteBucket``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteBucket`: ResponseDeleteBucketCreate
+	// response from `DeleteBucket`: ResponseAsyncDeleteBucketCreate
 	fmt.Fprintf(os.Stdout, "Response from `StorageBucketsAPI.DeleteBucket`: %v\n", resp)
 }
 ```
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** |  | 
+**name** | **string** | The name of the bucket | 
 
 ### Other Parameters
 
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteBucketCreate**](ResponseDeleteBucketCreate.md)
+[**ResponseAsyncDeleteBucketCreate**](ResponseAsyncDeleteBucketCreate.md)
 
 ### Authorization
 
@@ -224,9 +224,9 @@ Name | Type | Description  | Notes
 
 ## RetrieveBucket
 
-> ResponseRetrieveBucket RetrieveBucket(ctx, name).Fields(fields).Execute()
+> ResponseBucketCreate RetrieveBucket(ctx, name).Fields(fields).Execute()
 
-Retrieve details from a bucket
+Retrieve a bucket
 
 
 
@@ -243,7 +243,7 @@ import (
 )
 
 func main() {
-	name := "name_example" // string | 
+	name := "name_example" // string | The name of the bucket
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -253,7 +253,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageBucketsAPI.RetrieveBucket``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveBucket`: ResponseRetrieveBucket
+	// response from `RetrieveBucket`: ResponseBucketCreate
 	fmt.Fprintf(os.Stdout, "Response from `StorageBucketsAPI.RetrieveBucket`: %v\n", resp)
 }
 ```
@@ -264,7 +264,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** |  | 
+**name** | **string** | The name of the bucket | 
 
 ### Other Parameters
 
@@ -278,7 +278,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveBucket**](ResponseRetrieveBucket.md)
+[**ResponseBucketCreate**](ResponseBucketCreate.md)
 
 ### Authorization
 
@@ -315,7 +315,7 @@ import (
 )
 
 func main() {
-	name := "name_example" // string | 
+	name := "name_example" // string | The name of the bucket
 	patchedBucketRequest := *openapiclient.NewPatchedBucketRequest() // PatchedBucketRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -336,7 +336,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** |  | 
+**name** | **string** | The name of the bucket | 
 
 ### Other Parameters
 

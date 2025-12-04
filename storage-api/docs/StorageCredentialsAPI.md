@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateCredential**](StorageCredentialsAPI.md#CreateCredential) | **Post** /edge_storage/credentials | Create a new credential
-[**DeleteCredential**](StorageCredentialsAPI.md#DeleteCredential) | **Delete** /edge_storage/credentials/{id} | Delete a credential
+[**DeleteCredential**](StorageCredentialsAPI.md#DeleteCredential) | **Delete** /edge_storage/credentials/{credential_id} | Delete a credential
 [**ListCredentials**](StorageCredentialsAPI.md#ListCredentials) | **Get** /edge_storage/credentials | List credentials
-[**RetrieveCredential**](StorageCredentialsAPI.md#RetrieveCredential) | **Get** /edge_storage/credentials/{id} | Retrieve details from a credential
+[**RetrieveCredential**](StorageCredentialsAPI.md#RetrieveCredential) | **Get** /edge_storage/credentials/{credential_id} | Retrieve details from a credential
 
 
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCredential
 
-> ResponseDeleteCredential DeleteCredential(ctx, id).Execute()
+> ResponseAsyncDeleteCredential DeleteCredential(ctx, credentialId).Execute()
 
 Delete a credential
 
@@ -98,16 +98,16 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	credentialId := int64(789) // int64 | The unique identifier of the credential
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageCredentialsAPI.DeleteCredential(context.Background(), id).Execute()
+	resp, r, err := apiClient.StorageCredentialsAPI.DeleteCredential(context.Background(), credentialId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageCredentialsAPI.DeleteCredential``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCredential`: ResponseDeleteCredential
+	// response from `DeleteCredential`: ResponseAsyncDeleteCredential
 	fmt.Fprintf(os.Stdout, "Response from `StorageCredentialsAPI.DeleteCredential`: %v\n", resp)
 }
 ```
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**credentialId** | **int64** | The unique identifier of the credential | 
 
 ### Other Parameters
 
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteCredential**](ResponseDeleteCredential.md)
+[**ResponseAsyncDeleteCredential**](ResponseAsyncDeleteCredential.md)
 
 ### Authorization
 
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveCredential
 
-> ResponseRetrieveCredential RetrieveCredential(ctx, id).Fields(fields).Execute()
+> ResponseCredential RetrieveCredential(ctx, credentialId).Fields(fields).Execute()
 
 Retrieve details from a credential
 
@@ -242,17 +242,17 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	credentialId := int64(789) // int64 | The unique identifier of the credential
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageCredentialsAPI.RetrieveCredential(context.Background(), id).Fields(fields).Execute()
+	resp, r, err := apiClient.StorageCredentialsAPI.RetrieveCredential(context.Background(), credentialId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageCredentialsAPI.RetrieveCredential``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveCredential`: ResponseRetrieveCredential
+	// response from `RetrieveCredential`: ResponseCredential
 	fmt.Fprintf(os.Stdout, "Response from `StorageCredentialsAPI.RetrieveCredential`: %v\n", resp)
 }
 ```
@@ -263,7 +263,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**credentialId** | **int64** | The unique identifier of the credential | 
 
 ### Other Parameters
 
@@ -277,7 +277,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveCredential**](ResponseRetrieveCredential.md)
+[**ResponseCredential**](ResponseCredential.md)
 
 ### Authorization
 

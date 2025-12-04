@@ -78,15 +78,86 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*StorageBucketsAPI* | [**CreateBucket**](docs/StorageBucketsAPI.md#createbucket) | **Post** /edge_storage/buckets | Create a new bucket
+*StorageBucketsAPI* | [**DeleteBucket**](docs/StorageBucketsAPI.md#deletebucket) | **Delete** /edge_storage/buckets/{name} | Delete a bucket
+*StorageBucketsAPI* | [**ListBuckets**](docs/StorageBucketsAPI.md#listbuckets) | **Get** /edge_storage/buckets | List buckets
+*StorageBucketsAPI* | [**RetrieveBucket**](docs/StorageBucketsAPI.md#retrievebucket) | **Get** /edge_storage/buckets/{name} | Retrieve a bucket
+*StorageBucketsAPI* | [**UpdateBucket**](docs/StorageBucketsAPI.md#updatebucket) | **Patch** /edge_storage/buckets/{name} | Update bucket info
+*StorageCredentialsAPI* | [**CreateCredential**](docs/StorageCredentialsAPI.md#createcredential) | **Post** /edge_storage/credentials | Create a new credential
+*StorageCredentialsAPI* | [**DeleteCredential**](docs/StorageCredentialsAPI.md#deletecredential) | **Delete** /edge_storage/credentials/{credential_id} | Delete a credential
+*StorageCredentialsAPI* | [**ListCredentials**](docs/StorageCredentialsAPI.md#listcredentials) | **Get** /edge_storage/credentials | List credentials
+*StorageCredentialsAPI* | [**RetrieveCredential**](docs/StorageCredentialsAPI.md#retrievecredential) | **Get** /edge_storage/credentials/{credential_id} | Retrieve details from a credential
+*StorageObjectsAPI* | [**CreateObjectKey**](docs/StorageObjectsAPI.md#createobjectkey) | **Post** /edge_storage/buckets/{bucket_name}/objects/{object_key} | Create new object key.
+*StorageObjectsAPI* | [**DeleteObjectKey**](docs/StorageObjectsAPI.md#deleteobjectkey) | **Delete** /edge_storage/buckets/{bucket_name}/objects/{object_key} | Delete object key
+*StorageObjectsAPI* | [**DownloadObject**](docs/StorageObjectsAPI.md#downloadobject) | **Get** /edge_storage/buckets/{bucket_name}/objects/{object_key} | Download object
+*StorageObjectsAPI* | [**ListObjects**](docs/StorageObjectsAPI.md#listobjects) | **Get** /edge_storage/buckets/{bucket_name}/objects | List objects from bucket
+*StorageObjectsAPI* | [**UpdateObjectKey**](docs/StorageObjectsAPI.md#updateobjectkey) | **Put** /edge_storage/buckets/{bucket_name}/objects/{object_key} | Update the object key.
 
 
 ## Documentation For Models
 
+ - [Bucket](docs/Bucket.md)
+ - [BucketCreate](docs/BucketCreate.md)
+ - [BucketCreateRequest](docs/BucketCreateRequest.md)
+ - [BucketObject](docs/BucketObject.md)
+ - [Credential](docs/Credential.md)
+ - [CredentialCreateRequest](docs/CredentialCreateRequest.md)
+ - [JSONAPIErrorObject](docs/JSONAPIErrorObject.md)
+ - [JSONAPIErrorResponse](docs/JSONAPIErrorResponse.md)
+ - [JSONAPIErrorSource](docs/JSONAPIErrorSource.md)
+ - [ObjectResponseAsyncData](docs/ObjectResponseAsyncData.md)
+ - [ObjectResponseData](docs/ObjectResponseData.md)
+ - [PaginatedBucketList](docs/PaginatedBucketList.md)
+ - [PaginatedResponseListCredentialList](docs/PaginatedResponseListCredentialList.md)
+ - [PatchedBucketRequest](docs/PatchedBucketRequest.md)
+ - [ResponseAsyncBucketCreate](docs/ResponseAsyncBucketCreate.md)
+ - [ResponseAsyncCredential](docs/ResponseAsyncCredential.md)
+ - [ResponseAsyncDeleteBucketCreate](docs/ResponseAsyncDeleteBucketCreate.md)
+ - [ResponseAsyncDeleteBucketObject](docs/ResponseAsyncDeleteBucketObject.md)
+ - [ResponseAsyncDeleteCredential](docs/ResponseAsyncDeleteCredential.md)
+ - [ResponseBucketCreate](docs/ResponseBucketCreate.md)
+ - [ResponseBucketObject](docs/ResponseBucketObject.md)
+ - [ResponseCredential](docs/ResponseCredential.md)
+ - [ResponseListCredential](docs/ResponseListCredential.md)
+ - [SuccessObjectOperation](docs/SuccessObjectOperation.md)
+ - [SuccessObjectOperationAsync](docs/SuccessObjectOperationAsync.md)
 
 
 ## Documentation For Authorization
 
-Endpoints do not require authorization.
+
+Authentication schemes defined for the API:
+### BearerAuth
+
+- **Type**: HTTP Bearer token authentication
+
+Example
+
+```go
+auth := context.WithValue(context.Background(), storageapi.ContextAccessToken, "BEARER_TOKEN_STRING")
+r, err := client.Service.Operation(auth, args)
+```
+
+### TokenAuth
+
+- **Type**: API key
+- **API key parameter name**: Authorization
+- **Location**: HTTP header
+
+Note, each API key must be added to a map of `map[string]APIKey` where the key is: TokenAuth and passed in as the auth context for each request.
+
+Example
+
+```go
+auth := context.WithValue(
+		context.Background(),
+		storageapi.ContextAPIKeys,
+		map[string]storageapi.APIKey{
+			"TokenAuth": {Key: "API_KEY_STRING"},
+		},
+	)
+r, err := client.Service.Operation(auth, args)
+```
 
 
 ## Documentation for Utility Methods
@@ -106,5 +177,6 @@ Each of these functions takes a value of the given basic type and returns a poin
 * `PtrTime`
 
 ## Author
+
 
 
