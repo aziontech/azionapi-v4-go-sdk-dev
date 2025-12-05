@@ -1,5 +1,5 @@
 /*
-Billing API
+billing-api
 
 REST API OpenAPI documentation for the Billing API
 
