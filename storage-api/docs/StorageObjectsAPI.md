@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateObjectKey
 
-> SuccessObjectOperation CreateObjectKey(ctx, bucketName, objectKey).Body(body).Execute()
+> SuccessObjectOperation CreateObjectKey(ctx, bucketName, objectKey).ContentType(contentType).Body(body).Execute()
 
 Create new object key.
 
@@ -35,11 +35,12 @@ import (
 func main() {
 	bucketName := "bucketName_example" // string | The name of the bucket
 	objectKey := "objectKey_example" // string | The key/path of the object within the bucket
+	contentType := "contentType_example" // string | The MIME type of the object being uploaded (optional)
 	body := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageObjectsAPI.CreateObjectKey(context.Background(), bucketName, objectKey).Body(body).Execute()
+	resp, r, err := apiClient.StorageObjectsAPI.CreateObjectKey(context.Background(), bucketName, objectKey).ContentType(contentType).Body(body).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageObjectsAPI.CreateObjectKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -67,6 +68,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **contentType** | **string** | The MIME type of the object being uploaded | 
  **body** | ***os.File** |  | 
 
 ### Return type
@@ -317,7 +319,7 @@ Name | Type | Description  | Notes
 
 ## UpdateObjectKey
 
-> SuccessObjectOperation UpdateObjectKey(ctx, bucketName, objectKey).Body(body).Execute()
+> SuccessObjectOperation UpdateObjectKey(ctx, bucketName, objectKey).ContentType(contentType).Body(body).Execute()
 
 Update the object key.
 
@@ -338,11 +340,12 @@ import (
 func main() {
 	bucketName := "bucketName_example" // string | The name of the bucket
 	objectKey := "objectKey_example" // string | The key/path of the object within the bucket
+	contentType := "contentType_example" // string | The MIME type of the object being uploaded (optional)
 	body := os.NewFile(1234, "some_file") // *os.File |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageObjectsAPI.UpdateObjectKey(context.Background(), bucketName, objectKey).Body(body).Execute()
+	resp, r, err := apiClient.StorageObjectsAPI.UpdateObjectKey(context.Background(), bucketName, objectKey).ContentType(contentType).Body(body).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageObjectsAPI.UpdateObjectKey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -370,6 +373,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **contentType** | **string** | The MIME type of the object being uploaded | 
  **body** | ***os.File** |  | 
 
 ### Return type
