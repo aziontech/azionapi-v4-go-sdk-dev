@@ -29,7 +29,14 @@ type ApiCreateObjectKeyRequest struct {
 	ApiService *StorageObjectsAPIService
 	bucketName string
 	objectKey string
+	contentType *string
 	body *os.File
+}
+
+// The MIME type of the object being uploaded
+func (r ApiCreateObjectKeyRequest) ContentType(contentType string) ApiCreateObjectKeyRequest {
+	r.contentType = &contentType
+	return r
 }
 
 func (r ApiCreateObjectKeyRequest) Body(body *os.File) ApiCreateObjectKeyRequest {
@@ -99,6 +106,9 @@ func (a *StorageObjectsAPIService) CreateObjectKeyExecute(r ApiCreateObjectKeyRe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.contentType != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Content-Type", r.contentType, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.body
@@ -881,7 +891,14 @@ type ApiUpdateObjectKeyRequest struct {
 	ApiService *StorageObjectsAPIService
 	bucketName string
 	objectKey string
+	contentType *string
 	body *os.File
+}
+
+// The MIME type of the object being uploaded
+func (r ApiUpdateObjectKeyRequest) ContentType(contentType string) ApiUpdateObjectKeyRequest {
+	r.contentType = &contentType
+	return r
 }
 
 func (r ApiUpdateObjectKeyRequest) Body(body *os.File) ApiUpdateObjectKeyRequest {
@@ -951,6 +968,9 @@ func (a *StorageObjectsAPIService) UpdateObjectKeyExecute(r ApiUpdateObjectKeyRe
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.contentType != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Content-Type", r.contentType, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.body

@@ -828,6 +828,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: The MIME type of the object being uploaded
+        explode: false
+        in: header
+        name: Content-Type
+        required: false
+        schema:
+          type: string
+        style: simple
       requestBody:
         content:
           application/octet-stream:
@@ -984,6 +992,14 @@ paths:
         in: path
         name: object_key
         required: true
+        schema:
+          type: string
+        style: simple
+      - description: The MIME type of the object being uploaded
+        explode: false
+        in: header
+        name: Content-Type
+        required: false
         schema:
           type: string
         style: simple
