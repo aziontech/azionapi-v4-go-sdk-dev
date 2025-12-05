@@ -11,7 +11,8 @@ paths:
       description: List all Data Sources.
       operationId: list_data_sources
       parameters:
-      - explode: true
+      - description: Filter by active.
+        explode: true
         in: query
         name: active
         required: false
@@ -26,14 +27,16 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Filter by name.
+        explode: true
         in: query
         name: name
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Filter by name__icontains.
+        explode: true
         in: query
         name: name__icontains
         required: false
@@ -76,14 +79,16 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Filter by slug.
+        explode: true
         in: query
         name: slug
         required: false
         schema:
           type: string
         style: form
-      - explode: true
+      - description: Filter by slug__iexact.
+        explode: true
         in: query
         name: slug__iexact
         required: false
@@ -529,25 +534,21 @@ paths:
       summary: Create a Data Stream
       tags:
       - Data Stream - Streams
-  /data_stream/streams/{id}:
+  /data_stream/streams/{data_stream_id}:
     delete:
-      description: Destruction of a specific Data Stream in your account.
-      operationId: destroy_data_stream
+      description: Delete a specific Data Stream in your account.
+      operationId: delete_data_stream
       parameters:
-      - explode: false
+      - description: A unique integer value identifying the data stream.
+        explode: false
         in: path
-        name: id
+        name: data_stream_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteDataStream"
-          description: Ok
         "202":
           content:
             application/json:
@@ -666,16 +667,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
+        "204":
+          description: No Content
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Destroy a Data Stream
+      summary: Delete a Data Stream
       tags:
       - Data Stream - Streams
     get:
       description: Retrieve details from a specific Data Stream in your account.
       operationId: retrieve_data_stream
       parameters:
+      - description: A unique integer value identifying the data stream.
+        explode: false
+        in: path
+        name: data_stream_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -684,13 +696,6 @@ paths:
         schema:
           type: string
         style: form
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
       responses:
         "200":
           content:
@@ -820,12 +825,14 @@ paths:
       description: Update one or more fields of an existing Data Stream.
       operationId: partial_update_data_stream
       parameters:
-      - explode: false
+      - description: A unique integer value identifying the data stream.
+        explode: false
         in: path
-        name: id
+        name: data_stream_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -967,12 +974,14 @@ paths:
       description: Update an existing Data Stream.
       operationId: update_data_stream
       parameters:
-      - explode: false
+      - description: A unique integer value identifying the data stream.
+        explode: false
         in: path
-        name: id
+        name: data_stream_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -1425,25 +1434,21 @@ paths:
       summary: Create a Template
       tags:
       - Data Stream - Templates
-  /data_stream/templates/{id}:
+  /data_stream/templates/{template_id}:
     delete:
-      description: Destruction of a specific custom Template in your account.
-      operationId: destroy_template
+      description: Delete a specific custom Template in your account.
+      operationId: delete_template
       parameters:
-      - explode: false
+      - description: A unique integer value identifying the template.
+        explode: false
         in: path
-        name: id
+        name: template_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteTemplate"
-          description: Ok
         "202":
           content:
             application/json:
@@ -1562,10 +1567,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
+        "204":
+          description: No Content
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Destroy a Template
+      summary: Delete a Template
       tags:
       - Data Stream - Templates
     get:
@@ -1580,12 +1587,14 @@ paths:
         schema:
           type: string
         style: form
-      - explode: false
+      - description: A unique integer value identifying the template.
+        explode: false
         in: path
-        name: id
+        name: template_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       responses:
         "200":
@@ -1716,12 +1725,14 @@ paths:
       description: Update one or more fields of an existing custom Template.
       operationId: partial_update_template
       parameters:
-      - explode: false
+      - description: A unique integer value identifying the template.
+        explode: false
         in: path
-        name: id
+        name: template_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -1863,12 +1874,14 @@ paths:
       description: Update an existing custom Template.
       operationId: update_template
       parameters:
-      - explode: false
+      - description: A unique integer value identifying the template.
+        explode: false
         in: path
-        name: id
+        name: template_id
         required: true
         schema:
-          type: string
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -2014,15 +2027,19 @@ components:
       properties:
         access_key:
           maxLength: 150
+          minLength: 1
           type: string
         stream_name:
           maxLength: 64
+          minLength: 1
           type: string
         region:
           maxLength: 50
+          minLength: 1
           type: string
         secret_key:
           maxLength: 150
+          minLength: 1
           type: string
       required:
       - access_key
@@ -2062,12 +2079,15 @@ components:
       properties:
         storage_account:
           maxLength: 100
+          minLength: 1
           type: string
         container_name:
           maxLength: 150
+          minLength: 1
           type: string
         blob_sas_token:
           maxLength: 250
+          minLength: 1
           type: string
       required:
       - blob_sas_token
@@ -2101,16 +2121,20 @@ components:
       properties:
         log_type:
           maxLength: 100
+          minLength: 1
           type: string
         shared_key:
           maxLength: 150
+          minLength: 1
           type: string
         time_generated_field:
           maxLength: 50
+          minLength: 1
           nullable: true
           type: string
         workspace_id:
           maxLength: 150
+          minLength: 1
           type: string
       required:
       - log_type
@@ -2149,14 +2173,19 @@ components:
       properties:
         dataset_id:
           maxLength: 1024
+          minLength: 1
           type: string
         project_id:
           maxLength: 100
+          minLength: 1
           type: string
         table_id:
           maxLength: 1024
+          minLength: 1
           type: string
         service_account_key:
+          maxLength: 65535
+          minLength: 1
           type: string
       required:
       - dataset_id
@@ -2181,6 +2210,7 @@ components:
           minLength: 1
           type: string
         service_account_key:
+          maxLength: 65535
           minLength: 1
           type: string
       required:
@@ -2196,6 +2226,9 @@ components:
         * `application/gzip` - application/gzip
       title: ContentTypeEnum
       type: string
+      x-extensible-enum:
+      - plain/text
+      - application/gzip
     DataSourceEnum:
       description: |-
         * `http` - Edge Applications
@@ -2204,6 +2237,11 @@ components:
         * `activity` - Activity History
       title: DataSourceEnum
       type: string
+      x-extensible-enum:
+      - http
+      - waf
+      - functions
+      - activity
     DataStream:
       additionalProperties: false
       example:
@@ -2246,14 +2284,17 @@ components:
           type: integer
         name:
           maxLength: 100
+          minLength: 1
           type: string
         last_editor:
+          maxLength: 100
           minLength: 1
           type: string
         last_modified:
           format: date-time
           type: string
         product_version:
+          maxLength: 50
           minLength: 1
           type: string
         active:
@@ -2347,6 +2388,7 @@ components:
           type: string
         api_key:
           maxLength: 255
+          minLength: 1
           type: string
       required:
       - api_key
@@ -2377,6 +2419,7 @@ components:
           type: string
         api_key:
           maxLength: 255
+          minLength: 1
           type: string
       required:
       - api_key
@@ -2414,9 +2457,11 @@ components:
           type: string
         log_line_separator:
           maxLength: 100
+          minLength: 1
           type: string
         payload_format:
           maxLength: 250
+          minLength: 1
           type: string
         max_size:
           format: int64
@@ -2451,6 +2496,7 @@ components:
           type: string
         log_line_separator:
           maxLength: 100
+          minLength: 1
           type: string
         payload_format:
           maxLength: 250
@@ -2484,6 +2530,11 @@ components:
             * `activity` - Activity History
           title: DataSourceEnum
           type: string
+          x-extensible-enum:
+          - http
+          - waf
+          - functions
+          - activity
       required:
       - data_source
       title: InputDataSource
@@ -2495,6 +2546,8 @@ components:
           description: '* `raw_logs` - Raw Logs'
           title: InputDataSourceAttributesTypeEnum
           type: string
+          x-extensible-enum:
+          - raw_logs
         attributes:
           $ref: "#/components/schemas/InputDataSource"
       required:
@@ -2509,6 +2562,8 @@ components:
           description: '* `raw_logs` - Raw Logs'
           title: InputDataSourceAttributesTypeEnum
           type: string
+          x-extensible-enum:
+          - raw_logs
         attributes:
           $ref: "#/components/schemas/InputDataSourceRequest"
       required:
@@ -2520,6 +2575,8 @@ components:
       description: '* `raw_logs` - Raw Logs'
       title: InputDataSourceAttributesTypeEnum
       type: string
+      x-extensible-enum:
+      - raw_logs
     InputDataSourceRequest:
       additionalProperties: false
       properties:
@@ -2531,6 +2588,11 @@ components:
             * `activity` - Activity History
           title: DataSourceEnum
           type: string
+          x-extensible-enum:
+          - http
+          - waf
+          - functions
+          - activity
       required:
       - data_source
       title: InputDataSourceRequest
@@ -2555,9 +2617,9 @@ components:
       additionalProperties: true
       properties:
         type:
-          allOf:
-          - $ref: "#/components/schemas/Type4f5Enum"
-          description: ""
+          maxLength: 255
+          minLength: 1
+          type: string
       required:
       - type
       title: InputPolymorphicShared
@@ -2661,9 +2723,11 @@ components:
       properties:
         bootstrap_servers:
           maxLength: 150
+          minLength: 1
           type: string
         kafka_topic:
           maxLength: 150
+          minLength: 1
           type: string
         use_tls:
           type: boolean
@@ -2719,6 +2783,18 @@ components:
             * `azure_blob_storage` - Azure Blob Storage
           title: OutputTypeEnum
           type: string
+          x-extensible-enum:
+          - standard
+          - kafka
+          - s3
+          - big_query
+          - elasticsearch
+          - splunk
+          - aws_kinesis_firehose
+          - datadog
+          - qradar
+          - azure_monitor
+          - azure_blob_storage
         attributes:
           $ref: "#/components/schemas/OutputPolymorphic"
       required:
@@ -2811,6 +2887,18 @@ components:
             * `azure_blob_storage` - Azure Blob Storage
           title: OutputTypeEnum
           type: string
+          x-extensible-enum:
+          - standard
+          - kafka
+          - s3
+          - big_query
+          - elasticsearch
+          - splunk
+          - aws_kinesis_firehose
+          - datadog
+          - qradar
+          - azure_monitor
+          - azure_blob_storage
         attributes:
           $ref: "#/components/schemas/OutputPolymorphicRequest"
       required:
@@ -2833,6 +2921,18 @@ components:
         * `azure_blob_storage` - Azure Blob Storage
       title: OutputTypeEnum
       type: string
+      x-extensible-enum:
+      - standard
+      - kafka
+      - s3
+      - big_query
+      - elasticsearch
+      - splunk
+      - aws_kinesis_firehose
+      - datadog
+      - qradar
+      - azure_monitor
+      - azure_blob_storage
     PaginatedResponseListDataSourceList:
       additionalProperties: false
       example:
@@ -3019,6 +3119,7 @@ components:
         active:
           type: boolean
         data_set:
+          maxLength: 65535
           minLength: 1
           type: string
       title: PatchedTemplateRequest
@@ -3189,8 +3290,6 @@ components:
       type: object
     ResponseDeleteDataStream:
       additionalProperties: false
-      example:
-        state: state
       properties:
         state:
           maxLength: 8
@@ -3200,8 +3299,6 @@ components:
       type: object
     ResponseDeleteTemplate:
       additionalProperties: false
-      example:
-        state: state
       properties:
         state:
           maxLength: 8
@@ -3272,14 +3369,17 @@ components:
           type: integer
         name:
           maxLength: 100
+          minLength: 1
           type: string
         last_editor:
+          maxLength: 100
           minLength: 1
           type: string
         last_modified:
           format: date-time
           type: string
         product_version:
+          maxLength: 50
           minLength: 1
           type: string
         active:
@@ -3326,6 +3426,7 @@ components:
           minLength: 1
           type: string
         last_editor:
+          maxLength: 100
           minLength: 1
           type: string
         last_modified:
@@ -3336,6 +3437,7 @@ components:
         active:
           type: boolean
         data_set:
+          maxLength: 65535
           minLength: 1
           type: string
       required:
@@ -3437,19 +3539,24 @@ components:
       properties:
         access_key:
           maxLength: 150
+          minLength: 1
           type: string
         secret_key:
           maxLength: 150
+          minLength: 1
           type: string
         region:
           maxLength: 50
+          minLength: 1
           type: string
         object_key_prefix:
           maxLength: 150
+          minLength: 1
           nullable: true
           type: string
         bucket_name:
           maxLength: 150
+          minLength: 1
           type: string
         content_type:
           description: |-
@@ -3457,6 +3564,9 @@ components:
             * `application/gzip` - application/gzip
           title: ContentTypeEnum
           type: string
+          x-extensible-enum:
+          - plain/text
+          - application/gzip
         host_url:
           format: uri
           maxLength: 200
@@ -3500,6 +3610,9 @@ components:
             * `application/gzip` - application/gzip
           title: ContentTypeEnum
           type: string
+          x-extensible-enum:
+          - plain/text
+          - application/gzip
         host_url:
           format: uri
           maxLength: 200
@@ -3522,6 +3635,7 @@ components:
           type: string
         api_key:
           maxLength: 255
+          minLength: 1
           type: string
       required:
       - api_key
@@ -3563,6 +3677,7 @@ components:
           minLength: 1
           type: string
         last_editor:
+          maxLength: 100
           minLength: 1
           type: string
         last_modified:
@@ -3573,6 +3688,7 @@ components:
         active:
           type: boolean
         data_set:
+          maxLength: 65535
           minLength: 1
           type: string
       required:
@@ -3598,6 +3714,7 @@ components:
         active:
           type: boolean
         data_set:
+          maxLength: 65535
           minLength: 1
           type: string
       required:
@@ -3628,6 +3745,8 @@ components:
           description: '* `filter_workloads` - Filter Workloads'
           title: TransformFilterWorkloadsAttributesTypeEnum
           type: string
+          x-extensible-enum:
+          - filter_workloads
         attributes:
           $ref: "#/components/schemas/TransformFilterWorkloads"
       required:
@@ -3642,6 +3761,8 @@ components:
           description: '* `filter_workloads` - Filter Workloads'
           title: TransformFilterWorkloadsAttributesTypeEnum
           type: string
+          x-extensible-enum:
+          - filter_workloads
         attributes:
           $ref: "#/components/schemas/TransformFilterWorkloadsRequest"
       required:
@@ -3653,6 +3774,8 @@ components:
       description: '* `filter_workloads` - Filter Workloads'
       title: TransformFilterWorkloadsAttributesTypeEnum
       type: string
+      x-extensible-enum:
+      - filter_workloads
     TransformFilterWorkloadsRequest:
       additionalProperties: false
       description: Serializer for filter_workloads transform attributes.
@@ -3699,9 +3822,9 @@ components:
       additionalProperties: true
       properties:
         type:
-          allOf:
-          - $ref: "#/components/schemas/Type4f5Enum"
-          description: ""
+          maxLength: 255
+          minLength: 1
+          type: string
       required:
       - type
       title: TransformPolymorphicShared
@@ -3756,6 +3879,7 @@ components:
       properties:
         template:
           format: int64
+          maximum: 2147483647
           minimum: 1
           type: integer
       required:
@@ -3769,6 +3893,8 @@ components:
           description: '* `render_template` - Render Template'
           title: TransformRenderTemplateAttributesTypeEnum
           type: string
+          x-extensible-enum:
+          - render_template
         attributes:
           $ref: "#/components/schemas/TransformRenderTemplate"
       required:
@@ -3783,6 +3909,8 @@ components:
           description: '* `render_template` - Render Template'
           title: TransformRenderTemplateAttributesTypeEnum
           type: string
+          x-extensible-enum:
+          - render_template
         attributes:
           $ref: "#/components/schemas/TransformRenderTemplateRequest"
       required:
@@ -3794,12 +3922,15 @@ components:
       description: '* `render_template` - Render Template'
       title: TransformRenderTemplateAttributesTypeEnum
       type: string
+      x-extensible-enum:
+      - render_template
     TransformRenderTemplateRequest:
       additionalProperties: false
       description: Serializer for render_template transform attributes.
       properties:
         template:
           format: int64
+          maximum: 2147483647
           minimum: 1
           type: integer
       required:
@@ -3828,6 +3959,8 @@ components:
           description: '* `sampling` - Sampling'
           title: TransformSamplingAttributesTypeEnum
           type: string
+          x-extensible-enum:
+          - sampling
         attributes:
           $ref: "#/components/schemas/TransformSampling"
       required:
@@ -3842,6 +3975,8 @@ components:
           description: '* `sampling` - Sampling'
           title: TransformSamplingAttributesTypeEnum
           type: string
+          x-extensible-enum:
+          - sampling
         attributes:
           $ref: "#/components/schemas/TransformSamplingRequest"
       required:
@@ -3853,6 +3988,8 @@ components:
       description: '* `sampling` - Sampling'
       title: TransformSamplingAttributesTypeEnum
       type: string
+      x-extensible-enum:
+      - sampling
     TransformSamplingRequest:
       additionalProperties: false
       description: Serializer for sampling transform attributes.
@@ -3867,10 +4004,6 @@ components:
       required:
       - rate
       title: TransformSamplingRequest
-      type: object
-    Type4f5Enum:
-      additionalProperties: false
-      title: Type4f5Enum
       type: object
   securitySchemes:
     BearerAuth:

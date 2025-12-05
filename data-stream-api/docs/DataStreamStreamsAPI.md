@@ -5,11 +5,11 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateDataStream**](DataStreamStreamsAPI.md#CreateDataStream) | **Post** /data_stream/streams | Create a Data Stream
-[**DestroyDataStream**](DataStreamStreamsAPI.md#DestroyDataStream) | **Delete** /data_stream/streams/{id} | Destroy a Data Stream
+[**DeleteDataStream**](DataStreamStreamsAPI.md#DeleteDataStream) | **Delete** /data_stream/streams/{data_stream_id} | Delete a Data Stream
 [**ListDataStreams**](DataStreamStreamsAPI.md#ListDataStreams) | **Get** /data_stream/streams | List Data Streams
-[**PartialUpdateDataStream**](DataStreamStreamsAPI.md#PartialUpdateDataStream) | **Patch** /data_stream/streams/{id} | Partially update a Data Stream
-[**RetrieveDataStream**](DataStreamStreamsAPI.md#RetrieveDataStream) | **Get** /data_stream/streams/{id} | Retrieve details of a Data Stream
-[**UpdateDataStream**](DataStreamStreamsAPI.md#UpdateDataStream) | **Put** /data_stream/streams/{id} | Update a Data Stream
+[**PartialUpdateDataStream**](DataStreamStreamsAPI.md#PartialUpdateDataStream) | **Patch** /data_stream/streams/{data_stream_id} | Partially update a Data Stream
+[**RetrieveDataStream**](DataStreamStreamsAPI.md#RetrieveDataStream) | **Get** /data_stream/streams/{data_stream_id} | Retrieve details of a Data Stream
+[**UpdateDataStream**](DataStreamStreamsAPI.md#UpdateDataStream) | **Put** /data_stream/streams/{data_stream_id} | Update a Data Stream
 
 
 
@@ -79,11 +79,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DestroyDataStream
+## DeleteDataStream
 
-> ResponseDeleteDataStream DestroyDataStream(ctx, id).Execute()
+> ResponseAsyncDeleteDataStream DeleteDataStream(ctx, dataStreamId).Execute()
 
-Destroy a Data Stream
+Delete a Data Stream
 
 
 
@@ -100,17 +100,17 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	dataStreamId := int64(789) // int64 | A unique integer value identifying the data stream.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamStreamsAPI.DestroyDataStream(context.Background(), id).Execute()
+	resp, r, err := apiClient.DataStreamStreamsAPI.DeleteDataStream(context.Background(), dataStreamId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.DestroyDataStream``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.DeleteDataStream``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DestroyDataStream`: ResponseDeleteDataStream
-	fmt.Fprintf(os.Stdout, "Response from `DataStreamStreamsAPI.DestroyDataStream`: %v\n", resp)
+	// response from `DeleteDataStream`: ResponseAsyncDeleteDataStream
+	fmt.Fprintf(os.Stdout, "Response from `DataStreamStreamsAPI.DeleteDataStream`: %v\n", resp)
 }
 ```
 
@@ -120,11 +120,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**dataStreamId** | **int64** | A unique integer value identifying the data stream. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDestroyDataStreamRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteDataStreamRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteDataStream**](ResponseDeleteDataStream.md)
+[**ResponseAsyncDeleteDataStream**](ResponseAsyncDeleteDataStream.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateDataStream
 
-> ResponseDataStream PartialUpdateDataStream(ctx, id).PatchedDataStreamRequest(patchedDataStreamRequest).Execute()
+> ResponseDataStream PartialUpdateDataStream(ctx, dataStreamId).PatchedDataStreamRequest(patchedDataStreamRequest).Execute()
 
 Partially update a Data Stream
 
@@ -244,12 +244,12 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	dataStreamId := int64(789) // int64 | A unique integer value identifying the data stream.
 	patchedDataStreamRequest := *openapiclient.NewPatchedDataStreamRequest() // PatchedDataStreamRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamStreamsAPI.PartialUpdateDataStream(context.Background(), id).PatchedDataStreamRequest(patchedDataStreamRequest).Execute()
+	resp, r, err := apiClient.DataStreamStreamsAPI.PartialUpdateDataStream(context.Background(), dataStreamId).PatchedDataStreamRequest(patchedDataStreamRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.PartialUpdateDataStream``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -265,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**dataStreamId** | **int64** | A unique integer value identifying the data stream. | 
 
 ### Other Parameters
 
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveDataStream
 
-> ResponseRetrieveDataStream RetrieveDataStream(ctx, id).Fields(fields).Execute()
+> ResponseRetrieveDataStream RetrieveDataStream(ctx, dataStreamId).Fields(fields).Execute()
 
 Retrieve details of a Data Stream
 
@@ -316,12 +316,12 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	dataStreamId := int64(789) // int64 | A unique integer value identifying the data stream.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamStreamsAPI.RetrieveDataStream(context.Background(), id).Fields(fields).Execute()
+	resp, r, err := apiClient.DataStreamStreamsAPI.RetrieveDataStream(context.Background(), dataStreamId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.RetrieveDataStream``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -337,7 +337,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**dataStreamId** | **int64** | A unique integer value identifying the data stream. | 
 
 ### Other Parameters
 
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDataStream
 
-> ResponseDataStream UpdateDataStream(ctx, id).DataStreamRequest(dataStreamRequest).Execute()
+> ResponseDataStream UpdateDataStream(ctx, dataStreamId).DataStreamRequest(dataStreamRequest).Execute()
 
 Update a Data Stream
 
@@ -388,12 +388,12 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | 
+	dataStreamId := int64(789) // int64 | A unique integer value identifying the data stream.
 	dataStreamRequest := *openapiclient.NewDataStreamRequest("Name_example", []openapiclient.InputPolymorphicInputDataSourceAttributesRequest{*openapiclient.NewInputPolymorphicInputDataSourceAttributesRequest("Type_example", *openapiclient.NewInputDataSourceRequest("DataSource_example"))}, []openapiclient.TransformPolymorphicRequest{openapiclient.TransformPolymorphicRequest{TransformPolymorphicTransformFilterWorkloadsAttributesRequest: openapiclient.NewTransformPolymorphicTransformFilterWorkloadsAttributesRequest("Type_example", *openapiclient.NewTransformFilterWorkloadsRequest([]int64{int64(123)}))}}, []openapiclient.OutputRequest{*openapiclient.NewOutputRequest("Type_example", openapiclient.OutputPolymorphicRequest{AWSKinesisFirehoseEndpointRequest: openapiclient.NewAWSKinesisFirehoseEndpointRequest("AccessKey_example", "StreamName_example", "Region_example", "SecretKey_example")})}) // DataStreamRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamStreamsAPI.UpdateDataStream(context.Background(), id).DataStreamRequest(dataStreamRequest).Execute()
+	resp, r, err := apiClient.DataStreamStreamsAPI.UpdateDataStream(context.Background(), dataStreamId).DataStreamRequest(dataStreamRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.UpdateDataStream``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -409,7 +409,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**dataStreamId** | **int64** | A unique integer value identifying the data stream. | 
 
 ### Other Parameters
 

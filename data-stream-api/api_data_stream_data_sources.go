@@ -37,6 +37,7 @@ type ApiListDataSourcesRequest struct {
 	slugIexact *string
 }
 
+// Filter by active.
 func (r ApiListDataSourcesRequest) Active(active bool) ApiListDataSourcesRequest {
 	r.active = &active
 	return r
@@ -48,11 +49,13 @@ func (r ApiListDataSourcesRequest) Fields(fields string) ApiListDataSourcesReque
 	return r
 }
 
+// Filter by name.
 func (r ApiListDataSourcesRequest) Name(name string) ApiListDataSourcesRequest {
 	r.name = &name
 	return r
 }
 
+// Filter by name__icontains.
 func (r ApiListDataSourcesRequest) NameIcontains(nameIcontains string) ApiListDataSourcesRequest {
 	r.nameIcontains = &nameIcontains
 	return r
@@ -82,11 +85,13 @@ func (r ApiListDataSourcesRequest) Search(search string) ApiListDataSourcesReque
 	return r
 }
 
+// Filter by slug.
 func (r ApiListDataSourcesRequest) Slug(slug string) ApiListDataSourcesRequest {
 	r.slug = &slug
 	return r
 }
 
+// Filter by slug__iexact.
 func (r ApiListDataSourcesRequest) SlugIexact(slugIexact string) ApiListDataSourcesRequest {
 	r.slugIexact = &slugIexact
 	return r

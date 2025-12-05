@@ -224,50 +224,50 @@ func (a *DataStreamTemplatesAPIService) CreateTemplateExecute(r ApiCreateTemplat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDestroyTemplateRequest struct {
+type ApiDeleteTemplateRequest struct {
 	ctx context.Context
 	ApiService *DataStreamTemplatesAPIService
-	id string
+	templateId int64
 }
 
-func (r ApiDestroyTemplateRequest) Execute() (*ResponseDeleteTemplate, *http.Response, error) {
-	return r.ApiService.DestroyTemplateExecute(r)
+func (r ApiDeleteTemplateRequest) Execute() (*ResponseAsyncDeleteTemplate, *http.Response, error) {
+	return r.ApiService.DeleteTemplateExecute(r)
 }
 
 /*
-DestroyTemplate Destroy a Template
+DeleteTemplate Delete a Template
 
-Destruction of a specific custom Template in your account.
+Delete a specific custom Template in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiDestroyTemplateRequest
+ @param templateId A unique integer value identifying the template.
+ @return ApiDeleteTemplateRequest
 */
-func (a *DataStreamTemplatesAPIService) DestroyTemplate(ctx context.Context, id string) ApiDestroyTemplateRequest {
-	return ApiDestroyTemplateRequest{
+func (a *DataStreamTemplatesAPIService) DeleteTemplate(ctx context.Context, templateId int64) ApiDeleteTemplateRequest {
+	return ApiDeleteTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		templateId: templateId,
 	}
 }
 
 // Execute executes the request
-//  @return ResponseDeleteTemplate
-func (a *DataStreamTemplatesAPIService) DestroyTemplateExecute(r ApiDestroyTemplateRequest) (*ResponseDeleteTemplate, *http.Response, error) {
+//  @return ResponseAsyncDeleteTemplate
+func (a *DataStreamTemplatesAPIService) DeleteTemplateExecute(r ApiDeleteTemplateRequest) (*ResponseAsyncDeleteTemplate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteTemplate
+		localVarReturnValue  *ResponseAsyncDeleteTemplate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamTemplatesAPIService.DestroyTemplate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamTemplatesAPIService.DeleteTemplate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/templates/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/data_stream/templates/{template_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"template_id"+"}", url.PathEscape(parameterValueToString(r.templateId, "templateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -401,6 +401,7 @@ func (a *DataStreamTemplatesAPIService) DestroyTemplateExecute(r ApiDestroyTempl
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -659,7 +660,7 @@ func (a *DataStreamTemplatesAPIService) ListTemplatesExecute(r ApiListTemplatesR
 type ApiPartialUpdateTemplateRequest struct {
 	ctx context.Context
 	ApiService *DataStreamTemplatesAPIService
-	id string
+	templateId int64
 	patchedTemplateRequest *PatchedTemplateRequest
 }
 
@@ -678,14 +679,14 @@ PartialUpdateTemplate Partially update a Template
 Update one or more fields of an existing custom Template.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param templateId A unique integer value identifying the template.
  @return ApiPartialUpdateTemplateRequest
 */
-func (a *DataStreamTemplatesAPIService) PartialUpdateTemplate(ctx context.Context, id string) ApiPartialUpdateTemplateRequest {
+func (a *DataStreamTemplatesAPIService) PartialUpdateTemplate(ctx context.Context, templateId int64) ApiPartialUpdateTemplateRequest {
 	return ApiPartialUpdateTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		templateId: templateId,
 	}
 }
 
@@ -704,8 +705,8 @@ func (a *DataStreamTemplatesAPIService) PartialUpdateTemplateExecute(r ApiPartia
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/templates/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/data_stream/templates/{template_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"template_id"+"}", url.PathEscape(parameterValueToString(r.templateId, "templateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -861,7 +862,7 @@ func (a *DataStreamTemplatesAPIService) PartialUpdateTemplateExecute(r ApiPartia
 type ApiRetrieveTemplateRequest struct {
 	ctx context.Context
 	ApiService *DataStreamTemplatesAPIService
-	id string
+	templateId int64
 	fields *string
 }
 
@@ -881,14 +882,14 @@ RetrieveTemplate Retrieve details of a Template
 Retrieve details from a specific Template in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param templateId A unique integer value identifying the template.
  @return ApiRetrieveTemplateRequest
 */
-func (a *DataStreamTemplatesAPIService) RetrieveTemplate(ctx context.Context, id string) ApiRetrieveTemplateRequest {
+func (a *DataStreamTemplatesAPIService) RetrieveTemplate(ctx context.Context, templateId int64) ApiRetrieveTemplateRequest {
 	return ApiRetrieveTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		templateId: templateId,
 	}
 }
 
@@ -907,8 +908,8 @@ func (a *DataStreamTemplatesAPIService) RetrieveTemplateExecute(r ApiRetrieveTem
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/templates/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/data_stream/templates/{template_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"template_id"+"}", url.PathEscape(parameterValueToString(r.templateId, "templateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1064,7 +1065,7 @@ func (a *DataStreamTemplatesAPIService) RetrieveTemplateExecute(r ApiRetrieveTem
 type ApiUpdateTemplateRequest struct {
 	ctx context.Context
 	ApiService *DataStreamTemplatesAPIService
-	id string
+	templateId int64
 	templateRequest *TemplateRequest
 }
 
@@ -1083,14 +1084,14 @@ UpdateTemplate Update a Template
 Update an existing custom Template.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
+ @param templateId A unique integer value identifying the template.
  @return ApiUpdateTemplateRequest
 */
-func (a *DataStreamTemplatesAPIService) UpdateTemplate(ctx context.Context, id string) ApiUpdateTemplateRequest {
+func (a *DataStreamTemplatesAPIService) UpdateTemplate(ctx context.Context, templateId int64) ApiUpdateTemplateRequest {
 	return ApiUpdateTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		templateId: templateId,
 	}
 }
 
@@ -1109,8 +1110,8 @@ func (a *DataStreamTemplatesAPIService) UpdateTemplateExecute(r ApiUpdateTemplat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/templates/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/data_stream/templates/{template_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"template_id"+"}", url.PathEscape(parameterValueToString(r.templateId, "templateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
