@@ -29,16 +29,16 @@ import (
 )
 
 func main() {
-	active := true // bool |  (optional)
+	active := true // bool | Filter by active. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	name := "name_example" // string |  (optional)
-	nameIcontains := "nameIcontains_example" // string |  (optional)
+	name := "name_example" // string | Filter by name. (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter by name__icontains. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: slug, name, active) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
-	slug := "slug_example" // string |  (optional)
-	slugIexact := "slugIexact_example" // string |  (optional)
+	slug := "slug_example" // string | Filter by slug. (optional)
+	slugIexact := "slugIexact_example" // string | Filter by slug__iexact. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -63,16 +63,16 @@ Other parameters are passed through a pointer to a apiListDataSourcesRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **active** | **bool** |  | 
+ **active** | **bool** | Filter by active. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **name** | **string** |  | 
- **nameIcontains** | **string** |  | 
+ **name** | **string** | Filter by name. | 
+ **nameIcontains** | **string** | Filter by name__icontains. | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: slug, name, active) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
- **slug** | **string** |  | 
- **slugIexact** | **string** |  | 
+ **slug** | **string** | Filter by slug. | 
+ **slugIexact** | **string** | Filter by slug__iexact. | 
 
 ### Return type
 
