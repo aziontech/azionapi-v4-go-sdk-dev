@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**StorageKvNamespacesCreate**](KVNamespacesAPI.md#StorageKvNamespacesCreate) | **Post** /storage/kv/namespaces | Create namespace
-[**StorageKvNamespacesList**](KVNamespacesAPI.md#StorageKvNamespacesList) | **Get** /storage/kv/namespaces | List namespaces
-[**StorageKvNamespacesRetrieve**](KVNamespacesAPI.md#StorageKvNamespacesRetrieve) | **Get** /storage/kv/namespaces/{namespace} | Retrieve namespace
+[**WorkspaceKvNamespacesCreate**](KVNamespacesAPI.md#WorkspaceKvNamespacesCreate) | **Post** /workspace/kv/namespaces | Create namespace
+[**WorkspaceKvNamespacesList**](KVNamespacesAPI.md#WorkspaceKvNamespacesList) | **Get** /workspace/kv/namespaces | List namespaces
+[**WorkspaceKvNamespacesRetrieve**](KVNamespacesAPI.md#WorkspaceKvNamespacesRetrieve) | **Get** /workspace/kv/namespaces/{namespace} | Retrieve namespace
 
 
 
-## StorageKvNamespacesCreate
+## WorkspaceKvNamespacesCreate
 
-> NamespaceResponse StorageKvNamespacesCreate(ctx).NamespaceCreateRequest(namespaceCreateRequest).Execute()
+> NamespaceResponse WorkspaceKvNamespacesCreate(ctx).NamespaceCreateRequest(namespaceCreateRequest).Execute()
 
 Create namespace
 
@@ -35,13 +35,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.KVNamespacesAPI.StorageKvNamespacesCreate(context.Background()).NamespaceCreateRequest(namespaceCreateRequest).Execute()
+	resp, r, err := apiClient.KVNamespacesAPI.WorkspaceKvNamespacesCreate(context.Background()).NamespaceCreateRequest(namespaceCreateRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `KVNamespacesAPI.StorageKvNamespacesCreate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `KVNamespacesAPI.WorkspaceKvNamespacesCreate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `StorageKvNamespacesCreate`: NamespaceResponse
-	fmt.Fprintf(os.Stdout, "Response from `KVNamespacesAPI.StorageKvNamespacesCreate`: %v\n", resp)
+	// response from `WorkspaceKvNamespacesCreate`: NamespaceResponse
+	fmt.Fprintf(os.Stdout, "Response from `KVNamespacesAPI.WorkspaceKvNamespacesCreate`: %v\n", resp)
 }
 ```
 
@@ -51,7 +51,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStorageKvNamespacesCreateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiWorkspaceKvNamespacesCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -76,9 +76,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## StorageKvNamespacesList
+## WorkspaceKvNamespacesList
 
-> []NamespaceListResponse StorageKvNamespacesList(ctx).Fields(fields).Page(page).PageSize(pageSize).Execute()
+> []NamespaceListResponse WorkspaceKvNamespacesList(ctx).Fields(fields).Page(page).PageSize(pageSize).Execute()
 
 List namespaces
 
@@ -103,13 +103,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.KVNamespacesAPI.StorageKvNamespacesList(context.Background()).Fields(fields).Page(page).PageSize(pageSize).Execute()
+	resp, r, err := apiClient.KVNamespacesAPI.WorkspaceKvNamespacesList(context.Background()).Fields(fields).Page(page).PageSize(pageSize).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `KVNamespacesAPI.StorageKvNamespacesList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `KVNamespacesAPI.WorkspaceKvNamespacesList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `StorageKvNamespacesList`: []NamespaceListResponse
-	fmt.Fprintf(os.Stdout, "Response from `KVNamespacesAPI.StorageKvNamespacesList`: %v\n", resp)
+	// response from `WorkspaceKvNamespacesList`: []NamespaceListResponse
+	fmt.Fprintf(os.Stdout, "Response from `KVNamespacesAPI.WorkspaceKvNamespacesList`: %v\n", resp)
 }
 ```
 
@@ -119,7 +119,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStorageKvNamespacesListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiWorkspaceKvNamespacesListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -146,9 +146,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## StorageKvNamespacesRetrieve
+## WorkspaceKvNamespacesRetrieve
 
-> NamespaceResponse StorageKvNamespacesRetrieve(ctx, namespace).Fields(fields).Execute()
+> NamespaceResponse WorkspaceKvNamespacesRetrieve(ctx, namespace).Fields(fields).Execute()
 
 Retrieve namespace
 
@@ -172,13 +172,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.KVNamespacesAPI.StorageKvNamespacesRetrieve(context.Background(), namespace).Fields(fields).Execute()
+	resp, r, err := apiClient.KVNamespacesAPI.WorkspaceKvNamespacesRetrieve(context.Background(), namespace).Fields(fields).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `KVNamespacesAPI.StorageKvNamespacesRetrieve``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `KVNamespacesAPI.WorkspaceKvNamespacesRetrieve``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `StorageKvNamespacesRetrieve`: NamespaceResponse
-	fmt.Fprintf(os.Stdout, "Response from `KVNamespacesAPI.StorageKvNamespacesRetrieve`: %v\n", resp)
+	// response from `WorkspaceKvNamespacesRetrieve`: NamespaceResponse
+	fmt.Fprintf(os.Stdout, "Response from `KVNamespacesAPI.WorkspaceKvNamespacesRetrieve`: %v\n", resp)
 }
 ```
 
@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStorageKvNamespacesRetrieveRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiWorkspaceKvNamespacesRetrieveRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

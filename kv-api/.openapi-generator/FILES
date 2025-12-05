@@ -22,5 +22,4 @@ model_namespace_list_response.go
 model_namespace_response.go
 model_pagination.go
 response.go
-test/api_kv_namespaces_test.go
 utils.go
