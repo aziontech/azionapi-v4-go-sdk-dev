@@ -23,31 +23,31 @@ import (
 // KVNamespacesAPIService KVNamespacesAPI service
 type KVNamespacesAPIService service
 
-type ApiStorageKvNamespacesCreateRequest struct {
+type ApiWorkspaceKvNamespacesCreateRequest struct {
 	ctx context.Context
 	ApiService *KVNamespacesAPIService
 	namespaceCreateRequest *NamespaceCreateRequest
 }
 
-func (r ApiStorageKvNamespacesCreateRequest) NamespaceCreateRequest(namespaceCreateRequest NamespaceCreateRequest) ApiStorageKvNamespacesCreateRequest {
+func (r ApiWorkspaceKvNamespacesCreateRequest) NamespaceCreateRequest(namespaceCreateRequest NamespaceCreateRequest) ApiWorkspaceKvNamespacesCreateRequest {
 	r.namespaceCreateRequest = &namespaceCreateRequest
 	return r
 }
 
-func (r ApiStorageKvNamespacesCreateRequest) Execute() (*NamespaceResponse, *http.Response, error) {
-	return r.ApiService.StorageKvNamespacesCreateExecute(r)
+func (r ApiWorkspaceKvNamespacesCreateRequest) Execute() (*NamespaceResponse, *http.Response, error) {
+	return r.ApiService.WorkspaceKvNamespacesCreateExecute(r)
 }
 
 /*
-StorageKvNamespacesCreate Create namespace
+WorkspaceKvNamespacesCreate Create namespace
 
 Creates a new namespace in the authenticated account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStorageKvNamespacesCreateRequest
+ @return ApiWorkspaceKvNamespacesCreateRequest
 */
-func (a *KVNamespacesAPIService) StorageKvNamespacesCreate(ctx context.Context) ApiStorageKvNamespacesCreateRequest {
-	return ApiStorageKvNamespacesCreateRequest{
+func (a *KVNamespacesAPIService) WorkspaceKvNamespacesCreate(ctx context.Context) ApiWorkspaceKvNamespacesCreateRequest {
+	return ApiWorkspaceKvNamespacesCreateRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -55,7 +55,7 @@ func (a *KVNamespacesAPIService) StorageKvNamespacesCreate(ctx context.Context) 
 
 // Execute executes the request
 //  @return NamespaceResponse
-func (a *KVNamespacesAPIService) StorageKvNamespacesCreateExecute(r ApiStorageKvNamespacesCreateRequest) (*NamespaceResponse, *http.Response, error) {
+func (a *KVNamespacesAPIService) WorkspaceKvNamespacesCreateExecute(r ApiWorkspaceKvNamespacesCreateRequest) (*NamespaceResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -63,12 +63,12 @@ func (a *KVNamespacesAPIService) StorageKvNamespacesCreateExecute(r ApiStorageKv
 		localVarReturnValue  *NamespaceResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KVNamespacesAPIService.StorageKvNamespacesCreate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KVNamespacesAPIService.WorkspaceKvNamespacesCreate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/storage/kv/namespaces"
+	localVarPath := localBasePath + "/workspace/kv/namespaces"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -168,7 +168,7 @@ func (a *KVNamespacesAPIService) StorageKvNamespacesCreateExecute(r ApiStorageKv
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiStorageKvNamespacesListRequest struct {
+type ApiWorkspaceKvNamespacesListRequest struct {
 	ctx context.Context
 	ApiService *KVNamespacesAPIService
 	fields *string
@@ -177,37 +177,37 @@ type ApiStorageKvNamespacesListRequest struct {
 }
 
 // Comma-separated list of fields to include in the response
-func (r ApiStorageKvNamespacesListRequest) Fields(fields string) ApiStorageKvNamespacesListRequest {
+func (r ApiWorkspaceKvNamespacesListRequest) Fields(fields string) ApiWorkspaceKvNamespacesListRequest {
 	r.fields = &fields
 	return r
 }
 
 // Page number for pagination
-func (r ApiStorageKvNamespacesListRequest) Page(page int64) ApiStorageKvNamespacesListRequest {
+func (r ApiWorkspaceKvNamespacesListRequest) Page(page int64) ApiWorkspaceKvNamespacesListRequest {
 	r.page = &page
 	return r
 }
 
 // Number of items per page
-func (r ApiStorageKvNamespacesListRequest) PageSize(pageSize int64) ApiStorageKvNamespacesListRequest {
+func (r ApiWorkspaceKvNamespacesListRequest) PageSize(pageSize int64) ApiWorkspaceKvNamespacesListRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r ApiStorageKvNamespacesListRequest) Execute() ([]NamespaceListResponse, *http.Response, error) {
-	return r.ApiService.StorageKvNamespacesListExecute(r)
+func (r ApiWorkspaceKvNamespacesListRequest) Execute() ([]NamespaceListResponse, *http.Response, error) {
+	return r.ApiService.WorkspaceKvNamespacesListExecute(r)
 }
 
 /*
-StorageKvNamespacesList List namespaces
+WorkspaceKvNamespacesList List namespaces
 
 Returns a paginated list of namespaces for the authenticated account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStorageKvNamespacesListRequest
+ @return ApiWorkspaceKvNamespacesListRequest
 */
-func (a *KVNamespacesAPIService) StorageKvNamespacesList(ctx context.Context) ApiStorageKvNamespacesListRequest {
-	return ApiStorageKvNamespacesListRequest{
+func (a *KVNamespacesAPIService) WorkspaceKvNamespacesList(ctx context.Context) ApiWorkspaceKvNamespacesListRequest {
+	return ApiWorkspaceKvNamespacesListRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -215,7 +215,7 @@ func (a *KVNamespacesAPIService) StorageKvNamespacesList(ctx context.Context) Ap
 
 // Execute executes the request
 //  @return []NamespaceListResponse
-func (a *KVNamespacesAPIService) StorageKvNamespacesListExecute(r ApiStorageKvNamespacesListRequest) ([]NamespaceListResponse, *http.Response, error) {
+func (a *KVNamespacesAPIService) WorkspaceKvNamespacesListExecute(r ApiWorkspaceKvNamespacesListRequest) ([]NamespaceListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -223,12 +223,12 @@ func (a *KVNamespacesAPIService) StorageKvNamespacesListExecute(r ApiStorageKvNa
 		localVarReturnValue  []NamespaceListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KVNamespacesAPIService.StorageKvNamespacesList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KVNamespacesAPIService.WorkspaceKvNamespacesList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/storage/kv/namespaces"
+	localVarPath := localBasePath + "/workspace/kv/namespaces"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -332,7 +332,7 @@ func (a *KVNamespacesAPIService) StorageKvNamespacesListExecute(r ApiStorageKvNa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiStorageKvNamespacesRetrieveRequest struct {
+type ApiWorkspaceKvNamespacesRetrieveRequest struct {
 	ctx context.Context
 	ApiService *KVNamespacesAPIService
 	namespace string
@@ -340,26 +340,26 @@ type ApiStorageKvNamespacesRetrieveRequest struct {
 }
 
 // Comma-separated list of fields to include in the response
-func (r ApiStorageKvNamespacesRetrieveRequest) Fields(fields string) ApiStorageKvNamespacesRetrieveRequest {
+func (r ApiWorkspaceKvNamespacesRetrieveRequest) Fields(fields string) ApiWorkspaceKvNamespacesRetrieveRequest {
 	r.fields = &fields
 	return r
 }
 
-func (r ApiStorageKvNamespacesRetrieveRequest) Execute() (*NamespaceResponse, *http.Response, error) {
-	return r.ApiService.StorageKvNamespacesRetrieveExecute(r)
+func (r ApiWorkspaceKvNamespacesRetrieveRequest) Execute() (*NamespaceResponse, *http.Response, error) {
+	return r.ApiService.WorkspaceKvNamespacesRetrieveExecute(r)
 }
 
 /*
-StorageKvNamespacesRetrieve Retrieve namespace
+WorkspaceKvNamespacesRetrieve Retrieve namespace
 
 Returns a specific namespace by name, if it belongs to the authenticated account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param namespace The unique identifier (name) of the namespace
- @return ApiStorageKvNamespacesRetrieveRequest
+ @return ApiWorkspaceKvNamespacesRetrieveRequest
 */
-func (a *KVNamespacesAPIService) StorageKvNamespacesRetrieve(ctx context.Context, namespace string) ApiStorageKvNamespacesRetrieveRequest {
-	return ApiStorageKvNamespacesRetrieveRequest{
+func (a *KVNamespacesAPIService) WorkspaceKvNamespacesRetrieve(ctx context.Context, namespace string) ApiWorkspaceKvNamespacesRetrieveRequest {
+	return ApiWorkspaceKvNamespacesRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
 		namespace: namespace,
@@ -368,7 +368,7 @@ func (a *KVNamespacesAPIService) StorageKvNamespacesRetrieve(ctx context.Context
 
 // Execute executes the request
 //  @return NamespaceResponse
-func (a *KVNamespacesAPIService) StorageKvNamespacesRetrieveExecute(r ApiStorageKvNamespacesRetrieveRequest) (*NamespaceResponse, *http.Response, error) {
+func (a *KVNamespacesAPIService) WorkspaceKvNamespacesRetrieveExecute(r ApiWorkspaceKvNamespacesRetrieveRequest) (*NamespaceResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -376,12 +376,12 @@ func (a *KVNamespacesAPIService) StorageKvNamespacesRetrieveExecute(r ApiStorage
 		localVarReturnValue  *NamespaceResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KVNamespacesAPIService.StorageKvNamespacesRetrieve")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KVNamespacesAPIService.WorkspaceKvNamespacesRetrieve")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/storage/kv/namespaces/{namespace}"
+	localVarPath := localBasePath + "/workspace/kv/namespaces/{namespace}"
 	localVarPath = strings.Replace(localVarPath, "{"+"namespace"+"}", url.PathEscape(parameterValueToString(r.namespace, "namespace")), -1)
 
 	localVarHeaderParams := make(map[string]string)

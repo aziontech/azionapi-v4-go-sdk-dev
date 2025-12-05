@@ -6,10 +6,10 @@ info:
 servers:
 - url: /
 paths:
-  /storage/kv/namespaces:
+  /workspace/kv/namespaces:
     get:
       description: Returns a paginated list of namespaces for the authenticated account.
-      operationId: storage_kv_namespaces_list
+      operationId: workspace_kv_namespaces_list
       parameters:
       - description: Comma-separated list of fields to include in the response
         explode: true
@@ -66,7 +66,7 @@ paths:
       - KV - Namespaces
     post:
       description: Creates a new namespace in the authenticated account.
-      operationId: storage_kv_namespaces_create
+      operationId: workspace_kv_namespaces_create
       requestBody:
         content:
           application/json:
@@ -98,11 +98,11 @@ paths:
       summary: Create namespace
       tags:
       - KV - Namespaces
-  /storage/kv/namespaces/{namespace}:
+  /workspace/kv/namespaces/{namespace}:
     get:
       description: "Returns a specific namespace by name, if it belongs to the authenticated\
         \ account."
-      operationId: storage_kv_namespaces_retrieve
+      operationId: workspace_kv_namespaces_retrieve
       parameters:
       - description: Comma-separated list of fields to include in the response
         explode: true
