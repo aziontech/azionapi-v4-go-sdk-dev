@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## RetrieveInvoice
 
-> RetrieveInvoice(ctx, period).Execute()
+> RetrieveInvoice(ctx, period).Fields(fields).Execute()
 
 Retrieve details of an invoice
 
@@ -29,11 +29,12 @@ import (
 )
 
 func main() {
-	period := "period_example" // string | 
+	period := "period_example" // string | Invoice period in MM-YYYY format (e.g., 01-2024 for January 2024)
+	fields := "fields_example" // string | Fields to include in the response (comma-separated) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.BillingInvoicesAPI.RetrieveInvoice(context.Background(), period).Execute()
+	r, err := apiClient.BillingInvoicesAPI.RetrieveInvoice(context.Background(), period).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `BillingInvoicesAPI.RetrieveInvoice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -47,7 +48,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**period** | **string** |  | 
+**period** | **string** | Invoice period in MM-YYYY format (e.g., 01-2024 for January 2024) | 
 
 ### Other Parameters
 
@@ -57,6 +58,7 @@ Other parameters are passed through a pointer to a apiRetrieveInvoiceRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **fields** | **string** | Fields to include in the response (comma-separated) | 
 
 ### Return type
 

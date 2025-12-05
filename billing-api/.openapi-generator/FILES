@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -17,5 +16,4 @@ model_jsonapi_error_object.go
 model_jsonapi_error_response.go
 model_jsonapi_error_source.go
 response.go
-test/api_billing_invoices_test.go
 utils.go

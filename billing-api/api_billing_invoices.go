@@ -1,5 +1,5 @@
 /*
-Billing API
+billing-api
 
 REST API OpenAPI documentation for the Billing API
 
@@ -27,6 +27,13 @@ type ApiRetrieveInvoiceRequest struct {
 	ctx context.Context
 	ApiService *BillingInvoicesAPIService
 	period string
+	fields *string
+}
+
+// Fields to include in the response (comma-separated)
+func (r ApiRetrieveInvoiceRequest) Fields(fields string) ApiRetrieveInvoiceRequest {
+	r.fields = &fields
+	return r
 }
 
 func (r ApiRetrieveInvoiceRequest) Execute() (*http.Response, error) {
@@ -39,7 +46,7 @@ RetrieveInvoice Retrieve details of an invoice
 Retrieve invoice data for a specific period.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param period
+ @param period Invoice period in MM-YYYY format (e.g., 01-2024 for January 2024)
  @return ApiRetrieveInvoiceRequest
 */
 func (a *BillingInvoicesAPIService) RetrieveInvoice(ctx context.Context, period string) ApiRetrieveInvoiceRequest {
@@ -70,6 +77,9 @@ func (a *BillingInvoicesAPIService) RetrieveInvoiceExecute(r ApiRetrieveInvoiceR
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.fields != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
