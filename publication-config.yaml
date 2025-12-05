@@ -1,0 +1,49 @@
+# Publication Configuration for OpenAPI Endpoints
+# This file defines which endpoints and methods will be published when merging to main branch
+
+# Global settings
+settings:
+  # Set to true to include all endpoints by default, false to exclude by default
+  include_all_by_default: false
+  # Set to true to include all methods for included endpoints by default
+  include_all_methods_by_default: true
+
+# API definitions
+apis:
+  auth-api:
+    include: false
+    endpoints:
+      /auth/login:
+        include: true
+      /auth/login/method:
+        include: true
+      /auth/token:
+        include: true
+      /auth/revoke:
+        include: true
+      /auth/verify:
+        include: true
+      /auth/mfa/totp:
+        include: true
+      /auth/mfa/totp/{id}:
+        include: true
+      /auth/refresh:
+        include: true
+
+  edge-api:
+    include: true
+
+  dns-api:
+    include: true
+
+  storage-api:
+    include: true
+
+  data-stream-api:
+    include: true
+
+  edgesql-api:
+    include: true
+
+  tls-api:
+    include: true
