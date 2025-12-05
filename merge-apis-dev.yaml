@@ -1,0 +1,79 @@
+name: (Stage) Merge yaml files into a single openapi file
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+
+jobs:
+  merge_open_api:
+    runs-on:  azion-runners
+    container:
+      image: python:3-alpine3.19
+    steps:
+      - name: Install SO deps
+        run: |
+          apk update
+          apk add curl bash wget git
+          
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Merge schemas
+        run: |         
+          pip install -r schemas_processor/requirements.txt
+          python schemas_processor/processor.py https://stage-api.azion.com/v4 --config schemas_processor/publication-config.yaml
+          cp output/merged.yaml openapi.yaml
+          rm -rf output
+
+      - name: Install Azion CLI
+        env:
+          CLI_VERSION: "4.1.4"
+        run: | 
+          wget "https://github.com/aziontech/azion/releases/download/${CLI_VERSION}/azion_${CLI_VERSION}_linux_amd64.apk"
+          apk add --allow-untrusted azion_${CLI_VERSION}_linux_amd64.apk
+
+      - name: Save schema PR on Edge Storage
+        env:
+          BUCKET_NAME: "storage-open-apiv4-stage"
+        run: |
+          CLI_TOKEN=${{ secrets.AZIONMANAGER_SERVICE_USER_TOKEN  }}
+          azion -t $CLI_TOKEN
+          azion create edge-storage object --bucket-name $BUCKET_NAME --object-key 'openapi.yaml' --source 'openapi.yaml'
+          for file in *.yaml; do
+            azion create edge-storage object --bucket-name $BUCKET_NAME --object-key "$file" --source "$file"
+          done
+
+      - name: Commit openapi.yaml to repository
+        run: |
+          OLD_WORKDIR=`pwd`
+          TEMPORARY_REPOSITORY_PATH=`mktemp -d`
+
+          cd $TEMPORARY_REPOSITORY_PATH
+          git init
+          git checkout -b dev
+          git remote add origin "https://$GH_TOKEN@github.com/aziontech/azionapi-v4-openapi.git"
+          git fetch origin
+          git reset origin/dev
+
+          git config user.name "Azion Github Automation"
+          git config user.email "github.automation@azion.com"
+          cp $OLD_WORKDIR/openapi.yaml openapi.yaml
+
+          git add openapi.yaml
+
+          git_diff=`git diff --staged`
+
+          if [ -z "$git_diff" ]; then
+            echo "There's no changes to commit in the openapi.yaml file." >> $GITHUB_STEP_SUMMARY
+            exit
+          fi
+
+          git commit -m "chore: Auto-Generated OpenAPI Schema"
+          git push origin dev
+
+          cd $OLD_WORKDIR
+          rm -rf $TEMPORARY_REPOSITORY_PATH
+        env:
+          GH_TOKEN: ${{ secrets.GLOBAL_TOKEN }}
