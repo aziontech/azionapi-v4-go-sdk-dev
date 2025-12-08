@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTemplate**](DataStreamTemplatesAPI.md#CreateTemplate) | **Post** /data_stream/templates | Create a Template
-[**DeleteTemplate**](DataStreamTemplatesAPI.md#DeleteTemplate) | **Delete** /data_stream/templates/{template_id} | Delete a Template
-[**ListTemplates**](DataStreamTemplatesAPI.md#ListTemplates) | **Get** /data_stream/templates | List Templates
-[**PartialUpdateTemplate**](DataStreamTemplatesAPI.md#PartialUpdateTemplate) | **Patch** /data_stream/templates/{template_id} | Partially update a Template
-[**RetrieveTemplate**](DataStreamTemplatesAPI.md#RetrieveTemplate) | **Get** /data_stream/templates/{template_id} | Retrieve details of a Template
-[**UpdateTemplate**](DataStreamTemplatesAPI.md#UpdateTemplate) | **Put** /data_stream/templates/{template_id} | Update a Template
+[**CreateTemplate**](DataStreamTemplatesAPI.md#CreateTemplate) | **Post** /workspace/stream/templates | Create a Template
+[**DeleteTemplate**](DataStreamTemplatesAPI.md#DeleteTemplate) | **Delete** /workspace/stream/templates/{template_id} | Delete a Template
+[**ListTemplates**](DataStreamTemplatesAPI.md#ListTemplates) | **Get** /workspace/stream/templates | List Templates
+[**PartialUpdateTemplate**](DataStreamTemplatesAPI.md#PartialUpdateTemplate) | **Patch** /workspace/stream/templates/{template_id} | Partially update a Template
+[**RetrieveTemplate**](DataStreamTemplatesAPI.md#RetrieveTemplate) | **Get** /workspace/stream/templates/{template_id} | Retrieve details of a Template
+[**UpdateTemplate**](DataStreamTemplatesAPI.md#UpdateTemplate) | **Put** /workspace/stream/templates/{template_id} | Update a Template
 
 
 
