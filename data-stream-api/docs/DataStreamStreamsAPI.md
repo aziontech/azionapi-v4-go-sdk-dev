@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListDataStreams
 
-> PaginatedResponseListDataStreamList ListDataStreams(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedResponseListDataStreamList ListDataStreams(ctx).Active(active).DataSetId(dataSetId).DataSetIdIn(dataSetIdIn).DataSource(dataSource).Fields(fields).Id(id).IdIn(idIn).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Data Streams
 
@@ -166,11 +166,22 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	active := true // bool | Filter by active status. (optional)
+	dataSetId := int64(789) // int64 | Filter by data set id. (optional)
+	dataSetIdIn := "dataSetIdIn_example" // string | Filter by multiple data set ids (comma-separated). (optional)
+	dataSource := "dataSource_example" // string | Filter by data source. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := int64(789) // int64 | Filter by id. (optional)
+	idIn := "idIn_example" // string | Filter by multiple ids (comma-separated). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
+	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, data_source, data_set_id, active, last_editor, last_modified) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -178,7 +189,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamStreamsAPI.ListDataStreams(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.DataStreamStreamsAPI.ListDataStreams(context.Background()).Active(active).DataSetId(dataSetId).DataSetIdIn(dataSetIdIn).DataSource(dataSource).Fields(fields).Id(id).IdIn(idIn).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.ListDataStreams``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -199,7 +210,17 @@ Other parameters are passed through a pointer to a apiListDataStreamsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **active** | **bool** | Filter by active status. | 
+ **dataSetId** | **int64** | Filter by data set id. | 
+ **dataSetIdIn** | **string** | Filter by multiple data set ids (comma-separated). | 
+ **dataSource** | **string** | Filter by data source. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **int64** | Filter by id. | 
+ **idIn** | **string** | Filter by multiple ids (comma-separated). | 
+ **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
+ **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, data_source, data_set_id, active, last_editor, last_modified) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

@@ -225,10 +225,94 @@ paths:
       description: List all Data Streams owned by your account.
       operationId: list_data_streams
       parameters:
+      - description: Filter by active status.
+        explode: true
+        in: query
+        name: active
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter by data set id.
+        explode: true
+        in: query
+        name: data_set_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Filter by multiple data set ids (comma-separated).
+        explode: true
+        in: query
+        name: data_set_id__in
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by data source.
+        explode: true
+        in: query
+        name: data_source
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
         name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by id.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Filter by multiple ids (comma-separated).
+        explode: true
+        in: query
+        name: id__in
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter by last editor (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: last_editor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by last modified date (greater than or equal).
+        explode: true
+        in: query
+        name: last_modified__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date (less than or equal).
+        explode: true
+        in: query
+        name: last_modified__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Filter by name (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: name
         required: false
         schema:
           type: string
@@ -1125,10 +1209,85 @@ paths:
       description: List all Templates owned by your account.
       operationId: list_templates
       parameters:
+      - description: Filter by active status.
+        explode: true
+        in: query
+        name: active
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter by custom status.
+        explode: true
+        in: query
+        name: custom
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "Filter by data set (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: data_set
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
         name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by id.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Filter by multiple ids (comma-separated).
+        explode: true
+        in: query
+        name: id__in
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter by last editor (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: last_editor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by last modified date (greater than or equal).
+        explode: true
+        in: query
+        name: last_modified__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date (less than or equal).
+        explode: true
+        in: query
+        name: last_modified__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Filter by name (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: name
         required: false
         schema:
           type: string
