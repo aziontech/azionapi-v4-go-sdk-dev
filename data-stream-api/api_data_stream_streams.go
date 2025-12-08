@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -421,16 +422,86 @@ func (a *DataStreamStreamsAPIService) DeleteDataStreamExecute(r ApiDeleteDataStr
 type ApiListDataStreamsRequest struct {
 	ctx context.Context
 	ApiService *DataStreamStreamsAPIService
+	active *bool
+	dataSetId *int64
+	dataSetIdIn *string
+	dataSource *string
 	fields *string
+	id *int64
+	idIn *string
+	lastEditor *string
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
 }
 
+// Filter by active status.
+func (r ApiListDataStreamsRequest) Active(active bool) ApiListDataStreamsRequest {
+	r.active = &active
+	return r
+}
+
+// Filter by data set id.
+func (r ApiListDataStreamsRequest) DataSetId(dataSetId int64) ApiListDataStreamsRequest {
+	r.dataSetId = &dataSetId
+	return r
+}
+
+// Filter by multiple data set ids (comma-separated).
+func (r ApiListDataStreamsRequest) DataSetIdIn(dataSetIdIn string) ApiListDataStreamsRequest {
+	r.dataSetIdIn = &dataSetIdIn
+	return r
+}
+
+// Filter by data source.
+func (r ApiListDataStreamsRequest) DataSource(dataSource string) ApiListDataStreamsRequest {
+	r.dataSource = &dataSource
+	return r
+}
+
 // Comma-separated list of field names to include in the response.
 func (r ApiListDataStreamsRequest) Fields(fields string) ApiListDataStreamsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by id.
+func (r ApiListDataStreamsRequest) Id(id int64) ApiListDataStreamsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by multiple ids (comma-separated).
+func (r ApiListDataStreamsRequest) IdIn(idIn string) ApiListDataStreamsRequest {
+	r.idIn = &idIn
+	return r
+}
+
+// Filter by last editor (case-insensitive, partial match).
+func (r ApiListDataStreamsRequest) LastEditor(lastEditor string) ApiListDataStreamsRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last modified date (greater than or equal).
+func (r ApiListDataStreamsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListDataStreamsRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date (less than or equal).
+func (r ApiListDataStreamsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListDataStreamsRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by name (case-insensitive, partial match).
+func (r ApiListDataStreamsRequest) Name(name string) ApiListDataStreamsRequest {
+	r.name = &name
 	return r
 }
 
@@ -498,8 +569,38 @@ func (a *DataStreamStreamsAPIService) ListDataStreamsExecute(r ApiListDataStream
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.active != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
+	}
+	if r.dataSetId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "data_set_id", r.dataSetId, "form", "")
+	}
+	if r.dataSetIdIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "data_set_id__in", r.dataSetIdIn, "form", "")
+	}
+	if r.dataSource != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "data_source", r.dataSource, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.idIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")

@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -421,16 +422,79 @@ func (a *DataStreamTemplatesAPIService) DeleteTemplateExecute(r ApiDeleteTemplat
 type ApiListTemplatesRequest struct {
 	ctx context.Context
 	ApiService *DataStreamTemplatesAPIService
+	active *bool
+	custom *bool
+	dataSet *string
 	fields *string
+	id *int64
+	idIn *string
+	lastEditor *string
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
 }
 
+// Filter by active status.
+func (r ApiListTemplatesRequest) Active(active bool) ApiListTemplatesRequest {
+	r.active = &active
+	return r
+}
+
+// Filter by custom status.
+func (r ApiListTemplatesRequest) Custom(custom bool) ApiListTemplatesRequest {
+	r.custom = &custom
+	return r
+}
+
+// Filter by data set (case-insensitive, partial match).
+func (r ApiListTemplatesRequest) DataSet(dataSet string) ApiListTemplatesRequest {
+	r.dataSet = &dataSet
+	return r
+}
+
 // Comma-separated list of field names to include in the response.
 func (r ApiListTemplatesRequest) Fields(fields string) ApiListTemplatesRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by id.
+func (r ApiListTemplatesRequest) Id(id int64) ApiListTemplatesRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by multiple ids (comma-separated).
+func (r ApiListTemplatesRequest) IdIn(idIn string) ApiListTemplatesRequest {
+	r.idIn = &idIn
+	return r
+}
+
+// Filter by last editor (case-insensitive, partial match).
+func (r ApiListTemplatesRequest) LastEditor(lastEditor string) ApiListTemplatesRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last modified date (greater than or equal).
+func (r ApiListTemplatesRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListTemplatesRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date (less than or equal).
+func (r ApiListTemplatesRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListTemplatesRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by name (case-insensitive, partial match).
+func (r ApiListTemplatesRequest) Name(name string) ApiListTemplatesRequest {
+	r.name = &name
 	return r
 }
 
@@ -498,8 +562,35 @@ func (a *DataStreamTemplatesAPIService) ListTemplatesExecute(r ApiListTemplatesR
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.active != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
+	}
+	if r.custom != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "custom", r.custom, "form", "")
+	}
+	if r.dataSet != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "data_set", r.dataSet, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.idIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
