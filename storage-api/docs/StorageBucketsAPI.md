@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateBucket**](StorageBucketsAPI.md#CreateBucket) | **Post** /edge_storage/buckets | Create a new bucket
-[**DeleteBucket**](StorageBucketsAPI.md#DeleteBucket) | **Delete** /edge_storage/buckets/{name} | Delete a bucket
-[**ListBuckets**](StorageBucketsAPI.md#ListBuckets) | **Get** /edge_storage/buckets | List buckets
-[**RetrieveBucket**](StorageBucketsAPI.md#RetrieveBucket) | **Get** /edge_storage/buckets/{name} | Retrieve a bucket
-[**UpdateBucket**](StorageBucketsAPI.md#UpdateBucket) | **Patch** /edge_storage/buckets/{name} | Update bucket info
+[**CreateBucket**](StorageBucketsAPI.md#CreateBucket) | **Post** /workspace/storage/buckets | Create a new bucket
+[**DeleteBucket**](StorageBucketsAPI.md#DeleteBucket) | **Delete** /workspace/storage/buckets/{bucket_name} | Delete a bucket
+[**ListBuckets**](StorageBucketsAPI.md#ListBuckets) | **Get** /workspace/storage/buckets | List buckets
+[**RetrieveBucket**](StorageBucketsAPI.md#RetrieveBucket) | **Get** /workspace/storage/buckets/{bucket_name} | Retrieve a bucket
+[**UpdateBucket**](StorageBucketsAPI.md#UpdateBucket) | **Patch** /workspace/storage/buckets/{bucket_name} | Update bucket info
 
 
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## DeleteBucket
 
-> ResponseAsyncDeleteBucketCreate DeleteBucket(ctx, name).Execute()
+> ResponseAsyncDeleteBucketCreate DeleteBucket(ctx, bucketName).Execute()
 
 Delete a bucket
 
@@ -99,11 +99,11 @@ import (
 )
 
 func main() {
-	name := "name_example" // string | The name of the bucket
+	bucketName := "bucketName_example" // string | The name of the bucket
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageBucketsAPI.DeleteBucket(context.Background(), name).Execute()
+	resp, r, err := apiClient.StorageBucketsAPI.DeleteBucket(context.Background(), bucketName).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageBucketsAPI.DeleteBucket``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -119,7 +119,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** | The name of the bucket | 
+**bucketName** | **string** | The name of the bucket | 
 
 ### Other Parameters
 
@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveBucket
 
-> ResponseBucketCreate RetrieveBucket(ctx, name).Fields(fields).Execute()
+> ResponseBucketCreate RetrieveBucket(ctx, bucketName).Fields(fields).Execute()
 
 Retrieve a bucket
 
@@ -243,12 +243,12 @@ import (
 )
 
 func main() {
-	name := "name_example" // string | The name of the bucket
+	bucketName := "bucketName_example" // string | The name of the bucket
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageBucketsAPI.RetrieveBucket(context.Background(), name).Fields(fields).Execute()
+	resp, r, err := apiClient.StorageBucketsAPI.RetrieveBucket(context.Background(), bucketName).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageBucketsAPI.RetrieveBucket``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -264,7 +264,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** | The name of the bucket | 
+**bucketName** | **string** | The name of the bucket | 
 
 ### Other Parameters
 
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 ## UpdateBucket
 
-> ResponseBucketCreate UpdateBucket(ctx, name).PatchedBucketRequest(patchedBucketRequest).Execute()
+> ResponseBucketCreate UpdateBucket(ctx, bucketName).PatchedBucketRequest(patchedBucketRequest).Execute()
 
 Update bucket info
 
@@ -315,12 +315,12 @@ import (
 )
 
 func main() {
-	name := "name_example" // string | The name of the bucket
+	bucketName := "bucketName_example" // string | The name of the bucket
 	patchedBucketRequest := *openapiclient.NewPatchedBucketRequest() // PatchedBucketRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageBucketsAPI.UpdateBucket(context.Background(), name).PatchedBucketRequest(patchedBucketRequest).Execute()
+	resp, r, err := apiClient.StorageBucketsAPI.UpdateBucket(context.Background(), bucketName).PatchedBucketRequest(patchedBucketRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageBucketsAPI.UpdateBucket``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -336,7 +336,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**name** | **string** | The name of the bucket | 
+**bucketName** | **string** | The name of the bucket | 
 
 ### Other Parameters
 

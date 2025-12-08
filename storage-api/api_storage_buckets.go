@@ -68,7 +68,7 @@ func (a *StorageBucketsAPIService) CreateBucketExecute(r ApiCreateBucketRequest)
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/buckets"
+	localVarPath := localBasePath + "/workspace/storage/buckets"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -226,7 +226,7 @@ func (a *StorageBucketsAPIService) CreateBucketExecute(r ApiCreateBucketRequest)
 type ApiDeleteBucketRequest struct {
 	ctx context.Context
 	ApiService *StorageBucketsAPIService
-	name string
+	bucketName string
 }
 
 func (r ApiDeleteBucketRequest) Execute() (*ResponseAsyncDeleteBucketCreate, *http.Response, error) {
@@ -239,14 +239,14 @@ DeleteBucket Delete a bucket
 Delete a specific bucket.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name The name of the bucket
+ @param bucketName The name of the bucket
  @return ApiDeleteBucketRequest
 */
-func (a *StorageBucketsAPIService) DeleteBucket(ctx context.Context, name string) ApiDeleteBucketRequest {
+func (a *StorageBucketsAPIService) DeleteBucket(ctx context.Context, bucketName string) ApiDeleteBucketRequest {
 	return ApiDeleteBucketRequest{
 		ApiService: a,
 		ctx: ctx,
-		name: name,
+		bucketName: bucketName,
 	}
 }
 
@@ -265,8 +265,8 @@ func (a *StorageBucketsAPIService) DeleteBucketExecute(r ApiDeleteBucketRequest)
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/buckets/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+	localVarPath := localBasePath + "/workspace/storage/buckets/{bucket_name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"bucket_name"+"}", url.PathEscape(parameterValueToString(r.bucketName, "bucketName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -490,7 +490,7 @@ func (a *StorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/buckets"
+	localVarPath := localBasePath + "/workspace/storage/buckets"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -658,7 +658,7 @@ func (a *StorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsRequest) (
 type ApiRetrieveBucketRequest struct {
 	ctx context.Context
 	ApiService *StorageBucketsAPIService
-	name string
+	bucketName string
 	fields *string
 }
 
@@ -678,14 +678,14 @@ RetrieveBucket Retrieve a bucket
 Retrieve details from a specific bucket.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name The name of the bucket
+ @param bucketName The name of the bucket
  @return ApiRetrieveBucketRequest
 */
-func (a *StorageBucketsAPIService) RetrieveBucket(ctx context.Context, name string) ApiRetrieveBucketRequest {
+func (a *StorageBucketsAPIService) RetrieveBucket(ctx context.Context, bucketName string) ApiRetrieveBucketRequest {
 	return ApiRetrieveBucketRequest{
 		ApiService: a,
 		ctx: ctx,
-		name: name,
+		bucketName: bucketName,
 	}
 }
 
@@ -704,8 +704,8 @@ func (a *StorageBucketsAPIService) RetrieveBucketExecute(r ApiRetrieveBucketRequ
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/buckets/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+	localVarPath := localBasePath + "/workspace/storage/buckets/{bucket_name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"bucket_name"+"}", url.PathEscape(parameterValueToString(r.bucketName, "bucketName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -861,7 +861,7 @@ func (a *StorageBucketsAPIService) RetrieveBucketExecute(r ApiRetrieveBucketRequ
 type ApiUpdateBucketRequest struct {
 	ctx context.Context
 	ApiService *StorageBucketsAPIService
-	name string
+	bucketName string
 	patchedBucketRequest *PatchedBucketRequest
 }
 
@@ -880,14 +880,14 @@ UpdateBucket Update bucket info
 Update bucket information (bucket name cannot be changed)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param name The name of the bucket
+ @param bucketName The name of the bucket
  @return ApiUpdateBucketRequest
 */
-func (a *StorageBucketsAPIService) UpdateBucket(ctx context.Context, name string) ApiUpdateBucketRequest {
+func (a *StorageBucketsAPIService) UpdateBucket(ctx context.Context, bucketName string) ApiUpdateBucketRequest {
 	return ApiUpdateBucketRequest{
 		ApiService: a,
 		ctx: ctx,
-		name: name,
+		bucketName: bucketName,
 	}
 }
 
@@ -906,8 +906,8 @@ func (a *StorageBucketsAPIService) UpdateBucketExecute(r ApiUpdateBucketRequest)
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/buckets/{name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"name"+"}", url.PathEscape(parameterValueToString(r.name, "name")), -1)
+	localVarPath := localBasePath + "/workspace/storage/buckets/{bucket_name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"bucket_name"+"}", url.PathEscape(parameterValueToString(r.bucketName, "bucketName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

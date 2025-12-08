@@ -68,7 +68,7 @@ func (a *StorageCredentialsAPIService) CreateCredentialExecute(r ApiCreateCreden
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/credentials"
+	localVarPath := localBasePath + "/workspace/storage/credentials"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -265,7 +265,7 @@ func (a *StorageCredentialsAPIService) DeleteCredentialExecute(r ApiDeleteCreden
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/credentials/{credential_id}"
+	localVarPath := localBasePath + "/workspace/storage/credentials/{credential_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"credential_id"+"}", url.PathEscape(parameterValueToString(r.credentialId, "credentialId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -490,7 +490,7 @@ func (a *StorageCredentialsAPIService) ListCredentialsExecute(r ApiListCredentia
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/credentials"
+	localVarPath := localBasePath + "/workspace/storage/credentials"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -704,7 +704,7 @@ func (a *StorageCredentialsAPIService) RetrieveCredentialExecute(r ApiRetrieveCr
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/credentials/{credential_id}"
+	localVarPath := localBasePath + "/workspace/storage/credentials/{credential_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"credential_id"+"}", url.PathEscape(parameterValueToString(r.credentialId, "credentialId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

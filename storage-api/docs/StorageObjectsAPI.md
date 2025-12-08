@@ -4,11 +4,11 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateObjectKey**](StorageObjectsAPI.md#CreateObjectKey) | **Post** /edge_storage/buckets/{bucket_name}/objects/{object_key} | Create new object key.
-[**DeleteObjectKey**](StorageObjectsAPI.md#DeleteObjectKey) | **Delete** /edge_storage/buckets/{bucket_name}/objects/{object_key} | Delete object key
-[**DownloadObject**](StorageObjectsAPI.md#DownloadObject) | **Get** /edge_storage/buckets/{bucket_name}/objects/{object_key} | Download object
-[**ListObjects**](StorageObjectsAPI.md#ListObjects) | **Get** /edge_storage/buckets/{bucket_name}/objects | List objects from bucket
-[**UpdateObjectKey**](StorageObjectsAPI.md#UpdateObjectKey) | **Put** /edge_storage/buckets/{bucket_name}/objects/{object_key} | Update the object key.
+[**CreateObjectKey**](StorageObjectsAPI.md#CreateObjectKey) | **Post** /workspace/storage/buckets/{bucket_name}/objects/{object_key} | Create new object key.
+[**DeleteObjectKey**](StorageObjectsAPI.md#DeleteObjectKey) | **Delete** /workspace/storage/buckets/{bucket_name}/objects/{object_key} | Delete object key
+[**DownloadObject**](StorageObjectsAPI.md#DownloadObject) | **Get** /workspace/storage/buckets/{bucket_name}/objects/{object_key} | Download object
+[**ListObjects**](StorageObjectsAPI.md#ListObjects) | **Get** /workspace/storage/buckets/{bucket_name}/objects | List objects from bucket
+[**UpdateObjectKey**](StorageObjectsAPI.md#UpdateObjectKey) | **Put** /workspace/storage/buckets/{bucket_name}/objects/{object_key} | Update the object key.
 
 
 

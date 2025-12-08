@@ -4,10 +4,10 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCredential**](StorageCredentialsAPI.md#CreateCredential) | **Post** /edge_storage/credentials | Create a new credential
-[**DeleteCredential**](StorageCredentialsAPI.md#DeleteCredential) | **Delete** /edge_storage/credentials/{credential_id} | Delete a credential
-[**ListCredentials**](StorageCredentialsAPI.md#ListCredentials) | **Get** /edge_storage/credentials | List credentials
-[**RetrieveCredential**](StorageCredentialsAPI.md#RetrieveCredential) | **Get** /edge_storage/credentials/{credential_id} | Retrieve details from a credential
+[**CreateCredential**](StorageCredentialsAPI.md#CreateCredential) | **Post** /workspace/storage/credentials | Create a new credential
+[**DeleteCredential**](StorageCredentialsAPI.md#DeleteCredential) | **Delete** /workspace/storage/credentials/{credential_id} | Delete a credential
+[**ListCredentials**](StorageCredentialsAPI.md#ListCredentials) | **Get** /workspace/storage/credentials | List credentials
+[**RetrieveCredential**](StorageCredentialsAPI.md#RetrieveCredential) | **Get** /workspace/storage/credentials/{credential_id} | Retrieve details from a credential
 
 
 
