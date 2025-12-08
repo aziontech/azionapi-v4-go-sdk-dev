@@ -82,7 +82,7 @@ func (a *StorageObjectsAPIService) CreateObjectKeyExecute(r ApiCreateObjectKeyRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/buckets/{bucket_name}/objects/{object_key}"
+	localVarPath := localBasePath + "/workspace/storage/buckets/{bucket_name}/objects/{object_key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"bucket_name"+"}", url.PathEscape(parameterValueToString(r.bucketName, "bucketName")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"object_key"+"}", url.PathEscape(parameterValueToString(r.objectKey, "objectKey")), -1)
 
@@ -284,7 +284,7 @@ func (a *StorageObjectsAPIService) DeleteObjectKeyExecute(r ApiDeleteObjectKeyRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/buckets/{bucket_name}/objects/{object_key}"
+	localVarPath := localBasePath + "/workspace/storage/buckets/{bucket_name}/objects/{object_key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"bucket_name"+"}", url.PathEscape(parameterValueToString(r.bucketName, "bucketName")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"object_key"+"}", url.PathEscape(parameterValueToString(r.objectKey, "objectKey")), -1)
 
@@ -488,7 +488,7 @@ func (a *StorageObjectsAPIService) DownloadObjectExecute(r ApiDownloadObjectRequ
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/buckets/{bucket_name}/objects/{object_key}"
+	localVarPath := localBasePath + "/workspace/storage/buckets/{bucket_name}/objects/{object_key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"bucket_name"+"}", url.PathEscape(parameterValueToString(r.bucketName, "bucketName")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"object_key"+"}", url.PathEscape(parameterValueToString(r.objectKey, "objectKey")), -1)
 
@@ -720,7 +720,7 @@ func (a *StorageObjectsAPIService) ListObjectsExecute(r ApiListObjectsRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/buckets/{bucket_name}/objects"
+	localVarPath := localBasePath + "/workspace/storage/buckets/{bucket_name}/objects"
 	localVarPath = strings.Replace(localVarPath, "{"+"bucket_name"+"}", url.PathEscape(parameterValueToString(r.bucketName, "bucketName")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -944,7 +944,7 @@ func (a *StorageObjectsAPIService) UpdateObjectKeyExecute(r ApiUpdateObjectKeyRe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/edge_storage/buckets/{bucket_name}/objects/{object_key}"
+	localVarPath := localBasePath + "/workspace/storage/buckets/{bucket_name}/objects/{object_key}"
 	localVarPath = strings.Replace(localVarPath, "{"+"bucket_name"+"}", url.PathEscape(parameterValueToString(r.bucketName, "bucketName")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"object_key"+"}", url.PathEscape(parameterValueToString(r.objectKey, "objectKey")), -1)
 
