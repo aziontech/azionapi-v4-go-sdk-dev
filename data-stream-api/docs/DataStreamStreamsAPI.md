@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateDataStream**](DataStreamStreamsAPI.md#CreateDataStream) | **Post** /data_stream/streams | Create a Data Stream
-[**DeleteDataStream**](DataStreamStreamsAPI.md#DeleteDataStream) | **Delete** /data_stream/streams/{data_stream_id} | Delete a Data Stream
-[**ListDataStreams**](DataStreamStreamsAPI.md#ListDataStreams) | **Get** /data_stream/streams | List Data Streams
-[**PartialUpdateDataStream**](DataStreamStreamsAPI.md#PartialUpdateDataStream) | **Patch** /data_stream/streams/{data_stream_id} | Partially update a Data Stream
-[**RetrieveDataStream**](DataStreamStreamsAPI.md#RetrieveDataStream) | **Get** /data_stream/streams/{data_stream_id} | Retrieve details of a Data Stream
-[**UpdateDataStream**](DataStreamStreamsAPI.md#UpdateDataStream) | **Put** /data_stream/streams/{data_stream_id} | Update a Data Stream
+[**CreateDataStream**](DataStreamStreamsAPI.md#CreateDataStream) | **Post** /workspace/stream/streams | Create a Data Stream
+[**DeleteDataStream**](DataStreamStreamsAPI.md#DeleteDataStream) | **Delete** /workspace/stream/streams/{data_stream_id} | Delete a Data Stream
+[**ListDataStreams**](DataStreamStreamsAPI.md#ListDataStreams) | **Get** /workspace/stream/streams | List Data Streams
+[**PartialUpdateDataStream**](DataStreamStreamsAPI.md#PartialUpdateDataStream) | **Patch** /workspace/stream/streams/{data_stream_id} | Partially update a Data Stream
+[**RetrieveDataStream**](DataStreamStreamsAPI.md#RetrieveDataStream) | **Get** /workspace/stream/streams/{data_stream_id} | Retrieve details of a Data Stream
+[**UpdateDataStream**](DataStreamStreamsAPI.md#UpdateDataStream) | **Put** /workspace/stream/streams/{data_stream_id} | Update a Data Stream
 
 
 

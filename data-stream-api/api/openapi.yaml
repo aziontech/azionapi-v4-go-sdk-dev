@@ -6,7 +6,7 @@ info:
 servers:
 - url: /
 paths:
-  /data_stream/data_sources:
+  /workspace/stream/data_sources:
     get:
       description: List all Data Sources.
       operationId: list_data_sources
@@ -220,7 +220,7 @@ paths:
       summary: List of Data Sources
       tags:
       - Data Stream - Data Sources
-  /data_stream/streams:
+  /workspace/stream/streams:
     get:
       description: List all Data Streams owned by your account.
       operationId: list_data_streams
@@ -618,7 +618,7 @@ paths:
       summary: Create a Data Stream
       tags:
       - Data Stream - Streams
-  /data_stream/streams/{data_stream_id}:
+  /workspace/stream/streams/{data_stream_id}:
     delete:
       description: Delete a specific Data Stream in your account.
       operationId: delete_data_stream
@@ -1204,7 +1204,7 @@ paths:
       summary: Update a Data Stream
       tags:
       - Data Stream - Streams
-  /data_stream/templates:
+  /workspace/stream/templates:
     get:
       description: List all Templates owned by your account.
       operationId: list_templates
@@ -1593,7 +1593,7 @@ paths:
       summary: Create a Template
       tags:
       - Data Stream - Templates
-  /data_stream/templates/{template_id}:
+  /workspace/stream/templates/{template_id}:
     delete:
       description: Delete a specific custom Template in your account.
       operationId: delete_template

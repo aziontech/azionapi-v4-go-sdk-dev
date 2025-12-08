@@ -69,7 +69,7 @@ func (a *DataStreamStreamsAPIService) CreateDataStreamExecute(r ApiCreateDataStr
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/streams"
+	localVarPath := localBasePath + "/workspace/stream/streams"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -267,7 +267,7 @@ func (a *DataStreamStreamsAPIService) DeleteDataStreamExecute(r ApiDeleteDataStr
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/streams/{data_stream_id}"
+	localVarPath := localBasePath + "/workspace/stream/streams/{data_stream_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"data_stream_id"+"}", url.PathEscape(parameterValueToString(r.dataStreamId, "dataStreamId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -563,7 +563,7 @@ func (a *DataStreamStreamsAPIService) ListDataStreamsExecute(r ApiListDataStream
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/streams"
+	localVarPath := localBasePath + "/workspace/stream/streams"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -806,7 +806,7 @@ func (a *DataStreamStreamsAPIService) PartialUpdateDataStreamExecute(r ApiPartia
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/streams/{data_stream_id}"
+	localVarPath := localBasePath + "/workspace/stream/streams/{data_stream_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"data_stream_id"+"}", url.PathEscape(parameterValueToString(r.dataStreamId, "dataStreamId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1009,7 +1009,7 @@ func (a *DataStreamStreamsAPIService) RetrieveDataStreamExecute(r ApiRetrieveDat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/streams/{data_stream_id}"
+	localVarPath := localBasePath + "/workspace/stream/streams/{data_stream_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"data_stream_id"+"}", url.PathEscape(parameterValueToString(r.dataStreamId, "dataStreamId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1211,7 +1211,7 @@ func (a *DataStreamStreamsAPIService) UpdateDataStreamExecute(r ApiUpdateDataStr
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/streams/{data_stream_id}"
+	localVarPath := localBasePath + "/workspace/stream/streams/{data_stream_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"data_stream_id"+"}", url.PathEscape(parameterValueToString(r.dataStreamId, "dataStreamId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

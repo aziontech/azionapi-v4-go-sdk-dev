@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListDataSources**](DataStreamDataSourcesAPI.md#ListDataSources) | **Get** /data_stream/data_sources | List of Data Sources
+[**ListDataSources**](DataStreamDataSourcesAPI.md#ListDataSources) | **Get** /workspace/stream/data_sources | List of Data Sources
 
 
 

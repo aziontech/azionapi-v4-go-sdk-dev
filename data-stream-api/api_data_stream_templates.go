@@ -69,7 +69,7 @@ func (a *DataStreamTemplatesAPIService) CreateTemplateExecute(r ApiCreateTemplat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/templates"
+	localVarPath := localBasePath + "/workspace/stream/templates"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -267,7 +267,7 @@ func (a *DataStreamTemplatesAPIService) DeleteTemplateExecute(r ApiDeleteTemplat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/templates/{template_id}"
+	localVarPath := localBasePath + "/workspace/stream/templates/{template_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"template_id"+"}", url.PathEscape(parameterValueToString(r.templateId, "templateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -556,7 +556,7 @@ func (a *DataStreamTemplatesAPIService) ListTemplatesExecute(r ApiListTemplatesR
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/templates"
+	localVarPath := localBasePath + "/workspace/stream/templates"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -796,7 +796,7 @@ func (a *DataStreamTemplatesAPIService) PartialUpdateTemplateExecute(r ApiPartia
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/templates/{template_id}"
+	localVarPath := localBasePath + "/workspace/stream/templates/{template_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"template_id"+"}", url.PathEscape(parameterValueToString(r.templateId, "templateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -999,7 +999,7 @@ func (a *DataStreamTemplatesAPIService) RetrieveTemplateExecute(r ApiRetrieveTem
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/templates/{template_id}"
+	localVarPath := localBasePath + "/workspace/stream/templates/{template_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"template_id"+"}", url.PathEscape(parameterValueToString(r.templateId, "templateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1201,7 +1201,7 @@ func (a *DataStreamTemplatesAPIService) UpdateTemplateExecute(r ApiUpdateTemplat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/data_stream/templates/{template_id}"
+	localVarPath := localBasePath + "/workspace/stream/templates/{template_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"template_id"+"}", url.PathEscape(parameterValueToString(r.templateId, "templateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
