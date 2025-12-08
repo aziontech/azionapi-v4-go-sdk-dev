@@ -68,7 +68,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertific
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/crls"
+	localVarPath := localBasePath + "/workspace/tls/crls"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -265,7 +265,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) DeleteCertific
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/crls/{crl_id}"
+	localVarPath := localBasePath + "/workspace/tls/crls/{crl_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"crl_id"+"}", url.PathEscape(parameterValueToString(r.crlId, "crlId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -490,7 +490,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) ListCertificat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/crls"
+	localVarPath := localBasePath + "/workspace/tls/crls"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -703,7 +703,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateC
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/crls/{crl_id}"
+	localVarPath := localBasePath + "/workspace/tls/crls/{crl_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"crl_id"+"}", url.PathEscape(parameterValueToString(r.crlId, "crlId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -905,7 +905,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetrieveCertif
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/crls/{crl_id}"
+	localVarPath := localBasePath + "/workspace/tls/crls/{crl_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"crl_id"+"}", url.PathEscape(parameterValueToString(r.crlId, "crlId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1107,7 +1107,7 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertific
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/crls/{crl_id}"
+	localVarPath := localBasePath + "/workspace/tls/crls/{crl_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"crl_id"+"}", url.PathEscape(parameterValueToString(r.crlId, "crlId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

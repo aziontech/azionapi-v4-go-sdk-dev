@@ -67,7 +67,7 @@ func (a *DigitalCertificatesCertificateSigningRequestsAPIService) CreateCertific
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/csr"
+	localVarPath := localBasePath + "/workspace/tls/csr"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

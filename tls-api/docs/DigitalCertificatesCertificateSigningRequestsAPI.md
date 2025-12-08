@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCertificateSigningRequest**](DigitalCertificatesCertificateSigningRequestsAPI.md#CreateCertificateSigningRequest) | **Post** /digital_certificates/csr | Create a certificate signing request (CSR)
+[**CreateCertificateSigningRequest**](DigitalCertificatesCertificateSigningRequestsAPI.md#CreateCertificateSigningRequest) | **Post** /workspace/tls/csr | Create a certificate signing request (CSR)
 
 
 

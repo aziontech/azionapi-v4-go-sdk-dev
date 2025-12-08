@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RequestCertificate**](DigitalCertificatesRequestACertificateAPI.md#RequestCertificate) | **Post** /digital_certificates/certificates/request | Request a certificate
+[**RequestCertificate**](DigitalCertificatesRequestACertificateAPI.md#RequestCertificate) | **Post** /workspace/tls/certificates/request | Request a certificate
 
 
 

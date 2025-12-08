@@ -67,7 +67,7 @@ func (a *DigitalCertificatesRequestACertificateAPIService) RequestCertificateExe
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/digital_certificates/certificates/request"
+	localVarPath := localBasePath + "/workspace/tls/certificates/request"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

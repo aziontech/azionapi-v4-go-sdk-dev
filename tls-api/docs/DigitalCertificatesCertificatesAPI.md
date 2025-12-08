@@ -4,12 +4,12 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCertificate**](DigitalCertificatesCertificatesAPI.md#CreateCertificate) | **Post** /digital_certificates/certificates | Create a certificate
-[**DeleteCertificate**](DigitalCertificatesCertificatesAPI.md#DeleteCertificate) | **Delete** /digital_certificates/certificates/{certificate_id} | Delete a certificate
-[**ListCertificates**](DigitalCertificatesCertificatesAPI.md#ListCertificates) | **Get** /digital_certificates/certificates | List certificates
-[**PartialUpdateCertificate**](DigitalCertificatesCertificatesAPI.md#PartialUpdateCertificate) | **Patch** /digital_certificates/certificates/{certificate_id} | Partially update a certificate
-[**RetrieveCertificate**](DigitalCertificatesCertificatesAPI.md#RetrieveCertificate) | **Get** /digital_certificates/certificates/{certificate_id} | Retrieve details from a certificate
-[**UpdateCertificate**](DigitalCertificatesCertificatesAPI.md#UpdateCertificate) | **Put** /digital_certificates/certificates/{certificate_id} | Update a certificate
+[**CreateCertificate**](DigitalCertificatesCertificatesAPI.md#CreateCertificate) | **Post** /workspace/tls/certificates | Create a certificate
+[**DeleteCertificate**](DigitalCertificatesCertificatesAPI.md#DeleteCertificate) | **Delete** /workspace/tls/certificates/{certificate_id} | Delete a certificate
+[**ListCertificates**](DigitalCertificatesCertificatesAPI.md#ListCertificates) | **Get** /workspace/tls/certificates | List certificates
+[**PartialUpdateCertificate**](DigitalCertificatesCertificatesAPI.md#PartialUpdateCertificate) | **Patch** /workspace/tls/certificates/{certificate_id} | Partially update a certificate
+[**RetrieveCertificate**](DigitalCertificatesCertificatesAPI.md#RetrieveCertificate) | **Get** /workspace/tls/certificates/{certificate_id} | Retrieve details from a certificate
+[**UpdateCertificate**](DigitalCertificatesCertificatesAPI.md#UpdateCertificate) | **Put** /workspace/tls/certificates/{certificate_id} | Update a certificate
 
 
 
