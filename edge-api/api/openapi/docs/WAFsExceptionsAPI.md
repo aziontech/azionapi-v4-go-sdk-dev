@@ -1,0 +1,464 @@
+# \WAFsExceptionsAPI
+
+All URIs are relative to *http://localhost*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**CreateWafException**](WAFsExceptionsAPI.md#CreateWafException) | **Post** /workspace/wafs/{waf_id}/exceptions | Create an Exception for a Web Application Firewall (WAF)
+[**DeleteWafException**](WAFsExceptionsAPI.md#DeleteWafException) | **Delete** /workspace/wafs/{waf_id}/exceptions/{exception_id} | Delete an Exception from a Web Application Firewall (WAF)
+[**ListWafExceptions**](WAFsExceptionsAPI.md#ListWafExceptions) | **Get** /workspace/wafs/{waf_id}/exceptions | List Exceptions for a Web Application Firewall (WAF)
+[**PartialUpdateWafException**](WAFsExceptionsAPI.md#PartialUpdateWafException) | **Patch** /workspace/wafs/{waf_id}/exceptions/{exception_id} | Partially update an Exception for a Web Application Firewall (WAF)
+[**RetrieveWafException**](WAFsExceptionsAPI.md#RetrieveWafException) | **Get** /workspace/wafs/{waf_id}/exceptions/{exception_id} | Retrieve details of an Exception from a Web Application Firewall (WAF)
+[**UpdateWafException**](WAFsExceptionsAPI.md#UpdateWafException) | **Put** /workspace/wafs/{waf_id}/exceptions/{exception_id} | Update an Exception for a Web Application Firewall (WAF)
+
+
+
+## CreateWafException
+
+> ResponseWAFRule CreateWafException(ctx, wafId).WAFRuleRequest(wAFRuleRequest).Execute()
+
+Create an Exception for a Web Application Firewall (WAF)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
+	wAFRuleRequest := *openapiclient.NewWAFRuleRequest("Name_example", []openapiclient.WAFExceptionPolymorphicConditionRequest{openapiclient.WAFExceptionPolymorphicConditionRequest{WAFExceptionGenericConditionRequest: openapiclient.NewWAFExceptionGenericConditionRequest("Match_example")}}) // WAFRuleRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WAFsExceptionsAPI.CreateWafException(context.Background(), wafId).WAFRuleRequest(wAFRuleRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsExceptionsAPI.CreateWafException``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateWafException`: ResponseWAFRule
+	fmt.Fprintf(os.Stdout, "Response from `WAFsExceptionsAPI.CreateWafException`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**wafId** | **int64** | A unique integer value identifying the WAF. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateWafExceptionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **wAFRuleRequest** | [**WAFRuleRequest**](WAFRuleRequest.md) |  | 
+
+### Return type
+
+[**ResponseWAFRule**](ResponseWAFRule.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteWafException
+
+> ResponseAsyncDeleteWAFRule DeleteWafException(ctx, exceptionId, wafId).Execute()
+
+Delete an Exception from a Web Application Firewall (WAF)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	exceptionId := int64(789) // int64 | A unique integer value identifying the WAF exception.
+	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WAFsExceptionsAPI.DeleteWafException(context.Background(), exceptionId, wafId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsExceptionsAPI.DeleteWafException``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteWafException`: ResponseAsyncDeleteWAFRule
+	fmt.Fprintf(os.Stdout, "Response from `WAFsExceptionsAPI.DeleteWafException`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**exceptionId** | **int64** | A unique integer value identifying the WAF exception. | 
+**wafId** | **int64** | A unique integer value identifying the WAF. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteWafExceptionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**ResponseAsyncDeleteWAFRule**](ResponseAsyncDeleteWAFRule.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListWafExceptions
+
+> PaginatedWAFRuleList ListWafExceptions(ctx, wafId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+
+List Exceptions for a Web Application Firewall (WAF)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: rule_id, name, path, conditions, operator, active, last_editor, last_modified) (optional)
+	page := int64(789) // int64 | A page number within the paginated result set. (optional)
+	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
+	search := "search_example" // string | A search term. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WAFsExceptionsAPI.ListWafExceptions(context.Background(), wafId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsExceptionsAPI.ListWafExceptions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListWafExceptions`: PaginatedWAFRuleList
+	fmt.Fprintf(os.Stdout, "Response from `WAFsExceptionsAPI.ListWafExceptions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**wafId** | **int64** | A unique integer value identifying the WAF. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListWafExceptionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **ordering** | **string** | Which field to use when ordering the results. (Valid fields: rule_id, name, path, conditions, operator, active, last_editor, last_modified) | 
+ **page** | **int64** | A page number within the paginated result set. | 
+ **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
+ **search** | **string** | A search term. | 
+
+### Return type
+
+[**PaginatedWAFRuleList**](PaginatedWAFRuleList.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PartialUpdateWafException
+
+> ResponseWAFRule PartialUpdateWafException(ctx, exceptionId, wafId).PatchedWAFRuleRequest(patchedWAFRuleRequest).Execute()
+
+Partially update an Exception for a Web Application Firewall (WAF)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	exceptionId := int64(789) // int64 | A unique integer value identifying the WAF exception.
+	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
+	patchedWAFRuleRequest := *openapiclient.NewPatchedWAFRuleRequest() // PatchedWAFRuleRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WAFsExceptionsAPI.PartialUpdateWafException(context.Background(), exceptionId, wafId).PatchedWAFRuleRequest(patchedWAFRuleRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsExceptionsAPI.PartialUpdateWafException``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PartialUpdateWafException`: ResponseWAFRule
+	fmt.Fprintf(os.Stdout, "Response from `WAFsExceptionsAPI.PartialUpdateWafException`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**exceptionId** | **int64** | A unique integer value identifying the WAF exception. | 
+**wafId** | **int64** | A unique integer value identifying the WAF. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPartialUpdateWafExceptionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **patchedWAFRuleRequest** | [**PatchedWAFRuleRequest**](PatchedWAFRuleRequest.md) |  | 
+
+### Return type
+
+[**ResponseWAFRule**](ResponseWAFRule.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RetrieveWafException
+
+> ResponseRetrieveWAFRule RetrieveWafException(ctx, exceptionId, wafId).Fields(fields).Execute()
+
+Retrieve details of an Exception from a Web Application Firewall (WAF)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	exceptionId := int64(789) // int64 | A unique integer value identifying the WAF exception.
+	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WAFsExceptionsAPI.RetrieveWafException(context.Background(), exceptionId, wafId).Fields(fields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsExceptionsAPI.RetrieveWafException``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RetrieveWafException`: ResponseRetrieveWAFRule
+	fmt.Fprintf(os.Stdout, "Response from `WAFsExceptionsAPI.RetrieveWafException`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**exceptionId** | **int64** | A unique integer value identifying the WAF exception. | 
+**wafId** | **int64** | A unique integer value identifying the WAF. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRetrieveWafExceptionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **fields** | **string** | Comma-separated list of field names to include in the response. | 
+
+### Return type
+
+[**ResponseRetrieveWAFRule**](ResponseRetrieveWAFRule.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateWafException
+
+> ResponseWAFRule UpdateWafException(ctx, exceptionId, wafId).WAFRuleRequest(wAFRuleRequest).Execute()
+
+Update an Exception for a Web Application Firewall (WAF)
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	exceptionId := int64(789) // int64 | A unique integer value identifying the WAF exception.
+	wafId := int64(789) // int64 | A unique integer value identifying the WAF.
+	wAFRuleRequest := *openapiclient.NewWAFRuleRequest("Name_example", []openapiclient.WAFExceptionPolymorphicConditionRequest{openapiclient.WAFExceptionPolymorphicConditionRequest{WAFExceptionGenericConditionRequest: openapiclient.NewWAFExceptionGenericConditionRequest("Match_example")}}) // WAFRuleRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WAFsExceptionsAPI.UpdateWafException(context.Background(), exceptionId, wafId).WAFRuleRequest(wAFRuleRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WAFsExceptionsAPI.UpdateWafException``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateWafException`: ResponseWAFRule
+	fmt.Fprintf(os.Stdout, "Response from `WAFsExceptionsAPI.UpdateWafException`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**exceptionId** | **int64** | A unique integer value identifying the WAF exception. | 
+**wafId** | **int64** | A unique integer value identifying the WAF. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateWafExceptionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **wAFRuleRequest** | [**WAFRuleRequest**](WAFRuleRequest.md) |  | 
+
+### Return type
+
+[**ResponseWAFRule**](ResponseWAFRule.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+

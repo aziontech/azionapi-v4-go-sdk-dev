@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListDnsZones
 
-> PaginatedZoneList ListDnsZones(ctx).Active(active).Domain(domain).Fields(fields).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedZoneList ListDnsZones(ctx).Active(active).Domain(domain).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Zones(zones).Execute()
 
 List DNS Zones
 
@@ -170,18 +170,20 @@ import (
 )
 
 func main() {
-	active := "active_example" // string | Search by active (optional)
-	domain := "domain_example" // string | Search by domain (optional)
+	active := true // bool | Filter by active status. (optional)
+	domain := "domain_example" // string | Filter by domain (case-insensitive partial match). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	name := "name_example" // string | Search by name (optional)
+	id := "id_example" // string | Filter by id. Supports comma-separated values for multiple IDs. (optional)
+	name := "name_example" // string | Filter by name (case-insensitive partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, domain, active) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
+	zones := "zones_example" // string | Full-text zones across zones. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DNSZonesAPI.ListDnsZones(context.Background()).Active(active).Domain(domain).Fields(fields).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.DNSZonesAPI.ListDnsZones(context.Background()).Active(active).Domain(domain).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Zones(zones).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DNSZonesAPI.ListDnsZones``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -202,14 +204,16 @@ Other parameters are passed through a pointer to a apiListDnsZonesRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **active** | **string** | Search by active | 
- **domain** | **string** | Search by domain | 
+ **active** | **bool** | Filter by active status. | 
+ **domain** | **string** | Filter by domain (case-insensitive partial match). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **name** | **string** | Search by name | 
+ **id** | **string** | Filter by id. Supports comma-separated values for multiple IDs. | 
+ **name** | **string** | Filter by name (case-insensitive partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, domain, active) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
+ **zones** | **string** | Full-text zones across zones. | 
 
 ### Return type
 
