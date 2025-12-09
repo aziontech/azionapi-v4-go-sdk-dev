@@ -103,20 +103,20 @@ Class | Method | HTTP request | Description
 *ApplicationsFunctionAPI* | [**PartialUpdateApplicationFunctionInstance**](docs/ApplicationsFunctionAPI.md#partialupdateapplicationfunctioninstance) | **Patch** /workspace/applications/{application_id}/functions/{function_id} | Partially update an Application Function Instance
 *ApplicationsFunctionAPI* | [**RetrieveApplicationFunctionInstance**](docs/ApplicationsFunctionAPI.md#retrieveapplicationfunctioninstance) | **Get** /workspace/applications/{application_id}/functions/{function_id} | Retrieve details of an Application Function Instance
 *ApplicationsFunctionAPI* | [**UpdateApplicationFunctionInstance**](docs/ApplicationsFunctionAPI.md#updateapplicationfunctioninstance) | **Put** /workspace/applications/{application_id}/functions/{function_id} | Update an Edge Application Function Instance
-*ApplicationsRequestRulesAPI* | [**DeleteApplicationRequestRule**](docs/ApplicationsRequestRulesAPI.md#deleteapplicationrequestrule) | **Delete** /workspace/applications/{application_id}/request_rules/{rule_id} | Delete an Application Request Rule
+*ApplicationsRequestRulesAPI* | [**DeleteApplicationRequestRule**](docs/ApplicationsRequestRulesAPI.md#deleteapplicationrequestrule) | **Delete** /workspace/applications/{application_id}/request_rules/{request_rule_id} | Delete an Application Request Rule
 *ApplicationsRequestRulesAPI* | [**EdgeApplicationApiApplicationsRequestRulesCreate**](docs/ApplicationsRequestRulesAPI.md#edgeapplicationapiapplicationsrequestrulescreate) | **Post** /workspace/applications/{application_id}/request_rules | Create an Application Request Rule
 *ApplicationsRequestRulesAPI* | [**EdgeApplicationApiApplicationsRequestRulesList**](docs/ApplicationsRequestRulesAPI.md#edgeapplicationapiapplicationsrequestruleslist) | **Get** /workspace/applications/{application_id}/request_rules | List Application Request Rules
 *ApplicationsRequestRulesAPI* | [**EdgeApplicationApiApplicationsRequestRulesOrderUpdate**](docs/ApplicationsRequestRulesAPI.md#edgeapplicationapiapplicationsrequestrulesorderupdate) | **Put** /workspace/applications/{application_id}/request_rules/order | Ordering Application Request Rules
-*ApplicationsRequestRulesAPI* | [**EdgeApplicationApiApplicationsRequestRulesPartialUpdate**](docs/ApplicationsRequestRulesAPI.md#edgeapplicationapiapplicationsrequestrulespartialupdate) | **Patch** /workspace/applications/{application_id}/request_rules/{rule_id} | Partially update an Application Request Rule
-*ApplicationsRequestRulesAPI* | [**EdgeApplicationApiApplicationsRequestRulesRetrieve**](docs/ApplicationsRequestRulesAPI.md#edgeapplicationapiapplicationsrequestrulesretrieve) | **Get** /workspace/applications/{application_id}/request_rules/{rule_id} | Retrieve details of an Application Request Rule
-*ApplicationsRequestRulesAPI* | [**EdgeApplicationApiApplicationsRequestRulesUpdate**](docs/ApplicationsRequestRulesAPI.md#edgeapplicationapiapplicationsrequestrulesupdate) | **Put** /workspace/applications/{application_id}/request_rules/{rule_id} | Update an Application Request Rule
-*ApplicationsResponseRulesAPI* | [**DeleteApplicationResponseRule**](docs/ApplicationsResponseRulesAPI.md#deleteapplicationresponserule) | **Delete** /workspace/applications/{application_id}/response_rules/{rule_id} | Delete an Application Response Rule
+*ApplicationsRequestRulesAPI* | [**EdgeApplicationApiApplicationsRequestRulesPartialUpdate**](docs/ApplicationsRequestRulesAPI.md#edgeapplicationapiapplicationsrequestrulespartialupdate) | **Patch** /workspace/applications/{application_id}/request_rules/{request_rule_id} | Partially update an Application Request Rule
+*ApplicationsRequestRulesAPI* | [**EdgeApplicationApiApplicationsRequestRulesRetrieve**](docs/ApplicationsRequestRulesAPI.md#edgeapplicationapiapplicationsrequestrulesretrieve) | **Get** /workspace/applications/{application_id}/request_rules/{request_rule_id} | Retrieve details of an Application Request Rule
+*ApplicationsRequestRulesAPI* | [**EdgeApplicationApiApplicationsRequestRulesUpdate**](docs/ApplicationsRequestRulesAPI.md#edgeapplicationapiapplicationsrequestrulesupdate) | **Put** /workspace/applications/{application_id}/request_rules/{request_rule_id} | Update an Application Request Rule
+*ApplicationsResponseRulesAPI* | [**DeleteApplicationResponseRule**](docs/ApplicationsResponseRulesAPI.md#deleteapplicationresponserule) | **Delete** /workspace/applications/{application_id}/response_rules/{response_rule_id} | Delete an Application Response Rule
 *ApplicationsResponseRulesAPI* | [**EdgeApplicationApiApplicationsResponseRulesCreate**](docs/ApplicationsResponseRulesAPI.md#edgeapplicationapiapplicationsresponserulescreate) | **Post** /workspace/applications/{application_id}/response_rules | Create an Application Response Rule
 *ApplicationsResponseRulesAPI* | [**EdgeApplicationApiApplicationsResponseRulesList**](docs/ApplicationsResponseRulesAPI.md#edgeapplicationapiapplicationsresponseruleslist) | **Get** /workspace/applications/{application_id}/response_rules | List Application Response Rules
 *ApplicationsResponseRulesAPI* | [**EdgeApplicationApiApplicationsResponseRulesOrderUpdate**](docs/ApplicationsResponseRulesAPI.md#edgeapplicationapiapplicationsresponserulesorderupdate) | **Put** /workspace/applications/{application_id}/response_rules/order | Ordering Application Response Rules
-*ApplicationsResponseRulesAPI* | [**EdgeApplicationApiApplicationsResponseRulesPartialUpdate**](docs/ApplicationsResponseRulesAPI.md#edgeapplicationapiapplicationsresponserulespartialupdate) | **Patch** /workspace/applications/{application_id}/response_rules/{rule_id} | Partially update an Application Response Rule
-*ApplicationsResponseRulesAPI* | [**EdgeApplicationApiApplicationsResponseRulesRetrieve**](docs/ApplicationsResponseRulesAPI.md#edgeapplicationapiapplicationsresponserulesretrieve) | **Get** /workspace/applications/{application_id}/response_rules/{rule_id} | Retrieve details of an Application Response Rule
-*ApplicationsResponseRulesAPI* | [**EdgeApplicationApiApplicationsResponseRulesUpdate**](docs/ApplicationsResponseRulesAPI.md#edgeapplicationapiapplicationsresponserulesupdate) | **Put** /workspace/applications/{application_id}/response_rules/{rule_id} | Update an Application Response Rule
+*ApplicationsResponseRulesAPI* | [**EdgeApplicationApiApplicationsResponseRulesPartialUpdate**](docs/ApplicationsResponseRulesAPI.md#edgeapplicationapiapplicationsresponserulespartialupdate) | **Patch** /workspace/applications/{application_id}/response_rules/{response_rule_id} | Partially update an Application Response Rule
+*ApplicationsResponseRulesAPI* | [**EdgeApplicationApiApplicationsResponseRulesRetrieve**](docs/ApplicationsResponseRulesAPI.md#edgeapplicationapiapplicationsresponserulesretrieve) | **Get** /workspace/applications/{application_id}/response_rules/{response_rule_id} | Retrieve details of an Application Response Rule
+*ApplicationsResponseRulesAPI* | [**EdgeApplicationApiApplicationsResponseRulesUpdate**](docs/ApplicationsResponseRulesAPI.md#edgeapplicationapiapplicationsresponserulesupdate) | **Put** /workspace/applications/{application_id}/response_rules/{response_rule_id} | Update an Application Response Rule
 *ConnectorsAPI* | [**CreateConnector**](docs/ConnectorsAPI.md#createconnector) | **Post** /workspace/connectors | Create an Connector
 *ConnectorsAPI* | [**DeleteConnector**](docs/ConnectorsAPI.md#deleteconnector) | **Delete** /workspace/connectors/{connector_id} | Delete an Connector
 *ConnectorsAPI* | [**ListConnectors**](docs/ConnectorsAPI.md#listconnectors) | **Get** /workspace/connectors | List Connectors
@@ -143,12 +143,12 @@ Class | Method | HTTP request | Description
 *FirewallsFunctionAPI* | [**RetrieveFirewallFunction**](docs/FirewallsFunctionAPI.md#retrievefirewallfunction) | **Get** /workspace/firewalls/{firewall_id}/functions/{function_id} | Retrieve details of an Firewall Function
 *FirewallsFunctionAPI* | [**UpdateFirewallFunction**](docs/FirewallsFunctionAPI.md#updatefirewallfunction) | **Put** /workspace/firewalls/{firewall_id}/functions/{function_id} | Update an Firewall Function
 *FirewallsRulesEngineAPI* | [**CreateFirewallRule**](docs/FirewallsRulesEngineAPI.md#createfirewallrule) | **Post** /workspace/firewalls/{firewall_id}/request_rules | Create an Firewall Rule
-*FirewallsRulesEngineAPI* | [**DeleteFirewallRule**](docs/FirewallsRulesEngineAPI.md#deletefirewallrule) | **Delete** /workspace/firewalls/{firewall_id}/request_rules/{rule_id} | Delete an Firewall Rule
+*FirewallsRulesEngineAPI* | [**DeleteFirewallRule**](docs/FirewallsRulesEngineAPI.md#deletefirewallrule) | **Delete** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Delete an Firewall Rule
 *FirewallsRulesEngineAPI* | [**ListFirewallRules**](docs/FirewallsRulesEngineAPI.md#listfirewallrules) | **Get** /workspace/firewalls/{firewall_id}/request_rules | List Firewall Rules
 *FirewallsRulesEngineAPI* | [**OrderFirewallRules**](docs/FirewallsRulesEngineAPI.md#orderfirewallrules) | **Put** /workspace/firewalls/{firewall_id}/request_rules/order | Ordering Firewall Rules
-*FirewallsRulesEngineAPI* | [**PartialUpdateFirewallRule**](docs/FirewallsRulesEngineAPI.md#partialupdatefirewallrule) | **Patch** /workspace/firewalls/{firewall_id}/request_rules/{rule_id} | Partially update an Firewall Rule
-*FirewallsRulesEngineAPI* | [**RetrieveFirewallRule**](docs/FirewallsRulesEngineAPI.md#retrievefirewallrule) | **Get** /workspace/firewalls/{firewall_id}/request_rules/{rule_id} | Retrieve details of an Firewall Rule
-*FirewallsRulesEngineAPI* | [**UpdateFirewallRule**](docs/FirewallsRulesEngineAPI.md#updatefirewallrule) | **Put** /workspace/firewalls/{firewall_id}/request_rules/{rule_id} | Update an Firewall Rule
+*FirewallsRulesEngineAPI* | [**PartialUpdateFirewallRule**](docs/FirewallsRulesEngineAPI.md#partialupdatefirewallrule) | **Patch** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Partially update an Firewall Rule
+*FirewallsRulesEngineAPI* | [**RetrieveFirewallRule**](docs/FirewallsRulesEngineAPI.md#retrievefirewallrule) | **Get** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Retrieve details of an Firewall Rule
+*FirewallsRulesEngineAPI* | [**UpdateFirewallRule**](docs/FirewallsRulesEngineAPI.md#updatefirewallrule) | **Put** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Update an Firewall Rule
 *FunctionsAPI* | [**CreateFunction**](docs/FunctionsAPI.md#createfunction) | **Post** /workspace/functions | Create an Function
 *FunctionsAPI* | [**DeleteFunction**](docs/FunctionsAPI.md#deletefunction) | **Delete** /workspace/functions/{function_id} | Delete an Function
 *FunctionsAPI* | [**ListFunctions**](docs/FunctionsAPI.md#listfunctions) | **Get** /workspace/functions | List Functions
@@ -408,10 +408,6 @@ Class | Method | HTTP request | Description
  - [FirewallBehaviorSetWafAttributes](docs/FirewallBehaviorSetWafAttributes.md)
  - [FirewallBehaviorSetWafAttributesRequest](docs/FirewallBehaviorSetWafAttributesRequest.md)
  - [FirewallBehaviorSetWafRequest](docs/FirewallBehaviorSetWafRequest.md)
- - [FirewallBehaviorTagEvent](docs/FirewallBehaviorTagEvent.md)
- - [FirewallBehaviorTagEventAttributes](docs/FirewallBehaviorTagEventAttributes.md)
- - [FirewallBehaviorTagEventAttributesRequest](docs/FirewallBehaviorTagEventAttributesRequest.md)
- - [FirewallBehaviorTagEventRequest](docs/FirewallBehaviorTagEventRequest.md)
  - [FirewallBehaviors](docs/FirewallBehaviors.md)
  - [FirewallBehaviorsFirewallBehaviorNoArguments](docs/FirewallBehaviorsFirewallBehaviorNoArguments.md)
  - [FirewallBehaviorsFirewallBehaviorNoArgumentsRequest](docs/FirewallBehaviorsFirewallBehaviorNoArgumentsRequest.md)
@@ -423,8 +419,6 @@ Class | Method | HTTP request | Description
  - [FirewallBehaviorsFirewallBehaviorSetRateLimitRequest](docs/FirewallBehaviorsFirewallBehaviorSetRateLimitRequest.md)
  - [FirewallBehaviorsFirewallBehaviorSetWaf](docs/FirewallBehaviorsFirewallBehaviorSetWaf.md)
  - [FirewallBehaviorsFirewallBehaviorSetWafRequest](docs/FirewallBehaviorsFirewallBehaviorSetWafRequest.md)
- - [FirewallBehaviorsFirewallBehaviorTagEvent](docs/FirewallBehaviorsFirewallBehaviorTagEvent.md)
- - [FirewallBehaviorsFirewallBehaviorTagEventRequest](docs/FirewallBehaviorsFirewallBehaviorTagEventRequest.md)
  - [FirewallBehaviorsRequest](docs/FirewallBehaviorsRequest.md)
  - [FirewallBehaviorsShared](docs/FirewallBehaviorsShared.md)
  - [FirewallFunctionInstance](docs/FirewallFunctionInstance.md)

@@ -5,12 +5,12 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateFirewallRule**](FirewallsRulesEngineAPI.md#CreateFirewallRule) | **Post** /workspace/firewalls/{firewall_id}/request_rules | Create an Firewall Rule
-[**DeleteFirewallRule**](FirewallsRulesEngineAPI.md#DeleteFirewallRule) | **Delete** /workspace/firewalls/{firewall_id}/request_rules/{rule_id} | Delete an Firewall Rule
+[**DeleteFirewallRule**](FirewallsRulesEngineAPI.md#DeleteFirewallRule) | **Delete** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Delete an Firewall Rule
 [**ListFirewallRules**](FirewallsRulesEngineAPI.md#ListFirewallRules) | **Get** /workspace/firewalls/{firewall_id}/request_rules | List Firewall Rules
 [**OrderFirewallRules**](FirewallsRulesEngineAPI.md#OrderFirewallRules) | **Put** /workspace/firewalls/{firewall_id}/request_rules/order | Ordering Firewall Rules
-[**PartialUpdateFirewallRule**](FirewallsRulesEngineAPI.md#PartialUpdateFirewallRule) | **Patch** /workspace/firewalls/{firewall_id}/request_rules/{rule_id} | Partially update an Firewall Rule
-[**RetrieveFirewallRule**](FirewallsRulesEngineAPI.md#RetrieveFirewallRule) | **Get** /workspace/firewalls/{firewall_id}/request_rules/{rule_id} | Retrieve details of an Firewall Rule
-[**UpdateFirewallRule**](FirewallsRulesEngineAPI.md#UpdateFirewallRule) | **Put** /workspace/firewalls/{firewall_id}/request_rules/{rule_id} | Update an Firewall Rule
+[**PartialUpdateFirewallRule**](FirewallsRulesEngineAPI.md#PartialUpdateFirewallRule) | **Patch** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Partially update an Firewall Rule
+[**RetrieveFirewallRule**](FirewallsRulesEngineAPI.md#RetrieveFirewallRule) | **Get** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Retrieve details of an Firewall Rule
+[**UpdateFirewallRule**](FirewallsRulesEngineAPI.md#UpdateFirewallRule) | **Put** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Update an Firewall Rule
 
 
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFirewallRule
 
-> ResponseAsyncDeleteFirewallRuleEngine DeleteFirewallRule(ctx, firewallId, ruleId).Execute()
+> ResponseAsyncDeleteFirewallRuleEngine DeleteFirewallRule(ctx, firewallId, requestRuleId).Execute()
 
 Delete an Firewall Rule
 
@@ -108,11 +108,11 @@ import (
 
 func main() {
 	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	ruleId := int64(789) // int64 | A unique integer value identifying the rule.
+	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.DeleteFirewallRule(context.Background(), firewallId, ruleId).Execute()
+	resp, r, err := apiClient.FirewallsRulesEngineAPI.DeleteFirewallRule(context.Background(), firewallId, requestRuleId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.DeleteFirewallRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**ruleId** | **int64** | A unique integer value identifying the rule. | 
+**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
 
 ### Other Parameters
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateFirewallRule
 
-> ResponseFirewallRuleEngine PartialUpdateFirewallRule(ctx, firewallId, ruleId).PatchedFirewallRuleEngineRequest(patchedFirewallRuleEngineRequest).Execute()
+> ResponseFirewallRuleEngine PartialUpdateFirewallRule(ctx, firewallId, requestRuleId).PatchedFirewallRuleEngineRequest(patchedFirewallRuleEngineRequest).Execute()
 
 Partially update an Firewall Rule
 
@@ -341,12 +341,12 @@ import (
 
 func main() {
 	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	ruleId := int64(789) // int64 | A unique integer value identifying the rule.
+	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
 	patchedFirewallRuleEngineRequest := *openapiclient.NewPatchedFirewallRuleEngineRequest() // PatchedFirewallRuleEngineRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.PartialUpdateFirewallRule(context.Background(), firewallId, ruleId).PatchedFirewallRuleEngineRequest(patchedFirewallRuleEngineRequest).Execute()
+	resp, r, err := apiClient.FirewallsRulesEngineAPI.PartialUpdateFirewallRule(context.Background(), firewallId, requestRuleId).PatchedFirewallRuleEngineRequest(patchedFirewallRuleEngineRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.PartialUpdateFirewallRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -363,7 +363,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**ruleId** | **int64** | A unique integer value identifying the rule. | 
+**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
 
 ### Other Parameters
 
@@ -396,7 +396,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveFirewallRule
 
-> ResponseRetrieveFirewallRuleEngine RetrieveFirewallRule(ctx, firewallId, ruleId).Fields(fields).Execute()
+> ResponseRetrieveFirewallRuleEngine RetrieveFirewallRule(ctx, firewallId, requestRuleId).Fields(fields).Execute()
 
 Retrieve details of an Firewall Rule
 
@@ -416,12 +416,12 @@ import (
 
 func main() {
 	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	ruleId := int64(789) // int64 | A unique integer value identifying the rule.
+	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.RetrieveFirewallRule(context.Background(), firewallId, ruleId).Fields(fields).Execute()
+	resp, r, err := apiClient.FirewallsRulesEngineAPI.RetrieveFirewallRule(context.Background(), firewallId, requestRuleId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.RetrieveFirewallRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -438,7 +438,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**ruleId** | **int64** | A unique integer value identifying the rule. | 
+**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
 
 ### Other Parameters
 
@@ -471,7 +471,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFirewallRule
 
-> ResponseFirewallRuleEngine UpdateFirewallRule(ctx, firewallId, ruleId).FirewallRuleEngineRequest(firewallRuleEngineRequest).Execute()
+> ResponseFirewallRuleEngine UpdateFirewallRule(ctx, firewallId, requestRuleId).FirewallRuleEngineRequest(firewallRuleEngineRequest).Execute()
 
 Update an Firewall Rule
 
@@ -491,12 +491,12 @@ import (
 
 func main() {
 	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	ruleId := int64(789) // int64 | A unique integer value identifying the rule.
+	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
 	firewallRuleEngineRequest := *openapiclient.NewFirewallRuleEngineRequest("Name_example", [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.FirewallBehaviorsRequest{openapiclient.FirewallBehaviorsRequest{FirewallBehaviorsFirewallBehaviorNoArgumentsRequest: openapiclient.NewFirewallBehaviorsFirewallBehaviorNoArgumentsRequest("Type_example")}}) // FirewallRuleEngineRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.UpdateFirewallRule(context.Background(), firewallId, ruleId).FirewallRuleEngineRequest(firewallRuleEngineRequest).Execute()
+	resp, r, err := apiClient.FirewallsRulesEngineAPI.UpdateFirewallRule(context.Background(), firewallId, requestRuleId).FirewallRuleEngineRequest(firewallRuleEngineRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.UpdateFirewallRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -513,7 +513,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **firewallId** | **int64** | A unique integer value identifying the firewall. | 
-**ruleId** | **int64** | A unique integer value identifying the rule. | 
+**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
 
 ### Other Parameters
 
