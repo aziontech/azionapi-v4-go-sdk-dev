@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -420,6 +421,18 @@ type ApiListCertificateRevocationListsRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificateRevocationListsAPIService
 	fields *string
+	id *string
+	issuer *string
+	lastModified *time.Time
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	lastUpdate *time.Time
+	lastUpdateGte *time.Time
+	lastUpdateLte *time.Time
+	name *string
+	nextUpdate *time.Time
+	nextUpdateGte *time.Time
+	nextUpdateLte *time.Time
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -429,6 +442,78 @@ type ApiListCertificateRevocationListsRequest struct {
 // Comma-separated list of field names to include in the response.
 func (r ApiListCertificateRevocationListsRequest) Fields(fields string) ApiListCertificateRevocationListsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by CRL ID. Accepts comma-separated values for multiple IDs.
+func (r ApiListCertificateRevocationListsRequest) Id(id string) ApiListCertificateRevocationListsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by issuer (case-insensitive partial match).
+func (r ApiListCertificateRevocationListsRequest) Issuer(issuer string) ApiListCertificateRevocationListsRequest {
+	r.issuer = &issuer
+	return r
+}
+
+// Filter by exact last modified date and time.
+func (r ApiListCertificateRevocationListsRequest) LastModified(lastModified time.Time) ApiListCertificateRevocationListsRequest {
+	r.lastModified = &lastModified
+	return r
+}
+
+// Filter by last modified date greater than or equal to the specified value.
+func (r ApiListCertificateRevocationListsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListCertificateRevocationListsRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date less than or equal to the specified value.
+func (r ApiListCertificateRevocationListsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListCertificateRevocationListsRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by exact last update date and time.
+func (r ApiListCertificateRevocationListsRequest) LastUpdate(lastUpdate time.Time) ApiListCertificateRevocationListsRequest {
+	r.lastUpdate = &lastUpdate
+	return r
+}
+
+// Filter by last update date greater than or equal to the specified value.
+func (r ApiListCertificateRevocationListsRequest) LastUpdateGte(lastUpdateGte time.Time) ApiListCertificateRevocationListsRequest {
+	r.lastUpdateGte = &lastUpdateGte
+	return r
+}
+
+// Filter by last update date less than or equal to the specified value.
+func (r ApiListCertificateRevocationListsRequest) LastUpdateLte(lastUpdateLte time.Time) ApiListCertificateRevocationListsRequest {
+	r.lastUpdateLte = &lastUpdateLte
+	return r
+}
+
+// Filter by CRL name (case-insensitive partial match).
+func (r ApiListCertificateRevocationListsRequest) Name(name string) ApiListCertificateRevocationListsRequest {
+	r.name = &name
+	return r
+}
+
+// Filter by exact next update date and time.
+func (r ApiListCertificateRevocationListsRequest) NextUpdate(nextUpdate time.Time) ApiListCertificateRevocationListsRequest {
+	r.nextUpdate = &nextUpdate
+	return r
+}
+
+// Filter by next update date greater than or equal to the specified value.
+func (r ApiListCertificateRevocationListsRequest) NextUpdateGte(nextUpdateGte time.Time) ApiListCertificateRevocationListsRequest {
+	r.nextUpdateGte = &nextUpdateGte
+	return r
+}
+
+// Filter by next update date less than or equal to the specified value.
+func (r ApiListCertificateRevocationListsRequest) NextUpdateLte(nextUpdateLte time.Time) ApiListCertificateRevocationListsRequest {
+	r.nextUpdateLte = &nextUpdateLte
 	return r
 }
 
@@ -498,6 +583,42 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) ListCertificat
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.issuer != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "issuer", r.issuer, "form", "")
+	}
+	if r.lastModified != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified", r.lastModified, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.lastUpdate != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_update", r.lastUpdate, "form", "")
+	}
+	if r.lastUpdateGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_update__gte", r.lastUpdateGte, "form", "")
+	}
+	if r.lastUpdateLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_update__lte", r.lastUpdateLte, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
+	}
+	if r.nextUpdate != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "next_update", r.nextUpdate, "form", "")
+	}
+	if r.nextUpdateGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "next_update__gte", r.nextUpdateGte, "form", "")
+	}
+	if r.nextUpdateLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "next_update__lte", r.nextUpdateLte, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")

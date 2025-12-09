@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## ListCertificateRevocationLists
 
-> PaginatedCertificateRevocationListList ListCertificateRevocationLists(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedCertificateRevocationListList ListCertificateRevocationLists(ctx).Fields(fields).Id(id).Issuer(issuer).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).LastUpdate(lastUpdate).LastUpdateGte(lastUpdateGte).LastUpdateLte(lastUpdateLte).Name(name).NextUpdate(nextUpdate).NextUpdateGte(nextUpdateGte).NextUpdateLte(nextUpdateLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List certificate revocation lists (CRL)
 
@@ -167,11 +167,24 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := "id_example" // string | Filter by CRL ID. Accepts comma-separated values for multiple IDs. (optional)
+	issuer := "issuer_example" // string | Filter by issuer (case-insensitive partial match). (optional)
+	lastModified := time.Now() // time.Time | Filter by exact last modified date and time. (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date greater than or equal to the specified value. (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date less than or equal to the specified value. (optional)
+	lastUpdate := time.Now() // time.Time | Filter by exact last update date and time. (optional)
+	lastUpdateGte := time.Now() // time.Time | Filter by last update date greater than or equal to the specified value. (optional)
+	lastUpdateLte := time.Now() // time.Time | Filter by last update date less than or equal to the specified value. (optional)
+	name := "name_example" // string | Filter by CRL name (case-insensitive partial match). (optional)
+	nextUpdate := time.Now() // time.Time | Filter by exact next update date and time. (optional)
+	nextUpdateGte := time.Now() // time.Time | Filter by next update date greater than or equal to the specified value. (optional)
+	nextUpdateLte := time.Now() // time.Time | Filter by next update date less than or equal to the specified value. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, active, last_editor, last_modified, product_version, issuer, last_update, next_update, crl) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -179,7 +192,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.ListCertificateRevocationLists(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.ListCertificateRevocationLists(context.Background()).Fields(fields).Id(id).Issuer(issuer).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).LastUpdate(lastUpdate).LastUpdateGte(lastUpdateGte).LastUpdateLte(lastUpdateLte).Name(name).NextUpdate(nextUpdate).NextUpdateGte(nextUpdateGte).NextUpdateLte(nextUpdateLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.ListCertificateRevocationLists``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -201,6 +214,18 @@ Other parameters are passed through a pointer to a apiListCertificateRevocationL
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **string** | Filter by CRL ID. Accepts comma-separated values for multiple IDs. | 
+ **issuer** | **string** | Filter by issuer (case-insensitive partial match). | 
+ **lastModified** | **time.Time** | Filter by exact last modified date and time. | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date greater than or equal to the specified value. | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date less than or equal to the specified value. | 
+ **lastUpdate** | **time.Time** | Filter by exact last update date and time. | 
+ **lastUpdateGte** | **time.Time** | Filter by last update date greater than or equal to the specified value. | 
+ **lastUpdateLte** | **time.Time** | Filter by last update date less than or equal to the specified value. | 
+ **name** | **string** | Filter by CRL name (case-insensitive partial match). | 
+ **nextUpdate** | **time.Time** | Filter by exact next update date and time. | 
+ **nextUpdateGte** | **time.Time** | Filter by next update date greater than or equal to the specified value. | 
+ **nextUpdateLte** | **time.Time** | Filter by next update date less than or equal to the specified value. | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: name, active, last_editor, last_modified, product_version, issuer, last_update, next_update, crl) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

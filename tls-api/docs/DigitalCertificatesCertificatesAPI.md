@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## ListCertificates
 
-> PaginatedCertificateList ListCertificates(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedCertificateList ListCertificates(ctx).CertificateType(certificateType).Fields(fields).Id(id).Issuer(issuer).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Managed(managed).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).RenewedAt(renewedAt).RenewedAtGte(renewedAtGte).RenewedAtLte(renewedAtLte).Search(search).Execute()
 
 List certificates
 
@@ -167,19 +167,31 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	certificateType := "certificateType_example" // string | Filter by certificate type. Accepts comma-separated values for multiple types. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := "id_example" // string | Filter by certificate ID. Accepts comma-separated values for multiple IDs. (optional)
+	issuer := "issuer_example" // string | Filter by issuer (case-insensitive partial match). (optional)
+	lastModified := time.Now() // time.Time | Filter by exact last modified date and time. (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date greater than or equal to the specified value. (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date less than or equal to the specified value. (optional)
+	managed := true // bool | Filter by managed status. (optional)
+	name := "name_example" // string | Filter by certificate name (case-insensitive partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, certificate, issuer, validity, subject_name, type, managed, status, status_detail, csr, key_algorithm, challenge, authority, active, product_version, last_editor, last_modified, renewed_at) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
+	renewedAt := time.Now() // time.Time | Filter by exact renewed date and time. (optional)
+	renewedAtGte := time.Now() // time.Time | Filter by renewed date greater than or equal to the specified value. (optional)
+	renewedAtLte := time.Now() // time.Time | Filter by renewed date less than or equal to the specified value. (optional)
 	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.ListCertificates(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.ListCertificates(context.Background()).CertificateType(certificateType).Fields(fields).Id(id).Issuer(issuer).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Managed(managed).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).RenewedAt(renewedAt).RenewedAtGte(renewedAtGte).RenewedAtLte(renewedAtLte).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.ListCertificates``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -200,10 +212,21 @@ Other parameters are passed through a pointer to a apiListCertificatesRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **certificateType** | **string** | Filter by certificate type. Accepts comma-separated values for multiple types. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **string** | Filter by certificate ID. Accepts comma-separated values for multiple IDs. | 
+ **issuer** | **string** | Filter by issuer (case-insensitive partial match). | 
+ **lastModified** | **time.Time** | Filter by exact last modified date and time. | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date greater than or equal to the specified value. | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date less than or equal to the specified value. | 
+ **managed** | **bool** | Filter by managed status. | 
+ **name** | **string** | Filter by certificate name (case-insensitive partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, certificate, issuer, validity, subject_name, type, managed, status, status_detail, csr, key_algorithm, challenge, authority, active, product_version, last_editor, last_modified, renewed_at) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
+ **renewedAt** | **time.Time** | Filter by exact renewed date and time. | 
+ **renewedAtGte** | **time.Time** | Filter by renewed date greater than or equal to the specified value. | 
+ **renewedAtLte** | **time.Time** | Filter by renewed date less than or equal to the specified value. | 
  **search** | **string** | A search term. | 
 
 ### Return type
