@@ -4268,7 +4268,7 @@ paths:
       summary: Create an Application Request Rule
       tags:
       - Applications - Request Rules
-  /workspace/applications/{application_id}/request_rules/{rule_id}:
+  /workspace/applications/{application_id}/request_rules/{request_rule_id}:
     delete:
       description: Delete a specific Rule in your account.
       operationId: delete_application_request_rule
@@ -4282,10 +4282,10 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: A unique integer value identifying the rule.
+      - description: A unique integer value identifying the request rule.
         explode: false
         in: path
-        name: rule_id
+        name: request_rule_id
         required: true
         schema:
           format: int64
@@ -4439,10 +4439,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: A unique integer value identifying the rule.
+      - description: A unique integer value identifying the request rule.
         explode: false
         in: path
-        name: rule_id
+        name: request_rule_id
         required: true
         schema:
           format: int64
@@ -4587,10 +4587,10 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: A unique integer value identifying the rule.
+      - description: A unique integer value identifying the request rule.
         explode: false
         in: path
-        name: rule_id
+        name: request_rule_id
         required: true
         schema:
           format: int64
@@ -4746,10 +4746,10 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: A unique integer value identifying the rule.
+      - description: A unique integer value identifying the request rule.
         explode: false
         in: path
-        name: rule_id
+        name: request_rule_id
         required: true
         schema:
           format: int64
@@ -5412,7 +5412,7 @@ paths:
       summary: Create an Application Response Rule
       tags:
       - Applications - Response Rules
-  /workspace/applications/{application_id}/response_rules/{rule_id}:
+  /workspace/applications/{application_id}/response_rules/{response_rule_id}:
     delete:
       description: Delete a specific Rule in your account.
       operationId: delete_application_response_rule
@@ -5426,10 +5426,10 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: A unique integer value identifying the rule.
+      - description: A unique integer value identifying the response rule.
         explode: false
         in: path
-        name: rule_id
+        name: response_rule_id
         required: true
         schema:
           format: int64
@@ -5583,10 +5583,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: A unique integer value identifying the rule.
+      - description: A unique integer value identifying the response rule.
         explode: false
         in: path
-        name: rule_id
+        name: response_rule_id
         required: true
         schema:
           format: int64
@@ -5731,10 +5731,10 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: A unique integer value identifying the rule.
+      - description: A unique integer value identifying the response rule.
         explode: false
         in: path
-        name: rule_id
+        name: response_rule_id
         required: true
         schema:
           format: int64
@@ -5890,10 +5890,10 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: A unique integer value identifying the rule.
+      - description: A unique integer value identifying the response rule.
         explode: false
         in: path
-        name: rule_id
+        name: response_rule_id
         required: true
         schema:
           format: int64
@@ -9470,7 +9470,7 @@ paths:
       summary: Create an Firewall Rule
       tags:
       - Firewalls - Rules Engine
-  /workspace/firewalls/{firewall_id}/request_rules/{rule_id}:
+  /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id}:
     delete:
       description: Delete a specific Rule in your account.
       operationId: delete_firewall_rule
@@ -9484,10 +9484,10 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: A unique integer value identifying the rule.
+      - description: A unique integer value identifying the request rule.
         explode: false
         in: path
-        name: rule_id
+        name: request_rule_id
         required: true
         schema:
           format: int64
@@ -9641,10 +9641,10 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: A unique integer value identifying the rule.
+      - description: A unique integer value identifying the request rule.
         explode: false
         in: path
-        name: rule_id
+        name: request_rule_id
         required: true
         schema:
           format: int64
@@ -9789,10 +9789,10 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: A unique integer value identifying the rule.
+      - description: A unique integer value identifying the request rule.
         explode: false
         in: path
-        name: rule_id
+        name: request_rule_id
         required: true
         schema:
           format: int64
@@ -9948,10 +9948,10 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: A unique integer value identifying the rule.
+      - description: A unique integer value identifying the request rule.
         explode: false
         in: path
-        name: rule_id
+        name: request_rule_id
         required: true
         schema:
           format: int64
@@ -22577,68 +22577,6 @@ components:
       type: string
       x-extensible-enum:
       - set_waf
-    FirewallBehaviorTagEvent:
-      additionalProperties: true
-      description: Tag event
-      properties:
-        type:
-          description: '* `tag_event` - tag_event'
-          title: FirewallBehaviorTagEventTypeEnum
-          type: string
-          x-extensible-enum:
-          - tag_event
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorTagEventAttributes"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorTagEvent
-      type: object
-    FirewallBehaviorTagEventAttributes:
-      additionalProperties: true
-      properties:
-        value:
-          maxLength: 128
-          minLength: 1
-          type: string
-      required:
-      - value
-      title: FirewallBehaviorTagEventAttributes
-      type: object
-    FirewallBehaviorTagEventAttributesRequest:
-      additionalProperties: true
-      properties:
-        value:
-          maxLength: 128
-          minLength: 1
-          type: string
-      required:
-      - value
-      title: FirewallBehaviorTagEventAttributesRequest
-      type: object
-    FirewallBehaviorTagEventRequest:
-      additionalProperties: true
-      description: Tag event
-      properties:
-        type:
-          description: '* `tag_event` - tag_event'
-          title: FirewallBehaviorTagEventTypeEnum
-          type: string
-          x-extensible-enum:
-          - tag_event
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorTagEventAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorTagEventRequest
-      type: object
-    FirewallBehaviorTagEventTypeEnum:
-      description: '* `tag_event` - tag_event'
-      title: FirewallBehaviorTagEventTypeEnum
-      type: string
-      x-extensible-enum:
-      - tag_event
     FirewallBehaviors:
       additionalProperties: true
       discriminator:
@@ -22647,7 +22585,6 @@ components:
           drop: "#/components/schemas/FirewallBehaviorsFirewallBehaviorNoArguments"
           set_custom_response: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetCustomResponse"
           set_rate_limit: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetRateLimit"
-          tag_event: "#/components/schemas/FirewallBehaviorsFirewallBehaviorTagEvent"
           set_waf: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetWaf"
           run_function: "#/components/schemas/FirewallBehaviorsFirewallBehaviorRunFunction"
         propertyName: type
@@ -22655,7 +22592,6 @@ components:
       - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorNoArguments"
       - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetCustomResponse"
       - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetRateLimit"
-      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorTagEvent"
       - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetWaf"
       - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorRunFunction"
       title: FirewallBehaviors
@@ -22723,18 +22659,6 @@ components:
       - $ref: "#/components/schemas/FirewallBehaviorsShared"
       - $ref: "#/components/schemas/FirewallBehaviorSetWafRequest"
       title: FirewallBehaviorsFirewallBehaviorSetWafRequest
-    FirewallBehaviorsFirewallBehaviorTagEvent:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/FirewallBehaviorsShared"
-      - $ref: "#/components/schemas/FirewallBehaviorTagEvent"
-      title: FirewallBehaviorsFirewallBehaviorTagEvent
-    FirewallBehaviorsFirewallBehaviorTagEventRequest:
-      additionalProperties: true
-      allOf:
-      - $ref: "#/components/schemas/FirewallBehaviorsShared"
-      - $ref: "#/components/schemas/FirewallBehaviorTagEventRequest"
-      title: FirewallBehaviorsFirewallBehaviorTagEventRequest
     FirewallBehaviorsRequest:
       additionalProperties: true
       discriminator:
@@ -22743,7 +22667,6 @@ components:
           drop: "#/components/schemas/FirewallBehaviorsFirewallBehaviorNoArgumentsRequest"
           set_custom_response: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetCustomResponseRequest"
           set_rate_limit: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetRateLimitRequest"
-          tag_event: "#/components/schemas/FirewallBehaviorsFirewallBehaviorTagEventRequest"
           set_waf: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetWafRequest"
           run_function: "#/components/schemas/FirewallBehaviorsFirewallBehaviorRunFunctionRequest"
         propertyName: type
@@ -22751,7 +22674,6 @@ components:
       - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorNoArgumentsRequest"
       - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetCustomResponseRequest"
       - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetRateLimitRequest"
-      - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorTagEventRequest"
       - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorSetWafRequest"
       - $ref: "#/components/schemas/FirewallBehaviorsFirewallBehaviorRunFunctionRequest"
       title: FirewallBehaviorsRequest

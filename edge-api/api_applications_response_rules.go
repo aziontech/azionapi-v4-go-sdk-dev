@@ -27,7 +27,7 @@ type ApiDeleteApplicationResponseRuleRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsResponseRulesAPIService
 	applicationId int64
-	ruleId int64
+	responseRuleId int64
 }
 
 func (r ApiDeleteApplicationResponseRuleRequest) Execute() (*ResponseAsyncDeleteApplicationResponsePhaseRuleEngine, *http.Response, error) {
@@ -41,15 +41,15 @@ Delete a specific Rule in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param applicationId A unique integer value identifying the application.
- @param ruleId A unique integer value identifying the rule.
+ @param responseRuleId A unique integer value identifying the response rule.
  @return ApiDeleteApplicationResponseRuleRequest
 */
-func (a *ApplicationsResponseRulesAPIService) DeleteApplicationResponseRule(ctx context.Context, applicationId int64, ruleId int64) ApiDeleteApplicationResponseRuleRequest {
+func (a *ApplicationsResponseRulesAPIService) DeleteApplicationResponseRule(ctx context.Context, applicationId int64, responseRuleId int64) ApiDeleteApplicationResponseRuleRequest {
 	return ApiDeleteApplicationResponseRuleRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
-		ruleId: ruleId,
+		responseRuleId: responseRuleId,
 	}
 }
 
@@ -68,9 +68,9 @@ func (a *ApplicationsResponseRulesAPIService) DeleteApplicationResponseRuleExecu
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{application_id}/response_rules/{rule_id}"
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/response_rules/{response_rule_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"response_rule_id"+"}", url.PathEscape(parameterValueToString(r.responseRuleId, "responseRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -915,7 +915,7 @@ type ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsResponseRulesAPIService
 	applicationId int64
-	ruleId int64
+	responseRuleId int64
 	patchedApplicationResponsePhaseRuleEngineRequest *PatchedApplicationResponsePhaseRuleEngineRequest
 }
 
@@ -935,15 +935,15 @@ Update one or more fields of an existing Application Rule  without affecting oth
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param applicationId A unique integer value identifying the application.
- @param ruleId A unique integer value identifying the rule.
+ @param responseRuleId A unique integer value identifying the response rule.
  @return ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest
 */
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesPartialUpdate(ctx context.Context, applicationId int64, ruleId int64) ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest {
+func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesPartialUpdate(ctx context.Context, applicationId int64, responseRuleId int64) ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest {
 	return ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
-		ruleId: ruleId,
+		responseRuleId: responseRuleId,
 	}
 }
 
@@ -962,9 +962,9 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{application_id}/response_rules/{rule_id}"
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/response_rules/{response_rule_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"response_rule_id"+"}", url.PathEscape(parameterValueToString(r.responseRuleId, "responseRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1120,7 +1120,7 @@ type ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsResponseRulesAPIService
 	applicationId int64
-	ruleId int64
+	responseRuleId int64
 	fields *string
 }
 
@@ -1141,15 +1141,15 @@ Retrieve details of a specific Rule in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param applicationId A unique integer value identifying the application.
- @param ruleId A unique integer value identifying the rule.
+ @param responseRuleId A unique integer value identifying the response rule.
  @return ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest
 */
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesRetrieve(ctx context.Context, applicationId int64, ruleId int64) ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest {
+func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesRetrieve(ctx context.Context, applicationId int64, responseRuleId int64) ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest {
 	return ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
-		ruleId: ruleId,
+		responseRuleId: responseRuleId,
 	}
 }
 
@@ -1168,9 +1168,9 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{application_id}/response_rules/{rule_id}"
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/response_rules/{response_rule_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"response_rule_id"+"}", url.PathEscape(parameterValueToString(r.responseRuleId, "responseRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1327,7 +1327,7 @@ type ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsResponseRulesAPIService
 	applicationId int64
-	ruleId int64
+	responseRuleId int64
 	applicationResponsePhaseRuleEngineRequest *ApplicationResponsePhaseRuleEngineRequest
 }
 
@@ -1347,15 +1347,15 @@ Update an existing Rule. This replaces the entire Rule with the new data provide
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param applicationId A unique integer value identifying the application.
- @param ruleId A unique integer value identifying the rule.
+ @param responseRuleId A unique integer value identifying the response rule.
  @return ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest
 */
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesUpdate(ctx context.Context, applicationId int64, ruleId int64) ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest {
+func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesUpdate(ctx context.Context, applicationId int64, responseRuleId int64) ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest {
 	return ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
-		ruleId: ruleId,
+		responseRuleId: responseRuleId,
 	}
 }
 
@@ -1374,9 +1374,9 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{application_id}/response_rules/{rule_id}"
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/response_rules/{response_rule_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"response_rule_id"+"}", url.PathEscape(parameterValueToString(r.responseRuleId, "responseRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

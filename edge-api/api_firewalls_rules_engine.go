@@ -231,7 +231,7 @@ type ApiDeleteFirewallRuleRequest struct {
 	ctx context.Context
 	ApiService *FirewallsRulesEngineAPIService
 	firewallId int64
-	ruleId int64
+	requestRuleId int64
 }
 
 func (r ApiDeleteFirewallRuleRequest) Execute() (*ResponseAsyncDeleteFirewallRuleEngine, *http.Response, error) {
@@ -245,15 +245,15 @@ Delete a specific Rule in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param firewallId A unique integer value identifying the firewall.
- @param ruleId A unique integer value identifying the rule.
+ @param requestRuleId A unique integer value identifying the request rule.
  @return ApiDeleteFirewallRuleRequest
 */
-func (a *FirewallsRulesEngineAPIService) DeleteFirewallRule(ctx context.Context, firewallId int64, ruleId int64) ApiDeleteFirewallRuleRequest {
+func (a *FirewallsRulesEngineAPIService) DeleteFirewallRule(ctx context.Context, firewallId int64, requestRuleId int64) ApiDeleteFirewallRuleRequest {
 	return ApiDeleteFirewallRuleRequest{
 		ApiService: a,
 		ctx: ctx,
 		firewallId: firewallId,
-		ruleId: ruleId,
+		requestRuleId: requestRuleId,
 	}
 }
 
@@ -272,9 +272,9 @@ func (a *FirewallsRulesEngineAPIService) DeleteFirewallRuleExecute(r ApiDeleteFi
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/request_rules/{rule_id}"
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/request_rules/{request_rule_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"request_rule_id"+"}", url.PathEscape(parameterValueToString(r.requestRuleId, "requestRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -915,7 +915,7 @@ type ApiPartialUpdateFirewallRuleRequest struct {
 	ctx context.Context
 	ApiService *FirewallsRulesEngineAPIService
 	firewallId int64
-	ruleId int64
+	requestRuleId int64
 	patchedFirewallRuleEngineRequest *PatchedFirewallRuleEngineRequest
 }
 
@@ -935,15 +935,15 @@ Update one or more fields of an existing Firewall Rule without affecting other f
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param firewallId A unique integer value identifying the firewall.
- @param ruleId A unique integer value identifying the rule.
+ @param requestRuleId A unique integer value identifying the request rule.
  @return ApiPartialUpdateFirewallRuleRequest
 */
-func (a *FirewallsRulesEngineAPIService) PartialUpdateFirewallRule(ctx context.Context, firewallId int64, ruleId int64) ApiPartialUpdateFirewallRuleRequest {
+func (a *FirewallsRulesEngineAPIService) PartialUpdateFirewallRule(ctx context.Context, firewallId int64, requestRuleId int64) ApiPartialUpdateFirewallRuleRequest {
 	return ApiPartialUpdateFirewallRuleRequest{
 		ApiService: a,
 		ctx: ctx,
 		firewallId: firewallId,
-		ruleId: ruleId,
+		requestRuleId: requestRuleId,
 	}
 }
 
@@ -962,9 +962,9 @@ func (a *FirewallsRulesEngineAPIService) PartialUpdateFirewallRuleExecute(r ApiP
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/request_rules/{rule_id}"
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/request_rules/{request_rule_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"request_rule_id"+"}", url.PathEscape(parameterValueToString(r.requestRuleId, "requestRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1120,7 +1120,7 @@ type ApiRetrieveFirewallRuleRequest struct {
 	ctx context.Context
 	ApiService *FirewallsRulesEngineAPIService
 	firewallId int64
-	ruleId int64
+	requestRuleId int64
 	fields *string
 }
 
@@ -1141,15 +1141,15 @@ Retrieve details of a specific Rule in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param firewallId A unique integer value identifying the firewall.
- @param ruleId A unique integer value identifying the rule.
+ @param requestRuleId A unique integer value identifying the request rule.
  @return ApiRetrieveFirewallRuleRequest
 */
-func (a *FirewallsRulesEngineAPIService) RetrieveFirewallRule(ctx context.Context, firewallId int64, ruleId int64) ApiRetrieveFirewallRuleRequest {
+func (a *FirewallsRulesEngineAPIService) RetrieveFirewallRule(ctx context.Context, firewallId int64, requestRuleId int64) ApiRetrieveFirewallRuleRequest {
 	return ApiRetrieveFirewallRuleRequest{
 		ApiService: a,
 		ctx: ctx,
 		firewallId: firewallId,
-		ruleId: ruleId,
+		requestRuleId: requestRuleId,
 	}
 }
 
@@ -1168,9 +1168,9 @@ func (a *FirewallsRulesEngineAPIService) RetrieveFirewallRuleExecute(r ApiRetrie
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/request_rules/{rule_id}"
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/request_rules/{request_rule_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"request_rule_id"+"}", url.PathEscape(parameterValueToString(r.requestRuleId, "requestRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1327,7 +1327,7 @@ type ApiUpdateFirewallRuleRequest struct {
 	ctx context.Context
 	ApiService *FirewallsRulesEngineAPIService
 	firewallId int64
-	ruleId int64
+	requestRuleId int64
 	firewallRuleEngineRequest *FirewallRuleEngineRequest
 }
 
@@ -1347,15 +1347,15 @@ Update an existing Rule. This replaces the entire Rule with the new data provide
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param firewallId A unique integer value identifying the firewall.
- @param ruleId A unique integer value identifying the rule.
+ @param requestRuleId A unique integer value identifying the request rule.
  @return ApiUpdateFirewallRuleRequest
 */
-func (a *FirewallsRulesEngineAPIService) UpdateFirewallRule(ctx context.Context, firewallId int64, ruleId int64) ApiUpdateFirewallRuleRequest {
+func (a *FirewallsRulesEngineAPIService) UpdateFirewallRule(ctx context.Context, firewallId int64, requestRuleId int64) ApiUpdateFirewallRuleRequest {
 	return ApiUpdateFirewallRuleRequest{
 		ApiService: a,
 		ctx: ctx,
 		firewallId: firewallId,
-		ruleId: ruleId,
+		requestRuleId: requestRuleId,
 	}
 }
 
@@ -1374,9 +1374,9 @@ func (a *FirewallsRulesEngineAPIService) UpdateFirewallRuleExecute(r ApiUpdateFi
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/request_rules/{rule_id}"
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/request_rules/{request_rule_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"rule_id"+"}", url.PathEscape(parameterValueToString(r.ruleId, "ruleId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"request_rule_id"+"}", url.PathEscape(parameterValueToString(r.requestRuleId, "requestRuleId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
