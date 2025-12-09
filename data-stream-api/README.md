@@ -80,11 +80,11 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DataStreamDataSourcesAPI* | [**ListDataSources**](docs/DataStreamDataSourcesAPI.md#listdatasources) | **Get** /workspace/stream/data_sources | List of Data Sources
 *DataStreamStreamsAPI* | [**CreateDataStream**](docs/DataStreamStreamsAPI.md#createdatastream) | **Post** /workspace/stream/streams | Create a Data Stream
-*DataStreamStreamsAPI* | [**DeleteDataStream**](docs/DataStreamStreamsAPI.md#deletedatastream) | **Delete** /workspace/stream/streams/{data_stream_id} | Delete a Data Stream
+*DataStreamStreamsAPI* | [**DeleteDataStream**](docs/DataStreamStreamsAPI.md#deletedatastream) | **Delete** /workspace/stream/streams/{stream_id} | Delete a Data Stream
 *DataStreamStreamsAPI* | [**ListDataStreams**](docs/DataStreamStreamsAPI.md#listdatastreams) | **Get** /workspace/stream/streams | List Data Streams
-*DataStreamStreamsAPI* | [**PartialUpdateDataStream**](docs/DataStreamStreamsAPI.md#partialupdatedatastream) | **Patch** /workspace/stream/streams/{data_stream_id} | Partially update a Data Stream
-*DataStreamStreamsAPI* | [**RetrieveDataStream**](docs/DataStreamStreamsAPI.md#retrievedatastream) | **Get** /workspace/stream/streams/{data_stream_id} | Retrieve details of a Data Stream
-*DataStreamStreamsAPI* | [**UpdateDataStream**](docs/DataStreamStreamsAPI.md#updatedatastream) | **Put** /workspace/stream/streams/{data_stream_id} | Update a Data Stream
+*DataStreamStreamsAPI* | [**PartialUpdateDataStream**](docs/DataStreamStreamsAPI.md#partialupdatedatastream) | **Patch** /workspace/stream/streams/{stream_id} | Partially update a Data Stream
+*DataStreamStreamsAPI* | [**RetrieveDataStream**](docs/DataStreamStreamsAPI.md#retrievedatastream) | **Get** /workspace/stream/streams/{stream_id} | Retrieve details of a Data Stream
+*DataStreamStreamsAPI* | [**UpdateDataStream**](docs/DataStreamStreamsAPI.md#updatedatastream) | **Put** /workspace/stream/streams/{stream_id} | Update a Data Stream
 *DataStreamTemplatesAPI* | [**CreateTemplate**](docs/DataStreamTemplatesAPI.md#createtemplate) | **Post** /workspace/stream/templates | Create a Template
 *DataStreamTemplatesAPI* | [**DeleteTemplate**](docs/DataStreamTemplatesAPI.md#deletetemplate) | **Delete** /workspace/stream/templates/{template_id} | Delete a Template
 *DataStreamTemplatesAPI* | [**ListTemplates**](docs/DataStreamTemplatesAPI.md#listtemplates) | **Get** /workspace/stream/templates | List Templates

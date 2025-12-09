@@ -228,7 +228,7 @@ func (a *DataStreamStreamsAPIService) CreateDataStreamExecute(r ApiCreateDataStr
 type ApiDeleteDataStreamRequest struct {
 	ctx context.Context
 	ApiService *DataStreamStreamsAPIService
-	dataStreamId int64
+	streamId int64
 }
 
 func (r ApiDeleteDataStreamRequest) Execute() (*ResponseAsyncDeleteDataStream, *http.Response, error) {
@@ -241,14 +241,14 @@ DeleteDataStream Delete a Data Stream
 Delete a specific Data Stream in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dataStreamId A unique integer value identifying the data stream.
+ @param streamId A unique integer value identifying the data stream.
  @return ApiDeleteDataStreamRequest
 */
-func (a *DataStreamStreamsAPIService) DeleteDataStream(ctx context.Context, dataStreamId int64) ApiDeleteDataStreamRequest {
+func (a *DataStreamStreamsAPIService) DeleteDataStream(ctx context.Context, streamId int64) ApiDeleteDataStreamRequest {
 	return ApiDeleteDataStreamRequest{
 		ApiService: a,
 		ctx: ctx,
-		dataStreamId: dataStreamId,
+		streamId: streamId,
 	}
 }
 
@@ -267,8 +267,8 @@ func (a *DataStreamStreamsAPIService) DeleteDataStreamExecute(r ApiDeleteDataStr
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/stream/streams/{data_stream_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"data_stream_id"+"}", url.PathEscape(parameterValueToString(r.dataStreamId, "dataStreamId")), -1)
+	localVarPath := localBasePath + "/workspace/stream/streams/{stream_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"stream_id"+"}", url.PathEscape(parameterValueToString(r.streamId, "streamId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -761,7 +761,7 @@ func (a *DataStreamStreamsAPIService) ListDataStreamsExecute(r ApiListDataStream
 type ApiPartialUpdateDataStreamRequest struct {
 	ctx context.Context
 	ApiService *DataStreamStreamsAPIService
-	dataStreamId int64
+	streamId int64
 	patchedDataStreamRequest *PatchedDataStreamRequest
 }
 
@@ -780,14 +780,14 @@ PartialUpdateDataStream Partially update a Data Stream
 Update one or more fields of an existing Data Stream.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dataStreamId A unique integer value identifying the data stream.
+ @param streamId A unique integer value identifying the data stream.
  @return ApiPartialUpdateDataStreamRequest
 */
-func (a *DataStreamStreamsAPIService) PartialUpdateDataStream(ctx context.Context, dataStreamId int64) ApiPartialUpdateDataStreamRequest {
+func (a *DataStreamStreamsAPIService) PartialUpdateDataStream(ctx context.Context, streamId int64) ApiPartialUpdateDataStreamRequest {
 	return ApiPartialUpdateDataStreamRequest{
 		ApiService: a,
 		ctx: ctx,
-		dataStreamId: dataStreamId,
+		streamId: streamId,
 	}
 }
 
@@ -806,8 +806,8 @@ func (a *DataStreamStreamsAPIService) PartialUpdateDataStreamExecute(r ApiPartia
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/stream/streams/{data_stream_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"data_stream_id"+"}", url.PathEscape(parameterValueToString(r.dataStreamId, "dataStreamId")), -1)
+	localVarPath := localBasePath + "/workspace/stream/streams/{stream_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"stream_id"+"}", url.PathEscape(parameterValueToString(r.streamId, "streamId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -963,7 +963,7 @@ func (a *DataStreamStreamsAPIService) PartialUpdateDataStreamExecute(r ApiPartia
 type ApiRetrieveDataStreamRequest struct {
 	ctx context.Context
 	ApiService *DataStreamStreamsAPIService
-	dataStreamId int64
+	streamId int64
 	fields *string
 }
 
@@ -983,14 +983,14 @@ RetrieveDataStream Retrieve details of a Data Stream
 Retrieve details from a specific Data Stream in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dataStreamId A unique integer value identifying the data stream.
+ @param streamId A unique integer value identifying the data stream.
  @return ApiRetrieveDataStreamRequest
 */
-func (a *DataStreamStreamsAPIService) RetrieveDataStream(ctx context.Context, dataStreamId int64) ApiRetrieveDataStreamRequest {
+func (a *DataStreamStreamsAPIService) RetrieveDataStream(ctx context.Context, streamId int64) ApiRetrieveDataStreamRequest {
 	return ApiRetrieveDataStreamRequest{
 		ApiService: a,
 		ctx: ctx,
-		dataStreamId: dataStreamId,
+		streamId: streamId,
 	}
 }
 
@@ -1009,8 +1009,8 @@ func (a *DataStreamStreamsAPIService) RetrieveDataStreamExecute(r ApiRetrieveDat
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/stream/streams/{data_stream_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"data_stream_id"+"}", url.PathEscape(parameterValueToString(r.dataStreamId, "dataStreamId")), -1)
+	localVarPath := localBasePath + "/workspace/stream/streams/{stream_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"stream_id"+"}", url.PathEscape(parameterValueToString(r.streamId, "streamId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1166,7 +1166,7 @@ func (a *DataStreamStreamsAPIService) RetrieveDataStreamExecute(r ApiRetrieveDat
 type ApiUpdateDataStreamRequest struct {
 	ctx context.Context
 	ApiService *DataStreamStreamsAPIService
-	dataStreamId int64
+	streamId int64
 	dataStreamRequest *DataStreamRequest
 }
 
@@ -1185,14 +1185,14 @@ UpdateDataStream Update a Data Stream
 Update an existing Data Stream.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param dataStreamId A unique integer value identifying the data stream.
+ @param streamId A unique integer value identifying the data stream.
  @return ApiUpdateDataStreamRequest
 */
-func (a *DataStreamStreamsAPIService) UpdateDataStream(ctx context.Context, dataStreamId int64) ApiUpdateDataStreamRequest {
+func (a *DataStreamStreamsAPIService) UpdateDataStream(ctx context.Context, streamId int64) ApiUpdateDataStreamRequest {
 	return ApiUpdateDataStreamRequest{
 		ApiService: a,
 		ctx: ctx,
-		dataStreamId: dataStreamId,
+		streamId: streamId,
 	}
 }
 
@@ -1211,8 +1211,8 @@ func (a *DataStreamStreamsAPIService) UpdateDataStreamExecute(r ApiUpdateDataStr
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/stream/streams/{data_stream_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"data_stream_id"+"}", url.PathEscape(parameterValueToString(r.dataStreamId, "dataStreamId")), -1)
+	localVarPath := localBasePath + "/workspace/stream/streams/{stream_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"stream_id"+"}", url.PathEscape(parameterValueToString(r.streamId, "streamId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
