@@ -428,16 +428,58 @@ type ApiEdgeApplicationApiApplicationsResponseRulesListRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsResponseRulesAPIService
 	applicationId int64
+	description *string
 	fields *string
+	id *string
+	isActive *bool
+	name *string
+	orderGte *int64
+	orderLte *int64
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
 }
 
+// Filter by description (partial search, case-insensitive).
+func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) Description(description string) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+	r.description = &description
+	return r
+}
+
 // Comma-separated list of field names to include in the response.
 func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) Fields(fields string) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID (can be multiple, comma-separated).
+func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) Id(id string) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by active status.
+func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) IsActive(isActive bool) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+	r.isActive = &isActive
+	return r
+}
+
+// Filter by name (partial search, case-insensitive).
+func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) Name(name string) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+	r.name = &name
+	return r
+}
+
+// Filter by order (greater than or equal to).
+func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) OrderGte(orderGte int64) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+	r.orderGte = &orderGte
+	return r
+}
+
+// Filter by order (less than or equal to).
+func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) OrderLte(orderLte int64) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+	r.orderLte = &orderLte
 	return r
 }
 
@@ -508,8 +550,26 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.description != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "description", r.description, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.isActive != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "is_active", r.isActive, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
+	}
+	if r.orderGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "order__gte", r.orderGte, "form", "")
+	}
+	if r.orderLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "order__lte", r.orderLte, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")

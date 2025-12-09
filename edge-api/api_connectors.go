@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -416,16 +417,59 @@ func (a *ConnectorsAPIService) DeleteConnectorExecute(r ApiDeleteConnectorReques
 type ApiListConnectorsRequest struct {
 	ctx context.Context
 	ApiService *ConnectorsAPIService
+	active *bool
 	fields *string
+	id *string
+	lastEditor *string
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
+	typeIn *string
+}
+
+// Filter by active status.
+func (r ApiListConnectorsRequest) Active(active bool) ApiListConnectorsRequest {
+	r.active = &active
+	return r
 }
 
 // Comma-separated list of field names to include in the response.
 func (r ApiListConnectorsRequest) Fields(fields string) ApiListConnectorsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID (can be multiple, comma-separated).
+func (r ApiListConnectorsRequest) Id(id string) ApiListConnectorsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by last editor (partial search, case-insensitive).
+func (r ApiListConnectorsRequest) LastEditor(lastEditor string) ApiListConnectorsRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last modified date (greater than or equal to).
+func (r ApiListConnectorsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListConnectorsRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date (less than or equal to).
+func (r ApiListConnectorsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListConnectorsRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by name (partial search, case-insensitive).
+func (r ApiListConnectorsRequest) Name(name string) ApiListConnectorsRequest {
+	r.name = &name
 	return r
 }
 
@@ -450,6 +494,12 @@ func (r ApiListConnectorsRequest) PageSize(pageSize int64) ApiListConnectorsRequ
 // A search term.
 func (r ApiListConnectorsRequest) Search(search string) ApiListConnectorsRequest {
 	r.search = &search
+	return r
+}
+
+// Filter by type (can be multiple, comma-separated).
+func (r ApiListConnectorsRequest) TypeIn(typeIn string) ApiListConnectorsRequest {
+	r.typeIn = &typeIn
 	return r
 }
 
@@ -493,8 +543,26 @@ func (a *ConnectorsAPIService) ListConnectorsExecute(r ApiListConnectorsRequest)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.active != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
@@ -507,6 +575,9 @@ func (a *ConnectorsAPIService) ListConnectorsExecute(r ApiListConnectorsRequest)
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.typeIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type__in", r.typeIn, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -428,16 +428,31 @@ type ApiListWorkloadDeploymentsRequest struct {
 	ctx context.Context
 	ApiService *WorkloadDeploymentsAPIService
 	workloadId int64
+	current *bool
 	fields *string
+	id *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
+	tag *string
+}
+
+// Filter by current status.
+func (r ApiListWorkloadDeploymentsRequest) Current(current bool) ApiListWorkloadDeploymentsRequest {
+	r.current = &current
+	return r
 }
 
 // Comma-separated list of field names to include in the response.
 func (r ApiListWorkloadDeploymentsRequest) Fields(fields string) ApiListWorkloadDeploymentsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID (can be multiple, comma-separated).
+func (r ApiListWorkloadDeploymentsRequest) Id(id string) ApiListWorkloadDeploymentsRequest {
+	r.id = &id
 	return r
 }
 
@@ -462,6 +477,12 @@ func (r ApiListWorkloadDeploymentsRequest) PageSize(pageSize int64) ApiListWorkl
 // A search term.
 func (r ApiListWorkloadDeploymentsRequest) Search(search string) ApiListWorkloadDeploymentsRequest {
 	r.search = &search
+	return r
+}
+
+// Filter by tag (partial search, case-insensitive).
+func (r ApiListWorkloadDeploymentsRequest) Tag(tag string) ApiListWorkloadDeploymentsRequest {
+	r.tag = &tag
 	return r
 }
 
@@ -508,8 +529,14 @@ func (a *WorkloadDeploymentsAPIService) ListWorkloadDeploymentsExecute(r ApiList
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.current != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "current", r.current, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
@@ -522,6 +549,9 @@ func (a *WorkloadDeploymentsAPIService) ListWorkloadDeploymentsExecute(r ApiList
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.tag != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "tag", r.tag, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

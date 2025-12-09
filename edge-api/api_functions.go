@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -419,16 +420,82 @@ func (a *FunctionsAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) 
 type ApiListFunctionsRequest struct {
 	ctx context.Context
 	ApiService *FunctionsAPIService
+	active *bool
+	defaultArgs *string
+	executionEnvironment *string
 	fields *string
+	id *string
+	languageIn *string
+	lastEditor *string
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
+	runtime *string
+	runtimeEnvironmentIn *string
 	search *string
+	vendor *string
+}
+
+// Filter by active status.
+func (r ApiListFunctionsRequest) Active(active bool) ApiListFunctionsRequest {
+	r.active = &active
+	return r
+}
+
+// Filter by default args (partial search).
+func (r ApiListFunctionsRequest) DefaultArgs(defaultArgs string) ApiListFunctionsRequest {
+	r.defaultArgs = &defaultArgs
+	return r
+}
+
+// Filter by execution environment.
+func (r ApiListFunctionsRequest) ExecutionEnvironment(executionEnvironment string) ApiListFunctionsRequest {
+	r.executionEnvironment = &executionEnvironment
+	return r
 }
 
 // Comma-separated list of field names to include in the response.
 func (r ApiListFunctionsRequest) Fields(fields string) ApiListFunctionsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID. Can be multiple comma-separated values.
+func (r ApiListFunctionsRequest) Id(id string) ApiListFunctionsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by language. Can be multiple comma-separated values.
+func (r ApiListFunctionsRequest) LanguageIn(languageIn string) ApiListFunctionsRequest {
+	r.languageIn = &languageIn
+	return r
+}
+
+// Filter by last editor (partial search).
+func (r ApiListFunctionsRequest) LastEditor(lastEditor string) ApiListFunctionsRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last modified (start).
+func (r ApiListFunctionsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListFunctionsRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified (end).
+func (r ApiListFunctionsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListFunctionsRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by name (partial search).
+func (r ApiListFunctionsRequest) Name(name string) ApiListFunctionsRequest {
+	r.name = &name
 	return r
 }
 
@@ -450,9 +517,27 @@ func (r ApiListFunctionsRequest) PageSize(pageSize int64) ApiListFunctionsReques
 	return r
 }
 
+// Filter by runtime.
+func (r ApiListFunctionsRequest) Runtime(runtime string) ApiListFunctionsRequest {
+	r.runtime = &runtime
+	return r
+}
+
+// Filter by runtime environment. Can be multiple comma-separated values.
+func (r ApiListFunctionsRequest) RuntimeEnvironmentIn(runtimeEnvironmentIn string) ApiListFunctionsRequest {
+	r.runtimeEnvironmentIn = &runtimeEnvironmentIn
+	return r
+}
+
 // A search term.
 func (r ApiListFunctionsRequest) Search(search string) ApiListFunctionsRequest {
 	r.search = &search
+	return r
+}
+
+// Filter by vendor.
+func (r ApiListFunctionsRequest) Vendor(vendor string) ApiListFunctionsRequest {
+	r.vendor = &vendor
 	return r
 }
 
@@ -496,8 +581,35 @@ func (a *FunctionsAPIService) ListFunctionsExecute(r ApiListFunctionsRequest) (*
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.active != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
+	}
+	if r.defaultArgs != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "default_args", r.defaultArgs, "form", "")
+	}
+	if r.executionEnvironment != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "execution_environment", r.executionEnvironment, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.languageIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "language__in", r.languageIn, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
@@ -508,8 +620,17 @@ func (a *FunctionsAPIService) ListFunctionsExecute(r ApiListFunctionsRequest) (*
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
 	}
+	if r.runtime != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "runtime", r.runtime, "form", "")
+	}
+	if r.runtimeEnvironmentIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "runtime_environment__in", r.runtimeEnvironmentIn, "form", "")
+	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.vendor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "vendor", r.vendor, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

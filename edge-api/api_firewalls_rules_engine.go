@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -428,16 +429,79 @@ type ApiListFirewallRulesRequest struct {
 	ctx context.Context
 	ApiService *FirewallsRulesEngineAPIService
 	firewallId int64
+	description *string
 	fields *string
+	id *string
+	isActive *bool
+	lastEditor *string
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	name *string
+	orderGte *int64
+	orderLte *int64
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
 }
 
+// Filter by description (partial search, case-insensitive).
+func (r ApiListFirewallRulesRequest) Description(description string) ApiListFirewallRulesRequest {
+	r.description = &description
+	return r
+}
+
 // Comma-separated list of field names to include in the response.
 func (r ApiListFirewallRulesRequest) Fields(fields string) ApiListFirewallRulesRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID (can be multiple, comma-separated).
+func (r ApiListFirewallRulesRequest) Id(id string) ApiListFirewallRulesRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by active status.
+func (r ApiListFirewallRulesRequest) IsActive(isActive bool) ApiListFirewallRulesRequest {
+	r.isActive = &isActive
+	return r
+}
+
+// Filter by last editor (partial search, case-insensitive).
+func (r ApiListFirewallRulesRequest) LastEditor(lastEditor string) ApiListFirewallRulesRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last modified date (greater than or equal to).
+func (r ApiListFirewallRulesRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListFirewallRulesRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date (less than or equal to).
+func (r ApiListFirewallRulesRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListFirewallRulesRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by name (partial search, case-insensitive).
+func (r ApiListFirewallRulesRequest) Name(name string) ApiListFirewallRulesRequest {
+	r.name = &name
+	return r
+}
+
+// Filter by order (greater than or equal to).
+func (r ApiListFirewallRulesRequest) OrderGte(orderGte int64) ApiListFirewallRulesRequest {
+	r.orderGte = &orderGte
+	return r
+}
+
+// Filter by order (less than or equal to).
+func (r ApiListFirewallRulesRequest) OrderLte(orderLte int64) ApiListFirewallRulesRequest {
+	r.orderLte = &orderLte
 	return r
 }
 
@@ -508,8 +572,35 @@ func (a *FirewallsRulesEngineAPIService) ListFirewallRulesExecute(r ApiListFirew
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.description != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "description", r.description, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.isActive != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "is_active", r.isActive, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
+	}
+	if r.orderGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "order__gte", r.orderGte, "form", "")
+	}
+	if r.orderLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "order__lte", r.orderLte, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")

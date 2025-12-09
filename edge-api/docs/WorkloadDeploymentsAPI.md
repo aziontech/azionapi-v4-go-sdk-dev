@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ListWorkloadDeployments
 
-> PaginatedWorkloadDeploymentList ListWorkloadDeployments(ctx, workloadId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedWorkloadDeploymentList ListWorkloadDeployments(ctx, workloadId).Current(current).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Tag(tag).Execute()
 
 List Workload Deployments
 
@@ -180,15 +180,18 @@ import (
 
 func main() {
 	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
+	current := true // bool | Filter by current status. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := "id_example" // string | Filter by ID (can be multiple, comma-separated). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, active, last_editor, last_modified, current) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
+	tag := "tag_example" // string | Filter by tag (partial search, case-insensitive). (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadDeploymentsAPI.ListWorkloadDeployments(context.Background(), workloadId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.WorkloadDeploymentsAPI.ListWorkloadDeployments(context.Background(), workloadId).Current(current).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Tag(tag).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.ListWorkloadDeployments``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -214,11 +217,14 @@ Other parameters are passed through a pointer to a apiListWorkloadDeploymentsReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **current** | **bool** | Filter by current status. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **string** | Filter by ID (can be multiple, comma-separated). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, active, last_editor, last_modified, current) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
+ **tag** | **string** | Filter by tag (partial search, case-insensitive). | 
 
 ### Return type
 

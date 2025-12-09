@@ -429,16 +429,80 @@ type ApiListCacheSettingsRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsCacheSettingsAPIService
 	applicationId int64
+	adaptiveDeliveryAction *string
+	browserCacheSettings *string
+	browserCacheSettingsMaximumTtl *int64
+	cacheByCookies *string
+	cacheByQueryString *string
+	cdnCacheSettings *string
+	cdnCacheSettingsMaximumTtl *int64
 	fields *string
+	id *string
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
+	sliceConfigurationRange *int64
+}
+
+// Filter by adaptive delivery action.
+func (r ApiListCacheSettingsRequest) AdaptiveDeliveryAction(adaptiveDeliveryAction string) ApiListCacheSettingsRequest {
+	r.adaptiveDeliveryAction = &adaptiveDeliveryAction
+	return r
+}
+
+// Filter by browser cache settings.
+func (r ApiListCacheSettingsRequest) BrowserCacheSettings(browserCacheSettings string) ApiListCacheSettingsRequest {
+	r.browserCacheSettings = &browserCacheSettings
+	return r
+}
+
+// Filter by browser cache settings maximum TTL.
+func (r ApiListCacheSettingsRequest) BrowserCacheSettingsMaximumTtl(browserCacheSettingsMaximumTtl int64) ApiListCacheSettingsRequest {
+	r.browserCacheSettingsMaximumTtl = &browserCacheSettingsMaximumTtl
+	return r
+}
+
+// Filter by cache cookies.
+func (r ApiListCacheSettingsRequest) CacheByCookies(cacheByCookies string) ApiListCacheSettingsRequest {
+	r.cacheByCookies = &cacheByCookies
+	return r
+}
+
+// Filter by cache query string.
+func (r ApiListCacheSettingsRequest) CacheByQueryString(cacheByQueryString string) ApiListCacheSettingsRequest {
+	r.cacheByQueryString = &cacheByQueryString
+	return r
+}
+
+// Filter by CDN cache settings.
+func (r ApiListCacheSettingsRequest) CdnCacheSettings(cdnCacheSettings string) ApiListCacheSettingsRequest {
+	r.cdnCacheSettings = &cdnCacheSettings
+	return r
+}
+
+// Filter by CDN cache settings maximum TTL.
+func (r ApiListCacheSettingsRequest) CdnCacheSettingsMaximumTtl(cdnCacheSettingsMaximumTtl int64) ApiListCacheSettingsRequest {
+	r.cdnCacheSettingsMaximumTtl = &cdnCacheSettingsMaximumTtl
+	return r
 }
 
 // Comma-separated list of field names to include in the response.
 func (r ApiListCacheSettingsRequest) Fields(fields string) ApiListCacheSettingsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID. Can be multiple comma-separated values.
+func (r ApiListCacheSettingsRequest) Id(id string) ApiListCacheSettingsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by name (partial search).
+func (r ApiListCacheSettingsRequest) Name(name string) ApiListCacheSettingsRequest {
+	r.name = &name
 	return r
 }
 
@@ -463,6 +527,12 @@ func (r ApiListCacheSettingsRequest) PageSize(pageSize int64) ApiListCacheSettin
 // A search term.
 func (r ApiListCacheSettingsRequest) Search(search string) ApiListCacheSettingsRequest {
 	r.search = &search
+	return r
+}
+
+// Filter by slice configuration range.
+func (r ApiListCacheSettingsRequest) SliceConfigurationRange(sliceConfigurationRange int64) ApiListCacheSettingsRequest {
+	r.sliceConfigurationRange = &sliceConfigurationRange
 	return r
 }
 
@@ -509,8 +579,35 @@ func (a *ApplicationsCacheSettingsAPIService) ListCacheSettingsExecute(r ApiList
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.adaptiveDeliveryAction != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "adaptive_delivery_action", r.adaptiveDeliveryAction, "form", "")
+	}
+	if r.browserCacheSettings != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "browser_cache_settings", r.browserCacheSettings, "form", "")
+	}
+	if r.browserCacheSettingsMaximumTtl != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "browser_cache_settings_maximum_ttl", r.browserCacheSettingsMaximumTtl, "form", "")
+	}
+	if r.cacheByCookies != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "cache_by_cookies", r.cacheByCookies, "form", "")
+	}
+	if r.cacheByQueryString != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "cache_by_query_string", r.cacheByQueryString, "form", "")
+	}
+	if r.cdnCacheSettings != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "cdn_cache_settings", r.cdnCacheSettings, "form", "")
+	}
+	if r.cdnCacheSettingsMaximumTtl != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "cdn_cache_settings_maximum_ttl", r.cdnCacheSettingsMaximumTtl, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
@@ -523,6 +620,9 @@ func (a *ApplicationsCacheSettingsAPIService) ListCacheSettingsExecute(r ApiList
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.sliceConfigurationRange != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "slice_configuration_range", r.sliceConfigurationRange, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ListApplicationFunctionInstances
 
-> PaginatedApplicationFunctionInstanceList ListApplicationFunctionInstances(ctx, applicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedApplicationFunctionInstanceList ListApplicationFunctionInstances(ctx, applicationId).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Function Instances
 
@@ -175,12 +175,18 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := "id_example" // string | Filter by ID (can be multiple, comma-separated). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (partial search, case-insensitive). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal to). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal to). (optional)
+	name := "name_example" // string | Filter by name (partial search, case-insensitive). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -188,7 +194,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsFunctionAPI.ListApplicationFunctionInstances(context.Background(), applicationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.ApplicationsFunctionAPI.ListApplicationFunctionInstances(context.Background(), applicationId).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsFunctionAPI.ListApplicationFunctionInstances``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -215,6 +221,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **string** | Filter by ID (can be multiple, comma-separated). | 
+ **lastEditor** | **string** | Filter by last editor (partial search, case-insensitive). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal to). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal to). | 
+ **name** | **string** | Filter by name (partial search, case-insensitive). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

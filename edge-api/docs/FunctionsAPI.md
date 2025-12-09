@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListFunctions
 
-> PaginatedEdgeFunctionsList ListFunctions(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedEdgeFunctionsList ListFunctions(ctx).Active(active).DefaultArgs(defaultArgs).ExecutionEnvironment(executionEnvironment).Fields(fields).Id(id).LanguageIn(languageIn).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Runtime(runtime).RuntimeEnvironmentIn(runtimeEnvironmentIn).Search(search).Vendor(vendor).Execute()
 
 List Functions
 
@@ -166,19 +166,32 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	active := true // bool | Filter by active status. (optional)
+	defaultArgs := "defaultArgs_example" // string | Filter by default args (partial search). (optional)
+	executionEnvironment := "executionEnvironment_example" // string | Filter by execution environment. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := "id_example" // string | Filter by ID. Can be multiple comma-separated values. (optional)
+	languageIn := "languageIn_example" // string | Filter by language. Can be multiple comma-separated values. (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (partial search). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified (start). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified (end). (optional)
+	name := "name_example" // string | Filter by name (partial search). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, language, json_args, runtime_environment, active, last_editor, last_modified, product_version) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
+	runtime := "runtime_example" // string | Filter by runtime. (optional)
+	runtimeEnvironmentIn := "runtimeEnvironmentIn_example" // string | Filter by runtime environment. Can be multiple comma-separated values. (optional)
 	search := "search_example" // string | A search term. (optional)
+	vendor := "vendor_example" // string | Filter by vendor. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FunctionsAPI.ListFunctions(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.FunctionsAPI.ListFunctions(context.Background()).Active(active).DefaultArgs(defaultArgs).ExecutionEnvironment(executionEnvironment).Fields(fields).Id(id).LanguageIn(languageIn).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Runtime(runtime).RuntimeEnvironmentIn(runtimeEnvironmentIn).Search(search).Vendor(vendor).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.ListFunctions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -199,11 +212,23 @@ Other parameters are passed through a pointer to a apiListFunctionsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **active** | **bool** | Filter by active status. | 
+ **defaultArgs** | **string** | Filter by default args (partial search). | 
+ **executionEnvironment** | **string** | Filter by execution environment. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **string** | Filter by ID. Can be multiple comma-separated values. | 
+ **languageIn** | **string** | Filter by language. Can be multiple comma-separated values. | 
+ **lastEditor** | **string** | Filter by last editor (partial search). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified (start). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified (end). | 
+ **name** | **string** | Filter by name (partial search). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, language, json_args, runtime_environment, active, last_editor, last_modified, product_version) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
+ **runtime** | **string** | Filter by runtime. | 
+ **runtimeEnvironmentIn** | **string** | Filter by runtime environment. Can be multiple comma-separated values. | 
  **search** | **string** | A search term. | 
+ **vendor** | **string** | Filter by vendor. | 
 
 ### Return type
 

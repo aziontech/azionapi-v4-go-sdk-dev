@@ -429,15 +429,30 @@ type ApiListDeviceGroupsRequest struct {
 	ApiService *ApplicationsDeviceGroupsAPIService
 	applicationId int64
 	fields *string
+	id *string
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
+	userAgent *string
 }
 
 // Comma-separated list of field names to include in the response.
 func (r ApiListDeviceGroupsRequest) Fields(fields string) ApiListDeviceGroupsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID. Can be multiple comma-separated values.
+func (r ApiListDeviceGroupsRequest) Id(id string) ApiListDeviceGroupsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by name (partial search).
+func (r ApiListDeviceGroupsRequest) Name(name string) ApiListDeviceGroupsRequest {
+	r.name = &name
 	return r
 }
 
@@ -462,6 +477,12 @@ func (r ApiListDeviceGroupsRequest) PageSize(pageSize int64) ApiListDeviceGroups
 // A search term.
 func (r ApiListDeviceGroupsRequest) Search(search string) ApiListDeviceGroupsRequest {
 	r.search = &search
+	return r
+}
+
+// Filter by user agent (partial search).
+func (r ApiListDeviceGroupsRequest) UserAgent(userAgent string) ApiListDeviceGroupsRequest {
+	r.userAgent = &userAgent
 	return r
 }
 
@@ -511,6 +532,12 @@ func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroupsExecute(r ApiListDe
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
 	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
+	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
 	}
@@ -522,6 +549,9 @@ func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroupsExecute(r ApiListDe
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.userAgent != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "user_agent", r.userAgent, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
