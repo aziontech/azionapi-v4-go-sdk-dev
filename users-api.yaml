@@ -1,0 +1,226 @@
+openapi: 3.0.3
+info:
+  title: users-api
+  version: 1.0.0
+  description: REST API OpenAPI documentation for the User API
+paths:
+  /identity/users/{user_id}/lockout:
+    delete:
+      operationId: destroy_lockout_user
+      description: Destroy Lockout info from user.
+      summary: Unlock user
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        description: A unique integer value identifying the user.
+        required: true
+      tags:
+      - Users - Lockout
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '204':
+          description: No response body
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+              examples:
+                Error-10000:
+                  value:
+                    errors:
+                    - status: '400'
+                      code: '10000'
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+                  summary: Validation Error
+                  description: Invalid data provided in the request.
+          description: Validation Error
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+              examples:
+                Error-10004:
+                  value:
+                    errors:
+                    - status: '404'
+                      code: '10004'
+                      title: Not Found
+                      detail: Not found.
+                  summary: Not Found
+                  description: Not found.
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+              examples:
+                Error-10007:
+                  value:
+                    errors:
+                    - status: '405'
+                      code: '10007'
+                      title: Method Not Allowed
+                      detail: Method "{method}" not allowed.
+                  summary: Method Not Allowed
+                  description: Method "{method}" not allowed.
+          description: Method Not Allowed
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+              examples:
+                Error-10005:
+                  value:
+                    errors:
+                    - status: '406'
+                      code: '10005'
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  description: Could not satisfy the request Accept header.
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+              examples:
+                Error-10010:
+                  value:
+                    errors:
+                    - status: '429'
+                      code: '10010'
+                      title: Throttled
+                      detail: Request was throttled.
+                  summary: Throttled
+                  description: Request was throttled.
+          description: Throttled
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+              examples:
+                Error-10001:
+                  value:
+                    errors:
+                    - status: '401'
+                      code: '10001'
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  description: Invalid authentication credentials.
+          description: Authentication Failed
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONAPIErrorResponse'
+              examples:
+                Error-10003:
+                  value:
+                    errors:
+                    - status: '403'
+                      code: '10003'
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  description: You do not have permission to perform this action.
+          description: Permission Denied
+components:
+  schemas:
+    JSONAPIErrorObject:
+      type: object
+      description: Serializer for a single JSON:API error object.
+      properties:
+        status:
+          type: string
+          description: The HTTP status code applicable to this problem
+          pattern: ^\d{3}$
+          maxLength: 3
+          minLength: 3
+        code:
+          type: string
+          description: An application-specific error code
+          pattern: ^\d{5}$
+          maxLength: 5
+          minLength: 5
+        title:
+          type: string
+          description: A short, human-readable summary of the problem
+          pattern: ^.*$
+          maxLength: 4096
+          minLength: 1
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of
+            the problem
+          pattern: ^.*$
+          maxLength: 4096
+          minLength: 1
+        source:
+          allOf:
+          - $ref: '#/components/schemas/JSONAPIErrorSource'
+          description: References to the primary source of the error
+        meta:
+          type: object
+          additionalProperties: {}
+          description: Non-standard meta-information about the error
+      title: JSONAPIErrorObject
+      additionalProperties: false
+    JSONAPIErrorResponse:
+      type: object
+      description: Serializer for a JSON:API error response.
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/JSONAPIErrorObject'
+          description: Array of error objects
+      required:
+      - errors
+      title: JSONAPIErrorResponse
+      additionalProperties: false
+    JSONAPIErrorSource:
+      type: object
+      description: Serializer for the 'source' object in a JSON:API error.
+      properties:
+        pointer:
+          type: string
+          description: JSON Pointer to the value in the request document that caused
+            the error
+          pattern: ^(/[^/]+)+$
+          maxLength: 4096
+          minLength: 1
+        parameter:
+          type: string
+          description: URI query parameter that caused the error
+          pattern: ^.*$
+          maxLength: 4096
+          minLength: 1
+        header:
+          type: string
+          description: Request header name that caused the error
+          pattern: ^.*$
+          maxLength: 4096
+          minLength: 1
+      title: JSONAPIErrorSource
+      additionalProperties: false
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
