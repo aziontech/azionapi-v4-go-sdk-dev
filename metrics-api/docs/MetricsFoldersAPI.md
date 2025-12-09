@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## ListFolders
 
-> PaginatedResponseListFolderList ListFolders(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedResponseListFolderList ListFolders(ctx).Fields(fields).Id(id).IdIn(idIn).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List of the folders
 
@@ -169,14 +169,17 @@ import (
 
 func main() {
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
+	id := int64(789) // int64 | Filter by id. (optional)
+	idIn := "idIn_example" // string | Filter by multiple ids (comma-separated). (optional)
+	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsFoldersAPI.ListFolders(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.MetricsFoldersAPI.ListFolders(context.Background()).Fields(fields).Id(id).IdIn(idIn).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.ListFolders``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,7 +201,10 @@ Other parameters are passed through a pointer to a apiListFoldersRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **ordering** | **string** | Which field to use when ordering the results. | 
+ **id** | **int64** | Filter by id. | 
+ **idIn** | **string** | Filter by multiple ids (comma-separated). | 
+ **name** | **string** | Filter by name (case-insensitive, partial match). | 
+ **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 

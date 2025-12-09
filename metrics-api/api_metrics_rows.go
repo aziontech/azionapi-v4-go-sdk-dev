@@ -383,6 +383,7 @@ type ApiListRowsRequest struct {
 	folderId int64
 	fields *string
 	id *int64
+	idIn *string
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -396,13 +397,19 @@ func (r ApiListRowsRequest) Fields(fields string) ApiListRowsRequest {
 	return r
 }
 
-// Filter by row ID
+// Filter by id.
 func (r ApiListRowsRequest) Id(id int64) ApiListRowsRequest {
 	r.id = &id
 	return r
 }
 
-// Which field to use when ordering the results.
+// Filter by multiple ids (comma-separated).
+func (r ApiListRowsRequest) IdIn(idIn string) ApiListRowsRequest {
+	r.idIn = &idIn
+	return r
+}
+
+// Which field to use when ordering the results. (Valid fields: order)
 func (r ApiListRowsRequest) Ordering(ordering string) ApiListRowsRequest {
 	r.ordering = &ordering
 	return r
@@ -426,7 +433,7 @@ func (r ApiListRowsRequest) Search(search string) ApiListRowsRequest {
 	return r
 }
 
-// Filter by row title
+// Filter by title (case-insensitive, partial match).
 func (r ApiListRowsRequest) Title(title string) ApiListRowsRequest {
 	r.title = &title
 	return r
@@ -495,6 +502,9 @@ func (a *MetricsRowsAPIService) ListRowsExecute(r ApiListRowsRequest) (*Paginate
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.idIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")

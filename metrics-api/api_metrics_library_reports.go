@@ -339,11 +339,22 @@ func (a *MetricsLibraryReportsAPIService) DeleteLibraryReportExecute(r ApiDelete
 type ApiListLibraryReportsRequest struct {
 	ctx context.Context
 	ApiService *MetricsLibraryReportsAPIService
+	aggregationType *string
 	fields *string
+	id *int64
+	idIn *string
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
+	type_ *string
+}
+
+// Filter by aggregation type (comma-separated for multiple values).
+func (r ApiListLibraryReportsRequest) AggregationType(aggregationType string) ApiListLibraryReportsRequest {
+	r.aggregationType = &aggregationType
+	return r
 }
 
 // Comma-separated list of field names to include in the response.
@@ -352,7 +363,25 @@ func (r ApiListLibraryReportsRequest) Fields(fields string) ApiListLibraryReport
 	return r
 }
 
-// Which field to use when ordering the results.
+// Filter by id.
+func (r ApiListLibraryReportsRequest) Id(id int64) ApiListLibraryReportsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by multiple ids (comma-separated).
+func (r ApiListLibraryReportsRequest) IdIn(idIn string) ApiListLibraryReportsRequest {
+	r.idIn = &idIn
+	return r
+}
+
+// Filter by name (case-insensitive, partial match).
+func (r ApiListLibraryReportsRequest) Name(name string) ApiListLibraryReportsRequest {
+	r.name = &name
+	return r
+}
+
+// Which field to use when ordering the results. (Valid fields: id, name, type, aggregation_type)
 func (r ApiListLibraryReportsRequest) Ordering(ordering string) ApiListLibraryReportsRequest {
 	r.ordering = &ordering
 	return r
@@ -373,6 +402,12 @@ func (r ApiListLibraryReportsRequest) PageSize(pageSize int64) ApiListLibraryRep
 // A search term.
 func (r ApiListLibraryReportsRequest) Search(search string) ApiListLibraryReportsRequest {
 	r.search = &search
+	return r
+}
+
+// Filter by type (comma-separated for multiple values).
+func (r ApiListLibraryReportsRequest) Type_(type_ string) ApiListLibraryReportsRequest {
+	r.type_ = &type_
 	return r
 }
 
@@ -416,8 +451,20 @@ func (a *MetricsLibraryReportsAPIService) ListLibraryReportsExecute(r ApiListLib
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.aggregationType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregation_type", r.aggregationType, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.idIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
@@ -430,6 +477,9 @@ func (a *MetricsLibraryReportsAPIService) ListLibraryReportsExecute(r ApiListLib
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.type_ != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

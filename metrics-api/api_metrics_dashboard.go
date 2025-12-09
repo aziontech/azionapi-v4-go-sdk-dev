@@ -361,6 +361,9 @@ type ApiListDashboardsRequest struct {
 	ApiService *MetricsDashboardAPIService
 	folderId int64
 	fields *string
+	id *int64
+	idIn *string
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -373,7 +376,25 @@ func (r ApiListDashboardsRequest) Fields(fields string) ApiListDashboardsRequest
 	return r
 }
 
-// Which field to use when ordering the results.
+// Filter by id.
+func (r ApiListDashboardsRequest) Id(id int64) ApiListDashboardsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by multiple ids (comma-separated).
+func (r ApiListDashboardsRequest) IdIn(idIn string) ApiListDashboardsRequest {
+	r.idIn = &idIn
+	return r
+}
+
+// Filter by name (case-insensitive, partial match).
+func (r ApiListDashboardsRequest) Name(name string) ApiListDashboardsRequest {
+	r.name = &name
+	return r
+}
+
+// Which field to use when ordering the results. (Valid fields: id, name)
 func (r ApiListDashboardsRequest) Ordering(ordering string) ApiListDashboardsRequest {
 	r.ordering = &ordering
 	return r
@@ -448,6 +469,15 @@ func (a *MetricsDashboardAPIService) ListDashboardsExecute(r ApiListDashboardsRe
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.idIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")

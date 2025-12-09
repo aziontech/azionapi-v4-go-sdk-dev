@@ -340,6 +340,9 @@ type ApiListFoldersRequest struct {
 	ctx context.Context
 	ApiService *MetricsFoldersAPIService
 	fields *string
+	id *int64
+	idIn *string
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -352,7 +355,25 @@ func (r ApiListFoldersRequest) Fields(fields string) ApiListFoldersRequest {
 	return r
 }
 
-// Which field to use when ordering the results.
+// Filter by id.
+func (r ApiListFoldersRequest) Id(id int64) ApiListFoldersRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by multiple ids (comma-separated).
+func (r ApiListFoldersRequest) IdIn(idIn string) ApiListFoldersRequest {
+	r.idIn = &idIn
+	return r
+}
+
+// Filter by name (case-insensitive, partial match).
+func (r ApiListFoldersRequest) Name(name string) ApiListFoldersRequest {
+	r.name = &name
+	return r
+}
+
+// Which field to use when ordering the results. (Valid fields: id, name)
 func (r ApiListFoldersRequest) Ordering(ordering string) ApiListFoldersRequest {
 	r.ordering = &ordering
 	return r
@@ -418,6 +439,15 @@ func (a *MetricsFoldersAPIService) ListFoldersExecute(r ApiListFoldersRequest) (
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.idIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
