@@ -24,39 +24,117 @@ paths:
         "204":
           description: No response body
         "400":
-          description: Bad Request
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
         "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Not Found
         "405":
           content:
             application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/DefaultErrorResponse"
-          description: Not Found
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
         "406":
           content:
             application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/DefaultErrorResponse"
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Not Acceptable
         "429":
           content:
             application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/DefaultErrorResponse"
-          description: Too Many Requests
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
         "401":
           content:
             application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/DefaultErrorResponse"
-          description: Unauthorized
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
         "403":
           content:
             application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/DefaultErrorResponse"
-          description: Forbidden
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -65,16 +143,99 @@ paths:
       - Users - Lockout
 components:
   schemas:
-    DefaultErrorResponse:
+    JSONAPIErrorObject:
       additionalProperties: false
+      description: Serializer for a single JSON:API error object.
       example:
+        code: code
+        meta:
+          key: ""
         detail: detail
+        source: ""
+        title: title
+        status: status
       properties:
-        detail:
+        status:
+          description: The HTTP status code applicable to this problem
+          maxLength: 3
+          minLength: 3
+          type: string
+        code:
+          description: An application-specific error code
+          maxLength: 5
+          minLength: 5
+          type: string
+        title:
+          description: "A short, human-readable summary of the problem"
           maxLength: 4096
           minLength: 1
           type: string
-      title: DefaultErrorResponse
+        detail:
+          description: A human-readable explanation specific to this occurrence of
+            the problem
+          maxLength: 4096
+          minLength: 1
+          type: string
+        source:
+          allOf:
+          - $ref: "#/components/schemas/JSONAPIErrorSource"
+          description: References to the primary source of the error
+        meta:
+          additionalProperties: {}
+          description: Non-standard meta-information about the error
+          type: object
+      title: JSONAPIErrorObject
+      type: object
+    JSONAPIErrorResponse:
+      additionalProperties: false
+      description: Serializer for a JSON:API error response.
+      example:
+        errors:
+        - code: code
+          meta:
+            key: ""
+          detail: detail
+          source: ""
+          title: title
+          status: status
+        - code: code
+          meta:
+            key: ""
+          detail: detail
+          source: ""
+          title: title
+          status: status
+      properties:
+        errors:
+          description: Array of error objects
+          items:
+            $ref: "#/components/schemas/JSONAPIErrorObject"
+          type: array
+      required:
+      - errors
+      title: JSONAPIErrorResponse
+      type: object
+    JSONAPIErrorSource:
+      additionalProperties: false
+      description: Serializer for the 'source' object in a JSON:API error.
+      properties:
+        pointer:
+          description: JSON Pointer to the value in the request document that caused
+            the error
+          maxLength: 4096
+          minLength: 1
+          type: string
+        parameter:
+          description: URI query parameter that caused the error
+          maxLength: 4096
+          minLength: 1
+          type: string
+        header:
+          description: Request header name that caused the error
+          maxLength: 4096
+          minLength: 1
+          type: string
+      title: JSONAPIErrorSource
       type: object
   securitySchemes:
     BearerAuth:

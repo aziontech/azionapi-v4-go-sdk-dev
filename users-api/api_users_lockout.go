@@ -123,8 +123,30 @@ func (a *UsersLockoutAPIService) DestroyLockoutUserExecute(r ApiDestroyLockoutUs
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -135,7 +157,7 @@ func (a *UsersLockoutAPIService) DestroyLockoutUserExecute(r ApiDestroyLockoutUs
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -146,7 +168,7 @@ func (a *UsersLockoutAPIService) DestroyLockoutUserExecute(r ApiDestroyLockoutUs
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -157,7 +179,7 @@ func (a *UsersLockoutAPIService) DestroyLockoutUserExecute(r ApiDestroyLockoutUs
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -168,7 +190,7 @@ func (a *UsersLockoutAPIService) DestroyLockoutUserExecute(r ApiDestroyLockoutUs
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v DefaultErrorResponse
+			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
