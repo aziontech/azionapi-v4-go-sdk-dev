@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## ListTotpDevices
 
-> PaginatedTOTPDeviceListList ListTotpDevices(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedTOTPDeviceListList ListTotpDevices(ctx).Confirmed(confirmed).Email(email).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List of TOTP devices
 
@@ -167,7 +167,11 @@ import (
 )
 
 func main() {
+	confirmed := true // bool | Filter by confirmation status. (optional)
+	email := "email_example" // string | Filter by user's email (partial match, case-insensitive). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := "id_example" // string | Filter by ID. Supports multiple comma-separated values (e.g., '1,2,3'). (optional)
+	name := "name_example" // string | Filter by user's first name (partial match, case-insensitive). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -175,7 +179,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthMFATOTPDeviceAPI.ListTotpDevices(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.AuthMFATOTPDeviceAPI.ListTotpDevices(context.Background()).Confirmed(confirmed).Email(email).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthMFATOTPDeviceAPI.ListTotpDevices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -196,7 +200,11 @@ Other parameters are passed through a pointer to a apiListTotpDevicesRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **confirmed** | **bool** | Filter by confirmation status. | 
+ **email** | **string** | Filter by user&#39;s email (partial match, case-insensitive). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **string** | Filter by ID. Supports multiple comma-separated values (e.g., &#39;1,2,3&#39;). | 
+ **name** | **string** | Filter by user&#39;s first name (partial match, case-insensitive). | 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
