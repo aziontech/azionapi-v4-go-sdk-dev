@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -428,16 +429,67 @@ type ApiListWafExceptionsRequest struct {
 	ctx context.Context
 	ApiService *WAFsExceptionsAPIService
 	wafId int64
+	createdAtGte *time.Time
+	createdAtLte *time.Time
+	description *string
 	fields *string
+	id *string
+	lastEditor *string
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
 	ordering *string
 	page *int64
 	pageSize *int64
+	path *string
+	pathIstartswith *string
 	search *string
+}
+
+// Filter by created at date (greater than or equal to).
+func (r ApiListWafExceptionsRequest) CreatedAtGte(createdAtGte time.Time) ApiListWafExceptionsRequest {
+	r.createdAtGte = &createdAtGte
+	return r
+}
+
+// Filter by created at date (less than or equal to).
+func (r ApiListWafExceptionsRequest) CreatedAtLte(createdAtLte time.Time) ApiListWafExceptionsRequest {
+	r.createdAtLte = &createdAtLte
+	return r
+}
+
+// Filter by description (partial search, case-insensitive).
+func (r ApiListWafExceptionsRequest) Description(description string) ApiListWafExceptionsRequest {
+	r.description = &description
+	return r
 }
 
 // Comma-separated list of field names to include in the response.
 func (r ApiListWafExceptionsRequest) Fields(fields string) ApiListWafExceptionsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID (can be multiple, comma-separated).
+func (r ApiListWafExceptionsRequest) Id(id string) ApiListWafExceptionsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by last editor (partial search, case-insensitive).
+func (r ApiListWafExceptionsRequest) LastEditor(lastEditor string) ApiListWafExceptionsRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last modified date (greater than or equal to).
+func (r ApiListWafExceptionsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListWafExceptionsRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date (less than or equal to).
+func (r ApiListWafExceptionsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListWafExceptionsRequest {
+	r.lastModifiedLte = &lastModifiedLte
 	return r
 }
 
@@ -456,6 +508,18 @@ func (r ApiListWafExceptionsRequest) Page(page int64) ApiListWafExceptionsReques
 // A numeric value that indicates the number of items per page.
 func (r ApiListWafExceptionsRequest) PageSize(pageSize int64) ApiListWafExceptionsRequest {
 	r.pageSize = &pageSize
+	return r
+}
+
+// Filter by path (partial search, case-insensitive).
+func (r ApiListWafExceptionsRequest) Path(path string) ApiListWafExceptionsRequest {
+	r.path = &path
+	return r
+}
+
+// Filter by path (prefix search, case-insensitive).
+func (r ApiListWafExceptionsRequest) PathIstartswith(pathIstartswith string) ApiListWafExceptionsRequest {
+	r.pathIstartswith = &pathIstartswith
 	return r
 }
 
@@ -508,8 +572,29 @@ func (a *WAFsExceptionsAPIService) ListWafExceptionsExecute(r ApiListWafExceptio
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.createdAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_at__gte", r.createdAtGte, "form", "")
+	}
+	if r.createdAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_at__lte", r.createdAtLte, "form", "")
+	}
+	if r.description != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "description", r.description, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
@@ -519,6 +604,12 @@ func (a *WAFsExceptionsAPIService) ListWafExceptionsExecute(r ApiListWafExceptio
 	}
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
+	}
+	if r.path != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "path", r.path, "form", "")
+	}
+	if r.pathIstartswith != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "path__istartswith", r.pathIstartswith, "form", "")
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")

@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 ## ListFirewalls
 
-> PaginatedFirewallList ListFirewalls(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedFirewallList ListFirewalls(ctx).Active(active).Debug(debug).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Firewalls
 
@@ -239,11 +239,19 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	active := true // bool | Filter by active status. (optional)
+	debug := true // bool | Filter by debug status. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := "id_example" // string | Filter by ID. Can be multiple comma-separated values. (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (partial search). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified (start). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified (end). (optional)
+	name := "name_example" // string | Filter by name (partial search). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, id, debug, active, last_editor, last_modified, product_version) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -251,7 +259,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsAPI.ListFirewalls(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.FirewallsAPI.ListFirewalls(context.Background()).Active(active).Debug(debug).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.ListFirewalls``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -272,7 +280,14 @@ Other parameters are passed through a pointer to a apiListFirewallsRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **active** | **bool** | Filter by active status. | 
+ **debug** | **bool** | Filter by debug status. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **string** | Filter by ID. Can be multiple comma-separated values. | 
+ **lastEditor** | **string** | Filter by last editor (partial search). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified (start). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified (end). | 
+ **name** | **string** | Filter by name (partial search). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: name, id, debug, active, last_editor, last_modified, product_version) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

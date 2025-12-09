@@ -624,6 +624,8 @@ type ApiListWafsRequest struct {
 	ctx context.Context
 	ApiService *WAFsAPIService
 	fields *string
+	id *string
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -633,6 +635,18 @@ type ApiListWafsRequest struct {
 // Comma-separated list of field names to include in the response.
 func (r ApiListWafsRequest) Fields(fields string) ApiListWafsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID (can be multiple, comma-separated).
+func (r ApiListWafsRequest) Id(id string) ApiListWafsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by name (partial search, case-insensitive).
+func (r ApiListWafsRequest) Name(name string) ApiListWafsRequest {
+	r.name = &name
 	return r
 }
 
@@ -702,6 +716,12 @@ func (a *WAFsAPIService) ListWafsExecute(r ApiListWafsRequest) (*PaginatedWAFLis
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")

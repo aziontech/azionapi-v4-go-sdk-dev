@@ -419,16 +419,44 @@ func (a *CustomPagesAPIService) DeleteCustomPageExecute(r ApiDeleteCustomPageReq
 type ApiListCustomPagesRequest struct {
 	ctx context.Context
 	ApiService *CustomPagesAPIService
+	active *bool
+	customStatusCode *int64
 	fields *string
+	id *string
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
 }
 
+// Filter by active status.
+func (r ApiListCustomPagesRequest) Active(active bool) ApiListCustomPagesRequest {
+	r.active = &active
+	return r
+}
+
+// Filter by custom status code.
+func (r ApiListCustomPagesRequest) CustomStatusCode(customStatusCode int64) ApiListCustomPagesRequest {
+	r.customStatusCode = &customStatusCode
+	return r
+}
+
 // Comma-separated list of field names to include in the response.
 func (r ApiListCustomPagesRequest) Fields(fields string) ApiListCustomPagesRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID. Can be multiple comma-separated values.
+func (r ApiListCustomPagesRequest) Id(id string) ApiListCustomPagesRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by name (partial search).
+func (r ApiListCustomPagesRequest) Name(name string) ApiListCustomPagesRequest {
+	r.name = &name
 	return r
 }
 
@@ -496,8 +524,20 @@ func (a *CustomPagesAPIService) ListCustomPagesExecute(r ApiListCustomPagesReque
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.active != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
+	}
+	if r.customStatusCode != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "custom_status_code", r.customStatusCode, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")

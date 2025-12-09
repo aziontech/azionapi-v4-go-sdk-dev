@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 ## ListWafs
 
-> PaginatedWAFList ListWafs(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedWAFList ListWafs(ctx).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Web Application Firewalls (WAFs)
 
@@ -244,6 +244,8 @@ import (
 
 func main() {
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := "id_example" // string | Filter by ID (can be multiple, comma-separated). (optional)
+	name := "name_example" // string | Filter by name (partial search, case-insensitive). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, id, active, last_editor, last_modified, product_version) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -251,7 +253,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WAFsAPI.ListWafs(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.WAFsAPI.ListWafs(context.Background()).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.ListWafs``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -273,6 +275,8 @@ Other parameters are passed through a pointer to a apiListWafsRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **string** | Filter by ID (can be multiple, comma-separated). | 
+ **name** | **string** | Filter by name (partial search, case-insensitive). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: name, id, active, last_editor, last_modified, product_version) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

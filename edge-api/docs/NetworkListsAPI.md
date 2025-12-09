@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListNetworkLists
 
-> PaginatedNetworkListList ListNetworkLists(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedNetworkListList ListNetworkLists(ctx).AccountId(accountId).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).ListType(listType).ListTypeIn(listTypeIn).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Network Lists
 
@@ -166,11 +166,20 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	accountId := int64(789) // int64 | Filter by account ID. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := "id_example" // string | Filter by ID. Can be multiple comma-separated values. (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (partial search). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified (start). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified (end). (optional)
+	listType := "listType_example" // string | Filter by list type. (optional)
+	listTypeIn := "listTypeIn_example" // string | Filter by list type. Can be multiple comma-separated values. (optional)
+	name := "name_example" // string | Filter by name (partial search). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, type, last_editor, last_modified, active) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -178,7 +187,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkListsAPI.ListNetworkLists(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.NetworkListsAPI.ListNetworkLists(context.Background()).AccountId(accountId).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).ListType(listType).ListTypeIn(listTypeIn).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.ListNetworkLists``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -199,7 +208,15 @@ Other parameters are passed through a pointer to a apiListNetworkListsRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **accountId** | **int64** | Filter by account ID. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **string** | Filter by ID. Can be multiple comma-separated values. | 
+ **lastEditor** | **string** | Filter by last editor (partial search). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified (start). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified (end). | 
+ **listType** | **string** | Filter by list type. | 
+ **listTypeIn** | **string** | Filter by list type. Can be multiple comma-separated values. | 
+ **name** | **string** | Filter by name (partial search). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: name, type, last_editor, last_modified, active) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

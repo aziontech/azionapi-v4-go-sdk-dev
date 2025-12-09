@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -623,16 +624,58 @@ func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplication
 type ApiListApplicationsRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsAPIService
+	active *bool
 	fields *string
+	id *string
+	lastEditor *string
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
 }
 
+// Filter by active status.
+func (r ApiListApplicationsRequest) Active(active bool) ApiListApplicationsRequest {
+	r.active = &active
+	return r
+}
+
 // Comma-separated list of field names to include in the response.
 func (r ApiListApplicationsRequest) Fields(fields string) ApiListApplicationsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID. Can be multiple comma-separated values.
+func (r ApiListApplicationsRequest) Id(id string) ApiListApplicationsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by last editor (partial search).
+func (r ApiListApplicationsRequest) LastEditor(lastEditor string) ApiListApplicationsRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last modified (start).
+func (r ApiListApplicationsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListApplicationsRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified (end).
+func (r ApiListApplicationsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListApplicationsRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by name (partial search).
+func (r ApiListApplicationsRequest) Name(name string) ApiListApplicationsRequest {
+	r.name = &name
 	return r
 }
 
@@ -700,8 +743,26 @@ func (a *ApplicationsAPIService) ListApplicationsExecute(r ApiListApplicationsRe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.active != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")

@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListConnectors
 
-> PaginatedConnectorPolymorphicList ListConnectors(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedConnectorPolymorphicList ListConnectors(ctx).Active(active).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).TypeIn(typeIn).Execute()
 
 List Connectors
 
@@ -166,19 +166,27 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	active := true // bool | Filter by active status. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := "id_example" // string | Filter by ID (can be multiple, comma-separated). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (partial search, case-insensitive). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal to). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal to). (optional)
+	name := "name_example" // string | Filter by name (partial search, case-insensitive). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: ) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
+	typeIn := "typeIn_example" // string | Filter by type (can be multiple, comma-separated). (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConnectorsAPI.ListConnectors(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.ConnectorsAPI.ListConnectors(context.Background()).Active(active).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).TypeIn(typeIn).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorsAPI.ListConnectors``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -199,11 +207,18 @@ Other parameters are passed through a pointer to a apiListConnectorsRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **active** | **bool** | Filter by active status. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **string** | Filter by ID (can be multiple, comma-separated). | 
+ **lastEditor** | **string** | Filter by last editor (partial search, case-insensitive). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal to). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal to). | 
+ **name** | **string** | Filter by name (partial search, case-insensitive). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: ) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
+ **typeIn** | **string** | Filter by type (can be multiple, comma-separated). | 
 
 ### Return type
 

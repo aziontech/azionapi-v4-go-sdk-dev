@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -429,6 +430,11 @@ type ApiListFirewallFunctionRequest struct {
 	ApiService *FirewallsFunctionAPIService
 	firewallId int64
 	fields *string
+	id *string
+	lastEditor *string
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -438,6 +444,36 @@ type ApiListFirewallFunctionRequest struct {
 // Comma-separated list of field names to include in the response.
 func (r ApiListFirewallFunctionRequest) Fields(fields string) ApiListFirewallFunctionRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID (can be multiple, comma-separated).
+func (r ApiListFirewallFunctionRequest) Id(id string) ApiListFirewallFunctionRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by last editor (partial search, case-insensitive).
+func (r ApiListFirewallFunctionRequest) LastEditor(lastEditor string) ApiListFirewallFunctionRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last modified date (greater than or equal to).
+func (r ApiListFirewallFunctionRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListFirewallFunctionRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date (less than or equal to).
+func (r ApiListFirewallFunctionRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListFirewallFunctionRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by name (partial search, case-insensitive).
+func (r ApiListFirewallFunctionRequest) Name(name string) ApiListFirewallFunctionRequest {
+	r.name = &name
 	return r
 }
 
@@ -510,6 +546,21 @@ func (a *FirewallsFunctionAPIService) ListFirewallFunctionExecute(r ApiListFirew
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
