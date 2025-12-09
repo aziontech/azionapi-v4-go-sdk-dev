@@ -402,16 +402,44 @@ func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDev
 type ApiListTotpDevicesRequest struct {
 	ctx context.Context
 	ApiService *AuthMFATOTPDeviceAPIService
+	confirmed *bool
+	email *string
 	fields *string
+	id *string
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
 }
 
+// Filter by confirmation status.
+func (r ApiListTotpDevicesRequest) Confirmed(confirmed bool) ApiListTotpDevicesRequest {
+	r.confirmed = &confirmed
+	return r
+}
+
+// Filter by user&#39;s email (partial match, case-insensitive).
+func (r ApiListTotpDevicesRequest) Email(email string) ApiListTotpDevicesRequest {
+	r.email = &email
+	return r
+}
+
 // Comma-separated list of field names to include in the response.
 func (r ApiListTotpDevicesRequest) Fields(fields string) ApiListTotpDevicesRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by ID. Supports multiple comma-separated values (e.g., &#39;1,2,3&#39;).
+func (r ApiListTotpDevicesRequest) Id(id string) ApiListTotpDevicesRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by user&#39;s first name (partial match, case-insensitive).
+func (r ApiListTotpDevicesRequest) Name(name string) ApiListTotpDevicesRequest {
+	r.name = &name
 	return r
 }
 
@@ -479,8 +507,20 @@ func (a *AuthMFATOTPDeviceAPIService) ListTotpDevicesExecute(r ApiListTotpDevice
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.confirmed != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "confirmed", r.confirmed, "form", "")
+	}
+	if r.email != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "email", r.email, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
