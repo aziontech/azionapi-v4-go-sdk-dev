@@ -25367,6 +25367,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - name: name
           id: 0
@@ -25374,12 +25376,35 @@ components:
         - name: name
           id: 0
           user_agent: user_agent
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -25391,6 +25416,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - args: ""
           function: 5559347081229897728
@@ -25508,12 +25535,35 @@ components:
             - values
             additionalProperties: false
           last_modified: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -25525,6 +25575,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - product_version: product_version
           debug: true
@@ -25550,12 +25602,35 @@ components:
             cache: ""
             functions: ""
             image_processor: ""
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -25567,6 +25642,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - criteria:
           - - argument: ""
@@ -25796,12 +25873,35 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -25813,6 +25913,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - criteria:
           - - argument: ""
@@ -26042,12 +26144,35 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -26059,6 +26184,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - product_version: product_version
           last_editor: last_editor
@@ -26102,12 +26229,35 @@ components:
           id: 0
           type: ""
           last_modified: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -26119,6 +26269,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - product_version: product_version
           pages:
@@ -26166,12 +26318,35 @@ components:
           active: true
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -26183,6 +26358,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - product_version: product_version
           code: code
@@ -26312,12 +26489,35 @@ components:
           id: 0
           reference_count: 6
           last_modified: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -26329,6 +26529,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - args: ""
           function: 5559347081229897728
@@ -26446,12 +26648,35 @@ components:
             - values
             additionalProperties: false
           last_modified: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -26463,6 +26688,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - product_version: product_version
           debug: true
@@ -26488,12 +26715,35 @@ components:
             functions: ""
             network_protection: ""
             waf: ""
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -26505,6 +26755,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - criteria:
           - - argument: ""
@@ -26734,12 +26986,35 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -26751,6 +27026,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - last_editor: last_editor
           name: name
@@ -26764,12 +27041,35 @@ components:
           id: 0
           type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -26781,6 +27081,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - browser_cache:
             max_age: 19008185
@@ -26852,12 +27154,35 @@ components:
               behavior: ""
               stale_cache:
                 enabled: true
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -26869,6 +27194,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - product_version: product_version
           last_editor: last_editor
@@ -26918,12 +27245,35 @@ components:
           active: true
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -26935,6 +27285,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - rule_id: ""
           path: path
@@ -26958,12 +27310,35 @@ components:
           - match: match
           last_modified: 2000-01-23T04:56:07.000+00:00
           operator: ""
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -26975,6 +27350,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - current: true
           last_editor: last_editor
@@ -27000,12 +27377,35 @@ components:
               custom_page: 1
             type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -27017,6 +27417,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - product_version: product_version
           last_editor: last_editor
@@ -27048,12 +27450,35 @@ components:
           protocols: ""
           last_modified: 2000-01-23T04:56:07.000+00:00
           mtls: ""
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
