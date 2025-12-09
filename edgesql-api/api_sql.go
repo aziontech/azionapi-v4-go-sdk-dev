@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -645,11 +646,39 @@ func (a *SQLAPIService) ExecuteQueryExecute(r ApiExecuteQueryRequest) (*Response
 type ApiListDatabasesRequest struct {
 	ctx context.Context
 	ApiService *SQLAPIService
+	active *bool
+	createdAtGte *time.Time
+	createdAtLte *time.Time
 	fields *string
+	id *int64
+	idIn *string
+	lastEditor *string
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
+	status *string
+	updatedAtGte *time.Time
+	updatedAtLte *time.Time
+}
+
+// Filter by active status.
+func (r ApiListDatabasesRequest) Active(active bool) ApiListDatabasesRequest {
+	r.active = &active
+	return r
+}
+
+// Filter by created_at (start date, inclusive).
+func (r ApiListDatabasesRequest) CreatedAtGte(createdAtGte time.Time) ApiListDatabasesRequest {
+	r.createdAtGte = &createdAtGte
+	return r
+}
+
+// Filter by created_at (end date, inclusive).
+func (r ApiListDatabasesRequest) CreatedAtLte(createdAtLte time.Time) ApiListDatabasesRequest {
+	r.createdAtLte = &createdAtLte
+	return r
 }
 
 // Comma-separated list of field names to include in the response.
@@ -658,7 +687,31 @@ func (r ApiListDatabasesRequest) Fields(fields string) ApiListDatabasesRequest {
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: id, name, status, active, last_modified)
+// Filter by id.
+func (r ApiListDatabasesRequest) Id(id int64) ApiListDatabasesRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by multiple ids (comma-separated).
+func (r ApiListDatabasesRequest) IdIn(idIn string) ApiListDatabasesRequest {
+	r.idIn = &idIn
+	return r
+}
+
+// Filter by last_editor (partial search, case-insensitive).
+func (r ApiListDatabasesRequest) LastEditor(lastEditor string) ApiListDatabasesRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by name (partial search, case-insensitive).
+func (r ApiListDatabasesRequest) Name(name string) ApiListDatabasesRequest {
+	r.name = &name
+	return r
+}
+
+// Which field to use when ordering the results.
 func (r ApiListDatabasesRequest) Ordering(ordering string) ApiListDatabasesRequest {
 	r.ordering = &ordering
 	return r
@@ -679,6 +732,24 @@ func (r ApiListDatabasesRequest) PageSize(pageSize int64) ApiListDatabasesReques
 // A search term.
 func (r ApiListDatabasesRequest) Search(search string) ApiListDatabasesRequest {
 	r.search = &search
+	return r
+}
+
+// Filter by status. Supports comma-separated values for multiple statuses.
+func (r ApiListDatabasesRequest) Status(status string) ApiListDatabasesRequest {
+	r.status = &status
+	return r
+}
+
+// Filter by updated_at (start date, inclusive).
+func (r ApiListDatabasesRequest) UpdatedAtGte(updatedAtGte time.Time) ApiListDatabasesRequest {
+	r.updatedAtGte = &updatedAtGte
+	return r
+}
+
+// Filter by updated_at (end date, inclusive).
+func (r ApiListDatabasesRequest) UpdatedAtLte(updatedAtLte time.Time) ApiListDatabasesRequest {
+	r.updatedAtLte = &updatedAtLte
 	return r
 }
 
@@ -722,8 +793,29 @@ func (a *SQLAPIService) ListDatabasesExecute(r ApiListDatabasesRequest) (*Pagina
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.active != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
+	}
+	if r.createdAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_at__gte", r.createdAtGte, "form", "")
+	}
+	if r.createdAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_at__lte", r.createdAtLte, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.idIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
@@ -736,6 +828,15 @@ func (a *SQLAPIService) ListDatabasesExecute(r ApiListDatabasesRequest) (*Pagina
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.status != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "form", "")
+	}
+	if r.updatedAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "updated_at__gte", r.updatedAtGte, "form", "")
+	}
+	if r.updatedAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "updated_at__lte", r.updatedAtLte, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

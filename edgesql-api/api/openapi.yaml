@@ -11,6 +11,32 @@ paths:
       description: List all databases owned by your account.
       operationId: list_databases
       parameters:
+      - description: Filter by active status.
+        explode: true
+        in: query
+        name: active
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "Filter by created_at (start date, inclusive)."
+        explode: true
+        in: query
+        name: created_at__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Filter by created_at (end date, inclusive)."
+        explode: true
+        in: query
+        name: created_at__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -19,9 +45,40 @@ paths:
         schema:
           type: string
         style: form
-      - description: |-
-          Which field to use when ordering the results.
-          (Valid fields: id, name, status, active, last_modified)
+      - description: Filter by id.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Filter by multiple ids (comma-separated).
+        explode: true
+        in: query
+        name: id__in
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter by last_editor (partial search, case-insensitive)."
+        explode: true
+        in: query
+        name: last_editor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter by name (partial search, case-insensitive)."
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Which field to use when ordering the results.
         explode: true
         in: query
         name: ordering
@@ -53,6 +110,33 @@ paths:
         name: search
         required: false
         schema:
+          type: string
+        style: form
+      - description: Filter by status. Supports comma-separated values for multiple
+          statuses.
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter by updated_at (start date, inclusive)."
+        explode: true
+        in: query
+        name: updated_at__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Filter by updated_at (end date, inclusive)."
+        explode: true
+        in: query
+        name: updated_at__lte
+        required: false
+        schema:
+          format: date-time
           type: string
         style: form
       responses:
