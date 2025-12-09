@@ -83,7 +83,9 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [DefaultErrorResponse](docs/DefaultErrorResponse.md)
+ - [JSONAPIErrorObject](docs/JSONAPIErrorObject.md)
+ - [JSONAPIErrorResponse](docs/JSONAPIErrorResponse.md)
+ - [JSONAPIErrorSource](docs/JSONAPIErrorSource.md)
 
 
 ## Documentation For Authorization
