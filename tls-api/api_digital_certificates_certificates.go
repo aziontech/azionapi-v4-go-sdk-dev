@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -419,16 +420,75 @@ func (a *DigitalCertificatesCertificatesAPIService) DeleteCertificateExecute(r A
 type ApiListCertificatesRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificatesAPIService
+	certificateType *string
 	fields *string
+	id *string
+	issuer *string
+	lastModified *time.Time
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	managed *bool
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
+	renewedAt *time.Time
+	renewedAtGte *time.Time
+	renewedAtLte *time.Time
 	search *string
+}
+
+// Filter by certificate type. Accepts comma-separated values for multiple types.
+func (r ApiListCertificatesRequest) CertificateType(certificateType string) ApiListCertificatesRequest {
+	r.certificateType = &certificateType
+	return r
 }
 
 // Comma-separated list of field names to include in the response.
 func (r ApiListCertificatesRequest) Fields(fields string) ApiListCertificatesRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by certificate ID. Accepts comma-separated values for multiple IDs.
+func (r ApiListCertificatesRequest) Id(id string) ApiListCertificatesRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by issuer (case-insensitive partial match).
+func (r ApiListCertificatesRequest) Issuer(issuer string) ApiListCertificatesRequest {
+	r.issuer = &issuer
+	return r
+}
+
+// Filter by exact last modified date and time.
+func (r ApiListCertificatesRequest) LastModified(lastModified time.Time) ApiListCertificatesRequest {
+	r.lastModified = &lastModified
+	return r
+}
+
+// Filter by last modified date greater than or equal to the specified value.
+func (r ApiListCertificatesRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListCertificatesRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date less than or equal to the specified value.
+func (r ApiListCertificatesRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListCertificatesRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by managed status.
+func (r ApiListCertificatesRequest) Managed(managed bool) ApiListCertificatesRequest {
+	r.managed = &managed
+	return r
+}
+
+// Filter by certificate name (case-insensitive partial match).
+func (r ApiListCertificatesRequest) Name(name string) ApiListCertificatesRequest {
+	r.name = &name
 	return r
 }
 
@@ -447,6 +507,24 @@ func (r ApiListCertificatesRequest) Page(page int64) ApiListCertificatesRequest 
 // A numeric value that indicates the number of items per page.
 func (r ApiListCertificatesRequest) PageSize(pageSize int64) ApiListCertificatesRequest {
 	r.pageSize = &pageSize
+	return r
+}
+
+// Filter by exact renewed date and time.
+func (r ApiListCertificatesRequest) RenewedAt(renewedAt time.Time) ApiListCertificatesRequest {
+	r.renewedAt = &renewedAt
+	return r
+}
+
+// Filter by renewed date greater than or equal to the specified value.
+func (r ApiListCertificatesRequest) RenewedAtGte(renewedAtGte time.Time) ApiListCertificatesRequest {
+	r.renewedAtGte = &renewedAtGte
+	return r
+}
+
+// Filter by renewed date less than or equal to the specified value.
+func (r ApiListCertificatesRequest) RenewedAtLte(renewedAtLte time.Time) ApiListCertificatesRequest {
+	r.renewedAtLte = &renewedAtLte
 	return r
 }
 
@@ -496,8 +574,32 @@ func (a *DigitalCertificatesCertificatesAPIService) ListCertificatesExecute(r Ap
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.certificateType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "certificate_type", r.certificateType, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.issuer != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "issuer", r.issuer, "form", "")
+	}
+	if r.lastModified != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified", r.lastModified, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.managed != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "managed", r.managed, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
@@ -507,6 +609,15 @@ func (a *DigitalCertificatesCertificatesAPIService) ListCertificatesExecute(r Ap
 	}
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
+	}
+	if r.renewedAt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "renewed_at", r.renewedAt, "form", "")
+	}
+	if r.renewedAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "renewed_at__gte", r.renewedAtGte, "form", "")
+	}
+	if r.renewedAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "renewed_at__lte", r.renewedAtLte, "form", "")
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")

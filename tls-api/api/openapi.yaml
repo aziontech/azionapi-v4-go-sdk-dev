@@ -11,10 +11,81 @@ paths:
       description: List all certificates owned by your account.
       operationId: list_certificates
       parameters:
+      - description: Filter by certificate type. Accepts comma-separated values for
+          multiple types.
+        explode: true
+        in: query
+        name: certificate_type
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
         name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by certificate ID. Accepts comma-separated values for
+          multiple IDs.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by issuer (case-insensitive partial match).
+        explode: true
+        in: query
+        name: issuer
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by exact last modified date and time.
+        explode: true
+        in: query
+        name: last_modified
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date greater than or equal to the specified
+          value.
+        explode: true
+        in: query
+        name: last_modified__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date less than or equal to the specified
+          value.
+        explode: true
+        in: query
+        name: last_modified__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by managed status.
+        explode: true
+        in: query
+        name: managed
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter by certificate name (case-insensitive partial match).
+        explode: true
+        in: query
+        name: name
         required: false
         schema:
           type: string
@@ -46,6 +117,34 @@ paths:
         schema:
           format: int64
           type: integer
+        style: form
+      - description: Filter by exact renewed date and time.
+        explode: true
+        in: query
+        name: renewed_at
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by renewed date greater than or equal to the specified
+          value.
+        explode: true
+        in: query
+        name: renewed_at__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by renewed date less than or equal to the specified value.
+        explode: true
+        in: query
+        name: renewed_at__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
         style: form
       - description: A search term.
         explode: true
@@ -1054,6 +1153,118 @@ paths:
         name: fields
         required: false
         schema:
+          type: string
+        style: form
+      - description: Filter by CRL ID. Accepts comma-separated values for multiple
+          IDs.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by issuer (case-insensitive partial match).
+        explode: true
+        in: query
+        name: issuer
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by exact last modified date and time.
+        explode: true
+        in: query
+        name: last_modified
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date greater than or equal to the specified
+          value.
+        explode: true
+        in: query
+        name: last_modified__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date less than or equal to the specified
+          value.
+        explode: true
+        in: query
+        name: last_modified__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by exact last update date and time.
+        explode: true
+        in: query
+        name: last_update
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last update date greater than or equal to the specified
+          value.
+        explode: true
+        in: query
+        name: last_update__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last update date less than or equal to the specified
+          value.
+        explode: true
+        in: query
+        name: last_update__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by CRL name (case-insensitive partial match).
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by exact next update date and time.
+        explode: true
+        in: query
+        name: next_update
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by next update date greater than or equal to the specified
+          value.
+        explode: true
+        in: query
+        name: next_update__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by next update date less than or equal to the specified
+          value.
+        explode: true
+        in: query
+        name: next_update__lte
+        required: false
+        schema:
+          format: date-time
           type: string
         style: form
       - description: |-
@@ -2742,6 +2953,8 @@ components:
     PaginatedCertificateList:
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - product_version: product_version
           csr: csr
@@ -2787,12 +3000,35 @@ components:
           last_modified: 2000-01-23T04:56:07.000+00:00
           status: status
           renewed_at: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -2802,6 +3038,8 @@ components:
     PaginatedCertificateRevocationListList:
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - product_version: product_version
           last_editor: last_editor
@@ -2823,12 +3061,35 @@ components:
           last_modified: 2000-01-23T04:56:07.000+00:00
           issuer: issuer
           next_update: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
