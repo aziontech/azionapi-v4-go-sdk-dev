@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## ListBuckets
 
-> PaginatedBucketList ListBuckets(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedBucketList ListBuckets(ctx).EdgeAccess(edgeAccess).EdgeAccessIn(edgeAccessIn).Fields(fields).LastEditorIcontains(lastEditorIcontains).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).NameIcontains(nameIcontains).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List buckets
 
@@ -165,11 +165,19 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	edgeAccess := "edgeAccess_example" // string | Filter by edge access (exact match). (optional)
+	edgeAccessIn := "edgeAccessIn_example" // string | Filter by multiple edge access values (comma-separated). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	lastEditorIcontains := "lastEditorIcontains_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
+	lastModified := time.Now() // time.Time | Filter by last modified date (exact match). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal to). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal to). (optional)
+	nameIcontains := "nameIcontains_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -177,7 +185,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageBucketsAPI.ListBuckets(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.StorageBucketsAPI.ListBuckets(context.Background()).EdgeAccess(edgeAccess).EdgeAccessIn(edgeAccessIn).Fields(fields).LastEditorIcontains(lastEditorIcontains).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).NameIcontains(nameIcontains).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageBucketsAPI.ListBuckets``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,7 +206,14 @@ Other parameters are passed through a pointer to a apiListBucketsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **edgeAccess** | **string** | Filter by edge access (exact match). | 
+ **edgeAccessIn** | **string** | Filter by multiple edge access values (comma-separated). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **lastEditorIcontains** | **string** | Filter by last editor (case-insensitive, partial match). | 
+ **lastModified** | **time.Time** | Filter by last modified date (exact match). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal to). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal to). | 
+ **nameIcontains** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

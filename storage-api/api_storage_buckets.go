@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -419,16 +420,65 @@ func (a *StorageBucketsAPIService) DeleteBucketExecute(r ApiDeleteBucketRequest)
 type ApiListBucketsRequest struct {
 	ctx context.Context
 	ApiService *StorageBucketsAPIService
+	edgeAccess *string
+	edgeAccessIn *string
 	fields *string
+	lastEditorIcontains *string
+	lastModified *time.Time
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	nameIcontains *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
 }
 
+// Filter by edge access (exact match).
+func (r ApiListBucketsRequest) EdgeAccess(edgeAccess string) ApiListBucketsRequest {
+	r.edgeAccess = &edgeAccess
+	return r
+}
+
+// Filter by multiple edge access values (comma-separated).
+func (r ApiListBucketsRequest) EdgeAccessIn(edgeAccessIn string) ApiListBucketsRequest {
+	r.edgeAccessIn = &edgeAccessIn
+	return r
+}
+
 // Comma-separated list of field names to include in the response.
 func (r ApiListBucketsRequest) Fields(fields string) ApiListBucketsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by last editor (case-insensitive, partial match).
+func (r ApiListBucketsRequest) LastEditorIcontains(lastEditorIcontains string) ApiListBucketsRequest {
+	r.lastEditorIcontains = &lastEditorIcontains
+	return r
+}
+
+// Filter by last modified date (exact match).
+func (r ApiListBucketsRequest) LastModified(lastModified time.Time) ApiListBucketsRequest {
+	r.lastModified = &lastModified
+	return r
+}
+
+// Filter by last modified date (greater than or equal to).
+func (r ApiListBucketsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListBucketsRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date (less than or equal to).
+func (r ApiListBucketsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListBucketsRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by name (case-insensitive, partial match).
+func (r ApiListBucketsRequest) NameIcontains(nameIcontains string) ApiListBucketsRequest {
+	r.nameIcontains = &nameIcontains
 	return r
 }
 
@@ -496,8 +546,29 @@ func (a *StorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsRequest) (
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.edgeAccess != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "edge_access", r.edgeAccess, "form", "")
+	}
+	if r.edgeAccessIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "edge_access__in", r.edgeAccessIn, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.lastEditorIcontains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor__icontains", r.lastEditorIcontains, "form", "")
+	}
+	if r.lastModified != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified", r.lastModified, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.nameIcontains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")

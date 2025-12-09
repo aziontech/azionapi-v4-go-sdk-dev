@@ -108,7 +108,7 @@ Class | Method | HTTP request | Description
  - [ObjectResponseAsyncData](docs/ObjectResponseAsyncData.md)
  - [ObjectResponseData](docs/ObjectResponseData.md)
  - [PaginatedBucketList](docs/PaginatedBucketList.md)
- - [PaginatedResponseListCredentialList](docs/PaginatedResponseListCredentialList.md)
+ - [PaginatedCredentialList](docs/PaginatedCredentialList.md)
  - [PatchedBucketRequest](docs/PatchedBucketRequest.md)
  - [ResponseAsyncBucketCreate](docs/ResponseAsyncBucketCreate.md)
  - [ResponseAsyncCredential](docs/ResponseAsyncCredential.md)
@@ -118,7 +118,6 @@ Class | Method | HTTP request | Description
  - [ResponseBucketCreate](docs/ResponseBucketCreate.md)
  - [ResponseBucketObject](docs/ResponseBucketObject.md)
  - [ResponseCredential](docs/ResponseCredential.md)
- - [ResponseListCredential](docs/ResponseListCredential.md)
  - [SuccessObjectOperation](docs/SuccessObjectOperation.md)
  - [SuccessObjectOperationAsync](docs/SuccessObjectOperationAsync.md)
 

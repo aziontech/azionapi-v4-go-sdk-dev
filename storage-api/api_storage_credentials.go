@@ -419,16 +419,44 @@ func (a *StorageCredentialsAPIService) DeleteCredentialExecute(r ApiDeleteCreden
 type ApiListCredentialsRequest struct {
 	ctx context.Context
 	ApiService *StorageCredentialsAPIService
+	accessKey *string
+	bucket *string
+	bucketIn *string
 	fields *string
+	nameIcontains *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
 }
 
+// Filter by access key (exact match).
+func (r ApiListCredentialsRequest) AccessKey(accessKey string) ApiListCredentialsRequest {
+	r.accessKey = &accessKey
+	return r
+}
+
+// Filter by bucket (exact match).
+func (r ApiListCredentialsRequest) Bucket(bucket string) ApiListCredentialsRequest {
+	r.bucket = &bucket
+	return r
+}
+
+// Filter by multiple buckets (comma-separated).
+func (r ApiListCredentialsRequest) BucketIn(bucketIn string) ApiListCredentialsRequest {
+	r.bucketIn = &bucketIn
+	return r
+}
+
 // Comma-separated list of field names to include in the response.
 func (r ApiListCredentialsRequest) Fields(fields string) ApiListCredentialsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by name (case-insensitive, partial match).
+func (r ApiListCredentialsRequest) NameIcontains(nameIcontains string) ApiListCredentialsRequest {
+	r.nameIcontains = &nameIcontains
 	return r
 }
 
@@ -456,7 +484,7 @@ func (r ApiListCredentialsRequest) Search(search string) ApiListCredentialsReque
 	return r
 }
 
-func (r ApiListCredentialsRequest) Execute() (*PaginatedResponseListCredentialList, *http.Response, error) {
+func (r ApiListCredentialsRequest) Execute() (*PaginatedCredentialList, *http.Response, error) {
 	return r.ApiService.ListCredentialsExecute(r)
 }
 
@@ -476,13 +504,13 @@ func (a *StorageCredentialsAPIService) ListCredentials(ctx context.Context) ApiL
 }
 
 // Execute executes the request
-//  @return PaginatedResponseListCredentialList
-func (a *StorageCredentialsAPIService) ListCredentialsExecute(r ApiListCredentialsRequest) (*PaginatedResponseListCredentialList, *http.Response, error) {
+//  @return PaginatedCredentialList
+func (a *StorageCredentialsAPIService) ListCredentialsExecute(r ApiListCredentialsRequest) (*PaginatedCredentialList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedResponseListCredentialList
+		localVarReturnValue  *PaginatedCredentialList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StorageCredentialsAPIService.ListCredentials")
@@ -496,8 +524,20 @@ func (a *StorageCredentialsAPIService) ListCredentialsExecute(r ApiListCredentia
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.accessKey != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "access_key", r.accessKey, "form", "")
+	}
+	if r.bucket != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket", r.bucket, "form", "")
+	}
+	if r.bucketIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket__in", r.bucketIn, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.nameIcontains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
