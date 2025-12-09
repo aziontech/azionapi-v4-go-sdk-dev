@@ -2788,6 +2788,8 @@ components:
     PaginatedPolicyList:
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - last_editor: last_editor
           name: name
@@ -2841,12 +2843,33 @@ components:
             - actions
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -2856,6 +2879,8 @@ components:
     PaginatedTOTPDeviceListList:
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - user_id: 6
           name: name
@@ -2867,12 +2892,33 @@ components:
           id: 0
           confirmed: true
           email: email
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
