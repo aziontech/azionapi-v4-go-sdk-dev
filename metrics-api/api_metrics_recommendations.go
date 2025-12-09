@@ -366,7 +366,7 @@ func (r ApiListRecommendationsRequest) Id(id int64) ApiListRecommendationsReques
 	return r
 }
 
-// Which field to use when ordering the results.
+// Which field to use when ordering the results. (Valid fields: id, dashboard)
 func (r ApiListRecommendationsRequest) Ordering(ordering string) ApiListRecommendationsRequest {
 	r.ordering = &ordering
 	return r

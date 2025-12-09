@@ -20,7 +20,38 @@ paths:
           minLength: 1
           type: string
         style: form
-      - description: Which field to use when ordering the results.
+      - description: Filter by id.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        style: form
+      - description: Filter by multiple ids (comma-separated).
+        explode: true
+        in: query
+        name: id__in
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: "Filter by name (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: id, name)
         explode: true
         in: query
         name: ordering
@@ -829,7 +860,38 @@ paths:
           minimum: 1
           type: integer
         style: simple
-      - description: Which field to use when ordering the results.
+      - description: Filter by id.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        style: form
+      - description: Filter by multiple ids (comma-separated).
+        explode: true
+        in: query
+        name: id__in
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: "Filter by name (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: id, name)
         explode: true
         in: query
         name: ordering
@@ -1705,7 +1767,7 @@ paths:
           minimum: 1
           type: integer
         style: simple
-      - description: Filter by row ID
+      - description: Filter by id.
         explode: true
         in: query
         name: id
@@ -1716,7 +1778,18 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: Which field to use when ordering the results.
+      - description: Filter by multiple ids (comma-separated).
+        explode: true
+        in: query
+        name: id__in
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: order)
         explode: true
         in: query
         name: ordering
@@ -1756,7 +1829,7 @@ paths:
           minLength: 1
           type: string
         style: form
-      - description: Filter by row title
+      - description: "Filter by title (case-insensitive, partial match)."
         explode: true
         in: query
         name: title
@@ -2450,6 +2523,15 @@ paths:
       description: List all reports for your user.
       operationId: list_reports
       parameters:
+      - description: Filter by aggregation type (comma-separated for multiple values).
+        explode: true
+        in: query
+        name: aggregation_type
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
       - description: The unique identifier of the dashboard
         explode: false
         in: path
@@ -2481,7 +2563,38 @@ paths:
           minimum: 1
           type: integer
         style: simple
-      - description: Which field to use when ordering the results.
+      - description: Filter by id.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        style: form
+      - description: Filter by multiple ids (comma-separated).
+        explode: true
+        in: query
+        name: id__in
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: "Filter by name (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: rowreport__order)
         explode: true
         in: query
         name: ordering
@@ -2527,6 +2640,15 @@ paths:
         explode: true
         in: query
         name: search
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: Filter by type (comma-separated for multiple values).
+        explode: true
+        in: query
+        name: type
         required: false
         schema:
           minLength: 1
@@ -3601,6 +3723,15 @@ paths:
       description: List all library reports for your user.
       operationId: list_library_reports
       parameters:
+      - description: Filter by aggregation type (comma-separated for multiple values).
+        explode: true
+        in: query
+        name: aggregation_type
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -3610,7 +3741,38 @@ paths:
           minLength: 1
           type: string
         style: form
-      - description: Which field to use when ordering the results.
+      - description: Filter by id.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        style: form
+      - description: Filter by multiple ids (comma-separated).
+        explode: true
+        in: query
+        name: id__in
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: "Filter by name (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: id, name, type, aggregation_type)
         explode: true
         in: query
         name: ordering
@@ -3645,6 +3807,15 @@ paths:
         explode: true
         in: query
         name: search
+        required: false
+        schema:
+          minLength: 1
+          type: string
+        style: form
+      - description: Filter by type (comma-separated for multiple values).
+        explode: true
+        in: query
+        name: type
         required: false
         schema:
           minLength: 1
@@ -4278,7 +4449,9 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: Which field to use when ordering the results.
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: id, dashboard)
         explode: true
         in: query
         name: ordering

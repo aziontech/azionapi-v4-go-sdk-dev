@@ -402,11 +402,22 @@ type ApiListReportsRequest struct {
 	dashboardId int64
 	folderId int64
 	rowId int64
+	aggregationType *string
 	fields *string
+	id *int64
+	idIn *string
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
+	type_ *string
+}
+
+// Filter by aggregation type (comma-separated for multiple values).
+func (r ApiListReportsRequest) AggregationType(aggregationType string) ApiListReportsRequest {
+	r.aggregationType = &aggregationType
+	return r
 }
 
 // Comma-separated list of field names to include in the response.
@@ -415,7 +426,25 @@ func (r ApiListReportsRequest) Fields(fields string) ApiListReportsRequest {
 	return r
 }
 
-// Which field to use when ordering the results.
+// Filter by id.
+func (r ApiListReportsRequest) Id(id int64) ApiListReportsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by multiple ids (comma-separated).
+func (r ApiListReportsRequest) IdIn(idIn string) ApiListReportsRequest {
+	r.idIn = &idIn
+	return r
+}
+
+// Filter by name (case-insensitive, partial match).
+func (r ApiListReportsRequest) Name(name string) ApiListReportsRequest {
+	r.name = &name
+	return r
+}
+
+// Which field to use when ordering the results. (Valid fields: rowreport__order)
 func (r ApiListReportsRequest) Ordering(ordering string) ApiListReportsRequest {
 	r.ordering = &ordering
 	return r
@@ -436,6 +465,12 @@ func (r ApiListReportsRequest) PageSize(pageSize int64) ApiListReportsRequest {
 // A search term.
 func (r ApiListReportsRequest) Search(search string) ApiListReportsRequest {
 	r.search = &search
+	return r
+}
+
+// Filter by type (comma-separated for multiple values).
+func (r ApiListReportsRequest) Type_(type_ string) ApiListReportsRequest {
+	r.type_ = &type_
 	return r
 }
 
@@ -506,8 +541,20 @@ func (a *MetricsReportsAPIService) ListReportsExecute(r ApiListReportsRequest) (
 		return localVarReturnValue, nil, reportError("rowId must be less than 2147483647")
 	}
 
+	if r.aggregationType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "aggregation_type", r.aggregationType, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.idIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
@@ -520,6 +567,9 @@ func (a *MetricsReportsAPIService) ListReportsExecute(r ApiListReportsRequest) (
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.type_ != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
