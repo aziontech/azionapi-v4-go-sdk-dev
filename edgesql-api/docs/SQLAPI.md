@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## ListDatabases
 
-> PaginatedDatabaseDetailList ListDatabases(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedDatabaseDetailList ListDatabases(ctx).Active(active).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Fields(fields).Id(id).IdIn(idIn).LastEditor(lastEditor).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).UpdatedAtGte(updatedAtGte).UpdatedAtLte(updatedAtLte).Execute()
 
 List databases
 
@@ -237,19 +237,30 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	active := true // bool | Filter by active status. (optional)
+	createdAtGte := time.Now() // time.Time | Filter by created_at (start date, inclusive). (optional)
+	createdAtLte := time.Now() // time.Time | Filter by created_at (end date, inclusive). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, status, active, last_modified) (optional)
+	id := int64(789) // int64 | Filter by id. (optional)
+	idIn := "idIn_example" // string | Filter by multiple ids (comma-separated). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last_editor (partial search, case-insensitive). (optional)
+	name := "name_example" // string | Filter by name (partial search, case-insensitive). (optional)
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
+	status := "status_example" // string | Filter by status. Supports comma-separated values for multiple statuses. (optional)
+	updatedAtGte := time.Now() // time.Time | Filter by updated_at (start date, inclusive). (optional)
+	updatedAtLte := time.Now() // time.Time | Filter by updated_at (end date, inclusive). (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SQLAPI.ListDatabases(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.SQLAPI.ListDatabases(context.Background()).Active(active).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Fields(fields).Id(id).IdIn(idIn).LastEditor(lastEditor).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).UpdatedAtGte(updatedAtGte).UpdatedAtLte(updatedAtLte).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.ListDatabases``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -270,11 +281,21 @@ Other parameters are passed through a pointer to a apiListDatabasesRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **active** | **bool** | Filter by active status. | 
+ **createdAtGte** | **time.Time** | Filter by created_at (start date, inclusive). | 
+ **createdAtLte** | **time.Time** | Filter by created_at (end date, inclusive). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, status, active, last_modified) | 
+ **id** | **int64** | Filter by id. | 
+ **idIn** | **string** | Filter by multiple ids (comma-separated). | 
+ **lastEditor** | **string** | Filter by last_editor (partial search, case-insensitive). | 
+ **name** | **string** | Filter by name (partial search, case-insensitive). | 
+ **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
+ **status** | **string** | Filter by status. Supports comma-separated values for multiple statuses. | 
+ **updatedAtGte** | **time.Time** | Filter by updated_at (start date, inclusive). | 
+ **updatedAtLte** | **time.Time** | Filter by updated_at (end date, inclusive). | 
 
 ### Return type
 
