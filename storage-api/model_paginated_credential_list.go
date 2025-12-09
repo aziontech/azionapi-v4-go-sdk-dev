@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the PaginatedBucketList type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PaginatedBucketList{}
+// checks if the PaginatedCredentialList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PaginatedCredentialList{}
 
-// PaginatedBucketList struct for PaginatedBucketList
-type PaginatedBucketList struct {
+// PaginatedCredentialList struct for PaginatedCredentialList
+type PaginatedCredentialList struct {
 	// Total number of items
 	Count *int64 `json:"count,omitempty"`
 	// Total number of pages
@@ -27,28 +27,28 @@ type PaginatedBucketList struct {
 	Page *int64 `json:"page,omitempty"`
 	// Number of items per page
 	PageSize *int64 `json:"page_size,omitempty"`
-	Results []Bucket `json:"results,omitempty"`
+	Results []Credential `json:"results,omitempty"`
 }
 
-// NewPaginatedBucketList instantiates a new PaginatedBucketList object
+// NewPaginatedCredentialList instantiates a new PaginatedCredentialList object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaginatedBucketList() *PaginatedBucketList {
-	this := PaginatedBucketList{}
+func NewPaginatedCredentialList() *PaginatedCredentialList {
+	this := PaginatedCredentialList{}
 	return &this
 }
 
-// NewPaginatedBucketListWithDefaults instantiates a new PaginatedBucketList object
+// NewPaginatedCredentialListWithDefaults instantiates a new PaginatedCredentialList object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPaginatedBucketListWithDefaults() *PaginatedBucketList {
-	this := PaginatedBucketList{}
+func NewPaginatedCredentialListWithDefaults() *PaginatedCredentialList {
+	this := PaginatedCredentialList{}
 	return &this
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
-func (o *PaginatedBucketList) GetCount() int64 {
+func (o *PaginatedCredentialList) GetCount() int64 {
 	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
@@ -58,7 +58,7 @@ func (o *PaginatedBucketList) GetCount() int64 {
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedBucketList) GetCountOk() (*int64, bool) {
+func (o *PaginatedCredentialList) GetCountOk() (*int64, bool) {
 	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *PaginatedBucketList) GetCountOk() (*int64, bool) {
 }
 
 // HasCount returns a boolean if a field has been set.
-func (o *PaginatedBucketList) HasCount() bool {
+func (o *PaginatedCredentialList) HasCount() bool {
 	if o != nil && !IsNil(o.Count) {
 		return true
 	}
@@ -75,12 +75,12 @@ func (o *PaginatedBucketList) HasCount() bool {
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
-func (o *PaginatedBucketList) SetCount(v int64) {
+func (o *PaginatedCredentialList) SetCount(v int64) {
 	o.Count = &v
 }
 
 // GetTotalPages returns the TotalPages field value if set, zero value otherwise.
-func (o *PaginatedBucketList) GetTotalPages() int64 {
+func (o *PaginatedCredentialList) GetTotalPages() int64 {
 	if o == nil || IsNil(o.TotalPages) {
 		var ret int64
 		return ret
@@ -90,7 +90,7 @@ func (o *PaginatedBucketList) GetTotalPages() int64 {
 
 // GetTotalPagesOk returns a tuple with the TotalPages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedBucketList) GetTotalPagesOk() (*int64, bool) {
+func (o *PaginatedCredentialList) GetTotalPagesOk() (*int64, bool) {
 	if o == nil || IsNil(o.TotalPages) {
 		return nil, false
 	}
@@ -98,7 +98,7 @@ func (o *PaginatedBucketList) GetTotalPagesOk() (*int64, bool) {
 }
 
 // HasTotalPages returns a boolean if a field has been set.
-func (o *PaginatedBucketList) HasTotalPages() bool {
+func (o *PaginatedCredentialList) HasTotalPages() bool {
 	if o != nil && !IsNil(o.TotalPages) {
 		return true
 	}
@@ -107,12 +107,12 @@ func (o *PaginatedBucketList) HasTotalPages() bool {
 }
 
 // SetTotalPages gets a reference to the given int64 and assigns it to the TotalPages field.
-func (o *PaginatedBucketList) SetTotalPages(v int64) {
+func (o *PaginatedCredentialList) SetTotalPages(v int64) {
 	o.TotalPages = &v
 }
 
 // GetPage returns the Page field value if set, zero value otherwise.
-func (o *PaginatedBucketList) GetPage() int64 {
+func (o *PaginatedCredentialList) GetPage() int64 {
 	if o == nil || IsNil(o.Page) {
 		var ret int64
 		return ret
@@ -122,7 +122,7 @@ func (o *PaginatedBucketList) GetPage() int64 {
 
 // GetPageOk returns a tuple with the Page field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedBucketList) GetPageOk() (*int64, bool) {
+func (o *PaginatedCredentialList) GetPageOk() (*int64, bool) {
 	if o == nil || IsNil(o.Page) {
 		return nil, false
 	}
@@ -130,7 +130,7 @@ func (o *PaginatedBucketList) GetPageOk() (*int64, bool) {
 }
 
 // HasPage returns a boolean if a field has been set.
-func (o *PaginatedBucketList) HasPage() bool {
+func (o *PaginatedCredentialList) HasPage() bool {
 	if o != nil && !IsNil(o.Page) {
 		return true
 	}
@@ -139,12 +139,12 @@ func (o *PaginatedBucketList) HasPage() bool {
 }
 
 // SetPage gets a reference to the given int64 and assigns it to the Page field.
-func (o *PaginatedBucketList) SetPage(v int64) {
+func (o *PaginatedCredentialList) SetPage(v int64) {
 	o.Page = &v
 }
 
 // GetPageSize returns the PageSize field value if set, zero value otherwise.
-func (o *PaginatedBucketList) GetPageSize() int64 {
+func (o *PaginatedCredentialList) GetPageSize() int64 {
 	if o == nil || IsNil(o.PageSize) {
 		var ret int64
 		return ret
@@ -154,7 +154,7 @@ func (o *PaginatedBucketList) GetPageSize() int64 {
 
 // GetPageSizeOk returns a tuple with the PageSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedBucketList) GetPageSizeOk() (*int64, bool) {
+func (o *PaginatedCredentialList) GetPageSizeOk() (*int64, bool) {
 	if o == nil || IsNil(o.PageSize) {
 		return nil, false
 	}
@@ -162,7 +162,7 @@ func (o *PaginatedBucketList) GetPageSizeOk() (*int64, bool) {
 }
 
 // HasPageSize returns a boolean if a field has been set.
-func (o *PaginatedBucketList) HasPageSize() bool {
+func (o *PaginatedCredentialList) HasPageSize() bool {
 	if o != nil && !IsNil(o.PageSize) {
 		return true
 	}
@@ -171,14 +171,14 @@ func (o *PaginatedBucketList) HasPageSize() bool {
 }
 
 // SetPageSize gets a reference to the given int64 and assigns it to the PageSize field.
-func (o *PaginatedBucketList) SetPageSize(v int64) {
+func (o *PaginatedCredentialList) SetPageSize(v int64) {
 	o.PageSize = &v
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *PaginatedBucketList) GetResults() []Bucket {
+func (o *PaginatedCredentialList) GetResults() []Credential {
 	if o == nil || IsNil(o.Results) {
-		var ret []Bucket
+		var ret []Credential
 		return ret
 	}
 	return o.Results
@@ -186,7 +186,7 @@ func (o *PaginatedBucketList) GetResults() []Bucket {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedBucketList) GetResultsOk() ([]Bucket, bool) {
+func (o *PaginatedCredentialList) GetResultsOk() ([]Credential, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -194,7 +194,7 @@ func (o *PaginatedBucketList) GetResultsOk() ([]Bucket, bool) {
 }
 
 // HasResults returns a boolean if a field has been set.
-func (o *PaginatedBucketList) HasResults() bool {
+func (o *PaginatedCredentialList) HasResults() bool {
 	if o != nil && !IsNil(o.Results) {
 		return true
 	}
@@ -202,12 +202,12 @@ func (o *PaginatedBucketList) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []Bucket and assigns it to the Results field.
-func (o *PaginatedBucketList) SetResults(v []Bucket) {
+// SetResults gets a reference to the given []Credential and assigns it to the Results field.
+func (o *PaginatedCredentialList) SetResults(v []Credential) {
 	o.Results = v
 }
 
-func (o PaginatedBucketList) MarshalJSON() ([]byte, error) {
+func (o PaginatedCredentialList) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -215,7 +215,7 @@ func (o PaginatedBucketList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PaginatedBucketList) ToMap() (map[string]interface{}, error) {
+func (o PaginatedCredentialList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count
@@ -235,38 +235,38 @@ func (o PaginatedBucketList) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullablePaginatedBucketList struct {
-	value *PaginatedBucketList
+type NullablePaginatedCredentialList struct {
+	value *PaginatedCredentialList
 	isSet bool
 }
 
-func (v NullablePaginatedBucketList) Get() *PaginatedBucketList {
+func (v NullablePaginatedCredentialList) Get() *PaginatedCredentialList {
 	return v.value
 }
 
-func (v *NullablePaginatedBucketList) Set(val *PaginatedBucketList) {
+func (v *NullablePaginatedCredentialList) Set(val *PaginatedCredentialList) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePaginatedBucketList) IsSet() bool {
+func (v NullablePaginatedCredentialList) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePaginatedBucketList) Unset() {
+func (v *NullablePaginatedCredentialList) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePaginatedBucketList(val *PaginatedBucketList) *NullablePaginatedBucketList {
-	return &NullablePaginatedBucketList{value: val, isSet: true}
+func NewNullablePaginatedCredentialList(val *PaginatedCredentialList) *NullablePaginatedCredentialList {
+	return &NullablePaginatedCredentialList{value: val, isSet: true}
 }
 
-func (v NullablePaginatedBucketList) MarshalJSON() ([]byte, error) {
+func (v NullablePaginatedCredentialList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePaginatedBucketList) UnmarshalJSON(src []byte) error {
+func (v *NullablePaginatedCredentialList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

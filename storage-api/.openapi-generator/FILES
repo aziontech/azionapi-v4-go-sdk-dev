@@ -19,7 +19,7 @@ docs/JSONAPIErrorSource.md
 docs/ObjectResponseAsyncData.md
 docs/ObjectResponseData.md
 docs/PaginatedBucketList.md
-docs/PaginatedResponseListCredentialList.md
+docs/PaginatedCredentialList.md
 docs/PatchedBucketRequest.md
 docs/ResponseAsyncBucketCreate.md
 docs/ResponseAsyncCredential.md
@@ -29,7 +29,6 @@ docs/ResponseAsyncDeleteCredential.md
 docs/ResponseBucketCreate.md
 docs/ResponseBucketObject.md
 docs/ResponseCredential.md
-docs/ResponseListCredential.md
 docs/StorageBucketsAPI.md
 docs/StorageCredentialsAPI.md
 docs/StorageObjectsAPI.md
@@ -50,7 +49,7 @@ model_jsonapi_error_source.go
 model_object_response_async_data.go
 model_object_response_data.go
 model_paginated_bucket_list.go
-model_paginated_response_list_credential_list.go
+model_paginated_credential_list.go
 model_patched_bucket_request.go
 model_response_async_bucket_create.go
 model_response_async_credential.go
@@ -60,7 +59,6 @@ model_response_async_delete_credential.go
 model_response_bucket_create.go
 model_response_bucket_object.go
 model_response_credential.go
-model_response_list_credential.go
 model_success_object_operation.go
 model_success_object_operation_async.go
 response.go

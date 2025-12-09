@@ -14,10 +14,69 @@ paths:
       description: List all buckets.
       operationId: list_buckets
       parameters:
+      - description: Filter by edge access (exact match).
+        explode: true
+        in: query
+        name: edge_access
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by multiple edge access values (comma-separated).
+        explode: true
+        in: query
+        name: edge_access__in
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
         name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter by last editor (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: last_editor__icontains
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by last modified date (exact match).
+        explode: true
+        in: query
+        name: last_modified
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date (greater than or equal to).
+        explode: true
+        in: query
+        name: last_modified__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date (less than or equal to).
+        explode: true
+        in: query
+        name: last_modified__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Filter by name (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: name__icontains
         required: false
         schema:
           type: string
@@ -1578,10 +1637,42 @@ paths:
       description: List all credentials.
       operationId: list_credentials
       parameters:
+      - description: Filter by access key (exact match).
+        explode: true
+        in: query
+        name: access_key
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by bucket (exact match).
+        explode: true
+        in: query
+        name: bucket
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by multiple buckets (comma-separated).
+        explode: true
+        in: query
+        name: bucket__in
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
         name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter by name (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: name__icontains
         required: false
         schema:
           type: string
@@ -1625,8 +1716,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponseListCredentialList"
-          description: Ok
+                $ref: "#/components/schemas/PaginatedCredentialList"
+          description: ""
         "400":
           content:
             application/json:
@@ -2499,6 +2590,8 @@ components:
     PaginatedBucketList:
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - product_version: product_version
           edge_access: edge_access
@@ -2510,21 +2603,46 @@ components:
           last_editor: last_editor
           name: name
           last_modified: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
             $ref: "#/components/schemas/Bucket"
           type: array
       type: object
-    PaginatedResponseListCredentialList:
+    PaginatedCredentialList:
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - bucket: bucket
           secret_key: secret_key
@@ -2546,16 +2664,39 @@ components:
           name: name
           expiration_date: 2000-01-23T04:56:07.000+00:00
           last_modified: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
           type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
+          type: integer
         results:
           items:
-            $ref: "#/components/schemas/ResponseListCredential"
+            $ref: "#/components/schemas/Credential"
           type: array
       type: object
     PatchedBucketRequest:
@@ -2711,59 +2852,6 @@ components:
           $ref: "#/components/schemas/Credential"
       required:
       - data
-      type: object
-    ResponseListCredential:
-      example:
-        bucket: bucket
-        secret_key: secret_key
-        capabilities:
-        - capabilities
-        - capabilities
-        access_key: access_key
-        last_editor: last_editor
-        name: name
-        expiration_date: 2000-01-23T04:56:07.000+00:00
-        last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        access_key:
-          type: string
-        secret_key:
-          type: string
-        capabilities:
-          items:
-            type: string
-            x-extensible-enum:
-            - listFiles
-            - readFiles
-            - writeFiles
-            - deleteFiles
-            - listAllBucketNames
-            - listBuckets
-          type: array
-        bucket:
-          maxLength: 63
-          minLength: 6
-          type: string
-        expiration_date:
-          format: date-time
-          type: string
-        last_editor:
-          nullable: true
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-      required:
-      - access_key
-      - capabilities
-      - last_editor
-      - last_modified
-      - name
-      - secret_key
       type: object
     SuccessObjectOperation:
       example:
