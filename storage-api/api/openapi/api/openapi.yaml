@@ -2180,7 +2180,7 @@ components:
         edge_access: edge_access
         last_editor: last_editor
         name: name
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         name:
           maxLength: 63
@@ -2218,7 +2218,7 @@ components:
         edge_access: edge_access
         last_editor: last_editor
         name: name
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         name:
           maxLength: 63
@@ -2277,7 +2277,7 @@ components:
       example:
         size: 0
         is_folder: true
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         key: key
       properties:
         key:
@@ -2308,8 +2308,8 @@ components:
         access_key: access_key
         last_editor: last_editor
         name: name
-        expiration_date: 2000-01-23T04:56:07.000+00:00
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        expiration_date: 2000-01-23 04:56:07+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         name:
           maxLength: 100
@@ -2358,7 +2358,7 @@ components:
         - capabilities
         - capabilities
         name: name
-        expiration_date: 2000-01-23T04:56:07.000+00:00
+        expiration_date: 2000-01-23 04:56:07+00:00
       properties:
         name:
           maxLength: 100
@@ -2504,12 +2504,12 @@ components:
           edge_access: edge_access
           last_editor: last_editor
           name: name
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         - product_version: product_version
           edge_access: edge_access
           last_editor: last_editor
           name: name
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
       properties:
         count:
           example: 123
@@ -2534,8 +2534,8 @@ components:
           access_key: access_key
           last_editor: last_editor
           name: name
-          expiration_date: 2000-01-23T04:56:07.000+00:00
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          expiration_date: 2000-01-23 04:56:07+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         - bucket: bucket
           secret_key: secret_key
           capabilities:
@@ -2544,8 +2544,8 @@ components:
           access_key: access_key
           last_editor: last_editor
           name: name
-          expiration_date: 2000-01-23T04:56:07.000+00:00
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          expiration_date: 2000-01-23 04:56:07+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
       properties:
         count:
           example: 123
@@ -2580,7 +2580,7 @@ components:
           edge_access: edge_access
           last_editor: last_editor
           name: name
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -2603,8 +2603,8 @@ components:
           access_key: access_key
           last_editor: last_editor
           name: name
-          expiration_date: 2000-01-23T04:56:07.000+00:00
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          expiration_date: 2000-01-23 04:56:07+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -2650,7 +2650,7 @@ components:
           edge_access: edge_access
           last_editor: last_editor
           name: name
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -2668,11 +2668,11 @@ components:
         results:
         - size: 0
           is_folder: true
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           key: key
         - size: 0
           is_folder: true
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           key: key
       properties:
         continuation_token:
@@ -2699,8 +2699,8 @@ components:
           access_key: access_key
           last_editor: last_editor
           name: name
-          expiration_date: 2000-01-23T04:56:07.000+00:00
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          expiration_date: 2000-01-23 04:56:07+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -2722,8 +2722,8 @@ components:
         access_key: access_key
         last_editor: last_editor
         name: name
-        expiration_date: 2000-01-23T04:56:07.000+00:00
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        expiration_date: 2000-01-23 04:56:07+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         name:
           maxLength: 100

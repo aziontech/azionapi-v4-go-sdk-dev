@@ -2104,9 +2104,9 @@ components:
         challenge: challenge
         id: 0
         validity: validity
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         status: status
-        renewed_at: 2000-01-23T04:56:07.000+00:00
+        renewed_at: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -2245,9 +2245,9 @@ components:
         id: 0
         validity: validity
         common_name: common_name
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         status: status
-        renewed_at: 2000-01-23T04:56:07.000+00:00
+        renewed_at: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -2391,14 +2391,14 @@ components:
       example:
         product_version: product_version
         last_editor: last_editor
-        last_update: 2000-01-23T04:56:07.000+00:00
+        last_update: 2000-01-23 04:56:07+00:00
         name: name
         active: true
         id: 0
         crl: crl
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         issuer: issuer
-        next_update: 2000-01-23T04:56:07.000+00:00
+        next_update: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -2465,7 +2465,7 @@ components:
         id: 0
         state: state
         common_name: common_name
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         email: email
         product_version: product_version
         last_editor: last_editor
@@ -2483,7 +2483,7 @@ components:
         challenge: challenge
         validity: validity
         status: status
-        renewed_at: 2000-01-23T04:56:07.000+00:00
+        renewed_at: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -2762,9 +2762,9 @@ components:
           challenge: challenge
           id: 0
           validity: validity
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           status: status
-          renewed_at: 2000-01-23T04:56:07.000+00:00
+          renewed_at: 2000-01-23 04:56:07+00:00
         - product_version: product_version
           csr: csr
           last_editor: last_editor
@@ -2784,9 +2784,9 @@ components:
           challenge: challenge
           id: 0
           validity: validity
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           status: status
-          renewed_at: 2000-01-23T04:56:07.000+00:00
+          renewed_at: 2000-01-23 04:56:07+00:00
       properties:
         count:
           example: 123
@@ -2805,24 +2805,24 @@ components:
         results:
         - product_version: product_version
           last_editor: last_editor
-          last_update: 2000-01-23T04:56:07.000+00:00
+          last_update: 2000-01-23 04:56:07+00:00
           name: name
           active: true
           id: 0
           crl: crl
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           issuer: issuer
-          next_update: 2000-01-23T04:56:07.000+00:00
+          next_update: 2000-01-23 04:56:07+00:00
         - product_version: product_version
           last_editor: last_editor
-          last_update: 2000-01-23T04:56:07.000+00:00
+          last_update: 2000-01-23 04:56:07+00:00
           name: name
           active: true
           id: 0
           crl: crl
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           issuer: issuer
-          next_update: 2000-01-23T04:56:07.000+00:00
+          next_update: 2000-01-23 04:56:07+00:00
       properties:
         count:
           example: 123
@@ -2856,9 +2856,9 @@ components:
         challenge: challenge
         id: 0
         validity: validity
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         status: status
-        renewed_at: 2000-01-23T04:56:07.000+00:00
+        renewed_at: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -2958,14 +2958,14 @@ components:
       example:
         product_version: product_version
         last_editor: last_editor
-        last_update: 2000-01-23T04:56:07.000+00:00
+        last_update: 2000-01-23 04:56:07+00:00
         name: name
         active: true
         id: 0
         crl: crl
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         issuer: issuer
-        next_update: 2000-01-23T04:56:07.000+00:00
+        next_update: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -3029,9 +3029,9 @@ components:
           challenge: challenge
           id: 0
           validity: validity
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           status: status
-          renewed_at: 2000-01-23T04:56:07.000+00:00
+          renewed_at: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -3048,14 +3048,14 @@ components:
         data:
           product_version: product_version
           last_editor: last_editor
-          last_update: 2000-01-23T04:56:07.000+00:00
+          last_update: 2000-01-23 04:56:07+00:00
           name: name
           active: true
           id: 0
           crl: crl
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           issuer: issuer
-          next_update: 2000-01-23T04:56:07.000+00:00
+          next_update: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -3107,9 +3107,9 @@ components:
           challenge: challenge
           id: 0
           validity: validity
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           status: status
-          renewed_at: 2000-01-23T04:56:07.000+00:00
+          renewed_at: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -3126,14 +3126,14 @@ components:
         data:
           product_version: product_version
           last_editor: last_editor
-          last_update: 2000-01-23T04:56:07.000+00:00
+          last_update: 2000-01-23 04:56:07+00:00
           name: name
           active: true
           id: 0
           crl: crl
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           issuer: issuer
-          next_update: 2000-01-23T04:56:07.000+00:00
+          next_update: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -3167,9 +3167,9 @@ components:
           challenge: challenge
           id: 0
           validity: validity
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           status: status
-          renewed_at: 2000-01-23T04:56:07.000+00:00
+          renewed_at: 2000-01-23 04:56:07+00:00
       properties:
         data:
           $ref: "#/components/schemas/Certificate"
@@ -3181,14 +3181,14 @@ components:
         data:
           product_version: product_version
           last_editor: last_editor
-          last_update: 2000-01-23T04:56:07.000+00:00
+          last_update: 2000-01-23 04:56:07+00:00
           name: name
           active: true
           id: 0
           crl: crl
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           issuer: issuer
-          next_update: 2000-01-23T04:56:07.000+00:00
+          next_update: 2000-01-23 04:56:07+00:00
       properties:
         data:
           $ref: "#/components/schemas/CertificateRevocationList"
