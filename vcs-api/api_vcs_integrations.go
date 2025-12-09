@@ -220,15 +220,24 @@ type ApiListIntegrationsRequest struct {
 	ctx context.Context
 	ApiService *VCSIntegrationsAPIService
 	fields *string
+	id *string
 	ordering *string
 	page *int64
 	pageSize *int64
+	platform *string
+	scope *string
 	search *string
 }
 
 // Comma-separated list of field names to include in the response.
 func (r ApiListIntegrationsRequest) Fields(fields string) ApiListIntegrationsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by id. Supports multiple comma-separated values.
+func (r ApiListIntegrationsRequest) Id(id string) ApiListIntegrationsRequest {
+	r.id = &id
 	return r
 }
 
@@ -247,6 +256,18 @@ func (r ApiListIntegrationsRequest) Page(page int64) ApiListIntegrationsRequest 
 // A numeric value that indicates the number of items per page.
 func (r ApiListIntegrationsRequest) PageSize(pageSize int64) ApiListIntegrationsRequest {
 	r.pageSize = &pageSize
+	return r
+}
+
+// Filter by platform id (exact match).
+func (r ApiListIntegrationsRequest) Platform(platform string) ApiListIntegrationsRequest {
+	r.platform = &platform
+	return r
+}
+
+// Filter by scope (case-insensitive partial match).
+func (r ApiListIntegrationsRequest) Scope(scope string) ApiListIntegrationsRequest {
+	r.scope = &scope
 	return r
 }
 
@@ -299,6 +320,9 @@ func (a *VCSIntegrationsAPIService) ListIntegrationsExecute(r ApiListIntegration
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
 	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
 	}
@@ -307,6 +331,12 @@ func (a *VCSIntegrationsAPIService) ListIntegrationsExecute(r ApiListIntegration
 	}
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
+	}
+	if r.platform != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "platform", r.platform, "form", "")
+	}
+	if r.scope != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "scope", r.scope, "form", "")
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")

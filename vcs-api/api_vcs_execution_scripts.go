@@ -27,7 +27,7 @@ type ApiListExecutionScriptsRequest struct {
 	ctx context.Context
 	ApiService *VCSExecutionScriptsAPIService
 	fields *string
-	id *[]string
+	id *string
 	name *string
 	ordering *string
 	page *int64
@@ -41,12 +41,13 @@ func (r ApiListExecutionScriptsRequest) Fields(fields string) ApiListExecutionSc
 	return r
 }
 
-// Multiple values may be separated by commas.
-func (r ApiListExecutionScriptsRequest) Id(id []string) ApiListExecutionScriptsRequest {
+// Filter by id. Supports multiple comma-separated UUIDs.
+func (r ApiListExecutionScriptsRequest) Id(id string) ApiListExecutionScriptsRequest {
 	r.id = &id
 	return r
 }
 
+// Filter by name (case-insensitive partial match).
 func (r ApiListExecutionScriptsRequest) Name(name string) ApiListExecutionScriptsRequest {
 	r.name = &name
 	return r
@@ -120,7 +121,7 @@ func (a *VCSExecutionScriptsAPIService) ListExecutionScriptsExecute(r ApiListExe
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
