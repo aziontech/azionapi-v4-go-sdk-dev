@@ -432,10 +432,96 @@ paths:
         account.
       operationId: list_descendants_accounts
       parameters:
+      - description: Filter by active status.
+        explode: true
+        in: query
+        name: active
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter by created date (exact match).
+        explode: true
+        in: query
+        name: created
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by created date (greater than or equal).
+        explode: true
+        in: query
+        name: created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by created date (less than or equal).
+        explode: true
+        in: query
+        name: created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
         name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by account ID. Accepts multiple comma-separated values.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter by last editor (partial, case-insensitive)."
+        explode: true
+        in: query
+        name: last_editor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by last modified date (exact match).
+        explode: true
+        in: query
+        name: last_modified
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date (greater than or equal).
+        explode: true
+        in: query
+        name: last_modified__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date (less than or equal).
+        explode: true
+        in: query
+        name: last_modified__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Filter by name (partial, case-insensitive)."
+        explode: true
+        in: query
+        name: name
         required: false
         schema:
           type: string
@@ -467,6 +553,15 @@ paths:
         schema:
           format: int64
           type: integer
+        style: form
+      - description: Filter by parent account ID. Accepts multiple comma-separated
+          values.
+        explode: true
+        in: query
+        name: parent_id
+        required: false
+        schema:
+          type: string
         style: form
       - description: A search term.
         explode: true
@@ -1992,6 +2087,8 @@ components:
     PaginatedResponseListAccountList:
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - parent_id: 6
           created: 2000-01-23T04:56:07.000+00:00
@@ -2013,12 +2110,35 @@ components:
           last_modified: 2000-01-23T04:56:07.000+00:00
           info:
             key: ""
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
