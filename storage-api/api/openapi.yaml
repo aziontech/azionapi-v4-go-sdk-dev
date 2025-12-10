@@ -2391,12 +2391,14 @@ components:
       type: object
     Credential:
       example:
-        bucket: bucket
         secret_key: secret_key
         capabilities:
         - capabilities
         - capabilities
         access_key: access_key
+        buckets:
+        - buckets
+        - buckets
         last_editor: last_editor
         name: name
         expiration_date: 2000-01-23T04:56:07.000+00:00
@@ -2421,10 +2423,10 @@ components:
             - listAllBucketNames
             - listBuckets
           type: array
-        bucket:
-          maxLength: 63
-          minLength: 6
-          type: string
+        buckets:
+          items:
+            type: string
+          type: array
         expiration_date:
           format: date-time
           type: string
@@ -2436,6 +2438,7 @@ components:
           type: string
       required:
       - access_key
+      - buckets
       - capabilities
       - last_editor
       - last_modified
@@ -2649,22 +2652,26 @@ components:
         total_pages: 10
         page: 1
         results:
-        - bucket: bucket
-          secret_key: secret_key
+        - secret_key: secret_key
           capabilities:
           - capabilities
           - capabilities
           access_key: access_key
+          buckets:
+          - buckets
+          - buckets
           last_editor: last_editor
           name: name
           expiration_date: 2000-01-23T04:56:07.000+00:00
           last_modified: 2000-01-23T04:56:07.000+00:00
-        - bucket: bucket
-          secret_key: secret_key
+        - secret_key: secret_key
           capabilities:
           - capabilities
           - capabilities
           access_key: access_key
+          buckets:
+          - buckets
+          - buckets
           last_editor: last_editor
           name: name
           expiration_date: 2000-01-23T04:56:07.000+00:00
@@ -2741,12 +2748,14 @@ components:
     ResponseAsyncCredential:
       example:
         data:
-          bucket: bucket
           secret_key: secret_key
           capabilities:
           - capabilities
           - capabilities
           access_key: access_key
+          buckets:
+          - buckets
+          - buckets
           last_editor: last_editor
           name: name
           expiration_date: 2000-01-23T04:56:07.000+00:00
@@ -2837,12 +2846,14 @@ components:
     ResponseCredential:
       example:
         data:
-          bucket: bucket
           secret_key: secret_key
           capabilities:
           - capabilities
           - capabilities
           access_key: access_key
+          buckets:
+          - buckets
+          - buckets
           last_editor: last_editor
           name: name
           expiration_date: 2000-01-23T04:56:07.000+00:00
