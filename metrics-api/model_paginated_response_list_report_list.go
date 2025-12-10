@@ -19,7 +19,14 @@ var _ MappedNullable = &PaginatedResponseListReportList{}
 
 // PaginatedResponseListReportList struct for PaginatedResponseListReportList
 type PaginatedResponseListReportList struct {
+	// Total number of items
 	Count *int64 `json:"count,omitempty"`
+	// Total number of pages
+	TotalPages *int64 `json:"total_pages,omitempty"`
+	// Current page number
+	Page *int64 `json:"page,omitempty"`
+	// Number of items per page
+	PageSize *int64 `json:"page_size,omitempty"`
 	Results []ResponseListReport `json:"results,omitempty"`
 }
 
@@ -72,6 +79,102 @@ func (o *PaginatedResponseListReportList) SetCount(v int64) {
 	o.Count = &v
 }
 
+// GetTotalPages returns the TotalPages field value if set, zero value otherwise.
+func (o *PaginatedResponseListReportList) GetTotalPages() int64 {
+	if o == nil || IsNil(o.TotalPages) {
+		var ret int64
+		return ret
+	}
+	return *o.TotalPages
+}
+
+// GetTotalPagesOk returns a tuple with the TotalPages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaginatedResponseListReportList) GetTotalPagesOk() (*int64, bool) {
+	if o == nil || IsNil(o.TotalPages) {
+		return nil, false
+	}
+	return o.TotalPages, true
+}
+
+// HasTotalPages returns a boolean if a field has been set.
+func (o *PaginatedResponseListReportList) HasTotalPages() bool {
+	if o != nil && !IsNil(o.TotalPages) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalPages gets a reference to the given int64 and assigns it to the TotalPages field.
+func (o *PaginatedResponseListReportList) SetTotalPages(v int64) {
+	o.TotalPages = &v
+}
+
+// GetPage returns the Page field value if set, zero value otherwise.
+func (o *PaginatedResponseListReportList) GetPage() int64 {
+	if o == nil || IsNil(o.Page) {
+		var ret int64
+		return ret
+	}
+	return *o.Page
+}
+
+// GetPageOk returns a tuple with the Page field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaginatedResponseListReportList) GetPageOk() (*int64, bool) {
+	if o == nil || IsNil(o.Page) {
+		return nil, false
+	}
+	return o.Page, true
+}
+
+// HasPage returns a boolean if a field has been set.
+func (o *PaginatedResponseListReportList) HasPage() bool {
+	if o != nil && !IsNil(o.Page) {
+		return true
+	}
+
+	return false
+}
+
+// SetPage gets a reference to the given int64 and assigns it to the Page field.
+func (o *PaginatedResponseListReportList) SetPage(v int64) {
+	o.Page = &v
+}
+
+// GetPageSize returns the PageSize field value if set, zero value otherwise.
+func (o *PaginatedResponseListReportList) GetPageSize() int64 {
+	if o == nil || IsNil(o.PageSize) {
+		var ret int64
+		return ret
+	}
+	return *o.PageSize
+}
+
+// GetPageSizeOk returns a tuple with the PageSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PaginatedResponseListReportList) GetPageSizeOk() (*int64, bool) {
+	if o == nil || IsNil(o.PageSize) {
+		return nil, false
+	}
+	return o.PageSize, true
+}
+
+// HasPageSize returns a boolean if a field has been set.
+func (o *PaginatedResponseListReportList) HasPageSize() bool {
+	if o != nil && !IsNil(o.PageSize) {
+		return true
+	}
+
+	return false
+}
+
+// SetPageSize gets a reference to the given int64 and assigns it to the PageSize field.
+func (o *PaginatedResponseListReportList) SetPageSize(v int64) {
+	o.PageSize = &v
+}
+
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *PaginatedResponseListReportList) GetResults() []ResponseListReport {
 	if o == nil || IsNil(o.Results) {
@@ -116,6 +219,15 @@ func (o PaginatedResponseListReportList) ToMap() (map[string]interface{}, error)
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Count) {
 		toSerialize["count"] = o.Count
+	}
+	if !IsNil(o.TotalPages) {
+		toSerialize["total_pages"] = o.TotalPages
+	}
+	if !IsNil(o.Page) {
+		toSerialize["page"] = o.Page
+	}
+	if !IsNil(o.PageSize) {
+		toSerialize["page_size"] = o.PageSize
 	}
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results
