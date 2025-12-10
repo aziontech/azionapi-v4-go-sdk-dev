@@ -23,6 +23,210 @@ import (
 // ApplicationsResponseRulesAPIService ApplicationsResponseRulesAPI service
 type ApplicationsResponseRulesAPIService service
 
+type ApiCreateApplicationResponseRuleRequest struct {
+	ctx context.Context
+	ApiService *ApplicationsResponseRulesAPIService
+	applicationId int64
+	applicationResponsePhaseRuleEngineRequest *ApplicationResponsePhaseRuleEngineRequest
+}
+
+func (r ApiCreateApplicationResponseRuleRequest) ApplicationResponsePhaseRuleEngineRequest(applicationResponsePhaseRuleEngineRequest ApplicationResponsePhaseRuleEngineRequest) ApiCreateApplicationResponseRuleRequest {
+	r.applicationResponsePhaseRuleEngineRequest = &applicationResponsePhaseRuleEngineRequest
+	return r
+}
+
+func (r ApiCreateApplicationResponseRuleRequest) Execute() (*ResponseApplicationResponsePhaseRuleEngine, *http.Response, error) {
+	return r.ApiService.CreateApplicationResponseRuleExecute(r)
+}
+
+/*
+CreateApplicationResponseRule Create an Application Response Rule
+
+Create a new Rule for a specific Application in your account.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param applicationId A unique integer value identifying the application.
+ @return ApiCreateApplicationResponseRuleRequest
+*/
+func (a *ApplicationsResponseRulesAPIService) CreateApplicationResponseRule(ctx context.Context, applicationId int64) ApiCreateApplicationResponseRuleRequest {
+	return ApiCreateApplicationResponseRuleRequest{
+		ApiService: a,
+		ctx: ctx,
+		applicationId: applicationId,
+	}
+}
+
+// Execute executes the request
+//  @return ResponseApplicationResponsePhaseRuleEngine
+func (a *ApplicationsResponseRulesAPIService) CreateApplicationResponseRuleExecute(r ApiCreateApplicationResponseRuleRequest) (*ResponseApplicationResponsePhaseRuleEngine, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseApplicationResponsePhaseRuleEngine
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsResponseRulesAPIService.CreateApplicationResponseRule")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/response_rules"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.applicationResponsePhaseRuleEngineRequest == nil {
+		return localVarReturnValue, nil, reportError("applicationResponsePhaseRuleEngineRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.applicationResponsePhaseRuleEngineRequest
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["TokenAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 405 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiDeleteApplicationResponseRuleRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsResponseRulesAPIService
@@ -220,211 +424,7 @@ func (a *ApplicationsResponseRulesAPIService) DeleteApplicationResponseRuleExecu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEdgeApplicationApiApplicationsResponseRulesCreateRequest struct {
-	ctx context.Context
-	ApiService *ApplicationsResponseRulesAPIService
-	applicationId int64
-	applicationResponsePhaseRuleEngineRequest *ApplicationResponsePhaseRuleEngineRequest
-}
-
-func (r ApiEdgeApplicationApiApplicationsResponseRulesCreateRequest) ApplicationResponsePhaseRuleEngineRequest(applicationResponsePhaseRuleEngineRequest ApplicationResponsePhaseRuleEngineRequest) ApiEdgeApplicationApiApplicationsResponseRulesCreateRequest {
-	r.applicationResponsePhaseRuleEngineRequest = &applicationResponsePhaseRuleEngineRequest
-	return r
-}
-
-func (r ApiEdgeApplicationApiApplicationsResponseRulesCreateRequest) Execute() (*ResponseApplicationResponsePhaseRuleEngine, *http.Response, error) {
-	return r.ApiService.EdgeApplicationApiApplicationsResponseRulesCreateExecute(r)
-}
-
-/*
-EdgeApplicationApiApplicationsResponseRulesCreate Create an Application Response Rule
-
-Create a new Rule for a specific Application in your account.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId A unique integer value identifying the application.
- @return ApiEdgeApplicationApiApplicationsResponseRulesCreateRequest
-*/
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesCreate(ctx context.Context, applicationId int64) ApiEdgeApplicationApiApplicationsResponseRulesCreateRequest {
-	return ApiEdgeApplicationApiApplicationsResponseRulesCreateRequest{
-		ApiService: a,
-		ctx: ctx,
-		applicationId: applicationId,
-	}
-}
-
-// Execute executes the request
-//  @return ResponseApplicationResponsePhaseRuleEngine
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesCreateExecute(r ApiEdgeApplicationApiApplicationsResponseRulesCreateRequest) (*ResponseApplicationResponsePhaseRuleEngine, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ResponseApplicationResponsePhaseRuleEngine
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsResponseRulesAPIService.EdgeApplicationApiApplicationsResponseRulesCreate")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/workspace/applications/{application_id}/response_rules"
-	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.applicationResponsePhaseRuleEngineRequest == nil {
-		return localVarReturnValue, nil, reportError("applicationResponsePhaseRuleEngineRequest is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.applicationResponsePhaseRuleEngineRequest
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["TokenAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiEdgeApplicationApiApplicationsResponseRulesListRequest struct {
+type ApiListApplicationResponseRulesRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsResponseRulesAPIService
 	applicationId int64
@@ -442,86 +442,86 @@ type ApiEdgeApplicationApiApplicationsResponseRulesListRequest struct {
 }
 
 // Filter by description (partial search, case-insensitive).
-func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) Description(description string) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+func (r ApiListApplicationResponseRulesRequest) Description(description string) ApiListApplicationResponseRulesRequest {
 	r.description = &description
 	return r
 }
 
 // Comma-separated list of field names to include in the response.
-func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) Fields(fields string) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+func (r ApiListApplicationResponseRulesRequest) Fields(fields string) ApiListApplicationResponseRulesRequest {
 	r.fields = &fields
 	return r
 }
 
 // Filter by ID (can be multiple, comma-separated).
-func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) Id(id string) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+func (r ApiListApplicationResponseRulesRequest) Id(id string) ApiListApplicationResponseRulesRequest {
 	r.id = &id
 	return r
 }
 
 // Filter by active status.
-func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) IsActive(isActive bool) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+func (r ApiListApplicationResponseRulesRequest) IsActive(isActive bool) ApiListApplicationResponseRulesRequest {
 	r.isActive = &isActive
 	return r
 }
 
 // Filter by name (partial search, case-insensitive).
-func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) Name(name string) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+func (r ApiListApplicationResponseRulesRequest) Name(name string) ApiListApplicationResponseRulesRequest {
 	r.name = &name
 	return r
 }
 
 // Filter by order (greater than or equal to).
-func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) OrderGte(orderGte int64) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+func (r ApiListApplicationResponseRulesRequest) OrderGte(orderGte int64) ApiListApplicationResponseRulesRequest {
 	r.orderGte = &orderGte
 	return r
 }
 
 // Filter by order (less than or equal to).
-func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) OrderLte(orderLte int64) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+func (r ApiListApplicationResponseRulesRequest) OrderLte(orderLte int64) ApiListApplicationResponseRulesRequest {
 	r.orderLte = &orderLte
 	return r
 }
 
 // Which field to use when ordering the results. (Valid fields: name, active, description, order, criteria, last_editor, last_modified, behaviors)
-func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) Ordering(ordering string) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+func (r ApiListApplicationResponseRulesRequest) Ordering(ordering string) ApiListApplicationResponseRulesRequest {
 	r.ordering = &ordering
 	return r
 }
 
 // A page number within the paginated result set.
-func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) Page(page int64) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+func (r ApiListApplicationResponseRulesRequest) Page(page int64) ApiListApplicationResponseRulesRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) PageSize(pageSize int64) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+func (r ApiListApplicationResponseRulesRequest) PageSize(pageSize int64) ApiListApplicationResponseRulesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // A search term.
-func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) Search(search string) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
+func (r ApiListApplicationResponseRulesRequest) Search(search string) ApiListApplicationResponseRulesRequest {
 	r.search = &search
 	return r
 }
 
-func (r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) Execute() (*PaginatedApplicationResponsePhaseRuleEngineList, *http.Response, error) {
-	return r.ApiService.EdgeApplicationApiApplicationsResponseRulesListExecute(r)
+func (r ApiListApplicationResponseRulesRequest) Execute() (*PaginatedApplicationResponsePhaseRuleEngineList, *http.Response, error) {
+	return r.ApiService.ListApplicationResponseRulesExecute(r)
 }
 
 /*
-EdgeApplicationApiApplicationsResponseRulesList List Application Response Rules
+ListApplicationResponseRules List Application Response Rules
 
 List all Rules for a specific Application owned by your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param applicationId A unique integer value identifying the application.
- @return ApiEdgeApplicationApiApplicationsResponseRulesListRequest
+ @return ApiListApplicationResponseRulesRequest
 */
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesList(ctx context.Context, applicationId int64) ApiEdgeApplicationApiApplicationsResponseRulesListRequest {
-	return ApiEdgeApplicationApiApplicationsResponseRulesListRequest{
+func (a *ApplicationsResponseRulesAPIService) ListApplicationResponseRules(ctx context.Context, applicationId int64) ApiListApplicationResponseRulesRequest {
+	return ApiListApplicationResponseRulesRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
@@ -530,7 +530,7 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 
 // Execute executes the request
 //  @return PaginatedApplicationResponsePhaseRuleEngineList
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesListExecute(r ApiEdgeApplicationApiApplicationsResponseRulesListRequest) (*PaginatedApplicationResponsePhaseRuleEngineList, *http.Response, error) {
+func (a *ApplicationsResponseRulesAPIService) ListApplicationResponseRulesExecute(r ApiListApplicationResponseRulesRequest) (*PaginatedApplicationResponsePhaseRuleEngineList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -538,7 +538,7 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 		localVarReturnValue  *PaginatedApplicationResponsePhaseRuleEngineList
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsResponseRulesAPIService.EdgeApplicationApiApplicationsResponseRulesList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsResponseRulesAPIService.ListApplicationResponseRules")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -727,251 +727,7 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest struct {
-	ctx context.Context
-	ApiService *ApplicationsResponseRulesAPIService
-	applicationId int64
-	applicationResponsePhaseRuleEngineOrderRequest *ApplicationResponsePhaseRuleEngineOrderRequest
-	ordering *string
-	page *int64
-	pageSize *int64
-	search *string
-}
-
-func (r ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest) ApplicationResponsePhaseRuleEngineOrderRequest(applicationResponsePhaseRuleEngineOrderRequest ApplicationResponsePhaseRuleEngineOrderRequest) ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest {
-	r.applicationResponsePhaseRuleEngineOrderRequest = &applicationResponsePhaseRuleEngineOrderRequest
-	return r
-}
-
-// Which field to use when ordering the results. (Valid fields: order)
-func (r ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest) Ordering(ordering string) ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest {
-	r.ordering = &ordering
-	return r
-}
-
-// A page number within the paginated result set.
-func (r ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest) Page(page int64) ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest {
-	r.page = &page
-	return r
-}
-
-// Number of results to return per page.
-func (r ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest) PageSize(pageSize int64) ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest {
-	r.pageSize = &pageSize
-	return r
-}
-
-// A search term.
-func (r ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest) Search(search string) ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest {
-	r.search = &search
-	return r
-}
-
-func (r ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest) Execute() (*PaginatedApplicationResponsePhaseRuleEngineList, *http.Response, error) {
-	return r.ApiService.EdgeApplicationApiApplicationsResponseRulesOrderUpdateExecute(r)
-}
-
-/*
-EdgeApplicationApiApplicationsResponseRulesOrderUpdate Ordering Application Response Rules
-
-Reoder all Rules for a specific Application owned by your account.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param applicationId A unique integer value identifying the application.
- @return ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest
-*/
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesOrderUpdate(ctx context.Context, applicationId int64) ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest {
-	return ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest{
-		ApiService: a,
-		ctx: ctx,
-		applicationId: applicationId,
-	}
-}
-
-// Execute executes the request
-//  @return PaginatedApplicationResponsePhaseRuleEngineList
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesOrderUpdateExecute(r ApiEdgeApplicationApiApplicationsResponseRulesOrderUpdateRequest) (*PaginatedApplicationResponsePhaseRuleEngineList, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PaginatedApplicationResponsePhaseRuleEngineList
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsResponseRulesAPIService.EdgeApplicationApiApplicationsResponseRulesOrderUpdate")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/workspace/applications/{application_id}/response_rules/order"
-	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.applicationResponsePhaseRuleEngineOrderRequest == nil {
-		return localVarReturnValue, nil, reportError("applicationResponsePhaseRuleEngineOrderRequest is required and must be specified")
-	}
-
-	if r.ordering != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
-	}
-	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
-	}
-	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
-	}
-	if r.search != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.applicationResponsePhaseRuleEngineOrderRequest
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["TokenAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest struct {
+type ApiPartialUpdateApplicationResponseRuleRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsResponseRulesAPIService
 	applicationId int64
@@ -979,27 +735,27 @@ type ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest struct {
 	patchedApplicationResponsePhaseRuleEngineRequest *PatchedApplicationResponsePhaseRuleEngineRequest
 }
 
-func (r ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest) PatchedApplicationResponsePhaseRuleEngineRequest(patchedApplicationResponsePhaseRuleEngineRequest PatchedApplicationResponsePhaseRuleEngineRequest) ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest {
+func (r ApiPartialUpdateApplicationResponseRuleRequest) PatchedApplicationResponsePhaseRuleEngineRequest(patchedApplicationResponsePhaseRuleEngineRequest PatchedApplicationResponsePhaseRuleEngineRequest) ApiPartialUpdateApplicationResponseRuleRequest {
 	r.patchedApplicationResponsePhaseRuleEngineRequest = &patchedApplicationResponsePhaseRuleEngineRequest
 	return r
 }
 
-func (r ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest) Execute() (*ResponseApplicationResponsePhaseRuleEngine, *http.Response, error) {
-	return r.ApiService.EdgeApplicationApiApplicationsResponseRulesPartialUpdateExecute(r)
+func (r ApiPartialUpdateApplicationResponseRuleRequest) Execute() (*ResponseApplicationResponsePhaseRuleEngine, *http.Response, error) {
+	return r.ApiService.PartialUpdateApplicationResponseRuleExecute(r)
 }
 
 /*
-EdgeApplicationApiApplicationsResponseRulesPartialUpdate Partially update an Application Response Rule
+PartialUpdateApplicationResponseRule Partially update an Application Response Rule
 
 Update one or more fields of an existing Application Rule  without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param applicationId A unique integer value identifying the application.
  @param responseRuleId A unique integer value identifying the response rule.
- @return ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest
+ @return ApiPartialUpdateApplicationResponseRuleRequest
 */
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesPartialUpdate(ctx context.Context, applicationId int64, responseRuleId int64) ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest {
-	return ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest{
+func (a *ApplicationsResponseRulesAPIService) PartialUpdateApplicationResponseRule(ctx context.Context, applicationId int64, responseRuleId int64) ApiPartialUpdateApplicationResponseRuleRequest {
+	return ApiPartialUpdateApplicationResponseRuleRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
@@ -1009,7 +765,7 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 
 // Execute executes the request
 //  @return ResponseApplicationResponsePhaseRuleEngine
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesPartialUpdateExecute(r ApiEdgeApplicationApiApplicationsResponseRulesPartialUpdateRequest) (*ResponseApplicationResponsePhaseRuleEngine, *http.Response, error) {
+func (a *ApplicationsResponseRulesAPIService) PartialUpdateApplicationResponseRuleExecute(r ApiPartialUpdateApplicationResponseRuleRequest) (*ResponseApplicationResponsePhaseRuleEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -1017,7 +773,7 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 		localVarReturnValue  *ResponseApplicationResponsePhaseRuleEngine
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsResponseRulesAPIService.EdgeApplicationApiApplicationsResponseRulesPartialUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsResponseRulesAPIService.PartialUpdateApplicationResponseRule")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1176,7 +932,7 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest struct {
+type ApiRetrieveApplicationResponseRuleRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsResponseRulesAPIService
 	applicationId int64
@@ -1185,27 +941,27 @@ type ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest struct {
 }
 
 // Comma-separated list of field names to include in the response.
-func (r ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest) Fields(fields string) ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest {
+func (r ApiRetrieveApplicationResponseRuleRequest) Fields(fields string) ApiRetrieveApplicationResponseRuleRequest {
 	r.fields = &fields
 	return r
 }
 
-func (r ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest) Execute() (*ResponseRetrieveApplicationRequestPhaseRuleEngine, *http.Response, error) {
-	return r.ApiService.EdgeApplicationApiApplicationsResponseRulesRetrieveExecute(r)
+func (r ApiRetrieveApplicationResponseRuleRequest) Execute() (*ResponseRetrieveApplicationRequestPhaseRuleEngine, *http.Response, error) {
+	return r.ApiService.RetrieveApplicationResponseRuleExecute(r)
 }
 
 /*
-EdgeApplicationApiApplicationsResponseRulesRetrieve Retrieve details of an Application Response Rule
+RetrieveApplicationResponseRule Retrieve details of an Application Response Rule
 
 Retrieve details of a specific Rule in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param applicationId A unique integer value identifying the application.
  @param responseRuleId A unique integer value identifying the response rule.
- @return ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest
+ @return ApiRetrieveApplicationResponseRuleRequest
 */
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesRetrieve(ctx context.Context, applicationId int64, responseRuleId int64) ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest {
-	return ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest{
+func (a *ApplicationsResponseRulesAPIService) RetrieveApplicationResponseRule(ctx context.Context, applicationId int64, responseRuleId int64) ApiRetrieveApplicationResponseRuleRequest {
+	return ApiRetrieveApplicationResponseRuleRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
@@ -1215,7 +971,7 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 
 // Execute executes the request
 //  @return ResponseRetrieveApplicationRequestPhaseRuleEngine
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesRetrieveExecute(r ApiEdgeApplicationApiApplicationsResponseRulesRetrieveRequest) (*ResponseRetrieveApplicationRequestPhaseRuleEngine, *http.Response, error) {
+func (a *ApplicationsResponseRulesAPIService) RetrieveApplicationResponseRuleExecute(r ApiRetrieveApplicationResponseRuleRequest) (*ResponseRetrieveApplicationRequestPhaseRuleEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1223,7 +979,7 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 		localVarReturnValue  *ResponseRetrieveApplicationRequestPhaseRuleEngine
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsResponseRulesAPIService.EdgeApplicationApiApplicationsResponseRulesRetrieve")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsResponseRulesAPIService.RetrieveApplicationResponseRule")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1383,7 +1139,7 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest struct {
+type ApiUpdateApplicationResponseRuleRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsResponseRulesAPIService
 	applicationId int64
@@ -1391,27 +1147,27 @@ type ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest struct {
 	applicationResponsePhaseRuleEngineRequest *ApplicationResponsePhaseRuleEngineRequest
 }
 
-func (r ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest) ApplicationResponsePhaseRuleEngineRequest(applicationResponsePhaseRuleEngineRequest ApplicationResponsePhaseRuleEngineRequest) ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest {
+func (r ApiUpdateApplicationResponseRuleRequest) ApplicationResponsePhaseRuleEngineRequest(applicationResponsePhaseRuleEngineRequest ApplicationResponsePhaseRuleEngineRequest) ApiUpdateApplicationResponseRuleRequest {
 	r.applicationResponsePhaseRuleEngineRequest = &applicationResponsePhaseRuleEngineRequest
 	return r
 }
 
-func (r ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest) Execute() (*ResponseApplicationResponsePhaseRuleEngine, *http.Response, error) {
-	return r.ApiService.EdgeApplicationApiApplicationsResponseRulesUpdateExecute(r)
+func (r ApiUpdateApplicationResponseRuleRequest) Execute() (*ResponseApplicationResponsePhaseRuleEngine, *http.Response, error) {
+	return r.ApiService.UpdateApplicationResponseRuleExecute(r)
 }
 
 /*
-EdgeApplicationApiApplicationsResponseRulesUpdate Update an Application Response Rule
+UpdateApplicationResponseRule Update an Application Response Rule
 
 Update an existing Rule. This replaces the entire Rule with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param applicationId A unique integer value identifying the application.
  @param responseRuleId A unique integer value identifying the response rule.
- @return ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest
+ @return ApiUpdateApplicationResponseRuleRequest
 */
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesUpdate(ctx context.Context, applicationId int64, responseRuleId int64) ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest {
-	return ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest{
+func (a *ApplicationsResponseRulesAPIService) UpdateApplicationResponseRule(ctx context.Context, applicationId int64, responseRuleId int64) ApiUpdateApplicationResponseRuleRequest {
+	return ApiUpdateApplicationResponseRuleRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
@@ -1421,7 +1177,7 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 
 // Execute executes the request
 //  @return ResponseApplicationResponsePhaseRuleEngine
-func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResponseRulesUpdateExecute(r ApiEdgeApplicationApiApplicationsResponseRulesUpdateRequest) (*ResponseApplicationResponsePhaseRuleEngine, *http.Response, error) {
+func (a *ApplicationsResponseRulesAPIService) UpdateApplicationResponseRuleExecute(r ApiUpdateApplicationResponseRuleRequest) (*ResponseApplicationResponsePhaseRuleEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1429,7 +1185,7 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 		localVarReturnValue  *ResponseApplicationResponsePhaseRuleEngine
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsResponseRulesAPIService.EdgeApplicationApiApplicationsResponseRulesUpdate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsResponseRulesAPIService.UpdateApplicationResponseRule")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1567,6 +1323,250 @@ func (a *ApplicationsResponseRulesAPIService) EdgeApplicationApiApplicationsResp
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateApplicationResponseRulesOrderRequest struct {
+	ctx context.Context
+	ApiService *ApplicationsResponseRulesAPIService
+	applicationId int64
+	applicationResponsePhaseRuleEngineOrderRequest *ApplicationResponsePhaseRuleEngineOrderRequest
+	ordering *string
+	page *int64
+	pageSize *int64
+	search *string
+}
+
+func (r ApiUpdateApplicationResponseRulesOrderRequest) ApplicationResponsePhaseRuleEngineOrderRequest(applicationResponsePhaseRuleEngineOrderRequest ApplicationResponsePhaseRuleEngineOrderRequest) ApiUpdateApplicationResponseRulesOrderRequest {
+	r.applicationResponsePhaseRuleEngineOrderRequest = &applicationResponsePhaseRuleEngineOrderRequest
+	return r
+}
+
+// Which field to use when ordering the results. (Valid fields: order)
+func (r ApiUpdateApplicationResponseRulesOrderRequest) Ordering(ordering string) ApiUpdateApplicationResponseRulesOrderRequest {
+	r.ordering = &ordering
+	return r
+}
+
+// A page number within the paginated result set.
+func (r ApiUpdateApplicationResponseRulesOrderRequest) Page(page int64) ApiUpdateApplicationResponseRulesOrderRequest {
+	r.page = &page
+	return r
+}
+
+// Number of results to return per page.
+func (r ApiUpdateApplicationResponseRulesOrderRequest) PageSize(pageSize int64) ApiUpdateApplicationResponseRulesOrderRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+// A search term.
+func (r ApiUpdateApplicationResponseRulesOrderRequest) Search(search string) ApiUpdateApplicationResponseRulesOrderRequest {
+	r.search = &search
+	return r
+}
+
+func (r ApiUpdateApplicationResponseRulesOrderRequest) Execute() (*PaginatedApplicationResponsePhaseRuleEngineList, *http.Response, error) {
+	return r.ApiService.UpdateApplicationResponseRulesOrderExecute(r)
+}
+
+/*
+UpdateApplicationResponseRulesOrder Ordering Application Response Rules
+
+Reoder all Rules for a specific Application owned by your account.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param applicationId A unique integer value identifying the application.
+ @return ApiUpdateApplicationResponseRulesOrderRequest
+*/
+func (a *ApplicationsResponseRulesAPIService) UpdateApplicationResponseRulesOrder(ctx context.Context, applicationId int64) ApiUpdateApplicationResponseRulesOrderRequest {
+	return ApiUpdateApplicationResponseRulesOrderRequest{
+		ApiService: a,
+		ctx: ctx,
+		applicationId: applicationId,
+	}
+}
+
+// Execute executes the request
+//  @return PaginatedApplicationResponsePhaseRuleEngineList
+func (a *ApplicationsResponseRulesAPIService) UpdateApplicationResponseRulesOrderExecute(r ApiUpdateApplicationResponseRulesOrderRequest) (*PaginatedApplicationResponsePhaseRuleEngineList, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *PaginatedApplicationResponsePhaseRuleEngineList
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsResponseRulesAPIService.UpdateApplicationResponseRulesOrder")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/response_rules/order"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.applicationResponsePhaseRuleEngineOrderRequest == nil {
+		return localVarReturnValue, nil, reportError("applicationResponsePhaseRuleEngineOrderRequest is required and must be specified")
+	}
+
+	if r.ordering != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
+	}
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	}
+	if r.pageSize != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
+	}
+	if r.search != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.applicationResponsePhaseRuleEngineOrderRequest
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["TokenAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 405 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v JSONAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
