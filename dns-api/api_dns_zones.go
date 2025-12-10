@@ -419,23 +419,25 @@ func (a *DNSZonesAPIService) DeleteDnsZoneExecute(r ApiDeleteDnsZoneRequest) (*R
 type ApiListDnsZonesRequest struct {
 	ctx context.Context
 	ApiService *DNSZonesAPIService
-	active *string
+	active *bool
 	domain *string
 	fields *string
+	id *string
 	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
+	zones *string
 }
 
-// Search by active
-func (r ApiListDnsZonesRequest) Active(active string) ApiListDnsZonesRequest {
+// Filter by active status.
+func (r ApiListDnsZonesRequest) Active(active bool) ApiListDnsZonesRequest {
 	r.active = &active
 	return r
 }
 
-// Search by domain
+// Filter by domain (case-insensitive partial match).
 func (r ApiListDnsZonesRequest) Domain(domain string) ApiListDnsZonesRequest {
 	r.domain = &domain
 	return r
@@ -447,7 +449,13 @@ func (r ApiListDnsZonesRequest) Fields(fields string) ApiListDnsZonesRequest {
 	return r
 }
 
-// Search by name
+// Filter by id. Supports comma-separated values for multiple IDs.
+func (r ApiListDnsZonesRequest) Id(id string) ApiListDnsZonesRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by name (case-insensitive partial match).
 func (r ApiListDnsZonesRequest) Name(name string) ApiListDnsZonesRequest {
 	r.name = &name
 	return r
@@ -474,6 +482,12 @@ func (r ApiListDnsZonesRequest) PageSize(pageSize int64) ApiListDnsZonesRequest 
 // A search term.
 func (r ApiListDnsZonesRequest) Search(search string) ApiListDnsZonesRequest {
 	r.search = &search
+	return r
+}
+
+// Full-text zones across zones.
+func (r ApiListDnsZonesRequest) Zones(zones string) ApiListDnsZonesRequest {
+	r.zones = &zones
 	return r
 }
 
@@ -526,6 +540,9 @@ func (a *DNSZonesAPIService) ListDnsZonesExecute(r ApiListDnsZonesRequest) (*Pag
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
 	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
@@ -540,6 +557,9 @@ func (a *DNSZonesAPIService) ListDnsZonesExecute(r ApiListDnsZonesRequest) (*Pag
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.zones != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "zones", r.zones, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

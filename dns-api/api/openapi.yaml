@@ -14,15 +14,15 @@ paths:
       description: List all DNS Zones owned by your account.
       operationId: list_dns_zones
       parameters:
-      - description: Search by active
+      - description: Filter by active status.
         explode: true
         in: query
         name: active
         required: false
         schema:
-          type: string
+          type: boolean
         style: form
-      - description: Search by domain
+      - description: Filter by domain (case-insensitive partial match).
         explode: true
         in: query
         name: domain
@@ -38,7 +38,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Search by name
+      - description: Filter by id. Supports comma-separated values for multiple IDs.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by name (case-insensitive partial match).
         explode: true
         in: query
         name: name
@@ -78,6 +86,14 @@ paths:
         explode: true
         in: query
         name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Full-text zones across zones.
+        explode: true
+        in: query
+        name: zones
         required: false
         schema:
           type: string
@@ -1396,6 +1412,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter by id. Supports comma-separated values for multiple IDs.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          type: string
+        style: form
       - description: |-
           Which field to use when ordering the results.
           (Valid fields: id, name, weight)
@@ -1423,6 +1447,14 @@ paths:
         schema:
           format: int64
           type: integer
+        style: form
+      - description: Full-text records across records.
+        explode: true
+        in: query
+        name: records
+        required: false
+        schema:
+          type: string
         style: form
       - description: A search term.
         explode: true
@@ -2344,6 +2376,9 @@ paths:
 components:
   schemas:
     AlgType:
+      example:
+        id: 343953089
+        slug: slug
       properties:
         id:
           format: int64
@@ -2375,7 +2410,15 @@ components:
       type: object
     DNSSEC:
       example:
-        delegation_signer: ""
+        delegation_signer:
+          key_tag: 39501
+          algorithm_type:
+            id: 343953089
+            slug: slug
+          digest_type:
+            id: 343953089
+            slug: slug
+          digest: digest
         enabled: true
         status: status
       properties:
@@ -2392,9 +2435,7 @@ components:
           - waiting
           - ready
         delegation_signer:
-          allOf:
-          - $ref: "#/components/schemas/DelegationSigner"
-          nullable: true
+          $ref: "#/components/schemas/DelegationSigner"
       required:
       - delegation_signer
       - enabled
@@ -2410,6 +2451,15 @@ components:
       - enabled
       type: object
     DelegationSigner:
+      example:
+        key_tag: 39501
+        algorithm_type:
+          id: 343953089
+          slug: slug
+        digest_type:
+          id: 343953089
+          slug: slug
+        digest: digest
       properties:
         algorithm_type:
           $ref: "#/components/schemas/AlgType"
@@ -2542,6 +2592,8 @@ components:
     PaginatedRecordList:
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - name: name
           description: description
@@ -2563,12 +2615,35 @@ components:
           type: type
           ttl: 1294386359
           policy: policy
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -2578,6 +2653,8 @@ components:
     PaginatedZoneList:
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - product_version: product_version
           nameservers:
@@ -2595,12 +2672,35 @@ components:
           name: name
           active: true
           id: 0
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -2851,7 +2951,15 @@ components:
     ResponseAsyncDNSSEC:
       example:
         data:
-          delegation_signer: ""
+          delegation_signer:
+            key_tag: 39501
+            algorithm_type:
+              id: 343953089
+              slug: slug
+            digest_type:
+              id: 343953089
+              slug: slug
+            digest: digest
           enabled: true
           status: status
         state: state
@@ -2932,7 +3040,15 @@ components:
     ResponseDNSSEC:
       example:
         data:
-          delegation_signer: ""
+          delegation_signer:
+            key_tag: 39501
+            algorithm_type:
+              id: 343953089
+              slug: slug
+            digest_type:
+              id: 343953089
+              slug: slug
+            digest: digest
           enabled: true
           status: status
         state: state
@@ -2973,7 +3089,15 @@ components:
     ResponseRetrieveDNSSEC:
       example:
         data:
-          delegation_signer: ""
+          delegation_signer:
+            key_tag: 39501
+            algorithm_type:
+              id: 343953089
+              slug: slug
+            digest_type:
+              id: 343953089
+              slug: slug
+            digest: digest
           enabled: true
           status: status
       properties:
