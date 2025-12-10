@@ -2444,10 +2444,12 @@ components:
       type: object
     CredentialCreateRequest:
       example:
-        bucket: bucket
         capabilities:
         - capabilities
         - capabilities
+        buckets:
+        - buckets
+        - buckets
         name: name
         expiration_date: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -2466,10 +2468,13 @@ components:
             - listAllBucketNames
             - listBuckets
           type: array
-        bucket:
-          maxLength: 63
-          minLength: 6
-          type: string
+        buckets:
+          description: List of bucket names to associate with this credential.
+          items:
+            maxLength: 63
+            minLength: 6
+            type: string
+          type: array
         expiration_date:
           format: date-time
           type: string
