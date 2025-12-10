@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -221,16 +222,40 @@ type ApiListExecutionsRequest struct {
 	ctx context.Context
 	ApiService *VCSContinuousDeploymentExecutionsAPIService
 	continuousDeploymentId int64
+	createdAtGte *time.Time
+	createdAtLte *time.Time
 	fields *string
+	id *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
+	status *string
+	updatedAtGte *time.Time
+	updatedAtLte *time.Time
+}
+
+// Filter by created_at greater than or equal to this date.
+func (r ApiListExecutionsRequest) CreatedAtGte(createdAtGte time.Time) ApiListExecutionsRequest {
+	r.createdAtGte = &createdAtGte
+	return r
+}
+
+// Filter by created_at less than or equal to this date.
+func (r ApiListExecutionsRequest) CreatedAtLte(createdAtLte time.Time) ApiListExecutionsRequest {
+	r.createdAtLte = &createdAtLte
+	return r
 }
 
 // Comma-separated list of field names to include in the response.
 func (r ApiListExecutionsRequest) Fields(fields string) ApiListExecutionsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by id. Supports multiple comma-separated values.
+func (r ApiListExecutionsRequest) Id(id string) ApiListExecutionsRequest {
+	r.id = &id
 	return r
 }
 
@@ -255,6 +280,24 @@ func (r ApiListExecutionsRequest) PageSize(pageSize int64) ApiListExecutionsRequ
 // A search term.
 func (r ApiListExecutionsRequest) Search(search string) ApiListExecutionsRequest {
 	r.search = &search
+	return r
+}
+
+// Filter by status. Supports multiple comma-separated values.
+func (r ApiListExecutionsRequest) Status(status string) ApiListExecutionsRequest {
+	r.status = &status
+	return r
+}
+
+// Filter by updated_at greater than or equal to this date.
+func (r ApiListExecutionsRequest) UpdatedAtGte(updatedAtGte time.Time) ApiListExecutionsRequest {
+	r.updatedAtGte = &updatedAtGte
+	return r
+}
+
+// Filter by updated_at less than or equal to this date.
+func (r ApiListExecutionsRequest) UpdatedAtLte(updatedAtLte time.Time) ApiListExecutionsRequest {
+	r.updatedAtLte = &updatedAtLte
 	return r
 }
 
@@ -301,8 +344,17 @@ func (a *VCSContinuousDeploymentExecutionsAPIService) ListExecutionsExecute(r Ap
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.createdAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_at__gte", r.createdAtGte, "form", "")
+	}
+	if r.createdAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_at__lte", r.createdAtLte, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
@@ -315,6 +367,15 @@ func (a *VCSContinuousDeploymentExecutionsAPIService) ListExecutionsExecute(r Ap
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
+	}
+	if r.status != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "form", "")
+	}
+	if r.updatedAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "updated_at__gte", r.updatedAtGte, "form", "")
+	}
+	if r.updatedAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "updated_at__lte", r.updatedAtLte, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -420,16 +421,73 @@ func (a *VCSContinuousDeploymentsAPIService) DeleteContinuousDeploymentExecute(r
 type ApiListContinuousDeploymentsRequest struct {
 	ctx context.Context
 	ApiService *VCSContinuousDeploymentsAPIService
+	branch *string
+	createdGte *time.Time
+	createdLte *time.Time
 	fields *string
+	id *string
+	lastEditor *string
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
+	repository *string
 	search *string
+}
+
+// Filter by branch (exact match).
+func (r ApiListContinuousDeploymentsRequest) Branch(branch string) ApiListContinuousDeploymentsRequest {
+	r.branch = &branch
+	return r
+}
+
+// Filter by created greater than or equal to this date.
+func (r ApiListContinuousDeploymentsRequest) CreatedGte(createdGte time.Time) ApiListContinuousDeploymentsRequest {
+	r.createdGte = &createdGte
+	return r
+}
+
+// Filter by created less than or equal to this date.
+func (r ApiListContinuousDeploymentsRequest) CreatedLte(createdLte time.Time) ApiListContinuousDeploymentsRequest {
+	r.createdLte = &createdLte
+	return r
 }
 
 // Comma-separated list of field names to include in the response.
 func (r ApiListContinuousDeploymentsRequest) Fields(fields string) ApiListContinuousDeploymentsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by id. Supports multiple comma-separated values.
+func (r ApiListContinuousDeploymentsRequest) Id(id string) ApiListContinuousDeploymentsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by last_editor (case-insensitive partial match).
+func (r ApiListContinuousDeploymentsRequest) LastEditor(lastEditor string) ApiListContinuousDeploymentsRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last_modified greater than or equal to this date.
+func (r ApiListContinuousDeploymentsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListContinuousDeploymentsRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last_modified less than or equal to this date.
+func (r ApiListContinuousDeploymentsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListContinuousDeploymentsRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by name (case-insensitive partial match).
+func (r ApiListContinuousDeploymentsRequest) Name(name string) ApiListContinuousDeploymentsRequest {
+	r.name = &name
 	return r
 }
 
@@ -448,6 +506,12 @@ func (r ApiListContinuousDeploymentsRequest) Page(page int64) ApiListContinuousD
 // A numeric value that indicates the number of items per page.
 func (r ApiListContinuousDeploymentsRequest) PageSize(pageSize int64) ApiListContinuousDeploymentsRequest {
 	r.pageSize = &pageSize
+	return r
+}
+
+// Filter by repository (case-insensitive partial match).
+func (r ApiListContinuousDeploymentsRequest) Repository(repository string) ApiListContinuousDeploymentsRequest {
+	r.repository = &repository
 	return r
 }
 
@@ -497,8 +561,32 @@ func (a *VCSContinuousDeploymentsAPIService) ListContinuousDeploymentsExecute(r 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.branch != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "branch", r.branch, "form", "")
+	}
+	if r.createdGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created__gte", r.createdGte, "form", "")
+	}
+	if r.createdLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created__lte", r.createdLte, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
@@ -508,6 +596,9 @@ func (a *VCSContinuousDeploymentsAPIService) ListContinuousDeploymentsExecute(r 
 	}
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
+	}
+	if r.repository != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "repository", r.repository, "form", "")
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")

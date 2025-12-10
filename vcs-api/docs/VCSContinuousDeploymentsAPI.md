@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListContinuousDeployments
 
-> PaginatedResponseListContinuousDeploymentList ListContinuousDeployments(ctx).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedResponseListContinuousDeploymentList ListContinuousDeployments(ctx).Branch(branch).CreatedGte(createdGte).CreatedLte(createdLte).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Repository(repository).Search(search).Execute()
 
 List continuous deployments
 
@@ -166,19 +166,29 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
+	branch := "branch_example" // string | Filter by branch (exact match). (optional)
+	createdGte := time.Now() // time.Time | Filter by created greater than or equal to this date. (optional)
+	createdLte := time.Now() // time.Time | Filter by created less than or equal to this date. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := "id_example" // string | Filter by id. Supports multiple comma-separated values. (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last_editor (case-insensitive partial match). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last_modified greater than or equal to this date. (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last_modified less than or equal to this date. (optional)
+	name := "name_example" // string | Filter by name (case-insensitive partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
+	repository := "repository_example" // string | Filter by repository (case-insensitive partial match). (optional)
 	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSContinuousDeploymentsAPI.ListContinuousDeployments(context.Background()).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.VCSContinuousDeploymentsAPI.ListContinuousDeployments(context.Background()).Branch(branch).CreatedGte(createdGte).CreatedLte(createdLte).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Repository(repository).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.ListContinuousDeployments``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -199,10 +209,19 @@ Other parameters are passed through a pointer to a apiListContinuousDeploymentsR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **branch** | **string** | Filter by branch (exact match). | 
+ **createdGte** | **time.Time** | Filter by created greater than or equal to this date. | 
+ **createdLte** | **time.Time** | Filter by created less than or equal to this date. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **string** | Filter by id. Supports multiple comma-separated values. | 
+ **lastEditor** | **string** | Filter by last_editor (case-insensitive partial match). | 
+ **lastModifiedGte** | **time.Time** | Filter by last_modified greater than or equal to this date. | 
+ **lastModifiedLte** | **time.Time** | Filter by last_modified less than or equal to this date. | 
+ **name** | **string** | Filter by name (case-insensitive partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
+ **repository** | **string** | Filter by repository (case-insensitive partial match). | 
  **search** | **string** | A search term. | 
 
 ### Return type

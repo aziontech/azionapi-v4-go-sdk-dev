@@ -11,10 +11,78 @@ paths:
       description: List all continuous deployments.
       operationId: List continuous deployments
       parameters:
+      - description: Filter by branch (exact match).
+        explode: true
+        in: query
+        name: branch
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by created greater than or equal to this date.
+        explode: true
+        in: query
+        name: created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by created less than or equal to this date.
+        explode: true
+        in: query
+        name: created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
         name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by id. Supports multiple comma-separated values.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by last_editor (case-insensitive partial match).
+        explode: true
+        in: query
+        name: last_editor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by last_modified greater than or equal to this date.
+        explode: true
+        in: query
+        name: last_modified__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last_modified less than or equal to this date.
+        explode: true
+        in: query
+        name: last_modified__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by name (case-insensitive partial match).
+        explode: true
+        in: query
+        name: name
         required: false
         schema:
           type: string
@@ -44,6 +112,14 @@ paths:
         schema:
           format: int64
           type: integer
+        style: form
+      - description: Filter by repository (case-insensitive partial match).
+        explode: true
+        in: query
+        name: repository
+        required: false
+        schema:
+          type: string
         style: form
       - description: A search term.
         explode: true
@@ -913,10 +989,36 @@ paths:
           format: int64
           type: integer
         style: simple
+      - description: Filter by created_at greater than or equal to this date.
+        explode: true
+        in: query
+        name: created_at__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by created_at less than or equal to this date.
+        explode: true
+        in: query
+        name: created_at__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
         name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by id. Supports multiple comma-separated values.
+        explode: true
+        in: query
+        name: id
         required: false
         schema:
           type: string
@@ -953,6 +1055,32 @@ paths:
         name: search
         required: false
         schema:
+          type: string
+        style: form
+      - description: Filter by status. Supports multiple comma-separated values.
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by updated_at greater than or equal to this date.
+        explode: true
+        in: query
+        name: updated_at__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by updated_at less than or equal to this date.
+        explode: true
+        in: query
+        name: updated_at__lte
+        required: false
+        schema:
+          format: date-time
           type: string
         style: form
       responses:
@@ -1525,18 +1653,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: Multiple values may be separated by commas.
-        explode: false
+      - description: Filter by id. Supports multiple comma-separated UUIDs.
+        explode: true
         in: query
         name: id
         required: false
         schema:
-          items:
-            format: uuid
-            type: string
-          type: array
+          type: string
         style: form
-      - explode: true
+      - description: Filter by name (case-insensitive partial match).
+        explode: true
         in: query
         name: name
         required: false
@@ -1862,6 +1988,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter by id. Supports multiple comma-separated values.
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Which field to use when ordering the results.
         explode: true
         in: query
@@ -1887,6 +2021,22 @@ paths:
         schema:
           format: int64
           type: integer
+        style: form
+      - description: Filter by platform id (exact match).
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by scope (case-insensitive partial match).
+        explode: true
+        in: query
+        name: scope
+        required: false
+        schema:
+          type: string
         style: form
       - description: A search term.
         explode: true
@@ -2311,7 +2461,7 @@ paths:
   /vcs/integrations/{integration_id}/repositories:
     get:
       description: Retrieve repositories for a specific integration.
-      operationId: Retrieve repositories
+      operationId: list_repositories
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -2372,6 +2522,9 @@ paths:
                   summary: Example response for retrieving repositories.
                   value:
                     count: 123
+                    total_pages: 10
+                    page: 1
+                    page_size: 10
                     results:
                     - count: 2
                       links:
@@ -2522,17 +2675,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: Multiple values may be separated by commas.
-        explode: false
+      - description: Filter by id. Supports multiple comma-separated values.
+        explode: true
         in: query
         name: id
         required: false
         schema:
-          items:
-            type: string
-          type: array
+          type: string
         style: form
-      - explode: true
+      - description: Filter by name (case-insensitive partial match).
+        explode: true
         in: query
         name: name
         required: false
@@ -3083,6 +3235,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - execution_script: ""
           created: 2000-01-23T04:56:07.000+00:00
@@ -3120,12 +3274,35 @@ components:
           repository: repository
           branch: branch
           last_modified: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -3137,6 +3314,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - updated_at: 2000-01-23T04:56:07.000+00:00
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -3146,12 +3325,35 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           status: status
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -3163,6 +3365,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
@@ -3170,12 +3374,35 @@ components:
         - template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
           id: 0
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -3187,6 +3414,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - provider:
             callback_url: callback_url
@@ -3204,12 +3433,35 @@ components:
           scope: scope
           id: 0
           scope_type: scope_type
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -3221,6 +3473,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - callback_url: callback_url
           installation_url: installation_url
@@ -3230,12 +3484,35 @@ components:
           installation_url: installation_url
           name: name
           id: id
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
@@ -3247,6 +3524,8 @@ components:
       additionalProperties: false
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - visibility: visibility
           name: name
@@ -3256,12 +3535,35 @@ components:
           name: name
           id: id
           url: https://openapi-generator.tech
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:

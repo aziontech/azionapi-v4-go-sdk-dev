@@ -92,8 +92,8 @@ Class | Method | HTTP request | Description
 *VCSExecutionScriptsAPI* | [**RetriveExecutionScript**](docs/VCSExecutionScriptsAPI.md#retriveexecutionscript) | **Get** /vcs/execution_scripts/{execution_script_id} | Retrieve details from a execution script
 *VCSIntegrationsAPI* | [**DeleteIntegration**](docs/VCSIntegrationsAPI.md#deleteintegration) | **Delete** /vcs/integrations/{integration_id} | Delete an integration
 *VCSIntegrationsAPI* | [**ListIntegrations**](docs/VCSIntegrationsAPI.md#listintegrations) | **Get** /vcs/integrations | List integrations
+*VCSIntegrationsAPI* | [**ListRepositories**](docs/VCSIntegrationsAPI.md#listrepositories) | **Get** /vcs/integrations/{integration_id}/repositories | List integration repositories.
 *VCSIntegrationsAPI* | [**RetrieveIntegration**](docs/VCSIntegrationsAPI.md#retrieveintegration) | **Get** /vcs/integrations/{integration_id} | Retrieve details from a integration
-*VCSIntegrationsAPI* | [**RetrieveRepositories**](docs/VCSIntegrationsAPI.md#retrieverepositories) | **Get** /vcs/integrations/{integration_id}/repositories | List integration repositories.
 *VCSProvidersAPI* | [**ListProviders**](docs/VCSProvidersAPI.md#listproviders) | **Get** /vcs/providers | List providers
 
 
