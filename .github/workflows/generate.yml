@@ -97,14 +97,14 @@ jobs:
       - name: install script dependency
         run: python3 -m pip install pyyaml
 
-      - name: Patch YAML Files
-        if: steps.find-yaml.outputs.run_sdk == 'true'
-        run: |
-          while IFS= read -r file; do
-            echo "Patching YAML file: $file"
-            python3 scripts/patch.py "$file"
-            python3 scripts/application_rules_patch.py "$file"
-          done < yaml_files_list.txt
+      # - name: Patch YAML Files
+      #   if: steps.find-yaml.outputs.run_sdk == 'true'
+      #   run: |
+      #     while IFS= read -r file; do
+      #       echo "Patching YAML file: $file"
+      #       python3 scripts/patch.py "$file"
+      #       python3 scripts/application_rules_patch.py "$file"
+      #     done < yaml_files_list.txt
 
       - name: Install OpenAPI Generator
         if: steps.find-yaml.outputs.run_sdk == 'true'
