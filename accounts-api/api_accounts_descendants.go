@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -224,16 +225,87 @@ func (a *AccountsDescendantsAPIService) CreateDescendantAccountExecute(r ApiCrea
 type ApiListDescendantsAccountsRequest struct {
 	ctx context.Context
 	ApiService *AccountsDescendantsAPIService
+	active *bool
+	created *time.Time
+	createdGte *time.Time
+	createdLte *time.Time
 	fields *string
+	id *string
+	lastEditor *string
+	lastModified *time.Time
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
+	parentId *string
 	search *string
+}
+
+// Filter by active status.
+func (r ApiListDescendantsAccountsRequest) Active(active bool) ApiListDescendantsAccountsRequest {
+	r.active = &active
+	return r
+}
+
+// Filter by created date (exact match).
+func (r ApiListDescendantsAccountsRequest) Created(created time.Time) ApiListDescendantsAccountsRequest {
+	r.created = &created
+	return r
+}
+
+// Filter by created date (greater than or equal).
+func (r ApiListDescendantsAccountsRequest) CreatedGte(createdGte time.Time) ApiListDescendantsAccountsRequest {
+	r.createdGte = &createdGte
+	return r
+}
+
+// Filter by created date (less than or equal).
+func (r ApiListDescendantsAccountsRequest) CreatedLte(createdLte time.Time) ApiListDescendantsAccountsRequest {
+	r.createdLte = &createdLte
+	return r
 }
 
 // Comma-separated list of field names to include in the response.
 func (r ApiListDescendantsAccountsRequest) Fields(fields string) ApiListDescendantsAccountsRequest {
 	r.fields = &fields
+	return r
+}
+
+// Filter by account ID. Accepts multiple comma-separated values.
+func (r ApiListDescendantsAccountsRequest) Id(id string) ApiListDescendantsAccountsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by last editor (partial, case-insensitive).
+func (r ApiListDescendantsAccountsRequest) LastEditor(lastEditor string) ApiListDescendantsAccountsRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last modified date (exact match).
+func (r ApiListDescendantsAccountsRequest) LastModified(lastModified time.Time) ApiListDescendantsAccountsRequest {
+	r.lastModified = &lastModified
+	return r
+}
+
+// Filter by last modified date (greater than or equal).
+func (r ApiListDescendantsAccountsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListDescendantsAccountsRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date (less than or equal).
+func (r ApiListDescendantsAccountsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListDescendantsAccountsRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by name (partial, case-insensitive).
+func (r ApiListDescendantsAccountsRequest) Name(name string) ApiListDescendantsAccountsRequest {
+	r.name = &name
 	return r
 }
 
@@ -252,6 +324,12 @@ func (r ApiListDescendantsAccountsRequest) Page(page int64) ApiListDescendantsAc
 // A numeric value that indicates the number of items per page.
 func (r ApiListDescendantsAccountsRequest) PageSize(pageSize int64) ApiListDescendantsAccountsRequest {
 	r.pageSize = &pageSize
+	return r
+}
+
+// Filter by parent account ID. Accepts multiple comma-separated values.
+func (r ApiListDescendantsAccountsRequest) ParentId(parentId string) ApiListDescendantsAccountsRequest {
+	r.parentId = &parentId
 	return r
 }
 
@@ -301,8 +379,38 @@ func (a *AccountsDescendantsAPIService) ListDescendantsAccountsExecute(r ApiList
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.active != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
+	}
+	if r.created != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created", r.created, "form", "")
+	}
+	if r.createdGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created__gte", r.createdGte, "form", "")
+	}
+	if r.createdLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created__lte", r.createdLte, "form", "")
+	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModified != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified", r.lastModified, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
@@ -312,6 +420,9 @@ func (a *AccountsDescendantsAPIService) ListDescendantsAccountsExecute(r ApiList
 	}
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
+	}
+	if r.parentId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "parent_id", r.parentId, "form", "")
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
