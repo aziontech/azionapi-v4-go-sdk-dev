@@ -1037,6 +1037,8 @@ components:
     PaginatedDatabaseDetailList:
       example:
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - product_version: product_version
           last_editor: last_editor
@@ -1052,12 +1054,35 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           status: status
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
           type: integer
         results:
           items:
