@@ -2200,11 +2200,15 @@ components:
           maxLength: 150
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (aws_kinesis_firehose)
+          type: string
       required:
       - access_key
       - region
       - secret_key
       - stream_name
+      - type
       title: AWSKinesisFirehoseEndpoint
       type: object
     AWSKinesisFirehoseEndpointRequest:
@@ -2226,11 +2230,15 @@ components:
           maxLength: 150
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (aws_kinesis_firehose)
+          type: string
       required:
       - access_key
       - region
       - secret_key
       - stream_name
+      - type
       title: AWSKinesisFirehoseEndpointRequest
       type: object
     AzureBlobStorageEndpoint:
@@ -2248,10 +2256,14 @@ components:
           maxLength: 250
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (azure_blob_storage)
+          type: string
       required:
       - blob_sas_token
       - container_name
       - storage_account
+      - type
       title: AzureBlobStorageEndpoint
       type: object
     AzureBlobStorageEndpointRequest:
@@ -2269,10 +2281,14 @@ components:
           maxLength: 250
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (azure_blob_storage)
+          type: string
       required:
       - blob_sas_token
       - container_name
       - storage_account
+      - type
       title: AzureBlobStorageEndpointRequest
       type: object
     AzureMonitorEndpoint:
@@ -2295,9 +2311,13 @@ components:
           maxLength: 150
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (azure_monitor)
+          type: string
       required:
       - log_type
       - shared_key
+      - type
       - workspace_id
       title: AzureMonitorEndpoint
       type: object
@@ -2321,9 +2341,13 @@ components:
           maxLength: 150
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (azure_monitor)
+          type: string
       required:
       - log_type
       - shared_key
+      - type
       - workspace_id
       title: AzureMonitorEndpointRequest
       type: object
@@ -2346,11 +2370,15 @@ components:
           maxLength: 65535
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (big_query)
+          type: string
       required:
       - dataset_id
       - project_id
       - service_account_key
       - table_id
+      - type
       title: BigQueryEndpoint
       type: object
     BigQueryEndpointRequest:
@@ -2372,11 +2400,15 @@ components:
           maxLength: 65535
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (big_query)
+          type: string
       required:
       - dataset_id
       - project_id
       - service_account_key
       - table_id
+      - type
       title: BigQueryEndpointRequest
       type: object
     ContentTypeEnum:
@@ -2410,6 +2442,7 @@ components:
               key: headers
             log_line_separator: log_line_separator
             payload_format: payload_format
+            type: type
             url: https://openapi-generator.tech
             max_size: 315634359
           type: type
@@ -2418,6 +2451,7 @@ components:
               key: headers
             log_line_separator: log_line_separator
             payload_format: payload_format
+            type: type
             url: https://openapi-generator.tech
             max_size: 315634359
           type: type
@@ -2490,6 +2524,7 @@ components:
               key: headers
             log_line_separator: log_line_separator
             payload_format: payload_format
+            type: type
             url: https://openapi-generator.tech
             max_size: 1294783612
           type: type
@@ -2498,6 +2533,7 @@ components:
               key: headers
             log_line_separator: log_line_separator
             payload_format: payload_format
+            type: type
             url: https://openapi-generator.tech
             max_size: 1294783612
           type: type
@@ -2549,8 +2585,12 @@ components:
           maxLength: 255
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (datadog)
+          type: string
       required:
       - api_key
+      - type
       - url
       title: DatadogEndpoint
       type: object
@@ -2565,8 +2605,12 @@ components:
           maxLength: 255
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (datadog)
+          type: string
       required:
       - api_key
+      - type
       - url
       title: DatadogEndpointRequest
       type: object
@@ -2580,8 +2624,12 @@ components:
           maxLength: 255
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (elasticsearch)
+          type: string
       required:
       - api_key
+      - type
       - url
       title: ElasticsearchEndpoint
       type: object
@@ -2596,8 +2644,12 @@ components:
           maxLength: 255
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (elasticsearch)
+          type: string
       required:
       - api_key
+      - type
       - url
       title: ElasticsearchEndpointRequest
       type: object
@@ -2608,6 +2660,7 @@ components:
           key: headers
         log_line_separator: log_line_separator
         payload_format: payload_format
+        type: type
         url: https://openapi-generator.tech
         max_size: 315634359
       properties:
@@ -2634,8 +2687,12 @@ components:
             minLength: 1
             type: string
           type: object
+        type:
+          description: Type identifier for this endpoint (standard)
+          type: string
       required:
       - headers
+      - type
       - url
       title: HttpPostEndpoint
       type: object
@@ -2646,6 +2703,7 @@ components:
           key: headers
         log_line_separator: log_line_separator
         payload_format: payload_format
+        type: type
         url: https://openapi-generator.tech
         max_size: 1294783612
       properties:
@@ -2673,8 +2731,12 @@ components:
             minLength: 1
             type: string
           type: object
+        type:
+          description: Type identifier for this endpoint (standard)
+          type: string
       required:
       - headers
+      - type
       - url
       title: HttpPostEndpointRequest
       type: object
@@ -2759,17 +2821,35 @@ components:
     InputPolymorphic:
       $ref: "#/components/schemas/InputPolymorphicInputDataSourceAttributes"
     InputPolymorphicInputDataSourceAttributes:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/InputPolymorphicShared"
       - $ref: "#/components/schemas/InputDataSourceAttributes"
-      title: InputPolymorphicInputDataSourceAttributes
+      - additionalProperties: true
+        properties:
+          type:
+            description: Type identifier for this endpoint (raw_logs)
+            type: string
+        required:
+        - type
+        title: InputPolymorphicInputDataSourceAttributes
+        type: object
+        example: null
+      example: null
     InputPolymorphicInputDataSourceAttributesRequest:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/InputPolymorphicShared"
       - $ref: "#/components/schemas/InputDataSourceAttributesRequest"
-      title: InputPolymorphicInputDataSourceAttributesRequest
+      - additionalProperties: true
+        properties:
+          type:
+            description: Type identifier for this endpoint (raw_logs)
+            type: string
+        required:
+        - type
+        title: InputPolymorphicInputDataSourceAttributesRequest
+        type: object
+        example: null
+      example: null
     InputPolymorphicRequest:
       $ref: "#/components/schemas/InputPolymorphicInputDataSourceAttributesRequest"
     InputPolymorphicShared:
@@ -2890,9 +2970,13 @@ components:
           type: string
         use_tls:
           type: boolean
+        type:
+          description: Type identifier for this endpoint (kafka)
+          type: string
       required:
       - bootstrap_servers
       - kafka_topic
+      - type
       - use_tls
       title: KafkaEndpoint
       type: object
@@ -2909,9 +2993,13 @@ components:
           type: string
         use_tls:
           type: boolean
+        type:
+          description: Type identifier for this endpoint (kafka)
+          type: string
       required:
       - bootstrap_servers
       - kafka_topic
+      - type
       - use_tls
       title: KafkaEndpointRequest
       type: object
@@ -2923,6 +3011,7 @@ components:
             key: headers
           log_line_separator: log_line_separator
           payload_format: payload_format
+          type: type
           url: https://openapi-generator.tech
           max_size: 315634359
         type: type
@@ -3027,6 +3116,7 @@ components:
             key: headers
           log_line_separator: log_line_separator
           payload_format: payload_format
+          type: type
           url: https://openapi-generator.tech
           max_size: 1294783612
         type: type
@@ -3154,6 +3244,7 @@ components:
                 key: headers
               log_line_separator: log_line_separator
               payload_format: payload_format
+              type: type
               url: https://openapi-generator.tech
               max_size: 315634359
             type: type
@@ -3162,6 +3253,7 @@ components:
                 key: headers
               log_line_separator: log_line_separator
               payload_format: payload_format
+              type: type
               url: https://openapi-generator.tech
               max_size: 315634359
             type: type
@@ -3187,6 +3279,7 @@ components:
                 key: headers
               log_line_separator: log_line_separator
               payload_format: payload_format
+              type: type
               url: https://openapi-generator.tech
               max_size: 315634359
             type: type
@@ -3195,6 +3288,7 @@ components:
                 key: headers
               log_line_separator: log_line_separator
               payload_format: payload_format
+              type: type
               url: https://openapi-generator.tech
               max_size: 315634359
             type: type
@@ -3364,7 +3458,11 @@ components:
         url:
           format: uri
           type: string
+        type:
+          description: Type identifier for this endpoint (qradar)
+          type: string
       required:
+      - type
       - url
       title: QRadarEndpoint
       type: object
@@ -3375,7 +3473,11 @@ components:
           format: uri
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (qradar)
+          type: string
       required:
+      - type
       - url
       title: QRadarEndpointRequest
       type: object
@@ -3389,6 +3491,7 @@ components:
                 key: headers
               log_line_separator: log_line_separator
               payload_format: payload_format
+              type: type
               url: https://openapi-generator.tech
               max_size: 315634359
             type: type
@@ -3397,6 +3500,7 @@ components:
                 key: headers
               log_line_separator: log_line_separator
               payload_format: payload_format
+              type: type
               url: https://openapi-generator.tech
               max_size: 315634359
             type: type
@@ -3483,6 +3587,7 @@ components:
                 key: headers
               log_line_separator: log_line_separator
               payload_format: payload_format
+              type: type
               url: https://openapi-generator.tech
               max_size: 315634359
             type: type
@@ -3491,6 +3596,7 @@ components:
                 key: headers
               log_line_separator: log_line_separator
               payload_format: payload_format
+              type: type
               url: https://openapi-generator.tech
               max_size: 315634359
             type: type
@@ -3570,6 +3676,7 @@ components:
               key: headers
             log_line_separator: log_line_separator
             payload_format: payload_format
+            type: type
             url: https://openapi-generator.tech
             max_size: 315634359
           type: type
@@ -3578,6 +3685,7 @@ components:
               key: headers
             log_line_separator: log_line_separator
             payload_format: payload_format
+            type: type
             url: https://openapi-generator.tech
             max_size: 315634359
           type: type
@@ -3693,6 +3801,7 @@ components:
                 key: headers
               log_line_separator: log_line_separator
               payload_format: payload_format
+              type: type
               url: https://openapi-generator.tech
               max_size: 315634359
             type: type
@@ -3701,6 +3810,7 @@ components:
                 key: headers
               log_line_separator: log_line_separator
               payload_format: payload_format
+              type: type
               url: https://openapi-generator.tech
               max_size: 315634359
             type: type
@@ -3805,6 +3915,9 @@ components:
           format: uri
           maxLength: 200
           type: string
+        type:
+          description: Type identifier for this endpoint (s3)
+          type: string
       required:
       - access_key
       - bucket_name
@@ -3812,6 +3925,7 @@ components:
       - host_url
       - region
       - secret_key
+      - type
       title: S3Endpoint
       type: object
     S3EndpointRequest:
@@ -3852,6 +3966,9 @@ components:
           maxLength: 200
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (s3)
+          type: string
       required:
       - access_key
       - bucket_name
@@ -3859,6 +3976,7 @@ components:
       - host_url
       - region
       - secret_key
+      - type
       title: S3EndpointRequest
       type: object
     SplunkEndpoint:
@@ -3871,8 +3989,12 @@ components:
           maxLength: 255
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (splunk)
+          type: string
       required:
       - api_key
+      - type
       - url
       title: SplunkEndpoint
       type: object
@@ -3887,8 +4009,12 @@ components:
           maxLength: 255
           minLength: 1
           type: string
+        type:
+          description: Type identifier for this endpoint (splunk)
+          type: string
       required:
       - api_key
+      - type
       - url
       title: SplunkEndpointRequest
       type: object
@@ -4064,49 +4190,101 @@ components:
       title: TransformPolymorphicShared
       type: object
     TransformPolymorphicTransformFilterWorkloadsAttributes:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/TransformPolymorphicShared"
       - $ref: "#/components/schemas/TransformFilterWorkloadsAttributes"
-      title: TransformPolymorphicTransformFilterWorkloadsAttributes
+      - additionalProperties: true
+        properties:
+          type:
+            description: Type identifier for this endpoint (filter_workloads)
+            type: string
+        required:
+        - type
+        title: TransformPolymorphicTransformFilterWorkloadsAttributes
+        type: object
+        example: null
+      example: null
     TransformPolymorphicTransformFilterWorkloadsAttributesRequest:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/TransformPolymorphicShared"
       - $ref: "#/components/schemas/TransformFilterWorkloadsAttributesRequest"
-      title: TransformPolymorphicTransformFilterWorkloadsAttributesRequest
+      - additionalProperties: true
+        properties:
+          type:
+            description: Type identifier for this endpoint (filter_workloads)
+            type: string
+        required:
+        - type
+        title: TransformPolymorphicTransformFilterWorkloadsAttributesRequest
+        type: object
+        example: null
+      example: null
     TransformPolymorphicTransformRenderTemplateAttributes:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/TransformPolymorphicShared"
       - $ref: "#/components/schemas/TransformRenderTemplateAttributes"
-      title: TransformPolymorphicTransformRenderTemplateAttributes
+      - additionalProperties: true
+        properties:
+          type:
+            description: Type identifier for this endpoint (render_template)
+            type: string
+        required:
+        - type
+        title: TransformPolymorphicTransformRenderTemplateAttributes
+        type: object
+        example: null
+      example: null
     TransformPolymorphicTransformRenderTemplateAttributesRequest:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/TransformPolymorphicShared"
       - $ref: "#/components/schemas/TransformRenderTemplateAttributesRequest"
-      title: TransformPolymorphicTransformRenderTemplateAttributesRequest
+      - additionalProperties: true
+        properties:
+          type:
+            description: Type identifier for this endpoint (render_template)
+            type: string
+        required:
+        - type
+        title: TransformPolymorphicTransformRenderTemplateAttributesRequest
+        type: object
+        example: null
+      example: null
     TransformPolymorphicTransformSamplingAttributes:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/TransformPolymorphicShared"
       - $ref: "#/components/schemas/TransformSamplingAttributes"
+      - additionalProperties: true
+        properties:
+          type:
+            description: Type identifier for this endpoint (sampling)
+            type: string
+        required:
+        - type
+        title: TransformPolymorphicTransformSamplingAttributes
+        type: object
+        example: null
       example:
         attributes:
           rate: 60
         type: type
-      title: TransformPolymorphicTransformSamplingAttributes
     TransformPolymorphicTransformSamplingAttributesRequest:
-      additionalProperties: true
       allOf:
       - $ref: "#/components/schemas/TransformPolymorphicShared"
       - $ref: "#/components/schemas/TransformSamplingAttributesRequest"
+      - additionalProperties: true
+        properties:
+          type:
+            description: Type identifier for this endpoint (sampling)
+            type: string
+        required:
+        - type
+        title: TransformPolymorphicTransformSamplingAttributesRequest
+        type: object
+        example: null
       example:
         attributes:
           rate: 8
         type: type
-      title: TransformPolymorphicTransformSamplingAttributesRequest
     TransformRenderTemplate:
       additionalProperties: false
       description: Serializer for render_template transform attributes.
