@@ -4,14 +4,86 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateApplicationRequestRule**](ApplicationsRequestRulesAPI.md#CreateApplicationRequestRule) | **Post** /workspace/applications/{application_id}/request_rules | Create an Application Request Rule
 [**DeleteApplicationRequestRule**](ApplicationsRequestRulesAPI.md#DeleteApplicationRequestRule) | **Delete** /workspace/applications/{application_id}/request_rules/{request_rule_id} | Delete an Application Request Rule
-[**EdgeApplicationApiApplicationsRequestRulesCreate**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesCreate) | **Post** /workspace/applications/{application_id}/request_rules | Create an Application Request Rule
-[**EdgeApplicationApiApplicationsRequestRulesList**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesList) | **Get** /workspace/applications/{application_id}/request_rules | List Application Request Rules
-[**EdgeApplicationApiApplicationsRequestRulesOrderUpdate**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesOrderUpdate) | **Put** /workspace/applications/{application_id}/request_rules/order | Ordering Application Request Rules
-[**EdgeApplicationApiApplicationsRequestRulesPartialUpdate**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesPartialUpdate) | **Patch** /workspace/applications/{application_id}/request_rules/{request_rule_id} | Partially update an Application Request Rule
-[**EdgeApplicationApiApplicationsRequestRulesRetrieve**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesRetrieve) | **Get** /workspace/applications/{application_id}/request_rules/{request_rule_id} | Retrieve details of an Application Request Rule
-[**EdgeApplicationApiApplicationsRequestRulesUpdate**](ApplicationsRequestRulesAPI.md#EdgeApplicationApiApplicationsRequestRulesUpdate) | **Put** /workspace/applications/{application_id}/request_rules/{request_rule_id} | Update an Application Request Rule
+[**ListApplicationRequestRules**](ApplicationsRequestRulesAPI.md#ListApplicationRequestRules) | **Get** /workspace/applications/{application_id}/request_rules | List Application Request Rules
+[**PartialUpdateApplicationRequestRule**](ApplicationsRequestRulesAPI.md#PartialUpdateApplicationRequestRule) | **Patch** /workspace/applications/{application_id}/request_rules/{request_rule_id} | Partially update an Application Request Rule
+[**RetrieveApplicationRequestRule**](ApplicationsRequestRulesAPI.md#RetrieveApplicationRequestRule) | **Get** /workspace/applications/{application_id}/request_rules/{request_rule_id} | Retrieve details of an Application Request Rule
+[**UpdateApplicationRequestRule**](ApplicationsRequestRulesAPI.md#UpdateApplicationRequestRule) | **Put** /workspace/applications/{application_id}/request_rules/{request_rule_id} | Update an Application Request Rule
+[**UpdateApplicationRequestRulesOrder**](ApplicationsRequestRulesAPI.md#UpdateApplicationRequestRulesOrder) | **Put** /workspace/applications/{application_id}/request_rules/order | Ordering Application Request Rules
 
+
+
+## CreateApplicationRequestRule
+
+> ResponseApplicationRequestPhaseRuleEngine CreateApplicationRequestRule(ctx, applicationId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
+
+Create an Application Request Rule
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	applicationRequestPhaseRuleEngineRequest := *openapiclient.NewApplicationRequestPhaseRuleEngineRequest("Name_example", [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{ApplicationRequestPhaseBehaviorAddHeaderRequest: openapiclient.NewApplicationRequestPhaseBehaviorAddHeaderRequest("Type_example", *openapiclient.NewApplicationRuleEngineAddHeaderAttributesRequest("Value_example"))}}) // ApplicationRequestPhaseRuleEngineRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.CreateApplicationRequestRule(context.Background(), applicationId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.CreateApplicationRequestRule``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateApplicationRequestRule`: ResponseApplicationRequestPhaseRuleEngine
+	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.CreateApplicationRequestRule`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateApplicationRequestRuleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **applicationRequestPhaseRuleEngineRequest** | [**ApplicationRequestPhaseRuleEngineRequest**](ApplicationRequestPhaseRuleEngineRequest.md) |  | 
+
+### Return type
+
+[**ResponseApplicationRequestPhaseRuleEngine**](ResponseApplicationRequestPhaseRuleEngine.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## DeleteApplicationRequestRule
@@ -87,81 +159,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## EdgeApplicationApiApplicationsRequestRulesCreate
+## ListApplicationRequestRules
 
-> ResponseApplicationRequestPhaseRuleEngine EdgeApplicationApiApplicationsRequestRulesCreate(ctx, applicationId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
-
-Create an Application Request Rule
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	applicationRequestPhaseRuleEngineRequest := *openapiclient.NewApplicationRequestPhaseRuleEngineRequest("Name_example", [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{ApplicationRequestPhaseBehaviorAddHeaderRequest: openapiclient.NewApplicationRequestPhaseBehaviorAddHeaderRequest("Type_example", *openapiclient.NewApplicationRuleEngineAddHeaderAttributesRequest("Value_example"))}}) // ApplicationRequestPhaseRuleEngineRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesCreate(context.Background(), applicationId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesCreate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `EdgeApplicationApiApplicationsRequestRulesCreate`: ResponseApplicationRequestPhaseRuleEngine
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesCreate`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiEdgeApplicationApiApplicationsRequestRulesCreateRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **applicationRequestPhaseRuleEngineRequest** | [**ApplicationRequestPhaseRuleEngineRequest**](ApplicationRequestPhaseRuleEngineRequest.md) |  | 
-
-### Return type
-
-[**ResponseApplicationRequestPhaseRuleEngine**](ResponseApplicationRequestPhaseRuleEngine.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## EdgeApplicationApiApplicationsRequestRulesList
-
-> PaginatedApplicationRequestPhaseRuleEngineList EdgeApplicationApiApplicationsRequestRulesList(ctx, applicationId).Description(description).Fields(fields).Id(id).IsActive(isActive).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedApplicationRequestPhaseRuleEngineList ListApplicationRequestRules(ctx, applicationId).Description(description).Fields(fields).Id(id).IsActive(isActive).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Application Request Rules
 
@@ -195,13 +195,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesList(context.Background(), applicationId).Description(description).Fields(fields).Id(id).IsActive(isActive).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.ListApplicationRequestRules(context.Background(), applicationId).Description(description).Fields(fields).Id(id).IsActive(isActive).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.ListApplicationRequestRules``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `EdgeApplicationApiApplicationsRequestRulesList`: PaginatedApplicationRequestPhaseRuleEngineList
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesList`: %v\n", resp)
+	// response from `ListApplicationRequestRules`: PaginatedApplicationRequestPhaseRuleEngineList
+	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.ListApplicationRequestRules`: %v\n", resp)
 }
 ```
 
@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiEdgeApplicationApiApplicationsRequestRulesListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListApplicationRequestRulesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -251,9 +251,234 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## EdgeApplicationApiApplicationsRequestRulesOrderUpdate
+## PartialUpdateApplicationRequestRule
 
-> PaginatedApplicationRequestPhaseRuleEngineList EdgeApplicationApiApplicationsRequestRulesOrderUpdate(ctx, applicationId).ApplicationRequestPhaseRuleEngineOrderRequest(applicationRequestPhaseRuleEngineOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> ResponseApplicationRequestPhaseRuleEngine PartialUpdateApplicationRequestRule(ctx, applicationId, requestRuleId).PatchedApplicationRequestPhaseRuleEngineRequest(patchedApplicationRequestPhaseRuleEngineRequest).Execute()
+
+Partially update an Application Request Rule
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
+	patchedApplicationRequestPhaseRuleEngineRequest := *openapiclient.NewPatchedApplicationRequestPhaseRuleEngineRequest() // PatchedApplicationRequestPhaseRuleEngineRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.PartialUpdateApplicationRequestRule(context.Background(), applicationId, requestRuleId).PatchedApplicationRequestPhaseRuleEngineRequest(patchedApplicationRequestPhaseRuleEngineRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.PartialUpdateApplicationRequestRule``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PartialUpdateApplicationRequestRule`: ResponseApplicationRequestPhaseRuleEngine
+	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.PartialUpdateApplicationRequestRule`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPartialUpdateApplicationRequestRuleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **patchedApplicationRequestPhaseRuleEngineRequest** | [**PatchedApplicationRequestPhaseRuleEngineRequest**](PatchedApplicationRequestPhaseRuleEngineRequest.md) |  | 
+
+### Return type
+
+[**ResponseApplicationRequestPhaseRuleEngine**](ResponseApplicationRequestPhaseRuleEngine.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RetrieveApplicationRequestRule
+
+> ResponseRetrieveApplicationRequestPhaseRuleEngine RetrieveApplicationRequestRule(ctx, applicationId, requestRuleId).Fields(fields).Execute()
+
+Retrieve details of an Application Request Rule
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.RetrieveApplicationRequestRule(context.Background(), applicationId, requestRuleId).Fields(fields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.RetrieveApplicationRequestRule``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RetrieveApplicationRequestRule`: ResponseRetrieveApplicationRequestPhaseRuleEngine
+	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.RetrieveApplicationRequestRule`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRetrieveApplicationRequestRuleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **fields** | **string** | Comma-separated list of field names to include in the response. | 
+
+### Return type
+
+[**ResponseRetrieveApplicationRequestPhaseRuleEngine**](ResponseRetrieveApplicationRequestPhaseRuleEngine.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateApplicationRequestRule
+
+> ResponseApplicationRequestPhaseRuleEngine UpdateApplicationRequestRule(ctx, applicationId, requestRuleId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
+
+Update an Application Request Rule
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	applicationId := int64(789) // int64 | A unique integer value identifying the application.
+	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
+	applicationRequestPhaseRuleEngineRequest := *openapiclient.NewApplicationRequestPhaseRuleEngineRequest("Name_example", [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{ApplicationRequestPhaseBehaviorAddHeaderRequest: openapiclient.NewApplicationRequestPhaseBehaviorAddHeaderRequest("Type_example", *openapiclient.NewApplicationRuleEngineAddHeaderAttributesRequest("Value_example"))}}) // ApplicationRequestPhaseRuleEngineRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.UpdateApplicationRequestRule(context.Background(), applicationId, requestRuleId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.UpdateApplicationRequestRule``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateApplicationRequestRule`: ResponseApplicationRequestPhaseRuleEngine
+	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.UpdateApplicationRequestRule`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64** | A unique integer value identifying the application. | 
+**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateApplicationRequestRuleRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **applicationRequestPhaseRuleEngineRequest** | [**ApplicationRequestPhaseRuleEngineRequest**](ApplicationRequestPhaseRuleEngineRequest.md) |  | 
+
+### Return type
+
+[**ResponseApplicationRequestPhaseRuleEngine**](ResponseApplicationRequestPhaseRuleEngine.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateApplicationRequestRulesOrder
+
+> PaginatedApplicationRequestPhaseRuleEngineList UpdateApplicationRequestRulesOrder(ctx, applicationId).ApplicationRequestPhaseRuleEngineOrderRequest(applicationRequestPhaseRuleEngineOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 Ordering Application Request Rules
 
@@ -281,13 +506,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesOrderUpdate(context.Background(), applicationId).ApplicationRequestPhaseRuleEngineOrderRequest(applicationRequestPhaseRuleEngineOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.UpdateApplicationRequestRulesOrder(context.Background(), applicationId).ApplicationRequestPhaseRuleEngineOrderRequest(applicationRequestPhaseRuleEngineOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesOrderUpdate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.UpdateApplicationRequestRulesOrder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `EdgeApplicationApiApplicationsRequestRulesOrderUpdate`: PaginatedApplicationRequestPhaseRuleEngineList
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesOrderUpdate`: %v\n", resp)
+	// response from `UpdateApplicationRequestRulesOrder`: PaginatedApplicationRequestPhaseRuleEngineList
+	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.UpdateApplicationRequestRulesOrder`: %v\n", resp)
 }
 ```
 
@@ -301,7 +526,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiEdgeApplicationApiApplicationsRequestRulesOrderUpdateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateApplicationRequestRulesOrderRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -316,231 +541,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PaginatedApplicationRequestPhaseRuleEngineList**](PaginatedApplicationRequestPhaseRuleEngineList.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## EdgeApplicationApiApplicationsRequestRulesPartialUpdate
-
-> ResponseApplicationRequestPhaseRuleEngine EdgeApplicationApiApplicationsRequestRulesPartialUpdate(ctx, applicationId, requestRuleId).PatchedApplicationRequestPhaseRuleEngineRequest(patchedApplicationRequestPhaseRuleEngineRequest).Execute()
-
-Partially update an Application Request Rule
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	patchedApplicationRequestPhaseRuleEngineRequest := *openapiclient.NewPatchedApplicationRequestPhaseRuleEngineRequest() // PatchedApplicationRequestPhaseRuleEngineRequest |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesPartialUpdate(context.Background(), applicationId, requestRuleId).PatchedApplicationRequestPhaseRuleEngineRequest(patchedApplicationRequestPhaseRuleEngineRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesPartialUpdate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `EdgeApplicationApiApplicationsRequestRulesPartialUpdate`: ResponseApplicationRequestPhaseRuleEngine
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesPartialUpdate`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiEdgeApplicationApiApplicationsRequestRulesPartialUpdateRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **patchedApplicationRequestPhaseRuleEngineRequest** | [**PatchedApplicationRequestPhaseRuleEngineRequest**](PatchedApplicationRequestPhaseRuleEngineRequest.md) |  | 
-
-### Return type
-
-[**ResponseApplicationRequestPhaseRuleEngine**](ResponseApplicationRequestPhaseRuleEngine.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## EdgeApplicationApiApplicationsRequestRulesRetrieve
-
-> ResponseRetrieveApplicationRequestPhaseRuleEngine EdgeApplicationApiApplicationsRequestRulesRetrieve(ctx, applicationId, requestRuleId).Fields(fields).Execute()
-
-Retrieve details of an Application Request Rule
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesRetrieve(context.Background(), applicationId, requestRuleId).Fields(fields).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesRetrieve``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `EdgeApplicationApiApplicationsRequestRulesRetrieve`: ResponseRetrieveApplicationRequestPhaseRuleEngine
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesRetrieve`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiEdgeApplicationApiApplicationsRequestRulesRetrieveRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **fields** | **string** | Comma-separated list of field names to include in the response. | 
-
-### Return type
-
-[**ResponseRetrieveApplicationRequestPhaseRuleEngine**](ResponseRetrieveApplicationRequestPhaseRuleEngine.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## EdgeApplicationApiApplicationsRequestRulesUpdate
-
-> ResponseApplicationRequestPhaseRuleEngine EdgeApplicationApiApplicationsRequestRulesUpdate(ctx, applicationId, requestRuleId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
-
-Update an Application Request Rule
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	applicationRequestPhaseRuleEngineRequest := *openapiclient.NewApplicationRequestPhaseRuleEngineRequest("Name_example", [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{ApplicationRequestPhaseBehaviorAddHeaderRequest: openapiclient.NewApplicationRequestPhaseBehaviorAddHeaderRequest("Type_example", *openapiclient.NewApplicationRuleEngineAddHeaderAttributesRequest("Value_example"))}}) // ApplicationRequestPhaseRuleEngineRequest | 
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesUpdate(context.Background(), applicationId, requestRuleId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesUpdate``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `EdgeApplicationApiApplicationsRequestRulesUpdate`: ResponseApplicationRequestPhaseRuleEngine
-	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.EdgeApplicationApiApplicationsRequestRulesUpdate`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int64** | A unique integer value identifying the application. | 
-**requestRuleId** | **int64** | A unique integer value identifying the request rule. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiEdgeApplicationApiApplicationsRequestRulesUpdateRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **applicationRequestPhaseRuleEngineRequest** | [**ApplicationRequestPhaseRuleEngineRequest**](ApplicationRequestPhaseRuleEngineRequest.md) |  | 
-
-### Return type
-
-[**ResponseApplicationRequestPhaseRuleEngine**](ResponseApplicationRequestPhaseRuleEngine.md)
 
 ### Authorization
 
