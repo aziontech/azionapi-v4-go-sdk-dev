@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## ListExecutions
 
-> PaginatedResponseListExecutionList ListExecutions(ctx, continuousDeploymentId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedResponseListExecutionList ListExecutions(ctx, continuousDeploymentId).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).UpdatedAtGte(updatedAtGte).UpdatedAtLte(updatedAtLte).Execute()
 
 List executions
 
@@ -96,20 +96,27 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 	continuousDeploymentId := int64(789) // int64 | 
+	createdAtGte := time.Now() // time.Time | Filter by created_at greater than or equal to this date. (optional)
+	createdAtLte := time.Now() // time.Time | Filter by created_at less than or equal to this date. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	id := "id_example" // string | Filter by id. Supports multiple comma-separated values. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
+	status := "status_example" // string | Filter by status. Supports multiple comma-separated values. (optional)
+	updatedAtGte := time.Now() // time.Time | Filter by updated_at greater than or equal to this date. (optional)
+	updatedAtLte := time.Now() // time.Time | Filter by updated_at less than or equal to this date. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSContinuousDeploymentExecutionsAPI.ListExecutions(context.Background(), continuousDeploymentId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.VCSContinuousDeploymentExecutionsAPI.ListExecutions(context.Background(), continuousDeploymentId).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).UpdatedAtGte(updatedAtGte).UpdatedAtLte(updatedAtLte).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentExecutionsAPI.ListExecutions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -135,11 +142,17 @@ Other parameters are passed through a pointer to a apiListExecutionsRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **createdAtGte** | **time.Time** | Filter by created_at greater than or equal to this date. | 
+ **createdAtLte** | **time.Time** | Filter by created_at less than or equal to this date. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **id** | **string** | Filter by id. Supports multiple comma-separated values. | 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
+ **status** | **string** | Filter by status. Supports multiple comma-separated values. | 
+ **updatedAtGte** | **time.Time** | Filter by updated_at greater than or equal to this date. | 
+ **updatedAtLte** | **time.Time** | Filter by updated_at less than or equal to this date. | 
 
 ### Return type
 
