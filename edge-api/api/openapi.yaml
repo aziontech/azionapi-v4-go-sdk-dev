@@ -18055,10 +18055,7 @@ components:
         address: address
         active: true
         http_port: 39501
-        modules:
-          load_balancer:
-            weight: 60
-            server_role: ""
+        modules: ""
       properties:
         active:
           description: Indicates if the address is active for use
@@ -18081,16 +18078,15 @@ components:
           minimum: 1
           type: integer
         modules:
-          $ref: "#/components/schemas/AddressModules"
+          allOf:
+          - $ref: "#/components/schemas/AddressModules"
+          nullable: true
       required:
       - address
       title: Address
       type: object
     AddressLoadBalancerModule:
       additionalProperties: false
-      example:
-        weight: 60
-        server_role: ""
       properties:
         server_role:
           allOf:
@@ -18110,9 +18106,6 @@ components:
       type: object
     AddressLoadBalancerModuleRequest:
       additionalProperties: false
-      example:
-        weight: 15
-        server_role: ""
       properties:
         server_role:
           allOf:
@@ -18132,10 +18125,6 @@ components:
       type: object
     AddressModules:
       additionalProperties: false
-      example:
-        load_balancer:
-          weight: 60
-          server_role: ""
       properties:
         load_balancer:
           $ref: "#/components/schemas/AddressLoadBalancerModule"
@@ -18143,10 +18132,6 @@ components:
       type: object
     AddressModulesRequest:
       additionalProperties: false
-      example:
-        load_balancer:
-          weight: 15
-          server_role: ""
       properties:
         load_balancer:
           $ref: "#/components/schemas/AddressLoadBalancerModuleRequest"
@@ -18159,10 +18144,7 @@ components:
         address: address
         active: true
         http_port: 5249
-        modules:
-          load_balancer:
-            weight: 15
-            server_role: ""
+        modules: ""
       properties:
         active:
           description: Indicates if the address is active for use
@@ -18185,7 +18167,9 @@ components:
           minimum: 1
           type: integer
         modules:
-          $ref: "#/components/schemas/AddressModulesRequest"
+          allOf:
+          - $ref: "#/components/schemas/AddressModulesRequest"
+          nullable: true
       required:
       - address
       title: AddressRequest
@@ -18542,103 +18526,103 @@ components:
       additionalProperties: false
       example:
         criteria:
-        - - argument: 6
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 6
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 6
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 6
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 6
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
@@ -18654,7 +18638,7 @@ components:
         description: description
         id: 0
         last_modified: 2000-01-23T04:56:07.000+00:00
-        order: 29
+        order: 119
       properties:
         id:
           format: int64
@@ -18730,103 +18714,103 @@ components:
       additionalProperties: false
       example:
         criteria:
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
@@ -18876,103 +18860,103 @@ components:
       additionalProperties: false
       example:
         criteria:
-        - - argument: 6
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 6
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 6
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 6
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 6
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 6
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
@@ -19064,103 +19048,103 @@ components:
       additionalProperties: false
       example:
         criteria:
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
@@ -20860,9 +20844,7 @@ components:
             large_file_cache:
               offset: 1024
               enabled: true
-            tiered_cache:
-              topology: topology
-              enabled: true
+            tiered_cache: ""
             behavior: ""
             stale_cache:
               enabled: true
@@ -20916,9 +20898,7 @@ components:
             large_file_cache:
               offset: 1024
               enabled: true
-            tiered_cache:
-              topology: topology
-              enabled: true
+            tiered_cache: ""
             behavior: ""
             stale_cache:
               enabled: true
@@ -21014,9 +20994,7 @@ components:
         large_file_cache:
           offset: 1024
           enabled: true
-        tiered_cache:
-          topology: topology
-          enabled: true
+        tiered_cache: ""
         behavior: ""
         stale_cache:
           enabled: true
@@ -21036,7 +21014,9 @@ components:
         large_file_cache:
           $ref: "#/components/schemas/LargeFileCacheModule"
         tiered_cache:
-          $ref: "#/components/schemas/CacheSettingsTieredCacheModule"
+          allOf:
+          - $ref: "#/components/schemas/CacheSettingsTieredCacheModule"
+          nullable: true
       title: CacheSettingsEdgeCacheModule
       type: object
     CacheSettingsEdgeCacheModuleBehaviorEnum:
@@ -21055,9 +21035,7 @@ components:
         large_file_cache:
           offset: 1024
           enabled: true
-        tiered_cache:
-          topology: topology
-          enabled: true
+        tiered_cache: ""
         behavior: ""
         stale_cache:
           enabled: true
@@ -21077,7 +21055,9 @@ components:
         large_file_cache:
           $ref: "#/components/schemas/LargeFileCacheModuleRequest"
         tiered_cache:
-          $ref: "#/components/schemas/CacheSettingsTieredCacheModuleRequest"
+          allOf:
+          - $ref: "#/components/schemas/CacheSettingsTieredCacheModuleRequest"
+          nullable: true
       title: CacheSettingsEdgeCacheModuleRequest
       type: object
     CacheSettingsModules:
@@ -21108,9 +21088,7 @@ components:
           large_file_cache:
             offset: 1024
             enabled: true
-          tiered_cache:
-            topology: topology
-            enabled: true
+          tiered_cache: ""
           behavior: ""
           stale_cache:
             enabled: true
@@ -21149,9 +21127,7 @@ components:
           large_file_cache:
             offset: 1024
             enabled: true
-          tiered_cache:
-            topology: topology
-            enabled: true
+          tiered_cache: ""
           behavior: ""
           stale_cache:
             enabled: true
@@ -21164,9 +21140,6 @@ components:
       type: object
     CacheSettingsTieredCacheModule:
       additionalProperties: false
-      example:
-        topology: topology
-        enabled: true
       properties:
         topology:
           description: |-
@@ -21185,9 +21158,6 @@ components:
       type: object
     CacheSettingsTieredCacheModuleRequest:
       additionalProperties: false
-      example:
-        topology: topology
-        enabled: true
       properties:
         topology:
           description: |-
@@ -21468,18 +21438,12 @@ components:
             address: address
             active: true
             http_port: 39501
-            modules:
-              load_balancer:
-                weight: 60
-                server_role: ""
+            modules: ""
           - https_port: 9607
             address: address
             active: true
             http_port: 39501
-            modules:
-              load_balancer:
-                weight: 60
-                server_role: ""
+            modules: ""
           connection_options: ""
           modules: ""
         id: 0
@@ -21535,18 +21499,12 @@ components:
           address: address
           active: true
           http_port: 39501
-          modules:
-            load_balancer:
-              weight: 60
-              server_role: ""
+          modules: ""
         - https_port: 9607
           address: address
           active: true
           http_port: 39501
-          modules:
-            load_balancer:
-              weight: 60
-              server_role: ""
+          modules: ""
         connection_options: ""
         modules: ""
       properties:
@@ -21572,18 +21530,12 @@ components:
           address: address
           active: true
           http_port: 5249
-          modules:
-            load_balancer:
-              weight: 15
-              server_role: ""
+          modules: ""
         - https_port: 39501
           address: address
           active: true
           http_port: 5249
-          modules:
-            load_balancer:
-              weight: 15
-              server_role: ""
+          modules: ""
         connection_options: ""
         modules: ""
       properties:
@@ -21612,18 +21564,12 @@ components:
             address: address
             active: true
             http_port: 5249
-            modules:
-              load_balancer:
-                weight: 15
-                server_role: ""
+            modules: ""
           - https_port: 39501
             address: address
             active: true
             http_port: 5249
-            modules:
-              load_balancer:
-                weight: 15
-                server_role: ""
+            modules: ""
           connection_options: ""
           modules: ""
         type: ""
@@ -22162,7 +22108,7 @@ components:
 
         About `operator` field: it's the operator to be used to evaluate the current criterion. When used in the first criterion of a block it should be always the `if` operator.
       example:
-        argument: 6
+        argument: ""
         conditional: conditional
         variable: variable
         operator: operator
@@ -22299,7 +22245,9 @@ components:
           - matches
           - starts_with
         argument:
-          $ref: "#/components/schemas/EdgeApplicationCriterionPolymorphicArgument"
+          allOf:
+          - $ref: "#/components/schemas/EdgeApplicationCriterionPolymorphicArgument"
+          nullable: true
       required:
       - conditional
       - operator
@@ -22362,7 +22310,7 @@ components:
 
         About `operator` field: it's the operator to be used to evaluate the current criterion. When used in the first criterion of a block it should be always the `if` operator.
       example:
-        argument: 0
+        argument: ""
         conditional: conditional
         variable: variable
         operator: operator
@@ -22499,7 +22447,9 @@ components:
           - matches
           - starts_with
         argument:
-          $ref: "#/components/schemas/EdgeApplicationCriterionPolymorphicArgumentRequest"
+          allOf:
+          - $ref: "#/components/schemas/EdgeApplicationCriterionPolymorphicArgumentRequest"
+          nullable: true
       required:
       - conditional
       - operator
@@ -22643,7 +22593,7 @@ components:
 
         About `operator` field: it's the operator to be used to evaluate the current criterion. When used in the first criterion of a block it should be always the `if` operator.
       example:
-        argument: EdgeFirewallCriterionPolymorphicArgument
+        argument: ""
         conditional: conditional
         variable: variable
         operator: operator
@@ -22720,7 +22670,9 @@ components:
           - matches
           - starts_with
         argument:
-          $ref: "#/components/schemas/EdgeFirewallCriterionPolymorphicArgument"
+          allOf:
+          - $ref: "#/components/schemas/EdgeFirewallCriterionPolymorphicArgument"
+          nullable: true
       required:
       - conditional
       - operator
@@ -22753,7 +22705,7 @@ components:
 
         About `operator` field: it's the operator to be used to evaluate the current criterion. When used in the first criterion of a block it should be always the `if` operator.
       example:
-        argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+        argument: ""
         conditional: conditional
         variable: variable
         operator: operator
@@ -22830,7 +22782,9 @@ components:
           - matches
           - starts_with
         argument:
-          $ref: "#/components/schemas/EdgeFirewallCriterionPolymorphicArgumentRequest"
+          allOf:
+          - $ref: "#/components/schemas/EdgeFirewallCriterionPolymorphicArgumentRequest"
+          nullable: true
       required:
       - conditional
       - operator
@@ -23956,103 +23910,103 @@ components:
       additionalProperties: false
       example:
         criteria:
-        - - argument: EdgeFirewallCriterionPolymorphicArgument
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: EdgeFirewallCriterionPolymorphicArgument
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: EdgeFirewallCriterionPolymorphicArgument
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: EdgeFirewallCriterionPolymorphicArgument
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: EdgeFirewallCriterionPolymorphicArgument
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgument
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
@@ -24142,103 +24096,103 @@ components:
       additionalProperties: false
       example:
         criteria:
-        - - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
@@ -24290,7 +24244,9 @@ components:
         enabled:
           type: boolean
         config:
-          $ref: "#/components/schemas/AWS4HMAC"
+          allOf:
+          - $ref: "#/components/schemas/AWS4HMAC"
+          nullable: true
       required:
       - enabled
       title: HMAC
@@ -24301,7 +24257,9 @@ components:
         enabled:
           type: boolean
         config:
-          $ref: "#/components/schemas/AWS4HMACRequest"
+          allOf:
+          - $ref: "#/components/schemas/AWS4HMACRequest"
+          nullable: true
       required:
       - enabled
       title: HMACRequest
@@ -24681,7 +24639,9 @@ components:
         enabled:
           type: boolean
         config:
-          $ref: "#/components/schemas/LoadBalancerModuleConfig"
+          allOf:
+          - $ref: "#/components/schemas/LoadBalancerModuleConfig"
+          nullable: true
       title: LoadBalancerModule
       type: object
     LoadBalancerModuleConfig:
@@ -24756,7 +24716,9 @@ components:
         enabled:
           type: boolean
         config:
-          $ref: "#/components/schemas/LoadBalancerModuleConfigRequest"
+          allOf:
+          - $ref: "#/components/schemas/LoadBalancerModuleConfigRequest"
+          nullable: true
       title: LoadBalancerModuleRequest
       type: object
     MTLS:
@@ -24766,7 +24728,9 @@ components:
           nullable: true
           type: boolean
         config:
-          $ref: "#/components/schemas/MTLSConfig"
+          allOf:
+          - $ref: "#/components/schemas/MTLSConfig"
+          nullable: true
       title: MTLS
       type: object
     MTLSConfig:
@@ -24816,7 +24780,9 @@ components:
           nullable: true
           type: boolean
         config:
-          $ref: "#/components/schemas/MTLSConfigRequest"
+          allOf:
+          - $ref: "#/components/schemas/MTLSConfigRequest"
+          nullable: true
       title: MTLSRequest
       type: object
     MethodEnum:
@@ -25131,7 +25097,9 @@ components:
         enabled:
           type: boolean
         config:
-          $ref: "#/components/schemas/OriginShieldConfig"
+          allOf:
+          - $ref: "#/components/schemas/OriginShieldConfig"
+          nullable: true
       title: OriginShieldModule
       type: object
     OriginShieldModuleRequest:
@@ -25140,7 +25108,9 @@ components:
         enabled:
           type: boolean
         config:
-          $ref: "#/components/schemas/OriginShieldConfigRequest"
+          allOf:
+          - $ref: "#/components/schemas/OriginShieldConfigRequest"
+          nullable: true
       title: OriginShieldModuleRequest
       type: object
     Page:
@@ -25676,103 +25646,103 @@ components:
         page: 1
         results:
         - criteria:
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -25788,105 +25758,105 @@ components:
           description: description
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
-          order: 29
+          order: 119
         - criteria:
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -25902,7 +25872,7 @@ components:
           description: description
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
-          order: 29
+          order: 119
         page_size: 10
       properties:
         count:
@@ -25947,103 +25917,103 @@ components:
         page: 1
         results:
         - criteria:
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -26061,103 +26031,103 @@ components:
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
         - criteria:
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -26227,18 +26197,12 @@ components:
               address: address
               active: true
               http_port: 39501
-              modules:
-                load_balancer:
-                  weight: 60
-                  server_role: ""
+              modules: ""
             - https_port: 9607
               address: address
               active: true
               http_port: 39501
-              modules:
-                load_balancer:
-                  weight: 60
-                  server_role: ""
+              modules: ""
             connection_options: ""
             modules: ""
           id: 0
@@ -26254,18 +26218,12 @@ components:
               address: address
               active: true
               http_port: 39501
-              modules:
-                load_balancer:
-                  weight: 60
-                  server_role: ""
+              modules: ""
             - https_port: 9607
               address: address
               active: true
               http_port: 39501
-              modules:
-                load_balancer:
-                  weight: 60
-                  server_role: ""
+              modules: ""
             connection_options: ""
             modules: ""
           id: 0
@@ -26801,103 +26759,103 @@ components:
         page: 1
         results:
         - criteria:
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -26915,103 +26873,103 @@ components:
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
         - criteria:
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -27157,9 +27115,7 @@ components:
               large_file_cache:
                 offset: 1024
                 enabled: true
-              tiered_cache:
-                topology: topology
-                enabled: true
+              tiered_cache: ""
               behavior: ""
               stale_cache:
                 enabled: true
@@ -27194,9 +27150,7 @@ components:
               large_file_cache:
                 offset: 1024
                 enabled: true
-              tiered_cache:
-                topology: topology
-                enabled: true
+              tiered_cache: ""
               behavior: ""
               stale_cache:
                 enabled: true
@@ -27653,103 +27607,103 @@ components:
       additionalProperties: false
       example:
         criteria:
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
@@ -27795,103 +27749,103 @@ components:
       additionalProperties: false
       example:
         criteria:
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: 0
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: 0
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
@@ -27966,9 +27920,7 @@ components:
             large_file_cache:
               offset: 1024
               enabled: true
-            tiered_cache:
-              topology: topology
-              enabled: true
+            tiered_cache: ""
             behavior: ""
             stale_cache:
               enabled: true
@@ -27994,18 +27946,12 @@ components:
             address: address
             active: true
             http_port: 5249
-            modules:
-              load_balancer:
-                weight: 15
-                server_role: ""
+            modules: ""
           - https_port: 39501
             address: address
             active: true
             http_port: 5249
-            modules:
-              load_balancer:
-                weight: 15
-                server_role: ""
+            modules: ""
           connection_options: ""
           modules: ""
         type: ""
@@ -28307,103 +28253,103 @@ components:
       additionalProperties: false
       example:
         criteria:
-        - - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-        - - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+        - - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
-          - argument: EdgeFirewallCriterionPolymorphicArgumentRequest
+          - argument: ""
             conditional: conditional
             variable: variable
             operator: operator
@@ -28989,103 +28935,103 @@ components:
       example:
         data:
           criteria:
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -29101,7 +29047,7 @@ components:
           description: description
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
-          order: 29
+          order: 119
         state: state
       properties:
         state:
@@ -29119,103 +29065,103 @@ components:
       example:
         data:
           criteria:
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -29370,103 +29316,103 @@ components:
       example:
         data:
           criteria:
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -29482,7 +29428,7 @@ components:
           description: description
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
-          order: 29
+          order: 119
         state: state
       properties:
         state:
@@ -29500,103 +29446,103 @@ components:
       example:
         data:
           criteria:
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -29660,9 +29606,7 @@ components:
               large_file_cache:
                 offset: 1024
                 enabled: true
-              tiered_cache:
-                topology: topology
-                enabled: true
+              tiered_cache: ""
               behavior: ""
               stale_cache:
                 enabled: true
@@ -29692,18 +29636,12 @@ components:
               address: address
               active: true
               http_port: 39501
-              modules:
-                load_balancer:
-                  weight: 60
-                  server_role: ""
+              modules: ""
             - https_port: 9607
               address: address
               active: true
               http_port: 39501
-              modules:
-                load_balancer:
-                  weight: 60
-                  server_role: ""
+              modules: ""
             connection_options: ""
             modules: ""
           id: 0
@@ -30054,103 +29992,103 @@ components:
       example:
         data:
           criteria:
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -30468,9 +30406,7 @@ components:
               large_file_cache:
                 offset: 1024
                 enabled: true
-              tiered_cache:
-                topology: topology
-                enabled: true
+              tiered_cache: ""
               behavior: ""
               stale_cache:
                 enabled: true
@@ -30500,18 +30436,12 @@ components:
               address: address
               active: true
               http_port: 39501
-              modules:
-                load_balancer:
-                  weight: 60
-                  server_role: ""
+              modules: ""
             - https_port: 9607
               address: address
               active: true
               http_port: 39501
-              modules:
-                load_balancer:
-                  weight: 60
-                  server_role: ""
+              modules: ""
             connection_options: ""
             modules: ""
           id: 0
@@ -30675,103 +30605,103 @@ components:
       example:
         data:
           criteria:
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -30914,9 +30844,7 @@ components:
             large_file_cache:
               offset: 1024
               enabled: true
-            tiered_cache:
-              topology: topology
-              enabled: true
+            tiered_cache: ""
             behavior: ""
             stale_cache:
               enabled: true
@@ -31096,103 +31024,103 @@ components:
       example:
         data:
           criteria:
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: 6
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: 6
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
@@ -31208,7 +31136,7 @@ components:
           description: description
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
-          order: 29
+          order: 119
       properties:
         data:
           $ref: "#/components/schemas/ApplicationRequestPhaseRuleEngine"
@@ -31251,9 +31179,7 @@ components:
               large_file_cache:
                 offset: 1024
                 enabled: true
-              tiered_cache:
-                topology: topology
-                enabled: true
+              tiered_cache: ""
               behavior: ""
               stale_cache:
                 enabled: true
@@ -31278,18 +31204,12 @@ components:
               address: address
               active: true
               http_port: 39501
-              modules:
-                load_balancer:
-                  weight: 60
-                  server_role: ""
+              modules: ""
             - https_port: 9607
               address: address
               active: true
               http_port: 39501
-              modules:
-                load_balancer:
-                  weight: 60
-                  server_role: ""
+              modules: ""
             connection_options: ""
             modules: ""
           id: 0
@@ -31433,103 +31353,103 @@ components:
       example:
         data:
           criteria:
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-          - - argument: EdgeFirewallCriterionPolymorphicArgument
+          - - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
-            - argument: EdgeFirewallCriterionPolymorphicArgument
+            - argument: ""
               conditional: conditional
               variable: variable
               operator: operator
