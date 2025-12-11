@@ -139,8 +139,6 @@ Class | Method | HTTP request | Description
  - [ResponseAsyncDeleteTemplate](docs/ResponseAsyncDeleteTemplate.md)
  - [ResponseAsyncTemplate](docs/ResponseAsyncTemplate.md)
  - [ResponseDataStream](docs/ResponseDataStream.md)
- - [ResponseDeleteDataStream](docs/ResponseDeleteDataStream.md)
- - [ResponseDeleteTemplate](docs/ResponseDeleteTemplate.md)
  - [ResponseListDataSource](docs/ResponseListDataSource.md)
  - [ResponseListDataStream](docs/ResponseListDataStream.md)
  - [ResponseListTemplate](docs/ResponseListTemplate.md)
