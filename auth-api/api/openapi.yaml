@@ -116,6 +116,7 @@ paths:
           description: Unauthorized - Authentication credentials were not provided.
         "403":
           description: Forbidden - User is not allowed to access this resource.
+      security: []
       summary: User Login – Generate JWT Tokens
       tags:
       - Auth - Login
@@ -273,6 +274,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
+      security: []
       summary: Check User Authentication Method
       tags:
       - Auth - Login
@@ -2889,12 +2891,14 @@ components:
           description: Total number of pages
           example: 10
           format: int64
+          maximum: 2147483647
           minimum: 1
           type: integer
         page:
           description: Current page number
           example: 1
           format: int64
+          maximum: 2147483647
           minimum: 1
           type: integer
         page_size:
@@ -2938,12 +2942,14 @@ components:
           description: Total number of pages
           example: 10
           format: int64
+          maximum: 2147483647
           minimum: 1
           type: integer
         page:
           description: Current page number
           example: 1
           format: int64
+          maximum: 2147483647
           minimum: 1
           type: integer
         page_size:
