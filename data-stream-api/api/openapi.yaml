@@ -3628,24 +3628,6 @@ components:
       - data
       title: ResponseDataStream
       type: object
-    ResponseDeleteDataStream:
-      additionalProperties: false
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeleteDataStream
-      type: object
-    ResponseDeleteTemplate:
-      additionalProperties: false
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeleteTemplate
-      type: object
     ResponseListDataSource:
       additionalProperties: false
       example:
