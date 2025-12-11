@@ -102,7 +102,6 @@ Class | Method | HTTP request | Description
  - [DNSSEC](docs/DNSSEC.md)
  - [DNSSECRequest](docs/DNSSECRequest.md)
  - [DelegationSigner](docs/DelegationSigner.md)
- - [DelegationSignerRequest](docs/DelegationSignerRequest.md)
  - [JSONAPIErrorObject](docs/JSONAPIErrorObject.md)
  - [JSONAPIErrorResponse](docs/JSONAPIErrorResponse.md)
  - [JSONAPIErrorSource](docs/JSONAPIErrorSource.md)

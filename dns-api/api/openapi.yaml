@@ -2376,9 +2376,6 @@ paths:
 components:
   schemas:
     AlgType:
-      example:
-        id: 343953089
-        slug: slug
       properties:
         id:
           format: int64
@@ -2410,15 +2407,7 @@ components:
       type: object
     DNSSEC:
       example:
-        delegation_signer:
-          key_tag: 39501
-          algorithm_type:
-            id: 343953089
-            slug: slug
-          digest_type:
-            id: 343953089
-            slug: slug
-          digest: digest
+        delegation_signer: ""
         enabled: true
         status: status
       properties:
@@ -2435,7 +2424,9 @@ components:
           - waiting
           - ready
         delegation_signer:
-          $ref: "#/components/schemas/DelegationSigner"
+          allOf:
+          - $ref: "#/components/schemas/DelegationSigner"
+          nullable: true
       required:
       - delegation_signer
       - enabled
@@ -2451,15 +2442,6 @@ components:
       - enabled
       type: object
     DelegationSigner:
-      example:
-        key_tag: 39501
-        algorithm_type:
-          id: 343953089
-          slug: slug
-        digest_type:
-          id: 343953089
-          slug: slug
-        digest: digest
       properties:
         algorithm_type:
           $ref: "#/components/schemas/AlgType"
@@ -2469,27 +2451,6 @@ components:
           type: string
         digest_type:
           $ref: "#/components/schemas/AlgType"
-        key_tag:
-          format: int64
-          maximum: 65535
-          minimum: 1
-          type: integer
-      required:
-      - algorithm_type
-      - digest
-      - digest_type
-      - key_tag
-      type: object
-    DelegationSignerRequest:
-      properties:
-        algorithm_type:
-          $ref: "#/components/schemas/AlgTypeRequest"
-        digest:
-          maxLength: 100
-          minLength: 1
-          type: string
-        digest_type:
-          $ref: "#/components/schemas/AlgTypeRequest"
         key_tag:
           format: int64
           maximum: 65535
@@ -2951,15 +2912,7 @@ components:
     ResponseAsyncDNSSEC:
       example:
         data:
-          delegation_signer:
-            key_tag: 39501
-            algorithm_type:
-              id: 343953089
-              slug: slug
-            digest_type:
-              id: 343953089
-              slug: slug
-            digest: digest
+          delegation_signer: ""
           enabled: true
           status: status
         state: state
@@ -3040,15 +2993,7 @@ components:
     ResponseDNSSEC:
       example:
         data:
-          delegation_signer:
-            key_tag: 39501
-            algorithm_type:
-              id: 343953089
-              slug: slug
-            digest_type:
-              id: 343953089
-              slug: slug
-            digest: digest
+          delegation_signer: ""
           enabled: true
           status: status
         state: state
@@ -3089,15 +3034,7 @@ components:
     ResponseRetrieveDNSSEC:
       example:
         data:
-          delegation_signer:
-            key_tag: 39501
-            algorithm_type:
-              id: 343953089
-              slug: slug
-            digest_type:
-              id: 343953089
-              slug: slug
-            digest: digest
+          delegation_signer: ""
           enabled: true
           status: status
       properties:
