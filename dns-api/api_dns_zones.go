@@ -436,7 +436,7 @@ func (r ApiListDnsZonesRequest) Active(active bool) ApiListDnsZonesRequest {
 	return r
 }
 
-// Filter by domain (case-insensitive, partial match).
+// Filter by domain (exact match).
 func (r ApiListDnsZonesRequest) Domain(domain string) ApiListDnsZonesRequest {
 	r.domain = &domain
 	return r
@@ -454,7 +454,7 @@ func (r ApiListDnsZonesRequest) Id(id int64) ApiListDnsZonesRequest {
 	return r
 }
 
-// Filter by name (case-insensitive, partial match).
+// Filter by name (exact match).
 func (r ApiListDnsZonesRequest) Name(name string) ApiListDnsZonesRequest {
 	r.name = &name
 	return r

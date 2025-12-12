@@ -22,7 +22,7 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: "Filter by domain (case-insensitive, partial match)."
+      - description: Filter by domain (exact match).
         explode: true
         in: query
         name: domain
@@ -47,7 +47,7 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: "Filter by name (case-insensitive, partial match)."
+      - description: Filter by name (exact match).
         explode: true
         in: query
         name: name
