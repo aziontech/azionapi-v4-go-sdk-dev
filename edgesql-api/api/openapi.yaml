@@ -51,7 +51,8 @@ paths:
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
       - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
