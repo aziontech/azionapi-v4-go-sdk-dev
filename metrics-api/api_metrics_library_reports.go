@@ -341,7 +341,7 @@ type ApiListLibraryReportsRequest struct {
 	ApiService *MetricsLibraryReportsAPIService
 	aggregationType *string
 	fields *string
-	id *string
+	id *int64
 	name *string
 	ordering *string
 	page *int64
@@ -363,7 +363,7 @@ func (r ApiListLibraryReportsRequest) Fields(fields string) ApiListLibraryReport
 }
 
 // Filter by id (accepts comma-separated values).
-func (r ApiListLibraryReportsRequest) Id(id string) ApiListLibraryReportsRequest {
+func (r ApiListLibraryReportsRequest) Id(id int64) ApiListLibraryReportsRequest {
 	r.id = &id
 	return r
 }

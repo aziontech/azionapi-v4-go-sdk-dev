@@ -340,7 +340,7 @@ type ApiListFoldersRequest struct {
 	ctx context.Context
 	ApiService *MetricsFoldersAPIService
 	fields *string
-	id *string
+	id *int64
 	name *string
 	ordering *string
 	page *int64
@@ -355,7 +355,7 @@ func (r ApiListFoldersRequest) Fields(fields string) ApiListFoldersRequest {
 }
 
 // Filter by id (accepts comma-separated values).
-func (r ApiListFoldersRequest) Id(id string) ApiListFoldersRequest {
+func (r ApiListFoldersRequest) Id(id int64) ApiListFoldersRequest {
 	r.id = &id
 	return r
 }

@@ -382,7 +382,7 @@ type ApiListRowsRequest struct {
 	dashboardId int64
 	folderId int64
 	fields *string
-	id *string
+	id *int64
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -397,7 +397,7 @@ func (r ApiListRowsRequest) Fields(fields string) ApiListRowsRequest {
 }
 
 // Filter by id (accepts comma-separated values).
-func (r ApiListRowsRequest) Id(id string) ApiListRowsRequest {
+func (r ApiListRowsRequest) Id(id int64) ApiListRowsRequest {
 	r.id = &id
 	return r
 }

@@ -26,8 +26,10 @@ paths:
         name: id
         required: false
         schema:
-          minLength: 1
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: form
       - description: "Filter by name (case-insensitive, partial match)."
         explode: true
@@ -855,8 +857,10 @@ paths:
         name: id
         required: false
         schema:
-          minLength: 1
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: form
       - description: "Filter by name (case-insensitive, partial match)."
         explode: true
@@ -1751,8 +1755,10 @@ paths:
         name: id
         required: false
         schema:
-          minLength: 1
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: form
       - description: |-
           Which field to use when ordering the results.
@@ -2536,8 +2542,10 @@ paths:
         name: id
         required: false
         schema:
-          minLength: 1
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: form
       - description: "Filter by name (case-insensitive, partial match)."
         explode: true
@@ -3703,8 +3711,10 @@ paths:
         name: id
         required: false
         schema:
-          minLength: 1
-          type: string
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
         style: form
       - description: "Filter by name (case-insensitive, partial match)."
         explode: true

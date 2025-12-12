@@ -404,7 +404,7 @@ type ApiListReportsRequest struct {
 	rowId int64
 	aggregationType *string
 	fields *string
-	id *string
+	id *int64
 	name *string
 	ordering *string
 	page *int64
@@ -426,7 +426,7 @@ func (r ApiListReportsRequest) Fields(fields string) ApiListReportsRequest {
 }
 
 // Filter by id (accepts comma-separated values).
-func (r ApiListReportsRequest) Id(id string) ApiListReportsRequest {
+func (r ApiListReportsRequest) Id(id int64) ApiListReportsRequest {
 	r.id = &id
 	return r
 }
