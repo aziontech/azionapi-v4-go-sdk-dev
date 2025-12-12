@@ -413,13 +413,13 @@ type ApiListTotpDevicesRequest struct {
 	search *string
 }
 
-// Filter by confirmation status.
+// Filter by confirmed status.
 func (r ApiListTotpDevicesRequest) Confirmed(confirmed bool) ApiListTotpDevicesRequest {
 	r.confirmed = &confirmed
 	return r
 }
 
-// Filter by user&#39;s email (partial match, case-insensitive).
+// Filter by user&#39;s email (case-insensitive, partial match).
 func (r ApiListTotpDevicesRequest) Email(email string) ApiListTotpDevicesRequest {
 	r.email = &email
 	return r
@@ -431,13 +431,13 @@ func (r ApiListTotpDevicesRequest) Fields(fields string) ApiListTotpDevicesReque
 	return r
 }
 
-// Filter by ID. Supports multiple comma-separated values (e.g., &#39;1,2,3&#39;).
+// Filter by id (accepts comma-separated values).
 func (r ApiListTotpDevicesRequest) Id(id string) ApiListTotpDevicesRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by user&#39;s first name (partial match, case-insensitive).
+// Filter by user&#39;s first name (case-insensitive, partial match).
 func (r ApiListTotpDevicesRequest) Name(name string) ApiListTotpDevicesRequest {
 	r.name = &name
 	return r

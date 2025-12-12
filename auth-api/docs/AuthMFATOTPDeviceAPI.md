@@ -167,11 +167,11 @@ import (
 )
 
 func main() {
-	confirmed := true // bool | Filter by confirmation status. (optional)
-	email := "email_example" // string | Filter by user's email (partial match, case-insensitive). (optional)
+	confirmed := true // bool | Filter by confirmed status. (optional)
+	email := "email_example" // string | Filter by user's email (case-insensitive, partial match). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by ID. Supports multiple comma-separated values (e.g., '1,2,3'). (optional)
-	name := "name_example" // string | Filter by user's first name (partial match, case-insensitive). (optional)
+	id := "id_example" // string | Filter by id (accepts comma-separated values). (optional)
+	name := "name_example" // string | Filter by user's first name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -200,11 +200,11 @@ Other parameters are passed through a pointer to a apiListTotpDevicesRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **confirmed** | **bool** | Filter by confirmation status. | 
- **email** | **string** | Filter by user&#39;s email (partial match, case-insensitive). | 
+ **confirmed** | **bool** | Filter by confirmed status. | 
+ **email** | **string** | Filter by user&#39;s email (case-insensitive, partial match). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by ID. Supports multiple comma-separated values (e.g., &#39;1,2,3&#39;). | 
- **name** | **string** | Filter by user&#39;s first name (partial match, case-insensitive). | 
+ **id** | **string** | Filter by id (accepts comma-separated values). | 
+ **name** | **string** | Filter by user&#39;s first name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
