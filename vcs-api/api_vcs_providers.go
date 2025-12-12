@@ -26,7 +26,7 @@ type ApiListProvidersRequest struct {
 	ctx context.Context
 	ApiService *VCSProvidersAPIService
 	fields *string
-	id *string
+	id *int64
 	name *string
 	ordering *string
 	page *int64
@@ -40,13 +40,13 @@ func (r ApiListProvidersRequest) Fields(fields string) ApiListProvidersRequest {
 	return r
 }
 
-// Filter by id. Supports multiple comma-separated values.
-func (r ApiListProvidersRequest) Id(id string) ApiListProvidersRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListProvidersRequest) Id(id int64) ApiListProvidersRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by name (case-insensitive partial match).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListProvidersRequest) Name(name string) ApiListProvidersRequest {
 	r.name = &name
 	return r

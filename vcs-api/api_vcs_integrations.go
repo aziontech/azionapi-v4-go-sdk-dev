@@ -220,7 +220,7 @@ type ApiListIntegrationsRequest struct {
 	ctx context.Context
 	ApiService *VCSIntegrationsAPIService
 	fields *string
-	id *string
+	id *int64
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -235,8 +235,8 @@ func (r ApiListIntegrationsRequest) Fields(fields string) ApiListIntegrationsReq
 	return r
 }
 
-// Filter by id. Supports multiple comma-separated values.
-func (r ApiListIntegrationsRequest) Id(id string) ApiListIntegrationsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListIntegrationsRequest) Id(id int64) ApiListIntegrationsRequest {
 	r.id = &id
 	return r
 }
@@ -265,7 +265,7 @@ func (r ApiListIntegrationsRequest) Platform(platform string) ApiListIntegration
 	return r
 }
 
-// Filter by scope (case-insensitive partial match).
+// Filter by scope (case-insensitive, partial match).
 func (r ApiListIntegrationsRequest) Scope(scope string) ApiListIntegrationsRequest {
 	r.scope = &scope
 	return r
