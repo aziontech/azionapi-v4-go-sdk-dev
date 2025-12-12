@@ -105,16 +105,16 @@ func main() {
 	createdGte := time.Now() // time.Time | Filter by created date (greater than or equal). (optional)
 	createdLte := time.Now() // time.Time | Filter by created date (less than or equal). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by account ID. Accepts multiple comma-separated values. (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (partial, case-insensitive). (optional)
+	id := "id_example" // string | Filter by account ID (accepts comma-separated values). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
 	lastModified := time.Now() // time.Time | Filter by last modified date (exact match). (optional)
 	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
 	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
-	name := "name_example" // string | Filter by name (partial, case-insensitive). (optional)
+	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, active, last_editor, last_modified, parent_id, created) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	parentId := "parentId_example" // string | Filter by parent account ID. Accepts multiple comma-separated values. (optional)
+	parentId := "parentId_example" // string | Filter by parent account ID (accepts comma-separated values). (optional)
 	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -145,16 +145,16 @@ Name | Type | Description  | Notes
  **createdGte** | **time.Time** | Filter by created date (greater than or equal). | 
  **createdLte** | **time.Time** | Filter by created date (less than or equal). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by account ID. Accepts multiple comma-separated values. | 
- **lastEditor** | **string** | Filter by last editor (partial, case-insensitive). | 
+ **id** | **string** | Filter by account ID (accepts comma-separated values). | 
+ **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
  **lastModified** | **time.Time** | Filter by last modified date (exact match). | 
  **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
  **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
- **name** | **string** | Filter by name (partial, case-insensitive). | 
+ **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, active, last_editor, last_modified, parent_id, created) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **parentId** | **string** | Filter by parent account ID. Accepts multiple comma-separated values. | 
+ **parentId** | **string** | Filter by parent account ID (accepts comma-separated values). | 
  **search** | **string** | A search term. | 
 
 ### Return type

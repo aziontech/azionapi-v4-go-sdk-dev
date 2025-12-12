@@ -273,13 +273,13 @@ func (r ApiListDescendantsAccountsRequest) Fields(fields string) ApiListDescenda
 	return r
 }
 
-// Filter by account ID. Accepts multiple comma-separated values.
+// Filter by account ID (accepts comma-separated values).
 func (r ApiListDescendantsAccountsRequest) Id(id string) ApiListDescendantsAccountsRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by last editor (partial, case-insensitive).
+// Filter by last editor (case-insensitive, partial match).
 func (r ApiListDescendantsAccountsRequest) LastEditor(lastEditor string) ApiListDescendantsAccountsRequest {
 	r.lastEditor = &lastEditor
 	return r
@@ -303,7 +303,7 @@ func (r ApiListDescendantsAccountsRequest) LastModifiedLte(lastModifiedLte time.
 	return r
 }
 
-// Filter by name (partial, case-insensitive).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListDescendantsAccountsRequest) Name(name string) ApiListDescendantsAccountsRequest {
 	r.name = &name
 	return r
@@ -327,7 +327,7 @@ func (r ApiListDescendantsAccountsRequest) PageSize(pageSize int64) ApiListDesce
 	return r
 }
 
-// Filter by parent account ID. Accepts multiple comma-separated values.
+// Filter by parent account ID (accepts comma-separated values).
 func (r ApiListDescendantsAccountsRequest) ParentId(parentId string) ApiListDescendantsAccountsRequest {
 	r.parentId = &parentId
 	return r
