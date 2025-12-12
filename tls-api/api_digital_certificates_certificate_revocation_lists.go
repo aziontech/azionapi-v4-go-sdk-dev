@@ -445,13 +445,13 @@ func (r ApiListCertificateRevocationListsRequest) Fields(fields string) ApiListC
 	return r
 }
 
-// Filter by CRL ID. Accepts comma-separated values for multiple IDs.
+// Filter by CRL ID (accepts comma-separated values).
 func (r ApiListCertificateRevocationListsRequest) Id(id string) ApiListCertificateRevocationListsRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by issuer (case-insensitive partial match).
+// Filter by issuer (case-insensitive, partial match).
 func (r ApiListCertificateRevocationListsRequest) Issuer(issuer string) ApiListCertificateRevocationListsRequest {
 	r.issuer = &issuer
 	return r
@@ -463,13 +463,13 @@ func (r ApiListCertificateRevocationListsRequest) LastModified(lastModified time
 	return r
 }
 
-// Filter by last modified date greater than or equal to the specified value.
+// Filter by last modified date (greater than or equal).
 func (r ApiListCertificateRevocationListsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListCertificateRevocationListsRequest {
 	r.lastModifiedGte = &lastModifiedGte
 	return r
 }
 
-// Filter by last modified date less than or equal to the specified value.
+// Filter by last modified date (less than or equal).
 func (r ApiListCertificateRevocationListsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListCertificateRevocationListsRequest {
 	r.lastModifiedLte = &lastModifiedLte
 	return r
@@ -481,19 +481,19 @@ func (r ApiListCertificateRevocationListsRequest) LastUpdate(lastUpdate time.Tim
 	return r
 }
 
-// Filter by last update date greater than or equal to the specified value.
+// Filter by last update date (greater than or equal).
 func (r ApiListCertificateRevocationListsRequest) LastUpdateGte(lastUpdateGte time.Time) ApiListCertificateRevocationListsRequest {
 	r.lastUpdateGte = &lastUpdateGte
 	return r
 }
 
-// Filter by last update date less than or equal to the specified value.
+// Filter by last update date (less than or equal).
 func (r ApiListCertificateRevocationListsRequest) LastUpdateLte(lastUpdateLte time.Time) ApiListCertificateRevocationListsRequest {
 	r.lastUpdateLte = &lastUpdateLte
 	return r
 }
 
-// Filter by CRL name (case-insensitive partial match).
+// Filter by CRL name (case-insensitive, partial match).
 func (r ApiListCertificateRevocationListsRequest) Name(name string) ApiListCertificateRevocationListsRequest {
 	r.name = &name
 	return r
@@ -505,13 +505,13 @@ func (r ApiListCertificateRevocationListsRequest) NextUpdate(nextUpdate time.Tim
 	return r
 }
 
-// Filter by next update date greater than or equal to the specified value.
+// Filter by next update date (greater than or equal).
 func (r ApiListCertificateRevocationListsRequest) NextUpdateGte(nextUpdateGte time.Time) ApiListCertificateRevocationListsRequest {
 	r.nextUpdateGte = &nextUpdateGte
 	return r
 }
 
-// Filter by next update date less than or equal to the specified value.
+// Filter by next update date (less than or equal).
 func (r ApiListCertificateRevocationListsRequest) NextUpdateLte(nextUpdateLte time.Time) ApiListCertificateRevocationListsRequest {
 	r.nextUpdateLte = &nextUpdateLte
 	return r
