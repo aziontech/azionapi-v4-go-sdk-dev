@@ -443,13 +443,13 @@ func (r ApiListContinuousDeploymentsRequest) Branch(branch string) ApiListContin
 	return r
 }
 
-// Filter by created greater than or equal to this date.
+// Filter by created date (greater than or equal).
 func (r ApiListContinuousDeploymentsRequest) CreatedGte(createdGte time.Time) ApiListContinuousDeploymentsRequest {
 	r.createdGte = &createdGte
 	return r
 }
 
-// Filter by created less than or equal to this date.
+// Filter by created date (less than or equal).
 func (r ApiListContinuousDeploymentsRequest) CreatedLte(createdLte time.Time) ApiListContinuousDeploymentsRequest {
 	r.createdLte = &createdLte
 	return r
@@ -461,31 +461,31 @@ func (r ApiListContinuousDeploymentsRequest) Fields(fields string) ApiListContin
 	return r
 }
 
-// Filter by id. Supports multiple comma-separated values.
+// Filter by id (accepts comma-separated values).
 func (r ApiListContinuousDeploymentsRequest) Id(id string) ApiListContinuousDeploymentsRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by last_editor (case-insensitive partial match).
+// Filter by last editor (case-insensitive, partial match).
 func (r ApiListContinuousDeploymentsRequest) LastEditor(lastEditor string) ApiListContinuousDeploymentsRequest {
 	r.lastEditor = &lastEditor
 	return r
 }
 
-// Filter by last_modified greater than or equal to this date.
+// Filter by last modified date (greater than or equal).
 func (r ApiListContinuousDeploymentsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListContinuousDeploymentsRequest {
 	r.lastModifiedGte = &lastModifiedGte
 	return r
 }
 
-// Filter by last_modified less than or equal to this date.
+// Filter by last modified date (less than or equal).
 func (r ApiListContinuousDeploymentsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListContinuousDeploymentsRequest {
 	r.lastModifiedLte = &lastModifiedLte
 	return r
 }
 
-// Filter by name (case-insensitive partial match).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListContinuousDeploymentsRequest) Name(name string) ApiListContinuousDeploymentsRequest {
 	r.name = &name
 	return r
@@ -509,7 +509,7 @@ func (r ApiListContinuousDeploymentsRequest) PageSize(pageSize int64) ApiListCon
 	return r
 }
 
-// Filter by repository (case-insensitive partial match).
+// Filter by repository (case-insensitive, partial match).
 func (r ApiListContinuousDeploymentsRequest) Repository(repository string) ApiListContinuousDeploymentsRequest {
 	r.repository = &repository
 	return r

@@ -102,17 +102,17 @@ import (
 
 func main() {
 	continuousDeploymentId := int64(789) // int64 | 
-	createdAtGte := time.Now() // time.Time | Filter by created_at greater than or equal to this date. (optional)
-	createdAtLte := time.Now() // time.Time | Filter by created_at less than or equal to this date. (optional)
+	createdAtGte := time.Now() // time.Time | Filter by created date (greater than or equal). (optional)
+	createdAtLte := time.Now() // time.Time | Filter by created date (less than or equal). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by id. Supports multiple comma-separated values. (optional)
+	id := "id_example" // string | Filter by id (accepts comma-separated values). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
-	status := "status_example" // string | Filter by status. Supports multiple comma-separated values. (optional)
-	updatedAtGte := time.Now() // time.Time | Filter by updated_at greater than or equal to this date. (optional)
-	updatedAtLte := time.Now() // time.Time | Filter by updated_at less than or equal to this date. (optional)
+	status := "status_example" // string | Filter by status (accepts comma-separated values). (optional)
+	updatedAtGte := time.Now() // time.Time | Filter by updated date (greater than or equal). (optional)
+	updatedAtLte := time.Now() // time.Time | Filter by updated date (less than or equal). (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -142,17 +142,17 @@ Other parameters are passed through a pointer to a apiListExecutionsRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **createdAtGte** | **time.Time** | Filter by created_at greater than or equal to this date. | 
- **createdAtLte** | **time.Time** | Filter by created_at less than or equal to this date. | 
+ **createdAtGte** | **time.Time** | Filter by created date (greater than or equal). | 
+ **createdAtLte** | **time.Time** | Filter by created date (less than or equal). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by id. Supports multiple comma-separated values. | 
+ **id** | **string** | Filter by id (accepts comma-separated values). | 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
- **status** | **string** | Filter by status. Supports multiple comma-separated values. | 
- **updatedAtGte** | **time.Time** | Filter by updated_at greater than or equal to this date. | 
- **updatedAtLte** | **time.Time** | Filter by updated_at less than or equal to this date. | 
+ **status** | **string** | Filter by status (accepts comma-separated values). | 
+ **updatedAtGte** | **time.Time** | Filter by updated date (greater than or equal). | 
+ **updatedAtLte** | **time.Time** | Filter by updated date (less than or equal). | 
 
 ### Return type
 

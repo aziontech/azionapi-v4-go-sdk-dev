@@ -40,13 +40,13 @@ func (r ApiListProvidersRequest) Fields(fields string) ApiListProvidersRequest {
 	return r
 }
 
-// Filter by id. Supports multiple comma-separated values.
+// Filter by id (accepts comma-separated values).
 func (r ApiListProvidersRequest) Id(id string) ApiListProvidersRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by name (case-insensitive partial match).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListProvidersRequest) Name(name string) ApiListProvidersRequest {
 	r.name = &name
 	return r

@@ -41,13 +41,13 @@ func (r ApiListExecutionScriptsRequest) Fields(fields string) ApiListExecutionSc
 	return r
 }
 
-// Filter by id. Supports multiple comma-separated UUIDs.
+// Filter by id (accepts comma-separated values).
 func (r ApiListExecutionScriptsRequest) Id(id string) ApiListExecutionScriptsRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by name (case-insensitive partial match).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListExecutionScriptsRequest) Name(name string) ApiListExecutionScriptsRequest {
 	r.name = &name
 	return r

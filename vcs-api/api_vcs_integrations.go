@@ -235,7 +235,7 @@ func (r ApiListIntegrationsRequest) Fields(fields string) ApiListIntegrationsReq
 	return r
 }
 
-// Filter by id. Supports multiple comma-separated values.
+// Filter by id (accepts comma-separated values).
 func (r ApiListIntegrationsRequest) Id(id string) ApiListIntegrationsRequest {
 	r.id = &id
 	return r
@@ -265,7 +265,7 @@ func (r ApiListIntegrationsRequest) Platform(platform string) ApiListIntegration
 	return r
 }
 
-// Filter by scope (case-insensitive partial match).
+// Filter by scope (case-insensitive, partial match).
 func (r ApiListIntegrationsRequest) Scope(scope string) ApiListIntegrationsRequest {
 	r.scope = &scope
 	return r

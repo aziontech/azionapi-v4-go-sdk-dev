@@ -172,18 +172,18 @@ import (
 
 func main() {
 	branch := "branch_example" // string | Filter by branch (exact match). (optional)
-	createdGte := time.Now() // time.Time | Filter by created greater than or equal to this date. (optional)
-	createdLte := time.Now() // time.Time | Filter by created less than or equal to this date. (optional)
+	createdGte := time.Now() // time.Time | Filter by created date (greater than or equal). (optional)
+	createdLte := time.Now() // time.Time | Filter by created date (less than or equal). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by id. Supports multiple comma-separated values. (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last_editor (case-insensitive partial match). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last_modified greater than or equal to this date. (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last_modified less than or equal to this date. (optional)
-	name := "name_example" // string | Filter by name (case-insensitive partial match). (optional)
+	id := "id_example" // string | Filter by id (accepts comma-separated values). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
+	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	repository := "repository_example" // string | Filter by repository (case-insensitive partial match). (optional)
+	repository := "repository_example" // string | Filter by repository (case-insensitive, partial match). (optional)
 	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -210,18 +210,18 @@ Other parameters are passed through a pointer to a apiListContinuousDeploymentsR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **branch** | **string** | Filter by branch (exact match). | 
- **createdGte** | **time.Time** | Filter by created greater than or equal to this date. | 
- **createdLte** | **time.Time** | Filter by created less than or equal to this date. | 
+ **createdGte** | **time.Time** | Filter by created date (greater than or equal). | 
+ **createdLte** | **time.Time** | Filter by created date (less than or equal). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by id. Supports multiple comma-separated values. | 
- **lastEditor** | **string** | Filter by last_editor (case-insensitive partial match). | 
- **lastModifiedGte** | **time.Time** | Filter by last_modified greater than or equal to this date. | 
- **lastModifiedLte** | **time.Time** | Filter by last_modified less than or equal to this date. | 
- **name** | **string** | Filter by name (case-insensitive partial match). | 
+ **id** | **string** | Filter by id (accepts comma-separated values). | 
+ **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
+ **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **repository** | **string** | Filter by repository (case-insensitive partial match). | 
+ **repository** | **string** | Filter by repository (case-insensitive, partial match). | 
  **search** | **string** | A search term. | 
 
 ### Return type
