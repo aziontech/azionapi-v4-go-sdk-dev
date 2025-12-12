@@ -422,7 +422,7 @@ type ApiListDnsZonesRequest struct {
 	active *bool
 	domain *string
 	fields *string
-	id *string
+	id *int64
 	name *string
 	ordering *string
 	page *int64
@@ -449,7 +449,7 @@ func (r ApiListDnsZonesRequest) Fields(fields string) ApiListDnsZonesRequest {
 }
 
 // Filter by id (accepts comma-separated values).
-func (r ApiListDnsZonesRequest) Id(id string) ApiListDnsZonesRequest {
+func (r ApiListDnsZonesRequest) Id(id int64) ApiListDnsZonesRequest {
 	r.id = &id
 	return r
 }
