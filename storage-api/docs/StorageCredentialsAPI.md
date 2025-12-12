@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## ListCredentials
 
-> PaginatedCredentialList ListCredentials(ctx).AccessKey(accessKey).Bucket(bucket).BucketIn(bucketIn).Fields(fields).NameIcontains(nameIcontains).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedCredentialList ListCredentials(ctx).AccessKey(accessKey).Bucket(bucket).Fields(fields).Id(id).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List credentials
 
@@ -164,15 +164,20 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 	accessKey := "accessKey_example" // string | Filter by access key (exact match). (optional)
-	bucket := "bucket_example" // string | Filter by bucket (exact match). (optional)
-	bucketIn := "bucketIn_example" // string | Filter by multiple buckets (comma-separated). (optional)
+	bucket := "bucket_example" // string | Filter by bucket (accepts comma-separated values). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	nameIcontains := "nameIcontains_example" // string | Filter by name (case-insensitive, partial match). (optional)
+	id := "id_example" // string | Filter by id (accepts comma-separated values). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
+	lastModified := time.Now() // time.Time | Filter by last modified date (exact match). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
+	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -180,7 +185,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageCredentialsAPI.ListCredentials(context.Background()).AccessKey(accessKey).Bucket(bucket).BucketIn(bucketIn).Fields(fields).NameIcontains(nameIcontains).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.StorageCredentialsAPI.ListCredentials(context.Background()).AccessKey(accessKey).Bucket(bucket).Fields(fields).Id(id).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageCredentialsAPI.ListCredentials``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -202,10 +207,14 @@ Other parameters are passed through a pointer to a apiListCredentialsRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accessKey** | **string** | Filter by access key (exact match). | 
- **bucket** | **string** | Filter by bucket (exact match). | 
- **bucketIn** | **string** | Filter by multiple buckets (comma-separated). | 
+ **bucket** | **string** | Filter by bucket (accepts comma-separated values). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **nameIcontains** | **string** | Filter by name (case-insensitive, partial match). | 
+ **id** | **string** | Filter by id (accepts comma-separated values). | 
+ **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
+ **lastModified** | **time.Time** | Filter by last modified date (exact match). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
+ **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

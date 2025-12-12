@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -421,9 +422,13 @@ type ApiListCredentialsRequest struct {
 	ApiService *StorageCredentialsAPIService
 	accessKey *string
 	bucket *string
-	bucketIn *string
 	fields *string
-	nameIcontains *string
+	id *string
+	lastEditor *string
+	lastModified *time.Time
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
+	name *string
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -436,15 +441,9 @@ func (r ApiListCredentialsRequest) AccessKey(accessKey string) ApiListCredential
 	return r
 }
 
-// Filter by bucket (exact match).
+// Filter by bucket (accepts comma-separated values).
 func (r ApiListCredentialsRequest) Bucket(bucket string) ApiListCredentialsRequest {
 	r.bucket = &bucket
-	return r
-}
-
-// Filter by multiple buckets (comma-separated).
-func (r ApiListCredentialsRequest) BucketIn(bucketIn string) ApiListCredentialsRequest {
-	r.bucketIn = &bucketIn
 	return r
 }
 
@@ -454,9 +453,39 @@ func (r ApiListCredentialsRequest) Fields(fields string) ApiListCredentialsReque
 	return r
 }
 
+// Filter by id (accepts comma-separated values).
+func (r ApiListCredentialsRequest) Id(id string) ApiListCredentialsRequest {
+	r.id = &id
+	return r
+}
+
+// Filter by last editor (case-insensitive, partial match).
+func (r ApiListCredentialsRequest) LastEditor(lastEditor string) ApiListCredentialsRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last modified date (exact match).
+func (r ApiListCredentialsRequest) LastModified(lastModified time.Time) ApiListCredentialsRequest {
+	r.lastModified = &lastModified
+	return r
+}
+
+// Filter by last modified date (greater than or equal).
+func (r ApiListCredentialsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListCredentialsRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date (less than or equal).
+func (r ApiListCredentialsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListCredentialsRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
 // Filter by name (case-insensitive, partial match).
-func (r ApiListCredentialsRequest) NameIcontains(nameIcontains string) ApiListCredentialsRequest {
-	r.nameIcontains = &nameIcontains
+func (r ApiListCredentialsRequest) Name(name string) ApiListCredentialsRequest {
+	r.name = &name
 	return r
 }
 
@@ -530,14 +559,26 @@ func (a *StorageCredentialsAPIService) ListCredentialsExecute(r ApiListCredentia
 	if r.bucket != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket", r.bucket, "form", "")
 	}
-	if r.bucketIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket__in", r.bucketIn, "form", "")
-	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
 	}
-	if r.nameIcontains != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "name__icontains", r.nameIcontains, "form", "")
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModified != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified", r.lastModified, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
+	}
+	if r.name != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
