@@ -475,7 +475,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by account ID. Accepts multiple comma-separated values.
+      - description: Filter by account ID (accepts comma-separated values).
         explode: true
         in: query
         name: id
@@ -483,7 +483,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by last editor (partial, case-insensitive)."
+      - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
         in: query
         name: last_editor
@@ -518,7 +518,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: "Filter by name (partial, case-insensitive)."
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -554,8 +554,7 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: Filter by parent account ID. Accepts multiple comma-separated
-          values.
+      - description: Filter by parent account ID (accepts comma-separated values).
         explode: true
         in: query
         name: parent_id
