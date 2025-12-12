@@ -223,7 +223,8 @@ paths:
         name: data_set_id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
       - description: Filter by data source (accepts comma-separated values).
         explode: true
@@ -247,7 +248,8 @@ paths:
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
       - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
@@ -1214,7 +1216,8 @@ paths:
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
       - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true

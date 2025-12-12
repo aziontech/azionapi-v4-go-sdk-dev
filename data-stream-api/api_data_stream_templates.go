@@ -426,7 +426,7 @@ type ApiListTemplatesRequest struct {
 	custom *bool
 	dataSet *string
 	fields *string
-	id *string
+	id *int64
 	lastEditor *string
 	lastModifiedGte *time.Time
 	lastModifiedLte *time.Time
@@ -462,7 +462,7 @@ func (r ApiListTemplatesRequest) Fields(fields string) ApiListTemplatesRequest {
 }
 
 // Filter by id (accepts comma-separated values).
-func (r ApiListTemplatesRequest) Id(id string) ApiListTemplatesRequest {
+func (r ApiListTemplatesRequest) Id(id int64) ApiListTemplatesRequest {
 	r.id = &id
 	return r
 }

@@ -423,10 +423,10 @@ type ApiListDataStreamsRequest struct {
 	ctx context.Context
 	ApiService *DataStreamStreamsAPIService
 	active *bool
-	dataSetId *string
+	dataSetId *int64
 	dataSource *string
 	fields *string
-	id *string
+	id *int64
 	lastEditor *string
 	lastModifiedGte *time.Time
 	lastModifiedLte *time.Time
@@ -444,7 +444,7 @@ func (r ApiListDataStreamsRequest) Active(active bool) ApiListDataStreamsRequest
 }
 
 // Filter by data set id (accepts comma-separated values).
-func (r ApiListDataStreamsRequest) DataSetId(dataSetId string) ApiListDataStreamsRequest {
+func (r ApiListDataStreamsRequest) DataSetId(dataSetId int64) ApiListDataStreamsRequest {
 	r.dataSetId = &dataSetId
 	return r
 }
@@ -462,7 +462,7 @@ func (r ApiListDataStreamsRequest) Fields(fields string) ApiListDataStreamsReque
 }
 
 // Filter by id (accepts comma-separated values).
-func (r ApiListDataStreamsRequest) Id(id string) ApiListDataStreamsRequest {
+func (r ApiListDataStreamsRequest) Id(id int64) ApiListDataStreamsRequest {
 	r.id = &id
 	return r
 }

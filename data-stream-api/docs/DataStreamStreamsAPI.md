@@ -172,10 +172,10 @@ import (
 
 func main() {
 	active := true // bool | Filter by active status. (optional)
-	dataSetId := "dataSetId_example" // string | Filter by data set id (accepts comma-separated values). (optional)
+	dataSetId := int64(789) // int64 | Filter by data set id (accepts comma-separated values). (optional)
 	dataSource := "dataSource_example" // string | Filter by data source (accepts comma-separated values). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by id (accepts comma-separated values). (optional)
+	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
 	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
 	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
 	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
@@ -209,10 +209,10 @@ Other parameters are passed through a pointer to a apiListDataStreamsRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **active** | **bool** | Filter by active status. | 
- **dataSetId** | **string** | Filter by data set id (accepts comma-separated values). | 
+ **dataSetId** | **int64** | Filter by data set id (accepts comma-separated values). | 
  **dataSource** | **string** | Filter by data source (accepts comma-separated values). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by id (accepts comma-separated values). | 
+ **id** | **int64** | Filter by id (accepts comma-separated values). | 
  **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
  **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
  **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
