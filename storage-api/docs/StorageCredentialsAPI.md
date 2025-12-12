@@ -172,7 +172,7 @@ func main() {
 	accessKey := "accessKey_example" // string | Filter by access key (exact match). (optional)
 	bucket := "bucket_example" // string | Filter by bucket (accepts comma-separated values). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by id (accepts comma-separated values). (optional)
+	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
 	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
 	lastModified := time.Now() // time.Time | Filter by last modified date (exact match). (optional)
 	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
  **accessKey** | **string** | Filter by access key (exact match). | 
  **bucket** | **string** | Filter by bucket (accepts comma-separated values). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by id (accepts comma-separated values). | 
+ **id** | **int64** | Filter by id (accepts comma-separated values). | 
  **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
  **lastModified** | **time.Time** | Filter by last modified date (exact match). | 
  **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 

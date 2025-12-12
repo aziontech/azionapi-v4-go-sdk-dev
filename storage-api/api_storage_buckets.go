@@ -428,7 +428,7 @@ type ApiListBucketsRequest struct {
 	description *string
 	edgeAccess *string
 	fields *string
-	id *string
+	id *int64
 	lastEditor *string
 	lastModified *time.Time
 	lastModifiedGte *time.Time
@@ -490,7 +490,7 @@ func (r ApiListBucketsRequest) Fields(fields string) ApiListBucketsRequest {
 }
 
 // Filter by id (accepts comma-separated values).
-func (r ApiListBucketsRequest) Id(id string) ApiListBucketsRequest {
+func (r ApiListBucketsRequest) Id(id int64) ApiListBucketsRequest {
 	r.id = &id
 	return r
 }

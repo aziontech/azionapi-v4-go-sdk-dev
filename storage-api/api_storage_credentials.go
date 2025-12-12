@@ -423,7 +423,7 @@ type ApiListCredentialsRequest struct {
 	accessKey *string
 	bucket *string
 	fields *string
-	id *string
+	id *int64
 	lastEditor *string
 	lastModified *time.Time
 	lastModifiedGte *time.Time
@@ -454,7 +454,7 @@ func (r ApiListCredentialsRequest) Fields(fields string) ApiListCredentialsReque
 }
 
 // Filter by id (accepts comma-separated values).
-func (r ApiListCredentialsRequest) Id(id string) ApiListCredentialsRequest {
+func (r ApiListCredentialsRequest) Id(id int64) ApiListCredentialsRequest {
 	r.id = &id
 	return r
 }
