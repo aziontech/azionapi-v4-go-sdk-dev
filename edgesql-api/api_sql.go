@@ -650,7 +650,7 @@ type ApiListDatabasesRequest struct {
 	createdAtGte *time.Time
 	createdAtLte *time.Time
 	fields *string
-	id *string
+	id *int64
 	lastEditor *string
 	name *string
 	ordering *string
@@ -687,7 +687,7 @@ func (r ApiListDatabasesRequest) Fields(fields string) ApiListDatabasesRequest {
 }
 
 // Filter by id (accepts comma-separated values).
-func (r ApiListDatabasesRequest) Id(id string) ApiListDatabasesRequest {
+func (r ApiListDatabasesRequest) Id(id int64) ApiListDatabasesRequest {
 	r.id = &id
 	return r
 }
