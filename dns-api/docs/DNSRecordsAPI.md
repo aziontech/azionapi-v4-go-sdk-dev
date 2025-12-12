@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ListDnsRecords
 
-> PaginatedRecordList ListDnsRecords(ctx, zoneId).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Records(records).Search(search).Execute()
+> PaginatedRecordList ListDnsRecords(ctx, zoneId).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List DNS Records
 
@@ -181,16 +181,15 @@ import (
 func main() {
 	zoneId := int64(789) // int64 | A unique integer value identifying the DNS Zone.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by id. Supports comma-separated values for multiple IDs. (optional)
+	id := "id_example" // string | Filter by id (accepts comma-separated values). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, weight) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	records := "records_example" // string | Full-text records across records. (optional)
 	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DNSRecordsAPI.ListDnsRecords(context.Background(), zoneId).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Records(records).Search(search).Execute()
+	resp, r, err := apiClient.DNSRecordsAPI.ListDnsRecords(context.Background(), zoneId).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DNSRecordsAPI.ListDnsRecords``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -217,11 +216,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by id. Supports comma-separated values for multiple IDs. | 
+ **id** | **string** | Filter by id (accepts comma-separated values). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, weight) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **records** | **string** | Full-text records across records. | 
  **search** | **string** | A search term. | 
 
 ### Return type

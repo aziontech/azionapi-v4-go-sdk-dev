@@ -433,7 +433,6 @@ type ApiListDnsRecordsRequest struct {
 	ordering *string
 	page *int64
 	pageSize *int64
-	records *string
 	search *string
 }
 
@@ -443,7 +442,7 @@ func (r ApiListDnsRecordsRequest) Fields(fields string) ApiListDnsRecordsRequest
 	return r
 }
 
-// Filter by id. Supports comma-separated values for multiple IDs.
+// Filter by id (accepts comma-separated values).
 func (r ApiListDnsRecordsRequest) Id(id string) ApiListDnsRecordsRequest {
 	r.id = &id
 	return r
@@ -464,12 +463,6 @@ func (r ApiListDnsRecordsRequest) Page(page int64) ApiListDnsRecordsRequest {
 // A numeric value that indicates the number of items per page.
 func (r ApiListDnsRecordsRequest) PageSize(pageSize int64) ApiListDnsRecordsRequest {
 	r.pageSize = &pageSize
-	return r
-}
-
-// Full-text records across records.
-func (r ApiListDnsRecordsRequest) Records(records string) ApiListDnsRecordsRequest {
-	r.records = &records
 	return r
 }
 
@@ -536,9 +529,6 @@ func (a *DNSRecordsAPIService) ListDnsRecordsExecute(r ApiListDnsRecordsRequest)
 	}
 	if r.pageSize != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
-	}
-	if r.records != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "records", r.records, "form", "")
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
