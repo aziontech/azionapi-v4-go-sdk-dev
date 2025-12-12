@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## ListLibraryReports
 
-> PaginatedResponseListReportList ListLibraryReports(ctx).AggregationType(aggregationType).Fields(fields).Id(id).IdIn(idIn).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Type_(type_).Execute()
+> PaginatedResponseListReportList ListLibraryReports(ctx).AggregationType(aggregationType).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Type_(type_).Execute()
 
 List of library reports
 
@@ -167,20 +167,19 @@ import (
 )
 
 func main() {
-	aggregationType := "aggregationType_example" // string | Filter by aggregation type (comma-separated for multiple values). (optional)
+	aggregationType := "aggregationType_example" // string | Filter by aggregation type (accepts comma-separated values). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := int64(789) // int64 | Filter by id. (optional)
-	idIn := "idIn_example" // string | Filter by multiple ids (comma-separated). (optional)
+	id := "id_example" // string | Filter by id (accepts comma-separated values). (optional)
 	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, type, aggregation_type) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
-	type_ := "type__example" // string | Filter by type (comma-separated for multiple values). (optional)
+	type_ := "type__example" // string | Filter by type (accepts comma-separated values). (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsLibraryReportsAPI.ListLibraryReports(context.Background()).AggregationType(aggregationType).Fields(fields).Id(id).IdIn(idIn).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Type_(type_).Execute()
+	resp, r, err := apiClient.MetricsLibraryReportsAPI.ListLibraryReports(context.Background()).AggregationType(aggregationType).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Type_(type_).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsLibraryReportsAPI.ListLibraryReports``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -201,16 +200,15 @@ Other parameters are passed through a pointer to a apiListLibraryReportsRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aggregationType** | **string** | Filter by aggregation type (comma-separated for multiple values). | 
+ **aggregationType** | **string** | Filter by aggregation type (accepts comma-separated values). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **int64** | Filter by id. | 
- **idIn** | **string** | Filter by multiple ids (comma-separated). | 
+ **id** | **string** | Filter by id (accepts comma-separated values). | 
  **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, type, aggregation_type) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
- **type_** | **string** | Filter by type (comma-separated for multiple values). | 
+ **type_** | **string** | Filter by type (accepts comma-separated values). | 
 
 ### Return type
 

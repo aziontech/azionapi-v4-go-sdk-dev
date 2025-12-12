@@ -340,8 +340,7 @@ type ApiListFoldersRequest struct {
 	ctx context.Context
 	ApiService *MetricsFoldersAPIService
 	fields *string
-	id *int64
-	idIn *string
+	id *string
 	name *string
 	ordering *string
 	page *int64
@@ -355,15 +354,9 @@ func (r ApiListFoldersRequest) Fields(fields string) ApiListFoldersRequest {
 	return r
 }
 
-// Filter by id.
-func (r ApiListFoldersRequest) Id(id int64) ApiListFoldersRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListFoldersRequest) Id(id string) ApiListFoldersRequest {
 	r.id = &id
-	return r
-}
-
-// Filter by multiple ids (comma-separated).
-func (r ApiListFoldersRequest) IdIn(idIn string) ApiListFoldersRequest {
-	r.idIn = &idIn
 	return r
 }
 
@@ -442,9 +435,6 @@ func (a *MetricsFoldersAPIService) ListFoldersExecute(r ApiListFoldersRequest) (
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
-	}
-	if r.idIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")

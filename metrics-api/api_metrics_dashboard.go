@@ -361,8 +361,7 @@ type ApiListDashboardsRequest struct {
 	ApiService *MetricsDashboardAPIService
 	folderId int64
 	fields *string
-	id *int64
-	idIn *string
+	id *string
 	name *string
 	ordering *string
 	page *int64
@@ -376,15 +375,9 @@ func (r ApiListDashboardsRequest) Fields(fields string) ApiListDashboardsRequest
 	return r
 }
 
-// Filter by id.
-func (r ApiListDashboardsRequest) Id(id int64) ApiListDashboardsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListDashboardsRequest) Id(id string) ApiListDashboardsRequest {
 	r.id = &id
-	return r
-}
-
-// Filter by multiple ids (comma-separated).
-func (r ApiListDashboardsRequest) IdIn(idIn string) ApiListDashboardsRequest {
-	r.idIn = &idIn
 	return r
 }
 
@@ -472,9 +465,6 @@ func (a *MetricsDashboardAPIService) ListDashboardsExecute(r ApiListDashboardsRe
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
-	}
-	if r.idIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")

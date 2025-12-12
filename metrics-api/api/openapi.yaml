@@ -20,21 +20,10 @@ paths:
           minLength: 1
           type: string
         style: form
-      - description: Filter by id.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
-        required: false
-        schema:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        style: form
-      - description: Filter by multiple ids (comma-separated).
-        explode: true
-        in: query
-        name: id__in
         required: false
         schema:
           minLength: 1
@@ -860,21 +849,10 @@ paths:
           minimum: 1
           type: integer
         style: simple
-      - description: Filter by id.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
-        required: false
-        schema:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        style: form
-      - description: Filter by multiple ids (comma-separated).
-        explode: true
-        in: query
-        name: id__in
         required: false
         schema:
           minLength: 1
@@ -1767,21 +1745,10 @@ paths:
           minimum: 1
           type: integer
         style: simple
-      - description: Filter by id.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
-        required: false
-        schema:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        style: form
-      - description: Filter by multiple ids (comma-separated).
-        explode: true
-        in: query
-        name: id__in
         required: false
         schema:
           minLength: 1
@@ -2523,7 +2490,7 @@ paths:
       description: List all reports for your user.
       operationId: list_reports
       parameters:
-      - description: Filter by aggregation type (comma-separated for multiple values).
+      - description: Filter by aggregation type (accepts comma-separated values).
         explode: true
         in: query
         name: aggregation_type
@@ -2563,21 +2530,10 @@ paths:
           minimum: 1
           type: integer
         style: simple
-      - description: Filter by id.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
-        required: false
-        schema:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        style: form
-      - description: Filter by multiple ids (comma-separated).
-        explode: true
-        in: query
-        name: id__in
         required: false
         schema:
           minLength: 1
@@ -2645,7 +2601,7 @@ paths:
           minLength: 1
           type: string
         style: form
-      - description: Filter by type (comma-separated for multiple values).
+      - description: Filter by type (accepts comma-separated values).
         explode: true
         in: query
         name: type
@@ -3723,7 +3679,7 @@ paths:
       description: List all library reports for your user.
       operationId: list_library_reports
       parameters:
-      - description: Filter by aggregation type (comma-separated for multiple values).
+      - description: Filter by aggregation type (accepts comma-separated values).
         explode: true
         in: query
         name: aggregation_type
@@ -3741,21 +3697,10 @@ paths:
           minLength: 1
           type: string
         style: form
-      - description: Filter by id.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
-        required: false
-        schema:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        style: form
-      - description: Filter by multiple ids (comma-separated).
-        explode: true
-        in: query
-        name: id__in
         required: false
         schema:
           minLength: 1
@@ -3812,7 +3757,7 @@ paths:
           minLength: 1
           type: string
         style: form
-      - description: Filter by type (comma-separated for multiple values).
+      - description: Filter by type (accepts comma-separated values).
         explode: true
         in: query
         name: type
@@ -4418,16 +4363,14 @@ paths:
       description: List all recommendations for your user.
       operationId: list_recommendations
       parameters:
-      - description: Filter by dashboard ID
+      - description: Filter by dashboard ID (accepts comma-separated values).
         explode: true
         in: query
         name: dashboard
         required: false
         schema:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
+          minLength: 1
+          type: string
         style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -4438,16 +4381,14 @@ paths:
           minLength: 1
           type: string
         style: form
-      - description: Filter by recommendation ID
+      - description: Filter by recommendation ID (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
+          minLength: 1
+          type: string
         style: form
       - description: |-
           Which field to use when ordering the results.

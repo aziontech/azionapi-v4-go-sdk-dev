@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## ListRows
 
-> PaginatedResponseListRowList ListRows(ctx, dashboardId, folderId).Fields(fields).Id(id).IdIn(idIn).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Title(title).Execute()
+> PaginatedResponseListRowList ListRows(ctx, dashboardId, folderId).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Title(title).Execute()
 
 List of the rows
 
@@ -186,8 +186,7 @@ func main() {
 	dashboardId := int64(789) // int64 | The unique identifier of the dashboard
 	folderId := int64(789) // int64 | The unique identifier of the folder
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := int64(789) // int64 | Filter by id. (optional)
-	idIn := "idIn_example" // string | Filter by multiple ids (comma-separated). (optional)
+	id := "id_example" // string | Filter by id (accepts comma-separated values). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: order) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -196,7 +195,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsRowsAPI.ListRows(context.Background(), dashboardId, folderId).Fields(fields).Id(id).IdIn(idIn).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Title(title).Execute()
+	resp, r, err := apiClient.MetricsRowsAPI.ListRows(context.Background(), dashboardId, folderId).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Title(title).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.ListRows``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -225,8 +224,7 @@ Name | Type | Description  | Notes
 
 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **int64** | Filter by id. | 
- **idIn** | **string** | Filter by multiple ids (comma-separated). | 
+ **id** | **string** | Filter by id (accepts comma-separated values). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: order) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
