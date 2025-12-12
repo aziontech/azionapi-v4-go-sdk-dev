@@ -429,7 +429,6 @@ type ApiListDnsRecordsRequest struct {
 	ApiService *DNSRecordsAPIService
 	zoneId int64
 	fields *string
-	id *int64
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -439,12 +438,6 @@ type ApiListDnsRecordsRequest struct {
 // Comma-separated list of field names to include in the response.
 func (r ApiListDnsRecordsRequest) Fields(fields string) ApiListDnsRecordsRequest {
 	r.fields = &fields
-	return r
-}
-
-// Filter by id (accepts comma-separated values).
-func (r ApiListDnsRecordsRequest) Id(id int64) ApiListDnsRecordsRequest {
-	r.id = &id
 	return r
 }
 
@@ -466,7 +459,7 @@ func (r ApiListDnsRecordsRequest) PageSize(pageSize int64) ApiListDnsRecordsRequ
 	return r
 }
 
-// A search term.
+// Search in answers, entry, ttl, and type fields (case-insensitive, partial match).
 func (r ApiListDnsRecordsRequest) Search(search string) ApiListDnsRecordsRequest {
 	r.search = &search
 	return r
@@ -517,9 +510,6 @@ func (a *DNSRecordsAPIService) ListDnsRecordsExecute(r ApiListDnsRecordsRequest)
 
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
-	}
-	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")

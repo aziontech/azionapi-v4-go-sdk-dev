@@ -422,7 +422,6 @@ type ApiListDnsZonesRequest struct {
 	active *bool
 	domain *string
 	fields *string
-	id *int64
 	name *string
 	ordering *string
 	page *int64
@@ -445,12 +444,6 @@ func (r ApiListDnsZonesRequest) Domain(domain string) ApiListDnsZonesRequest {
 // Comma-separated list of field names to include in the response.
 func (r ApiListDnsZonesRequest) Fields(fields string) ApiListDnsZonesRequest {
 	r.fields = &fields
-	return r
-}
-
-// Filter by id (accepts comma-separated values).
-func (r ApiListDnsZonesRequest) Id(id int64) ApiListDnsZonesRequest {
-	r.id = &id
 	return r
 }
 
@@ -478,7 +471,7 @@ func (r ApiListDnsZonesRequest) PageSize(pageSize int64) ApiListDnsZonesRequest 
 	return r
 }
 
-// A search term.
+// Search in name and domain fields (case-insensitive, partial match).
 func (r ApiListDnsZonesRequest) Search(search string) ApiListDnsZonesRequest {
 	r.search = &search
 	return r
@@ -532,9 +525,6 @@ func (a *DNSZonesAPIService) ListDnsZonesExecute(r ApiListDnsZonesRequest) (*Pag
 	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
-	}
-	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")

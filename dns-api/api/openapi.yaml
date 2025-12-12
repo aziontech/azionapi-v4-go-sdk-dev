@@ -38,15 +38,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by id (accepts comma-separated values).
-        explode: true
-        in: query
-        name: id
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
       - description: Filter by name (exact match).
         explode: true
         in: query
@@ -83,7 +74,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "Search in name and domain fields (case-insensitive, partial\
+          \ match)."
         explode: true
         in: query
         name: search
@@ -1405,15 +1397,6 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by id (accepts comma-separated values).
-        explode: true
-        in: query
-        name: id
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
       - description: |-
           Which field to use when ordering the results.
           (Valid fields: id, name, weight)
@@ -1442,7 +1425,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "Search in answers, entry, ttl, and type fields (case-insensitive,\
+          \ partial match)."
         explode: true
         in: query
         name: search
