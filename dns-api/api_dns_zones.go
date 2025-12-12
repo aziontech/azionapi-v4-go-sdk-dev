@@ -428,7 +428,6 @@ type ApiListDnsZonesRequest struct {
 	page *int64
 	pageSize *int64
 	search *string
-	zones *string
 }
 
 // Filter by active status.
@@ -437,7 +436,7 @@ func (r ApiListDnsZonesRequest) Active(active bool) ApiListDnsZonesRequest {
 	return r
 }
 
-// Filter by domain (case-insensitive partial match).
+// Filter by domain (case-insensitive, partial match).
 func (r ApiListDnsZonesRequest) Domain(domain string) ApiListDnsZonesRequest {
 	r.domain = &domain
 	return r
@@ -449,13 +448,13 @@ func (r ApiListDnsZonesRequest) Fields(fields string) ApiListDnsZonesRequest {
 	return r
 }
 
-// Filter by id. Supports comma-separated values for multiple IDs.
+// Filter by id (accepts comma-separated values).
 func (r ApiListDnsZonesRequest) Id(id string) ApiListDnsZonesRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by name (case-insensitive partial match).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListDnsZonesRequest) Name(name string) ApiListDnsZonesRequest {
 	r.name = &name
 	return r
@@ -482,12 +481,6 @@ func (r ApiListDnsZonesRequest) PageSize(pageSize int64) ApiListDnsZonesRequest 
 // A search term.
 func (r ApiListDnsZonesRequest) Search(search string) ApiListDnsZonesRequest {
 	r.search = &search
-	return r
-}
-
-// Full-text zones across zones.
-func (r ApiListDnsZonesRequest) Zones(zones string) ApiListDnsZonesRequest {
-	r.zones = &zones
 	return r
 }
 
@@ -557,9 +550,6 @@ func (a *DNSZonesAPIService) ListDnsZonesExecute(r ApiListDnsZonesRequest) (*Pag
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
-	}
-	if r.zones != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "zones", r.zones, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
