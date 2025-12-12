@@ -283,7 +283,7 @@ paths:
       description: List all totp devices for user account and descendant accounts.
       operationId: list_totp_devices
       parameters:
-      - description: Filter by confirmation status.
+      - description: Filter by confirmed status.
         explode: true
         in: query
         name: confirmed
@@ -291,7 +291,7 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: "Filter by user's email (partial match, case-insensitive)."
+      - description: "Filter by user's email (case-insensitive, partial match)."
         explode: true
         in: query
         name: email
@@ -307,8 +307,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by ID. Supports multiple comma-separated values (e.g.,\
-          \ '1,2,3')."
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
@@ -316,7 +315,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by user's first name (partial match, case-insensitive)."
+      - description: "Filter by user's first name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
