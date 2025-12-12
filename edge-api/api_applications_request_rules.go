@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -431,6 +432,9 @@ type ApiListApplicationRequestRulesRequest struct {
 	description *string
 	fields *string
 	id *int64
+	lastEditor *string
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
 	name *string
 	orderGte *int64
 	orderLte *int64
@@ -455,6 +459,24 @@ func (r ApiListApplicationRequestRulesRequest) Fields(fields string) ApiListAppl
 // Filter by id (accepts comma-separated values).
 func (r ApiListApplicationRequestRulesRequest) Id(id int64) ApiListApplicationRequestRulesRequest {
 	r.id = &id
+	return r
+}
+
+// Filter by last editor (case-insensitive, partial match).
+func (r ApiListApplicationRequestRulesRequest) LastEditor(lastEditor string) ApiListApplicationRequestRulesRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last modified date (greater than or equal).
+func (r ApiListApplicationRequestRulesRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListApplicationRequestRulesRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date (less than or equal).
+func (r ApiListApplicationRequestRulesRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListApplicationRequestRulesRequest {
+	r.lastModifiedLte = &lastModifiedLte
 	return r
 }
 
@@ -551,6 +573,15 @@ func (a *ApplicationsRequestRulesAPIService) ListApplicationRequestRulesExecute(
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
