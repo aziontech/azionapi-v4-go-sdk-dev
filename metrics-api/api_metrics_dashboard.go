@@ -361,7 +361,7 @@ type ApiListDashboardsRequest struct {
 	ApiService *MetricsDashboardAPIService
 	folderId int64
 	fields *string
-	id *string
+	id *int64
 	name *string
 	ordering *string
 	page *int64
@@ -376,7 +376,7 @@ func (r ApiListDashboardsRequest) Fields(fields string) ApiListDashboardsRequest
 }
 
 // Filter by id (accepts comma-separated values).
-func (r ApiListDashboardsRequest) Id(id string) ApiListDashboardsRequest {
+func (r ApiListDashboardsRequest) Id(id int64) ApiListDashboardsRequest {
 	r.id = &id
 	return r
 }
