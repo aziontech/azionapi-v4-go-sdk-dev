@@ -423,12 +423,10 @@ type ApiListDataStreamsRequest struct {
 	ctx context.Context
 	ApiService *DataStreamStreamsAPIService
 	active *bool
-	dataSetId *int64
-	dataSetIdIn *string
+	dataSetId *string
 	dataSource *string
 	fields *string
-	id *int64
-	idIn *string
+	id *string
 	lastEditor *string
 	lastModifiedGte *time.Time
 	lastModifiedLte *time.Time
@@ -445,19 +443,13 @@ func (r ApiListDataStreamsRequest) Active(active bool) ApiListDataStreamsRequest
 	return r
 }
 
-// Filter by data set id.
-func (r ApiListDataStreamsRequest) DataSetId(dataSetId int64) ApiListDataStreamsRequest {
+// Filter by data set id (accepts comma-separated values).
+func (r ApiListDataStreamsRequest) DataSetId(dataSetId string) ApiListDataStreamsRequest {
 	r.dataSetId = &dataSetId
 	return r
 }
 
-// Filter by multiple data set ids (comma-separated).
-func (r ApiListDataStreamsRequest) DataSetIdIn(dataSetIdIn string) ApiListDataStreamsRequest {
-	r.dataSetIdIn = &dataSetIdIn
-	return r
-}
-
-// Filter by data source.
+// Filter by data source (accepts comma-separated values).
 func (r ApiListDataStreamsRequest) DataSource(dataSource string) ApiListDataStreamsRequest {
 	r.dataSource = &dataSource
 	return r
@@ -469,15 +461,9 @@ func (r ApiListDataStreamsRequest) Fields(fields string) ApiListDataStreamsReque
 	return r
 }
 
-// Filter by id.
-func (r ApiListDataStreamsRequest) Id(id int64) ApiListDataStreamsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListDataStreamsRequest) Id(id string) ApiListDataStreamsRequest {
 	r.id = &id
-	return r
-}
-
-// Filter by multiple ids (comma-separated).
-func (r ApiListDataStreamsRequest) IdIn(idIn string) ApiListDataStreamsRequest {
-	r.idIn = &idIn
 	return r
 }
 
@@ -575,9 +561,6 @@ func (a *DataStreamStreamsAPIService) ListDataStreamsExecute(r ApiListDataStream
 	if r.dataSetId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "data_set_id", r.dataSetId, "form", "")
 	}
-	if r.dataSetIdIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "data_set_id__in", r.dataSetIdIn, "form", "")
-	}
 	if r.dataSource != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "data_source", r.dataSource, "form", "")
 	}
@@ -586,9 +569,6 @@ func (a *DataStreamStreamsAPIService) ListDataStreamsExecute(r ApiListDataStream
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
-	}
-	if r.idIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
 	}
 	if r.lastEditor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")

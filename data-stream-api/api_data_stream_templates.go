@@ -426,8 +426,7 @@ type ApiListTemplatesRequest struct {
 	custom *bool
 	dataSet *string
 	fields *string
-	id *int64
-	idIn *string
+	id *string
 	lastEditor *string
 	lastModifiedGte *time.Time
 	lastModifiedLte *time.Time
@@ -444,7 +443,7 @@ func (r ApiListTemplatesRequest) Active(active bool) ApiListTemplatesRequest {
 	return r
 }
 
-// Filter by custom status.
+// Filter by custom status (true for custom templates, false for default templates).
 func (r ApiListTemplatesRequest) Custom(custom bool) ApiListTemplatesRequest {
 	r.custom = &custom
 	return r
@@ -462,15 +461,9 @@ func (r ApiListTemplatesRequest) Fields(fields string) ApiListTemplatesRequest {
 	return r
 }
 
-// Filter by id.
-func (r ApiListTemplatesRequest) Id(id int64) ApiListTemplatesRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListTemplatesRequest) Id(id string) ApiListTemplatesRequest {
 	r.id = &id
-	return r
-}
-
-// Filter by multiple ids (comma-separated).
-func (r ApiListTemplatesRequest) IdIn(idIn string) ApiListTemplatesRequest {
-	r.idIn = &idIn
 	return r
 }
 
@@ -576,9 +569,6 @@ func (a *DataStreamTemplatesAPIService) ListTemplatesExecute(r ApiListTemplatesR
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
-	}
-	if r.idIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
 	}
 	if r.lastEditor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
