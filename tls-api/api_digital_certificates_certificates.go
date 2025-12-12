@@ -422,7 +422,7 @@ type ApiListCertificatesRequest struct {
 	ApiService *DigitalCertificatesCertificatesAPIService
 	certificateType *string
 	fields *string
-	id *string
+	id *int64
 	issuer *string
 	lastModified *time.Time
 	lastModifiedGte *time.Time
@@ -451,7 +451,7 @@ func (r ApiListCertificatesRequest) Fields(fields string) ApiListCertificatesReq
 }
 
 // Filter by certificate ID (accepts comma-separated values).
-func (r ApiListCertificatesRequest) Id(id string) ApiListCertificatesRequest {
+func (r ApiListCertificatesRequest) Id(id int64) ApiListCertificatesRequest {
 	r.id = &id
 	return r
 }

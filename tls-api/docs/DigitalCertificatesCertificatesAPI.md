@@ -174,7 +174,7 @@ import (
 func main() {
 	certificateType := "certificateType_example" // string | Filter by certificate type (accepts comma-separated values). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by certificate ID (accepts comma-separated values). (optional)
+	id := int64(789) // int64 | Filter by certificate ID (accepts comma-separated values). (optional)
 	issuer := "issuer_example" // string | Filter by issuer (case-insensitive, partial match). (optional)
 	lastModified := time.Now() // time.Time | Filter by exact last modified date and time. (optional)
 	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **certificateType** | **string** | Filter by certificate type (accepts comma-separated values). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by certificate ID (accepts comma-separated values). | 
+ **id** | **int64** | Filter by certificate ID (accepts comma-separated values). | 
  **issuer** | **string** | Filter by issuer (case-insensitive, partial match). | 
  **lastModified** | **time.Time** | Filter by exact last modified date and time. | 
  **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 

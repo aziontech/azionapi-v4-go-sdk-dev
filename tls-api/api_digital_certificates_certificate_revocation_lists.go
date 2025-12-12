@@ -421,7 +421,7 @@ type ApiListCertificateRevocationListsRequest struct {
 	ctx context.Context
 	ApiService *DigitalCertificatesCertificateRevocationListsAPIService
 	fields *string
-	id *string
+	id *int64
 	issuer *string
 	lastModified *time.Time
 	lastModifiedGte *time.Time
@@ -446,7 +446,7 @@ func (r ApiListCertificateRevocationListsRequest) Fields(fields string) ApiListC
 }
 
 // Filter by CRL ID (accepts comma-separated values).
-func (r ApiListCertificateRevocationListsRequest) Id(id string) ApiListCertificateRevocationListsRequest {
+func (r ApiListCertificateRevocationListsRequest) Id(id int64) ApiListCertificateRevocationListsRequest {
 	r.id = &id
 	return r
 }
