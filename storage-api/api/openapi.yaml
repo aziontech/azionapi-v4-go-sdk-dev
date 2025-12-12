@@ -1705,10 +1705,18 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by bucket (accepts comma-separated values).
+      - description: Filter by bucket name (exact match).
         explode: true
         in: query
-        name: bucket
+        name: buckets
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by multiple bucket names (comma-separated).
+        explode: true
+        in: query
+        name: buckets__in
         required: false
         schema:
           type: string

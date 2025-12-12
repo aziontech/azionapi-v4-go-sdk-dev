@@ -421,7 +421,8 @@ type ApiListCredentialsRequest struct {
 	ctx context.Context
 	ApiService *StorageCredentialsAPIService
 	accessKey *string
-	bucket *string
+	buckets *string
+	bucketsIn *string
 	fields *string
 	id *int64
 	lastEditor *string
@@ -441,9 +442,15 @@ func (r ApiListCredentialsRequest) AccessKey(accessKey string) ApiListCredential
 	return r
 }
 
-// Filter by bucket (accepts comma-separated values).
-func (r ApiListCredentialsRequest) Bucket(bucket string) ApiListCredentialsRequest {
-	r.bucket = &bucket
+// Filter by bucket name (exact match).
+func (r ApiListCredentialsRequest) Buckets(buckets string) ApiListCredentialsRequest {
+	r.buckets = &buckets
+	return r
+}
+
+// Filter by multiple bucket names (comma-separated).
+func (r ApiListCredentialsRequest) BucketsIn(bucketsIn string) ApiListCredentialsRequest {
+	r.bucketsIn = &bucketsIn
 	return r
 }
 
@@ -556,8 +563,11 @@ func (a *StorageCredentialsAPIService) ListCredentialsExecute(r ApiListCredentia
 	if r.accessKey != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "access_key", r.accessKey, "form", "")
 	}
-	if r.bucket != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket", r.bucket, "form", "")
+	if r.buckets != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "buckets", r.buckets, "form", "")
+	}
+	if r.bucketsIn != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "buckets__in", r.bucketsIn, "form", "")
 	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
