@@ -433,7 +433,7 @@ type ApiListWafExceptionsRequest struct {
 	createdAtLte *time.Time
 	description *string
 	fields *string
-	id *string
+	id *int64
 	lastEditor *string
 	lastModifiedGte *time.Time
 	lastModifiedLte *time.Time
@@ -441,23 +441,22 @@ type ApiListWafExceptionsRequest struct {
 	page *int64
 	pageSize *int64
 	path *string
-	pathIstartswith *string
 	search *string
 }
 
-// Filter by created at date (greater than or equal to).
+// Filter by creation date (greater than or equal).
 func (r ApiListWafExceptionsRequest) CreatedAtGte(createdAtGte time.Time) ApiListWafExceptionsRequest {
 	r.createdAtGte = &createdAtGte
 	return r
 }
 
-// Filter by created at date (less than or equal to).
+// Filter by creation date (less than or equal).
 func (r ApiListWafExceptionsRequest) CreatedAtLte(createdAtLte time.Time) ApiListWafExceptionsRequest {
 	r.createdAtLte = &createdAtLte
 	return r
 }
 
-// Filter by description (partial search, case-insensitive).
+// Filter by description (case-insensitive, partial match).
 func (r ApiListWafExceptionsRequest) Description(description string) ApiListWafExceptionsRequest {
 	r.description = &description
 	return r
@@ -469,25 +468,25 @@ func (r ApiListWafExceptionsRequest) Fields(fields string) ApiListWafExceptionsR
 	return r
 }
 
-// Filter by ID (can be multiple, comma-separated).
-func (r ApiListWafExceptionsRequest) Id(id string) ApiListWafExceptionsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListWafExceptionsRequest) Id(id int64) ApiListWafExceptionsRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by last editor (partial search, case-insensitive).
+// Filter by last editor (case-insensitive, partial match).
 func (r ApiListWafExceptionsRequest) LastEditor(lastEditor string) ApiListWafExceptionsRequest {
 	r.lastEditor = &lastEditor
 	return r
 }
 
-// Filter by last modified date (greater than or equal to).
+// Filter by last modified date (greater than or equal).
 func (r ApiListWafExceptionsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListWafExceptionsRequest {
 	r.lastModifiedGte = &lastModifiedGte
 	return r
 }
 
-// Filter by last modified date (less than or equal to).
+// Filter by last modified date (less than or equal).
 func (r ApiListWafExceptionsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListWafExceptionsRequest {
 	r.lastModifiedLte = &lastModifiedLte
 	return r
@@ -511,15 +510,9 @@ func (r ApiListWafExceptionsRequest) PageSize(pageSize int64) ApiListWafExceptio
 	return r
 }
 
-// Filter by path (partial search, case-insensitive).
+// Filter by path (case-insensitive, partial match).
 func (r ApiListWafExceptionsRequest) Path(path string) ApiListWafExceptionsRequest {
 	r.path = &path
-	return r
-}
-
-// Filter by path (prefix search, case-insensitive).
-func (r ApiListWafExceptionsRequest) PathIstartswith(pathIstartswith string) ApiListWafExceptionsRequest {
-	r.pathIstartswith = &pathIstartswith
 	return r
 }
 
@@ -607,9 +600,6 @@ func (a *WAFsExceptionsAPIService) ListWafExceptionsExecute(r ApiListWafExceptio
 	}
 	if r.path != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "path", r.path, "form", "")
-	}
-	if r.pathIstartswith != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "path__istartswith", r.pathIstartswith, "form", "")
 	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")

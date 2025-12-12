@@ -173,16 +173,16 @@ import (
 func main() {
 	active := true // bool | Filter by active status. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by ID (can be multiple, comma-separated). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (partial search, case-insensitive). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal to). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal to). (optional)
-	name := "name_example" // string | Filter by name (partial search, case-insensitive). (optional)
+	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
+	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: ) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
-	typeIn := "typeIn_example" // string | Filter by type (can be multiple, comma-separated). (optional)
+	typeIn := "typeIn_example" // string | Filter by type (accepts comma-separated values). (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -209,16 +209,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **active** | **bool** | Filter by active status. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by ID (can be multiple, comma-separated). | 
- **lastEditor** | **string** | Filter by last editor (partial search, case-insensitive). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal to). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal to). | 
- **name** | **string** | Filter by name (partial search, case-insensitive). | 
+ **id** | **int64** | Filter by id (accepts comma-separated values). | 
+ **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
+ **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: ) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
- **typeIn** | **string** | Filter by type (can be multiple, comma-separated). | 
+ **typeIn** | **string** | Filter by type (accepts comma-separated values). | 
 
 ### Return type
 

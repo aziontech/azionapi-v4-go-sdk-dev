@@ -27,15 +27,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by ID. Can be multiple comma-separated values.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: Filter by last editor (partial search).
+      - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
         in: query
         name: last_editor
@@ -43,7 +44,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by last modified (start).
+      - description: Filter by last modified date (greater than or equal).
         explode: true
         in: query
         name: last_modified__gte
@@ -52,7 +53,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by last modified (end).
+      - description: Filter by last modified date (less than or equal).
         explode: true
         in: query
         name: last_modified__lte
@@ -61,7 +62,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by name (partial search).
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -963,14 +964,6 @@ paths:
       description: List all Cache Settings owned by your account.
       operationId: list_cache_settings
       parameters:
-      - description: Filter by adaptive delivery action.
-        explode: true
-        in: query
-        name: adaptive_delivery_action
-        required: false
-        schema:
-          type: string
-        style: form
       - description: A unique integer value identifying the application.
         explode: false
         in: path
@@ -980,56 +973,6 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: Filter by browser cache settings.
-        explode: true
-        in: query
-        name: browser_cache_settings
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by browser cache settings maximum TTL.
-        explode: true
-        in: query
-        name: browser_cache_settings_maximum_ttl
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: Filter by cache cookies.
-        explode: true
-        in: query
-        name: cache_by_cookies
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by cache query string.
-        explode: true
-        in: query
-        name: cache_by_query_string
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by CDN cache settings.
-        explode: true
-        in: query
-        name: cdn_cache_settings
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by CDN cache settings maximum TTL.
-        explode: true
-        in: query
-        name: cdn_cache_settings_maximum_ttl
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -1038,15 +981,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by ID. Can be multiple comma-separated values.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: Filter by name (partial search).
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -1089,15 +1033,6 @@ paths:
         required: false
         schema:
           type: string
-        style: form
-      - description: Filter by slice configuration range.
-        explode: true
-        in: query
-        name: slice_configuration_range
-        required: false
-        schema:
-          format: int64
-          type: integer
         style: form
       responses:
         "200":
@@ -2173,15 +2108,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by ID. Can be multiple comma-separated values.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: Filter by name (partial search).
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -2225,7 +2161,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by user agent (partial search).
+      - description: "Filter by user agent (case-insensitive, partial match)."
         explode: true
         in: query
         name: user_agent
@@ -3155,15 +3091,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by ID (can be multiple, comma-separated)."
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: "Filter by last editor (partial search, case-insensitive)."
+      - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
         in: query
         name: last_editor
@@ -3171,7 +3108,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by last modified date (greater than or equal to).
+      - description: Filter by last modified date (greater than or equal).
         explode: true
         in: query
         name: last_modified__gte
@@ -3180,7 +3117,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by last modified date (less than or equal to).
+      - description: Filter by last modified date (less than or equal).
         explode: true
         in: query
         name: last_modified__lte
@@ -3189,7 +3126,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: "Filter by name (partial search, case-insensitive)."
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -4148,7 +4085,7 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: "Filter by description (partial search, case-insensitive)."
+      - description: "Filter by description (case-insensitive, partial match)."
         explode: true
         in: query
         name: description
@@ -4164,23 +4101,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by ID (can be multiple, comma-separated)."
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: Filter by active status.
-        explode: true
-        in: query
-        name: is_active
-        required: false
-        schema:
-          type: boolean
-        style: form
-      - description: "Filter by name (partial search, case-insensitive)."
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -4188,7 +4118,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by order (greater than or equal to).
+      - description: Filter by order (greater than or equal).
         explode: true
         in: query
         name: order__gte
@@ -4197,7 +4127,7 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: Filter by order (less than or equal to).
+      - description: Filter by order (less than or equal).
         explode: true
         in: query
         name: order__lte
@@ -5342,7 +5272,7 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: "Filter by description (partial search, case-insensitive)."
+      - description: "Filter by description (case-insensitive, partial match)."
         explode: true
         in: query
         name: description
@@ -5358,23 +5288,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by ID (can be multiple, comma-separated)."
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: Filter by active status.
-        explode: true
-        in: query
-        name: is_active
-        required: false
-        schema:
-          type: boolean
-        style: form
-      - description: "Filter by name (partial search, case-insensitive)."
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -5382,7 +5305,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by order (greater than or equal to).
+      - description: Filter by order (greater than or equal).
         explode: true
         in: query
         name: order__gte
@@ -5391,7 +5314,7 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: Filter by order (less than or equal to).
+      - description: Filter by order (less than or equal).
         explode: true
         in: query
         name: order__lte
@@ -6543,15 +6466,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by ID (can be multiple, comma-separated)."
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: "Filter by last editor (partial search, case-insensitive)."
+      - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
         in: query
         name: last_editor
@@ -6559,7 +6483,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by last modified date (greater than or equal to).
+      - description: Filter by last modified date (greater than or equal).
         explode: true
         in: query
         name: last_modified__gte
@@ -6568,7 +6492,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by last modified date (less than or equal to).
+      - description: Filter by last modified date (less than or equal).
         explode: true
         in: query
         name: last_modified__lte
@@ -6577,7 +6501,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: "Filter by name (partial search, case-insensitive)."
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -6621,7 +6545,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by type (can be multiple, comma-separated)."
+      - description: Filter by type (accepts comma-separated values).
         explode: true
         in: query
         name: type__in
@@ -7493,7 +7417,7 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: Filter by debug status.
+      - description: Filter by debug rules status.
         explode: true
         in: query
         name: debug
@@ -7509,15 +7433,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by ID. Can be multiple comma-separated values.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: Filter by last editor (partial search).
+      - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
         in: query
         name: last_editor
@@ -7525,7 +7450,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by last modified (start).
+      - description: Filter by last modified date (greater than or equal).
         explode: true
         in: query
         name: last_modified__gte
@@ -7534,7 +7459,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by last modified (end).
+      - description: Filter by last modified date (less than or equal).
         explode: true
         in: query
         name: last_modified__lte
@@ -7543,7 +7468,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by name (partial search).
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -8615,15 +8540,16 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: "Filter by ID (can be multiple, comma-separated)."
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: "Filter by last editor (partial search, case-insensitive)."
+      - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
         in: query
         name: last_editor
@@ -8631,7 +8557,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by last modified date (greater than or equal to).
+      - description: Filter by last modified date (greater than or equal).
         explode: true
         in: query
         name: last_modified__gte
@@ -8640,7 +8566,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by last modified date (less than or equal to).
+      - description: Filter by last modified date (less than or equal).
         explode: true
         in: query
         name: last_modified__lte
@@ -8649,7 +8575,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: "Filter by name (partial search, case-insensitive)."
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -9599,7 +9525,7 @@ paths:
       description: List all Rules for a specific Firewall owned by your account.
       operationId: list_firewall_rules
       parameters:
-      - description: "Filter by description (partial search, case-insensitive)."
+      - description: "Filter by description (case-insensitive, partial match)."
         explode: true
         in: query
         name: description
@@ -9624,23 +9550,16 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: "Filter by ID (can be multiple, comma-separated)."
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: Filter by active status.
-        explode: true
-        in: query
-        name: is_active
-        required: false
-        schema:
-          type: boolean
-        style: form
-      - description: "Filter by last editor (partial search, case-insensitive)."
+      - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
         in: query
         name: last_editor
@@ -9648,7 +9567,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by last modified date (greater than or equal to).
+      - description: Filter by last modified date (greater than or equal).
         explode: true
         in: query
         name: last_modified__gte
@@ -9657,7 +9576,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by last modified date (less than or equal to).
+      - description: Filter by last modified date (less than or equal).
         explode: true
         in: query
         name: last_modified__lte
@@ -9666,7 +9585,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: "Filter by name (partial search, case-insensitive)."
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -9674,7 +9593,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by order (greater than or equal to).
+      - description: Filter by order (greater than or equal).
         explode: true
         in: query
         name: order__gte
@@ -9683,7 +9602,7 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: Filter by order (less than or equal to).
+      - description: Filter by order (less than or equal).
         explode: true
         in: query
         name: order__lte
@@ -10827,15 +10746,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by ID (can be multiple, comma-separated)."
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: "Filter by name (partial search, case-insensitive)."
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -11890,7 +11810,7 @@ paths:
         account.
       operationId: list_waf_exceptions
       parameters:
-      - description: Filter by created at date (greater than or equal to).
+      - description: Filter by creation date (greater than or equal).
         explode: true
         in: query
         name: created_at__gte
@@ -11899,7 +11819,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by created at date (less than or equal to).
+      - description: Filter by creation date (less than or equal).
         explode: true
         in: query
         name: created_at__lte
@@ -11908,7 +11828,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: "Filter by description (partial search, case-insensitive)."
+      - description: "Filter by description (case-insensitive, partial match)."
         explode: true
         in: query
         name: description
@@ -11924,15 +11844,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by ID (can be multiple, comma-separated)."
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: "Filter by last editor (partial search, case-insensitive)."
+      - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
         in: query
         name: last_editor
@@ -11940,7 +11861,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by last modified date (greater than or equal to).
+      - description: Filter by last modified date (greater than or equal).
         explode: true
         in: query
         name: last_modified__gte
@@ -11949,7 +11870,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by last modified date (less than or equal to).
+      - description: Filter by last modified date (less than or equal).
         explode: true
         in: query
         name: last_modified__lte
@@ -11986,18 +11907,10 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: "Filter by path (partial search, case-insensitive)."
+      - description: "Filter by path (case-insensitive, partial match)."
         explode: true
         in: query
         name: path
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: "Filter by path (prefix search, case-insensitive)."
-        explode: true
-        in: query
-        name: path__istartswith
         required: false
         schema:
           type: string
@@ -12931,22 +12844,6 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: Filter by default args (partial search).
-        explode: true
-        in: query
-        name: default_args
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by execution environment.
-        explode: true
-        in: query
-        name: execution_environment
-        required: false
-        schema:
-          type: string
-        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -12955,15 +12852,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by ID. Can be multiple comma-separated values.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: Filter by language. Can be multiple comma-separated values.
+      - description: Filter by language (accepts comma-separated values).
         explode: true
         in: query
         name: language__in
@@ -12971,7 +12869,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by last editor (partial search).
+      - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
         in: query
         name: last_editor
@@ -12979,7 +12877,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by last modified (start).
+      - description: Filter by last modified date (greater than or equal).
         explode: true
         in: query
         name: last_modified__gte
@@ -12988,7 +12886,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by last modified (end).
+      - description: Filter by last modified date (less than or equal).
         explode: true
         in: query
         name: last_modified__lte
@@ -12997,7 +12895,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by name (partial search).
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -13033,16 +12931,7 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: Filter by runtime.
-        explode: true
-        in: query
-        name: runtime
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by runtime environment. Can be multiple comma-separated
-          values.
+      - description: Filter by runtime environment (accepts comma-separated values).
         explode: true
         in: query
         name: runtime_environment__in
@@ -13054,14 +12943,6 @@ paths:
         explode: true
         in: query
         name: search
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by vendor.
-        explode: true
-        in: query
-        name: vendor
         required: false
         schema:
           type: string
@@ -13932,15 +13813,6 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: Filter by custom status code.
-        explode: true
-        in: query
-        name: custom_status_code
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -13949,15 +13821,42 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by ID. Can be multiple comma-separated values.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
+          format: int64
+          type: integer
+        style: form
+      - description: "Filter by last editor (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: last_editor
+        required: false
+        schema:
           type: string
         style: form
-      - description: Filter by name (partial search).
+      - description: Filter by last modified date (greater than or equal).
+        explode: true
+        in: query
+        name: last_modified__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date (less than or equal).
+        explode: true
+        in: query
+        name: last_modified__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -14859,15 +14758,6 @@ paths:
       description: List all Network Lists owned by your account.
       operationId: list_network_lists
       parameters:
-      - description: Filter by account ID.
-        explode: true
-        in: query
-        name: account_id
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
         in: query
@@ -14876,15 +14766,16 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by ID. Can be multiple comma-separated values.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: Filter by last editor (partial search).
+      - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
         in: query
         name: last_editor
@@ -14892,7 +14783,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by last modified (start).
+      - description: Filter by last modified date (greater than or equal).
         explode: true
         in: query
         name: last_modified__gte
@@ -14901,7 +14792,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by last modified (end).
+      - description: Filter by last modified date (less than or equal).
         explode: true
         in: query
         name: last_modified__lte
@@ -14910,15 +14801,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by list type.
-        explode: true
-        in: query
-        name: list_type
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by list type. Can be multiple comma-separated values.
+      - description: Filter by list type (accepts comma-separated values).
         explode: true
         in: query
         name: list_type__in
@@ -14926,7 +14809,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by name (partial search).
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -16006,13 +15889,14 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: "Filter by digital certificate ID (can be multiple, comma-separated)."
+      - description: Filter by digital certificate id (accepts comma-separated values).
         explode: true
         in: query
-        name: digital_certificate_id__in
+        name: digital_certificate_id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -16022,23 +15906,24 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by ID (can be multiple, comma-separated)."
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: "Filter by infrastructure (can be multiple, comma-separated)."
+      - description: Filter by infrastructure (accepts comma-separated values).
         explode: true
         in: query
-        name: infrastructure__in
+        name: infrastructure
         required: false
         schema:
           type: string
         style: form
-      - description: "Filter by last editor (partial search, case-insensitive)."
+      - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
         in: query
         name: last_editor
@@ -16046,7 +15931,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by last modified date (greater than or equal to).
+      - description: Filter by last modified date (greater than or equal).
         explode: true
         in: query
         name: last_modified__gte
@@ -16055,7 +15940,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: Filter by last modified date (less than or equal to).
+      - description: Filter by last modified date (less than or equal).
         explode: true
         in: query
         name: last_modified__lte
@@ -16064,7 +15949,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: "Filter by map name (partial search, case-insensitive)."
+      - description: "Filter by map name (case-insensitive, partial match)."
         explode: true
         in: query
         name: map_name
@@ -16072,23 +15957,17 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by mTLS trusted CA certificate ID (can be multiple, comma-separated)."
+      - description: Filter by mTLS trusted CA certificate id (accepts comma-separated
+          values).
         explode: true
         in: query
-        name: mtls_trusted_ca_certificate_id__in
+        name: mtls_trusted_ca_certificate_id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
-      - description: Filter by mTLS verification status.
-        explode: true
-        in: query
-        name: mtls_verification
-        required: false
-        schema:
-          type: boolean
-        style: form
-      - description: "Filter by name (partial search, case-insensitive)."
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -17006,13 +16885,14 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by ID (can be multiple, comma-separated)."
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          type: string
+          format: int64
+          type: integer
         style: form
       - description: |-
           Which field to use when ordering the results.
@@ -17050,7 +16930,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by tag (partial search, case-insensitive)."
+      - description: "Filter by tag (case-insensitive, partial match)."
         explode: true
         in: query
         name: tag

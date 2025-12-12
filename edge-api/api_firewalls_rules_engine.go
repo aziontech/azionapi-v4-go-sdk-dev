@@ -431,8 +431,7 @@ type ApiListFirewallRulesRequest struct {
 	firewallId int64
 	description *string
 	fields *string
-	id *string
-	isActive *bool
+	id *int64
 	lastEditor *string
 	lastModifiedGte *time.Time
 	lastModifiedLte *time.Time
@@ -445,7 +444,7 @@ type ApiListFirewallRulesRequest struct {
 	search *string
 }
 
-// Filter by description (partial search, case-insensitive).
+// Filter by description (case-insensitive, partial match).
 func (r ApiListFirewallRulesRequest) Description(description string) ApiListFirewallRulesRequest {
 	r.description = &description
 	return r
@@ -457,49 +456,43 @@ func (r ApiListFirewallRulesRequest) Fields(fields string) ApiListFirewallRulesR
 	return r
 }
 
-// Filter by ID (can be multiple, comma-separated).
-func (r ApiListFirewallRulesRequest) Id(id string) ApiListFirewallRulesRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListFirewallRulesRequest) Id(id int64) ApiListFirewallRulesRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by active status.
-func (r ApiListFirewallRulesRequest) IsActive(isActive bool) ApiListFirewallRulesRequest {
-	r.isActive = &isActive
-	return r
-}
-
-// Filter by last editor (partial search, case-insensitive).
+// Filter by last editor (case-insensitive, partial match).
 func (r ApiListFirewallRulesRequest) LastEditor(lastEditor string) ApiListFirewallRulesRequest {
 	r.lastEditor = &lastEditor
 	return r
 }
 
-// Filter by last modified date (greater than or equal to).
+// Filter by last modified date (greater than or equal).
 func (r ApiListFirewallRulesRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListFirewallRulesRequest {
 	r.lastModifiedGte = &lastModifiedGte
 	return r
 }
 
-// Filter by last modified date (less than or equal to).
+// Filter by last modified date (less than or equal).
 func (r ApiListFirewallRulesRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListFirewallRulesRequest {
 	r.lastModifiedLte = &lastModifiedLte
 	return r
 }
 
-// Filter by name (partial search, case-insensitive).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListFirewallRulesRequest) Name(name string) ApiListFirewallRulesRequest {
 	r.name = &name
 	return r
 }
 
-// Filter by order (greater than or equal to).
+// Filter by order (greater than or equal).
 func (r ApiListFirewallRulesRequest) OrderGte(orderGte int64) ApiListFirewallRulesRequest {
 	r.orderGte = &orderGte
 	return r
 }
 
-// Filter by order (less than or equal to).
+// Filter by order (less than or equal).
 func (r ApiListFirewallRulesRequest) OrderLte(orderLte int64) ApiListFirewallRulesRequest {
 	r.orderLte = &orderLte
 	return r
@@ -580,9 +573,6 @@ func (a *FirewallsRulesEngineAPIService) ListFirewallRulesExecute(r ApiListFirew
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
-	}
-	if r.isActive != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "is_active", r.isActive, "form", "")
 	}
 	if r.lastEditor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")

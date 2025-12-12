@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListWorkloads
 
-> PaginatedWorkloadList ListWorkloads(ctx).Active(active).DigitalCertificateIdIn(digitalCertificateIdIn).Fields(fields).Id(id).InfrastructureIn(infrastructureIn).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).MapName(mapName).MtlsTrustedCaCertificateIdIn(mtlsTrustedCaCertificateIdIn).MtlsVerification(mtlsVerification).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedWorkloadList ListWorkloads(ctx).Active(active).DigitalCertificateId(digitalCertificateId).Fields(fields).Id(id).Infrastructure(infrastructure).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).MapName(mapName).MtlsTrustedCaCertificateId(mtlsTrustedCaCertificateId).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Workloads
 
@@ -172,17 +172,16 @@ import (
 
 func main() {
 	active := true // bool | Filter by active status. (optional)
-	digitalCertificateIdIn := "digitalCertificateIdIn_example" // string | Filter by digital certificate ID (can be multiple, comma-separated). (optional)
+	digitalCertificateId := int64(789) // int64 | Filter by digital certificate id (accepts comma-separated values). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by ID (can be multiple, comma-separated). (optional)
-	infrastructureIn := "infrastructureIn_example" // string | Filter by infrastructure (can be multiple, comma-separated). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (partial search, case-insensitive). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal to). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal to). (optional)
-	mapName := "mapName_example" // string | Filter by map name (partial search, case-insensitive). (optional)
-	mtlsTrustedCaCertificateIdIn := "mtlsTrustedCaCertificateIdIn_example" // string | Filter by mTLS trusted CA certificate ID (can be multiple, comma-separated). (optional)
-	mtlsVerification := true // bool | Filter by mTLS verification status. (optional)
-	name := "name_example" // string | Filter by name (partial search, case-insensitive). (optional)
+	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
+	infrastructure := "infrastructure_example" // string | Filter by infrastructure (accepts comma-separated values). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
+	mapName := "mapName_example" // string | Filter by map name (case-insensitive, partial match). (optional)
+	mtlsTrustedCaCertificateId := int64(789) // int64 | Filter by mTLS trusted CA certificate id (accepts comma-separated values). (optional)
+	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -190,7 +189,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.ListWorkloads(context.Background()).Active(active).DigitalCertificateIdIn(digitalCertificateIdIn).Fields(fields).Id(id).InfrastructureIn(infrastructureIn).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).MapName(mapName).MtlsTrustedCaCertificateIdIn(mtlsTrustedCaCertificateIdIn).MtlsVerification(mtlsVerification).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.WorkloadsAPI.ListWorkloads(context.Background()).Active(active).DigitalCertificateId(digitalCertificateId).Fields(fields).Id(id).Infrastructure(infrastructure).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).MapName(mapName).MtlsTrustedCaCertificateId(mtlsTrustedCaCertificateId).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.ListWorkloads``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -212,17 +211,16 @@ Other parameters are passed through a pointer to a apiListWorkloadsRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **active** | **bool** | Filter by active status. | 
- **digitalCertificateIdIn** | **string** | Filter by digital certificate ID (can be multiple, comma-separated). | 
+ **digitalCertificateId** | **int64** | Filter by digital certificate id (accepts comma-separated values). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by ID (can be multiple, comma-separated). | 
- **infrastructureIn** | **string** | Filter by infrastructure (can be multiple, comma-separated). | 
- **lastEditor** | **string** | Filter by last editor (partial search, case-insensitive). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal to). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal to). | 
- **mapName** | **string** | Filter by map name (partial search, case-insensitive). | 
- **mtlsTrustedCaCertificateIdIn** | **string** | Filter by mTLS trusted CA certificate ID (can be multiple, comma-separated). | 
- **mtlsVerification** | **bool** | Filter by mTLS verification status. | 
- **name** | **string** | Filter by name (partial search, case-insensitive). | 
+ **id** | **int64** | Filter by id (accepts comma-separated values). | 
+ **infrastructure** | **string** | Filter by infrastructure (accepts comma-separated values). | 
+ **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
+ **mapName** | **string** | Filter by map name (case-insensitive, partial match). | 
+ **mtlsTrustedCaCertificateId** | **int64** | Filter by mTLS trusted CA certificate id (accepts comma-separated values). | 
+ **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

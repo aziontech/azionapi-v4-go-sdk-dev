@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ## ListFirewallRules
 
-> PaginatedFirewallRuleEngineList ListFirewallRules(ctx, firewallId).Description(description).Fields(fields).Id(id).IsActive(isActive).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedFirewallRuleEngineList ListFirewallRules(ctx, firewallId).Description(description).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Firewall Rules
 
@@ -182,16 +182,15 @@ import (
 
 func main() {
 	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	description := "description_example" // string | Filter by description (partial search, case-insensitive). (optional)
+	description := "description_example" // string | Filter by description (case-insensitive, partial match). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by ID (can be multiple, comma-separated). (optional)
-	isActive := true // bool | Filter by active status. (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (partial search, case-insensitive). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal to). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal to). (optional)
-	name := "name_example" // string | Filter by name (partial search, case-insensitive). (optional)
-	orderGte := int64(789) // int64 | Filter by order (greater than or equal to). (optional)
-	orderLte := int64(789) // int64 | Filter by order (less than or equal to). (optional)
+	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
+	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
+	orderGte := int64(789) // int64 | Filter by order (greater than or equal). (optional)
+	orderLte := int64(789) // int64 | Filter by order (less than or equal). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, active, description, order, behaviors, criteria) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -199,7 +198,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.ListFirewallRules(context.Background(), firewallId).Description(description).Fields(fields).Id(id).IsActive(isActive).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.FirewallsRulesEngineAPI.ListFirewallRules(context.Background(), firewallId).Description(description).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.ListFirewallRules``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -225,16 +224,15 @@ Other parameters are passed through a pointer to a apiListFirewallRulesRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **description** | **string** | Filter by description (partial search, case-insensitive). | 
+ **description** | **string** | Filter by description (case-insensitive, partial match). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by ID (can be multiple, comma-separated). | 
- **isActive** | **bool** | Filter by active status. | 
- **lastEditor** | **string** | Filter by last editor (partial search, case-insensitive). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal to). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal to). | 
- **name** | **string** | Filter by name (partial search, case-insensitive). | 
- **orderGte** | **int64** | Filter by order (greater than or equal to). | 
- **orderLte** | **int64** | Filter by order (less than or equal to). | 
+ **id** | **int64** | Filter by id (accepts comma-separated values). | 
+ **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
+ **name** | **string** | Filter by name (case-insensitive, partial match). | 
+ **orderGte** | **int64** | Filter by order (greater than or equal). | 
+ **orderLte** | **int64** | Filter by order (less than or equal). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, active, description, order, behaviors, criteria) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

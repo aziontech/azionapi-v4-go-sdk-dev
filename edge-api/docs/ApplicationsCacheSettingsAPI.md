@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ListCacheSettings
 
-> PaginatedResponseListCacheSettingList ListCacheSettings(ctx, applicationId).AdaptiveDeliveryAction(adaptiveDeliveryAction).BrowserCacheSettings(browserCacheSettings).BrowserCacheSettingsMaximumTtl(browserCacheSettingsMaximumTtl).CacheByCookies(cacheByCookies).CacheByQueryString(cacheByQueryString).CdnCacheSettings(cdnCacheSettings).CdnCacheSettingsMaximumTtl(cdnCacheSettingsMaximumTtl).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).SliceConfigurationRange(sliceConfigurationRange).Execute()
+> PaginatedResponseListCacheSettingList ListCacheSettings(ctx, applicationId).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List all Applications Cache Settings
 
@@ -180,25 +180,17 @@ import (
 
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	adaptiveDeliveryAction := "adaptiveDeliveryAction_example" // string | Filter by adaptive delivery action. (optional)
-	browserCacheSettings := "browserCacheSettings_example" // string | Filter by browser cache settings. (optional)
-	browserCacheSettingsMaximumTtl := int64(789) // int64 | Filter by browser cache settings maximum TTL. (optional)
-	cacheByCookies := "cacheByCookies_example" // string | Filter by cache cookies. (optional)
-	cacheByQueryString := "cacheByQueryString_example" // string | Filter by cache query string. (optional)
-	cdnCacheSettings := "cdnCacheSettings_example" // string | Filter by CDN cache settings. (optional)
-	cdnCacheSettingsMaximumTtl := int64(789) // int64 | Filter by CDN cache settings maximum TTL. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by ID. Can be multiple comma-separated values. (optional)
-	name := "name_example" // string | Filter by name (partial search). (optional)
+	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
+	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
-	sliceConfigurationRange := int64(789) // int64 | Filter by slice configuration range. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsCacheSettingsAPI.ListCacheSettings(context.Background(), applicationId).AdaptiveDeliveryAction(adaptiveDeliveryAction).BrowserCacheSettings(browserCacheSettings).BrowserCacheSettingsMaximumTtl(browserCacheSettingsMaximumTtl).CacheByCookies(cacheByCookies).CacheByQueryString(cacheByQueryString).CdnCacheSettings(cdnCacheSettings).CdnCacheSettingsMaximumTtl(cdnCacheSettingsMaximumTtl).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).SliceConfigurationRange(sliceConfigurationRange).Execute()
+	resp, r, err := apiClient.ApplicationsCacheSettingsAPI.ListCacheSettings(context.Background(), applicationId).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsCacheSettingsAPI.ListCacheSettings``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -224,21 +216,13 @@ Other parameters are passed through a pointer to a apiListCacheSettingsRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **adaptiveDeliveryAction** | **string** | Filter by adaptive delivery action. | 
- **browserCacheSettings** | **string** | Filter by browser cache settings. | 
- **browserCacheSettingsMaximumTtl** | **int64** | Filter by browser cache settings maximum TTL. | 
- **cacheByCookies** | **string** | Filter by cache cookies. | 
- **cacheByQueryString** | **string** | Filter by cache query string. | 
- **cdnCacheSettings** | **string** | Filter by CDN cache settings. | 
- **cdnCacheSettingsMaximumTtl** | **int64** | Filter by CDN cache settings maximum TTL. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by ID. Can be multiple comma-separated values. | 
- **name** | **string** | Filter by name (partial search). | 
+ **id** | **int64** | Filter by id (accepts comma-separated values). | 
+ **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
- **sliceConfigurationRange** | **int64** | Filter by slice configuration range. | 
 
 ### Return type
 

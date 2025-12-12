@@ -429,7 +429,7 @@ type ApiListDeviceGroupsRequest struct {
 	ApiService *ApplicationsDeviceGroupsAPIService
 	applicationId int64
 	fields *string
-	id *string
+	id *int64
 	name *string
 	ordering *string
 	page *int64
@@ -444,13 +444,13 @@ func (r ApiListDeviceGroupsRequest) Fields(fields string) ApiListDeviceGroupsReq
 	return r
 }
 
-// Filter by ID. Can be multiple comma-separated values.
-func (r ApiListDeviceGroupsRequest) Id(id string) ApiListDeviceGroupsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListDeviceGroupsRequest) Id(id int64) ApiListDeviceGroupsRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by name (partial search).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListDeviceGroupsRequest) Name(name string) ApiListDeviceGroupsRequest {
 	r.name = &name
 	return r
@@ -480,7 +480,7 @@ func (r ApiListDeviceGroupsRequest) Search(search string) ApiListDeviceGroupsReq
 	return r
 }
 
-// Filter by user agent (partial search).
+// Filter by user agent (case-insensitive, partial match).
 func (r ApiListDeviceGroupsRequest) UserAgent(userAgent string) ApiListDeviceGroupsRequest {
 	r.userAgent = &userAgent
 	return r

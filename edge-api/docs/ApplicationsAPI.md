@@ -246,11 +246,11 @@ import (
 func main() {
 	active := true // bool | Filter by active status. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by ID. Can be multiple comma-separated values. (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (partial search). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified (start). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified (end). (optional)
-	name := "name_example" // string | Filter by name (partial search). (optional)
+	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
+	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, id, last_editor, last_modified, active, debug, product_version) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -281,11 +281,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **active** | **bool** | Filter by active status. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by ID. Can be multiple comma-separated values. | 
- **lastEditor** | **string** | Filter by last editor (partial search). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified (start). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified (end). | 
- **name** | **string** | Filter by name (partial search). | 
+ **id** | **int64** | Filter by id (accepts comma-separated values). | 
+ **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
+ **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: name, id, last_editor, last_modified, active, debug, product_version) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

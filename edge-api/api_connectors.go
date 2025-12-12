@@ -419,7 +419,7 @@ type ApiListConnectorsRequest struct {
 	ApiService *ConnectorsAPIService
 	active *bool
 	fields *string
-	id *string
+	id *int64
 	lastEditor *string
 	lastModifiedGte *time.Time
 	lastModifiedLte *time.Time
@@ -443,31 +443,31 @@ func (r ApiListConnectorsRequest) Fields(fields string) ApiListConnectorsRequest
 	return r
 }
 
-// Filter by ID (can be multiple, comma-separated).
-func (r ApiListConnectorsRequest) Id(id string) ApiListConnectorsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListConnectorsRequest) Id(id int64) ApiListConnectorsRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by last editor (partial search, case-insensitive).
+// Filter by last editor (case-insensitive, partial match).
 func (r ApiListConnectorsRequest) LastEditor(lastEditor string) ApiListConnectorsRequest {
 	r.lastEditor = &lastEditor
 	return r
 }
 
-// Filter by last modified date (greater than or equal to).
+// Filter by last modified date (greater than or equal).
 func (r ApiListConnectorsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListConnectorsRequest {
 	r.lastModifiedGte = &lastModifiedGte
 	return r
 }
 
-// Filter by last modified date (less than or equal to).
+// Filter by last modified date (less than or equal).
 func (r ApiListConnectorsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListConnectorsRequest {
 	r.lastModifiedLte = &lastModifiedLte
 	return r
 }
 
-// Filter by name (partial search, case-insensitive).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListConnectorsRequest) Name(name string) ApiListConnectorsRequest {
 	r.name = &name
 	return r
@@ -497,7 +497,7 @@ func (r ApiListConnectorsRequest) Search(search string) ApiListConnectorsRequest
 	return r
 }
 
-// Filter by type (can be multiple, comma-separated).
+// Filter by type (accepts comma-separated values).
 func (r ApiListConnectorsRequest) TypeIn(typeIn string) ApiListConnectorsRequest {
 	r.typeIn = &typeIn
 	return r
