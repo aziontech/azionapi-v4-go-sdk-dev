@@ -225,7 +225,7 @@ type ApiListExecutionsRequest struct {
 	createdAtGte *time.Time
 	createdAtLte *time.Time
 	fields *string
-	id *string
+	id *int64
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -235,13 +235,13 @@ type ApiListExecutionsRequest struct {
 	updatedAtLte *time.Time
 }
 
-// Filter by created_at greater than or equal to this date.
+// Filter by created date (greater than or equal).
 func (r ApiListExecutionsRequest) CreatedAtGte(createdAtGte time.Time) ApiListExecutionsRequest {
 	r.createdAtGte = &createdAtGte
 	return r
 }
 
-// Filter by created_at less than or equal to this date.
+// Filter by created date (less than or equal).
 func (r ApiListExecutionsRequest) CreatedAtLte(createdAtLte time.Time) ApiListExecutionsRequest {
 	r.createdAtLte = &createdAtLte
 	return r
@@ -253,8 +253,8 @@ func (r ApiListExecutionsRequest) Fields(fields string) ApiListExecutionsRequest
 	return r
 }
 
-// Filter by id. Supports multiple comma-separated values.
-func (r ApiListExecutionsRequest) Id(id string) ApiListExecutionsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListExecutionsRequest) Id(id int64) ApiListExecutionsRequest {
 	r.id = &id
 	return r
 }
@@ -283,19 +283,19 @@ func (r ApiListExecutionsRequest) Search(search string) ApiListExecutionsRequest
 	return r
 }
 
-// Filter by status. Supports multiple comma-separated values.
+// Filter by status (accepts comma-separated values).
 func (r ApiListExecutionsRequest) Status(status string) ApiListExecutionsRequest {
 	r.status = &status
 	return r
 }
 
-// Filter by updated_at greater than or equal to this date.
+// Filter by updated date (greater than or equal).
 func (r ApiListExecutionsRequest) UpdatedAtGte(updatedAtGte time.Time) ApiListExecutionsRequest {
 	r.updatedAtGte = &updatedAtGte
 	return r
 }
 
-// Filter by updated_at less than or equal to this date.
+// Filter by updated date (less than or equal).
 func (r ApiListExecutionsRequest) UpdatedAtLte(updatedAtLte time.Time) ApiListExecutionsRequest {
 	r.updatedAtLte = &updatedAtLte
 	return r
