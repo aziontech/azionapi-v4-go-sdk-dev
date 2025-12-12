@@ -175,7 +175,7 @@ func main() {
 	custom := true // bool | Filter by custom status (true for custom templates, false for default templates). (optional)
 	dataSet := "dataSet_example" // string | Filter by data set (case-insensitive, partial match). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by id (accepts comma-separated values). (optional)
+	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
 	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
 	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
 	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
  **custom** | **bool** | Filter by custom status (true for custom templates, false for default templates). | 
  **dataSet** | **string** | Filter by data set (case-insensitive, partial match). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by id (accepts comma-separated values). | 
+ **id** | **int64** | Filter by id (accepts comma-separated values). | 
  **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
  **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
  **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
