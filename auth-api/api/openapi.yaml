@@ -160,7 +160,7 @@ paths:
                     method: federated
                     url: http://localhost:8000/login
               schema:
-                $ref: "#/components/schemas/user_login_method_response"
+                $ref: "#/components/schemas/UserLoginMethodResponse"
           description: ""
         "400":
           content:
@@ -3722,7 +3722,7 @@ components:
           type: integer
           writeOnly: true
       type: object
-    user_login_method_response:
+    UserLoginMethodResponse:
       example:
         method: method
         url: https://openapi-generator.tech
