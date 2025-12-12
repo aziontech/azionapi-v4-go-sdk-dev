@@ -19,7 +19,7 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: "Filter by created_at (start date, inclusive)."
+      - description: Filter by created_at (greater than or equal).
         explode: true
         in: query
         name: created_at__gte
@@ -28,7 +28,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: "Filter by created_at (end date, inclusive)."
+      - description: Filter by created_at (less than or equal).
         explode: true
         in: query
         name: created_at__lte
@@ -45,24 +45,15 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by id.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
         required: false
         schema:
-          format: int64
-          type: integer
-        style: form
-      - description: Filter by multiple ids (comma-separated).
-        explode: true
-        in: query
-        name: id__in
-        required: false
-        schema:
           type: string
         style: form
-      - description: "Filter by last_editor (partial search, case-insensitive)."
+      - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true
         in: query
         name: last_editor
@@ -70,7 +61,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by name (partial search, case-insensitive)."
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
@@ -112,8 +103,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by status. Supports comma-separated values for multiple
-          statuses.
+      - description: Filter by status (accepts comma-separated values).
         explode: true
         in: query
         name: status
@@ -121,7 +111,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Filter by updated_at (start date, inclusive)."
+      - description: Filter by updated_at (greater than or equal).
         explode: true
         in: query
         name: updated_at__gte
@@ -130,7 +120,7 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: "Filter by updated_at (end date, inclusive)."
+      - description: Filter by updated_at (less than or equal).
         explode: true
         in: query
         name: updated_at__lte

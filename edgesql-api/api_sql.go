@@ -650,8 +650,7 @@ type ApiListDatabasesRequest struct {
 	createdAtGte *time.Time
 	createdAtLte *time.Time
 	fields *string
-	id *int64
-	idIn *string
+	id *string
 	lastEditor *string
 	name *string
 	ordering *string
@@ -669,13 +668,13 @@ func (r ApiListDatabasesRequest) Active(active bool) ApiListDatabasesRequest {
 	return r
 }
 
-// Filter by created_at (start date, inclusive).
+// Filter by created_at (greater than or equal).
 func (r ApiListDatabasesRequest) CreatedAtGte(createdAtGte time.Time) ApiListDatabasesRequest {
 	r.createdAtGte = &createdAtGte
 	return r
 }
 
-// Filter by created_at (end date, inclusive).
+// Filter by created_at (less than or equal).
 func (r ApiListDatabasesRequest) CreatedAtLte(createdAtLte time.Time) ApiListDatabasesRequest {
 	r.createdAtLte = &createdAtLte
 	return r
@@ -687,25 +686,19 @@ func (r ApiListDatabasesRequest) Fields(fields string) ApiListDatabasesRequest {
 	return r
 }
 
-// Filter by id.
-func (r ApiListDatabasesRequest) Id(id int64) ApiListDatabasesRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListDatabasesRequest) Id(id string) ApiListDatabasesRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by multiple ids (comma-separated).
-func (r ApiListDatabasesRequest) IdIn(idIn string) ApiListDatabasesRequest {
-	r.idIn = &idIn
-	return r
-}
-
-// Filter by last_editor (partial search, case-insensitive).
+// Filter by last editor (case-insensitive, partial match).
 func (r ApiListDatabasesRequest) LastEditor(lastEditor string) ApiListDatabasesRequest {
 	r.lastEditor = &lastEditor
 	return r
 }
 
-// Filter by name (partial search, case-insensitive).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListDatabasesRequest) Name(name string) ApiListDatabasesRequest {
 	r.name = &name
 	return r
@@ -735,19 +728,19 @@ func (r ApiListDatabasesRequest) Search(search string) ApiListDatabasesRequest {
 	return r
 }
 
-// Filter by status. Supports comma-separated values for multiple statuses.
+// Filter by status (accepts comma-separated values).
 func (r ApiListDatabasesRequest) Status(status string) ApiListDatabasesRequest {
 	r.status = &status
 	return r
 }
 
-// Filter by updated_at (start date, inclusive).
+// Filter by updated_at (greater than or equal).
 func (r ApiListDatabasesRequest) UpdatedAtGte(updatedAtGte time.Time) ApiListDatabasesRequest {
 	r.updatedAtGte = &updatedAtGte
 	return r
 }
 
-// Filter by updated_at (end date, inclusive).
+// Filter by updated_at (less than or equal).
 func (r ApiListDatabasesRequest) UpdatedAtLte(updatedAtLte time.Time) ApiListDatabasesRequest {
 	r.updatedAtLte = &updatedAtLte
 	return r
@@ -807,9 +800,6 @@ func (a *SQLAPIService) ListDatabasesExecute(r ApiListDatabasesRequest) (*Pagina
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
-	}
-	if r.idIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
 	}
 	if r.lastEditor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
