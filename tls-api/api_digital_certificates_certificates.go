@@ -438,7 +438,7 @@ type ApiListCertificatesRequest struct {
 	search *string
 }
 
-// Filter by certificate type. Accepts comma-separated values for multiple types.
+// Filter by certificate type (accepts comma-separated values).
 func (r ApiListCertificatesRequest) CertificateType(certificateType string) ApiListCertificatesRequest {
 	r.certificateType = &certificateType
 	return r
@@ -450,13 +450,13 @@ func (r ApiListCertificatesRequest) Fields(fields string) ApiListCertificatesReq
 	return r
 }
 
-// Filter by certificate ID. Accepts comma-separated values for multiple IDs.
+// Filter by certificate ID (accepts comma-separated values).
 func (r ApiListCertificatesRequest) Id(id string) ApiListCertificatesRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by issuer (case-insensitive partial match).
+// Filter by issuer (case-insensitive, partial match).
 func (r ApiListCertificatesRequest) Issuer(issuer string) ApiListCertificatesRequest {
 	r.issuer = &issuer
 	return r
@@ -468,13 +468,13 @@ func (r ApiListCertificatesRequest) LastModified(lastModified time.Time) ApiList
 	return r
 }
 
-// Filter by last modified date greater than or equal to the specified value.
+// Filter by last modified date (greater than or equal).
 func (r ApiListCertificatesRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListCertificatesRequest {
 	r.lastModifiedGte = &lastModifiedGte
 	return r
 }
 
-// Filter by last modified date less than or equal to the specified value.
+// Filter by last modified date (less than or equal).
 func (r ApiListCertificatesRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListCertificatesRequest {
 	r.lastModifiedLte = &lastModifiedLte
 	return r
@@ -486,7 +486,7 @@ func (r ApiListCertificatesRequest) Managed(managed bool) ApiListCertificatesReq
 	return r
 }
 
-// Filter by certificate name (case-insensitive partial match).
+// Filter by certificate name (case-insensitive, partial match).
 func (r ApiListCertificatesRequest) Name(name string) ApiListCertificatesRequest {
 	r.name = &name
 	return r
@@ -516,13 +516,13 @@ func (r ApiListCertificatesRequest) RenewedAt(renewedAt time.Time) ApiListCertif
 	return r
 }
 
-// Filter by renewed date greater than or equal to the specified value.
+// Filter by renewed date (greater than or equal).
 func (r ApiListCertificatesRequest) RenewedAtGte(renewedAtGte time.Time) ApiListCertificatesRequest {
 	r.renewedAtGte = &renewedAtGte
 	return r
 }
 
-// Filter by renewed date less than or equal to the specified value.
+// Filter by renewed date (less than or equal).
 func (r ApiListCertificatesRequest) RenewedAtLte(renewedAtLte time.Time) ApiListCertificatesRequest {
 	r.renewedAtLte = &renewedAtLte
 	return r
