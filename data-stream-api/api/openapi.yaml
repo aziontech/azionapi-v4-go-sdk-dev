@@ -11,7 +11,7 @@ paths:
       description: List all Data Sources.
       operationId: list_data_sources
       parameters:
-      - description: Filter by active.
+      - description: Filter by active status.
         explode: true
         in: query
         name: active
@@ -27,18 +27,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by name.
+      - description: "Filter by name (case-insensitive, partial match)."
         explode: true
         in: query
         name: name
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by name__icontains.
-        explode: true
-        in: query
-        name: name__icontains
         required: false
         schema:
           type: string
@@ -79,18 +71,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by slug.
+      - description: "Filter by slug (case-insensitive, exact match)."
         explode: true
         in: query
         name: slug
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by slug__iexact.
-        explode: true
-        in: query
-        name: slug__iexact
         required: false
         schema:
           type: string
@@ -233,24 +217,15 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: Filter by data set id.
+      - description: Filter by data set id (accepts comma-separated values).
         explode: true
         in: query
         name: data_set_id
         required: false
         schema:
-          format: int64
-          type: integer
-        style: form
-      - description: Filter by multiple data set ids (comma-separated).
-        explode: true
-        in: query
-        name: data_set_id__in
-        required: false
-        schema:
           type: string
         style: form
-      - description: Filter by data source.
+      - description: Filter by data source (accepts comma-separated values).
         explode: true
         in: query
         name: data_source
@@ -266,19 +241,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by id.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: Filter by multiple ids (comma-separated).
-        explode: true
-        in: query
-        name: id__in
         required: false
         schema:
           type: string
@@ -1217,7 +1183,8 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: Filter by custom status.
+      - description: "Filter by custom status (true for custom templates, false for\
+          \ default templates)."
         explode: true
         in: query
         name: custom
@@ -1241,19 +1208,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by id.
+      - description: Filter by id (accepts comma-separated values).
         explode: true
         in: query
         name: id
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: Filter by multiple ids (comma-separated).
-        explode: true
-        in: query
-        name: id__in
         required: false
         schema:
           type: string
