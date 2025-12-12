@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## ListCredentials
 
-> PaginatedCredentialList ListCredentials(ctx).AccessKey(accessKey).Bucket(bucket).Fields(fields).Id(id).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedCredentialList ListCredentials(ctx).AccessKey(accessKey).Buckets(buckets).BucketsIn(bucketsIn).Fields(fields).Id(id).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List credentials
 
@@ -170,7 +170,8 @@ import (
 
 func main() {
 	accessKey := "accessKey_example" // string | Filter by access key (exact match). (optional)
-	bucket := "bucket_example" // string | Filter by bucket (accepts comma-separated values). (optional)
+	buckets := "buckets_example" // string | Filter by bucket name (exact match). (optional)
+	bucketsIn := "bucketsIn_example" // string | Filter by multiple bucket names (comma-separated). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
 	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
@@ -185,7 +186,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageCredentialsAPI.ListCredentials(context.Background()).AccessKey(accessKey).Bucket(bucket).Fields(fields).Id(id).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.StorageCredentialsAPI.ListCredentials(context.Background()).AccessKey(accessKey).Buckets(buckets).BucketsIn(bucketsIn).Fields(fields).Id(id).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageCredentialsAPI.ListCredentials``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -207,7 +208,8 @@ Other parameters are passed through a pointer to a apiListCredentialsRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **accessKey** | **string** | Filter by access key (exact match). | 
- **bucket** | **string** | Filter by bucket (accepts comma-separated values). | 
+ **buckets** | **string** | Filter by bucket name (exact match). | 
+ **bucketsIn** | **string** | Filter by multiple bucket names (comma-separated). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
  **id** | **int64** | Filter by id (accepts comma-separated values). | 
  **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
