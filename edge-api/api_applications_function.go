@@ -430,7 +430,7 @@ type ApiListApplicationFunctionInstancesRequest struct {
 	ApiService *ApplicationsFunctionAPIService
 	applicationId int64
 	fields *string
-	id *string
+	id *int64
 	lastEditor *string
 	lastModifiedGte *time.Time
 	lastModifiedLte *time.Time
@@ -447,31 +447,31 @@ func (r ApiListApplicationFunctionInstancesRequest) Fields(fields string) ApiLis
 	return r
 }
 
-// Filter by ID (can be multiple, comma-separated).
-func (r ApiListApplicationFunctionInstancesRequest) Id(id string) ApiListApplicationFunctionInstancesRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListApplicationFunctionInstancesRequest) Id(id int64) ApiListApplicationFunctionInstancesRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by last editor (partial search, case-insensitive).
+// Filter by last editor (case-insensitive, partial match).
 func (r ApiListApplicationFunctionInstancesRequest) LastEditor(lastEditor string) ApiListApplicationFunctionInstancesRequest {
 	r.lastEditor = &lastEditor
 	return r
 }
 
-// Filter by last modified date (greater than or equal to).
+// Filter by last modified date (greater than or equal).
 func (r ApiListApplicationFunctionInstancesRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListApplicationFunctionInstancesRequest {
 	r.lastModifiedGte = &lastModifiedGte
 	return r
 }
 
-// Filter by last modified date (less than or equal to).
+// Filter by last modified date (less than or equal).
 func (r ApiListApplicationFunctionInstancesRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListApplicationFunctionInstancesRequest {
 	r.lastModifiedLte = &lastModifiedLte
 	return r
 }
 
-// Filter by name (partial search, case-insensitive).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListApplicationFunctionInstancesRequest) Name(name string) ApiListApplicationFunctionInstancesRequest {
 	r.name = &name
 	return r

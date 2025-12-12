@@ -430,8 +430,7 @@ type ApiListApplicationResponseRulesRequest struct {
 	applicationId int64
 	description *string
 	fields *string
-	id *string
-	isActive *bool
+	id *int64
 	name *string
 	orderGte *int64
 	orderLte *int64
@@ -441,7 +440,7 @@ type ApiListApplicationResponseRulesRequest struct {
 	search *string
 }
 
-// Filter by description (partial search, case-insensitive).
+// Filter by description (case-insensitive, partial match).
 func (r ApiListApplicationResponseRulesRequest) Description(description string) ApiListApplicationResponseRulesRequest {
 	r.description = &description
 	return r
@@ -453,31 +452,25 @@ func (r ApiListApplicationResponseRulesRequest) Fields(fields string) ApiListApp
 	return r
 }
 
-// Filter by ID (can be multiple, comma-separated).
-func (r ApiListApplicationResponseRulesRequest) Id(id string) ApiListApplicationResponseRulesRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListApplicationResponseRulesRequest) Id(id int64) ApiListApplicationResponseRulesRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by active status.
-func (r ApiListApplicationResponseRulesRequest) IsActive(isActive bool) ApiListApplicationResponseRulesRequest {
-	r.isActive = &isActive
-	return r
-}
-
-// Filter by name (partial search, case-insensitive).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListApplicationResponseRulesRequest) Name(name string) ApiListApplicationResponseRulesRequest {
 	r.name = &name
 	return r
 }
 
-// Filter by order (greater than or equal to).
+// Filter by order (greater than or equal).
 func (r ApiListApplicationResponseRulesRequest) OrderGte(orderGte int64) ApiListApplicationResponseRulesRequest {
 	r.orderGte = &orderGte
 	return r
 }
 
-// Filter by order (less than or equal to).
+// Filter by order (less than or equal).
 func (r ApiListApplicationResponseRulesRequest) OrderLte(orderLte int64) ApiListApplicationResponseRulesRequest {
 	r.orderLte = &orderLte
 	return r
@@ -558,9 +551,6 @@ func (a *ApplicationsResponseRulesAPIService) ListApplicationResponseRulesExecut
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
-	}
-	if r.isActive != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "is_active", r.isActive, "form", "")
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")

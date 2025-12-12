@@ -430,7 +430,7 @@ type ApiListWorkloadDeploymentsRequest struct {
 	workloadId int64
 	current *bool
 	fields *string
-	id *string
+	id *int64
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -450,8 +450,8 @@ func (r ApiListWorkloadDeploymentsRequest) Fields(fields string) ApiListWorkload
 	return r
 }
 
-// Filter by ID (can be multiple, comma-separated).
-func (r ApiListWorkloadDeploymentsRequest) Id(id string) ApiListWorkloadDeploymentsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListWorkloadDeploymentsRequest) Id(id int64) ApiListWorkloadDeploymentsRequest {
 	r.id = &id
 	return r
 }
@@ -480,7 +480,7 @@ func (r ApiListWorkloadDeploymentsRequest) Search(search string) ApiListWorkload
 	return r
 }
 
-// Filter by tag (partial search, case-insensitive).
+// Filter by tag (case-insensitive, partial match).
 func (r ApiListWorkloadDeploymentsRequest) Tag(tag string) ApiListWorkloadDeploymentsRequest {
 	r.tag = &tag
 	return r

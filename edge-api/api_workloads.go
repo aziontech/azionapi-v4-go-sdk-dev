@@ -421,16 +421,15 @@ type ApiListWorkloadsRequest struct {
 	ctx context.Context
 	ApiService *WorkloadsAPIService
 	active *bool
-	digitalCertificateIdIn *string
+	digitalCertificateId *int64
 	fields *string
-	id *string
-	infrastructureIn *string
+	id *int64
+	infrastructure *string
 	lastEditor *string
 	lastModifiedGte *time.Time
 	lastModifiedLte *time.Time
 	mapName *string
-	mtlsTrustedCaCertificateIdIn *string
-	mtlsVerification *bool
+	mtlsTrustedCaCertificateId *int64
 	name *string
 	ordering *string
 	page *int64
@@ -444,9 +443,9 @@ func (r ApiListWorkloadsRequest) Active(active bool) ApiListWorkloadsRequest {
 	return r
 }
 
-// Filter by digital certificate ID (can be multiple, comma-separated).
-func (r ApiListWorkloadsRequest) DigitalCertificateIdIn(digitalCertificateIdIn string) ApiListWorkloadsRequest {
-	r.digitalCertificateIdIn = &digitalCertificateIdIn
+// Filter by digital certificate id (accepts comma-separated values).
+func (r ApiListWorkloadsRequest) DigitalCertificateId(digitalCertificateId int64) ApiListWorkloadsRequest {
+	r.digitalCertificateId = &digitalCertificateId
 	return r
 }
 
@@ -456,55 +455,49 @@ func (r ApiListWorkloadsRequest) Fields(fields string) ApiListWorkloadsRequest {
 	return r
 }
 
-// Filter by ID (can be multiple, comma-separated).
-func (r ApiListWorkloadsRequest) Id(id string) ApiListWorkloadsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListWorkloadsRequest) Id(id int64) ApiListWorkloadsRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by infrastructure (can be multiple, comma-separated).
-func (r ApiListWorkloadsRequest) InfrastructureIn(infrastructureIn string) ApiListWorkloadsRequest {
-	r.infrastructureIn = &infrastructureIn
+// Filter by infrastructure (accepts comma-separated values).
+func (r ApiListWorkloadsRequest) Infrastructure(infrastructure string) ApiListWorkloadsRequest {
+	r.infrastructure = &infrastructure
 	return r
 }
 
-// Filter by last editor (partial search, case-insensitive).
+// Filter by last editor (case-insensitive, partial match).
 func (r ApiListWorkloadsRequest) LastEditor(lastEditor string) ApiListWorkloadsRequest {
 	r.lastEditor = &lastEditor
 	return r
 }
 
-// Filter by last modified date (greater than or equal to).
+// Filter by last modified date (greater than or equal).
 func (r ApiListWorkloadsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListWorkloadsRequest {
 	r.lastModifiedGte = &lastModifiedGte
 	return r
 }
 
-// Filter by last modified date (less than or equal to).
+// Filter by last modified date (less than or equal).
 func (r ApiListWorkloadsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListWorkloadsRequest {
 	r.lastModifiedLte = &lastModifiedLte
 	return r
 }
 
-// Filter by map name (partial search, case-insensitive).
+// Filter by map name (case-insensitive, partial match).
 func (r ApiListWorkloadsRequest) MapName(mapName string) ApiListWorkloadsRequest {
 	r.mapName = &mapName
 	return r
 }
 
-// Filter by mTLS trusted CA certificate ID (can be multiple, comma-separated).
-func (r ApiListWorkloadsRequest) MtlsTrustedCaCertificateIdIn(mtlsTrustedCaCertificateIdIn string) ApiListWorkloadsRequest {
-	r.mtlsTrustedCaCertificateIdIn = &mtlsTrustedCaCertificateIdIn
+// Filter by mTLS trusted CA certificate id (accepts comma-separated values).
+func (r ApiListWorkloadsRequest) MtlsTrustedCaCertificateId(mtlsTrustedCaCertificateId int64) ApiListWorkloadsRequest {
+	r.mtlsTrustedCaCertificateId = &mtlsTrustedCaCertificateId
 	return r
 }
 
-// Filter by mTLS verification status.
-func (r ApiListWorkloadsRequest) MtlsVerification(mtlsVerification bool) ApiListWorkloadsRequest {
-	r.mtlsVerification = &mtlsVerification
-	return r
-}
-
-// Filter by name (partial search, case-insensitive).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListWorkloadsRequest) Name(name string) ApiListWorkloadsRequest {
 	r.name = &name
 	return r
@@ -577,8 +570,8 @@ func (a *WorkloadsAPIService) ListWorkloadsExecute(r ApiListWorkloadsRequest) (*
 	if r.active != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
 	}
-	if r.digitalCertificateIdIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "digital_certificate_id__in", r.digitalCertificateIdIn, "form", "")
+	if r.digitalCertificateId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "digital_certificate_id", r.digitalCertificateId, "form", "")
 	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
@@ -586,8 +579,8 @@ func (a *WorkloadsAPIService) ListWorkloadsExecute(r ApiListWorkloadsRequest) (*
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	}
-	if r.infrastructureIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "infrastructure__in", r.infrastructureIn, "form", "")
+	if r.infrastructure != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "infrastructure", r.infrastructure, "form", "")
 	}
 	if r.lastEditor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
@@ -601,11 +594,8 @@ func (a *WorkloadsAPIService) ListWorkloadsExecute(r ApiListWorkloadsRequest) (*
 	if r.mapName != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "map_name", r.mapName, "form", "")
 	}
-	if r.mtlsTrustedCaCertificateIdIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "mtls_trusted_ca_certificate_id__in", r.mtlsTrustedCaCertificateIdIn, "form", "")
-	}
-	if r.mtlsVerification != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "mtls_verification", r.mtlsVerification, "form", "")
+	if r.mtlsTrustedCaCertificateId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mtls_trusted_ca_certificate_id", r.mtlsTrustedCaCertificateId, "form", "")
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")

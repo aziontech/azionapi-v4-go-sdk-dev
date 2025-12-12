@@ -182,11 +182,11 @@ import (
 func main() {
 	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by ID (can be multiple, comma-separated). (optional)
-	lastEditor := "lastEditor_example" // string | Filter by last editor (partial search, case-insensitive). (optional)
-	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal to). (optional)
-	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal to). (optional)
-	name := "name_example" // string | Filter by name (partial search, case-insensitive). (optional)
+	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
+	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -221,11 +221,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by ID (can be multiple, comma-separated). | 
- **lastEditor** | **string** | Filter by last editor (partial search, case-insensitive). | 
- **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal to). | 
- **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal to). | 
- **name** | **string** | Filter by name (partial search, case-insensitive). | 
+ **id** | **int64** | Filter by id (accepts comma-separated values). | 
+ **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
+ **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 

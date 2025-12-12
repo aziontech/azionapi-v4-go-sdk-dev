@@ -430,7 +430,7 @@ type ApiListFirewallFunctionRequest struct {
 	ApiService *FirewallsFunctionAPIService
 	firewallId int64
 	fields *string
-	id *string
+	id *int64
 	lastEditor *string
 	lastModifiedGte *time.Time
 	lastModifiedLte *time.Time
@@ -447,31 +447,31 @@ func (r ApiListFirewallFunctionRequest) Fields(fields string) ApiListFirewallFun
 	return r
 }
 
-// Filter by ID (can be multiple, comma-separated).
-func (r ApiListFirewallFunctionRequest) Id(id string) ApiListFirewallFunctionRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListFirewallFunctionRequest) Id(id int64) ApiListFirewallFunctionRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by last editor (partial search, case-insensitive).
+// Filter by last editor (case-insensitive, partial match).
 func (r ApiListFirewallFunctionRequest) LastEditor(lastEditor string) ApiListFirewallFunctionRequest {
 	r.lastEditor = &lastEditor
 	return r
 }
 
-// Filter by last modified date (greater than or equal to).
+// Filter by last modified date (greater than or equal).
 func (r ApiListFirewallFunctionRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListFirewallFunctionRequest {
 	r.lastModifiedGte = &lastModifiedGte
 	return r
 }
 
-// Filter by last modified date (less than or equal to).
+// Filter by last modified date (less than or equal).
 func (r ApiListFirewallFunctionRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListFirewallFunctionRequest {
 	r.lastModifiedLte = &lastModifiedLte
 	return r
 }
 
-// Filter by name (partial search, case-insensitive).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListFirewallFunctionRequest) Name(name string) ApiListFirewallFunctionRequest {
 	r.name = &name
 	return r

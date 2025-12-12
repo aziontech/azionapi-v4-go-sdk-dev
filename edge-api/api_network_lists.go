@@ -420,13 +420,11 @@ func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkList
 type ApiListNetworkListsRequest struct {
 	ctx context.Context
 	ApiService *NetworkListsAPIService
-	accountId *int64
 	fields *string
-	id *string
+	id *int64
 	lastEditor *string
 	lastModifiedGte *time.Time
 	lastModifiedLte *time.Time
-	listType *string
 	listTypeIn *string
 	name *string
 	ordering *string
@@ -435,55 +433,43 @@ type ApiListNetworkListsRequest struct {
 	search *string
 }
 
-// Filter by account ID.
-func (r ApiListNetworkListsRequest) AccountId(accountId int64) ApiListNetworkListsRequest {
-	r.accountId = &accountId
-	return r
-}
-
 // Comma-separated list of field names to include in the response.
 func (r ApiListNetworkListsRequest) Fields(fields string) ApiListNetworkListsRequest {
 	r.fields = &fields
 	return r
 }
 
-// Filter by ID. Can be multiple comma-separated values.
-func (r ApiListNetworkListsRequest) Id(id string) ApiListNetworkListsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListNetworkListsRequest) Id(id int64) ApiListNetworkListsRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by last editor (partial search).
+// Filter by last editor (case-insensitive, partial match).
 func (r ApiListNetworkListsRequest) LastEditor(lastEditor string) ApiListNetworkListsRequest {
 	r.lastEditor = &lastEditor
 	return r
 }
 
-// Filter by last modified (start).
+// Filter by last modified date (greater than or equal).
 func (r ApiListNetworkListsRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListNetworkListsRequest {
 	r.lastModifiedGte = &lastModifiedGte
 	return r
 }
 
-// Filter by last modified (end).
+// Filter by last modified date (less than or equal).
 func (r ApiListNetworkListsRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListNetworkListsRequest {
 	r.lastModifiedLte = &lastModifiedLte
 	return r
 }
 
-// Filter by list type.
-func (r ApiListNetworkListsRequest) ListType(listType string) ApiListNetworkListsRequest {
-	r.listType = &listType
-	return r
-}
-
-// Filter by list type. Can be multiple comma-separated values.
+// Filter by list type (accepts comma-separated values).
 func (r ApiListNetworkListsRequest) ListTypeIn(listTypeIn string) ApiListNetworkListsRequest {
 	r.listTypeIn = &listTypeIn
 	return r
 }
 
-// Filter by name (partial search).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListNetworkListsRequest) Name(name string) ApiListNetworkListsRequest {
 	r.name = &name
 	return r
@@ -553,9 +539,6 @@ func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.accountId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "account_id", r.accountId, "form", "")
-	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
 	}
@@ -570,9 +553,6 @@ func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRe
 	}
 	if r.lastModifiedLte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
-	}
-	if r.listType != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "list_type", r.listType, "form", "")
 	}
 	if r.listTypeIn != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "list_type__in", r.listTypeIn, "form", "")

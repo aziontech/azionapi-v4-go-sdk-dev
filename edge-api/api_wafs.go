@@ -624,7 +624,7 @@ type ApiListWafsRequest struct {
 	ctx context.Context
 	ApiService *WAFsAPIService
 	fields *string
-	id *string
+	id *int64
 	name *string
 	ordering *string
 	page *int64
@@ -638,13 +638,13 @@ func (r ApiListWafsRequest) Fields(fields string) ApiListWafsRequest {
 	return r
 }
 
-// Filter by ID (can be multiple, comma-separated).
-func (r ApiListWafsRequest) Id(id string) ApiListWafsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListWafsRequest) Id(id int64) ApiListWafsRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by name (partial search, case-insensitive).
+// Filter by name (case-insensitive, partial match).
 func (r ApiListWafsRequest) Name(name string) ApiListWafsRequest {
 	r.name = &name
 	return r

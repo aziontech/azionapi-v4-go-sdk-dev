@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -420,9 +421,11 @@ type ApiListCustomPagesRequest struct {
 	ctx context.Context
 	ApiService *CustomPagesAPIService
 	active *bool
-	customStatusCode *int64
 	fields *string
-	id *string
+	id *int64
+	lastEditor *string
+	lastModifiedGte *time.Time
+	lastModifiedLte *time.Time
 	name *string
 	ordering *string
 	page *int64
@@ -436,25 +439,37 @@ func (r ApiListCustomPagesRequest) Active(active bool) ApiListCustomPagesRequest
 	return r
 }
 
-// Filter by custom status code.
-func (r ApiListCustomPagesRequest) CustomStatusCode(customStatusCode int64) ApiListCustomPagesRequest {
-	r.customStatusCode = &customStatusCode
-	return r
-}
-
 // Comma-separated list of field names to include in the response.
 func (r ApiListCustomPagesRequest) Fields(fields string) ApiListCustomPagesRequest {
 	r.fields = &fields
 	return r
 }
 
-// Filter by ID. Can be multiple comma-separated values.
-func (r ApiListCustomPagesRequest) Id(id string) ApiListCustomPagesRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListCustomPagesRequest) Id(id int64) ApiListCustomPagesRequest {
 	r.id = &id
 	return r
 }
 
-// Filter by name (partial search).
+// Filter by last editor (case-insensitive, partial match).
+func (r ApiListCustomPagesRequest) LastEditor(lastEditor string) ApiListCustomPagesRequest {
+	r.lastEditor = &lastEditor
+	return r
+}
+
+// Filter by last modified date (greater than or equal).
+func (r ApiListCustomPagesRequest) LastModifiedGte(lastModifiedGte time.Time) ApiListCustomPagesRequest {
+	r.lastModifiedGte = &lastModifiedGte
+	return r
+}
+
+// Filter by last modified date (less than or equal).
+func (r ApiListCustomPagesRequest) LastModifiedLte(lastModifiedLte time.Time) ApiListCustomPagesRequest {
+	r.lastModifiedLte = &lastModifiedLte
+	return r
+}
+
+// Filter by name (case-insensitive, partial match).
 func (r ApiListCustomPagesRequest) Name(name string) ApiListCustomPagesRequest {
 	r.name = &name
 	return r
@@ -527,14 +542,20 @@ func (a *CustomPagesAPIService) ListCustomPagesExecute(r ApiListCustomPagesReque
 	if r.active != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
 	}
-	if r.customStatusCode != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "custom_status_code", r.customStatusCode, "form", "")
-	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.lastEditor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
+	}
+	if r.lastModifiedGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__gte", r.lastModifiedGte, "form", "")
+	}
+	if r.lastModifiedLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_modified__lte", r.lastModifiedLte, "form", "")
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")

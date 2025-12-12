@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListCustomPages
 
-> PaginatedCustomPageList ListCustomPages(ctx).Active(active).CustomStatusCode(customStatusCode).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedCustomPageList ListCustomPages(ctx).Active(active).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Custom Pages
 
@@ -166,15 +166,18 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 	active := true // bool | Filter by active status. (optional)
-	customStatusCode := int64(789) // int64 | Filter by custom status code. (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := "id_example" // string | Filter by ID. Can be multiple comma-separated values. (optional)
-	name := "name_example" // string | Filter by name (partial search). (optional)
+	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
+	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
+	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
+	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
+	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, active, product_version, pages) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
@@ -182,7 +185,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomPagesAPI.ListCustomPages(context.Background()).Active(active).CustomStatusCode(customStatusCode).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.CustomPagesAPI.ListCustomPages(context.Background()).Active(active).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.ListCustomPages``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,10 +207,12 @@ Other parameters are passed through a pointer to a apiListCustomPagesRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **active** | **bool** | Filter by active status. | 
- **customStatusCode** | **int64** | Filter by custom status code. | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **string** | Filter by ID. Can be multiple comma-separated values. | 
- **name** | **string** | Filter by name (partial search). | 
+ **id** | **int64** | Filter by id (accepts comma-separated values). | 
+ **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
+ **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
+ **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
+ **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, active, product_version, pages) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
