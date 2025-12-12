@@ -429,7 +429,7 @@ type ApiListDnsRecordsRequest struct {
 	ApiService *DNSRecordsAPIService
 	zoneId int64
 	fields *string
-	id *string
+	id *int64
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -443,7 +443,7 @@ func (r ApiListDnsRecordsRequest) Fields(fields string) ApiListDnsRecordsRequest
 }
 
 // Filter by id (accepts comma-separated values).
-func (r ApiListDnsRecordsRequest) Id(id string) ApiListDnsRecordsRequest {
+func (r ApiListDnsRecordsRequest) Id(id int64) ApiListDnsRecordsRequest {
 	r.id = &id
 	return r
 }
