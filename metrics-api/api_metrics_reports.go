@@ -404,8 +404,7 @@ type ApiListReportsRequest struct {
 	rowId int64
 	aggregationType *string
 	fields *string
-	id *int64
-	idIn *string
+	id *string
 	name *string
 	ordering *string
 	page *int64
@@ -414,7 +413,7 @@ type ApiListReportsRequest struct {
 	type_ *string
 }
 
-// Filter by aggregation type (comma-separated for multiple values).
+// Filter by aggregation type (accepts comma-separated values).
 func (r ApiListReportsRequest) AggregationType(aggregationType string) ApiListReportsRequest {
 	r.aggregationType = &aggregationType
 	return r
@@ -426,15 +425,9 @@ func (r ApiListReportsRequest) Fields(fields string) ApiListReportsRequest {
 	return r
 }
 
-// Filter by id.
-func (r ApiListReportsRequest) Id(id int64) ApiListReportsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListReportsRequest) Id(id string) ApiListReportsRequest {
 	r.id = &id
-	return r
-}
-
-// Filter by multiple ids (comma-separated).
-func (r ApiListReportsRequest) IdIn(idIn string) ApiListReportsRequest {
-	r.idIn = &idIn
 	return r
 }
 
@@ -468,7 +461,7 @@ func (r ApiListReportsRequest) Search(search string) ApiListReportsRequest {
 	return r
 }
 
-// Filter by type (comma-separated for multiple values).
+// Filter by type (accepts comma-separated values).
 func (r ApiListReportsRequest) Type_(type_ string) ApiListReportsRequest {
 	r.type_ = &type_
 	return r
@@ -549,9 +542,6 @@ func (a *MetricsReportsAPIService) ListReportsExecute(r ApiListReportsRequest) (
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
-	}
-	if r.idIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
 	}
 	if r.name != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")

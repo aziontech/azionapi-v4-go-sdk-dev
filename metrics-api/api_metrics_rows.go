@@ -382,8 +382,7 @@ type ApiListRowsRequest struct {
 	dashboardId int64
 	folderId int64
 	fields *string
-	id *int64
-	idIn *string
+	id *string
 	ordering *string
 	page *int64
 	pageSize *int64
@@ -397,15 +396,9 @@ func (r ApiListRowsRequest) Fields(fields string) ApiListRowsRequest {
 	return r
 }
 
-// Filter by id.
-func (r ApiListRowsRequest) Id(id int64) ApiListRowsRequest {
+// Filter by id (accepts comma-separated values).
+func (r ApiListRowsRequest) Id(id string) ApiListRowsRequest {
 	r.id = &id
-	return r
-}
-
-// Filter by multiple ids (comma-separated).
-func (r ApiListRowsRequest) IdIn(idIn string) ApiListRowsRequest {
-	r.idIn = &idIn
 	return r
 }
 
@@ -502,9 +495,6 @@ func (a *MetricsRowsAPIService) ListRowsExecute(r ApiListRowsRequest) (*Paginate
 	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
-	}
-	if r.idIn != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id__in", r.idIn, "form", "")
 	}
 	if r.ordering != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")

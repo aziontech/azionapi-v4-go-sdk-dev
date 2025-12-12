@@ -339,17 +339,17 @@ func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDele
 type ApiListRecommendationsRequest struct {
 	ctx context.Context
 	ApiService *MetricsRecommendationsAPIService
-	dashboard *int64
+	dashboard *string
 	fields *string
-	id *int64
+	id *string
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
 }
 
-// Filter by dashboard ID
-func (r ApiListRecommendationsRequest) Dashboard(dashboard int64) ApiListRecommendationsRequest {
+// Filter by dashboard ID (accepts comma-separated values).
+func (r ApiListRecommendationsRequest) Dashboard(dashboard string) ApiListRecommendationsRequest {
 	r.dashboard = &dashboard
 	return r
 }
@@ -360,8 +360,8 @@ func (r ApiListRecommendationsRequest) Fields(fields string) ApiListRecommendati
 	return r
 }
 
-// Filter by recommendation ID
-func (r ApiListRecommendationsRequest) Id(id int64) ApiListRecommendationsRequest {
+// Filter by recommendation ID (accepts comma-separated values).
+func (r ApiListRecommendationsRequest) Id(id string) ApiListRecommendationsRequest {
 	r.id = &id
 	return r
 }
