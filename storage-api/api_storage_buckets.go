@@ -420,7 +420,6 @@ func (a *StorageBucketsAPIService) DeleteBucketExecute(r ApiDeleteBucketRequest)
 type ApiListBucketsRequest struct {
 	ctx context.Context
 	ApiService *StorageBucketsAPIService
-	active *bool
 	bucket *string
 	created *time.Time
 	createdGte *time.Time
@@ -428,7 +427,6 @@ type ApiListBucketsRequest struct {
 	description *string
 	edgeAccess *string
 	fields *string
-	id *int64
 	lastEditor *string
 	lastModified *time.Time
 	lastModifiedGte *time.Time
@@ -441,13 +439,7 @@ type ApiListBucketsRequest struct {
 	status *string
 }
 
-// Filter by active status.
-func (r ApiListBucketsRequest) Active(active bool) ApiListBucketsRequest {
-	r.active = &active
-	return r
-}
-
-// Filter by bucket (accepts comma-separated values).
+// Filter by bucket (exact match).
 func (r ApiListBucketsRequest) Bucket(bucket string) ApiListBucketsRequest {
 	r.bucket = &bucket
 	return r
@@ -486,12 +478,6 @@ func (r ApiListBucketsRequest) EdgeAccess(edgeAccess string) ApiListBucketsReque
 // Comma-separated list of field names to include in the response.
 func (r ApiListBucketsRequest) Fields(fields string) ApiListBucketsRequest {
 	r.fields = &fields
-	return r
-}
-
-// Filter by id (accepts comma-separated values).
-func (r ApiListBucketsRequest) Id(id int64) ApiListBucketsRequest {
-	r.id = &id
 	return r
 }
 
@@ -595,9 +581,6 @@ func (a *StorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsRequest) (
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.active != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
-	}
 	if r.bucket != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bucket", r.bucket, "form", "")
 	}
@@ -618,9 +601,6 @@ func (a *StorageBucketsAPIService) ListBucketsExecute(r ApiListBucketsRequest) (
 	}
 	if r.fields != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
-	}
-	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	}
 	if r.lastEditor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "last_editor", r.lastEditor, "form", "")
