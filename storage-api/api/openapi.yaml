@@ -14,15 +14,7 @@ paths:
       description: List all buckets.
       operationId: list_buckets
       parameters:
-      - description: Filter by active status.
-        explode: true
-        in: query
-        name: active
-        required: false
-        schema:
-          type: boolean
-        style: form
-      - description: Filter by bucket (accepts comma-separated values).
+      - description: Filter by bucket (exact match).
         explode: true
         in: query
         name: bucket
@@ -80,15 +72,6 @@ paths:
         required: false
         schema:
           type: string
-        style: form
-      - description: Filter by id (accepts comma-separated values).
-        explode: true
-        in: query
-        name: id
-        required: false
-        schema:
-          format: int64
-          type: integer
         style: form
       - description: "Filter by last editor (case-insensitive, partial match)."
         explode: true

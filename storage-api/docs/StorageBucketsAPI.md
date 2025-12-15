@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## ListBuckets
 
-> PaginatedBucketList ListBuckets(ctx).Active(active).Bucket(bucket).Created(created).CreatedGte(createdGte).CreatedLte(createdLte).Description(description).EdgeAccess(edgeAccess).Fields(fields).Id(id).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).Execute()
+> PaginatedBucketList ListBuckets(ctx).Bucket(bucket).Created(created).CreatedGte(createdGte).CreatedLte(createdLte).Description(description).EdgeAccess(edgeAccess).Fields(fields).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).Execute()
 
 List buckets
 
@@ -170,15 +170,13 @@ import (
 )
 
 func main() {
-	active := true // bool | Filter by active status. (optional)
-	bucket := "bucket_example" // string | Filter by bucket (accepts comma-separated values). (optional)
+	bucket := "bucket_example" // string | Filter by bucket (exact match). (optional)
 	created := time.Now() // time.Time | Filter by creation date (exact match). (optional)
 	createdGte := time.Now() // time.Time | Filter by creation date (greater than or equal). (optional)
 	createdLte := time.Now() // time.Time | Filter by creation date (less than or equal). (optional)
 	description := "description_example" // string | Filter by description (case-insensitive, partial match). (optional)
 	edgeAccess := "edgeAccess_example" // string | Filter by edge access (accepts comma-separated values). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
-	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
 	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
 	lastModified := time.Now() // time.Time | Filter by last modified date (exact match). (optional)
 	lastModifiedGte := time.Now() // time.Time | Filter by last modified date (greater than or equal). (optional)
@@ -192,7 +190,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StorageBucketsAPI.ListBuckets(context.Background()).Active(active).Bucket(bucket).Created(created).CreatedGte(createdGte).CreatedLte(createdLte).Description(description).EdgeAccess(edgeAccess).Fields(fields).Id(id).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).Execute()
+	resp, r, err := apiClient.StorageBucketsAPI.ListBuckets(context.Background()).Bucket(bucket).Created(created).CreatedGte(createdGte).CreatedLte(createdLte).Description(description).EdgeAccess(edgeAccess).Fields(fields).LastEditor(lastEditor).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StorageBucketsAPI.ListBuckets``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -213,15 +211,13 @@ Other parameters are passed through a pointer to a apiListBucketsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **active** | **bool** | Filter by active status. | 
- **bucket** | **string** | Filter by bucket (accepts comma-separated values). | 
+ **bucket** | **string** | Filter by bucket (exact match). | 
  **created** | **time.Time** | Filter by creation date (exact match). | 
  **createdGte** | **time.Time** | Filter by creation date (greater than or equal). | 
  **createdLte** | **time.Time** | Filter by creation date (less than or equal). | 
  **description** | **string** | Filter by description (case-insensitive, partial match). | 
  **edgeAccess** | **string** | Filter by edge access (accepts comma-separated values). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
- **id** | **int64** | Filter by id (accepts comma-separated values). | 
  **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
  **lastModified** | **time.Time** | Filter by last modified date (exact match). | 
  **lastModifiedGte** | **time.Time** | Filter by last modified date (greater than or equal). | 
