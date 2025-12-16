@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## DeleteIntegration
 
-> ResponseDeleteIntegration DeleteIntegration(ctx, integrationId).Execute()
+> ResponseAsyncDeleteIntegration DeleteIntegration(ctx, integrationId).Execute()
 
 Delete an integration
 
@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	integrationId := "integrationId_example" // string | 
+	integrationId := "integrationId_example" // string | Unique identifier of the integration
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -41,7 +41,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSIntegrationsAPI.DeleteIntegration``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteIntegration`: ResponseDeleteIntegration
+	// response from `DeleteIntegration`: ResponseAsyncDeleteIntegration
 	fmt.Fprintf(os.Stdout, "Response from `VCSIntegrationsAPI.DeleteIntegration`: %v\n", resp)
 }
 ```
@@ -52,7 +52,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**integrationId** | **string** |  | 
+**integrationId** | **string** | Unique identifier of the integration | 
 
 ### Other Parameters
 
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteIntegration**](ResponseDeleteIntegration.md)
+[**ResponseAsyncDeleteIntegration**](ResponseAsyncDeleteIntegration.md)
 
 ### Authorization
 
@@ -182,7 +182,7 @@ import (
 )
 
 func main() {
-	integrationId := int64(789) // int64 | 
+	integrationId := int64(789) // int64 | Unique identifier of the integration
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
@@ -207,7 +207,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**integrationId** | **int64** |  | 
+**integrationId** | **int64** | Unique identifier of the integration | 
 
 ### Other Parameters
 
@@ -262,7 +262,7 @@ import (
 )
 
 func main() {
-	integrationId := "integrationId_example" // string | 
+	integrationId := "integrationId_example" // string | Unique identifier of the integration
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -283,7 +283,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**integrationId** | **string** |  | 
+**integrationId** | **string** | Unique identifier of the integration | 
 
 ### Other Parameters
 

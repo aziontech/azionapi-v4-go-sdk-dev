@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ListExecutionScripts**](VCSExecutionScriptsAPI.md#ListExecutionScripts) | **Get** /vcs/execution_scripts | List execution scripts
-[**RetriveExecutionScript**](VCSExecutionScriptsAPI.md#RetriveExecutionScript) | **Get** /vcs/execution_scripts/{execution_script_id} | Retrieve details from a execution script
+[**RetrieveExecutionScript**](VCSExecutionScriptsAPI.md#RetrieveExecutionScript) | **Get** /vcs/execution_scripts/{execution_script_id} | Retrieve details from a execution script
 
 
 
@@ -87,9 +87,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## RetriveExecutionScript
+## RetrieveExecutionScript
 
-> ResponseRetrieveExecutionScript RetriveExecutionScript(ctx, executionScriptId).Fields(fields).Execute()
+> ResponseRetrieveExecutionScript RetrieveExecutionScript(ctx, executionScriptId).Fields(fields).Execute()
 
 Retrieve details from a execution script
 
@@ -113,13 +113,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSExecutionScriptsAPI.RetriveExecutionScript(context.Background(), executionScriptId).Fields(fields).Execute()
+	resp, r, err := apiClient.VCSExecutionScriptsAPI.RetrieveExecutionScript(context.Background(), executionScriptId).Fields(fields).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VCSExecutionScriptsAPI.RetriveExecutionScript``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `VCSExecutionScriptsAPI.RetrieveExecutionScript``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetriveExecutionScript`: ResponseRetrieveExecutionScript
-	fmt.Fprintf(os.Stdout, "Response from `VCSExecutionScriptsAPI.RetriveExecutionScript`: %v\n", resp)
+	// response from `RetrieveExecutionScript`: ResponseRetrieveExecutionScript
+	fmt.Fprintf(os.Stdout, "Response from `VCSExecutionScriptsAPI.RetrieveExecutionScript`: %v\n", resp)
 }
 ```
 
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRetriveExecutionScriptRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRetrieveExecutionScriptRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

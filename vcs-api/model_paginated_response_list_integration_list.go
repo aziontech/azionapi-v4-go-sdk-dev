@@ -1,5 +1,5 @@
 /*
-VCS API
+vcs-api
 
 REST API OpenAPI documentation for the VCS API
 

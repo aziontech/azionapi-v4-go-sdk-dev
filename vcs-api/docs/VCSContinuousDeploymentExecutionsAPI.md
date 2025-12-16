@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## CreateExecution
 
-> ResponseExecution CreateExecution(ctx, continuousDeploymentId).Execute()
+> ResponseExecution CreateExecution(ctx, continuousDeploymentId).Body(body).Execute()
 
 Create a execution
 
@@ -30,11 +30,12 @@ import (
 )
 
 func main() {
-	continuousDeploymentId := int64(789) // int64 | 
+	continuousDeploymentId := int64(789) // int64 | Unique identifier of the continuous deployment
+	body := map[string]interface{}{ ... } // map[string]interface{} | No request body required (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSContinuousDeploymentExecutionsAPI.CreateExecution(context.Background(), continuousDeploymentId).Execute()
+	resp, r, err := apiClient.VCSContinuousDeploymentExecutionsAPI.CreateExecution(context.Background(), continuousDeploymentId).Body(body).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentExecutionsAPI.CreateExecution``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,7 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**continuousDeploymentId** | **int64** |  | 
+**continuousDeploymentId** | **int64** | Unique identifier of the continuous deployment | 
 
 ### Other Parameters
 
@@ -60,6 +61,7 @@ Other parameters are passed through a pointer to a apiCreateExecutionRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **body** | **map[string]interface{}** | No request body required | 
 
 ### Return type
 
@@ -71,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -101,7 +103,7 @@ import (
 )
 
 func main() {
-	continuousDeploymentId := int64(789) // int64 | 
+	continuousDeploymentId := int64(789) // int64 | Unique identifier of the continuous deployment
 	createdAtGte := time.Now() // time.Time | Filter by created date (greater than or equal). (optional)
 	createdAtLte := time.Now() // time.Time | Filter by created date (less than or equal). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
@@ -132,7 +134,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**continuousDeploymentId** | **int64** |  | 
+**continuousDeploymentId** | **int64** | Unique identifier of the continuous deployment | 
 
 ### Other Parameters
 

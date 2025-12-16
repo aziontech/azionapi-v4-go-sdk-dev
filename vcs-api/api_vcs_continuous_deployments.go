@@ -1,5 +1,5 @@
 /*
-VCS API
+vcs-api
 
 REST API OpenAPI documentation for the VCS API
 
@@ -231,7 +231,7 @@ type ApiDeleteContinuousDeploymentRequest struct {
 	continuousDeploymentId string
 }
 
-func (r ApiDeleteContinuousDeploymentRequest) Execute() (*ResponseDeleteContinuousDeployment, *http.Response, error) {
+func (r ApiDeleteContinuousDeploymentRequest) Execute() (*ResponseAsyncDeleteContinuousDeployment, *http.Response, error) {
 	return r.ApiService.DeleteContinuousDeploymentExecute(r)
 }
 
@@ -241,7 +241,7 @@ DeleteContinuousDeployment Delete a continuous deployment
 Delete a specific continuous deployment.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param continuousDeploymentId
+ @param continuousDeploymentId Unique identifier of the continuous deployment
  @return ApiDeleteContinuousDeploymentRequest
 */
 func (a *VCSContinuousDeploymentsAPIService) DeleteContinuousDeployment(ctx context.Context, continuousDeploymentId string) ApiDeleteContinuousDeploymentRequest {
@@ -253,13 +253,13 @@ func (a *VCSContinuousDeploymentsAPIService) DeleteContinuousDeployment(ctx cont
 }
 
 // Execute executes the request
-//  @return ResponseDeleteContinuousDeployment
-func (a *VCSContinuousDeploymentsAPIService) DeleteContinuousDeploymentExecute(r ApiDeleteContinuousDeploymentRequest) (*ResponseDeleteContinuousDeployment, *http.Response, error) {
+//  @return ResponseAsyncDeleteContinuousDeployment
+func (a *VCSContinuousDeploymentsAPIService) DeleteContinuousDeploymentExecute(r ApiDeleteContinuousDeploymentRequest) (*ResponseAsyncDeleteContinuousDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteContinuousDeployment
+		localVarReturnValue  *ResponseAsyncDeleteContinuousDeployment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentsAPIService.DeleteContinuousDeployment")
@@ -402,6 +402,7 @@ func (a *VCSContinuousDeploymentsAPIService) DeleteContinuousDeploymentExecute(r
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -747,33 +748,33 @@ func (a *VCSContinuousDeploymentsAPIService) ListContinuousDeploymentsExecute(r 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPartialyUpdateContinuousDeploymentRequest struct {
+type ApiPartialUpdateContinuousDeploymentRequest struct {
 	ctx context.Context
 	ApiService *VCSContinuousDeploymentsAPIService
 	continuousDeploymentId string
 	patchedContinuousDeploymentRequest *PatchedContinuousDeploymentRequest
 }
 
-func (r ApiPartialyUpdateContinuousDeploymentRequest) PatchedContinuousDeploymentRequest(patchedContinuousDeploymentRequest PatchedContinuousDeploymentRequest) ApiPartialyUpdateContinuousDeploymentRequest {
+func (r ApiPartialUpdateContinuousDeploymentRequest) PatchedContinuousDeploymentRequest(patchedContinuousDeploymentRequest PatchedContinuousDeploymentRequest) ApiPartialUpdateContinuousDeploymentRequest {
 	r.patchedContinuousDeploymentRequest = &patchedContinuousDeploymentRequest
 	return r
 }
 
-func (r ApiPartialyUpdateContinuousDeploymentRequest) Execute() (*ResponseContinuousDeployment, *http.Response, error) {
-	return r.ApiService.PartialyUpdateContinuousDeploymentExecute(r)
+func (r ApiPartialUpdateContinuousDeploymentRequest) Execute() (*ResponseContinuousDeployment, *http.Response, error) {
+	return r.ApiService.PartialUpdateContinuousDeploymentExecute(r)
 }
 
 /*
-PartialyUpdateContinuousDeployment Partialy update a continuous deployment
+PartialUpdateContinuousDeployment Partialy update a continuous deployment
 
 Partialy update continuous deployment information.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param continuousDeploymentId
- @return ApiPartialyUpdateContinuousDeploymentRequest
+ @param continuousDeploymentId Unique identifier of the continuous deployment
+ @return ApiPartialUpdateContinuousDeploymentRequest
 */
-func (a *VCSContinuousDeploymentsAPIService) PartialyUpdateContinuousDeployment(ctx context.Context, continuousDeploymentId string) ApiPartialyUpdateContinuousDeploymentRequest {
-	return ApiPartialyUpdateContinuousDeploymentRequest{
+func (a *VCSContinuousDeploymentsAPIService) PartialUpdateContinuousDeployment(ctx context.Context, continuousDeploymentId string) ApiPartialUpdateContinuousDeploymentRequest {
+	return ApiPartialUpdateContinuousDeploymentRequest{
 		ApiService: a,
 		ctx: ctx,
 		continuousDeploymentId: continuousDeploymentId,
@@ -782,7 +783,7 @@ func (a *VCSContinuousDeploymentsAPIService) PartialyUpdateContinuousDeployment(
 
 // Execute executes the request
 //  @return ResponseContinuousDeployment
-func (a *VCSContinuousDeploymentsAPIService) PartialyUpdateContinuousDeploymentExecute(r ApiPartialyUpdateContinuousDeploymentRequest) (*ResponseContinuousDeployment, *http.Response, error) {
+func (a *VCSContinuousDeploymentsAPIService) PartialUpdateContinuousDeploymentExecute(r ApiPartialUpdateContinuousDeploymentRequest) (*ResponseContinuousDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
@@ -790,7 +791,7 @@ func (a *VCSContinuousDeploymentsAPIService) PartialyUpdateContinuousDeploymentE
 		localVarReturnValue  *ResponseContinuousDeployment
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentsAPIService.PartialyUpdateContinuousDeployment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentsAPIService.PartialUpdateContinuousDeployment")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -949,7 +950,7 @@ func (a *VCSContinuousDeploymentsAPIService) PartialyUpdateContinuousDeploymentE
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiRetriveContinuousDeploymentRequest struct {
+type ApiRetrieveContinuousDeploymentRequest struct {
 	ctx context.Context
 	ApiService *VCSContinuousDeploymentsAPIService
 	continuousDeploymentId string
@@ -957,26 +958,26 @@ type ApiRetriveContinuousDeploymentRequest struct {
 }
 
 // Comma-separated list of field names to include in the response.
-func (r ApiRetriveContinuousDeploymentRequest) Fields(fields string) ApiRetriveContinuousDeploymentRequest {
+func (r ApiRetrieveContinuousDeploymentRequest) Fields(fields string) ApiRetrieveContinuousDeploymentRequest {
 	r.fields = &fields
 	return r
 }
 
-func (r ApiRetriveContinuousDeploymentRequest) Execute() (*ResponseRetrieveContinuousDeployment, *http.Response, error) {
-	return r.ApiService.RetriveContinuousDeploymentExecute(r)
+func (r ApiRetrieveContinuousDeploymentRequest) Execute() (*ResponseRetrieveContinuousDeployment, *http.Response, error) {
+	return r.ApiService.RetrieveContinuousDeploymentExecute(r)
 }
 
 /*
-RetriveContinuousDeployment Retrieve details from a continuous deployment
+RetrieveContinuousDeployment Retrieve details from a continuous deployment
 
 Retrieve details from a specific continuous deployment.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param continuousDeploymentId
- @return ApiRetriveContinuousDeploymentRequest
+ @param continuousDeploymentId Unique identifier of the continuous deployment
+ @return ApiRetrieveContinuousDeploymentRequest
 */
-func (a *VCSContinuousDeploymentsAPIService) RetriveContinuousDeployment(ctx context.Context, continuousDeploymentId string) ApiRetriveContinuousDeploymentRequest {
-	return ApiRetriveContinuousDeploymentRequest{
+func (a *VCSContinuousDeploymentsAPIService) RetrieveContinuousDeployment(ctx context.Context, continuousDeploymentId string) ApiRetrieveContinuousDeploymentRequest {
+	return ApiRetrieveContinuousDeploymentRequest{
 		ApiService: a,
 		ctx: ctx,
 		continuousDeploymentId: continuousDeploymentId,
@@ -985,7 +986,7 @@ func (a *VCSContinuousDeploymentsAPIService) RetriveContinuousDeployment(ctx con
 
 // Execute executes the request
 //  @return ResponseRetrieveContinuousDeployment
-func (a *VCSContinuousDeploymentsAPIService) RetriveContinuousDeploymentExecute(r ApiRetriveContinuousDeploymentRequest) (*ResponseRetrieveContinuousDeployment, *http.Response, error) {
+func (a *VCSContinuousDeploymentsAPIService) RetrieveContinuousDeploymentExecute(r ApiRetrieveContinuousDeploymentRequest) (*ResponseRetrieveContinuousDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -993,7 +994,7 @@ func (a *VCSContinuousDeploymentsAPIService) RetriveContinuousDeploymentExecute(
 		localVarReturnValue  *ResponseRetrieveContinuousDeployment
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentsAPIService.RetriveContinuousDeployment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentsAPIService.RetrieveContinuousDeployment")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1174,7 +1175,7 @@ UpdateContinuousDeployment Update a continuous deployment
 Update continuous deployment information.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param continuousDeploymentId
+ @param continuousDeploymentId Unique identifier of the continuous deployment
  @return ApiUpdateContinuousDeploymentRequest
 */
 func (a *VCSContinuousDeploymentsAPIService) UpdateContinuousDeployment(ctx context.Context, continuousDeploymentId string) ApiUpdateContinuousDeploymentRequest {

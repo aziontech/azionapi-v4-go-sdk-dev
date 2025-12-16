@@ -1,5 +1,5 @@
 /*
-VCS API
+vcs-api
 
 REST API OpenAPI documentation for the VCS API
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &ResponseListExecution{}
 // ResponseListExecution struct for ResponseListExecution
 type ResponseListExecution struct {
 	Id int64 `json:"id"`
-	Status *string `json:"status,omitempty"`
+	Status string `json:"status"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
@@ -34,9 +34,10 @@ type _ResponseListExecution ResponseListExecution
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponseListExecution(id int64, createdAt time.Time, updatedAt time.Time) *ResponseListExecution {
+func NewResponseListExecution(id int64, status string, createdAt time.Time, updatedAt time.Time) *ResponseListExecution {
 	this := ResponseListExecution{}
 	this.Id = id
+	this.Status = status
 	this.CreatedAt = createdAt
 	this.UpdatedAt = updatedAt
 	return &this
@@ -74,36 +75,28 @@ func (o *ResponseListExecution) SetId(v int64) {
 	o.Id = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
+// GetStatus returns the Status field value
 func (o *ResponseListExecution) GetStatus() string {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Status
+
+	return o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *ResponseListExecution) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Status, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *ResponseListExecution) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
+// SetStatus sets field value
 func (o *ResponseListExecution) SetStatus(v string) {
-	o.Status = &v
+	o.Status = v
 }
 
 // GetCreatedAt returns the CreatedAt field value
@@ -165,9 +158,7 @@ func (o ResponseListExecution) MarshalJSON() ([]byte, error) {
 func (o ResponseListExecution) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
+	toSerialize["status"] = o.Status
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["updated_at"] = o.UpdatedAt
 	return toSerialize, nil
@@ -179,6 +170,7 @@ func (o *ResponseListExecution) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"id",
+		"status",
 		"created_at",
 		"updated_at",
 	}

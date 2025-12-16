@@ -1,5 +1,5 @@
 /*
-VCS API
+vcs-api
 
 REST API OpenAPI documentation for the VCS API
 
@@ -46,7 +46,7 @@ RetrieveExecutor Retrieve details from a executor
 Retrieve details from a specific continuous deployment executor.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param continuousDeploymentId
+ @param continuousDeploymentId Unique identifier of the continuous deployment
  @return ApiRetrieveExecutorRequest
 */
 func (a *VCSContinuousDeploymentExecutorAPIService) RetrieveExecutor(ctx context.Context, continuousDeploymentId int64) ApiRetrieveExecutorRequest {
@@ -230,6 +230,13 @@ type ApiUpdateExecutorRequest struct {
 	ctx context.Context
 	ApiService *VCSContinuousDeploymentExecutorAPIService
 	continuousDeploymentId int64
+	body *map[string]interface{}
+}
+
+// No request body required
+func (r ApiUpdateExecutorRequest) Body(body map[string]interface{}) ApiUpdateExecutorRequest {
+	r.body = &body
+	return r
 }
 
 func (r ApiUpdateExecutorRequest) Execute() (*ResponseExecutor, *http.Response, error) {
@@ -242,7 +249,7 @@ UpdateExecutor Update a executor
 Update continuous deployment executor information.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param continuousDeploymentId
+ @param continuousDeploymentId Unique identifier of the continuous deployment
  @return ApiUpdateExecutorRequest
 */
 func (a *VCSContinuousDeploymentExecutorAPIService) UpdateExecutor(ctx context.Context, continuousDeploymentId int64) ApiUpdateExecutorRequest {
@@ -276,7 +283,7 @@ func (a *VCSContinuousDeploymentExecutorAPIService) UpdateExecutorExecute(r ApiU
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -292,6 +299,8 @@ func (a *VCSContinuousDeploymentExecutorAPIService) UpdateExecutorExecute(r ApiU
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
