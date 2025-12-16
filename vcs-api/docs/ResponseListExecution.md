@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int64** |  | 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | **string** |  | 
 **CreatedAt** | **time.Time** |  | 
 **UpdatedAt** | **time.Time** |  | 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewResponseListExecution
 
-`func NewResponseListExecution(id int64, createdAt time.Time, updatedAt time.Time, ) *ResponseListExecution`
+`func NewResponseListExecution(id int64, status string, createdAt time.Time, updatedAt time.Time, ) *ResponseListExecution`
 
 NewResponseListExecution instantiates a new ResponseListExecution object
 This constructor will assign default values to properties that have it defined,
@@ -67,11 +67,6 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
-### HasStatus
-
-`func (o *ResponseListExecution) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

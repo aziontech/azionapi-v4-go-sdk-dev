@@ -1,5 +1,5 @@
 /*
-VCS API
+vcs-api
 
 REST API OpenAPI documentation for the VCS API
 
@@ -282,7 +282,7 @@ func (a *VCSExecutionScriptsAPIService) ListExecutionScriptsExecute(r ApiListExe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiRetriveExecutionScriptRequest struct {
+type ApiRetrieveExecutionScriptRequest struct {
 	ctx context.Context
 	ApiService *VCSExecutionScriptsAPIService
 	executionScriptId int64
@@ -290,26 +290,26 @@ type ApiRetriveExecutionScriptRequest struct {
 }
 
 // Comma-separated list of field names to include in the response.
-func (r ApiRetriveExecutionScriptRequest) Fields(fields string) ApiRetriveExecutionScriptRequest {
+func (r ApiRetrieveExecutionScriptRequest) Fields(fields string) ApiRetrieveExecutionScriptRequest {
 	r.fields = &fields
 	return r
 }
 
-func (r ApiRetriveExecutionScriptRequest) Execute() (*ResponseRetrieveExecutionScript, *http.Response, error) {
-	return r.ApiService.RetriveExecutionScriptExecute(r)
+func (r ApiRetrieveExecutionScriptRequest) Execute() (*ResponseRetrieveExecutionScript, *http.Response, error) {
+	return r.ApiService.RetrieveExecutionScriptExecute(r)
 }
 
 /*
-RetriveExecutionScript Retrieve details from a execution script
+RetrieveExecutionScript Retrieve details from a execution script
 
 Retrieve details from a specific execution script.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param executionScriptId A unique integer value identifying this execution script.
- @return ApiRetriveExecutionScriptRequest
+ @return ApiRetrieveExecutionScriptRequest
 */
-func (a *VCSExecutionScriptsAPIService) RetriveExecutionScript(ctx context.Context, executionScriptId int64) ApiRetriveExecutionScriptRequest {
-	return ApiRetriveExecutionScriptRequest{
+func (a *VCSExecutionScriptsAPIService) RetrieveExecutionScript(ctx context.Context, executionScriptId int64) ApiRetrieveExecutionScriptRequest {
+	return ApiRetrieveExecutionScriptRequest{
 		ApiService: a,
 		ctx: ctx,
 		executionScriptId: executionScriptId,
@@ -318,7 +318,7 @@ func (a *VCSExecutionScriptsAPIService) RetriveExecutionScript(ctx context.Conte
 
 // Execute executes the request
 //  @return ResponseRetrieveExecutionScript
-func (a *VCSExecutionScriptsAPIService) RetriveExecutionScriptExecute(r ApiRetriveExecutionScriptRequest) (*ResponseRetrieveExecutionScript, *http.Response, error) {
+func (a *VCSExecutionScriptsAPIService) RetrieveExecutionScriptExecute(r ApiRetrieveExecutionScriptRequest) (*ResponseRetrieveExecutionScript, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -326,7 +326,7 @@ func (a *VCSExecutionScriptsAPIService) RetriveExecutionScriptExecute(r ApiRetri
 		localVarReturnValue  *ResponseRetrieveExecutionScript
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSExecutionScriptsAPIService.RetriveExecutionScript")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSExecutionScriptsAPIService.RetrieveExecutionScript")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -85,11 +85,11 @@ Class | Method | HTTP request | Description
 *VCSContinuousDeploymentsAPI* | [**CreateContinuousDeployment**](docs/VCSContinuousDeploymentsAPI.md#createcontinuousdeployment) | **Post** /vcs/continuous_deployments | Create a continuous deployment
 *VCSContinuousDeploymentsAPI* | [**DeleteContinuousDeployment**](docs/VCSContinuousDeploymentsAPI.md#deletecontinuousdeployment) | **Delete** /vcs/continuous_deployments/{continuous_deployment_id} | Delete a continuous deployment
 *VCSContinuousDeploymentsAPI* | [**ListContinuousDeployments**](docs/VCSContinuousDeploymentsAPI.md#listcontinuousdeployments) | **Get** /vcs/continuous_deployments | List continuous deployments
-*VCSContinuousDeploymentsAPI* | [**PartialyUpdateContinuousDeployment**](docs/VCSContinuousDeploymentsAPI.md#partialyupdatecontinuousdeployment) | **Patch** /vcs/continuous_deployments/{continuous_deployment_id} | Partialy update a continuous deployment
-*VCSContinuousDeploymentsAPI* | [**RetriveContinuousDeployment**](docs/VCSContinuousDeploymentsAPI.md#retrivecontinuousdeployment) | **Get** /vcs/continuous_deployments/{continuous_deployment_id} | Retrieve details from a continuous deployment
+*VCSContinuousDeploymentsAPI* | [**PartialUpdateContinuousDeployment**](docs/VCSContinuousDeploymentsAPI.md#partialupdatecontinuousdeployment) | **Patch** /vcs/continuous_deployments/{continuous_deployment_id} | Partialy update a continuous deployment
+*VCSContinuousDeploymentsAPI* | [**RetrieveContinuousDeployment**](docs/VCSContinuousDeploymentsAPI.md#retrievecontinuousdeployment) | **Get** /vcs/continuous_deployments/{continuous_deployment_id} | Retrieve details from a continuous deployment
 *VCSContinuousDeploymentsAPI* | [**UpdateContinuousDeployment**](docs/VCSContinuousDeploymentsAPI.md#updatecontinuousdeployment) | **Put** /vcs/continuous_deployments/{continuous_deployment_id} | Update a continuous deployment
 *VCSExecutionScriptsAPI* | [**ListExecutionScripts**](docs/VCSExecutionScriptsAPI.md#listexecutionscripts) | **Get** /vcs/execution_scripts | List execution scripts
-*VCSExecutionScriptsAPI* | [**RetriveExecutionScript**](docs/VCSExecutionScriptsAPI.md#retriveexecutionscript) | **Get** /vcs/execution_scripts/{execution_script_id} | Retrieve details from a execution script
+*VCSExecutionScriptsAPI* | [**RetrieveExecutionScript**](docs/VCSExecutionScriptsAPI.md#retrieveexecutionscript) | **Get** /vcs/execution_scripts/{execution_script_id} | Retrieve details from a execution script
 *VCSIntegrationsAPI* | [**DeleteIntegration**](docs/VCSIntegrationsAPI.md#deleteintegration) | **Delete** /vcs/integrations/{integration_id} | Delete an integration
 *VCSIntegrationsAPI* | [**ListIntegrations**](docs/VCSIntegrationsAPI.md#listintegrations) | **Get** /vcs/integrations | List integrations
 *VCSIntegrationsAPI* | [**ListRepositories**](docs/VCSIntegrationsAPI.md#listrepositories) | **Get** /vcs/integrations/{integration_id}/repositories | List integration repositories.

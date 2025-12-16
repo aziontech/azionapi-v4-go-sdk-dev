@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**CreateContinuousDeployment**](VCSContinuousDeploymentsAPI.md#CreateContinuousDeployment) | **Post** /vcs/continuous_deployments | Create a continuous deployment
 [**DeleteContinuousDeployment**](VCSContinuousDeploymentsAPI.md#DeleteContinuousDeployment) | **Delete** /vcs/continuous_deployments/{continuous_deployment_id} | Delete a continuous deployment
 [**ListContinuousDeployments**](VCSContinuousDeploymentsAPI.md#ListContinuousDeployments) | **Get** /vcs/continuous_deployments | List continuous deployments
-[**PartialyUpdateContinuousDeployment**](VCSContinuousDeploymentsAPI.md#PartialyUpdateContinuousDeployment) | **Patch** /vcs/continuous_deployments/{continuous_deployment_id} | Partialy update a continuous deployment
-[**RetriveContinuousDeployment**](VCSContinuousDeploymentsAPI.md#RetriveContinuousDeployment) | **Get** /vcs/continuous_deployments/{continuous_deployment_id} | Retrieve details from a continuous deployment
+[**PartialUpdateContinuousDeployment**](VCSContinuousDeploymentsAPI.md#PartialUpdateContinuousDeployment) | **Patch** /vcs/continuous_deployments/{continuous_deployment_id} | Partialy update a continuous deployment
+[**RetrieveContinuousDeployment**](VCSContinuousDeploymentsAPI.md#RetrieveContinuousDeployment) | **Get** /vcs/continuous_deployments/{continuous_deployment_id} | Retrieve details from a continuous deployment
 [**UpdateContinuousDeployment**](VCSContinuousDeploymentsAPI.md#UpdateContinuousDeployment) | **Put** /vcs/continuous_deployments/{continuous_deployment_id} | Update a continuous deployment
 
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteContinuousDeployment
 
-> ResponseDeleteContinuousDeployment DeleteContinuousDeployment(ctx, continuousDeploymentId).Execute()
+> ResponseAsyncDeleteContinuousDeployment DeleteContinuousDeployment(ctx, continuousDeploymentId).Execute()
 
 Delete a continuous deployment
 
@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	continuousDeploymentId := "continuousDeploymentId_example" // string | 
+	continuousDeploymentId := "continuousDeploymentId_example" // string | Unique identifier of the continuous deployment
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.DeleteContinuousDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteContinuousDeployment`: ResponseDeleteContinuousDeployment
+	// response from `DeleteContinuousDeployment`: ResponseAsyncDeleteContinuousDeployment
 	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentsAPI.DeleteContinuousDeployment`: %v\n", resp)
 }
 ```
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**continuousDeploymentId** | **string** |  | 
+**continuousDeploymentId** | **string** | Unique identifier of the continuous deployment | 
 
 ### Other Parameters
 
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteContinuousDeployment**](ResponseDeleteContinuousDeployment.md)
+[**ResponseAsyncDeleteContinuousDeployment**](ResponseAsyncDeleteContinuousDeployment.md)
 
 ### Authorization
 
@@ -242,9 +242,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PartialyUpdateContinuousDeployment
+## PartialUpdateContinuousDeployment
 
-> ResponseContinuousDeployment PartialyUpdateContinuousDeployment(ctx, continuousDeploymentId).PatchedContinuousDeploymentRequest(patchedContinuousDeploymentRequest).Execute()
+> ResponseContinuousDeployment PartialUpdateContinuousDeployment(ctx, continuousDeploymentId).PatchedContinuousDeploymentRequest(patchedContinuousDeploymentRequest).Execute()
 
 Partialy update a continuous deployment
 
@@ -263,18 +263,18 @@ import (
 )
 
 func main() {
-	continuousDeploymentId := "continuousDeploymentId_example" // string | 
+	continuousDeploymentId := "continuousDeploymentId_example" // string | Unique identifier of the continuous deployment
 	patchedContinuousDeploymentRequest := *openapiclient.NewPatchedContinuousDeploymentRequest() // PatchedContinuousDeploymentRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSContinuousDeploymentsAPI.PartialyUpdateContinuousDeployment(context.Background(), continuousDeploymentId).PatchedContinuousDeploymentRequest(patchedContinuousDeploymentRequest).Execute()
+	resp, r, err := apiClient.VCSContinuousDeploymentsAPI.PartialUpdateContinuousDeployment(context.Background(), continuousDeploymentId).PatchedContinuousDeploymentRequest(patchedContinuousDeploymentRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.PartialyUpdateContinuousDeployment``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.PartialUpdateContinuousDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialyUpdateContinuousDeployment`: ResponseContinuousDeployment
-	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentsAPI.PartialyUpdateContinuousDeployment`: %v\n", resp)
+	// response from `PartialUpdateContinuousDeployment`: ResponseContinuousDeployment
+	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentsAPI.PartialUpdateContinuousDeployment`: %v\n", resp)
 }
 ```
 
@@ -284,11 +284,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**continuousDeploymentId** | **string** |  | 
+**continuousDeploymentId** | **string** | Unique identifier of the continuous deployment | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPartialyUpdateContinuousDeploymentRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPartialUpdateContinuousDeploymentRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -314,9 +314,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## RetriveContinuousDeployment
+## RetrieveContinuousDeployment
 
-> ResponseRetrieveContinuousDeployment RetriveContinuousDeployment(ctx, continuousDeploymentId).Fields(fields).Execute()
+> ResponseRetrieveContinuousDeployment RetrieveContinuousDeployment(ctx, continuousDeploymentId).Fields(fields).Execute()
 
 Retrieve details from a continuous deployment
 
@@ -335,18 +335,18 @@ import (
 )
 
 func main() {
-	continuousDeploymentId := "continuousDeploymentId_example" // string | 
+	continuousDeploymentId := "continuousDeploymentId_example" // string | Unique identifier of the continuous deployment
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSContinuousDeploymentsAPI.RetriveContinuousDeployment(context.Background(), continuousDeploymentId).Fields(fields).Execute()
+	resp, r, err := apiClient.VCSContinuousDeploymentsAPI.RetrieveContinuousDeployment(context.Background(), continuousDeploymentId).Fields(fields).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.RetriveContinuousDeployment``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.RetrieveContinuousDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetriveContinuousDeployment`: ResponseRetrieveContinuousDeployment
-	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentsAPI.RetriveContinuousDeployment`: %v\n", resp)
+	// response from `RetrieveContinuousDeployment`: ResponseRetrieveContinuousDeployment
+	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentsAPI.RetrieveContinuousDeployment`: %v\n", resp)
 }
 ```
 
@@ -356,11 +356,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**continuousDeploymentId** | **string** |  | 
+**continuousDeploymentId** | **string** | Unique identifier of the continuous deployment | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRetriveContinuousDeploymentRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRetrieveContinuousDeploymentRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -407,7 +407,7 @@ import (
 )
 
 func main() {
-	continuousDeploymentId := "continuousDeploymentId_example" // string | 
+	continuousDeploymentId := "continuousDeploymentId_example" // string | Unique identifier of the continuous deployment
 	continuousDeploymentRequest := *openapiclient.NewContinuousDeploymentRequest("Name_example", "Repository_example", "Branch_example", []openapiclient.BuildContextFieldRequest{*openapiclient.NewBuildContextFieldRequest("Field_example", "Value_example")}, int64(123), int64(123)) // ContinuousDeploymentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -428,7 +428,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**continuousDeploymentId** | **string** |  | 
+**continuousDeploymentId** | **string** | Unique identifier of the continuous deployment | 
 
 ### Other Parameters
 

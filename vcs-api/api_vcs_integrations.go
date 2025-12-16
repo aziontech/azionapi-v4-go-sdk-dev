@@ -1,5 +1,5 @@
 /*
-VCS API
+vcs-api
 
 REST API OpenAPI documentation for the VCS API
 
@@ -29,7 +29,7 @@ type ApiDeleteIntegrationRequest struct {
 	integrationId string
 }
 
-func (r ApiDeleteIntegrationRequest) Execute() (*ResponseDeleteIntegration, *http.Response, error) {
+func (r ApiDeleteIntegrationRequest) Execute() (*ResponseAsyncDeleteIntegration, *http.Response, error) {
 	return r.ApiService.DeleteIntegrationExecute(r)
 }
 
@@ -39,7 +39,7 @@ DeleteIntegration Delete an integration
 Delete a specific account integration.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param integrationId
+ @param integrationId Unique identifier of the integration
  @return ApiDeleteIntegrationRequest
 */
 func (a *VCSIntegrationsAPIService) DeleteIntegration(ctx context.Context, integrationId string) ApiDeleteIntegrationRequest {
@@ -51,13 +51,13 @@ func (a *VCSIntegrationsAPIService) DeleteIntegration(ctx context.Context, integ
 }
 
 // Execute executes the request
-//  @return ResponseDeleteIntegration
-func (a *VCSIntegrationsAPIService) DeleteIntegrationExecute(r ApiDeleteIntegrationRequest) (*ResponseDeleteIntegration, *http.Response, error) {
+//  @return ResponseAsyncDeleteIntegration
+func (a *VCSIntegrationsAPIService) DeleteIntegrationExecute(r ApiDeleteIntegrationRequest) (*ResponseAsyncDeleteIntegration, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteIntegration
+		localVarReturnValue  *ResponseAsyncDeleteIntegration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSIntegrationsAPIService.DeleteIntegration")
@@ -200,6 +200,7 @@ func (a *VCSIntegrationsAPIService) DeleteIntegrationExecute(r ApiDeleteIntegrat
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -536,7 +537,7 @@ ListRepositories List integration repositories.
 Retrieve repositories for a specific integration.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param integrationId
+ @param integrationId Unique identifier of the integration
  @return ApiListRepositoriesRequest
 */
 func (a *VCSIntegrationsAPIService) ListRepositories(ctx context.Context, integrationId int64) ApiListRepositoriesRequest {
@@ -751,7 +752,7 @@ RetrieveIntegration Retrieve details from a integration
 Retrieve details from a specific account integration.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param integrationId
+ @param integrationId Unique identifier of the integration
  @return ApiRetrieveIntegrationRequest
 */
 func (a *VCSIntegrationsAPIService) RetrieveIntegration(ctx context.Context, integrationId string) ApiRetrieveIntegrationRequest {

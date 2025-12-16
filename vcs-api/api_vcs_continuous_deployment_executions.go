@@ -1,5 +1,5 @@
 /*
-VCS API
+vcs-api
 
 REST API OpenAPI documentation for the VCS API
 
@@ -28,6 +28,13 @@ type ApiCreateExecutionRequest struct {
 	ctx context.Context
 	ApiService *VCSContinuousDeploymentExecutionsAPIService
 	continuousDeploymentId int64
+	body *map[string]interface{}
+}
+
+// No request body required
+func (r ApiCreateExecutionRequest) Body(body map[string]interface{}) ApiCreateExecutionRequest {
+	r.body = &body
+	return r
 }
 
 func (r ApiCreateExecutionRequest) Execute() (*ResponseExecution, *http.Response, error) {
@@ -40,7 +47,7 @@ CreateExecution Create a execution
 Create a new continuous deployment execution.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param continuousDeploymentId
+ @param continuousDeploymentId Unique identifier of the continuous deployment
  @return ApiCreateExecutionRequest
 */
 func (a *VCSContinuousDeploymentExecutionsAPIService) CreateExecution(ctx context.Context, continuousDeploymentId int64) ApiCreateExecutionRequest {
@@ -74,7 +81,7 @@ func (a *VCSContinuousDeploymentExecutionsAPIService) CreateExecutionExecute(r A
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -90,6 +97,8 @@ func (a *VCSContinuousDeploymentExecutionsAPIService) CreateExecutionExecute(r A
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -311,7 +320,7 @@ ListExecutions List executions
 List all continuous deployment executions.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param continuousDeploymentId
+ @param continuousDeploymentId Unique identifier of the continuous deployment
  @return ApiListExecutionsRequest
 */
 func (a *VCSContinuousDeploymentExecutionsAPIService) ListExecutions(ctx context.Context, continuousDeploymentId int64) ApiListExecutionsRequest {

@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   description: REST API OpenAPI documentation for the VCS API
-  title: VCS API
+  title: vcs-api
   version: 1.0.0
 servers:
 - url: /
@@ -9,7 +9,7 @@ paths:
   /vcs/continuous_deployments:
     get:
       description: List all continuous deployments.
-      operationId: List continuous deployments
+      operationId: list_continuous_deployments
       parameters:
       - description: Filter by branch (exact match).
         explode: true
@@ -257,7 +257,7 @@ paths:
       - VCS - Continuous Deployments
     post:
       description: Create a new continuous deployment.
-      operationId: Create continuous deployment
+      operationId: create_continuous_deployment
       requestBody:
         content:
           application/json:
@@ -398,9 +398,10 @@ paths:
   /vcs/continuous_deployments/{continuous_deployment_id}:
     delete:
       description: Delete a specific continuous deployment.
-      operationId: Delete continuous deployment
+      operationId: delete_continuous_deployment
       parameters:
-      - explode: false
+      - description: Unique identifier of the continuous deployment
+        explode: false
         in: path
         name: continuous_deployment_id
         required: true
@@ -408,12 +409,6 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteContinuousDeployment"
-          description: Ok
         "202":
           content:
             application/json:
@@ -532,6 +527,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
+        "204":
+          description: No Content
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -540,9 +537,10 @@ paths:
       - VCS - Continuous Deployments
     get:
       description: Retrieve details from a specific continuous deployment.
-      operationId: Retrive continuous deployment
+      operationId: retrieve_continuous_deployment
       parameters:
-      - explode: false
+      - description: Unique identifier of the continuous deployment
+        explode: false
         in: path
         name: continuous_deployment_id
         required: true
@@ -684,9 +682,10 @@ paths:
       - VCS - Continuous Deployments
     patch:
       description: Partialy update continuous deployment information.
-      operationId: Partialy update continuous deployment
+      operationId: partial_update_continuous_deployment
       parameters:
-      - explode: false
+      - description: Unique identifier of the continuous deployment
+        explode: false
         in: path
         name: continuous_deployment_id
         required: true
@@ -831,9 +830,10 @@ paths:
       - VCS - Continuous Deployments
     put:
       description: Update continuous deployment information.
-      operationId: Update continuous deployment
+      operationId: update_continuous_deployment
       parameters:
-      - explode: false
+      - description: Unique identifier of the continuous deployment
+        explode: false
         in: path
         name: continuous_deployment_id
         required: true
@@ -980,9 +980,10 @@ paths:
   /vcs/continuous_deployments/{continuous_deployment_id}/executions:
     get:
       description: List all continuous deployment executions.
-      operationId: List executions
+      operationId: list_executions
       parameters:
-      - explode: false
+      - description: Unique identifier of the continuous deployment
+        explode: false
         in: path
         name: continuous_deployment_id
         required: true
@@ -1212,9 +1213,10 @@ paths:
       - VCS - Continuous Deployment Executions
     post:
       description: Create a new continuous deployment execution.
-      operationId: Create execution
+      operationId: create_execution
       parameters:
-      - explode: false
+      - description: Unique identifier of the continuous deployment
+        explode: false
         in: path
         name: continuous_deployment_id
         required: true
@@ -1222,6 +1224,13 @@ paths:
           format: int64
           type: integer
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: No request body required
+        required: false
       responses:
         "201":
           content:
@@ -1356,9 +1365,10 @@ paths:
   /vcs/continuous_deployments/{continuous_deployment_id}/executor:
     get:
       description: Retrieve details from a specific continuous deployment executor.
-      operationId: Retrieve executor
+      operationId: retrieve_executor
       parameters:
-      - explode: false
+      - description: Unique identifier of the continuous deployment
+        explode: false
         in: path
         name: continuous_deployment_id
         required: true
@@ -1501,9 +1511,10 @@ paths:
       - VCS - Continuous Deployment Executor
     put:
       description: Update continuous deployment executor information.
-      operationId: Update executor
+      operationId: update_executor
       parameters:
-      - explode: false
+      - description: Unique identifier of the continuous deployment
+        explode: false
         in: path
         name: continuous_deployment_id
         required: true
@@ -1511,6 +1522,13 @@ paths:
           format: int64
           type: integer
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: No request body required
+        required: false
       responses:
         "200":
           content:
@@ -1645,7 +1663,7 @@ paths:
   /vcs/execution_scripts:
     get:
       description: List all execution scripts.
-      operationId: List execution scripts
+      operationId: list_execution_scripts
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -1834,7 +1852,7 @@ paths:
   /vcs/execution_scripts/{execution_script_id}:
     get:
       description: Retrieve details from a specific execution script.
-      operationId: Retrive execution script
+      operationId: retrieve_execution_script
       parameters:
       - description: A unique integer value identifying this execution script.
         explode: false
@@ -1981,7 +1999,7 @@ paths:
   /vcs/integrations:
     get:
       description: List all account integrations.
-      operationId: List integrations
+      operationId: list_integrations
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -2178,9 +2196,10 @@ paths:
   /vcs/integrations/{integration_id}:
     delete:
       description: Delete a specific account integration.
-      operationId: Delete integration
+      operationId: delete_integration
       parameters:
-      - explode: false
+      - description: Unique identifier of the integration
+        explode: false
         in: path
         name: integration_id
         required: true
@@ -2188,12 +2207,6 @@ paths:
           type: string
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteIntegration"
-          description: Ok
         "202":
           content:
             application/json:
@@ -2312,6 +2325,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
+        "204":
+          description: No Content
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -2320,7 +2335,7 @@ paths:
       - VCS - Integrations
     get:
       description: Retrieve details from a specific account integration.
-      operationId: Retrieve integration
+      operationId: retrieve_integration
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -2330,7 +2345,8 @@ paths:
         schema:
           type: string
         style: form
-      - explode: false
+      - description: Unique identifier of the integration
+        explode: false
         in: path
         name: integration_id
         required: true
@@ -2475,7 +2491,8 @@ paths:
         schema:
           type: string
         style: form
-      - explode: false
+      - description: Unique identifier of the integration
+        explode: false
         in: path
         name: integration_id
         required: true
@@ -2521,30 +2538,6 @@ paths:
         "200":
           content:
             application/json:
-              examples:
-                ExampleResponseForRetrievingRepositories.:
-                  summary: Example response for retrieving repositories.
-                  value:
-                    count: 123
-                    total_pages: 10
-                    page: 1
-                    page_size: 10
-                    results:
-                    - count: 2
-                      links:
-                        next: https://example.com/api/integrations/uuid/repositories?page=2
-                        prev: null
-                        first: https://example.com/api/integrations/uuid/repositories?page=1
-                        last: https://example.com/api/integrations/uuid/repositories?page=2
-                      results:
-                      - id: "1"
-                        name: Repository 1
-                        visibility: public
-                        url: https://github.com/example/repository1
-                      - id: "2"
-                        name: Repository 2
-                        visibility: private
-                        url: https://github.com/example/repository2
               schema:
                 $ref: "#/components/schemas/PaginatedResponseListRepositoryList"
           description: Ok
@@ -2669,7 +2662,7 @@ paths:
   /vcs/providers:
     get:
       description: List all providers.
-      operationId: List providers
+      operationId: list_providers
       parameters:
       - description: Comma-separated list of field names to include in the response.
         explode: true
@@ -2858,7 +2851,6 @@ paths:
 components:
   schemas:
     BuildContextField:
-      additionalProperties: false
       example:
         field: field
         value: value
@@ -2866,20 +2858,21 @@ components:
       properties:
         field:
           maxLength: 255
+          minLength: 1
           type: string
         value:
           maxLength: 255
+          minLength: 1
           type: string
         instantiation_data_path:
           maxLength: 255
+          minLength: 0
           type: string
       required:
       - field
       - value
-      title: BuildContextField
       type: object
     BuildContextFieldRequest:
-      additionalProperties: false
       example:
         field: field
         value: value
@@ -2895,14 +2888,13 @@ components:
           type: string
         instantiation_data_path:
           maxLength: 255
+          minLength: 0
           type: string
       required:
       - field
       - value
-      title: BuildContextFieldRequest
       type: object
     ContinuousDeployment:
-      additionalProperties: false
       example:
         execution_script: ""
         created: 2000-01-23T04:56:07.000+00:00
@@ -2928,12 +2920,15 @@ components:
           type: integer
         name:
           maxLength: 100
+          minLength: 1
           type: string
         repository:
           maxLength: 100
+          minLength: 1
           type: string
         branch:
           maxLength: 255
+          minLength: 1
           type: string
         build_context:
           items:
@@ -2973,13 +2968,11 @@ components:
       - last_modified
       - name
       - repository
-      title: ContinuousDeployment
       type: object
     ContinuousDeploymentRequest:
-      additionalProperties: false
       example:
-        integration_id: 0
-        execution_script_id: 6
+        integration_id: 171976545
+        execution_script_id: 1294386359
         name: name
         deploy_context:
           key: ""
@@ -3014,10 +3007,14 @@ components:
           type: object
         integration_id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
           writeOnly: true
         execution_script_id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
           writeOnly: true
       required:
@@ -3027,10 +3024,8 @@ components:
       - integration_id
       - name
       - repository
-      title: ContinuousDeploymentRequest
       type: object
     Execution:
-      additionalProperties: false
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
         created_at: 2000-01-23T04:56:07.000+00:00
@@ -3042,6 +3037,7 @@ components:
           type: integer
         status:
           maxLength: 50
+          minLength: 1
           type: string
         created_at:
           format: date-time
@@ -3052,11 +3048,10 @@ components:
       required:
       - created_at
       - id
+      - status
       - updated_at
-      title: Execution
       type: object
     ExecutionScript:
-      additionalProperties: false
       example:
         template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
@@ -3066,6 +3061,8 @@ components:
           format: int64
           type: integer
         name:
+          maxLength: 100
+          minLength: 1
           type: string
         template_uuid:
           format: uuid
@@ -3074,12 +3071,11 @@ components:
       - id
       - name
       - template_uuid
-      title: ExecutionScript
       type: object
     ExecutionScriptRequest:
-      additionalProperties: false
       properties:
         name:
+          maxLength: 100
           minLength: 1
           type: string
         template_uuid:
@@ -3088,22 +3084,24 @@ components:
       required:
       - name
       - template_uuid
-      title: ExecutionScriptRequest
       type: object
     Executor:
-      additionalProperties: false
       example:
         is_active: true
         name: name
-        id: 0
+        id: 171976545
         email: email
       properties:
         id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
         name:
           type: string
         email:
+          format: email
+          maxLength: 254
           type: string
         is_active:
           type: boolean
@@ -3112,10 +3110,8 @@ components:
       - id
       - is_active
       - name
-      title: Executor
       type: object
     Integration:
-      additionalProperties: false
       example:
         provider:
           callback_url: callback_url
@@ -3140,10 +3136,8 @@ components:
       - provider
       - scope
       - scope_type
-      title: Integration
       type: object
     JSONAPIErrorObject:
-      additionalProperties: false
       description: Serializer for a single JSON:API error object.
       example:
         code: code
@@ -3183,10 +3177,8 @@ components:
           additionalProperties: {}
           description: Non-standard meta-information about the error
           type: object
-      title: JSONAPIErrorObject
       type: object
     JSONAPIErrorResponse:
-      additionalProperties: false
       description: Serializer for a JSON:API error response.
       example:
         errors:
@@ -3212,10 +3204,8 @@ components:
           type: array
       required:
       - errors
-      title: JSONAPIErrorResponse
       type: object
     JSONAPIErrorSource:
-      additionalProperties: false
       description: Serializer for the 'source' object in a JSON:API error.
       properties:
         pointer:
@@ -3234,10 +3224,8 @@ components:
           maxLength: 4096
           minLength: 1
           type: string
-      title: JSONAPIErrorSource
       type: object
     PaginatedResponseListContinuousDeploymentList:
-      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -3313,10 +3301,8 @@ components:
           items:
             $ref: "#/components/schemas/ResponseListContinuousDeployment"
           type: array
-      title: PaginatedResponseListContinuousDeploymentList
       type: object
     PaginatedResponseListExecutionList:
-      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -3364,10 +3350,8 @@ components:
           items:
             $ref: "#/components/schemas/ResponseListExecution"
           type: array
-      title: PaginatedResponseListExecutionList
       type: object
     PaginatedResponseListExecutionScriptList:
-      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -3413,10 +3397,8 @@ components:
           items:
             $ref: "#/components/schemas/ResponseListExecutionScript"
           type: array
-      title: PaginatedResponseListExecutionScriptList
       type: object
     PaginatedResponseListIntegrationList:
-      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -3472,10 +3454,8 @@ components:
           items:
             $ref: "#/components/schemas/ResponseListIntegration"
           type: array
-      title: PaginatedResponseListIntegrationList
       type: object
     PaginatedResponseListPlatformList:
-      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -3523,10 +3503,8 @@ components:
           items:
             $ref: "#/components/schemas/ResponseListPlatform"
           type: array
-      title: PaginatedResponseListPlatformList
       type: object
     PaginatedResponseListRepositoryList:
-      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -3574,13 +3552,11 @@ components:
           items:
             $ref: "#/components/schemas/ResponseListRepository"
           type: array
-      title: PaginatedResponseListRepositoryList
       type: object
     PatchedContinuousDeploymentRequest:
-      additionalProperties: false
       example:
-        integration_id: 0
-        execution_script_id: 6
+        integration_id: 171976545
+        execution_script_id: 1294386359
         name: name
         deploy_context:
           key: ""
@@ -3615,16 +3591,18 @@ components:
           type: object
         integration_id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
           writeOnly: true
         execution_script_id:
           format: int64
+          maximum: 2147483647
+          minimum: 1
           type: integer
           writeOnly: true
-      title: PatchedContinuousDeploymentRequest
       type: object
     Platform:
-      additionalProperties: false
       example:
         callback_url: callback_url
         installation_url: installation_url
@@ -3644,10 +3622,8 @@ components:
       - id
       - installation_url
       - name
-      title: Platform
       type: object
     ResponseAsyncContinuousDeployment:
-      additionalProperties: false
       example:
         data:
           execution_script: ""
@@ -3678,10 +3654,8 @@ components:
           $ref: "#/components/schemas/ContinuousDeployment"
       required:
       - data
-      title: ResponseAsyncContinuousDeployment
       type: object
     ResponseAsyncDeleteContinuousDeployment:
-      additionalProperties: false
       example:
         state: state
       properties:
@@ -3689,10 +3663,8 @@ components:
           maxLength: 8
           minLength: 1
           type: string
-      title: ResponseAsyncDeleteContinuousDeployment
       type: object
     ResponseAsyncDeleteIntegration:
-      additionalProperties: false
       example:
         state: state
       properties:
@@ -3700,10 +3672,8 @@ components:
           maxLength: 8
           minLength: 1
           type: string
-      title: ResponseAsyncDeleteIntegration
       type: object
     ResponseAsyncExecution:
-      additionalProperties: false
       example:
         data:
           updated_at: 2000-01-23T04:56:07.000+00:00
@@ -3720,15 +3690,13 @@ components:
           $ref: "#/components/schemas/Execution"
       required:
       - data
-      title: ResponseAsyncExecution
       type: object
     ResponseAsyncExecutor:
-      additionalProperties: false
       example:
         data:
           is_active: true
           name: name
-          id: 0
+          id: 171976545
           email: email
         state: state
       properties:
@@ -3740,10 +3708,8 @@ components:
           $ref: "#/components/schemas/Executor"
       required:
       - data
-      title: ResponseAsyncExecutor
       type: object
     ResponseContinuousDeployment:
-      additionalProperties: false
       example:
         data:
           execution_script: ""
@@ -3774,32 +3740,22 @@ components:
           $ref: "#/components/schemas/ContinuousDeployment"
       required:
       - data
-      title: ResponseContinuousDeployment
       type: object
     ResponseDeleteContinuousDeployment:
-      additionalProperties: false
-      example:
-        state: state
       properties:
         state:
           maxLength: 8
           minLength: 1
           type: string
-      title: ResponseDeleteContinuousDeployment
       type: object
     ResponseDeleteIntegration:
-      additionalProperties: false
-      example:
-        state: state
       properties:
         state:
           maxLength: 8
           minLength: 1
           type: string
-      title: ResponseDeleteIntegration
       type: object
     ResponseExecution:
-      additionalProperties: false
       example:
         data:
           updated_at: 2000-01-23T04:56:07.000+00:00
@@ -3816,15 +3772,13 @@ components:
           $ref: "#/components/schemas/Execution"
       required:
       - data
-      title: ResponseExecution
       type: object
     ResponseExecutor:
-      additionalProperties: false
       example:
         data:
           is_active: true
           name: name
-          id: 0
+          id: 171976545
           email: email
         state: state
       properties:
@@ -3836,10 +3790,8 @@ components:
           $ref: "#/components/schemas/Executor"
       required:
       - data
-      title: ResponseExecutor
       type: object
     ResponseListContinuousDeployment:
-      additionalProperties: false
       example:
         execution_script: ""
         created: 2000-01-23T04:56:07.000+00:00
@@ -3865,12 +3817,15 @@ components:
           type: integer
         name:
           maxLength: 100
+          minLength: 1
           type: string
         repository:
           maxLength: 100
+          minLength: 1
           type: string
         branch:
           maxLength: 255
+          minLength: 1
           type: string
         build_context:
           items:
@@ -3910,10 +3865,8 @@ components:
       - last_modified
       - name
       - repository
-      title: ResponseListContinuousDeployment
       type: object
     ResponseListExecution:
-      additionalProperties: false
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
         created_at: 2000-01-23T04:56:07.000+00:00
@@ -3925,6 +3878,7 @@ components:
           type: integer
         status:
           maxLength: 50
+          minLength: 1
           type: string
         created_at:
           format: date-time
@@ -3935,11 +3889,10 @@ components:
       required:
       - created_at
       - id
+      - status
       - updated_at
-      title: ResponseListExecution
       type: object
     ResponseListExecutionScript:
-      additionalProperties: false
       example:
         template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
@@ -3949,6 +3902,8 @@ components:
           format: int64
           type: integer
         name:
+          maxLength: 100
+          minLength: 1
           type: string
         template_uuid:
           format: uuid
@@ -3957,10 +3912,8 @@ components:
       - id
       - name
       - template_uuid
-      title: ResponseListExecutionScript
       type: object
     ResponseListIntegration:
-      additionalProperties: false
       example:
         provider:
           callback_url: callback_url
@@ -3985,10 +3938,8 @@ components:
       - provider
       - scope
       - scope_type
-      title: ResponseListIntegration
       type: object
     ResponseListPlatform:
-      additionalProperties: false
       example:
         callback_url: callback_url
         installation_url: installation_url
@@ -4008,10 +3959,8 @@ components:
       - id
       - installation_url
       - name
-      title: ResponseListPlatform
       type: object
     ResponseListRepository:
-      additionalProperties: false
       example:
         visibility: visibility
         name: name
@@ -4019,23 +3968,28 @@ components:
         url: https://openapi-generator.tech
       properties:
         id:
+          maxLength: 255
+          minLength: 1
           type: string
         name:
+          maxLength: 255
+          minLength: 1
           type: string
         visibility:
+          maxLength: 50
+          minLength: 1
           type: string
         url:
           format: uri
+          maxLength: 2048
           type: string
       required:
       - id
       - name
       - url
       - visibility
-      title: ResponseListRepository
       type: object
     ResponseRetrieveContinuousDeployment:
-      additionalProperties: false
       example:
         data:
           execution_script: ""
@@ -4061,10 +4015,8 @@ components:
           $ref: "#/components/schemas/ContinuousDeployment"
       required:
       - data
-      title: ResponseRetrieveContinuousDeployment
       type: object
     ResponseRetrieveExecutionScript:
-      additionalProperties: false
       example:
         data:
           template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -4075,25 +4027,21 @@ components:
           $ref: "#/components/schemas/ExecutionScript"
       required:
       - data
-      title: ResponseRetrieveExecutionScript
       type: object
     ResponseRetrieveExecutor:
-      additionalProperties: false
       example:
         data:
           is_active: true
           name: name
-          id: 0
+          id: 171976545
           email: email
       properties:
         data:
           $ref: "#/components/schemas/Executor"
       required:
       - data
-      title: ResponseRetrieveExecutor
       type: object
     ResponseRetrieveIntegration:
-      additionalProperties: false
       example:
         data:
           provider:
@@ -4109,7 +4057,6 @@ components:
           $ref: "#/components/schemas/Integration"
       required:
       - data
-      title: ResponseRetrieveIntegration
       type: object
   securitySchemes:
     BearerAuth:
