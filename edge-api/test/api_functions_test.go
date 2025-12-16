@@ -34,13 +34,13 @@ func Test_edgeapi_FunctionsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test FunctionsAPIService DestroyFunction", func(t *testing.T) {
+	t.Run("Test FunctionsAPIService DeleteFunction", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var functionId int64
 
-		resp, httpRes, err := apiClient.FunctionsAPI.DestroyFunction(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.FunctionsAPI.DeleteFunction(context.Background(), functionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -64,9 +64,9 @@ func Test_edgeapi_FunctionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var functionId int64
 
-		resp, httpRes, err := apiClient.FunctionsAPI.PartialUpdateFunction(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.FunctionsAPI.PartialUpdateFunction(context.Background(), functionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -78,9 +78,9 @@ func Test_edgeapi_FunctionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var functionId int64
 
-		resp, httpRes, err := apiClient.FunctionsAPI.RetrieveFunction(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.FunctionsAPI.RetrieveFunction(context.Background(), functionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -92,9 +92,9 @@ func Test_edgeapi_FunctionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var functionId int64
 
-		resp, httpRes, err := apiClient.FunctionsAPI.UpdateFunction(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.FunctionsAPI.UpdateFunction(context.Background(), functionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -22,13 +22,13 @@ func Test_edgeapi_ApplicationsResponseRulesAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ApplicationsResponseRulesAPIService EdgeApplicationApiApplicationsResponseRulesCreate", func(t *testing.T) {
+	t.Run("Test ApplicationsResponseRulesAPIService CreateApplicationResponseRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
+		var applicationId int64
 
-		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesCreate(context.Background(), applicationId).Execute()
+		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.CreateApplicationResponseRule(context.Background(), applicationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,14 +36,14 @@ func Test_edgeapi_ApplicationsResponseRulesAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ApplicationsResponseRulesAPIService EdgeApplicationApiApplicationsResponseRulesDestroy", func(t *testing.T) {
+	t.Run("Test ApplicationsResponseRulesAPIService DeleteApplicationResponseRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var id string
+		var applicationId int64
+		var responseRuleId int64
 
-		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesDestroy(context.Background(), applicationId, id).Execute()
+		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.DeleteApplicationResponseRule(context.Background(), applicationId, responseRuleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -51,13 +51,13 @@ func Test_edgeapi_ApplicationsResponseRulesAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ApplicationsResponseRulesAPIService EdgeApplicationApiApplicationsResponseRulesList", func(t *testing.T) {
+	t.Run("Test ApplicationsResponseRulesAPIService ListApplicationResponseRules", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
+		var applicationId int64
 
-		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesList(context.Background(), applicationId).Execute()
+		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.ListApplicationResponseRules(context.Background(), applicationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -65,13 +65,14 @@ func Test_edgeapi_ApplicationsResponseRulesAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ApplicationsResponseRulesAPIService EdgeApplicationApiApplicationsResponseRulesOrderUpdate", func(t *testing.T) {
+	t.Run("Test ApplicationsResponseRulesAPIService PartialUpdateApplicationResponseRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
+		var applicationId int64
+		var responseRuleId int64
 
-		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesOrderUpdate(context.Background(), applicationId).Execute()
+		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.PartialUpdateApplicationResponseRule(context.Background(), applicationId, responseRuleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -79,14 +80,14 @@ func Test_edgeapi_ApplicationsResponseRulesAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ApplicationsResponseRulesAPIService EdgeApplicationApiApplicationsResponseRulesPartialUpdate", func(t *testing.T) {
+	t.Run("Test ApplicationsResponseRulesAPIService RetrieveApplicationResponseRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var id string
+		var applicationId int64
+		var responseRuleId int64
 
-		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesPartialUpdate(context.Background(), applicationId, id).Execute()
+		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.RetrieveApplicationResponseRule(context.Background(), applicationId, responseRuleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -94,14 +95,14 @@ func Test_edgeapi_ApplicationsResponseRulesAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ApplicationsResponseRulesAPIService EdgeApplicationApiApplicationsResponseRulesRetrieve", func(t *testing.T) {
+	t.Run("Test ApplicationsResponseRulesAPIService UpdateApplicationResponseRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var id string
+		var applicationId int64
+		var responseRuleId int64
 
-		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesRetrieve(context.Background(), applicationId, id).Execute()
+		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.UpdateApplicationResponseRule(context.Background(), applicationId, responseRuleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -109,14 +110,13 @@ func Test_edgeapi_ApplicationsResponseRulesAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ApplicationsResponseRulesAPIService EdgeApplicationApiApplicationsResponseRulesUpdate", func(t *testing.T) {
+	t.Run("Test ApplicationsResponseRulesAPIService UpdateApplicationResponseRulesOrder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var id string
+		var applicationId int64
 
-		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.EdgeApplicationApiApplicationsResponseRulesUpdate(context.Background(), applicationId, id).Execute()
+		resp, httpRes, err := apiClient.ApplicationsResponseRulesAPI.UpdateApplicationResponseRulesOrder(context.Background(), applicationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -34,13 +34,13 @@ func Test_edgeapi_NetworkListsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test NetworkListsAPIService DestroyNetworkList", func(t *testing.T) {
+	t.Run("Test NetworkListsAPIService DeleteNetworkList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var networkListId int64
 
-		resp, httpRes, err := apiClient.NetworkListsAPI.DestroyNetworkList(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.NetworkListsAPI.DeleteNetworkList(context.Background(), networkListId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -64,9 +64,9 @@ func Test_edgeapi_NetworkListsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var networkListId int64
 
-		resp, httpRes, err := apiClient.NetworkListsAPI.PartialUpdateNetworkList(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.NetworkListsAPI.PartialUpdateNetworkList(context.Background(), networkListId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -78,9 +78,9 @@ func Test_edgeapi_NetworkListsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var networkListId int64
 
-		resp, httpRes, err := apiClient.NetworkListsAPI.RetrieveNetworkList(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.NetworkListsAPI.RetrieveNetworkList(context.Background(), networkListId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -92,9 +92,9 @@ func Test_edgeapi_NetworkListsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var networkListId int64
 
-		resp, httpRes, err := apiClient.NetworkListsAPI.UpdateNetworkList(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.NetworkListsAPI.UpdateNetworkList(context.Background(), networkListId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

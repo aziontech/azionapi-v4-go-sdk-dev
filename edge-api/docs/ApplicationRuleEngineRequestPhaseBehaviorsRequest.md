@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | * &#x60;set_origin&#x60; - set_origin | 
-**Attributes** | [**ApplicationRuleEngineSetOriginAttributesRequest**](ApplicationRuleEngineSetOriginAttributesRequest.md) |  | 
+**Type** | **string** | * &#x60;capture_match_groups&#x60; - capture_match_groups | 
+**Attributes** | [**ApplicationRuleEngineCaptureMatchGroupsAttributesRequest**](ApplicationRuleEngineCaptureMatchGroupsAttributesRequest.md) |  | 
 
 ## Methods
 
 ### NewApplicationRuleEngineRequestPhaseBehaviorsRequest
 
-`func NewApplicationRuleEngineRequestPhaseBehaviorsRequest(type_ string, attributes ApplicationRuleEngineSetOriginAttributesRequest, ) *ApplicationRuleEngineRequestPhaseBehaviorsRequest`
+`func NewApplicationRuleEngineRequestPhaseBehaviorsRequest(type_ string, attributes ApplicationRuleEngineCaptureMatchGroupsAttributesRequest, ) *ApplicationRuleEngineRequestPhaseBehaviorsRequest`
 
 NewApplicationRuleEngineRequestPhaseBehaviorsRequest instantiates a new ApplicationRuleEngineRequestPhaseBehaviorsRequest object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetType sets Type field to given value.
 
 ### GetAttributes
 
-`func (o *ApplicationRuleEngineRequestPhaseBehaviorsRequest) GetAttributes() ApplicationRuleEngineSetOriginAttributesRequest`
+`func (o *ApplicationRuleEngineRequestPhaseBehaviorsRequest) GetAttributes() ApplicationRuleEngineCaptureMatchGroupsAttributesRequest`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *ApplicationRuleEngineRequestPhaseBehaviorsRequest) GetAttributesOk() (*ApplicationRuleEngineSetOriginAttributesRequest, bool)`
+`func (o *ApplicationRuleEngineRequestPhaseBehaviorsRequest) GetAttributesOk() (*ApplicationRuleEngineCaptureMatchGroupsAttributesRequest, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *ApplicationRuleEngineRequestPhaseBehaviorsRequest) SetAttributes(v ApplicationRuleEngineSetOriginAttributesRequest)`
+`func (o *ApplicationRuleEngineRequestPhaseBehaviorsRequest) SetAttributes(v ApplicationRuleEngineCaptureMatchGroupsAttributesRequest)`
 
 SetAttributes sets Attributes field to given value.
 

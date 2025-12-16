@@ -26,9 +26,9 @@ func Test_edgeapi_FirewallsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var firewallId int64
 
-		resp, httpRes, err := apiClient.FirewallsAPI.CloneFirewall(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.FirewallsAPI.CloneFirewall(context.Background(), firewallId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -48,13 +48,13 @@ func Test_edgeapi_FirewallsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test FirewallsAPIService DestroyFirewall", func(t *testing.T) {
+	t.Run("Test FirewallsAPIService DeleteFirewall", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var firewallId int64
 
-		resp, httpRes, err := apiClient.FirewallsAPI.DestroyFirewall(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.FirewallsAPI.DeleteFirewall(context.Background(), firewallId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -78,9 +78,9 @@ func Test_edgeapi_FirewallsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var firewallId int64
 
-		resp, httpRes, err := apiClient.FirewallsAPI.PartialUpdateFirewall(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.FirewallsAPI.PartialUpdateFirewall(context.Background(), firewallId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -92,9 +92,9 @@ func Test_edgeapi_FirewallsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var firewallId int64
 
-		resp, httpRes, err := apiClient.FirewallsAPI.RetrieveFirewall(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.FirewallsAPI.RetrieveFirewall(context.Background(), firewallId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -106,9 +106,9 @@ func Test_edgeapi_FirewallsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var firewallId int64
 
-		resp, httpRes, err := apiClient.FirewallsAPI.UpdateFirewall(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.FirewallsAPI.UpdateFirewall(context.Background(), firewallId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

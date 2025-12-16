@@ -26,9 +26,9 @@ func Test_edgeapi_FirewallsRulesEngineAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var edgeFirewallId string
+		var firewallId int64
 
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.CreateFirewallRule(context.Background(), edgeFirewallId).Execute()
+		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.CreateFirewallRule(context.Background(), firewallId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,14 +36,14 @@ func Test_edgeapi_FirewallsRulesEngineAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test FirewallsRulesEngineAPIService DestroyFirewallRule", func(t *testing.T) {
+	t.Run("Test FirewallsRulesEngineAPIService DeleteFirewallRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var edgeFirewallId string
-		var id string
+		var firewallId int64
+		var requestRuleId int64
 
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.DestroyFirewallRule(context.Background(), edgeFirewallId, id).Execute()
+		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.DeleteFirewallRule(context.Background(), firewallId, requestRuleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -55,9 +55,9 @@ func Test_edgeapi_FirewallsRulesEngineAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var edgeFirewallId string
+		var firewallId int64
 
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.ListFirewallRules(context.Background(), edgeFirewallId).Execute()
+		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.ListFirewallRules(context.Background(), firewallId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -69,9 +69,9 @@ func Test_edgeapi_FirewallsRulesEngineAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var edgeFirewallId string
+		var firewallId int64
 
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.OrderFirewallRules(context.Background(), edgeFirewallId).Execute()
+		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.OrderFirewallRules(context.Background(), firewallId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -83,10 +83,10 @@ func Test_edgeapi_FirewallsRulesEngineAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var edgeFirewallId string
-		var id string
+		var firewallId int64
+		var requestRuleId int64
 
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.PartialUpdateFirewallRule(context.Background(), edgeFirewallId, id).Execute()
+		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.PartialUpdateFirewallRule(context.Background(), firewallId, requestRuleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -98,10 +98,10 @@ func Test_edgeapi_FirewallsRulesEngineAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var edgeFirewallId string
-		var id string
+		var firewallId int64
+		var requestRuleId int64
 
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.RetrieveFirewallRule(context.Background(), edgeFirewallId, id).Execute()
+		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.RetrieveFirewallRule(context.Background(), firewallId, requestRuleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -113,10 +113,10 @@ func Test_edgeapi_FirewallsRulesEngineAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var edgeFirewallId string
-		var id string
+		var firewallId int64
+		var requestRuleId int64
 
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.UpdateFirewallRule(context.Background(), edgeFirewallId, id).Execute()
+		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.UpdateFirewallRule(context.Background(), firewallId, requestRuleId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

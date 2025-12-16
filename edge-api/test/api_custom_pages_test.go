@@ -34,13 +34,13 @@ func Test_edgeapi_CustomPagesAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test CustomPagesAPIService DestroyCustomPage", func(t *testing.T) {
+	t.Run("Test CustomPagesAPIService DeleteCustomPage", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var customPageId int64
 
-		resp, httpRes, err := apiClient.CustomPagesAPI.DestroyCustomPage(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.CustomPagesAPI.DeleteCustomPage(context.Background(), customPageId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -64,9 +64,9 @@ func Test_edgeapi_CustomPagesAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var customPageId int64
 
-		resp, httpRes, err := apiClient.CustomPagesAPI.PartialUpdateCustomPage(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.CustomPagesAPI.PartialUpdateCustomPage(context.Background(), customPageId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -78,9 +78,9 @@ func Test_edgeapi_CustomPagesAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var customPageId int64
 
-		resp, httpRes, err := apiClient.CustomPagesAPI.RetrieveCustomPage(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.CustomPagesAPI.RetrieveCustomPage(context.Background(), customPageId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -92,9 +92,9 @@ func Test_edgeapi_CustomPagesAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var customPageId int64
 
-		resp, httpRes, err := apiClient.CustomPagesAPI.UpdateCustomPage(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.CustomPagesAPI.UpdateCustomPage(context.Background(), customPageId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -26,7 +26,7 @@ func Test_edgeapi_ApplicationsCacheSettingsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
+		var applicationId int64
 
 		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.CreateCacheSetting(context.Background(), applicationId).Execute()
 
@@ -36,14 +36,14 @@ func Test_edgeapi_ApplicationsCacheSettingsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ApplicationsCacheSettingsAPIService DestroyCacheSetting", func(t *testing.T) {
+	t.Run("Test ApplicationsCacheSettingsAPIService DeleteCacheSetting", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var id string
+		var applicationId int64
+		var cacheSettingId int64
 
-		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.DestroyCacheSetting(context.Background(), applicationId, id).Execute()
+		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.DeleteCacheSetting(context.Background(), applicationId, cacheSettingId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -55,7 +55,7 @@ func Test_edgeapi_ApplicationsCacheSettingsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
+		var applicationId int64
 
 		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.ListCacheSettings(context.Background(), applicationId).Execute()
 
@@ -69,10 +69,10 @@ func Test_edgeapi_ApplicationsCacheSettingsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var id string
+		var applicationId int64
+		var cacheSettingId int64
 
-		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.PartialUpdateCacheSetting(context.Background(), applicationId, id).Execute()
+		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.PartialUpdateCacheSetting(context.Background(), applicationId, cacheSettingId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -84,10 +84,10 @@ func Test_edgeapi_ApplicationsCacheSettingsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var id string
+		var applicationId int64
+		var cacheSettingId int64
 
-		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.RetrieveCacheSetting(context.Background(), applicationId, id).Execute()
+		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.RetrieveCacheSetting(context.Background(), applicationId, cacheSettingId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -99,10 +99,10 @@ func Test_edgeapi_ApplicationsCacheSettingsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var id string
+		var applicationId int64
+		var cacheSettingId int64
 
-		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.UpdateCacheSetting(context.Background(), applicationId, id).Execute()
+		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.UpdateCacheSetting(context.Background(), applicationId, cacheSettingId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

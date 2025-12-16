@@ -34,13 +34,13 @@ func Test_edgeapi_ConnectorsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ConnectorsAPIService DestroyConnector", func(t *testing.T) {
+	t.Run("Test ConnectorsAPIService DeleteConnector", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var connectorId int64
 
-		resp, httpRes, err := apiClient.ConnectorsAPI.DestroyConnector(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ConnectorsAPI.DeleteConnector(context.Background(), connectorId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -64,9 +64,9 @@ func Test_edgeapi_ConnectorsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var connectorId int64
 
-		resp, httpRes, err := apiClient.ConnectorsAPI.PartialUpdateConnector(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ConnectorsAPI.PartialUpdateConnector(context.Background(), connectorId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -78,9 +78,9 @@ func Test_edgeapi_ConnectorsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var connectorId int64
 
-		resp, httpRes, err := apiClient.ConnectorsAPI.RetrieveConnector(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ConnectorsAPI.RetrieveConnector(context.Background(), connectorId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -92,9 +92,9 @@ func Test_edgeapi_ConnectorsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
+		var connectorId int64
 
-		resp, httpRes, err := apiClient.ConnectorsAPI.UpdateConnector(context.Background(), id).Execute()
+		resp, httpRes, err := apiClient.ConnectorsAPI.UpdateConnector(context.Background(), connectorId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

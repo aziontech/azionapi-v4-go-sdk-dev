@@ -22,13 +22,13 @@ func Test_edgeapi_WAFsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test WAFsAPIService CloneWAF", func(t *testing.T) {
+	t.Run("Test WAFsAPIService CloneWaf", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var wafId string
+		var wafId int64
 
-		resp, httpRes, err := apiClient.WAFsAPI.CloneWAF(context.Background(), wafId).Execute()
+		resp, httpRes, err := apiClient.WAFsAPI.CloneWaf(context.Background(), wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,11 +36,11 @@ func Test_edgeapi_WAFsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test WAFsAPIService CreateWAF", func(t *testing.T) {
+	t.Run("Test WAFsAPIService CreateWaf", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.WAFsAPI.CreateWAF(context.Background()).Execute()
+		resp, httpRes, err := apiClient.WAFsAPI.CreateWaf(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -48,13 +48,13 @@ func Test_edgeapi_WAFsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test WAFsAPIService DestroyWAF", func(t *testing.T) {
+	t.Run("Test WAFsAPIService DeleteWaf", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var wafId string
+		var wafId int64
 
-		resp, httpRes, err := apiClient.WAFsAPI.DestroyWAF(context.Background(), wafId).Execute()
+		resp, httpRes, err := apiClient.WAFsAPI.DeleteWaf(context.Background(), wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -62,11 +62,11 @@ func Test_edgeapi_WAFsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test WAFsAPIService ListWAFs", func(t *testing.T) {
+	t.Run("Test WAFsAPIService ListWafs", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.WAFsAPI.ListWAFs(context.Background()).Execute()
+		resp, httpRes, err := apiClient.WAFsAPI.ListWafs(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -74,13 +74,13 @@ func Test_edgeapi_WAFsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test WAFsAPIService PartialUpdateWAF", func(t *testing.T) {
+	t.Run("Test WAFsAPIService PartialUpdateWaf", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var wafId string
+		var wafId int64
 
-		resp, httpRes, err := apiClient.WAFsAPI.PartialUpdateWAF(context.Background(), wafId).Execute()
+		resp, httpRes, err := apiClient.WAFsAPI.PartialUpdateWaf(context.Background(), wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -88,13 +88,13 @@ func Test_edgeapi_WAFsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test WAFsAPIService RetrieveWAF", func(t *testing.T) {
+	t.Run("Test WAFsAPIService RetrieveWaf", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var wafId string
+		var wafId int64
 
-		resp, httpRes, err := apiClient.WAFsAPI.RetrieveWAF(context.Background(), wafId).Execute()
+		resp, httpRes, err := apiClient.WAFsAPI.RetrieveWaf(context.Background(), wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -102,13 +102,13 @@ func Test_edgeapi_WAFsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test WAFsAPIService UpdateWAF", func(t *testing.T) {
+	t.Run("Test WAFsAPIService UpdateWaf", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var wafId string
+		var wafId int64
 
-		resp, httpRes, err := apiClient.WAFsAPI.UpdateWAF(context.Background(), wafId).Execute()
+		resp, httpRes, err := apiClient.WAFsAPI.UpdateWaf(context.Background(), wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -22,13 +22,13 @@ func Test_edgeapi_WAFsExceptionsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test WAFsExceptionsAPIService CreateWAFException", func(t *testing.T) {
+	t.Run("Test WAFsExceptionsAPIService CreateWafException", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var wafId string
+		var wafId int64
 
-		resp, httpRes, err := apiClient.WAFsExceptionsAPI.CreateWAFException(context.Background(), wafId).Execute()
+		resp, httpRes, err := apiClient.WAFsExceptionsAPI.CreateWafException(context.Background(), wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -36,14 +36,14 @@ func Test_edgeapi_WAFsExceptionsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test WAFsExceptionsAPIService DestroyWAFException", func(t *testing.T) {
+	t.Run("Test WAFsExceptionsAPIService DeleteWafException", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var exceptionId string
-		var wafId string
+		var exceptionId int64
+		var wafId int64
 
-		resp, httpRes, err := apiClient.WAFsExceptionsAPI.DestroyWAFException(context.Background(), exceptionId, wafId).Execute()
+		resp, httpRes, err := apiClient.WAFsExceptionsAPI.DeleteWafException(context.Background(), exceptionId, wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -51,13 +51,13 @@ func Test_edgeapi_WAFsExceptionsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test WAFsExceptionsAPIService ListWAFExceptions", func(t *testing.T) {
+	t.Run("Test WAFsExceptionsAPIService ListWafExceptions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var wafId string
+		var wafId int64
 
-		resp, httpRes, err := apiClient.WAFsExceptionsAPI.ListWAFExceptions(context.Background(), wafId).Execute()
+		resp, httpRes, err := apiClient.WAFsExceptionsAPI.ListWafExceptions(context.Background(), wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -65,14 +65,14 @@ func Test_edgeapi_WAFsExceptionsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test WAFsExceptionsAPIService PartialUpdateWAFException", func(t *testing.T) {
+	t.Run("Test WAFsExceptionsAPIService PartialUpdateWafException", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var exceptionId string
-		var wafId string
+		var exceptionId int64
+		var wafId int64
 
-		resp, httpRes, err := apiClient.WAFsExceptionsAPI.PartialUpdateWAFException(context.Background(), exceptionId, wafId).Execute()
+		resp, httpRes, err := apiClient.WAFsExceptionsAPI.PartialUpdateWafException(context.Background(), exceptionId, wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -80,14 +80,14 @@ func Test_edgeapi_WAFsExceptionsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test WAFsExceptionsAPIService RetrieveWAFException", func(t *testing.T) {
+	t.Run("Test WAFsExceptionsAPIService RetrieveWafException", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var exceptionId string
-		var wafId string
+		var exceptionId int64
+		var wafId int64
 
-		resp, httpRes, err := apiClient.WAFsExceptionsAPI.RetrieveWAFException(context.Background(), exceptionId, wafId).Execute()
+		resp, httpRes, err := apiClient.WAFsExceptionsAPI.RetrieveWafException(context.Background(), exceptionId, wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -95,14 +95,14 @@ func Test_edgeapi_WAFsExceptionsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test WAFsExceptionsAPIService UpdateWAFException", func(t *testing.T) {
+	t.Run("Test WAFsExceptionsAPIService UpdateWafException", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var exceptionId string
-		var wafId string
+		var exceptionId int64
+		var wafId int64
 
-		resp, httpRes, err := apiClient.WAFsExceptionsAPI.UpdateWAFException(context.Background(), exceptionId, wafId).Execute()
+		resp, httpRes, err := apiClient.WAFsExceptionsAPI.UpdateWafException(context.Background(), exceptionId, wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

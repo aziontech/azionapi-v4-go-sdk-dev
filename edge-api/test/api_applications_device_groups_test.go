@@ -26,7 +26,7 @@ func Test_edgeapi_ApplicationsDeviceGroupsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
+		var applicationId int64
 
 		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.CreateDeviceGroup(context.Background(), applicationId).Execute()
 
@@ -36,14 +36,14 @@ func Test_edgeapi_ApplicationsDeviceGroupsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ApplicationsDeviceGroupsAPIService DestroyDeviceGroups", func(t *testing.T) {
+	t.Run("Test ApplicationsDeviceGroupsAPIService DeleteDeviceGroups", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var id string
+		var applicationId int64
+		var deviceGroupId int64
 
-		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.DestroyDeviceGroups(context.Background(), applicationId, id).Execute()
+		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.DeleteDeviceGroups(context.Background(), applicationId, deviceGroupId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -55,7 +55,7 @@ func Test_edgeapi_ApplicationsDeviceGroupsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
+		var applicationId int64
 
 		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.ListDeviceGroups(context.Background(), applicationId).Execute()
 
@@ -69,10 +69,10 @@ func Test_edgeapi_ApplicationsDeviceGroupsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var id string
+		var applicationId int64
+		var deviceGroupId int64
 
-		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup(context.Background(), applicationId, id).Execute()
+		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup(context.Background(), applicationId, deviceGroupId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -84,10 +84,10 @@ func Test_edgeapi_ApplicationsDeviceGroupsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var id string
+		var applicationId int64
+		var deviceGroupId int64
 
-		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.RetrieveDeviceGroup(context.Background(), applicationId, id).Execute()
+		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.RetrieveDeviceGroup(context.Background(), applicationId, deviceGroupId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -99,10 +99,10 @@ func Test_edgeapi_ApplicationsDeviceGroupsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var id string
+		var applicationId int64
+		var deviceGroupId int64
 
-		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.UpdateDeviceGroup(context.Background(), applicationId, id).Execute()
+		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.UpdateDeviceGroup(context.Background(), applicationId, deviceGroupId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

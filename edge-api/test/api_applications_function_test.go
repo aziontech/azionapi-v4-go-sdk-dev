@@ -26,7 +26,7 @@ func Test_edgeapi_ApplicationsFunctionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
+		var applicationId int64
 
 		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.CreateApplicationFunctionInstance(context.Background(), applicationId).Execute()
 
@@ -36,14 +36,14 @@ func Test_edgeapi_ApplicationsFunctionAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ApplicationsFunctionAPIService DestroyApplicationFunctionInstance", func(t *testing.T) {
+	t.Run("Test ApplicationsFunctionAPIService DeleteApplicationFunctionInstance", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var functionId string
+		var applicationId int64
+		var functionId int64
 
-		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.DestroyApplicationFunctionInstance(context.Background(), applicationId, functionId).Execute()
+		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.DeleteApplicationFunctionInstance(context.Background(), applicationId, functionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -55,7 +55,7 @@ func Test_edgeapi_ApplicationsFunctionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
+		var applicationId int64
 
 		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.ListApplicationFunctionInstances(context.Background(), applicationId).Execute()
 
@@ -69,8 +69,8 @@ func Test_edgeapi_ApplicationsFunctionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var functionId string
+		var applicationId int64
+		var functionId int64
 
 		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.PartialUpdateApplicationFunctionInstance(context.Background(), applicationId, functionId).Execute()
 
@@ -84,8 +84,8 @@ func Test_edgeapi_ApplicationsFunctionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var functionId string
+		var applicationId int64
+		var functionId int64
 
 		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.RetrieveApplicationFunctionInstance(context.Background(), applicationId, functionId).Execute()
 
@@ -99,8 +99,8 @@ func Test_edgeapi_ApplicationsFunctionAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var applicationId string
-		var functionId string
+		var applicationId int64
+		var functionId int64
 
 		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.UpdateApplicationFunctionInstance(context.Background(), applicationId, functionId).Execute()
 

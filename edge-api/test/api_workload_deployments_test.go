@@ -36,14 +36,14 @@ func Test_edgeapi_WorkloadDeploymentsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test WorkloadDeploymentsAPIService DestroyWorkloadDeployment", func(t *testing.T) {
+	t.Run("Test WorkloadDeploymentsAPIService DeleteWorkloadDeployment", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var deploymentId int64
 		var workloadId int64
 
-		resp, httpRes, err := apiClient.WorkloadDeploymentsAPI.DestroyWorkloadDeployment(context.Background(), deploymentId, workloadId).Execute()
+		resp, httpRes, err := apiClient.WorkloadDeploymentsAPI.DeleteWorkloadDeployment(context.Background(), deploymentId, workloadId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

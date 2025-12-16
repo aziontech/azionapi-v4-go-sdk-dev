@@ -88,7 +88,7 @@ def modify_request_phase_behaviors(data):
     if missing_schemas:
         print(f"⚠️ Some schemas are missing: {', '.join(missing_schemas)}")
         print("⚠️ Will attempt to continue with available schemas")
-    
+
     # Define all possible behavior references
     behavior_refs = [
         {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs'},
@@ -120,7 +120,40 @@ def modify_request_phase_behaviors(data):
         data['components']['schemas']['ApplicationRuleEngineRequestPhaseBehaviors']['oneOf'] = allowed_refs
     
     if 'ApplicationRuleEngineRequestPhaseBehaviorsRequest' in data['components']['schemas']:
-        data['components']['schemas']['ApplicationRuleEngineRequestPhaseBehaviorsRequest']['oneOf'] = allowed_refs_request
+        # New format (your edge-api.yaml): oneOf/mapping points to per-behavior schemas.
+        # Collapse to 3 category schemas so the Go union only has 3 pointers.
+        desired_request_oneof = [
+            {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest'},
+            {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithArgsRequest'},
+            {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest'},
+        ]
+        data['components']['schemas']['ApplicationRuleEngineRequestPhaseBehaviorsRequest']['oneOf'] = [
+            ref for ref in desired_request_oneof
+            if ref['$ref'].split('/')[-1] in data['components']['schemas']
+        ]
+
+        disc = data['components']['schemas']['ApplicationRuleEngineRequestPhaseBehaviorsRequest'].get('discriminator')
+        if isinstance(disc, dict) and isinstance(disc.get('mapping'), dict):
+            without_args_types = {
+                'bypass_cache',
+                'deliver',
+                'deny',
+                'enable_gzip',
+                'forward_cookies',
+                'no_content',
+                'redirect_http_to_https',
+            }
+            new_mapping = {}
+            for k, v in disc['mapping'].items():
+                if not isinstance(v, str):
+                    continue
+                if k == 'capture_match_groups':
+                    new_mapping[k] = '#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest'
+                elif k in without_args_types:
+                    new_mapping[k] = '#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest'
+                else:
+                    new_mapping[k] = '#/components/schemas/ApplicationRequestPhaseBehaviorWithArgsRequest'
+            disc['mapping'] = new_mapping
     
     # Remove additionalProperties from withoutArgs struct to prevent problems
     if 'ApplicationRequestPhaseBehaviorWithoutArgs' in data['components']['schemas'] and \
@@ -209,9 +242,51 @@ def modify_response_phase_behaviors(data):
     # Update oneOfs if the schemas exist
     if 'ApplicationRuleEngineResponsePhaseBehaviors' in data['components']['schemas']:
         data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviors']['oneOf'] = allowed_refs
-    
+
+        disc = data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviors'].get('discriminator')
+        if isinstance(disc, dict) and isinstance(disc.get('mapping'), dict):
+            without_args_types = {
+                'enable_gzip',
+                'deliver',
+            }
+
+            new_mapping = {}
+            for k, v in disc['mapping'].items():
+                if not isinstance(v, str):
+                    continue
+                if k == 'capture_match_groups':
+                    new_mapping[k] = '#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroups'
+                elif k in without_args_types:
+                    new_mapping[k] = '#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgs'
+                else:
+                    new_mapping[k] = '#/components/schemas/ApplicationResponsePhaseBehaviorWithArgs'
+            disc['mapping'] = new_mapping
+
     if 'ApplicationRuleEngineResponsePhaseBehaviorsRequest' in data['components']['schemas']:
-        data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviorsRequest']['oneOf'] = allowed_refs_request
+        desired_request_oneof = [
+            {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgsRequest'},
+            {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithArgsRequest'},
+            {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest'},
+        ]
+        data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviorsRequest']['oneOf'] = [
+            ref for ref in desired_request_oneof
+            if ref['$ref'].split('/')[-1] in data['components']['schemas']
+        ]
+
+        disc = data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviorsRequest'].get('discriminator')
+        if isinstance(disc, dict) and isinstance(disc.get('mapping'), dict):
+            new_mapping = {}
+            for k, v in disc['mapping'].items():
+                if not isinstance(v, str):
+                    continue
+                target = v.split('/')[-1]
+                if 'CaptureMatchGroups' in target:
+                    new_mapping[k] = '#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest'
+                elif 'NoArgs' in target:
+                    new_mapping[k] = '#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgsRequest'
+                else:
+                    new_mapping[k] = '#/components/schemas/ApplicationResponsePhaseBehaviorWithArgsRequest'
+            disc['mapping'] = new_mapping
     
     # Remove additionalProperties from withoutArgs struct to prevent problems
     if 'ApplicationResponsePhaseBehaviorWithoutArgs' in data['components']['schemas'] and \
