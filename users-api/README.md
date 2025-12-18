@@ -83,8 +83,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [ErrorResponse](docs/ErrorResponse.md)
  - [JSONAPIErrorObject](docs/JSONAPIErrorObject.md)
- - [JSONAPIErrorResponse](docs/JSONAPIErrorResponse.md)
  - [JSONAPIErrorSource](docs/JSONAPIErrorSource.md)
 
 

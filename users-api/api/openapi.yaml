@@ -21,7 +21,7 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
+        "200":
           description: No response body
         "400":
           content:
@@ -37,7 +37,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -53,7 +53,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -69,7 +69,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -85,7 +85,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -101,7 +101,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -117,7 +117,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -133,7 +133,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
       security:
       - TokenAuth: []
@@ -186,7 +186,29 @@ components:
           type: object
       title: JSONAPIErrorObject
       type: object
-    JSONAPIErrorResponse:
+    JSONAPIErrorSource:
+      additionalProperties: false
+      description: Serializer for the 'source' object in a JSON:API error.
+      properties:
+        pointer:
+          description: JSON Pointer to the value in the request document that caused
+            the error
+          maxLength: 4096
+          minLength: 1
+          type: string
+        parameter:
+          description: URI query parameter that caused the error
+          maxLength: 4096
+          minLength: 1
+          type: string
+        header:
+          description: Request header name that caused the error
+          maxLength: 4096
+          minLength: 1
+          type: string
+      title: JSONAPIErrorSource
+      type: object
+    ErrorResponse:
       additionalProperties: false
       description: Serializer for a JSON:API error response.
       example:
@@ -213,29 +235,7 @@ components:
           type: array
       required:
       - errors
-      title: JSONAPIErrorResponse
-      type: object
-    JSONAPIErrorSource:
-      additionalProperties: false
-      description: Serializer for the 'source' object in a JSON:API error.
-      properties:
-        pointer:
-          description: JSON Pointer to the value in the request document that caused
-            the error
-          maxLength: 4096
-          minLength: 1
-          type: string
-        parameter:
-          description: URI query parameter that caused the error
-          maxLength: 4096
-          minLength: 1
-          type: string
-        header:
-          description: Request header name that caused the error
-          maxLength: 4096
-          minLength: 1
-          type: string
-      title: JSONAPIErrorSource
+      title: ErrorResponse
       type: object
   securitySchemes:
     BearerAuth:
