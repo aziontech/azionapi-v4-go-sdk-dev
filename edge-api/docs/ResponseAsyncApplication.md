@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **State** | Pointer to **string** |  | [optional] 
-**Data** | [**Application**](Application.md) |  | 
+**Data** | [**App**](App.md) |  | 
 
 ## Methods
 
 ### NewResponseAsyncApplication
 
-`func NewResponseAsyncApplication(data Application, ) *ResponseAsyncApplication`
+`func NewResponseAsyncApplication(data App, ) *ResponseAsyncApplication`
 
 NewResponseAsyncApplication instantiates a new ResponseAsyncApplication object
 This constructor will assign default values to properties that have it defined,
@@ -53,20 +53,20 @@ HasState returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *ResponseAsyncApplication) GetData() Application`
+`func (o *ResponseAsyncApplication) GetData() App`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *ResponseAsyncApplication) GetDataOk() (*Application, bool)`
+`func (o *ResponseAsyncApplication) GetDataOk() (*App, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *ResponseAsyncApplication) SetData(v Application)`
+`func (o *ResponseAsyncApplication) SetData(v App)`
 
 SetData sets Data field to given value.
 

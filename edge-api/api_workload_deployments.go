@@ -27,15 +27,15 @@ type ApiCreateWorkloadDeploymentRequest struct {
 	ctx context.Context
 	ApiService *WorkloadDeploymentsAPIService
 	workloadId int64
-	workloadDeploymentRequest *WorkloadDeploymentRequest
+	workloDeploymentRequest *WorkloDeploymentRequest
 }
 
-func (r ApiCreateWorkloadDeploymentRequest) WorkloadDeploymentRequest(workloadDeploymentRequest WorkloadDeploymentRequest) ApiCreateWorkloadDeploymentRequest {
-	r.workloadDeploymentRequest = &workloadDeploymentRequest
+func (r ApiCreateWorkloadDeploymentRequest) WorkloDeploymentRequest(workloDeploymentRequest WorkloDeploymentRequest) ApiCreateWorkloadDeploymentRequest {
+	r.workloDeploymentRequest = &workloDeploymentRequest
 	return r
 }
 
-func (r ApiCreateWorkloadDeploymentRequest) Execute() (*ResponseWorkloadDeployment, *http.Response, error) {
+func (r ApiCreateWorkloadDeploymentRequest) Execute() (*ResponseWorkloDeployment, *http.Response, error) {
 	return r.ApiService.CreateWorkloadDeploymentExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeployment(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseWorkloadDeployment
-func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCreateWorkloadDeploymentRequest) (*ResponseWorkloadDeployment, *http.Response, error) {
+//  @return ResponseWorkloDeployment
+func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCreateWorkloadDeploymentRequest) (*ResponseWorkloDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseWorkloadDeployment
+		localVarReturnValue  *ResponseWorkloDeployment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.CreateWorkloadDeployment")
@@ -77,8 +77,8 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.workloadDeploymentRequest == nil {
-		return localVarReturnValue, nil, reportError("workloadDeploymentRequest is required and must be specified")
+	if r.workloDeploymentRequest == nil {
+		return localVarReturnValue, nil, reportError("workloDeploymentRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.workloadDeploymentRequest
+	localVarPostBody = r.workloDeploymentRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -137,7 +137,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -148,7 +148,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -159,7 +159,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -170,7 +170,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -181,7 +181,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -192,7 +192,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -203,7 +203,7 @@ func (a *WorkloadDeploymentsAPIService) CreateWorkloadDeploymentExecute(r ApiCre
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -234,7 +234,7 @@ type ApiDeleteWorkloadDeploymentRequest struct {
 	workloadId int64
 }
 
-func (r ApiDeleteWorkloadDeploymentRequest) Execute() (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
+func (r ApiDeleteWorkloadDeploymentRequest) Execute() (*ResponseDeleteWorkloDeployment, *http.Response, error) {
 	return r.ApiService.DeleteWorkloadDeploymentExecute(r)
 }
 
@@ -258,13 +258,13 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeployment(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteWorkloadDeployment
-func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDeleteWorkloadDeploymentRequest) (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
+//  @return ResponseDeleteWorkloDeployment
+func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDeleteWorkloadDeploymentRequest) (*ResponseDeleteWorkloDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteWorkloadDeployment
+		localVarReturnValue  *ResponseDeleteWorkloDeployment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.DeleteWorkloadDeployment")
@@ -334,7 +334,7 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -345,7 +345,7 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -356,7 +356,7 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -367,7 +367,7 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -378,7 +378,7 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -389,7 +389,7 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -400,7 +400,7 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -486,7 +486,7 @@ func (r ApiListWorkloadDeploymentsRequest) Tag(tag string) ApiListWorkloadDeploy
 	return r
 }
 
-func (r ApiListWorkloadDeploymentsRequest) Execute() (*PaginatedWorkloadDeploymentList, *http.Response, error) {
+func (r ApiListWorkloadDeploymentsRequest) Execute() (*PaginatedWorkloDeploymentList, *http.Response, error) {
 	return r.ApiService.ListWorkloadDeploymentsExecute(r)
 }
 
@@ -508,13 +508,13 @@ func (a *WorkloadDeploymentsAPIService) ListWorkloadDeployments(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return PaginatedWorkloadDeploymentList
-func (a *WorkloadDeploymentsAPIService) ListWorkloadDeploymentsExecute(r ApiListWorkloadDeploymentsRequest) (*PaginatedWorkloadDeploymentList, *http.Response, error) {
+//  @return PaginatedWorkloDeploymentList
+func (a *WorkloadDeploymentsAPIService) ListWorkloadDeploymentsExecute(r ApiListWorkloadDeploymentsRequest) (*PaginatedWorkloDeploymentList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedWorkloadDeploymentList
+		localVarReturnValue  *PaginatedWorkloDeploymentList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.ListWorkloadDeployments")
@@ -607,7 +607,7 @@ func (a *WorkloadDeploymentsAPIService) ListWorkloadDeploymentsExecute(r ApiList
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -618,7 +618,7 @@ func (a *WorkloadDeploymentsAPIService) ListWorkloadDeploymentsExecute(r ApiList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -629,7 +629,7 @@ func (a *WorkloadDeploymentsAPIService) ListWorkloadDeploymentsExecute(r ApiList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -640,7 +640,7 @@ func (a *WorkloadDeploymentsAPIService) ListWorkloadDeploymentsExecute(r ApiList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -651,7 +651,7 @@ func (a *WorkloadDeploymentsAPIService) ListWorkloadDeploymentsExecute(r ApiList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -662,7 +662,7 @@ func (a *WorkloadDeploymentsAPIService) ListWorkloadDeploymentsExecute(r ApiList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -673,7 +673,7 @@ func (a *WorkloadDeploymentsAPIService) ListWorkloadDeploymentsExecute(r ApiList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -702,15 +702,15 @@ type ApiPartialUpdateWorkloadDeploymentRequest struct {
 	ApiService *WorkloadDeploymentsAPIService
 	deploymentId int64
 	workloadId int64
-	patchedWorkloadDeploymentRequest *PatchedWorkloadDeploymentRequest
+	patchedWorkloDeploymentRequest *PatchedWorkloDeploymentRequest
 }
 
-func (r ApiPartialUpdateWorkloadDeploymentRequest) PatchedWorkloadDeploymentRequest(patchedWorkloadDeploymentRequest PatchedWorkloadDeploymentRequest) ApiPartialUpdateWorkloadDeploymentRequest {
-	r.patchedWorkloadDeploymentRequest = &patchedWorkloadDeploymentRequest
+func (r ApiPartialUpdateWorkloadDeploymentRequest) PatchedWorkloDeploymentRequest(patchedWorkloDeploymentRequest PatchedWorkloDeploymentRequest) ApiPartialUpdateWorkloadDeploymentRequest {
+	r.patchedWorkloDeploymentRequest = &patchedWorkloDeploymentRequest
 	return r
 }
 
-func (r ApiPartialUpdateWorkloadDeploymentRequest) Execute() (*ResponseWorkloadDeployment, *http.Response, error) {
+func (r ApiPartialUpdateWorkloadDeploymentRequest) Execute() (*ResponseWorkloDeployment, *http.Response, error) {
 	return r.ApiService.PartialUpdateWorkloadDeploymentExecute(r)
 }
 
@@ -734,13 +734,13 @@ func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeployment(ctx cont
 }
 
 // Execute executes the request
-//  @return ResponseWorkloadDeployment
-func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeploymentExecute(r ApiPartialUpdateWorkloadDeploymentRequest) (*ResponseWorkloadDeployment, *http.Response, error) {
+//  @return ResponseWorkloDeployment
+func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeploymentExecute(r ApiPartialUpdateWorkloadDeploymentRequest) (*ResponseWorkloDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseWorkloadDeployment
+		localVarReturnValue  *ResponseWorkloDeployment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.PartialUpdateWorkloadDeployment")
@@ -774,7 +774,7 @@ func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeploymentExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedWorkloadDeploymentRequest
+	localVarPostBody = r.patchedWorkloDeploymentRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -812,7 +812,7 @@ func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeploymentExecute(r
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -823,7 +823,7 @@ func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeploymentExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -834,7 +834,7 @@ func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeploymentExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -845,7 +845,7 @@ func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeploymentExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -856,7 +856,7 @@ func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeploymentExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -867,7 +867,7 @@ func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeploymentExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -878,7 +878,7 @@ func (a *WorkloadDeploymentsAPIService) PartialUpdateWorkloadDeploymentExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -916,7 +916,7 @@ func (r ApiRetrieveWorkloadDeploymentRequest) Fields(fields string) ApiRetrieveW
 	return r
 }
 
-func (r ApiRetrieveWorkloadDeploymentRequest) Execute() (*ResponseRetrieveWorkloadDeployment, *http.Response, error) {
+func (r ApiRetrieveWorkloadDeploymentRequest) Execute() (*ResponseRetrieveWorkloDeployment, *http.Response, error) {
 	return r.ApiService.RetrieveWorkloadDeploymentExecute(r)
 }
 
@@ -940,13 +940,13 @@ func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeployment(ctx context.C
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveWorkloadDeployment
-func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeploymentExecute(r ApiRetrieveWorkloadDeploymentRequest) (*ResponseRetrieveWorkloadDeployment, *http.Response, error) {
+//  @return ResponseRetrieveWorkloDeployment
+func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeploymentExecute(r ApiRetrieveWorkloadDeploymentRequest) (*ResponseRetrieveWorkloDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveWorkloadDeployment
+		localVarReturnValue  *ResponseRetrieveWorkloDeployment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.RetrieveWorkloadDeployment")
@@ -1019,7 +1019,7 @@ func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeploymentExecute(r ApiR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1030,7 +1030,7 @@ func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeploymentExecute(r ApiR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1041,7 +1041,7 @@ func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeploymentExecute(r ApiR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1052,7 +1052,7 @@ func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeploymentExecute(r ApiR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1063,7 +1063,7 @@ func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeploymentExecute(r ApiR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1074,7 +1074,7 @@ func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeploymentExecute(r ApiR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1085,7 +1085,7 @@ func (a *WorkloadDeploymentsAPIService) RetrieveWorkloadDeploymentExecute(r ApiR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1114,15 +1114,15 @@ type ApiUpdateWorkloadDeploymentRequest struct {
 	ApiService *WorkloadDeploymentsAPIService
 	deploymentId int64
 	workloadId int64
-	workloadDeploymentRequest *WorkloadDeploymentRequest
+	workloDeploymentRequest *WorkloDeploymentRequest
 }
 
-func (r ApiUpdateWorkloadDeploymentRequest) WorkloadDeploymentRequest(workloadDeploymentRequest WorkloadDeploymentRequest) ApiUpdateWorkloadDeploymentRequest {
-	r.workloadDeploymentRequest = &workloadDeploymentRequest
+func (r ApiUpdateWorkloadDeploymentRequest) WorkloDeploymentRequest(workloDeploymentRequest WorkloDeploymentRequest) ApiUpdateWorkloadDeploymentRequest {
+	r.workloDeploymentRequest = &workloDeploymentRequest
 	return r
 }
 
-func (r ApiUpdateWorkloadDeploymentRequest) Execute() (*ResponseWorkloadDeployment, *http.Response, error) {
+func (r ApiUpdateWorkloadDeploymentRequest) Execute() (*ResponseWorkloDeployment, *http.Response, error) {
 	return r.ApiService.UpdateWorkloadDeploymentExecute(r)
 }
 
@@ -1146,13 +1146,13 @@ func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeployment(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseWorkloadDeployment
-func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeploymentExecute(r ApiUpdateWorkloadDeploymentRequest) (*ResponseWorkloadDeployment, *http.Response, error) {
+//  @return ResponseWorkloDeployment
+func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeploymentExecute(r ApiUpdateWorkloadDeploymentRequest) (*ResponseWorkloDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseWorkloadDeployment
+		localVarReturnValue  *ResponseWorkloDeployment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.UpdateWorkloadDeployment")
@@ -1167,8 +1167,8 @@ func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeploymentExecute(r ApiUpd
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.workloadDeploymentRequest == nil {
-		return localVarReturnValue, nil, reportError("workloadDeploymentRequest is required and must be specified")
+	if r.workloDeploymentRequest == nil {
+		return localVarReturnValue, nil, reportError("workloDeploymentRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1189,7 +1189,7 @@ func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeploymentExecute(r ApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.workloadDeploymentRequest
+	localVarPostBody = r.workloDeploymentRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1227,7 +1227,7 @@ func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeploymentExecute(r ApiUpd
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1238,7 +1238,7 @@ func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeploymentExecute(r ApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1249,7 +1249,7 @@ func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeploymentExecute(r ApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1260,7 +1260,7 @@ func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeploymentExecute(r ApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1271,7 +1271,7 @@ func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeploymentExecute(r ApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1282,7 +1282,7 @@ func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeploymentExecute(r ApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1293,7 +1293,7 @@ func (a *WorkloadDeploymentsAPIService) UpdateWorkloadDeploymentExecute(r ApiUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

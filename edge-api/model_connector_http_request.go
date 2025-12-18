@@ -25,7 +25,7 @@ type ConnectorHTTPRequest struct {
 	Active *bool `json:"active,omitempty"`
 	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
 	Type string `json:"type"`
-	Attributes ConnectorHTTPAttributesRequest `json:"attributes"`
+	Attributes ConnectorHTTPAttrsReq `json:"attributes"`
 }
 
 type _ConnectorHTTPRequest ConnectorHTTPRequest
@@ -34,7 +34,7 @@ type _ConnectorHTTPRequest ConnectorHTTPRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectorHTTPRequest(name string, type_ string, attributes ConnectorHTTPAttributesRequest) *ConnectorHTTPRequest {
+func NewConnectorHTTPRequest(name string, type_ string, attributes ConnectorHTTPAttrsReq) *ConnectorHTTPRequest {
 	this := ConnectorHTTPRequest{}
 	this.Name = name
 	this.Type = type_
@@ -131,9 +131,9 @@ func (o *ConnectorHTTPRequest) SetType(v string) {
 }
 
 // GetAttributes returns the Attributes field value
-func (o *ConnectorHTTPRequest) GetAttributes() ConnectorHTTPAttributesRequest {
+func (o *ConnectorHTTPRequest) GetAttributes() ConnectorHTTPAttrsReq {
 	if o == nil {
-		var ret ConnectorHTTPAttributesRequest
+		var ret ConnectorHTTPAttrsReq
 		return ret
 	}
 
@@ -142,7 +142,7 @@ func (o *ConnectorHTTPRequest) GetAttributes() ConnectorHTTPAttributesRequest {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorHTTPRequest) GetAttributesOk() (*ConnectorHTTPAttributesRequest, bool) {
+func (o *ConnectorHTTPRequest) GetAttributesOk() (*ConnectorHTTPAttrsReq, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -150,7 +150,7 @@ func (o *ConnectorHTTPRequest) GetAttributesOk() (*ConnectorHTTPAttributesReques
 }
 
 // SetAttributes sets field value
-func (o *ConnectorHTTPRequest) SetAttributes(v ConnectorHTTPAttributesRequest) {
+func (o *ConnectorHTTPRequest) SetAttributes(v ConnectorHTTPAttrsReq) {
 	o.Attributes = v
 }
 

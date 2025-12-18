@@ -19,7 +19,7 @@ var _ MappedNullable = &HTTPModulesRequest{}
 
 // HTTPModulesRequest struct for HTTPModulesRequest
 type HTTPModulesRequest struct {
-	LoadBalancer *LoadBalancerModuleRequest `json:"load_balancer,omitempty"`
+	LoadBalancer *LoBalancerModuleRequest `json:"load_balancer,omitempty"`
 	OriginShield *OriginShieldModuleRequest `json:"origin_shield,omitempty"`
 }
 
@@ -41,9 +41,9 @@ func NewHTTPModulesRequestWithDefaults() *HTTPModulesRequest {
 }
 
 // GetLoadBalancer returns the LoadBalancer field value if set, zero value otherwise.
-func (o *HTTPModulesRequest) GetLoadBalancer() LoadBalancerModuleRequest {
+func (o *HTTPModulesRequest) GetLoadBalancer() LoBalancerModuleRequest {
 	if o == nil || IsNil(o.LoadBalancer) {
-		var ret LoadBalancerModuleRequest
+		var ret LoBalancerModuleRequest
 		return ret
 	}
 	return *o.LoadBalancer
@@ -51,7 +51,7 @@ func (o *HTTPModulesRequest) GetLoadBalancer() LoadBalancerModuleRequest {
 
 // GetLoadBalancerOk returns a tuple with the LoadBalancer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HTTPModulesRequest) GetLoadBalancerOk() (*LoadBalancerModuleRequest, bool) {
+func (o *HTTPModulesRequest) GetLoadBalancerOk() (*LoBalancerModuleRequest, bool) {
 	if o == nil || IsNil(o.LoadBalancer) {
 		return nil, false
 	}
@@ -67,8 +67,8 @@ func (o *HTTPModulesRequest) HasLoadBalancer() bool {
 	return false
 }
 
-// SetLoadBalancer gets a reference to the given LoadBalancerModuleRequest and assigns it to the LoadBalancer field.
-func (o *HTTPModulesRequest) SetLoadBalancer(v LoadBalancerModuleRequest) {
+// SetLoadBalancer gets a reference to the given LoBalancerModuleRequest and assigns it to the LoadBalancer field.
+func (o *HTTPModulesRequest) SetLoadBalancer(v LoBalancerModuleRequest) {
 	o.LoadBalancer = &v
 }
 

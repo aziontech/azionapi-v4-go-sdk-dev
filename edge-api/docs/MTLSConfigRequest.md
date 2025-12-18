@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Certificate** | Pointer to **NullableInt64** |  | [optional] 
 **Crl** | Pointer to **[]int64** |  | [optional] 
-**Verification** | Pointer to [**NullableMTLSConfigVerification**](MTLSConfigVerification.md) |  | [optional] 
+**Verification** | Pointer to **string** | * &#x60;enforce&#x60; - Enforce * &#x60;permissive&#x60; - Permissive | [optional] 
 
 ## Methods
 
@@ -99,20 +99,20 @@ HasCrl returns a boolean if a field has been set.
 UnsetCrl ensures that no value is present for Crl, not even an explicit nil
 ### GetVerification
 
-`func (o *MTLSConfigRequest) GetVerification() MTLSConfigVerification`
+`func (o *MTLSConfigRequest) GetVerification() string`
 
 GetVerification returns the Verification field if non-nil, zero value otherwise.
 
 ### GetVerificationOk
 
-`func (o *MTLSConfigRequest) GetVerificationOk() (*MTLSConfigVerification, bool)`
+`func (o *MTLSConfigRequest) GetVerificationOk() (*string, bool)`
 
 GetVerificationOk returns a tuple with the Verification field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVerification
 
-`func (o *MTLSConfigRequest) SetVerification(v MTLSConfigVerification)`
+`func (o *MTLSConfigRequest) SetVerification(v string)`
 
 SetVerification sets Verification field to given value.
 
@@ -122,16 +122,6 @@ SetVerification sets Verification field to given value.
 
 HasVerification returns a boolean if a field has been set.
 
-### SetVerificationNil
-
-`func (o *MTLSConfigRequest) SetVerificationNil(b bool)`
-
- SetVerificationNil sets the value for Verification to be an explicit nil
-
-### UnsetVerification
-`func (o *MTLSConfigRequest) UnsetVerification()`
-
-UnsetVerification ensures that no value is present for Verification, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

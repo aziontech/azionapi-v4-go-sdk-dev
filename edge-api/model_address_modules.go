@@ -19,7 +19,7 @@ var _ MappedNullable = &AddressModules{}
 
 // AddressModules struct for AddressModules
 type AddressModules struct {
-	LoadBalancer *AddressLoadBalancerModule `json:"load_balancer,omitempty"`
+	LoadBalancer *AddressLoBalancerModule `json:"load_balancer,omitempty"`
 }
 
 // NewAddressModules instantiates a new AddressModules object
@@ -40,9 +40,9 @@ func NewAddressModulesWithDefaults() *AddressModules {
 }
 
 // GetLoadBalancer returns the LoadBalancer field value if set, zero value otherwise.
-func (o *AddressModules) GetLoadBalancer() AddressLoadBalancerModule {
+func (o *AddressModules) GetLoadBalancer() AddressLoBalancerModule {
 	if o == nil || IsNil(o.LoadBalancer) {
-		var ret AddressLoadBalancerModule
+		var ret AddressLoBalancerModule
 		return ret
 	}
 	return *o.LoadBalancer
@@ -50,7 +50,7 @@ func (o *AddressModules) GetLoadBalancer() AddressLoadBalancerModule {
 
 // GetLoadBalancerOk returns a tuple with the LoadBalancer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddressModules) GetLoadBalancerOk() (*AddressLoadBalancerModule, bool) {
+func (o *AddressModules) GetLoadBalancerOk() (*AddressLoBalancerModule, bool) {
 	if o == nil || IsNil(o.LoadBalancer) {
 		return nil, false
 	}
@@ -66,8 +66,8 @@ func (o *AddressModules) HasLoadBalancer() bool {
 	return false
 }
 
-// SetLoadBalancer gets a reference to the given AddressLoadBalancerModule and assigns it to the LoadBalancer field.
-func (o *AddressModules) SetLoadBalancer(v AddressLoadBalancerModule) {
+// SetLoadBalancer gets a reference to the given AddressLoBalancerModule and assigns it to the LoadBalancer field.
+func (o *AddressModules) SetLoadBalancer(v AddressLoBalancerModule) {
 	o.LoadBalancer = &v
 }
 

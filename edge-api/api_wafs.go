@@ -27,11 +27,11 @@ type ApiCloneWafRequest struct {
 	ctx context.Context
 	ApiService *WAFsAPIService
 	wafId int64
-	cloneWAFRequest *CloneWAFRequest
+	cloneWRequest *CloneWRequest
 }
 
-func (r ApiCloneWafRequest) CloneWAFRequest(cloneWAFRequest CloneWAFRequest) ApiCloneWafRequest {
-	r.cloneWAFRequest = &cloneWAFRequest
+func (r ApiCloneWafRequest) CloneWRequest(cloneWRequest CloneWRequest) ApiCloneWafRequest {
+	r.cloneWRequest = &cloneWRequest
 	return r
 }
 
@@ -77,8 +77,8 @@ func (a *WAFsAPIService) CloneWafExecute(r ApiCloneWafRequest) (*ResponseWAF, *h
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.cloneWAFRequest == nil {
-		return localVarReturnValue, nil, reportError("cloneWAFRequest is required and must be specified")
+	if r.cloneWRequest == nil {
+		return localVarReturnValue, nil, reportError("cloneWRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *WAFsAPIService) CloneWafExecute(r ApiCloneWafRequest) (*ResponseWAF, *h
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.cloneWAFRequest
+	localVarPostBody = r.cloneWRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -137,7 +137,7 @@ func (a *WAFsAPIService) CloneWafExecute(r ApiCloneWafRequest) (*ResponseWAF, *h
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -148,7 +148,7 @@ func (a *WAFsAPIService) CloneWafExecute(r ApiCloneWafRequest) (*ResponseWAF, *h
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -159,7 +159,7 @@ func (a *WAFsAPIService) CloneWafExecute(r ApiCloneWafRequest) (*ResponseWAF, *h
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -170,7 +170,7 @@ func (a *WAFsAPIService) CloneWafExecute(r ApiCloneWafRequest) (*ResponseWAF, *h
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -181,7 +181,7 @@ func (a *WAFsAPIService) CloneWafExecute(r ApiCloneWafRequest) (*ResponseWAF, *h
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -192,7 +192,7 @@ func (a *WAFsAPIService) CloneWafExecute(r ApiCloneWafRequest) (*ResponseWAF, *h
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -203,7 +203,7 @@ func (a *WAFsAPIService) CloneWafExecute(r ApiCloneWafRequest) (*ResponseWAF, *h
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -230,11 +230,11 @@ func (a *WAFsAPIService) CloneWafExecute(r ApiCloneWafRequest) (*ResponseWAF, *h
 type ApiCreateWafRequest struct {
 	ctx context.Context
 	ApiService *WAFsAPIService
-	wAFRequest *WAFRequest
+	wRequest *WRequest
 }
 
-func (r ApiCreateWafRequest) WAFRequest(wAFRequest WAFRequest) ApiCreateWafRequest {
-	r.wAFRequest = &wAFRequest
+func (r ApiCreateWafRequest) WRequest(wRequest WRequest) ApiCreateWafRequest {
+	r.wRequest = &wRequest
 	return r
 }
 
@@ -277,8 +277,8 @@ func (a *WAFsAPIService) CreateWafExecute(r ApiCreateWafRequest) (*ResponseWAF, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.wAFRequest == nil {
-		return localVarReturnValue, nil, reportError("wAFRequest is required and must be specified")
+	if r.wRequest == nil {
+		return localVarReturnValue, nil, reportError("wRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -299,7 +299,7 @@ func (a *WAFsAPIService) CreateWafExecute(r ApiCreateWafRequest) (*ResponseWAF, 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.wAFRequest
+	localVarPostBody = r.wRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -337,7 +337,7 @@ func (a *WAFsAPIService) CreateWafExecute(r ApiCreateWafRequest) (*ResponseWAF, 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -348,7 +348,7 @@ func (a *WAFsAPIService) CreateWafExecute(r ApiCreateWafRequest) (*ResponseWAF, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -359,7 +359,7 @@ func (a *WAFsAPIService) CreateWafExecute(r ApiCreateWafRequest) (*ResponseWAF, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -370,7 +370,7 @@ func (a *WAFsAPIService) CreateWafExecute(r ApiCreateWafRequest) (*ResponseWAF, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -381,7 +381,7 @@ func (a *WAFsAPIService) CreateWafExecute(r ApiCreateWafRequest) (*ResponseWAF, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -392,7 +392,7 @@ func (a *WAFsAPIService) CreateWafExecute(r ApiCreateWafRequest) (*ResponseWAF, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -403,7 +403,7 @@ func (a *WAFsAPIService) CreateWafExecute(r ApiCreateWafRequest) (*ResponseWAF, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -433,7 +433,7 @@ type ApiDeleteWafRequest struct {
 	wafId int64
 }
 
-func (r ApiDeleteWafRequest) Execute() (*ResponseAsyncDeleteWAF, *http.Response, error) {
+func (r ApiDeleteWafRequest) Execute() (*ResponseDeleteWAF, *http.Response, error) {
 	return r.ApiService.DeleteWafExecute(r)
 }
 
@@ -455,13 +455,13 @@ func (a *WAFsAPIService) DeleteWaf(ctx context.Context, wafId int64) ApiDeleteWa
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteWAF
-func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*ResponseAsyncDeleteWAF, *http.Response, error) {
+//  @return ResponseDeleteWAF
+func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*ResponseDeleteWAF, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteWAF
+		localVarReturnValue  *ResponseDeleteWAF
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WAFsAPIService.DeleteWaf")
@@ -530,7 +530,7 @@ func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*ResponseAsync
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -541,7 +541,7 @@ func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*ResponseAsync
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -552,7 +552,7 @@ func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*ResponseAsync
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -563,7 +563,7 @@ func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*ResponseAsync
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -574,7 +574,7 @@ func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*ResponseAsync
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -585,7 +585,7 @@ func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*ResponseAsync
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -596,7 +596,7 @@ func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*ResponseAsync
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -674,7 +674,7 @@ func (r ApiListWafsRequest) Search(search string) ApiListWafsRequest {
 	return r
 }
 
-func (r ApiListWafsRequest) Execute() (*PaginatedWAFList, *http.Response, error) {
+func (r ApiListWafsRequest) Execute() (*PaginatedWList, *http.Response, error) {
 	return r.ApiService.ListWafsExecute(r)
 }
 
@@ -694,13 +694,13 @@ func (a *WAFsAPIService) ListWafs(ctx context.Context) ApiListWafsRequest {
 }
 
 // Execute executes the request
-//  @return PaginatedWAFList
-func (a *WAFsAPIService) ListWafsExecute(r ApiListWafsRequest) (*PaginatedWAFList, *http.Response, error) {
+//  @return PaginatedWList
+func (a *WAFsAPIService) ListWafsExecute(r ApiListWafsRequest) (*PaginatedWList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedWAFList
+		localVarReturnValue  *PaginatedWList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WAFsAPIService.ListWafs")
@@ -789,7 +789,7 @@ func (a *WAFsAPIService) ListWafsExecute(r ApiListWafsRequest) (*PaginatedWAFLis
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -800,7 +800,7 @@ func (a *WAFsAPIService) ListWafsExecute(r ApiListWafsRequest) (*PaginatedWAFLis
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -811,7 +811,7 @@ func (a *WAFsAPIService) ListWafsExecute(r ApiListWafsRequest) (*PaginatedWAFLis
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -822,7 +822,7 @@ func (a *WAFsAPIService) ListWafsExecute(r ApiListWafsRequest) (*PaginatedWAFLis
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -833,7 +833,7 @@ func (a *WAFsAPIService) ListWafsExecute(r ApiListWafsRequest) (*PaginatedWAFLis
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -844,7 +844,7 @@ func (a *WAFsAPIService) ListWafsExecute(r ApiListWafsRequest) (*PaginatedWAFLis
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -855,7 +855,7 @@ func (a *WAFsAPIService) ListWafsExecute(r ApiListWafsRequest) (*PaginatedWAFLis
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -883,11 +883,11 @@ type ApiPartialUpdateWafRequest struct {
 	ctx context.Context
 	ApiService *WAFsAPIService
 	wafId int64
-	patchedWAFRequest *PatchedWAFRequest
+	patchedWRequest *PatchedWRequest
 }
 
-func (r ApiPartialUpdateWafRequest) PatchedWAFRequest(patchedWAFRequest PatchedWAFRequest) ApiPartialUpdateWafRequest {
-	r.patchedWAFRequest = &patchedWAFRequest
+func (r ApiPartialUpdateWafRequest) PatchedWRequest(patchedWRequest PatchedWRequest) ApiPartialUpdateWafRequest {
+	r.patchedWRequest = &patchedWRequest
 	return r
 }
 
@@ -952,7 +952,7 @@ func (a *WAFsAPIService) PartialUpdateWafExecute(r ApiPartialUpdateWafRequest) (
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedWAFRequest
+	localVarPostBody = r.patchedWRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -990,7 +990,7 @@ func (a *WAFsAPIService) PartialUpdateWafExecute(r ApiPartialUpdateWafRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1001,7 +1001,7 @@ func (a *WAFsAPIService) PartialUpdateWafExecute(r ApiPartialUpdateWafRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1012,7 +1012,7 @@ func (a *WAFsAPIService) PartialUpdateWafExecute(r ApiPartialUpdateWafRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1023,7 +1023,7 @@ func (a *WAFsAPIService) PartialUpdateWafExecute(r ApiPartialUpdateWafRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1034,7 +1034,7 @@ func (a *WAFsAPIService) PartialUpdateWafExecute(r ApiPartialUpdateWafRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1045,7 +1045,7 @@ func (a *WAFsAPIService) PartialUpdateWafExecute(r ApiPartialUpdateWafRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1056,7 +1056,7 @@ func (a *WAFsAPIService) PartialUpdateWafExecute(r ApiPartialUpdateWafRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1193,7 +1193,7 @@ func (a *WAFsAPIService) RetrieveWafExecute(r ApiRetrieveWafRequest) (*ResponseR
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1204,7 +1204,7 @@ func (a *WAFsAPIService) RetrieveWafExecute(r ApiRetrieveWafRequest) (*ResponseR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1215,7 +1215,7 @@ func (a *WAFsAPIService) RetrieveWafExecute(r ApiRetrieveWafRequest) (*ResponseR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1226,7 +1226,7 @@ func (a *WAFsAPIService) RetrieveWafExecute(r ApiRetrieveWafRequest) (*ResponseR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1237,7 +1237,7 @@ func (a *WAFsAPIService) RetrieveWafExecute(r ApiRetrieveWafRequest) (*ResponseR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1248,7 +1248,7 @@ func (a *WAFsAPIService) RetrieveWafExecute(r ApiRetrieveWafRequest) (*ResponseR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1259,7 +1259,7 @@ func (a *WAFsAPIService) RetrieveWafExecute(r ApiRetrieveWafRequest) (*ResponseR
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1287,11 +1287,11 @@ type ApiUpdateWafRequest struct {
 	ctx context.Context
 	ApiService *WAFsAPIService
 	wafId int64
-	wAFRequest *WAFRequest
+	wRequest *WRequest
 }
 
-func (r ApiUpdateWafRequest) WAFRequest(wAFRequest WAFRequest) ApiUpdateWafRequest {
-	r.wAFRequest = &wAFRequest
+func (r ApiUpdateWafRequest) WRequest(wRequest WRequest) ApiUpdateWafRequest {
+	r.wRequest = &wRequest
 	return r
 }
 
@@ -1337,8 +1337,8 @@ func (a *WAFsAPIService) UpdateWafExecute(r ApiUpdateWafRequest) (*ResponseWAF, 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.wAFRequest == nil {
-		return localVarReturnValue, nil, reportError("wAFRequest is required and must be specified")
+	if r.wRequest == nil {
+		return localVarReturnValue, nil, reportError("wRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1359,7 +1359,7 @@ func (a *WAFsAPIService) UpdateWafExecute(r ApiUpdateWafRequest) (*ResponseWAF, 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.wAFRequest
+	localVarPostBody = r.wRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1397,7 +1397,7 @@ func (a *WAFsAPIService) UpdateWafExecute(r ApiUpdateWafRequest) (*ResponseWAF, 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1408,7 +1408,7 @@ func (a *WAFsAPIService) UpdateWafExecute(r ApiUpdateWafRequest) (*ResponseWAF, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1419,7 +1419,7 @@ func (a *WAFsAPIService) UpdateWafExecute(r ApiUpdateWafRequest) (*ResponseWAF, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1430,7 +1430,7 @@ func (a *WAFsAPIService) UpdateWafExecute(r ApiUpdateWafRequest) (*ResponseWAF, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1441,7 +1441,7 @@ func (a *WAFsAPIService) UpdateWafExecute(r ApiUpdateWafRequest) (*ResponseWAF, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1452,7 +1452,7 @@ func (a *WAFsAPIService) UpdateWafExecute(r ApiUpdateWafRequest) (*ResponseWAF, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1463,7 +1463,7 @@ func (a *WAFsAPIService) UpdateWafExecute(r ApiUpdateWafRequest) (*ResponseWAF, 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **State** | Pointer to **string** |  | [optional] 
-**Data** | [**Firewall**](Firewall.md) |  | 
+**Data** | [**Fw**](Fw.md) |  | 
 
 ## Methods
 
 ### NewResponseFirewall
 
-`func NewResponseFirewall(data Firewall, ) *ResponseFirewall`
+`func NewResponseFirewall(data Fw, ) *ResponseFirewall`
 
 NewResponseFirewall instantiates a new ResponseFirewall object
 This constructor will assign default values to properties that have it defined,
@@ -53,20 +53,20 @@ HasState returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *ResponseFirewall) GetData() Firewall`
+`func (o *ResponseFirewall) GetData() Fw`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *ResponseFirewall) GetDataOk() (*Firewall, bool)`
+`func (o *ResponseFirewall) GetDataOk() (*Fw, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *ResponseFirewall) SetData(v Firewall)`
+`func (o *ResponseFirewall) SetData(v Fw)`
 
 SetData sets Data field to given value.
 

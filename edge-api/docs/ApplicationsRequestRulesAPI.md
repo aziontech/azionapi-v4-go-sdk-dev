@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateApplicationRequestRule
 
-> ResponseApplicationRequestPhaseRuleEngine CreateApplicationRequestRule(ctx, applicationId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
+> ResponseApplicationReqRule CreateApplicationRequestRule(ctx, applicationId).AppReqRuleRequest(appReqRuleRequest).Execute()
 
 Create an Application Request Rule
 
@@ -36,16 +36,16 @@ import (
 
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	applicationRequestPhaseRuleEngineRequest := *openapiclient.NewApplicationRequestPhaseRuleEngineRequest("Name_example", [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest: openapiclient.NewApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest("Type_example", *openapiclient.NewApplicationRuleEngineCaptureMatchGroupsAttributesRequest("Subject_example", "Regex_example", "CapturedArray_example"))}}) // ApplicationRequestPhaseRuleEngineRequest | 
+	appReqRuleRequest := *openapiclient.NewAppReqRuleRequest("Name_example", [][]AppCriterionFieldRequest{[]openapiclient.AppCriterionFieldRequest{*openapiclient.NewAppCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ReqBehaviorsRequest{openapiclient.ReqBehaviorsRequest{BehaviorAHeaderRequest: openapiclient.NewBehaviorAHeaderRequest("Type_example", *openapiclient.NewAppRuleAHeaderAttrsReq("Value_example"))}}) // AppReqRuleRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.CreateApplicationRequestRule(context.Background(), applicationId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.CreateApplicationRequestRule(context.Background(), applicationId).AppReqRuleRequest(appReqRuleRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.CreateApplicationRequestRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateApplicationRequestRule`: ResponseApplicationRequestPhaseRuleEngine
+	// response from `CreateApplicationRequestRule`: ResponseApplicationReqRule
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.CreateApplicationRequestRule`: %v\n", resp)
 }
 ```
@@ -66,11 +66,11 @@ Other parameters are passed through a pointer to a apiCreateApplicationRequestRu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **applicationRequestPhaseRuleEngineRequest** | [**ApplicationRequestPhaseRuleEngineRequest**](ApplicationRequestPhaseRuleEngineRequest.md) |  | 
+ **appReqRuleRequest** | [**AppReqRuleRequest**](AppReqRuleRequest.md) |  | 
 
 ### Return type
 
-[**ResponseApplicationRequestPhaseRuleEngine**](ResponseApplicationRequestPhaseRuleEngine.md)
+[**ResponseApplicationReqRule**](ResponseApplicationReqRule.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApplicationRequestRule
 
-> ResponseAsyncDeleteApplicationRequestPhaseRuleEngine DeleteApplicationRequestRule(ctx, applicationId, requestRuleId).Execute()
+> ResponseDeleteApplicationReqRule DeleteApplicationRequestRule(ctx, applicationId, requestRuleId).Execute()
 
 Delete an Application Request Rule
 
@@ -117,7 +117,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.DeleteApplicationRequestRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteApplicationRequestRule`: ResponseAsyncDeleteApplicationRequestPhaseRuleEngine
+	// response from `DeleteApplicationRequestRule`: ResponseDeleteApplicationReqRule
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.DeleteApplicationRequestRule`: %v\n", resp)
 }
 ```
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteApplicationRequestPhaseRuleEngine**](ResponseAsyncDeleteApplicationRequestPhaseRuleEngine.md)
+[**ResponseDeleteApplicationReqRule**](ResponseDeleteApplicationReqRule.md)
 
 ### Authorization
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ## ListApplicationRequestRules
 
-> PaginatedApplicationRequestPhaseRuleEngineList ListApplicationRequestRules(ctx, applicationId).Description(description).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedApplicationReqRuleList ListApplicationRequestRules(ctx, applicationId).Description(description).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).OrderGte(orderGte).OrderLte(orderLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Application Request Rules
 
@@ -203,7 +203,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.ListApplicationRequestRules``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListApplicationRequestRules`: PaginatedApplicationRequestPhaseRuleEngineList
+	// response from `ListApplicationRequestRules`: PaginatedApplicationReqRuleList
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.ListApplicationRequestRules`: %v\n", resp)
 }
 ```
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedApplicationRequestPhaseRuleEngineList**](PaginatedApplicationRequestPhaseRuleEngineList.md)
+[**PaginatedApplicationReqRuleList**](PaginatedApplicationReqRuleList.md)
 
 ### Authorization
 
@@ -258,7 +258,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateApplicationRequestRule
 
-> ResponseApplicationRequestPhaseRuleEngine PartialUpdateApplicationRequestRule(ctx, applicationId, requestRuleId).PatchedApplicationRequestPhaseRuleEngineRequest(patchedApplicationRequestPhaseRuleEngineRequest).Execute()
+> ResponseApplicationReqRule PartialUpdateApplicationRequestRule(ctx, applicationId, requestRuleId).PatchApplicationReqRuleRequest(patchApplicationReqRuleRequest).Execute()
 
 Partially update an Application Request Rule
 
@@ -279,16 +279,16 @@ import (
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	patchedApplicationRequestPhaseRuleEngineRequest := *openapiclient.NewPatchedApplicationRequestPhaseRuleEngineRequest() // PatchedApplicationRequestPhaseRuleEngineRequest |  (optional)
+	patchApplicationReqRuleRequest := *openapiclient.NewPatchApplicationReqRuleRequest() // PatchApplicationReqRuleRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.PartialUpdateApplicationRequestRule(context.Background(), applicationId, requestRuleId).PatchedApplicationRequestPhaseRuleEngineRequest(patchedApplicationRequestPhaseRuleEngineRequest).Execute()
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.PartialUpdateApplicationRequestRule(context.Background(), applicationId, requestRuleId).PatchApplicationReqRuleRequest(patchApplicationReqRuleRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.PartialUpdateApplicationRequestRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateApplicationRequestRule`: ResponseApplicationRequestPhaseRuleEngine
+	// response from `PartialUpdateApplicationRequestRule`: ResponseApplicationReqRule
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.PartialUpdateApplicationRequestRule`: %v\n", resp)
 }
 ```
@@ -311,11 +311,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedApplicationRequestPhaseRuleEngineRequest** | [**PatchedApplicationRequestPhaseRuleEngineRequest**](PatchedApplicationRequestPhaseRuleEngineRequest.md) |  | 
+ **patchApplicationReqRuleRequest** | [**PatchApplicationReqRuleRequest**](PatchApplicationReqRuleRequest.md) |  | 
 
 ### Return type
 
-[**ResponseApplicationRequestPhaseRuleEngine**](ResponseApplicationRequestPhaseRuleEngine.md)
+[**ResponseApplicationReqRule**](ResponseApplicationReqRule.md)
 
 ### Authorization
 
@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveApplicationRequestRule
 
-> ResponseRetrieveApplicationRequestPhaseRuleEngine RetrieveApplicationRequestRule(ctx, applicationId, requestRuleId).Fields(fields).Execute()
+> ResponseRetrieveApplicationReqRule RetrieveApplicationRequestRule(ctx, applicationId, requestRuleId).Fields(fields).Execute()
 
 Retrieve details of an Application Request Rule
 
@@ -363,7 +363,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.RetrieveApplicationRequestRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveApplicationRequestRule`: ResponseRetrieveApplicationRequestPhaseRuleEngine
+	// response from `RetrieveApplicationRequestRule`: ResponseRetrieveApplicationReqRule
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.RetrieveApplicationRequestRule`: %v\n", resp)
 }
 ```
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveApplicationRequestPhaseRuleEngine**](ResponseRetrieveApplicationRequestPhaseRuleEngine.md)
+[**ResponseRetrieveApplicationReqRule**](ResponseRetrieveApplicationReqRule.md)
 
 ### Authorization
 
@@ -408,7 +408,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApplicationRequestRule
 
-> ResponseApplicationRequestPhaseRuleEngine UpdateApplicationRequestRule(ctx, applicationId, requestRuleId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
+> ResponseApplicationReqRule UpdateApplicationRequestRule(ctx, applicationId, requestRuleId).AppReqRuleRequest(appReqRuleRequest).Execute()
 
 Update an Application Request Rule
 
@@ -429,16 +429,16 @@ import (
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	applicationRequestPhaseRuleEngineRequest := *openapiclient.NewApplicationRequestPhaseRuleEngineRequest("Name_example", [][]EdgeApplicationCriterionFieldRequest{[]openapiclient.EdgeApplicationCriterionFieldRequest{*openapiclient.NewEdgeApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{openapiclient.ApplicationRuleEngineRequestPhaseBehaviorsRequest{ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest: openapiclient.NewApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest("Type_example", *openapiclient.NewApplicationRuleEngineCaptureMatchGroupsAttributesRequest("Subject_example", "Regex_example", "CapturedArray_example"))}}) // ApplicationRequestPhaseRuleEngineRequest | 
+	appReqRuleRequest := *openapiclient.NewAppReqRuleRequest("Name_example", [][]AppCriterionFieldRequest{[]openapiclient.AppCriterionFieldRequest{*openapiclient.NewAppCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ReqBehaviorsRequest{openapiclient.ReqBehaviorsRequest{BehaviorAHeaderRequest: openapiclient.NewBehaviorAHeaderRequest("Type_example", *openapiclient.NewAppRuleAHeaderAttrsReq("Value_example"))}}) // AppReqRuleRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.UpdateApplicationRequestRule(context.Background(), applicationId, requestRuleId).ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest).Execute()
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.UpdateApplicationRequestRule(context.Background(), applicationId, requestRuleId).AppReqRuleRequest(appReqRuleRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.UpdateApplicationRequestRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateApplicationRequestRule`: ResponseApplicationRequestPhaseRuleEngine
+	// response from `UpdateApplicationRequestRule`: ResponseApplicationReqRule
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.UpdateApplicationRequestRule`: %v\n", resp)
 }
 ```
@@ -461,11 +461,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **applicationRequestPhaseRuleEngineRequest** | [**ApplicationRequestPhaseRuleEngineRequest**](ApplicationRequestPhaseRuleEngineRequest.md) |  | 
+ **appReqRuleRequest** | [**AppReqRuleRequest**](AppReqRuleRequest.md) |  | 
 
 ### Return type
 
-[**ResponseApplicationRequestPhaseRuleEngine**](ResponseApplicationRequestPhaseRuleEngine.md)
+[**ResponseApplicationReqRule**](ResponseApplicationReqRule.md)
 
 ### Authorization
 
@@ -483,7 +483,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApplicationRequestRulesOrder
 
-> PaginatedApplicationRequestPhaseRuleEngineList UpdateApplicationRequestRulesOrder(ctx, applicationId).ApplicationRequestPhaseRuleEngineOrderRequest(applicationRequestPhaseRuleEngineOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedApplicationReqRuleList UpdateApplicationRequestRulesOrder(ctx, applicationId).AppReqRuleOrderRequest(appReqRuleOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 Ordering Application Request Rules
 
@@ -503,7 +503,7 @@ import (
 
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	applicationRequestPhaseRuleEngineOrderRequest := *openapiclient.NewApplicationRequestPhaseRuleEngineOrderRequest([]int64{int64(123)}) // ApplicationRequestPhaseRuleEngineOrderRequest | 
+	appReqRuleOrderRequest := *openapiclient.NewAppReqRuleOrderRequest([]int64{int64(123)}) // AppReqRuleOrderRequest | 
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: order) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | Number of results to return per page. (optional)
@@ -511,12 +511,12 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.UpdateApplicationRequestRulesOrder(context.Background(), applicationId).ApplicationRequestPhaseRuleEngineOrderRequest(applicationRequestPhaseRuleEngineOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.UpdateApplicationRequestRulesOrder(context.Background(), applicationId).AppReqRuleOrderRequest(appReqRuleOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.UpdateApplicationRequestRulesOrder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateApplicationRequestRulesOrder`: PaginatedApplicationRequestPhaseRuleEngineList
+	// response from `UpdateApplicationRequestRulesOrder`: PaginatedApplicationReqRuleList
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.UpdateApplicationRequestRulesOrder`: %v\n", resp)
 }
 ```
@@ -537,7 +537,7 @@ Other parameters are passed through a pointer to a apiUpdateApplicationRequestRu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **applicationRequestPhaseRuleEngineOrderRequest** | [**ApplicationRequestPhaseRuleEngineOrderRequest**](ApplicationRequestPhaseRuleEngineOrderRequest.md) |  | 
+ **appReqRuleOrderRequest** | [**AppReqRuleOrderRequest**](AppReqRuleOrderRequest.md) |  | 
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: order) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | Number of results to return per page. | 
@@ -545,7 +545,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedApplicationRequestPhaseRuleEngineList**](PaginatedApplicationRequestPhaseRuleEngineList.md)
+[**PaginatedApplicationReqRuleList**](PaginatedApplicationReqRuleList.md)
 
 ### Authorization
 

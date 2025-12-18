@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
-**Attributes** | [**PageConnectorAttributesRequest**](PageConnectorAttributesRequest.md) |  | 
+**Type** | **string** |  | 
+**Attributes** | [**PageConnectorAttrsReq**](PageConnectorAttrsReq.md) |  | 
 
 ## Methods
 
 ### NewPageConnectorRequest
 
-`func NewPageConnectorRequest(attributes PageConnectorAttributesRequest, ) *PageConnectorRequest`
+`func NewPageConnectorRequest(type_ string, attributes PageConnectorAttrsReq, ) *PageConnectorRequest`
 
 NewPageConnectorRequest instantiates a new PageConnectorRequest object
 This constructor will assign default values to properties that have it defined,
@@ -45,28 +45,23 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *PageConnectorRequest) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetAttributes
 
-`func (o *PageConnectorRequest) GetAttributes() PageConnectorAttributesRequest`
+`func (o *PageConnectorRequest) GetAttributes() PageConnectorAttrsReq`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *PageConnectorRequest) GetAttributesOk() (*PageConnectorAttributesRequest, bool)`
+`func (o *PageConnectorRequest) GetAttributesOk() (*PageConnectorAttrsReq, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *PageConnectorRequest) SetAttributes(v PageConnectorAttributesRequest)`
+`func (o *PageConnectorRequest) SetAttributes(v PageConnectorAttrsReq)`
 
 SetAttributes sets Attributes field to given value.
 

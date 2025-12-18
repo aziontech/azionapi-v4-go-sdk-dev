@@ -22,7 +22,7 @@ var _ MappedNullable = &ResponseApplication{}
 // ResponseApplication struct for ResponseApplication
 type ResponseApplication struct {
 	State *string `json:"state,omitempty"`
-	Data Application `json:"data"`
+	Data App `json:"data"`
 }
 
 type _ResponseApplication ResponseApplication
@@ -31,7 +31,7 @@ type _ResponseApplication ResponseApplication
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponseApplication(data Application) *ResponseApplication {
+func NewResponseApplication(data App) *ResponseApplication {
 	this := ResponseApplication{}
 	this.Data = data
 	return &this
@@ -78,9 +78,9 @@ func (o *ResponseApplication) SetState(v string) {
 }
 
 // GetData returns the Data field value
-func (o *ResponseApplication) GetData() Application {
+func (o *ResponseApplication) GetData() App {
 	if o == nil {
-		var ret Application
+		var ret App
 		return ret
 	}
 
@@ -89,7 +89,7 @@ func (o *ResponseApplication) GetData() Application {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ResponseApplication) GetDataOk() (*Application, bool) {
+func (o *ResponseApplication) GetDataOk() (*App, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -97,7 +97,7 @@ func (o *ResponseApplication) GetDataOk() (*Application, bool) {
 }
 
 // SetData sets field value
-func (o *ResponseApplication) SetData(v Application) {
+func (o *ResponseApplication) SetData(v App) {
 	o.Data = v
 }
 

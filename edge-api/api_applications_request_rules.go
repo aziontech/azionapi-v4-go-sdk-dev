@@ -28,15 +28,15 @@ type ApiCreateApplicationRequestRuleRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsRequestRulesAPIService
 	applicationId int64
-	applicationRequestPhaseRuleEngineRequest *ApplicationRequestPhaseRuleEngineRequest
+	appReqRuleRequest *AppReqRuleRequest
 }
 
-func (r ApiCreateApplicationRequestRuleRequest) ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest ApplicationRequestPhaseRuleEngineRequest) ApiCreateApplicationRequestRuleRequest {
-	r.applicationRequestPhaseRuleEngineRequest = &applicationRequestPhaseRuleEngineRequest
+func (r ApiCreateApplicationRequestRuleRequest) AppReqRuleRequest(appReqRuleRequest AppReqRuleRequest) ApiCreateApplicationRequestRuleRequest {
+	r.appReqRuleRequest = &appReqRuleRequest
 	return r
 }
 
-func (r ApiCreateApplicationRequestRuleRequest) Execute() (*ResponseApplicationRequestPhaseRuleEngine, *http.Response, error) {
+func (r ApiCreateApplicationRequestRuleRequest) Execute() (*ResponseApplicationReqRule, *http.Response, error) {
 	return r.ApiService.CreateApplicationRequestRuleExecute(r)
 }
 
@@ -58,13 +58,13 @@ func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRule(ctx co
 }
 
 // Execute executes the request
-//  @return ResponseApplicationRequestPhaseRuleEngine
-func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute(r ApiCreateApplicationRequestRuleRequest) (*ResponseApplicationRequestPhaseRuleEngine, *http.Response, error) {
+//  @return ResponseApplicationReqRule
+func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute(r ApiCreateApplicationRequestRuleRequest) (*ResponseApplicationReqRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseApplicationRequestPhaseRuleEngine
+		localVarReturnValue  *ResponseApplicationReqRule
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsRequestRulesAPIService.CreateApplicationRequestRule")
@@ -78,8 +78,8 @@ func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.applicationRequestPhaseRuleEngineRequest == nil {
-		return localVarReturnValue, nil, reportError("applicationRequestPhaseRuleEngineRequest is required and must be specified")
+	if r.appReqRuleRequest == nil {
+		return localVarReturnValue, nil, reportError("appReqRuleRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -100,7 +100,7 @@ func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.applicationRequestPhaseRuleEngineRequest
+	localVarPostBody = r.appReqRuleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -138,7 +138,7 @@ func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -149,7 +149,7 @@ func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -160,7 +160,7 @@ func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -171,7 +171,7 @@ func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -182,7 +182,7 @@ func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -193,7 +193,7 @@ func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -204,7 +204,7 @@ func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -235,7 +235,7 @@ type ApiDeleteApplicationRequestRuleRequest struct {
 	requestRuleId int64
 }
 
-func (r ApiDeleteApplicationRequestRuleRequest) Execute() (*ResponseAsyncDeleteApplicationRequestPhaseRuleEngine, *http.Response, error) {
+func (r ApiDeleteApplicationRequestRuleRequest) Execute() (*ResponseDeleteApplicationReqRule, *http.Response, error) {
 	return r.ApiService.DeleteApplicationRequestRuleExecute(r)
 }
 
@@ -259,13 +259,13 @@ func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRule(ctx co
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteApplicationRequestPhaseRuleEngine
-func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute(r ApiDeleteApplicationRequestRuleRequest) (*ResponseAsyncDeleteApplicationRequestPhaseRuleEngine, *http.Response, error) {
+//  @return ResponseDeleteApplicationReqRule
+func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute(r ApiDeleteApplicationRequestRuleRequest) (*ResponseDeleteApplicationReqRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteApplicationRequestPhaseRuleEngine
+		localVarReturnValue  *ResponseDeleteApplicationReqRule
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsRequestRulesAPIService.DeleteApplicationRequestRule")
@@ -335,7 +335,7 @@ func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -346,7 +346,7 @@ func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -357,7 +357,7 @@ func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -368,7 +368,7 @@ func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -379,7 +379,7 @@ func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -390,7 +390,7 @@ func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -401,7 +401,7 @@ func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -522,7 +522,7 @@ func (r ApiListApplicationRequestRulesRequest) Search(search string) ApiListAppl
 	return r
 }
 
-func (r ApiListApplicationRequestRulesRequest) Execute() (*PaginatedApplicationRequestPhaseRuleEngineList, *http.Response, error) {
+func (r ApiListApplicationRequestRulesRequest) Execute() (*PaginatedApplicationReqRuleList, *http.Response, error) {
 	return r.ApiService.ListApplicationRequestRulesExecute(r)
 }
 
@@ -544,13 +544,13 @@ func (a *ApplicationsRequestRulesAPIService) ListApplicationRequestRules(ctx con
 }
 
 // Execute executes the request
-//  @return PaginatedApplicationRequestPhaseRuleEngineList
-func (a *ApplicationsRequestRulesAPIService) ListApplicationRequestRulesExecute(r ApiListApplicationRequestRulesRequest) (*PaginatedApplicationRequestPhaseRuleEngineList, *http.Response, error) {
+//  @return PaginatedApplicationReqRuleList
+func (a *ApplicationsRequestRulesAPIService) ListApplicationRequestRulesExecute(r ApiListApplicationRequestRulesRequest) (*PaginatedApplicationReqRuleList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApplicationRequestPhaseRuleEngineList
+		localVarReturnValue  *PaginatedApplicationReqRuleList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsRequestRulesAPIService.ListApplicationRequestRules")
@@ -658,7 +658,7 @@ func (a *ApplicationsRequestRulesAPIService) ListApplicationRequestRulesExecute(
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -669,7 +669,7 @@ func (a *ApplicationsRequestRulesAPIService) ListApplicationRequestRulesExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -680,7 +680,7 @@ func (a *ApplicationsRequestRulesAPIService) ListApplicationRequestRulesExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -691,7 +691,7 @@ func (a *ApplicationsRequestRulesAPIService) ListApplicationRequestRulesExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -702,7 +702,7 @@ func (a *ApplicationsRequestRulesAPIService) ListApplicationRequestRulesExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -713,7 +713,7 @@ func (a *ApplicationsRequestRulesAPIService) ListApplicationRequestRulesExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -724,7 +724,7 @@ func (a *ApplicationsRequestRulesAPIService) ListApplicationRequestRulesExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -753,15 +753,15 @@ type ApiPartialUpdateApplicationRequestRuleRequest struct {
 	ApiService *ApplicationsRequestRulesAPIService
 	applicationId int64
 	requestRuleId int64
-	patchedApplicationRequestPhaseRuleEngineRequest *PatchedApplicationRequestPhaseRuleEngineRequest
+	patchApplicationReqRuleRequest *PatchApplicationReqRuleRequest
 }
 
-func (r ApiPartialUpdateApplicationRequestRuleRequest) PatchedApplicationRequestPhaseRuleEngineRequest(patchedApplicationRequestPhaseRuleEngineRequest PatchedApplicationRequestPhaseRuleEngineRequest) ApiPartialUpdateApplicationRequestRuleRequest {
-	r.patchedApplicationRequestPhaseRuleEngineRequest = &patchedApplicationRequestPhaseRuleEngineRequest
+func (r ApiPartialUpdateApplicationRequestRuleRequest) PatchApplicationReqRuleRequest(patchApplicationReqRuleRequest PatchApplicationReqRuleRequest) ApiPartialUpdateApplicationRequestRuleRequest {
+	r.patchApplicationReqRuleRequest = &patchApplicationReqRuleRequest
 	return r
 }
 
-func (r ApiPartialUpdateApplicationRequestRuleRequest) Execute() (*ResponseApplicationRequestPhaseRuleEngine, *http.Response, error) {
+func (r ApiPartialUpdateApplicationRequestRuleRequest) Execute() (*ResponseApplicationReqRule, *http.Response, error) {
 	return r.ApiService.PartialUpdateApplicationRequestRuleExecute(r)
 }
 
@@ -785,13 +785,13 @@ func (a *ApplicationsRequestRulesAPIService) PartialUpdateApplicationRequestRule
 }
 
 // Execute executes the request
-//  @return ResponseApplicationRequestPhaseRuleEngine
-func (a *ApplicationsRequestRulesAPIService) PartialUpdateApplicationRequestRuleExecute(r ApiPartialUpdateApplicationRequestRuleRequest) (*ResponseApplicationRequestPhaseRuleEngine, *http.Response, error) {
+//  @return ResponseApplicationReqRule
+func (a *ApplicationsRequestRulesAPIService) PartialUpdateApplicationRequestRuleExecute(r ApiPartialUpdateApplicationRequestRuleRequest) (*ResponseApplicationReqRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseApplicationRequestPhaseRuleEngine
+		localVarReturnValue  *ResponseApplicationReqRule
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsRequestRulesAPIService.PartialUpdateApplicationRequestRule")
@@ -825,7 +825,7 @@ func (a *ApplicationsRequestRulesAPIService) PartialUpdateApplicationRequestRule
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedApplicationRequestPhaseRuleEngineRequest
+	localVarPostBody = r.patchApplicationReqRuleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -863,7 +863,7 @@ func (a *ApplicationsRequestRulesAPIService) PartialUpdateApplicationRequestRule
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -874,7 +874,7 @@ func (a *ApplicationsRequestRulesAPIService) PartialUpdateApplicationRequestRule
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -885,7 +885,7 @@ func (a *ApplicationsRequestRulesAPIService) PartialUpdateApplicationRequestRule
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -896,7 +896,7 @@ func (a *ApplicationsRequestRulesAPIService) PartialUpdateApplicationRequestRule
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -907,7 +907,7 @@ func (a *ApplicationsRequestRulesAPIService) PartialUpdateApplicationRequestRule
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -918,7 +918,7 @@ func (a *ApplicationsRequestRulesAPIService) PartialUpdateApplicationRequestRule
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -929,7 +929,7 @@ func (a *ApplicationsRequestRulesAPIService) PartialUpdateApplicationRequestRule
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -967,7 +967,7 @@ func (r ApiRetrieveApplicationRequestRuleRequest) Fields(fields string) ApiRetri
 	return r
 }
 
-func (r ApiRetrieveApplicationRequestRuleRequest) Execute() (*ResponseRetrieveApplicationRequestPhaseRuleEngine, *http.Response, error) {
+func (r ApiRetrieveApplicationRequestRuleRequest) Execute() (*ResponseRetrieveApplicationReqRule, *http.Response, error) {
 	return r.ApiService.RetrieveApplicationRequestRuleExecute(r)
 }
 
@@ -991,13 +991,13 @@ func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRule(ctx 
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveApplicationRequestPhaseRuleEngine
-func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRuleExecute(r ApiRetrieveApplicationRequestRuleRequest) (*ResponseRetrieveApplicationRequestPhaseRuleEngine, *http.Response, error) {
+//  @return ResponseRetrieveApplicationReqRule
+func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRuleExecute(r ApiRetrieveApplicationRequestRuleRequest) (*ResponseRetrieveApplicationReqRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveApplicationRequestPhaseRuleEngine
+		localVarReturnValue  *ResponseRetrieveApplicationReqRule
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsRequestRulesAPIService.RetrieveApplicationRequestRule")
@@ -1070,7 +1070,7 @@ func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRuleExecu
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1081,7 +1081,7 @@ func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRuleExecu
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1092,7 +1092,7 @@ func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRuleExecu
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1103,7 +1103,7 @@ func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRuleExecu
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1114,7 +1114,7 @@ func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRuleExecu
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1125,7 +1125,7 @@ func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRuleExecu
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1136,7 +1136,7 @@ func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRuleExecu
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1165,15 +1165,15 @@ type ApiUpdateApplicationRequestRuleRequest struct {
 	ApiService *ApplicationsRequestRulesAPIService
 	applicationId int64
 	requestRuleId int64
-	applicationRequestPhaseRuleEngineRequest *ApplicationRequestPhaseRuleEngineRequest
+	appReqRuleRequest *AppReqRuleRequest
 }
 
-func (r ApiUpdateApplicationRequestRuleRequest) ApplicationRequestPhaseRuleEngineRequest(applicationRequestPhaseRuleEngineRequest ApplicationRequestPhaseRuleEngineRequest) ApiUpdateApplicationRequestRuleRequest {
-	r.applicationRequestPhaseRuleEngineRequest = &applicationRequestPhaseRuleEngineRequest
+func (r ApiUpdateApplicationRequestRuleRequest) AppReqRuleRequest(appReqRuleRequest AppReqRuleRequest) ApiUpdateApplicationRequestRuleRequest {
+	r.appReqRuleRequest = &appReqRuleRequest
 	return r
 }
 
-func (r ApiUpdateApplicationRequestRuleRequest) Execute() (*ResponseApplicationRequestPhaseRuleEngine, *http.Response, error) {
+func (r ApiUpdateApplicationRequestRuleRequest) Execute() (*ResponseApplicationReqRule, *http.Response, error) {
 	return r.ApiService.UpdateApplicationRequestRuleExecute(r)
 }
 
@@ -1197,13 +1197,13 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRule(ctx co
 }
 
 // Execute executes the request
-//  @return ResponseApplicationRequestPhaseRuleEngine
-func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute(r ApiUpdateApplicationRequestRuleRequest) (*ResponseApplicationRequestPhaseRuleEngine, *http.Response, error) {
+//  @return ResponseApplicationReqRule
+func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute(r ApiUpdateApplicationRequestRuleRequest) (*ResponseApplicationReqRule, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseApplicationRequestPhaseRuleEngine
+		localVarReturnValue  *ResponseApplicationReqRule
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsRequestRulesAPIService.UpdateApplicationRequestRule")
@@ -1218,8 +1218,8 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.applicationRequestPhaseRuleEngineRequest == nil {
-		return localVarReturnValue, nil, reportError("applicationRequestPhaseRuleEngineRequest is required and must be specified")
+	if r.appReqRuleRequest == nil {
+		return localVarReturnValue, nil, reportError("appReqRuleRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1240,7 +1240,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.applicationRequestPhaseRuleEngineRequest
+	localVarPostBody = r.appReqRuleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1278,7 +1278,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1289,7 +1289,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1300,7 +1300,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1311,7 +1311,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1322,7 +1322,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1333,7 +1333,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1344,7 +1344,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1372,15 +1372,15 @@ type ApiUpdateApplicationRequestRulesOrderRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsRequestRulesAPIService
 	applicationId int64
-	applicationRequestPhaseRuleEngineOrderRequest *ApplicationRequestPhaseRuleEngineOrderRequest
+	appReqRuleOrderRequest *AppReqRuleOrderRequest
 	ordering *string
 	page *int64
 	pageSize *int64
 	search *string
 }
 
-func (r ApiUpdateApplicationRequestRulesOrderRequest) ApplicationRequestPhaseRuleEngineOrderRequest(applicationRequestPhaseRuleEngineOrderRequest ApplicationRequestPhaseRuleEngineOrderRequest) ApiUpdateApplicationRequestRulesOrderRequest {
-	r.applicationRequestPhaseRuleEngineOrderRequest = &applicationRequestPhaseRuleEngineOrderRequest
+func (r ApiUpdateApplicationRequestRulesOrderRequest) AppReqRuleOrderRequest(appReqRuleOrderRequest AppReqRuleOrderRequest) ApiUpdateApplicationRequestRulesOrderRequest {
+	r.appReqRuleOrderRequest = &appReqRuleOrderRequest
 	return r
 }
 
@@ -1408,7 +1408,7 @@ func (r ApiUpdateApplicationRequestRulesOrderRequest) Search(search string) ApiU
 	return r
 }
 
-func (r ApiUpdateApplicationRequestRulesOrderRequest) Execute() (*PaginatedApplicationRequestPhaseRuleEngineList, *http.Response, error) {
+func (r ApiUpdateApplicationRequestRulesOrderRequest) Execute() (*PaginatedApplicationReqRuleList, *http.Response, error) {
 	return r.ApiService.UpdateApplicationRequestRulesOrderExecute(r)
 }
 
@@ -1430,13 +1430,13 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrder(
 }
 
 // Execute executes the request
-//  @return PaginatedApplicationRequestPhaseRuleEngineList
-func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrderExecute(r ApiUpdateApplicationRequestRulesOrderRequest) (*PaginatedApplicationRequestPhaseRuleEngineList, *http.Response, error) {
+//  @return PaginatedApplicationReqRuleList
+func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrderExecute(r ApiUpdateApplicationRequestRulesOrderRequest) (*PaginatedApplicationReqRuleList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApplicationRequestPhaseRuleEngineList
+		localVarReturnValue  *PaginatedApplicationReqRuleList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsRequestRulesAPIService.UpdateApplicationRequestRulesOrder")
@@ -1450,8 +1450,8 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrderE
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.applicationRequestPhaseRuleEngineOrderRequest == nil {
-		return localVarReturnValue, nil, reportError("applicationRequestPhaseRuleEngineOrderRequest is required and must be specified")
+	if r.appReqRuleOrderRequest == nil {
+		return localVarReturnValue, nil, reportError("appReqRuleOrderRequest is required and must be specified")
 	}
 
 	if r.ordering != nil {
@@ -1484,7 +1484,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrderE
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.applicationRequestPhaseRuleEngineOrderRequest
+	localVarPostBody = r.appReqRuleOrderRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1522,7 +1522,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrderE
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1533,7 +1533,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrderE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1544,7 +1544,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrderE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1555,7 +1555,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrderE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1566,7 +1566,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrderE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1577,7 +1577,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrderE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1588,7 +1588,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrderE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

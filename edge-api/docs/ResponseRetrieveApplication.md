@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**Application**](Application.md) |  | 
+**Data** | [**App**](App.md) |  | 
 
 ## Methods
 
 ### NewResponseRetrieveApplication
 
-`func NewResponseRetrieveApplication(data Application, ) *ResponseRetrieveApplication`
+`func NewResponseRetrieveApplication(data App, ) *ResponseRetrieveApplication`
 
 NewResponseRetrieveApplication instantiates a new ResponseRetrieveApplication object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *ResponseRetrieveApplication) GetData() Application`
+`func (o *ResponseRetrieveApplication) GetData() App`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *ResponseRetrieveApplication) GetDataOk() (*Application, bool)`
+`func (o *ResponseRetrieveApplication) GetDataOk() (*App, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *ResponseRetrieveApplication) SetData(v Application)`
+`func (o *ResponseRetrieveApplication) SetData(v App)`
 
 SetData sets Data field to given value.
 

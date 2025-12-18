@@ -22,7 +22,7 @@ var _ MappedNullable = &ResponseAsyncFirewall{}
 // ResponseAsyncFirewall struct for ResponseAsyncFirewall
 type ResponseAsyncFirewall struct {
 	State *string `json:"state,omitempty"`
-	Data Firewall `json:"data"`
+	Data Fw `json:"data"`
 }
 
 type _ResponseAsyncFirewall ResponseAsyncFirewall
@@ -31,7 +31,7 @@ type _ResponseAsyncFirewall ResponseAsyncFirewall
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponseAsyncFirewall(data Firewall) *ResponseAsyncFirewall {
+func NewResponseAsyncFirewall(data Fw) *ResponseAsyncFirewall {
 	this := ResponseAsyncFirewall{}
 	this.Data = data
 	return &this
@@ -78,9 +78,9 @@ func (o *ResponseAsyncFirewall) SetState(v string) {
 }
 
 // GetData returns the Data field value
-func (o *ResponseAsyncFirewall) GetData() Firewall {
+func (o *ResponseAsyncFirewall) GetData() Fw {
 	if o == nil {
-		var ret Firewall
+		var ret Fw
 		return ret
 	}
 
@@ -89,7 +89,7 @@ func (o *ResponseAsyncFirewall) GetData() Firewall {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ResponseAsyncFirewall) GetDataOk() (*Firewall, bool) {
+func (o *ResponseAsyncFirewall) GetDataOk() (*Fw, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -97,7 +97,7 @@ func (o *ResponseAsyncFirewall) GetDataOk() (*Firewall, bool) {
 }
 
 // SetData sets field value
-func (o *ResponseAsyncFirewall) SetData(v Firewall) {
+func (o *ResponseAsyncFirewall) SetData(v Fw) {
 	o.Data = v
 }
 

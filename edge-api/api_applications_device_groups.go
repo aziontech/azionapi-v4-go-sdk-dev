@@ -27,15 +27,15 @@ type ApiCreateDeviceGroupRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsDeviceGroupsAPIService
 	applicationId int64
-	applicationDeviceGroupsRequest *ApplicationDeviceGroupsRequest
+	appDeviGroupsRequest *AppDeviGroupsRequest
 }
 
-func (r ApiCreateDeviceGroupRequest) ApplicationDeviceGroupsRequest(applicationDeviceGroupsRequest ApplicationDeviceGroupsRequest) ApiCreateDeviceGroupRequest {
-	r.applicationDeviceGroupsRequest = &applicationDeviceGroupsRequest
+func (r ApiCreateDeviceGroupRequest) AppDeviGroupsRequest(appDeviGroupsRequest AppDeviGroupsRequest) ApiCreateDeviceGroupRequest {
+	r.appDeviGroupsRequest = &appDeviGroupsRequest
 	return r
 }
 
-func (r ApiCreateDeviceGroupRequest) Execute() (*ResponseApplicationDeviceGroups, *http.Response, error) {
+func (r ApiCreateDeviceGroupRequest) Execute() (*ResponseApplicationDeviGroups, *http.Response, error) {
 	return r.ApiService.CreateDeviceGroupExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroup(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return ResponseApplicationDeviceGroups
-func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreateDeviceGroupRequest) (*ResponseApplicationDeviceGroups, *http.Response, error) {
+//  @return ResponseApplicationDeviGroups
+func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreateDeviceGroupRequest) (*ResponseApplicationDeviGroups, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseApplicationDeviceGroups
+		localVarReturnValue  *ResponseApplicationDeviGroups
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsDeviceGroupsAPIService.CreateDeviceGroup")
@@ -77,8 +77,8 @@ func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.applicationDeviceGroupsRequest == nil {
-		return localVarReturnValue, nil, reportError("applicationDeviceGroupsRequest is required and must be specified")
+	if r.appDeviGroupsRequest == nil {
+		return localVarReturnValue, nil, reportError("appDeviGroupsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -99,7 +99,7 @@ func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.applicationDeviceGroupsRequest
+	localVarPostBody = r.appDeviGroupsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -137,7 +137,7 @@ func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -148,7 +148,7 @@ func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -159,7 +159,7 @@ func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -170,7 +170,7 @@ func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -181,7 +181,7 @@ func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -192,7 +192,7 @@ func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -203,7 +203,7 @@ func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -234,7 +234,7 @@ type ApiDeleteDeviceGroupsRequest struct {
 	deviceGroupId int64
 }
 
-func (r ApiDeleteDeviceGroupsRequest) Execute() (*ResponseAsyncDeleteApplicationDeviceGroups, *http.Response, error) {
+func (r ApiDeleteDeviceGroupsRequest) Execute() (*ResponseDeleteApplicationDeviGroups, *http.Response, error) {
 	return r.ApiService.DeleteDeviceGroupsExecute(r)
 }
 
@@ -258,13 +258,13 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroups(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteApplicationDeviceGroups
-func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDeleteDeviceGroupsRequest) (*ResponseAsyncDeleteApplicationDeviceGroups, *http.Response, error) {
+//  @return ResponseDeleteApplicationDeviGroups
+func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDeleteDeviceGroupsRequest) (*ResponseDeleteApplicationDeviGroups, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteApplicationDeviceGroups
+		localVarReturnValue  *ResponseDeleteApplicationDeviGroups
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsDeviceGroupsAPIService.DeleteDeviceGroups")
@@ -334,7 +334,7 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDele
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -345,7 +345,7 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDele
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -356,7 +356,7 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDele
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -367,7 +367,7 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDele
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -378,7 +378,7 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDele
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -389,7 +389,7 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDele
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -400,7 +400,7 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDele
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -486,7 +486,7 @@ func (r ApiListDeviceGroupsRequest) UserAgent(userAgent string) ApiListDeviceGro
 	return r
 }
 
-func (r ApiListDeviceGroupsRequest) Execute() (*PaginatedApplicationDeviceGroupsList, *http.Response, error) {
+func (r ApiListDeviceGroupsRequest) Execute() (*PaginatedApplicationDeviGroupsList, *http.Response, error) {
 	return r.ApiService.ListDeviceGroupsExecute(r)
 }
 
@@ -508,13 +508,13 @@ func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroups(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return PaginatedApplicationDeviceGroupsList
-func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroupsExecute(r ApiListDeviceGroupsRequest) (*PaginatedApplicationDeviceGroupsList, *http.Response, error) {
+//  @return PaginatedApplicationDeviGroupsList
+func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroupsExecute(r ApiListDeviceGroupsRequest) (*PaginatedApplicationDeviGroupsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedApplicationDeviceGroupsList
+		localVarReturnValue  *PaginatedApplicationDeviGroupsList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsDeviceGroupsAPIService.ListDeviceGroups")
@@ -607,7 +607,7 @@ func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroupsExecute(r ApiListDe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -618,7 +618,7 @@ func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroupsExecute(r ApiListDe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -629,7 +629,7 @@ func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroupsExecute(r ApiListDe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -640,7 +640,7 @@ func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroupsExecute(r ApiListDe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -651,7 +651,7 @@ func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroupsExecute(r ApiListDe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -662,7 +662,7 @@ func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroupsExecute(r ApiListDe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -673,7 +673,7 @@ func (a *ApplicationsDeviceGroupsAPIService) ListDeviceGroupsExecute(r ApiListDe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -702,15 +702,15 @@ type ApiPartialUpdateDeviceGroupRequest struct {
 	ApiService *ApplicationsDeviceGroupsAPIService
 	applicationId int64
 	deviceGroupId int64
-	patchedApplicationDeviceGroupsRequest *PatchedApplicationDeviceGroupsRequest
+	patchedApplicationDeviGroupsRequest *PatchedApplicationDeviGroupsRequest
 }
 
-func (r ApiPartialUpdateDeviceGroupRequest) PatchedApplicationDeviceGroupsRequest(patchedApplicationDeviceGroupsRequest PatchedApplicationDeviceGroupsRequest) ApiPartialUpdateDeviceGroupRequest {
-	r.patchedApplicationDeviceGroupsRequest = &patchedApplicationDeviceGroupsRequest
+func (r ApiPartialUpdateDeviceGroupRequest) PatchedApplicationDeviGroupsRequest(patchedApplicationDeviGroupsRequest PatchedApplicationDeviGroupsRequest) ApiPartialUpdateDeviceGroupRequest {
+	r.patchedApplicationDeviGroupsRequest = &patchedApplicationDeviGroupsRequest
 	return r
 }
 
-func (r ApiPartialUpdateDeviceGroupRequest) Execute() (*ResponseApplicationDeviceGroups, *http.Response, error) {
+func (r ApiPartialUpdateDeviceGroupRequest) Execute() (*ResponseApplicationDeviGroups, *http.Response, error) {
 	return r.ApiService.PartialUpdateDeviceGroupExecute(r)
 }
 
@@ -734,13 +734,13 @@ func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroup(ctx contex
 }
 
 // Execute executes the request
-//  @return ResponseApplicationDeviceGroups
-func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroupExecute(r ApiPartialUpdateDeviceGroupRequest) (*ResponseApplicationDeviceGroups, *http.Response, error) {
+//  @return ResponseApplicationDeviGroups
+func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroupExecute(r ApiPartialUpdateDeviceGroupRequest) (*ResponseApplicationDeviGroups, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseApplicationDeviceGroups
+		localVarReturnValue  *ResponseApplicationDeviGroups
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsDeviceGroupsAPIService.PartialUpdateDeviceGroup")
@@ -774,7 +774,7 @@ func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroupExecute(r A
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedApplicationDeviceGroupsRequest
+	localVarPostBody = r.patchedApplicationDeviGroupsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -812,7 +812,7 @@ func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroupExecute(r A
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -823,7 +823,7 @@ func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroupExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -834,7 +834,7 @@ func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroupExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -845,7 +845,7 @@ func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroupExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -856,7 +856,7 @@ func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroupExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -867,7 +867,7 @@ func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroupExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -878,7 +878,7 @@ func (a *ApplicationsDeviceGroupsAPIService) PartialUpdateDeviceGroupExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -916,7 +916,7 @@ func (r ApiRetrieveDeviceGroupRequest) Fields(fields string) ApiRetrieveDeviceGr
 	return r
 }
 
-func (r ApiRetrieveDeviceGroupRequest) Execute() (*ResponseRetrieveApplicationDeviceGroups, *http.Response, error) {
+func (r ApiRetrieveDeviceGroupRequest) Execute() (*ResponseRetrieveApplicationDeviGroups, *http.Response, error) {
 	return r.ApiService.RetrieveDeviceGroupExecute(r)
 }
 
@@ -940,13 +940,13 @@ func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroup(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveApplicationDeviceGroups
-func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroupExecute(r ApiRetrieveDeviceGroupRequest) (*ResponseRetrieveApplicationDeviceGroups, *http.Response, error) {
+//  @return ResponseRetrieveApplicationDeviGroups
+func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroupExecute(r ApiRetrieveDeviceGroupRequest) (*ResponseRetrieveApplicationDeviGroups, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveApplicationDeviceGroups
+		localVarReturnValue  *ResponseRetrieveApplicationDeviGroups
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsDeviceGroupsAPIService.RetrieveDeviceGroup")
@@ -1019,7 +1019,7 @@ func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroupExecute(r ApiRet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1030,7 +1030,7 @@ func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroupExecute(r ApiRet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1041,7 +1041,7 @@ func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroupExecute(r ApiRet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1052,7 +1052,7 @@ func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroupExecute(r ApiRet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1063,7 +1063,7 @@ func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroupExecute(r ApiRet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1074,7 +1074,7 @@ func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroupExecute(r ApiRet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1085,7 +1085,7 @@ func (a *ApplicationsDeviceGroupsAPIService) RetrieveDeviceGroupExecute(r ApiRet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1114,15 +1114,15 @@ type ApiUpdateDeviceGroupRequest struct {
 	ApiService *ApplicationsDeviceGroupsAPIService
 	applicationId int64
 	deviceGroupId int64
-	applicationDeviceGroupsRequest *ApplicationDeviceGroupsRequest
+	appDeviGroupsRequest *AppDeviGroupsRequest
 }
 
-func (r ApiUpdateDeviceGroupRequest) ApplicationDeviceGroupsRequest(applicationDeviceGroupsRequest ApplicationDeviceGroupsRequest) ApiUpdateDeviceGroupRequest {
-	r.applicationDeviceGroupsRequest = &applicationDeviceGroupsRequest
+func (r ApiUpdateDeviceGroupRequest) AppDeviGroupsRequest(appDeviGroupsRequest AppDeviGroupsRequest) ApiUpdateDeviceGroupRequest {
+	r.appDeviGroupsRequest = &appDeviGroupsRequest
 	return r
 }
 
-func (r ApiUpdateDeviceGroupRequest) Execute() (*ResponseApplicationDeviceGroups, *http.Response, error) {
+func (r ApiUpdateDeviceGroupRequest) Execute() (*ResponseApplicationDeviGroups, *http.Response, error) {
 	return r.ApiService.UpdateDeviceGroupExecute(r)
 }
 
@@ -1146,13 +1146,13 @@ func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroup(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return ResponseApplicationDeviceGroups
-func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroupExecute(r ApiUpdateDeviceGroupRequest) (*ResponseApplicationDeviceGroups, *http.Response, error) {
+//  @return ResponseApplicationDeviGroups
+func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroupExecute(r ApiUpdateDeviceGroupRequest) (*ResponseApplicationDeviGroups, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseApplicationDeviceGroups
+		localVarReturnValue  *ResponseApplicationDeviGroups
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsDeviceGroupsAPIService.UpdateDeviceGroup")
@@ -1167,8 +1167,8 @@ func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroupExecute(r ApiUpdat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.applicationDeviceGroupsRequest == nil {
-		return localVarReturnValue, nil, reportError("applicationDeviceGroupsRequest is required and must be specified")
+	if r.appDeviGroupsRequest == nil {
+		return localVarReturnValue, nil, reportError("appDeviGroupsRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1189,7 +1189,7 @@ func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroupExecute(r ApiUpdat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.applicationDeviceGroupsRequest
+	localVarPostBody = r.appDeviGroupsRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1227,7 +1227,7 @@ func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroupExecute(r ApiUpdat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1238,7 +1238,7 @@ func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroupExecute(r ApiUpdat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1249,7 +1249,7 @@ func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroupExecute(r ApiUpdat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1260,7 +1260,7 @@ func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroupExecute(r ApiUpdat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1271,7 +1271,7 @@ func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroupExecute(r ApiUpdat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1282,7 +1282,7 @@ func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroupExecute(r ApiUpdat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1293,7 +1293,7 @@ func (a *ApplicationsDeviceGroupsAPIService) UpdateDeviceGroupExecute(r ApiUpdat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

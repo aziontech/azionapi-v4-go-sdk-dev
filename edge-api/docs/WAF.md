@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
 **ProductVersion** | Pointer to **NullableString** |  | [optional] 
-**EngineSettings** | Pointer to [**WAFEngineSettingsField**](WAFEngineSettingsField.md) |  | [optional] 
+**EngineSettings** | Pointer to [**WEngineSettingsField**](WEngineSettingsField.md) |  | [optional] 
 
 ## Methods
 
@@ -173,20 +173,20 @@ HasProductVersion returns a boolean if a field has been set.
 UnsetProductVersion ensures that no value is present for ProductVersion, not even an explicit nil
 ### GetEngineSettings
 
-`func (o *WAF) GetEngineSettings() WAFEngineSettingsField`
+`func (o *WAF) GetEngineSettings() WEngineSettingsField`
 
 GetEngineSettings returns the EngineSettings field if non-nil, zero value otherwise.
 
 ### GetEngineSettingsOk
 
-`func (o *WAF) GetEngineSettingsOk() (*WAFEngineSettingsField, bool)`
+`func (o *WAF) GetEngineSettingsOk() (*WEngineSettingsField, bool)`
 
 GetEngineSettingsOk returns a tuple with the EngineSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEngineSettings
 
-`func (o *WAF) SetEngineSettings(v WAFEngineSettingsField)`
+`func (o *WAF) SetEngineSettings(v WEngineSettingsField)`
 
 SetEngineSettings sets EngineSettings field to given value.
 

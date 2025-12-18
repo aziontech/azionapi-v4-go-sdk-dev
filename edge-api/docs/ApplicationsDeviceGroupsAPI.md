@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateDeviceGroup
 
-> ResponseApplicationDeviceGroups CreateDeviceGroup(ctx, applicationId).ApplicationDeviceGroupsRequest(applicationDeviceGroupsRequest).Execute()
+> ResponseApplicationDeviGroups CreateDeviceGroup(ctx, applicationId).AppDeviGroupsRequest(appDeviGroupsRequest).Execute()
 
 Create an Applications Device Group
 
@@ -35,16 +35,16 @@ import (
 
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	applicationDeviceGroupsRequest := *openapiclient.NewApplicationDeviceGroupsRequest("Name_example", "UserAgent_example") // ApplicationDeviceGroupsRequest | 
+	appDeviGroupsRequest := *openapiclient.NewAppDeviGroupsRequest("Name_example", "UserAgent_example") // AppDeviGroupsRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.CreateDeviceGroup(context.Background(), applicationId).ApplicationDeviceGroupsRequest(applicationDeviceGroupsRequest).Execute()
+	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.CreateDeviceGroup(context.Background(), applicationId).AppDeviGroupsRequest(appDeviGroupsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.CreateDeviceGroup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateDeviceGroup`: ResponseApplicationDeviceGroups
+	// response from `CreateDeviceGroup`: ResponseApplicationDeviGroups
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.CreateDeviceGroup`: %v\n", resp)
 }
 ```
@@ -65,11 +65,11 @@ Other parameters are passed through a pointer to a apiCreateDeviceGroupRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **applicationDeviceGroupsRequest** | [**ApplicationDeviceGroupsRequest**](ApplicationDeviceGroupsRequest.md) |  | 
+ **appDeviGroupsRequest** | [**AppDeviGroupsRequest**](AppDeviGroupsRequest.md) |  | 
 
 ### Return type
 
-[**ResponseApplicationDeviceGroups**](ResponseApplicationDeviceGroups.md)
+[**ResponseApplicationDeviGroups**](ResponseApplicationDeviGroups.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDeviceGroups
 
-> ResponseAsyncDeleteApplicationDeviceGroups DeleteDeviceGroups(ctx, applicationId, deviceGroupId).Execute()
+> ResponseDeleteApplicationDeviGroups DeleteDeviceGroups(ctx, applicationId, deviceGroupId).Execute()
 
 Delete an Applications Device Group
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.DeleteDeviceGroups``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteDeviceGroups`: ResponseAsyncDeleteApplicationDeviceGroups
+	// response from `DeleteDeviceGroups`: ResponseDeleteApplicationDeviGroups
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.DeleteDeviceGroups`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteApplicationDeviceGroups**](ResponseAsyncDeleteApplicationDeviceGroups.md)
+[**ResponseDeleteApplicationDeviGroups**](ResponseDeleteApplicationDeviGroups.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ListDeviceGroups
 
-> PaginatedApplicationDeviceGroupsList ListDeviceGroups(ctx, applicationId).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).UserAgent(userAgent).Execute()
+> PaginatedApplicationDeviGroupsList ListDeviceGroups(ctx, applicationId).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).UserAgent(userAgent).Execute()
 
 List Applications Device Groups
 
@@ -196,7 +196,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.ListDeviceGroups``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListDeviceGroups`: PaginatedApplicationDeviceGroupsList
+	// response from `ListDeviceGroups`: PaginatedApplicationDeviGroupsList
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.ListDeviceGroups`: %v\n", resp)
 }
 ```
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedApplicationDeviceGroupsList**](PaginatedApplicationDeviceGroupsList.md)
+[**PaginatedApplicationDeviGroupsList**](PaginatedApplicationDeviGroupsList.md)
 
 ### Authorization
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateDeviceGroup
 
-> ResponseApplicationDeviceGroups PartialUpdateDeviceGroup(ctx, applicationId, deviceGroupId).PatchedApplicationDeviceGroupsRequest(patchedApplicationDeviceGroupsRequest).Execute()
+> ResponseApplicationDeviGroups PartialUpdateDeviceGroup(ctx, applicationId, deviceGroupId).PatchedApplicationDeviGroupsRequest(patchedApplicationDeviGroupsRequest).Execute()
 
 Partially update an Applications Device Group
 
@@ -267,16 +267,16 @@ import (
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
-	patchedApplicationDeviceGroupsRequest := *openapiclient.NewPatchedApplicationDeviceGroupsRequest() // PatchedApplicationDeviceGroupsRequest |  (optional)
+	patchedApplicationDeviGroupsRequest := *openapiclient.NewPatchedApplicationDeviGroupsRequest() // PatchedApplicationDeviGroupsRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup(context.Background(), applicationId, deviceGroupId).PatchedApplicationDeviceGroupsRequest(patchedApplicationDeviceGroupsRequest).Execute()
+	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup(context.Background(), applicationId, deviceGroupId).PatchedApplicationDeviGroupsRequest(patchedApplicationDeviGroupsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateDeviceGroup`: ResponseApplicationDeviceGroups
+	// response from `PartialUpdateDeviceGroup`: ResponseApplicationDeviGroups
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup`: %v\n", resp)
 }
 ```
@@ -299,11 +299,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedApplicationDeviceGroupsRequest** | [**PatchedApplicationDeviceGroupsRequest**](PatchedApplicationDeviceGroupsRequest.md) |  | 
+ **patchedApplicationDeviGroupsRequest** | [**PatchedApplicationDeviGroupsRequest**](PatchedApplicationDeviGroupsRequest.md) |  | 
 
 ### Return type
 
-[**ResponseApplicationDeviceGroups**](ResponseApplicationDeviceGroups.md)
+[**ResponseApplicationDeviGroups**](ResponseApplicationDeviGroups.md)
 
 ### Authorization
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveDeviceGroup
 
-> ResponseRetrieveApplicationDeviceGroups RetrieveDeviceGroup(ctx, applicationId, deviceGroupId).Fields(fields).Execute()
+> ResponseRetrieveApplicationDeviGroups RetrieveDeviceGroup(ctx, applicationId, deviceGroupId).Fields(fields).Execute()
 
 Retrieve details of a Device Group
 
@@ -351,7 +351,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.RetrieveDeviceGroup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveDeviceGroup`: ResponseRetrieveApplicationDeviceGroups
+	// response from `RetrieveDeviceGroup`: ResponseRetrieveApplicationDeviGroups
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.RetrieveDeviceGroup`: %v\n", resp)
 }
 ```
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveApplicationDeviceGroups**](ResponseRetrieveApplicationDeviceGroups.md)
+[**ResponseRetrieveApplicationDeviGroups**](ResponseRetrieveApplicationDeviGroups.md)
 
 ### Authorization
 
@@ -396,7 +396,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDeviceGroup
 
-> ResponseApplicationDeviceGroups UpdateDeviceGroup(ctx, applicationId, deviceGroupId).ApplicationDeviceGroupsRequest(applicationDeviceGroupsRequest).Execute()
+> ResponseApplicationDeviGroups UpdateDeviceGroup(ctx, applicationId, deviceGroupId).AppDeviGroupsRequest(appDeviGroupsRequest).Execute()
 
 Update an Applications Device Group
 
@@ -417,16 +417,16 @@ import (
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	deviceGroupId := int64(789) // int64 | A unique integer value identifying the device group.
-	applicationDeviceGroupsRequest := *openapiclient.NewApplicationDeviceGroupsRequest("Name_example", "UserAgent_example") // ApplicationDeviceGroupsRequest | 
+	appDeviGroupsRequest := *openapiclient.NewAppDeviGroupsRequest("Name_example", "UserAgent_example") // AppDeviGroupsRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.UpdateDeviceGroup(context.Background(), applicationId, deviceGroupId).ApplicationDeviceGroupsRequest(applicationDeviceGroupsRequest).Execute()
+	resp, r, err := apiClient.ApplicationsDeviceGroupsAPI.UpdateDeviceGroup(context.Background(), applicationId, deviceGroupId).AppDeviGroupsRequest(appDeviGroupsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.UpdateDeviceGroup``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateDeviceGroup`: ResponseApplicationDeviceGroups
+	// response from `UpdateDeviceGroup`: ResponseApplicationDeviGroups
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.UpdateDeviceGroup`: %v\n", resp)
 }
 ```
@@ -449,11 +449,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **applicationDeviceGroupsRequest** | [**ApplicationDeviceGroupsRequest**](ApplicationDeviceGroupsRequest.md) |  | 
+ **appDeviGroupsRequest** | [**AppDeviGroupsRequest**](AppDeviGroupsRequest.md) |  | 
 
 ### Return type
 
-[**ResponseApplicationDeviceGroups**](ResponseApplicationDeviceGroups.md)
+[**ResponseApplicationDeviGroups**](ResponseApplicationDeviGroups.md)
 
 ### Authorization
 

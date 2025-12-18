@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## CreateApplication
 
-> ResponseApplication CreateApplication(ctx).ApplicationRequest(applicationRequest).Execute()
+> ResponseApplication CreateApplication(ctx).AppRequest(appRequest).Execute()
 
 Create an Application
 
@@ -107,11 +107,11 @@ import (
 )
 
 func main() {
-	applicationRequest := *openapiclient.NewApplicationRequest("Name_example") // ApplicationRequest | 
+	appRequest := *openapiclient.NewAppRequest("Name_example") // AppRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsAPI.CreateApplication(context.Background()).ApplicationRequest(applicationRequest).Execute()
+	resp, r, err := apiClient.ApplicationsAPI.CreateApplication(context.Background()).AppRequest(appRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.CreateApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,7 +132,7 @@ Other parameters are passed through a pointer to a apiCreateApplicationRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationRequest** | [**ApplicationRequest**](ApplicationRequest.md) |  | 
+ **appRequest** | [**AppRequest**](AppRequest.md) |  | 
 
 ### Return type
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApplication
 
-> ResponseAsyncDeleteApplication DeleteApplication(ctx, applicationId).Execute()
+> ResponseDeleteApplication DeleteApplication(ctx, applicationId).Execute()
 
 Delete an Application
 
@@ -182,7 +182,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.DeleteApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteApplication`: ResponseAsyncDeleteApplication
+	// response from `DeleteApplication`: ResponseDeleteApplication
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.DeleteApplication`: %v\n", resp)
 }
 ```
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteApplication**](ResponseAsyncDeleteApplication.md)
+[**ResponseDeleteApplication**](ResponseDeleteApplication.md)
 
 ### Authorization
 
@@ -311,7 +311,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateApplication
 
-> ResponseApplication PartialUpdateApplication(ctx, applicationId).PatchedApplicationRequest(patchedApplicationRequest).Execute()
+> ResponseApplication PartialUpdateApplication(ctx, applicationId).PatchApplicationRequest(patchApplicationRequest).Execute()
 
 Partially update an Application
 
@@ -331,11 +331,11 @@ import (
 
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	patchedApplicationRequest := *openapiclient.NewPatchedApplicationRequest() // PatchedApplicationRequest |  (optional)
+	patchApplicationRequest := *openapiclient.NewPatchApplicationRequest() // PatchApplicationRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsAPI.PartialUpdateApplication(context.Background(), applicationId).PatchedApplicationRequest(patchedApplicationRequest).Execute()
+	resp, r, err := apiClient.ApplicationsAPI.PartialUpdateApplication(context.Background(), applicationId).PatchApplicationRequest(patchApplicationRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.PartialUpdateApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -361,7 +361,7 @@ Other parameters are passed through a pointer to a apiPartialUpdateApplicationRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedApplicationRequest** | [**PatchedApplicationRequest**](PatchedApplicationRequest.md) |  | 
+ **patchApplicationRequest** | [**PatchApplicationRequest**](PatchApplicationRequest.md) |  | 
 
 ### Return type
 
@@ -455,7 +455,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApplication
 
-> ResponseApplication UpdateApplication(ctx, applicationId).ApplicationRequest(applicationRequest).Execute()
+> ResponseApplication UpdateApplication(ctx, applicationId).AppRequest(appRequest).Execute()
 
 Update an Application
 
@@ -475,11 +475,11 @@ import (
 
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	applicationRequest := *openapiclient.NewApplicationRequest("Name_example") // ApplicationRequest | 
+	appRequest := *openapiclient.NewAppRequest("Name_example") // AppRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsAPI.UpdateApplication(context.Background(), applicationId).ApplicationRequest(applicationRequest).Execute()
+	resp, r, err := apiClient.ApplicationsAPI.UpdateApplication(context.Background(), applicationId).AppRequest(appRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.UpdateApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -505,7 +505,7 @@ Other parameters are passed through a pointer to a apiUpdateApplicationRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **applicationRequest** | [**ApplicationRequest**](ApplicationRequest.md) |  | 
+ **appRequest** | [**AppRequest**](AppRequest.md) |  | 
 
 ### Return type
 

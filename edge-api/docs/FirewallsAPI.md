@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## CreateFirewall
 
-> ResponseFirewall CreateFirewall(ctx).FirewallRequest(firewallRequest).Execute()
+> ResponseFirewall CreateFirewall(ctx).FwRequest(fwRequest).Execute()
 
 Create a Firewall
 
@@ -107,11 +107,11 @@ import (
 )
 
 func main() {
-	firewallRequest := *openapiclient.NewFirewallRequest("Name_example") // FirewallRequest | 
+	fwRequest := *openapiclient.NewFwRequest("Name_example") // FwRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsAPI.CreateFirewall(context.Background()).FirewallRequest(firewallRequest).Execute()
+	resp, r, err := apiClient.FirewallsAPI.CreateFirewall(context.Background()).FwRequest(fwRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.CreateFirewall``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -132,7 +132,7 @@ Other parameters are passed through a pointer to a apiCreateFirewallRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **firewallRequest** | [**FirewallRequest**](FirewallRequest.md) |  | 
+ **fwRequest** | [**FwRequest**](FwRequest.md) |  | 
 
 ### Return type
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFirewall
 
-> ResponseAsyncDeleteFirewall DeleteFirewall(ctx, firewallId).Execute()
+> ResponseDeleteFirewall DeleteFirewall(ctx, firewallId).Execute()
 
 Delete a Firewall
 
@@ -182,7 +182,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.DeleteFirewall``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteFirewall`: ResponseAsyncDeleteFirewall
+	// response from `DeleteFirewall`: ResponseDeleteFirewall
 	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.DeleteFirewall`: %v\n", resp)
 }
 ```
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteFirewall**](ResponseAsyncDeleteFirewall.md)
+[**ResponseDeleteFirewall**](ResponseDeleteFirewall.md)
 
 ### Authorization
 
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateFirewall
 
-> ResponseFirewall PartialUpdateFirewall(ctx, firewallId).PatchedFirewallRequest(patchedFirewallRequest).Execute()
+> ResponseFirewall PartialUpdateFirewall(ctx, firewallId).PatchFirewallRequest(patchFirewallRequest).Execute()
 
 Partially update a Firewall
 
@@ -333,11 +333,11 @@ import (
 
 func main() {
 	firewallId := int64(789) // int64 | A unique integer value identifying the edge firewall.
-	patchedFirewallRequest := *openapiclient.NewPatchedFirewallRequest() // PatchedFirewallRequest |  (optional)
+	patchFirewallRequest := *openapiclient.NewPatchFirewallRequest() // PatchFirewallRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsAPI.PartialUpdateFirewall(context.Background(), firewallId).PatchedFirewallRequest(patchedFirewallRequest).Execute()
+	resp, r, err := apiClient.FirewallsAPI.PartialUpdateFirewall(context.Background(), firewallId).PatchFirewallRequest(patchFirewallRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.PartialUpdateFirewall``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -363,7 +363,7 @@ Other parameters are passed through a pointer to a apiPartialUpdateFirewallReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedFirewallRequest** | [**PatchedFirewallRequest**](PatchedFirewallRequest.md) |  | 
+ **patchFirewallRequest** | [**PatchFirewallRequest**](PatchFirewallRequest.md) |  | 
 
 ### Return type
 
@@ -457,7 +457,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFirewall
 
-> ResponseFirewall UpdateFirewall(ctx, firewallId).FirewallRequest(firewallRequest).Execute()
+> ResponseFirewall UpdateFirewall(ctx, firewallId).FwRequest(fwRequest).Execute()
 
 Update a Firewall
 
@@ -477,11 +477,11 @@ import (
 
 func main() {
 	firewallId := int64(789) // int64 | A unique integer value identifying the edge firewall.
-	firewallRequest := *openapiclient.NewFirewallRequest("Name_example") // FirewallRequest | 
+	fwRequest := *openapiclient.NewFwRequest("Name_example") // FwRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsAPI.UpdateFirewall(context.Background(), firewallId).FirewallRequest(firewallRequest).Execute()
+	resp, r, err := apiClient.FirewallsAPI.UpdateFirewall(context.Background(), firewallId).FwRequest(fwRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.UpdateFirewall``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -507,7 +507,7 @@ Other parameters are passed through a pointer to a apiUpdateFirewallRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **firewallRequest** | [**FirewallRequest**](FirewallRequest.md) |  | 
+ **fwRequest** | [**FwRequest**](FwRequest.md) |  | 
 
 ### Return type
 

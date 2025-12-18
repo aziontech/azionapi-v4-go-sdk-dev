@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteNetworkList
 
-> ResponseAsyncDeleteNetworkListDetail DeleteNetworkList(ctx, networkListId).Execute()
+> ResponseDeleteNetworkListDetail DeleteNetworkList(ctx, networkListId).Execute()
 
 Delete a Network List
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.DeleteNetworkList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteNetworkList`: ResponseAsyncDeleteNetworkListDetail
+	// response from `DeleteNetworkList`: ResponseDeleteNetworkListDetail
 	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.DeleteNetworkList`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteNetworkListDetail**](ResponseAsyncDeleteNetworkListDetail.md)
+[**ResponseDeleteNetworkListDetail**](ResponseDeleteNetworkListDetail.md)
 
 ### Authorization
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListNetworkLists
 
-> PaginatedNetworkListList ListNetworkLists(ctx).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).ListTypeIn(listTypeIn).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedNetworkList ListNetworkLists(ctx).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).ListTypeIn(listTypeIn).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Network Lists
 
@@ -190,7 +190,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.ListNetworkLists``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListNetworkLists`: PaginatedNetworkListList
+	// response from `ListNetworkLists`: PaginatedNetworkList
 	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.ListNetworkLists`: %v\n", resp)
 }
 ```
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedNetworkListList**](PaginatedNetworkListList.md)
+[**PaginatedNetworkList**](PaginatedNetworkList.md)
 
 ### Authorization
 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateNetworkList
 
-> ResponseNetworkListDetail PartialUpdateNetworkList(ctx, networkListId).PatchedNetworkListDetailRequest(patchedNetworkListDetailRequest).Execute()
+> ResponseNetworkListDetail PartialUpdateNetworkList(ctx, networkListId).PatchNetworkListDetailRequest(patchNetworkListDetailRequest).Execute()
 
 Partially update a Network List
 
@@ -258,11 +258,11 @@ import (
 
 func main() {
 	networkListId := int64(789) // int64 | A unique integer value identifying the network list.
-	patchedNetworkListDetailRequest := *openapiclient.NewPatchedNetworkListDetailRequest() // PatchedNetworkListDetailRequest |  (optional)
+	patchNetworkListDetailRequest := *openapiclient.NewPatchNetworkListDetailRequest() // PatchNetworkListDetailRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkListsAPI.PartialUpdateNetworkList(context.Background(), networkListId).PatchedNetworkListDetailRequest(patchedNetworkListDetailRequest).Execute()
+	resp, r, err := apiClient.NetworkListsAPI.PartialUpdateNetworkList(context.Background(), networkListId).PatchNetworkListDetailRequest(patchNetworkListDetailRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.PartialUpdateNetworkList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -288,7 +288,7 @@ Other parameters are passed through a pointer to a apiPartialUpdateNetworkListRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedNetworkListDetailRequest** | [**PatchedNetworkListDetailRequest**](PatchedNetworkListDetailRequest.md) |  | 
+ **patchNetworkListDetailRequest** | [**PatchNetworkListDetailRequest**](PatchNetworkListDetailRequest.md) |  | 
 
 ### Return type
 

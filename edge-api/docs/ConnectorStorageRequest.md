@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 **Type** | **string** | Type of the connector  * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | 
-**Attributes** | [**ConnectorStorageAttributesRequest**](ConnectorStorageAttributesRequest.md) |  | 
+**Attributes** | [**ConnectorStorageAttrsReq**](ConnectorStorageAttrsReq.md) |  | 
 
 ## Methods
 
 ### NewConnectorStorageRequest
 
-`func NewConnectorStorageRequest(name string, type_ string, attributes ConnectorStorageAttributesRequest, ) *ConnectorStorageRequest`
+`func NewConnectorStorageRequest(name string, type_ string, attributes ConnectorStorageAttrsReq, ) *ConnectorStorageRequest`
 
 NewConnectorStorageRequest instantiates a new ConnectorStorageRequest object
 This constructor will assign default values to properties that have it defined,
@@ -95,20 +95,20 @@ SetType sets Type field to given value.
 
 ### GetAttributes
 
-`func (o *ConnectorStorageRequest) GetAttributes() ConnectorStorageAttributesRequest`
+`func (o *ConnectorStorageRequest) GetAttributes() ConnectorStorageAttrsReq`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *ConnectorStorageRequest) GetAttributesOk() (*ConnectorStorageAttributesRequest, bool)`
+`func (o *ConnectorStorageRequest) GetAttributesOk() (*ConnectorStorageAttrsReq, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *ConnectorStorageRequest) SetAttributes(v ConnectorStorageAttributesRequest)`
+`func (o *ConnectorStorageRequest) SetAttributes(v ConnectorStorageAttrsReq)`
 
 SetAttributes sets Attributes field to given value.
 

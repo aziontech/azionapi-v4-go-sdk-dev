@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cache** | Pointer to [**CacheSettingsEdgeCacheModuleRequest**](CacheSettingsEdgeCacheModuleRequest.md) |  | [optional] 
-**ApplicationAccelerator** | Pointer to [**CacheSettingsApplicationAcceleratorModuleRequest**](CacheSettingsApplicationAcceleratorModuleRequest.md) |  | [optional] 
+**Cache** | Pointer to [**CacheEdgeRequest**](CacheEdgeRequest.md) |  | [optional] 
+**ApplicationAccelerator** | Pointer to [**CacheAccelRequest**](CacheAccelRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCache
 
-`func (o *CacheSettingsModulesRequest) GetCache() CacheSettingsEdgeCacheModuleRequest`
+`func (o *CacheSettingsModulesRequest) GetCache() CacheEdgeRequest`
 
 GetCache returns the Cache field if non-nil, zero value otherwise.
 
 ### GetCacheOk
 
-`func (o *CacheSettingsModulesRequest) GetCacheOk() (*CacheSettingsEdgeCacheModuleRequest, bool)`
+`func (o *CacheSettingsModulesRequest) GetCacheOk() (*CacheEdgeRequest, bool)`
 
 GetCacheOk returns a tuple with the Cache field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCache
 
-`func (o *CacheSettingsModulesRequest) SetCache(v CacheSettingsEdgeCacheModuleRequest)`
+`func (o *CacheSettingsModulesRequest) SetCache(v CacheEdgeRequest)`
 
 SetCache sets Cache field to given value.
 
@@ -53,20 +53,20 @@ HasCache returns a boolean if a field has been set.
 
 ### GetApplicationAccelerator
 
-`func (o *CacheSettingsModulesRequest) GetApplicationAccelerator() CacheSettingsApplicationAcceleratorModuleRequest`
+`func (o *CacheSettingsModulesRequest) GetApplicationAccelerator() CacheAccelRequest`
 
 GetApplicationAccelerator returns the ApplicationAccelerator field if non-nil, zero value otherwise.
 
 ### GetApplicationAcceleratorOk
 
-`func (o *CacheSettingsModulesRequest) GetApplicationAcceleratorOk() (*CacheSettingsApplicationAcceleratorModuleRequest, bool)`
+`func (o *CacheSettingsModulesRequest) GetApplicationAcceleratorOk() (*CacheAccelRequest, bool)`
 
 GetApplicationAcceleratorOk returns a tuple with the ApplicationAccelerator field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetApplicationAccelerator
 
-`func (o *CacheSettingsModulesRequest) SetApplicationAccelerator(v CacheSettingsApplicationAcceleratorModuleRequest)`
+`func (o *CacheSettingsModulesRequest) SetApplicationAccelerator(v CacheAccelRequest)`
 
 SetApplicationAccelerator sets ApplicationAccelerator field to given value.
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **TotalPages** | Pointer to **int64** | Total number of pages | [optional] 
 **Page** | Pointer to **int64** | Current page number | [optional] 
 **PageSize** | Pointer to **int64** | Number of items per page | [optional] 
-**Results** | Pointer to [**[]Application**](Application.md) |  | [optional] 
+**Results** | Pointer to [**[]App**](App.md) |  | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasPageSize returns a boolean if a field has been set.
 
 ### GetResults
 
-`func (o *PaginatedApplicationList) GetResults() []Application`
+`func (o *PaginatedApplicationList) GetResults() []App`
 
 GetResults returns the Results field if non-nil, zero value otherwise.
 
 ### GetResultsOk
 
-`func (o *PaginatedApplicationList) GetResultsOk() (*[]Application, bool)`
+`func (o *PaginatedApplicationList) GetResultsOk() (*[]App, bool)`
 
 GetResultsOk returns a tuple with the Results field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResults
 
-`func (o *PaginatedApplicationList) SetResults(v []Application)`
+`func (o *PaginatedApplicationList) SetResults(v []App)`
 
 SetResults sets Results field to given value.
 

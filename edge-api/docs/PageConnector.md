@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
-**Attributes** | [**PageConnectorAttributes**](PageConnectorAttributes.md) |  | 
+**Type** | **string** |  | 
+**Attributes** | [**PageConnectorAttrs**](PageConnectorAttrs.md) |  | 
 
 ## Methods
 
 ### NewPageConnector
 
-`func NewPageConnector(attributes PageConnectorAttributes, ) *PageConnector`
+`func NewPageConnector(type_ string, attributes PageConnectorAttrs, ) *PageConnector`
 
 NewPageConnector instantiates a new PageConnector object
 This constructor will assign default values to properties that have it defined,
@@ -45,28 +45,23 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *PageConnector) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetAttributes
 
-`func (o *PageConnector) GetAttributes() PageConnectorAttributes`
+`func (o *PageConnector) GetAttributes() PageConnectorAttrs`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *PageConnector) GetAttributesOk() (*PageConnectorAttributes, bool)`
+`func (o *PageConnector) GetAttributesOk() (*PageConnectorAttrs, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *PageConnector) SetAttributes(v PageConnectorAttributes)`
+`func (o *PageConnector) SetAttributes(v PageConnectorAttrs)`
 
 SetAttributes sets Attributes field to given value.
 
