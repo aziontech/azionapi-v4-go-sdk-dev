@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteContinuousDeployment
 
-> ResponseAsyncDeleteContinuousDeployment DeleteContinuousDeployment(ctx, continuousDeploymentId).Execute()
+> ResponseDeleteContinuousDeployment DeleteContinuousDeployment(ctx, continuousDeploymentId).Execute()
 
 Delete a continuous deployment
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.DeleteContinuousDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteContinuousDeployment`: ResponseAsyncDeleteContinuousDeployment
+	// response from `DeleteContinuousDeployment`: ResponseDeleteContinuousDeployment
 	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentsAPI.DeleteContinuousDeployment`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteContinuousDeployment**](ResponseAsyncDeleteContinuousDeployment.md)
+[**ResponseDeleteContinuousDeployment**](ResponseDeleteContinuousDeployment.md)
 
 ### Authorization
 
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateContinuousDeployment
 
-> ResponseContinuousDeployment PartialUpdateContinuousDeployment(ctx, continuousDeploymentId).PatchedContinuousDeploymentRequest(patchedContinuousDeploymentRequest).Execute()
+> ResponseContinuousDeployment PartialUpdateContinuousDeployment(ctx, continuousDeploymentId).PatchContinuousDeploymentRequest(patchContinuousDeploymentRequest).Execute()
 
 Partialy update a continuous deployment
 
@@ -264,11 +264,11 @@ import (
 
 func main() {
 	continuousDeploymentId := "continuousDeploymentId_example" // string | Unique identifier of the continuous deployment
-	patchedContinuousDeploymentRequest := *openapiclient.NewPatchedContinuousDeploymentRequest() // PatchedContinuousDeploymentRequest |  (optional)
+	patchContinuousDeploymentRequest := *openapiclient.NewPatchContinuousDeploymentRequest() // PatchContinuousDeploymentRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VCSContinuousDeploymentsAPI.PartialUpdateContinuousDeployment(context.Background(), continuousDeploymentId).PatchedContinuousDeploymentRequest(patchedContinuousDeploymentRequest).Execute()
+	resp, r, err := apiClient.VCSContinuousDeploymentsAPI.PartialUpdateContinuousDeployment(context.Background(), continuousDeploymentId).PatchContinuousDeploymentRequest(patchContinuousDeploymentRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.PartialUpdateContinuousDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -294,7 +294,7 @@ Other parameters are passed through a pointer to a apiPartialUpdateContinuousDep
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedContinuousDeploymentRequest** | [**PatchedContinuousDeploymentRequest**](PatchedContinuousDeploymentRequest.md) |  | 
+ **patchContinuousDeploymentRequest** | [**PatchContinuousDeploymentRequest**](PatchContinuousDeploymentRequest.md) |  | 
 
 ### Return type
 

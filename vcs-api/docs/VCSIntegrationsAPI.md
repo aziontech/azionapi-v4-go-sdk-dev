@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## DeleteIntegration
 
-> ResponseAsyncDeleteIntegration DeleteIntegration(ctx, integrationId).Execute()
+> ResponseDeleteIntegration DeleteIntegration(ctx, integrationId).Execute()
 
 Delete an integration
 
@@ -41,7 +41,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSIntegrationsAPI.DeleteIntegration``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteIntegration`: ResponseAsyncDeleteIntegration
+	// response from `DeleteIntegration`: ResponseDeleteIntegration
 	fmt.Fprintf(os.Stdout, "Response from `VCSIntegrationsAPI.DeleteIntegration`: %v\n", resp)
 }
 ```
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteIntegration**](ResponseAsyncDeleteIntegration.md)
+[**ResponseDeleteIntegration**](ResponseDeleteIntegration.md)
 
 ### Authorization
 

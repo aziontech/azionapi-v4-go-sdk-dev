@@ -6,6 +6,689 @@ info:
 servers:
 - url: /
 paths:
+  /vcs/continuous_deployments/{continuous_deployment_id}/executions:
+    get:
+      description: List all continuous deployment executions.
+      operationId: list_executions
+      parameters:
+      - description: Unique identifier of the continuous deployment
+        explode: false
+        in: path
+        name: continuous_deployment_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Filter by created date (greater than or equal).
+        explode: true
+        in: query
+        name: created_at__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by created date (less than or equal).
+        explode: true
+        in: query
+        name: created_at__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by id (accepts comma-separated values).
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Which field to use when ordering the results.
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A numeric value that indicates the number of items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by status (accepts comma-separated values).
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by updated date (greater than or equal).
+        explode: true
+        in: query
+        name: updated_at__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by updated date (less than or equal).
+        explode: true
+        in: query
+        name: updated_at__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedResponseListExecutionList"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Permission Denied
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: List executions
+      tags:
+      - VCS - Continuous Deployment Executions
+    post:
+      description: Create a new continuous deployment execution.
+      operationId: create_execution
+      parameters:
+      - description: Unique identifier of the continuous deployment
+        explode: false
+        in: path
+        name: continuous_deployment_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: No request body required
+        required: false
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseExecution"
+          description: Created
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Permission Denied
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncExecution"
+          description: Accepted
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Create a execution
+      tags:
+      - VCS - Continuous Deployment Executions
+  /vcs/continuous_deployments/{continuous_deployment_id}/executor:
+    get:
+      description: Retrieve details from a specific continuous deployment executor.
+      operationId: retrieve_executor
+      parameters:
+      - description: Unique identifier of the continuous deployment
+        explode: false
+        in: path
+        name: continuous_deployment_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRetrieveExecutor"
+          description: Ok
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Permission Denied
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve details from a executor
+      tags:
+      - VCS - Continuous Deployment Executor
+    put:
+      description: Update continuous deployment executor information.
+      operationId: update_executor
+      parameters:
+      - description: Unique identifier of the continuous deployment
+        explode: false
+        in: path
+        name: continuous_deployment_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: No request body required
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseExecutor"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncExecutor"
+          description: ""
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Permission Denied
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Update a executor
+      tags:
+      - VCS - Continuous Deployment Executor
   /vcs/continuous_deployments:
     get:
       description: List all continuous deployments.
@@ -151,7 +834,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -167,7 +850,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -183,7 +866,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -199,7 +882,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -215,7 +898,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -231,7 +914,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -247,7 +930,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
       security:
       - TokenAuth: []
@@ -285,7 +968,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -301,7 +984,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -317,7 +1000,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -333,7 +1016,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -349,7 +1032,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -365,7 +1048,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -381,7 +1064,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
         "202":
           content:
@@ -409,6 +1092,12 @@ paths:
           type: string
         style: simple
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteContinuousDeployment"
+          description: Ok
         "202":
           content:
             application/json:
@@ -429,7 +1118,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -445,7 +1134,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -461,7 +1150,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -477,7 +1166,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -493,7 +1182,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -509,7 +1198,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -525,10 +1214,8 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "204":
-          description: No Content
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -576,7 +1263,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -592,7 +1279,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -608,7 +1295,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -624,7 +1311,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -640,7 +1327,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -656,7 +1343,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -672,7 +1359,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
       security:
       - TokenAuth: []
@@ -696,7 +1383,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PatchedContinuousDeploymentRequest"
+              $ref: "#/components/schemas/PatchContinuousDeploymentRequest"
       responses:
         "200":
           content:
@@ -718,7 +1405,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -734,7 +1421,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -750,7 +1437,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -766,7 +1453,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -782,7 +1469,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -798,7 +1485,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -814,7 +1501,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
         "202":
           content:
@@ -867,7 +1554,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -883,7 +1570,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -899,7 +1586,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -915,7 +1602,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -931,7 +1618,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -947,7 +1634,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -963,7 +1650,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
         "202":
           content:
@@ -977,689 +1664,6 @@ paths:
       summary: Update a continuous deployment
       tags:
       - VCS - Continuous Deployments
-  /vcs/continuous_deployments/{continuous_deployment_id}/executions:
-    get:
-      description: List all continuous deployment executions.
-      operationId: list_executions
-      parameters:
-      - description: Unique identifier of the continuous deployment
-        explode: false
-        in: path
-        name: continuous_deployment_id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
-      - description: Filter by created date (greater than or equal).
-        explode: true
-        in: query
-        name: created_at__gte
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: Filter by created date (less than or equal).
-        explode: true
-        in: query
-        name: created_at__lte
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: Comma-separated list of field names to include in the response.
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by id (accepts comma-separated values).
-        explode: true
-        in: query
-        name: id
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: Which field to use when ordering the results.
-        explode: true
-        in: query
-        name: ordering
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: A page number within the paginated result set.
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: A numeric value that indicates the number of items per page.
-        explode: true
-        in: query
-        name: page_size
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: A search term.
-        explode: true
-        in: query
-        name: search
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by status (accepts comma-separated values).
-        explode: true
-        in: query
-        name: status
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by updated date (greater than or equal).
-        explode: true
-        in: query
-        name: updated_at__gte
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: Filter by updated date (less than or equal).
-        explode: true
-        in: query
-        name: updated_at__lte
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PaginatedResponseListExecutionList"
-          description: Ok
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: List executions
-      tags:
-      - VCS - Continuous Deployment Executions
-    post:
-      description: Create a new continuous deployment execution.
-      operationId: create_execution
-      parameters:
-      - description: Unique identifier of the continuous deployment
-        explode: false
-        in: path
-        name: continuous_deployment_id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-        description: No request body required
-        required: false
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseExecution"
-          description: Created
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncExecution"
-          description: Accepted
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Create a execution
-      tags:
-      - VCS - Continuous Deployment Executions
-  /vcs/continuous_deployments/{continuous_deployment_id}/executor:
-    get:
-      description: Retrieve details from a specific continuous deployment executor.
-      operationId: retrieve_executor
-      parameters:
-      - description: Unique identifier of the continuous deployment
-        explode: false
-        in: path
-        name: continuous_deployment_id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
-      - description: Comma-separated list of field names to include in the response.
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseRetrieveExecutor"
-          description: Ok
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Retrieve details from a executor
-      tags:
-      - VCS - Continuous Deployment Executor
-    put:
-      description: Update continuous deployment executor information.
-      operationId: update_executor
-      parameters:
-      - description: Unique identifier of the continuous deployment
-        explode: false
-        in: path
-        name: continuous_deployment_id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-        description: No request body required
-        required: false
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseExecutor"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncExecutor"
-          description: ""
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Update a executor
-      tags:
-      - VCS - Continuous Deployment Executor
   /vcs/execution_scripts:
     get:
       description: List all execution scripts.
@@ -1745,7 +1749,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -1761,7 +1765,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -1777,7 +1781,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -1793,7 +1797,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -1809,7 +1813,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -1825,7 +1829,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -1841,7 +1845,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
       security:
       - TokenAuth: []
@@ -1892,7 +1896,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -1908,7 +1912,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -1924,7 +1928,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -1940,7 +1944,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -1956,7 +1960,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -1972,7 +1976,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -1988,7 +1992,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
       security:
       - TokenAuth: []
@@ -2089,7 +2093,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -2105,7 +2109,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -2121,7 +2125,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -2137,7 +2141,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -2153,7 +2157,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -2169,7 +2173,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -2185,7 +2189,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
       security:
       - TokenAuth: []
@@ -2207,6 +2211,12 @@ paths:
           type: string
         style: simple
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteIntegration"
+          description: Ok
         "202":
           content:
             application/json:
@@ -2227,7 +2237,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -2243,7 +2253,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -2259,7 +2269,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -2275,7 +2285,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -2291,7 +2301,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -2307,7 +2317,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -2323,10 +2333,8 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "204":
-          description: No Content
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -2374,7 +2382,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -2390,7 +2398,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -2406,7 +2414,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -2422,7 +2430,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -2438,7 +2446,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -2454,7 +2462,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -2470,7 +2478,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
       security:
       - TokenAuth: []
@@ -2555,7 +2563,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -2571,7 +2579,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -2587,7 +2595,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -2603,7 +2611,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -2619,7 +2627,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -2635,7 +2643,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -2651,7 +2659,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
       security:
       - TokenAuth: []
@@ -2744,7 +2752,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -2760,7 +2768,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -2776,7 +2784,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -2792,7 +2800,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -2808,7 +2816,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -2824,7 +2832,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -2840,7 +2848,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
       security:
       - TokenAuth: []
@@ -3072,19 +3080,6 @@ components:
       - name
       - template_uuid
       type: object
-    ExecutionScriptRequest:
-      properties:
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        template_uuid:
-          format: uuid
-          type: string
-      required:
-      - name
-      - template_uuid
-      type: object
     Executor:
       example:
         is_active: true
@@ -3177,33 +3172,6 @@ components:
           additionalProperties: {}
           description: Non-standard meta-information about the error
           type: object
-      type: object
-    JSONAPIErrorResponse:
-      description: Serializer for a JSON:API error response.
-      example:
-        errors:
-        - code: code
-          meta:
-            key: ""
-          detail: detail
-          source: ""
-          title: title
-          status: status
-        - code: code
-          meta:
-            key: ""
-          detail: detail
-          source: ""
-          title: title
-          status: status
-      properties:
-        errors:
-          description: Array of error objects
-          items:
-            $ref: "#/components/schemas/JSONAPIErrorObject"
-          type: array
-      required:
-      - errors
       type: object
     JSONAPIErrorSource:
       description: Serializer for the 'source' object in a JSON:API error.
@@ -3553,55 +3521,6 @@ components:
             $ref: "#/components/schemas/ResponseListRepository"
           type: array
       type: object
-    PatchedContinuousDeploymentRequest:
-      example:
-        integration_id: 171976545
-        execution_script_id: 1294386359
-        name: name
-        deploy_context:
-          key: ""
-        build_context:
-        - field: field
-          value: value
-          instantiation_data_path: instantiation_data_path
-        - field: field
-          value: value
-          instantiation_data_path: instantiation_data_path
-        repository: repository
-        branch: branch
-      properties:
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        repository:
-          maxLength: 100
-          minLength: 1
-          type: string
-        branch:
-          maxLength: 255
-          minLength: 1
-          type: string
-        build_context:
-          items:
-            $ref: "#/components/schemas/BuildContextFieldRequest"
-          type: array
-        deploy_context:
-          additionalProperties: {}
-          type: object
-        integration_id:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-          writeOnly: true
-        execution_script_id:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-          writeOnly: true
-      type: object
     Platform:
       example:
         callback_url: callback_url
@@ -3742,6 +3661,8 @@ components:
       - data
       type: object
     ResponseDeleteContinuousDeployment:
+      example:
+        state: state
       properties:
         state:
           maxLength: 8
@@ -3749,6 +3670,8 @@ components:
           type: string
       type: object
     ResponseDeleteIntegration:
+      example:
+        state: state
       properties:
         state:
           maxLength: 8
@@ -4057,6 +3980,82 @@ components:
           $ref: "#/components/schemas/Integration"
       required:
       - data
+      type: object
+    PatchContinuousDeploymentRequest:
+      example:
+        integration_id: 171976545
+        execution_script_id: 1294386359
+        name: name
+        deploy_context:
+          key: ""
+        build_context:
+        - field: field
+          value: value
+          instantiation_data_path: instantiation_data_path
+        - field: field
+          value: value
+          instantiation_data_path: instantiation_data_path
+        repository: repository
+        branch: branch
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        repository:
+          maxLength: 100
+          minLength: 1
+          type: string
+        branch:
+          maxLength: 255
+          minLength: 1
+          type: string
+        build_context:
+          items:
+            $ref: "#/components/schemas/BuildContextFieldRequest"
+          type: array
+        deploy_context:
+          additionalProperties: {}
+          type: object
+        integration_id:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          writeOnly: true
+        execution_script_id:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+          writeOnly: true
+      type: object
+    ErrorResponse:
+      description: Serializer for a JSON:API error response.
+      example:
+        errors:
+        - code: code
+          meta:
+            key: ""
+          detail: detail
+          source: ""
+          title: title
+          status: status
+        - code: code
+          meta:
+            key: ""
+          detail: detail
+          source: ""
+          title: title
+          status: status
+      properties:
+        errors:
+          description: Array of error objects
+          items:
+            $ref: "#/components/schemas/JSONAPIErrorObject"
+          type: array
+      required:
+      - errors
       type: object
   securitySchemes:
     BearerAuth:
