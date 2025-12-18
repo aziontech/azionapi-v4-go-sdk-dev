@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | Pointer to **string** | * &#x60;aws4_hmac_sha256&#x60; - AWS for HMAC - SHA256 | [optional] 
-**Attributes** | [**AWS4HMACAttributes**](AWS4HMACAttributes.md) |  | 
+**Attributes** | [**AWS4HMAttrs**](AWS4HMAttrs.md) |  | 
 
 ## Methods
 
 ### NewAWS4HMAC
 
-`func NewAWS4HMAC(attributes AWS4HMACAttributes, ) *AWS4HMAC`
+`func NewAWS4HMAC(attributes AWS4HMAttrs, ) *AWS4HMAC`
 
 NewAWS4HMAC instantiates a new AWS4HMAC object
 This constructor will assign default values to properties that have it defined,
@@ -53,20 +53,20 @@ HasType returns a boolean if a field has been set.
 
 ### GetAttributes
 
-`func (o *AWS4HMAC) GetAttributes() AWS4HMACAttributes`
+`func (o *AWS4HMAC) GetAttributes() AWS4HMAttrs`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *AWS4HMAC) GetAttributesOk() (*AWS4HMACAttributes, bool)`
+`func (o *AWS4HMAC) GetAttributesOk() (*AWS4HMAttrs, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *AWS4HMAC) SetAttributes(v AWS4HMACAttributes)`
+`func (o *AWS4HMAC) SetAttributes(v AWS4HMAttrs)`
 
 SetAttributes sets Attributes field to given value.
 

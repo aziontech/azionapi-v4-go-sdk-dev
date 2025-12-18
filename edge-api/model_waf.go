@@ -28,7 +28,7 @@ type WAF struct {
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
 	ProductVersion NullableString `json:"product_version,omitempty"`
-	EngineSettings *WAFEngineSettingsField `json:"engine_settings,omitempty"`
+	EngineSettings *WEngineSettingsField `json:"engine_settings,omitempty"`
 }
 
 type _WAF WAF
@@ -225,9 +225,9 @@ func (o *WAF) UnsetProductVersion() {
 }
 
 // GetEngineSettings returns the EngineSettings field value if set, zero value otherwise.
-func (o *WAF) GetEngineSettings() WAFEngineSettingsField {
+func (o *WAF) GetEngineSettings() WEngineSettingsField {
 	if o == nil || IsNil(o.EngineSettings) {
-		var ret WAFEngineSettingsField
+		var ret WEngineSettingsField
 		return ret
 	}
 	return *o.EngineSettings
@@ -235,7 +235,7 @@ func (o *WAF) GetEngineSettings() WAFEngineSettingsField {
 
 // GetEngineSettingsOk returns a tuple with the EngineSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WAF) GetEngineSettingsOk() (*WAFEngineSettingsField, bool) {
+func (o *WAF) GetEngineSettingsOk() (*WEngineSettingsField, bool) {
 	if o == nil || IsNil(o.EngineSettings) {
 		return nil, false
 	}
@@ -251,8 +251,8 @@ func (o *WAF) HasEngineSettings() bool {
 	return false
 }
 
-// SetEngineSettings gets a reference to the given WAFEngineSettingsField and assigns it to the EngineSettings field.
-func (o *WAF) SetEngineSettings(v WAFEngineSettingsField) {
+// SetEngineSettings gets a reference to the given WEngineSettingsField and assigns it to the EngineSettings field.
+func (o *WAF) SetEngineSettings(v WEngineSettingsField) {
 	o.EngineSettings = &v
 }
 

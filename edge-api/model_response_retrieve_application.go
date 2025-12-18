@@ -21,7 +21,7 @@ var _ MappedNullable = &ResponseRetrieveApplication{}
 
 // ResponseRetrieveApplication struct for ResponseRetrieveApplication
 type ResponseRetrieveApplication struct {
-	Data Application `json:"data"`
+	Data App `json:"data"`
 }
 
 type _ResponseRetrieveApplication ResponseRetrieveApplication
@@ -30,7 +30,7 @@ type _ResponseRetrieveApplication ResponseRetrieveApplication
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponseRetrieveApplication(data Application) *ResponseRetrieveApplication {
+func NewResponseRetrieveApplication(data App) *ResponseRetrieveApplication {
 	this := ResponseRetrieveApplication{}
 	this.Data = data
 	return &this
@@ -45,9 +45,9 @@ func NewResponseRetrieveApplicationWithDefaults() *ResponseRetrieveApplication {
 }
 
 // GetData returns the Data field value
-func (o *ResponseRetrieveApplication) GetData() Application {
+func (o *ResponseRetrieveApplication) GetData() App {
 	if o == nil {
-		var ret Application
+		var ret App
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *ResponseRetrieveApplication) GetData() Application {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ResponseRetrieveApplication) GetDataOk() (*Application, bool) {
+func (o *ResponseRetrieveApplication) GetDataOk() (*App, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *ResponseRetrieveApplication) GetDataOk() (*Application, bool) {
 }
 
 // SetData sets field value
-func (o *ResponseRetrieveApplication) SetData(v Application) {
+func (o *ResponseRetrieveApplication) SetData(v App) {
 	o.Data = v
 }
 

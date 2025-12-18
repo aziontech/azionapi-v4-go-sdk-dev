@@ -134,7 +134,7 @@ func (a *NetworkListsAPIService) CreateNetworkListExecute(r ApiCreateNetworkList
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -145,7 +145,7 @@ func (a *NetworkListsAPIService) CreateNetworkListExecute(r ApiCreateNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -156,7 +156,7 @@ func (a *NetworkListsAPIService) CreateNetworkListExecute(r ApiCreateNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -167,7 +167,7 @@ func (a *NetworkListsAPIService) CreateNetworkListExecute(r ApiCreateNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -178,7 +178,7 @@ func (a *NetworkListsAPIService) CreateNetworkListExecute(r ApiCreateNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -189,7 +189,7 @@ func (a *NetworkListsAPIService) CreateNetworkListExecute(r ApiCreateNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -200,7 +200,7 @@ func (a *NetworkListsAPIService) CreateNetworkListExecute(r ApiCreateNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -230,7 +230,7 @@ type ApiDeleteNetworkListRequest struct {
 	networkListId int64
 }
 
-func (r ApiDeleteNetworkListRequest) Execute() (*ResponseAsyncDeleteNetworkListDetail, *http.Response, error) {
+func (r ApiDeleteNetworkListRequest) Execute() (*ResponseDeleteNetworkListDetail, *http.Response, error) {
 	return r.ApiService.DeleteNetworkListExecute(r)
 }
 
@@ -252,13 +252,13 @@ func (a *NetworkListsAPIService) DeleteNetworkList(ctx context.Context, networkL
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteNetworkListDetail
-func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkListRequest) (*ResponseAsyncDeleteNetworkListDetail, *http.Response, error) {
+//  @return ResponseDeleteNetworkListDetail
+func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkListRequest) (*ResponseDeleteNetworkListDetail, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteNetworkListDetail
+		localVarReturnValue  *ResponseDeleteNetworkListDetail
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkListsAPIService.DeleteNetworkList")
@@ -327,7 +327,7 @@ func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkList
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -338,7 +338,7 @@ func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -349,7 +349,7 @@ func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -360,7 +360,7 @@ func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -371,7 +371,7 @@ func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -382,7 +382,7 @@ func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -393,7 +393,7 @@ func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -499,7 +499,7 @@ func (r ApiListNetworkListsRequest) Search(search string) ApiListNetworkListsReq
 	return r
 }
 
-func (r ApiListNetworkListsRequest) Execute() (*PaginatedNetworkListList, *http.Response, error) {
+func (r ApiListNetworkListsRequest) Execute() (*PaginatedNetworkList, *http.Response, error) {
 	return r.ApiService.ListNetworkListsExecute(r)
 }
 
@@ -519,13 +519,13 @@ func (a *NetworkListsAPIService) ListNetworkLists(ctx context.Context) ApiListNe
 }
 
 // Execute executes the request
-//  @return PaginatedNetworkListList
-func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRequest) (*PaginatedNetworkListList, *http.Response, error) {
+//  @return PaginatedNetworkList
+func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRequest) (*PaginatedNetworkList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedNetworkListList
+		localVarReturnValue  *PaginatedNetworkList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkListsAPIService.ListNetworkLists")
@@ -626,7 +626,7 @@ func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -637,7 +637,7 @@ func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -648,7 +648,7 @@ func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -659,7 +659,7 @@ func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -670,7 +670,7 @@ func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -681,7 +681,7 @@ func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -692,7 +692,7 @@ func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -720,11 +720,11 @@ type ApiPartialUpdateNetworkListRequest struct {
 	ctx context.Context
 	ApiService *NetworkListsAPIService
 	networkListId int64
-	patchedNetworkListDetailRequest *PatchedNetworkListDetailRequest
+	patchNetworkListDetailRequest *PatchNetworkListDetailRequest
 }
 
-func (r ApiPartialUpdateNetworkListRequest) PatchedNetworkListDetailRequest(patchedNetworkListDetailRequest PatchedNetworkListDetailRequest) ApiPartialUpdateNetworkListRequest {
-	r.patchedNetworkListDetailRequest = &patchedNetworkListDetailRequest
+func (r ApiPartialUpdateNetworkListRequest) PatchNetworkListDetailRequest(patchNetworkListDetailRequest PatchNetworkListDetailRequest) ApiPartialUpdateNetworkListRequest {
+	r.patchNetworkListDetailRequest = &patchNetworkListDetailRequest
 	return r
 }
 
@@ -789,7 +789,7 @@ func (a *NetworkListsAPIService) PartialUpdateNetworkListExecute(r ApiPartialUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedNetworkListDetailRequest
+	localVarPostBody = r.patchNetworkListDetailRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -827,7 +827,7 @@ func (a *NetworkListsAPIService) PartialUpdateNetworkListExecute(r ApiPartialUpd
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -838,7 +838,7 @@ func (a *NetworkListsAPIService) PartialUpdateNetworkListExecute(r ApiPartialUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -849,7 +849,7 @@ func (a *NetworkListsAPIService) PartialUpdateNetworkListExecute(r ApiPartialUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -860,7 +860,7 @@ func (a *NetworkListsAPIService) PartialUpdateNetworkListExecute(r ApiPartialUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -871,7 +871,7 @@ func (a *NetworkListsAPIService) PartialUpdateNetworkListExecute(r ApiPartialUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -882,7 +882,7 @@ func (a *NetworkListsAPIService) PartialUpdateNetworkListExecute(r ApiPartialUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -893,7 +893,7 @@ func (a *NetworkListsAPIService) PartialUpdateNetworkListExecute(r ApiPartialUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1050,7 +1050,7 @@ func (a *NetworkListsAPIService) RetrieveNetworkListExecute(r ApiRetrieveNetwork
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1061,7 +1061,7 @@ func (a *NetworkListsAPIService) RetrieveNetworkListExecute(r ApiRetrieveNetwork
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1072,7 +1072,7 @@ func (a *NetworkListsAPIService) RetrieveNetworkListExecute(r ApiRetrieveNetwork
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1083,7 +1083,7 @@ func (a *NetworkListsAPIService) RetrieveNetworkListExecute(r ApiRetrieveNetwork
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1094,7 +1094,7 @@ func (a *NetworkListsAPIService) RetrieveNetworkListExecute(r ApiRetrieveNetwork
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1105,7 +1105,7 @@ func (a *NetworkListsAPIService) RetrieveNetworkListExecute(r ApiRetrieveNetwork
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1116,7 +1116,7 @@ func (a *NetworkListsAPIService) RetrieveNetworkListExecute(r ApiRetrieveNetwork
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1254,7 +1254,7 @@ func (a *NetworkListsAPIService) UpdateNetworkListExecute(r ApiUpdateNetworkList
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1265,7 +1265,7 @@ func (a *NetworkListsAPIService) UpdateNetworkListExecute(r ApiUpdateNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1276,7 +1276,7 @@ func (a *NetworkListsAPIService) UpdateNetworkListExecute(r ApiUpdateNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1287,7 +1287,7 @@ func (a *NetworkListsAPIService) UpdateNetworkListExecute(r ApiUpdateNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1298,7 +1298,7 @@ func (a *NetworkListsAPIService) UpdateNetworkListExecute(r ApiUpdateNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1309,7 +1309,7 @@ func (a *NetworkListsAPIService) UpdateNetworkListExecute(r ApiUpdateNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1320,7 +1320,7 @@ func (a *NetworkListsAPIService) UpdateNetworkListExecute(r ApiUpdateNetworkList
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

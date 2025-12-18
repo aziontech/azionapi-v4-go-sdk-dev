@@ -11,13 +11,13 @@ Name | Type | Description | Notes
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | **string** |  | 
 **Type** | **string** | Type of the connector  * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | 
-**Attributes** | [**ConnectorHTTPAttributes**](ConnectorHTTPAttributes.md) |  | 
+**Attributes** | [**ConnectorHTTPAttrs**](ConnectorHTTPAttrs.md) |  | 
 
 ## Methods
 
 ### NewConnectorHTTP
 
-`func NewConnectorHTTP(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, type_ string, attributes ConnectorHTTPAttributes, ) *ConnectorHTTP`
+`func NewConnectorHTTP(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, type_ string, attributes ConnectorHTTPAttrs, ) *ConnectorHTTP`
 
 NewConnectorHTTP instantiates a new ConnectorHTTP object
 This constructor will assign default values to properties that have it defined,
@@ -179,20 +179,20 @@ SetType sets Type field to given value.
 
 ### GetAttributes
 
-`func (o *ConnectorHTTP) GetAttributes() ConnectorHTTPAttributes`
+`func (o *ConnectorHTTP) GetAttributes() ConnectorHTTPAttrs`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *ConnectorHTTP) GetAttributesOk() (*ConnectorHTTPAttributes, bool)`
+`func (o *ConnectorHTTP) GetAttributesOk() (*ConnectorHTTPAttrs, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *ConnectorHTTP) SetAttributes(v ConnectorHTTPAttributes)`
+`func (o *ConnectorHTTP) SetAttributes(v ConnectorHTTPAttrs)`
 
 SetAttributes sets Attributes field to given value.
 

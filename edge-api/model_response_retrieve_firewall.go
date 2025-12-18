@@ -21,7 +21,7 @@ var _ MappedNullable = &ResponseRetrieveFirewall{}
 
 // ResponseRetrieveFirewall struct for ResponseRetrieveFirewall
 type ResponseRetrieveFirewall struct {
-	Data Firewall `json:"data"`
+	Data Fw `json:"data"`
 }
 
 type _ResponseRetrieveFirewall ResponseRetrieveFirewall
@@ -30,7 +30,7 @@ type _ResponseRetrieveFirewall ResponseRetrieveFirewall
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponseRetrieveFirewall(data Firewall) *ResponseRetrieveFirewall {
+func NewResponseRetrieveFirewall(data Fw) *ResponseRetrieveFirewall {
 	this := ResponseRetrieveFirewall{}
 	this.Data = data
 	return &this
@@ -45,9 +45,9 @@ func NewResponseRetrieveFirewallWithDefaults() *ResponseRetrieveFirewall {
 }
 
 // GetData returns the Data field value
-func (o *ResponseRetrieveFirewall) GetData() Firewall {
+func (o *ResponseRetrieveFirewall) GetData() Fw {
 	if o == nil {
-		var ret Firewall
+		var ret Fw
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *ResponseRetrieveFirewall) GetData() Firewall {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ResponseRetrieveFirewall) GetDataOk() (*Firewall, bool) {
+func (o *ResponseRetrieveFirewall) GetDataOk() (*Fw, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *ResponseRetrieveFirewall) GetDataOk() (*Firewall, bool) {
 }
 
 // SetData sets field value
-func (o *ResponseRetrieveFirewall) SetData(v Firewall) {
+func (o *ResponseRetrieveFirewall) SetData(v Fw) {
 	o.Data = v
 }
 

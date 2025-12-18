@@ -30,7 +30,7 @@ type ConnectorHTTP struct {
 	ProductVersion string `json:"product_version"`
 	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
 	Type string `json:"type"`
-	Attributes ConnectorHTTPAttributes `json:"attributes"`
+	Attributes ConnectorHTTPAttrs `json:"attributes"`
 }
 
 type _ConnectorHTTP ConnectorHTTP
@@ -39,7 +39,7 @@ type _ConnectorHTTP ConnectorHTTP
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectorHTTP(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, type_ string, attributes ConnectorHTTPAttributes) *ConnectorHTTP {
+func NewConnectorHTTP(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, type_ string, attributes ConnectorHTTPAttrs) *ConnectorHTTP {
 	this := ConnectorHTTP{}
 	this.Id = id
 	this.Name = name
@@ -236,9 +236,9 @@ func (o *ConnectorHTTP) SetType(v string) {
 }
 
 // GetAttributes returns the Attributes field value
-func (o *ConnectorHTTP) GetAttributes() ConnectorHTTPAttributes {
+func (o *ConnectorHTTP) GetAttributes() ConnectorHTTPAttrs {
 	if o == nil {
-		var ret ConnectorHTTPAttributes
+		var ret ConnectorHTTPAttrs
 		return ret
 	}
 
@@ -247,7 +247,7 @@ func (o *ConnectorHTTP) GetAttributes() ConnectorHTTPAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorHTTP) GetAttributesOk() (*ConnectorHTTPAttributes, bool) {
+func (o *ConnectorHTTP) GetAttributesOk() (*ConnectorHTTPAttrs, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -255,7 +255,7 @@ func (o *ConnectorHTTP) GetAttributesOk() (*ConnectorHTTPAttributes, bool) {
 }
 
 // SetAttributes sets field value
-func (o *ConnectorHTTP) SetAttributes(v ConnectorHTTPAttributes) {
+func (o *ConnectorHTTP) SetAttributes(v ConnectorHTTPAttrs) {
 	o.Attributes = v
 }
 

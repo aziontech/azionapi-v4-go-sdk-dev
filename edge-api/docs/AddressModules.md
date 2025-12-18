@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LoadBalancer** | Pointer to [**AddressLoadBalancerModule**](AddressLoadBalancerModule.md) |  | [optional] 
+**LoadBalancer** | Pointer to [**AddressLoBalancerModule**](AddressLoBalancerModule.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLoadBalancer
 
-`func (o *AddressModules) GetLoadBalancer() AddressLoadBalancerModule`
+`func (o *AddressModules) GetLoadBalancer() AddressLoBalancerModule`
 
 GetLoadBalancer returns the LoadBalancer field if non-nil, zero value otherwise.
 
 ### GetLoadBalancerOk
 
-`func (o *AddressModules) GetLoadBalancerOk() (*AddressLoadBalancerModule, bool)`
+`func (o *AddressModules) GetLoadBalancerOk() (*AddressLoBalancerModule, bool)`
 
 GetLoadBalancerOk returns a tuple with the LoadBalancer field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLoadBalancer
 
-`func (o *AddressModules) SetLoadBalancer(v AddressLoadBalancerModule)`
+`func (o *AddressModules) SetLoadBalancer(v AddressLoBalancerModule)`
 
 SetLoadBalancer sets LoadBalancer field to given value.
 

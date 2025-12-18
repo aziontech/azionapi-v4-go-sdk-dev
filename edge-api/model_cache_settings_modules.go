@@ -19,8 +19,8 @@ var _ MappedNullable = &CacheSettingsModules{}
 
 // CacheSettingsModules struct for CacheSettingsModules
 type CacheSettingsModules struct {
-	Cache *CacheSettingsEdgeCacheModule `json:"cache,omitempty"`
-	ApplicationAccelerator *CacheSettingsApplicationAcceleratorModule `json:"application_accelerator,omitempty"`
+	Cache *CacheEdge `json:"cache,omitempty"`
+	ApplicationAccelerator *CacheAccel `json:"application_accelerator,omitempty"`
 }
 
 // NewCacheSettingsModules instantiates a new CacheSettingsModules object
@@ -41,9 +41,9 @@ func NewCacheSettingsModulesWithDefaults() *CacheSettingsModules {
 }
 
 // GetCache returns the Cache field value if set, zero value otherwise.
-func (o *CacheSettingsModules) GetCache() CacheSettingsEdgeCacheModule {
+func (o *CacheSettingsModules) GetCache() CacheEdge {
 	if o == nil || IsNil(o.Cache) {
-		var ret CacheSettingsEdgeCacheModule
+		var ret CacheEdge
 		return ret
 	}
 	return *o.Cache
@@ -51,7 +51,7 @@ func (o *CacheSettingsModules) GetCache() CacheSettingsEdgeCacheModule {
 
 // GetCacheOk returns a tuple with the Cache field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CacheSettingsModules) GetCacheOk() (*CacheSettingsEdgeCacheModule, bool) {
+func (o *CacheSettingsModules) GetCacheOk() (*CacheEdge, bool) {
 	if o == nil || IsNil(o.Cache) {
 		return nil, false
 	}
@@ -67,15 +67,15 @@ func (o *CacheSettingsModules) HasCache() bool {
 	return false
 }
 
-// SetCache gets a reference to the given CacheSettingsEdgeCacheModule and assigns it to the Cache field.
-func (o *CacheSettingsModules) SetCache(v CacheSettingsEdgeCacheModule) {
+// SetCache gets a reference to the given CacheEdge and assigns it to the Cache field.
+func (o *CacheSettingsModules) SetCache(v CacheEdge) {
 	o.Cache = &v
 }
 
 // GetApplicationAccelerator returns the ApplicationAccelerator field value if set, zero value otherwise.
-func (o *CacheSettingsModules) GetApplicationAccelerator() CacheSettingsApplicationAcceleratorModule {
+func (o *CacheSettingsModules) GetApplicationAccelerator() CacheAccel {
 	if o == nil || IsNil(o.ApplicationAccelerator) {
-		var ret CacheSettingsApplicationAcceleratorModule
+		var ret CacheAccel
 		return ret
 	}
 	return *o.ApplicationAccelerator
@@ -83,7 +83,7 @@ func (o *CacheSettingsModules) GetApplicationAccelerator() CacheSettingsApplicat
 
 // GetApplicationAcceleratorOk returns a tuple with the ApplicationAccelerator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CacheSettingsModules) GetApplicationAcceleratorOk() (*CacheSettingsApplicationAcceleratorModule, bool) {
+func (o *CacheSettingsModules) GetApplicationAcceleratorOk() (*CacheAccel, bool) {
 	if o == nil || IsNil(o.ApplicationAccelerator) {
 		return nil, false
 	}
@@ -99,8 +99,8 @@ func (o *CacheSettingsModules) HasApplicationAccelerator() bool {
 	return false
 }
 
-// SetApplicationAccelerator gets a reference to the given CacheSettingsApplicationAcceleratorModule and assigns it to the ApplicationAccelerator field.
-func (o *CacheSettingsModules) SetApplicationAccelerator(v CacheSettingsApplicationAcceleratorModule) {
+// SetApplicationAccelerator gets a reference to the given CacheAccel and assigns it to the ApplicationAccelerator field.
+func (o *CacheSettingsModules) SetApplicationAccelerator(v CacheAccel) {
 	o.ApplicationAccelerator = &v
 }
 

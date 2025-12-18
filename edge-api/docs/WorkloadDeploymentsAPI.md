@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateWorkloadDeployment
 
-> ResponseWorkloadDeployment CreateWorkloadDeployment(ctx, workloadId).WorkloadDeploymentRequest(workloadDeploymentRequest).Execute()
+> ResponseWorkloDeployment CreateWorkloadDeployment(ctx, workloadId).WorkloDeploymentRequest(workloDeploymentRequest).Execute()
 
 Create a Workload Deployment
 
@@ -35,16 +35,16 @@ import (
 
 func main() {
 	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
-	workloadDeploymentRequest := *openapiclient.NewWorkloadDeploymentRequest("Name_example", *openapiclient.NewDeploymentStrategyDefaultDeploymentStrategyRequest("Type_example", *openapiclient.NewDefaultDeploymentStrategyAttrsRequest(int64(123)))) // WorkloadDeploymentRequest | 
+	workloDeploymentRequest := *openapiclient.NewWorkloDeploymentRequest("Name_example", *openapiclient.NewDeployStrategyDefaultDeployStrategyRequest("Type_example", *openapiclient.NewDefaultDeployStrategyAttrsRequest(int64(123)))) // WorkloDeploymentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadDeploymentsAPI.CreateWorkloadDeployment(context.Background(), workloadId).WorkloadDeploymentRequest(workloadDeploymentRequest).Execute()
+	resp, r, err := apiClient.WorkloadDeploymentsAPI.CreateWorkloadDeployment(context.Background(), workloadId).WorkloDeploymentRequest(workloDeploymentRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.CreateWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateWorkloadDeployment`: ResponseWorkloadDeployment
+	// response from `CreateWorkloadDeployment`: ResponseWorkloDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.CreateWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -65,11 +65,11 @@ Other parameters are passed through a pointer to a apiCreateWorkloadDeploymentRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **workloadDeploymentRequest** | [**WorkloadDeploymentRequest**](WorkloadDeploymentRequest.md) |  | 
+ **workloDeploymentRequest** | [**WorkloDeploymentRequest**](WorkloDeploymentRequest.md) |  | 
 
 ### Return type
 
-[**ResponseWorkloadDeployment**](ResponseWorkloadDeployment.md)
+[**ResponseWorkloDeployment**](ResponseWorkloDeployment.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWorkloadDeployment
 
-> ResponseAsyncDeleteWorkloadDeployment DeleteWorkloadDeployment(ctx, deploymentId, workloadId).Execute()
+> ResponseDeleteWorkloDeployment DeleteWorkloadDeployment(ctx, deploymentId, workloadId).Execute()
 
 Delete a Workload Deployment
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.DeleteWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteWorkloadDeployment`: ResponseAsyncDeleteWorkloadDeployment
+	// response from `DeleteWorkloadDeployment`: ResponseDeleteWorkloDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.DeleteWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteWorkloadDeployment**](ResponseAsyncDeleteWorkloadDeployment.md)
+[**ResponseDeleteWorkloDeployment**](ResponseDeleteWorkloDeployment.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ListWorkloadDeployments
 
-> PaginatedWorkloadDeploymentList ListWorkloadDeployments(ctx, workloadId).Current(current).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Tag(tag).Execute()
+> PaginatedWorkloDeploymentList ListWorkloadDeployments(ctx, workloadId).Current(current).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Tag(tag).Execute()
 
 List Workload Deployments
 
@@ -196,7 +196,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.ListWorkloadDeployments``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListWorkloadDeployments`: PaginatedWorkloadDeploymentList
+	// response from `ListWorkloadDeployments`: PaginatedWorkloDeploymentList
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.ListWorkloadDeployments`: %v\n", resp)
 }
 ```
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedWorkloadDeploymentList**](PaginatedWorkloadDeploymentList.md)
+[**PaginatedWorkloDeploymentList**](PaginatedWorkloDeploymentList.md)
 
 ### Authorization
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateWorkloadDeployment
 
-> ResponseWorkloadDeployment PartialUpdateWorkloadDeployment(ctx, deploymentId, workloadId).PatchedWorkloadDeploymentRequest(patchedWorkloadDeploymentRequest).Execute()
+> ResponseWorkloDeployment PartialUpdateWorkloadDeployment(ctx, deploymentId, workloadId).PatchedWorkloDeploymentRequest(patchedWorkloDeploymentRequest).Execute()
 
 Partially update a Workload Deployment
 
@@ -267,16 +267,16 @@ import (
 func main() {
 	deploymentId := int64(789) // int64 | A unique integer value identifying the deployment.
 	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
-	patchedWorkloadDeploymentRequest := *openapiclient.NewPatchedWorkloadDeploymentRequest() // PatchedWorkloadDeploymentRequest |  (optional)
+	patchedWorkloDeploymentRequest := *openapiclient.NewPatchedWorkloDeploymentRequest() // PatchedWorkloDeploymentRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadDeploymentsAPI.PartialUpdateWorkloadDeployment(context.Background(), deploymentId, workloadId).PatchedWorkloadDeploymentRequest(patchedWorkloadDeploymentRequest).Execute()
+	resp, r, err := apiClient.WorkloadDeploymentsAPI.PartialUpdateWorkloadDeployment(context.Background(), deploymentId, workloadId).PatchedWorkloDeploymentRequest(patchedWorkloDeploymentRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.PartialUpdateWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateWorkloadDeployment`: ResponseWorkloadDeployment
+	// response from `PartialUpdateWorkloadDeployment`: ResponseWorkloDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.PartialUpdateWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -299,11 +299,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedWorkloadDeploymentRequest** | [**PatchedWorkloadDeploymentRequest**](PatchedWorkloadDeploymentRequest.md) |  | 
+ **patchedWorkloDeploymentRequest** | [**PatchedWorkloDeploymentRequest**](PatchedWorkloDeploymentRequest.md) |  | 
 
 ### Return type
 
-[**ResponseWorkloadDeployment**](ResponseWorkloadDeployment.md)
+[**ResponseWorkloDeployment**](ResponseWorkloDeployment.md)
 
 ### Authorization
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveWorkloadDeployment
 
-> ResponseRetrieveWorkloadDeployment RetrieveWorkloadDeployment(ctx, deploymentId, workloadId).Fields(fields).Execute()
+> ResponseRetrieveWorkloDeployment RetrieveWorkloadDeployment(ctx, deploymentId, workloadId).Fields(fields).Execute()
 
 Retrieve details of a Workload Deployment
 
@@ -351,7 +351,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.RetrieveWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveWorkloadDeployment`: ResponseRetrieveWorkloadDeployment
+	// response from `RetrieveWorkloadDeployment`: ResponseRetrieveWorkloDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.RetrieveWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveWorkloadDeployment**](ResponseRetrieveWorkloadDeployment.md)
+[**ResponseRetrieveWorkloDeployment**](ResponseRetrieveWorkloDeployment.md)
 
 ### Authorization
 
@@ -396,7 +396,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWorkloadDeployment
 
-> ResponseWorkloadDeployment UpdateWorkloadDeployment(ctx, deploymentId, workloadId).WorkloadDeploymentRequest(workloadDeploymentRequest).Execute()
+> ResponseWorkloDeployment UpdateWorkloadDeployment(ctx, deploymentId, workloadId).WorkloDeploymentRequest(workloDeploymentRequest).Execute()
 
 Update a Workload Deployment
 
@@ -417,16 +417,16 @@ import (
 func main() {
 	deploymentId := int64(789) // int64 | A unique integer value identifying the deployment.
 	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
-	workloadDeploymentRequest := *openapiclient.NewWorkloadDeploymentRequest("Name_example", *openapiclient.NewDeploymentStrategyDefaultDeploymentStrategyRequest("Type_example", *openapiclient.NewDefaultDeploymentStrategyAttrsRequest(int64(123)))) // WorkloadDeploymentRequest | 
+	workloDeploymentRequest := *openapiclient.NewWorkloDeploymentRequest("Name_example", *openapiclient.NewDeployStrategyDefaultDeployStrategyRequest("Type_example", *openapiclient.NewDefaultDeployStrategyAttrsRequest(int64(123)))) // WorkloDeploymentRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadDeploymentsAPI.UpdateWorkloadDeployment(context.Background(), deploymentId, workloadId).WorkloadDeploymentRequest(workloadDeploymentRequest).Execute()
+	resp, r, err := apiClient.WorkloadDeploymentsAPI.UpdateWorkloadDeployment(context.Background(), deploymentId, workloadId).WorkloDeploymentRequest(workloDeploymentRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.UpdateWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateWorkloadDeployment`: ResponseWorkloadDeployment
+	// response from `UpdateWorkloadDeployment`: ResponseWorkloDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.UpdateWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -449,11 +449,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **workloadDeploymentRequest** | [**WorkloadDeploymentRequest**](WorkloadDeploymentRequest.md) |  | 
+ **workloDeploymentRequest** | [**WorkloDeploymentRequest**](WorkloDeploymentRequest.md) |  | 
 
 ### Return type
 
-[**ResponseWorkloadDeployment**](ResponseWorkloadDeployment.md)
+[**ResponseWorkloDeployment**](ResponseWorkloDeployment.md)
 
 ### Authorization
 

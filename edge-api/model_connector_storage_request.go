@@ -25,7 +25,7 @@ type ConnectorStorageRequest struct {
 	Active *bool `json:"active,omitempty"`
 	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
 	Type string `json:"type"`
-	Attributes ConnectorStorageAttributesRequest `json:"attributes"`
+	Attributes ConnectorStorageAttrsReq `json:"attributes"`
 }
 
 type _ConnectorStorageRequest ConnectorStorageRequest
@@ -34,7 +34,7 @@ type _ConnectorStorageRequest ConnectorStorageRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectorStorageRequest(name string, type_ string, attributes ConnectorStorageAttributesRequest) *ConnectorStorageRequest {
+func NewConnectorStorageRequest(name string, type_ string, attributes ConnectorStorageAttrsReq) *ConnectorStorageRequest {
 	this := ConnectorStorageRequest{}
 	this.Name = name
 	this.Type = type_
@@ -131,9 +131,9 @@ func (o *ConnectorStorageRequest) SetType(v string) {
 }
 
 // GetAttributes returns the Attributes field value
-func (o *ConnectorStorageRequest) GetAttributes() ConnectorStorageAttributesRequest {
+func (o *ConnectorStorageRequest) GetAttributes() ConnectorStorageAttrsReq {
 	if o == nil {
-		var ret ConnectorStorageAttributesRequest
+		var ret ConnectorStorageAttrsReq
 		return ret
 	}
 
@@ -142,7 +142,7 @@ func (o *ConnectorStorageRequest) GetAttributes() ConnectorStorageAttributesRequ
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorStorageRequest) GetAttributesOk() (*ConnectorStorageAttributesRequest, bool) {
+func (o *ConnectorStorageRequest) GetAttributesOk() (*ConnectorStorageAttrsReq, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -150,7 +150,7 @@ func (o *ConnectorStorageRequest) GetAttributesOk() (*ConnectorStorageAttributes
 }
 
 // SetAttributes sets field value
-func (o *ConnectorStorageRequest) SetAttributes(v ConnectorStorageAttributesRequest) {
+func (o *ConnectorStorageRequest) SetAttributes(v ConnectorStorageAttrsReq) {
 	o.Attributes = v
 }
 

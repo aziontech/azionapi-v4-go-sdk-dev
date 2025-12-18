@@ -23,7 +23,7 @@ var _ MappedNullable = &AWS4HMAC{}
 type AWS4HMAC struct {
 	// * `aws4_hmac_sha256` - AWS for HMAC - SHA256
 	Type *string `json:"type,omitempty"`
-	Attributes AWS4HMACAttributes `json:"attributes"`
+	Attributes AWS4HMAttrs `json:"attributes"`
 }
 
 type _AWS4HMAC AWS4HMAC
@@ -32,7 +32,7 @@ type _AWS4HMAC AWS4HMAC
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAWS4HMAC(attributes AWS4HMACAttributes) *AWS4HMAC {
+func NewAWS4HMAC(attributes AWS4HMAttrs) *AWS4HMAC {
 	this := AWS4HMAC{}
 	this.Attributes = attributes
 	return &this
@@ -79,9 +79,9 @@ func (o *AWS4HMAC) SetType(v string) {
 }
 
 // GetAttributes returns the Attributes field value
-func (o *AWS4HMAC) GetAttributes() AWS4HMACAttributes {
+func (o *AWS4HMAC) GetAttributes() AWS4HMAttrs {
 	if o == nil {
-		var ret AWS4HMACAttributes
+		var ret AWS4HMAttrs
 		return ret
 	}
 
@@ -90,7 +90,7 @@ func (o *AWS4HMAC) GetAttributes() AWS4HMACAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *AWS4HMAC) GetAttributesOk() (*AWS4HMACAttributes, bool) {
+func (o *AWS4HMAC) GetAttributesOk() (*AWS4HMAttrs, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -98,7 +98,7 @@ func (o *AWS4HMAC) GetAttributesOk() (*AWS4HMACAttributes, bool) {
 }
 
 // SetAttributes sets field value
-func (o *AWS4HMAC) SetAttributes(v AWS4HMACAttributes) {
+func (o *AWS4HMAC) SetAttributes(v AWS4HMAttrs) {
 	o.Attributes = v
 }
 

@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequest{*openapiclient.NewPageRequest("Code_example", *openapiclient.NewPageConnectorRequest(*openapiclient.NewPageConnectorAttributesRequest(int64(123))))}) // CustomPageRequest | 
+	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequest{*openapiclient.NewPageRequest("Code_example", *openapiclient.NewPageConnectorRequest("Type_example", *openapiclient.NewPageConnectorAttrsReq(int64(123))))}) // CustomPageRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCustomPage
 
-> ResponseAsyncDeleteCustomPage DeleteCustomPage(ctx, customPageId).Execute()
+> ResponseDeleteCustomPage DeleteCustomPage(ctx, customPageId).Execute()
 
 Delete a Custom Page
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.DeleteCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCustomPage`: ResponseAsyncDeleteCustomPage
+	// response from `DeleteCustomPage`: ResponseDeleteCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.DeleteCustomPage`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteCustomPage**](ResponseAsyncDeleteCustomPage.md)
+[**ResponseDeleteCustomPage**](ResponseDeleteCustomPage.md)
 
 ### Authorization
 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateCustomPage
 
-> ResponseCustomPage PartialUpdateCustomPage(ctx, customPageId).PatchedCustomPageRequest(patchedCustomPageRequest).Execute()
+> ResponseCustomPage PartialUpdateCustomPage(ctx, customPageId).PatchCustomPageRequest(patchCustomPageRequest).Execute()
 
 Partially update a Custom Page
 
@@ -258,11 +258,11 @@ import (
 
 func main() {
 	customPageId := int64(789) // int64 | A unique integer value identifying the custom page.
-	patchedCustomPageRequest := *openapiclient.NewPatchedCustomPageRequest() // PatchedCustomPageRequest |  (optional)
+	patchCustomPageRequest := *openapiclient.NewPatchCustomPageRequest() // PatchCustomPageRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomPagesAPI.PartialUpdateCustomPage(context.Background(), customPageId).PatchedCustomPageRequest(patchedCustomPageRequest).Execute()
+	resp, r, err := apiClient.CustomPagesAPI.PartialUpdateCustomPage(context.Background(), customPageId).PatchCustomPageRequest(patchCustomPageRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.PartialUpdateCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -288,7 +288,7 @@ Other parameters are passed through a pointer to a apiPartialUpdateCustomPageReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedCustomPageRequest** | [**PatchedCustomPageRequest**](PatchedCustomPageRequest.md) |  | 
+ **patchCustomPageRequest** | [**PatchCustomPageRequest**](PatchCustomPageRequest.md) |  | 
 
 ### Return type
 
@@ -402,7 +402,7 @@ import (
 
 func main() {
 	customPageId := int64(789) // int64 | A unique integer value identifying the custom page.
-	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequest{*openapiclient.NewPageRequest("Code_example", *openapiclient.NewPageConnectorRequest(*openapiclient.NewPageConnectorAttributesRequest(int64(123))))}) // CustomPageRequest | 
+	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequest{*openapiclient.NewPageRequest("Code_example", *openapiclient.NewPageConnectorRequest("Type_example", *openapiclient.NewPageConnectorAttrsReq(int64(123))))}) // CustomPageRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

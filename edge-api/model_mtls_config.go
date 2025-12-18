@@ -21,7 +21,8 @@ var _ MappedNullable = &MTLSConfig{}
 type MTLSConfig struct {
 	Certificate NullableInt64 `json:"certificate,omitempty"`
 	Crl []int64 `json:"crl,omitempty"`
-	Verification NullableMTLSConfigVerification `json:"verification,omitempty"`
+	// * `enforce` - Enforce * `permissive` - Permissive
+	Verification *string `json:"verification,omitempty"`
 }
 
 // NewMTLSConfig instantiates a new MTLSConfig object
@@ -116,46 +117,36 @@ func (o *MTLSConfig) SetCrl(v []int64) {
 	o.Crl = v
 }
 
-// GetVerification returns the Verification field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MTLSConfig) GetVerification() MTLSConfigVerification {
-	if o == nil || IsNil(o.Verification.Get()) {
-		var ret MTLSConfigVerification
+// GetVerification returns the Verification field value if set, zero value otherwise.
+func (o *MTLSConfig) GetVerification() string {
+	if o == nil || IsNil(o.Verification) {
+		var ret string
 		return ret
 	}
-	return *o.Verification.Get()
+	return *o.Verification
 }
 
 // GetVerificationOk returns a tuple with the Verification field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MTLSConfig) GetVerificationOk() (*MTLSConfigVerification, bool) {
-	if o == nil {
+func (o *MTLSConfig) GetVerificationOk() (*string, bool) {
+	if o == nil || IsNil(o.Verification) {
 		return nil, false
 	}
-	return o.Verification.Get(), o.Verification.IsSet()
+	return o.Verification, true
 }
 
 // HasVerification returns a boolean if a field has been set.
 func (o *MTLSConfig) HasVerification() bool {
-	if o != nil && o.Verification.IsSet() {
+	if o != nil && !IsNil(o.Verification) {
 		return true
 	}
 
 	return false
 }
 
-// SetVerification gets a reference to the given NullableMTLSConfigVerification and assigns it to the Verification field.
-func (o *MTLSConfig) SetVerification(v MTLSConfigVerification) {
-	o.Verification.Set(&v)
-}
-// SetVerificationNil sets the value for Verification to be an explicit nil
-func (o *MTLSConfig) SetVerificationNil() {
-	o.Verification.Set(nil)
-}
-
-// UnsetVerification ensures that no value is present for Verification, not even an explicit nil
-func (o *MTLSConfig) UnsetVerification() {
-	o.Verification.Unset()
+// SetVerification gets a reference to the given string and assigns it to the Verification field.
+func (o *MTLSConfig) SetVerification(v string) {
+	o.Verification = &v
 }
 
 func (o MTLSConfig) MarshalJSON() ([]byte, error) {
@@ -174,8 +165,8 @@ func (o MTLSConfig) ToMap() (map[string]interface{}, error) {
 	if o.Crl != nil {
 		toSerialize["crl"] = o.Crl
 	}
-	if o.Verification.IsSet() {
-		toSerialize["verification"] = o.Verification.Get()
+	if !IsNil(o.Verification) {
+		toSerialize["verification"] = o.Verification
 	}
 	return toSerialize, nil
 }

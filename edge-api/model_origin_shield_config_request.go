@@ -20,7 +20,7 @@ var _ MappedNullable = &OriginShieldConfigRequest{}
 // OriginShieldConfigRequest struct for OriginShieldConfigRequest
 type OriginShieldConfigRequest struct {
 	OriginIpAcl *OriginIPACLRequest `json:"origin_ip_acl,omitempty"`
-	Hmac *HMACRequest `json:"hmac,omitempty"`
+	Hmac *HMRequest `json:"hmac,omitempty"`
 }
 
 // NewOriginShieldConfigRequest instantiates a new OriginShieldConfigRequest object
@@ -73,9 +73,9 @@ func (o *OriginShieldConfigRequest) SetOriginIpAcl(v OriginIPACLRequest) {
 }
 
 // GetHmac returns the Hmac field value if set, zero value otherwise.
-func (o *OriginShieldConfigRequest) GetHmac() HMACRequest {
+func (o *OriginShieldConfigRequest) GetHmac() HMRequest {
 	if o == nil || IsNil(o.Hmac) {
-		var ret HMACRequest
+		var ret HMRequest
 		return ret
 	}
 	return *o.Hmac
@@ -83,7 +83,7 @@ func (o *OriginShieldConfigRequest) GetHmac() HMACRequest {
 
 // GetHmacOk returns a tuple with the Hmac field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OriginShieldConfigRequest) GetHmacOk() (*HMACRequest, bool) {
+func (o *OriginShieldConfigRequest) GetHmacOk() (*HMRequest, bool) {
 	if o == nil || IsNil(o.Hmac) {
 		return nil, false
 	}
@@ -99,8 +99,8 @@ func (o *OriginShieldConfigRequest) HasHmac() bool {
 	return false
 }
 
-// SetHmac gets a reference to the given HMACRequest and assigns it to the Hmac field.
-func (o *OriginShieldConfigRequest) SetHmac(v HMACRequest) {
+// SetHmac gets a reference to the given HMRequest and assigns it to the Hmac field.
+func (o *OriginShieldConfigRequest) SetHmac(v HMRequest) {
 	o.Hmac = &v
 }
 

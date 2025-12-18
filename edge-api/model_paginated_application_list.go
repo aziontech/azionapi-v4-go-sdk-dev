@@ -27,7 +27,7 @@ type PaginatedApplicationList struct {
 	Page *int64 `json:"page,omitempty"`
 	// Number of items per page
 	PageSize *int64 `json:"page_size,omitempty"`
-	Results []Application `json:"results,omitempty"`
+	Results []App `json:"results,omitempty"`
 }
 
 // NewPaginatedApplicationList instantiates a new PaginatedApplicationList object
@@ -176,9 +176,9 @@ func (o *PaginatedApplicationList) SetPageSize(v int64) {
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *PaginatedApplicationList) GetResults() []Application {
+func (o *PaginatedApplicationList) GetResults() []App {
 	if o == nil || IsNil(o.Results) {
-		var ret []Application
+		var ret []App
 		return ret
 	}
 	return o.Results
@@ -186,7 +186,7 @@ func (o *PaginatedApplicationList) GetResults() []Application {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedApplicationList) GetResultsOk() ([]Application, bool) {
+func (o *PaginatedApplicationList) GetResultsOk() ([]App, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -202,8 +202,8 @@ func (o *PaginatedApplicationList) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []Application and assigns it to the Results field.
-func (o *PaginatedApplicationList) SetResults(v []Application) {
+// SetResults gets a reference to the given []App and assigns it to the Results field.
+func (o *PaginatedApplicationList) SetResults(v []App) {
 	o.Results = v
 }
 

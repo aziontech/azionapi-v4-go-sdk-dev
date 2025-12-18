@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCacheSetting
 
-> ResponseAsyncDeleteCacheSetting DeleteCacheSetting(ctx, applicationId, cacheSettingId).Execute()
+> ResponseDeleteCacheSetting DeleteCacheSetting(ctx, applicationId, cacheSettingId).Execute()
 
 Delete an Applications Cache Setting
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsCacheSettingsAPI.DeleteCacheSetting``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCacheSetting`: ResponseAsyncDeleteCacheSetting
+	// response from `DeleteCacheSetting`: ResponseDeleteCacheSetting
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsCacheSettingsAPI.DeleteCacheSetting`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteCacheSetting**](ResponseAsyncDeleteCacheSetting.md)
+[**ResponseDeleteCacheSetting**](ResponseDeleteCacheSetting.md)
 
 ### Authorization
 
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateCacheSetting
 
-> ResponseCacheSetting PartialUpdateCacheSetting(ctx, applicationId, cacheSettingId).PatchedCacheSettingRequest(patchedCacheSettingRequest).Execute()
+> ResponseCacheSetting PartialUpdateCacheSetting(ctx, applicationId, cacheSettingId).PatchCacheSettingRequest(patchCacheSettingRequest).Execute()
 
 Partially update an Applications Cache Setting
 
@@ -265,11 +265,11 @@ import (
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	cacheSettingId := int64(789) // int64 | A unique integer value identifying the cache setting.
-	patchedCacheSettingRequest := *openapiclient.NewPatchedCacheSettingRequest() // PatchedCacheSettingRequest |  (optional)
+	patchCacheSettingRequest := *openapiclient.NewPatchCacheSettingRequest() // PatchCacheSettingRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsCacheSettingsAPI.PartialUpdateCacheSetting(context.Background(), applicationId, cacheSettingId).PatchedCacheSettingRequest(patchedCacheSettingRequest).Execute()
+	resp, r, err := apiClient.ApplicationsCacheSettingsAPI.PartialUpdateCacheSetting(context.Background(), applicationId, cacheSettingId).PatchCacheSettingRequest(patchCacheSettingRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsCacheSettingsAPI.PartialUpdateCacheSetting``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedCacheSettingRequest** | [**PatchedCacheSettingRequest**](PatchedCacheSettingRequest.md) |  | 
+ **patchCacheSettingRequest** | [**PatchCacheSettingRequest**](PatchCacheSettingRequest.md) |  | 
 
 ### Return type
 

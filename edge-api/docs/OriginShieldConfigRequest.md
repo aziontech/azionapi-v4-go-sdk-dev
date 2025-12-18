@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **OriginIpAcl** | Pointer to [**OriginIPACLRequest**](OriginIPACLRequest.md) |  | [optional] 
-**Hmac** | Pointer to [**HMACRequest**](HMACRequest.md) |  | [optional] 
+**Hmac** | Pointer to [**HMRequest**](HMRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasOriginIpAcl returns a boolean if a field has been set.
 
 ### GetHmac
 
-`func (o *OriginShieldConfigRequest) GetHmac() HMACRequest`
+`func (o *OriginShieldConfigRequest) GetHmac() HMRequest`
 
 GetHmac returns the Hmac field if non-nil, zero value otherwise.
 
 ### GetHmacOk
 
-`func (o *OriginShieldConfigRequest) GetHmacOk() (*HMACRequest, bool)`
+`func (o *OriginShieldConfigRequest) GetHmacOk() (*HMRequest, bool)`
 
 GetHmacOk returns a tuple with the Hmac field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHmac
 
-`func (o *OriginShieldConfigRequest) SetHmac(v HMACRequest)`
+`func (o *OriginShieldConfigRequest) SetHmac(v HMRequest)`
 
 SetHmac sets Hmac field to given value.
 

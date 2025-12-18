@@ -138,7 +138,7 @@ func (a *ApplicationsAPIService) CloneApplicationExecute(r ApiCloneApplicationRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -149,7 +149,7 @@ func (a *ApplicationsAPIService) CloneApplicationExecute(r ApiCloneApplicationRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -160,7 +160,7 @@ func (a *ApplicationsAPIService) CloneApplicationExecute(r ApiCloneApplicationRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -171,7 +171,7 @@ func (a *ApplicationsAPIService) CloneApplicationExecute(r ApiCloneApplicationRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -182,7 +182,7 @@ func (a *ApplicationsAPIService) CloneApplicationExecute(r ApiCloneApplicationRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -193,7 +193,7 @@ func (a *ApplicationsAPIService) CloneApplicationExecute(r ApiCloneApplicationRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -204,7 +204,7 @@ func (a *ApplicationsAPIService) CloneApplicationExecute(r ApiCloneApplicationRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -231,11 +231,11 @@ func (a *ApplicationsAPIService) CloneApplicationExecute(r ApiCloneApplicationRe
 type ApiCreateApplicationRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsAPIService
-	applicationRequest *ApplicationRequest
+	appRequest *AppRequest
 }
 
-func (r ApiCreateApplicationRequest) ApplicationRequest(applicationRequest ApplicationRequest) ApiCreateApplicationRequest {
-	r.applicationRequest = &applicationRequest
+func (r ApiCreateApplicationRequest) AppRequest(appRequest AppRequest) ApiCreateApplicationRequest {
+	r.appRequest = &appRequest
 	return r
 }
 
@@ -278,8 +278,8 @@ func (a *ApplicationsAPIService) CreateApplicationExecute(r ApiCreateApplication
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.applicationRequest == nil {
-		return localVarReturnValue, nil, reportError("applicationRequest is required and must be specified")
+	if r.appRequest == nil {
+		return localVarReturnValue, nil, reportError("appRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -300,7 +300,7 @@ func (a *ApplicationsAPIService) CreateApplicationExecute(r ApiCreateApplication
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.applicationRequest
+	localVarPostBody = r.appRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -338,7 +338,7 @@ func (a *ApplicationsAPIService) CreateApplicationExecute(r ApiCreateApplication
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -349,7 +349,7 @@ func (a *ApplicationsAPIService) CreateApplicationExecute(r ApiCreateApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -360,7 +360,7 @@ func (a *ApplicationsAPIService) CreateApplicationExecute(r ApiCreateApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -371,7 +371,7 @@ func (a *ApplicationsAPIService) CreateApplicationExecute(r ApiCreateApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -382,7 +382,7 @@ func (a *ApplicationsAPIService) CreateApplicationExecute(r ApiCreateApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -393,7 +393,7 @@ func (a *ApplicationsAPIService) CreateApplicationExecute(r ApiCreateApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -404,7 +404,7 @@ func (a *ApplicationsAPIService) CreateApplicationExecute(r ApiCreateApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -434,7 +434,7 @@ type ApiDeleteApplicationRequest struct {
 	applicationId int64
 }
 
-func (r ApiDeleteApplicationRequest) Execute() (*ResponseAsyncDeleteApplication, *http.Response, error) {
+func (r ApiDeleteApplicationRequest) Execute() (*ResponseDeleteApplication, *http.Response, error) {
 	return r.ApiService.DeleteApplicationExecute(r)
 }
 
@@ -456,13 +456,13 @@ func (a *ApplicationsAPIService) DeleteApplication(ctx context.Context, applicat
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteApplication
-func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplicationRequest) (*ResponseAsyncDeleteApplication, *http.Response, error) {
+//  @return ResponseDeleteApplication
+func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplicationRequest) (*ResponseDeleteApplication, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteApplication
+		localVarReturnValue  *ResponseDeleteApplication
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsAPIService.DeleteApplication")
@@ -531,7 +531,7 @@ func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplication
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -542,7 +542,7 @@ func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -553,7 +553,7 @@ func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -564,7 +564,7 @@ func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -575,7 +575,7 @@ func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -586,7 +586,7 @@ func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -597,7 +597,7 @@ func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -830,7 +830,7 @@ func (a *ApplicationsAPIService) ListApplicationsExecute(r ApiListApplicationsRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -841,7 +841,7 @@ func (a *ApplicationsAPIService) ListApplicationsExecute(r ApiListApplicationsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -852,7 +852,7 @@ func (a *ApplicationsAPIService) ListApplicationsExecute(r ApiListApplicationsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -863,7 +863,7 @@ func (a *ApplicationsAPIService) ListApplicationsExecute(r ApiListApplicationsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -874,7 +874,7 @@ func (a *ApplicationsAPIService) ListApplicationsExecute(r ApiListApplicationsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -885,7 +885,7 @@ func (a *ApplicationsAPIService) ListApplicationsExecute(r ApiListApplicationsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -896,7 +896,7 @@ func (a *ApplicationsAPIService) ListApplicationsExecute(r ApiListApplicationsRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -924,11 +924,11 @@ type ApiPartialUpdateApplicationRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsAPIService
 	applicationId int64
-	patchedApplicationRequest *PatchedApplicationRequest
+	patchApplicationRequest *PatchApplicationRequest
 }
 
-func (r ApiPartialUpdateApplicationRequest) PatchedApplicationRequest(patchedApplicationRequest PatchedApplicationRequest) ApiPartialUpdateApplicationRequest {
-	r.patchedApplicationRequest = &patchedApplicationRequest
+func (r ApiPartialUpdateApplicationRequest) PatchApplicationRequest(patchApplicationRequest PatchApplicationRequest) ApiPartialUpdateApplicationRequest {
+	r.patchApplicationRequest = &patchApplicationRequest
 	return r
 }
 
@@ -993,7 +993,7 @@ func (a *ApplicationsAPIService) PartialUpdateApplicationExecute(r ApiPartialUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedApplicationRequest
+	localVarPostBody = r.patchApplicationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1031,7 +1031,7 @@ func (a *ApplicationsAPIService) PartialUpdateApplicationExecute(r ApiPartialUpd
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1042,7 +1042,7 @@ func (a *ApplicationsAPIService) PartialUpdateApplicationExecute(r ApiPartialUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1053,7 +1053,7 @@ func (a *ApplicationsAPIService) PartialUpdateApplicationExecute(r ApiPartialUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1064,7 +1064,7 @@ func (a *ApplicationsAPIService) PartialUpdateApplicationExecute(r ApiPartialUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1075,7 +1075,7 @@ func (a *ApplicationsAPIService) PartialUpdateApplicationExecute(r ApiPartialUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1086,7 +1086,7 @@ func (a *ApplicationsAPIService) PartialUpdateApplicationExecute(r ApiPartialUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1097,7 +1097,7 @@ func (a *ApplicationsAPIService) PartialUpdateApplicationExecute(r ApiPartialUpd
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1234,7 +1234,7 @@ func (a *ApplicationsAPIService) RetrieveApplicationExecute(r ApiRetrieveApplica
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1245,7 +1245,7 @@ func (a *ApplicationsAPIService) RetrieveApplicationExecute(r ApiRetrieveApplica
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1256,7 +1256,7 @@ func (a *ApplicationsAPIService) RetrieveApplicationExecute(r ApiRetrieveApplica
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1267,7 +1267,7 @@ func (a *ApplicationsAPIService) RetrieveApplicationExecute(r ApiRetrieveApplica
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1278,7 +1278,7 @@ func (a *ApplicationsAPIService) RetrieveApplicationExecute(r ApiRetrieveApplica
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1289,7 +1289,7 @@ func (a *ApplicationsAPIService) RetrieveApplicationExecute(r ApiRetrieveApplica
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1300,7 +1300,7 @@ func (a *ApplicationsAPIService) RetrieveApplicationExecute(r ApiRetrieveApplica
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1328,11 +1328,11 @@ type ApiUpdateApplicationRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsAPIService
 	applicationId int64
-	applicationRequest *ApplicationRequest
+	appRequest *AppRequest
 }
 
-func (r ApiUpdateApplicationRequest) ApplicationRequest(applicationRequest ApplicationRequest) ApiUpdateApplicationRequest {
-	r.applicationRequest = &applicationRequest
+func (r ApiUpdateApplicationRequest) AppRequest(appRequest AppRequest) ApiUpdateApplicationRequest {
+	r.appRequest = &appRequest
 	return r
 }
 
@@ -1378,8 +1378,8 @@ func (a *ApplicationsAPIService) UpdateApplicationExecute(r ApiUpdateApplication
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.applicationRequest == nil {
-		return localVarReturnValue, nil, reportError("applicationRequest is required and must be specified")
+	if r.appRequest == nil {
+		return localVarReturnValue, nil, reportError("appRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1400,7 +1400,7 @@ func (a *ApplicationsAPIService) UpdateApplicationExecute(r ApiUpdateApplication
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.applicationRequest
+	localVarPostBody = r.appRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1438,7 +1438,7 @@ func (a *ApplicationsAPIService) UpdateApplicationExecute(r ApiUpdateApplication
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1449,7 +1449,7 @@ func (a *ApplicationsAPIService) UpdateApplicationExecute(r ApiUpdateApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1460,7 +1460,7 @@ func (a *ApplicationsAPIService) UpdateApplicationExecute(r ApiUpdateApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1471,7 +1471,7 @@ func (a *ApplicationsAPIService) UpdateApplicationExecute(r ApiUpdateApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1482,7 +1482,7 @@ func (a *ApplicationsAPIService) UpdateApplicationExecute(r ApiUpdateApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1493,7 +1493,7 @@ func (a *ApplicationsAPIService) UpdateApplicationExecute(r ApiUpdateApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1504,7 +1504,7 @@ func (a *ApplicationsAPIService) UpdateApplicationExecute(r ApiUpdateApplication
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

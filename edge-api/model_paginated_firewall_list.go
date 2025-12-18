@@ -27,7 +27,7 @@ type PaginatedFirewallList struct {
 	Page *int64 `json:"page,omitempty"`
 	// Number of items per page
 	PageSize *int64 `json:"page_size,omitempty"`
-	Results []Firewall `json:"results,omitempty"`
+	Results []Fw `json:"results,omitempty"`
 }
 
 // NewPaginatedFirewallList instantiates a new PaginatedFirewallList object
@@ -176,9 +176,9 @@ func (o *PaginatedFirewallList) SetPageSize(v int64) {
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *PaginatedFirewallList) GetResults() []Firewall {
+func (o *PaginatedFirewallList) GetResults() []Fw {
 	if o == nil || IsNil(o.Results) {
-		var ret []Firewall
+		var ret []Fw
 		return ret
 	}
 	return o.Results
@@ -186,7 +186,7 @@ func (o *PaginatedFirewallList) GetResults() []Firewall {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedFirewallList) GetResultsOk() ([]Firewall, bool) {
+func (o *PaginatedFirewallList) GetResultsOk() ([]Fw, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -202,8 +202,8 @@ func (o *PaginatedFirewallList) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []Firewall and assigns it to the Results field.
-func (o *PaginatedFirewallList) SetResults(v []Firewall) {
+// SetResults gets a reference to the given []Fw and assigns it to the Results field.
+func (o *PaginatedFirewallList) SetResults(v []Fw) {
 	o.Results = v
 }
 

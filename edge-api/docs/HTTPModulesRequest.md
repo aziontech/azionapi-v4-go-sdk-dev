@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LoadBalancer** | Pointer to [**LoadBalancerModuleRequest**](LoadBalancerModuleRequest.md) |  | [optional] 
+**LoadBalancer** | Pointer to [**LoBalancerModuleRequest**](LoBalancerModuleRequest.md) |  | [optional] 
 **OriginShield** | Pointer to [**OriginShieldModuleRequest**](OriginShieldModuleRequest.md) |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLoadBalancer
 
-`func (o *HTTPModulesRequest) GetLoadBalancer() LoadBalancerModuleRequest`
+`func (o *HTTPModulesRequest) GetLoadBalancer() LoBalancerModuleRequest`
 
 GetLoadBalancer returns the LoadBalancer field if non-nil, zero value otherwise.
 
 ### GetLoadBalancerOk
 
-`func (o *HTTPModulesRequest) GetLoadBalancerOk() (*LoadBalancerModuleRequest, bool)`
+`func (o *HTTPModulesRequest) GetLoadBalancerOk() (*LoBalancerModuleRequest, bool)`
 
 GetLoadBalancerOk returns a tuple with the LoadBalancer field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLoadBalancer
 
-`func (o *HTTPModulesRequest) SetLoadBalancer(v LoadBalancerModuleRequest)`
+`func (o *HTTPModulesRequest) SetLoadBalancer(v LoBalancerModuleRequest)`
 
 SetLoadBalancer sets LoadBalancer field to given value.
 

@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFunction
 
-> ResponseAsyncDeleteFunctionsDoc DeleteFunction(ctx, functionId).Execute()
+> ResponseDeleteFunctionsDoc DeleteFunction(ctx, functionId).Execute()
 
 Delete an Function
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.DeleteFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteFunction`: ResponseAsyncDeleteFunctionsDoc
+	// response from `DeleteFunction`: ResponseDeleteFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.DeleteFunction`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteFunctionsDoc**](ResponseAsyncDeleteFunctionsDoc.md)
+[**ResponseDeleteFunctionsDoc**](ResponseDeleteFunctionsDoc.md)
 
 ### Authorization
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateFunction
 
-> ResponseFunctionsDoc PartialUpdateFunction(ctx, functionId).PatchedEdgeFunctionsRequest(patchedEdgeFunctionsRequest).Execute()
+> ResponseFunctionsDoc PartialUpdateFunction(ctx, functionId).PatchEdgeFunctionsRequest(patchEdgeFunctionsRequest).Execute()
 
 Partially update an Function
 
@@ -262,11 +262,11 @@ import (
 
 func main() {
 	functionId := int64(789) // int64 | A unique integer value identifying the edge function.
-	patchedEdgeFunctionsRequest := *openapiclient.NewPatchedEdgeFunctionsRequest() // PatchedEdgeFunctionsRequest |  (optional)
+	patchEdgeFunctionsRequest := *openapiclient.NewPatchEdgeFunctionsRequest() // PatchEdgeFunctionsRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FunctionsAPI.PartialUpdateFunction(context.Background(), functionId).PatchedEdgeFunctionsRequest(patchedEdgeFunctionsRequest).Execute()
+	resp, r, err := apiClient.FunctionsAPI.PartialUpdateFunction(context.Background(), functionId).PatchEdgeFunctionsRequest(patchEdgeFunctionsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.PartialUpdateFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -292,7 +292,7 @@ Other parameters are passed through a pointer to a apiPartialUpdateFunctionReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedEdgeFunctionsRequest** | [**PatchedEdgeFunctionsRequest**](PatchedEdgeFunctionsRequest.md) |  | 
+ **patchEdgeFunctionsRequest** | [**PatchEdgeFunctionsRequest**](PatchEdgeFunctionsRequest.md) |  | 
 
 ### Return type
 

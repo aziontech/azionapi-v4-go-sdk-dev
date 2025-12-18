@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateWorkload
 
-> ResponseWorkload CreateWorkload(ctx).WorkloadRequest(workloadRequest).Execute()
+> ResponseWorkload CreateWorkload(ctx).WorkloRequest(workloRequest).Execute()
 
 Create an Workload
 
@@ -34,11 +34,11 @@ import (
 )
 
 func main() {
-	workloadRequest := *openapiclient.NewWorkloadRequest("Name_example") // WorkloadRequest | 
+	workloRequest := *openapiclient.NewWorkloRequest("Name_example") // WorkloRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.CreateWorkload(context.Background()).WorkloadRequest(workloadRequest).Execute()
+	resp, r, err := apiClient.WorkloadsAPI.CreateWorkload(context.Background()).WorkloRequest(workloRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.CreateWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,7 +59,7 @@ Other parameters are passed through a pointer to a apiCreateWorkloadRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workloadRequest** | [**WorkloadRequest**](WorkloadRequest.md) |  | 
+ **workloRequest** | [**WorkloRequest**](WorkloRequest.md) |  | 
 
 ### Return type
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWorkload
 
-> ResponseAsyncDeleteWorkload DeleteWorkload(ctx, workloadId).Execute()
+> ResponseDeleteWorkload DeleteWorkload(ctx, workloadId).Execute()
 
 Delete an Workload
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.DeleteWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteWorkload`: ResponseAsyncDeleteWorkload
+	// response from `DeleteWorkload`: ResponseDeleteWorkload
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.DeleteWorkload`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteWorkload**](ResponseAsyncDeleteWorkload.md)
+[**ResponseDeleteWorkload**](ResponseDeleteWorkload.md)
 
 ### Authorization
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListWorkloads
 
-> PaginatedWorkloadList ListWorkloads(ctx).Active(active).DigitalCertificateId(digitalCertificateId).Fields(fields).Id(id).Infrastructure(infrastructure).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).MapName(mapName).MtlsTrustedCaCertificateId(mtlsTrustedCaCertificateId).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedWorkloList ListWorkloads(ctx).Active(active).DigitalCertificateId(digitalCertificateId).Fields(fields).Id(id).Infrastructure(infrastructure).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).MapName(mapName).MtlsTrustedCaCertificateId(mtlsTrustedCaCertificateId).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Workloads
 
@@ -194,7 +194,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.ListWorkloads``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListWorkloads`: PaginatedWorkloadList
+	// response from `ListWorkloads`: PaginatedWorkloList
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.ListWorkloads`: %v\n", resp)
 }
 ```
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedWorkloadList**](PaginatedWorkloadList.md)
+[**PaginatedWorkloList**](PaginatedWorkloList.md)
 
 ### Authorization
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateWorkload
 
-> ResponseWorkload PartialUpdateWorkload(ctx, workloadId).PatchedWorkloadRequest(patchedWorkloadRequest).Execute()
+> ResponseWorkload PartialUpdateWorkload(ctx, workloadId).PatchedWorkloRequest(patchedWorkloRequest).Execute()
 
 Partially update an Workload
 
@@ -266,11 +266,11 @@ import (
 
 func main() {
 	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
-	patchedWorkloadRequest := *openapiclient.NewPatchedWorkloadRequest() // PatchedWorkloadRequest |  (optional)
+	patchedWorkloRequest := *openapiclient.NewPatchedWorkloRequest() // PatchedWorkloRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.PartialUpdateWorkload(context.Background(), workloadId).PatchedWorkloadRequest(patchedWorkloadRequest).Execute()
+	resp, r, err := apiClient.WorkloadsAPI.PartialUpdateWorkload(context.Background(), workloadId).PatchedWorkloRequest(patchedWorkloRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.PartialUpdateWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -296,7 +296,7 @@ Other parameters are passed through a pointer to a apiPartialUpdateWorkloadReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedWorkloadRequest** | [**PatchedWorkloadRequest**](PatchedWorkloadRequest.md) |  | 
+ **patchedWorkloRequest** | [**PatchedWorkloRequest**](PatchedWorkloRequest.md) |  | 
 
 ### Return type
 
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWorkload
 
-> ResponseWorkload UpdateWorkload(ctx, workloadId).WorkloadRequest(workloadRequest).Execute()
+> ResponseWorkload UpdateWorkload(ctx, workloadId).WorkloRequest(workloRequest).Execute()
 
 Update an Workload
 
@@ -410,11 +410,11 @@ import (
 
 func main() {
 	workloadId := int64(789) // int64 | A unique integer value identifying the workload.
-	workloadRequest := *openapiclient.NewWorkloadRequest("Name_example") // WorkloadRequest | 
+	workloRequest := *openapiclient.NewWorkloRequest("Name_example") // WorkloRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WorkloadsAPI.UpdateWorkload(context.Background(), workloadId).WorkloadRequest(workloadRequest).Execute()
+	resp, r, err := apiClient.WorkloadsAPI.UpdateWorkload(context.Background(), workloadId).WorkloRequest(workloRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.UpdateWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -440,7 +440,7 @@ Other parameters are passed through a pointer to a apiUpdateWorkloadRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **workloadRequest** | [**WorkloadRequest**](WorkloadRequest.md) |  | 
+ **workloRequest** | [**WorkloRequest**](WorkloRequest.md) |  | 
 
 ### Return type
 

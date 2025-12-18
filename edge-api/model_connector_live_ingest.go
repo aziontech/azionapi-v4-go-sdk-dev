@@ -30,7 +30,7 @@ type ConnectorLiveIngest struct {
 	ProductVersion string `json:"product_version"`
 	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
 	Type string `json:"type"`
-	Attributes ConnectorLiveIngestAttributes `json:"attributes"`
+	Attributes ConnectorLiveIngestAttrs `json:"attributes"`
 }
 
 type _ConnectorLiveIngest ConnectorLiveIngest
@@ -39,7 +39,7 @@ type _ConnectorLiveIngest ConnectorLiveIngest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectorLiveIngest(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, type_ string, attributes ConnectorLiveIngestAttributes) *ConnectorLiveIngest {
+func NewConnectorLiveIngest(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, type_ string, attributes ConnectorLiveIngestAttrs) *ConnectorLiveIngest {
 	this := ConnectorLiveIngest{}
 	this.Id = id
 	this.Name = name
@@ -236,9 +236,9 @@ func (o *ConnectorLiveIngest) SetType(v string) {
 }
 
 // GetAttributes returns the Attributes field value
-func (o *ConnectorLiveIngest) GetAttributes() ConnectorLiveIngestAttributes {
+func (o *ConnectorLiveIngest) GetAttributes() ConnectorLiveIngestAttrs {
 	if o == nil {
-		var ret ConnectorLiveIngestAttributes
+		var ret ConnectorLiveIngestAttrs
 		return ret
 	}
 
@@ -247,7 +247,7 @@ func (o *ConnectorLiveIngest) GetAttributes() ConnectorLiveIngestAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorLiveIngest) GetAttributesOk() (*ConnectorLiveIngestAttributes, bool) {
+func (o *ConnectorLiveIngest) GetAttributesOk() (*ConnectorLiveIngestAttrs, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -255,7 +255,7 @@ func (o *ConnectorLiveIngest) GetAttributesOk() (*ConnectorLiveIngestAttributes,
 }
 
 // SetAttributes sets field value
-func (o *ConnectorLiveIngest) SetAttributes(v ConnectorLiveIngestAttributes) {
+func (o *ConnectorLiveIngest) SetAttributes(v ConnectorLiveIngestAttrs) {
 	o.Attributes = v
 }
 
