@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccessToken** | **string** | The access_token is a short-lived token (e.g., 10 minutes) used for API authentication in the Authorization: Bearer &lt;access_token&gt; header. | 
 **RefreshToken** | **string** | A long-lived JWT token used to refresh the access_token without requiring the user to authenticate again. | 
+**ResponseType** | **string** | Discriminator field for LoginResponse | 
 
 ## Methods
 
 ### NewTokenPair
 
-`func NewTokenPair(accessToken string, refreshToken string, ) *TokenPair`
+`func NewTokenPair(accessToken string, refreshToken string, responseType string, ) *TokenPair`
 
 NewTokenPair instantiates a new TokenPair object
 This constructor will assign default values to properties that have it defined,
@@ -64,6 +65,26 @@ and a boolean to check if the value has been set.
 `func (o *TokenPair) SetRefreshToken(v string)`
 
 SetRefreshToken sets RefreshToken field to given value.
+
+
+### GetResponseType
+
+`func (o *TokenPair) GetResponseType() string`
+
+GetResponseType returns the ResponseType field if non-nil, zero value otherwise.
+
+### GetResponseTypeOk
+
+`func (o *TokenPair) GetResponseTypeOk() (*string, bool)`
+
+GetResponseTypeOk returns a tuple with the ResponseType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResponseType
+
+`func (o *TokenPair) SetResponseType(v string)`
+
+SetResponseType sets ResponseType field to given value.
 
 
 

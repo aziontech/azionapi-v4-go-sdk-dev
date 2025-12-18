@@ -34,7 +34,7 @@ func (r ApiCreateTotpDeviceRequest) Body(body interface{}) ApiCreateTotpDeviceRe
 	return r
 }
 
-func (r ApiCreateTotpDeviceRequest) Execute() (*ResponseTOTPDeviceCreate, *http.Response, error) {
+func (r ApiCreateTotpDeviceRequest) Execute() (*ResponseTOTPDeviCreate, *http.Response, error) {
 	return r.ApiService.CreateTotpDeviceExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *AuthMFATOTPDeviceAPIService) CreateTotpDevice(ctx context.Context) ApiC
 }
 
 // Execute executes the request
-//  @return ResponseTOTPDeviceCreate
-func (a *AuthMFATOTPDeviceAPIService) CreateTotpDeviceExecute(r ApiCreateTotpDeviceRequest) (*ResponseTOTPDeviceCreate, *http.Response, error) {
+//  @return ResponseTOTPDeviCreate
+func (a *AuthMFATOTPDeviceAPIService) CreateTotpDeviceExecute(r ApiCreateTotpDeviceRequest) (*ResponseTOTPDeviCreate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseTOTPDeviceCreate
+		localVarReturnValue  *ResponseTOTPDeviCreate
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthMFATOTPDeviceAPIService.CreateTotpDevice")
@@ -116,7 +116,7 @@ func (a *AuthMFATOTPDeviceAPIService) CreateTotpDeviceExecute(r ApiCreateTotpDev
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -127,7 +127,7 @@ func (a *AuthMFATOTPDeviceAPIService) CreateTotpDeviceExecute(r ApiCreateTotpDev
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -138,7 +138,7 @@ func (a *AuthMFATOTPDeviceAPIService) CreateTotpDeviceExecute(r ApiCreateTotpDev
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -149,7 +149,7 @@ func (a *AuthMFATOTPDeviceAPIService) CreateTotpDeviceExecute(r ApiCreateTotpDev
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -160,7 +160,7 @@ func (a *AuthMFATOTPDeviceAPIService) CreateTotpDeviceExecute(r ApiCreateTotpDev
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -171,7 +171,7 @@ func (a *AuthMFATOTPDeviceAPIService) CreateTotpDeviceExecute(r ApiCreateTotpDev
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -182,7 +182,7 @@ func (a *AuthMFATOTPDeviceAPIService) CreateTotpDeviceExecute(r ApiCreateTotpDev
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -212,7 +212,7 @@ type ApiDeleteTotpDeviceRequest struct {
 	deviceId int64
 }
 
-func (r ApiDeleteTotpDeviceRequest) Execute() (*ResponseAsyncDeleteTOTPDeviceCreate, *http.Response, error) {
+func (r ApiDeleteTotpDeviceRequest) Execute() (*ResponseDeleteTOTPDeviCreate, *http.Response, error) {
 	return r.ApiService.DeleteTotpDeviceExecute(r)
 }
 
@@ -234,13 +234,13 @@ func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDevice(ctx context.Context, devi
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteTOTPDeviceCreate
-func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDeviceRequest) (*ResponseAsyncDeleteTOTPDeviceCreate, *http.Response, error) {
+//  @return ResponseDeleteTOTPDeviCreate
+func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDeviceRequest) (*ResponseDeleteTOTPDeviCreate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteTOTPDeviceCreate
+		localVarReturnValue  *ResponseDeleteTOTPDeviCreate
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthMFATOTPDeviceAPIService.DeleteTotpDevice")
@@ -309,7 +309,7 @@ func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDev
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -320,7 +320,7 @@ func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDev
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -331,7 +331,7 @@ func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDev
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -342,7 +342,7 @@ func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDev
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -353,7 +353,7 @@ func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDev
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -364,7 +364,7 @@ func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDev
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -375,7 +375,7 @@ func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDev
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -467,7 +467,7 @@ func (r ApiListTotpDevicesRequest) Search(search string) ApiListTotpDevicesReque
 	return r
 }
 
-func (r ApiListTotpDevicesRequest) Execute() (*PaginatedTOTPDeviceListList, *http.Response, error) {
+func (r ApiListTotpDevicesRequest) Execute() (*PaginatedTOTPDeviList, *http.Response, error) {
 	return r.ApiService.ListTotpDevicesExecute(r)
 }
 
@@ -487,13 +487,13 @@ func (a *AuthMFATOTPDeviceAPIService) ListTotpDevices(ctx context.Context) ApiLi
 }
 
 // Execute executes the request
-//  @return PaginatedTOTPDeviceListList
-func (a *AuthMFATOTPDeviceAPIService) ListTotpDevicesExecute(r ApiListTotpDevicesRequest) (*PaginatedTOTPDeviceListList, *http.Response, error) {
+//  @return PaginatedTOTPDeviList
+func (a *AuthMFATOTPDeviceAPIService) ListTotpDevicesExecute(r ApiListTotpDevicesRequest) (*PaginatedTOTPDeviList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedTOTPDeviceListList
+		localVarReturnValue  *PaginatedTOTPDeviList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthMFATOTPDeviceAPIService.ListTotpDevices")
@@ -588,7 +588,7 @@ func (a *AuthMFATOTPDeviceAPIService) ListTotpDevicesExecute(r ApiListTotpDevice
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -599,7 +599,7 @@ func (a *AuthMFATOTPDeviceAPIService) ListTotpDevicesExecute(r ApiListTotpDevice
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -610,7 +610,7 @@ func (a *AuthMFATOTPDeviceAPIService) ListTotpDevicesExecute(r ApiListTotpDevice
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -621,7 +621,7 @@ func (a *AuthMFATOTPDeviceAPIService) ListTotpDevicesExecute(r ApiListTotpDevice
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -632,7 +632,7 @@ func (a *AuthMFATOTPDeviceAPIService) ListTotpDevicesExecute(r ApiListTotpDevice
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -643,7 +643,7 @@ func (a *AuthMFATOTPDeviceAPIService) ListTotpDevicesExecute(r ApiListTotpDevice
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -654,7 +654,7 @@ func (a *AuthMFATOTPDeviceAPIService) ListTotpDevicesExecute(r ApiListTotpDevice
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

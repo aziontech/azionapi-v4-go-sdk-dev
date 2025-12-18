@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## CreateTotpDevice
 
-> ResponseTOTPDeviceCreate CreateTotpDevice(ctx).Body(body).Execute()
+> ResponseTOTPDeviCreate CreateTotpDevice(ctx).Body(body).Execute()
 
 Create a TOTP device
 
@@ -40,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthMFATOTPDeviceAPI.CreateTotpDevice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateTotpDevice`: ResponseTOTPDeviceCreate
+	// response from `CreateTotpDevice`: ResponseTOTPDeviCreate
 	fmt.Fprintf(os.Stdout, "Response from `AuthMFATOTPDeviceAPI.CreateTotpDevice`: %v\n", resp)
 }
 ```
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseTOTPDeviceCreate**](ResponseTOTPDeviceCreate.md)
+[**ResponseTOTPDeviCreate**](ResponseTOTPDeviCreate.md)
 
 ### Authorization
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## DeleteTotpDevice
 
-> ResponseAsyncDeleteTOTPDeviceCreate DeleteTotpDevice(ctx, deviceId).Execute()
+> ResponseDeleteTOTPDeviCreate DeleteTotpDevice(ctx, deviceId).Execute()
 
 Delete a TOTP device
 
@@ -106,7 +106,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthMFATOTPDeviceAPI.DeleteTotpDevice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteTotpDevice`: ResponseAsyncDeleteTOTPDeviceCreate
+	// response from `DeleteTotpDevice`: ResponseDeleteTOTPDeviCreate
 	fmt.Fprintf(os.Stdout, "Response from `AuthMFATOTPDeviceAPI.DeleteTotpDevice`: %v\n", resp)
 }
 ```
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteTOTPDeviceCreate**](ResponseAsyncDeleteTOTPDeviceCreate.md)
+[**ResponseDeleteTOTPDeviCreate**](ResponseDeleteTOTPDeviCreate.md)
 
 ### Authorization
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## ListTotpDevices
 
-> PaginatedTOTPDeviceListList ListTotpDevices(ctx).Confirmed(confirmed).Email(email).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedTOTPDeviList ListTotpDevices(ctx).Confirmed(confirmed).Email(email).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List of TOTP devices
 
@@ -184,7 +184,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthMFATOTPDeviceAPI.ListTotpDevices``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListTotpDevices`: PaginatedTOTPDeviceListList
+	// response from `ListTotpDevices`: PaginatedTOTPDeviList
 	fmt.Fprintf(os.Stdout, "Response from `AuthMFATOTPDeviceAPI.ListTotpDevices`: %v\n", resp)
 }
 ```
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedTOTPDeviceListList**](PaginatedTOTPDeviceListList.md)
+[**PaginatedTOTPDeviList**](PaginatedTOTPDeviList.md)
 
 ### Authorization
 
