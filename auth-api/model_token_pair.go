@@ -25,6 +25,8 @@ type TokenPair struct {
 	AccessToken string `json:"access_token"`
 	// A long-lived JWT token used to refresh the access_token without requiring the user to authenticate again.
 	RefreshToken string `json:"refresh_token"`
+	// Discriminator field for LoginResponse
+	ResponseType string `json:"response_type"`
 }
 
 type _TokenPair TokenPair
@@ -33,10 +35,11 @@ type _TokenPair TokenPair
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenPair(accessToken string, refreshToken string) *TokenPair {
+func NewTokenPair(accessToken string, refreshToken string, responseType string) *TokenPair {
 	this := TokenPair{}
 	this.AccessToken = accessToken
 	this.RefreshToken = refreshToken
+	this.ResponseType = responseType
 	return &this
 }
 
@@ -96,6 +99,30 @@ func (o *TokenPair) SetRefreshToken(v string) {
 	o.RefreshToken = v
 }
 
+// GetResponseType returns the ResponseType field value
+func (o *TokenPair) GetResponseType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ResponseType
+}
+
+// GetResponseTypeOk returns a tuple with the ResponseType field value
+// and a boolean to check if the value has been set.
+func (o *TokenPair) GetResponseTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ResponseType, true
+}
+
+// SetResponseType sets field value
+func (o *TokenPair) SetResponseType(v string) {
+	o.ResponseType = v
+}
+
 func (o TokenPair) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -108,6 +135,7 @@ func (o TokenPair) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["access_token"] = o.AccessToken
 	toSerialize["refresh_token"] = o.RefreshToken
+	toSerialize["response_type"] = o.ResponseType
 	return toSerialize, nil
 }
 
@@ -118,6 +146,7 @@ func (o *TokenPair) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"access_token",
 		"refresh_token",
+		"response_type",
 	}
 
 	allProperties := make(map[string]interface{})

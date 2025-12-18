@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeletePolicy
 
-> ResponseAsyncDeletePolicy DeletePolicy(ctx, policyId).Execute()
+> ResponseDeletePolicy DeletePolicy(ctx, policyId).Execute()
 
 Delete a policy
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.DeletePolicy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeletePolicy`: ResponseAsyncDeletePolicy
+	// response from `DeletePolicy`: ResponseDeletePolicy
 	fmt.Fprintf(os.Stdout, "Response from `PolicyPoliciesAPI.DeletePolicy`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeletePolicy**](ResponseAsyncDeletePolicy.md)
+[**ResponseDeletePolicy**](ResponseDeletePolicy.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdatePolicy
 
-> ResponsePolicy PartialUpdatePolicy(ctx, policyId).PatchedPolicyRequest(patchedPolicyRequest).Execute()
+> ResponsePolicy PartialUpdatePolicy(ctx, policyId).PatchPolicyRequest(patchPolicyRequest).Execute()
 
 Partially update a policy
 
@@ -245,11 +245,11 @@ import (
 
 func main() {
 	policyId := int64(789) // int64 | A unique integer value identifying the policy.
-	patchedPolicyRequest := *openapiclient.NewPatchedPolicyRequest() // PatchedPolicyRequest |  (optional)
+	patchPolicyRequest := *openapiclient.NewPatchPolicyRequest() // PatchPolicyRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PolicyPoliciesAPI.PartialUpdatePolicy(context.Background(), policyId).PatchedPolicyRequest(patchedPolicyRequest).Execute()
+	resp, r, err := apiClient.PolicyPoliciesAPI.PartialUpdatePolicy(context.Background(), policyId).PatchPolicyRequest(patchPolicyRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.PartialUpdatePolicy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,7 +275,7 @@ Other parameters are passed through a pointer to a apiPartialUpdatePolicyRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedPolicyRequest** | [**PatchedPolicyRequest**](PatchedPolicyRequest.md) |  | 
+ **patchPolicyRequest** | [**PatchPolicyRequest**](PatchPolicyRequest.md) |  | 
 
 ### Return type
 

@@ -133,7 +133,7 @@ func (a *PolicyPoliciesAPIService) CreatePolicyExecute(r ApiCreatePolicyRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -144,7 +144,7 @@ func (a *PolicyPoliciesAPIService) CreatePolicyExecute(r ApiCreatePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -155,7 +155,7 @@ func (a *PolicyPoliciesAPIService) CreatePolicyExecute(r ApiCreatePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -166,7 +166,7 @@ func (a *PolicyPoliciesAPIService) CreatePolicyExecute(r ApiCreatePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -177,7 +177,7 @@ func (a *PolicyPoliciesAPIService) CreatePolicyExecute(r ApiCreatePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -188,7 +188,7 @@ func (a *PolicyPoliciesAPIService) CreatePolicyExecute(r ApiCreatePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -199,7 +199,7 @@ func (a *PolicyPoliciesAPIService) CreatePolicyExecute(r ApiCreatePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -229,7 +229,7 @@ type ApiDeletePolicyRequest struct {
 	policyId int64
 }
 
-func (r ApiDeletePolicyRequest) Execute() (*ResponseAsyncDeletePolicy, *http.Response, error) {
+func (r ApiDeletePolicyRequest) Execute() (*ResponseDeletePolicy, *http.Response, error) {
 	return r.ApiService.DeletePolicyExecute(r)
 }
 
@@ -251,13 +251,13 @@ func (a *PolicyPoliciesAPIService) DeletePolicy(ctx context.Context, policyId in
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeletePolicy
-func (a *PolicyPoliciesAPIService) DeletePolicyExecute(r ApiDeletePolicyRequest) (*ResponseAsyncDeletePolicy, *http.Response, error) {
+//  @return ResponseDeletePolicy
+func (a *PolicyPoliciesAPIService) DeletePolicyExecute(r ApiDeletePolicyRequest) (*ResponseDeletePolicy, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeletePolicy
+		localVarReturnValue  *ResponseDeletePolicy
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyPoliciesAPIService.DeletePolicy")
@@ -326,7 +326,7 @@ func (a *PolicyPoliciesAPIService) DeletePolicyExecute(r ApiDeletePolicyRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -337,7 +337,7 @@ func (a *PolicyPoliciesAPIService) DeletePolicyExecute(r ApiDeletePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -348,7 +348,7 @@ func (a *PolicyPoliciesAPIService) DeletePolicyExecute(r ApiDeletePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -359,7 +359,7 @@ func (a *PolicyPoliciesAPIService) DeletePolicyExecute(r ApiDeletePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -370,7 +370,7 @@ func (a *PolicyPoliciesAPIService) DeletePolicyExecute(r ApiDeletePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -381,7 +381,7 @@ func (a *PolicyPoliciesAPIService) DeletePolicyExecute(r ApiDeletePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -392,7 +392,7 @@ func (a *PolicyPoliciesAPIService) DeletePolicyExecute(r ApiDeletePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -565,7 +565,7 @@ func (a *PolicyPoliciesAPIService) ListPolicyExecute(r ApiListPolicyRequest) (*P
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -576,7 +576,7 @@ func (a *PolicyPoliciesAPIService) ListPolicyExecute(r ApiListPolicyRequest) (*P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -587,7 +587,7 @@ func (a *PolicyPoliciesAPIService) ListPolicyExecute(r ApiListPolicyRequest) (*P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -598,7 +598,7 @@ func (a *PolicyPoliciesAPIService) ListPolicyExecute(r ApiListPolicyRequest) (*P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -609,7 +609,7 @@ func (a *PolicyPoliciesAPIService) ListPolicyExecute(r ApiListPolicyRequest) (*P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -620,7 +620,7 @@ func (a *PolicyPoliciesAPIService) ListPolicyExecute(r ApiListPolicyRequest) (*P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -631,7 +631,7 @@ func (a *PolicyPoliciesAPIService) ListPolicyExecute(r ApiListPolicyRequest) (*P
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -659,11 +659,11 @@ type ApiPartialUpdatePolicyRequest struct {
 	ctx context.Context
 	ApiService *PolicyPoliciesAPIService
 	policyId int64
-	patchedPolicyRequest *PatchedPolicyRequest
+	patchPolicyRequest *PatchPolicyRequest
 }
 
-func (r ApiPartialUpdatePolicyRequest) PatchedPolicyRequest(patchedPolicyRequest PatchedPolicyRequest) ApiPartialUpdatePolicyRequest {
-	r.patchedPolicyRequest = &patchedPolicyRequest
+func (r ApiPartialUpdatePolicyRequest) PatchPolicyRequest(patchPolicyRequest PatchPolicyRequest) ApiPartialUpdatePolicyRequest {
+	r.patchPolicyRequest = &patchPolicyRequest
 	return r
 }
 
@@ -728,7 +728,7 @@ func (a *PolicyPoliciesAPIService) PartialUpdatePolicyExecute(r ApiPartialUpdate
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedPolicyRequest
+	localVarPostBody = r.patchPolicyRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -766,7 +766,7 @@ func (a *PolicyPoliciesAPIService) PartialUpdatePolicyExecute(r ApiPartialUpdate
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -777,7 +777,7 @@ func (a *PolicyPoliciesAPIService) PartialUpdatePolicyExecute(r ApiPartialUpdate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -788,7 +788,7 @@ func (a *PolicyPoliciesAPIService) PartialUpdatePolicyExecute(r ApiPartialUpdate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -799,7 +799,7 @@ func (a *PolicyPoliciesAPIService) PartialUpdatePolicyExecute(r ApiPartialUpdate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -810,7 +810,7 @@ func (a *PolicyPoliciesAPIService) PartialUpdatePolicyExecute(r ApiPartialUpdate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -821,7 +821,7 @@ func (a *PolicyPoliciesAPIService) PartialUpdatePolicyExecute(r ApiPartialUpdate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -832,7 +832,7 @@ func (a *PolicyPoliciesAPIService) PartialUpdatePolicyExecute(r ApiPartialUpdate
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -969,7 +969,7 @@ func (a *PolicyPoliciesAPIService) RetrievePolicyExecute(r ApiRetrievePolicyRequ
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -980,7 +980,7 @@ func (a *PolicyPoliciesAPIService) RetrievePolicyExecute(r ApiRetrievePolicyRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -991,7 +991,7 @@ func (a *PolicyPoliciesAPIService) RetrievePolicyExecute(r ApiRetrievePolicyRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1002,7 +1002,7 @@ func (a *PolicyPoliciesAPIService) RetrievePolicyExecute(r ApiRetrievePolicyRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1013,7 +1013,7 @@ func (a *PolicyPoliciesAPIService) RetrievePolicyExecute(r ApiRetrievePolicyRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1024,7 +1024,7 @@ func (a *PolicyPoliciesAPIService) RetrievePolicyExecute(r ApiRetrievePolicyRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1035,7 +1035,7 @@ func (a *PolicyPoliciesAPIService) RetrievePolicyExecute(r ApiRetrievePolicyRequ
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1173,7 +1173,7 @@ func (a *PolicyPoliciesAPIService) UpdatePolicyExecute(r ApiUpdatePolicyRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1184,7 +1184,7 @@ func (a *PolicyPoliciesAPIService) UpdatePolicyExecute(r ApiUpdatePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1195,7 +1195,7 @@ func (a *PolicyPoliciesAPIService) UpdatePolicyExecute(r ApiUpdatePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1206,7 +1206,7 @@ func (a *PolicyPoliciesAPIService) UpdatePolicyExecute(r ApiUpdatePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1217,7 +1217,7 @@ func (a *PolicyPoliciesAPIService) UpdatePolicyExecute(r ApiUpdatePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1228,7 +1228,7 @@ func (a *PolicyPoliciesAPIService) UpdatePolicyExecute(r ApiUpdatePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1239,7 +1239,7 @@ func (a *PolicyPoliciesAPIService) UpdatePolicyExecute(r ApiUpdatePolicyRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

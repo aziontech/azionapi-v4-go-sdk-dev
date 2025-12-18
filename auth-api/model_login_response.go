@@ -18,14 +18,14 @@ import (
 
 // LoginResponse - struct for LoginResponse
 type LoginResponse struct {
-	MFAToken *MFAToken
+	MToken *MToken
 	TokenPair *TokenPair
 }
 
-// MFATokenAsLoginResponse is a convenience function that returns MFAToken wrapped in LoginResponse
-func MFATokenAsLoginResponse(v *MFAToken) LoginResponse {
+// MTokenAsLoginResponse is a convenience function that returns MToken wrapped in LoginResponse
+func MTokenAsLoginResponse(v *MToken) LoginResponse {
 	return LoginResponse{
-		MFAToken: v,
+		MToken: v,
 	}
 }
 
@@ -41,21 +41,21 @@ func TokenPairAsLoginResponse(v *TokenPair) LoginResponse {
 func (dst *LoginResponse) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into MFAToken
-	err = newStrictDecoder(data).Decode(&dst.MFAToken)
+	// try to unmarshal data into MToken
+	err = newStrictDecoder(data).Decode(&dst.MToken)
 	if err == nil {
-		jsonMFAToken, _ := json.Marshal(dst.MFAToken)
-		if string(jsonMFAToken) == "{}" { // empty struct
-			dst.MFAToken = nil
+		jsonMToken, _ := json.Marshal(dst.MToken)
+		if string(jsonMToken) == "{}" { // empty struct
+			dst.MToken = nil
 		} else {
-			if err = validator.Validate(dst.MFAToken); err != nil {
-				dst.MFAToken = nil
+			if err = validator.Validate(dst.MToken); err != nil {
+				dst.MToken = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.MFAToken = nil
+		dst.MToken = nil
 	}
 
 	// try to unmarshal data into TokenPair
@@ -77,7 +77,7 @@ func (dst *LoginResponse) UnmarshalJSON(data []byte) error {
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.MFAToken = nil
+		dst.MToken = nil
 		dst.TokenPair = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(LoginResponse)")
@@ -90,8 +90,8 @@ func (dst *LoginResponse) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src LoginResponse) MarshalJSON() ([]byte, error) {
-	if src.MFAToken != nil {
-		return json.Marshal(&src.MFAToken)
+	if src.MToken != nil {
+		return json.Marshal(&src.MToken)
 	}
 
 	if src.TokenPair != nil {
@@ -106,8 +106,8 @@ func (obj *LoginResponse) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.MFAToken != nil {
-		return obj.MFAToken
+	if obj.MToken != nil {
+		return obj.MToken
 	}
 
 	if obj.TokenPair != nil {
@@ -120,8 +120,8 @@ func (obj *LoginResponse) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj LoginResponse) GetActualInstanceValue() (interface{}) {
-	if obj.MFAToken != nil {
-		return *obj.MFAToken
+	if obj.MToken != nil {
+		return *obj.MToken
 	}
 
 	if obj.TokenPair != nil {

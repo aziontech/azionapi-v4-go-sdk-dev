@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## AuthUserRevoke
 
-> StateExecutedResponse AuthUserRevoke(ctx).Body(body).Execute()
+> StateExecutResponse AuthUserRevoke(ctx).Body(body).Execute()
 
 Revoke user JWT refresh token
 
@@ -38,7 +38,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthRevokeAPI.AuthUserRevoke``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AuthUserRevoke`: StateExecutedResponse
+	// response from `AuthUserRevoke`: StateExecutResponse
 	fmt.Fprintf(os.Stdout, "Response from `AuthRevokeAPI.AuthUserRevoke`: %v\n", resp)
 }
 ```
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StateExecutedResponse**](StateExecutedResponse.md)
+[**StateExecutResponse**](StateExecutResponse.md)
 
 ### Authorization
 

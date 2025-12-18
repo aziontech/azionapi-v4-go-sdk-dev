@@ -33,7 +33,7 @@ func (r ApiAuthUserRevokeRequest) Body(body interface{}) ApiAuthUserRevokeReques
 	return r
 }
 
-func (r ApiAuthUserRevokeRequest) Execute() (*StateExecutedResponse, *http.Response, error) {
+func (r ApiAuthUserRevokeRequest) Execute() (*StateExecutResponse, *http.Response, error) {
 	return r.ApiService.AuthUserRevokeExecute(r)
 }
 
@@ -53,13 +53,13 @@ func (a *AuthRevokeAPIService) AuthUserRevoke(ctx context.Context) ApiAuthUserRe
 }
 
 // Execute executes the request
-//  @return StateExecutedResponse
-func (a *AuthRevokeAPIService) AuthUserRevokeExecute(r ApiAuthUserRevokeRequest) (*StateExecutedResponse, *http.Response, error) {
+//  @return StateExecutResponse
+func (a *AuthRevokeAPIService) AuthUserRevokeExecute(r ApiAuthUserRevokeRequest) (*StateExecutResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *StateExecutedResponse
+		localVarReturnValue  *StateExecutResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthRevokeAPIService.AuthUserRevoke")
@@ -115,7 +115,7 @@ func (a *AuthRevokeAPIService) AuthUserRevokeExecute(r ApiAuthUserRevokeRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -126,7 +126,7 @@ func (a *AuthRevokeAPIService) AuthUserRevokeExecute(r ApiAuthUserRevokeRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -137,7 +137,7 @@ func (a *AuthRevokeAPIService) AuthUserRevokeExecute(r ApiAuthUserRevokeRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -148,7 +148,7 @@ func (a *AuthRevokeAPIService) AuthUserRevokeExecute(r ApiAuthUserRevokeRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -159,7 +159,7 @@ func (a *AuthRevokeAPIService) AuthUserRevokeExecute(r ApiAuthUserRevokeRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
