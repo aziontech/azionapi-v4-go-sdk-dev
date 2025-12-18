@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCertificateRevocationList
 
-> ResponseAsyncDeleteCertificateRevocationList DeleteCertificateRevocationList(ctx, crlId).Execute()
+> ResponseDeleteCertificateRevocationList DeleteCertificateRevocationList(ctx, crlId).Execute()
 
 Delete a certificate revocation list
 
@@ -110,7 +110,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.DeleteCertificateRevocationList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCertificateRevocationList`: ResponseAsyncDeleteCertificateRevocationList
+	// response from `DeleteCertificateRevocationList`: ResponseDeleteCertificateRevocationList
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.DeleteCertificateRevocationList`: %v\n", resp)
 }
 ```
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteCertificateRevocationList**](ResponseAsyncDeleteCertificateRevocationList.md)
+[**ResponseDeleteCertificateRevocationList**](ResponseDeleteCertificateRevocationList.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## ListCertificateRevocationLists
 
-> PaginatedCertificateRevocationListList ListCertificateRevocationLists(ctx).Fields(fields).Id(id).Issuer(issuer).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).LastUpdate(lastUpdate).LastUpdateGte(lastUpdateGte).LastUpdateLte(lastUpdateLte).Name(name).NextUpdate(nextUpdate).NextUpdateGte(nextUpdateGte).NextUpdateLte(nextUpdateLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedCertificateRevocationList ListCertificateRevocationLists(ctx).Fields(fields).Id(id).Issuer(issuer).LastModified(lastModified).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).LastUpdate(lastUpdate).LastUpdateGte(lastUpdateGte).LastUpdateLte(lastUpdateLte).Name(name).NextUpdate(nextUpdate).NextUpdateGte(nextUpdateGte).NextUpdateLte(nextUpdateLte).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List certificate revocation lists (CRL)
 
@@ -197,7 +197,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.ListCertificateRevocationLists``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListCertificateRevocationLists`: PaginatedCertificateRevocationListList
+	// response from `ListCertificateRevocationLists`: PaginatedCertificateRevocationList
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.ListCertificateRevocationLists`: %v\n", resp)
 }
 ```
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedCertificateRevocationListList**](PaginatedCertificateRevocationListList.md)
+[**PaginatedCertificateRevocationList**](PaginatedCertificateRevocationList.md)
 
 ### Authorization
 
@@ -251,7 +251,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateCertificateRevocationList
 
-> ResponseCertificateRevocationList PartialUpdateCertificateRevocationList(ctx, crlId).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
+> ResponseCertificateRevocationList PartialUpdateCertificateRevocationList(ctx, crlId).PatchCertificateRevocationList(patchCertificateRevocationList).Execute()
 
 Update a certificate revocation lists (CRL)
 
@@ -271,11 +271,11 @@ import (
 
 func main() {
 	crlId := int64(789) // int64 | The unique identifier of the certificate revocation list
-	patchedCertificateRevocationList := *openapiclient.NewPatchedCertificateRevocationList() // PatchedCertificateRevocationList |  (optional)
+	patchCertificateRevocationList := *openapiclient.NewPatchCertificateRevocationList() // PatchCertificateRevocationList |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.PartialUpdateCertificateRevocationList(context.Background(), crlId).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
+	resp, r, err := apiClient.DigitalCertificatesCertificateRevocationListsAPI.PartialUpdateCertificateRevocationList(context.Background(), crlId).PatchCertificateRevocationList(patchCertificateRevocationList).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.PartialUpdateCertificateRevocationList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -301,7 +301,7 @@ Other parameters are passed through a pointer to a apiPartialUpdateCertificateRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedCertificateRevocationList** | [**PatchedCertificateRevocationList**](PatchedCertificateRevocationList.md) |  | 
+ **patchCertificateRevocationList** | [**PatchCertificateRevocationList**](PatchCertificateRevocationList.md) |  | 
 
 ### Return type
 
