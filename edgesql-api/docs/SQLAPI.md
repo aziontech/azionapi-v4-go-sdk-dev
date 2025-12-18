@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDatabase
 
-> ResponseAsyncDeleteDatabaseDetail DeleteDatabase(ctx, databaseId).Execute()
+> ResponseDeleteDatabaseDetail DeleteDatabase(ctx, databaseId).Execute()
 
 Delete a database
 
@@ -108,7 +108,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.DeleteDatabase``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteDatabase`: ResponseAsyncDeleteDatabaseDetail
+	// response from `DeleteDatabase`: ResponseDeleteDatabaseDetail
 	fmt.Fprintf(os.Stdout, "Response from `SQLAPI.DeleteDatabase`: %v\n", resp)
 }
 ```
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteDatabaseDetail**](ResponseAsyncDeleteDatabaseDetail.md)
+[**ResponseDeleteDatabaseDetail**](ResponseDeleteDatabaseDetail.md)
 
 ### Authorization
 
