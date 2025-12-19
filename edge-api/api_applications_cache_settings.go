@@ -235,7 +235,7 @@ type ApiDeleteCacheSettingRequest struct {
 	cacheSettingId int64
 }
 
-func (r ApiDeleteCacheSettingRequest) Execute() (*ResponseAsyncDeleteCacheSetting, *http.Response, error) {
+func (r ApiDeleteCacheSettingRequest) Execute() (*ResponseDeleteCacheSetting, *http.Response, error) {
 	return r.ApiService.DeleteCacheSettingExecute(r)
 }
 
@@ -259,13 +259,13 @@ func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSetting(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteCacheSetting
-func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDeleteCacheSettingRequest) (*ResponseAsyncDeleteCacheSetting, *http.Response, error) {
+//  @return ResponseDeleteCacheSetting
+func (a *ApplicationsCacheSettingsAPIService) DeleteCacheSettingExecute(r ApiDeleteCacheSettingRequest) (*ResponseDeleteCacheSetting, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteCacheSetting
+		localVarReturnValue  *ResponseDeleteCacheSetting
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsCacheSettingsAPIService.DeleteCacheSetting")

@@ -235,7 +235,7 @@ type ApiDeleteApplicationRequestRuleRequest struct {
 	requestRuleId int64
 }
 
-func (r ApiDeleteApplicationRequestRuleRequest) Execute() (*ResponseAsyncDeleteApplicationRequestPhaseRuleEngine, *http.Response, error) {
+func (r ApiDeleteApplicationRequestRuleRequest) Execute() (*ResponseDeleteApplicationRequestPhaseRuleEngine, *http.Response, error) {
 	return r.ApiService.DeleteApplicationRequestRuleExecute(r)
 }
 
@@ -259,13 +259,13 @@ func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRule(ctx co
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteApplicationRequestPhaseRuleEngine
-func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute(r ApiDeleteApplicationRequestRuleRequest) (*ResponseAsyncDeleteApplicationRequestPhaseRuleEngine, *http.Response, error) {
+//  @return ResponseDeleteApplicationRequestPhaseRuleEngine
+func (a *ApplicationsRequestRulesAPIService) DeleteApplicationRequestRuleExecute(r ApiDeleteApplicationRequestRuleRequest) (*ResponseDeleteApplicationRequestPhaseRuleEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteApplicationRequestPhaseRuleEngine
+		localVarReturnValue  *ResponseDeleteApplicationRequestPhaseRuleEngine
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsRequestRulesAPIService.DeleteApplicationRequestRule")

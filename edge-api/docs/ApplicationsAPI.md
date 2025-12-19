@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApplication
 
-> ResponseAsyncDeleteApplication DeleteApplication(ctx, applicationId).Execute()
+> ResponseDeleteApplication DeleteApplication(ctx, applicationId).Execute()
 
 Delete an Application
 
@@ -182,7 +182,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.DeleteApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteApplication`: ResponseAsyncDeleteApplication
+	// response from `DeleteApplication`: ResponseDeleteApplication
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.DeleteApplication`: %v\n", resp)
 }
 ```
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteApplication**](ResponseAsyncDeleteApplication.md)
+[**ResponseDeleteApplication**](ResponseDeleteApplication.md)
 
 ### Authorization
 

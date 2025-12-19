@@ -234,7 +234,7 @@ type ApiDeleteWorkloadDeploymentRequest struct {
 	workloadId int64
 }
 
-func (r ApiDeleteWorkloadDeploymentRequest) Execute() (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
+func (r ApiDeleteWorkloadDeploymentRequest) Execute() (*ResponseDeleteWorkloadDeployment, *http.Response, error) {
 	return r.ApiService.DeleteWorkloadDeploymentExecute(r)
 }
 
@@ -258,13 +258,13 @@ func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeployment(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteWorkloadDeployment
-func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDeleteWorkloadDeploymentRequest) (*ResponseAsyncDeleteWorkloadDeployment, *http.Response, error) {
+//  @return ResponseDeleteWorkloadDeployment
+func (a *WorkloadDeploymentsAPIService) DeleteWorkloadDeploymentExecute(r ApiDeleteWorkloadDeploymentRequest) (*ResponseDeleteWorkloadDeployment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteWorkloadDeployment
+		localVarReturnValue  *ResponseDeleteWorkloadDeployment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadDeploymentsAPIService.DeleteWorkloadDeployment")
