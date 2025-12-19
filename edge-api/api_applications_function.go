@@ -235,7 +235,7 @@ type ApiDeleteApplicationFunctionInstanceRequest struct {
 	functionId int64
 }
 
-func (r ApiDeleteApplicationFunctionInstanceRequest) Execute() (*ResponseAsyncDeleteApplicationFunctionInstance, *http.Response, error) {
+func (r ApiDeleteApplicationFunctionInstanceRequest) Execute() (*ResponseDeleteApplicationFunctionInstance, *http.Response, error) {
 	return r.ApiService.DeleteApplicationFunctionInstanceExecute(r)
 }
 
@@ -259,13 +259,13 @@ func (a *ApplicationsFunctionAPIService) DeleteApplicationFunctionInstance(ctx c
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteApplicationFunctionInstance
-func (a *ApplicationsFunctionAPIService) DeleteApplicationFunctionInstanceExecute(r ApiDeleteApplicationFunctionInstanceRequest) (*ResponseAsyncDeleteApplicationFunctionInstance, *http.Response, error) {
+//  @return ResponseDeleteApplicationFunctionInstance
+func (a *ApplicationsFunctionAPIService) DeleteApplicationFunctionInstanceExecute(r ApiDeleteApplicationFunctionInstanceRequest) (*ResponseDeleteApplicationFunctionInstance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteApplicationFunctionInstance
+		localVarReturnValue  *ResponseDeleteApplicationFunctionInstance
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsFunctionAPIService.DeleteApplicationFunctionInstance")

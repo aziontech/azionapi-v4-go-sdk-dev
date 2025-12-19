@@ -230,7 +230,7 @@ type ApiDeleteNetworkListRequest struct {
 	networkListId int64
 }
 
-func (r ApiDeleteNetworkListRequest) Execute() (*ResponseAsyncDeleteNetworkListDetail, *http.Response, error) {
+func (r ApiDeleteNetworkListRequest) Execute() (*ResponseDeleteNetworkListDetail, *http.Response, error) {
 	return r.ApiService.DeleteNetworkListExecute(r)
 }
 
@@ -252,13 +252,13 @@ func (a *NetworkListsAPIService) DeleteNetworkList(ctx context.Context, networkL
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteNetworkListDetail
-func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkListRequest) (*ResponseAsyncDeleteNetworkListDetail, *http.Response, error) {
+//  @return ResponseDeleteNetworkListDetail
+func (a *NetworkListsAPIService) DeleteNetworkListExecute(r ApiDeleteNetworkListRequest) (*ResponseDeleteNetworkListDetail, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteNetworkListDetail
+		localVarReturnValue  *ResponseDeleteNetworkListDetail
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkListsAPIService.DeleteNetworkList")

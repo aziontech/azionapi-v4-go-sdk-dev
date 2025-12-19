@@ -434,7 +434,7 @@ type ApiDeleteApplicationRequest struct {
 	applicationId int64
 }
 
-func (r ApiDeleteApplicationRequest) Execute() (*ResponseAsyncDeleteApplication, *http.Response, error) {
+func (r ApiDeleteApplicationRequest) Execute() (*ResponseDeleteApplication, *http.Response, error) {
 	return r.ApiService.DeleteApplicationExecute(r)
 }
 
@@ -456,13 +456,13 @@ func (a *ApplicationsAPIService) DeleteApplication(ctx context.Context, applicat
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteApplication
-func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplicationRequest) (*ResponseAsyncDeleteApplication, *http.Response, error) {
+//  @return ResponseDeleteApplication
+func (a *ApplicationsAPIService) DeleteApplicationExecute(r ApiDeleteApplicationRequest) (*ResponseDeleteApplication, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteApplication
+		localVarReturnValue  *ResponseDeleteApplication
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsAPIService.DeleteApplication")

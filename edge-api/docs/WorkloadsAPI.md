@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWorkload
 
-> ResponseAsyncDeleteWorkload DeleteWorkload(ctx, workloadId).Execute()
+> ResponseDeleteWorkload DeleteWorkload(ctx, workloadId).Execute()
 
 Delete an Workload
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.DeleteWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteWorkload`: ResponseAsyncDeleteWorkload
+	// response from `DeleteWorkload`: ResponseDeleteWorkload
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.DeleteWorkload`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteWorkload**](ResponseAsyncDeleteWorkload.md)
+[**ResponseDeleteWorkload**](ResponseDeleteWorkload.md)
 
 ### Authorization
 

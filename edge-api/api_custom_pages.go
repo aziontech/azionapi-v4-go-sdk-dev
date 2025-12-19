@@ -230,7 +230,7 @@ type ApiDeleteCustomPageRequest struct {
 	customPageId int64
 }
 
-func (r ApiDeleteCustomPageRequest) Execute() (*ResponseAsyncDeleteCustomPage, *http.Response, error) {
+func (r ApiDeleteCustomPageRequest) Execute() (*ResponseDeleteCustomPage, *http.Response, error) {
 	return r.ApiService.DeleteCustomPageExecute(r)
 }
 
@@ -252,13 +252,13 @@ func (a *CustomPagesAPIService) DeleteCustomPage(ctx context.Context, customPage
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteCustomPage
-func (a *CustomPagesAPIService) DeleteCustomPageExecute(r ApiDeleteCustomPageRequest) (*ResponseAsyncDeleteCustomPage, *http.Response, error) {
+//  @return ResponseDeleteCustomPage
+func (a *CustomPagesAPIService) DeleteCustomPageExecute(r ApiDeleteCustomPageRequest) (*ResponseDeleteCustomPage, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteCustomPage
+		localVarReturnValue  *ResponseDeleteCustomPage
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomPagesAPIService.DeleteCustomPage")

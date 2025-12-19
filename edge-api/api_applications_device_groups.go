@@ -234,7 +234,7 @@ type ApiDeleteDeviceGroupsRequest struct {
 	deviceGroupId int64
 }
 
-func (r ApiDeleteDeviceGroupsRequest) Execute() (*ResponseAsyncDeleteApplicationDeviceGroups, *http.Response, error) {
+func (r ApiDeleteDeviceGroupsRequest) Execute() (*ResponseDeleteApplicationDeviceGroups, *http.Response, error) {
 	return r.ApiService.DeleteDeviceGroupsExecute(r)
 }
 
@@ -258,13 +258,13 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroups(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteApplicationDeviceGroups
-func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDeleteDeviceGroupsRequest) (*ResponseAsyncDeleteApplicationDeviceGroups, *http.Response, error) {
+//  @return ResponseDeleteApplicationDeviceGroups
+func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDeleteDeviceGroupsRequest) (*ResponseDeleteApplicationDeviceGroups, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteApplicationDeviceGroups
+		localVarReturnValue  *ResponseDeleteApplicationDeviceGroups
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsDeviceGroupsAPIService.DeleteDeviceGroups")

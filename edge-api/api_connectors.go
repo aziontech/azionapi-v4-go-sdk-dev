@@ -227,7 +227,7 @@ type ApiDeleteConnectorRequest struct {
 	connectorId int64
 }
 
-func (r ApiDeleteConnectorRequest) Execute() (*ResponseAsyncDeleteConnectorPolymorphic, *http.Response, error) {
+func (r ApiDeleteConnectorRequest) Execute() (*ResponseDeleteConnectorPolymorphic, *http.Response, error) {
 	return r.ApiService.DeleteConnectorExecute(r)
 }
 
@@ -249,13 +249,13 @@ func (a *ConnectorsAPIService) DeleteConnector(ctx context.Context, connectorId 
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteConnectorPolymorphic
-func (a *ConnectorsAPIService) DeleteConnectorExecute(r ApiDeleteConnectorRequest) (*ResponseAsyncDeleteConnectorPolymorphic, *http.Response, error) {
+//  @return ResponseDeleteConnectorPolymorphic
+func (a *ConnectorsAPIService) DeleteConnectorExecute(r ApiDeleteConnectorRequest) (*ResponseDeleteConnectorPolymorphic, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteConnectorPolymorphic
+		localVarReturnValue  *ResponseDeleteConnectorPolymorphic
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectorsAPIService.DeleteConnector")

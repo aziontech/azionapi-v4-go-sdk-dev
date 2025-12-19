@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteNetworkList
 
-> ResponseAsyncDeleteNetworkListDetail DeleteNetworkList(ctx, networkListId).Execute()
+> ResponseDeleteNetworkListDetail DeleteNetworkList(ctx, networkListId).Execute()
 
 Delete a Network List
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.DeleteNetworkList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteNetworkList`: ResponseAsyncDeleteNetworkListDetail
+	// response from `DeleteNetworkList`: ResponseDeleteNetworkListDetail
 	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.DeleteNetworkList`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteNetworkListDetail**](ResponseAsyncDeleteNetworkListDetail.md)
+[**ResponseDeleteNetworkListDetail**](ResponseDeleteNetworkListDetail.md)
 
 ### Authorization
 

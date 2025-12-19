@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFunction
 
-> ResponseAsyncDeleteFunctionsDoc DeleteFunction(ctx, functionId).Execute()
+> ResponseDeleteFunctionsDoc DeleteFunction(ctx, functionId).Execute()
 
 Delete an Function
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.DeleteFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteFunction`: ResponseAsyncDeleteFunctionsDoc
+	// response from `DeleteFunction`: ResponseDeleteFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.DeleteFunction`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteFunctionsDoc**](ResponseAsyncDeleteFunctionsDoc.md)
+[**ResponseDeleteFunctionsDoc**](ResponseDeleteFunctionsDoc.md)
 
 ### Authorization
 

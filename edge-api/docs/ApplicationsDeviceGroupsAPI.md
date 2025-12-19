@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDeviceGroups
 
-> ResponseAsyncDeleteApplicationDeviceGroups DeleteDeviceGroups(ctx, applicationId, deviceGroupId).Execute()
+> ResponseDeleteApplicationDeviceGroups DeleteDeviceGroups(ctx, applicationId, deviceGroupId).Execute()
 
 Delete an Applications Device Group
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsDeviceGroupsAPI.DeleteDeviceGroups``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteDeviceGroups`: ResponseAsyncDeleteApplicationDeviceGroups
+	// response from `DeleteDeviceGroups`: ResponseDeleteApplicationDeviceGroups
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsDeviceGroupsAPI.DeleteDeviceGroups`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteApplicationDeviceGroups**](ResponseAsyncDeleteApplicationDeviceGroups.md)
+[**ResponseDeleteApplicationDeviceGroups**](ResponseDeleteApplicationDeviceGroups.md)
 
 ### Authorization
 

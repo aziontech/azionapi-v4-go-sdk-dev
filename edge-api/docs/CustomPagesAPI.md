@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCustomPage
 
-> ResponseAsyncDeleteCustomPage DeleteCustomPage(ctx, customPageId).Execute()
+> ResponseDeleteCustomPage DeleteCustomPage(ctx, customPageId).Execute()
 
 Delete a Custom Page
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.DeleteCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCustomPage`: ResponseAsyncDeleteCustomPage
+	// response from `DeleteCustomPage`: ResponseDeleteCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.DeleteCustomPage`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteCustomPage**](ResponseAsyncDeleteCustomPage.md)
+[**ResponseDeleteCustomPage**](ResponseDeleteCustomPage.md)
 
 ### Authorization
 
