@@ -29,6 +29,8 @@ docs/ResponseAsyncDeleteCertificate.md
 docs/ResponseAsyncDeleteCertificateRevocationList.md
 docs/ResponseCertificate.md
 docs/ResponseCertificateRevocationList.md
+docs/ResponseDeleteCertificate.md
+docs/ResponseDeleteCertificateRevocationList.md
 docs/ResponseRetrieveCertificate.md
 docs/ResponseRetrieveCertificateRevocationList.md
 git_push.sh
@@ -51,6 +53,8 @@ model_response_async_delete_certificate.go
 model_response_async_delete_certificate_revocation_list.go
 model_response_certificate.go
 model_response_certificate_revocation_list.go
+model_response_delete_certificate.go
+model_response_delete_certificate_revocation_list.go
 model_response_retrieve_certificate.go
 model_response_retrieve_certificate_revocation_list.go
 response.go

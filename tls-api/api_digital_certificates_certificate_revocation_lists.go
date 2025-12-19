@@ -230,7 +230,7 @@ type ApiDeleteCertificateRevocationListRequest struct {
 	crlId int64
 }
 
-func (r ApiDeleteCertificateRevocationListRequest) Execute() (*ResponseAsyncDeleteCertificateRevocationList, *http.Response, error) {
+func (r ApiDeleteCertificateRevocationListRequest) Execute() (*ResponseDeleteCertificateRevocationList, *http.Response, error) {
 	return r.ApiService.DeleteCertificateRevocationListExecute(r)
 }
 
@@ -252,13 +252,13 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) DeleteCertific
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteCertificateRevocationList
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) DeleteCertificateRevocationListExecute(r ApiDeleteCertificateRevocationListRequest) (*ResponseAsyncDeleteCertificateRevocationList, *http.Response, error) {
+//  @return ResponseDeleteCertificateRevocationList
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) DeleteCertificateRevocationListExecute(r ApiDeleteCertificateRevocationListRequest) (*ResponseDeleteCertificateRevocationList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteCertificateRevocationList
+		localVarReturnValue  *ResponseDeleteCertificateRevocationList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.DeleteCertificateRevocationList")
