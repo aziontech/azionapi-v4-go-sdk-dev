@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDnsZone
 
-> ResponseAsyncDeleteZone DeleteDnsZone(ctx, zoneId).Execute()
+> ResponseDeleteZone DeleteDnsZone(ctx, zoneId).Execute()
 
 Delete a DNS Zone
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DNSZonesAPI.DeleteDnsZone``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteDnsZone`: ResponseAsyncDeleteZone
+	// response from `DeleteDnsZone`: ResponseDeleteZone
 	fmt.Fprintf(os.Stdout, "Response from `DNSZonesAPI.DeleteDnsZone`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteZone**](ResponseAsyncDeleteZone.md)
+[**ResponseDeleteZone**](ResponseDeleteZone.md)
 
 ### Authorization
 

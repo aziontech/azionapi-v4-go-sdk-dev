@@ -363,8 +363,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteZone"
+          description: ""
         "202":
           content:
             application/json:
@@ -1742,8 +1746,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteRecord"
+          description: ""
         "202":
           content:
             application/json:
@@ -2976,6 +2984,24 @@ components:
           $ref: "#/components/schemas/DNSSEC"
       required:
       - data
+      type: object
+    ResponseDeleteRecord:
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      type: object
+    ResponseDeleteZone:
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
       type: object
     ResponseRecord:
       example:

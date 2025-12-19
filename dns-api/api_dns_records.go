@@ -234,7 +234,7 @@ type ApiDeleteDnsRecordRequest struct {
 	zoneId int64
 }
 
-func (r ApiDeleteDnsRecordRequest) Execute() (*ResponseAsyncDeleteRecord, *http.Response, error) {
+func (r ApiDeleteDnsRecordRequest) Execute() (*ResponseDeleteRecord, *http.Response, error) {
 	return r.ApiService.DeleteDnsRecordExecute(r)
 }
 
@@ -258,13 +258,13 @@ func (a *DNSRecordsAPIService) DeleteDnsRecord(ctx context.Context, recordId int
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteRecord
-func (a *DNSRecordsAPIService) DeleteDnsRecordExecute(r ApiDeleteDnsRecordRequest) (*ResponseAsyncDeleteRecord, *http.Response, error) {
+//  @return ResponseDeleteRecord
+func (a *DNSRecordsAPIService) DeleteDnsRecordExecute(r ApiDeleteDnsRecordRequest) (*ResponseDeleteRecord, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteRecord
+		localVarReturnValue  *ResponseDeleteRecord
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DNSRecordsAPIService.DeleteDnsRecord")
