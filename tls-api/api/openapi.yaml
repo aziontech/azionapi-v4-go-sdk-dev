@@ -6,6 +6,1154 @@ info:
 servers:
 - url: /
 paths:
+  /workspace/tls/crls:
+    get:
+      description: List all certificate revocation lists (CRL) owned by your account.
+      operationId: list_certificate_revocation_lists
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by CRL ID (accepts comma-separated values).
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: "Filter by issuer (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: issuer
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by exact last modified date and time.
+        explode: true
+        in: query
+        name: last_modified
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date (greater than or equal).
+        explode: true
+        in: query
+        name: last_modified__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last modified date (less than or equal).
+        explode: true
+        in: query
+        name: last_modified__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by exact last update date and time.
+        explode: true
+        in: query
+        name: last_update
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last update date (greater than or equal).
+        explode: true
+        in: query
+        name: last_update__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by last update date (less than or equal).
+        explode: true
+        in: query
+        name: last_update__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Filter by CRL name (case-insensitive, partial match)."
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by exact next update date and time.
+        explode: true
+        in: query
+        name: next_update
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by next update date (greater than or equal).
+        explode: true
+        in: query
+        name: next_update__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by next update date (less than or equal).
+        explode: true
+        in: query
+        name: next_update__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: name, active, last_editor, last_modified, product_version, issuer, last_update, next_update, crl)
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A numeric value that indicates the number of items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedCertificateRevocationList"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: List certificate revocation lists (CRL)
+      tags:
+      - Digital Certificates - Certificate Revocation Lists
+    post:
+      description: Create a new certificate revocation lists (CRL) for your account.
+      operationId: create_certificate_revocation_list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CertificateRevocationList"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseCertificateRevocationList"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncCertificateRevocationList"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Create a certificate revocation lists (CRL)
+      tags:
+      - Digital Certificates - Certificate Revocation Lists
+  /workspace/tls/crls/{crl_id}:
+    delete:
+      description: Delete a specific certificate revocation list in your account.
+      operationId: delete_certificate_revocation_list
+      parameters:
+      - description: The unique identifier of the certificate revocation list
+        explode: false
+        in: path
+        name: crl_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteCertificateRevocationList"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncDeleteCertificateRevocationList"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Delete a certificate revocation list
+      tags:
+      - Digital Certificates - Certificate Revocation Lists
+    get:
+      description: Retrieve details from a specific certificate revocation lists (CRL)
+        in your account.
+      operationId: retrieve_certificate_revocation_list
+      parameters:
+      - description: The unique identifier of the certificate revocation list
+        explode: false
+        in: path
+        name: crl_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseRetrieveCertificateRevocationList"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve details from a certificate revocation lists (CRL)
+      tags:
+      - Digital Certificates - Certificate Revocation Lists
+    patch:
+      description: Update one or more fields of an existing certificate revocation
+        lists (CRL) without affecting other fields.
+      operationId: partial_update_certificate_revocation_list
+      parameters:
+      - description: The unique identifier of the certificate revocation list
+        explode: false
+        in: path
+        name: crl_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchCertificateRevocationList"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseCertificateRevocationList"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncCertificateRevocationList"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Update a certificate revocation lists (CRL)
+      tags:
+      - Digital Certificates - Certificate Revocation Lists
+    put:
+      description: Update an existing certificate revocation lists (CRL).  This replaces
+        the entire certificate with the new data provided.
+      operationId: update_certificate_revocation_list
+      parameters:
+      - description: The unique identifier of the certificate revocation list
+        explode: false
+        in: path
+        name: crl_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CertificateRevocationList"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseCertificateRevocationList"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseAsyncCertificateRevocationList"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Update a certificate revocation lists (CRL)
+      tags:
+      - Digital Certificates - Certificate Revocation Lists
+  /workspace/tls/csr:
+    post:
+      description: Create a new certificate signing request (CSR) for your account.
+      operationId: create_certificate_signing_request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CertificateSigningRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseCertificate"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Create a certificate signing request (CSR)
+      tags:
+      - Digital Certificates - Certificate Signing Requests
   /workspace/tls/certificates:
     get:
       description: List all certificates owned by your account.
@@ -171,7 +1319,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -187,7 +1335,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
         "400":
           content:
@@ -203,7 +1351,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -219,7 +1367,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -235,7 +1383,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -251,7 +1399,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -267,7 +1415,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
       security:
       - TokenAuth: []
@@ -311,7 +1459,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -327,7 +1475,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
         "400":
           content:
@@ -343,7 +1491,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -359,7 +1507,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -375,7 +1523,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -391,7 +1539,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -407,7 +1555,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
       security:
       - TokenAuth: []
@@ -430,8 +1578,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteCertificate"
+          description: ""
         "202":
           content:
             application/json:
@@ -452,7 +1604,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -468,7 +1620,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
         "400":
           content:
@@ -484,7 +1636,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -500,7 +1652,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -516,7 +1668,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -532,7 +1684,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -548,7 +1700,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
       security:
       - TokenAuth: []
@@ -598,7 +1750,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -614,7 +1766,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
         "400":
           content:
@@ -630,7 +1782,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -646,7 +1798,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -662,7 +1814,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -678,7 +1830,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -694,7 +1846,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
       security:
       - TokenAuth: []
@@ -720,7 +1872,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PatchedCertificate"
+              $ref: "#/components/schemas/PatchCertificate"
       responses:
         "200":
           content:
@@ -742,7 +1894,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -758,7 +1910,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -774,7 +1926,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -790,7 +1942,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -806,7 +1958,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -822,7 +1974,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -838,7 +1990,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
         "202":
           content:
@@ -893,7 +2045,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -909,7 +2061,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -925,7 +2077,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -941,7 +2093,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -957,7 +2109,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
         "401":
           content:
@@ -973,7 +2125,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -989,7 +2141,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
         "202":
           content:
@@ -1034,7 +2186,7 @@ paths:
                       title: Authentication Failed
                       detail: Invalid authentication credentials.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Authentication Failed
         "403":
           content:
@@ -1050,7 +2202,7 @@ paths:
                       title: Permission Denied
                       detail: You do not have permission to perform this action.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
         "400":
           content:
@@ -1066,7 +2218,7 @@ paths:
                       title: Validation Error
                       detail: Invalid data provided in the request.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Validation Error
         "404":
           content:
@@ -1082,7 +2234,7 @@ paths:
                       title: Not Found
                       detail: Not found.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Found
         "405":
           content:
@@ -1098,7 +2250,7 @@ paths:
                       title: Method Not Allowed
                       detail: "Method \"{method}\" not allowed."
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Method Not Allowed
         "406":
           content:
@@ -1114,7 +2266,7 @@ paths:
                       title: Not Acceptable
                       detail: Could not satisfy the request Accept header.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Not Acceptable
         "429":
           content:
@@ -1130,7 +2282,7 @@ paths:
                       title: Throttled
                       detail: Request was throttled.
               schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Throttled
       security:
       - TokenAuth: []
@@ -1138,1150 +2290,6 @@ paths:
       summary: Request a certificate
       tags:
       - Digital Certificates - Request a Certificate
-  /workspace/tls/crls:
-    get:
-      description: List all certificate revocation lists (CRL) owned by your account.
-      operationId: list_certificate_revocation_lists
-      parameters:
-      - description: Comma-separated list of field names to include in the response.
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by CRL ID (accepts comma-separated values).
-        explode: true
-        in: query
-        name: id
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: "Filter by issuer (case-insensitive, partial match)."
-        explode: true
-        in: query
-        name: issuer
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by exact last modified date and time.
-        explode: true
-        in: query
-        name: last_modified
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: Filter by last modified date (greater than or equal).
-        explode: true
-        in: query
-        name: last_modified__gte
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: Filter by last modified date (less than or equal).
-        explode: true
-        in: query
-        name: last_modified__lte
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: Filter by exact last update date and time.
-        explode: true
-        in: query
-        name: last_update
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: Filter by last update date (greater than or equal).
-        explode: true
-        in: query
-        name: last_update__gte
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: Filter by last update date (less than or equal).
-        explode: true
-        in: query
-        name: last_update__lte
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: "Filter by CRL name (case-insensitive, partial match)."
-        explode: true
-        in: query
-        name: name
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter by exact next update date and time.
-        explode: true
-        in: query
-        name: next_update
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: Filter by next update date (greater than or equal).
-        explode: true
-        in: query
-        name: next_update__gte
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: Filter by next update date (less than or equal).
-        explode: true
-        in: query
-        name: next_update__lte
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: |-
-          Which field to use when ordering the results.
-          (Valid fields: name, active, last_editor, last_modified, product_version, issuer, last_update, next_update, crl)
-        explode: true
-        in: query
-        name: ordering
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: A page number within the paginated result set.
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: A numeric value that indicates the number of items per page.
-        explode: true
-        in: query
-        name: page_size
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: A search term.
-        explode: true
-        in: query
-        name: search
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PaginatedCertificateRevocationListList"
-          description: ""
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: List certificate revocation lists (CRL)
-      tags:
-      - Digital Certificates - Certificate Revocation Lists
-    post:
-      description: Create a new certificate revocation lists (CRL) for your account.
-      operationId: create_certificate_revocation_list
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CertificateRevocationList"
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseCertificateRevocationList"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncCertificateRevocationList"
-          description: ""
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Create a certificate revocation lists (CRL)
-      tags:
-      - Digital Certificates - Certificate Revocation Lists
-  /workspace/tls/crls/{crl_id}:
-    delete:
-      description: Delete a specific certificate revocation list in your account.
-      operationId: delete_certificate_revocation_list
-      parameters:
-      - description: The unique identifier of the certificate revocation list
-        explode: false
-        in: path
-        name: crl_id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
-      responses:
-        "204":
-          description: No response body
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteCertificateRevocationList"
-          description: ""
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Delete a certificate revocation list
-      tags:
-      - Digital Certificates - Certificate Revocation Lists
-    get:
-      description: Retrieve details from a specific certificate revocation lists (CRL)
-        in your account.
-      operationId: retrieve_certificate_revocation_list
-      parameters:
-      - description: The unique identifier of the certificate revocation list
-        explode: false
-        in: path
-        name: crl_id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
-      - description: Comma-separated list of field names to include in the response.
-        explode: true
-        in: query
-        name: fields
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseRetrieveCertificateRevocationList"
-          description: ""
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Retrieve details from a certificate revocation lists (CRL)
-      tags:
-      - Digital Certificates - Certificate Revocation Lists
-    patch:
-      description: Update one or more fields of an existing certificate revocation
-        lists (CRL) without affecting other fields.
-      operationId: partial_update_certificate_revocation_list
-      parameters:
-      - description: The unique identifier of the certificate revocation list
-        explode: false
-        in: path
-        name: crl_id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/PatchedCertificateRevocationList"
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseCertificateRevocationList"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncCertificateRevocationList"
-          description: ""
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Update a certificate revocation lists (CRL)
-      tags:
-      - Digital Certificates - Certificate Revocation Lists
-    put:
-      description: Update an existing certificate revocation lists (CRL).  This replaces
-        the entire certificate with the new data provided.
-      operationId: update_certificate_revocation_list
-      parameters:
-      - description: The unique identifier of the certificate revocation list
-        explode: false
-        in: path
-        name: crl_id
-        required: true
-        schema:
-          format: int64
-          type: integer
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CertificateRevocationList"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseCertificateRevocationList"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncCertificateRevocationList"
-          description: ""
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Update a certificate revocation lists (CRL)
-      tags:
-      - Digital Certificates - Certificate Revocation Lists
-  /workspace/tls/csr:
-    post:
-      description: Create a new certificate signing request (CSR) for your account.
-      operationId: create_certificate_signing_request
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CertificateSigningRequest"
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseCertificate"
-          description: ""
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-      security:
-      - TokenAuth: []
-      - BearerAuth: []
-      summary: Create a certificate signing request (CSR)
-      tags:
-      - Digital Certificates - Certificate Signing Requests
 components:
   schemas:
     Certificate:
@@ -2893,33 +2901,6 @@ components:
           description: Non-standard meta-information about the error
           type: object
       type: object
-    JSONAPIErrorResponse:
-      description: Serializer for a JSON:API error response.
-      example:
-        errors:
-        - code: code
-          meta:
-            key: ""
-          detail: detail
-          source: ""
-          title: title
-          status: status
-        - code: code
-          meta:
-            key: ""
-          detail: detail
-          source: ""
-          title: title
-          status: status
-      properties:
-        errors:
-          description: Array of error objects
-          items:
-            $ref: "#/components/schemas/JSONAPIErrorObject"
-          type: array
-      required:
-      - errors
-      type: object
     JSONAPIErrorSource:
       description: Serializer for the 'source' object in a JSON:API error.
       properties:
@@ -3024,239 +3005,6 @@ components:
           items:
             $ref: "#/components/schemas/Certificate"
           type: array
-      type: object
-    PaginatedCertificateRevocationListList:
-      example:
-        count: 123
-        total_pages: 10
-        page: 1
-        results:
-        - product_version: product_version
-          last_editor: last_editor
-          last_update: 2000-01-23T04:56:07.000+00:00
-          name: name
-          active: true
-          id: 0
-          crl: crl
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          issuer: issuer
-          next_update: 2000-01-23T04:56:07.000+00:00
-        - product_version: product_version
-          last_editor: last_editor
-          last_update: 2000-01-23T04:56:07.000+00:00
-          name: name
-          active: true
-          id: 0
-          crl: crl
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          issuer: issuer
-          next_update: 2000-01-23T04:56:07.000+00:00
-        page_size: 10
-      properties:
-        count:
-          description: Total number of items
-          example: 123
-          format: int64
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        total_pages:
-          description: Total number of pages
-          example: 10
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        page:
-          description: Current page number
-          example: 1
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        page_size:
-          description: Number of items per page
-          example: 10
-          format: int64
-          maximum: 100
-          minimum: 1
-          type: integer
-        results:
-          items:
-            $ref: "#/components/schemas/CertificateRevocationList"
-          type: array
-      type: object
-    PatchedCertificate:
-      example:
-        product_version: product_version
-        csr: csr
-        last_editor: last_editor
-        certificate: certificate
-        active: true
-        private_key: private_key
-        key_algorithm: key_algorithm
-        type: type
-        issuer: issuer
-        status_detail: status_detail
-        managed: true
-        authority: authority
-        name: name
-        subject_name:
-        - subject_name
-        - subject_name
-        challenge: challenge
-        id: 0
-        validity: validity
-        last_modified: 2000-01-23T04:56:07.000+00:00
-        status: status
-        renewed_at: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 250
-          minLength: 1
-          type: string
-        certificate:
-          maxLength: 600000
-          minLength: 1
-          nullable: true
-          type: string
-        private_key:
-          maxLength: 64000
-          minLength: 1
-          nullable: true
-          type: string
-          writeOnly: true
-        issuer:
-          nullable: true
-          type: string
-        subject_name:
-          items:
-            type: string
-          type: array
-        validity:
-          nullable: true
-          type: string
-        type:
-          description: |-
-            The value can't be changed after the certificate creation.
-
-            * `edge_certificate` - Edge Certificate
-            * `trusted_ca_certificate` - Trusted CA Certificate
-          type: string
-          x-extensible-enum:
-          - edge_certificate
-          - trusted_ca_certificate
-        managed:
-          type: boolean
-        status:
-          description: |-
-            * `challenge_verification` - Challenge Verification
-            * `active` - Active
-            * `pending` - Pending
-            * `failed` - Failed
-          type: string
-          x-extensible-enum:
-          - challenge_verification
-          - active
-          - pending
-          - failed
-        status_detail:
-          maxLength: 500
-          minLength: 0
-          type: string
-        csr:
-          nullable: true
-          type: string
-        challenge:
-          description: |-
-            * `dns` - Uses DNS to solve the ACME challenge.
-            * `http` - Uses HTTP to solve the ACME challenge.
-          type: string
-          x-extensible-enum:
-          - dns
-          - http
-        authority:
-          description: '* `lets_encrypt` - lets_encrypt'
-          type: string
-          x-extensible-enum:
-          - lets_encrypt
-        key_algorithm:
-          type: string
-        active:
-          type: boolean
-        product_version:
-          maxLength: 50
-          minLength: 3
-          type: string
-        last_editor:
-          type: string
-        last_modified:
-          description: Timestamp of the last modification made to the certificate
-            content on the platform.
-          format: date-time
-          type: string
-        renewed_at:
-          description: Timestamp indicating when the managed certificate was renewed
-            on our platform.
-          format: date-time
-          nullable: true
-          type: string
-      type: object
-    PatchedCertificateRevocationList:
-      example:
-        product_version: product_version
-        last_editor: last_editor
-        last_update: 2000-01-23T04:56:07.000+00:00
-        name: name
-        active: true
-        id: 0
-        crl: crl
-        last_modified: 2000-01-23T04:56:07.000+00:00
-        issuer: issuer
-        next_update: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 250
-          minLength: 1
-          type: string
-        active:
-          description: Indicates if the certificate revocation list is active. This
-            field cannot be set to false.
-          type: boolean
-        last_editor:
-          type: string
-        last_modified:
-          description: Timestamp of the last modification made to the certificate
-            content on the platform.
-          format: date-time
-          type: string
-        product_version:
-          maxLength: 50
-          minLength: 3
-          type: string
-        issuer:
-          minLength: 1
-          type: string
-        last_update:
-          description: Timestamp of the last update issued by the certification revocation
-            list issuer.
-          format: date-time
-          type: string
-        next_update:
-          description: Timestamp of the next scheduled update from the certification
-            revocation list issuer.
-          format: date-time
-          type: string
-        crl:
-          maxLength: 30720000
-          minLength: 1
-          type: string
       type: object
     ResponseAsyncCertificate:
       example:
@@ -3396,6 +3144,24 @@ components:
       required:
       - data
       type: object
+    ResponseDeleteCertificate:
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      type: object
+    ResponseDeleteCertificateRevocationList:
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      type: object
     ResponseRetrieveCertificate:
       example:
         data:
@@ -3445,6 +3211,266 @@ components:
           $ref: "#/components/schemas/CertificateRevocationList"
       required:
       - data
+      type: object
+    PaginatedCertificateRevocationList:
+      example:
+        count: 123
+        total_pages: 10
+        page: 1
+        results:
+        - product_version: product_version
+          last_editor: last_editor
+          last_update: 2000-01-23T04:56:07.000+00:00
+          name: name
+          active: true
+          id: 0
+          crl: crl
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          issuer: issuer
+          next_update: 2000-01-23T04:56:07.000+00:00
+        - product_version: product_version
+          last_editor: last_editor
+          last_update: 2000-01-23T04:56:07.000+00:00
+          name: name
+          active: true
+          id: 0
+          crl: crl
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          issuer: issuer
+          next_update: 2000-01-23T04:56:07.000+00:00
+        page_size: 10
+      properties:
+        count:
+          description: Total number of items
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
+          type: integer
+        results:
+          items:
+            $ref: "#/components/schemas/CertificateRevocationList"
+          type: array
+      type: object
+    PatchCertificate:
+      example:
+        product_version: product_version
+        csr: csr
+        last_editor: last_editor
+        certificate: certificate
+        active: true
+        private_key: private_key
+        key_algorithm: key_algorithm
+        type: type
+        issuer: issuer
+        status_detail: status_detail
+        managed: true
+        authority: authority
+        name: name
+        subject_name:
+        - subject_name
+        - subject_name
+        challenge: challenge
+        id: 0
+        validity: validity
+        last_modified: 2000-01-23T04:56:07.000+00:00
+        status: status
+        renewed_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 250
+          minLength: 1
+          type: string
+        certificate:
+          maxLength: 600000
+          minLength: 1
+          nullable: true
+          type: string
+        private_key:
+          maxLength: 64000
+          minLength: 1
+          nullable: true
+          type: string
+          writeOnly: true
+        issuer:
+          nullable: true
+          type: string
+        subject_name:
+          items:
+            type: string
+          type: array
+        validity:
+          nullable: true
+          type: string
+        type:
+          description: |-
+            The value can't be changed after the certificate creation.
+
+            * `edge_certificate` - Edge Certificate
+            * `trusted_ca_certificate` - Trusted CA Certificate
+          type: string
+          x-extensible-enum:
+          - edge_certificate
+          - trusted_ca_certificate
+        managed:
+          type: boolean
+        status:
+          description: |-
+            * `challenge_verification` - Challenge Verification
+            * `active` - Active
+            * `pending` - Pending
+            * `failed` - Failed
+          type: string
+          x-extensible-enum:
+          - challenge_verification
+          - active
+          - pending
+          - failed
+        status_detail:
+          maxLength: 500
+          minLength: 0
+          type: string
+        csr:
+          nullable: true
+          type: string
+        challenge:
+          description: |-
+            * `dns` - Uses DNS to solve the ACME challenge.
+            * `http` - Uses HTTP to solve the ACME challenge.
+          type: string
+          x-extensible-enum:
+          - dns
+          - http
+        authority:
+          description: '* `lets_encrypt` - lets_encrypt'
+          type: string
+          x-extensible-enum:
+          - lets_encrypt
+        key_algorithm:
+          type: string
+        active:
+          type: boolean
+        product_version:
+          maxLength: 50
+          minLength: 3
+          type: string
+        last_editor:
+          type: string
+        last_modified:
+          description: Timestamp of the last modification made to the certificate
+            content on the platform.
+          format: date-time
+          type: string
+        renewed_at:
+          description: Timestamp indicating when the managed certificate was renewed
+            on our platform.
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    PatchCertificateRevocationList:
+      example:
+        product_version: product_version
+        last_editor: last_editor
+        last_update: 2000-01-23T04:56:07.000+00:00
+        name: name
+        active: true
+        id: 0
+        crl: crl
+        last_modified: 2000-01-23T04:56:07.000+00:00
+        issuer: issuer
+        next_update: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 250
+          minLength: 1
+          type: string
+        active:
+          description: Indicates if the certificate revocation list is active. This
+            field cannot be set to false.
+          type: boolean
+        last_editor:
+          type: string
+        last_modified:
+          description: Timestamp of the last modification made to the certificate
+            content on the platform.
+          format: date-time
+          type: string
+        product_version:
+          maxLength: 50
+          minLength: 3
+          type: string
+        issuer:
+          minLength: 1
+          type: string
+        last_update:
+          description: Timestamp of the last update issued by the certification revocation
+            list issuer.
+          format: date-time
+          type: string
+        next_update:
+          description: Timestamp of the next scheduled update from the certification
+            revocation list issuer.
+          format: date-time
+          type: string
+        crl:
+          maxLength: 30720000
+          minLength: 1
+          type: string
+      type: object
+    ErrorResponse:
+      description: Serializer for a JSON:API error response.
+      example:
+        errors:
+        - code: code
+          meta:
+            key: ""
+          detail: detail
+          source: ""
+          title: title
+          status: status
+        - code: code
+          meta:
+            key: ""
+          detail: detail
+          source: ""
+          title: title
+          status: status
+      properties:
+        errors:
+          description: Array of error objects
+          items:
+            $ref: "#/components/schemas/JSONAPIErrorObject"
+          type: array
+      required:
+      - errors
       type: object
   securitySchemes:
     BearerAuth:

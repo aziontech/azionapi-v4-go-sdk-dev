@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCertificate
 
-> ResponseAsyncDeleteCertificate DeleteCertificate(ctx, certificateId).Execute()
+> ResponseDeleteCertificate DeleteCertificate(ctx, certificateId).Execute()
 
 Delete a certificate
 
@@ -110,7 +110,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.DeleteCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCertificate`: ResponseAsyncDeleteCertificate
+	// response from `DeleteCertificate`: ResponseDeleteCertificate
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.DeleteCertificate`: %v\n", resp)
 }
 ```
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteCertificate**](ResponseAsyncDeleteCertificate.md)
+[**ResponseDeleteCertificate**](ResponseDeleteCertificate.md)
 
 ### Authorization
 
@@ -249,7 +249,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateCertificate
 
-> ResponseCertificate PartialUpdateCertificate(ctx, certificateId).PatchedCertificate(patchedCertificate).Execute()
+> ResponseCertificate PartialUpdateCertificate(ctx, certificateId).PatchCertificate(patchCertificate).Execute()
 
 Partially update a certificate
 
@@ -269,11 +269,11 @@ import (
 
 func main() {
 	certificateId := int64(789) // int64 | The unique identifier of the certificate
-	patchedCertificate := *openapiclient.NewPatchedCertificate() // PatchedCertificate |  (optional)
+	patchCertificate := *openapiclient.NewPatchCertificate() // PatchCertificate |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.PartialUpdateCertificate(context.Background(), certificateId).PatchedCertificate(patchedCertificate).Execute()
+	resp, r, err := apiClient.DigitalCertificatesCertificatesAPI.PartialUpdateCertificate(context.Background(), certificateId).PatchCertificate(patchCertificate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.PartialUpdateCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -299,7 +299,7 @@ Other parameters are passed through a pointer to a apiPartialUpdateCertificateRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedCertificate** | [**PatchedCertificate**](PatchedCertificate.md) |  | 
+ **patchCertificate** | [**PatchCertificate**](PatchCertificate.md) |  | 
 
 ### Return type
 
