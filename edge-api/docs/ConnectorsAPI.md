@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteConnector
 
-> ResponseAsyncDeleteConnectorPolymorphic DeleteConnector(ctx, connectorId).Execute()
+> ResponseDeleteConnectorPolymorphic DeleteConnector(ctx, connectorId).Execute()
 
 Delete an Connector
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorsAPI.DeleteConnector``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteConnector`: ResponseAsyncDeleteConnectorPolymorphic
+	// response from `DeleteConnector`: ResponseDeleteConnectorPolymorphic
 	fmt.Fprintf(os.Stdout, "Response from `ConnectorsAPI.DeleteConnector`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteConnectorPolymorphic**](ResponseAsyncDeleteConnectorPolymorphic.md)
+[**ResponseDeleteConnectorPolymorphic**](ResponseDeleteConnectorPolymorphic.md)
 
 ### Authorization
 

@@ -433,7 +433,7 @@ type ApiDeleteWafRequest struct {
 	wafId int64
 }
 
-func (r ApiDeleteWafRequest) Execute() (*ResponseAsyncDeleteWAF, *http.Response, error) {
+func (r ApiDeleteWafRequest) Execute() (*ResponseDeleteWAF, *http.Response, error) {
 	return r.ApiService.DeleteWafExecute(r)
 }
 
@@ -455,13 +455,13 @@ func (a *WAFsAPIService) DeleteWaf(ctx context.Context, wafId int64) ApiDeleteWa
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteWAF
-func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*ResponseAsyncDeleteWAF, *http.Response, error) {
+//  @return ResponseDeleteWAF
+func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*ResponseDeleteWAF, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteWAF
+		localVarReturnValue  *ResponseDeleteWAF
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WAFsAPIService.DeleteWaf")

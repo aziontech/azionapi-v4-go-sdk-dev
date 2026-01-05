@@ -434,7 +434,7 @@ type ApiDeleteFirewallRequest struct {
 	firewallId int64
 }
 
-func (r ApiDeleteFirewallRequest) Execute() (*ResponseAsyncDeleteFirewall, *http.Response, error) {
+func (r ApiDeleteFirewallRequest) Execute() (*ResponseDeleteFirewall, *http.Response, error) {
 	return r.ApiService.DeleteFirewallExecute(r)
 }
 
@@ -456,13 +456,13 @@ func (a *FirewallsAPIService) DeleteFirewall(ctx context.Context, firewallId int
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteFirewall
-func (a *FirewallsAPIService) DeleteFirewallExecute(r ApiDeleteFirewallRequest) (*ResponseAsyncDeleteFirewall, *http.Response, error) {
+//  @return ResponseDeleteFirewall
+func (a *FirewallsAPIService) DeleteFirewallExecute(r ApiDeleteFirewallRequest) (*ResponseDeleteFirewall, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteFirewall
+		localVarReturnValue  *ResponseDeleteFirewall
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirewallsAPIService.DeleteFirewall")

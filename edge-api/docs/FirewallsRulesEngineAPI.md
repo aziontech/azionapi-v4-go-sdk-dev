@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFirewallRule
 
-> ResponseAsyncDeleteFirewallRuleEngine DeleteFirewallRule(ctx, firewallId, requestRuleId).Execute()
+> ResponseDeleteFirewallRuleEngine DeleteFirewallRule(ctx, firewallId, requestRuleId).Execute()
 
 Delete an Firewall Rule
 
@@ -117,7 +117,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.DeleteFirewallRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteFirewallRule`: ResponseAsyncDeleteFirewallRuleEngine
+	// response from `DeleteFirewallRule`: ResponseDeleteFirewallRuleEngine
 	fmt.Fprintf(os.Stdout, "Response from `FirewallsRulesEngineAPI.DeleteFirewallRule`: %v\n", resp)
 }
 ```
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteFirewallRuleEngine**](ResponseAsyncDeleteFirewallRuleEngine.md)
+[**ResponseDeleteFirewallRuleEngine**](ResponseDeleteFirewallRuleEngine.md)
 
 ### Authorization
 

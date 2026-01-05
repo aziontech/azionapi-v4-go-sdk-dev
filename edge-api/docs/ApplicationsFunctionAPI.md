@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApplicationFunctionInstance
 
-> ResponseAsyncDeleteApplicationFunctionInstance DeleteApplicationFunctionInstance(ctx, applicationId, functionId).Execute()
+> ResponseDeleteApplicationFunctionInstance DeleteApplicationFunctionInstance(ctx, applicationId, functionId).Execute()
 
 Delete an Application Function Instance
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsFunctionAPI.DeleteApplicationFunctionInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteApplicationFunctionInstance`: ResponseAsyncDeleteApplicationFunctionInstance
+	// response from `DeleteApplicationFunctionInstance`: ResponseDeleteApplicationFunctionInstance
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsFunctionAPI.DeleteApplicationFunctionInstance`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteApplicationFunctionInstance**](ResponseAsyncDeleteApplicationFunctionInstance.md)
+[**ResponseDeleteApplicationFunctionInstance**](ResponseDeleteApplicationFunctionInstance.md)
 
 ### Authorization
 
