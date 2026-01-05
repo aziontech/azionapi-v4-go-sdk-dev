@@ -31,6 +31,8 @@ docs/ResponseAsyncDeleteZone.md
 docs/ResponseAsyncRecord.md
 docs/ResponseAsyncZone.md
 docs/ResponseDNSSEC.md
+docs/ResponseDeleteRecord.md
+docs/ResponseDeleteZone.md
 docs/ResponseRecord.md
 docs/ResponseRetrieveDNSSEC.md
 docs/ResponseRetrieveRecord.md
@@ -62,6 +64,8 @@ model_response_async_delete_zone.go
 model_response_async_dnssec.go
 model_response_async_record.go
 model_response_async_zone.go
+model_response_delete_record.go
+model_response_delete_zone.go
 model_response_dnssec.go
 model_response_record.go
 model_response_retrieve_dnssec.go

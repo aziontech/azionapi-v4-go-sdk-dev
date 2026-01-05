@@ -118,6 +118,8 @@ Class | Method | HTTP request | Description
  - [ResponseAsyncRecord](docs/ResponseAsyncRecord.md)
  - [ResponseAsyncZone](docs/ResponseAsyncZone.md)
  - [ResponseDNSSEC](docs/ResponseDNSSEC.md)
+ - [ResponseDeleteRecord](docs/ResponseDeleteRecord.md)
+ - [ResponseDeleteZone](docs/ResponseDeleteZone.md)
  - [ResponseRecord](docs/ResponseRecord.md)
  - [ResponseRetrieveDNSSEC](docs/ResponseRetrieveDNSSEC.md)
  - [ResponseRetrieveRecord](docs/ResponseRetrieveRecord.md)

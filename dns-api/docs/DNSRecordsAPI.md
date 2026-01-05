@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDnsRecord
 
-> ResponseAsyncDeleteRecord DeleteDnsRecord(ctx, recordId, zoneId).Execute()
+> ResponseDeleteRecord DeleteDnsRecord(ctx, recordId, zoneId).Execute()
 
 Delete a DNS Record
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DNSRecordsAPI.DeleteDnsRecord``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteDnsRecord`: ResponseAsyncDeleteRecord
+	// response from `DeleteDnsRecord`: ResponseDeleteRecord
 	fmt.Fprintf(os.Stdout, "Response from `DNSRecordsAPI.DeleteDnsRecord`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteRecord**](ResponseAsyncDeleteRecord.md)
+[**ResponseDeleteRecord**](ResponseDeleteRecord.md)
 
 ### Authorization
 
