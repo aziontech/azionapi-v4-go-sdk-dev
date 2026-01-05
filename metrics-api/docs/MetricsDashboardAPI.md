@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDashboard
 
-> DeleteDashboard(ctx, dashboardId, folderId).Execute()
+> ResponseDeleteDashboard DeleteDashboard(ctx, dashboardId, folderId).Execute()
 
 Delete a dashboard
 
@@ -111,11 +111,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.MetricsDashboardAPI.DeleteDashboard(context.Background(), dashboardId, folderId).Execute()
+	resp, r, err := apiClient.MetricsDashboardAPI.DeleteDashboard(context.Background(), dashboardId, folderId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsDashboardAPI.DeleteDashboard``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `DeleteDashboard`: ResponseDeleteDashboard
+	fmt.Fprintf(os.Stdout, "Response from `MetricsDashboardAPI.DeleteDashboard`: %v\n", resp)
 }
 ```
 
@@ -140,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**ResponseDeleteDashboard**](ResponseDeleteDashboard.md)
 
 ### Authorization
 
@@ -149,7 +151,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

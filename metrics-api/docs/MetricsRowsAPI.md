@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRow
 
-> DeleteRow(ctx, dashboardId, folderId, rowId).Execute()
+> ResponseDeleteRow DeleteRow(ctx, dashboardId, folderId, rowId).Execute()
 
 Delete a row
 
@@ -115,11 +115,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.MetricsRowsAPI.DeleteRow(context.Background(), dashboardId, folderId, rowId).Execute()
+	resp, r, err := apiClient.MetricsRowsAPI.DeleteRow(context.Background(), dashboardId, folderId, rowId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.DeleteRow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `DeleteRow`: ResponseDeleteRow
+	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.DeleteRow`: %v\n", resp)
 }
 ```
 
@@ -146,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**ResponseDeleteRow**](ResponseDeleteRow.md)
 
 ### Authorization
 
@@ -155,7 +157,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
