@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWafException
 
-> ResponseAsyncDeleteWAFRule DeleteWafException(ctx, exceptionId, wafId).Execute()
+> ResponseDeleteWAFRule DeleteWafException(ctx, exceptionId, wafId).Execute()
 
 Delete an Exception from a Web Application Firewall (WAF)
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsExceptionsAPI.DeleteWafException``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteWafException`: ResponseAsyncDeleteWAFRule
+	// response from `DeleteWafException`: ResponseDeleteWAFRule
 	fmt.Fprintf(os.Stdout, "Response from `WAFsExceptionsAPI.DeleteWafException`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteWAFRule**](ResponseAsyncDeleteWAFRule.md)
+[**ResponseDeleteWAFRule**](ResponseDeleteWAFRule.md)
 
 ### Authorization
 

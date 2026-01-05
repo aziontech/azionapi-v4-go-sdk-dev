@@ -230,7 +230,7 @@ type ApiDeleteFunctionRequest struct {
 	functionId int64
 }
 
-func (r ApiDeleteFunctionRequest) Execute() (*ResponseAsyncDeleteFunctionsDoc, *http.Response, error) {
+func (r ApiDeleteFunctionRequest) Execute() (*ResponseDeleteFunctionsDoc, *http.Response, error) {
 	return r.ApiService.DeleteFunctionExecute(r)
 }
 
@@ -252,13 +252,13 @@ func (a *FunctionsAPIService) DeleteFunction(ctx context.Context, functionId int
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteFunctionsDoc
-func (a *FunctionsAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (*ResponseAsyncDeleteFunctionsDoc, *http.Response, error) {
+//  @return ResponseDeleteFunctionsDoc
+func (a *FunctionsAPIService) DeleteFunctionExecute(r ApiDeleteFunctionRequest) (*ResponseDeleteFunctionsDoc, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteFunctionsDoc
+		localVarReturnValue  *ResponseDeleteFunctionsDoc
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionsAPIService.DeleteFunction")

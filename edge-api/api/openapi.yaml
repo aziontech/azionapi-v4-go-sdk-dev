@@ -386,8 +386,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteApplication"
+          description: ""
         "202":
           content:
             application/json:
@@ -1333,8 +1337,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteCacheSetting"
+          description: ""
         "202":
           content:
             application/json:
@@ -2468,8 +2476,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteApplicationDeviceGroups"
+          description: ""
         "202":
           content:
             application/json:
@@ -3470,8 +3482,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteApplicationFunctionInstance"
+          description: ""
         "202":
           content:
             application/json:
@@ -4497,8 +4513,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteApplicationRequestPhaseRuleEngine"
+          description: ""
         "202":
           content:
             application/json:
@@ -5710,8 +5730,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteApplicationResponsePhaseRuleEngine"
+          description: ""
         "202":
           content:
             application/json:
@@ -6884,8 +6908,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteConnectorPolymorphic"
+          description: ""
         "202":
           content:
             application/json:
@@ -7844,8 +7872,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteFirewall"
+          description: ""
         "202":
           content:
             application/json:
@@ -8971,8 +9003,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteFirewallFunctionInstance"
+          description: ""
         "202":
           content:
             application/json:
@@ -9998,8 +10034,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteFirewallRuleEngine"
+          description: ""
         "202":
           content:
             application/json:
@@ -11131,8 +11171,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteWAF"
+          description: ""
         "202":
           content:
             application/json:
@@ -12283,8 +12327,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteWAFRule"
+          description: ""
         "202":
           content:
             application/json:
@@ -13279,8 +13327,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteFunctionsDoc"
+          description: ""
         "202":
           content:
             application/json:
@@ -14232,8 +14284,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteCustomPage"
+          description: ""
         "202":
           content:
             application/json:
@@ -15185,8 +15241,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteNetworkListDetail"
+          description: ""
         "202":
           content:
             application/json:
@@ -16343,8 +16403,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteWorkload"
+          description: ""
         "202":
           content:
             application/json:
@@ -17298,8 +17362,12 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseDeleteWorkloadDeployment"
+          description: ""
         "202":
           content:
             application/json:
@@ -30420,6 +30488,193 @@ components:
       required:
       - data
       title: ResponseCustomPage
+      type: object
+    ResponseDeleteApplication:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteApplication
+      type: object
+    ResponseDeleteApplicationDeviceGroups:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteApplicationDeviceGroups
+      type: object
+    ResponseDeleteApplicationFunctionInstance:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteApplicationFunctionInstance
+      type: object
+    ResponseDeleteApplicationRequestPhaseRuleEngine:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteApplicationRequestPhaseRuleEngine
+      type: object
+    ResponseDeleteApplicationResponsePhaseRuleEngine:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteApplicationResponsePhaseRuleEngine
+      type: object
+    ResponseDeleteCacheSetting:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteCacheSetting
+      type: object
+    ResponseDeleteConnectorPolymorphic:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteConnectorPolymorphic
+      type: object
+    ResponseDeleteCustomPage:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteCustomPage
+      type: object
+    ResponseDeleteFirewall:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteFirewall
+      type: object
+    ResponseDeleteFirewallFunctionInstance:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteFirewallFunctionInstance
+      type: object
+    ResponseDeleteFirewallRuleEngine:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteFirewallRuleEngine
+      type: object
+    ResponseDeleteFunctionsDoc:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteFunctionsDoc
+      type: object
+    ResponseDeleteNetworkListDetail:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteNetworkListDetail
+      type: object
+    ResponseDeleteWAF:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteWAF
+      type: object
+    ResponseDeleteWAFRule:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteWAFRule
+      type: object
+    ResponseDeleteWorkload:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteWorkload
+      type: object
+    ResponseDeleteWorkloadDeployment:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: ResponseDeleteWorkloadDeployment
       type: object
     ResponseFirewall:
       additionalProperties: false

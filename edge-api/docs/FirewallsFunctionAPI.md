@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFirewallFunction
 
-> ResponseAsyncDeleteFirewallFunctionInstance DeleteFirewallFunction(ctx, firewallId, functionId).Execute()
+> ResponseDeleteFirewallFunctionInstance DeleteFirewallFunction(ctx, firewallId, functionId).Execute()
 
 Delete an Firewall Function
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsFunctionAPI.DeleteFirewallFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteFirewallFunction`: ResponseAsyncDeleteFirewallFunctionInstance
+	// response from `DeleteFirewallFunction`: ResponseDeleteFirewallFunctionInstance
 	fmt.Fprintf(os.Stdout, "Response from `FirewallsFunctionAPI.DeleteFirewallFunction`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteFirewallFunctionInstance**](ResponseAsyncDeleteFirewallFunctionInstance.md)
+[**ResponseDeleteFirewallFunctionInstance**](ResponseDeleteFirewallFunctionInstance.md)
 
 ### Authorization
 

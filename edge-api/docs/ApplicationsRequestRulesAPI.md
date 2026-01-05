@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApplicationRequestRule
 
-> ResponseAsyncDeleteApplicationRequestPhaseRuleEngine DeleteApplicationRequestRule(ctx, applicationId, requestRuleId).Execute()
+> ResponseDeleteApplicationRequestPhaseRuleEngine DeleteApplicationRequestRule(ctx, applicationId, requestRuleId).Execute()
 
 Delete an Application Request Rule
 
@@ -117,7 +117,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.DeleteApplicationRequestRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteApplicationRequestRule`: ResponseAsyncDeleteApplicationRequestPhaseRuleEngine
+	// response from `DeleteApplicationRequestRule`: ResponseDeleteApplicationRequestPhaseRuleEngine
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsRequestRulesAPI.DeleteApplicationRequestRule`: %v\n", resp)
 }
 ```
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteApplicationRequestPhaseRuleEngine**](ResponseAsyncDeleteApplicationRequestPhaseRuleEngine.md)
+[**ResponseDeleteApplicationRequestPhaseRuleEngine**](ResponseDeleteApplicationRequestPhaseRuleEngine.md)
 
 ### Authorization
 
