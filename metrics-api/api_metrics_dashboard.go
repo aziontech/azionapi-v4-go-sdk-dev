@@ -241,7 +241,7 @@ type ApiDeleteDashboardRequest struct {
 	folderId int64
 }
 
-func (r ApiDeleteDashboardRequest) Execute() (*http.Response, error) {
+func (r ApiDeleteDashboardRequest) Execute() (*ResponseDeleteDashboard, *http.Response, error) {
 	return r.ApiService.DeleteDashboardExecute(r)
 }
 
@@ -265,16 +265,18 @@ func (a *MetricsDashboardAPIService) DeleteDashboard(ctx context.Context, dashbo
 }
 
 // Execute executes the request
-func (a *MetricsDashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboardRequest) (*http.Response, error) {
+//  @return ResponseDeleteDashboard
+func (a *MetricsDashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboardRequest) (*ResponseDeleteDashboard, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *ResponseDeleteDashboard
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsDashboardAPIService.DeleteDashboard")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/metrics/folders/{folderId}/dashboards/{dashboardId}"
@@ -285,16 +287,16 @@ func (a *MetricsDashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboard
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.dashboardId < 1 {
-		return nil, reportError("dashboardId must be greater than 1")
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
 	}
 	if r.dashboardId > 2147483647 {
-		return nil, reportError("dashboardId must be less than 2147483647")
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
 	}
 	if r.folderId < 1 {
-		return nil, reportError("folderId must be greater than 1")
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
 	}
 	if r.folderId > 2147483647 {
-		return nil, reportError("folderId must be less than 2147483647")
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
 	}
 
 	// to determine the Content-Type header
@@ -307,7 +309,7 @@ func (a *MetricsDashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboard
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -330,19 +332,19 @@ func (a *MetricsDashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboard
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -350,10 +352,19 @@ func (a *MetricsDashboardAPIService) DeleteDashboardExecute(r ApiDeleteDashboard
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiListDashboardsRequest struct {

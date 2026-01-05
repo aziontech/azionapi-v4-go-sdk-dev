@@ -230,7 +230,7 @@ type ApiDeleteFolderRequest struct {
 	folderId int64
 }
 
-func (r ApiDeleteFolderRequest) Execute() (*http.Response, error) {
+func (r ApiDeleteFolderRequest) Execute() (*ResponseDeleteFolder, *http.Response, error) {
 	return r.ApiService.DeleteFolderExecute(r)
 }
 
@@ -252,16 +252,18 @@ func (a *MetricsFoldersAPIService) DeleteFolder(ctx context.Context, folderId in
 }
 
 // Execute executes the request
-func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest) (*http.Response, error) {
+//  @return ResponseDeleteFolder
+func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest) (*ResponseDeleteFolder, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *ResponseDeleteFolder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsFoldersAPIService.DeleteFolder")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/metrics/folders/{folderId}"
@@ -271,10 +273,10 @@ func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.folderId < 1 {
-		return nil, reportError("folderId must be greater than 1")
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
 	}
 	if r.folderId > 2147483647 {
-		return nil, reportError("folderId must be less than 2147483647")
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
 	}
 
 	// to determine the Content-Type header
@@ -287,7 +289,7 @@ func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -310,19 +312,19 @@ func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest)
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -330,10 +332,19 @@ func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiListFoldersRequest struct {

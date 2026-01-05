@@ -252,7 +252,7 @@ type ApiDeleteRowRequest struct {
 	rowId int64
 }
 
-func (r ApiDeleteRowRequest) Execute() (*http.Response, error) {
+func (r ApiDeleteRowRequest) Execute() (*ResponseDeleteRow, *http.Response, error) {
 	return r.ApiService.DeleteRowExecute(r)
 }
 
@@ -278,16 +278,18 @@ func (a *MetricsRowsAPIService) DeleteRow(ctx context.Context, dashboardId int64
 }
 
 // Execute executes the request
-func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*http.Response, error) {
+//  @return ResponseDeleteRow
+func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*ResponseDeleteRow, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *ResponseDeleteRow
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRowsAPIService.DeleteRow")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/metrics/folders/{folderId}/dashboards/{dashboardId}/rows/{rowId}"
@@ -299,22 +301,22 @@ func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*http.R
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.dashboardId < 1 {
-		return nil, reportError("dashboardId must be greater than 1")
+		return localVarReturnValue, nil, reportError("dashboardId must be greater than 1")
 	}
 	if r.dashboardId > 2147483647 {
-		return nil, reportError("dashboardId must be less than 2147483647")
+		return localVarReturnValue, nil, reportError("dashboardId must be less than 2147483647")
 	}
 	if r.folderId < 1 {
-		return nil, reportError("folderId must be greater than 1")
+		return localVarReturnValue, nil, reportError("folderId must be greater than 1")
 	}
 	if r.folderId > 2147483647 {
-		return nil, reportError("folderId must be less than 2147483647")
+		return localVarReturnValue, nil, reportError("folderId must be less than 2147483647")
 	}
 	if r.rowId < 1 {
-		return nil, reportError("rowId must be greater than 1")
+		return localVarReturnValue, nil, reportError("rowId must be greater than 1")
 	}
 	if r.rowId > 2147483647 {
-		return nil, reportError("rowId must be less than 2147483647")
+		return localVarReturnValue, nil, reportError("rowId must be less than 2147483647")
 	}
 
 	// to determine the Content-Type header
@@ -327,7 +329,7 @@ func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*http.R
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -350,19 +352,19 @@ func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*http.R
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -370,10 +372,19 @@ func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*http.R
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiListRowsRequest struct {

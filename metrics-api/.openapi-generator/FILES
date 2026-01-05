@@ -45,6 +45,11 @@ docs/ResponseAsyncOrder.md
 docs/ResponseAsyncReport.md
 docs/ResponseAsyncRow.md
 docs/ResponseDashboard.md
+docs/ResponseDeleteDashboard.md
+docs/ResponseDeleteFolder.md
+docs/ResponseDeleteRecommendation.md
+docs/ResponseDeleteReport.md
+docs/ResponseDeleteRow.md
 docs/ResponseFolder.md
 docs/ResponseListDashboard.md
 docs/ResponseListFolder.md
@@ -91,6 +96,11 @@ model_response_async_order.go
 model_response_async_report.go
 model_response_async_row.go
 model_response_dashboard.go
+model_response_delete_dashboard.go
+model_response_delete_folder.go
+model_response_delete_recommendation.go
+model_response_delete_report.go
+model_response_delete_row.go
 model_response_folder.go
 model_response_list_dashboard.go
 model_response_list_folder.go

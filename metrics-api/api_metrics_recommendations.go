@@ -230,7 +230,7 @@ type ApiDeleteRecommendationRequest struct {
 	recommendationId int64
 }
 
-func (r ApiDeleteRecommendationRequest) Execute() (*http.Response, error) {
+func (r ApiDeleteRecommendationRequest) Execute() (*ResponseDeleteRecommendation, *http.Response, error) {
 	return r.ApiService.DeleteRecommendationExecute(r)
 }
 
@@ -252,16 +252,18 @@ func (a *MetricsRecommendationsAPIService) DeleteRecommendation(ctx context.Cont
 }
 
 // Execute executes the request
-func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDeleteRecommendationRequest) (*http.Response, error) {
+//  @return ResponseDeleteRecommendation
+func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDeleteRecommendationRequest) (*ResponseDeleteRecommendation, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *ResponseDeleteRecommendation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRecommendationsAPIService.DeleteRecommendation")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/metrics/recommendations/{recommendationId}"
@@ -271,10 +273,10 @@ func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDele
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if r.recommendationId < 1 {
-		return nil, reportError("recommendationId must be greater than 1")
+		return localVarReturnValue, nil, reportError("recommendationId must be greater than 1")
 	}
 	if r.recommendationId > 2147483647 {
-		return nil, reportError("recommendationId must be less than 2147483647")
+		return localVarReturnValue, nil, reportError("recommendationId must be less than 2147483647")
 	}
 
 	// to determine the Content-Type header
@@ -287,7 +289,7 @@ func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDele
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -310,19 +312,19 @@ func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDele
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -330,10 +332,19 @@ func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDele
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiListRecommendationsRequest struct {
