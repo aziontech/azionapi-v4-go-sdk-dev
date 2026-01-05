@@ -113,6 +113,8 @@ Class | Method | HTTP request | Description
  - [ResponseAsyncDeleteCertificateRevocationList](docs/ResponseAsyncDeleteCertificateRevocationList.md)
  - [ResponseCertificate](docs/ResponseCertificate.md)
  - [ResponseCertificateRevocationList](docs/ResponseCertificateRevocationList.md)
+ - [ResponseDeleteCertificate](docs/ResponseDeleteCertificate.md)
+ - [ResponseDeleteCertificateRevocationList](docs/ResponseDeleteCertificateRevocationList.md)
  - [ResponseRetrieveCertificate](docs/ResponseRetrieveCertificate.md)
  - [ResponseRetrieveCertificateRevocationList](docs/ResponseRetrieveCertificateRevocationList.md)
 

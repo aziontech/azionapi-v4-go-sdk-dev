@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCertificate
 
-> ResponseAsyncDeleteCertificate DeleteCertificate(ctx, certificateId).Execute()
+> ResponseDeleteCertificate DeleteCertificate(ctx, certificateId).Execute()
 
 Delete a certificate
 
@@ -110,7 +110,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.DeleteCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCertificate`: ResponseAsyncDeleteCertificate
+	// response from `DeleteCertificate`: ResponseDeleteCertificate
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.DeleteCertificate`: %v\n", resp)
 }
 ```
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteCertificate**](ResponseAsyncDeleteCertificate.md)
+[**ResponseDeleteCertificate**](ResponseDeleteCertificate.md)
 
 ### Authorization
 

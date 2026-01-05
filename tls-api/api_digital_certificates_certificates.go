@@ -230,7 +230,7 @@ type ApiDeleteCertificateRequest struct {
 	certificateId int64
 }
 
-func (r ApiDeleteCertificateRequest) Execute() (*ResponseAsyncDeleteCertificate, *http.Response, error) {
+func (r ApiDeleteCertificateRequest) Execute() (*ResponseDeleteCertificate, *http.Response, error) {
 	return r.ApiService.DeleteCertificateExecute(r)
 }
 
@@ -252,13 +252,13 @@ func (a *DigitalCertificatesCertificatesAPIService) DeleteCertificate(ctx contex
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteCertificate
-func (a *DigitalCertificatesCertificatesAPIService) DeleteCertificateExecute(r ApiDeleteCertificateRequest) (*ResponseAsyncDeleteCertificate, *http.Response, error) {
+//  @return ResponseDeleteCertificate
+func (a *DigitalCertificatesCertificatesAPIService) DeleteCertificateExecute(r ApiDeleteCertificateRequest) (*ResponseDeleteCertificate, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteCertificate
+		localVarReturnValue  *ResponseDeleteCertificate
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificatesAPIService.DeleteCertificate")

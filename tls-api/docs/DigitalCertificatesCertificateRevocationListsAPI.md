@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCertificateRevocationList
 
-> ResponseAsyncDeleteCertificateRevocationList DeleteCertificateRevocationList(ctx, crlId).Execute()
+> ResponseDeleteCertificateRevocationList DeleteCertificateRevocationList(ctx, crlId).Execute()
 
 Delete a certificate revocation list
 
@@ -110,7 +110,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.DeleteCertificateRevocationList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCertificateRevocationList`: ResponseAsyncDeleteCertificateRevocationList
+	// response from `DeleteCertificateRevocationList`: ResponseDeleteCertificateRevocationList
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.DeleteCertificateRevocationList`: %v\n", resp)
 }
 ```
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteCertificateRevocationList**](ResponseAsyncDeleteCertificateRevocationList.md)
+[**ResponseDeleteCertificateRevocationList**](ResponseDeleteCertificateRevocationList.md)
 
 ### Authorization
 
