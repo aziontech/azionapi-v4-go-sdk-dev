@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateNetworkList
 
-> ResponseNetworkListDetail CreateNetworkList(ctx).NetworkListDetailRequest(networkListDetailRequest).Execute()
+> NetworkListResponse CreateNetworkList(ctx).NetworkListRequest(networkListRequest).Execute()
 
 Create a Network List
 
@@ -34,16 +34,16 @@ import (
 )
 
 func main() {
-	networkListDetailRequest := *openapiclient.NewNetworkListDetailRequest("Name_example", "Type_example", []string{"Items_example"}) // NetworkListDetailRequest | 
+	networkListRequest := *openapiclient.NewNetworkListRequest("Name_example", "Type_example", []string{"Items_example"}) // NetworkListRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkListsAPI.CreateNetworkList(context.Background()).NetworkListDetailRequest(networkListDetailRequest).Execute()
+	resp, r, err := apiClient.NetworkListsAPI.CreateNetworkList(context.Background()).NetworkListRequest(networkListRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.CreateNetworkList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateNetworkList`: ResponseNetworkListDetail
+	// response from `CreateNetworkList`: NetworkListResponse
 	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.CreateNetworkList`: %v\n", resp)
 }
 ```
@@ -59,11 +59,11 @@ Other parameters are passed through a pointer to a apiCreateNetworkListRequest s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **networkListDetailRequest** | [**NetworkListDetailRequest**](NetworkListDetailRequest.md) |  | 
+ **networkListRequest** | [**NetworkListRequest**](NetworkListRequest.md) |  | 
 
 ### Return type
 
-[**ResponseNetworkListDetail**](ResponseNetworkListDetail.md)
+[**NetworkListResponse**](NetworkListResponse.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteNetworkList
 
-> ResponseDeleteNetworkListDetail DeleteNetworkList(ctx, networkListId).Execute()
+> DeleteResponse DeleteNetworkList(ctx, networkListId).Execute()
 
 Delete a Network List
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.DeleteNetworkList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteNetworkList`: ResponseDeleteNetworkListDetail
+	// response from `DeleteNetworkList`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.DeleteNetworkList`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteNetworkListDetail**](ResponseDeleteNetworkListDetail.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateNetworkList
 
-> ResponseNetworkListDetail PartialUpdateNetworkList(ctx, networkListId).PatchedNetworkListDetailRequest(patchedNetworkListDetailRequest).Execute()
+> NetworkListResponse PartialUpdateNetworkList(ctx, networkListId).PatchedNetworkListRequest(patchedNetworkListRequest).Execute()
 
 Partially update a Network List
 
@@ -258,16 +258,16 @@ import (
 
 func main() {
 	networkListId := int64(789) // int64 | A unique integer value identifying the network list.
-	patchedNetworkListDetailRequest := *openapiclient.NewPatchedNetworkListDetailRequest() // PatchedNetworkListDetailRequest |  (optional)
+	patchedNetworkListRequest := *openapiclient.NewPatchedNetworkListRequest() // PatchedNetworkListRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkListsAPI.PartialUpdateNetworkList(context.Background(), networkListId).PatchedNetworkListDetailRequest(patchedNetworkListDetailRequest).Execute()
+	resp, r, err := apiClient.NetworkListsAPI.PartialUpdateNetworkList(context.Background(), networkListId).PatchedNetworkListRequest(patchedNetworkListRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.PartialUpdateNetworkList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateNetworkList`: ResponseNetworkListDetail
+	// response from `PartialUpdateNetworkList`: NetworkListResponse
 	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.PartialUpdateNetworkList`: %v\n", resp)
 }
 ```
@@ -288,11 +288,11 @@ Other parameters are passed through a pointer to a apiPartialUpdateNetworkListRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedNetworkListDetailRequest** | [**PatchedNetworkListDetailRequest**](PatchedNetworkListDetailRequest.md) |  | 
+ **patchedNetworkListRequest** | [**PatchedNetworkListRequest**](PatchedNetworkListRequest.md) |  | 
 
 ### Return type
 
-[**ResponseNetworkListDetail**](ResponseNetworkListDetail.md)
+[**NetworkListResponse**](NetworkListResponse.md)
 
 ### Authorization
 
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveNetworkList
 
-> ResponseRetrieveNetworkListDetail RetrieveNetworkList(ctx, networkListId).Fields(fields).Ipv4(ipv4).Ipv6(ipv6).Execute()
+> NetworkListResponse RetrieveNetworkList(ctx, networkListId).Fields(fields).Ipv4(ipv4).Ipv6(ipv6).Execute()
 
 Retrieve details of a Network List
 
@@ -341,7 +341,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.RetrieveNetworkList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveNetworkList`: ResponseRetrieveNetworkListDetail
+	// response from `RetrieveNetworkList`: NetworkListResponse
 	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.RetrieveNetworkList`: %v\n", resp)
 }
 ```
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveNetworkListDetail**](ResponseRetrieveNetworkListDetail.md)
+[**NetworkListResponse**](NetworkListResponse.md)
 
 ### Authorization
 
@@ -386,7 +386,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkList
 
-> ResponseNetworkListDetail UpdateNetworkList(ctx, networkListId).NetworkListDetailRequest(networkListDetailRequest).Execute()
+> NetworkListResponse UpdateNetworkList(ctx, networkListId).NetworkListRequest(networkListRequest).Execute()
 
 Update a Network List
 
@@ -406,16 +406,16 @@ import (
 
 func main() {
 	networkListId := int64(789) // int64 | A unique integer value identifying the network list.
-	networkListDetailRequest := *openapiclient.NewNetworkListDetailRequest("Name_example", "Type_example", []string{"Items_example"}) // NetworkListDetailRequest | 
+	networkListRequest := *openapiclient.NewNetworkListRequest("Name_example", "Type_example", []string{"Items_example"}) // NetworkListRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.NetworkListsAPI.UpdateNetworkList(context.Background(), networkListId).NetworkListDetailRequest(networkListDetailRequest).Execute()
+	resp, r, err := apiClient.NetworkListsAPI.UpdateNetworkList(context.Background(), networkListId).NetworkListRequest(networkListRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.UpdateNetworkList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateNetworkList`: ResponseNetworkListDetail
+	// response from `UpdateNetworkList`: NetworkListResponse
 	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.UpdateNetworkList`: %v\n", resp)
 }
 ```
@@ -436,11 +436,11 @@ Other parameters are passed through a pointer to a apiUpdateNetworkListRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **networkListDetailRequest** | [**NetworkListDetailRequest**](NetworkListDetailRequest.md) |  | 
+ **networkListRequest** | [**NetworkListRequest**](NetworkListRequest.md) |  | 
 
 ### Return type
 
-[**ResponseNetworkListDetail**](ResponseNetworkListDetail.md)
+[**NetworkListResponse**](NetworkListResponse.md)
 
 ### Authorization
 
