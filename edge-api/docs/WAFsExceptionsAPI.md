@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateWafException
 
-> ResponseWAFRule CreateWafException(ctx, wafId).WAFRuleRequest(wAFRuleRequest).Execute()
+> WAFRuleResponse CreateWafException(ctx, wafId).WAFRuleRequest(wAFRuleRequest).Execute()
 
 Create an Exception for a Web Application Firewall (WAF)
 
@@ -44,7 +44,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsExceptionsAPI.CreateWafException``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateWafException`: ResponseWAFRule
+	// response from `CreateWafException`: WAFRuleResponse
 	fmt.Fprintf(os.Stdout, "Response from `WAFsExceptionsAPI.CreateWafException`: %v\n", resp)
 }
 ```
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseWAFRule**](ResponseWAFRule.md)
+[**WAFRuleResponse**](WAFRuleResponse.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWafException
 
-> ResponseDeleteWAFRule DeleteWafException(ctx, exceptionId, wafId).Execute()
+> DeleteResponse DeleteWafException(ctx, exceptionId, wafId).Execute()
 
 Delete an Exception from a Web Application Firewall (WAF)
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsExceptionsAPI.DeleteWafException``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteWafException`: ResponseDeleteWAFRule
+	// response from `DeleteWafException`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `WAFsExceptionsAPI.DeleteWafException`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteWAFRule**](ResponseDeleteWAFRule.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -257,7 +257,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateWafException
 
-> ResponseWAFRule PartialUpdateWafException(ctx, exceptionId, wafId).PatchedWAFRuleRequest(patchedWAFRuleRequest).Execute()
+> WAFRuleResponse PartialUpdateWafException(ctx, exceptionId, wafId).PatchedWAFRuleRequest(patchedWAFRuleRequest).Execute()
 
 Partially update an Exception for a Web Application Firewall (WAF)
 
@@ -287,7 +287,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsExceptionsAPI.PartialUpdateWafException``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateWafException`: ResponseWAFRule
+	// response from `PartialUpdateWafException`: WAFRuleResponse
 	fmt.Fprintf(os.Stdout, "Response from `WAFsExceptionsAPI.PartialUpdateWafException`: %v\n", resp)
 }
 ```
@@ -314,7 +314,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseWAFRule**](ResponseWAFRule.md)
+[**WAFRuleResponse**](WAFRuleResponse.md)
 
 ### Authorization
 
@@ -332,7 +332,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveWafException
 
-> ResponseRetrieveWAFRule RetrieveWafException(ctx, exceptionId, wafId).Fields(fields).Execute()
+> WAFRuleResponse RetrieveWafException(ctx, exceptionId, wafId).Fields(fields).Execute()
 
 Retrieve details of an Exception from a Web Application Firewall (WAF)
 
@@ -362,7 +362,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsExceptionsAPI.RetrieveWafException``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveWafException`: ResponseRetrieveWAFRule
+	// response from `RetrieveWafException`: WAFRuleResponse
 	fmt.Fprintf(os.Stdout, "Response from `WAFsExceptionsAPI.RetrieveWafException`: %v\n", resp)
 }
 ```
@@ -389,7 +389,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveWAFRule**](ResponseRetrieveWAFRule.md)
+[**WAFRuleResponse**](WAFRuleResponse.md)
 
 ### Authorization
 
@@ -407,7 +407,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWafException
 
-> ResponseWAFRule UpdateWafException(ctx, exceptionId, wafId).WAFRuleRequest(wAFRuleRequest).Execute()
+> WAFRuleResponse UpdateWafException(ctx, exceptionId, wafId).WAFRuleRequest(wAFRuleRequest).Execute()
 
 Update an Exception for a Web Application Firewall (WAF)
 
@@ -437,7 +437,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsExceptionsAPI.UpdateWafException``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateWafException`: ResponseWAFRule
+	// response from `UpdateWafException`: WAFRuleResponse
 	fmt.Fprintf(os.Stdout, "Response from `WAFsExceptionsAPI.UpdateWafException`: %v\n", resp)
 }
 ```
@@ -464,7 +464,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseWAFRule**](ResponseWAFRule.md)
+[**WAFRuleResponse**](WAFRuleResponse.md)
 
 ### Authorization
 
