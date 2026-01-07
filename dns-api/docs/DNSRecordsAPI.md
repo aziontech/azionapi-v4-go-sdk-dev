@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateDnsRecord
 
-> ResponseRecord CreateDnsRecord(ctx, zoneId).RecordRequest(recordRequest).Execute()
+> RecordResponse CreateDnsRecord(ctx, zoneId).RecordRequest(recordRequest).Execute()
 
 Create a DNS Record
 
@@ -44,7 +44,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DNSRecordsAPI.CreateDnsRecord``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateDnsRecord`: ResponseRecord
+	// response from `CreateDnsRecord`: RecordResponse
 	fmt.Fprintf(os.Stdout, "Response from `DNSRecordsAPI.CreateDnsRecord`: %v\n", resp)
 }
 ```
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRecord**](ResponseRecord.md)
+[**RecordResponse**](RecordResponse.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDnsRecord
 
-> ResponseDeleteRecord DeleteDnsRecord(ctx, recordId, zoneId).Execute()
+> DeleteResponse DeleteDnsRecord(ctx, recordId, zoneId).Execute()
 
 Delete a DNS Record
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DNSRecordsAPI.DeleteDnsRecord``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteDnsRecord`: ResponseDeleteRecord
+	// response from `DeleteDnsRecord`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `DNSRecordsAPI.DeleteDnsRecord`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteRecord**](ResponseDeleteRecord.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateDnsRecord
 
-> ResponseRecord PartialUpdateDnsRecord(ctx, recordId, zoneId).PatchedRecordRequest(patchedRecordRequest).Execute()
+> RecordResponse PartialUpdateDnsRecord(ctx, recordId, zoneId).PatchedRecordRequest(patchedRecordRequest).Execute()
 
 Partially update a DNS Record
 
@@ -270,7 +270,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DNSRecordsAPI.PartialUpdateDnsRecord``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateDnsRecord`: ResponseRecord
+	// response from `PartialUpdateDnsRecord`: RecordResponse
 	fmt.Fprintf(os.Stdout, "Response from `DNSRecordsAPI.PartialUpdateDnsRecord`: %v\n", resp)
 }
 ```
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRecord**](ResponseRecord.md)
+[**RecordResponse**](RecordResponse.md)
 
 ### Authorization
 
@@ -315,7 +315,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveDnsRecord
 
-> ResponseRetrieveRecord RetrieveDnsRecord(ctx, recordId, zoneId).Fields(fields).Execute()
+> RecordResponse RetrieveDnsRecord(ctx, recordId, zoneId).Fields(fields).Execute()
 
 Retrieve details of a DNS Record
 
@@ -345,7 +345,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DNSRecordsAPI.RetrieveDnsRecord``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveDnsRecord`: ResponseRetrieveRecord
+	// response from `RetrieveDnsRecord`: RecordResponse
 	fmt.Fprintf(os.Stdout, "Response from `DNSRecordsAPI.RetrieveDnsRecord`: %v\n", resp)
 }
 ```
@@ -372,7 +372,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveRecord**](ResponseRetrieveRecord.md)
+[**RecordResponse**](RecordResponse.md)
 
 ### Authorization
 
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDnsRecord
 
-> ResponseRecord UpdateDnsRecord(ctx, recordId, zoneId).RecordRequest(recordRequest).Execute()
+> RecordResponse UpdateDnsRecord(ctx, recordId, zoneId).RecordRequest(recordRequest).Execute()
 
 Update a DNS Record
 
@@ -420,7 +420,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DNSRecordsAPI.UpdateDnsRecord``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateDnsRecord`: ResponseRecord
+	// response from `UpdateDnsRecord`: RecordResponse
 	fmt.Fprintf(os.Stdout, "Response from `DNSRecordsAPI.UpdateDnsRecord`: %v\n", resp)
 }
 ```
@@ -447,7 +447,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRecord**](ResponseRecord.md)
+[**RecordResponse**](RecordResponse.md)
 
 ### Authorization
 
