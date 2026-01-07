@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreatePolicy
 
-> ResponsePolicy CreatePolicy(ctx).PolicyRequest(policyRequest).Execute()
+> PolicyResponse CreatePolicy(ctx).PolicyRequest(policyRequest).Execute()
 
 Create a new policy
 
@@ -43,7 +43,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.CreatePolicy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreatePolicy`: ResponsePolicy
+	// response from `CreatePolicy`: PolicyResponse
 	fmt.Fprintf(os.Stdout, "Response from `PolicyPoliciesAPI.CreatePolicy`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponsePolicy**](ResponsePolicy.md)
+[**PolicyResponse**](PolicyResponse.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeletePolicy
 
-> ResponseAsyncDeletePolicy DeletePolicy(ctx, policyId).Execute()
+> DeleteResponse DeletePolicy(ctx, policyId).Execute()
 
 Delete a policy
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.DeletePolicy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeletePolicy`: ResponseAsyncDeletePolicy
+	// response from `DeletePolicy`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `PolicyPoliciesAPI.DeletePolicy`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeletePolicy**](ResponseAsyncDeletePolicy.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdatePolicy
 
-> ResponsePolicy PartialUpdatePolicy(ctx, policyId).PatchedPolicyRequest(patchedPolicyRequest).Execute()
+> PolicyResponse PartialUpdatePolicy(ctx, policyId).PatchedPolicyRequest(patchedPolicyRequest).Execute()
 
 Partially update a policy
 
@@ -254,7 +254,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.PartialUpdatePolicy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdatePolicy`: ResponsePolicy
+	// response from `PartialUpdatePolicy`: PolicyResponse
 	fmt.Fprintf(os.Stdout, "Response from `PolicyPoliciesAPI.PartialUpdatePolicy`: %v\n", resp)
 }
 ```
@@ -279,7 +279,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponsePolicy**](ResponsePolicy.md)
+[**PolicyResponse**](PolicyResponse.md)
 
 ### Authorization
 
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 ## RetrievePolicy
 
-> ResponseRetrievePolicy RetrievePolicy(ctx, policyId).Fields(fields).Execute()
+> PolicyResponse RetrievePolicy(ctx, policyId).Fields(fields).Execute()
 
 Retrieve details from a policy
 
@@ -326,7 +326,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.RetrievePolicy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrievePolicy`: ResponseRetrievePolicy
+	// response from `RetrievePolicy`: PolicyResponse
 	fmt.Fprintf(os.Stdout, "Response from `PolicyPoliciesAPI.RetrievePolicy`: %v\n", resp)
 }
 ```
@@ -351,7 +351,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrievePolicy**](ResponseRetrievePolicy.md)
+[**PolicyResponse**](PolicyResponse.md)
 
 ### Authorization
 
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 ## UpdatePolicy
 
-> ResponsePolicy UpdatePolicy(ctx, policyId).PolicyRequest(policyRequest).Execute()
+> PolicyResponse UpdatePolicy(ctx, policyId).PolicyRequest(policyRequest).Execute()
 
 Update a policy
 
@@ -398,7 +398,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PolicyPoliciesAPI.UpdatePolicy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdatePolicy`: ResponsePolicy
+	// response from `UpdatePolicy`: PolicyResponse
 	fmt.Fprintf(os.Stdout, "Response from `PolicyPoliciesAPI.UpdatePolicy`: %v\n", resp)
 }
 ```
@@ -423,7 +423,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponsePolicy**](ResponsePolicy.md)
+[**PolicyResponse**](PolicyResponse.md)
 
 ### Authorization
 

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## RetrieveLockoutPolicy
 
-> ResponseRetrieveLockoutPolicy RetrieveLockoutPolicy(ctx).Fields(fields).Execute()
+> LockoutPolicyResponse RetrieveLockoutPolicy(ctx).Fields(fields).Execute()
 
 Get Lockout Policy
 
@@ -39,7 +39,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PolicyLockoutPolicyAPI.RetrieveLockoutPolicy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveLockoutPolicy`: ResponseRetrieveLockoutPolicy
+	// response from `RetrieveLockoutPolicy`: LockoutPolicyResponse
 	fmt.Fprintf(os.Stdout, "Response from `PolicyLockoutPolicyAPI.RetrieveLockoutPolicy`: %v\n", resp)
 }
 ```
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveLockoutPolicy**](ResponseRetrieveLockoutPolicy.md)
+[**LockoutPolicyResponse**](LockoutPolicyResponse.md)
 
 ### Authorization
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLockoutPolicy
 
-> ResponseLockoutPolicy UpdateLockoutPolicy(ctx).LockoutPolicyRequest(lockoutPolicyRequest).Execute()
+> LockoutPolicyResponse UpdateLockoutPolicy(ctx).LockoutPolicyRequest(lockoutPolicyRequest).Execute()
 
 Put Lockout Policy
 
@@ -105,7 +105,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PolicyLockoutPolicyAPI.UpdateLockoutPolicy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateLockoutPolicy`: ResponseLockoutPolicy
+	// response from `UpdateLockoutPolicy`: LockoutPolicyResponse
 	fmt.Fprintf(os.Stdout, "Response from `PolicyLockoutPolicyAPI.UpdateLockoutPolicy`: %v\n", resp)
 }
 ```
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseLockoutPolicy**](ResponseLockoutPolicy.md)
+[**LockoutPolicyResponse**](LockoutPolicyResponse.md)
 
 ### Authorization
 

@@ -34,7 +34,7 @@ func (r ApiRetrieveLockoutPolicyRequest) Fields(fields string) ApiRetrieveLockou
 	return r
 }
 
-func (r ApiRetrieveLockoutPolicyRequest) Execute() (*ResponseRetrieveLockoutPolicy, *http.Response, error) {
+func (r ApiRetrieveLockoutPolicyRequest) Execute() (*LockoutPolicyResponse, *http.Response, error) {
 	return r.ApiService.RetrieveLockoutPolicyExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *PolicyLockoutPolicyAPIService) RetrieveLockoutPolicy(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveLockoutPolicy
-func (a *PolicyLockoutPolicyAPIService) RetrieveLockoutPolicyExecute(r ApiRetrieveLockoutPolicyRequest) (*ResponseRetrieveLockoutPolicy, *http.Response, error) {
+//  @return LockoutPolicyResponse
+func (a *PolicyLockoutPolicyAPIService) RetrieveLockoutPolicyExecute(r ApiRetrieveLockoutPolicyRequest) (*LockoutPolicyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveLockoutPolicy
+		localVarReturnValue  *LockoutPolicyResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyLockoutPolicyAPIService.RetrieveLockoutPolicy")
@@ -232,7 +232,7 @@ func (r ApiUpdateLockoutPolicyRequest) LockoutPolicyRequest(lockoutPolicyRequest
 	return r
 }
 
-func (r ApiUpdateLockoutPolicyRequest) Execute() (*ResponseLockoutPolicy, *http.Response, error) {
+func (r ApiUpdateLockoutPolicyRequest) Execute() (*LockoutPolicyResponse, *http.Response, error) {
 	return r.ApiService.UpdateLockoutPolicyExecute(r)
 }
 
@@ -252,13 +252,13 @@ func (a *PolicyLockoutPolicyAPIService) UpdateLockoutPolicy(ctx context.Context)
 }
 
 // Execute executes the request
-//  @return ResponseLockoutPolicy
-func (a *PolicyLockoutPolicyAPIService) UpdateLockoutPolicyExecute(r ApiUpdateLockoutPolicyRequest) (*ResponseLockoutPolicy, *http.Response, error) {
+//  @return LockoutPolicyResponse
+func (a *PolicyLockoutPolicyAPIService) UpdateLockoutPolicyExecute(r ApiUpdateLockoutPolicyRequest) (*LockoutPolicyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseLockoutPolicy
+		localVarReturnValue  *LockoutPolicyResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyLockoutPolicyAPIService.UpdateLockoutPolicy")

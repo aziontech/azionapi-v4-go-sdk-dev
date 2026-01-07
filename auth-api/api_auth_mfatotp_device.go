@@ -34,7 +34,7 @@ func (r ApiCreateTotpDeviceRequest) Body(body interface{}) ApiCreateTotpDeviceRe
 	return r
 }
 
-func (r ApiCreateTotpDeviceRequest) Execute() (*ResponseTOTPDeviceCreate, *http.Response, error) {
+func (r ApiCreateTotpDeviceRequest) Execute() (*TOTPDeviceResponse, *http.Response, error) {
 	return r.ApiService.CreateTotpDeviceExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *AuthMFATOTPDeviceAPIService) CreateTotpDevice(ctx context.Context) ApiC
 }
 
 // Execute executes the request
-//  @return ResponseTOTPDeviceCreate
-func (a *AuthMFATOTPDeviceAPIService) CreateTotpDeviceExecute(r ApiCreateTotpDeviceRequest) (*ResponseTOTPDeviceCreate, *http.Response, error) {
+//  @return TOTPDeviceResponse
+func (a *AuthMFATOTPDeviceAPIService) CreateTotpDeviceExecute(r ApiCreateTotpDeviceRequest) (*TOTPDeviceResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseTOTPDeviceCreate
+		localVarReturnValue  *TOTPDeviceResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthMFATOTPDeviceAPIService.CreateTotpDevice")
@@ -212,7 +212,7 @@ type ApiDeleteTotpDeviceRequest struct {
 	deviceId int64
 }
 
-func (r ApiDeleteTotpDeviceRequest) Execute() (*ResponseAsyncDeleteTOTPDeviceCreate, *http.Response, error) {
+func (r ApiDeleteTotpDeviceRequest) Execute() (*DeleteResponse, *http.Response, error) {
 	return r.ApiService.DeleteTotpDeviceExecute(r)
 }
 
@@ -234,13 +234,13 @@ func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDevice(ctx context.Context, devi
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteTOTPDeviceCreate
-func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDeviceRequest) (*ResponseAsyncDeleteTOTPDeviceCreate, *http.Response, error) {
+//  @return DeleteResponse
+func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDeviceRequest) (*DeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteTOTPDeviceCreate
+		localVarReturnValue  *DeleteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthMFATOTPDeviceAPIService.DeleteTotpDevice")

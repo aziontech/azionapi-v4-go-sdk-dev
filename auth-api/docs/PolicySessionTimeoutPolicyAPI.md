@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## RetrieveSessionTimeoutPolicy
 
-> ResponseRetrieveSessionTimeoutPolicy RetrieveSessionTimeoutPolicy(ctx).Fields(fields).Execute()
+> SessionTimeoutPolicyResponse RetrieveSessionTimeoutPolicy(ctx).Fields(fields).Execute()
 
 Get Session Timeout Policy
 
@@ -39,7 +39,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PolicySessionTimeoutPolicyAPI.RetrieveSessionTimeoutPolicy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveSessionTimeoutPolicy`: ResponseRetrieveSessionTimeoutPolicy
+	// response from `RetrieveSessionTimeoutPolicy`: SessionTimeoutPolicyResponse
 	fmt.Fprintf(os.Stdout, "Response from `PolicySessionTimeoutPolicyAPI.RetrieveSessionTimeoutPolicy`: %v\n", resp)
 }
 ```
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveSessionTimeoutPolicy**](ResponseRetrieveSessionTimeoutPolicy.md)
+[**SessionTimeoutPolicyResponse**](SessionTimeoutPolicyResponse.md)
 
 ### Authorization
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSessionTimeoutPolicy
 
-> ResponseSessionTimeoutPolicy UpdateSessionTimeoutPolicy(ctx).SessionTimeoutPolicyRequest(sessionTimeoutPolicyRequest).Execute()
+> SessionTimeoutPolicyResponse UpdateSessionTimeoutPolicy(ctx).SessionTimeoutPolicyRequest(sessionTimeoutPolicyRequest).Execute()
 
 Put Session Timeout Policy
 
@@ -105,7 +105,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PolicySessionTimeoutPolicyAPI.UpdateSessionTimeoutPolicy``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateSessionTimeoutPolicy`: ResponseSessionTimeoutPolicy
+	// response from `UpdateSessionTimeoutPolicy`: SessionTimeoutPolicyResponse
 	fmt.Fprintf(os.Stdout, "Response from `PolicySessionTimeoutPolicyAPI.UpdateSessionTimeoutPolicy`: %v\n", resp)
 }
 ```
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseSessionTimeoutPolicy**](ResponseSessionTimeoutPolicy.md)
+[**SessionTimeoutPolicyResponse**](SessionTimeoutPolicyResponse.md)
 
 ### Authorization
 

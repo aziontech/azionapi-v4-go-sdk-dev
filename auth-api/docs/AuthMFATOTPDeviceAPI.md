@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## CreateTotpDevice
 
-> ResponseTOTPDeviceCreate CreateTotpDevice(ctx).Body(body).Execute()
+> TOTPDeviceResponse CreateTotpDevice(ctx).Body(body).Execute()
 
 Create a TOTP device
 
@@ -40,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthMFATOTPDeviceAPI.CreateTotpDevice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateTotpDevice`: ResponseTOTPDeviceCreate
+	// response from `CreateTotpDevice`: TOTPDeviceResponse
 	fmt.Fprintf(os.Stdout, "Response from `AuthMFATOTPDeviceAPI.CreateTotpDevice`: %v\n", resp)
 }
 ```
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseTOTPDeviceCreate**](ResponseTOTPDeviceCreate.md)
+[**TOTPDeviceResponse**](TOTPDeviceResponse.md)
 
 ### Authorization
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## DeleteTotpDevice
 
-> ResponseAsyncDeleteTOTPDeviceCreate DeleteTotpDevice(ctx, deviceId).Execute()
+> DeleteResponse DeleteTotpDevice(ctx, deviceId).Execute()
 
 Delete a TOTP device
 
@@ -106,7 +106,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthMFATOTPDeviceAPI.DeleteTotpDevice``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteTotpDevice`: ResponseAsyncDeleteTOTPDeviceCreate
+	// response from `DeleteTotpDevice`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `AuthMFATOTPDeviceAPI.DeleteTotpDevice`: %v\n", resp)
 }
 ```
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteTOTPDeviceCreate**](ResponseAsyncDeleteTOTPDeviceCreate.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 

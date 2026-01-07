@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## AuthUserRefreshToken
 
-> ResponseToken AuthUserRefreshToken(ctx).TokenRequest(tokenRequest).Execute()
+> TokenResponse AuthUserRefreshToken(ctx).TokenRequest(tokenRequest).Execute()
 
 Refresh user JWT access token
 
@@ -38,7 +38,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthRefreshAccessTokenAPI.AuthUserRefreshToken``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AuthUserRefreshToken`: ResponseToken
+	// response from `AuthUserRefreshToken`: TokenResponse
 	fmt.Fprintf(os.Stdout, "Response from `AuthRefreshAccessTokenAPI.AuthUserRefreshToken`: %v\n", resp)
 }
 ```
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseToken**](ResponseToken.md)
+[**TokenResponse**](TokenResponse.md)
 
 ### Authorization
 

@@ -26,12 +26,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ResponseLogin"
           description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncLogin"
-          description: ""
         "400":
           content:
             application/json:
@@ -494,13 +488,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseTOTPDeviceCreate"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncTOTPDeviceCreate"
+                $ref: "#/components/schemas/TOTPDeviceResponse"
           description: ""
         "401":
           content:
@@ -634,13 +622,11 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
-        "202":
+        "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteTOTPDeviceCreate"
+                $ref: "#/components/schemas/DeleteResponse"
           description: ""
         "401":
           content:
@@ -776,13 +762,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseTokenPair"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncTokenPair"
+                $ref: "#/components/schemas/TokenPairResponse"
           description: ""
         "401":
           content:
@@ -1089,13 +1069,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponsePolicy"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncPolicy"
+                $ref: "#/components/schemas/PolicyResponse"
           description: ""
         "401":
           content:
@@ -1230,13 +1204,11 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
-        "202":
+        "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeletePolicy"
+                $ref: "#/components/schemas/DeleteResponse"
           description: ""
         "401":
           content:
@@ -1382,7 +1354,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrievePolicy"
+                $ref: "#/components/schemas/PolicyResponse"
           description: ""
         "401":
           content:
@@ -1526,13 +1498,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponsePolicy"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncPolicy"
+                $ref: "#/components/schemas/PolicyResponse"
           description: ""
         "401":
           content:
@@ -1677,13 +1643,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponsePolicy"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncPolicy"
+                $ref: "#/components/schemas/PolicyResponse"
           description: ""
         "401":
           content:
@@ -1821,7 +1781,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveLockoutPolicy"
+                $ref: "#/components/schemas/LockoutPolicyResponse"
           description: ""
         "401":
           content:
@@ -1955,13 +1915,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseLockoutPolicy"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncLockoutPolicy"
+                $ref: "#/components/schemas/LockoutPolicyResponse"
           description: ""
         "401":
           content:
@@ -2099,7 +2053,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveSessionTimeoutPolicy"
+                $ref: "#/components/schemas/SessionTimeoutPolicyResponse"
           description: ""
         "401":
           content:
@@ -2233,13 +2187,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseSessionTimeoutPolicy"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncSessionTimeoutPolicy"
+                $ref: "#/components/schemas/SessionTimeoutPolicyResponse"
           description: ""
         "401":
           content:
@@ -2378,16 +2326,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/StateExecutedResponse"
           description: Revoke successfully executed.
-        "202":
-          content:
-            application/json:
-              examples:
-                Pending:
-                  value:
-                    state: pending
-              schema:
-                $ref: "#/components/schemas/StatePendingResponse"
-          description: "Revoke request accepted, processing pending."
         "400":
           content:
             application/json:
@@ -2492,13 +2430,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseToken"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncToken"
+                $ref: "#/components/schemas/TokenResponse"
           description: ""
         "401":
           content:
@@ -2620,6 +2552,15 @@ paths:
       - Auth - Refresh Access Token
 components:
   schemas:
+    DeleteResponse:
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      type: object
     JSONAPIErrorObject:
       description: Serializer for a single JSON:API error object.
       example:
@@ -2753,6 +2694,18 @@ components:
       - active
       - blocking_period
       - max_attempts
+      type: object
+    LockoutPolicyResponse:
+      example:
+        data:
+          max_attempts: 8
+          blocking_period: 6
+          active: true
+      properties:
+        data:
+          $ref: "#/components/schemas/LockoutPolicy"
+      required:
+      - data
       type: object
     LoginRequest:
       example:
@@ -3096,6 +3049,46 @@ components:
       - name
       - rules
       type: object
+    PolicyResponse:
+      example:
+        data:
+          last_editor: last_editor
+          name: name
+          active: true
+          rules:
+          - condition:
+              ip_address:
+              - ip_address
+              - ip_address
+            resource: resource
+            effect: effect
+            name: name
+            actions:
+            - actions
+            - actions
+          - condition:
+              ip_address:
+              - ip_address
+              - ip_address
+            resource: resource
+            effect: effect
+            name: name
+            actions:
+            - actions
+            - actions
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Policy"
+      required:
+      - data
+      type: object
     PolicyRule:
       example:
         condition:
@@ -3212,176 +3205,6 @@ components:
       - name
       - resource
       type: object
-    ResponseAsyncDeletePolicy:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseAsyncDeleteTOTPDeviceCreate:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseAsyncLockoutPolicy:
-      example:
-        data:
-          max_attempts: 8
-          blocking_period: 6
-          active: true
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/LockoutPolicy"
-      required:
-      - data
-      type: object
-    ResponseAsyncLogin:
-      example:
-        data:
-          access_token: access_token
-          refresh_token: refresh_token
-        state: state
-      properties:
-        data:
-          $ref: "#/components/schemas/LoginResponse"
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      required:
-      - data
-      type: object
-    ResponseAsyncPolicy:
-      example:
-        data:
-          last_editor: last_editor
-          name: name
-          active: true
-          rules:
-          - condition:
-              ip_address:
-              - ip_address
-              - ip_address
-            resource: resource
-            effect: effect
-            name: name
-            actions:
-            - actions
-            - actions
-          - condition:
-              ip_address:
-              - ip_address
-              - ip_address
-            resource: resource
-            effect: effect
-            name: name
-            actions:
-            - actions
-            - actions
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Policy"
-      required:
-      - data
-      type: object
-    ResponseAsyncSessionTimeoutPolicy:
-      example:
-        data:
-          max_session_time: 13021
-          max_idle_time: 116
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/SessionTimeoutPolicy"
-      required:
-      - data
-      type: object
-    ResponseAsyncTOTPDeviceCreate:
-      example:
-        data:
-          url: url
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/TOTPDeviceCreate"
-      required:
-      - data
-      type: object
-    ResponseAsyncToken:
-      example:
-        data:
-          access_token: access_token
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Token"
-      required:
-      - data
-      type: object
-    ResponseAsyncTokenPair:
-      example:
-        data:
-          access_token: access_token
-          refresh_token: refresh_token
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/TokenPair"
-      required:
-      - data
-      type: object
-    ResponseLockoutPolicy:
-      example:
-        data:
-          max_attempts: 8
-          blocking_period: 6
-          active: true
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/LockoutPolicy"
-      required:
-      - data
-      type: object
     ResponseLogin:
       example:
         data:
@@ -3395,166 +3218,6 @@ components:
           maxLength: 8
           minLength: 1
           type: string
-      required:
-      - data
-      type: object
-    ResponsePolicy:
-      example:
-        data:
-          last_editor: last_editor
-          name: name
-          active: true
-          rules:
-          - condition:
-              ip_address:
-              - ip_address
-              - ip_address
-            resource: resource
-            effect: effect
-            name: name
-            actions:
-            - actions
-            - actions
-          - condition:
-              ip_address:
-              - ip_address
-              - ip_address
-            resource: resource
-            effect: effect
-            name: name
-            actions:
-            - actions
-            - actions
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Policy"
-      required:
-      - data
-      type: object
-    ResponseRetrieveLockoutPolicy:
-      example:
-        data:
-          max_attempts: 8
-          blocking_period: 6
-          active: true
-      properties:
-        data:
-          $ref: "#/components/schemas/LockoutPolicy"
-      required:
-      - data
-      type: object
-    ResponseRetrievePolicy:
-      example:
-        data:
-          last_editor: last_editor
-          name: name
-          active: true
-          rules:
-          - condition:
-              ip_address:
-              - ip_address
-              - ip_address
-            resource: resource
-            effect: effect
-            name: name
-            actions:
-            - actions
-            - actions
-          - condition:
-              ip_address:
-              - ip_address
-              - ip_address
-            resource: resource
-            effect: effect
-            name: name
-            actions:
-            - actions
-            - actions
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        data:
-          $ref: "#/components/schemas/Policy"
-      required:
-      - data
-      type: object
-    ResponseRetrieveSessionTimeoutPolicy:
-      example:
-        data:
-          max_session_time: 13021
-          max_idle_time: 116
-      properties:
-        data:
-          $ref: "#/components/schemas/SessionTimeoutPolicy"
-      required:
-      - data
-      type: object
-    ResponseSessionTimeoutPolicy:
-      example:
-        data:
-          max_session_time: 13021
-          max_idle_time: 116
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/SessionTimeoutPolicy"
-      required:
-      - data
-      type: object
-    ResponseTOTPDeviceCreate:
-      example:
-        data:
-          url: url
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/TOTPDeviceCreate"
-      required:
-      - data
-      type: object
-    ResponseToken:
-      example:
-        data:
-          access_token: access_token
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Token"
-      required:
-      - data
-      type: object
-    ResponseTokenPair:
-      example:
-        data:
-          access_token: access_token
-          refresh_token: refresh_token
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/TokenPair"
       required:
       - data
       type: object
@@ -3596,6 +3259,17 @@ components:
       - max_idle_time
       - max_session_time
       type: object
+    SessionTimeoutPolicyResponse:
+      example:
+        data:
+          max_session_time: 13021
+          max_idle_time: 116
+      properties:
+        data:
+          $ref: "#/components/schemas/SessionTimeoutPolicy"
+      required:
+      - data
+      type: object
     StateExecutedResponse:
       example:
         state: state
@@ -3606,17 +3280,7 @@ components:
           minLength: 1
           type: string
       type: object
-    StatePendingResponse:
-      example:
-        state: state
-      properties:
-        state:
-          description: State of the operation (lowercase with underscores)
-          maxLength: 50
-          minLength: 1
-          type: string
-      type: object
-    TOTPDeviceCreate:
+    TOTPDevice:
       example:
         url: url
       properties:
@@ -3661,6 +3325,21 @@ components:
       - id
       - name
       - user_id
+      type: object
+    TOTPDeviceResponse:
+      example:
+        data:
+          url: url
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/TOTPDevice"
+      required:
+      - data
       type: object
     TOTPVerificationRequest:
       description: |-
@@ -3712,6 +3391,22 @@ components:
       - access_token
       - refresh_token
       type: object
+    TokenPairResponse:
+      example:
+        data:
+          access_token: access_token
+          refresh_token: refresh_token
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/TokenPair"
+      required:
+      - data
+      type: object
     TokenRequest:
       example:
         account_id: 0
@@ -3721,6 +3416,21 @@ components:
           nullable: true
           type: integer
           writeOnly: true
+      type: object
+    TokenResponse:
+      example:
+        data:
+          access_token: access_token
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Token"
+      required:
+      - data
       type: object
     UserLoginMethodResponse:
       example:
