@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CloneApplication
 
-> ApplicationResponse CloneApplication(ctx, applicationId).CloneApplicationRequest(cloneApplicationRequest).Execute()
+> ResponseApplication CloneApplication(ctx, applicationId).CloneApplicationRequest(cloneApplicationRequest).Execute()
 
 Clone an Application
 
@@ -45,7 +45,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.CloneApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CloneApplication`: ApplicationResponse
+	// response from `CloneApplication`: ResponseApplication
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.CloneApplication`: %v\n", resp)
 }
 ```
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApplicationResponse**](ApplicationResponse.md)
+[**ResponseApplication**](ResponseApplication.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## CreateApplication
 
-> ApplicationResponse CreateApplication(ctx).ApplicationRequest(applicationRequest).Execute()
+> ResponseApplication CreateApplication(ctx).ApplicationRequest(applicationRequest).Execute()
 
 Create an Application
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.CreateApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateApplication`: ApplicationResponse
+	// response from `CreateApplication`: ResponseApplication
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.CreateApplication`: %v\n", resp)
 }
 ```
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApplicationResponse**](ApplicationResponse.md)
+[**ResponseApplication**](ResponseApplication.md)
 
 ### Authorization
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApplication
 
-> DeleteResponse DeleteApplication(ctx, applicationId).Execute()
+> ResponseDeleteApplication DeleteApplication(ctx, applicationId).Execute()
 
 Delete an Application
 
@@ -182,7 +182,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.DeleteApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteApplication`: DeleteResponse
+	// response from `DeleteApplication`: ResponseDeleteApplication
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.DeleteApplication`: %v\n", resp)
 }
 ```
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+[**ResponseDeleteApplication**](ResponseDeleteApplication.md)
 
 ### Authorization
 
@@ -311,7 +311,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateApplication
 
-> ApplicationResponse PartialUpdateApplication(ctx, applicationId).PatchedApplicationRequest(patchedApplicationRequest).Execute()
+> ResponseApplication PartialUpdateApplication(ctx, applicationId).PatchedApplicationRequest(patchedApplicationRequest).Execute()
 
 Partially update an Application
 
@@ -340,7 +340,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.PartialUpdateApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateApplication`: ApplicationResponse
+	// response from `PartialUpdateApplication`: ResponseApplication
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.PartialUpdateApplication`: %v\n", resp)
 }
 ```
@@ -365,7 +365,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApplicationResponse**](ApplicationResponse.md)
+[**ResponseApplication**](ResponseApplication.md)
 
 ### Authorization
 
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveApplication
 
-> ApplicationResponse RetrieveApplication(ctx, applicationId).Fields(fields).Execute()
+> ResponseRetrieveApplication RetrieveApplication(ctx, applicationId).Fields(fields).Execute()
 
 Retrieve details of an Application
 
@@ -412,7 +412,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.RetrieveApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveApplication`: ApplicationResponse
+	// response from `RetrieveApplication`: ResponseRetrieveApplication
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.RetrieveApplication`: %v\n", resp)
 }
 ```
@@ -437,7 +437,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApplicationResponse**](ApplicationResponse.md)
+[**ResponseRetrieveApplication**](ResponseRetrieveApplication.md)
 
 ### Authorization
 
@@ -455,7 +455,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApplication
 
-> ApplicationResponse UpdateApplication(ctx, applicationId).ApplicationRequest(applicationRequest).Execute()
+> ResponseApplication UpdateApplication(ctx, applicationId).ApplicationRequest(applicationRequest).Execute()
 
 Update an Application
 
@@ -484,7 +484,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsAPI.UpdateApplication``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateApplication`: ApplicationResponse
+	// response from `UpdateApplication`: ResponseApplication
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsAPI.UpdateApplication`: %v\n", resp)
 }
 ```
@@ -509,7 +509,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApplicationResponse**](ApplicationResponse.md)
+[**ResponseApplication**](ResponseApplication.md)
 
 ### Authorization
 

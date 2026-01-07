@@ -35,7 +35,7 @@ func (r ApiCloneWafRequest) CloneWAFRequest(cloneWAFRequest CloneWAFRequest) Api
 	return r
 }
 
-func (r ApiCloneWafRequest) Execute() (*WAFResponse, *http.Response, error) {
+func (r ApiCloneWafRequest) Execute() (*ResponseWAF, *http.Response, error) {
 	return r.ApiService.CloneWafExecute(r)
 }
 
@@ -57,13 +57,13 @@ func (a *WAFsAPIService) CloneWaf(ctx context.Context, wafId int64) ApiCloneWafR
 }
 
 // Execute executes the request
-//  @return WAFResponse
-func (a *WAFsAPIService) CloneWafExecute(r ApiCloneWafRequest) (*WAFResponse, *http.Response, error) {
+//  @return ResponseWAF
+func (a *WAFsAPIService) CloneWafExecute(r ApiCloneWafRequest) (*ResponseWAF, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *WAFResponse
+		localVarReturnValue  *ResponseWAF
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WAFsAPIService.CloneWaf")
@@ -238,7 +238,7 @@ func (r ApiCreateWafRequest) WAFRequest(wAFRequest WAFRequest) ApiCreateWafReque
 	return r
 }
 
-func (r ApiCreateWafRequest) Execute() (*WAFResponse, *http.Response, error) {
+func (r ApiCreateWafRequest) Execute() (*ResponseWAF, *http.Response, error) {
 	return r.ApiService.CreateWafExecute(r)
 }
 
@@ -258,13 +258,13 @@ func (a *WAFsAPIService) CreateWaf(ctx context.Context) ApiCreateWafRequest {
 }
 
 // Execute executes the request
-//  @return WAFResponse
-func (a *WAFsAPIService) CreateWafExecute(r ApiCreateWafRequest) (*WAFResponse, *http.Response, error) {
+//  @return ResponseWAF
+func (a *WAFsAPIService) CreateWafExecute(r ApiCreateWafRequest) (*ResponseWAF, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *WAFResponse
+		localVarReturnValue  *ResponseWAF
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WAFsAPIService.CreateWaf")
@@ -433,7 +433,7 @@ type ApiDeleteWafRequest struct {
 	wafId int64
 }
 
-func (r ApiDeleteWafRequest) Execute() (*DeleteResponse, *http.Response, error) {
+func (r ApiDeleteWafRequest) Execute() (*ResponseDeleteWAF, *http.Response, error) {
 	return r.ApiService.DeleteWafExecute(r)
 }
 
@@ -455,13 +455,13 @@ func (a *WAFsAPIService) DeleteWaf(ctx context.Context, wafId int64) ApiDeleteWa
 }
 
 // Execute executes the request
-//  @return DeleteResponse
-func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*DeleteResponse, *http.Response, error) {
+//  @return ResponseDeleteWAF
+func (a *WAFsAPIService) DeleteWafExecute(r ApiDeleteWafRequest) (*ResponseDeleteWAF, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DeleteResponse
+		localVarReturnValue  *ResponseDeleteWAF
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WAFsAPIService.DeleteWaf")
@@ -891,7 +891,7 @@ func (r ApiPartialUpdateWafRequest) PatchedWAFRequest(patchedWAFRequest PatchedW
 	return r
 }
 
-func (r ApiPartialUpdateWafRequest) Execute() (*WAFResponse, *http.Response, error) {
+func (r ApiPartialUpdateWafRequest) Execute() (*ResponseWAF, *http.Response, error) {
 	return r.ApiService.PartialUpdateWafExecute(r)
 }
 
@@ -913,13 +913,13 @@ func (a *WAFsAPIService) PartialUpdateWaf(ctx context.Context, wafId int64) ApiP
 }
 
 // Execute executes the request
-//  @return WAFResponse
-func (a *WAFsAPIService) PartialUpdateWafExecute(r ApiPartialUpdateWafRequest) (*WAFResponse, *http.Response, error) {
+//  @return ResponseWAF
+func (a *WAFsAPIService) PartialUpdateWafExecute(r ApiPartialUpdateWafRequest) (*ResponseWAF, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *WAFResponse
+		localVarReturnValue  *ResponseWAF
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WAFsAPIService.PartialUpdateWaf")
@@ -1093,7 +1093,7 @@ func (r ApiRetrieveWafRequest) Fields(fields string) ApiRetrieveWafRequest {
 	return r
 }
 
-func (r ApiRetrieveWafRequest) Execute() (*WAFResponse, *http.Response, error) {
+func (r ApiRetrieveWafRequest) Execute() (*ResponseRetrieveWAF, *http.Response, error) {
 	return r.ApiService.RetrieveWafExecute(r)
 }
 
@@ -1115,13 +1115,13 @@ func (a *WAFsAPIService) RetrieveWaf(ctx context.Context, wafId int64) ApiRetrie
 }
 
 // Execute executes the request
-//  @return WAFResponse
-func (a *WAFsAPIService) RetrieveWafExecute(r ApiRetrieveWafRequest) (*WAFResponse, *http.Response, error) {
+//  @return ResponseRetrieveWAF
+func (a *WAFsAPIService) RetrieveWafExecute(r ApiRetrieveWafRequest) (*ResponseRetrieveWAF, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *WAFResponse
+		localVarReturnValue  *ResponseRetrieveWAF
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WAFsAPIService.RetrieveWaf")
@@ -1295,7 +1295,7 @@ func (r ApiUpdateWafRequest) WAFRequest(wAFRequest WAFRequest) ApiUpdateWafReque
 	return r
 }
 
-func (r ApiUpdateWafRequest) Execute() (*WAFResponse, *http.Response, error) {
+func (r ApiUpdateWafRequest) Execute() (*ResponseWAF, *http.Response, error) {
 	return r.ApiService.UpdateWafExecute(r)
 }
 
@@ -1317,13 +1317,13 @@ func (a *WAFsAPIService) UpdateWaf(ctx context.Context, wafId int64) ApiUpdateWa
 }
 
 // Execute executes the request
-//  @return WAFResponse
-func (a *WAFsAPIService) UpdateWafExecute(r ApiUpdateWafRequest) (*WAFResponse, *http.Response, error) {
+//  @return ResponseWAF
+func (a *WAFsAPIService) UpdateWafExecute(r ApiUpdateWafRequest) (*ResponseWAF, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *WAFResponse
+		localVarReturnValue  *ResponseWAF
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WAFsAPIService.UpdateWaf")

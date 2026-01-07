@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateFunction
 
-> FunctionResponse CreateFunction(ctx).EdgeFunctionsRequest(edgeFunctionsRequest).Execute()
+> ResponseFunctionsDoc CreateFunction(ctx).EdgeFunctionsRequest(edgeFunctionsRequest).Execute()
 
 Create an Function
 
@@ -43,7 +43,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.CreateFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateFunction`: FunctionResponse
+	// response from `CreateFunction`: ResponseFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.CreateFunction`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FunctionResponse**](FunctionResponse.md)
+[**ResponseFunctionsDoc**](ResponseFunctionsDoc.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFunction
 
-> DeleteResponse DeleteFunction(ctx, functionId).Execute()
+> ResponseDeleteFunctionsDoc DeleteFunction(ctx, functionId).Execute()
 
 Delete an Function
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.DeleteFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteFunction`: DeleteResponse
+	// response from `DeleteFunction`: ResponseDeleteFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.DeleteFunction`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+[**ResponseDeleteFunctionsDoc**](ResponseDeleteFunctionsDoc.md)
 
 ### Authorization
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateFunction
 
-> FunctionResponse PartialUpdateFunction(ctx, functionId).PatchedEdgeFunctionsRequest(patchedEdgeFunctionsRequest).Execute()
+> ResponseFunctionsDoc PartialUpdateFunction(ctx, functionId).PatchedEdgeFunctionsRequest(patchedEdgeFunctionsRequest).Execute()
 
 Partially update an Function
 
@@ -271,7 +271,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.PartialUpdateFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateFunction`: FunctionResponse
+	// response from `PartialUpdateFunction`: ResponseFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.PartialUpdateFunction`: %v\n", resp)
 }
 ```
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FunctionResponse**](FunctionResponse.md)
+[**ResponseFunctionsDoc**](ResponseFunctionsDoc.md)
 
 ### Authorization
 
@@ -314,7 +314,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveFunction
 
-> FunctionResponse RetrieveFunction(ctx, functionId).Fields(fields).Execute()
+> ResponseRetrieveFunctionsDoc RetrieveFunction(ctx, functionId).Fields(fields).Execute()
 
 Retrieve details of an Function
 
@@ -343,7 +343,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.RetrieveFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveFunction`: FunctionResponse
+	// response from `RetrieveFunction`: ResponseRetrieveFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.RetrieveFunction`: %v\n", resp)
 }
 ```
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FunctionResponse**](FunctionResponse.md)
+[**ResponseRetrieveFunctionsDoc**](ResponseRetrieveFunctionsDoc.md)
 
 ### Authorization
 
@@ -386,7 +386,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFunction
 
-> FunctionResponse UpdateFunction(ctx, functionId).EdgeFunctionsRequest(edgeFunctionsRequest).Execute()
+> ResponseFunctionsDoc UpdateFunction(ctx, functionId).EdgeFunctionsRequest(edgeFunctionsRequest).Execute()
 
 Update an Function
 
@@ -415,7 +415,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.UpdateFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateFunction`: FunctionResponse
+	// response from `UpdateFunction`: ResponseFunctionsDoc
 	fmt.Fprintf(os.Stdout, "Response from `FunctionsAPI.UpdateFunction`: %v\n", resp)
 }
 ```
@@ -440,7 +440,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FunctionResponse**](FunctionResponse.md)
+[**ResponseFunctionsDoc**](ResponseFunctionsDoc.md)
 
 ### Authorization
 

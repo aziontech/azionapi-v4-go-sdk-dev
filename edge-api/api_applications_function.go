@@ -28,15 +28,15 @@ type ApiCreateApplicationFunctionInstanceRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsFunctionAPIService
 	applicationId int64
-	functionInstanceRequest *FunctionInstanceRequest
+	applicationFunctionInstanceRequest *ApplicationFunctionInstanceRequest
 }
 
-func (r ApiCreateApplicationFunctionInstanceRequest) FunctionInstanceRequest(functionInstanceRequest FunctionInstanceRequest) ApiCreateApplicationFunctionInstanceRequest {
-	r.functionInstanceRequest = &functionInstanceRequest
+func (r ApiCreateApplicationFunctionInstanceRequest) ApplicationFunctionInstanceRequest(applicationFunctionInstanceRequest ApplicationFunctionInstanceRequest) ApiCreateApplicationFunctionInstanceRequest {
+	r.applicationFunctionInstanceRequest = &applicationFunctionInstanceRequest
 	return r
 }
 
-func (r ApiCreateApplicationFunctionInstanceRequest) Execute() (*FunctionInstanceResponse, *http.Response, error) {
+func (r ApiCreateApplicationFunctionInstanceRequest) Execute() (*ResponseApplicationFunctionInstance, *http.Response, error) {
 	return r.ApiService.CreateApplicationFunctionInstanceExecute(r)
 }
 
@@ -58,13 +58,13 @@ func (a *ApplicationsFunctionAPIService) CreateApplicationFunctionInstance(ctx c
 }
 
 // Execute executes the request
-//  @return FunctionInstanceResponse
-func (a *ApplicationsFunctionAPIService) CreateApplicationFunctionInstanceExecute(r ApiCreateApplicationFunctionInstanceRequest) (*FunctionInstanceResponse, *http.Response, error) {
+//  @return ResponseApplicationFunctionInstance
+func (a *ApplicationsFunctionAPIService) CreateApplicationFunctionInstanceExecute(r ApiCreateApplicationFunctionInstanceRequest) (*ResponseApplicationFunctionInstance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FunctionInstanceResponse
+		localVarReturnValue  *ResponseApplicationFunctionInstance
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsFunctionAPIService.CreateApplicationFunctionInstance")
@@ -78,8 +78,8 @@ func (a *ApplicationsFunctionAPIService) CreateApplicationFunctionInstanceExecut
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.functionInstanceRequest == nil {
-		return localVarReturnValue, nil, reportError("functionInstanceRequest is required and must be specified")
+	if r.applicationFunctionInstanceRequest == nil {
+		return localVarReturnValue, nil, reportError("applicationFunctionInstanceRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -100,7 +100,7 @@ func (a *ApplicationsFunctionAPIService) CreateApplicationFunctionInstanceExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.functionInstanceRequest
+	localVarPostBody = r.applicationFunctionInstanceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -235,7 +235,7 @@ type ApiDeleteApplicationFunctionInstanceRequest struct {
 	functionId int64
 }
 
-func (r ApiDeleteApplicationFunctionInstanceRequest) Execute() (*DeleteResponse, *http.Response, error) {
+func (r ApiDeleteApplicationFunctionInstanceRequest) Execute() (*ResponseDeleteApplicationFunctionInstance, *http.Response, error) {
 	return r.ApiService.DeleteApplicationFunctionInstanceExecute(r)
 }
 
@@ -259,13 +259,13 @@ func (a *ApplicationsFunctionAPIService) DeleteApplicationFunctionInstance(ctx c
 }
 
 // Execute executes the request
-//  @return DeleteResponse
-func (a *ApplicationsFunctionAPIService) DeleteApplicationFunctionInstanceExecute(r ApiDeleteApplicationFunctionInstanceRequest) (*DeleteResponse, *http.Response, error) {
+//  @return ResponseDeleteApplicationFunctionInstance
+func (a *ApplicationsFunctionAPIService) DeleteApplicationFunctionInstanceExecute(r ApiDeleteApplicationFunctionInstanceRequest) (*ResponseDeleteApplicationFunctionInstance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DeleteResponse
+		localVarReturnValue  *ResponseDeleteApplicationFunctionInstance
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsFunctionAPIService.DeleteApplicationFunctionInstance")
@@ -501,7 +501,7 @@ func (r ApiListApplicationFunctionInstancesRequest) Search(search string) ApiLis
 	return r
 }
 
-func (r ApiListApplicationFunctionInstancesRequest) Execute() (*PaginatedFunctionInstanceList, *http.Response, error) {
+func (r ApiListApplicationFunctionInstancesRequest) Execute() (*PaginatedApplicationFunctionInstanceList, *http.Response, error) {
 	return r.ApiService.ListApplicationFunctionInstancesExecute(r)
 }
 
@@ -523,13 +523,13 @@ func (a *ApplicationsFunctionAPIService) ListApplicationFunctionInstances(ctx co
 }
 
 // Execute executes the request
-//  @return PaginatedFunctionInstanceList
-func (a *ApplicationsFunctionAPIService) ListApplicationFunctionInstancesExecute(r ApiListApplicationFunctionInstancesRequest) (*PaginatedFunctionInstanceList, *http.Response, error) {
+//  @return PaginatedApplicationFunctionInstanceList
+func (a *ApplicationsFunctionAPIService) ListApplicationFunctionInstancesExecute(r ApiListApplicationFunctionInstancesRequest) (*PaginatedApplicationFunctionInstanceList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedFunctionInstanceList
+		localVarReturnValue  *PaginatedApplicationFunctionInstanceList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsFunctionAPIService.ListApplicationFunctionInstances")
@@ -723,15 +723,15 @@ type ApiPartialUpdateApplicationFunctionInstanceRequest struct {
 	ApiService *ApplicationsFunctionAPIService
 	applicationId int64
 	functionId int64
-	patchedFunctionInstanceRequest *PatchedFunctionInstanceRequest
+	patchedApplicationFunctionInstanceRequest *PatchedApplicationFunctionInstanceRequest
 }
 
-func (r ApiPartialUpdateApplicationFunctionInstanceRequest) PatchedFunctionInstanceRequest(patchedFunctionInstanceRequest PatchedFunctionInstanceRequest) ApiPartialUpdateApplicationFunctionInstanceRequest {
-	r.patchedFunctionInstanceRequest = &patchedFunctionInstanceRequest
+func (r ApiPartialUpdateApplicationFunctionInstanceRequest) PatchedApplicationFunctionInstanceRequest(patchedApplicationFunctionInstanceRequest PatchedApplicationFunctionInstanceRequest) ApiPartialUpdateApplicationFunctionInstanceRequest {
+	r.patchedApplicationFunctionInstanceRequest = &patchedApplicationFunctionInstanceRequest
 	return r
 }
 
-func (r ApiPartialUpdateApplicationFunctionInstanceRequest) Execute() (*FunctionInstanceResponse, *http.Response, error) {
+func (r ApiPartialUpdateApplicationFunctionInstanceRequest) Execute() (*ResponseApplicationFunctionInstance, *http.Response, error) {
 	return r.ApiService.PartialUpdateApplicationFunctionInstanceExecute(r)
 }
 
@@ -755,13 +755,13 @@ func (a *ApplicationsFunctionAPIService) PartialUpdateApplicationFunctionInstanc
 }
 
 // Execute executes the request
-//  @return FunctionInstanceResponse
-func (a *ApplicationsFunctionAPIService) PartialUpdateApplicationFunctionInstanceExecute(r ApiPartialUpdateApplicationFunctionInstanceRequest) (*FunctionInstanceResponse, *http.Response, error) {
+//  @return ResponseApplicationFunctionInstance
+func (a *ApplicationsFunctionAPIService) PartialUpdateApplicationFunctionInstanceExecute(r ApiPartialUpdateApplicationFunctionInstanceRequest) (*ResponseApplicationFunctionInstance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FunctionInstanceResponse
+		localVarReturnValue  *ResponseApplicationFunctionInstance
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsFunctionAPIService.PartialUpdateApplicationFunctionInstance")
@@ -795,7 +795,7 @@ func (a *ApplicationsFunctionAPIService) PartialUpdateApplicationFunctionInstanc
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedFunctionInstanceRequest
+	localVarPostBody = r.patchedApplicationFunctionInstanceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -937,7 +937,7 @@ func (r ApiRetrieveApplicationFunctionInstanceRequest) Fields(fields string) Api
 	return r
 }
 
-func (r ApiRetrieveApplicationFunctionInstanceRequest) Execute() (*FunctionInstanceResponse, *http.Response, error) {
+func (r ApiRetrieveApplicationFunctionInstanceRequest) Execute() (*ResponseRetrieveApplicationFunctionInstance, *http.Response, error) {
 	return r.ApiService.RetrieveApplicationFunctionInstanceExecute(r)
 }
 
@@ -961,13 +961,13 @@ func (a *ApplicationsFunctionAPIService) RetrieveApplicationFunctionInstance(ctx
 }
 
 // Execute executes the request
-//  @return FunctionInstanceResponse
-func (a *ApplicationsFunctionAPIService) RetrieveApplicationFunctionInstanceExecute(r ApiRetrieveApplicationFunctionInstanceRequest) (*FunctionInstanceResponse, *http.Response, error) {
+//  @return ResponseRetrieveApplicationFunctionInstance
+func (a *ApplicationsFunctionAPIService) RetrieveApplicationFunctionInstanceExecute(r ApiRetrieveApplicationFunctionInstanceRequest) (*ResponseRetrieveApplicationFunctionInstance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FunctionInstanceResponse
+		localVarReturnValue  *ResponseRetrieveApplicationFunctionInstance
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsFunctionAPIService.RetrieveApplicationFunctionInstance")
@@ -1135,15 +1135,15 @@ type ApiUpdateApplicationFunctionInstanceRequest struct {
 	ApiService *ApplicationsFunctionAPIService
 	applicationId int64
 	functionId int64
-	functionInstanceRequest *FunctionInstanceRequest
+	applicationFunctionInstanceRequest *ApplicationFunctionInstanceRequest
 }
 
-func (r ApiUpdateApplicationFunctionInstanceRequest) FunctionInstanceRequest(functionInstanceRequest FunctionInstanceRequest) ApiUpdateApplicationFunctionInstanceRequest {
-	r.functionInstanceRequest = &functionInstanceRequest
+func (r ApiUpdateApplicationFunctionInstanceRequest) ApplicationFunctionInstanceRequest(applicationFunctionInstanceRequest ApplicationFunctionInstanceRequest) ApiUpdateApplicationFunctionInstanceRequest {
+	r.applicationFunctionInstanceRequest = &applicationFunctionInstanceRequest
 	return r
 }
 
-func (r ApiUpdateApplicationFunctionInstanceRequest) Execute() (*FunctionInstanceResponse, *http.Response, error) {
+func (r ApiUpdateApplicationFunctionInstanceRequest) Execute() (*ResponseApplicationFunctionInstance, *http.Response, error) {
 	return r.ApiService.UpdateApplicationFunctionInstanceExecute(r)
 }
 
@@ -1167,13 +1167,13 @@ func (a *ApplicationsFunctionAPIService) UpdateApplicationFunctionInstance(ctx c
 }
 
 // Execute executes the request
-//  @return FunctionInstanceResponse
-func (a *ApplicationsFunctionAPIService) UpdateApplicationFunctionInstanceExecute(r ApiUpdateApplicationFunctionInstanceRequest) (*FunctionInstanceResponse, *http.Response, error) {
+//  @return ResponseApplicationFunctionInstance
+func (a *ApplicationsFunctionAPIService) UpdateApplicationFunctionInstanceExecute(r ApiUpdateApplicationFunctionInstanceRequest) (*ResponseApplicationFunctionInstance, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FunctionInstanceResponse
+		localVarReturnValue  *ResponseApplicationFunctionInstance
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsFunctionAPIService.UpdateApplicationFunctionInstance")
@@ -1188,8 +1188,8 @@ func (a *ApplicationsFunctionAPIService) UpdateApplicationFunctionInstanceExecut
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.functionInstanceRequest == nil {
-		return localVarReturnValue, nil, reportError("functionInstanceRequest is required and must be specified")
+	if r.applicationFunctionInstanceRequest == nil {
+		return localVarReturnValue, nil, reportError("applicationFunctionInstanceRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1210,7 +1210,7 @@ func (a *ApplicationsFunctionAPIService) UpdateApplicationFunctionInstanceExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.functionInstanceRequest
+	localVarPostBody = r.applicationFunctionInstanceRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

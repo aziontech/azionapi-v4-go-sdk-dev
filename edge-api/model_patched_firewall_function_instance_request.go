@@ -21,7 +21,7 @@ var _ MappedNullable = &PatchedFirewallFunctionInstanceRequest{}
 type PatchedFirewallFunctionInstanceRequest struct {
 	Name *string `json:"name,omitempty"`
 	Args interface{} `json:"args,omitempty"`
-	AzionForm *EdgeFunctionsAzionForm `json:"azion_form,omitempty"`
+	AzionForm *ApplicationFunctionInstanceAzionForm `json:"azion_form,omitempty"`
 	Function *int64 `json:"function,omitempty"`
 	Active *bool `json:"active,omitempty"`
 }
@@ -109,9 +109,9 @@ func (o *PatchedFirewallFunctionInstanceRequest) SetArgs(v interface{}) {
 }
 
 // GetAzionForm returns the AzionForm field value if set, zero value otherwise.
-func (o *PatchedFirewallFunctionInstanceRequest) GetAzionForm() EdgeFunctionsAzionForm {
+func (o *PatchedFirewallFunctionInstanceRequest) GetAzionForm() ApplicationFunctionInstanceAzionForm {
 	if o == nil || IsNil(o.AzionForm) {
-		var ret EdgeFunctionsAzionForm
+		var ret ApplicationFunctionInstanceAzionForm
 		return ret
 	}
 	return *o.AzionForm
@@ -119,7 +119,7 @@ func (o *PatchedFirewallFunctionInstanceRequest) GetAzionForm() EdgeFunctionsAzi
 
 // GetAzionFormOk returns a tuple with the AzionForm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedFirewallFunctionInstanceRequest) GetAzionFormOk() (*EdgeFunctionsAzionForm, bool) {
+func (o *PatchedFirewallFunctionInstanceRequest) GetAzionFormOk() (*ApplicationFunctionInstanceAzionForm, bool) {
 	if o == nil || IsNil(o.AzionForm) {
 		return nil, false
 	}
@@ -135,8 +135,8 @@ func (o *PatchedFirewallFunctionInstanceRequest) HasAzionForm() bool {
 	return false
 }
 
-// SetAzionForm gets a reference to the given EdgeFunctionsAzionForm and assigns it to the AzionForm field.
-func (o *PatchedFirewallFunctionInstanceRequest) SetAzionForm(v EdgeFunctionsAzionForm) {
+// SetAzionForm gets a reference to the given ApplicationFunctionInstanceAzionForm and assigns it to the AzionForm field.
+func (o *PatchedFirewallFunctionInstanceRequest) SetAzionForm(v ApplicationFunctionInstanceAzionForm) {
 	o.AzionForm = &v
 }
 

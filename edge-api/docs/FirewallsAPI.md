@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CloneFirewall
 
-> FirewallResponse CloneFirewall(ctx, firewallId).CloneFirewallRequest(cloneFirewallRequest).Execute()
+> ResponseFirewall CloneFirewall(ctx, firewallId).CloneFirewallRequest(cloneFirewallRequest).Execute()
 
 Clone a Firewall
 
@@ -45,7 +45,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.CloneFirewall``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CloneFirewall`: FirewallResponse
+	// response from `CloneFirewall`: ResponseFirewall
 	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.CloneFirewall`: %v\n", resp)
 }
 ```
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FirewallResponse**](FirewallResponse.md)
+[**ResponseFirewall**](ResponseFirewall.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## CreateFirewall
 
-> FirewallResponse CreateFirewall(ctx).FirewallRequest(firewallRequest).Execute()
+> ResponseFirewall CreateFirewall(ctx).FirewallRequest(firewallRequest).Execute()
 
 Create a Firewall
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.CreateFirewall``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateFirewall`: FirewallResponse
+	// response from `CreateFirewall`: ResponseFirewall
 	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.CreateFirewall`: %v\n", resp)
 }
 ```
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FirewallResponse**](FirewallResponse.md)
+[**ResponseFirewall**](ResponseFirewall.md)
 
 ### Authorization
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFirewall
 
-> DeleteResponse DeleteFirewall(ctx, firewallId).Execute()
+> ResponseDeleteFirewall DeleteFirewall(ctx, firewallId).Execute()
 
 Delete a Firewall
 
@@ -182,7 +182,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.DeleteFirewall``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteFirewall`: DeleteResponse
+	// response from `DeleteFirewall`: ResponseDeleteFirewall
 	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.DeleteFirewall`: %v\n", resp)
 }
 ```
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+[**ResponseDeleteFirewall**](ResponseDeleteFirewall.md)
 
 ### Authorization
 
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateFirewall
 
-> FirewallResponse PartialUpdateFirewall(ctx, firewallId).PatchedFirewallRequest(patchedFirewallRequest).Execute()
+> ResponseFirewall PartialUpdateFirewall(ctx, firewallId).PatchedFirewallRequest(patchedFirewallRequest).Execute()
 
 Partially update a Firewall
 
@@ -342,7 +342,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.PartialUpdateFirewall``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateFirewall`: FirewallResponse
+	// response from `PartialUpdateFirewall`: ResponseFirewall
 	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.PartialUpdateFirewall`: %v\n", resp)
 }
 ```
@@ -367,7 +367,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FirewallResponse**](FirewallResponse.md)
+[**ResponseFirewall**](ResponseFirewall.md)
 
 ### Authorization
 
@@ -385,7 +385,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveFirewall
 
-> FirewallResponse RetrieveFirewall(ctx, firewallId).Fields(fields).Execute()
+> ResponseRetrieveFirewall RetrieveFirewall(ctx, firewallId).Fields(fields).Execute()
 
 Retrieve details from a Firewall
 
@@ -414,7 +414,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.RetrieveFirewall``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveFirewall`: FirewallResponse
+	// response from `RetrieveFirewall`: ResponseRetrieveFirewall
 	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.RetrieveFirewall`: %v\n", resp)
 }
 ```
@@ -439,7 +439,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FirewallResponse**](FirewallResponse.md)
+[**ResponseRetrieveFirewall**](ResponseRetrieveFirewall.md)
 
 ### Authorization
 
@@ -457,7 +457,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFirewall
 
-> FirewallResponse UpdateFirewall(ctx, firewallId).FirewallRequest(firewallRequest).Execute()
+> ResponseFirewall UpdateFirewall(ctx, firewallId).FirewallRequest(firewallRequest).Execute()
 
 Update a Firewall
 
@@ -486,7 +486,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsAPI.UpdateFirewall``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateFirewall`: FirewallResponse
+	// response from `UpdateFirewall`: ResponseFirewall
 	fmt.Fprintf(os.Stdout, "Response from `FirewallsAPI.UpdateFirewall`: %v\n", resp)
 }
 ```
@@ -511,7 +511,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FirewallResponse**](FirewallResponse.md)
+[**ResponseFirewall**](ResponseFirewall.md)
 
 ### Authorization
 

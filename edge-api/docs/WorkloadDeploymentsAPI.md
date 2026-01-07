@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateWorkloadDeployment
 
-> WorkloadDeploymentResponse CreateWorkloadDeployment(ctx, workloadId).WorkloadDeploymentRequest(workloadDeploymentRequest).Execute()
+> ResponseWorkloadDeployment CreateWorkloadDeployment(ctx, workloadId).WorkloadDeploymentRequest(workloadDeploymentRequest).Execute()
 
 Create a Workload Deployment
 
@@ -44,7 +44,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.CreateWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateWorkloadDeployment`: WorkloadDeploymentResponse
+	// response from `CreateWorkloadDeployment`: ResponseWorkloadDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.CreateWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WorkloadDeploymentResponse**](WorkloadDeploymentResponse.md)
+[**ResponseWorkloadDeployment**](ResponseWorkloadDeployment.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWorkloadDeployment
 
-> DeleteResponse DeleteWorkloadDeployment(ctx, deploymentId, workloadId).Execute()
+> ResponseDeleteWorkloadDeployment DeleteWorkloadDeployment(ctx, deploymentId, workloadId).Execute()
 
 Delete a Workload Deployment
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.DeleteWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteWorkloadDeployment`: DeleteResponse
+	// response from `DeleteWorkloadDeployment`: ResponseDeleteWorkloadDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.DeleteWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+[**ResponseDeleteWorkloadDeployment**](ResponseDeleteWorkloadDeployment.md)
 
 ### Authorization
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateWorkloadDeployment
 
-> WorkloadDeploymentResponse PartialUpdateWorkloadDeployment(ctx, deploymentId, workloadId).PatchedWorkloadDeploymentRequest(patchedWorkloadDeploymentRequest).Execute()
+> ResponseWorkloadDeployment PartialUpdateWorkloadDeployment(ctx, deploymentId, workloadId).PatchedWorkloadDeploymentRequest(patchedWorkloadDeploymentRequest).Execute()
 
 Partially update a Workload Deployment
 
@@ -276,7 +276,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.PartialUpdateWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateWorkloadDeployment`: WorkloadDeploymentResponse
+	// response from `PartialUpdateWorkloadDeployment`: ResponseWorkloadDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.PartialUpdateWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WorkloadDeploymentResponse**](WorkloadDeploymentResponse.md)
+[**ResponseWorkloadDeployment**](ResponseWorkloadDeployment.md)
 
 ### Authorization
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveWorkloadDeployment
 
-> WorkloadDeploymentResponse RetrieveWorkloadDeployment(ctx, deploymentId, workloadId).Fields(fields).Execute()
+> ResponseRetrieveWorkloadDeployment RetrieveWorkloadDeployment(ctx, deploymentId, workloadId).Fields(fields).Execute()
 
 Retrieve details of a Workload Deployment
 
@@ -351,7 +351,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.RetrieveWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveWorkloadDeployment`: WorkloadDeploymentResponse
+	// response from `RetrieveWorkloadDeployment`: ResponseRetrieveWorkloadDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.RetrieveWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WorkloadDeploymentResponse**](WorkloadDeploymentResponse.md)
+[**ResponseRetrieveWorkloadDeployment**](ResponseRetrieveWorkloadDeployment.md)
 
 ### Authorization
 
@@ -396,7 +396,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWorkloadDeployment
 
-> WorkloadDeploymentResponse UpdateWorkloadDeployment(ctx, deploymentId, workloadId).WorkloadDeploymentRequest(workloadDeploymentRequest).Execute()
+> ResponseWorkloadDeployment UpdateWorkloadDeployment(ctx, deploymentId, workloadId).WorkloadDeploymentRequest(workloadDeploymentRequest).Execute()
 
 Update a Workload Deployment
 
@@ -426,7 +426,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadDeploymentsAPI.UpdateWorkloadDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateWorkloadDeployment`: WorkloadDeploymentResponse
+	// response from `UpdateWorkloadDeployment`: ResponseWorkloadDeployment
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadDeploymentsAPI.UpdateWorkloadDeployment`: %v\n", resp)
 }
 ```
@@ -453,7 +453,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WorkloadDeploymentResponse**](WorkloadDeploymentResponse.md)
+[**ResponseWorkloadDeployment**](ResponseWorkloadDeployment.md)
 
 ### Authorization
 

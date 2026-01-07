@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateCustomPage
 
-> CustomPageResponse CreateCustomPage(ctx).CustomPageRequest(customPageRequest).Execute()
+> ResponseCustomPage CreateCustomPage(ctx).CustomPageRequest(customPageRequest).Execute()
 
 Create a Custom Page
 
@@ -43,7 +43,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.CreateCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateCustomPage`: CustomPageResponse
+	// response from `CreateCustomPage`: ResponseCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.CreateCustomPage`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CustomPageResponse**](CustomPageResponse.md)
+[**ResponseCustomPage**](ResponseCustomPage.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCustomPage
 
-> DeleteResponse DeleteCustomPage(ctx, customPageId).Execute()
+> ResponseDeleteCustomPage DeleteCustomPage(ctx, customPageId).Execute()
 
 Delete a Custom Page
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.DeleteCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCustomPage`: DeleteResponse
+	// response from `DeleteCustomPage`: ResponseDeleteCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.DeleteCustomPage`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+[**ResponseDeleteCustomPage**](ResponseDeleteCustomPage.md)
 
 ### Authorization
 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateCustomPage
 
-> CustomPageResponse PartialUpdateCustomPage(ctx, customPageId).PatchedCustomPageRequest(patchedCustomPageRequest).Execute()
+> ResponseCustomPage PartialUpdateCustomPage(ctx, customPageId).PatchedCustomPageRequest(patchedCustomPageRequest).Execute()
 
 Partially update a Custom Page
 
@@ -267,7 +267,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.PartialUpdateCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateCustomPage`: CustomPageResponse
+	// response from `PartialUpdateCustomPage`: ResponseCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.PartialUpdateCustomPage`: %v\n", resp)
 }
 ```
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CustomPageResponse**](CustomPageResponse.md)
+[**ResponseCustomPage**](ResponseCustomPage.md)
 
 ### Authorization
 
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveCustomPage
 
-> CustomPageResponse RetrieveCustomPage(ctx, customPageId).Fields(fields).Execute()
+> ResponseRetrieveCustomPage RetrieveCustomPage(ctx, customPageId).Fields(fields).Execute()
 
 Retrieve details of a Custom Page
 
@@ -339,7 +339,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.RetrieveCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveCustomPage`: CustomPageResponse
+	// response from `RetrieveCustomPage`: ResponseRetrieveCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.RetrieveCustomPage`: %v\n", resp)
 }
 ```
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CustomPageResponse**](CustomPageResponse.md)
+[**ResponseRetrieveCustomPage**](ResponseRetrieveCustomPage.md)
 
 ### Authorization
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomPage
 
-> CustomPageResponse UpdateCustomPage(ctx, customPageId).CustomPageRequest(customPageRequest).Execute()
+> ResponseCustomPage UpdateCustomPage(ctx, customPageId).CustomPageRequest(customPageRequest).Execute()
 
 Update a Custom Page
 
@@ -411,7 +411,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPagesAPI.UpdateCustomPage``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateCustomPage`: CustomPageResponse
+	// response from `UpdateCustomPage`: ResponseCustomPage
 	fmt.Fprintf(os.Stdout, "Response from `CustomPagesAPI.UpdateCustomPage`: %v\n", resp)
 }
 ```
@@ -436,7 +436,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CustomPageResponse**](CustomPageResponse.md)
+[**ResponseCustomPage**](ResponseCustomPage.md)
 
 ### Authorization
 

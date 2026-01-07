@@ -28,15 +28,15 @@ type ApiCreateFirewallRuleRequest struct {
 	ctx context.Context
 	ApiService *FirewallsRulesEngineAPIService
 	firewallId int64
-	firewallRuleRequest *FirewallRuleRequest
+	firewallRuleEngineRequest *FirewallRuleEngineRequest
 }
 
-func (r ApiCreateFirewallRuleRequest) FirewallRuleRequest(firewallRuleRequest FirewallRuleRequest) ApiCreateFirewallRuleRequest {
-	r.firewallRuleRequest = &firewallRuleRequest
+func (r ApiCreateFirewallRuleRequest) FirewallRuleEngineRequest(firewallRuleEngineRequest FirewallRuleEngineRequest) ApiCreateFirewallRuleRequest {
+	r.firewallRuleEngineRequest = &firewallRuleEngineRequest
 	return r
 }
 
-func (r ApiCreateFirewallRuleRequest) Execute() (*FirewallRuleResponse, *http.Response, error) {
+func (r ApiCreateFirewallRuleRequest) Execute() (*ResponseFirewallRuleEngine, *http.Response, error) {
 	return r.ApiService.CreateFirewallRuleExecute(r)
 }
 
@@ -58,13 +58,13 @@ func (a *FirewallsRulesEngineAPIService) CreateFirewallRule(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return FirewallRuleResponse
-func (a *FirewallsRulesEngineAPIService) CreateFirewallRuleExecute(r ApiCreateFirewallRuleRequest) (*FirewallRuleResponse, *http.Response, error) {
+//  @return ResponseFirewallRuleEngine
+func (a *FirewallsRulesEngineAPIService) CreateFirewallRuleExecute(r ApiCreateFirewallRuleRequest) (*ResponseFirewallRuleEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FirewallRuleResponse
+		localVarReturnValue  *ResponseFirewallRuleEngine
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirewallsRulesEngineAPIService.CreateFirewallRule")
@@ -78,8 +78,8 @@ func (a *FirewallsRulesEngineAPIService) CreateFirewallRuleExecute(r ApiCreateFi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.firewallRuleRequest == nil {
-		return localVarReturnValue, nil, reportError("firewallRuleRequest is required and must be specified")
+	if r.firewallRuleEngineRequest == nil {
+		return localVarReturnValue, nil, reportError("firewallRuleEngineRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -100,7 +100,7 @@ func (a *FirewallsRulesEngineAPIService) CreateFirewallRuleExecute(r ApiCreateFi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.firewallRuleRequest
+	localVarPostBody = r.firewallRuleEngineRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -235,7 +235,7 @@ type ApiDeleteFirewallRuleRequest struct {
 	requestRuleId int64
 }
 
-func (r ApiDeleteFirewallRuleRequest) Execute() (*DeleteResponse, *http.Response, error) {
+func (r ApiDeleteFirewallRuleRequest) Execute() (*ResponseDeleteFirewallRuleEngine, *http.Response, error) {
 	return r.ApiService.DeleteFirewallRuleExecute(r)
 }
 
@@ -259,13 +259,13 @@ func (a *FirewallsRulesEngineAPIService) DeleteFirewallRule(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return DeleteResponse
-func (a *FirewallsRulesEngineAPIService) DeleteFirewallRuleExecute(r ApiDeleteFirewallRuleRequest) (*DeleteResponse, *http.Response, error) {
+//  @return ResponseDeleteFirewallRuleEngine
+func (a *FirewallsRulesEngineAPIService) DeleteFirewallRuleExecute(r ApiDeleteFirewallRuleRequest) (*ResponseDeleteFirewallRuleEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DeleteResponse
+		localVarReturnValue  *ResponseDeleteFirewallRuleEngine
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirewallsRulesEngineAPIService.DeleteFirewallRule")
@@ -522,7 +522,7 @@ func (r ApiListFirewallRulesRequest) Search(search string) ApiListFirewallRulesR
 	return r
 }
 
-func (r ApiListFirewallRulesRequest) Execute() (*PaginatedFirewallRuleList, *http.Response, error) {
+func (r ApiListFirewallRulesRequest) Execute() (*PaginatedFirewallRuleEngineList, *http.Response, error) {
 	return r.ApiService.ListFirewallRulesExecute(r)
 }
 
@@ -544,13 +544,13 @@ func (a *FirewallsRulesEngineAPIService) ListFirewallRules(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return PaginatedFirewallRuleList
-func (a *FirewallsRulesEngineAPIService) ListFirewallRulesExecute(r ApiListFirewallRulesRequest) (*PaginatedFirewallRuleList, *http.Response, error) {
+//  @return PaginatedFirewallRuleEngineList
+func (a *FirewallsRulesEngineAPIService) ListFirewallRulesExecute(r ApiListFirewallRulesRequest) (*PaginatedFirewallRuleEngineList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedFirewallRuleList
+		localVarReturnValue  *PaginatedFirewallRuleEngineList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirewallsRulesEngineAPIService.ListFirewallRules")
@@ -788,7 +788,7 @@ func (r ApiOrderFirewallRulesRequest) Search(search string) ApiOrderFirewallRule
 	return r
 }
 
-func (r ApiOrderFirewallRulesRequest) Execute() (*PaginatedFirewallRuleList, *http.Response, error) {
+func (r ApiOrderFirewallRulesRequest) Execute() (*PaginatedFirewallRuleEngineList, *http.Response, error) {
 	return r.ApiService.OrderFirewallRulesExecute(r)
 }
 
@@ -810,13 +810,13 @@ func (a *FirewallsRulesEngineAPIService) OrderFirewallRules(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return PaginatedFirewallRuleList
-func (a *FirewallsRulesEngineAPIService) OrderFirewallRulesExecute(r ApiOrderFirewallRulesRequest) (*PaginatedFirewallRuleList, *http.Response, error) {
+//  @return PaginatedFirewallRuleEngineList
+func (a *FirewallsRulesEngineAPIService) OrderFirewallRulesExecute(r ApiOrderFirewallRulesRequest) (*PaginatedFirewallRuleEngineList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedFirewallRuleList
+		localVarReturnValue  *PaginatedFirewallRuleEngineList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirewallsRulesEngineAPIService.OrderFirewallRules")
@@ -997,15 +997,15 @@ type ApiPartialUpdateFirewallRuleRequest struct {
 	ApiService *FirewallsRulesEngineAPIService
 	firewallId int64
 	requestRuleId int64
-	patchedFirewallRuleRequest *PatchedFirewallRuleRequest
+	patchedFirewallRuleEngineRequest *PatchedFirewallRuleEngineRequest
 }
 
-func (r ApiPartialUpdateFirewallRuleRequest) PatchedFirewallRuleRequest(patchedFirewallRuleRequest PatchedFirewallRuleRequest) ApiPartialUpdateFirewallRuleRequest {
-	r.patchedFirewallRuleRequest = &patchedFirewallRuleRequest
+func (r ApiPartialUpdateFirewallRuleRequest) PatchedFirewallRuleEngineRequest(patchedFirewallRuleEngineRequest PatchedFirewallRuleEngineRequest) ApiPartialUpdateFirewallRuleRequest {
+	r.patchedFirewallRuleEngineRequest = &patchedFirewallRuleEngineRequest
 	return r
 }
 
-func (r ApiPartialUpdateFirewallRuleRequest) Execute() (*FirewallRuleResponse, *http.Response, error) {
+func (r ApiPartialUpdateFirewallRuleRequest) Execute() (*ResponseFirewallRuleEngine, *http.Response, error) {
 	return r.ApiService.PartialUpdateFirewallRuleExecute(r)
 }
 
@@ -1029,13 +1029,13 @@ func (a *FirewallsRulesEngineAPIService) PartialUpdateFirewallRule(ctx context.C
 }
 
 // Execute executes the request
-//  @return FirewallRuleResponse
-func (a *FirewallsRulesEngineAPIService) PartialUpdateFirewallRuleExecute(r ApiPartialUpdateFirewallRuleRequest) (*FirewallRuleResponse, *http.Response, error) {
+//  @return ResponseFirewallRuleEngine
+func (a *FirewallsRulesEngineAPIService) PartialUpdateFirewallRuleExecute(r ApiPartialUpdateFirewallRuleRequest) (*ResponseFirewallRuleEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FirewallRuleResponse
+		localVarReturnValue  *ResponseFirewallRuleEngine
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirewallsRulesEngineAPIService.PartialUpdateFirewallRule")
@@ -1069,7 +1069,7 @@ func (a *FirewallsRulesEngineAPIService) PartialUpdateFirewallRuleExecute(r ApiP
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedFirewallRuleRequest
+	localVarPostBody = r.patchedFirewallRuleEngineRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1211,7 +1211,7 @@ func (r ApiRetrieveFirewallRuleRequest) Fields(fields string) ApiRetrieveFirewal
 	return r
 }
 
-func (r ApiRetrieveFirewallRuleRequest) Execute() (*FirewallRuleResponse, *http.Response, error) {
+func (r ApiRetrieveFirewallRuleRequest) Execute() (*ResponseRetrieveFirewallRuleEngine, *http.Response, error) {
 	return r.ApiService.RetrieveFirewallRuleExecute(r)
 }
 
@@ -1235,13 +1235,13 @@ func (a *FirewallsRulesEngineAPIService) RetrieveFirewallRule(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return FirewallRuleResponse
-func (a *FirewallsRulesEngineAPIService) RetrieveFirewallRuleExecute(r ApiRetrieveFirewallRuleRequest) (*FirewallRuleResponse, *http.Response, error) {
+//  @return ResponseRetrieveFirewallRuleEngine
+func (a *FirewallsRulesEngineAPIService) RetrieveFirewallRuleExecute(r ApiRetrieveFirewallRuleRequest) (*ResponseRetrieveFirewallRuleEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FirewallRuleResponse
+		localVarReturnValue  *ResponseRetrieveFirewallRuleEngine
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirewallsRulesEngineAPIService.RetrieveFirewallRule")
@@ -1409,15 +1409,15 @@ type ApiUpdateFirewallRuleRequest struct {
 	ApiService *FirewallsRulesEngineAPIService
 	firewallId int64
 	requestRuleId int64
-	firewallRuleRequest *FirewallRuleRequest
+	firewallRuleEngineRequest *FirewallRuleEngineRequest
 }
 
-func (r ApiUpdateFirewallRuleRequest) FirewallRuleRequest(firewallRuleRequest FirewallRuleRequest) ApiUpdateFirewallRuleRequest {
-	r.firewallRuleRequest = &firewallRuleRequest
+func (r ApiUpdateFirewallRuleRequest) FirewallRuleEngineRequest(firewallRuleEngineRequest FirewallRuleEngineRequest) ApiUpdateFirewallRuleRequest {
+	r.firewallRuleEngineRequest = &firewallRuleEngineRequest
 	return r
 }
 
-func (r ApiUpdateFirewallRuleRequest) Execute() (*FirewallRuleResponse, *http.Response, error) {
+func (r ApiUpdateFirewallRuleRequest) Execute() (*ResponseFirewallRuleEngine, *http.Response, error) {
 	return r.ApiService.UpdateFirewallRuleExecute(r)
 }
 
@@ -1441,13 +1441,13 @@ func (a *FirewallsRulesEngineAPIService) UpdateFirewallRule(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return FirewallRuleResponse
-func (a *FirewallsRulesEngineAPIService) UpdateFirewallRuleExecute(r ApiUpdateFirewallRuleRequest) (*FirewallRuleResponse, *http.Response, error) {
+//  @return ResponseFirewallRuleEngine
+func (a *FirewallsRulesEngineAPIService) UpdateFirewallRuleExecute(r ApiUpdateFirewallRuleRequest) (*ResponseFirewallRuleEngine, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FirewallRuleResponse
+		localVarReturnValue  *ResponseFirewallRuleEngine
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FirewallsRulesEngineAPIService.UpdateFirewallRule")
@@ -1462,8 +1462,8 @@ func (a *FirewallsRulesEngineAPIService) UpdateFirewallRuleExecute(r ApiUpdateFi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.firewallRuleRequest == nil {
-		return localVarReturnValue, nil, reportError("firewallRuleRequest is required and must be specified")
+	if r.firewallRuleEngineRequest == nil {
+		return localVarReturnValue, nil, reportError("firewallRuleEngineRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1484,7 +1484,7 @@ func (a *FirewallsRulesEngineAPIService) UpdateFirewallRuleExecute(r ApiUpdateFi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.firewallRuleRequest
+	localVarPostBody = r.firewallRuleEngineRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

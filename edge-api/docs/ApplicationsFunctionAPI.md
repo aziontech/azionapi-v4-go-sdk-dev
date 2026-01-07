@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateApplicationFunctionInstance
 
-> FunctionInstanceResponse CreateApplicationFunctionInstance(ctx, applicationId).FunctionInstanceRequest(functionInstanceRequest).Execute()
+> ResponseApplicationFunctionInstance CreateApplicationFunctionInstance(ctx, applicationId).ApplicationFunctionInstanceRequest(applicationFunctionInstanceRequest).Execute()
 
 Create an Application Function Instance
 
@@ -35,16 +35,16 @@ import (
 
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	functionInstanceRequest := *openapiclient.NewFunctionInstanceRequest("Name_example", int64(123)) // FunctionInstanceRequest | 
+	applicationFunctionInstanceRequest := *openapiclient.NewApplicationFunctionInstanceRequest("Name_example", int64(123)) // ApplicationFunctionInstanceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsFunctionAPI.CreateApplicationFunctionInstance(context.Background(), applicationId).FunctionInstanceRequest(functionInstanceRequest).Execute()
+	resp, r, err := apiClient.ApplicationsFunctionAPI.CreateApplicationFunctionInstance(context.Background(), applicationId).ApplicationFunctionInstanceRequest(applicationFunctionInstanceRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsFunctionAPI.CreateApplicationFunctionInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateApplicationFunctionInstance`: FunctionInstanceResponse
+	// response from `CreateApplicationFunctionInstance`: ResponseApplicationFunctionInstance
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsFunctionAPI.CreateApplicationFunctionInstance`: %v\n", resp)
 }
 ```
@@ -65,11 +65,11 @@ Other parameters are passed through a pointer to a apiCreateApplicationFunctionI
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **functionInstanceRequest** | [**FunctionInstanceRequest**](FunctionInstanceRequest.md) |  | 
+ **applicationFunctionInstanceRequest** | [**ApplicationFunctionInstanceRequest**](ApplicationFunctionInstanceRequest.md) |  | 
 
 ### Return type
 
-[**FunctionInstanceResponse**](FunctionInstanceResponse.md)
+[**ResponseApplicationFunctionInstance**](ResponseApplicationFunctionInstance.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApplicationFunctionInstance
 
-> DeleteResponse DeleteApplicationFunctionInstance(ctx, applicationId, functionId).Execute()
+> ResponseDeleteApplicationFunctionInstance DeleteApplicationFunctionInstance(ctx, applicationId, functionId).Execute()
 
 Delete an Application Function Instance
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsFunctionAPI.DeleteApplicationFunctionInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteApplicationFunctionInstance`: DeleteResponse
+	// response from `DeleteApplicationFunctionInstance`: ResponseDeleteApplicationFunctionInstance
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsFunctionAPI.DeleteApplicationFunctionInstance`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+[**ResponseDeleteApplicationFunctionInstance**](ResponseDeleteApplicationFunctionInstance.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ListApplicationFunctionInstances
 
-> PaginatedFunctionInstanceList ListApplicationFunctionInstances(ctx, applicationId).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedApplicationFunctionInstanceList ListApplicationFunctionInstances(ctx, applicationId).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Function Instances
 
@@ -199,7 +199,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsFunctionAPI.ListApplicationFunctionInstances``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListApplicationFunctionInstances`: PaginatedFunctionInstanceList
+	// response from `ListApplicationFunctionInstances`: PaginatedApplicationFunctionInstanceList
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsFunctionAPI.ListApplicationFunctionInstances`: %v\n", resp)
 }
 ```
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedFunctionInstanceList**](PaginatedFunctionInstanceList.md)
+[**PaginatedApplicationFunctionInstanceList**](PaginatedApplicationFunctionInstanceList.md)
 
 ### Authorization
 
@@ -251,7 +251,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateApplicationFunctionInstance
 
-> FunctionInstanceResponse PartialUpdateApplicationFunctionInstance(ctx, applicationId, functionId).PatchedFunctionInstanceRequest(patchedFunctionInstanceRequest).Execute()
+> ResponseApplicationFunctionInstance PartialUpdateApplicationFunctionInstance(ctx, applicationId, functionId).PatchedApplicationFunctionInstanceRequest(patchedApplicationFunctionInstanceRequest).Execute()
 
 Partially update an Application Function Instance
 
@@ -272,16 +272,16 @@ import (
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
-	patchedFunctionInstanceRequest := *openapiclient.NewPatchedFunctionInstanceRequest() // PatchedFunctionInstanceRequest |  (optional)
+	patchedApplicationFunctionInstanceRequest := *openapiclient.NewPatchedApplicationFunctionInstanceRequest() // PatchedApplicationFunctionInstanceRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsFunctionAPI.PartialUpdateApplicationFunctionInstance(context.Background(), applicationId, functionId).PatchedFunctionInstanceRequest(patchedFunctionInstanceRequest).Execute()
+	resp, r, err := apiClient.ApplicationsFunctionAPI.PartialUpdateApplicationFunctionInstance(context.Background(), applicationId, functionId).PatchedApplicationFunctionInstanceRequest(patchedApplicationFunctionInstanceRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsFunctionAPI.PartialUpdateApplicationFunctionInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateApplicationFunctionInstance`: FunctionInstanceResponse
+	// response from `PartialUpdateApplicationFunctionInstance`: ResponseApplicationFunctionInstance
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsFunctionAPI.PartialUpdateApplicationFunctionInstance`: %v\n", resp)
 }
 ```
@@ -304,11 +304,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedFunctionInstanceRequest** | [**PatchedFunctionInstanceRequest**](PatchedFunctionInstanceRequest.md) |  | 
+ **patchedApplicationFunctionInstanceRequest** | [**PatchedApplicationFunctionInstanceRequest**](PatchedApplicationFunctionInstanceRequest.md) |  | 
 
 ### Return type
 
-[**FunctionInstanceResponse**](FunctionInstanceResponse.md)
+[**ResponseApplicationFunctionInstance**](ResponseApplicationFunctionInstance.md)
 
 ### Authorization
 
@@ -326,7 +326,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveApplicationFunctionInstance
 
-> FunctionInstanceResponse RetrieveApplicationFunctionInstance(ctx, applicationId, functionId).Fields(fields).Execute()
+> ResponseRetrieveApplicationFunctionInstance RetrieveApplicationFunctionInstance(ctx, applicationId, functionId).Fields(fields).Execute()
 
 Retrieve details of an Application Function Instance
 
@@ -356,7 +356,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsFunctionAPI.RetrieveApplicationFunctionInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveApplicationFunctionInstance`: FunctionInstanceResponse
+	// response from `RetrieveApplicationFunctionInstance`: ResponseRetrieveApplicationFunctionInstance
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsFunctionAPI.RetrieveApplicationFunctionInstance`: %v\n", resp)
 }
 ```
@@ -383,7 +383,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FunctionInstanceResponse**](FunctionInstanceResponse.md)
+[**ResponseRetrieveApplicationFunctionInstance**](ResponseRetrieveApplicationFunctionInstance.md)
 
 ### Authorization
 
@@ -401,7 +401,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApplicationFunctionInstance
 
-> FunctionInstanceResponse UpdateApplicationFunctionInstance(ctx, applicationId, functionId).FunctionInstanceRequest(functionInstanceRequest).Execute()
+> ResponseApplicationFunctionInstance UpdateApplicationFunctionInstance(ctx, applicationId, functionId).ApplicationFunctionInstanceRequest(applicationFunctionInstanceRequest).Execute()
 
 Update an Edge Application Function Instance
 
@@ -422,16 +422,16 @@ import (
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	functionId := int64(789) // int64 | A unique integer value identifying the function instance.
-	functionInstanceRequest := *openapiclient.NewFunctionInstanceRequest("Name_example", int64(123)) // FunctionInstanceRequest | 
+	applicationFunctionInstanceRequest := *openapiclient.NewApplicationFunctionInstanceRequest("Name_example", int64(123)) // ApplicationFunctionInstanceRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsFunctionAPI.UpdateApplicationFunctionInstance(context.Background(), applicationId, functionId).FunctionInstanceRequest(functionInstanceRequest).Execute()
+	resp, r, err := apiClient.ApplicationsFunctionAPI.UpdateApplicationFunctionInstance(context.Background(), applicationId, functionId).ApplicationFunctionInstanceRequest(applicationFunctionInstanceRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsFunctionAPI.UpdateApplicationFunctionInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateApplicationFunctionInstance`: FunctionInstanceResponse
+	// response from `UpdateApplicationFunctionInstance`: ResponseApplicationFunctionInstance
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsFunctionAPI.UpdateApplicationFunctionInstance`: %v\n", resp)
 }
 ```
@@ -454,11 +454,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **functionInstanceRequest** | [**FunctionInstanceRequest**](FunctionInstanceRequest.md) |  | 
+ **applicationFunctionInstanceRequest** | [**ApplicationFunctionInstanceRequest**](ApplicationFunctionInstanceRequest.md) |  | 
 
 ### Return type
 
-[**FunctionInstanceResponse**](FunctionInstanceResponse.md)
+[**ResponseApplicationFunctionInstance**](ResponseApplicationFunctionInstance.md)
 
 ### Authorization
 

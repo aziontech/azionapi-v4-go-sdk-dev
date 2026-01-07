@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CloneWaf
 
-> WAFResponse CloneWaf(ctx, wafId).CloneWAFRequest(cloneWAFRequest).Execute()
+> ResponseWAF CloneWaf(ctx, wafId).CloneWAFRequest(cloneWAFRequest).Execute()
 
 Clone a Web Application Firewall (WAF)
 
@@ -45,7 +45,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.CloneWaf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CloneWaf`: WAFResponse
+	// response from `CloneWaf`: ResponseWAF
 	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.CloneWaf`: %v\n", resp)
 }
 ```
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WAFResponse**](WAFResponse.md)
+[**ResponseWAF**](ResponseWAF.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## CreateWaf
 
-> WAFResponse CreateWaf(ctx).WAFRequest(wAFRequest).Execute()
+> ResponseWAF CreateWaf(ctx).WAFRequest(wAFRequest).Execute()
 
 Create a Web Application Firewall (WAF)
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.CreateWaf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateWaf`: WAFResponse
+	// response from `CreateWaf`: ResponseWAF
 	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.CreateWaf`: %v\n", resp)
 }
 ```
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WAFResponse**](WAFResponse.md)
+[**ResponseWAF**](ResponseWAF.md)
 
 ### Authorization
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWaf
 
-> DeleteResponse DeleteWaf(ctx, wafId).Execute()
+> ResponseDeleteWAF DeleteWaf(ctx, wafId).Execute()
 
 Delete a Web Application Firewall (WAF)
 
@@ -182,7 +182,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.DeleteWaf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteWaf`: DeleteResponse
+	// response from `DeleteWaf`: ResponseDeleteWAF
 	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.DeleteWaf`: %v\n", resp)
 }
 ```
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+[**ResponseDeleteWAF**](ResponseDeleteWAF.md)
 
 ### Authorization
 
@@ -302,7 +302,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateWaf
 
-> WAFResponse PartialUpdateWaf(ctx, wafId).PatchedWAFRequest(patchedWAFRequest).Execute()
+> ResponseWAF PartialUpdateWaf(ctx, wafId).PatchedWAFRequest(patchedWAFRequest).Execute()
 
 Partially update a Web Application Firewall (WAF)
 
@@ -331,7 +331,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.PartialUpdateWaf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateWaf`: WAFResponse
+	// response from `PartialUpdateWaf`: ResponseWAF
 	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.PartialUpdateWaf`: %v\n", resp)
 }
 ```
@@ -356,7 +356,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WAFResponse**](WAFResponse.md)
+[**ResponseWAF**](ResponseWAF.md)
 
 ### Authorization
 
@@ -374,7 +374,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveWaf
 
-> WAFResponse RetrieveWaf(ctx, wafId).Fields(fields).Execute()
+> ResponseRetrieveWAF RetrieveWaf(ctx, wafId).Fields(fields).Execute()
 
 Retrieve details from a Web Application Firewall (WAF)
 
@@ -403,7 +403,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.RetrieveWaf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveWaf`: WAFResponse
+	// response from `RetrieveWaf`: ResponseRetrieveWAF
 	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.RetrieveWaf`: %v\n", resp)
 }
 ```
@@ -428,7 +428,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WAFResponse**](WAFResponse.md)
+[**ResponseRetrieveWAF**](ResponseRetrieveWAF.md)
 
 ### Authorization
 
@@ -446,7 +446,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWaf
 
-> WAFResponse UpdateWaf(ctx, wafId).WAFRequest(wAFRequest).Execute()
+> ResponseWAF UpdateWaf(ctx, wafId).WAFRequest(wAFRequest).Execute()
 
 Update a Web Application Firewall (WAF)
 
@@ -475,7 +475,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFsAPI.UpdateWaf``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateWaf`: WAFResponse
+	// response from `UpdateWaf`: ResponseWAF
 	fmt.Fprintf(os.Stdout, "Response from `WAFsAPI.UpdateWaf`: %v\n", resp)
 }
 ```
@@ -500,7 +500,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WAFResponse**](WAFResponse.md)
+[**ResponseWAF**](ResponseWAF.md)
 
 ### Authorization
 

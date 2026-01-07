@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateConnector
 
-> ConnectorPolymorphicResponse CreateConnector(ctx).ConnectorPolymorphicRequest(connectorPolymorphicRequest).Execute()
+> ResponseConnectorPolymorphic CreateConnector(ctx).ConnectorPolymorphicRequest(connectorPolymorphicRequest).Execute()
 
 Create an Connector
 
@@ -43,7 +43,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorsAPI.CreateConnector``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateConnector`: ConnectorPolymorphicResponse
+	// response from `CreateConnector`: ResponseConnectorPolymorphic
 	fmt.Fprintf(os.Stdout, "Response from `ConnectorsAPI.CreateConnector`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorPolymorphicResponse**](ConnectorPolymorphicResponse.md)
+[**ResponseConnectorPolymorphic**](ResponseConnectorPolymorphic.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteConnector
 
-> DeleteResponse DeleteConnector(ctx, connectorId).Execute()
+> ResponseDeleteConnectorPolymorphic DeleteConnector(ctx, connectorId).Execute()
 
 Delete an Connector
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorsAPI.DeleteConnector``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteConnector`: DeleteResponse
+	// response from `DeleteConnector`: ResponseDeleteConnectorPolymorphic
 	fmt.Fprintf(os.Stdout, "Response from `ConnectorsAPI.DeleteConnector`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteResponse**](DeleteResponse.md)
+[**ResponseDeleteConnectorPolymorphic**](ResponseDeleteConnectorPolymorphic.md)
 
 ### Authorization
 
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateConnector
 
-> ConnectorPolymorphicResponse PartialUpdateConnector(ctx, connectorId).PatchedConnectorPolymorphicRequest(patchedConnectorPolymorphicRequest).Execute()
+> ResponseConnectorPolymorphic PartialUpdateConnector(ctx, connectorId).PatchedConnectorPolymorphicRequest(patchedConnectorPolymorphicRequest).Execute()
 
 Partially update an Connector
 
@@ -269,7 +269,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorsAPI.PartialUpdateConnector``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateConnector`: ConnectorPolymorphicResponse
+	// response from `PartialUpdateConnector`: ResponseConnectorPolymorphic
 	fmt.Fprintf(os.Stdout, "Response from `ConnectorsAPI.PartialUpdateConnector`: %v\n", resp)
 }
 ```
@@ -294,7 +294,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorPolymorphicResponse**](ConnectorPolymorphicResponse.md)
+[**ResponseConnectorPolymorphic**](ResponseConnectorPolymorphic.md)
 
 ### Authorization
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveConnector
 
-> ConnectorPolymorphicResponse RetrieveConnector(ctx, connectorId).Fields(fields).Execute()
+> ResponseRetrieveConnectorPolymorphic RetrieveConnector(ctx, connectorId).Fields(fields).Execute()
 
 Retrieve details of an Connector
 
@@ -341,7 +341,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorsAPI.RetrieveConnector``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveConnector`: ConnectorPolymorphicResponse
+	// response from `RetrieveConnector`: ResponseRetrieveConnectorPolymorphic
 	fmt.Fprintf(os.Stdout, "Response from `ConnectorsAPI.RetrieveConnector`: %v\n", resp)
 }
 ```
@@ -366,7 +366,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorPolymorphicResponse**](ConnectorPolymorphicResponse.md)
+[**ResponseRetrieveConnectorPolymorphic**](ResponseRetrieveConnectorPolymorphic.md)
 
 ### Authorization
 
@@ -384,7 +384,7 @@ Name | Type | Description  | Notes
 
 ## UpdateConnector
 
-> ConnectorPolymorphicResponse UpdateConnector(ctx, connectorId).ConnectorPolymorphicRequest(connectorPolymorphicRequest).Execute()
+> ResponseConnectorPolymorphic UpdateConnector(ctx, connectorId).ConnectorPolymorphicRequest(connectorPolymorphicRequest).Execute()
 
 Update an Connector
 
@@ -413,7 +413,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorsAPI.UpdateConnector``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateConnector`: ConnectorPolymorphicResponse
+	// response from `UpdateConnector`: ResponseConnectorPolymorphic
 	fmt.Fprintf(os.Stdout, "Response from `ConnectorsAPI.UpdateConnector`: %v\n", resp)
 }
 ```
@@ -438,7 +438,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ConnectorPolymorphicResponse**](ConnectorPolymorphicResponse.md)
+[**ResponseConnectorPolymorphic**](ResponseConnectorPolymorphic.md)
 
 ### Authorization
 
