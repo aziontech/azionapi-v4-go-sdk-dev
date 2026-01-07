@@ -35,7 +35,7 @@ func (r ApiCreateDataStreamRequest) DataStreamRequest(dataStreamRequest DataStre
 	return r
 }
 
-func (r ApiCreateDataStreamRequest) Execute() (*ResponseDataStream, *http.Response, error) {
+func (r ApiCreateDataStreamRequest) Execute() (*DataStreamResponse, *http.Response, error) {
 	return r.ApiService.CreateDataStreamExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *DataStreamStreamsAPIService) CreateDataStream(ctx context.Context) ApiC
 }
 
 // Execute executes the request
-//  @return ResponseDataStream
-func (a *DataStreamStreamsAPIService) CreateDataStreamExecute(r ApiCreateDataStreamRequest) (*ResponseDataStream, *http.Response, error) {
+//  @return DataStreamResponse
+func (a *DataStreamStreamsAPIService) CreateDataStreamExecute(r ApiCreateDataStreamRequest) (*DataStreamResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDataStream
+		localVarReturnValue  *DataStreamResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamStreamsAPIService.CreateDataStream")
@@ -208,7 +208,6 @@ func (a *DataStreamStreamsAPIService) CreateDataStreamExecute(r ApiCreateDataStr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -231,7 +230,7 @@ type ApiDeleteDataStreamRequest struct {
 	streamId int64
 }
 
-func (r ApiDeleteDataStreamRequest) Execute() (*ResponseAsyncDeleteDataStream, *http.Response, error) {
+func (r ApiDeleteDataStreamRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteDataStreamExecute(r)
 }
 
@@ -253,18 +252,16 @@ func (a *DataStreamStreamsAPIService) DeleteDataStream(ctx context.Context, stre
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteDataStream
-func (a *DataStreamStreamsAPIService) DeleteDataStreamExecute(r ApiDeleteDataStreamRequest) (*ResponseAsyncDeleteDataStream, *http.Response, error) {
+func (a *DataStreamStreamsAPIService) DeleteDataStreamExecute(r ApiDeleteDataStreamRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteDataStream
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamStreamsAPIService.DeleteDataStream")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/workspace/stream/streams/{stream_id}"
@@ -307,19 +304,19 @@ func (a *DataStreamStreamsAPIService) DeleteDataStreamExecute(r ApiDeleteDataStr
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -332,91 +329,82 @@ func (a *DataStreamStreamsAPIService) DeleteDataStreamExecute(r ApiDeleteDataStr
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiListDataStreamsRequest struct {
@@ -515,7 +503,7 @@ func (r ApiListDataStreamsRequest) Search(search string) ApiListDataStreamsReque
 	return r
 }
 
-func (r ApiListDataStreamsRequest) Execute() (*PaginatedResponseListDataStreamList, *http.Response, error) {
+func (r ApiListDataStreamsRequest) Execute() (*PaginatedDataStreamList, *http.Response, error) {
 	return r.ApiService.ListDataStreamsExecute(r)
 }
 
@@ -535,13 +523,13 @@ func (a *DataStreamStreamsAPIService) ListDataStreams(ctx context.Context) ApiLi
 }
 
 // Execute executes the request
-//  @return PaginatedResponseListDataStreamList
-func (a *DataStreamStreamsAPIService) ListDataStreamsExecute(r ApiListDataStreamsRequest) (*PaginatedResponseListDataStreamList, *http.Response, error) {
+//  @return PaginatedDataStreamList
+func (a *DataStreamStreamsAPIService) ListDataStreamsExecute(r ApiListDataStreamsRequest) (*PaginatedDataStreamList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedResponseListDataStreamList
+		localVarReturnValue  *PaginatedDataStreamList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamStreamsAPIService.ListDataStreams")
@@ -750,7 +738,7 @@ func (r ApiPartialUpdateDataStreamRequest) PatchedDataStreamRequest(patchedDataS
 	return r
 }
 
-func (r ApiPartialUpdateDataStreamRequest) Execute() (*ResponseDataStream, *http.Response, error) {
+func (r ApiPartialUpdateDataStreamRequest) Execute() (*DataStreamResponse, *http.Response, error) {
 	return r.ApiService.PartialUpdateDataStreamExecute(r)
 }
 
@@ -772,13 +760,13 @@ func (a *DataStreamStreamsAPIService) PartialUpdateDataStream(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return ResponseDataStream
-func (a *DataStreamStreamsAPIService) PartialUpdateDataStreamExecute(r ApiPartialUpdateDataStreamRequest) (*ResponseDataStream, *http.Response, error) {
+//  @return DataStreamResponse
+func (a *DataStreamStreamsAPIService) PartialUpdateDataStreamExecute(r ApiPartialUpdateDataStreamRequest) (*DataStreamResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDataStream
+		localVarReturnValue  *DataStreamResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamStreamsAPIService.PartialUpdateDataStream")
@@ -923,7 +911,6 @@ func (a *DataStreamStreamsAPIService) PartialUpdateDataStreamExecute(r ApiPartia
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -953,7 +940,7 @@ func (r ApiRetrieveDataStreamRequest) Fields(fields string) ApiRetrieveDataStrea
 	return r
 }
 
-func (r ApiRetrieveDataStreamRequest) Execute() (*ResponseRetrieveDataStream, *http.Response, error) {
+func (r ApiRetrieveDataStreamRequest) Execute() (*DataStreamResponse, *http.Response, error) {
 	return r.ApiService.RetrieveDataStreamExecute(r)
 }
 
@@ -975,13 +962,13 @@ func (a *DataStreamStreamsAPIService) RetrieveDataStream(ctx context.Context, st
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveDataStream
-func (a *DataStreamStreamsAPIService) RetrieveDataStreamExecute(r ApiRetrieveDataStreamRequest) (*ResponseRetrieveDataStream, *http.Response, error) {
+//  @return DataStreamResponse
+func (a *DataStreamStreamsAPIService) RetrieveDataStreamExecute(r ApiRetrieveDataStreamRequest) (*DataStreamResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveDataStream
+		localVarReturnValue  *DataStreamResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamStreamsAPIService.RetrieveDataStream")
@@ -1155,7 +1142,7 @@ func (r ApiUpdateDataStreamRequest) DataStreamRequest(dataStreamRequest DataStre
 	return r
 }
 
-func (r ApiUpdateDataStreamRequest) Execute() (*ResponseDataStream, *http.Response, error) {
+func (r ApiUpdateDataStreamRequest) Execute() (*DataStreamResponse, *http.Response, error) {
 	return r.ApiService.UpdateDataStreamExecute(r)
 }
 
@@ -1177,13 +1164,13 @@ func (a *DataStreamStreamsAPIService) UpdateDataStream(ctx context.Context, stre
 }
 
 // Execute executes the request
-//  @return ResponseDataStream
-func (a *DataStreamStreamsAPIService) UpdateDataStreamExecute(r ApiUpdateDataStreamRequest) (*ResponseDataStream, *http.Response, error) {
+//  @return DataStreamResponse
+func (a *DataStreamStreamsAPIService) UpdateDataStreamExecute(r ApiUpdateDataStreamRequest) (*DataStreamResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDataStream
+		localVarReturnValue  *DataStreamResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamStreamsAPIService.UpdateDataStream")
@@ -1331,7 +1318,6 @@ func (a *DataStreamStreamsAPIService) UpdateDataStreamExecute(r ApiUpdateDataStr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

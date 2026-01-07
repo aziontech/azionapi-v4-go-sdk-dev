@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## ListDataSources
 
-> PaginatedResponseListDataSourceList ListDataSources(ctx).Active(active).Fields(fields).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Slug(slug).Execute()
+> PaginatedDataSourceList ListDataSources(ctx).Active(active).Fields(fields).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Slug(slug).Execute()
 
 List of Data Sources
 
@@ -45,7 +45,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamDataSourcesAPI.ListDataSources``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListDataSources`: PaginatedResponseListDataSourceList
+	// response from `ListDataSources`: PaginatedDataSourceList
 	fmt.Fprintf(os.Stdout, "Response from `DataStreamDataSourcesAPI.ListDataSources`: %v\n", resp)
 }
 ```
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedResponseListDataSourceList**](PaginatedResponseListDataSourceList.md)
+[**PaginatedDataSourceList**](PaginatedDataSourceList.md)
 
 ### Authorization
 

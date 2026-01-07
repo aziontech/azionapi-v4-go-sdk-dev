@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateTemplate
 
-> ResponseTemplate CreateTemplate(ctx).TemplateRequest(templateRequest).Execute()
+> TemplateResponse CreateTemplate(ctx).TemplateRequest(templateRequest).Execute()
 
 Create a Template
 
@@ -43,7 +43,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.CreateTemplate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateTemplate`: ResponseTemplate
+	// response from `CreateTemplate`: TemplateResponse
 	fmt.Fprintf(os.Stdout, "Response from `DataStreamTemplatesAPI.CreateTemplate`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseTemplate**](ResponseTemplate.md)
+[**TemplateResponse**](TemplateResponse.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteTemplate
 
-> ResponseAsyncDeleteTemplate DeleteTemplate(ctx, templateId).Execute()
+> DeleteTemplate(ctx, templateId).Execute()
 
 Delete a Template
 
@@ -104,13 +104,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamTemplatesAPI.DeleteTemplate(context.Background(), templateId).Execute()
+	r, err := apiClient.DataStreamTemplatesAPI.DeleteTemplate(context.Background(), templateId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.DeleteTemplate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteTemplate`: ResponseAsyncDeleteTemplate
-	fmt.Fprintf(os.Stdout, "Response from `DataStreamTemplatesAPI.DeleteTemplate`: %v\n", resp)
 }
 ```
 
@@ -133,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteTemplate**](ResponseAsyncDeleteTemplate.md)
+ (empty response body)
 
 ### Authorization
 
@@ -151,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## ListTemplates
 
-> PaginatedResponseListTemplateList ListTemplates(ctx).Active(active).Custom(custom).DataSet(dataSet).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedTemplateList ListTemplates(ctx).Active(active).Custom(custom).DataSet(dataSet).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Templates
 
@@ -192,7 +190,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.ListTemplates``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListTemplates`: PaginatedResponseListTemplateList
+	// response from `ListTemplates`: PaginatedTemplateList
 	fmt.Fprintf(os.Stdout, "Response from `DataStreamTemplatesAPI.ListTemplates`: %v\n", resp)
 }
 ```
@@ -224,7 +222,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedResponseListTemplateList**](PaginatedResponseListTemplateList.md)
+[**PaginatedTemplateList**](PaginatedTemplateList.md)
 
 ### Authorization
 
@@ -242,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateTemplate
 
-> ResponseTemplate PartialUpdateTemplate(ctx, templateId).PatchedTemplateRequest(patchedTemplateRequest).Execute()
+> TemplateResponse PartialUpdateTemplate(ctx, templateId).PatchedTemplateRequest(patchedTemplateRequest).Execute()
 
 Partially update a Template
 
@@ -271,7 +269,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.PartialUpdateTemplate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateTemplate`: ResponseTemplate
+	// response from `PartialUpdateTemplate`: TemplateResponse
 	fmt.Fprintf(os.Stdout, "Response from `DataStreamTemplatesAPI.PartialUpdateTemplate`: %v\n", resp)
 }
 ```
@@ -296,7 +294,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseTemplate**](ResponseTemplate.md)
+[**TemplateResponse**](TemplateResponse.md)
 
 ### Authorization
 
@@ -314,7 +312,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveTemplate
 
-> ResponseRetrieveTemplate RetrieveTemplate(ctx, templateId).Fields(fields).Execute()
+> TemplateResponse RetrieveTemplate(ctx, templateId).Fields(fields).Execute()
 
 Retrieve details of a Template
 
@@ -343,7 +341,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.RetrieveTemplate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveTemplate`: ResponseRetrieveTemplate
+	// response from `RetrieveTemplate`: TemplateResponse
 	fmt.Fprintf(os.Stdout, "Response from `DataStreamTemplatesAPI.RetrieveTemplate`: %v\n", resp)
 }
 ```
@@ -368,7 +366,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveTemplate**](ResponseRetrieveTemplate.md)
+[**TemplateResponse**](TemplateResponse.md)
 
 ### Authorization
 
@@ -386,7 +384,7 @@ Name | Type | Description  | Notes
 
 ## UpdateTemplate
 
-> ResponseTemplate UpdateTemplate(ctx, templateId).TemplateRequest(templateRequest).Execute()
+> TemplateResponse UpdateTemplate(ctx, templateId).TemplateRequest(templateRequest).Execute()
 
 Update a Template
 
@@ -415,7 +413,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.UpdateTemplate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateTemplate`: ResponseTemplate
+	// response from `UpdateTemplate`: TemplateResponse
 	fmt.Fprintf(os.Stdout, "Response from `DataStreamTemplatesAPI.UpdateTemplate`: %v\n", resp)
 }
 ```
@@ -440,7 +438,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseTemplate**](ResponseTemplate.md)
+[**TemplateResponse**](TemplateResponse.md)
 
 ### Authorization
 
