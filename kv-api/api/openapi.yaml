@@ -9,7 +9,7 @@ paths:
   /workspace/kv/namespaces:
     get:
       description: Returns a paginated list of namespaces for the authenticated account.
-      operationId: workspace_kv_namespaces_list
+      operationId: list_namespaces
       parameters:
       - description: Comma-separated list of fields to include in the response
         explode: true
@@ -43,7 +43,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: "#/components/schemas/NamespaceListResponse"
+                  $ref: "#/components/schemas/NamespaceList"
                 type: array
           description: Paginated list of namespaces
         "400":
@@ -59,14 +59,14 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Internal server error
       security:
-      - tokenAuth: []
-      - tokenAuth: []
+      - TokenAuth: []
+      - BearerAuth: []
       summary: List namespaces
       tags:
       - KV - Namespaces
     post:
       description: Creates a new namespace in the authenticated account.
-      operationId: workspace_kv_namespaces_create
+      operationId: create_namespace
       requestBody:
         content:
           application/json:
@@ -78,7 +78,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/NamespaceResponse"
+                $ref: "#/components/schemas/Namespace"
           description: Namespace created
         "400":
           content:
@@ -93,8 +93,8 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Internal server error
       security:
-      - tokenAuth: []
-      - tokenAuth: []
+      - TokenAuth: []
+      - BearerAuth: []
       summary: Create namespace
       tags:
       - KV - Namespaces
@@ -102,7 +102,7 @@ paths:
     get:
       description: "Returns a specific namespace by name, if it belongs to the authenticated\
         \ account."
-      operationId: workspace_kv_namespaces_retrieve
+      operationId: retrieve_namespace
       parameters:
       - description: Comma-separated list of fields to include in the response
         explode: true
@@ -125,7 +125,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/NamespaceResponse"
+                $ref: "#/components/schemas/Namespace"
           description: Namespace details
         "404":
           content:
@@ -146,8 +146,8 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Internal server error
       security:
-      - tokenAuth: []
-      - tokenAuth: []
+      - TokenAuth: []
+      - BearerAuth: []
       summary: Retrieve namespace
       tags:
       - KV - Namespaces
@@ -195,45 +195,7 @@ components:
       - error
       - state
       type: object
-    NamespaceCreateRequest:
-      example:
-        name: name
-      properties:
-        name:
-          maxLength: 63
-          minLength: 3
-          type: string
-      required:
-      - name
-      type: object
-    NamespaceListResponse:
-      example:
-        pagination:
-          has_previous: true
-          total_count: 146581297
-          has_next: true
-          page: 80083
-          total_pages: 596212
-          page_size: 603
-        results:
-        - name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        - name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        results:
-          items:
-            $ref: "#/components/schemas/NamespaceResponse"
-          type: array
-        pagination:
-          $ref: "#/components/schemas/Pagination"
-      required:
-      - pagination
-      - results
-      type: object
-    NamespaceResponse:
+    Namespace:
       example:
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
@@ -255,6 +217,44 @@ components:
       - created_at
       - last_modified
       - name
+      type: object
+    NamespaceCreateRequest:
+      example:
+        name: name
+      properties:
+        name:
+          maxLength: 63
+          minLength: 3
+          type: string
+      required:
+      - name
+      type: object
+    NamespaceList:
+      example:
+        pagination:
+          has_previous: true
+          total_count: 146581297
+          has_next: true
+          page: 80083
+          total_pages: 596212
+          page_size: 603
+        results:
+        - name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        - name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        results:
+          items:
+            $ref: "#/components/schemas/Namespace"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/Pagination"
+      required:
+      - pagination
+      - results
       type: object
     Pagination:
       example:
@@ -298,7 +298,10 @@ components:
       - total_pages
       type: object
   securitySchemes:
-    tokenAuth:
+    BearerAuth:
+      scheme: bearer
+      type: http
+    TokenAuth:
       description: Token-based authentication with required prefix "Token"
       in: header
       name: Authorization
