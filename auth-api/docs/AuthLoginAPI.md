@@ -146,7 +146,7 @@ No authorization required
 
 ## TotpVerify
 
-> ResponseTokenPair TotpVerify(ctx).TOTPVerificationRequest(tOTPVerificationRequest).Execute()
+> TokenPairResponse TotpVerify(ctx).TOTPVerificationRequest(tOTPVerificationRequest).Execute()
 
 Retrieve user JWT tokens by MFA auth
 
@@ -174,7 +174,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthLoginAPI.TotpVerify``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TotpVerify`: ResponseTokenPair
+	// response from `TotpVerify`: TokenPairResponse
 	fmt.Fprintf(os.Stdout, "Response from `AuthLoginAPI.TotpVerify`: %v\n", resp)
 }
 ```
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseTokenPair**](ResponseTokenPair.md)
+[**TokenPairResponse**](TokenPairResponse.md)
 
 ### Authorization
 

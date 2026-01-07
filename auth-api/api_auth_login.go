@@ -396,7 +396,7 @@ func (r ApiTotpVerifyRequest) TOTPVerificationRequest(tOTPVerificationRequest TO
 	return r
 }
 
-func (r ApiTotpVerifyRequest) Execute() (*ResponseTokenPair, *http.Response, error) {
+func (r ApiTotpVerifyRequest) Execute() (*TokenPairResponse, *http.Response, error) {
 	return r.ApiService.TotpVerifyExecute(r)
 }
 
@@ -416,13 +416,13 @@ func (a *AuthLoginAPIService) TotpVerify(ctx context.Context) ApiTotpVerifyReque
 }
 
 // Execute executes the request
-//  @return ResponseTokenPair
-func (a *AuthLoginAPIService) TotpVerifyExecute(r ApiTotpVerifyRequest) (*ResponseTokenPair, *http.Response, error) {
+//  @return TokenPairResponse
+func (a *AuthLoginAPIService) TotpVerifyExecute(r ApiTotpVerifyRequest) (*TokenPairResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseTokenPair
+		localVarReturnValue  *TokenPairResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthLoginAPIService.TotpVerify")

@@ -33,7 +33,7 @@ func (r ApiAuthUserRefreshTokenRequest) TokenRequest(tokenRequest TokenRequest) 
 	return r
 }
 
-func (r ApiAuthUserRefreshTokenRequest) Execute() (*ResponseToken, *http.Response, error) {
+func (r ApiAuthUserRefreshTokenRequest) Execute() (*TokenResponse, *http.Response, error) {
 	return r.ApiService.AuthUserRefreshTokenExecute(r)
 }
 
@@ -53,13 +53,13 @@ func (a *AuthRefreshAccessTokenAPIService) AuthUserRefreshToken(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return ResponseToken
-func (a *AuthRefreshAccessTokenAPIService) AuthUserRefreshTokenExecute(r ApiAuthUserRefreshTokenRequest) (*ResponseToken, *http.Response, error) {
+//  @return TokenResponse
+func (a *AuthRefreshAccessTokenAPIService) AuthUserRefreshTokenExecute(r ApiAuthUserRefreshTokenRequest) (*TokenResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseToken
+		localVarReturnValue  *TokenResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthRefreshAccessTokenAPIService.AuthUserRefreshToken")

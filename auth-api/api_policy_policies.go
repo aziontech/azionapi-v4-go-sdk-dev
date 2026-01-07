@@ -34,7 +34,7 @@ func (r ApiCreatePolicyRequest) PolicyRequest(policyRequest PolicyRequest) ApiCr
 	return r
 }
 
-func (r ApiCreatePolicyRequest) Execute() (*ResponsePolicy, *http.Response, error) {
+func (r ApiCreatePolicyRequest) Execute() (*PolicyResponse, *http.Response, error) {
 	return r.ApiService.CreatePolicyExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *PolicyPoliciesAPIService) CreatePolicy(ctx context.Context) ApiCreatePo
 }
 
 // Execute executes the request
-//  @return ResponsePolicy
-func (a *PolicyPoliciesAPIService) CreatePolicyExecute(r ApiCreatePolicyRequest) (*ResponsePolicy, *http.Response, error) {
+//  @return PolicyResponse
+func (a *PolicyPoliciesAPIService) CreatePolicyExecute(r ApiCreatePolicyRequest) (*PolicyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponsePolicy
+		localVarReturnValue  *PolicyResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyPoliciesAPIService.CreatePolicy")
@@ -229,7 +229,7 @@ type ApiDeletePolicyRequest struct {
 	policyId int64
 }
 
-func (r ApiDeletePolicyRequest) Execute() (*ResponseAsyncDeletePolicy, *http.Response, error) {
+func (r ApiDeletePolicyRequest) Execute() (*DeleteResponse, *http.Response, error) {
 	return r.ApiService.DeletePolicyExecute(r)
 }
 
@@ -251,13 +251,13 @@ func (a *PolicyPoliciesAPIService) DeletePolicy(ctx context.Context, policyId in
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeletePolicy
-func (a *PolicyPoliciesAPIService) DeletePolicyExecute(r ApiDeletePolicyRequest) (*ResponseAsyncDeletePolicy, *http.Response, error) {
+//  @return DeleteResponse
+func (a *PolicyPoliciesAPIService) DeletePolicyExecute(r ApiDeletePolicyRequest) (*DeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeletePolicy
+		localVarReturnValue  *DeleteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyPoliciesAPIService.DeletePolicy")
@@ -667,7 +667,7 @@ func (r ApiPartialUpdatePolicyRequest) PatchedPolicyRequest(patchedPolicyRequest
 	return r
 }
 
-func (r ApiPartialUpdatePolicyRequest) Execute() (*ResponsePolicy, *http.Response, error) {
+func (r ApiPartialUpdatePolicyRequest) Execute() (*PolicyResponse, *http.Response, error) {
 	return r.ApiService.PartialUpdatePolicyExecute(r)
 }
 
@@ -689,13 +689,13 @@ func (a *PolicyPoliciesAPIService) PartialUpdatePolicy(ctx context.Context, poli
 }
 
 // Execute executes the request
-//  @return ResponsePolicy
-func (a *PolicyPoliciesAPIService) PartialUpdatePolicyExecute(r ApiPartialUpdatePolicyRequest) (*ResponsePolicy, *http.Response, error) {
+//  @return PolicyResponse
+func (a *PolicyPoliciesAPIService) PartialUpdatePolicyExecute(r ApiPartialUpdatePolicyRequest) (*PolicyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponsePolicy
+		localVarReturnValue  *PolicyResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyPoliciesAPIService.PartialUpdatePolicy")
@@ -869,7 +869,7 @@ func (r ApiRetrievePolicyRequest) Fields(fields string) ApiRetrievePolicyRequest
 	return r
 }
 
-func (r ApiRetrievePolicyRequest) Execute() (*ResponseRetrievePolicy, *http.Response, error) {
+func (r ApiRetrievePolicyRequest) Execute() (*PolicyResponse, *http.Response, error) {
 	return r.ApiService.RetrievePolicyExecute(r)
 }
 
@@ -891,13 +891,13 @@ func (a *PolicyPoliciesAPIService) RetrievePolicy(ctx context.Context, policyId 
 }
 
 // Execute executes the request
-//  @return ResponseRetrievePolicy
-func (a *PolicyPoliciesAPIService) RetrievePolicyExecute(r ApiRetrievePolicyRequest) (*ResponseRetrievePolicy, *http.Response, error) {
+//  @return PolicyResponse
+func (a *PolicyPoliciesAPIService) RetrievePolicyExecute(r ApiRetrievePolicyRequest) (*PolicyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrievePolicy
+		localVarReturnValue  *PolicyResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyPoliciesAPIService.RetrievePolicy")
@@ -1071,7 +1071,7 @@ func (r ApiUpdatePolicyRequest) PolicyRequest(policyRequest PolicyRequest) ApiUp
 	return r
 }
 
-func (r ApiUpdatePolicyRequest) Execute() (*ResponsePolicy, *http.Response, error) {
+func (r ApiUpdatePolicyRequest) Execute() (*PolicyResponse, *http.Response, error) {
 	return r.ApiService.UpdatePolicyExecute(r)
 }
 
@@ -1093,13 +1093,13 @@ func (a *PolicyPoliciesAPIService) UpdatePolicy(ctx context.Context, policyId in
 }
 
 // Execute executes the request
-//  @return ResponsePolicy
-func (a *PolicyPoliciesAPIService) UpdatePolicyExecute(r ApiUpdatePolicyRequest) (*ResponsePolicy, *http.Response, error) {
+//  @return PolicyResponse
+func (a *PolicyPoliciesAPIService) UpdatePolicyExecute(r ApiUpdatePolicyRequest) (*PolicyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponsePolicy
+		localVarReturnValue  *PolicyResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicyPoliciesAPIService.UpdatePolicy")

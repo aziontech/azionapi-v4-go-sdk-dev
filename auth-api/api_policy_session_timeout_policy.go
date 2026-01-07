@@ -34,7 +34,7 @@ func (r ApiRetrieveSessionTimeoutPolicyRequest) Fields(fields string) ApiRetriev
 	return r
 }
 
-func (r ApiRetrieveSessionTimeoutPolicyRequest) Execute() (*ResponseRetrieveSessionTimeoutPolicy, *http.Response, error) {
+func (r ApiRetrieveSessionTimeoutPolicyRequest) Execute() (*SessionTimeoutPolicyResponse, *http.Response, error) {
 	return r.ApiService.RetrieveSessionTimeoutPolicyExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *PolicySessionTimeoutPolicyAPIService) RetrieveSessionTimeoutPolicy(ctx 
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveSessionTimeoutPolicy
-func (a *PolicySessionTimeoutPolicyAPIService) RetrieveSessionTimeoutPolicyExecute(r ApiRetrieveSessionTimeoutPolicyRequest) (*ResponseRetrieveSessionTimeoutPolicy, *http.Response, error) {
+//  @return SessionTimeoutPolicyResponse
+func (a *PolicySessionTimeoutPolicyAPIService) RetrieveSessionTimeoutPolicyExecute(r ApiRetrieveSessionTimeoutPolicyRequest) (*SessionTimeoutPolicyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveSessionTimeoutPolicy
+		localVarReturnValue  *SessionTimeoutPolicyResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicySessionTimeoutPolicyAPIService.RetrieveSessionTimeoutPolicy")
@@ -232,7 +232,7 @@ func (r ApiUpdateSessionTimeoutPolicyRequest) SessionTimeoutPolicyRequest(sessio
 	return r
 }
 
-func (r ApiUpdateSessionTimeoutPolicyRequest) Execute() (*ResponseSessionTimeoutPolicy, *http.Response, error) {
+func (r ApiUpdateSessionTimeoutPolicyRequest) Execute() (*SessionTimeoutPolicyResponse, *http.Response, error) {
 	return r.ApiService.UpdateSessionTimeoutPolicyExecute(r)
 }
 
@@ -252,13 +252,13 @@ func (a *PolicySessionTimeoutPolicyAPIService) UpdateSessionTimeoutPolicy(ctx co
 }
 
 // Execute executes the request
-//  @return ResponseSessionTimeoutPolicy
-func (a *PolicySessionTimeoutPolicyAPIService) UpdateSessionTimeoutPolicyExecute(r ApiUpdateSessionTimeoutPolicyRequest) (*ResponseSessionTimeoutPolicy, *http.Response, error) {
+//  @return SessionTimeoutPolicyResponse
+func (a *PolicySessionTimeoutPolicyAPIService) UpdateSessionTimeoutPolicyExecute(r ApiUpdateSessionTimeoutPolicyRequest) (*SessionTimeoutPolicyResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseSessionTimeoutPolicy
+		localVarReturnValue  *SessionTimeoutPolicyResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PolicySessionTimeoutPolicyAPIService.UpdateSessionTimeoutPolicy")
