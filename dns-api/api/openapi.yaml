@@ -222,13 +222,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseZone"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncZone"
+                $ref: "#/components/schemas/ZoneResponse"
           description: ""
         "401":
           content:
@@ -363,17 +357,11 @@ paths:
           type: integer
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteZone"
-          description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteZone"
+                $ref: "#/components/schemas/DeleteResponse"
           description: ""
         "401":
           content:
@@ -519,7 +507,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveZone"
+                $ref: "#/components/schemas/ZoneResponse"
           description: ""
         "401":
           content:
@@ -663,13 +651,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseZone"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncZone"
+                $ref: "#/components/schemas/ZoneResponse"
           description: ""
         "401":
           content:
@@ -814,13 +796,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseZone"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncZone"
+                $ref: "#/components/schemas/ZoneResponse"
           description: ""
         "401":
           content:
@@ -967,7 +943,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveDNSSEC"
+                $ref: "#/components/schemas/DNSSECResponse"
           description: ""
         "401":
           content:
@@ -1111,13 +1087,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDNSSEC"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDNSSEC"
+                $ref: "#/components/schemas/DNSSECResponse"
           description: ""
         "401":
           content:
@@ -1262,13 +1232,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDNSSEC"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDNSSEC"
+                $ref: "#/components/schemas/DNSSECResponse"
           description: ""
         "401":
           content:
@@ -1596,13 +1560,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRecord"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncRecord"
+                $ref: "#/components/schemas/RecordResponse"
           description: ""
         "401":
           content:
@@ -1746,17 +1704,11 @@ paths:
           type: integer
         style: simple
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseDeleteRecord"
-          description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteRecord"
+                $ref: "#/components/schemas/DeleteResponse"
           description: ""
         "401":
           content:
@@ -1912,7 +1864,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveRecord"
+                $ref: "#/components/schemas/RecordResponse"
           description: ""
         "401":
           content:
@@ -2065,13 +2017,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRecord"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncRecord"
+                $ref: "#/components/schemas/RecordResponse"
           description: ""
         "401":
           content:
@@ -2225,13 +2171,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRecord"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncRecord"
+                $ref: "#/components/schemas/RecordResponse"
           description: ""
         "401":
           content:
@@ -2419,6 +2359,18 @@ components:
       required:
       - enabled
       type: object
+    DNSSECResponse:
+      example:
+        data:
+          delegation_signer: ""
+          enabled: true
+          status: status
+      properties:
+        data:
+          $ref: "#/components/schemas/DNSSEC"
+      required:
+      - data
+      type: object
     DelegationSigner:
       properties:
         algorithm_type:
@@ -2439,6 +2391,15 @@ components:
       - digest
       - digest_type
       - key_tag
+      type: object
+    DeleteResponse:
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
       type: object
     JSONAPIErrorObject:
       description: Serializer for a single JSON:API error object.
@@ -2887,42 +2848,7 @@ components:
       - rdata
       - type
       type: object
-    ResponseAsyncDNSSEC:
-      example:
-        data:
-          delegation_signer: ""
-          enabled: true
-          status: status
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/DNSSEC"
-      required:
-      - data
-      type: object
-    ResponseAsyncDeleteRecord:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseAsyncDeleteZone:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseAsyncRecord:
+    RecordResponse:
       example:
         data:
           name: name
@@ -2943,157 +2869,6 @@ components:
           type: string
         data:
           $ref: "#/components/schemas/Record"
-      required:
-      - data
-      type: object
-    ResponseAsyncZone:
-      example:
-        data:
-          product_version: product_version
-          nameservers:
-          - nameservers
-          - nameservers
-          domain: domain
-          name: name
-          active: true
-          id: 0
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Zone"
-      required:
-      - data
-      type: object
-    ResponseDNSSEC:
-      example:
-        data:
-          delegation_signer: ""
-          enabled: true
-          status: status
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/DNSSEC"
-      required:
-      - data
-      type: object
-    ResponseDeleteRecord:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseDeleteZone:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseRecord:
-      example:
-        data:
-          name: name
-          description: description
-          rdata:
-          - rdata
-          - rdata
-          weight: 37
-          id: 0
-          type: type
-          ttl: 1294386359
-          policy: policy
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Record"
-      required:
-      - data
-      type: object
-    ResponseRetrieveDNSSEC:
-      example:
-        data:
-          delegation_signer: ""
-          enabled: true
-          status: status
-      properties:
-        data:
-          $ref: "#/components/schemas/DNSSEC"
-      required:
-      - data
-      type: object
-    ResponseRetrieveRecord:
-      example:
-        data:
-          name: name
-          description: description
-          rdata:
-          - rdata
-          - rdata
-          weight: 37
-          id: 0
-          type: type
-          ttl: 1294386359
-          policy: policy
-      properties:
-        data:
-          $ref: "#/components/schemas/Record"
-      required:
-      - data
-      type: object
-    ResponseRetrieveZone:
-      example:
-        data:
-          product_version: product_version
-          nameservers:
-          - nameservers
-          - nameservers
-          domain: domain
-          name: name
-          active: true
-          id: 0
-      properties:
-        data:
-          $ref: "#/components/schemas/Zone"
-      required:
-      - data
-      type: object
-    ResponseZone:
-      example:
-        data:
-          product_version: product_version
-          nameservers:
-          - nameservers
-          - nameservers
-          domain: domain
-          name: name
-          active: true
-          id: 0
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Zone"
       required:
       - data
       type: object
@@ -3172,6 +2947,28 @@ components:
       - active
       - domain
       - name
+      type: object
+    ZoneResponse:
+      example:
+        data:
+          product_version: product_version
+          nameservers:
+          - nameservers
+          - nameservers
+          domain: domain
+          name: name
+          active: true
+          id: 0
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Zone"
+      required:
+      - data
       type: object
   securitySchemes:
     BearerAuth:
