@@ -84,7 +84,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponseListDataSourceList"
+                $ref: "#/components/schemas/PaginatedDataSourceList"
           description: Ok
         "400":
           content:
@@ -326,7 +326,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponseListDataStreamList"
+                $ref: "#/components/schemas/PaginatedDataStreamList"
           description: Ok
         "400":
           content:
@@ -460,7 +460,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDataStream"
+                $ref: "#/components/schemas/DataStreamResponse"
           description: Created
         "400":
           content:
@@ -574,12 +574,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDataStream"
-          description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -601,12 +595,6 @@ paths:
           type: integer
         style: simple
       responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteDataStream"
-          description: Accepted
         "400":
           content:
             application/json:
@@ -753,7 +741,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveDataStream"
+                $ref: "#/components/schemas/DataStreamResponse"
           description: Ok
         "400":
           content:
@@ -896,7 +884,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDataStream"
+                $ref: "#/components/schemas/DataStreamResponse"
           description: Ok
         "400":
           content:
@@ -1010,12 +998,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDataStream"
-          description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1046,7 +1028,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDataStream"
+                $ref: "#/components/schemas/DataStreamResponse"
           description: Ok
         "400":
           content:
@@ -1160,12 +1142,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDataStream"
-          description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1294,7 +1270,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponseListTemplateList"
+                $ref: "#/components/schemas/PaginatedTemplateList"
           description: Ok
         "400":
           content:
@@ -1428,7 +1404,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseTemplate"
+                $ref: "#/components/schemas/TemplateResponse"
           description: Created
         "400":
           content:
@@ -1542,12 +1518,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncTemplate"
-          description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1569,12 +1539,6 @@ paths:
           type: integer
         style: simple
       responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteTemplate"
-          description: Accepted
         "400":
           content:
             application/json:
@@ -1721,7 +1685,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveTemplate"
+                $ref: "#/components/schemas/TemplateResponse"
           description: Ok
         "400":
           content:
@@ -1864,7 +1828,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseTemplate"
+                $ref: "#/components/schemas/TemplateResponse"
           description: Ok
         "400":
           content:
@@ -1978,12 +1942,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncTemplate"
-          description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -2014,7 +1972,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseTemplate"
+                $ref: "#/components/schemas/TemplateResponse"
           description: Ok
         "400":
           content:
@@ -2128,12 +2086,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncTemplate"
-          description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -2381,6 +2333,27 @@ components:
       x-extensible-enum:
       - plain/text
       - application/gzip
+    DataSource:
+      additionalProperties: false
+      example:
+        name: name
+        active: true
+        slug: slug
+      properties:
+        slug:
+          type: string
+        name:
+          title: DataSource Name
+          type: string
+        active:
+          title: Is Active
+          type: boolean
+      required:
+      - active
+      - name
+      - slug
+      title: DataSource
+      type: object
     DataSourceEnum:
       description: |-
         * `http` - Edge Applications
@@ -2535,6 +2508,57 @@ components:
       - outputs
       - transform
       title: DataStreamRequest
+      type: object
+    DataStreamResponse:
+      additionalProperties: false
+      example:
+        data:
+          outputs:
+          - attributes:
+              headers:
+                key: headers
+              log_line_separator: log_line_separator
+              payload_format: payload_format
+              type: type
+              url: https://openapi-generator.tech
+              max_size: 315634359
+            type: type
+          - attributes:
+              headers:
+                key: headers
+              log_line_separator: log_line_separator
+              payload_format: payload_format
+              type: type
+              url: https://openapi-generator.tech
+              max_size: 315634359
+            type: type
+          product_version: product_version
+          transform:
+          - attributes:
+              rate: 60
+            type: type
+          - attributes:
+              rate: 60
+            type: type
+          inputs:
+          - null
+          - null
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/DataStream"
+      required:
+      - data
+      title: DataStreamResponse
       type: object
     DatadogEndpoint:
       additionalProperties: false
@@ -3143,7 +3167,7 @@ components:
       - qradar
       - azure_monitor
       - azure_blob_storage
-    PaginatedResponseListDataSourceList:
+    PaginatedDataSourceList:
       additionalProperties: false
       example:
         count: 123
@@ -3188,11 +3212,11 @@ components:
           type: integer
         results:
           items:
-            $ref: "#/components/schemas/ResponseListDataSource"
+            $ref: "#/components/schemas/DataSource"
           type: array
-      title: PaginatedResponseListDataSourceList
+      title: PaginatedDataSourceList
       type: object
-    PaginatedResponseListDataStreamList:
+    PaginatedDataStreamList:
       additionalProperties: false
       example:
         count: 123
@@ -3301,11 +3325,11 @@ components:
           type: integer
         results:
           items:
-            $ref: "#/components/schemas/ResponseListDataStream"
+            $ref: "#/components/schemas/DataStream"
           type: array
-      title: PaginatedResponseListDataStreamList
+      title: PaginatedDataStreamList
       type: object
-    PaginatedResponseListTemplateList:
+    PaginatedTemplateList:
       additionalProperties: false
       example:
         count: 123
@@ -3358,9 +3382,9 @@ components:
           type: integer
         results:
           items:
-            $ref: "#/components/schemas/ResponseListTemplate"
+            $ref: "#/components/schemas/Template"
           type: array
-      title: PaginatedResponseListTemplateList
+      title: PaginatedTemplateList
       type: object
     PatchedDataStreamRequest:
       additionalProperties: false
@@ -3441,385 +3465,6 @@ components:
       - type
       - url
       title: QRadarEndpointRequest
-      type: object
-    ResponseAsyncDataStream:
-      additionalProperties: false
-      example:
-        data:
-          outputs:
-          - attributes:
-              headers:
-                key: headers
-              log_line_separator: log_line_separator
-              payload_format: payload_format
-              type: type
-              url: https://openapi-generator.tech
-              max_size: 315634359
-            type: type
-          - attributes:
-              headers:
-                key: headers
-              log_line_separator: log_line_separator
-              payload_format: payload_format
-              type: type
-              url: https://openapi-generator.tech
-              max_size: 315634359
-            type: type
-          product_version: product_version
-          transform:
-          - attributes:
-              rate: 60
-            type: type
-          - attributes:
-              rate: 60
-            type: type
-          inputs:
-          - null
-          - null
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/DataStream"
-      required:
-      - data
-      title: ResponseAsyncDataStream
-      type: object
-    ResponseAsyncDeleteDataStream:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteDataStream
-      type: object
-    ResponseAsyncDeleteTemplate:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeleteTemplate
-      type: object
-    ResponseAsyncTemplate:
-      additionalProperties: false
-      example:
-        data:
-          last_editor: last_editor
-          custom: true
-          name: name
-          active: true
-          data_set: data_set
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Template"
-      required:
-      - data
-      title: ResponseAsyncTemplate
-      type: object
-    ResponseDataStream:
-      additionalProperties: false
-      example:
-        data:
-          outputs:
-          - attributes:
-              headers:
-                key: headers
-              log_line_separator: log_line_separator
-              payload_format: payload_format
-              type: type
-              url: https://openapi-generator.tech
-              max_size: 315634359
-            type: type
-          - attributes:
-              headers:
-                key: headers
-              log_line_separator: log_line_separator
-              payload_format: payload_format
-              type: type
-              url: https://openapi-generator.tech
-              max_size: 315634359
-            type: type
-          product_version: product_version
-          transform:
-          - attributes:
-              rate: 60
-            type: type
-          - attributes:
-              rate: 60
-            type: type
-          inputs:
-          - null
-          - null
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/DataStream"
-      required:
-      - data
-      title: ResponseDataStream
-      type: object
-    ResponseListDataSource:
-      additionalProperties: false
-      example:
-        name: name
-        active: true
-        slug: slug
-      properties:
-        slug:
-          type: string
-        name:
-          title: DataSource Name
-          type: string
-        active:
-          title: Is Active
-          type: boolean
-      required:
-      - active
-      - name
-      - slug
-      title: ResponseListDataSource
-      type: object
-    ResponseListDataStream:
-      additionalProperties: false
-      example:
-        outputs:
-        - attributes:
-            headers:
-              key: headers
-            log_line_separator: log_line_separator
-            payload_format: payload_format
-            type: type
-            url: https://openapi-generator.tech
-            max_size: 315634359
-          type: type
-        - attributes:
-            headers:
-              key: headers
-            log_line_separator: log_line_separator
-            payload_format: payload_format
-            type: type
-            url: https://openapi-generator.tech
-            max_size: 315634359
-          type: type
-        product_version: product_version
-        transform:
-        - attributes:
-            rate: 60
-          type: type
-        - attributes:
-            rate: 60
-          type: type
-        inputs:
-        - null
-        - null
-        last_editor: last_editor
-        name: name
-        active: true
-        id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        last_editor:
-          maxLength: 100
-          minLength: 1
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-        product_version:
-          maxLength: 50
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-        inputs:
-          items:
-            $ref: "#/components/schemas/InputPolymorphic"
-          type: array
-        transform:
-          items:
-            $ref: "#/components/schemas/TransformPolymorphic"
-          type: array
-        outputs:
-          items:
-            $ref: "#/components/schemas/Output"
-          type: array
-      required:
-      - id
-      - inputs
-      - last_editor
-      - last_modified
-      - name
-      - outputs
-      - product_version
-      - transform
-      title: ResponseListDataStream
-      type: object
-    ResponseListTemplate:
-      additionalProperties: false
-      example:
-        last_editor: last_editor
-        custom: true
-        name: name
-        active: true
-        data_set: data_set
-        id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        last_editor:
-          maxLength: 100
-          minLength: 1
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-        custom:
-          type: boolean
-        active:
-          type: boolean
-        data_set:
-          maxLength: 65535
-          minLength: 1
-          type: string
-      required:
-      - custom
-      - data_set
-      - id
-      - last_editor
-      - last_modified
-      - name
-      title: ResponseListTemplate
-      type: object
-    ResponseRetrieveDataStream:
-      additionalProperties: false
-      example:
-        data:
-          outputs:
-          - attributes:
-              headers:
-                key: headers
-              log_line_separator: log_line_separator
-              payload_format: payload_format
-              type: type
-              url: https://openapi-generator.tech
-              max_size: 315634359
-            type: type
-          - attributes:
-              headers:
-                key: headers
-              log_line_separator: log_line_separator
-              payload_format: payload_format
-              type: type
-              url: https://openapi-generator.tech
-              max_size: 315634359
-            type: type
-          product_version: product_version
-          transform:
-          - attributes:
-              rate: 60
-            type: type
-          - attributes:
-              rate: 60
-            type: type
-          inputs:
-          - null
-          - null
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        data:
-          $ref: "#/components/schemas/DataStream"
-      required:
-      - data
-      title: ResponseRetrieveDataStream
-      type: object
-    ResponseRetrieveTemplate:
-      additionalProperties: false
-      example:
-        data:
-          last_editor: last_editor
-          custom: true
-          name: name
-          active: true
-          data_set: data_set
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        data:
-          $ref: "#/components/schemas/Template"
-      required:
-      - data
-      title: ResponseRetrieveTemplate
-      type: object
-    ResponseTemplate:
-      additionalProperties: false
-      example:
-        data:
-          last_editor: last_editor
-          custom: true
-          name: name
-          active: true
-          data_set: data_set
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Template"
-      required:
-      - data
-      title: ResponseTemplate
       type: object
     S3Endpoint:
       additionalProperties: false
@@ -4024,6 +3669,29 @@ components:
       - data_set
       - name
       title: TemplateRequest
+      type: object
+    TemplateResponse:
+      additionalProperties: false
+      example:
+        data:
+          last_editor: last_editor
+          custom: true
+          name: name
+          active: true
+          data_set: data_set
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Template"
+      required:
+      - data
+      title: TemplateResponse
       type: object
     TransformFilterWorkloads:
       additionalProperties: false

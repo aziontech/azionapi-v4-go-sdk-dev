@@ -83,7 +83,7 @@ func (r ApiListDataSourcesRequest) Slug(slug string) ApiListDataSourcesRequest {
 	return r
 }
 
-func (r ApiListDataSourcesRequest) Execute() (*PaginatedResponseListDataSourceList, *http.Response, error) {
+func (r ApiListDataSourcesRequest) Execute() (*PaginatedDataSourceList, *http.Response, error) {
 	return r.ApiService.ListDataSourcesExecute(r)
 }
 
@@ -103,13 +103,13 @@ func (a *DataStreamDataSourcesAPIService) ListDataSources(ctx context.Context) A
 }
 
 // Execute executes the request
-//  @return PaginatedResponseListDataSourceList
-func (a *DataStreamDataSourcesAPIService) ListDataSourcesExecute(r ApiListDataSourcesRequest) (*PaginatedResponseListDataSourceList, *http.Response, error) {
+//  @return PaginatedDataSourceList
+func (a *DataStreamDataSourcesAPIService) ListDataSourcesExecute(r ApiListDataSourcesRequest) (*PaginatedDataSourceList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedResponseListDataSourceList
+		localVarReturnValue  *PaginatedDataSourceList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamDataSourcesAPIService.ListDataSources")

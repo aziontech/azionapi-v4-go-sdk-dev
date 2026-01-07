@@ -35,7 +35,7 @@ func (r ApiCreateTemplateRequest) TemplateRequest(templateRequest TemplateReques
 	return r
 }
 
-func (r ApiCreateTemplateRequest) Execute() (*ResponseTemplate, *http.Response, error) {
+func (r ApiCreateTemplateRequest) Execute() (*TemplateResponse, *http.Response, error) {
 	return r.ApiService.CreateTemplateExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *DataStreamTemplatesAPIService) CreateTemplate(ctx context.Context) ApiC
 }
 
 // Execute executes the request
-//  @return ResponseTemplate
-func (a *DataStreamTemplatesAPIService) CreateTemplateExecute(r ApiCreateTemplateRequest) (*ResponseTemplate, *http.Response, error) {
+//  @return TemplateResponse
+func (a *DataStreamTemplatesAPIService) CreateTemplateExecute(r ApiCreateTemplateRequest) (*TemplateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseTemplate
+		localVarReturnValue  *TemplateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamTemplatesAPIService.CreateTemplate")
@@ -208,7 +208,6 @@ func (a *DataStreamTemplatesAPIService) CreateTemplateExecute(r ApiCreateTemplat
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -231,7 +230,7 @@ type ApiDeleteTemplateRequest struct {
 	templateId int64
 }
 
-func (r ApiDeleteTemplateRequest) Execute() (*ResponseAsyncDeleteTemplate, *http.Response, error) {
+func (r ApiDeleteTemplateRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteTemplateExecute(r)
 }
 
@@ -253,18 +252,16 @@ func (a *DataStreamTemplatesAPIService) DeleteTemplate(ctx context.Context, temp
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteTemplate
-func (a *DataStreamTemplatesAPIService) DeleteTemplateExecute(r ApiDeleteTemplateRequest) (*ResponseAsyncDeleteTemplate, *http.Response, error) {
+func (a *DataStreamTemplatesAPIService) DeleteTemplateExecute(r ApiDeleteTemplateRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteTemplate
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamTemplatesAPIService.DeleteTemplate")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/workspace/stream/templates/{template_id}"
@@ -307,19 +304,19 @@ func (a *DataStreamTemplatesAPIService) DeleteTemplateExecute(r ApiDeleteTemplat
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -332,91 +329,82 @@ func (a *DataStreamTemplatesAPIService) DeleteTemplateExecute(r ApiDeleteTemplat
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v JSONAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiListTemplatesRequest struct {
@@ -515,7 +503,7 @@ func (r ApiListTemplatesRequest) Search(search string) ApiListTemplatesRequest {
 	return r
 }
 
-func (r ApiListTemplatesRequest) Execute() (*PaginatedResponseListTemplateList, *http.Response, error) {
+func (r ApiListTemplatesRequest) Execute() (*PaginatedTemplateList, *http.Response, error) {
 	return r.ApiService.ListTemplatesExecute(r)
 }
 
@@ -535,13 +523,13 @@ func (a *DataStreamTemplatesAPIService) ListTemplates(ctx context.Context) ApiLi
 }
 
 // Execute executes the request
-//  @return PaginatedResponseListTemplateList
-func (a *DataStreamTemplatesAPIService) ListTemplatesExecute(r ApiListTemplatesRequest) (*PaginatedResponseListTemplateList, *http.Response, error) {
+//  @return PaginatedTemplateList
+func (a *DataStreamTemplatesAPIService) ListTemplatesExecute(r ApiListTemplatesRequest) (*PaginatedTemplateList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedResponseListTemplateList
+		localVarReturnValue  *PaginatedTemplateList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamTemplatesAPIService.ListTemplates")
@@ -750,7 +738,7 @@ func (r ApiPartialUpdateTemplateRequest) PatchedTemplateRequest(patchedTemplateR
 	return r
 }
 
-func (r ApiPartialUpdateTemplateRequest) Execute() (*ResponseTemplate, *http.Response, error) {
+func (r ApiPartialUpdateTemplateRequest) Execute() (*TemplateResponse, *http.Response, error) {
 	return r.ApiService.PartialUpdateTemplateExecute(r)
 }
 
@@ -772,13 +760,13 @@ func (a *DataStreamTemplatesAPIService) PartialUpdateTemplate(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return ResponseTemplate
-func (a *DataStreamTemplatesAPIService) PartialUpdateTemplateExecute(r ApiPartialUpdateTemplateRequest) (*ResponseTemplate, *http.Response, error) {
+//  @return TemplateResponse
+func (a *DataStreamTemplatesAPIService) PartialUpdateTemplateExecute(r ApiPartialUpdateTemplateRequest) (*TemplateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseTemplate
+		localVarReturnValue  *TemplateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamTemplatesAPIService.PartialUpdateTemplate")
@@ -923,7 +911,6 @@ func (a *DataStreamTemplatesAPIService) PartialUpdateTemplateExecute(r ApiPartia
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -953,7 +940,7 @@ func (r ApiRetrieveTemplateRequest) Fields(fields string) ApiRetrieveTemplateReq
 	return r
 }
 
-func (r ApiRetrieveTemplateRequest) Execute() (*ResponseRetrieveTemplate, *http.Response, error) {
+func (r ApiRetrieveTemplateRequest) Execute() (*TemplateResponse, *http.Response, error) {
 	return r.ApiService.RetrieveTemplateExecute(r)
 }
 
@@ -975,13 +962,13 @@ func (a *DataStreamTemplatesAPIService) RetrieveTemplate(ctx context.Context, te
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveTemplate
-func (a *DataStreamTemplatesAPIService) RetrieveTemplateExecute(r ApiRetrieveTemplateRequest) (*ResponseRetrieveTemplate, *http.Response, error) {
+//  @return TemplateResponse
+func (a *DataStreamTemplatesAPIService) RetrieveTemplateExecute(r ApiRetrieveTemplateRequest) (*TemplateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveTemplate
+		localVarReturnValue  *TemplateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamTemplatesAPIService.RetrieveTemplate")
@@ -1155,7 +1142,7 @@ func (r ApiUpdateTemplateRequest) TemplateRequest(templateRequest TemplateReques
 	return r
 }
 
-func (r ApiUpdateTemplateRequest) Execute() (*ResponseTemplate, *http.Response, error) {
+func (r ApiUpdateTemplateRequest) Execute() (*TemplateResponse, *http.Response, error) {
 	return r.ApiService.UpdateTemplateExecute(r)
 }
 
@@ -1177,13 +1164,13 @@ func (a *DataStreamTemplatesAPIService) UpdateTemplate(ctx context.Context, temp
 }
 
 // Execute executes the request
-//  @return ResponseTemplate
-func (a *DataStreamTemplatesAPIService) UpdateTemplateExecute(r ApiUpdateTemplateRequest) (*ResponseTemplate, *http.Response, error) {
+//  @return TemplateResponse
+func (a *DataStreamTemplatesAPIService) UpdateTemplateExecute(r ApiUpdateTemplateRequest) (*TemplateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseTemplate
+		localVarReturnValue  *TemplateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DataStreamTemplatesAPIService.UpdateTemplate")
@@ -1331,7 +1318,6 @@ func (a *DataStreamTemplatesAPIService) UpdateTemplateExecute(r ApiUpdateTemplat
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

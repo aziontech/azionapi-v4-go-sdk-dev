@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateDataStream
 
-> ResponseDataStream CreateDataStream(ctx).DataStreamRequest(dataStreamRequest).Execute()
+> DataStreamResponse CreateDataStream(ctx).DataStreamRequest(dataStreamRequest).Execute()
 
 Create a Data Stream
 
@@ -43,7 +43,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.CreateDataStream``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateDataStream`: ResponseDataStream
+	// response from `CreateDataStream`: DataStreamResponse
 	fmt.Fprintf(os.Stdout, "Response from `DataStreamStreamsAPI.CreateDataStream`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDataStream**](ResponseDataStream.md)
+[**DataStreamResponse**](DataStreamResponse.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDataStream
 
-> ResponseAsyncDeleteDataStream DeleteDataStream(ctx, streamId).Execute()
+> DeleteDataStream(ctx, streamId).Execute()
 
 Delete a Data Stream
 
@@ -104,13 +104,11 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamStreamsAPI.DeleteDataStream(context.Background(), streamId).Execute()
+	r, err := apiClient.DataStreamStreamsAPI.DeleteDataStream(context.Background(), streamId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.DeleteDataStream``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteDataStream`: ResponseAsyncDeleteDataStream
-	fmt.Fprintf(os.Stdout, "Response from `DataStreamStreamsAPI.DeleteDataStream`: %v\n", resp)
 }
 ```
 
@@ -133,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteDataStream**](ResponseAsyncDeleteDataStream.md)
+ (empty response body)
 
 ### Authorization
 
@@ -151,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## ListDataStreams
 
-> PaginatedResponseListDataStreamList ListDataStreams(ctx).Active(active).DataSetId(dataSetId).DataSource(dataSource).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedDataStreamList ListDataStreams(ctx).Active(active).DataSetId(dataSetId).DataSource(dataSource).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Data Streams
 
@@ -192,7 +190,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.ListDataStreams``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListDataStreams`: PaginatedResponseListDataStreamList
+	// response from `ListDataStreams`: PaginatedDataStreamList
 	fmt.Fprintf(os.Stdout, "Response from `DataStreamStreamsAPI.ListDataStreams`: %v\n", resp)
 }
 ```
@@ -224,7 +222,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedResponseListDataStreamList**](PaginatedResponseListDataStreamList.md)
+[**PaginatedDataStreamList**](PaginatedDataStreamList.md)
 
 ### Authorization
 
@@ -242,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateDataStream
 
-> ResponseDataStream PartialUpdateDataStream(ctx, streamId).PatchedDataStreamRequest(patchedDataStreamRequest).Execute()
+> DataStreamResponse PartialUpdateDataStream(ctx, streamId).PatchedDataStreamRequest(patchedDataStreamRequest).Execute()
 
 Partially update a Data Stream
 
@@ -271,7 +269,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.PartialUpdateDataStream``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateDataStream`: ResponseDataStream
+	// response from `PartialUpdateDataStream`: DataStreamResponse
 	fmt.Fprintf(os.Stdout, "Response from `DataStreamStreamsAPI.PartialUpdateDataStream`: %v\n", resp)
 }
 ```
@@ -296,7 +294,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDataStream**](ResponseDataStream.md)
+[**DataStreamResponse**](DataStreamResponse.md)
 
 ### Authorization
 
@@ -314,7 +312,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveDataStream
 
-> ResponseRetrieveDataStream RetrieveDataStream(ctx, streamId).Fields(fields).Execute()
+> DataStreamResponse RetrieveDataStream(ctx, streamId).Fields(fields).Execute()
 
 Retrieve details of a Data Stream
 
@@ -343,7 +341,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.RetrieveDataStream``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveDataStream`: ResponseRetrieveDataStream
+	// response from `RetrieveDataStream`: DataStreamResponse
 	fmt.Fprintf(os.Stdout, "Response from `DataStreamStreamsAPI.RetrieveDataStream`: %v\n", resp)
 }
 ```
@@ -368,7 +366,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveDataStream**](ResponseRetrieveDataStream.md)
+[**DataStreamResponse**](DataStreamResponse.md)
 
 ### Authorization
 
@@ -386,7 +384,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDataStream
 
-> ResponseDataStream UpdateDataStream(ctx, streamId).DataStreamRequest(dataStreamRequest).Execute()
+> DataStreamResponse UpdateDataStream(ctx, streamId).DataStreamRequest(dataStreamRequest).Execute()
 
 Update a Data Stream
 
@@ -415,7 +413,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.UpdateDataStream``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateDataStream`: ResponseDataStream
+	// response from `UpdateDataStream`: DataStreamResponse
 	fmt.Fprintf(os.Stdout, "Response from `DataStreamStreamsAPI.UpdateDataStream`: %v\n", resp)
 }
 ```
@@ -440,7 +438,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDataStream**](ResponseDataStream.md)
+[**DataStreamResponse**](DataStreamResponse.md)
 
 ### Authorization
 
