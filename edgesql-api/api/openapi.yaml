@@ -269,13 +269,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDatabaseDetail"
+                $ref: "#/components/schemas/DatabaseDetailResponse"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDatabaseDetail"
+                $ref: "#/components/schemas/DatabaseDetailResponse"
           description: ""
         "422":
           content:
@@ -426,13 +426,11 @@ paths:
           type: integer
         style: simple
       responses:
-        "204":
-          description: No response body
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteDatabaseDetail"
+                $ref: "#/components/schemas/DeleteResponse"
           description: ""
         "401":
           content:
@@ -578,7 +576,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveDatabaseDetail"
+                $ref: "#/components/schemas/DatabaseDetailResponse"
           description: ""
         "401":
           content:
@@ -723,13 +721,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseSQLResult"
+                $ref: "#/components/schemas/SQLResultResponse"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncSQLResult"
+                $ref: "#/components/schemas/SQLResultResponse"
           description: ""
         "422":
           content:
@@ -921,6 +919,27 @@ components:
       - product_version
       - status
       type: object
+    DatabaseDetailResponse:
+      example:
+        data:
+          product_version: product_version
+          last_editor: last_editor
+          name: name
+          active: true
+          id: 0
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          status: status
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/DatabaseDetail"
+      required:
+      - data
+      type: object
     DatabaseRequest:
       example:
         name: name
@@ -936,6 +955,15 @@ components:
           type: boolean
       required:
       - name
+      type: object
+    DeleteResponse:
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
       type: object
     JSONAPIErrorObject:
       description: Serializer for a single JSON:API error object.
@@ -1080,113 +1108,6 @@ components:
             $ref: "#/components/schemas/DatabaseDetail"
           type: array
       type: object
-    ResponseAsyncDatabaseDetail:
-      example:
-        data:
-          product_version: product_version
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          status: status
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/DatabaseDetail"
-      required:
-      - data
-      type: object
-    ResponseAsyncDeleteDatabaseDetail:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseAsyncSQLResult:
-      example:
-        data:
-          columns:
-          - ""
-          - ""
-          rows:
-          - ""
-          - ""
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/SQLResult"
-      required:
-      - data
-      type: object
-    ResponseDatabaseDetail:
-      example:
-        data:
-          product_version: product_version
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          status: status
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/DatabaseDetail"
-      required:
-      - data
-      type: object
-    ResponseRetrieveDatabaseDetail:
-      example:
-        data:
-          product_version: product_version
-          last_editor: last_editor
-          name: name
-          active: true
-          id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          status: status
-      properties:
-        data:
-          $ref: "#/components/schemas/DatabaseDetail"
-      required:
-      - data
-      type: object
-    ResponseSQLResult:
-      example:
-        data:
-          columns:
-          - ""
-          - ""
-          rows:
-          - ""
-          - ""
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/SQLResult"
-      required:
-      - data
-      type: object
     SQLResult:
       example:
         columns:
@@ -1207,6 +1128,26 @@ components:
       required:
       - columns
       - rows
+      type: object
+    SQLResultResponse:
+      example:
+        data:
+          columns:
+          - ""
+          - ""
+          rows:
+          - ""
+          - ""
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/SQLResult"
+      required:
+      - data
       type: object
     SQLStatementsRequest:
       example:
