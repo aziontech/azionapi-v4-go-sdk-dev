@@ -35,7 +35,7 @@ func (r ApiCreateDatabaseRequest) DatabaseRequest(databaseRequest DatabaseReques
 	return r
 }
 
-func (r ApiCreateDatabaseRequest) Execute() (*ResponseDatabaseDetail, *http.Response, error) {
+func (r ApiCreateDatabaseRequest) Execute() (*DatabaseDetailResponse, *http.Response, error) {
 	return r.ApiService.CreateDatabaseExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *SQLAPIService) CreateDatabase(ctx context.Context) ApiCreateDatabaseReq
 }
 
 // Execute executes the request
-//  @return ResponseDatabaseDetail
-func (a *SQLAPIService) CreateDatabaseExecute(r ApiCreateDatabaseRequest) (*ResponseDatabaseDetail, *http.Response, error) {
+//  @return DatabaseDetailResponse
+func (a *SQLAPIService) CreateDatabaseExecute(r ApiCreateDatabaseRequest) (*DatabaseDetailResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDatabaseDetail
+		localVarReturnValue  *DatabaseDetailResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SQLAPIService.CreateDatabase")
@@ -241,7 +241,7 @@ type ApiDeleteDatabaseRequest struct {
 	databaseId int64
 }
 
-func (r ApiDeleteDatabaseRequest) Execute() (*ResponseAsyncDeleteDatabaseDetail, *http.Response, error) {
+func (r ApiDeleteDatabaseRequest) Execute() (*DeleteResponse, *http.Response, error) {
 	return r.ApiService.DeleteDatabaseExecute(r)
 }
 
@@ -263,13 +263,13 @@ func (a *SQLAPIService) DeleteDatabase(ctx context.Context, databaseId int64) Ap
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteDatabaseDetail
-func (a *SQLAPIService) DeleteDatabaseExecute(r ApiDeleteDatabaseRequest) (*ResponseAsyncDeleteDatabaseDetail, *http.Response, error) {
+//  @return DeleteResponse
+func (a *SQLAPIService) DeleteDatabaseExecute(r ApiDeleteDatabaseRequest) (*DeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteDatabaseDetail
+		localVarReturnValue  *DeleteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SQLAPIService.DeleteDatabase")
@@ -440,7 +440,7 @@ func (r ApiExecuteQueryRequest) SQLStatementsRequest(sQLStatementsRequest SQLSta
 	return r
 }
 
-func (r ApiExecuteQueryRequest) Execute() (*ResponseSQLResult, *http.Response, error) {
+func (r ApiExecuteQueryRequest) Execute() (*SQLResultResponse, *http.Response, error) {
 	return r.ApiService.ExecuteQueryExecute(r)
 }
 
@@ -462,13 +462,13 @@ func (a *SQLAPIService) ExecuteQuery(ctx context.Context, databaseId int64) ApiE
 }
 
 // Execute executes the request
-//  @return ResponseSQLResult
-func (a *SQLAPIService) ExecuteQueryExecute(r ApiExecuteQueryRequest) (*ResponseSQLResult, *http.Response, error) {
+//  @return SQLResultResponse
+func (a *SQLAPIService) ExecuteQueryExecute(r ApiExecuteQueryRequest) (*SQLResultResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseSQLResult
+		localVarReturnValue  *SQLResultResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SQLAPIService.ExecuteQuery")
@@ -985,7 +985,7 @@ func (r ApiRetrieveDatabaseRequest) Fields(fields string) ApiRetrieveDatabaseReq
 	return r
 }
 
-func (r ApiRetrieveDatabaseRequest) Execute() (*ResponseRetrieveDatabaseDetail, *http.Response, error) {
+func (r ApiRetrieveDatabaseRequest) Execute() (*DatabaseDetailResponse, *http.Response, error) {
 	return r.ApiService.RetrieveDatabaseExecute(r)
 }
 
@@ -1007,13 +1007,13 @@ func (a *SQLAPIService) RetrieveDatabase(ctx context.Context, databaseId int64) 
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveDatabaseDetail
-func (a *SQLAPIService) RetrieveDatabaseExecute(r ApiRetrieveDatabaseRequest) (*ResponseRetrieveDatabaseDetail, *http.Response, error) {
+//  @return DatabaseDetailResponse
+func (a *SQLAPIService) RetrieveDatabaseExecute(r ApiRetrieveDatabaseRequest) (*DatabaseDetailResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveDatabaseDetail
+		localVarReturnValue  *DatabaseDetailResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SQLAPIService.RetrieveDatabase")

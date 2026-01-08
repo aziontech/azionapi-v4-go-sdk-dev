@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateDatabase
 
-> ResponseDatabaseDetail CreateDatabase(ctx).DatabaseRequest(databaseRequest).Execute()
+> DatabaseDetailResponse CreateDatabase(ctx).DatabaseRequest(databaseRequest).Execute()
 
 Create a database
 
@@ -42,7 +42,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.CreateDatabase``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateDatabase`: ResponseDatabaseDetail
+	// response from `CreateDatabase`: DatabaseDetailResponse
 	fmt.Fprintf(os.Stdout, "Response from `SQLAPI.CreateDatabase`: %v\n", resp)
 }
 ```
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDatabaseDetail**](ResponseDatabaseDetail.md)
+[**DatabaseDetailResponse**](DatabaseDetailResponse.md)
 
 ### Authorization
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDatabase
 
-> ResponseAsyncDeleteDatabaseDetail DeleteDatabase(ctx, databaseId).Execute()
+> DeleteResponse DeleteDatabase(ctx, databaseId).Execute()
 
 Delete a database
 
@@ -108,7 +108,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.DeleteDatabase``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteDatabase`: ResponseAsyncDeleteDatabaseDetail
+	// response from `DeleteDatabase`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `SQLAPI.DeleteDatabase`: %v\n", resp)
 }
 ```
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteDatabaseDetail**](ResponseAsyncDeleteDatabaseDetail.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## ExecuteQuery
 
-> ResponseSQLResult ExecuteQuery(ctx, databaseId).SQLStatementsRequest(sQLStatementsRequest).Execute()
+> SQLResultResponse ExecuteQuery(ctx, databaseId).SQLStatementsRequest(sQLStatementsRequest).Execute()
 
 Execute a query into a database
 
@@ -179,7 +179,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.ExecuteQuery``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ExecuteQuery`: ResponseSQLResult
+	// response from `ExecuteQuery`: SQLResultResponse
 	fmt.Fprintf(os.Stdout, "Response from `SQLAPI.ExecuteQuery`: %v\n", resp)
 }
 ```
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseSQLResult**](ResponseSQLResult.md)
+[**SQLResultResponse**](SQLResultResponse.md)
 
 ### Authorization
 
@@ -315,7 +315,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveDatabase
 
-> ResponseRetrieveDatabaseDetail RetrieveDatabase(ctx, databaseId).Fields(fields).Execute()
+> DatabaseDetailResponse RetrieveDatabase(ctx, databaseId).Fields(fields).Execute()
 
 Retrieve details from a database
 
@@ -344,7 +344,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SQLAPI.RetrieveDatabase``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveDatabase`: ResponseRetrieveDatabaseDetail
+	// response from `RetrieveDatabase`: DatabaseDetailResponse
 	fmt.Fprintf(os.Stdout, "Response from `SQLAPI.RetrieveDatabase`: %v\n", resp)
 }
 ```
@@ -369,7 +369,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveDatabaseDetail**](ResponseRetrieveDatabaseDetail.md)
+[**DatabaseDetailResponse**](DatabaseDetailResponse.md)
 
 ### Authorization
 
