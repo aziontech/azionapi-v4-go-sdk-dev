@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateWorkload
 
-> ResponseWorkload CreateWorkload(ctx).WorkloadRequest(workloadRequest).Execute()
+> WorkloadResponse CreateWorkload(ctx).WorkloadRequest(workloadRequest).Execute()
 
 Create an Workload
 
@@ -43,7 +43,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.CreateWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateWorkload`: ResponseWorkload
+	// response from `CreateWorkload`: WorkloadResponse
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.CreateWorkload`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseWorkload**](ResponseWorkload.md)
+[**WorkloadResponse**](WorkloadResponse.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWorkload
 
-> ResponseDeleteWorkload DeleteWorkload(ctx, workloadId).Execute()
+> DeleteResponse DeleteWorkload(ctx, workloadId).Execute()
 
 Delete an Workload
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.DeleteWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteWorkload`: ResponseDeleteWorkload
+	// response from `DeleteWorkload`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.DeleteWorkload`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteWorkload**](ResponseDeleteWorkload.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateWorkload
 
-> ResponseWorkload PartialUpdateWorkload(ctx, workloadId).PatchedWorkloadRequest(patchedWorkloadRequest).Execute()
+> WorkloadResponse PartialUpdateWorkload(ctx, workloadId).PatchedWorkloadRequest(patchedWorkloadRequest).Execute()
 
 Partially update an Workload
 
@@ -275,7 +275,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.PartialUpdateWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateWorkload`: ResponseWorkload
+	// response from `PartialUpdateWorkload`: WorkloadResponse
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.PartialUpdateWorkload`: %v\n", resp)
 }
 ```
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseWorkload**](ResponseWorkload.md)
+[**WorkloadResponse**](WorkloadResponse.md)
 
 ### Authorization
 
@@ -318,7 +318,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveWorkload
 
-> ResponseRetrieveWorkload RetrieveWorkload(ctx, workloadId).Fields(fields).Execute()
+> WorkloadResponse RetrieveWorkload(ctx, workloadId).Fields(fields).Execute()
 
 Retrieve details of an Workload
 
@@ -347,7 +347,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.RetrieveWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveWorkload`: ResponseRetrieveWorkload
+	// response from `RetrieveWorkload`: WorkloadResponse
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.RetrieveWorkload`: %v\n", resp)
 }
 ```
@@ -372,7 +372,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveWorkload**](ResponseRetrieveWorkload.md)
+[**WorkloadResponse**](WorkloadResponse.md)
 
 ### Authorization
 
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWorkload
 
-> ResponseWorkload UpdateWorkload(ctx, workloadId).WorkloadRequest(workloadRequest).Execute()
+> WorkloadResponse UpdateWorkload(ctx, workloadId).WorkloadRequest(workloadRequest).Execute()
 
 Update an Workload
 
@@ -419,7 +419,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.UpdateWorkload``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateWorkload`: ResponseWorkload
+	// response from `UpdateWorkload`: WorkloadResponse
 	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.UpdateWorkload`: %v\n", resp)
 }
 ```
@@ -444,7 +444,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseWorkload**](ResponseWorkload.md)
+[**WorkloadResponse**](WorkloadResponse.md)
 
 ### Authorization
 
