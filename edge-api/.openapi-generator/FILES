@@ -231,6 +231,7 @@ docs/MTLSRequest.md
 docs/NetworkList.md
 docs/NetworkListRequest.md
 docs/NetworkListResponse.md
+docs/NetworkListSummary.md
 docs/NetworkListsAPI.md
 docs/OriginIPACL.md
 docs/OriginIPACLRequest.md
@@ -254,7 +255,7 @@ docs/PaginatedFirewallFunctionInstanceList.md
 docs/PaginatedFirewallList.md
 docs/PaginatedFirewallRuleList.md
 docs/PaginatedFunctionInstanceList.md
-docs/PaginatedNetworkListList.md
+docs/PaginatedNetworkListSummaryList.md
 docs/PaginatedRequestPhaseRuleList.md
 docs/PaginatedResponsePhaseRuleList.md
 docs/PaginatedWAFList.md
@@ -555,6 +556,7 @@ model_mtls_request.go
 model_network_list.go
 model_network_list_request.go
 model_network_list_response.go
+model_network_list_summary.go
 model_origin_ipacl.go
 model_origin_ipacl_request.go
 model_origin_shield_config.go
@@ -577,7 +579,7 @@ model_paginated_firewall_function_instance_list.go
 model_paginated_firewall_list.go
 model_paginated_firewall_rule_list.go
 model_paginated_function_instance_list.go
-model_paginated_network_list_list.go
+model_paginated_network_list_summary_list.go
 model_paginated_request_phase_rule_list.go
 model_paginated_response_phase_rule_list.go
 model_paginated_waf_list.go

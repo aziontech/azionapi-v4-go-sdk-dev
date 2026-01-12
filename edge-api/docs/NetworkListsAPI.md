@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListNetworkLists
 
-> PaginatedNetworkListList ListNetworkLists(ctx).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).ListTypeIn(listTypeIn).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedNetworkListSummaryList ListNetworkLists(ctx).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).ListTypeIn(listTypeIn).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Network Lists
 
@@ -190,7 +190,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.ListNetworkLists``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListNetworkLists`: PaginatedNetworkListList
+	// response from `ListNetworkLists`: PaginatedNetworkListSummaryList
 	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.ListNetworkLists`: %v\n", resp)
 }
 ```
@@ -220,7 +220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedNetworkListList**](PaginatedNetworkListList.md)
+[**PaginatedNetworkListSummaryList**](PaginatedNetworkListSummaryList.md)
 
 ### Authorization
 

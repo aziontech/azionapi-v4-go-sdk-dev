@@ -499,7 +499,7 @@ func (r ApiListNetworkListsRequest) Search(search string) ApiListNetworkListsReq
 	return r
 }
 
-func (r ApiListNetworkListsRequest) Execute() (*PaginatedNetworkListList, *http.Response, error) {
+func (r ApiListNetworkListsRequest) Execute() (*PaginatedNetworkListSummaryList, *http.Response, error) {
 	return r.ApiService.ListNetworkListsExecute(r)
 }
 
@@ -519,13 +519,13 @@ func (a *NetworkListsAPIService) ListNetworkLists(ctx context.Context) ApiListNe
 }
 
 // Execute executes the request
-//  @return PaginatedNetworkListList
-func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRequest) (*PaginatedNetworkListList, *http.Response, error) {
+//  @return PaginatedNetworkListSummaryList
+func (a *NetworkListsAPIService) ListNetworkListsExecute(r ApiListNetworkListsRequest) (*PaginatedNetworkListSummaryList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedNetworkListList
+		localVarReturnValue  *PaginatedNetworkListSummaryList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NetworkListsAPIService.ListNetworkLists")
