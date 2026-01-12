@@ -17,48 +17,46 @@ import (
 	"fmt"
 )
 
-// checks if the NetworkList type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &NetworkList{}
+// checks if the NetworkListSummary type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NetworkListSummary{}
 
-// NetworkList A Network List item can be one of the following formats:   1. IP Addresses (IPv4/IPv6):      - Simple IPv4: 192.168.0.1      - IPv4 with CIDR: 192.168.0.1/24      - Simple IPv6: 2001:db8:3333:4444:5555:6666:7777:8888      - IPv6 with CIDR: 2001:db8::/32      - IP with expiration date: 192.168.0.1 --LT2025-05-29T12:25:23Z          (The expiration date format is --LT followed by ISO8601 date in UTC timezone)   2. Country Codes:      - Two-character uppercase alphanumeric country code (ISO 3166-1 alpha-2)      - Examples: BR, US, DE, JP   3. Autonomous System Numbers (ASN):      - Number composed of digits only      - Examples: 1234, 5678, 13335
-type NetworkList struct {
+// NetworkListSummary struct for NetworkListSummary
+type NetworkListSummary struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
 	// * `asn` - ASN * `countries` - Countries * `ip_cidr` - IP/CIDR
 	Type string `json:"type"`
-	Items []string `json:"items"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
 	Active *bool `json:"active,omitempty"`
 }
 
-type _NetworkList NetworkList
+type _NetworkListSummary NetworkListSummary
 
-// NewNetworkList instantiates a new NetworkList object
+// NewNetworkListSummary instantiates a new NetworkListSummary object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkList(id int64, name string, type_ string, items []string, lastEditor string, lastModified time.Time) *NetworkList {
-	this := NetworkList{}
+func NewNetworkListSummary(id int64, name string, type_ string, lastEditor string, lastModified time.Time) *NetworkListSummary {
+	this := NetworkListSummary{}
 	this.Id = id
 	this.Name = name
 	this.Type = type_
-	this.Items = items
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
 	return &this
 }
 
-// NewNetworkListWithDefaults instantiates a new NetworkList object
+// NewNetworkListSummaryWithDefaults instantiates a new NetworkListSummary object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewNetworkListWithDefaults() *NetworkList {
-	this := NetworkList{}
+func NewNetworkListSummaryWithDefaults() *NetworkListSummary {
+	this := NetworkListSummary{}
 	return &this
 }
 
 // GetId returns the Id field value
-func (o *NetworkList) GetId() int64 {
+func (o *NetworkListSummary) GetId() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -69,7 +67,7 @@ func (o *NetworkList) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *NetworkList) GetIdOk() (*int64, bool) {
+func (o *NetworkListSummary) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -77,12 +75,12 @@ func (o *NetworkList) GetIdOk() (*int64, bool) {
 }
 
 // SetId sets field value
-func (o *NetworkList) SetId(v int64) {
+func (o *NetworkListSummary) SetId(v int64) {
 	o.Id = v
 }
 
 // GetName returns the Name field value
-func (o *NetworkList) GetName() string {
+func (o *NetworkListSummary) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -93,7 +91,7 @@ func (o *NetworkList) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *NetworkList) GetNameOk() (*string, bool) {
+func (o *NetworkListSummary) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,12 +99,12 @@ func (o *NetworkList) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *NetworkList) SetName(v string) {
+func (o *NetworkListSummary) SetName(v string) {
 	o.Name = v
 }
 
 // GetType returns the Type field value
-func (o *NetworkList) GetType() string {
+func (o *NetworkListSummary) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -117,7 +115,7 @@ func (o *NetworkList) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *NetworkList) GetTypeOk() (*string, bool) {
+func (o *NetworkListSummary) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -125,36 +123,12 @@ func (o *NetworkList) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *NetworkList) SetType(v string) {
+func (o *NetworkListSummary) SetType(v string) {
 	o.Type = v
 }
 
-// GetItems returns the Items field value
-func (o *NetworkList) GetItems() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Items
-}
-
-// GetItemsOk returns a tuple with the Items field value
-// and a boolean to check if the value has been set.
-func (o *NetworkList) GetItemsOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Items, true
-}
-
-// SetItems sets field value
-func (o *NetworkList) SetItems(v []string) {
-	o.Items = v
-}
-
 // GetLastEditor returns the LastEditor field value
-func (o *NetworkList) GetLastEditor() string {
+func (o *NetworkListSummary) GetLastEditor() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -165,7 +139,7 @@ func (o *NetworkList) GetLastEditor() string {
 
 // GetLastEditorOk returns a tuple with the LastEditor field value
 // and a boolean to check if the value has been set.
-func (o *NetworkList) GetLastEditorOk() (*string, bool) {
+func (o *NetworkListSummary) GetLastEditorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -173,12 +147,12 @@ func (o *NetworkList) GetLastEditorOk() (*string, bool) {
 }
 
 // SetLastEditor sets field value
-func (o *NetworkList) SetLastEditor(v string) {
+func (o *NetworkListSummary) SetLastEditor(v string) {
 	o.LastEditor = v
 }
 
 // GetLastModified returns the LastModified field value
-func (o *NetworkList) GetLastModified() time.Time {
+func (o *NetworkListSummary) GetLastModified() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -189,7 +163,7 @@ func (o *NetworkList) GetLastModified() time.Time {
 
 // GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
-func (o *NetworkList) GetLastModifiedOk() (*time.Time, bool) {
+func (o *NetworkListSummary) GetLastModifiedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -197,12 +171,12 @@ func (o *NetworkList) GetLastModifiedOk() (*time.Time, bool) {
 }
 
 // SetLastModified sets field value
-func (o *NetworkList) SetLastModified(v time.Time) {
+func (o *NetworkListSummary) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *NetworkList) GetActive() bool {
+func (o *NetworkListSummary) GetActive() bool {
 	if o == nil || IsNil(o.Active) {
 		var ret bool
 		return ret
@@ -212,7 +186,7 @@ func (o *NetworkList) GetActive() bool {
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NetworkList) GetActiveOk() (*bool, bool) {
+func (o *NetworkListSummary) GetActiveOk() (*bool, bool) {
 	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
@@ -220,7 +194,7 @@ func (o *NetworkList) GetActiveOk() (*bool, bool) {
 }
 
 // HasActive returns a boolean if a field has been set.
-func (o *NetworkList) HasActive() bool {
+func (o *NetworkListSummary) HasActive() bool {
 	if o != nil && !IsNil(o.Active) {
 		return true
 	}
@@ -229,11 +203,11 @@ func (o *NetworkList) HasActive() bool {
 }
 
 // SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *NetworkList) SetActive(v bool) {
+func (o *NetworkListSummary) SetActive(v bool) {
 	o.Active = &v
 }
 
-func (o NetworkList) MarshalJSON() ([]byte, error) {
+func (o NetworkListSummary) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -241,12 +215,11 @@ func (o NetworkList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o NetworkList) ToMap() (map[string]interface{}, error) {
+func (o NetworkListSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
-	toSerialize["items"] = o.Items
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
 	if !IsNil(o.Active) {
@@ -255,7 +228,7 @@ func (o NetworkList) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *NetworkList) UnmarshalJSON(data []byte) (err error) {
+func (o *NetworkListSummary) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -263,7 +236,6 @@ func (o *NetworkList) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"type",
-		"items",
 		"last_editor",
 		"last_modified",
 	}
@@ -282,53 +254,53 @@ func (o *NetworkList) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varNetworkList := _NetworkList{}
+	varNetworkListSummary := _NetworkListSummary{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNetworkList)
+	err = decoder.Decode(&varNetworkListSummary)
 
 	if err != nil {
 		return err
 	}
 
-	*o = NetworkList(varNetworkList)
+	*o = NetworkListSummary(varNetworkListSummary)
 
 	return err
 }
 
-type NullableNetworkList struct {
-	value *NetworkList
+type NullableNetworkListSummary struct {
+	value *NetworkListSummary
 	isSet bool
 }
 
-func (v NullableNetworkList) Get() *NetworkList {
+func (v NullableNetworkListSummary) Get() *NetworkListSummary {
 	return v.value
 }
 
-func (v *NullableNetworkList) Set(val *NetworkList) {
+func (v *NullableNetworkListSummary) Set(val *NetworkListSummary) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableNetworkList) IsSet() bool {
+func (v NullableNetworkListSummary) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableNetworkList) Unset() {
+func (v *NullableNetworkListSummary) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableNetworkList(val *NetworkList) *NullableNetworkList {
-	return &NullableNetworkList{value: val, isSet: true}
+func NewNullableNetworkListSummary(val *NetworkListSummary) *NullableNetworkListSummary {
+	return &NullableNetworkListSummary{value: val, isSet: true}
 }
 
-func (v NullableNetworkList) MarshalJSON() ([]byte, error) {
+func (v NullableNetworkListSummary) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableNetworkList) UnmarshalJSON(src []byte) error {
+func (v *NullableNetworkListSummary) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

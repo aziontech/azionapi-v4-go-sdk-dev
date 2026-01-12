@@ -14594,7 +14594,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedNetworkListList"
+                $ref: "#/components/schemas/PaginatedNetworkListSummaryList"
           description: ""
         "401":
           content:
@@ -23404,12 +23404,49 @@ components:
       - blocking
     NetworkList:
       additionalProperties: false
+      description: |-
+        A Network List item can be one of the following formats:
+
+
+        1. IP Addresses (IPv4/IPv6):
+
+            - Simple IPv4: 192.168.0.1
+
+            - IPv4 with CIDR: 192.168.0.1/24
+
+            - Simple IPv6: 2001:db8:3333:4444:5555:6666:7777:8888
+
+            - IPv6 with CIDR: 2001:db8::/32
+
+            - IP with expiration date: 192.168.0.1 --LT2025-05-29T12:25:23Z
+
+                (The expiration date format is --LT followed by ISO8601 date in UTC timezone)
+
+
+        2. Country Codes:
+
+            - Two-character uppercase alphanumeric country code (ISO 3166-1 alpha-2)
+
+            - Examples: BR, US, DE, JP
+
+
+        3. Autonomous System Numbers (ASN):
+
+            - Number composed of digits only
+
+            - Examples: 1234, 5678, 13335
       example:
         last_editor: last_editor
         name: name
         active: true
         id: 0
         type: type
+        items:
+        - items
+        - items
+        - items
+        - items
+        - items
         last_modified: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -23424,12 +23461,20 @@ components:
             * `asn` - ASN
             * `countries` - Countries
             * `ip_cidr` - IP/CIDR
-          title: NetworkListTypeEnum
+          title: Type528Enum
           type: string
           x-extensible-enum:
           - asn
           - countries
           - ip_cidr
+        items:
+          items:
+            maxLength: 250
+            minLength: 0
+            type: string
+          maxItems: 20000
+          minItems: 1
+          type: array
         last_editor:
           maxLength: 250
           type: string
@@ -23440,6 +23485,7 @@ components:
           type: boolean
       required:
       - id
+      - items
       - last_editor
       - last_modified
       - name
@@ -23499,7 +23545,7 @@ components:
             * `asn` - ASN
             * `countries` - Countries
             * `ip_cidr` - IP/CIDR
-          title: NetworkListTypeEnum
+          title: Type528Enum
           type: string
           x-extensible-enum:
           - asn
@@ -23530,6 +23576,12 @@ components:
           active: true
           id: 0
           type: type
+          items:
+          - items
+          - items
+          - items
+          - items
+          - items
           last_modified: 2000-01-23T04:56:07.000+00:00
         state: state
       properties:
@@ -23543,17 +23595,50 @@ components:
       - data
       title: NetworkListResponse
       type: object
-    NetworkListTypeEnum:
-      description: |-
-        * `asn` - ASN
-        * `countries` - Countries
-        * `ip_cidr` - IP/CIDR
-      title: NetworkListTypeEnum
-      type: string
-      x-extensible-enum:
-      - asn
-      - countries
-      - ip_cidr
+    NetworkListSummary:
+      additionalProperties: false
+      example:
+        last_editor: last_editor
+        name: name
+        active: true
+        id: 0
+        type: type
+        last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 250
+          minLength: 1
+          type: string
+        type:
+          description: |-
+            * `asn` - ASN
+            * `countries` - Countries
+            * `ip_cidr` - IP/CIDR
+          title: Type528Enum
+          type: string
+          x-extensible-enum:
+          - asn
+          - countries
+          - ip_cidr
+        last_editor:
+          maxLength: 250
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        active:
+          type: boolean
+      required:
+      - id
+      - last_editor
+      - last_modified
+      - name
+      - type
+      title: NetworkListSummary
+      type: object
     NullEnum:
       additionalProperties: false
       title: NullEnum
@@ -25119,7 +25204,7 @@ components:
           type: array
       title: PaginatedFunctionInstanceList
       type: object
-    PaginatedNetworkListList:
+    PaginatedNetworkListSummaryList:
       additionalProperties: false
       example:
         count: 123
@@ -25170,9 +25255,9 @@ components:
           type: integer
         results:
           items:
-            $ref: "#/components/schemas/NetworkList"
+            $ref: "#/components/schemas/NetworkListSummary"
           type: array
-      title: PaginatedNetworkListList
+      title: PaginatedNetworkListSummaryList
       type: object
     PaginatedRequestPhaseRuleList:
       additionalProperties: false
@@ -26664,7 +26749,7 @@ components:
             * `asn` - ASN
             * `countries` - Countries
             * `ip_cidr` - IP/CIDR
-          title: NetworkListTypeEnum
+          title: Type528Enum
           type: string
           x-extensible-enum:
           - asn
@@ -29041,6 +29126,17 @@ components:
       - http
       - storage
       - live_ingest
+    Type528Enum:
+      description: |-
+        * `asn` - ASN
+        * `countries` - Countries
+        * `ip_cidr` - IP/CIDR
+      title: Type528Enum
+      type: string
+      x-extensible-enum:
+      - asn
+      - countries
+      - ip_cidr
     Type689Enum:
       description: '* `run_function` - run_function'
       title: Type689Enum
