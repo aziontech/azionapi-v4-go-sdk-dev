@@ -17344,19 +17344,6 @@ components:
       - order
       title: ApplicationResponsePhaseRuleEngineOrderRequest
       type: object
-    BehaviorA69Enum:
-      description: |-
-        * `ignore` - ignore
-        * `all` - all
-        * `allowlist` - allowlist
-        * `denylist` - denylist
-      title: BehaviorA69Enum
-      type: string
-      x-extensible-enum:
-      - ignore
-      - all
-      - allowlist
-      - denylist
     BehaviorAddHeaderAttributes:
       additionalProperties: false
       properties:
@@ -18638,7 +18625,7 @@ components:
       properties:
         behavior:
           allOf:
-          - $ref: "#/components/schemas/BehaviorA69Enum"
+          - $ref: "#/components/schemas/FirewallBehaviorModeEnum"
         cookie_names:
           items:
             type: string
@@ -18655,7 +18642,7 @@ components:
       properties:
         behavior:
           allOf:
-          - $ref: "#/components/schemas/BehaviorA69Enum"
+          - $ref: "#/components/schemas/FirewallBehaviorModeEnum"
         cookie_names:
           items:
             type: string
@@ -18727,7 +18714,7 @@ components:
       properties:
         behavior:
           allOf:
-          - $ref: "#/components/schemas/BehaviorA69Enum"
+          - $ref: "#/components/schemas/FirewallBehaviorModeEnum"
         fields:
           items:
             type: string
@@ -18747,7 +18734,7 @@ components:
       properties:
         behavior:
           allOf:
-          - $ref: "#/components/schemas/BehaviorA69Enum"
+          - $ref: "#/components/schemas/FirewallBehaviorModeEnum"
         fields:
           items:
             type: string
@@ -18904,7 +18891,7 @@ components:
           type: string
         type:
           allOf:
-          - $ref: "#/components/schemas/Type15cEnum"
+          - $ref: "#/components/schemas/OriginTypeEnum"
           description: |-
             Type of the connector
 
@@ -18970,7 +18957,7 @@ components:
           type: string
         type:
           allOf:
-          - $ref: "#/components/schemas/Type15cEnum"
+          - $ref: "#/components/schemas/OriginTypeEnum"
           description: |-
             Type of the connector
 
@@ -19080,7 +19067,7 @@ components:
           type: boolean
         type:
           allOf:
-          - $ref: "#/components/schemas/Type15cEnum"
+          - $ref: "#/components/schemas/OriginTypeEnum"
           description: |-
             Type of the connector
 
@@ -19096,7 +19083,7 @@ components:
       title: ConnectorHTTPRequest
       type: object
     ConnectorPolymorphic:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           http: "#/components/schemas/ConnectorHTTP"
@@ -19109,7 +19096,7 @@ components:
       - $ref: "#/components/schemas/Connector"
       title: ConnectorPolymorphic
     ConnectorPolymorphicRequest:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           http: "#/components/schemas/ConnectorHTTPRequest"
@@ -19169,7 +19156,7 @@ components:
           type: boolean
         type:
           allOf:
-          - $ref: "#/components/schemas/Type15cEnum"
+          - $ref: "#/components/schemas/OriginTypeEnum"
           description: |-
             Type of the connector
 
@@ -20631,7 +20618,7 @@ components:
       title: Firewall
       type: object
     FirewallBehavior:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           deny: "#/components/schemas/FirewallBehaviorNoArgs"
@@ -20696,7 +20683,7 @@ components:
       - deny
       - drop
     FirewallBehaviorRequest:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           deny: "#/components/schemas/FirewallBehaviorNoArgsRequest"
@@ -23023,31 +23010,6 @@ components:
       type: object
       x-extensible-enum:
       - null
-    Operator565Enum:
-      description: |-
-        * `does_not_exist` - does_not_exist
-        * `does_not_match` - does_not_match
-        * `does_not_start_with` - does_not_start_with
-        * `exists` - exists
-        * `is_equal` - is_equal
-        * `is_in_list` - is_in_list
-        * `is_not_equal` - is_not_equal
-        * `is_not_in_list` - is_not_in_list
-        * `matches` - matches
-        * `starts_with` - starts_with
-      title: Operator565Enum
-      type: string
-      x-extensible-enum:
-      - does_not_exist
-      - does_not_match
-      - does_not_start_with
-      - exists
-      - is_equal
-      - is_in_list
-      - is_not_equal
-      - is_not_in_list
-      - matches
-      - starts_with
     OriginIPACL:
       additionalProperties: false
       properties:
@@ -25576,7 +25538,7 @@ components:
           type: boolean
         type:
           allOf:
-          - $ref: "#/components/schemas/Type15cEnum"
+          - $ref: "#/components/schemas/OriginTypeEnum"
           description: |-
             Type of the connector
 
@@ -25588,7 +25550,7 @@ components:
       title: PatchedConnectorHTTPRequest
       type: object
     PatchedConnectorPolymorphicRequest:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           http: "#/components/schemas/PatchedConnectorHTTPRequest"
@@ -25611,7 +25573,7 @@ components:
           type: boolean
         type:
           allOf:
-          - $ref: "#/components/schemas/Type15cEnum"
+          - $ref: "#/components/schemas/OriginTypeEnum"
           description: |-
             Type of the connector
 
@@ -26782,7 +26744,7 @@ components:
       title: PurgeResponse
       type: object
     RequestPhaseBehavior:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           deny: "#/components/schemas/BehaviorNoArgs"
@@ -26814,7 +26776,7 @@ components:
       - $ref: "#/components/schemas/BehaviorCapture"
       title: RequestPhaseBehavior
     RequestPhaseBehaviorRequest:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           deny: "#/components/schemas/BehaviorNoArgs"
@@ -27656,7 +27618,7 @@ components:
       title: ResponseBehaviorStringAttributesRequest
       type: object
     ResponsePhaseBehavior:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           enable_gzip: "#/components/schemas/BehaviorNoArgs"
@@ -27677,7 +27639,7 @@ components:
       - $ref: "#/components/schemas/BehaviorCapture"
       title: ResponsePhaseBehavior
     ResponsePhaseBehaviorRequest:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           enable_gzip: "#/components/schemas/BehaviorNoArgs"
@@ -28493,17 +28455,6 @@ components:
       - preserve
       - force_https
       - force_http
-    Type15cEnum:
-      description: |-
-        * `http` - HTTP
-        * `storage` - Storage
-        * `live_ingest` - Live Ingest
-      title: Type15cEnum
-      type: string
-      x-extensible-enum:
-      - http
-      - storage
-      - live_ingest
     Type528Enum:
       description: |-
         * `asn` - ASN
@@ -28515,18 +28466,6 @@ components:
       - asn
       - countries
       - ip_cidr
-    Type689Enum:
-      description: '* `run_function` - run_function'
-      title: Type689Enum
-      type: string
-      x-extensible-enum:
-      - run_function
-    TypeF11Enum:
-      description: '* `rewrite_request` - rewrite_request'
-      title: TypeF11Enum
-      type: string
-      x-extensible-enum:
-      - rewrite_request
     VerificationEnum:
       description: |-
         * `enforce` - Enforce
@@ -28808,7 +28747,7 @@ components:
       title: WAFExceptionGenericConditionRequest
       type: object
     WAFExceptionPolymorphicCondition:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           any_http_header_name: "#/components/schemas/WAFExceptionGenericCondition"
@@ -28833,7 +28772,7 @@ components:
       - $ref: "#/components/schemas/WAFExceptionSpecificConditionOnValue"
       title: WAFExceptionPolymorphicCondition
     WAFExceptionPolymorphicConditionRequest:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           any_http_header_name: "#/components/schemas/WAFExceptionGenericConditionRequest"
@@ -29814,6 +29753,67 @@ components:
       - type
       title: BehaviorCapture
       type: object
+    FirewallBehaviorModeEnum:
+      description: |-
+        * `ignore` - ignore
+        * `all` - all
+        * `allowlist` - allowlist
+        * `denylist` - denylist
+      title: BehaviorA69Enum
+      type: string
+      x-extensible-enum:
+      - ignore
+      - all
+      - allowlist
+      - denylist
+    CriterionOperatorEnum:
+      description: |-
+        * `does_not_exist` - does_not_exist
+        * `does_not_match` - does_not_match
+        * `does_not_start_with` - does_not_start_with
+        * `exists` - exists
+        * `is_equal` - is_equal
+        * `is_in_list` - is_in_list
+        * `is_not_equal` - is_not_equal
+        * `is_not_in_list` - is_not_in_list
+        * `matches` - matches
+        * `starts_with` - starts_with
+      title: Operator565Enum
+      type: string
+      x-extensible-enum:
+      - does_not_exist
+      - does_not_match
+      - does_not_start_with
+      - exists
+      - is_equal
+      - is_in_list
+      - is_not_equal
+      - is_not_in_list
+      - matches
+      - starts_with
+    OriginTypeEnum:
+      description: |-
+        * `http` - HTTP
+        * `storage` - Storage
+        * `live_ingest` - Live Ingest
+      title: Type15cEnum
+      type: string
+      x-extensible-enum:
+      - http
+      - storage
+      - live_ingest
+    BehaviorTypeEnum:
+      description: '* `run_function` - run_function'
+      title: Type689Enum
+      type: string
+      x-extensible-enum:
+      - run_function
+    ResourceTypeEnum:
+      description: '* `rewrite_request` - rewrite_request'
+      title: TypeF11Enum
+      type: string
+      x-extensible-enum:
+      - rewrite_request
     EdgeFunctions_azion_form:
       description: |
         JSON schema to be rendered as a json args form.
