@@ -191,10 +191,10 @@ func main() {
 	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	orderGte := int64(789) // int64 | Filter by order (greater than or equal). (optional)
 	orderLte := int64(789) // int64 | Filter by order (less than or equal). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, active, description, order, behaviors, criteria) (optional)
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, description, last_editor, last_modified, order) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+	search := "search_example" // string | A search term to filter results. Searches across the following fields: name, last_editor. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -233,10 +233,10 @@ Name | Type | Description  | Notes
  **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **orderGte** | **int64** | Filter by order (greater than or equal). | 
  **orderLte** | **int64** | Filter by order (less than or equal). | 
- **ordering** | **string** | Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, active, description, order, behaviors, criteria) | 
+ **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, description, last_editor, last_modified, order) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **search** | **string** | A search term to filter results. Searches across the following fields: name, last_editor. | 
 
 ### Return type
 
@@ -258,7 +258,7 @@ Name | Type | Description  | Notes
 
 ## OrderFirewallRules
 
-> PaginatedFirewallRuleList OrderFirewallRules(ctx, firewallId).FirewallRuleEngineOrderRequest(firewallRuleEngineOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedFirewallRuleList OrderFirewallRules(ctx, firewallId).FirewallRuleEngineOrderRequest(firewallRuleEngineOrderRequest).Search(search).Execute()
 
 Ordering Firewall Rules
 
@@ -279,14 +279,11 @@ import (
 func main() {
 	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
 	firewallRuleEngineOrderRequest := *openapiclient.NewFirewallRuleEngineOrderRequest([]int64{int64(123)}) // FirewallRuleEngineOrderRequest | 
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: order) (optional)
-	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | Number of results to return per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+	search := "search_example" // string | A search term to filter results. Searches across the following fields: name, last_editor. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FirewallsRulesEngineAPI.OrderFirewallRules(context.Background(), firewallId).FirewallRuleEngineOrderRequest(firewallRuleEngineOrderRequest).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.FirewallsRulesEngineAPI.OrderFirewallRules(context.Background(), firewallId).FirewallRuleEngineOrderRequest(firewallRuleEngineOrderRequest).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallsRulesEngineAPI.OrderFirewallRules``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -313,10 +310,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **firewallRuleEngineOrderRequest** | [**FirewallRuleEngineOrderRequest**](FirewallRuleEngineOrderRequest.md) |  | 
- **ordering** | **string** | Which field to use when ordering the results. (Valid fields: order) | 
- **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | Number of results to return per page. | 
- **search** | **string** | A search term. | 
+ **search** | **string** | A search term to filter results. Searches across the following fields: name, last_editor. | 
 
 ### Return type
 

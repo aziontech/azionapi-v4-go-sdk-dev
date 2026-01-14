@@ -650,7 +650,7 @@ func (r ApiListWafsRequest) Name(name string) ApiListWafsRequest {
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: name, id, active, last_editor, last_modified, product_version)
+// Which field to use when ordering the results. (Valid fields: id, name)
 func (r ApiListWafsRequest) Ordering(ordering string) ApiListWafsRequest {
 	r.ordering = &ordering
 	return r
@@ -668,7 +668,7 @@ func (r ApiListWafsRequest) PageSize(pageSize int64) ApiListWafsRequest {
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name.
 func (r ApiListWafsRequest) Search(search string) ApiListWafsRequest {
 	r.search = &search
 	return r

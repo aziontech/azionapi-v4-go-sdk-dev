@@ -183,10 +183,10 @@ func main() {
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
 	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, id, user_agent) (optional)
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, user_agent) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+	search := "search_example" // string | A search term to filter results. Searches across the following fields: name, user_agent. (optional)
 	userAgent := "userAgent_example" // string | Filter by user agent (case-insensitive, partial match). (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -220,10 +220,10 @@ Name | Type | Description  | Notes
  **fields** | **string** | Comma-separated list of field names to include in the response. | 
  **id** | **int64** | Filter by id (accepts comma-separated values). | 
  **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. (Valid fields: name, id, user_agent) | 
+ **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, user_agent) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **search** | **string** | A search term to filter results. Searches across the following fields: name, user_agent. | 
  **userAgent** | **string** | Filter by user agent (case-insensitive, partial match). | 
 
 ### Return type

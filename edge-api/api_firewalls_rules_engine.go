@@ -498,7 +498,7 @@ func (r ApiListFirewallRulesRequest) OrderLte(orderLte int64) ApiListFirewallRul
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, active, description, order, behaviors, criteria)
+// Which field to use when ordering the results. (Valid fields: id, name, description, last_editor, last_modified, order)
 func (r ApiListFirewallRulesRequest) Ordering(ordering string) ApiListFirewallRulesRequest {
 	r.ordering = &ordering
 	return r
@@ -516,7 +516,7 @@ func (r ApiListFirewallRulesRequest) PageSize(pageSize int64) ApiListFirewallRul
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name, last_editor.
 func (r ApiListFirewallRulesRequest) Search(search string) ApiListFirewallRulesRequest {
 	r.search = &search
 	return r
@@ -753,9 +753,6 @@ type ApiOrderFirewallRulesRequest struct {
 	ApiService *FirewallsRulesEngineAPIService
 	firewallId int64
 	firewallRuleEngineOrderRequest *FirewallRuleEngineOrderRequest
-	ordering *string
-	page *int64
-	pageSize *int64
 	search *string
 }
 
@@ -764,25 +761,7 @@ func (r ApiOrderFirewallRulesRequest) FirewallRuleEngineOrderRequest(firewallRul
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: order)
-func (r ApiOrderFirewallRulesRequest) Ordering(ordering string) ApiOrderFirewallRulesRequest {
-	r.ordering = &ordering
-	return r
-}
-
-// A page number within the paginated result set.
-func (r ApiOrderFirewallRulesRequest) Page(page int64) ApiOrderFirewallRulesRequest {
-	r.page = &page
-	return r
-}
-
-// Number of results to return per page.
-func (r ApiOrderFirewallRulesRequest) PageSize(pageSize int64) ApiOrderFirewallRulesRequest {
-	r.pageSize = &pageSize
-	return r
-}
-
-// A search term.
+// A search term to filter results. Searches across the following fields: name, last_editor.
 func (r ApiOrderFirewallRulesRequest) Search(search string) ApiOrderFirewallRulesRequest {
 	r.search = &search
 	return r
@@ -834,15 +813,6 @@ func (a *FirewallsRulesEngineAPIService) OrderFirewallRulesExecute(r ApiOrderFir
 		return localVarReturnValue, nil, reportError("firewallRuleEngineOrderRequest is required and must be specified")
 	}
 
-	if r.ordering != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
-	}
-	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
-	}
-	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
-	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
 	}

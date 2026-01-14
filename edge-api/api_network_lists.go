@@ -475,7 +475,7 @@ func (r ApiListNetworkListsRequest) Name(name string) ApiListNetworkListsRequest
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: name, type, last_editor, last_modified, active)
+// Which field to use when ordering the results. (Valid fields: id, name, last_editor, last_modified, list_type)
 func (r ApiListNetworkListsRequest) Ordering(ordering string) ApiListNetworkListsRequest {
 	r.ordering = &ordering
 	return r
@@ -493,7 +493,7 @@ func (r ApiListNetworkListsRequest) PageSize(pageSize int64) ApiListNetworkLists
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: last_editor, list_type, name.
 func (r ApiListNetworkListsRequest) Search(search string) ApiListNetworkListsRequest {
 	r.search = &search
 	return r

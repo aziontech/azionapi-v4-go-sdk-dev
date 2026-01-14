@@ -477,7 +477,7 @@ func (r ApiListApplicationFunctionInstancesRequest) Name(name string) ApiListApp
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active)
+// Which field to use when ordering the results. (Valid fields: id, name, last_editor, last_modified)
 func (r ApiListApplicationFunctionInstancesRequest) Ordering(ordering string) ApiListApplicationFunctionInstancesRequest {
 	r.ordering = &ordering
 	return r
@@ -495,7 +495,7 @@ func (r ApiListApplicationFunctionInstancesRequest) PageSize(pageSize int64) Api
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name.
 func (r ApiListApplicationFunctionInstancesRequest) Search(search string) ApiListApplicationFunctionInstancesRequest {
 	r.search = &search
 	return r

@@ -492,7 +492,7 @@ func (r ApiListWafExceptionsRequest) LastModifiedLte(lastModifiedLte time.Time) 
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: rule_id, name, path, conditions, operator, active, last_editor, last_modified)
+// Which field to use when ordering the results. (Valid fields: id, description, path, last_editor, last_modified, created_at)
 func (r ApiListWafExceptionsRequest) Ordering(ordering string) ApiListWafExceptionsRequest {
 	r.ordering = &ordering
 	return r
@@ -516,7 +516,7 @@ func (r ApiListWafExceptionsRequest) Path(path string) ApiListWafExceptionsReque
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: description, path, last_editor.
 func (r ApiListWafExceptionsRequest) Search(search string) ApiListWafExceptionsRequest {
 	r.search = &search
 	return r
