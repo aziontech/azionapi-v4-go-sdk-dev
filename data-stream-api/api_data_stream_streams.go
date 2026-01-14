@@ -497,7 +497,7 @@ func (r ApiListDataStreamsRequest) PageSize(pageSize int64) ApiListDataStreamsRe
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name.
 func (r ApiListDataStreamsRequest) Search(search string) ApiListDataStreamsRequest {
 	r.search = &search
 	return r
