@@ -497,7 +497,7 @@ func (r ApiListTemplatesRequest) PageSize(pageSize int64) ApiListTemplatesReques
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name.
 func (r ApiListTemplatesRequest) Search(search string) ApiListTemplatesRequest {
 	r.search = &search
 	return r

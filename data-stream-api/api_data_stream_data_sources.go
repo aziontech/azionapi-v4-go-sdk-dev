@@ -71,7 +71,7 @@ func (r ApiListDataSourcesRequest) PageSize(pageSize int64) ApiListDataSourcesRe
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name, slug.
 func (r ApiListDataSourcesRequest) Search(search string) ApiListDataSourcesRequest {
 	r.search = &search
 	return r

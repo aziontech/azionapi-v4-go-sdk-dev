@@ -63,7 +63,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name, slug."
         explode: true
         in: query
         name: search
@@ -313,7 +314,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name."
         explode: true
         in: query
         name: search
@@ -1257,7 +1259,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name."
         explode: true
         in: query
         name: search
