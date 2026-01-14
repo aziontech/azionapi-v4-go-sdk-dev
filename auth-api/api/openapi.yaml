@@ -25,7 +25,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ResponseLogin"
-          description: ""
+          description: User authenticated successfully. Returns JWT tokens or MFA
+            token if MFA is enabled.
         "400":
           content:
             application/json:
@@ -155,7 +156,7 @@ paths:
                     url: http://localhost:8000/login
               schema:
                 $ref: "#/components/schemas/UserLoginMethodResponse"
-          description: ""
+          description: User authentication method retrieved successfully.
         "400":
           content:
             application/json:
@@ -317,7 +318,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Which field to use when ordering the results.
+      - description: "Which field to use when ordering the results. (Valid fields:\
+          \ id, name, email, confirmed, created_at)"
         explode: true
         in: query
         name: ordering
@@ -343,7 +345,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name, email."
         explode: true
         in: query
         name: search
@@ -357,7 +360,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedTOTPDeviceListList"
-          description: ""
+          description: List of TOTP devices retrieved successfully.
         "401":
           content:
             application/json:
@@ -489,7 +492,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TOTPDeviceResponse"
-          description: ""
+          description: TOTP device created successfully.
         "401":
           content:
             application/json:
@@ -627,7 +630,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: TOTP device deleted successfully.
         "401":
           content:
             application/json:
@@ -763,7 +766,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TokenPairResponse"
-          description: ""
+          description: TOTP verification successful. JWT tokens generated.
         "401":
           content:
             application/json:
@@ -922,7 +925,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name."
         explode: true
         in: query
         name: search
@@ -936,7 +940,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedPolicyList"
-          description: ""
+          description: List of policies retrieved successfully.
         "401":
           content:
             application/json:
@@ -1070,7 +1074,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PolicyResponse"
-          description: ""
+          description: Policy created successfully.
         "401":
           content:
             application/json:
@@ -1209,7 +1213,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Policy deleted successfully.
         "401":
           content:
             application/json:
@@ -1355,7 +1359,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PolicyResponse"
-          description: ""
+          description: Policy details retrieved successfully.
         "401":
           content:
             application/json:
@@ -1499,7 +1503,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PolicyResponse"
-          description: ""
+          description: Policy partially updated successfully.
         "401":
           content:
             application/json:
@@ -1644,7 +1648,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PolicyResponse"
-          description: ""
+          description: Policy updated successfully.
         "401":
           content:
             application/json:
@@ -1782,7 +1786,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/LockoutPolicyResponse"
-          description: ""
+          description: Lockout policy details retrieved successfully.
         "401":
           content:
             application/json:
@@ -1916,7 +1920,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/LockoutPolicyResponse"
-          description: ""
+          description: Lockout policy updated successfully.
         "401":
           content:
             application/json:
@@ -2054,7 +2058,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SessionTimeoutPolicyResponse"
-          description: ""
+          description: Session timeout policy details retrieved successfully.
         "401":
           content:
             application/json:
@@ -2188,7 +2192,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SessionTimeoutPolicyResponse"
-          description: ""
+          description: Session timeout policy updated successfully.
         "401":
           content:
             application/json:
@@ -2431,7 +2435,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TokenResponse"
-          description: ""
+          description: Refresh token generated successfully.
         "401":
           content:
             application/json:
