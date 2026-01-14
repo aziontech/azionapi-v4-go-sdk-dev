@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateCertificateRevocationList
 
-> ResponseCertificateRevocationList CreateCertificateRevocationList(ctx).CertificateRevocationList(certificateRevocationList).Execute()
+> CertificateRevocationListResponse CreateCertificateRevocationList(ctx).CertificateRevocationList(certificateRevocationList).Execute()
 
 Create a certificate revocation lists (CRL)
 
@@ -44,7 +44,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.CreateCertificateRevocationList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateCertificateRevocationList`: ResponseCertificateRevocationList
+	// response from `CreateCertificateRevocationList`: CertificateRevocationListResponse
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.CreateCertificateRevocationList`: %v\n", resp)
 }
 ```
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseCertificateRevocationList**](ResponseCertificateRevocationList.md)
+[**CertificateRevocationListResponse**](CertificateRevocationListResponse.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCertificateRevocationList
 
-> ResponseDeleteCertificateRevocationList DeleteCertificateRevocationList(ctx, crlId).Execute()
+> DeleteResponse DeleteCertificateRevocationList(ctx, crlId).Execute()
 
 Delete a certificate revocation list
 
@@ -110,7 +110,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.DeleteCertificateRevocationList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCertificateRevocationList`: ResponseDeleteCertificateRevocationList
+	// response from `DeleteCertificateRevocationList`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.DeleteCertificateRevocationList`: %v\n", resp)
 }
 ```
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteCertificateRevocationList**](ResponseDeleteCertificateRevocationList.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -185,10 +185,10 @@ func main() {
 	nextUpdate := time.Now() // time.Time | Filter by exact next update date and time. (optional)
 	nextUpdateGte := time.Now() // time.Time | Filter by next update date (greater than or equal). (optional)
 	nextUpdateLte := time.Now() // time.Time | Filter by next update date (less than or equal). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: name, active, last_editor, last_modified, product_version, issuer, last_update, next_update, crl) (optional)
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, issuer, last_update, next_update, last_modified) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+	search := "search_example" // string | A search term to filter results. Searches across the following fields: name, issuer. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -226,10 +226,10 @@ Name | Type | Description  | Notes
  **nextUpdate** | **time.Time** | Filter by exact next update date and time. | 
  **nextUpdateGte** | **time.Time** | Filter by next update date (greater than or equal). | 
  **nextUpdateLte** | **time.Time** | Filter by next update date (less than or equal). | 
- **ordering** | **string** | Which field to use when ordering the results. (Valid fields: name, active, last_editor, last_modified, product_version, issuer, last_update, next_update, crl) | 
+ **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, issuer, last_update, next_update, last_modified) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **search** | **string** | A search term to filter results. Searches across the following fields: name, issuer. | 
 
 ### Return type
 
@@ -251,7 +251,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateCertificateRevocationList
 
-> ResponseCertificateRevocationList PartialUpdateCertificateRevocationList(ctx, crlId).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
+> CertificateRevocationListResponse PartialUpdateCertificateRevocationList(ctx, crlId).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
 
 Update a certificate revocation lists (CRL)
 
@@ -280,7 +280,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.PartialUpdateCertificateRevocationList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateCertificateRevocationList`: ResponseCertificateRevocationList
+	// response from `PartialUpdateCertificateRevocationList`: CertificateRevocationListResponse
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.PartialUpdateCertificateRevocationList`: %v\n", resp)
 }
 ```
@@ -305,7 +305,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseCertificateRevocationList**](ResponseCertificateRevocationList.md)
+[**CertificateRevocationListResponse**](CertificateRevocationListResponse.md)
 
 ### Authorization
 
@@ -323,7 +323,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveCertificateRevocationList
 
-> ResponseRetrieveCertificateRevocationList RetrieveCertificateRevocationList(ctx, crlId).Fields(fields).Execute()
+> CertificateRevocationListResponse RetrieveCertificateRevocationList(ctx, crlId).Fields(fields).Execute()
 
 Retrieve details from a certificate revocation lists (CRL)
 
@@ -352,7 +352,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.RetrieveCertificateRevocationList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveCertificateRevocationList`: ResponseRetrieveCertificateRevocationList
+	// response from `RetrieveCertificateRevocationList`: CertificateRevocationListResponse
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.RetrieveCertificateRevocationList`: %v\n", resp)
 }
 ```
@@ -377,7 +377,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveCertificateRevocationList**](ResponseRetrieveCertificateRevocationList.md)
+[**CertificateRevocationListResponse**](CertificateRevocationListResponse.md)
 
 ### Authorization
 
@@ -395,7 +395,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCertificateRevocationList
 
-> ResponseCertificateRevocationList UpdateCertificateRevocationList(ctx, crlId).CertificateRevocationList(certificateRevocationList).Execute()
+> CertificateRevocationListResponse UpdateCertificateRevocationList(ctx, crlId).CertificateRevocationList(certificateRevocationList).Execute()
 
 Update a certificate revocation lists (CRL)
 
@@ -425,7 +425,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateRevocationListsAPI.UpdateCertificateRevocationList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateCertificateRevocationList`: ResponseCertificateRevocationList
+	// response from `UpdateCertificateRevocationList`: CertificateRevocationListResponse
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateRevocationListsAPI.UpdateCertificateRevocationList`: %v\n", resp)
 }
 ```
@@ -450,7 +450,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseCertificateRevocationList**](ResponseCertificateRevocationList.md)
+[**CertificateRevocationListResponse**](CertificateRevocationListResponse.md)
 
 ### Authorization
 

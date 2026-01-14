@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## CreateCertificateSigningRequest
 
-> ResponseCertificate CreateCertificateSigningRequest(ctx).CertificateSigningRequest(certificateSigningRequest).Execute()
+> CertificateResponse CreateCertificateSigningRequest(ctx).CertificateSigningRequest(certificateSigningRequest).Execute()
 
 Create a certificate signing request (CSR)
 
@@ -39,7 +39,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificateSigningRequestsAPI.CreateCertificateSigningRequest``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateCertificateSigningRequest`: ResponseCertificate
+	// response from `CreateCertificateSigningRequest`: CertificateResponse
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificateSigningRequestsAPI.CreateCertificateSigningRequest`: %v\n", resp)
 }
 ```
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseCertificate**](ResponseCertificate.md)
+[**CertificateResponse**](CertificateResponse.md)
 
 ### Authorization
 

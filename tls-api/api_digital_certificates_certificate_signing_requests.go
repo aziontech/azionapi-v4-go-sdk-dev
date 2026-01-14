@@ -33,7 +33,7 @@ func (r ApiCreateCertificateSigningRequestRequest) CertificateSigningRequest(cer
 	return r
 }
 
-func (r ApiCreateCertificateSigningRequestRequest) Execute() (*ResponseCertificate, *http.Response, error) {
+func (r ApiCreateCertificateSigningRequestRequest) Execute() (*CertificateResponse, *http.Response, error) {
 	return r.ApiService.CreateCertificateSigningRequestExecute(r)
 }
 
@@ -53,13 +53,13 @@ func (a *DigitalCertificatesCertificateSigningRequestsAPIService) CreateCertific
 }
 
 // Execute executes the request
-//  @return ResponseCertificate
-func (a *DigitalCertificatesCertificateSigningRequestsAPIService) CreateCertificateSigningRequestExecute(r ApiCreateCertificateSigningRequestRequest) (*ResponseCertificate, *http.Response, error) {
+//  @return CertificateResponse
+func (a *DigitalCertificatesCertificateSigningRequestsAPIService) CreateCertificateSigningRequestExecute(r ApiCreateCertificateSigningRequestRequest) (*CertificateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseCertificate
+		localVarReturnValue  *CertificateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateSigningRequestsAPIService.CreateCertificateSigningRequest")
