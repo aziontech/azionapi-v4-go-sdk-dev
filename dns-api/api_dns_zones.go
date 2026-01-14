@@ -471,7 +471,7 @@ func (r ApiListDnsZonesRequest) PageSize(pageSize int64) ApiListDnsZonesRequest 
 	return r
 }
 
-// Search in name and domain fields (case-insensitive, partial match).
+// A search term to filter results. Searches across the following fields: name, domain.
 func (r ApiListDnsZonesRequest) Search(search string) ApiListDnsZonesRequest {
 	r.search = &search
 	return r

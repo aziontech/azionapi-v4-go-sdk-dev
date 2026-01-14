@@ -459,7 +459,7 @@ func (r ApiListDnsRecordsRequest) PageSize(pageSize int64) ApiListDnsRecordsRequ
 	return r
 }
 
-// Search in answers, entry, ttl, and type fields (case-insensitive, partial match).
+// A search term to filter results. Searches across the following fields: answers, entry, ttl, type.
 func (r ApiListDnsRecordsRequest) Search(search string) ApiListDnsRecordsRequest {
 	r.search = &search
 	return r

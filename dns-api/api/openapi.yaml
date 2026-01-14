@@ -74,8 +74,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: "Search in name and domain fields (case-insensitive, partial\
-          \ match)."
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name, domain."
         explode: true
         in: query
         name: search
@@ -89,7 +89,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedZoneList"
-          description: ""
+          description: List of DNS zones retrieved successfully.
         "401":
           content:
             application/json:
@@ -223,7 +223,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ZoneResponse"
-          description: ""
+          description: DNS zone created successfully.
         "401":
           content:
             application/json:
@@ -362,7 +362,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: DNS zone deletion accepted and processing asynchronously.
         "401":
           content:
             application/json:
@@ -508,7 +508,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ZoneResponse"
-          description: ""
+          description: DNS zone details retrieved successfully.
         "401":
           content:
             application/json:
@@ -652,7 +652,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ZoneResponse"
-          description: ""
+          description: DNS zone partially updated successfully.
         "401":
           content:
             application/json:
@@ -797,7 +797,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ZoneResponse"
-          description: ""
+          description: DNS zone updated successfully.
         "401":
           content:
             application/json:
@@ -944,7 +944,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DNSSECResponse"
-          description: ""
+          description: DNSSEC details retrieved successfully.
         "401":
           content:
             application/json:
@@ -1088,7 +1088,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DNSSECResponse"
-          description: ""
+          description: DNSSEC partially updated successfully.
         "401":
           content:
             application/json:
@@ -1233,7 +1233,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DNSSECResponse"
-          description: ""
+          description: DNSSEC updated successfully.
         "401":
           content:
             application/json:
@@ -1393,8 +1393,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: "Search in answers, entry, ttl, and type fields (case-insensitive,\
-          \ partial match)."
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: answers, entry, ttl, type."
         explode: true
         in: query
         name: search
@@ -1417,7 +1417,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedRecordList"
-          description: ""
+          description: List of DNS records retrieved successfully.
         "401":
           content:
             application/json:
@@ -1561,7 +1561,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RecordResponse"
-          description: ""
+          description: DNS record created successfully.
         "401":
           content:
             application/json:
@@ -1709,7 +1709,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: DNS record deletion accepted and processing asynchronously.
         "401":
           content:
             application/json:
@@ -1865,7 +1865,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RecordResponse"
-          description: ""
+          description: DNS record details retrieved successfully.
         "401":
           content:
             application/json:
@@ -2018,7 +2018,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RecordResponse"
-          description: ""
+          description: DNS record partially updated successfully.
         "401":
           content:
             application/json:
@@ -2172,7 +2172,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RecordResponse"
-          description: ""
+          description: DNS record updated successfully.
         "401":
           content:
             application/json:
