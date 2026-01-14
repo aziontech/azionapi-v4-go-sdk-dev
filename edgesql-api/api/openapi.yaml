@@ -70,7 +70,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Which field to use when ordering the results.
+      - description: "Which field to use when ordering the results. (Valid fields:\
+          \ id, name, status, active, created_at, updated_at)"
         explode: true
         in: query
         name: ordering
@@ -96,7 +97,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name."
         explode: true
         in: query
         name: search
@@ -136,7 +138,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedDatabaseDetailList"
-          description: ""
+          description: List of databases retrieved successfully.
         "401":
           content:
             application/json:
@@ -270,13 +272,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DatabaseDetailResponse"
-          description: ""
+          description: Database created successfully.
         "202":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DatabaseDetailResponse"
-          description: ""
+          description: Database creation request accepted and is being processed asynchronously.
         "422":
           content:
             application/json:
@@ -426,12 +428,18 @@ paths:
           type: integer
         style: simple
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: Database deleted successfully.
         "202":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Database deletion request accepted and is being processed asynchronously.
         "401":
           content:
             application/json:
@@ -577,7 +585,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DatabaseDetailResponse"
-          description: ""
+          description: Database details retrieved successfully.
         "401":
           content:
             application/json:
@@ -722,13 +730,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SQLResultResponse"
-          description: ""
+          description: SQL query executed successfully.
         "202":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/SQLResultResponse"
-          description: ""
+          description: SQL query execution request accepted and is being processed
+            asynchronously.
         "422":
           content:
             application/json:
