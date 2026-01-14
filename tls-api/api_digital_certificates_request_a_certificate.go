@@ -33,7 +33,7 @@ func (r ApiRequestCertificateRequest) CertificateRequest(certificateRequest Cert
 	return r
 }
 
-func (r ApiRequestCertificateRequest) Execute() (*ResponseCertificate, *http.Response, error) {
+func (r ApiRequestCertificateRequest) Execute() (*CertificateResponse, *http.Response, error) {
 	return r.ApiService.RequestCertificateExecute(r)
 }
 
@@ -53,13 +53,13 @@ func (a *DigitalCertificatesRequestACertificateAPIService) RequestCertificate(ct
 }
 
 // Execute executes the request
-//  @return ResponseCertificate
-func (a *DigitalCertificatesRequestACertificateAPIService) RequestCertificateExecute(r ApiRequestCertificateRequest) (*ResponseCertificate, *http.Response, error) {
+//  @return CertificateResponse
+func (a *DigitalCertificatesRequestACertificateAPIService) RequestCertificateExecute(r ApiRequestCertificateRequest) (*CertificateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseCertificate
+		localVarReturnValue  *CertificateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesRequestACertificateAPIService.RequestCertificate")

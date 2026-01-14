@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## RequestCertificate
 
-> ResponseCertificate RequestCertificate(ctx).CertificateRequest(certificateRequest).Execute()
+> CertificateResponse RequestCertificate(ctx).CertificateRequest(certificateRequest).Execute()
 
 Request a certificate
 
@@ -39,7 +39,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesRequestACertificateAPI.RequestCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RequestCertificate`: ResponseCertificate
+	// response from `RequestCertificate`: CertificateResponse
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesRequestACertificateAPI.RequestCertificate`: %v\n", resp)
 }
 ```
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseCertificate**](ResponseCertificate.md)
+[**CertificateResponse**](CertificateResponse.md)
 
 ### Authorization
 

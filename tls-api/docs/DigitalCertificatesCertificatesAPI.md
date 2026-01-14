@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateCertificate
 
-> ResponseCertificate CreateCertificate(ctx).Certificate(certificate).Execute()
+> CertificateResponse CreateCertificate(ctx).Certificate(certificate).Execute()
 
 Create a certificate
 
@@ -44,7 +44,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.CreateCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateCertificate`: ResponseCertificate
+	// response from `CreateCertificate`: CertificateResponse
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.CreateCertificate`: %v\n", resp)
 }
 ```
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseCertificate**](ResponseCertificate.md)
+[**CertificateResponse**](CertificateResponse.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCertificate
 
-> ResponseDeleteCertificate DeleteCertificate(ctx, certificateId).Execute()
+> DeleteResponse DeleteCertificate(ctx, certificateId).Execute()
 
 Delete a certificate
 
@@ -110,7 +110,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.DeleteCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteCertificate`: ResponseDeleteCertificate
+	// response from `DeleteCertificate`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.DeleteCertificate`: %v\n", resp)
 }
 ```
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteCertificate**](ResponseDeleteCertificate.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -181,13 +181,13 @@ func main() {
 	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
 	managed := true // bool | Filter by managed status. (optional)
 	name := "name_example" // string | Filter by certificate name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, certificate, issuer, validity, subject_name, type, managed, status, status_detail, csr, key_algorithm, challenge, authority, active, product_version, last_editor, last_modified, renewed_at) (optional)
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, certificate_type, managed, issuer, last_modified, renewed_at) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	renewedAt := time.Now() // time.Time | Filter by exact renewed date and time. (optional)
 	renewedAtGte := time.Now() // time.Time | Filter by renewed date (greater than or equal). (optional)
 	renewedAtLte := time.Now() // time.Time | Filter by renewed date (less than or equal). (optional)
-	search := "search_example" // string | A search term. (optional)
+	search := "search_example" // string | A search term to filter results. Searches across the following fields: name, issuer. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -221,13 +221,13 @@ Name | Type | Description  | Notes
  **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
  **managed** | **bool** | Filter by managed status. | 
  **name** | **string** | Filter by certificate name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, certificate, issuer, validity, subject_name, type, managed, status, status_detail, csr, key_algorithm, challenge, authority, active, product_version, last_editor, last_modified, renewed_at) | 
+ **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, certificate_type, managed, issuer, last_modified, renewed_at) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **renewedAt** | **time.Time** | Filter by exact renewed date and time. | 
  **renewedAtGte** | **time.Time** | Filter by renewed date (greater than or equal). | 
  **renewedAtLte** | **time.Time** | Filter by renewed date (less than or equal). | 
- **search** | **string** | A search term. | 
+ **search** | **string** | A search term to filter results. Searches across the following fields: name, issuer. | 
 
 ### Return type
 
@@ -249,7 +249,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateCertificate
 
-> ResponseCertificate PartialUpdateCertificate(ctx, certificateId).PatchedCertificate(patchedCertificate).Execute()
+> CertificateResponse PartialUpdateCertificate(ctx, certificateId).PatchedCertificate(patchedCertificate).Execute()
 
 Partially update a certificate
 
@@ -278,7 +278,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.PartialUpdateCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateCertificate`: ResponseCertificate
+	// response from `PartialUpdateCertificate`: CertificateResponse
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.PartialUpdateCertificate`: %v\n", resp)
 }
 ```
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseCertificate**](ResponseCertificate.md)
+[**CertificateResponse**](CertificateResponse.md)
 
 ### Authorization
 
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveCertificate
 
-> ResponseRetrieveCertificate RetrieveCertificate(ctx, certificateId).Fields(fields).Execute()
+> CertificateResponse RetrieveCertificate(ctx, certificateId).Fields(fields).Execute()
 
 Retrieve details from a certificate
 
@@ -350,7 +350,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.RetrieveCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveCertificate`: ResponseRetrieveCertificate
+	// response from `RetrieveCertificate`: CertificateResponse
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.RetrieveCertificate`: %v\n", resp)
 }
 ```
@@ -375,7 +375,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveCertificate**](ResponseRetrieveCertificate.md)
+[**CertificateResponse**](CertificateResponse.md)
 
 ### Authorization
 
@@ -393,7 +393,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCertificate
 
-> ResponseCertificate UpdateCertificate(ctx, certificateId).Certificate(certificate).Execute()
+> CertificateResponse UpdateCertificate(ctx, certificateId).Certificate(certificate).Execute()
 
 Update a certificate
 
@@ -423,7 +423,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `DigitalCertificatesCertificatesAPI.UpdateCertificate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateCertificate`: ResponseCertificate
+	// response from `UpdateCertificate`: CertificateResponse
 	fmt.Fprintf(os.Stdout, "Response from `DigitalCertificatesCertificatesAPI.UpdateCertificate`: %v\n", resp)
 }
 ```
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseCertificate**](ResponseCertificate.md)
+[**CertificateResponse**](CertificateResponse.md)
 
 ### Authorization
 

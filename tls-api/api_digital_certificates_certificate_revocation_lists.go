@@ -35,7 +35,7 @@ func (r ApiCreateCertificateRevocationListRequest) CertificateRevocationList(cer
 	return r
 }
 
-func (r ApiCreateCertificateRevocationListRequest) Execute() (*ResponseCertificateRevocationList, *http.Response, error) {
+func (r ApiCreateCertificateRevocationListRequest) Execute() (*CertificateRevocationListResponse, *http.Response, error) {
 	return r.ApiService.CreateCertificateRevocationListExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertific
 }
 
 // Execute executes the request
-//  @return ResponseCertificateRevocationList
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertificateRevocationListExecute(r ApiCreateCertificateRevocationListRequest) (*ResponseCertificateRevocationList, *http.Response, error) {
+//  @return CertificateRevocationListResponse
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) CreateCertificateRevocationListExecute(r ApiCreateCertificateRevocationListRequest) (*CertificateRevocationListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseCertificateRevocationList
+		localVarReturnValue  *CertificateRevocationListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.CreateCertificateRevocationList")
@@ -230,7 +230,7 @@ type ApiDeleteCertificateRevocationListRequest struct {
 	crlId int64
 }
 
-func (r ApiDeleteCertificateRevocationListRequest) Execute() (*ResponseDeleteCertificateRevocationList, *http.Response, error) {
+func (r ApiDeleteCertificateRevocationListRequest) Execute() (*DeleteResponse, *http.Response, error) {
 	return r.ApiService.DeleteCertificateRevocationListExecute(r)
 }
 
@@ -252,13 +252,13 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) DeleteCertific
 }
 
 // Execute executes the request
-//  @return ResponseDeleteCertificateRevocationList
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) DeleteCertificateRevocationListExecute(r ApiDeleteCertificateRevocationListRequest) (*ResponseDeleteCertificateRevocationList, *http.Response, error) {
+//  @return DeleteResponse
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) DeleteCertificateRevocationListExecute(r ApiDeleteCertificateRevocationListRequest) (*DeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteCertificateRevocationList
+		localVarReturnValue  *DeleteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.DeleteCertificateRevocationList")
@@ -517,7 +517,7 @@ func (r ApiListCertificateRevocationListsRequest) NextUpdateLte(nextUpdateLte ti
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: name, active, last_editor, last_modified, product_version, issuer, last_update, next_update, crl)
+// Which field to use when ordering the results. (Valid fields: id, name, issuer, last_update, next_update, last_modified)
 func (r ApiListCertificateRevocationListsRequest) Ordering(ordering string) ApiListCertificateRevocationListsRequest {
 	r.ordering = &ordering
 	return r
@@ -535,7 +535,7 @@ func (r ApiListCertificateRevocationListsRequest) PageSize(pageSize int64) ApiLi
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name, issuer.
 func (r ApiListCertificateRevocationListsRequest) Search(search string) ApiListCertificateRevocationListsRequest {
 	r.search = &search
 	return r
@@ -788,7 +788,7 @@ func (r ApiPartialUpdateCertificateRevocationListRequest) PatchedCertificateRevo
 	return r
 }
 
-func (r ApiPartialUpdateCertificateRevocationListRequest) Execute() (*ResponseCertificateRevocationList, *http.Response, error) {
+func (r ApiPartialUpdateCertificateRevocationListRequest) Execute() (*CertificateRevocationListResponse, *http.Response, error) {
 	return r.ApiService.PartialUpdateCertificateRevocationListExecute(r)
 }
 
@@ -810,13 +810,13 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateC
 }
 
 // Execute executes the request
-//  @return ResponseCertificateRevocationList
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateCertificateRevocationListExecute(r ApiPartialUpdateCertificateRevocationListRequest) (*ResponseCertificateRevocationList, *http.Response, error) {
+//  @return CertificateRevocationListResponse
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) PartialUpdateCertificateRevocationListExecute(r ApiPartialUpdateCertificateRevocationListRequest) (*CertificateRevocationListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseCertificateRevocationList
+		localVarReturnValue  *CertificateRevocationListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.PartialUpdateCertificateRevocationList")
@@ -990,7 +990,7 @@ func (r ApiRetrieveCertificateRevocationListRequest) Fields(fields string) ApiRe
 	return r
 }
 
-func (r ApiRetrieveCertificateRevocationListRequest) Execute() (*ResponseRetrieveCertificateRevocationList, *http.Response, error) {
+func (r ApiRetrieveCertificateRevocationListRequest) Execute() (*CertificateRevocationListResponse, *http.Response, error) {
 	return r.ApiService.RetrieveCertificateRevocationListExecute(r)
 }
 
@@ -1012,13 +1012,13 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetrieveCertif
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveCertificateRevocationList
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetrieveCertificateRevocationListExecute(r ApiRetrieveCertificateRevocationListRequest) (*ResponseRetrieveCertificateRevocationList, *http.Response, error) {
+//  @return CertificateRevocationListResponse
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) RetrieveCertificateRevocationListExecute(r ApiRetrieveCertificateRevocationListRequest) (*CertificateRevocationListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveCertificateRevocationList
+		localVarReturnValue  *CertificateRevocationListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.RetrieveCertificateRevocationList")
@@ -1192,7 +1192,7 @@ func (r ApiUpdateCertificateRevocationListRequest) CertificateRevocationList(cer
 	return r
 }
 
-func (r ApiUpdateCertificateRevocationListRequest) Execute() (*ResponseCertificateRevocationList, *http.Response, error) {
+func (r ApiUpdateCertificateRevocationListRequest) Execute() (*CertificateRevocationListResponse, *http.Response, error) {
 	return r.ApiService.UpdateCertificateRevocationListExecute(r)
 }
 
@@ -1214,13 +1214,13 @@ func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertific
 }
 
 // Execute executes the request
-//  @return ResponseCertificateRevocationList
-func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertificateRevocationListExecute(r ApiUpdateCertificateRevocationListRequest) (*ResponseCertificateRevocationList, *http.Response, error) {
+//  @return CertificateRevocationListResponse
+func (a *DigitalCertificatesCertificateRevocationListsAPIService) UpdateCertificateRevocationListExecute(r ApiUpdateCertificateRevocationListRequest) (*CertificateRevocationListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseCertificateRevocationList
+		localVarReturnValue  *CertificateRevocationListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificateRevocationListsAPIService.UpdateCertificateRevocationList")

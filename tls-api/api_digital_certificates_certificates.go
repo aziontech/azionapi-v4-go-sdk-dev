@@ -35,7 +35,7 @@ func (r ApiCreateCertificateRequest) Certificate(certificate Certificate) ApiCre
 	return r
 }
 
-func (r ApiCreateCertificateRequest) Execute() (*ResponseCertificate, *http.Response, error) {
+func (r ApiCreateCertificateRequest) Execute() (*CertificateResponse, *http.Response, error) {
 	return r.ApiService.CreateCertificateExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *DigitalCertificatesCertificatesAPIService) CreateCertificate(ctx contex
 }
 
 // Execute executes the request
-//  @return ResponseCertificate
-func (a *DigitalCertificatesCertificatesAPIService) CreateCertificateExecute(r ApiCreateCertificateRequest) (*ResponseCertificate, *http.Response, error) {
+//  @return CertificateResponse
+func (a *DigitalCertificatesCertificatesAPIService) CreateCertificateExecute(r ApiCreateCertificateRequest) (*CertificateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseCertificate
+		localVarReturnValue  *CertificateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificatesAPIService.CreateCertificate")
@@ -230,7 +230,7 @@ type ApiDeleteCertificateRequest struct {
 	certificateId int64
 }
 
-func (r ApiDeleteCertificateRequest) Execute() (*ResponseDeleteCertificate, *http.Response, error) {
+func (r ApiDeleteCertificateRequest) Execute() (*DeleteResponse, *http.Response, error) {
 	return r.ApiService.DeleteCertificateExecute(r)
 }
 
@@ -252,13 +252,13 @@ func (a *DigitalCertificatesCertificatesAPIService) DeleteCertificate(ctx contex
 }
 
 // Execute executes the request
-//  @return ResponseDeleteCertificate
-func (a *DigitalCertificatesCertificatesAPIService) DeleteCertificateExecute(r ApiDeleteCertificateRequest) (*ResponseDeleteCertificate, *http.Response, error) {
+//  @return DeleteResponse
+func (a *DigitalCertificatesCertificatesAPIService) DeleteCertificateExecute(r ApiDeleteCertificateRequest) (*DeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteCertificate
+		localVarReturnValue  *DeleteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificatesAPIService.DeleteCertificate")
@@ -492,7 +492,7 @@ func (r ApiListCertificatesRequest) Name(name string) ApiListCertificatesRequest
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: id, name, certificate, issuer, validity, subject_name, type, managed, status, status_detail, csr, key_algorithm, challenge, authority, active, product_version, last_editor, last_modified, renewed_at)
+// Which field to use when ordering the results. (Valid fields: id, name, certificate_type, managed, issuer, last_modified, renewed_at)
 func (r ApiListCertificatesRequest) Ordering(ordering string) ApiListCertificatesRequest {
 	r.ordering = &ordering
 	return r
@@ -528,7 +528,7 @@ func (r ApiListCertificatesRequest) RenewedAtLte(renewedAtLte time.Time) ApiList
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name, issuer.
 func (r ApiListCertificatesRequest) Search(search string) ApiListCertificatesRequest {
 	r.search = &search
 	return r
@@ -778,7 +778,7 @@ func (r ApiPartialUpdateCertificateRequest) PatchedCertificate(patchedCertificat
 	return r
 }
 
-func (r ApiPartialUpdateCertificateRequest) Execute() (*ResponseCertificate, *http.Response, error) {
+func (r ApiPartialUpdateCertificateRequest) Execute() (*CertificateResponse, *http.Response, error) {
 	return r.ApiService.PartialUpdateCertificateExecute(r)
 }
 
@@ -800,13 +800,13 @@ func (a *DigitalCertificatesCertificatesAPIService) PartialUpdateCertificate(ctx
 }
 
 // Execute executes the request
-//  @return ResponseCertificate
-func (a *DigitalCertificatesCertificatesAPIService) PartialUpdateCertificateExecute(r ApiPartialUpdateCertificateRequest) (*ResponseCertificate, *http.Response, error) {
+//  @return CertificateResponse
+func (a *DigitalCertificatesCertificatesAPIService) PartialUpdateCertificateExecute(r ApiPartialUpdateCertificateRequest) (*CertificateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseCertificate
+		localVarReturnValue  *CertificateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificatesAPIService.PartialUpdateCertificate")
@@ -951,7 +951,6 @@ func (a *DigitalCertificatesCertificatesAPIService) PartialUpdateCertificateExec
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -981,7 +980,7 @@ func (r ApiRetrieveCertificateRequest) Fields(fields string) ApiRetrieveCertific
 	return r
 }
 
-func (r ApiRetrieveCertificateRequest) Execute() (*ResponseRetrieveCertificate, *http.Response, error) {
+func (r ApiRetrieveCertificateRequest) Execute() (*CertificateResponse, *http.Response, error) {
 	return r.ApiService.RetrieveCertificateExecute(r)
 }
 
@@ -1003,13 +1002,13 @@ func (a *DigitalCertificatesCertificatesAPIService) RetrieveCertificate(ctx cont
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveCertificate
-func (a *DigitalCertificatesCertificatesAPIService) RetrieveCertificateExecute(r ApiRetrieveCertificateRequest) (*ResponseRetrieveCertificate, *http.Response, error) {
+//  @return CertificateResponse
+func (a *DigitalCertificatesCertificatesAPIService) RetrieveCertificateExecute(r ApiRetrieveCertificateRequest) (*CertificateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveCertificate
+		localVarReturnValue  *CertificateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificatesAPIService.RetrieveCertificate")
@@ -1183,7 +1182,7 @@ func (r ApiUpdateCertificateRequest) Certificate(certificate Certificate) ApiUpd
 	return r
 }
 
-func (r ApiUpdateCertificateRequest) Execute() (*ResponseCertificate, *http.Response, error) {
+func (r ApiUpdateCertificateRequest) Execute() (*CertificateResponse, *http.Response, error) {
 	return r.ApiService.UpdateCertificateExecute(r)
 }
 
@@ -1205,13 +1204,13 @@ func (a *DigitalCertificatesCertificatesAPIService) UpdateCertificate(ctx contex
 }
 
 // Execute executes the request
-//  @return ResponseCertificate
-func (a *DigitalCertificatesCertificatesAPIService) UpdateCertificateExecute(r ApiUpdateCertificateRequest) (*ResponseCertificate, *http.Response, error) {
+//  @return CertificateResponse
+func (a *DigitalCertificatesCertificatesAPIService) UpdateCertificateExecute(r ApiUpdateCertificateRequest) (*CertificateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseCertificate
+		localVarReturnValue  *CertificateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DigitalCertificatesCertificatesAPIService.UpdateCertificate")
@@ -1359,7 +1358,6 @@ func (a *DigitalCertificatesCertificatesAPIService) UpdateCertificateExecute(r A
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

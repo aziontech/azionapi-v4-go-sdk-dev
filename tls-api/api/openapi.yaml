@@ -87,9 +87,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: |-
-          Which field to use when ordering the results.
-          (Valid fields: id, name, certificate, issuer, validity, subject_name, type, managed, status, status_detail, csr, key_algorithm, challenge, authority, active, product_version, last_editor, last_modified, renewed_at)
+      - description: "Which field to use when ordering the results. (Valid fields:\
+          \ id, name, certificate_type, managed, issuer, last_modified, renewed_at)"
         explode: true
         in: query
         name: ordering
@@ -142,7 +141,8 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name, issuer."
         explode: true
         in: query
         name: search
@@ -156,7 +156,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedCertificateList"
-          description: ""
+          description: List of certificates retrieved successfully.
         "401":
           content:
             application/json:
@@ -289,14 +289,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseCertificate"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncCertificate"
-          description: ""
+                $ref: "#/components/schemas/CertificateResponse"
+          description: Certificate created successfully.
         "401":
           content:
             application/json:
@@ -434,14 +428,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteCertificate"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteCertificate"
-          description: ""
+                $ref: "#/components/schemas/DeleteResponse"
+          description: Certificate deleted successfully.
         "401":
           content:
             application/json:
@@ -586,8 +574,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveCertificate"
-          description: ""
+                $ref: "#/components/schemas/CertificateResponse"
+          description: Certificate details retrieved successfully.
         "401":
           content:
             application/json:
@@ -730,7 +718,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseCertificate"
+                $ref: "#/components/schemas/CertificateResponse"
           description: Ok
         "400":
           content:
@@ -844,12 +832,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncCertificate"
-          description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -881,7 +863,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseCertificate"
+                $ref: "#/components/schemas/CertificateResponse"
           description: Ok
         "400":
           content:
@@ -995,12 +977,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncCertificate"
-          description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1022,8 +998,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseCertificate"
-          description: ""
+                $ref: "#/components/schemas/CertificateResponse"
+          description: Certificate request submitted successfully.
         "401":
           content:
             application/json:
@@ -1261,9 +1237,8 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: |-
-          Which field to use when ordering the results.
-          (Valid fields: name, active, last_editor, last_modified, product_version, issuer, last_update, next_update, crl)
+      - description: "Which field to use when ordering the results. (Valid fields:\
+          \ id, name, issuer, last_update, next_update, last_modified)"
         explode: true
         in: query
         name: ordering
@@ -1289,7 +1264,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name, issuer."
         explode: true
         in: query
         name: search
@@ -1303,7 +1279,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedCertificateRevocationListList"
-          description: ""
+          description: List of certificate revocation lists retrieved successfully.
         "401":
           content:
             application/json:
@@ -1436,14 +1412,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseCertificateRevocationList"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncCertificateRevocationList"
-          description: ""
+                $ref: "#/components/schemas/CertificateRevocationListResponse"
+          description: Certificate revocation list created successfully.
         "401":
           content:
             application/json:
@@ -1581,14 +1551,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteCertificateRevocationList"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteCertificateRevocationList"
-          description: ""
+                $ref: "#/components/schemas/DeleteResponse"
+          description: Certificate revocation list deleted successfully.
         "401":
           content:
             application/json:
@@ -1734,8 +1698,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveCertificateRevocationList"
-          description: ""
+                $ref: "#/components/schemas/CertificateRevocationListResponse"
+          description: Certificate revocation list details retrieved successfully.
         "401":
           content:
             application/json:
@@ -1878,14 +1842,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseCertificateRevocationList"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncCertificateRevocationList"
-          description: ""
+                $ref: "#/components/schemas/CertificateRevocationListResponse"
+          description: Certificate revocation list partially updated successfully.
         "401":
           content:
             application/json:
@@ -2029,14 +1987,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseCertificateRevocationList"
-          description: ""
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncCertificateRevocationList"
-          description: ""
+                $ref: "#/components/schemas/CertificateRevocationListResponse"
+          description: Certificate revocation list updated successfully.
         "401":
           content:
             application/json:
@@ -2170,8 +2122,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseCertificate"
-          description: ""
+                $ref: "#/components/schemas/CertificateResponse"
+          description: Certificate signing request created successfully.
         "401":
           content:
             application/json:
@@ -2596,6 +2548,42 @@ components:
       - subject_name
       - validity
       type: object
+    CertificateResponse:
+      example:
+        data:
+          product_version: product_version
+          csr: csr
+          last_editor: last_editor
+          certificate: certificate
+          active: true
+          private_key: private_key
+          key_algorithm: key_algorithm
+          type: type
+          issuer: issuer
+          status_detail: status_detail
+          managed: true
+          authority: authority
+          name: name
+          subject_name:
+          - subject_name
+          - subject_name
+          challenge: challenge
+          id: 0
+          validity: validity
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          status: status
+          renewed_at: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Certificate"
+      required:
+      - data
+      type: object
     CertificateRevocationList:
       example:
         product_version: product_version
@@ -2658,6 +2646,30 @@ components:
       - name
       - next_update
       - product_version
+      type: object
+    CertificateRevocationListResponse:
+      example:
+        data:
+          product_version: product_version
+          last_editor: last_editor
+          last_update: 2000-01-23T04:56:07.000+00:00
+          name: name
+          active: true
+          id: 0
+          crl: crl
+          last_modified: 2000-01-23T04:56:07.000+00:00
+          issuer: issuer
+          next_update: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/CertificateRevocationList"
+      required:
+      - data
       type: object
     CertificateSigningRequest:
       example:
@@ -2859,6 +2871,15 @@ components:
       - status_detail
       - subject_name
       - validity
+      type: object
+    DeleteResponse:
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
       type: object
     JSONAPIErrorObject:
       description: Serializer for a single JSON:API error object.
@@ -3265,212 +3286,6 @@ components:
           maxLength: 30720000
           minLength: 1
           type: string
-      type: object
-    ResponseAsyncCertificate:
-      example:
-        data:
-          product_version: product_version
-          csr: csr
-          last_editor: last_editor
-          certificate: certificate
-          active: true
-          private_key: private_key
-          key_algorithm: key_algorithm
-          type: type
-          issuer: issuer
-          status_detail: status_detail
-          managed: true
-          authority: authority
-          name: name
-          subject_name:
-          - subject_name
-          - subject_name
-          challenge: challenge
-          id: 0
-          validity: validity
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          status: status
-          renewed_at: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Certificate"
-      required:
-      - data
-      type: object
-    ResponseAsyncCertificateRevocationList:
-      example:
-        data:
-          product_version: product_version
-          last_editor: last_editor
-          last_update: 2000-01-23T04:56:07.000+00:00
-          name: name
-          active: true
-          id: 0
-          crl: crl
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          issuer: issuer
-          next_update: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/CertificateRevocationList"
-      required:
-      - data
-      type: object
-    ResponseAsyncDeleteCertificate:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseAsyncDeleteCertificateRevocationList:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseCertificate:
-      example:
-        data:
-          product_version: product_version
-          csr: csr
-          last_editor: last_editor
-          certificate: certificate
-          active: true
-          private_key: private_key
-          key_algorithm: key_algorithm
-          type: type
-          issuer: issuer
-          status_detail: status_detail
-          managed: true
-          authority: authority
-          name: name
-          subject_name:
-          - subject_name
-          - subject_name
-          challenge: challenge
-          id: 0
-          validity: validity
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          status: status
-          renewed_at: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Certificate"
-      required:
-      - data
-      type: object
-    ResponseCertificateRevocationList:
-      example:
-        data:
-          product_version: product_version
-          last_editor: last_editor
-          last_update: 2000-01-23T04:56:07.000+00:00
-          name: name
-          active: true
-          id: 0
-          crl: crl
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          issuer: issuer
-          next_update: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/CertificateRevocationList"
-      required:
-      - data
-      type: object
-    ResponseDeleteCertificate:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseDeleteCertificateRevocationList:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseRetrieveCertificate:
-      example:
-        data:
-          product_version: product_version
-          csr: csr
-          last_editor: last_editor
-          certificate: certificate
-          active: true
-          private_key: private_key
-          key_algorithm: key_algorithm
-          type: type
-          issuer: issuer
-          status_detail: status_detail
-          managed: true
-          authority: authority
-          name: name
-          subject_name:
-          - subject_name
-          - subject_name
-          challenge: challenge
-          id: 0
-          validity: validity
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          status: status
-          renewed_at: 2000-01-23T04:56:07.000+00:00
-      properties:
-        data:
-          $ref: "#/components/schemas/Certificate"
-      required:
-      - data
-      type: object
-    ResponseRetrieveCertificateRevocationList:
-      example:
-        data:
-          product_version: product_version
-          last_editor: last_editor
-          last_update: 2000-01-23T04:56:07.000+00:00
-          name: name
-          active: true
-          id: 0
-          crl: crl
-          last_modified: 2000-01-23T04:56:07.000+00:00
-          issuer: issuer
-          next_update: 2000-01-23T04:56:07.000+00:00
-      properties:
-        data:
-          $ref: "#/components/schemas/CertificateRevocationList"
-      required:
-      - data
       type: object
   securitySchemes:
     BearerAuth:
