@@ -177,7 +177,7 @@ func main() {
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, domain, active) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | Search in name and domain fields (case-insensitive, partial match). (optional)
+	search := "search_example" // string | A search term to filter results. Searches across the following fields: name, domain. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
  **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, domain, active) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | Search in name and domain fields (case-insensitive, partial match). | 
+ **search** | **string** | A search term to filter results. Searches across the following fields: name, domain. | 
 
 ### Return type
 
