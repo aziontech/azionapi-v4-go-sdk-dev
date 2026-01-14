@@ -249,10 +249,10 @@ func main() {
 	id := int64(789) // int64 | Filter by id (accepts comma-separated values). (optional)
 	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
 	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, name, status, active, created_at, updated_at) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
-	search := "search_example" // string | A search term. (optional)
+	search := "search_example" // string | A search term to filter results. Searches across the following fields: name. (optional)
 	status := "status_example" // string | Filter by status (accepts comma-separated values). (optional)
 	updatedAtGte := time.Now() // time.Time | Filter by updated_at (greater than or equal). (optional)
 	updatedAtLte := time.Now() // time.Time | Filter by updated_at (less than or equal). (optional)
@@ -287,10 +287,10 @@ Name | Type | Description  | Notes
  **id** | **int64** | Filter by id (accepts comma-separated values). | 
  **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
  **name** | **string** | Filter by name (case-insensitive, partial match). | 
- **ordering** | **string** | Which field to use when ordering the results. | 
+ **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, name, status, active, created_at, updated_at) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
- **search** | **string** | A search term. | 
+ **search** | **string** | A search term to filter results. Searches across the following fields: name. | 
  **status** | **string** | Filter by status (accepts comma-separated values). | 
  **updatedAtGte** | **time.Time** | Filter by updated_at (greater than or equal). | 
  **updatedAtLte** | **time.Time** | Filter by updated_at (less than or equal). | 

@@ -704,7 +704,7 @@ func (r ApiListDatabasesRequest) Name(name string) ApiListDatabasesRequest {
 	return r
 }
 
-// Which field to use when ordering the results.
+// Which field to use when ordering the results. (Valid fields: id, name, status, active, created_at, updated_at)
 func (r ApiListDatabasesRequest) Ordering(ordering string) ApiListDatabasesRequest {
 	r.ordering = &ordering
 	return r
@@ -722,7 +722,7 @@ func (r ApiListDatabasesRequest) PageSize(pageSize int64) ApiListDatabasesReques
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name.
 func (r ApiListDatabasesRequest) Search(search string) ApiListDatabasesRequest {
 	r.search = &search
 	return r
