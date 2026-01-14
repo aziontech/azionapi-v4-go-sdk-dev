@@ -456,7 +456,7 @@ func (r ApiListWorkloadDeploymentsRequest) Id(id int64) ApiListWorkloadDeploymen
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: id, name, active, last_editor, last_modified, current)
+// Which field to use when ordering the results. (Valid fields: id, tag, current)
 func (r ApiListWorkloadDeploymentsRequest) Ordering(ordering string) ApiListWorkloadDeploymentsRequest {
 	r.ordering = &ordering
 	return r
@@ -474,7 +474,7 @@ func (r ApiListWorkloadDeploymentsRequest) PageSize(pageSize int64) ApiListWorkl
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: id, tag, current.
 func (r ApiListWorkloadDeploymentsRequest) Search(search string) ApiListWorkloadDeploymentsRequest {
 	r.search = &search
 	return r

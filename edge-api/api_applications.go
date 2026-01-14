@@ -697,7 +697,7 @@ func (r ApiListApplicationsRequest) PageSize(pageSize int64) ApiListApplications
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: id, name, last_editor, last_modified, active.
 func (r ApiListApplicationsRequest) Search(search string) ApiListApplicationsRequest {
 	r.search = &search
 	return r

@@ -475,7 +475,7 @@ func (r ApiListCustomPagesRequest) Name(name string) ApiListCustomPagesRequest {
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: name, last_editor, last_modified, active, product_version, pages)
+// Which field to use when ordering the results. (Valid fields: id, name, last_editor, last_modified, active)
 func (r ApiListCustomPagesRequest) Ordering(ordering string) ApiListCustomPagesRequest {
 	r.ordering = &ordering
 	return r
@@ -493,7 +493,7 @@ func (r ApiListCustomPagesRequest) PageSize(pageSize int64) ApiListCustomPagesRe
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: id, name, last_editor, last_modified, active.
 func (r ApiListCustomPagesRequest) Search(search string) ApiListCustomPagesRequest {
 	r.search = &search
 	return r

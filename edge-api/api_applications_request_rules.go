@@ -498,7 +498,7 @@ func (r ApiListApplicationRequestRulesRequest) OrderLte(orderLte int64) ApiListA
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: name, active, description, order, criteria, last_editor, last_modified, behaviors)
+// Which field to use when ordering the results. (Valid fields: id, name, description, last_editor, last_modified, order)
 func (r ApiListApplicationRequestRulesRequest) Ordering(ordering string) ApiListApplicationRequestRulesRequest {
 	r.ordering = &ordering
 	return r
@@ -516,7 +516,7 @@ func (r ApiListApplicationRequestRulesRequest) PageSize(pageSize int64) ApiListA
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name.
 func (r ApiListApplicationRequestRulesRequest) Search(search string) ApiListApplicationRequestRulesRequest {
 	r.search = &search
 	return r
@@ -1373,9 +1373,6 @@ type ApiUpdateApplicationRequestRulesOrderRequest struct {
 	ApiService *ApplicationsRequestRulesAPIService
 	applicationId int64
 	applicationRequestPhaseRuleEngineOrderRequest *ApplicationRequestPhaseRuleEngineOrderRequest
-	ordering *string
-	page *int64
-	pageSize *int64
 	search *string
 }
 
@@ -1384,25 +1381,7 @@ func (r ApiUpdateApplicationRequestRulesOrderRequest) ApplicationRequestPhaseRul
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: order)
-func (r ApiUpdateApplicationRequestRulesOrderRequest) Ordering(ordering string) ApiUpdateApplicationRequestRulesOrderRequest {
-	r.ordering = &ordering
-	return r
-}
-
-// A page number within the paginated result set.
-func (r ApiUpdateApplicationRequestRulesOrderRequest) Page(page int64) ApiUpdateApplicationRequestRulesOrderRequest {
-	r.page = &page
-	return r
-}
-
-// Number of results to return per page.
-func (r ApiUpdateApplicationRequestRulesOrderRequest) PageSize(pageSize int64) ApiUpdateApplicationRequestRulesOrderRequest {
-	r.pageSize = &pageSize
-	return r
-}
-
-// A search term.
+// A search term to filter results. Searches across the following fields: name.
 func (r ApiUpdateApplicationRequestRulesOrderRequest) Search(search string) ApiUpdateApplicationRequestRulesOrderRequest {
 	r.search = &search
 	return r
@@ -1454,15 +1433,6 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRulesOrderE
 		return localVarReturnValue, nil, reportError("applicationRequestPhaseRuleEngineOrderRequest is required and must be specified")
 	}
 
-	if r.ordering != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "ordering", r.ordering, "form", "")
-	}
-	if r.page != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
-	}
-	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
-	}
 	if r.search != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "search", r.search, "form", "")
 	}

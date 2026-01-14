@@ -477,7 +477,7 @@ func (r ApiListFirewallFunctionRequest) Name(name string) ApiListFirewallFunctio
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active)
+// Which field to use when ordering the results. (Valid fields: id, name, last_editor, last_modified)
 func (r ApiListFirewallFunctionRequest) Ordering(ordering string) ApiListFirewallFunctionRequest {
 	r.ordering = &ordering
 	return r
@@ -495,7 +495,7 @@ func (r ApiListFirewallFunctionRequest) PageSize(pageSize int64) ApiListFirewall
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name, last_editor.
 func (r ApiListFirewallFunctionRequest) Search(search string) ApiListFirewallFunctionRequest {
 	r.search = &search
 	return r

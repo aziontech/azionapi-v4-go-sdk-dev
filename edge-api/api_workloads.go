@@ -503,7 +503,7 @@ func (r ApiListWorkloadsRequest) Name(name string) ApiListWorkloadsRequest {
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version)
+// Which field to use when ordering the results. (Valid fields: id, name, active, last_editor, last_modified)
 func (r ApiListWorkloadsRequest) Ordering(ordering string) ApiListWorkloadsRequest {
 	r.ordering = &ordering
 	return r
@@ -521,7 +521,7 @@ func (r ApiListWorkloadsRequest) PageSize(pageSize int64) ApiListWorkloadsReques
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: id, name, last_editor.
 func (r ApiListWorkloadsRequest) Search(search string) ApiListWorkloadsRequest {
 	r.search = &search
 	return r

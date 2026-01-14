@@ -456,7 +456,7 @@ func (r ApiListDeviceGroupsRequest) Name(name string) ApiListDeviceGroupsRequest
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: name, id, user_agent)
+// Which field to use when ordering the results. (Valid fields: id, name, user_agent)
 func (r ApiListDeviceGroupsRequest) Ordering(ordering string) ApiListDeviceGroupsRequest {
 	r.ordering = &ordering
 	return r
@@ -474,7 +474,7 @@ func (r ApiListDeviceGroupsRequest) PageSize(pageSize int64) ApiListDeviceGroups
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name, user_agent.
 func (r ApiListDeviceGroupsRequest) Search(search string) ApiListDeviceGroupsRequest {
 	r.search = &search
 	return r

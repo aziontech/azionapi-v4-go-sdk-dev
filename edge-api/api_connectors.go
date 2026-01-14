@@ -473,7 +473,7 @@ func (r ApiListConnectorsRequest) Name(name string) ApiListConnectorsRequest {
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: )
+// Which field to use when ordering the results. (Valid fields: id, name, type, last_editor, last_modified, active)
 func (r ApiListConnectorsRequest) Ordering(ordering string) ApiListConnectorsRequest {
 	r.ordering = &ordering
 	return r
@@ -491,7 +491,7 @@ func (r ApiListConnectorsRequest) PageSize(pageSize int64) ApiListConnectorsRequ
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: id, name, type, last_editor, last_modified, active.
 func (r ApiListConnectorsRequest) Search(search string) ApiListConnectorsRequest {
 	r.search = &search
 	return r

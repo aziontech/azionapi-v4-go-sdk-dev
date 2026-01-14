@@ -98,7 +98,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: id, name, last_editor, last_modified, active."
         explode: true
         in: query
         name: search
@@ -112,7 +113,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedApplicationList"
-          description: ""
+          description: List of applications retrieved successfully.
         "401":
           content:
             application/json:
@@ -246,7 +247,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApplicationResponse"
-          description: ""
+          description: Application created successfully.
         "401":
           content:
             application/json:
@@ -385,7 +386,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Application deleted successfully.
         "401":
           content:
             application/json:
@@ -531,7 +532,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApplicationResponse"
-          description: ""
+          description: Application details retrieved successfully.
         "401":
           content:
             application/json:
@@ -675,7 +676,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApplicationResponse"
-          description: ""
+          description: Application partially updated successfully.
         "401":
           content:
             application/json:
@@ -820,7 +821,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApplicationResponse"
-          description: ""
+          description: Application updated successfully.
         "401":
           content:
             application/json:
@@ -980,7 +981,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, name)
+          (Valid fields: id, name, browser_cache_settings, cdn_cache_settings, cache_by_query_string, cache_by_cookies, adaptive_delivery_action, enable_caching_for_post, enable_caching_for_options, enable_stale_cache, l2_caching_enabled)
         explode: true
         in: query
         name: ordering
@@ -1006,7 +1007,9 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name, cdn_cache_settings, cache_by_query_string, query_string_fields,\
+          \ cache_by_cookies, cookie_names, adaptive_delivery_action."
         explode: true
         in: query
         name: search
@@ -1020,119 +1023,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedCacheSettingList"
-          description: Ok
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
+          description: List of cache settings retrieved successfully.
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1164,119 +1055,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CacheSettingResponse"
-          description: Created
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
+          description: Cache setting created successfully.
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1312,7 +1091,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Cache setting deleted successfully.
         "401":
           content:
             application/json:
@@ -1466,120 +1245,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CacheSettingResponse"
-          description: Ok
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
+                $ref: "#/components/schemas/CacheSetting"
+          description: Cache setting details retrieved successfully.
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1620,119 +1287,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CacheSettingResponse"
-          description: Ok
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
+          description: Cache setting partially updated successfully.
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1774,119 +1329,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CacheSettingResponse"
-          description: Ok
-        "400":
-          content:
-            application/json:
-              examples:
-                Error-10000:
-                  description: Invalid data provided in the request.
-                  summary: Validation Error
-                  value:
-                    errors:
-                    - status: "400"
-                      code: "10000"
-                      title: Validation Error
-                      detail: Invalid data provided in the request.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Validation Error
-        "404":
-          content:
-            application/json:
-              examples:
-                Error-10004:
-                  description: Not found.
-                  summary: Not Found
-                  value:
-                    errors:
-                    - status: "404"
-                      code: "10004"
-                      title: Not Found
-                      detail: Not found.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Found
-        "405":
-          content:
-            application/json:
-              examples:
-                Error-10007:
-                  description: "Method \"{method}\" not allowed."
-                  summary: Method Not Allowed
-                  value:
-                    errors:
-                    - status: "405"
-                      code: "10007"
-                      title: Method Not Allowed
-                      detail: "Method \"{method}\" not allowed."
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Method Not Allowed
-        "406":
-          content:
-            application/json:
-              examples:
-                Error-10005:
-                  description: Could not satisfy the request Accept header.
-                  summary: Not Acceptable
-                  value:
-                    errors:
-                    - status: "406"
-                      code: "10005"
-                      title: Not Acceptable
-                      detail: Could not satisfy the request Accept header.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Not Acceptable
-        "429":
-          content:
-            application/json:
-              examples:
-                Error-10010:
-                  description: Request was throttled.
-                  summary: Throttled
-                  value:
-                    errors:
-                    - status: "429"
-                      code: "10010"
-                      title: Throttled
-                      detail: Request was throttled.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Throttled
-        "401":
-          content:
-            application/json:
-              examples:
-                Error-10001:
-                  description: Invalid authentication credentials.
-                  summary: Authentication Failed
-                  value:
-                    errors:
-                    - status: "401"
-                      code: "10001"
-                      title: Authentication Failed
-                      detail: Invalid authentication credentials.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Authentication Failed
-        "403":
-          content:
-            application/json:
-              examples:
-                Error-10003:
-                  description: You do not have permission to perform this action.
-                  summary: Permission Denied
-                  value:
-                    errors:
-                    - status: "403"
-                      code: "10003"
-                      title: Permission Denied
-                      detail: You do not have permission to perform this action.
-              schema:
-                $ref: "#/components/schemas/JSONAPIErrorResponse"
-          description: Permission Denied
+          description: Cache setting updated successfully.
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1921,7 +1364,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ApplicationResponse"
-          description: ""
+          description: Application cloned successfully.
         "401":
           content:
             application/json:
@@ -2081,7 +1524,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: name, id, user_agent)
+          (Valid fields: id, name, user_agent)
         explode: true
         in: query
         name: ordering
@@ -2107,7 +1550,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name, user_agent."
         explode: true
         in: query
         name: search
@@ -2129,7 +1573,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedDeviceGroupList"
-          description: ""
+          description: List of device groups retrieved successfully.
         "401":
           content:
             application/json:
@@ -2273,7 +1717,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceGroupResponse"
-          description: ""
+          description: Device group created successfully.
         "401":
           content:
             application/json:
@@ -2421,7 +1865,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Device group deleted successfully.
         "401":
           content:
             application/json:
@@ -2576,7 +2020,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceGroupResponse"
-          description: ""
+          description: Device group details retrieved successfully.
         "401":
           content:
             application/json:
@@ -2729,7 +2173,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceGroupResponse"
-          description: ""
+          description: Device group partially updated successfully.
         "401":
           content:
             application/json:
@@ -2883,7 +2327,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeviceGroupResponse"
-          description: ""
+          description: Device group updated successfully.
         "401":
           content:
             application/json:
@@ -3070,7 +2514,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active)
+          (Valid fields: id, name, last_editor, last_modified)
         explode: true
         in: query
         name: ordering
@@ -3096,7 +2540,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name."
         explode: true
         in: query
         name: search
@@ -3110,7 +2555,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedFunctionInstanceList"
-          description: ""
+          description: List of application function instances retrieved successfully.
         "401":
           content:
             application/json:
@@ -3255,7 +2700,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FunctionInstanceResponse"
-          description: ""
+          description: Application function instance created successfully.
         "401":
           content:
             application/json:
@@ -3403,7 +2848,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Application function instance deleted successfully.
         "401":
           content:
             application/json:
@@ -3559,7 +3004,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FunctionInstanceResponse"
-          description: ""
+          description: Application function instance details retrieved successfully.
         "401":
           content:
             application/json:
@@ -3712,7 +3157,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FunctionInstanceResponse"
-          description: ""
+          description: Application function instance partially updated successfully.
         "401":
           content:
             application/json:
@@ -3866,7 +3311,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FunctionInstanceResponse"
-          description: ""
+          description: Application function instance updated successfully.
         "401":
           content:
             application/json:
@@ -4078,7 +3523,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: name, active, description, order, criteria, last_editor, last_modified, behaviors)
+          (Valid fields: id, name, description, last_editor, last_modified, order)
         explode: true
         in: query
         name: ordering
@@ -4104,7 +3549,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name."
         explode: true
         in: query
         name: search
@@ -4118,7 +3564,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedRequestPhaseRuleList"
-          description: ""
+          description: List of application request rules retrieved successfully.
         "401":
           content:
             application/json:
@@ -4262,7 +3708,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RequestPhaseRuleResponse"
-          description: ""
+          description: Application request rule created successfully.
         "401":
           content:
             application/json:
@@ -4410,7 +3856,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Application request rule deleted successfully.
         "401":
           content:
             application/json:
@@ -4565,7 +4011,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RequestPhaseRuleResponse"
-          description: ""
+          description: Application request rule details retrieved successfully.
         "401":
           content:
             application/json:
@@ -4718,7 +4164,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RequestPhaseRuleResponse"
-          description: ""
+          description: Application request rule partially updated successfully.
         "401":
           content:
             application/json:
@@ -4872,7 +4318,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RequestPhaseRuleResponse"
-          description: ""
+          description: Application request rule updated successfully.
         "401":
           content:
             application/json:
@@ -5005,35 +4451,8 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: |-
-          Which field to use when ordering the results.
-          (Valid fields: order)
-        explode: true
-        in: query
-        name: ordering
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: A page number within the paginated result set.
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: Number of results to return per page.
-        explode: true
-        in: query
-        name: page_size
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name."
         explode: true
         in: query
         name: search
@@ -5053,7 +4472,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedRequestPhaseRuleList"
-          description: ""
+          description: Application request rules order updated successfully.
         "400":
           content:
             application/json:
@@ -5265,7 +4684,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: name, active, description, order, criteria, last_editor, last_modified, behaviors)
+          (Valid fields: id, name, description, last_editor, last_modified, order)
         explode: true
         in: query
         name: ordering
@@ -5291,7 +4710,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name."
         explode: true
         in: query
         name: search
@@ -5305,7 +4725,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedResponsePhaseRuleList"
-          description: ""
+          description: List of application response rules retrieved successfully.
         "401":
           content:
             application/json:
@@ -5449,7 +4869,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ResponsePhaseRuleResponse"
-          description: ""
+          description: Application response rule created successfully.
         "401":
           content:
             application/json:
@@ -5597,7 +5017,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Application response rule deleted successfully.
         "401":
           content:
             application/json:
@@ -5752,7 +5172,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RequestPhaseRuleResponse"
-          description: ""
+          description: Application response rule details retrieved successfully.
         "401":
           content:
             application/json:
@@ -5905,7 +5325,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ResponsePhaseRuleResponse"
-          description: ""
+          description: Application response rule partially updated successfully.
         "401":
           content:
             application/json:
@@ -6059,7 +5479,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ResponsePhaseRuleResponse"
-          description: ""
+          description: Application response rule updated successfully.
         "401":
           content:
             application/json:
@@ -6192,35 +5612,8 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: |-
-          Which field to use when ordering the results.
-          (Valid fields: order)
-        explode: true
-        in: query
-        name: ordering
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: A page number within the paginated result set.
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: Number of results to return per page.
-        explode: true
-        in: query
-        name: page_size
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name."
         explode: true
         in: query
         name: search
@@ -6240,7 +5633,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedResponsePhaseRuleList"
-          description: ""
+          description: Application response rules order updated successfully.
         "400":
           content:
             application/json:
@@ -6425,7 +5818,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: )
+          (Valid fields: id, name, type, last_editor, last_modified, active)
         explode: true
         in: query
         name: ordering
@@ -6451,7 +5844,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: id, name, type, last_editor, last_modified, active."
         explode: true
         in: query
         name: search
@@ -6473,7 +5867,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedConnectorPolymorphicList"
-          description: ""
+          description: List of edge connectors retrieved successfully.
         "401":
           content:
             application/json:
@@ -6606,7 +6000,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ConnectorPolymorphicResponse"
-          description: ""
+          description: Edge connector created successfully.
         "401":
           content:
             application/json:
@@ -6745,7 +6139,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Edge connector deleted successfully.
         "401":
           content:
             application/json:
@@ -6891,7 +6285,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ConnectorPolymorphicResponse"
-          description: ""
+          description: Edge connector details retrieved successfully.
         "401":
           content:
             application/json:
@@ -7035,7 +6429,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ConnectorPolymorphicResponse"
-          description: ""
+          description: Edge connector partially updated successfully.
         "401":
           content:
             application/json:
@@ -7179,7 +6573,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ConnectorPolymorphicResponse"
-          description: ""
+          description: Edge connector updated successfully.
         "401":
           content:
             application/json:
@@ -7372,7 +6766,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: name, id, debug, active, last_editor, last_modified, product_version)
+          (Valid fields: id, name, last_editor, last_modified, active, debug)
         explode: true
         in: query
         name: ordering
@@ -7398,7 +6792,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: id, name, last_editor."
         explode: true
         in: query
         name: search
@@ -7412,7 +6807,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedFirewallList"
-          description: ""
+          description: List of edge firewalls retrieved successfully.
         "401":
           content:
             application/json:
@@ -7546,7 +6941,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallResponse"
-          description: ""
+          description: Edge firewall created successfully.
         "401":
           content:
             application/json:
@@ -7685,7 +7080,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Edge firewall deleted successfully.
         "401":
           content:
             application/json:
@@ -7831,7 +7226,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallResponse"
-          description: ""
+          description: Edge firewall details retrieved successfully.
         "401":
           content:
             application/json:
@@ -7975,7 +7370,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallResponse"
-          description: ""
+          description: Edge firewall partially updated successfully.
         "401":
           content:
             application/json:
@@ -8120,7 +7515,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallResponse"
-          description: ""
+          description: Edge firewall updated successfully.
         "401":
           content:
             application/json:
@@ -8266,7 +7661,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallResponse"
-          description: ""
+          description: Edge firewall cloned successfully.
         "401":
           content:
             application/json:
@@ -8453,7 +7848,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, last_editor, last_modified, name, args, azion_form, function, active)
+          (Valid fields: id, name, last_editor, last_modified)
         explode: true
         in: query
         name: ordering
@@ -8479,7 +7874,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name, last_editor."
         explode: true
         in: query
         name: search
@@ -8493,7 +7889,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedFirewallFunctionInstanceList"
-          description: ""
+          description: List of firewall function instances retrieved successfully.
         "401":
           content:
             application/json:
@@ -8638,7 +8034,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallFunctionInstanceResponse"
-          description: ""
+          description: Firewall function instance created successfully.
         "401":
           content:
             application/json:
@@ -8786,7 +8182,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Firewall function instance deleted successfully.
         "401":
           content:
             application/json:
@@ -8942,7 +8338,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallFunctionInstanceResponse"
-          description: ""
+          description: Firewall function instance details retrieved successfully.
         "401":
           content:
             application/json:
@@ -9095,7 +8491,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallFunctionInstanceResponse"
-          description: ""
+          description: Firewall function instance partially updated successfully.
         "401":
           content:
             application/json:
@@ -9249,7 +8645,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallFunctionInstanceResponse"
-          description: ""
+          description: Firewall function instance updated successfully.
         "401":
           content:
             application/json:
@@ -9461,7 +8857,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: name, last_editor, last_modified, active, description, order, behaviors, criteria)
+          (Valid fields: id, name, description, last_editor, last_modified, order)
         explode: true
         in: query
         name: ordering
@@ -9487,7 +8883,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name, last_editor."
         explode: true
         in: query
         name: search
@@ -9501,7 +8898,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedFirewallRuleList"
-          description: ""
+          description: List of firewall rules retrieved successfully.
         "401":
           content:
             application/json:
@@ -9645,7 +9042,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallRuleResponse"
-          description: ""
+          description: Firewall rule created successfully.
         "401":
           content:
             application/json:
@@ -9793,7 +9190,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Firewall rule deleted successfully.
         "401":
           content:
             application/json:
@@ -9948,7 +9345,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallRuleResponse"
-          description: ""
+          description: Firewall rule details retrieved successfully.
         "401":
           content:
             application/json:
@@ -10101,7 +9498,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallRuleResponse"
-          description: ""
+          description: Firewall rule partially updated successfully.
         "401":
           content:
             application/json:
@@ -10255,7 +9652,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FirewallRuleResponse"
-          description: ""
+          description: Firewall rule updated successfully.
         "401":
           content:
             application/json:
@@ -10388,35 +9785,8 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: |-
-          Which field to use when ordering the results.
-          (Valid fields: order)
-        explode: true
-        in: query
-        name: ordering
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: A page number within the paginated result set.
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: Number of results to return per page.
-        explode: true
-        in: query
-        name: page_size
-        required: false
-        schema:
-          format: int64
-          type: integer
-        style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name, last_editor."
         explode: true
         in: query
         name: search
@@ -10436,7 +9806,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedFirewallRuleList"
-          description: ""
+          description: Firewall rules order updated successfully.
         "400":
           content:
             application/json:
@@ -10587,7 +9957,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: name, id, active, last_editor, last_modified, product_version)
+          (Valid fields: id, name)
         explode: true
         in: query
         name: ordering
@@ -10613,7 +9983,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name."
         explode: true
         in: query
         name: search
@@ -10627,7 +9998,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedWAFList"
-          description: ""
+          description: List of WAFs retrieved successfully.
         "401":
           content:
             application/json:
@@ -10761,7 +10132,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WAFResponse"
-          description: ""
+          description: WAF created successfully.
         "401":
           content:
             application/json:
@@ -10900,7 +10271,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: WAF deleted successfully.
         "401":
           content:
             application/json:
@@ -11046,7 +10417,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WAFResponse"
-          description: ""
+          description: WAF details retrieved successfully.
         "401":
           content:
             application/json:
@@ -11190,7 +10561,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WAFResponse"
-          description: ""
+          description: WAF partially updated successfully.
         "401":
           content:
             application/json:
@@ -11335,7 +10706,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WAFResponse"
-          description: ""
+          description: WAF updated successfully.
         "401":
           content:
             application/json:
@@ -11481,7 +10852,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WAFResponse"
-          description: ""
+          description: WAF cloned successfully.
         "401":
           content:
             application/json:
@@ -11677,7 +11048,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: rule_id, name, path, conditions, operator, active, last_editor, last_modified)
+          (Valid fields: id, description, path, last_editor, last_modified, created_at)
         explode: true
         in: query
         name: ordering
@@ -11711,7 +11082,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: description, path, last_editor."
         explode: true
         in: query
         name: search
@@ -11734,7 +11106,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedWAFRuleList"
-          description: ""
+          description: List of WAF rules retrieved successfully.
         "401":
           content:
             application/json:
@@ -11878,7 +11250,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WAFRuleResponse"
-          description: ""
+          description: WAF rule created successfully.
         "401":
           content:
             application/json:
@@ -12026,7 +11398,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: WAF rule deleted successfully.
         "401":
           content:
             application/json:
@@ -12181,7 +11553,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WAFRuleResponse"
-          description: ""
+          description: WAF rule details retrieved successfully.
         "401":
           content:
             application/json:
@@ -12334,7 +11706,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WAFRuleResponse"
-          description: ""
+          description: WAF rule partially updated successfully.
         "401":
           content:
             application/json:
@@ -12488,7 +11860,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WAFRuleResponse"
-          description: ""
+          description: WAF rule updated successfully.
         "401":
           content:
             application/json:
@@ -12681,7 +12053,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, name, language, json_args, runtime_environment, active, last_editor, last_modified, product_version)
+          (Valid fields: id, name, language, runtime_environment, active, last_editor, last_modified)
         explode: true
         in: query
         name: ordering
@@ -12715,7 +12087,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: name, last_editor, language, runtime_environment, active."
         explode: true
         in: query
         name: search
@@ -12729,7 +12102,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedEdgeFunctionsList"
-          description: ""
+          description: List of edge functions retrieved successfully.
         "401":
           content:
             application/json:
@@ -12863,7 +12236,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FunctionResponse"
-          description: ""
+          description: Edge function created successfully.
         "401":
           content:
             application/json:
@@ -13002,7 +12375,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Edge function deleted successfully.
         "401":
           content:
             application/json:
@@ -13148,7 +12521,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FunctionResponse"
-          description: ""
+          description: Edge function details retrieved successfully.
         "401":
           content:
             application/json:
@@ -13292,7 +12665,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FunctionResponse"
-          description: ""
+          description: Edge function partially updated successfully.
         "401":
           content:
             application/json:
@@ -13437,7 +12810,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FunctionResponse"
-          description: ""
+          description: Edge function updated successfully.
         "401":
           content:
             application/json:
@@ -13622,7 +12995,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: name, last_editor, last_modified, active, product_version, pages)
+          (Valid fields: id, name, last_editor, last_modified, active)
         explode: true
         in: query
         name: ordering
@@ -13648,7 +13021,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: id, name, last_editor, last_modified, active."
         explode: true
         in: query
         name: search
@@ -13662,7 +13036,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedCustomPageList"
-          description: ""
+          description: List of custom pages retrieved successfully.
         "401":
           content:
             application/json:
@@ -13796,7 +13170,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CustomPageResponse"
-          description: ""
+          description: Custom page created successfully.
         "401":
           content:
             application/json:
@@ -13935,7 +13309,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Custom page deleted successfully.
         "401":
           content:
             application/json:
@@ -14081,7 +13455,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CustomPageResponse"
-          description: ""
+          description: Custom page details retrieved successfully.
         "401":
           content:
             application/json:
@@ -14225,7 +13599,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CustomPageResponse"
-          description: ""
+          description: Custom page partially updated successfully.
         "401":
           content:
             application/json:
@@ -14370,7 +13744,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CustomPageResponse"
-          description: ""
+          description: Custom page updated successfully.
         "401":
           content:
             application/json:
@@ -14555,7 +13929,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: name, type, last_editor, last_modified, active)
+          (Valid fields: id, name, last_editor, last_modified, list_type)
         explode: true
         in: query
         name: ordering
@@ -14581,7 +13955,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: last_editor, list_type, name."
         explode: true
         in: query
         name: search
@@ -14595,7 +13970,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedNetworkListSummaryList"
-          description: ""
+          description: List of network lists retrieved successfully.
         "401":
           content:
             application/json:
@@ -14729,7 +14104,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/NetworkListResponse"
-          description: ""
+          description: Network list created successfully.
         "401":
           content:
             application/json:
@@ -14868,7 +14243,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Network list deleted successfully.
         "401":
           content:
             application/json:
@@ -15030,7 +14405,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/NetworkListResponse"
-          description: ""
+          description: Network list details retrieved successfully.
         "401":
           content:
             application/json:
@@ -15174,7 +14549,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/NetworkListResponse"
-          description: ""
+          description: Network list partially updated successfully.
         "401":
           content:
             application/json:
@@ -15319,7 +14694,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/NetworkListResponse"
-          description: ""
+          description: Network list updated successfully.
         "401":
           content:
             application/json:
@@ -15467,7 +14842,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PurgeResponse"
-          description: ""
+          description: Purge request created successfully.
         "401":
           content:
             application/json:
@@ -15687,7 +15062,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, name, last_editor, last_modified, active, workload_domain_allow_access, workload_domain, infrastructure, domains, product_version)
+          (Valid fields: id, name, active, last_editor, last_modified)
         explode: true
         in: query
         name: ordering
@@ -15713,7 +15088,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: id, name, last_editor."
         explode: true
         in: query
         name: search
@@ -15727,7 +15103,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedWorkloadList"
-          description: ""
+          description: List of workloads retrieved successfully.
         "401":
           content:
             application/json:
@@ -15861,13 +15237,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadResponse"
-          description: ""
+          description: Workload created successfully.
         "202":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadResponse"
-          description: ""
+          description: Workload creation accepted and processing asynchronously.
         "401":
           content:
             application/json:
@@ -16006,13 +15382,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Workload deleted successfully.
         "202":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Workload deletion accepted and processing asynchronously.
         "401":
           content:
             application/json:
@@ -16158,7 +15534,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadResponse"
-          description: ""
+          description: Workload details retrieved successfully.
         "401":
           content:
             application/json:
@@ -16302,13 +15678,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadResponse"
-          description: ""
+          description: Workload partially updated successfully.
         "202":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadResponse"
-          description: ""
+          description: Workload partial update accepted and processing asynchronously.
         "401":
           content:
             application/json:
@@ -16453,13 +15829,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadResponse"
-          description: ""
+          description: Workload updated successfully.
         "202":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadResponse"
-          description: ""
+          description: Workload update accepted and processing asynchronously.
         "401":
           content:
             application/json:
@@ -16610,7 +15986,7 @@ paths:
         style: form
       - description: |-
           Which field to use when ordering the results.
-          (Valid fields: id, name, active, last_editor, last_modified, current)
+          (Valid fields: id, tag, current)
         explode: true
         in: query
         name: ordering
@@ -16636,7 +16012,8 @@ paths:
           format: int64
           type: integer
         style: form
-      - description: A search term.
+      - description: "A search term to filter results. Searches across the following\
+          \ fields: id, tag, current."
         explode: true
         in: query
         name: search
@@ -16667,7 +16044,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PaginatedWorkloadDeploymentList"
-          description: ""
+          description: List of workload deployments retrieved successfully.
         "401":
           content:
             application/json:
@@ -16811,13 +16188,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadDeploymentResponse"
-          description: ""
+          description: Workload deployment created successfully.
         "202":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadDeploymentResponse"
-          description: ""
+          description: Workload deployment creation accepted and processing asynchronously.
         "401":
           content:
             application/json:
@@ -16965,13 +16342,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Workload deployment deleted successfully.
         "202":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/DeleteResponse"
-          description: ""
+          description: Workload deployment deletion accepted and processing asynchronously.
         "401":
           content:
             application/json:
@@ -17126,7 +16503,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadDeploymentResponse"
-          description: ""
+          description: Workload deployment details retrieved successfully.
         "401":
           content:
             application/json:
@@ -17279,13 +16656,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadDeploymentResponse"
-          description: ""
+          description: Workload deployment partially updated successfully.
         "202":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadDeploymentResponse"
-          description: ""
+          description: Workload deployment partial update accepted and processing
+            asynchronously.
         "401":
           content:
             application/json:
@@ -17439,13 +16817,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadDeploymentResponse"
-          description: ""
+          description: Workload deployment updated successfully.
         "202":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/WorkloadDeploymentResponse"
-          description: ""
+          description: Workload deployment update accepted and processing asynchronously.
         "401":
           content:
             application/json:

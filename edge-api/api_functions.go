@@ -483,7 +483,7 @@ func (r ApiListFunctionsRequest) Name(name string) ApiListFunctionsRequest {
 	return r
 }
 
-// Which field to use when ordering the results. (Valid fields: id, name, language, json_args, runtime_environment, active, last_editor, last_modified, product_version)
+// Which field to use when ordering the results. (Valid fields: id, name, language, runtime_environment, active, last_editor, last_modified)
 func (r ApiListFunctionsRequest) Ordering(ordering string) ApiListFunctionsRequest {
 	r.ordering = &ordering
 	return r
@@ -507,7 +507,7 @@ func (r ApiListFunctionsRequest) RuntimeEnvironmentIn(runtimeEnvironmentIn strin
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name, last_editor, language, runtime_environment, active.
 func (r ApiListFunctionsRequest) Search(search string) ApiListFunctionsRequest {
 	r.search = &search
 	return r
