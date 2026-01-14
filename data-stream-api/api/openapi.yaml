@@ -3039,7 +3039,7 @@ components:
       title: Output
       type: object
     OutputPolymorphic:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           standard: "#/components/schemas/HttpPostEndpoint"
@@ -3068,7 +3068,7 @@ components:
       - $ref: "#/components/schemas/SplunkEndpoint"
       title: OutputPolymorphic
     OutputPolymorphicRequest:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           standard: "#/components/schemas/HttpPostEndpointRequest"
@@ -3767,7 +3767,7 @@ components:
       title: TransformFilterWorkloadsRequest
       type: object
     TransformPolymorphic:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           sampling: "#/components/schemas/TransformPolymorphicTransformSamplingAttributes"
@@ -3780,7 +3780,7 @@ components:
       - $ref: "#/components/schemas/TransformPolymorphicTransformRenderTemplateAttributes"
       title: TransformPolymorphic
     TransformPolymorphicRequest:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           sampling: "#/components/schemas/TransformPolymorphicTransformSamplingAttributesRequest"
