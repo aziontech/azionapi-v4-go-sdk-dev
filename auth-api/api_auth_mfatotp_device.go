@@ -443,7 +443,7 @@ func (r ApiListTotpDevicesRequest) Name(name string) ApiListTotpDevicesRequest {
 	return r
 }
 
-// Which field to use when ordering the results.
+// Which field to use when ordering the results. (Valid fields: id, name, email, confirmed, created_at)
 func (r ApiListTotpDevicesRequest) Ordering(ordering string) ApiListTotpDevicesRequest {
 	r.ordering = &ordering
 	return r
@@ -461,7 +461,7 @@ func (r ApiListTotpDevicesRequest) PageSize(pageSize int64) ApiListTotpDevicesRe
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name, email.
 func (r ApiListTotpDevicesRequest) Search(search string) ApiListTotpDevicesRequest {
 	r.search = &search
 	return r

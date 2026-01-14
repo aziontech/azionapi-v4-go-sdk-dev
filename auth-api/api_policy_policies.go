@@ -450,7 +450,7 @@ func (r ApiListPolicyRequest) PageSize(pageSize int64) ApiListPolicyRequest {
 	return r
 }
 
-// A search term.
+// A search term to filter results. Searches across the following fields: name.
 func (r ApiListPolicyRequest) Search(search string) ApiListPolicyRequest {
 	r.search = &search
 	return r
