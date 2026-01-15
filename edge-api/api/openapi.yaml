@@ -17816,7 +17816,7 @@ components:
       properties:
         type:
           description: '* `rewrite_request` - rewrite_request'
-          title: TypeF11Enum
+          title: ResourceTypeEnum
           type: string
           x-extensible-enum:
           - rewrite_request
@@ -17855,7 +17855,7 @@ components:
       properties:
         type:
           description: '* `rewrite_request` - rewrite_request'
-          title: TypeF11Enum
+          title: ResourceTypeEnum
           type: string
           x-extensible-enum:
           - rewrite_request
@@ -17872,7 +17872,7 @@ components:
       properties:
         type:
           description: '* `run_function` - run_function'
-          title: Type689Enum
+          title: BehaviorTypeEnum
           type: string
           x-extensible-enum:
           - run_function
@@ -17913,7 +17913,7 @@ components:
       properties:
         type:
           description: '* `run_function` - run_function'
-          title: Type689Enum
+          title: BehaviorTypeEnum
           type: string
           x-extensible-enum:
           - run_function
@@ -19709,7 +19709,7 @@ components:
             * `is_not_in_list` - is_not_in_list
             * `matches` - matches
             * `starts_with` - starts_with
-          title: Operator565Enum
+          title: CriterionOperatorEnum
           type: string
           x-extensible-enum:
           - does_not_exist
@@ -19911,7 +19911,7 @@ components:
             * `is_not_in_list` - is_not_in_list
             * `matches` - matches
             * `starts_with` - starts_with
-          title: Operator565Enum
+          title: CriterionOperatorEnum
           type: string
           x-extensible-enum:
           - does_not_exist
@@ -20134,7 +20134,7 @@ components:
             * `is_not_in_list` - is_not_in_list
             * `matches` - matches
             * `starts_with` - starts_with
-          title: Operator565Enum
+          title: CriterionOperatorEnum
           type: string
           x-extensible-enum:
           - does_not_exist
@@ -20246,7 +20246,7 @@ components:
             * `is_not_in_list` - is_not_in_list
             * `matches` - matches
             * `starts_with` - starts_with
-          title: Operator565Enum
+          title: CriterionOperatorEnum
           type: string
           x-extensible-enum:
           - does_not_exist
@@ -20706,7 +20706,7 @@ components:
       properties:
         type:
           description: '* `run_function` - run_function'
-          title: Type689Enum
+          title: BehaviorTypeEnum
           type: string
           x-extensible-enum:
           - run_function
@@ -20747,7 +20747,7 @@ components:
       properties:
         type:
           description: '* `run_function` - run_function'
-          title: Type689Enum
+          title: BehaviorTypeEnum
           type: string
           x-extensible-enum:
           - run_function
@@ -22826,7 +22826,7 @@ components:
             * `asn` - ASN
             * `countries` - Countries
             * `ip_cidr` - IP/CIDR
-          title: Type528Enum
+          title: NetworkListTypeEnum
           type: string
           x-extensible-enum:
           - asn
@@ -22910,7 +22910,7 @@ components:
             * `asn` - ASN
             * `countries` - Countries
             * `ip_cidr` - IP/CIDR
-          title: Type528Enum
+          title: NetworkListTypeEnum
           type: string
           x-extensible-enum:
           - asn
@@ -22982,7 +22982,7 @@ components:
             * `asn` - ASN
             * `countries` - Countries
             * `ip_cidr` - IP/CIDR
-          title: Type528Enum
+          title: NetworkListTypeEnum
           type: string
           x-extensible-enum:
           - asn
@@ -26089,7 +26089,7 @@ components:
             * `asn` - ASN
             * `countries` - Countries
             * `ip_cidr` - IP/CIDR
-          title: Type528Enum
+          title: NetworkListTypeEnum
           type: string
           x-extensible-enum:
           - asn
@@ -27481,7 +27481,7 @@ components:
       properties:
         type:
           description: '* `run_function` - run_function'
-          title: Type689Enum
+          title: BehaviorTypeEnum
           type: string
           x-extensible-enum:
           - run_function
@@ -27522,7 +27522,7 @@ components:
       properties:
         type:
           description: '* `run_function` - run_function'
-          title: Type689Enum
+          title: BehaviorTypeEnum
           type: string
           x-extensible-enum:
           - run_function
@@ -28455,17 +28455,6 @@ components:
       - preserve
       - force_https
       - force_http
-    Type528Enum:
-      description: |-
-        * `asn` - ASN
-        * `countries` - Countries
-        * `ip_cidr` - IP/CIDR
-      title: Type528Enum
-      type: string
-      x-extensible-enum:
-      - asn
-      - countries
-      - ip_cidr
     VerificationEnum:
       description: |-
         * `enforce` - Enforce
@@ -29759,7 +29748,7 @@ components:
         * `all` - all
         * `allowlist` - allowlist
         * `denylist` - denylist
-      title: BehaviorA69Enum
+      title: FirewallBehaviorModeEnum
       type: string
       x-extensible-enum:
       - ignore
@@ -29778,7 +29767,7 @@ components:
         * `is_not_in_list` - is_not_in_list
         * `matches` - matches
         * `starts_with` - starts_with
-      title: Operator565Enum
+      title: CriterionOperatorEnum
       type: string
       x-extensible-enum:
       - does_not_exist
@@ -29796,21 +29785,32 @@ components:
         * `http` - HTTP
         * `storage` - Storage
         * `live_ingest` - Live Ingest
-      title: Type15cEnum
+      title: OriginTypeEnum
       type: string
       x-extensible-enum:
       - http
       - storage
       - live_ingest
+    NetworkListTypeEnum:
+      description: |-
+        * `asn` - ASN
+        * `countries` - Countries
+        * `ip_cidr` - IP/CIDR
+      title: NetworkListTypeEnum
+      type: string
+      x-extensible-enum:
+      - asn
+      - countries
+      - ip_cidr
     BehaviorTypeEnum:
       description: '* `run_function` - run_function'
-      title: Type689Enum
+      title: BehaviorTypeEnum
       type: string
       x-extensible-enum:
       - run_function
     ResourceTypeEnum:
       description: '* `rewrite_request` - rewrite_request'
-      title: TypeF11Enum
+      title: ResourceTypeEnum
       type: string
       x-extensible-enum:
       - rewrite_request
