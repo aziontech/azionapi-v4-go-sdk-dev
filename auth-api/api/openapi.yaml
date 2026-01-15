@@ -2738,7 +2738,7 @@ components:
       - password
       type: object
     LoginResponse:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           TokenPair: "#/components/schemas/TokenPair"
