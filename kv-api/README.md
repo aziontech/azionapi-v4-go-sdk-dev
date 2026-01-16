@@ -85,6 +85,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [BehaviorAttributes](docs/BehaviorAttributes.md)
+ - [BehaviorAttributesValue](docs/BehaviorAttributesValue.md)
  - [ErrorDetail](docs/ErrorDetail.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [Namespace](docs/Namespace.md)

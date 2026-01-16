@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## ListNamespaces
 
-> []NamespaceList ListNamespaces(ctx).Fields(fields).Page(page).PageSize(pageSize).Execute()
+> NamespaceList ListNamespaces(ctx).Fields(fields).Page(page).PageSize(pageSize).Execute()
 
 List namespaces
 
@@ -108,7 +108,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `KVNamespacesAPI.ListNamespaces``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListNamespaces`: []NamespaceList
+	// response from `ListNamespaces`: NamespaceList
 	fmt.Fprintf(os.Stdout, "Response from `KVNamespacesAPI.ListNamespaces`: %v\n", resp)
 }
 ```
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]NamespaceList**](NamespaceList.md)
+[**NamespaceList**](NamespaceList.md)
 
 ### Authorization
 

@@ -42,9 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: "#/components/schemas/NamespaceList"
-                type: array
+                $ref: "#/components/schemas/NamespaceList"
           description: Paginated list of namespaces
         "400":
           content:
@@ -297,6 +295,17 @@ components:
       - total_count
       - total_pages
       type: object
+    BehaviorAttributes:
+      additionalProperties: false
+      properties:
+        value:
+          $ref: "#/components/schemas/BehaviorAttributes_value"
+      type: object
+    BehaviorAttributes_value:
+      oneOf:
+      - type: string
+      - format: int64
+        type: integer
   securitySchemes:
     BearerAuth:
       scheme: bearer
