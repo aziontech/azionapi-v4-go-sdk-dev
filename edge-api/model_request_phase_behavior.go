@@ -19,9 +19,7 @@ import (
 // RequestPhaseBehavior - struct for RequestPhaseBehavior
 type RequestPhaseBehavior struct {
 	BehaviorCapture *BehaviorCapture
-	BehaviorInteger *BehaviorInteger
 	BehaviorNoArgs *BehaviorNoArgs
-	BehaviorString *BehaviorString
 }
 
 // BehaviorCaptureAsRequestPhaseBehavior is a convenience function that returns BehaviorCapture wrapped in RequestPhaseBehavior
@@ -31,24 +29,10 @@ func BehaviorCaptureAsRequestPhaseBehavior(v *BehaviorCapture) RequestPhaseBehav
 	}
 }
 
-// BehaviorIntegerAsRequestPhaseBehavior is a convenience function that returns BehaviorInteger wrapped in RequestPhaseBehavior
-func BehaviorIntegerAsRequestPhaseBehavior(v *BehaviorInteger) RequestPhaseBehavior {
-	return RequestPhaseBehavior{
-		BehaviorInteger: v,
-	}
-}
-
 // BehaviorNoArgsAsRequestPhaseBehavior is a convenience function that returns BehaviorNoArgs wrapped in RequestPhaseBehavior
 func BehaviorNoArgsAsRequestPhaseBehavior(v *BehaviorNoArgs) RequestPhaseBehavior {
 	return RequestPhaseBehavior{
 		BehaviorNoArgs: v,
-	}
-}
-
-// BehaviorStringAsRequestPhaseBehavior is a convenience function that returns BehaviorString wrapped in RequestPhaseBehavior
-func BehaviorStringAsRequestPhaseBehavior(v *BehaviorString) RequestPhaseBehavior {
-	return RequestPhaseBehavior{
-		BehaviorString: v,
 	}
 }
 
@@ -74,23 +58,6 @@ func (dst *RequestPhaseBehavior) UnmarshalJSON(data []byte) error {
 		dst.BehaviorCapture = nil
 	}
 
-	// try to unmarshal data into BehaviorInteger
-	err = newStrictDecoder(data).Decode(&dst.BehaviorInteger)
-	if err == nil {
-		jsonBehaviorInteger, _ := json.Marshal(dst.BehaviorInteger)
-		if string(jsonBehaviorInteger) == "{}" { // empty struct
-			dst.BehaviorInteger = nil
-		} else {
-			if err = validator.Validate(dst.BehaviorInteger); err != nil {
-				dst.BehaviorInteger = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.BehaviorInteger = nil
-	}
-
 	// try to unmarshal data into BehaviorNoArgs
 	err = newStrictDecoder(data).Decode(&dst.BehaviorNoArgs)
 	if err == nil {
@@ -108,29 +75,10 @@ func (dst *RequestPhaseBehavior) UnmarshalJSON(data []byte) error {
 		dst.BehaviorNoArgs = nil
 	}
 
-	// try to unmarshal data into BehaviorString
-	err = newStrictDecoder(data).Decode(&dst.BehaviorString)
-	if err == nil {
-		jsonBehaviorString, _ := json.Marshal(dst.BehaviorString)
-		if string(jsonBehaviorString) == "{}" { // empty struct
-			dst.BehaviorString = nil
-		} else {
-			if err = validator.Validate(dst.BehaviorString); err != nil {
-				dst.BehaviorString = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.BehaviorString = nil
-	}
-
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.BehaviorCapture = nil
-		dst.BehaviorInteger = nil
 		dst.BehaviorNoArgs = nil
-		dst.BehaviorString = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(RequestPhaseBehavior)")
 	} else if match == 1 {
@@ -146,16 +94,8 @@ func (src RequestPhaseBehavior) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.BehaviorCapture)
 	}
 
-	if src.BehaviorInteger != nil {
-		return json.Marshal(&src.BehaviorInteger)
-	}
-
 	if src.BehaviorNoArgs != nil {
 		return json.Marshal(&src.BehaviorNoArgs)
-	}
-
-	if src.BehaviorString != nil {
-		return json.Marshal(&src.BehaviorString)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -170,16 +110,8 @@ func (obj *RequestPhaseBehavior) GetActualInstance() (interface{}) {
 		return obj.BehaviorCapture
 	}
 
-	if obj.BehaviorInteger != nil {
-		return obj.BehaviorInteger
-	}
-
 	if obj.BehaviorNoArgs != nil {
 		return obj.BehaviorNoArgs
-	}
-
-	if obj.BehaviorString != nil {
-		return obj.BehaviorString
 	}
 
 	// all schemas are nil
@@ -192,16 +124,8 @@ func (obj RequestPhaseBehavior) GetActualInstanceValue() (interface{}) {
 		return *obj.BehaviorCapture
 	}
 
-	if obj.BehaviorInteger != nil {
-		return *obj.BehaviorInteger
-	}
-
 	if obj.BehaviorNoArgs != nil {
 		return *obj.BehaviorNoArgs
-	}
-
-	if obj.BehaviorString != nil {
-		return *obj.BehaviorString
 	}
 
 	// all schemas are nil
