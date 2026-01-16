@@ -255,3 +255,4 @@ components:
       in: header
       name: Authorization
       description: Token-based authentication with required prefix "Token"
+
