@@ -169,14 +169,6 @@ def modify_request_phase_behaviors(data):
     }
     data['components']['schemas']['BehaviorAttributes']['additionalProperties'] = False
     
-    # Remove BehaviorInteger schema if it exists (merged into BehaviorWithArgs)
-    if 'BehaviorInteger' in data['components']['schemas']:
-        del data['components']['schemas']['BehaviorInteger']
-    
-    # Remove BehaviorString schema if it exists (merged into BehaviorWithArgs)
-    if 'BehaviorString' in data['components']['schemas']:
-        del data['components']['schemas']['BehaviorString']
-
     print("✅ Successfully modified Request Phase Behaviors")
 
 
@@ -192,14 +184,12 @@ def modify_response_phase_behaviors(data):
         
     # Check if the specific schemas we need to modify exist
     required_schemas = [
-        'ApplicationRuleEngineResponsePhaseBehaviors',
-        'ApplicationRuleEngineResponsePhaseBehaviorsRequest',
-        'ApplicationResponsePhaseBehaviorWithoutArgs',
-        'ApplicationResponsePhaseBehaviorWithArgs',
-        'ApplicationResponsePhaseBehaviorCaptureMatchGroups',
-        'ApplicationResponsePhaseBehaviorWithoutArgsRequest',
-        'ApplicationResponsePhaseBehaviorWithArgsRequest',
-        'ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest'
+        'ResponsePhaseBehavior',
+        'ResponsePhaseBehaviorRequest',
+        'BehaviorNoArgs',
+        'BehaviorWithArgs',
+        'BehaviorCapture',
+        'BehaviorAttributes'
     ]
     
     # Check for required schemas, but don't fail if some are missing
@@ -212,17 +202,18 @@ def modify_response_phase_behaviors(data):
         print(f"⚠️ Some response schemas are missing: {', '.join(missing_schemas)}")
         print("⚠️ Will attempt to continue with available schemas")
     
-    # Define all possible behavior references
+    # Define all possible behavior references (matching new oneOf structure)
     behavior_refs = [
-        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgs'},
-        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithArgs'},
-        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroups'}
+        {'$ref': '#/components/schemas/BehaviorNoArgs'},
+        {'$ref': '#/components/schemas/BehaviorWithArgs'},
+        {'$ref': '#/components/schemas/BehaviorCapture'}
     ]
     
+    # For Response behaviors, we consolidate to the 3 main types
     behavior_request_refs = [
-        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgsRequest'},
-        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithArgsRequest'},
-        {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest'}
+        {'$ref': '#/components/schemas/BehaviorNoArgs'},
+        {'$ref': '#/components/schemas/BehaviorWithArgs'},
+        {'$ref': '#/components/schemas/BehaviorCapture'}
     ]
 
     # Filter out references to missing schemas
@@ -230,10 +221,10 @@ def modify_response_phase_behaviors(data):
     allowed_refs_request = [ref for ref in behavior_request_refs if ref['$ref'].split('/')[-1] in data['components']['schemas']]
 
     # Update oneOfs if the schemas exist
-    if 'ApplicationRuleEngineResponsePhaseBehaviors' in data['components']['schemas']:
-        data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviors']['oneOf'] = allowed_refs
+    if 'ResponsePhaseBehavior' in data['components']['schemas']:
+        data['components']['schemas']['ResponsePhaseBehavior']['oneOf'] = allowed_refs
 
-        disc = data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviors'].get('discriminator')
+        disc = data['components']['schemas']['ResponsePhaseBehavior'].get('discriminator')
         if isinstance(disc, dict) and isinstance(disc.get('mapping'), dict):
             without_args_types = {
                 'enable_gzip',
@@ -245,61 +236,60 @@ def modify_response_phase_behaviors(data):
                 if not isinstance(v, str):
                     continue
                 if k == 'capture_match_groups':
-                    new_mapping[k] = '#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroups'
+                    new_mapping[k] = '#/components/schemas/BehaviorCapture'
                 elif k in without_args_types:
-                    new_mapping[k] = '#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgs'
+                    new_mapping[k] = '#/components/schemas/BehaviorNoArgs'
                 else:
-                    new_mapping[k] = '#/components/schemas/ApplicationResponsePhaseBehaviorWithArgs'
+                    new_mapping[k] = '#/components/schemas/BehaviorWithArgs'
             disc['mapping'] = new_mapping
 
-    if 'ApplicationRuleEngineResponsePhaseBehaviorsRequest' in data['components']['schemas']:
-        desired_request_oneof = [
-            {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgsRequest'},
-            {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorWithArgsRequest'},
-            {'$ref': '#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest'},
-        ]
-        data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviorsRequest']['oneOf'] = [
-            ref for ref in desired_request_oneof
-            if ref['$ref'].split('/')[-1] in data['components']['schemas']
-        ]
-
-        disc = data['components']['schemas']['ApplicationRuleEngineResponsePhaseBehaviorsRequest'].get('discriminator')
+    if 'ResponsePhaseBehaviorRequest' in data['components']['schemas']:
+        # First, update the discriminator mapping to use BehaviorWithArgs
+        disc = data['components']['schemas']['ResponsePhaseBehaviorRequest'].get('discriminator')
         if isinstance(disc, dict) and isinstance(disc.get('mapping'), dict):
             new_mapping = {}
             for k, v in disc['mapping'].items():
                 if not isinstance(v, str):
                     continue
-                target = v.split('/')[-1]
-                if 'CaptureMatchGroups' in target:
-                    new_mapping[k] = '#/components/schemas/ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest'
-                elif 'NoArgs' in target:
-                    new_mapping[k] = '#/components/schemas/ApplicationResponsePhaseBehaviorWithoutArgsRequest'
+                if k == 'capture_match_groups':
+                    new_mapping[k] = '#/components/schemas/BehaviorCapture'
+                elif k in {'enable_gzip', 'deliver'}:
+                    new_mapping[k] = '#/components/schemas/BehaviorNoArgs'
                 else:
-                    new_mapping[k] = '#/components/schemas/ApplicationResponsePhaseBehaviorWithArgsRequest'
+                    # Both string and integer behaviors map to BehaviorWithArgs
+                    new_mapping[k] = '#/components/schemas/BehaviorWithArgs'
             disc['mapping'] = new_mapping
+        
+        # Then update the oneOf to only reference the 3 consolidated schemas
+        # This replaces BehaviorString and BehaviorInteger with BehaviorWithArgs
+        data['components']['schemas']['ResponsePhaseBehaviorRequest']['oneOf'] = [
+            {'$ref': '#/components/schemas/BehaviorNoArgs'},
+            {'$ref': '#/components/schemas/BehaviorWithArgs'},
+            {'$ref': '#/components/schemas/BehaviorCapture'},
+        ]
     
-    # Remove additionalProperties from withoutArgs struct to prevent problems
-    if 'ApplicationResponsePhaseBehaviorWithoutArgs' in data['components']['schemas'] and \
-       data['components']['schemas']['ApplicationResponsePhaseBehaviorWithoutArgs'].get('additionalProperties', False):
-        data['components']['schemas']['ApplicationResponsePhaseBehaviorWithoutArgs']['additionalProperties'] = False
-    
-    # Adapt allOf behavior schema - only if the schemas exist
-    schema_mappings = {
-        'ApplicationResponsePhaseBehaviorWithoutArgs': 'ApplicationRuleEngineNoArgs',
-        'ApplicationResponsePhaseBehaviorWithArgs': 'ApplicationRuleEngineString',
-        'ApplicationResponsePhaseBehaviorCaptureMatchGroups': 'ApplicationRuleEngineCaptureMatchGroups',
-        'ApplicationResponsePhaseBehaviorWithoutArgsRequest': 'ApplicationRuleEngineNoArgs',
-        'ApplicationResponsePhaseBehaviorWithArgsRequest': 'ApplicationRuleEngineString',
-        'ApplicationResponsePhaseBehaviorCaptureMatchGroupsRequest': 'ApplicationRuleEngineCaptureMatchGroups'
-    }
-    
-    for target_schema, ref_schema in schema_mappings.items():
-        if target_schema in data['components']['schemas'] and ref_schema in data['components']['schemas']:
-            data['components']['schemas'][target_schema]['allOf'] = [{'$ref': f'#/components/schemas/{ref_schema}'}]
-
     print("✅ Successfully modified Response Phase Behaviors")
 
     
+def cleanup_merged_schemas(data):
+    """
+    Remove BehaviorString and BehaviorInteger schemas after both phases are processed.
+    These have been merged into BehaviorWithArgs.
+    """
+    if 'components' not in data or 'schemas' not in data['components']:
+        return
+    
+    # Remove BehaviorInteger schema if it exists (merged into BehaviorWithArgs)
+    if 'BehaviorInteger' in data['components']['schemas']:
+        del data['components']['schemas']['BehaviorInteger']
+        print("✅ Removed BehaviorInteger schema (merged into BehaviorWithArgs)")
+    
+    # Remove BehaviorString schema if it exists (merged into BehaviorWithArgs)
+    if 'BehaviorString' in data['components']['schemas']:
+        del data['components']['schemas']['BehaviorString']
+        print("✅ Removed BehaviorString schema (merged into BehaviorWithArgs)")
+
+
 def process_yaml_file(file_path):
     """
     Process a YAML file by loading it, replacing strings, and modifying component schema.
@@ -318,6 +308,9 @@ def process_yaml_file(file_path):
         # Modify behaviors
         modify_request_phase_behaviors(data)
         modify_response_phase_behaviors(data)
+        
+        # Clean up merged schemas after both phases are processed
+        cleanup_merged_schemas(data)
         
         # Write back to file
         with open(file_path, 'w') as file:
