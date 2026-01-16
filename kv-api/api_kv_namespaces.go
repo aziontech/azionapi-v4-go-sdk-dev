@@ -194,7 +194,7 @@ func (r ApiListNamespacesRequest) PageSize(pageSize int64) ApiListNamespacesRequ
 	return r
 }
 
-func (r ApiListNamespacesRequest) Execute() ([]NamespaceList, *http.Response, error) {
+func (r ApiListNamespacesRequest) Execute() (*NamespaceList, *http.Response, error) {
 	return r.ApiService.ListNamespacesExecute(r)
 }
 
@@ -214,13 +214,13 @@ func (a *KVNamespacesAPIService) ListNamespaces(ctx context.Context) ApiListName
 }
 
 // Execute executes the request
-//  @return []NamespaceList
-func (a *KVNamespacesAPIService) ListNamespacesExecute(r ApiListNamespacesRequest) ([]NamespaceList, *http.Response, error) {
+//  @return NamespaceList
+func (a *KVNamespacesAPIService) ListNamespacesExecute(r ApiListNamespacesRequest) (*NamespaceList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []NamespaceList
+		localVarReturnValue  *NamespaceList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KVNamespacesAPIService.ListNamespaces")

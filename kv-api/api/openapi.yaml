@@ -42,9 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: "#/components/schemas/NamespaceList"
-                type: array
+                $ref: "#/components/schemas/NamespaceList"
           description: Paginated list of namespaces
         "400":
           content:
