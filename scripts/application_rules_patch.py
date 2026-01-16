@@ -77,6 +77,32 @@ def modify_request_phase_behaviors(data):
         print(f"⚠️ Some schemas are missing: {', '.join(missing_schemas)}")
         print("⚠️ Will attempt to continue with available schemas")
 
+    # Create or update BehaviorAttributes schema FIRST to handle both string and integer values
+    if 'BehaviorAttributes' not in data['components']['schemas']:
+        data['components']['schemas']['BehaviorAttributes'] = {}
+    
+    data['components']['schemas']['BehaviorAttributes']['type'] = 'object'
+    data['components']['schemas']['BehaviorAttributes']['properties'] = {
+        'value': {
+            'oneOf': [
+                {'type': 'string'},
+                {'type': 'integer', 'format': 'int64'}
+            ]
+        }
+    }
+    data['components']['schemas']['BehaviorAttributes']['additionalProperties'] = False
+    
+    if 'BehaviorWithArgs' not in data['components']['schemas']:
+        data['components']['schemas']['BehaviorWithArgs'] = {}
+    
+    data['components']['schemas']['BehaviorWithArgs']['type'] = 'object'
+    data['components']['schemas']['BehaviorWithArgs']['properties'] = {
+        'type': {'type': 'string'},
+        'attributes': {'$ref': '#/components/schemas/BehaviorAttributes'}
+    }
+    data['components']['schemas']['BehaviorWithArgs']['required'] = ['type', 'attributes']
+    data['components']['schemas']['BehaviorWithArgs']['additionalProperties'] = False
+
     # Define all possible behavior references (matching new oneOf structure)
     behavior_refs = [
         {'$ref': '#/components/schemas/BehaviorNoArgs'},
@@ -84,15 +110,14 @@ def modify_request_phase_behaviors(data):
         {'$ref': '#/components/schemas/BehaviorCapture'}
     ]
     
-    # For Request behaviors, we consolidate to the 4 main types
+    # For Request behaviors, we consolidate to the 3 main types
     behavior_request_refs = [
         {'$ref': '#/components/schemas/BehaviorNoArgs'},
         {'$ref': '#/components/schemas/BehaviorWithArgs'},
-        {'$ref': '#/components/schemas/BehaviorInteger'},
         {'$ref': '#/components/schemas/BehaviorCapture'}
     ]
 
-    # Filter out references to missing schemas
+    # Filter out references to missing schemas (now BehaviorWithArgs exists!)
     allowed_refs = [ref for ref in behavior_refs if ref['$ref'].split('/')[-1] in data['components']['schemas']]
     allowed_refs_request = [ref for ref in behavior_request_refs if ref['$ref'].split('/')[-1] in data['components']['schemas']]
 
@@ -141,33 +166,6 @@ def modify_request_phase_behaviors(data):
     if 'BehaviorNoArgs' in data['components']['schemas'] and \
        data['components']['schemas']['BehaviorNoArgs'].get('additionalProperties', False):
         data['components']['schemas']['BehaviorNoArgs']['additionalProperties'] = False
-    
-    # Create or update BehaviorAttributes schema to handle both string and integer values
-    if 'BehaviorAttributes' not in data['components']['schemas']:
-        data['components']['schemas']['BehaviorAttributes'] = {}
-    
-    data['components']['schemas']['BehaviorAttributes']['type'] = 'object'
-    data['components']['schemas']['BehaviorAttributes']['properties'] = {
-        'value': {
-            'oneOf': [
-                {'type': 'string'},
-                {'type': 'integer', 'format': 'int64'}
-            ]
-        }
-    }
-    data['components']['schemas']['BehaviorAttributes']['additionalProperties'] = False
-    
-    # Create or update BehaviorWithArgs schema to merge BehaviorString and BehaviorInteger
-    if 'BehaviorWithArgs' not in data['components']['schemas']:
-        data['components']['schemas']['BehaviorWithArgs'] = {}
-    
-    data['components']['schemas']['BehaviorWithArgs']['type'] = 'object'
-    data['components']['schemas']['BehaviorWithArgs']['properties'] = {
-        'type': {'type': 'string'},
-        'attributes': {'$ref': '#/components/schemas/BehaviorAttributes'}
-    }
-    data['components']['schemas']['BehaviorWithArgs']['required'] = ['type', 'attributes']
-    data['components']['schemas']['BehaviorWithArgs']['additionalProperties'] = False
     
     print("✅ Successfully modified Request Phase Behaviors")
 
