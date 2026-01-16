@@ -142,18 +142,6 @@ def modify_request_phase_behaviors(data):
        data['components']['schemas']['BehaviorNoArgs'].get('additionalProperties', False):
         data['components']['schemas']['BehaviorNoArgs']['additionalProperties'] = False
     
-    # Ensure BehaviorWithArgs has the proper structure to handle both string and integer
-    # This merges the functionality of BehaviorString and BehaviorInteger
-    if 'BehaviorWithArgs' in data['components']['schemas']:
-        # Ensure it has the type field
-        if 'properties' not in data['components']['schemas']['BehaviorWithArgs']:
-            data['components']['schemas']['BehaviorWithArgs']['properties'] = {}
-        
-        data['components']['schemas']['BehaviorWithArgs']['properties']['type'] = {'type': 'string'}
-        data['components']['schemas']['BehaviorWithArgs']['properties']['attributes'] = {
-            '$ref': '#/components/schemas/BehaviorAttributes'
-        }
-    
     # Create or update BehaviorAttributes schema to handle both string and integer values
     if 'BehaviorAttributes' not in data['components']['schemas']:
         data['components']['schemas']['BehaviorAttributes'] = {}
@@ -168,6 +156,18 @@ def modify_request_phase_behaviors(data):
         }
     }
     data['components']['schemas']['BehaviorAttributes']['additionalProperties'] = False
+    
+    # Create or update BehaviorWithArgs schema to merge BehaviorString and BehaviorInteger
+    if 'BehaviorWithArgs' not in data['components']['schemas']:
+        data['components']['schemas']['BehaviorWithArgs'] = {}
+    
+    data['components']['schemas']['BehaviorWithArgs']['type'] = 'object'
+    data['components']['schemas']['BehaviorWithArgs']['properties'] = {
+        'type': {'type': 'string'},
+        'attributes': {'$ref': '#/components/schemas/BehaviorAttributes'}
+    }
+    data['components']['schemas']['BehaviorWithArgs']['required'] = ['type', 'attributes']
+    data['components']['schemas']['BehaviorWithArgs']['additionalProperties'] = False
     
     print("✅ Successfully modified Request Phase Behaviors")
 
