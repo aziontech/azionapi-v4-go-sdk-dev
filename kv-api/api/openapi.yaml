@@ -301,6 +301,17 @@ components:
         value:
           $ref: "#/components/schemas/BehaviorAttributes_value"
       type: object
+    BehaviorWithArgs:
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: "#/components/schemas/BehaviorAttributes"
+      required:
+      - attributes
+      - type
+      type: object
     BehaviorAttributes_value:
       oneOf:
       - type: string

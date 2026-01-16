@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -55,6 +56,8 @@ docs/BehaviorAddRequestCookieAttributesRequest.md
 docs/BehaviorAddRequestCookieRequest.md
 docs/BehaviorAddRequestHeader.md
 docs/BehaviorAddRequestHeaderRequest.md
+docs/BehaviorAttributes.md
+docs/BehaviorAttributesValue.md
 docs/BehaviorCapture.md
 docs/BehaviorCaptureMatchGroups.md
 docs/BehaviorCaptureMatchGroupsAttributes.md
@@ -68,7 +71,6 @@ docs/BehaviorFilterRequestCookieAttributesRequest.md
 docs/BehaviorFilterRequestCookieRequest.md
 docs/BehaviorFilterRequestHeader.md
 docs/BehaviorFilterRequestHeaderRequest.md
-docs/BehaviorInteger.md
 docs/BehaviorIntegerAttributes.md
 docs/BehaviorNoArgs.md
 docs/BehaviorNoArgsRequest.md
@@ -94,9 +96,9 @@ docs/BehaviorSetOrigin.md
 docs/BehaviorSetOriginAttributes.md
 docs/BehaviorSetOriginAttributesRequest.md
 docs/BehaviorSetOriginRequest.md
-docs/BehaviorString.md
 docs/BehaviorStringAttributes.md
 docs/BehaviorStringAttributesRequest.md
+docs/BehaviorWithArgs.md
 docs/BrowserCacheModule.md
 docs/BrowserCacheModuleRequest.md
 docs/CacheModule.md
@@ -386,6 +388,8 @@ model_behavior_add_request_cookie_attributes_request.go
 model_behavior_add_request_cookie_request.go
 model_behavior_add_request_header.go
 model_behavior_add_request_header_request.go
+model_behavior_attributes.go
+model_behavior_attributes_value.go
 model_behavior_capture.go
 model_behavior_capture_match_groups.go
 model_behavior_capture_match_groups_attributes.go
@@ -399,7 +403,6 @@ model_behavior_filter_request_cookie_attributes_request.go
 model_behavior_filter_request_cookie_request.go
 model_behavior_filter_request_header.go
 model_behavior_filter_request_header_request.go
-model_behavior_integer.go
 model_behavior_integer_attributes.go
 model_behavior_no_args.go
 model_behavior_no_args_request.go
@@ -425,9 +428,9 @@ model_behavior_set_origin.go
 model_behavior_set_origin_attributes.go
 model_behavior_set_origin_attributes_request.go
 model_behavior_set_origin_request.go
-model_behavior_string.go
 model_behavior_string_attributes.go
 model_behavior_string_attributes_request.go
+model_behavior_with_args.go
 model_browser_cache_module.go
 model_browser_cache_module_request.go
 model_cache_module.go
@@ -676,4 +679,22 @@ model_workload_deployment_response.go
 model_workload_request.go
 model_workload_response.go
 response.go
+test/api_applications_cache_settings_test.go
+test/api_applications_device_groups_test.go
+test/api_applications_function_test.go
+test/api_applications_request_rules_test.go
+test/api_applications_response_rules_test.go
+test/api_applications_test.go
+test/api_connectors_test.go
+test/api_custom_pages_test.go
+test/api_firewalls_function_test.go
+test/api_firewalls_rules_engine_test.go
+test/api_firewalls_test.go
+test/api_functions_test.go
+test/api_network_lists_test.go
+test/api_purge_test.go
+test/api_wafs_exceptions_test.go
+test/api_wafs_test.go
+test/api_workload_deployments_test.go
+test/api_workloads_test.go
 utils.go

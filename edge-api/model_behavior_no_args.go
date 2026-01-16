@@ -12,6 +12,7 @@ package edgeapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -22,7 +23,6 @@ var _ MappedNullable = &BehaviorNoArgs{}
 type BehaviorNoArgs struct {
 	// * `deny` - deny * `no_content` - no_content * `deliver` - deliver * `finish_request_phase` - finish_request_phase * `forward_cookies` - forward_cookies * `optimize_images` - optimize_images * `bypass_cache` - bypass_cache * `enable_gzip` - enable_gzip * `redirect_http_to_https` - redirect_http_to_https
 	Type string `json:"type"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _BehaviorNoArgs BehaviorNoArgs
@@ -80,11 +80,6 @@ func (o BehaviorNoArgs) MarshalJSON() ([]byte, error) {
 func (o BehaviorNoArgs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -112,20 +107,15 @@ func (o *BehaviorNoArgs) UnmarshalJSON(data []byte) (err error) {
 
 	varBehaviorNoArgs := _BehaviorNoArgs{}
 
-	err = json.Unmarshal(data, &varBehaviorNoArgs)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varBehaviorNoArgs)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BehaviorNoArgs(varBehaviorNoArgs)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

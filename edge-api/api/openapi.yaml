@@ -17675,7 +17675,7 @@ components:
       x-extensible-enum:
       - filter_request_header
     BehaviorNoArgs:
-      additionalProperties: true
+      additionalProperties: false
       description: Behaviors without arguments
       example:
         type: type
@@ -26771,8 +26771,6 @@ components:
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/BehaviorNoArgs"
-      - $ref: "#/components/schemas/BehaviorString"
-      - $ref: "#/components/schemas/BehaviorInteger"
       - $ref: "#/components/schemas/BehaviorCapture"
       title: RequestPhaseBehavior
     RequestPhaseBehaviorRequest:
@@ -26782,29 +26780,27 @@ components:
           deny: "#/components/schemas/BehaviorNoArgs"
           no_content: "#/components/schemas/BehaviorNoArgs"
           deliver: "#/components/schemas/BehaviorNoArgs"
-          finish_request_phase: "#/components/schemas/BehaviorNoArgs"
+          finish_request_phase: "#/components/schemas/BehaviorWithArgs"
           forward_cookies: "#/components/schemas/BehaviorNoArgs"
-          optimize_images: "#/components/schemas/BehaviorNoArgs"
+          optimize_images: "#/components/schemas/BehaviorWithArgs"
           bypass_cache: "#/components/schemas/BehaviorNoArgs"
           enable_gzip: "#/components/schemas/BehaviorNoArgs"
           redirect_http_to_https: "#/components/schemas/BehaviorNoArgs"
-          redirect_to_301: "#/components/schemas/BehaviorString"
-          redirect_to_302: "#/components/schemas/BehaviorString"
-          rewrite_request: "#/components/schemas/BehaviorString"
-          add_request_header: "#/components/schemas/BehaviorString"
-          filter_request_header: "#/components/schemas/BehaviorString"
-          add_request_cookie: "#/components/schemas/BehaviorString"
-          filter_request_cookie: "#/components/schemas/BehaviorString"
-          set_origin: "#/components/schemas/BehaviorInteger"
-          run_function: "#/components/schemas/BehaviorInteger"
-          set_connector: "#/components/schemas/BehaviorInteger"
-          set_cache_policy: "#/components/schemas/BehaviorInteger"
+          redirect_to_301: "#/components/schemas/BehaviorWithArgs"
+          redirect_to_302: "#/components/schemas/BehaviorWithArgs"
+          rewrite_request: "#/components/schemas/BehaviorWithArgs"
+          add_request_header: "#/components/schemas/BehaviorWithArgs"
+          filter_request_header: "#/components/schemas/BehaviorWithArgs"
+          add_request_cookie: "#/components/schemas/BehaviorWithArgs"
+          filter_request_cookie: "#/components/schemas/BehaviorWithArgs"
+          set_origin: "#/components/schemas/BehaviorWithArgs"
+          run_function: "#/components/schemas/BehaviorWithArgs"
+          set_connector: "#/components/schemas/BehaviorWithArgs"
+          set_cache_policy: "#/components/schemas/BehaviorWithArgs"
           capture_match_groups: "#/components/schemas/BehaviorCapture"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/BehaviorNoArgs"
-      - $ref: "#/components/schemas/BehaviorString"
-      - $ref: "#/components/schemas/BehaviorInteger"
       - $ref: "#/components/schemas/BehaviorCapture"
       title: RequestPhaseBehaviorRequest
     RequestPhaseRule:
@@ -27623,19 +27619,18 @@ components:
         mapping:
           enable_gzip: "#/components/schemas/BehaviorNoArgs"
           deliver: "#/components/schemas/BehaviorNoArgs"
-          redirect_to_301: "#/components/schemas/BehaviorString"
-          redirect_to_302: "#/components/schemas/BehaviorString"
-          filter_response_cookie: "#/components/schemas/BehaviorString"
-          set_cookie: "#/components/schemas/BehaviorString"
-          add_response_header: "#/components/schemas/BehaviorString"
-          filter_response_header: "#/components/schemas/BehaviorString"
-          run_function: "#/components/schemas/BehaviorInteger"
+          redirect_to_301: "#/components/schemas/BehaviorWithArgs"
+          redirect_to_302: "#/components/schemas/BehaviorWithArgs"
+          filter_response_cookie: "#/components/schemas/BehaviorWithArgs"
+          set_cookie: "#/components/schemas/BehaviorWithArgs"
+          add_response_header: "#/components/schemas/BehaviorWithArgs"
+          filter_response_header: "#/components/schemas/BehaviorWithArgs"
+          run_function: "#/components/schemas/BehaviorWithArgs"
           capture_match_groups: "#/components/schemas/BehaviorCapture"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/BehaviorNoArgs"
-      - $ref: "#/components/schemas/BehaviorString"
-      - $ref: "#/components/schemas/BehaviorInteger"
+      - $ref: "#/components/schemas/BehaviorWithArgs"
       - $ref: "#/components/schemas/BehaviorCapture"
       title: ResponsePhaseBehavior
     ResponsePhaseBehaviorRequest:
@@ -27644,19 +27639,18 @@ components:
         mapping:
           enable_gzip: "#/components/schemas/BehaviorNoArgs"
           deliver: "#/components/schemas/BehaviorNoArgs"
-          redirect_to_301: "#/components/schemas/BehaviorString"
-          redirect_to_302: "#/components/schemas/BehaviorString"
-          filter_response_cookie: "#/components/schemas/BehaviorString"
-          set_cookie: "#/components/schemas/BehaviorString"
-          add_response_header: "#/components/schemas/BehaviorString"
-          filter_response_header: "#/components/schemas/BehaviorString"
-          run_function: "#/components/schemas/BehaviorInteger"
+          redirect_to_301: "#/components/schemas/BehaviorWithArgs"
+          redirect_to_302: "#/components/schemas/BehaviorWithArgs"
+          filter_response_cookie: "#/components/schemas/BehaviorWithArgs"
+          set_cookie: "#/components/schemas/BehaviorWithArgs"
+          add_response_header: "#/components/schemas/BehaviorWithArgs"
+          filter_response_header: "#/components/schemas/BehaviorWithArgs"
+          run_function: "#/components/schemas/BehaviorWithArgs"
           capture_match_groups: "#/components/schemas/BehaviorCapture"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/BehaviorNoArgs"
-      - $ref: "#/components/schemas/BehaviorString"
-      - $ref: "#/components/schemas/BehaviorInteger"
+      - $ref: "#/components/schemas/BehaviorWithArgs"
       - $ref: "#/components/schemas/BehaviorCapture"
       title: ResponsePhaseBehaviorRequest
     ResponsePhaseRule:
@@ -29692,19 +29686,6 @@ components:
       - type
       title: FirewallBehaviorsShared
       type: object
-    BehaviorString:
-      additionalProperties: true
-      description: Behaviors with string arguments
-      properties:
-        type:
-          type: string
-        attributes:
-          $ref: "#/components/schemas/BehaviorStringAttributes"
-      required:
-      - attributes
-      - type
-      title: BehaviorString
-      type: object
     BehaviorIntegerAttributes:
       additionalProperties: false
       properties:
@@ -29715,19 +29696,6 @@ components:
           type: integer
       required:
       - value
-      type: object
-    BehaviorInteger:
-      additionalProperties: true
-      description: Behaviors with integer arguments
-      properties:
-        type:
-          type: string
-        attributes:
-          $ref: "#/components/schemas/BehaviorIntegerAttributes"
-      required:
-      - attributes
-      - type
-      title: BehaviorInteger
       type: object
     BehaviorCapture:
       additionalProperties: true
@@ -29814,6 +29782,23 @@ components:
       type: string
       x-extensible-enum:
       - rewrite_request
+    BehaviorAttributes:
+      additionalProperties: false
+      properties:
+        value:
+          $ref: "#/components/schemas/BehaviorAttributes_value"
+      type: object
+    BehaviorWithArgs:
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: "#/components/schemas/BehaviorAttributes"
+      required:
+      - attributes
+      - type
+      type: object
     EdgeFunctions_azion_form:
       description: |
         JSON schema to be rendered as a json args form.
@@ -29885,6 +29870,11 @@ components:
       - $ref: "#/components/schemas/MinimumVersionEnum"
       - $ref: "#/components/schemas/BlankEnum"
       - $ref: "#/components/schemas/NullEnum"
+    BehaviorAttributes_value:
+      oneOf:
+      - type: string
+      - format: int64
+        type: integer
   securitySchemes:
     BearerAuth:
       scheme: bearer

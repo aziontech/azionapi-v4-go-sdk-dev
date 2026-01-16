@@ -87,6 +87,7 @@ Class | Method | HTTP request | Description
 
  - [BehaviorAttributes](docs/BehaviorAttributes.md)
  - [BehaviorAttributesValue](docs/BehaviorAttributesValue.md)
+ - [BehaviorWithArgs](docs/BehaviorWithArgs.md)
  - [ErrorDetail](docs/ErrorDetail.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [Namespace](docs/Namespace.md)

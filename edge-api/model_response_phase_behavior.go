@@ -19,22 +19,14 @@ import (
 // ResponsePhaseBehavior - struct for ResponsePhaseBehavior
 type ResponsePhaseBehavior struct {
 	BehaviorCapture *BehaviorCapture
-	BehaviorInteger *BehaviorInteger
 	BehaviorNoArgs *BehaviorNoArgs
-	BehaviorString *BehaviorString
+	BehaviorWithArgs *BehaviorWithArgs
 }
 
 // BehaviorCaptureAsResponsePhaseBehavior is a convenience function that returns BehaviorCapture wrapped in ResponsePhaseBehavior
 func BehaviorCaptureAsResponsePhaseBehavior(v *BehaviorCapture) ResponsePhaseBehavior {
 	return ResponsePhaseBehavior{
 		BehaviorCapture: v,
-	}
-}
-
-// BehaviorIntegerAsResponsePhaseBehavior is a convenience function that returns BehaviorInteger wrapped in ResponsePhaseBehavior
-func BehaviorIntegerAsResponsePhaseBehavior(v *BehaviorInteger) ResponsePhaseBehavior {
-	return ResponsePhaseBehavior{
-		BehaviorInteger: v,
 	}
 }
 
@@ -45,10 +37,10 @@ func BehaviorNoArgsAsResponsePhaseBehavior(v *BehaviorNoArgs) ResponsePhaseBehav
 	}
 }
 
-// BehaviorStringAsResponsePhaseBehavior is a convenience function that returns BehaviorString wrapped in ResponsePhaseBehavior
-func BehaviorStringAsResponsePhaseBehavior(v *BehaviorString) ResponsePhaseBehavior {
+// BehaviorWithArgsAsResponsePhaseBehavior is a convenience function that returns BehaviorWithArgs wrapped in ResponsePhaseBehavior
+func BehaviorWithArgsAsResponsePhaseBehavior(v *BehaviorWithArgs) ResponsePhaseBehavior {
 	return ResponsePhaseBehavior{
-		BehaviorString: v,
+		BehaviorWithArgs: v,
 	}
 }
 
@@ -74,23 +66,6 @@ func (dst *ResponsePhaseBehavior) UnmarshalJSON(data []byte) error {
 		dst.BehaviorCapture = nil
 	}
 
-	// try to unmarshal data into BehaviorInteger
-	err = newStrictDecoder(data).Decode(&dst.BehaviorInteger)
-	if err == nil {
-		jsonBehaviorInteger, _ := json.Marshal(dst.BehaviorInteger)
-		if string(jsonBehaviorInteger) == "{}" { // empty struct
-			dst.BehaviorInteger = nil
-		} else {
-			if err = validator.Validate(dst.BehaviorInteger); err != nil {
-				dst.BehaviorInteger = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.BehaviorInteger = nil
-	}
-
 	// try to unmarshal data into BehaviorNoArgs
 	err = newStrictDecoder(data).Decode(&dst.BehaviorNoArgs)
 	if err == nil {
@@ -108,29 +83,28 @@ func (dst *ResponsePhaseBehavior) UnmarshalJSON(data []byte) error {
 		dst.BehaviorNoArgs = nil
 	}
 
-	// try to unmarshal data into BehaviorString
-	err = newStrictDecoder(data).Decode(&dst.BehaviorString)
+	// try to unmarshal data into BehaviorWithArgs
+	err = newStrictDecoder(data).Decode(&dst.BehaviorWithArgs)
 	if err == nil {
-		jsonBehaviorString, _ := json.Marshal(dst.BehaviorString)
-		if string(jsonBehaviorString) == "{}" { // empty struct
-			dst.BehaviorString = nil
+		jsonBehaviorWithArgs, _ := json.Marshal(dst.BehaviorWithArgs)
+		if string(jsonBehaviorWithArgs) == "{}" { // empty struct
+			dst.BehaviorWithArgs = nil
 		} else {
-			if err = validator.Validate(dst.BehaviorString); err != nil {
-				dst.BehaviorString = nil
+			if err = validator.Validate(dst.BehaviorWithArgs); err != nil {
+				dst.BehaviorWithArgs = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.BehaviorString = nil
+		dst.BehaviorWithArgs = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.BehaviorCapture = nil
-		dst.BehaviorInteger = nil
 		dst.BehaviorNoArgs = nil
-		dst.BehaviorString = nil
+		dst.BehaviorWithArgs = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(ResponsePhaseBehavior)")
 	} else if match == 1 {
@@ -146,16 +120,12 @@ func (src ResponsePhaseBehavior) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.BehaviorCapture)
 	}
 
-	if src.BehaviorInteger != nil {
-		return json.Marshal(&src.BehaviorInteger)
-	}
-
 	if src.BehaviorNoArgs != nil {
 		return json.Marshal(&src.BehaviorNoArgs)
 	}
 
-	if src.BehaviorString != nil {
-		return json.Marshal(&src.BehaviorString)
+	if src.BehaviorWithArgs != nil {
+		return json.Marshal(&src.BehaviorWithArgs)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -170,16 +140,12 @@ func (obj *ResponsePhaseBehavior) GetActualInstance() (interface{}) {
 		return obj.BehaviorCapture
 	}
 
-	if obj.BehaviorInteger != nil {
-		return obj.BehaviorInteger
-	}
-
 	if obj.BehaviorNoArgs != nil {
 		return obj.BehaviorNoArgs
 	}
 
-	if obj.BehaviorString != nil {
-		return obj.BehaviorString
+	if obj.BehaviorWithArgs != nil {
+		return obj.BehaviorWithArgs
 	}
 
 	// all schemas are nil
@@ -192,16 +158,12 @@ func (obj ResponsePhaseBehavior) GetActualInstanceValue() (interface{}) {
 		return *obj.BehaviorCapture
 	}
 
-	if obj.BehaviorInteger != nil {
-		return *obj.BehaviorInteger
-	}
-
 	if obj.BehaviorNoArgs != nil {
 		return *obj.BehaviorNoArgs
 	}
 
-	if obj.BehaviorString != nil {
-		return *obj.BehaviorString
+	if obj.BehaviorWithArgs != nil {
+		return *obj.BehaviorWithArgs
 	}
 
 	// all schemas are nil
