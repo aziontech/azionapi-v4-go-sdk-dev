@@ -26771,6 +26771,7 @@ components:
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/BehaviorNoArgs"
+      - $ref: "#/components/schemas/BehaviorWithArgs"
       - $ref: "#/components/schemas/BehaviorCapture"
       title: RequestPhaseBehavior
     RequestPhaseBehaviorRequest:
@@ -26801,6 +26802,7 @@ components:
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/BehaviorNoArgs"
+      - $ref: "#/components/schemas/BehaviorWithArgs"
       - $ref: "#/components/schemas/BehaviorCapture"
       title: RequestPhaseBehaviorRequest
     RequestPhaseRule:

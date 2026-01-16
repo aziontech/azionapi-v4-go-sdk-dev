@@ -20,6 +20,7 @@ import (
 type RequestPhaseBehavior struct {
 	BehaviorCapture *BehaviorCapture
 	BehaviorNoArgs *BehaviorNoArgs
+	BehaviorWithArgs *BehaviorWithArgs
 }
 
 // BehaviorCaptureAsRequestPhaseBehavior is a convenience function that returns BehaviorCapture wrapped in RequestPhaseBehavior
@@ -33,6 +34,13 @@ func BehaviorCaptureAsRequestPhaseBehavior(v *BehaviorCapture) RequestPhaseBehav
 func BehaviorNoArgsAsRequestPhaseBehavior(v *BehaviorNoArgs) RequestPhaseBehavior {
 	return RequestPhaseBehavior{
 		BehaviorNoArgs: v,
+	}
+}
+
+// BehaviorWithArgsAsRequestPhaseBehavior is a convenience function that returns BehaviorWithArgs wrapped in RequestPhaseBehavior
+func BehaviorWithArgsAsRequestPhaseBehavior(v *BehaviorWithArgs) RequestPhaseBehavior {
+	return RequestPhaseBehavior{
+		BehaviorWithArgs: v,
 	}
 }
 
@@ -75,10 +83,28 @@ func (dst *RequestPhaseBehavior) UnmarshalJSON(data []byte) error {
 		dst.BehaviorNoArgs = nil
 	}
 
+	// try to unmarshal data into BehaviorWithArgs
+	err = newStrictDecoder(data).Decode(&dst.BehaviorWithArgs)
+	if err == nil {
+		jsonBehaviorWithArgs, _ := json.Marshal(dst.BehaviorWithArgs)
+		if string(jsonBehaviorWithArgs) == "{}" { // empty struct
+			dst.BehaviorWithArgs = nil
+		} else {
+			if err = validator.Validate(dst.BehaviorWithArgs); err != nil {
+				dst.BehaviorWithArgs = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.BehaviorWithArgs = nil
+	}
+
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.BehaviorCapture = nil
 		dst.BehaviorNoArgs = nil
+		dst.BehaviorWithArgs = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(RequestPhaseBehavior)")
 	} else if match == 1 {
@@ -98,6 +124,10 @@ func (src RequestPhaseBehavior) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.BehaviorNoArgs)
 	}
 
+	if src.BehaviorWithArgs != nil {
+		return json.Marshal(&src.BehaviorWithArgs)
+	}
+
 	return nil, nil // no data in oneOf schemas
 }
 
@@ -114,6 +144,10 @@ func (obj *RequestPhaseBehavior) GetActualInstance() (interface{}) {
 		return obj.BehaviorNoArgs
 	}
 
+	if obj.BehaviorWithArgs != nil {
+		return obj.BehaviorWithArgs
+	}
+
 	// all schemas are nil
 	return nil
 }
@@ -126,6 +160,10 @@ func (obj RequestPhaseBehavior) GetActualInstanceValue() (interface{}) {
 
 	if obj.BehaviorNoArgs != nil {
 		return *obj.BehaviorNoArgs
+	}
+
+	if obj.BehaviorWithArgs != nil {
+		return *obj.BehaviorWithArgs
 	}
 
 	// all schemas are nil
