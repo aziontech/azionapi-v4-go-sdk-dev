@@ -59,24 +59,12 @@ def modify_request_phase_behaviors(data):
         
     # Check if the specific schemas we need to modify exist
     required_schemas = [
-        'ApplicationRuleEngineRequestPhaseBehaviors',
-        'ApplicationRuleEngineRequestPhaseBehaviorsRequest',
-        'ApplicationRequestPhaseBehaviorWithoutArgs',
-        'ApplicationRequestPhaseBehaviorWithArgs',
-        'ApplicationRequestPhaseBehaviorCaptureMatchGroups',
-        'ApplicationRequestPhaseBehaviorWithoutArgsRequest',
-        'ApplicationRequestPhaseBehaviorWithArgsRequest',
-        'ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest',
-        'ApplicationRequestPhaseBehaviorAddHeaderRequest',
-        'ApplicationRequestPhaseBehaviorAddRequestCookieRequest',
-        'ApplicationRequestPhaseBehaviorFilterHeaderRequest',
-        'ApplicationRequestPhaseBehaviorFilterRequestCookieRequest',
-        'ApplicationRequestPhaseBehaviorRewriteRequestRequest',
-        'ApplicationRequestPhaseBehaviorRunFunctionRequest',
-        'ApplicationRequestPhaseBehaviorSetCachePolicyRequest',
-        'ApplicationRequestPhaseBehaviorSetConnectorRequest',
-        'ApplicationRequestPhaseBehaviorSetOriginRequest',
-        'ApplicationRuleEngineStringAttributes'
+        'RequestPhaseBehavior',
+        'RequestPhaseBehaviorRequest',
+        'BehaviorNoArgs',
+        'BehaviorWithArgs',
+        'BehaviorCapture',
+        'BehaviorAttributes'
     ]
     
     # Check for required schemas, but don't fail if some are missing
@@ -89,26 +77,19 @@ def modify_request_phase_behaviors(data):
         print(f"⚠️ Some schemas are missing: {', '.join(missing_schemas)}")
         print("⚠️ Will attempt to continue with available schemas")
 
-    # Define all possible behavior references
+    # Define all possible behavior references (matching new oneOf structure)
     behavior_refs = [
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgs'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithArgs'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroups'}
+        {'$ref': '#/components/schemas/BehaviorNoArgs'},
+        {'$ref': '#/components/schemas/BehaviorWithArgs'},
+        {'$ref': '#/components/schemas/BehaviorCapture'}
     ]
     
+    # For Request behaviors, we consolidate to the 4 main types
     behavior_request_refs = [
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithArgsRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorAddHeaderRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorAddRequestCookieRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorFilterHeaderRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorFilterRequestCookieRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorRewriteRequestRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorRunFunctionRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorSetCachePolicyRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorSetConnectorRequest'},
-        {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorSetOriginRequest'}
+        {'$ref': '#/components/schemas/BehaviorNoArgs'},
+        {'$ref': '#/components/schemas/BehaviorWithArgs'},
+        {'$ref': '#/components/schemas/BehaviorInteger'},
+        {'$ref': '#/components/schemas/BehaviorCapture'}
     ]
 
     # Filter out references to missing schemas
@@ -116,23 +97,23 @@ def modify_request_phase_behaviors(data):
     allowed_refs_request = [ref for ref in behavior_request_refs if ref['$ref'].split('/')[-1] in data['components']['schemas']]
 
     # Update oneOfs if the schemas exist
-    if 'ApplicationRuleEngineRequestPhaseBehaviors' in data['components']['schemas']:
-        data['components']['schemas']['ApplicationRuleEngineRequestPhaseBehaviors']['oneOf'] = allowed_refs
+    if 'RequestPhaseBehavior' in data['components']['schemas']:
+        data['components']['schemas']['RequestPhaseBehavior']['oneOf'] = allowed_refs
     
-    if 'ApplicationRuleEngineRequestPhaseBehaviorsRequest' in data['components']['schemas']:
-        # New format (your edge-api.yaml): oneOf/mapping points to per-behavior schemas.
-        # Collapse to 3 category schemas so the Go union only has 3 pointers.
+    if 'RequestPhaseBehaviorRequest' in data['components']['schemas']:
+        # Merge BehaviorString and BehaviorInteger into BehaviorWithArgs
+        # This creates a unified structure that handles both string and integer values
         desired_request_oneof = [
-            {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest'},
-            {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorWithArgsRequest'},
-            {'$ref': '#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest'},
+            {'$ref': '#/components/schemas/BehaviorNoArgs'},
+            {'$ref': '#/components/schemas/BehaviorWithArgs'},
+            {'$ref': '#/components/schemas/BehaviorCapture'},
         ]
-        data['components']['schemas']['ApplicationRuleEngineRequestPhaseBehaviorsRequest']['oneOf'] = [
+        data['components']['schemas']['RequestPhaseBehaviorRequest']['oneOf'] = [
             ref for ref in desired_request_oneof
             if ref['$ref'].split('/')[-1] in data['components']['schemas']
         ]
 
-        disc = data['components']['schemas']['ApplicationRuleEngineRequestPhaseBehaviorsRequest'].get('discriminator')
+        disc = data['components']['schemas']['RequestPhaseBehaviorRequest'].get('discriminator')
         if isinstance(disc, dict) and isinstance(disc.get('mapping'), dict):
             without_args_types = {
                 'bypass_cache',
@@ -148,44 +129,53 @@ def modify_request_phase_behaviors(data):
                 if not isinstance(v, str):
                     continue
                 if k == 'capture_match_groups':
-                    new_mapping[k] = '#/components/schemas/ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest'
+                    new_mapping[k] = '#/components/schemas/BehaviorCapture'
                 elif k in without_args_types:
-                    new_mapping[k] = '#/components/schemas/ApplicationRequestPhaseBehaviorWithoutArgsRequest'
+                    new_mapping[k] = '#/components/schemas/BehaviorNoArgs'
                 else:
-                    new_mapping[k] = '#/components/schemas/ApplicationRequestPhaseBehaviorWithArgsRequest'
+                    # Both string and integer behaviors map to BehaviorWithArgs
+                    new_mapping[k] = '#/components/schemas/BehaviorWithArgs'
             disc['mapping'] = new_mapping
     
-    # Remove additionalProperties from withoutArgs struct to prevent problems
-    if 'ApplicationRequestPhaseBehaviorWithoutArgs' in data['components']['schemas'] and \
-       data['components']['schemas']['ApplicationRequestPhaseBehaviorWithoutArgs'].get('additionalProperties', False):
-        data['components']['schemas']['ApplicationRequestPhaseBehaviorWithoutArgs']['additionalProperties'] = False
+    # Remove additionalProperties from BehaviorNoArgs struct to prevent problems
+    if 'BehaviorNoArgs' in data['components']['schemas'] and \
+       data['components']['schemas']['BehaviorNoArgs'].get('additionalProperties', False):
+        data['components']['schemas']['BehaviorNoArgs']['additionalProperties'] = False
     
-    # Adapt allOf behavior schema - only if the schemas exist
-    schema_mappings = {
-        'ApplicationRequestPhaseBehaviorWithoutArgs': 'ApplicationRuleEngineNoArgs',
-        'ApplicationRequestPhaseBehaviorWithArgs': 'ApplicationRuleEngineString',
-        'ApplicationRequestPhaseBehaviorCaptureMatchGroups': 'ApplicationRuleEngineCaptureMatchGroupsRequest',
-        'ApplicationRequestPhaseBehaviorWithoutArgsRequest': 'ApplicationRuleEngineNoArgs',
-        'ApplicationRequestPhaseBehaviorWithArgsRequest': 'ApplicationRuleEngineString',
-        'ApplicationRequestPhaseBehaviorCaptureMatchGroupsRequest': 'ApplicationRuleEngineCaptureMatchGroupsRequest'
-    }
+    # Ensure BehaviorWithArgs has the proper structure to handle both string and integer
+    # This merges the functionality of BehaviorString and BehaviorInteger
+    if 'BehaviorWithArgs' in data['components']['schemas']:
+        # Ensure it has the type field
+        if 'properties' not in data['components']['schemas']['BehaviorWithArgs']:
+            data['components']['schemas']['BehaviorWithArgs']['properties'] = {}
+        
+        data['components']['schemas']['BehaviorWithArgs']['properties']['type'] = {'type': 'string'}
+        data['components']['schemas']['BehaviorWithArgs']['properties']['attributes'] = {
+            '$ref': '#/components/schemas/BehaviorAttributes'
+        }
     
-    for target_schema, ref_schema in schema_mappings.items():
-        if target_schema in data['components']['schemas'] and ref_schema in data['components']['schemas']:
-            data['components']['schemas'][target_schema]['allOf'] = [{'$ref': f'#/components/schemas/{ref_schema}'}]
+    # Create or update BehaviorAttributes schema to handle both string and integer values
+    if 'BehaviorAttributes' not in data['components']['schemas']:
+        data['components']['schemas']['BehaviorAttributes'] = {}
     
-    # Adapt value field validation if the schema exists
-    if 'ApplicationRuleEngineStringAttributes' in data['components']['schemas']:
-        data['components']['schemas']['ApplicationRuleEngineStringAttributes']['properties']['value'] = {
-            "oneOf": [
-                { "type": "string" },
-                { "type": "integer", "format": "int64" }
+    data['components']['schemas']['BehaviorAttributes']['type'] = 'object'
+    data['components']['schemas']['BehaviorAttributes']['properties'] = {
+        'value': {
+            'oneOf': [
+                {'type': 'string'},
+                {'type': 'integer', 'format': 'int64'}
             ]
         }
-        
-        # Remove Required Fields
-        if 'required' in data['components']['schemas']['ApplicationRuleEngineStringAttributes']:
-            del data['components']['schemas']['ApplicationRuleEngineStringAttributes']['required']
+    }
+    data['components']['schemas']['BehaviorAttributes']['additionalProperties'] = False
+    
+    # Remove BehaviorInteger schema if it exists (merged into BehaviorWithArgs)
+    if 'BehaviorInteger' in data['components']['schemas']:
+        del data['components']['schemas']['BehaviorInteger']
+    
+    # Remove BehaviorString schema if it exists (merged into BehaviorWithArgs)
+    if 'BehaviorString' in data['components']['schemas']:
+        del data['components']['schemas']['BehaviorString']
 
     print("✅ Successfully modified Request Phase Behaviors")
 
