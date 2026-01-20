@@ -17159,7 +17159,7 @@ components:
         name: name
         active: true
         id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         modules:
           application_accelerator: ""
           cache: ""
@@ -17308,7 +17308,7 @@ components:
           name: name
           active: true
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           modules:
             application_accelerator: ""
             cache: ""
@@ -17675,7 +17675,7 @@ components:
       x-extensible-enum:
       - filter_request_header
     BehaviorNoArgs:
-      additionalProperties: true
+      additionalProperties: false
       description: Behaviors without arguments
       example:
         type: type
@@ -18933,7 +18933,7 @@ components:
           modules: ""
         id: 0
         type: ""
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -19132,7 +19132,7 @@ components:
             modules: ""
           id: 0
           type: ""
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -19226,7 +19226,7 @@ components:
         name: name
         active: true
         id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -19325,7 +19325,7 @@ components:
           name: name
           active: true
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -20408,13 +20408,13 @@ components:
           - values
           additionalProperties: false
         version: version
-        default_args: ""
+        default_args: {}
         vendor: vendor
         name: name
         execution_environment: ""
         id: 0
         reference_count: 6
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -20528,7 +20528,7 @@ components:
           - path
           - values
           additionalProperties: false
-        default_args: ""
+        default_args: {}
       properties:
         name:
           maxLength: 250
@@ -20579,7 +20579,7 @@ components:
         name: name
         active: true
         id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         modules:
           ddos_protection: ""
           functions: ""
@@ -21037,7 +21037,7 @@ components:
       additionalProperties: false
       description: Serializer for Firewall Function Instances
       example:
-        args: ""
+        args: {}
         function: 5559347081229897728
         last_editor: last_editor
         name: name
@@ -21094,7 +21094,7 @@ components:
           - path
           - values
           additionalProperties: false
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -21131,7 +21131,7 @@ components:
       additionalProperties: false
       description: Serializer for Firewall Function Instances
       example:
-        args: ""
+        args: {}
         function: 738633633822310400
         name: name
         active: true
@@ -21210,7 +21210,7 @@ components:
       additionalProperties: false
       example:
         data:
-          args: ""
+          args: {}
           function: 5559347081229897728
           last_editor: last_editor
           name: name
@@ -21267,7 +21267,7 @@ components:
             - path
             - values
             additionalProperties: false
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -21379,7 +21379,7 @@ components:
           name: name
           active: true
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           modules:
             ddos_protection: ""
             functions: ""
@@ -21512,7 +21512,7 @@ components:
         active: true
         description: description
         id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         order: 119
       properties:
         id:
@@ -21845,7 +21845,7 @@ components:
           active: true
           description: description
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           order: 119
         state: state
       properties:
@@ -21863,7 +21863,7 @@ components:
       additionalProperties: false
       description: Serializer for Application Function Instances
       example:
-        args: ""
+        args: {}
         function: 5559347081229897728
         last_editor: last_editor
         name: name
@@ -21920,7 +21920,7 @@ components:
           - path
           - values
           additionalProperties: false
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -21957,7 +21957,7 @@ components:
       additionalProperties: false
       description: Serializer for Application Function Instances
       example:
-        args: ""
+        args: {}
         function: 738633633822310400
         name: name
         active: true
@@ -22036,7 +22036,7 @@ components:
       additionalProperties: false
       example:
         data:
-          args: ""
+          args: {}
           function: 5559347081229897728
           last_editor: last_editor
           name: name
@@ -22093,7 +22093,7 @@ components:
             - path
             - values
             additionalProperties: false
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -22167,13 +22167,13 @@ components:
             - values
             additionalProperties: false
           version: version
-          default_args: ""
+          default_args: {}
           vendor: vendor
           name: name
           execution_environment: ""
           id: 0
           reference_count: 6
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -22812,7 +22812,7 @@ components:
         - items
         - items
         - items
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -22947,7 +22947,7 @@ components:
           - items
           - items
           - items
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -22968,7 +22968,7 @@ components:
         active: true
         id: 0
         type: type
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -23327,7 +23327,7 @@ components:
           name: name
           active: true
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           modules:
             application_accelerator: ""
             cache: ""
@@ -23339,7 +23339,7 @@ components:
           name: name
           active: true
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           modules:
             application_accelerator: ""
             cache: ""
@@ -23521,7 +23521,7 @@ components:
             modules: ""
           id: 0
           type: ""
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         - product_version: product_version
           last_editor: last_editor
           name: name
@@ -23542,7 +23542,7 @@ components:
             modules: ""
           id: 0
           type: ""
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         page_size: 10
       properties:
         count:
@@ -23608,7 +23608,7 @@ components:
           name: name
           active: true
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         - product_version: product_version
           pages:
           - code: code
@@ -23631,7 +23631,7 @@ components:
           name: name
           active: true
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         page_size: 10
       properties:
         count:
@@ -23781,13 +23781,13 @@ components:
             - values
             additionalProperties: false
           version: version
-          default_args: ""
+          default_args: {}
           vendor: vendor
           name: name
           execution_environment: ""
           id: 0
           reference_count: 6
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         - product_version: product_version
           code: code
           last_editor: last_editor
@@ -23845,13 +23845,13 @@ components:
             - values
             additionalProperties: false
           version: version
-          default_args: ""
+          default_args: {}
           vendor: vendor
           name: name
           execution_environment: ""
           id: 0
           reference_count: 6
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         page_size: 10
       properties:
         count:
@@ -23895,7 +23895,7 @@ components:
         total_pages: 10
         page: 1
         results:
-        - args: ""
+        - args: {}
           function: 5559347081229897728
           last_editor: last_editor
           name: name
@@ -23952,8 +23952,8 @@ components:
             - path
             - values
             additionalProperties: false
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        - args: ""
+          last_modified: 2000-01-23 04:56:07+00:00
+        - args: {}
           function: 5559347081229897728
           last_editor: last_editor
           name: name
@@ -24010,7 +24010,7 @@ components:
             - path
             - values
             additionalProperties: false
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         page_size: 10
       properties:
         count:
@@ -24060,7 +24060,7 @@ components:
           name: name
           active: true
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           modules:
             ddos_protection: ""
             functions: ""
@@ -24072,7 +24072,7 @@ components:
           name: name
           active: true
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           modules:
             ddos_protection: ""
             functions: ""
@@ -24233,7 +24233,7 @@ components:
           active: true
           description: description
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           order: 119
         - criteria:
           - - argument: ""
@@ -24347,7 +24347,7 @@ components:
           active: true
           description: description
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           order: 119
         page_size: 10
       properties:
@@ -24392,7 +24392,7 @@ components:
         total_pages: 10
         page: 1
         results:
-        - args: ""
+        - args: {}
           function: 5559347081229897728
           last_editor: last_editor
           name: name
@@ -24449,8 +24449,8 @@ components:
             - path
             - values
             additionalProperties: false
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        - args: ""
+          last_modified: 2000-01-23 04:56:07+00:00
+        - args: {}
           function: 5559347081229897728
           last_editor: last_editor
           name: name
@@ -24507,7 +24507,7 @@ components:
             - path
             - values
             additionalProperties: false
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         page_size: 10
       properties:
         count:
@@ -24556,13 +24556,13 @@ components:
           active: true
           id: 0
           type: type
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         - last_editor: last_editor
           name: name
           active: true
           id: 0
           type: type
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         page_size: 10
       properties:
         count:
@@ -24718,7 +24718,7 @@ components:
           active: true
           description: description
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           order: 119
         - criteria:
           - - argument: ""
@@ -24832,7 +24832,7 @@ components:
           active: true
           description: description
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           order: 119
         page_size: 10
       properties:
@@ -24989,7 +24989,7 @@ components:
           active: true
           description: description
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           order: 119
         - criteria:
           - - argument: ""
@@ -25103,7 +25103,7 @@ components:
           active: true
           description: description
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           order: 119
         page_size: 10
       properties:
@@ -25171,7 +25171,7 @@ components:
             type: ""
           active: true
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         - product_version: product_version
           last_editor: last_editor
           name: name
@@ -25195,7 +25195,7 @@ components:
             type: ""
           active: true
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         page_size: 10
       properties:
         count:
@@ -25248,7 +25248,7 @@ components:
           conditions:
           - match: match
           - match: match
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           operator: ""
         - rule_id: ""
           path: path
@@ -25259,7 +25259,7 @@ components:
           conditions:
           - match: match
           - match: match
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           operator: ""
         page_size: 10
       properties:
@@ -25315,7 +25315,7 @@ components:
               firewall: 1
               custom_page: 1
             type: type
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         - current: true
           last_editor: last_editor
           name: name
@@ -25327,7 +25327,7 @@ components:
               firewall: 1
               custom_page: 1
             type: type
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         page_size: 10
       properties:
         count:
@@ -25384,7 +25384,7 @@ components:
           tls: ""
           id: 0
           protocols: ""
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           mtls: ""
         - product_version: product_version
           last_editor: last_editor
@@ -25399,7 +25399,7 @@ components:
           tls: ""
           id: 0
           protocols: ""
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           mtls: ""
         page_size: 10
       properties:
@@ -25695,7 +25695,7 @@ components:
           - path
           - values
           additionalProperties: false
-        default_args: ""
+        default_args: {}
       properties:
         name:
           maxLength: 250
@@ -25723,7 +25723,7 @@ components:
       additionalProperties: false
       description: Serializer for Firewall Function Instances
       example:
-        args: ""
+        args: {}
         function: 738633633822310400
         name: name
         active: true
@@ -25964,7 +25964,7 @@ components:
       additionalProperties: false
       description: Serializer for Application Function Instances
       example:
-        args: ""
+        args: {}
         function: 738633633822310400
         name: name
         active: true
@@ -26920,7 +26920,7 @@ components:
         active: true
         description: description
         id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         order: 119
       properties:
         id:
@@ -27237,7 +27237,7 @@ components:
           active: true
           description: description
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           order: 119
         state: state
       properties:
@@ -27770,7 +27770,7 @@ components:
         active: true
         description: description
         id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         order: 119
       properties:
         id:
@@ -28087,7 +28087,7 @@ components:
           active: true
           description: description
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           order: 119
         state: state
       properties:
@@ -28486,7 +28486,7 @@ components:
           type: ""
         active: true
         id: 0
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -28964,7 +28964,7 @@ components:
             type: ""
           active: true
           id: 0
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -28989,7 +28989,7 @@ components:
         conditions:
         - match: match
         - match: match
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         operator: ""
       properties:
         id:
@@ -29347,7 +29347,7 @@ components:
           conditions:
           - match: match
           - match: match
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           operator: ""
         state: state
       properties:
@@ -29377,7 +29377,7 @@ components:
         tls: ""
         id: 0
         protocols: ""
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
         mtls: ""
       properties:
         id:
@@ -29441,7 +29441,7 @@ components:
             firewall: 1
             custom_page: 1
           type: type
-        last_modified: 2000-01-23T04:56:07.000+00:00
+        last_modified: 2000-01-23 04:56:07+00:00
       properties:
         id:
           format: int64
@@ -29514,7 +29514,7 @@ components:
               firewall: 1
               custom_page: 1
             type: type
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
         state: state
       properties:
         state:
@@ -29587,7 +29587,7 @@ components:
           tls: ""
           id: 0
           protocols: ""
-          last_modified: 2000-01-23T04:56:07.000+00:00
+          last_modified: 2000-01-23 04:56:07+00:00
           mtls: ""
         state: state
       properties:
@@ -29689,7 +29689,7 @@ components:
       title: FirewallBehaviorsShared
       type: object
     BehaviorArgsAttributes:
-      additionalProperties: true
+      additionalProperties: false
       description: Behavior attributes containing the value parameter
       properties:
         value:
@@ -29698,7 +29698,7 @@ components:
       - value
       type: object
     BehaviorArgs:
-      additionalProperties: true
+      additionalProperties: false
       description: Behaviors with arguments (string or integer)
       properties:
         type:
