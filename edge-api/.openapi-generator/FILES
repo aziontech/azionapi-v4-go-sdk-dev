@@ -59,8 +59,6 @@ docs/BehaviorAddRequestHeaderRequest.md
 docs/BehaviorArgs.md
 docs/BehaviorArgsAttributes.md
 docs/BehaviorArgsAttributesValue.md
-docs/BehaviorAttributes.md
-docs/BehaviorAttributesValue.md
 docs/BehaviorCapture.md
 docs/BehaviorCaptureMatchGroups.md
 docs/BehaviorCaptureMatchGroupsAttributes.md
@@ -100,7 +98,6 @@ docs/BehaviorSetOriginAttributesRequest.md
 docs/BehaviorSetOriginRequest.md
 docs/BehaviorStringAttributes.md
 docs/BehaviorStringAttributesRequest.md
-docs/BehaviorWithArgs.md
 docs/BrowserCacheModule.md
 docs/BrowserCacheModuleRequest.md
 docs/CacheModule.md
@@ -393,8 +390,6 @@ model_behavior_add_request_header_request.go
 model_behavior_args.go
 model_behavior_args_attributes.go
 model_behavior_args_attributes_value.go
-model_behavior_attributes.go
-model_behavior_attributes_value.go
 model_behavior_capture.go
 model_behavior_capture_match_groups.go
 model_behavior_capture_match_groups_attributes.go
@@ -434,7 +429,6 @@ model_behavior_set_origin_attributes_request.go
 model_behavior_set_origin_request.go
 model_behavior_string_attributes.go
 model_behavior_string_attributes_request.go
-model_behavior_with_args.go
 model_browser_cache_module.go
 model_browser_cache_module_request.go
 model_cache_module.go

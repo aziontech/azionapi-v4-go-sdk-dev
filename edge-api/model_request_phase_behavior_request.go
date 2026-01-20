@@ -18,9 +18,16 @@ import (
 
 // RequestPhaseBehaviorRequest - struct for RequestPhaseBehaviorRequest
 type RequestPhaseBehaviorRequest struct {
+	BehaviorArgs *BehaviorArgs
 	BehaviorCapture *BehaviorCapture
 	BehaviorNoArgs *BehaviorNoArgs
-	BehaviorWithArgs *BehaviorWithArgs
+}
+
+// BehaviorArgsAsRequestPhaseBehaviorRequest is a convenience function that returns BehaviorArgs wrapped in RequestPhaseBehaviorRequest
+func BehaviorArgsAsRequestPhaseBehaviorRequest(v *BehaviorArgs) RequestPhaseBehaviorRequest {
+	return RequestPhaseBehaviorRequest{
+		BehaviorArgs: v,
+	}
 }
 
 // BehaviorCaptureAsRequestPhaseBehaviorRequest is a convenience function that returns BehaviorCapture wrapped in RequestPhaseBehaviorRequest
@@ -37,18 +44,28 @@ func BehaviorNoArgsAsRequestPhaseBehaviorRequest(v *BehaviorNoArgs) RequestPhase
 	}
 }
 
-// BehaviorWithArgsAsRequestPhaseBehaviorRequest is a convenience function that returns BehaviorWithArgs wrapped in RequestPhaseBehaviorRequest
-func BehaviorWithArgsAsRequestPhaseBehaviorRequest(v *BehaviorWithArgs) RequestPhaseBehaviorRequest {
-	return RequestPhaseBehaviorRequest{
-		BehaviorWithArgs: v,
-	}
-}
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *RequestPhaseBehaviorRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// try to unmarshal data into BehaviorArgs
+	err = newStrictDecoder(data).Decode(&dst.BehaviorArgs)
+	if err == nil {
+		jsonBehaviorArgs, _ := json.Marshal(dst.BehaviorArgs)
+		if string(jsonBehaviorArgs) == "{}" { // empty struct
+			dst.BehaviorArgs = nil
+		} else {
+			if err = validator.Validate(dst.BehaviorArgs); err != nil {
+				dst.BehaviorArgs = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.BehaviorArgs = nil
+	}
+
 	// try to unmarshal data into BehaviorCapture
 	err = newStrictDecoder(data).Decode(&dst.BehaviorCapture)
 	if err == nil {
@@ -83,28 +100,11 @@ func (dst *RequestPhaseBehaviorRequest) UnmarshalJSON(data []byte) error {
 		dst.BehaviorNoArgs = nil
 	}
 
-	// try to unmarshal data into BehaviorWithArgs
-	err = newStrictDecoder(data).Decode(&dst.BehaviorWithArgs)
-	if err == nil {
-		jsonBehaviorWithArgs, _ := json.Marshal(dst.BehaviorWithArgs)
-		if string(jsonBehaviorWithArgs) == "{}" { // empty struct
-			dst.BehaviorWithArgs = nil
-		} else {
-			if err = validator.Validate(dst.BehaviorWithArgs); err != nil {
-				dst.BehaviorWithArgs = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.BehaviorWithArgs = nil
-	}
-
 	if match > 1 { // more than 1 match
 		// reset to nil
+		dst.BehaviorArgs = nil
 		dst.BehaviorCapture = nil
 		dst.BehaviorNoArgs = nil
-		dst.BehaviorWithArgs = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(RequestPhaseBehaviorRequest)")
 	} else if match == 1 {
@@ -116,16 +116,16 @@ func (dst *RequestPhaseBehaviorRequest) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src RequestPhaseBehaviorRequest) MarshalJSON() ([]byte, error) {
+	if src.BehaviorArgs != nil {
+		return json.Marshal(&src.BehaviorArgs)
+	}
+
 	if src.BehaviorCapture != nil {
 		return json.Marshal(&src.BehaviorCapture)
 	}
 
 	if src.BehaviorNoArgs != nil {
 		return json.Marshal(&src.BehaviorNoArgs)
-	}
-
-	if src.BehaviorWithArgs != nil {
-		return json.Marshal(&src.BehaviorWithArgs)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -136,6 +136,10 @@ func (obj *RequestPhaseBehaviorRequest) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
+	if obj.BehaviorArgs != nil {
+		return obj.BehaviorArgs
+	}
+
 	if obj.BehaviorCapture != nil {
 		return obj.BehaviorCapture
 	}
@@ -144,26 +148,22 @@ func (obj *RequestPhaseBehaviorRequest) GetActualInstance() (interface{}) {
 		return obj.BehaviorNoArgs
 	}
 
-	if obj.BehaviorWithArgs != nil {
-		return obj.BehaviorWithArgs
-	}
-
 	// all schemas are nil
 	return nil
 }
 
 // Get the actual instance value
 func (obj RequestPhaseBehaviorRequest) GetActualInstanceValue() (interface{}) {
+	if obj.BehaviorArgs != nil {
+		return *obj.BehaviorArgs
+	}
+
 	if obj.BehaviorCapture != nil {
 		return *obj.BehaviorCapture
 	}
 
 	if obj.BehaviorNoArgs != nil {
 		return *obj.BehaviorNoArgs
-	}
-
-	if obj.BehaviorWithArgs != nil {
-		return *obj.BehaviorWithArgs
 	}
 
 	// all schemas are nil
