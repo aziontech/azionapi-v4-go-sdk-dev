@@ -55,6 +55,9 @@ docs/BehaviorAddRequestCookieAttributesRequest.md
 docs/BehaviorAddRequestCookieRequest.md
 docs/BehaviorAddRequestHeader.md
 docs/BehaviorAddRequestHeaderRequest.md
+docs/BehaviorArgs.md
+docs/BehaviorArgsAttributes.md
+docs/BehaviorArgsAttributesValue.md
 docs/BehaviorAttributes.md
 docs/BehaviorAttributesValue.md
 docs/BehaviorCapture.md
@@ -70,7 +73,6 @@ docs/BehaviorFilterRequestCookieAttributesRequest.md
 docs/BehaviorFilterRequestCookieRequest.md
 docs/BehaviorFilterRequestHeader.md
 docs/BehaviorFilterRequestHeaderRequest.md
-docs/BehaviorIntegerAttributes.md
 docs/BehaviorNoArgs.md
 docs/BehaviorNoArgsRequest.md
 docs/BehaviorRedirect.md
@@ -387,6 +389,9 @@ model_behavior_add_request_cookie_attributes_request.go
 model_behavior_add_request_cookie_request.go
 model_behavior_add_request_header.go
 model_behavior_add_request_header_request.go
+model_behavior_args.go
+model_behavior_args_attributes.go
+model_behavior_args_attributes_value.go
 model_behavior_attributes.go
 model_behavior_attributes_value.go
 model_behavior_capture.go
@@ -402,7 +407,6 @@ model_behavior_filter_request_cookie_attributes_request.go
 model_behavior_filter_request_cookie_request.go
 model_behavior_filter_request_header.go
 model_behavior_filter_request_header_request.go
-model_behavior_integer_attributes.go
 model_behavior_no_args.go
 model_behavior_no_args_request.go
 model_behavior_redirect.go
