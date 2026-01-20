@@ -19083,7 +19083,7 @@ components:
       title: ConnectorHTTPRequest
       type: object
     ConnectorPolymorphic:
-      additionalProperties: false
+      additionalProperties: true
       discriminator:
         mapping:
           http: "#/components/schemas/ConnectorHTTP"
@@ -19096,7 +19096,7 @@ components:
       - $ref: "#/components/schemas/Connector"
       title: ConnectorPolymorphic
     ConnectorPolymorphicRequest:
-      additionalProperties: false
+      additionalProperties: true
       discriminator:
         mapping:
           http: "#/components/schemas/ConnectorHTTPRequest"
@@ -20618,7 +20618,7 @@ components:
       title: Firewall
       type: object
     FirewallBehavior:
-      additionalProperties: false
+      additionalProperties: true
       discriminator:
         mapping:
           deny: "#/components/schemas/FirewallBehaviorNoArgs"
@@ -20683,7 +20683,7 @@ components:
       - deny
       - drop
     FirewallBehaviorRequest:
-      additionalProperties: false
+      additionalProperties: true
       discriminator:
         mapping:
           deny: "#/components/schemas/FirewallBehaviorNoArgsRequest"
@@ -25550,7 +25550,7 @@ components:
       title: PatchedConnectorHTTPRequest
       type: object
     PatchedConnectorPolymorphicRequest:
-      additionalProperties: false
+      additionalProperties: true
       discriminator:
         mapping:
           http: "#/components/schemas/PatchedConnectorHTTPRequest"
@@ -26744,7 +26744,7 @@ components:
       title: PurgeResponse
       type: object
     RequestPhaseBehavior:
-      additionalProperties: false
+      additionalProperties: true
       discriminator:
         mapping:
           deny: "#/components/schemas/BehaviorNoArgs"
@@ -26756,17 +26756,17 @@ components:
           bypass_cache: "#/components/schemas/BehaviorNoArgs"
           enable_gzip: "#/components/schemas/BehaviorNoArgs"
           redirect_http_to_https: "#/components/schemas/BehaviorNoArgs"
-          redirect_to_301: "#/components/schemas/BehaviorString"
-          redirect_to_302: "#/components/schemas/BehaviorString"
-          rewrite_request: "#/components/schemas/BehaviorString"
-          add_request_header: "#/components/schemas/BehaviorString"
-          filter_request_header: "#/components/schemas/BehaviorString"
-          add_request_cookie: "#/components/schemas/BehaviorString"
-          filter_request_cookie: "#/components/schemas/BehaviorString"
-          set_origin: "#/components/schemas/BehaviorInteger"
-          run_function: "#/components/schemas/BehaviorInteger"
-          set_connector: "#/components/schemas/BehaviorInteger"
-          set_cache_policy: "#/components/schemas/BehaviorInteger"
+          redirect_to_301: "#/components/schemas/BehaviorArgs"
+          redirect_to_302: "#/components/schemas/BehaviorArgs"
+          rewrite_request: "#/components/schemas/BehaviorArgs"
+          add_request_header: "#/components/schemas/BehaviorArgs"
+          filter_request_header: "#/components/schemas/BehaviorArgs"
+          add_request_cookie: "#/components/schemas/BehaviorArgs"
+          filter_request_cookie: "#/components/schemas/BehaviorArgs"
+          set_origin: "#/components/schemas/BehaviorArgs"
+          run_function: "#/components/schemas/BehaviorArgs"
+          set_connector: "#/components/schemas/BehaviorArgs"
+          set_cache_policy: "#/components/schemas/BehaviorArgs"
           capture_match_groups: "#/components/schemas/BehaviorCapture"
         propertyName: type
       oneOf:
@@ -26775,7 +26775,7 @@ components:
       - $ref: "#/components/schemas/BehaviorCapture"
       title: RequestPhaseBehavior
     RequestPhaseBehaviorRequest:
-      additionalProperties: false
+      additionalProperties: true
       discriminator:
         mapping:
           deny: "#/components/schemas/BehaviorNoArgs"
@@ -27616,7 +27616,7 @@ components:
       title: ResponseBehaviorStringAttributesRequest
       type: object
     ResponsePhaseBehavior:
-      additionalProperties: false
+      additionalProperties: true
       discriminator:
         mapping:
           enable_gzip: "#/components/schemas/BehaviorNoArgs"
@@ -27636,7 +27636,7 @@ components:
       - $ref: "#/components/schemas/BehaviorCapture"
       title: ResponsePhaseBehavior
     ResponsePhaseBehaviorRequest:
-      additionalProperties: false
+      additionalProperties: true
       discriminator:
         mapping:
           enable_gzip: "#/components/schemas/BehaviorNoArgs"
@@ -28732,7 +28732,7 @@ components:
       title: WAFExceptionGenericConditionRequest
       type: object
     WAFExceptionPolymorphicCondition:
-      additionalProperties: false
+      additionalProperties: true
       discriminator:
         mapping:
           any_http_header_name: "#/components/schemas/WAFExceptionGenericCondition"
@@ -28757,7 +28757,7 @@ components:
       - $ref: "#/components/schemas/WAFExceptionSpecificConditionOnValue"
       title: WAFExceptionPolymorphicCondition
     WAFExceptionPolymorphicConditionRequest:
-      additionalProperties: false
+      additionalProperties: true
       discriminator:
         mapping:
           any_http_header_name: "#/components/schemas/WAFExceptionGenericConditionRequest"
@@ -29688,16 +29688,44 @@ components:
       - type
       title: FirewallBehaviorsShared
       type: object
-    BehaviorIntegerAttributes:
-      additionalProperties: false
+    BehaviorArgsAttributes:
+      additionalProperties: true
+      description: Behavior attributes containing the value parameter
       properties:
         value:
-          format: int64
-          maximum: 9223372036854775807
-          minimum: 1
-          type: integer
+          $ref: "#/components/schemas/BehaviorArgsAttributes_value"
       required:
       - value
+      type: object
+    BehaviorArgs:
+      additionalProperties: true
+      description: Behaviors with arguments (string or integer)
+      properties:
+        type:
+          description: Behavior type
+          type: string
+          x-enum-descriptions:
+            add_request_cookie: Expects string value
+            add_request_header: Expects string value
+            add_response_header: Expects string value
+            filter_request_cookie: Expects string value
+            filter_request_header: Expects string value
+            filter_response_cookie: Expects string value
+            filter_response_header: Expects string value
+            redirect_to_301: Expects string value
+            redirect_to_302: Expects string value
+            rewrite_request: Expects string value
+            run_function: Expects integer value
+            set_cache_policy: Expects integer value
+            set_connector: Expects integer value
+            set_cookie: Expects string value
+            set_origin: Expects integer value
+        attributes:
+          $ref: "#/components/schemas/BehaviorArgsAttributes"
+      required:
+      - attributes
+      - type
+      title: BehaviorArgs
       type: object
     BehaviorCapture:
       additionalProperties: true
@@ -29872,6 +29900,14 @@ components:
       - $ref: "#/components/schemas/MinimumVersionEnum"
       - $ref: "#/components/schemas/BlankEnum"
       - $ref: "#/components/schemas/NullEnum"
+    BehaviorArgsAttributes_value:
+      description: Value can be string or integer depending on the behavior type
+      oneOf:
+      - type: string
+      - format: int64
+        maximum: 9223372036854775807
+        minimum: 1
+        type: integer
     BehaviorAttributes_value:
       oneOf:
       - type: string
