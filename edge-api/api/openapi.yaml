@@ -17675,7 +17675,7 @@ components:
       x-extensible-enum:
       - filter_request_header
     BehaviorNoArgs:
-      additionalProperties: true
+      additionalProperties: false
       description: Behaviors without arguments
       example:
         type: type
