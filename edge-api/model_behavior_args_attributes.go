@@ -12,7 +12,6 @@ package edgeapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -22,6 +21,7 @@ var _ MappedNullable = &BehaviorArgsAttributes{}
 // BehaviorArgsAttributes Behavior attributes containing the value parameter
 type BehaviorArgsAttributes struct {
 	Value BehaviorArgsAttributesValue `json:"value"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BehaviorArgsAttributes BehaviorArgsAttributes
@@ -79,6 +79,11 @@ func (o BehaviorArgsAttributes) MarshalJSON() ([]byte, error) {
 func (o BehaviorArgsAttributes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -106,15 +111,20 @@ func (o *BehaviorArgsAttributes) UnmarshalJSON(data []byte) (err error) {
 
 	varBehaviorArgsAttributes := _BehaviorArgsAttributes{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBehaviorArgsAttributes)
+	err = json.Unmarshal(data, &varBehaviorArgsAttributes)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BehaviorArgsAttributes(varBehaviorArgsAttributes)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
