@@ -227,29 +227,29 @@ func (a *ApplicationsDeviceGroupsAPIService) CreateDeviceGroupExecute(r ApiCreat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteDeviceGroupsRequest struct {
+type ApiDeleteDeviceGroupRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsDeviceGroupsAPIService
 	applicationId int64
 	deviceGroupId int64
 }
 
-func (r ApiDeleteDeviceGroupsRequest) Execute() (*DeleteResponse, *http.Response, error) {
-	return r.ApiService.DeleteDeviceGroupsExecute(r)
+func (r ApiDeleteDeviceGroupRequest) Execute() (*DeleteResponse, *http.Response, error) {
+	return r.ApiService.DeleteDeviceGroupExecute(r)
 }
 
 /*
-DeleteDeviceGroups Delete an Applications Device Group
+DeleteDeviceGroup Delete an Applications Device Group
 
 Delete a specific Device Group in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param applicationId A unique integer value identifying the application.
  @param deviceGroupId A unique integer value identifying the device group.
- @return ApiDeleteDeviceGroupsRequest
+ @return ApiDeleteDeviceGroupRequest
 */
-func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroups(ctx context.Context, applicationId int64, deviceGroupId int64) ApiDeleteDeviceGroupsRequest {
-	return ApiDeleteDeviceGroupsRequest{
+func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroup(ctx context.Context, applicationId int64, deviceGroupId int64) ApiDeleteDeviceGroupRequest {
+	return ApiDeleteDeviceGroupRequest{
 		ApiService: a,
 		ctx: ctx,
 		applicationId: applicationId,
@@ -259,7 +259,7 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroups(ctx context.Cont
 
 // Execute executes the request
 //  @return DeleteResponse
-func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDeleteDeviceGroupsRequest) (*DeleteResponse, *http.Response, error) {
+func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupExecute(r ApiDeleteDeviceGroupRequest) (*DeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -267,7 +267,7 @@ func (a *ApplicationsDeviceGroupsAPIService) DeleteDeviceGroupsExecute(r ApiDele
 		localVarReturnValue  *DeleteResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsDeviceGroupsAPIService.DeleteDeviceGroups")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsDeviceGroupsAPIService.DeleteDeviceGroup")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | * &#x60;run_function&#x60; - run_function | 
-**Attributes** | [**FirewallBehaviorRunFunctionAttributes**](FirewallBehaviorRunFunctionAttributes.md) |  | 
+**Type** | **string** | Behavior type | 
+**Attributes** | [**FirewallBehaviorObjectArgsAttributes**](FirewallBehaviorObjectArgsAttributes.md) |  | 
 
 ## Methods
 
 ### NewFirewallBehavior
 
-`func NewFirewallBehavior(type_ string, attributes FirewallBehaviorRunFunctionAttributes, ) *FirewallBehavior`
+`func NewFirewallBehavior(type_ string, attributes FirewallBehaviorObjectArgsAttributes, ) *FirewallBehavior`
 
 NewFirewallBehavior instantiates a new FirewallBehavior object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetType sets Type field to given value.
 
 ### GetAttributes
 
-`func (o *FirewallBehavior) GetAttributes() FirewallBehaviorRunFunctionAttributes`
+`func (o *FirewallBehavior) GetAttributes() FirewallBehaviorObjectArgsAttributes`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *FirewallBehavior) GetAttributesOk() (*FirewallBehaviorRunFunctionAttributes, bool)`
+`func (o *FirewallBehavior) GetAttributesOk() (*FirewallBehaviorObjectArgsAttributes, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *FirewallBehavior) SetAttributes(v FirewallBehaviorRunFunctionAttributes)`
+`func (o *FirewallBehavior) SetAttributes(v FirewallBehaviorObjectArgsAttributes)`
 
 SetAttributes sets Attributes field to given value.
 

@@ -40,7 +40,7 @@ func (r ApiCreateConnectorRequest) Execute() (*ConnectorPolymorphicResponse, *ht
 }
 
 /*
-CreateConnector Create an Connector
+CreateConnector Create a Connector
 
 Create a new Connector in your account.
 
@@ -232,7 +232,7 @@ func (r ApiDeleteConnectorRequest) Execute() (*DeleteResponse, *http.Response, e
 }
 
 /*
-DeleteConnector Delete an Connector
+DeleteConnector Delete a Connector
 
 Delete a specific Connector in your account.
 
@@ -740,7 +740,7 @@ func (r ApiPartialUpdateConnectorRequest) Execute() (*ConnectorPolymorphicRespon
 }
 
 /*
-PartialUpdateConnector Partially update an Connector
+PartialUpdateConnector Partially update a Connector
 
 Update one or more fields of an existing Connector without affecting other fields.
 
@@ -942,7 +942,7 @@ func (r ApiRetrieveConnectorRequest) Execute() (*ConnectorPolymorphicResponse, *
 }
 
 /*
-RetrieveConnector Retrieve details of an Connector
+RetrieveConnector Retrieve details of a Connector
 
 Retrieve details of a specific Connector in your account.
 
@@ -1144,7 +1144,7 @@ func (r ApiUpdateConnectorRequest) Execute() (*ConnectorPolymorphicResponse, *ht
 }
 
 /*
-UpdateConnector Update an Connector
+UpdateConnector Update a Connector
 
 Update an existing Connector. This replaces the entire Connector with the new data provided.
 

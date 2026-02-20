@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveApplicationResponseRule
 
-> RequestPhaseRuleResponse RetrieveApplicationResponseRule(ctx, applicationId, responseRuleId).Fields(fields).Execute()
+> ResponsePhaseRuleResponse RetrieveApplicationResponseRule(ctx, applicationId, responseRuleId).Fields(fields).Execute()
 
 Retrieve details of an Application Response Rule
 
@@ -363,7 +363,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.RetrieveApplicationResponseRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveApplicationResponseRule`: RequestPhaseRuleResponse
+	// response from `RetrieveApplicationResponseRule`: ResponsePhaseRuleResponse
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.RetrieveApplicationResponseRule`: %v\n", resp)
 }
 ```
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RequestPhaseRuleResponse**](RequestPhaseRuleResponse.md)
+[**ResponsePhaseRuleResponse**](ResponsePhaseRuleResponse.md)
 
 ### Authorization
 

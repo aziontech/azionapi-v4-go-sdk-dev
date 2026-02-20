@@ -1024,6 +1024,118 @@ paths:
               schema:
                 $ref: "#/components/schemas/PaginatedCacheSettingList"
           description: List of cache settings retrieved successfully.
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1056,6 +1168,118 @@ paths:
               schema:
                 $ref: "#/components/schemas/CacheSettingResponse"
           description: Cache setting created successfully.
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1247,6 +1471,118 @@ paths:
               schema:
                 $ref: "#/components/schemas/CacheSetting"
           description: Cache setting details retrieved successfully.
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1288,6 +1624,118 @@ paths:
               schema:
                 $ref: "#/components/schemas/CacheSettingResponse"
           description: Cache setting partially updated successfully.
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1330,6 +1778,118 @@ paths:
               schema:
                 $ref: "#/components/schemas/CacheSettingResponse"
           description: Cache setting updated successfully.
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1839,7 +2399,7 @@ paths:
   /workspace/applications/{application_id}/device_groups/{device_group_id}:
     delete:
       description: Delete a specific Device Group in your account.
-      operationId: delete_device_groups
+      operationId: delete_device_group
       parameters:
       - description: A unique integer value identifying the application.
         explode: false
@@ -4010,7 +4570,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RequestPhaseRuleResponse"
+                $ref: "#/components/schemas/ResponsePhaseRuleResponse"
           description: Application request rule details retrieved successfully.
         "401":
           content:
@@ -4439,7 +4999,7 @@ paths:
       - Applications - Request Rules
   /workspace/applications/{application_id}/request_rules/order:
     put:
-      description: Reoder all Rules for a specific Application owned by your account.
+      description: Reorder all Rules for a specific Application owned by your account.
       operationId: update_application_request_rules_order
       parameters:
       - description: A unique integer value identifying the application.
@@ -5171,7 +5731,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RequestPhaseRuleResponse"
+                $ref: "#/components/schemas/ResponsePhaseRuleResponse"
           description: Application response rule details retrieved successfully.
         "401":
           content:
@@ -5600,7 +6160,7 @@ paths:
       - Applications - Response Rules
   /workspace/applications/{application_id}/response_rules/order:
     put:
-      description: Reoder all Rules for a specific Application owned by your account.
+      description: Reorder all Rules for a specific Application owned by your account.
       operationId: update_application_response_rules_order
       parameters:
       - description: A unique integer value identifying the application.
@@ -6116,7 +6676,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Create an Connector
+      summary: Create a Connector
       tags:
       - Connectors
   /workspace/connectors/{connector_id}:
@@ -6255,7 +6815,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Delete an Connector
+      summary: Delete a Connector
       tags:
       - Connectors
     get:
@@ -6401,7 +6961,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Retrieve details of an Connector
+      summary: Retrieve details of a Connector
       tags:
       - Connectors
     patch:
@@ -6545,7 +7105,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Partially update an Connector
+      summary: Partially update a Connector
       tags:
       - Connectors
     put:
@@ -6689,7 +7249,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Update an Connector
+      summary: Update a Connector
       tags:
       - Connectors
   /workspace/firewalls:
@@ -9773,7 +10333,7 @@ paths:
       - Firewalls - Rules Engine
   /workspace/firewalls/{firewall_id}/request_rules/order:
     put:
-      description: Reoder all Rules for a specific Firewall owned by your account.
+      description: Reorder all Rules for a specific Firewall owned by your account.
       operationId: order_firewall_rules
       parameters:
       - description: A unique integer value identifying the firewall.
@@ -20623,17 +21183,15 @@ components:
         mapping:
           deny: "#/components/schemas/FirewallBehaviorNoArgs"
           drop: "#/components/schemas/FirewallBehaviorNoArgs"
-          set_custom_response: "#/components/schemas/FirewallBehaviorSetCustomResponse"
-          set_rate_limit: "#/components/schemas/FirewallBehaviorSetRateLimit"
-          set_waf: "#/components/schemas/FirewallBehaviorSetWaf"
-          run_function: "#/components/schemas/FirewallBehaviorRunFunction"
+          run_function: "#/components/schemas/FirewallBehaviorArgs"
+          set_custom_response: "#/components/schemas/FirewallBehaviorObjectArgs"
+          set_rate_limit: "#/components/schemas/FirewallBehaviorObjectArgs"
+          set_waf: "#/components/schemas/FirewallBehaviorObjectArgs"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/FirewallBehaviorNoArgs"
-      - $ref: "#/components/schemas/FirewallBehaviorSetCustomResponse"
-      - $ref: "#/components/schemas/FirewallBehaviorSetRateLimit"
-      - $ref: "#/components/schemas/FirewallBehaviorSetWaf"
-      - $ref: "#/components/schemas/FirewallBehaviorRunFunction"
+      - $ref: "#/components/schemas/FirewallBehaviorArgs"
+      - $ref: "#/components/schemas/FirewallBehaviorObjectArgs"
       title: FirewallBehavior
     FirewallBehaviorNoArgs:
       additionalProperties: true
@@ -20688,35 +21246,16 @@ components:
         mapping:
           deny: "#/components/schemas/FirewallBehaviorNoArgsRequest"
           drop: "#/components/schemas/FirewallBehaviorNoArgsRequest"
-          set_custom_response: "#/components/schemas/FirewallBehaviorSetCustomResponseRequest"
-          set_rate_limit: "#/components/schemas/FirewallBehaviorSetRateLimitRequest"
-          set_waf: "#/components/schemas/FirewallBehaviorSetWafRequest"
-          run_function: "#/components/schemas/FirewallBehaviorRunFunctionRequest"
+          run_function: "#/components/schemas/FirewallBehaviorArgsRequest"
+          set_custom_response: "#/components/schemas/FirewallBehaviorObjectArgsRequest"
+          set_rate_limit: "#/components/schemas/FirewallBehaviorObjectArgsRequest"
+          set_waf: "#/components/schemas/FirewallBehaviorObjectArgsRequest"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/FirewallBehaviorNoArgsRequest"
-      - $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseRequest"
-      - $ref: "#/components/schemas/FirewallBehaviorSetRateLimitRequest"
-      - $ref: "#/components/schemas/FirewallBehaviorSetWafRequest"
-      - $ref: "#/components/schemas/FirewallBehaviorRunFunctionRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorArgsRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorObjectArgsRequest"
       title: FirewallBehaviorRequest
-    FirewallBehaviorRunFunction:
-      additionalProperties: true
-      description: Run a function
-      properties:
-        type:
-          description: '* `run_function` - run_function'
-          title: BehaviorTypeEnum
-          type: string
-          x-extensible-enum:
-          - run_function
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorRunFunctionAttributes"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorRunFunction
-      type: object
     FirewallBehaviorRunFunctionAttributes:
       additionalProperties: true
       properties:
@@ -20740,40 +21279,6 @@ components:
       required:
       - value
       title: FirewallBehaviorRunFunctionAttributesRequest
-      type: object
-    FirewallBehaviorRunFunctionRequest:
-      additionalProperties: true
-      description: Run a function
-      properties:
-        type:
-          description: '* `run_function` - run_function'
-          title: BehaviorTypeEnum
-          type: string
-          x-extensible-enum:
-          - run_function
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorRunFunctionAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorRunFunctionRequest
-      type: object
-    FirewallBehaviorSetCustomResponse:
-      additionalProperties: true
-      description: Set a custom response
-      properties:
-        type:
-          description: '* `set_custom_response` - set_custom_response'
-          title: FirewallBehaviorSetCustomResponseTypeEnum
-          type: string
-          x-extensible-enum:
-          - set_custom_response
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseAttributes"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorSetCustomResponse
       type: object
     FirewallBehaviorSetCustomResponseAttributes:
       additionalProperties: true
@@ -20814,46 +21319,6 @@ components:
       required:
       - status_code
       title: FirewallBehaviorSetCustomResponseAttributesRequest
-      type: object
-    FirewallBehaviorSetCustomResponseRequest:
-      additionalProperties: true
-      description: Set a custom response
-      properties:
-        type:
-          description: '* `set_custom_response` - set_custom_response'
-          title: FirewallBehaviorSetCustomResponseTypeEnum
-          type: string
-          x-extensible-enum:
-          - set_custom_response
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorSetCustomResponseRequest
-      type: object
-    FirewallBehaviorSetCustomResponseTypeEnum:
-      description: '* `set_custom_response` - set_custom_response'
-      title: FirewallBehaviorSetCustomResponseTypeEnum
-      type: string
-      x-extensible-enum:
-      - set_custom_response
-    FirewallBehaviorSetRateLimit:
-      additionalProperties: true
-      description: Set a rate limit
-      properties:
-        type:
-          description: '* `set_rate_limit` - set_rate_limit'
-          title: FirewallBehaviorSetRateLimitTypeEnum
-          type: string
-          x-extensible-enum:
-          - set_rate_limit
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorSetRateLimitAttributes"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorSetRateLimit
       type: object
     FirewallBehaviorSetRateLimitAttributes:
       additionalProperties: true
@@ -20926,46 +21391,6 @@ components:
       x-extensible-enum:
       - second
       - minute
-    FirewallBehaviorSetRateLimitRequest:
-      additionalProperties: true
-      description: Set a rate limit
-      properties:
-        type:
-          description: '* `set_rate_limit` - set_rate_limit'
-          title: FirewallBehaviorSetRateLimitTypeEnum
-          type: string
-          x-extensible-enum:
-          - set_rate_limit
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorSetRateLimitAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorSetRateLimitRequest
-      type: object
-    FirewallBehaviorSetRateLimitTypeEnum:
-      description: '* `set_rate_limit` - set_rate_limit'
-      title: FirewallBehaviorSetRateLimitTypeEnum
-      type: string
-      x-extensible-enum:
-      - set_rate_limit
-    FirewallBehaviorSetWaf:
-      additionalProperties: true
-      description: Set a WAF
-      properties:
-        type:
-          description: '* `set_waf` - set_waf'
-          title: FirewallBehaviorSetWafTypeEnum
-          type: string
-          x-extensible-enum:
-          - set_waf
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorSetWafAttributes"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorSetWaf
-      type: object
     FirewallBehaviorSetWafAttributes:
       additionalProperties: true
       properties:
@@ -21010,29 +21435,6 @@ components:
       - waf_id
       title: FirewallBehaviorSetWafAttributesRequest
       type: object
-    FirewallBehaviorSetWafRequest:
-      additionalProperties: true
-      description: Set a WAF
-      properties:
-        type:
-          description: '* `set_waf` - set_waf'
-          title: FirewallBehaviorSetWafTypeEnum
-          type: string
-          x-extensible-enum:
-          - set_waf
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorSetWafAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorSetWafRequest
-      type: object
-    FirewallBehaviorSetWafTypeEnum:
-      description: '* `set_waf` - set_waf'
-      title: FirewallBehaviorSetWafTypeEnum
-      type: string
-      x-extensible-enum:
-      - set_waf
     FirewallFunctionInstance:
       additionalProperties: false
       description: Serializer for Firewall Function Instances
@@ -23317,6 +23719,8 @@ components:
     PaginatedApplicationList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -23375,6 +23779,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/Application"
@@ -23384,6 +23800,8 @@ components:
     PaginatedCacheSettingList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -23488,6 +23906,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/CacheSetting"
@@ -23497,6 +23927,8 @@ components:
     PaginatedConnectorPolymorphicList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -23573,6 +24005,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/ConnectorPolymorphic"
@@ -23582,6 +24026,8 @@ components:
     PaginatedCustomPageList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -23662,6 +24108,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/CustomPage"
@@ -23671,6 +24129,8 @@ components:
     PaginatedDeviceGroupList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -23711,6 +24171,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/DeviceGroup"
@@ -23720,6 +24192,8 @@ components:
     PaginatedEdgeFunctionsList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -23882,6 +24356,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/EdgeFunctions"
@@ -23891,6 +24377,8 @@ components:
     PaginatedFirewallFunctionInstanceList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -24041,6 +24529,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/FirewallFunctionInstance"
@@ -24050,6 +24550,8 @@ components:
     PaginatedFirewallList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -24108,6 +24610,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/Firewall"
@@ -24117,6 +24631,8 @@ components:
     PaginatedFirewallRuleList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -24379,6 +24895,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/FirewallRule"
@@ -24388,6 +24916,8 @@ components:
     PaginatedFunctionInstanceList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -24538,6 +25068,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/FunctionInstance"
@@ -24547,6 +25089,8 @@ components:
     PaginatedNetworkListSummaryList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -24593,6 +25137,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/NetworkListSummary"
@@ -24602,6 +25158,8 @@ components:
     PaginatedRequestPhaseRuleList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -24864,6 +25422,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/RequestPhaseRule"
@@ -24873,6 +25443,8 @@ components:
     PaginatedResponsePhaseRuleList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -25135,6 +25707,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/ResponsePhaseRule"
@@ -25144,6 +25728,8 @@ components:
     PaginatedWAFList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -25226,6 +25812,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/WAF"
@@ -25235,6 +25833,8 @@ components:
     PaginatedWAFRuleList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -25291,6 +25891,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/WAFRule"
@@ -25300,6 +25912,8 @@ components:
     PaginatedWorkloadDeploymentList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -25358,6 +25972,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/WorkloadDeployment"
@@ -25367,6 +25993,8 @@ components:
     PaginatedWorkloadList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -25431,6 +26059,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/Workload"
@@ -28089,12 +28729,7 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
-        state: state
       properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
         data:
           $ref: "#/components/schemas/ResponsePhaseRule"
       required:
@@ -29740,6 +30375,62 @@ components:
       - type
       title: BehaviorCapture
       type: object
+    FirewallBehaviorArgs:
+      additionalProperties: true
+      description: "Firewall behaviors with a simple argument (e.g., run_function)"
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorRunFunctionAttributes"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorArgs
+      type: object
+    FirewallBehaviorObjectArgs:
+      additionalProperties: true
+      description: "Firewall behaviors with complex object attributes (set_custom_response,\
+        \ set_rate_limit, set_waf)"
+      properties:
+        type:
+          description: Behavior type
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorObjectArgs_attributes"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorObjectArgs
+      type: object
+    FirewallBehaviorObjectArgsRequest:
+      additionalProperties: true
+      description: "Firewall behaviors with complex object attributes (set_custom_response,\
+        \ set_rate_limit, set_waf)"
+      properties:
+        type:
+          description: Behavior type
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorObjectArgsRequest_attributes"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorObjectArgsRequest
+      type: object
+    FirewallBehaviorArgsRequest:
+      additionalProperties: true
+      description: "Firewall behaviors with a simple argument (e.g., run_function)"
+      properties:
+        type:
+          type: string
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorRunFunctionAttributesRequest"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorArgsRequest
+      type: object
     FirewallBehaviorModeEnum:
       description: |-
         * `ignore` - ignore
@@ -29891,6 +30582,22 @@ components:
         maximum: 9223372036854775807
         minimum: 1
         type: integer
+    FirewallBehaviorObjectArgs_attributes:
+      description: "Attributes object whose shape depends on the behavior type. Use\
+        \ SetCustomResponseAttributes for set_custom_response, SetRateLimitAttributes\
+        \ for set_rate_limit, SetWafAttributes for set_waf."
+      oneOf:
+      - $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseAttributes"
+      - $ref: "#/components/schemas/FirewallBehaviorSetRateLimitAttributes"
+      - $ref: "#/components/schemas/FirewallBehaviorSetWafAttributes"
+    FirewallBehaviorObjectArgsRequest_attributes:
+      description: "Attributes object whose shape depends on the behavior type. Use\
+        \ SetCustomResponseAttributes for set_custom_response, SetRateLimitAttributes\
+        \ for set_rate_limit, SetWafAttributes for set_waf."
+      oneOf:
+      - $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseAttributesRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorSetRateLimitAttributesRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorSetWafAttributesRequest"
   securitySchemes:
     BearerAuth:
       scheme: bearer

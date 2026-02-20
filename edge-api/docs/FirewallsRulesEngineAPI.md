@@ -36,7 +36,7 @@ import (
 
 func main() {
 	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
-	firewallRuleRequest := *openapiclient.NewFirewallRuleRequest("Name_example", [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.FirewallBehaviorRequest{openapiclient.FirewallBehaviorRequest{FirewallBehaviorNoArgsRequest: openapiclient.NewFirewallBehaviorNoArgsRequest("Type_example")}}) // FirewallRuleRequest | 
+	firewallRuleRequest := *openapiclient.NewFirewallRuleRequest("Name_example", [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.FirewallBehaviorRequest{openapiclient.FirewallBehaviorRequest{FirewallBehaviorArgsRequest: openapiclient.NewFirewallBehaviorArgsRequest("Type_example", *openapiclient.NewFirewallBehaviorRunFunctionAttributesRequest(int64(123)))}}) // FirewallRuleRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -503,7 +503,7 @@ import (
 func main() {
 	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
 	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	firewallRuleRequest := *openapiclient.NewFirewallRuleRequest("Name_example", [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.FirewallBehaviorRequest{openapiclient.FirewallBehaviorRequest{FirewallBehaviorNoArgsRequest: openapiclient.NewFirewallBehaviorNoArgsRequest("Type_example")}}) // FirewallRuleRequest | 
+	firewallRuleRequest := *openapiclient.NewFirewallRuleRequest("Name_example", [][]EdgeFirewallCriterionFieldRequest{[]openapiclient.EdgeFirewallCriterionFieldRequest{*openapiclient.NewEdgeFirewallCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.FirewallBehaviorRequest{openapiclient.FirewallBehaviorRequest{FirewallBehaviorArgsRequest: openapiclient.NewFirewallBehaviorArgsRequest("Type_example", *openapiclient.NewFirewallBehaviorRunFunctionAttributesRequest(int64(123)))}}) // FirewallRuleRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
