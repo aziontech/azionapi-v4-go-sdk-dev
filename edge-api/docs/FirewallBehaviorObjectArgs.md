@@ -1,67 +1,67 @@
-# FirewallBehaviorRequest
+# FirewallBehaviorObjectArgs
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | **string** | Behavior type | 
-**Attributes** | [**FirewallBehaviorObjectArgsRequestAttributes**](FirewallBehaviorObjectArgsRequestAttributes.md) |  | 
+**Attributes** | [**FirewallBehaviorObjectArgsAttributes**](FirewallBehaviorObjectArgsAttributes.md) |  | 
 
 ## Methods
 
-### NewFirewallBehaviorRequest
+### NewFirewallBehaviorObjectArgs
 
-`func NewFirewallBehaviorRequest(type_ string, attributes FirewallBehaviorObjectArgsRequestAttributes, ) *FirewallBehaviorRequest`
+`func NewFirewallBehaviorObjectArgs(type_ string, attributes FirewallBehaviorObjectArgsAttributes, ) *FirewallBehaviorObjectArgs`
 
-NewFirewallBehaviorRequest instantiates a new FirewallBehaviorRequest object
+NewFirewallBehaviorObjectArgs instantiates a new FirewallBehaviorObjectArgs object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewFirewallBehaviorRequestWithDefaults
+### NewFirewallBehaviorObjectArgsWithDefaults
 
-`func NewFirewallBehaviorRequestWithDefaults() *FirewallBehaviorRequest`
+`func NewFirewallBehaviorObjectArgsWithDefaults() *FirewallBehaviorObjectArgs`
 
-NewFirewallBehaviorRequestWithDefaults instantiates a new FirewallBehaviorRequest object
+NewFirewallBehaviorObjectArgsWithDefaults instantiates a new FirewallBehaviorObjectArgs object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetType
 
-`func (o *FirewallBehaviorRequest) GetType() string`
+`func (o *FirewallBehaviorObjectArgs) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *FirewallBehaviorRequest) GetTypeOk() (*string, bool)`
+`func (o *FirewallBehaviorObjectArgs) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *FirewallBehaviorRequest) SetType(v string)`
+`func (o *FirewallBehaviorObjectArgs) SetType(v string)`
 
 SetType sets Type field to given value.
 
 
 ### GetAttributes
 
-`func (o *FirewallBehaviorRequest) GetAttributes() FirewallBehaviorObjectArgsRequestAttributes`
+`func (o *FirewallBehaviorObjectArgs) GetAttributes() FirewallBehaviorObjectArgsAttributes`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *FirewallBehaviorRequest) GetAttributesOk() (*FirewallBehaviorObjectArgsRequestAttributes, bool)`
+`func (o *FirewallBehaviorObjectArgs) GetAttributesOk() (*FirewallBehaviorObjectArgsAttributes, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *FirewallBehaviorRequest) SetAttributes(v FirewallBehaviorObjectArgsRequestAttributes)`
+`func (o *FirewallBehaviorObjectArgs) SetAttributes(v FirewallBehaviorObjectArgsAttributes)`
 
 SetAttributes sets Attributes field to given value.
 

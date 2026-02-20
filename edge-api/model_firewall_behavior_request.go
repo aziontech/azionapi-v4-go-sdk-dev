@@ -18,11 +18,16 @@ import (
 
 // FirewallBehaviorRequest - struct for FirewallBehaviorRequest
 type FirewallBehaviorRequest struct {
+	FirewallBehaviorArgsRequest *FirewallBehaviorArgsRequest
 	FirewallBehaviorNoArgsRequest *FirewallBehaviorNoArgsRequest
-	FirewallBehaviorRunFunctionRequest *FirewallBehaviorRunFunctionRequest
-	FirewallBehaviorSetCustomResponseRequest *FirewallBehaviorSetCustomResponseRequest
-	FirewallBehaviorSetRateLimitRequest *FirewallBehaviorSetRateLimitRequest
-	FirewallBehaviorSetWafRequest *FirewallBehaviorSetWafRequest
+	FirewallBehaviorObjectArgsRequest *FirewallBehaviorObjectArgsRequest
+}
+
+// FirewallBehaviorArgsRequestAsFirewallBehaviorRequest is a convenience function that returns FirewallBehaviorArgsRequest wrapped in FirewallBehaviorRequest
+func FirewallBehaviorArgsRequestAsFirewallBehaviorRequest(v *FirewallBehaviorArgsRequest) FirewallBehaviorRequest {
+	return FirewallBehaviorRequest{
+		FirewallBehaviorArgsRequest: v,
+	}
 }
 
 // FirewallBehaviorNoArgsRequestAsFirewallBehaviorRequest is a convenience function that returns FirewallBehaviorNoArgsRequest wrapped in FirewallBehaviorRequest
@@ -32,31 +37,10 @@ func FirewallBehaviorNoArgsRequestAsFirewallBehaviorRequest(v *FirewallBehaviorN
 	}
 }
 
-// FirewallBehaviorRunFunctionRequestAsFirewallBehaviorRequest is a convenience function that returns FirewallBehaviorRunFunctionRequest wrapped in FirewallBehaviorRequest
-func FirewallBehaviorRunFunctionRequestAsFirewallBehaviorRequest(v *FirewallBehaviorRunFunctionRequest) FirewallBehaviorRequest {
+// FirewallBehaviorObjectArgsRequestAsFirewallBehaviorRequest is a convenience function that returns FirewallBehaviorObjectArgsRequest wrapped in FirewallBehaviorRequest
+func FirewallBehaviorObjectArgsRequestAsFirewallBehaviorRequest(v *FirewallBehaviorObjectArgsRequest) FirewallBehaviorRequest {
 	return FirewallBehaviorRequest{
-		FirewallBehaviorRunFunctionRequest: v,
-	}
-}
-
-// FirewallBehaviorSetCustomResponseRequestAsFirewallBehaviorRequest is a convenience function that returns FirewallBehaviorSetCustomResponseRequest wrapped in FirewallBehaviorRequest
-func FirewallBehaviorSetCustomResponseRequestAsFirewallBehaviorRequest(v *FirewallBehaviorSetCustomResponseRequest) FirewallBehaviorRequest {
-	return FirewallBehaviorRequest{
-		FirewallBehaviorSetCustomResponseRequest: v,
-	}
-}
-
-// FirewallBehaviorSetRateLimitRequestAsFirewallBehaviorRequest is a convenience function that returns FirewallBehaviorSetRateLimitRequest wrapped in FirewallBehaviorRequest
-func FirewallBehaviorSetRateLimitRequestAsFirewallBehaviorRequest(v *FirewallBehaviorSetRateLimitRequest) FirewallBehaviorRequest {
-	return FirewallBehaviorRequest{
-		FirewallBehaviorSetRateLimitRequest: v,
-	}
-}
-
-// FirewallBehaviorSetWafRequestAsFirewallBehaviorRequest is a convenience function that returns FirewallBehaviorSetWafRequest wrapped in FirewallBehaviorRequest
-func FirewallBehaviorSetWafRequestAsFirewallBehaviorRequest(v *FirewallBehaviorSetWafRequest) FirewallBehaviorRequest {
-	return FirewallBehaviorRequest{
-		FirewallBehaviorSetWafRequest: v,
+		FirewallBehaviorObjectArgsRequest: v,
 	}
 }
 
@@ -65,6 +49,23 @@ func FirewallBehaviorSetWafRequestAsFirewallBehaviorRequest(v *FirewallBehaviorS
 func (dst *FirewallBehaviorRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// try to unmarshal data into FirewallBehaviorArgsRequest
+	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorArgsRequest)
+	if err == nil {
+		jsonFirewallBehaviorArgsRequest, _ := json.Marshal(dst.FirewallBehaviorArgsRequest)
+		if string(jsonFirewallBehaviorArgsRequest) == "{}" { // empty struct
+			dst.FirewallBehaviorArgsRequest = nil
+		} else {
+			if err = validator.Validate(dst.FirewallBehaviorArgsRequest); err != nil {
+				dst.FirewallBehaviorArgsRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.FirewallBehaviorArgsRequest = nil
+	}
+
 	// try to unmarshal data into FirewallBehaviorNoArgsRequest
 	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorNoArgsRequest)
 	if err == nil {
@@ -82,81 +83,28 @@ func (dst *FirewallBehaviorRequest) UnmarshalJSON(data []byte) error {
 		dst.FirewallBehaviorNoArgsRequest = nil
 	}
 
-	// try to unmarshal data into FirewallBehaviorRunFunctionRequest
-	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorRunFunctionRequest)
+	// try to unmarshal data into FirewallBehaviorObjectArgsRequest
+	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorObjectArgsRequest)
 	if err == nil {
-		jsonFirewallBehaviorRunFunctionRequest, _ := json.Marshal(dst.FirewallBehaviorRunFunctionRequest)
-		if string(jsonFirewallBehaviorRunFunctionRequest) == "{}" { // empty struct
-			dst.FirewallBehaviorRunFunctionRequest = nil
+		jsonFirewallBehaviorObjectArgsRequest, _ := json.Marshal(dst.FirewallBehaviorObjectArgsRequest)
+		if string(jsonFirewallBehaviorObjectArgsRequest) == "{}" { // empty struct
+			dst.FirewallBehaviorObjectArgsRequest = nil
 		} else {
-			if err = validator.Validate(dst.FirewallBehaviorRunFunctionRequest); err != nil {
-				dst.FirewallBehaviorRunFunctionRequest = nil
+			if err = validator.Validate(dst.FirewallBehaviorObjectArgsRequest); err != nil {
+				dst.FirewallBehaviorObjectArgsRequest = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.FirewallBehaviorRunFunctionRequest = nil
-	}
-
-	// try to unmarshal data into FirewallBehaviorSetCustomResponseRequest
-	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorSetCustomResponseRequest)
-	if err == nil {
-		jsonFirewallBehaviorSetCustomResponseRequest, _ := json.Marshal(dst.FirewallBehaviorSetCustomResponseRequest)
-		if string(jsonFirewallBehaviorSetCustomResponseRequest) == "{}" { // empty struct
-			dst.FirewallBehaviorSetCustomResponseRequest = nil
-		} else {
-			if err = validator.Validate(dst.FirewallBehaviorSetCustomResponseRequest); err != nil {
-				dst.FirewallBehaviorSetCustomResponseRequest = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.FirewallBehaviorSetCustomResponseRequest = nil
-	}
-
-	// try to unmarshal data into FirewallBehaviorSetRateLimitRequest
-	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorSetRateLimitRequest)
-	if err == nil {
-		jsonFirewallBehaviorSetRateLimitRequest, _ := json.Marshal(dst.FirewallBehaviorSetRateLimitRequest)
-		if string(jsonFirewallBehaviorSetRateLimitRequest) == "{}" { // empty struct
-			dst.FirewallBehaviorSetRateLimitRequest = nil
-		} else {
-			if err = validator.Validate(dst.FirewallBehaviorSetRateLimitRequest); err != nil {
-				dst.FirewallBehaviorSetRateLimitRequest = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.FirewallBehaviorSetRateLimitRequest = nil
-	}
-
-	// try to unmarshal data into FirewallBehaviorSetWafRequest
-	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorSetWafRequest)
-	if err == nil {
-		jsonFirewallBehaviorSetWafRequest, _ := json.Marshal(dst.FirewallBehaviorSetWafRequest)
-		if string(jsonFirewallBehaviorSetWafRequest) == "{}" { // empty struct
-			dst.FirewallBehaviorSetWafRequest = nil
-		} else {
-			if err = validator.Validate(dst.FirewallBehaviorSetWafRequest); err != nil {
-				dst.FirewallBehaviorSetWafRequest = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.FirewallBehaviorSetWafRequest = nil
+		dst.FirewallBehaviorObjectArgsRequest = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
+		dst.FirewallBehaviorArgsRequest = nil
 		dst.FirewallBehaviorNoArgsRequest = nil
-		dst.FirewallBehaviorRunFunctionRequest = nil
-		dst.FirewallBehaviorSetCustomResponseRequest = nil
-		dst.FirewallBehaviorSetRateLimitRequest = nil
-		dst.FirewallBehaviorSetWafRequest = nil
+		dst.FirewallBehaviorObjectArgsRequest = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(FirewallBehaviorRequest)")
 	} else if match == 1 {
@@ -168,24 +116,16 @@ func (dst *FirewallBehaviorRequest) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src FirewallBehaviorRequest) MarshalJSON() ([]byte, error) {
+	if src.FirewallBehaviorArgsRequest != nil {
+		return json.Marshal(&src.FirewallBehaviorArgsRequest)
+	}
+
 	if src.FirewallBehaviorNoArgsRequest != nil {
 		return json.Marshal(&src.FirewallBehaviorNoArgsRequest)
 	}
 
-	if src.FirewallBehaviorRunFunctionRequest != nil {
-		return json.Marshal(&src.FirewallBehaviorRunFunctionRequest)
-	}
-
-	if src.FirewallBehaviorSetCustomResponseRequest != nil {
-		return json.Marshal(&src.FirewallBehaviorSetCustomResponseRequest)
-	}
-
-	if src.FirewallBehaviorSetRateLimitRequest != nil {
-		return json.Marshal(&src.FirewallBehaviorSetRateLimitRequest)
-	}
-
-	if src.FirewallBehaviorSetWafRequest != nil {
-		return json.Marshal(&src.FirewallBehaviorSetWafRequest)
+	if src.FirewallBehaviorObjectArgsRequest != nil {
+		return json.Marshal(&src.FirewallBehaviorObjectArgsRequest)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -196,24 +136,16 @@ func (obj *FirewallBehaviorRequest) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
+	if obj.FirewallBehaviorArgsRequest != nil {
+		return obj.FirewallBehaviorArgsRequest
+	}
+
 	if obj.FirewallBehaviorNoArgsRequest != nil {
 		return obj.FirewallBehaviorNoArgsRequest
 	}
 
-	if obj.FirewallBehaviorRunFunctionRequest != nil {
-		return obj.FirewallBehaviorRunFunctionRequest
-	}
-
-	if obj.FirewallBehaviorSetCustomResponseRequest != nil {
-		return obj.FirewallBehaviorSetCustomResponseRequest
-	}
-
-	if obj.FirewallBehaviorSetRateLimitRequest != nil {
-		return obj.FirewallBehaviorSetRateLimitRequest
-	}
-
-	if obj.FirewallBehaviorSetWafRequest != nil {
-		return obj.FirewallBehaviorSetWafRequest
+	if obj.FirewallBehaviorObjectArgsRequest != nil {
+		return obj.FirewallBehaviorObjectArgsRequest
 	}
 
 	// all schemas are nil
@@ -222,24 +154,16 @@ func (obj *FirewallBehaviorRequest) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj FirewallBehaviorRequest) GetActualInstanceValue() (interface{}) {
+	if obj.FirewallBehaviorArgsRequest != nil {
+		return *obj.FirewallBehaviorArgsRequest
+	}
+
 	if obj.FirewallBehaviorNoArgsRequest != nil {
 		return *obj.FirewallBehaviorNoArgsRequest
 	}
 
-	if obj.FirewallBehaviorRunFunctionRequest != nil {
-		return *obj.FirewallBehaviorRunFunctionRequest
-	}
-
-	if obj.FirewallBehaviorSetCustomResponseRequest != nil {
-		return *obj.FirewallBehaviorSetCustomResponseRequest
-	}
-
-	if obj.FirewallBehaviorSetRateLimitRequest != nil {
-		return *obj.FirewallBehaviorSetRateLimitRequest
-	}
-
-	if obj.FirewallBehaviorSetWafRequest != nil {
-		return *obj.FirewallBehaviorSetWafRequest
+	if obj.FirewallBehaviorObjectArgsRequest != nil {
+		return *obj.FirewallBehaviorObjectArgsRequest
 	}
 
 	// all schemas are nil

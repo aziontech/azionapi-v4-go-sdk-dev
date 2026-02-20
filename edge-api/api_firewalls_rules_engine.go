@@ -774,7 +774,7 @@ func (r ApiOrderFirewallRulesRequest) Execute() (*PaginatedFirewallRuleList, *ht
 /*
 OrderFirewallRules Ordering Firewall Rules
 
-Reoder all Rules for a specific Firewall owned by your account.
+Reorder all Rules for a specific Firewall owned by your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param firewallId A unique integer value identifying the firewall.
