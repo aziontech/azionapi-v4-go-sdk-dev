@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -24,7 +25,6 @@ type TransformSamplingAttributes struct {
 	// * `sampling` - Sampling
 	Type string `json:"type"`
 	Attributes TransformSampling `json:"attributes"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _TransformSamplingAttributes TransformSamplingAttributes
@@ -108,11 +108,6 @@ func (o TransformSamplingAttributes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -141,21 +136,15 @@ func (o *TransformSamplingAttributes) UnmarshalJSON(data []byte) (err error) {
 
 	varTransformSamplingAttributes := _TransformSamplingAttributes{}
 
-	err = json.Unmarshal(data, &varTransformSamplingAttributes)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTransformSamplingAttributes)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TransformSamplingAttributes(varTransformSamplingAttributes)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "attributes")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

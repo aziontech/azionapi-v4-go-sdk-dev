@@ -28,6 +28,10 @@ type PaginatedTOTPDeviceList struct {
 	Page *int64 `json:"page,omitempty"`
 	// Number of items per page
 	PageSize *int64 `json:"page_size,omitempty"`
+	// URL to the next page of results
+	Next NullableString `json:"next,omitempty"`
+	// URL to the previous page of results
+	Previous NullableString `json:"previous,omitempty"`
 	Results []TOTPDeviceList `json:"results,omitempty"`
 }
 
@@ -176,6 +180,90 @@ func (o *PaginatedTOTPDeviceList) SetPageSize(v int64) {
 	o.PageSize = &v
 }
 
+// GetNext returns the Next field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PaginatedTOTPDeviceList) GetNext() string {
+	if o == nil || IsNil(o.Next.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Next.Get()
+}
+
+// GetNextOk returns a tuple with the Next field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PaginatedTOTPDeviceList) GetNextOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Next.Get(), o.Next.IsSet()
+}
+
+// HasNext returns a boolean if a field has been set.
+func (o *PaginatedTOTPDeviceList) HasNext() bool {
+	if o != nil && o.Next.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetNext gets a reference to the given NullableString and assigns it to the Next field.
+func (o *PaginatedTOTPDeviceList) SetNext(v string) {
+	o.Next.Set(&v)
+}
+// SetNextNil sets the value for Next to be an explicit nil
+func (o *PaginatedTOTPDeviceList) SetNextNil() {
+	o.Next.Set(nil)
+}
+
+// UnsetNext ensures that no value is present for Next, not even an explicit nil
+func (o *PaginatedTOTPDeviceList) UnsetNext() {
+	o.Next.Unset()
+}
+
+// GetPrevious returns the Previous field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PaginatedTOTPDeviceList) GetPrevious() string {
+	if o == nil || IsNil(o.Previous.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Previous.Get()
+}
+
+// GetPreviousOk returns a tuple with the Previous field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PaginatedTOTPDeviceList) GetPreviousOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Previous.Get(), o.Previous.IsSet()
+}
+
+// HasPrevious returns a boolean if a field has been set.
+func (o *PaginatedTOTPDeviceList) HasPrevious() bool {
+	if o != nil && o.Previous.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPrevious gets a reference to the given NullableString and assigns it to the Previous field.
+func (o *PaginatedTOTPDeviceList) SetPrevious(v string) {
+	o.Previous.Set(&v)
+}
+// SetPreviousNil sets the value for Previous to be an explicit nil
+func (o *PaginatedTOTPDeviceList) SetPreviousNil() {
+	o.Previous.Set(nil)
+}
+
+// UnsetPrevious ensures that no value is present for Previous, not even an explicit nil
+func (o *PaginatedTOTPDeviceList) UnsetPrevious() {
+	o.Previous.Unset()
+}
+
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *PaginatedTOTPDeviceList) GetResults() []TOTPDeviceList {
 	if o == nil || IsNil(o.Results) {
@@ -229,6 +317,12 @@ func (o PaginatedTOTPDeviceList) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PageSize) {
 		toSerialize["page_size"] = o.PageSize
+	}
+	if o.Next.IsSet() {
+		toSerialize["next"] = o.Next.Get()
+	}
+	if o.Previous.IsSet() {
+		toSerialize["previous"] = o.Previous.Get()
 	}
 	if !IsNil(o.Results) {
 		toSerialize["results"] = o.Results

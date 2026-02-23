@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -24,7 +25,6 @@ type FirewallBehaviorSetWafAttributesRequest struct {
 	WafId int64 `json:"waf_id"`
 	// * `logging` - logging * `blocking` - blocking
 	Mode string `json:"mode"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _FirewallBehaviorSetWafAttributesRequest FirewallBehaviorSetWafAttributesRequest
@@ -108,11 +108,6 @@ func (o FirewallBehaviorSetWafAttributesRequest) ToMap() (map[string]interface{}
 	toSerialize := map[string]interface{}{}
 	toSerialize["waf_id"] = o.WafId
 	toSerialize["mode"] = o.Mode
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -141,21 +136,15 @@ func (o *FirewallBehaviorSetWafAttributesRequest) UnmarshalJSON(data []byte) (er
 
 	varFirewallBehaviorSetWafAttributesRequest := _FirewallBehaviorSetWafAttributesRequest{}
 
-	err = json.Unmarshal(data, &varFirewallBehaviorSetWafAttributesRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFirewallBehaviorSetWafAttributesRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FirewallBehaviorSetWafAttributesRequest(varFirewallBehaviorSetWafAttributesRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "waf_id")
-		delete(additionalProperties, "mode")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

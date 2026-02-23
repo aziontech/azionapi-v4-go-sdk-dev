@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **ContentType** | Pointer to **string** |  | [optional] 
-**Trigger** | Pointer to [**ServiceResourceIdTrigger**](ServiceResourceIdTrigger.md) |  | [optional] 
+**Trigger** | Pointer to **string** | * &#x60;&#x60; -  * &#x60;install&#x60; - install * &#x60;uninstall&#x60; - uninstall * &#x60;reload&#x60; - reload | [optional] 
 **Content** | Pointer to **string** |  | [optional] 
 **FileGroup** | **string** |  | 
 **FileMode** | **string** |  | 
@@ -78,20 +78,20 @@ HasContentType returns a boolean if a field has been set.
 
 ### GetTrigger
 
-`func (o *ServiceResourceIdRequest) GetTrigger() ServiceResourceIdTrigger`
+`func (o *ServiceResourceIdRequest) GetTrigger() string`
 
 GetTrigger returns the Trigger field if non-nil, zero value otherwise.
 
 ### GetTriggerOk
 
-`func (o *ServiceResourceIdRequest) GetTriggerOk() (*ServiceResourceIdTrigger, bool)`
+`func (o *ServiceResourceIdRequest) GetTriggerOk() (*string, bool)`
 
 GetTriggerOk returns a tuple with the Trigger field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTrigger
 
-`func (o *ServiceResourceIdRequest) SetTrigger(v ServiceResourceIdTrigger)`
+`func (o *ServiceResourceIdRequest) SetTrigger(v string)`
 
 SetTrigger sets Trigger field to given value.
 

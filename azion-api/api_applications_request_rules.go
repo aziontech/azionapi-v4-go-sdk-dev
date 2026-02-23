@@ -1012,7 +1012,7 @@ func (r ApiRetrieveApplicationRequestRuleRequest) Fields(fields string) ApiRetri
 	return r
 }
 
-func (r ApiRetrieveApplicationRequestRuleRequest) Execute() (*RequestPhaseRuleResponse, *http.Response, error) {
+func (r ApiRetrieveApplicationRequestRuleRequest) Execute() (*ResponsePhaseRuleResponse, *http.Response, error) {
 	return r.ApiService.RetrieveApplicationRequestRuleExecute(r)
 }
 
@@ -1036,13 +1036,13 @@ func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRule(ctx 
 }
 
 // Execute executes the request
-//  @return RequestPhaseRuleResponse
-func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRuleExecute(r ApiRetrieveApplicationRequestRuleRequest) (*RequestPhaseRuleResponse, *http.Response, error) {
+//  @return ResponsePhaseRuleResponse
+func (a *ApplicationsRequestRulesAPIService) RetrieveApplicationRequestRuleExecute(r ApiRetrieveApplicationRequestRuleRequest) (*ResponsePhaseRuleResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *RequestPhaseRuleResponse
+		localVarReturnValue  *ResponsePhaseRuleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsRequestRulesAPIService.RetrieveApplicationRequestRule")
@@ -1461,7 +1461,7 @@ func (r ApiUpdateApplicationRequestRulesOrderRequest) Execute() (*PaginatedReque
 /*
 UpdateApplicationRequestRulesOrder Ordering Application Request Rules
 
-Reoder all Rules for a specific Application owned by your account.
+Reorder all Rules for a specific Application owned by your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param applicationId A unique integer value identifying the application.

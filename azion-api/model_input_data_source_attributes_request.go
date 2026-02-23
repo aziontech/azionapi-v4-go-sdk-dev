@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -24,7 +25,6 @@ type InputDataSourceAttributesRequest struct {
 	// * `raw_logs` - Raw Logs
 	Type string `json:"type"`
 	Attributes InputDataSourceRequest `json:"attributes"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _InputDataSourceAttributesRequest InputDataSourceAttributesRequest
@@ -108,11 +108,6 @@ func (o InputDataSourceAttributesRequest) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -141,21 +136,15 @@ func (o *InputDataSourceAttributesRequest) UnmarshalJSON(data []byte) (err error
 
 	varInputDataSourceAttributesRequest := _InputDataSourceAttributesRequest{}
 
-	err = json.Unmarshal(data, &varInputDataSourceAttributesRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varInputDataSourceAttributesRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InputDataSourceAttributesRequest(varInputDataSourceAttributesRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "attributes")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

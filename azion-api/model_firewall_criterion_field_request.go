@@ -24,11 +24,12 @@ var _ MappedNullable = &FirewallCriterionFieldRequest{}
 type FirewallCriterionFieldRequest struct {
 	// * `if` - if * `or` - or * `and` - and
 	Conditional string `json:"conditional"`
-	// * `${header_accept}` - ${header_accept} * `${header_accept_encoding}` - ${header_accept_encoding} * `${header_accept_language}` - ${header_accept_language} * `${header_cookie}` - ${header_cookie} * `${header_origin}` - ${header_origin} * `${header_referer}` - ${header_referer} * `${header_user_agent}` - ${header_user_agent} * `${host}` - ${host} * `${network}` - ${network} * `${request_args}` - ${request_args} * `${request_method}` - ${request_method} * `${request_uri}` - ${request_uri} * `${scheme}` - ${scheme} * `${ssl_verification_status}` - ${ssl_verification_status} * `${client_certificate_validation}` - ${client_certificate_validation}
+	// * `$(header_accept)` - $(header_accept) * `$(header_accept_encoding)` - $(header_accept_encoding) * `$(header_accept_language)` - $(header_accept_language) * `$(header_cookie)` - $(header_cookie) * `$(header_origin)` - $(header_origin) * `$(header_referer)` - $(header_referer) * `$(header_user_agent)` - $(header_user_agent) * `$(host)` - $(host) * `$(network)` - $(network) * `$(request_args)` - $(request_args) * `$(request_method)` - $(request_method) * `$(request_uri)` - $(request_uri) * `$(scheme)` - $(scheme) * `$(ssl_verification_status)` - $(ssl_verification_status) * `$(client_certificate_validation)` - $(client_certificate_validation)
 	Variable string `json:"variable"`
 	// * `does_not_exist` - does_not_exist * `does_not_match` - does_not_match * `does_not_start_with` - does_not_start_with * `exists` - exists * `is_equal` - is_equal * `is_in_list` - is_in_list * `is_not_equal` - is_not_equal * `is_not_in_list` - is_not_in_list * `matches` - matches * `starts_with` - starts_with
 	Operator string `json:"operator"`
-	Argument NullableFirewallCriterionArgumentRequest `json:"argument,omitempty"`
+	// Can be one of: integer, string
+	Argument NullableString `json:"argument,omitempty"`
 }
 
 type _FirewallCriterionFieldRequest FirewallCriterionFieldRequest
@@ -126,9 +127,9 @@ func (o *FirewallCriterionFieldRequest) SetOperator(v string) {
 }
 
 // GetArgument returns the Argument field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *FirewallCriterionFieldRequest) GetArgument() FirewallCriterionArgumentRequest {
+func (o *FirewallCriterionFieldRequest) GetArgument() string {
 	if o == nil || IsNil(o.Argument.Get()) {
-		var ret FirewallCriterionArgumentRequest
+		var ret string
 		return ret
 	}
 	return *o.Argument.Get()
@@ -137,7 +138,7 @@ func (o *FirewallCriterionFieldRequest) GetArgument() FirewallCriterionArgumentR
 // GetArgumentOk returns a tuple with the Argument field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FirewallCriterionFieldRequest) GetArgumentOk() (*FirewallCriterionArgumentRequest, bool) {
+func (o *FirewallCriterionFieldRequest) GetArgumentOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -153,8 +154,8 @@ func (o *FirewallCriterionFieldRequest) HasArgument() bool {
 	return false
 }
 
-// SetArgument gets a reference to the given NullableFirewallCriterionArgumentRequest and assigns it to the Argument field.
-func (o *FirewallCriterionFieldRequest) SetArgument(v FirewallCriterionArgumentRequest) {
+// SetArgument gets a reference to the given NullableString and assigns it to the Argument field.
+func (o *FirewallCriterionFieldRequest) SetArgument(v string) {
 	o.Argument.Set(&v)
 }
 // SetArgumentNil sets the value for Argument to be an explicit nil

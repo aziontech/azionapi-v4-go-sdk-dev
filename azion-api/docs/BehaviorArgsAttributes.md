@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | [**BehaviorArgsAttributesValue**](BehaviorArgsAttributesValue.md) |  | 
+**Value** | **string** | Value can be string or integer depending on the behavior type | 
 
 ## Methods
 
 ### NewBehaviorArgsAttributes
 
-`func NewBehaviorArgsAttributes(value BehaviorArgsAttributesValue, ) *BehaviorArgsAttributes`
+`func NewBehaviorArgsAttributes(value string, ) *BehaviorArgsAttributes`
 
 NewBehaviorArgsAttributes instantiates a new BehaviorArgsAttributes object
 This constructor will assign default values to properties that have it defined,
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetValue
 
-`func (o *BehaviorArgsAttributes) GetValue() BehaviorArgsAttributesValue`
+`func (o *BehaviorArgsAttributes) GetValue() string`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *BehaviorArgsAttributes) GetValueOk() (*BehaviorArgsAttributesValue, bool)`
+`func (o *BehaviorArgsAttributes) GetValueOk() (*string, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *BehaviorArgsAttributes) SetValue(v BehaviorArgsAttributesValue)`
+`func (o *BehaviorArgsAttributes) SetValue(v string)`
 
 SetValue sets Value field to given value.
 

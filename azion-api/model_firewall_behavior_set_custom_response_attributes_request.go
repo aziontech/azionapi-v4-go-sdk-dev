@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -24,7 +25,6 @@ type FirewallBehaviorSetCustomResponseAttributesRequest struct {
 	StatusCode int64 `json:"status_code"`
 	ContentType *string `json:"content_type,omitempty"`
 	ContentBody *string `json:"content_body,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _FirewallBehaviorSetCustomResponseAttributesRequest FirewallBehaviorSetCustomResponseAttributesRequest
@@ -152,11 +152,6 @@ func (o FirewallBehaviorSetCustomResponseAttributesRequest) ToMap() (map[string]
 	if !IsNil(o.ContentBody) {
 		toSerialize["content_body"] = o.ContentBody
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -184,22 +179,15 @@ func (o *FirewallBehaviorSetCustomResponseAttributesRequest) UnmarshalJSON(data 
 
 	varFirewallBehaviorSetCustomResponseAttributesRequest := _FirewallBehaviorSetCustomResponseAttributesRequest{}
 
-	err = json.Unmarshal(data, &varFirewallBehaviorSetCustomResponseAttributesRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFirewallBehaviorSetCustomResponseAttributesRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FirewallBehaviorSetCustomResponseAttributesRequest(varFirewallBehaviorSetCustomResponseAttributesRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "status_code")
-		delete(additionalProperties, "content_type")
-		delete(additionalProperties, "content_body")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

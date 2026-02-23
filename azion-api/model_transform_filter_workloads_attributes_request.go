@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -24,7 +25,6 @@ type TransformFilterWorkloadsAttributesRequest struct {
 	// * `filter_workloads` - Filter Workloads
 	Type string `json:"type"`
 	Attributes TransformFilterWorkloadsRequest `json:"attributes"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _TransformFilterWorkloadsAttributesRequest TransformFilterWorkloadsAttributesRequest
@@ -108,11 +108,6 @@ func (o TransformFilterWorkloadsAttributesRequest) ToMap() (map[string]interface
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -141,21 +136,15 @@ func (o *TransformFilterWorkloadsAttributesRequest) UnmarshalJSON(data []byte) (
 
 	varTransformFilterWorkloadsAttributesRequest := _TransformFilterWorkloadsAttributesRequest{}
 
-	err = json.Unmarshal(data, &varTransformFilterWorkloadsAttributesRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTransformFilterWorkloadsAttributesRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TransformFilterWorkloadsAttributesRequest(varTransformFilterWorkloadsAttributesRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "attributes")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

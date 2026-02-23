@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Conditional** | **string** | * &#x60;if&#x60; - if * &#x60;or&#x60; - or * &#x60;and&#x60; - and | 
-**Variable** | **string** | * &#x60;${header_accept}&#x60; - ${header_accept} * &#x60;${header_accept_encoding}&#x60; - ${header_accept_encoding} * &#x60;${header_accept_language}&#x60; - ${header_accept_language} * &#x60;${header_cookie}&#x60; - ${header_cookie} * &#x60;${header_origin}&#x60; - ${header_origin} * &#x60;${header_referer}&#x60; - ${header_referer} * &#x60;${header_user_agent}&#x60; - ${header_user_agent} * &#x60;${host}&#x60; - ${host} * &#x60;${network}&#x60; - ${network} * &#x60;${request_args}&#x60; - ${request_args} * &#x60;${request_method}&#x60; - ${request_method} * &#x60;${request_uri}&#x60; - ${request_uri} * &#x60;${scheme}&#x60; - ${scheme} * &#x60;${ssl_verification_status}&#x60; - ${ssl_verification_status} * &#x60;${client_certificate_validation}&#x60; - ${client_certificate_validation} | 
+**Variable** | **string** | * &#x60;$(header_accept)&#x60; - $(header_accept) * &#x60;$(header_accept_encoding)&#x60; - $(header_accept_encoding) * &#x60;$(header_accept_language)&#x60; - $(header_accept_language) * &#x60;$(header_cookie)&#x60; - $(header_cookie) * &#x60;$(header_origin)&#x60; - $(header_origin) * &#x60;$(header_referer)&#x60; - $(header_referer) * &#x60;$(header_user_agent)&#x60; - $(header_user_agent) * &#x60;$(host)&#x60; - $(host) * &#x60;$(network)&#x60; - $(network) * &#x60;$(request_args)&#x60; - $(request_args) * &#x60;$(request_method)&#x60; - $(request_method) * &#x60;$(request_uri)&#x60; - $(request_uri) * &#x60;$(scheme)&#x60; - $(scheme) * &#x60;$(ssl_verification_status)&#x60; - $(ssl_verification_status) * &#x60;$(client_certificate_validation)&#x60; - $(client_certificate_validation) | 
 **Operator** | **string** | * &#x60;does_not_exist&#x60; - does_not_exist * &#x60;does_not_match&#x60; - does_not_match * &#x60;does_not_start_with&#x60; - does_not_start_with * &#x60;exists&#x60; - exists * &#x60;is_equal&#x60; - is_equal * &#x60;is_in_list&#x60; - is_in_list * &#x60;is_not_equal&#x60; - is_not_equal * &#x60;is_not_in_list&#x60; - is_not_in_list * &#x60;matches&#x60; - matches * &#x60;starts_with&#x60; - starts_with | 
-**Argument** | Pointer to [**NullableFirewallCriterionArgument**](FirewallCriterionArgument.md) |  | [optional] 
+**Argument** | Pointer to **NullableString** | Can be one of: integer, string | [optional] 
 
 ## Methods
 
@@ -90,20 +90,20 @@ SetOperator sets Operator field to given value.
 
 ### GetArgument
 
-`func (o *FirewallCriterionField) GetArgument() FirewallCriterionArgument`
+`func (o *FirewallCriterionField) GetArgument() string`
 
 GetArgument returns the Argument field if non-nil, zero value otherwise.
 
 ### GetArgumentOk
 
-`func (o *FirewallCriterionField) GetArgumentOk() (*FirewallCriterionArgument, bool)`
+`func (o *FirewallCriterionField) GetArgumentOk() (*string, bool)`
 
 GetArgumentOk returns a tuple with the Argument field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetArgument
 
-`func (o *FirewallCriterionField) SetArgument(v FirewallCriterionArgument)`
+`func (o *FirewallCriterionField) SetArgument(v string)`
 
 SetArgument sets Argument field to given value.
 

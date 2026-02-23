@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -24,7 +25,6 @@ type TransformRenderTemplateAttributes struct {
 	// * `render_template` - Render Template
 	Type string `json:"type"`
 	Attributes TransformRenderTemplate `json:"attributes"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _TransformRenderTemplateAttributes TransformRenderTemplateAttributes
@@ -108,11 +108,6 @@ func (o TransformRenderTemplateAttributes) ToMap() (map[string]interface{}, erro
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -141,21 +136,15 @@ func (o *TransformRenderTemplateAttributes) UnmarshalJSON(data []byte) (err erro
 
 	varTransformRenderTemplateAttributes := _TransformRenderTemplateAttributes{}
 
-	err = json.Unmarshal(data, &varTransformRenderTemplateAttributes)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTransformRenderTemplateAttributes)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TransformRenderTemplateAttributes(varTransformRenderTemplateAttributes)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "attributes")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

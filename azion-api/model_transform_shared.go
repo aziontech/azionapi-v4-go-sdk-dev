@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -22,7 +23,6 @@ var _ MappedNullable = &TransformShared{}
 // TransformShared struct for TransformShared
 type TransformShared struct {
 	Type string `json:"type"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _TransformShared TransformShared
@@ -80,11 +80,6 @@ func (o TransformShared) MarshalJSON() ([]byte, error) {
 func (o TransformShared) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -112,20 +107,15 @@ func (o *TransformShared) UnmarshalJSON(data []byte) (err error) {
 
 	varTransformShared := _TransformShared{}
 
-	err = json.Unmarshal(data, &varTransformShared)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTransformShared)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TransformShared(varTransformShared)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }
