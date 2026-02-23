@@ -111,6 +111,25 @@ jobs:
         run: npm install @openapitools/openapi-generator-cli -g
         shell: bash
 
+      - name: Rename openapi.yaml to azion-api.yaml
+        if: steps.find-yaml.outputs.run_sdk == 'true'
+        run: |
+          temp_file=$(mktemp)
+          while IFS= read -r file; do
+            basename=$(basename "$file")
+            if [ "$basename" = "openapi.yaml" ]; then
+              dir=$(dirname "$file")
+              new_file="${dir}/azion-api.yaml"
+              echo "Renaming $file -> $new_file"
+              mv "$file" "$new_file"
+              echo "$new_file" >> "$temp_file"
+            else
+              echo "$file" >> "$temp_file"
+            fi
+          done < yaml_files_list.txt
+          mv "$temp_file" yaml_files_list.txt
+        shell: bash
+
       - name: Run OpenAPI Generator for Changed Files
         if: steps.find-yaml.outputs.run_sdk == 'true'
         run: |
