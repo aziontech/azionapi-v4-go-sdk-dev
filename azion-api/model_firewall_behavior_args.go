@@ -17,39 +17,38 @@ import (
 	"fmt"
 )
 
-// checks if the InputDataSourceAttributes type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &InputDataSourceAttributes{}
+// checks if the FirewallBehaviorArgs type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FirewallBehaviorArgs{}
 
-// InputDataSourceAttributes struct for InputDataSourceAttributes
-type InputDataSourceAttributes struct {
-	// * `raw_logs` - Raw Logs
+// FirewallBehaviorArgs Firewall behaviors with a simple argument (e.g., run_function)
+type FirewallBehaviorArgs struct {
 	Type string `json:"type"`
-	Attributes InputDataSource `json:"attributes"`
+	Attributes FirewallBehaviorRunFunctionAttributes `json:"attributes"`
 }
 
-type _InputDataSourceAttributes InputDataSourceAttributes
+type _FirewallBehaviorArgs FirewallBehaviorArgs
 
-// NewInputDataSourceAttributes instantiates a new InputDataSourceAttributes object
+// NewFirewallBehaviorArgs instantiates a new FirewallBehaviorArgs object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInputDataSourceAttributes(type_ string, attributes InputDataSource) *InputDataSourceAttributes {
-	this := InputDataSourceAttributes{}
+func NewFirewallBehaviorArgs(type_ string, attributes FirewallBehaviorRunFunctionAttributes) *FirewallBehaviorArgs {
+	this := FirewallBehaviorArgs{}
 	this.Type = type_
 	this.Attributes = attributes
 	return &this
 }
 
-// NewInputDataSourceAttributesWithDefaults instantiates a new InputDataSourceAttributes object
+// NewFirewallBehaviorArgsWithDefaults instantiates a new FirewallBehaviorArgs object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewInputDataSourceAttributesWithDefaults() *InputDataSourceAttributes {
-	this := InputDataSourceAttributes{}
+func NewFirewallBehaviorArgsWithDefaults() *FirewallBehaviorArgs {
+	this := FirewallBehaviorArgs{}
 	return &this
 }
 
 // GetType returns the Type field value
-func (o *InputDataSourceAttributes) GetType() string {
+func (o *FirewallBehaviorArgs) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -60,7 +59,7 @@ func (o *InputDataSourceAttributes) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *InputDataSourceAttributes) GetTypeOk() (*string, bool) {
+func (o *FirewallBehaviorArgs) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,14 +67,14 @@ func (o *InputDataSourceAttributes) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *InputDataSourceAttributes) SetType(v string) {
+func (o *FirewallBehaviorArgs) SetType(v string) {
 	o.Type = v
 }
 
 // GetAttributes returns the Attributes field value
-func (o *InputDataSourceAttributes) GetAttributes() InputDataSource {
+func (o *FirewallBehaviorArgs) GetAttributes() FirewallBehaviorRunFunctionAttributes {
 	if o == nil {
-		var ret InputDataSource
+		var ret FirewallBehaviorRunFunctionAttributes
 		return ret
 	}
 
@@ -84,7 +83,7 @@ func (o *InputDataSourceAttributes) GetAttributes() InputDataSource {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *InputDataSourceAttributes) GetAttributesOk() (*InputDataSource, bool) {
+func (o *FirewallBehaviorArgs) GetAttributesOk() (*FirewallBehaviorRunFunctionAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,11 +91,11 @@ func (o *InputDataSourceAttributes) GetAttributesOk() (*InputDataSource, bool) {
 }
 
 // SetAttributes sets field value
-func (o *InputDataSourceAttributes) SetAttributes(v InputDataSource) {
+func (o *FirewallBehaviorArgs) SetAttributes(v FirewallBehaviorRunFunctionAttributes) {
 	o.Attributes = v
 }
 
-func (o InputDataSourceAttributes) MarshalJSON() ([]byte, error) {
+func (o FirewallBehaviorArgs) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -104,14 +103,14 @@ func (o InputDataSourceAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o InputDataSourceAttributes) ToMap() (map[string]interface{}, error) {
+func (o FirewallBehaviorArgs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
 	return toSerialize, nil
 }
 
-func (o *InputDataSourceAttributes) UnmarshalJSON(data []byte) (err error) {
+func (o *FirewallBehaviorArgs) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -134,53 +133,53 @@ func (o *InputDataSourceAttributes) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varInputDataSourceAttributes := _InputDataSourceAttributes{}
+	varFirewallBehaviorArgs := _FirewallBehaviorArgs{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInputDataSourceAttributes)
+	err = decoder.Decode(&varFirewallBehaviorArgs)
 
 	if err != nil {
 		return err
 	}
 
-	*o = InputDataSourceAttributes(varInputDataSourceAttributes)
+	*o = FirewallBehaviorArgs(varFirewallBehaviorArgs)
 
 	return err
 }
 
-type NullableInputDataSourceAttributes struct {
-	value *InputDataSourceAttributes
+type NullableFirewallBehaviorArgs struct {
+	value *FirewallBehaviorArgs
 	isSet bool
 }
 
-func (v NullableInputDataSourceAttributes) Get() *InputDataSourceAttributes {
+func (v NullableFirewallBehaviorArgs) Get() *FirewallBehaviorArgs {
 	return v.value
 }
 
-func (v *NullableInputDataSourceAttributes) Set(val *InputDataSourceAttributes) {
+func (v *NullableFirewallBehaviorArgs) Set(val *FirewallBehaviorArgs) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableInputDataSourceAttributes) IsSet() bool {
+func (v NullableFirewallBehaviorArgs) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableInputDataSourceAttributes) Unset() {
+func (v *NullableFirewallBehaviorArgs) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableInputDataSourceAttributes(val *InputDataSourceAttributes) *NullableInputDataSourceAttributes {
-	return &NullableInputDataSourceAttributes{value: val, isSet: true}
+func NewNullableFirewallBehaviorArgs(val *FirewallBehaviorArgs) *NullableFirewallBehaviorArgs {
+	return &NullableFirewallBehaviorArgs{value: val, isSet: true}
 }
 
-func (v NullableInputDataSourceAttributes) MarshalJSON() ([]byte, error) {
+func (v NullableFirewallBehaviorArgs) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableInputDataSourceAttributes) UnmarshalJSON(src []byte) error {
+func (v *NullableFirewallBehaviorArgs) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

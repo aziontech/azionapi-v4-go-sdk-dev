@@ -5,9 +5,6 @@ info:
     name: Azion Support
     url: https://www.azion.com/en/contact/
   description: The AZION v4 REST API.
-  license:
-    name: MIT
-    url: https://github.com/aziontech/azionapi-v4-openapi/blob/main/LICENSE
   title: azion-api
   version: 4.0.0
 externalDocs:
@@ -12693,7 +12690,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RequestPhaseRuleResponse"
+                $ref: "#/components/schemas/ResponsePhaseRuleResponse"
           description: Application request rule details retrieved successfully.
         "401":
           content:
@@ -13170,7 +13167,7 @@ paths:
       - Applications - Request Rules
   /workspace/applications/{application_id}/request_rules/order:
     put:
-      description: Reoder all Rules for a specific Application owned by your account.
+      description: Reorder all Rules for a specific Application owned by your account.
       operationId: update_application_request_rules_order
       parameters:
       - description: A unique integer value identifying the application.
@@ -13962,7 +13959,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RequestPhaseRuleResponse"
+                $ref: "#/components/schemas/ResponsePhaseRuleResponse"
           description: Application response rule details retrieved successfully.
         "401":
           content:
@@ -14439,7 +14436,7 @@ paths:
       - Applications - Response Rules
   /workspace/applications/{application_id}/response_rules/order:
     put:
-      description: Reoder all Rules for a specific Application owned by your account.
+      description: Reorder all Rules for a specific Application owned by your account.
       operationId: update_application_response_rules_order
       parameters:
       - description: A unique integer value identifying the application.
@@ -15310,7 +15307,10 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: {}
+            schema:
+              properties: {}
+              type: object
+        required: false
       responses:
         "201":
           content:
@@ -17623,7 +17623,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Create an Connector
+      summary: Create a Connector
       tags:
       - Connectors
   /workspace/connectors/{connector_id}:
@@ -17778,7 +17778,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Delete an Connector
+      summary: Delete a Connector
       tags:
       - Connectors
     get:
@@ -17941,7 +17941,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Retrieve details of an Connector
+      summary: Retrieve details of a Connector
       tags:
       - Connectors
     patch:
@@ -18101,7 +18101,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Partially update an Connector
+      summary: Partially update a Connector
       tags:
       - Connectors
     put:
@@ -18261,7 +18261,7 @@ paths:
       security:
       - TokenAuth: []
       - BearerAuth: []
-      summary: Update an Connector
+      summary: Update a Connector
       tags:
       - Connectors
   /workspace/custom_pages:
@@ -30461,7 +30461,7 @@ paths:
       - Firewalls - Rules Engine
   /workspace/firewalls/{firewall_id}/request_rules/order:
     put:
-      description: Reoder all Rules for a specific Firewall owned by your account.
+      description: Reorder all Rules for a specific Firewall owned by your account.
       operationId: order_firewall_rules
       parameters:
       - description: A unique integer value identifying the firewall.
@@ -52609,10 +52609,11 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The MIME type of the object being uploaded
+      - description: The MIME type of the object being uploaded (Renamed from Content-Type
+          to avoid SDK conflicts)
         explode: false
         in: header
-        name: Content-Type
+        name: Storage-Content-Type
         required: false
         schema:
           type: string
@@ -52792,10 +52793,11 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The MIME type of the object being uploaded
+      - description: The MIME type of the object being uploaded (Renamed from Content-Type
+          to avoid SDK conflicts)
         explode: false
         in: header
-        name: Content-Type
+        name: Storage-Content-Type
         required: false
         schema:
           type: string
@@ -63162,6 +63164,8 @@ components:
       type: object
     PaginatedPolicyList:
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -63248,6 +63252,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/Policy"
@@ -63795,6 +63811,8 @@ components:
       type: object
     PaginatedTOTPDeviceList:
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -63839,6 +63857,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/TOTPDeviceList"
@@ -64524,7 +64554,7 @@ components:
       title: InputDataSource
       type: object
     InputDataSourceAttributes:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         type:
           description: '* `raw_logs` - Raw Logs'
@@ -64540,7 +64570,7 @@ components:
       title: InputDataSourceAttributes
       type: object
     InputDataSourceAttributesRequest:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         type:
           description: '* `raw_logs` - Raw Logs'
@@ -65349,7 +65379,7 @@ components:
       title: TransformFilterWorkloads
       type: object
     TransformFilterWorkloadsAttributes:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         type:
           description: '* `filter_workloads` - Filter Workloads'
@@ -65365,7 +65395,7 @@ components:
       title: TransformFilterWorkloadsAttributes
       type: object
     TransformFilterWorkloadsAttributesRequest:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         type:
           description: '* `filter_workloads` - Filter Workloads'
@@ -65416,7 +65446,7 @@ components:
       title: TransformRenderTemplate
       type: object
     TransformRenderTemplateAttributes:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         type:
           description: '* `render_template` - Render Template'
@@ -65432,7 +65462,7 @@ components:
       title: TransformRenderTemplateAttributes
       type: object
     TransformRenderTemplateAttributesRequest:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         type:
           description: '* `render_template` - Render Template'
@@ -65482,7 +65512,7 @@ components:
       title: TransformSampling
       type: object
     TransformSamplingAttributes:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         type:
           description: '* `sampling` - Sampling'
@@ -65498,7 +65528,7 @@ components:
       title: TransformSamplingAttributes
       type: object
     TransformSamplingAttributesRequest:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         type:
           description: '* `sampling` - Sampling'
@@ -65540,7 +65570,7 @@ components:
       allOf:
       - $ref: "#/components/schemas/InputShared"
       - $ref: "#/components/schemas/InputDataSourceAttributes"
-      - additionalProperties: true
+      - additionalProperties: false
         properties:
           type:
             description: Type identifier for this endpoint (raw_logs)
@@ -65557,7 +65587,7 @@ components:
       allOf:
       - $ref: "#/components/schemas/InputShared"
       - $ref: "#/components/schemas/InputDataSourceAttributesRequest"
-      - additionalProperties: true
+      - additionalProperties: false
         properties:
           type:
             description: Type identifier for this endpoint (raw_logs)
@@ -65573,7 +65603,7 @@ components:
     InputRequest:
       $ref: "#/components/schemas/InputInputDataSourceAttributesRequest"
     InputShared:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         type:
           maxLength: 255
@@ -65668,7 +65698,7 @@ components:
       - $ref: "#/components/schemas/TransformTransformRenderTemplateAttributesRequest"
       title: TransformRequest
     TransformShared:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         type:
           maxLength: 255
@@ -65682,7 +65712,7 @@ components:
       allOf:
       - $ref: "#/components/schemas/TransformShared"
       - $ref: "#/components/schemas/TransformFilterWorkloadsAttributes"
-      - additionalProperties: true
+      - additionalProperties: false
         properties:
           type:
             description: Type identifier for this endpoint (filter_workloads)
@@ -65699,7 +65729,7 @@ components:
       allOf:
       - $ref: "#/components/schemas/TransformShared"
       - $ref: "#/components/schemas/TransformFilterWorkloadsAttributesRequest"
-      - additionalProperties: true
+      - additionalProperties: false
         properties:
           type:
             description: Type identifier for this endpoint (filter_workloads)
@@ -65716,7 +65746,7 @@ components:
       allOf:
       - $ref: "#/components/schemas/TransformShared"
       - $ref: "#/components/schemas/TransformRenderTemplateAttributes"
-      - additionalProperties: true
+      - additionalProperties: false
         properties:
           type:
             description: Type identifier for this endpoint (render_template)
@@ -65733,7 +65763,7 @@ components:
       allOf:
       - $ref: "#/components/schemas/TransformShared"
       - $ref: "#/components/schemas/TransformRenderTemplateAttributesRequest"
-      - additionalProperties: true
+      - additionalProperties: false
         properties:
           type:
             description: Type identifier for this endpoint (render_template)
@@ -65750,7 +65780,7 @@ components:
       allOf:
       - $ref: "#/components/schemas/TransformShared"
       - $ref: "#/components/schemas/TransformSamplingAttributes"
-      - additionalProperties: true
+      - additionalProperties: false
         properties:
           type:
             description: Type identifier for this endpoint (sampling)
@@ -65770,7 +65800,7 @@ components:
       allOf:
       - $ref: "#/components/schemas/TransformShared"
       - $ref: "#/components/schemas/TransformSamplingAttributesRequest"
-      - additionalProperties: true
+      - additionalProperties: false
         properties:
           type:
             description: Type identifier for this endpoint (sampling)
@@ -66841,11 +66871,6 @@ components:
       - bypass_cache
       - enable_gzip
       - redirect_http_to_https
-    BlankEnum:
-      title: BlankEnum
-      type: string
-      x-extensible-enum:
-      - ""
     BrowserCacheModule:
       additionalProperties: false
       example:
@@ -67470,6 +67495,15 @@ components:
       - 6
       - 7
       - 8
+      x-enum-varnames:
+      - Tlsv122018Tlsaes128gcmsha256
+      - Tlsv122019Ecdheecdsachacha20poly1305
+      - Tlsv132022Ecdheecdsaaes128gcmsha256
+      - Tlsv122021Ecdheecdsachacha20poly1305
+      - Legacyv2025q1Tlsaes256gcmsha384
+      - Compatiblev2025q1Tlsaes256gcmsha384
+      - Modernv2025q1Tlsaes256gcmsha384
+      - Legacyv2017q1Aes128ccm
     CloneApplicationRequest:
       additionalProperties: false
       example:
@@ -67981,7 +68015,7 @@ components:
       title: CustomPageResponse
       type: object
     DefaultDeploymentStrategy:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         attributes:
           $ref: "#/components/schemas/DefaultDeploymentStrategyAttrs"
@@ -68040,7 +68074,7 @@ components:
       title: DefaultDeploymentStrategyAttrsRequest
       type: object
     DefaultDeploymentStrategyRequest:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         attributes:
           $ref: "#/components/schemas/DefaultDeploymentStrategyAttrsRequest"
@@ -68054,7 +68088,7 @@ components:
       allOf:
       - $ref: "#/components/schemas/DeploymentStrategyShared"
       - $ref: "#/components/schemas/DefaultDeploymentStrategy"
-      - additionalProperties: true
+      - additionalProperties: false
         properties:
           type:
             description: Discriminator field for DeploymentStrategy
@@ -68074,7 +68108,7 @@ components:
       allOf:
       - $ref: "#/components/schemas/DeploymentStrategyShared"
       - $ref: "#/components/schemas/DefaultDeploymentStrategyRequest"
-      - additionalProperties: true
+      - additionalProperties: false
         properties:
           type:
             description: Discriminator field for DeploymentStrategyRequest
@@ -68093,7 +68127,7 @@ components:
     DeploymentStrategyRequest:
       $ref: "#/components/schemas/DeploymentStrategyDefaultDeploymentStrategyRequest"
     DeploymentStrategyShared:
-      additionalProperties: true
+      additionalProperties: false
       description: Deployment strategy.
       properties:
         type:
@@ -68461,25 +68495,23 @@ components:
       title: Firewall
       type: object
     FirewallBehavior:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           deny: "#/components/schemas/FirewallBehaviorNoArgs"
           drop: "#/components/schemas/FirewallBehaviorNoArgs"
-          set_custom_response: "#/components/schemas/FirewallBehaviorSetCustomResponse"
-          set_rate_limit: "#/components/schemas/FirewallBehaviorSetRateLimit"
-          set_waf: "#/components/schemas/FirewallBehaviorSetWaf"
-          run_function: "#/components/schemas/FirewallBehaviorRunFunction"
+          run_function: "#/components/schemas/FirewallBehaviorArgs"
+          set_custom_response: "#/components/schemas/FirewallBehaviorObjectArgs"
+          set_rate_limit: "#/components/schemas/FirewallBehaviorObjectArgs"
+          set_waf: "#/components/schemas/FirewallBehaviorObjectArgs"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/FirewallBehaviorNoArgs"
-      - $ref: "#/components/schemas/FirewallBehaviorSetCustomResponse"
-      - $ref: "#/components/schemas/FirewallBehaviorSetRateLimit"
-      - $ref: "#/components/schemas/FirewallBehaviorSetWaf"
-      - $ref: "#/components/schemas/FirewallBehaviorRunFunction"
+      - $ref: "#/components/schemas/FirewallBehaviorArgs"
+      - $ref: "#/components/schemas/FirewallBehaviorObjectArgs"
       title: FirewallBehavior
     FirewallBehaviorNoArgs:
-      additionalProperties: true
+      additionalProperties: false
       description: Behaviors without arguments
       example:
         type: type
@@ -68498,7 +68530,7 @@ components:
       title: FirewallBehaviorNoArgs
       type: object
     FirewallBehaviorNoArgsRequest:
-      additionalProperties: true
+      additionalProperties: false
       description: Behaviors without arguments
       example:
         type: type
@@ -68526,42 +68558,23 @@ components:
       - deny
       - drop
     FirewallBehaviorRequest:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           deny: "#/components/schemas/FirewallBehaviorNoArgsRequest"
           drop: "#/components/schemas/FirewallBehaviorNoArgsRequest"
-          set_custom_response: "#/components/schemas/FirewallBehaviorSetCustomResponseRequest"
-          set_rate_limit: "#/components/schemas/FirewallBehaviorSetRateLimitRequest"
-          set_waf: "#/components/schemas/FirewallBehaviorSetWafRequest"
-          run_function: "#/components/schemas/FirewallBehaviorRunFunctionRequest"
+          run_function: "#/components/schemas/FirewallBehaviorArgsRequest"
+          set_custom_response: "#/components/schemas/FirewallBehaviorObjectArgsRequest"
+          set_rate_limit: "#/components/schemas/FirewallBehaviorObjectArgsRequest"
+          set_waf: "#/components/schemas/FirewallBehaviorObjectArgsRequest"
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/FirewallBehaviorNoArgsRequest"
-      - $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseRequest"
-      - $ref: "#/components/schemas/FirewallBehaviorSetRateLimitRequest"
-      - $ref: "#/components/schemas/FirewallBehaviorSetWafRequest"
-      - $ref: "#/components/schemas/FirewallBehaviorRunFunctionRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorArgsRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorObjectArgsRequest"
       title: FirewallBehaviorRequest
-    FirewallBehaviorRunFunction:
-      additionalProperties: true
-      description: Run a function
-      properties:
-        type:
-          description: '* `run_function` - run_function'
-          title: BehaviorTypeEnum
-          type: string
-          x-extensible-enum:
-          - run_function
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorRunFunctionAttributes"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorRunFunction
-      type: object
     FirewallBehaviorRunFunctionAttributes:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         value:
           format: int64
@@ -68573,7 +68586,7 @@ components:
       title: FirewallBehaviorRunFunctionAttributes
       type: object
     FirewallBehaviorRunFunctionAttributesRequest:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         value:
           format: int64
@@ -68584,42 +68597,8 @@ components:
       - value
       title: FirewallBehaviorRunFunctionAttributesRequest
       type: object
-    FirewallBehaviorRunFunctionRequest:
-      additionalProperties: true
-      description: Run a function
-      properties:
-        type:
-          description: '* `run_function` - run_function'
-          title: BehaviorTypeEnum
-          type: string
-          x-extensible-enum:
-          - run_function
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorRunFunctionAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorRunFunctionRequest
-      type: object
-    FirewallBehaviorSetCustomResponse:
-      additionalProperties: true
-      description: Set a custom response
-      properties:
-        type:
-          description: '* `set_custom_response` - set_custom_response'
-          title: FirewallBehaviorSetCustomResponseTypeEnum
-          type: string
-          x-extensible-enum:
-          - set_custom_response
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseAttributes"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorSetCustomResponse
-      type: object
     FirewallBehaviorSetCustomResponseAttributes:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         status_code:
           format: int64
@@ -68639,7 +68618,7 @@ components:
       title: FirewallBehaviorSetCustomResponseAttributes
       type: object
     FirewallBehaviorSetCustomResponseAttributesRequest:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         status_code:
           format: int64
@@ -68658,48 +68637,8 @@ components:
       - status_code
       title: FirewallBehaviorSetCustomResponseAttributesRequest
       type: object
-    FirewallBehaviorSetCustomResponseRequest:
-      additionalProperties: true
-      description: Set a custom response
-      properties:
-        type:
-          description: '* `set_custom_response` - set_custom_response'
-          title: FirewallBehaviorSetCustomResponseTypeEnum
-          type: string
-          x-extensible-enum:
-          - set_custom_response
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorSetCustomResponseRequest
-      type: object
-    FirewallBehaviorSetCustomResponseTypeEnum:
-      description: '* `set_custom_response` - set_custom_response'
-      title: FirewallBehaviorSetCustomResponseTypeEnum
-      type: string
-      x-extensible-enum:
-      - set_custom_response
-    FirewallBehaviorSetRateLimit:
-      additionalProperties: true
-      description: Set a rate limit
-      properties:
-        type:
-          description: '* `set_rate_limit` - set_rate_limit'
-          title: FirewallBehaviorSetRateLimitTypeEnum
-          type: string
-          x-extensible-enum:
-          - set_rate_limit
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorSetRateLimitAttributes"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorSetRateLimit
-      type: object
     FirewallBehaviorSetRateLimitAttributes:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         type:
           allOf:
@@ -68730,7 +68669,7 @@ components:
       title: FirewallBehaviorSetRateLimitAttributes
       type: object
     FirewallBehaviorSetRateLimitAttributesRequest:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         type:
           allOf:
@@ -68769,48 +68708,8 @@ components:
       x-extensible-enum:
       - second
       - minute
-    FirewallBehaviorSetRateLimitRequest:
-      additionalProperties: true
-      description: Set a rate limit
-      properties:
-        type:
-          description: '* `set_rate_limit` - set_rate_limit'
-          title: FirewallBehaviorSetRateLimitTypeEnum
-          type: string
-          x-extensible-enum:
-          - set_rate_limit
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorSetRateLimitAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorSetRateLimitRequest
-      type: object
-    FirewallBehaviorSetRateLimitTypeEnum:
-      description: '* `set_rate_limit` - set_rate_limit'
-      title: FirewallBehaviorSetRateLimitTypeEnum
-      type: string
-      x-extensible-enum:
-      - set_rate_limit
-    FirewallBehaviorSetWaf:
-      additionalProperties: true
-      description: Set a WAF
-      properties:
-        type:
-          description: '* `set_waf` - set_waf'
-          title: FirewallBehaviorSetWafTypeEnum
-          type: string
-          x-extensible-enum:
-          - set_waf
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorSetWafAttributes"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorSetWaf
-      type: object
     FirewallBehaviorSetWafAttributes:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         waf_id:
           format: int64
@@ -68832,7 +68731,7 @@ components:
       title: FirewallBehaviorSetWafAttributes
       type: object
     FirewallBehaviorSetWafAttributesRequest:
-      additionalProperties: true
+      additionalProperties: false
       properties:
         waf_id:
           format: int64
@@ -68853,29 +68752,6 @@ components:
       - waf_id
       title: FirewallBehaviorSetWafAttributesRequest
       type: object
-    FirewallBehaviorSetWafRequest:
-      additionalProperties: true
-      description: Set a WAF
-      properties:
-        type:
-          description: '* `set_waf` - set_waf'
-          title: FirewallBehaviorSetWafTypeEnum
-          type: string
-          x-extensible-enum:
-          - set_waf
-        attributes:
-          $ref: "#/components/schemas/FirewallBehaviorSetWafAttributesRequest"
-      required:
-      - attributes
-      - type
-      title: FirewallBehaviorSetWafRequest
-      type: object
-    FirewallBehaviorSetWafTypeEnum:
-      description: '* `set_waf` - set_waf'
-      title: FirewallBehaviorSetWafTypeEnum
-      type: string
-      x-extensible-enum:
-      - set_waf
     FirewallFunctionInstance:
       additionalProperties: false
       description: Serializer for Firewall Function Instances
@@ -70284,6 +70160,9 @@ components:
       x-extensible-enum:
       - 1
       - 2
+      x-enum-varnames:
+      - ProductionInfrastructure
+      - StagingInfrastructure
     LargeFileCacheModule:
       additionalProperties: false
       example:
@@ -70455,6 +70334,7 @@ components:
           allOf:
           - $ref: "#/components/schemas/VerificationEnum"
           nullable: true
+          type: object
       title: MTLSConfig
       type: object
     MTLSConfigRequest:
@@ -70477,6 +70357,7 @@ components:
           allOf:
           - $ref: "#/components/schemas/VerificationEnum"
           nullable: true
+          type: object
       title: MTLSConfigRequest
       type: object
     MTLSRequest:
@@ -70763,10 +70644,6 @@ components:
       - type
       title: NetworkListSummary
       type: object
-    NullEnum:
-      title: NullEnum
-      x-extensible-enum:
-      - null
     OriginIPACL:
       additionalProperties: false
       properties:
@@ -74208,7 +74085,7 @@ components:
             1001 - Possible SQL Injection or XSS attack: double quote (") found in Body, Path, Query String or Cookies<br>
             1002 - Possible SQL Injection attack: possible hex encoding (0x) found in Body, Path, Query String or Cookies<br>
             1003 - Possible SQL Injection attack: MySQL comment (/*) found in Body, Path, Query String or Cookies<br>
-            1004 - Possible SQL Injection attack: MySQL comment (*/) found in Body, Path, Query String or Cookies<br>
+            1004 - Possible SQL Injection attack: MySQL comment (*​/) found in Body, Path, Query String or Cookies<br>
             1005 - Possible SQL Injection attack: MySQL keyword (|) found in Body, Path, Query String or Cookies<br>
             1006 - Possible SQL Injection attack: MySQL keyword (&&) found in Body, Path, Query String or Cookies<br>
             1007 - Possible SQL Injection attack: MySQL comment (--) found in Body, Path, Query String or Cookies<br>
@@ -74272,7 +74149,7 @@ components:
             * `1001` - Possible SQL Injection or XSS attack: double quote (") found in Body, Path, Query String or Cookies
             * `1002` - Possible SQL Injection attack: possible hex encoding (0x) found in Body, Path, Query String or Cookies
             * `1003` - Possible SQL Injection attack: MySQL comment (/*) found in Body, Path, Query String or Cookies
-            * `1004` - Possible SQL Injection attack: MySQL comment (*/) found in Body, Path, Query String or Cookies
+            * `1004` - Possible SQL Injection attack: MySQL comment (*​/) found in Body, Path, Query String or Cookies
             * `1005` - Possible SQL Injection attack: MySQL keyword (|) found in Body, Path, Query String or Cookies
             * `1006` - Possible SQL Injection attack: MySQL keyword (&&) found in Body, Path, Query String or Cookies
             * `1007` - Possible SQL Injection attack: MySQL comment (--) found in Body, Path, Query String or Cookies
@@ -74489,7 +74366,7 @@ components:
       title: PurgeResponse
       type: object
     RequestPhaseBehavior:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           deny: "#/components/schemas/BehaviorNoArgs"
@@ -74820,7 +74697,7 @@ components:
       title: RequestPhaseRuleResponse
       type: object
     ResponsePhaseBehavior:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           enable_gzip: "#/components/schemas/BehaviorNoArgs"
@@ -74840,7 +74717,7 @@ components:
       - $ref: "#/components/schemas/BehaviorCapture"
       title: ResponsePhaseBehavior
     ResponsePhaseBehaviorRequest:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           enable_gzip: "#/components/schemas/BehaviorNoArgs"
@@ -75293,12 +75170,7 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
-        state: state
       properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
         data:
           $ref: "#/components/schemas/ResponsePhaseRule"
       required:
@@ -75323,7 +75195,7 @@ components:
         * `1001` - Possible SQL Injection or XSS attack: double quote (") found in Body, Path, Query String or Cookies
         * `1002` - Possible SQL Injection attack: possible hex encoding (0x) found in Body, Path, Query String or Cookies
         * `1003` - Possible SQL Injection attack: MySQL comment (/*) found in Body, Path, Query String or Cookies
-        * `1004` - Possible SQL Injection attack: MySQL comment (*/) found in Body, Path, Query String or Cookies
+        * `1004` - Possible SQL Injection attack: MySQL comment (*​/) found in Body, Path, Query String or Cookies
         * `1005` - Possible SQL Injection attack: MySQL keyword (|) found in Body, Path, Query String or Cookies
         * `1006` - Possible SQL Injection attack: MySQL keyword (&&) found in Body, Path, Query String or Cookies
         * `1007` - Possible SQL Injection attack: MySQL comment (--) found in Body, Path, Query String or Cookies
@@ -75437,6 +75309,70 @@ components:
       - 1402
       - 1500
       - 2001
+      x-enum-varnames:
+      - AllRules
+      - WeirdRequest
+      - RequestTooBig
+      - InvalidHexEncoding
+      - MissingContentType
+      - InvalidFormattedUrl
+      - InvalidPostFormat
+      - InvalidPostBoundary
+      - InvalidJson
+      - PostWithNoBody
+      - SqlInjectionLibinjection
+      - XssLibinjection
+      - SqlKeywordsFound
+      - SqlDoubleQuote
+      - SqlHexEncoding
+      - SqlCommentOpen
+      - SqlCommentClose
+      - SqlPipe
+      - SqlAnd
+      - SqlDashComment
+      - SqlSemicolon
+      - SqlEquals
+      - SqlOpenParen
+      - SqlCloseParen
+      - SqlApostrophe
+      - SqlComma
+      - SqlHashComment
+      - SqlDoubleAt
+      - RfiHttp
+      - RfiHttps
+      - RfiFtp
+      - RfiPhp
+      - RfiSftp
+      - RfiZlib
+      - RfiData
+      - RfiGlob
+      - RfiPhar
+      - RfiFile
+      - RfiGopher
+      - RceLog4jHeaders
+      - RceLog4jAll
+      - DirectoryTraversalDoubleDot
+      - DirectoryTraversalEtcPasswd
+      - DirectoryTraversalWindowsPath
+      - DirectoryTraversalCmdExe
+      - DirectoryTraversalBackslash
+      - DirectoryTraversalSlash
+      - DirectoryTraversalDotSemicolon
+      - DirectoryTraversalSlashDotSemicolon
+      - DirectoryTraversalDotEncoded
+      - DirectoryTraversalEncodedDot
+      - XssOpenTag
+      - XssCloseTag
+      - XssOpenBracket
+      - XssCloseBracket
+      - XssTilde
+      - XssBackQuote
+      - XssDoubleEncoding
+      - EvasionUtf78
+      - EvasionMsEncoding
+      - EvasionEncodedChars
+      - FileUploadAspPhp
+      - CveSpring4Shell
     RulesetsEnum:
       description: '* `1` - Azion WAF Score Ruleset'
       format: int64
@@ -75444,6 +75380,8 @@ components:
       type: integer
       x-extensible-enum:
       - 1
+      x-enum-varnames:
+      - AzionWafScoreRuleset
     RuntimeEnum:
       description: '* `azion_js` - Azion JavaScript'
       title: RuntimeEnum
@@ -75515,7 +75453,10 @@ components:
             * `7` - Modern_v2025Q1 - TLS_AES_256_GCM_SHA384:TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-CHACHA20-POLY1305
             * `8` - Legacy_v2017Q1 - AES128-CCM:AES128-CCM8:AES128-GCM-SHA256:AES128-SHA:AES128-SHA256:AES256-CCM:AES256-CCM8:AES256-GCM-SHA384:AES256-SHA:AES256-SHA256:ECDHE-ECDSA-AES128-CCM:ECDHE-ECDSA-AES128-CCM8:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA256:ECDHE-ECDSA-AES256-CCM:ECDHE-ECDSA-AES256-CCM8:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES256-SHA384:TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
         minimum_version:
-          $ref: "#/components/schemas/TLSWorkload_minimum_version"
+          allOf:
+          - $ref: "#/components/schemas/MinimumVersionEnum"
+          nullable: true
+          type: object
       title: TLSWorkload
       type: object
     TLSWorkloadRequest:
@@ -75541,7 +75482,10 @@ components:
             * `7` - Modern_v2025Q1 - TLS_AES_256_GCM_SHA384:TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-CHACHA20-POLY1305
             * `8` - Legacy_v2017Q1 - AES128-CCM:AES128-CCM8:AES128-GCM-SHA256:AES128-SHA:AES128-SHA256:AES256-CCM:AES256-CCM8:AES256-GCM-SHA384:AES256-SHA:AES256-SHA256:ECDHE-ECDSA-AES128-CCM:ECDHE-ECDSA-AES128-CCM8:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA256:ECDHE-ECDSA-AES256-CCM:ECDHE-ECDSA-AES256-CCM8:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES256-SHA384:TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
         minimum_version:
-          $ref: "#/components/schemas/TLSWorkload_minimum_version"
+          allOf:
+          - $ref: "#/components/schemas/MinimumVersionEnum"
+          nullable: true
+          type: object
       title: TLSWorkloadRequest
       type: object
     ThreatEnum:
@@ -76169,7 +76113,7 @@ components:
             1001 - Possible SQL Injection or XSS attack: double quote (") found in Body, Path, Query String or Cookies<br>
             1002 - Possible SQL Injection attack: possible hex encoding (0x) found in Body, Path, Query String or Cookies<br>
             1003 - Possible SQL Injection attack: MySQL comment (/*) found in Body, Path, Query String or Cookies<br>
-            1004 - Possible SQL Injection attack: MySQL comment (*/) found in Body, Path, Query String or Cookies<br>
+            1004 - Possible SQL Injection attack: MySQL comment (*​/) found in Body, Path, Query String or Cookies<br>
             1005 - Possible SQL Injection attack: MySQL keyword (|) found in Body, Path, Query String or Cookies<br>
             1006 - Possible SQL Injection attack: MySQL keyword (&&) found in Body, Path, Query String or Cookies<br>
             1007 - Possible SQL Injection attack: MySQL comment (--) found in Body, Path, Query String or Cookies<br>
@@ -76233,7 +76177,7 @@ components:
             * `1001` - Possible SQL Injection or XSS attack: double quote (") found in Body, Path, Query String or Cookies
             * `1002` - Possible SQL Injection attack: possible hex encoding (0x) found in Body, Path, Query String or Cookies
             * `1003` - Possible SQL Injection attack: MySQL comment (/*) found in Body, Path, Query String or Cookies
-            * `1004` - Possible SQL Injection attack: MySQL comment (*/) found in Body, Path, Query String or Cookies
+            * `1004` - Possible SQL Injection attack: MySQL comment (*​/) found in Body, Path, Query String or Cookies
             * `1005` - Possible SQL Injection attack: MySQL keyword (|) found in Body, Path, Query String or Cookies
             * `1006` - Possible SQL Injection attack: MySQL keyword (&&) found in Body, Path, Query String or Cookies
             * `1007` - Possible SQL Injection attack: MySQL comment (--) found in Body, Path, Query String or Cookies
@@ -76353,7 +76297,7 @@ components:
             1001 - Possible SQL Injection or XSS attack: double quote (") found in Body, Path, Query String or Cookies<br>
             1002 - Possible SQL Injection attack: possible hex encoding (0x) found in Body, Path, Query String or Cookies<br>
             1003 - Possible SQL Injection attack: MySQL comment (/*) found in Body, Path, Query String or Cookies<br>
-            1004 - Possible SQL Injection attack: MySQL comment (*/) found in Body, Path, Query String or Cookies<br>
+            1004 - Possible SQL Injection attack: MySQL comment (*​/) found in Body, Path, Query String or Cookies<br>
             1005 - Possible SQL Injection attack: MySQL keyword (|) found in Body, Path, Query String or Cookies<br>
             1006 - Possible SQL Injection attack: MySQL keyword (&&) found in Body, Path, Query String or Cookies<br>
             1007 - Possible SQL Injection attack: MySQL comment (--) found in Body, Path, Query String or Cookies<br>
@@ -76417,7 +76361,7 @@ components:
             * `1001` - Possible SQL Injection or XSS attack: double quote (") found in Body, Path, Query String or Cookies
             * `1002` - Possible SQL Injection attack: possible hex encoding (0x) found in Body, Path, Query String or Cookies
             * `1003` - Possible SQL Injection attack: MySQL comment (/*) found in Body, Path, Query String or Cookies
-            * `1004` - Possible SQL Injection attack: MySQL comment (*/) found in Body, Path, Query String or Cookies
+            * `1004` - Possible SQL Injection attack: MySQL comment (*​/) found in Body, Path, Query String or Cookies
             * `1005` - Possible SQL Injection attack: MySQL keyword (|) found in Body, Path, Query String or Cookies
             * `1006` - Possible SQL Injection attack: MySQL keyword (&&) found in Body, Path, Query String or Cookies
             * `1007` - Possible SQL Injection attack: MySQL comment (--) found in Body, Path, Query String or Cookies
@@ -76760,7 +76704,8 @@ components:
       description: Behavior attributes containing the value parameter
       properties:
         value:
-          $ref: "#/components/schemas/BehaviorArgsAttributes_value"
+          description: Value can be string or integer depending on the behavior type
+          type: string
       required:
       - value
       type: object
@@ -76771,22 +76716,6 @@ components:
         type:
           description: Behavior type
           type: string
-          x-enum-descriptions:
-            add_request_cookie: Expects string value
-            add_request_header: Expects string value
-            add_response_header: Expects string value
-            filter_request_cookie: Expects string value
-            filter_request_header: Expects string value
-            filter_response_cookie: Expects string value
-            filter_response_header: Expects string value
-            redirect_to_301: Expects string value
-            redirect_to_302: Expects string value
-            rewrite_request: Expects string value
-            run_function: Expects integer value
-            set_cache_policy: Expects integer value
-            set_connector: Expects integer value
-            set_cookie: Expects string value
-            set_origin: Expects integer value
           x-extensible-enum:
           - add_request_cookie
           - add_request_header
@@ -76811,7 +76740,7 @@ components:
       title: BehaviorArgs
       type: object
     BehaviorCapture:
-      additionalProperties: true
+      additionalProperties: false
       description: Behaviors for capturing match groups
       properties:
         type:
@@ -76824,6 +76753,74 @@ components:
       - attributes
       - type
       title: BehaviorCapture
+      type: object
+    FirewallBehaviorArgs:
+      additionalProperties: false
+      description: "Firewall behaviors with a simple argument (e.g., run_function)"
+      properties:
+        type:
+          type: string
+          x-extensible-enum:
+          - run_function
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorRunFunctionAttributes"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorArgs
+      type: object
+    FirewallBehaviorObjectArgs:
+      additionalProperties: false
+      description: "Firewall behaviors with complex object attributes (set_custom_response,\
+        \ set_rate_limit, set_waf)"
+      properties:
+        type:
+          description: Behavior type
+          type: string
+          x-extensible-enum:
+          - set_custom_response
+          - set_rate_limit
+          - set_waf
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorObjectArgs_attributes"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorObjectArgs
+      type: object
+    FirewallBehaviorObjectArgsRequest:
+      additionalProperties: false
+      description: "Firewall behaviors with complex object attributes (set_custom_response,\
+        \ set_rate_limit, set_waf)"
+      properties:
+        type:
+          description: Behavior type
+          type: string
+          x-extensible-enum:
+          - set_custom_response
+          - set_rate_limit
+          - set_waf
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorObjectArgsRequest_attributes"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorObjectArgsRequest
+      type: object
+    FirewallBehaviorArgsRequest:
+      additionalProperties: false
+      description: "Firewall behaviors with a simple argument (e.g., run_function)"
+      properties:
+        type:
+          type: string
+          x-extensible-enum:
+          - run_function
+        attributes:
+          $ref: "#/components/schemas/FirewallBehaviorRunFunctionAttributesRequest"
+      required:
+      - attributes
+      - type
+      title: FirewallBehaviorArgsRequest
       type: object
     FirewallBehaviorModeEnum:
       description: |-
@@ -76885,12 +76882,6 @@ components:
       - asn
       - countries
       - ip_cidr
-    BehaviorTypeEnum:
-      description: '* `run_function` - run_function'
-      title: BehaviorTypeEnum
-      type: string
-      x-extensible-enum:
-      - run_function
     ApplicationRequestPhaseRuleEngineOrder:
       additionalProperties: false
       example:
@@ -76910,7 +76901,7 @@ components:
       title: ApplicationRequestPhaseRuleEngineOrder
       type: object
     Connector2:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           http: "#/components/schemas/ConnectorHTTP"
@@ -76920,10 +76911,9 @@ components:
       oneOf:
       - $ref: "#/components/schemas/ConnectorHTTP"
       - $ref: "#/components/schemas/Connector"
-      - $ref: "#/components/schemas/Connector"
       title: Connector2
     ConnectorRequest2:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           http: "#/components/schemas/ConnectorHTTPRequest"
@@ -76932,7 +76922,6 @@ components:
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/ConnectorHTTPRequest"
-      - $ref: "#/components/schemas/ConnectorRequest"
       - $ref: "#/components/schemas/ConnectorRequest"
       title: ConnectorRequest2
     ConnectorResponse:
@@ -77046,99 +77035,99 @@ components:
           - and
         variable:
           description: |-
-            * `${arg_<name>}` - ${arg_<name>}
-            * `${args}` - ${args}
-            * `${cookie_<name>}` - ${cookie_<name>}
-            * `${device_group}` - ${device_group}
-            * `${geoip_city_continent_code}` - ${geoip_city_continent_code}
-            * `${geoip_city_country_code}` - ${geoip_city_country_code}
-            * `${geoip_city_country_name}` - ${geoip_city_country_name}
-            * `${geoip_city}` - ${geoip_city}
-            * `${geoip_continent_code}` - ${geoip_continent_code}
-            * `${geoip_country_code}` - ${geoip_country_code}
-            * `${geoip_country_name}` - ${geoip_country_name}
-            * `${geoip_region_name}` - ${geoip_region_name}
-            * `${geoip_region}` - ${geoip_region}
-            * `${host}` - ${host}
-            * `${domain}` - ${domain}
-            * `${http_<header_name>}` - ${http_<header_name>}
-            * `${remote_addr}` - ${remote_addr}
-            * `${remote_user}` - ${remote_user}
-            * `${request_method}` - ${request_method}
-            * `${request_uri}` - ${request_uri}
-            * `${request}` - ${request}
-            * `${scheme}` - ${scheme}
-            * `${sent_http_<header_name>}` - ${sent_http_<header_name>}
-            * `${status}` - ${status}
-            * `${upstream_addr}` - ${upstream_addr}
-            * `${upstream_cookie_<name>}` - ${upstream_cookie_<name>}
-            * `${upstream_http_<header_name>}` - ${upstream_http_<header_name>}
-            * `${upstream_status}` - ${upstream_status}
-            * `${uri}` - ${uri}
-            * `${server_addr}` - ${server_addr}
-            * `${server_port}` - ${server_port}
-            * `${ssl_client_cert}` - ${ssl_client_cert}
-            * `${ssl_client_escaped_cert}` - ${ssl_client_escaped_cert}
-            * `${ssl_client_fingerprint}` - ${ssl_client_fingerprint}
-            * `${ssl_client_i_dn}` - ${ssl_client_i_dn}
-            * `${ssl_client_s_dn_parsed}` - ${ssl_client_s_dn_parsed}
-            * `${ssl_client_s_dn}` - ${ssl_client_s_dn}
-            * `${ssl_client_serial}` - ${ssl_client_serial}
-            * `${ssl_client_v_end}` - ${ssl_client_v_end}
-            * `${ssl_client_v_remain}` - ${ssl_client_v_remain}
-            * `${ssl_client_v_start}` - ${ssl_client_v_start}
-            * `${ssl_client_verify}` - ${ssl_client_verify}
-            * `${tcpinfo_rtt}` - ${tcpinfo_rtt}
-            * `${remote_port}` - ${remote_port}
-            * `${request_body}` - ${request_body}
+            * `$(arg_<name>)` - $(arg_<name>)
+            * `$(args)` - $(args)
+            * `$(cookie_<name>)` - $(cookie_<name>)
+            * `$(device_group)` - $(device_group)
+            * `$(geoip_city_continent_code)` - $(geoip_city_continent_code)
+            * `$(geoip_city_country_code)` - $(geoip_city_country_code)
+            * `$(geoip_city_country_name)` - $(geoip_city_country_name)
+            * `$(geoip_city)` - $(geoip_city)
+            * `$(geoip_continent_code)` - $(geoip_continent_code)
+            * `$(geoip_country_code)` - $(geoip_country_code)
+            * `$(geoip_country_name)` - $(geoip_country_name)
+            * `$(geoip_region_name)` - $(geoip_region_name)
+            * `$(geoip_region)` - $(geoip_region)
+            * `$(host)` - $(host)
+            * `$(domain)` - $(domain)
+            * `$(http_<header_name>)` - $(http_<header_name>)
+            * `$(remote_addr)` - $(remote_addr)
+            * `$(remote_user)` - $(remote_user)
+            * `$(request_method)` - $(request_method)
+            * `$(request_uri)` - $(request_uri)
+            * `$(request)` - $(request)
+            * `$(scheme)` - $(scheme)
+            * `$(sent_http_<header_name>)` - $(sent_http_<header_name>)
+            * `$(status)` - $(status)
+            * `$(upstream_addr)` - $(upstream_addr)
+            * `$(upstream_cookie_<name>)` - $(upstream_cookie_<name>)
+            * `$(upstream_http_<header_name>)` - $(upstream_http_<header_name>)
+            * `$(upstream_status)` - $(upstream_status)
+            * `$(uri)` - $(uri)
+            * `$(server_addr)` - $(server_addr)
+            * `$(server_port)` - $(server_port)
+            * `$(ssl_client_cert)` - $(ssl_client_cert)
+            * `$(ssl_client_escaped_cert)` - $(ssl_client_escaped_cert)
+            * `$(ssl_client_fingerprint)` - $(ssl_client_fingerprint)
+            * `$(ssl_client_i_dn)` - $(ssl_client_i_dn)
+            * `$(ssl_client_s_dn_parsed)` - $(ssl_client_s_dn_parsed)
+            * `$(ssl_client_s_dn)` - $(ssl_client_s_dn)
+            * `$(ssl_client_serial)` - $(ssl_client_serial)
+            * `$(ssl_client_v_end)` - $(ssl_client_v_end)
+            * `$(ssl_client_v_remain)` - $(ssl_client_v_remain)
+            * `$(ssl_client_v_start)` - $(ssl_client_v_start)
+            * `$(ssl_client_verify)` - $(ssl_client_verify)
+            * `$(tcpinfo_rtt)` - $(tcpinfo_rtt)
+            * `$(remote_port)` - $(remote_port)
+            * `$(request_body)` - $(request_body)
           title: ApplicationCriterionFieldVariableEnum
           type: string
           x-extensible-enum:
-          - "${arg_<name>}"
-          - "${args}"
-          - "${cookie_<name>}"
-          - "${device_group}"
-          - "${geoip_city_continent_code}"
-          - "${geoip_city_country_code}"
-          - "${geoip_city_country_name}"
-          - "${geoip_city}"
-          - "${geoip_continent_code}"
-          - "${geoip_country_code}"
-          - "${geoip_country_name}"
-          - "${geoip_region_name}"
-          - "${geoip_region}"
-          - "${host}"
-          - "${domain}"
-          - "${http_<header_name>}"
-          - "${remote_addr}"
-          - "${remote_user}"
-          - "${request_method}"
-          - "${request_uri}"
-          - "${request}"
-          - "${scheme}"
-          - "${sent_http_<header_name>}"
-          - "${status}"
-          - "${upstream_addr}"
-          - "${upstream_cookie_<name>}"
-          - "${upstream_http_<header_name>}"
-          - "${upstream_status}"
-          - "${uri}"
-          - "${server_addr}"
-          - "${server_port}"
-          - "${ssl_client_cert}"
-          - "${ssl_client_escaped_cert}"
-          - "${ssl_client_fingerprint}"
-          - "${ssl_client_i_dn}"
-          - "${ssl_client_s_dn_parsed}"
-          - "${ssl_client_s_dn}"
-          - "${ssl_client_serial}"
-          - "${ssl_client_v_end}"
-          - "${ssl_client_v_remain}"
-          - "${ssl_client_v_start}"
-          - "${ssl_client_verify}"
-          - "${tcpinfo_rtt}"
-          - "${remote_port}"
-          - "${request_body}"
+          - $(arg_<name>)
+          - $(args)
+          - $(cookie_<name>)
+          - $(device_group)
+          - $(geoip_city_continent_code)
+          - $(geoip_city_country_code)
+          - $(geoip_city_country_name)
+          - $(geoip_city)
+          - $(geoip_continent_code)
+          - $(geoip_country_code)
+          - $(geoip_country_name)
+          - $(geoip_region_name)
+          - $(geoip_region)
+          - $(host)
+          - $(domain)
+          - $(http_<header_name>)
+          - $(remote_addr)
+          - $(remote_user)
+          - $(request_method)
+          - $(request_uri)
+          - $(request)
+          - $(scheme)
+          - $(sent_http_<header_name>)
+          - $(status)
+          - $(upstream_addr)
+          - $(upstream_cookie_<name>)
+          - $(upstream_http_<header_name>)
+          - $(upstream_status)
+          - $(uri)
+          - $(server_addr)
+          - $(server_port)
+          - $(ssl_client_cert)
+          - $(ssl_client_escaped_cert)
+          - $(ssl_client_fingerprint)
+          - $(ssl_client_i_dn)
+          - $(ssl_client_s_dn_parsed)
+          - $(ssl_client_s_dn)
+          - $(ssl_client_serial)
+          - $(ssl_client_v_end)
+          - $(ssl_client_v_remain)
+          - $(ssl_client_v_start)
+          - $(ssl_client_verify)
+          - $(tcpinfo_rtt)
+          - $(remote_port)
+          - $(request_body)
         operator:
           description: |-
             * `does_not_exist` - does_not_exist
@@ -77249,99 +77238,99 @@ components:
           - and
         variable:
           description: |-
-            * `${arg_<name>}` - ${arg_<name>}
-            * `${args}` - ${args}
-            * `${cookie_<name>}` - ${cookie_<name>}
-            * `${device_group}` - ${device_group}
-            * `${geoip_city_continent_code}` - ${geoip_city_continent_code}
-            * `${geoip_city_country_code}` - ${geoip_city_country_code}
-            * `${geoip_city_country_name}` - ${geoip_city_country_name}
-            * `${geoip_city}` - ${geoip_city}
-            * `${geoip_continent_code}` - ${geoip_continent_code}
-            * `${geoip_country_code}` - ${geoip_country_code}
-            * `${geoip_country_name}` - ${geoip_country_name}
-            * `${geoip_region_name}` - ${geoip_region_name}
-            * `${geoip_region}` - ${geoip_region}
-            * `${host}` - ${host}
-            * `${domain}` - ${domain}
-            * `${http_<header_name>}` - ${http_<header_name>}
-            * `${remote_addr}` - ${remote_addr}
-            * `${remote_user}` - ${remote_user}
-            * `${request_method}` - ${request_method}
-            * `${request_uri}` - ${request_uri}
-            * `${request}` - ${request}
-            * `${scheme}` - ${scheme}
-            * `${sent_http_<header_name>}` - ${sent_http_<header_name>}
-            * `${status}` - ${status}
-            * `${upstream_addr}` - ${upstream_addr}
-            * `${upstream_cookie_<name>}` - ${upstream_cookie_<name>}
-            * `${upstream_http_<header_name>}` - ${upstream_http_<header_name>}
-            * `${upstream_status}` - ${upstream_status}
-            * `${uri}` - ${uri}
-            * `${server_addr}` - ${server_addr}
-            * `${server_port}` - ${server_port}
-            * `${ssl_client_cert}` - ${ssl_client_cert}
-            * `${ssl_client_escaped_cert}` - ${ssl_client_escaped_cert}
-            * `${ssl_client_fingerprint}` - ${ssl_client_fingerprint}
-            * `${ssl_client_i_dn}` - ${ssl_client_i_dn}
-            * `${ssl_client_s_dn_parsed}` - ${ssl_client_s_dn_parsed}
-            * `${ssl_client_s_dn}` - ${ssl_client_s_dn}
-            * `${ssl_client_serial}` - ${ssl_client_serial}
-            * `${ssl_client_v_end}` - ${ssl_client_v_end}
-            * `${ssl_client_v_remain}` - ${ssl_client_v_remain}
-            * `${ssl_client_v_start}` - ${ssl_client_v_start}
-            * `${ssl_client_verify}` - ${ssl_client_verify}
-            * `${tcpinfo_rtt}` - ${tcpinfo_rtt}
-            * `${remote_port}` - ${remote_port}
-            * `${request_body}` - ${request_body}
+            * `$(arg_<name>)` - $(arg_<name>)
+            * `$(args)` - $(args)
+            * `$(cookie_<name>)` - $(cookie_<name>)
+            * `$(device_group)` - $(device_group)
+            * `$(geoip_city_continent_code)` - $(geoip_city_continent_code)
+            * `$(geoip_city_country_code)` - $(geoip_city_country_code)
+            * `$(geoip_city_country_name)` - $(geoip_city_country_name)
+            * `$(geoip_city)` - $(geoip_city)
+            * `$(geoip_continent_code)` - $(geoip_continent_code)
+            * `$(geoip_country_code)` - $(geoip_country_code)
+            * `$(geoip_country_name)` - $(geoip_country_name)
+            * `$(geoip_region_name)` - $(geoip_region_name)
+            * `$(geoip_region)` - $(geoip_region)
+            * `$(host)` - $(host)
+            * `$(domain)` - $(domain)
+            * `$(http_<header_name>)` - $(http_<header_name>)
+            * `$(remote_addr)` - $(remote_addr)
+            * `$(remote_user)` - $(remote_user)
+            * `$(request_method)` - $(request_method)
+            * `$(request_uri)` - $(request_uri)
+            * `$(request)` - $(request)
+            * `$(scheme)` - $(scheme)
+            * `$(sent_http_<header_name>)` - $(sent_http_<header_name>)
+            * `$(status)` - $(status)
+            * `$(upstream_addr)` - $(upstream_addr)
+            * `$(upstream_cookie_<name>)` - $(upstream_cookie_<name>)
+            * `$(upstream_http_<header_name>)` - $(upstream_http_<header_name>)
+            * `$(upstream_status)` - $(upstream_status)
+            * `$(uri)` - $(uri)
+            * `$(server_addr)` - $(server_addr)
+            * `$(server_port)` - $(server_port)
+            * `$(ssl_client_cert)` - $(ssl_client_cert)
+            * `$(ssl_client_escaped_cert)` - $(ssl_client_escaped_cert)
+            * `$(ssl_client_fingerprint)` - $(ssl_client_fingerprint)
+            * `$(ssl_client_i_dn)` - $(ssl_client_i_dn)
+            * `$(ssl_client_s_dn_parsed)` - $(ssl_client_s_dn_parsed)
+            * `$(ssl_client_s_dn)` - $(ssl_client_s_dn)
+            * `$(ssl_client_serial)` - $(ssl_client_serial)
+            * `$(ssl_client_v_end)` - $(ssl_client_v_end)
+            * `$(ssl_client_v_remain)` - $(ssl_client_v_remain)
+            * `$(ssl_client_v_start)` - $(ssl_client_v_start)
+            * `$(ssl_client_verify)` - $(ssl_client_verify)
+            * `$(tcpinfo_rtt)` - $(tcpinfo_rtt)
+            * `$(remote_port)` - $(remote_port)
+            * `$(request_body)` - $(request_body)
           title: ApplicationCriterionFieldVariableEnum
           type: string
           x-extensible-enum:
-          - "${arg_<name>}"
-          - "${args}"
-          - "${cookie_<name>}"
-          - "${device_group}"
-          - "${geoip_city_continent_code}"
-          - "${geoip_city_country_code}"
-          - "${geoip_city_country_name}"
-          - "${geoip_city}"
-          - "${geoip_continent_code}"
-          - "${geoip_country_code}"
-          - "${geoip_country_name}"
-          - "${geoip_region_name}"
-          - "${geoip_region}"
-          - "${host}"
-          - "${domain}"
-          - "${http_<header_name>}"
-          - "${remote_addr}"
-          - "${remote_user}"
-          - "${request_method}"
-          - "${request_uri}"
-          - "${request}"
-          - "${scheme}"
-          - "${sent_http_<header_name>}"
-          - "${status}"
-          - "${upstream_addr}"
-          - "${upstream_cookie_<name>}"
-          - "${upstream_http_<header_name>}"
-          - "${upstream_status}"
-          - "${uri}"
-          - "${server_addr}"
-          - "${server_port}"
-          - "${ssl_client_cert}"
-          - "${ssl_client_escaped_cert}"
-          - "${ssl_client_fingerprint}"
-          - "${ssl_client_i_dn}"
-          - "${ssl_client_s_dn_parsed}"
-          - "${ssl_client_s_dn}"
-          - "${ssl_client_serial}"
-          - "${ssl_client_v_end}"
-          - "${ssl_client_v_remain}"
-          - "${ssl_client_v_start}"
-          - "${ssl_client_verify}"
-          - "${tcpinfo_rtt}"
-          - "${remote_port}"
-          - "${request_body}"
+          - $(arg_<name>)
+          - $(args)
+          - $(cookie_<name>)
+          - $(device_group)
+          - $(geoip_city_continent_code)
+          - $(geoip_city_country_code)
+          - $(geoip_city_country_name)
+          - $(geoip_city)
+          - $(geoip_continent_code)
+          - $(geoip_country_code)
+          - $(geoip_country_name)
+          - $(geoip_region_name)
+          - $(geoip_region)
+          - $(host)
+          - $(domain)
+          - $(http_<header_name>)
+          - $(remote_addr)
+          - $(remote_user)
+          - $(request_method)
+          - $(request_uri)
+          - $(request)
+          - $(scheme)
+          - $(sent_http_<header_name>)
+          - $(status)
+          - $(upstream_addr)
+          - $(upstream_cookie_<name>)
+          - $(upstream_http_<header_name>)
+          - $(upstream_status)
+          - $(uri)
+          - $(server_addr)
+          - $(server_port)
+          - $(ssl_client_cert)
+          - $(ssl_client_escaped_cert)
+          - $(ssl_client_fingerprint)
+          - $(ssl_client_i_dn)
+          - $(ssl_client_s_dn_parsed)
+          - $(ssl_client_s_dn)
+          - $(ssl_client_serial)
+          - $(ssl_client_v_end)
+          - $(ssl_client_v_remain)
+          - $(ssl_client_v_start)
+          - $(ssl_client_verify)
+          - $(tcpinfo_rtt)
+          - $(remote_port)
+          - $(request_body)
         operator:
           description: |-
             * `does_not_exist` - does_not_exist
@@ -77380,117 +77369,107 @@ components:
       type: object
     ApplicationCriterionFieldVariableEnum:
       description: |-
-        * `${arg_<name>}` - ${arg_<name>}
-        * `${args}` - ${args}
-        * `${cookie_<name>}` - ${cookie_<name>}
-        * `${device_group}` - ${device_group}
-        * `${geoip_city_continent_code}` - ${geoip_city_continent_code}
-        * `${geoip_city_country_code}` - ${geoip_city_country_code}
-        * `${geoip_city_country_name}` - ${geoip_city_country_name}
-        * `${geoip_city}` - ${geoip_city}
-        * `${geoip_continent_code}` - ${geoip_continent_code}
-        * `${geoip_country_code}` - ${geoip_country_code}
-        * `${geoip_country_name}` - ${geoip_country_name}
-        * `${geoip_region_name}` - ${geoip_region_name}
-        * `${geoip_region}` - ${geoip_region}
-        * `${host}` - ${host}
-        * `${domain}` - ${domain}
-        * `${http_<header_name>}` - ${http_<header_name>}
-        * `${remote_addr}` - ${remote_addr}
-        * `${remote_user}` - ${remote_user}
-        * `${request_method}` - ${request_method}
-        * `${request_uri}` - ${request_uri}
-        * `${request}` - ${request}
-        * `${scheme}` - ${scheme}
-        * `${sent_http_<header_name>}` - ${sent_http_<header_name>}
-        * `${status}` - ${status}
-        * `${upstream_addr}` - ${upstream_addr}
-        * `${upstream_cookie_<name>}` - ${upstream_cookie_<name>}
-        * `${upstream_http_<header_name>}` - ${upstream_http_<header_name>}
-        * `${upstream_status}` - ${upstream_status}
-        * `${uri}` - ${uri}
-        * `${server_addr}` - ${server_addr}
-        * `${server_port}` - ${server_port}
-        * `${ssl_client_cert}` - ${ssl_client_cert}
-        * `${ssl_client_escaped_cert}` - ${ssl_client_escaped_cert}
-        * `${ssl_client_fingerprint}` - ${ssl_client_fingerprint}
-        * `${ssl_client_i_dn}` - ${ssl_client_i_dn}
-        * `${ssl_client_s_dn_parsed}` - ${ssl_client_s_dn_parsed}
-        * `${ssl_client_s_dn}` - ${ssl_client_s_dn}
-        * `${ssl_client_serial}` - ${ssl_client_serial}
-        * `${ssl_client_v_end}` - ${ssl_client_v_end}
-        * `${ssl_client_v_remain}` - ${ssl_client_v_remain}
-        * `${ssl_client_v_start}` - ${ssl_client_v_start}
-        * `${ssl_client_verify}` - ${ssl_client_verify}
-        * `${tcpinfo_rtt}` - ${tcpinfo_rtt}
-        * `${remote_port}` - ${remote_port}
-        * `${request_body}` - ${request_body}
+        * `$(arg_<name>)` - $(arg_<name>)
+        * `$(args)` - $(args)
+        * `$(cookie_<name>)` - $(cookie_<name>)
+        * `$(device_group)` - $(device_group)
+        * `$(geoip_city_continent_code)` - $(geoip_city_continent_code)
+        * `$(geoip_city_country_code)` - $(geoip_city_country_code)
+        * `$(geoip_city_country_name)` - $(geoip_city_country_name)
+        * `$(geoip_city)` - $(geoip_city)
+        * `$(geoip_continent_code)` - $(geoip_continent_code)
+        * `$(geoip_country_code)` - $(geoip_country_code)
+        * `$(geoip_country_name)` - $(geoip_country_name)
+        * `$(geoip_region_name)` - $(geoip_region_name)
+        * `$(geoip_region)` - $(geoip_region)
+        * `$(host)` - $(host)
+        * `$(domain)` - $(domain)
+        * `$(http_<header_name>)` - $(http_<header_name>)
+        * `$(remote_addr)` - $(remote_addr)
+        * `$(remote_user)` - $(remote_user)
+        * `$(request_method)` - $(request_method)
+        * `$(request_uri)` - $(request_uri)
+        * `$(request)` - $(request)
+        * `$(scheme)` - $(scheme)
+        * `$(sent_http_<header_name>)` - $(sent_http_<header_name>)
+        * `$(status)` - $(status)
+        * `$(upstream_addr)` - $(upstream_addr)
+        * `$(upstream_cookie_<name>)` - $(upstream_cookie_<name>)
+        * `$(upstream_http_<header_name>)` - $(upstream_http_<header_name>)
+        * `$(upstream_status)` - $(upstream_status)
+        * `$(uri)` - $(uri)
+        * `$(server_addr)` - $(server_addr)
+        * `$(server_port)` - $(server_port)
+        * `$(ssl_client_cert)` - $(ssl_client_cert)
+        * `$(ssl_client_escaped_cert)` - $(ssl_client_escaped_cert)
+        * `$(ssl_client_fingerprint)` - $(ssl_client_fingerprint)
+        * `$(ssl_client_i_dn)` - $(ssl_client_i_dn)
+        * `$(ssl_client_s_dn_parsed)` - $(ssl_client_s_dn_parsed)
+        * `$(ssl_client_s_dn)` - $(ssl_client_s_dn)
+        * `$(ssl_client_serial)` - $(ssl_client_serial)
+        * `$(ssl_client_v_end)` - $(ssl_client_v_end)
+        * `$(ssl_client_v_remain)` - $(ssl_client_v_remain)
+        * `$(ssl_client_v_start)` - $(ssl_client_v_start)
+        * `$(ssl_client_verify)` - $(ssl_client_verify)
+        * `$(tcpinfo_rtt)` - $(tcpinfo_rtt)
+        * `$(remote_port)` - $(remote_port)
+        * `$(request_body)` - $(request_body)
       title: ApplicationCriterionFieldVariableEnum
       type: string
       x-extensible-enum:
-      - "${arg_<name>}"
-      - "${args}"
-      - "${cookie_<name>}"
-      - "${device_group}"
-      - "${geoip_city_continent_code}"
-      - "${geoip_city_country_code}"
-      - "${geoip_city_country_name}"
-      - "${geoip_city}"
-      - "${geoip_continent_code}"
-      - "${geoip_country_code}"
-      - "${geoip_country_name}"
-      - "${geoip_region_name}"
-      - "${geoip_region}"
-      - "${host}"
-      - "${domain}"
-      - "${http_<header_name>}"
-      - "${remote_addr}"
-      - "${remote_user}"
-      - "${request_method}"
-      - "${request_uri}"
-      - "${request}"
-      - "${scheme}"
-      - "${sent_http_<header_name>}"
-      - "${status}"
-      - "${upstream_addr}"
-      - "${upstream_cookie_<name>}"
-      - "${upstream_http_<header_name>}"
-      - "${upstream_status}"
-      - "${uri}"
-      - "${server_addr}"
-      - "${server_port}"
-      - "${ssl_client_cert}"
-      - "${ssl_client_escaped_cert}"
-      - "${ssl_client_fingerprint}"
-      - "${ssl_client_i_dn}"
-      - "${ssl_client_s_dn_parsed}"
-      - "${ssl_client_s_dn}"
-      - "${ssl_client_serial}"
-      - "${ssl_client_v_end}"
-      - "${ssl_client_v_remain}"
-      - "${ssl_client_v_start}"
-      - "${ssl_client_verify}"
-      - "${tcpinfo_rtt}"
-      - "${remote_port}"
-      - "${request_body}"
+      - $(arg_<name>)
+      - $(args)
+      - $(cookie_<name>)
+      - $(device_group)
+      - $(geoip_city_continent_code)
+      - $(geoip_city_country_code)
+      - $(geoip_city_country_name)
+      - $(geoip_city)
+      - $(geoip_continent_code)
+      - $(geoip_country_code)
+      - $(geoip_country_name)
+      - $(geoip_region_name)
+      - $(geoip_region)
+      - $(host)
+      - $(domain)
+      - $(http_<header_name>)
+      - $(remote_addr)
+      - $(remote_user)
+      - $(request_method)
+      - $(request_uri)
+      - $(request)
+      - $(scheme)
+      - $(sent_http_<header_name>)
+      - $(status)
+      - $(upstream_addr)
+      - $(upstream_cookie_<name>)
+      - $(upstream_http_<header_name>)
+      - $(upstream_status)
+      - $(uri)
+      - $(server_addr)
+      - $(server_port)
+      - $(ssl_client_cert)
+      - $(ssl_client_escaped_cert)
+      - $(ssl_client_fingerprint)
+      - $(ssl_client_i_dn)
+      - $(ssl_client_s_dn_parsed)
+      - $(ssl_client_s_dn)
+      - $(ssl_client_serial)
+      - $(ssl_client_v_end)
+      - $(ssl_client_v_remain)
+      - $(ssl_client_v_start)
+      - $(ssl_client_verify)
+      - $(tcpinfo_rtt)
+      - $(remote_port)
+      - $(request_body)
     ApplicationCriterionArgument:
-      additionalProperties: false
-      oneOf:
-      - format: int64
-        nullable: true
-        type: integer
-      - nullable: true
-        type: string
+      description: "Can be one of: integer, string"
       title: ApplicationCriterionArgument
+      type: string
     ApplicationCriterionArgumentRequest:
-      additionalProperties: false
-      oneOf:
-      - format: int64
-        nullable: true
-        type: integer
-      - nullable: true
-        type: string
+      description: "Can be one of: integer, string"
       title: ApplicationCriterionArgumentRequest
+      type: string
     FirewallCriterionField:
       additionalProperties: false
       description: |-
@@ -77535,39 +77514,39 @@ components:
           - and
         variable:
           description: |-
-            * `${header_accept}` - ${header_accept}
-            * `${header_accept_encoding}` - ${header_accept_encoding}
-            * `${header_accept_language}` - ${header_accept_language}
-            * `${header_cookie}` - ${header_cookie}
-            * `${header_origin}` - ${header_origin}
-            * `${header_referer}` - ${header_referer}
-            * `${header_user_agent}` - ${header_user_agent}
-            * `${host}` - ${host}
-            * `${network}` - ${network}
-            * `${request_args}` - ${request_args}
-            * `${request_method}` - ${request_method}
-            * `${request_uri}` - ${request_uri}
-            * `${scheme}` - ${scheme}
-            * `${ssl_verification_status}` - ${ssl_verification_status}
-            * `${client_certificate_validation}` - ${client_certificate_validation}
+            * `$(header_accept)` - $(header_accept)
+            * `$(header_accept_encoding)` - $(header_accept_encoding)
+            * `$(header_accept_language)` - $(header_accept_language)
+            * `$(header_cookie)` - $(header_cookie)
+            * `$(header_origin)` - $(header_origin)
+            * `$(header_referer)` - $(header_referer)
+            * `$(header_user_agent)` - $(header_user_agent)
+            * `$(host)` - $(host)
+            * `$(network)` - $(network)
+            * `$(request_args)` - $(request_args)
+            * `$(request_method)` - $(request_method)
+            * `$(request_uri)` - $(request_uri)
+            * `$(scheme)` - $(scheme)
+            * `$(ssl_verification_status)` - $(ssl_verification_status)
+            * `$(client_certificate_validation)` - $(client_certificate_validation)
           title: FirewallCriterionFieldVariableEnum
           type: string
           x-extensible-enum:
-          - "${header_accept}"
-          - "${header_accept_encoding}"
-          - "${header_accept_language}"
-          - "${header_cookie}"
-          - "${header_origin}"
-          - "${header_referer}"
-          - "${header_user_agent}"
-          - "${host}"
-          - "${network}"
-          - "${request_args}"
-          - "${request_method}"
-          - "${request_uri}"
-          - "${scheme}"
-          - "${ssl_verification_status}"
-          - "${client_certificate_validation}"
+          - $(header_accept)
+          - $(header_accept_encoding)
+          - $(header_accept_language)
+          - $(header_cookie)
+          - $(header_origin)
+          - $(header_referer)
+          - $(header_user_agent)
+          - $(host)
+          - $(network)
+          - $(request_args)
+          - $(request_method)
+          - $(request_uri)
+          - $(scheme)
+          - $(ssl_verification_status)
+          - $(client_certificate_validation)
         operator:
           description: |-
             * `does_not_exist` - does_not_exist
@@ -77648,39 +77627,39 @@ components:
           - and
         variable:
           description: |-
-            * `${header_accept}` - ${header_accept}
-            * `${header_accept_encoding}` - ${header_accept_encoding}
-            * `${header_accept_language}` - ${header_accept_language}
-            * `${header_cookie}` - ${header_cookie}
-            * `${header_origin}` - ${header_origin}
-            * `${header_referer}` - ${header_referer}
-            * `${header_user_agent}` - ${header_user_agent}
-            * `${host}` - ${host}
-            * `${network}` - ${network}
-            * `${request_args}` - ${request_args}
-            * `${request_method}` - ${request_method}
-            * `${request_uri}` - ${request_uri}
-            * `${scheme}` - ${scheme}
-            * `${ssl_verification_status}` - ${ssl_verification_status}
-            * `${client_certificate_validation}` - ${client_certificate_validation}
+            * `$(header_accept)` - $(header_accept)
+            * `$(header_accept_encoding)` - $(header_accept_encoding)
+            * `$(header_accept_language)` - $(header_accept_language)
+            * `$(header_cookie)` - $(header_cookie)
+            * `$(header_origin)` - $(header_origin)
+            * `$(header_referer)` - $(header_referer)
+            * `$(header_user_agent)` - $(header_user_agent)
+            * `$(host)` - $(host)
+            * `$(network)` - $(network)
+            * `$(request_args)` - $(request_args)
+            * `$(request_method)` - $(request_method)
+            * `$(request_uri)` - $(request_uri)
+            * `$(scheme)` - $(scheme)
+            * `$(ssl_verification_status)` - $(ssl_verification_status)
+            * `$(client_certificate_validation)` - $(client_certificate_validation)
           title: FirewallCriterionFieldVariableEnum
           type: string
           x-extensible-enum:
-          - "${header_accept}"
-          - "${header_accept_encoding}"
-          - "${header_accept_language}"
-          - "${header_cookie}"
-          - "${header_origin}"
-          - "${header_referer}"
-          - "${header_user_agent}"
-          - "${host}"
-          - "${network}"
-          - "${request_args}"
-          - "${request_method}"
-          - "${request_uri}"
-          - "${scheme}"
-          - "${ssl_verification_status}"
-          - "${client_certificate_validation}"
+          - $(header_accept)
+          - $(header_accept_encoding)
+          - $(header_accept_language)
+          - $(header_cookie)
+          - $(header_origin)
+          - $(header_referer)
+          - $(header_user_agent)
+          - $(host)
+          - $(network)
+          - $(request_args)
+          - $(request_method)
+          - $(request_uri)
+          - $(scheme)
+          - $(ssl_verification_status)
+          - $(client_certificate_validation)
         operator:
           description: |-
             * `does_not_exist` - does_not_exist
@@ -77719,73 +77698,47 @@ components:
       type: object
     FirewallCriterionFieldVariableEnum:
       description: |-
-        * `${header_accept}` - ${header_accept}
-        * `${header_accept_encoding}` - ${header_accept_encoding}
-        * `${header_accept_language}` - ${header_accept_language}
-        * `${header_cookie}` - ${header_cookie}
-        * `${header_origin}` - ${header_origin}
-        * `${header_referer}` - ${header_referer}
-        * `${header_user_agent}` - ${header_user_agent}
-        * `${host}` - ${host}
-        * `${network}` - ${network}
-        * `${request_args}` - ${request_args}
-        * `${request_method}` - ${request_method}
-        * `${request_uri}` - ${request_uri}
-        * `${scheme}` - ${scheme}
-        * `${ssl_verification_status}` - ${ssl_verification_status}
-        * `${client_certificate_validation}` - ${client_certificate_validation}
+        * `$(header_accept)` - $(header_accept)
+        * `$(header_accept_encoding)` - $(header_accept_encoding)
+        * `$(header_accept_language)` - $(header_accept_language)
+        * `$(header_cookie)` - $(header_cookie)
+        * `$(header_origin)` - $(header_origin)
+        * `$(header_referer)` - $(header_referer)
+        * `$(header_user_agent)` - $(header_user_agent)
+        * `$(host)` - $(host)
+        * `$(network)` - $(network)
+        * `$(request_args)` - $(request_args)
+        * `$(request_method)` - $(request_method)
+        * `$(request_uri)` - $(request_uri)
+        * `$(scheme)` - $(scheme)
+        * `$(ssl_verification_status)` - $(ssl_verification_status)
+        * `$(client_certificate_validation)` - $(client_certificate_validation)
       title: FirewallCriterionFieldVariableEnum
       type: string
       x-extensible-enum:
-      - "${header_accept}"
-      - "${header_accept_encoding}"
-      - "${header_accept_language}"
-      - "${header_cookie}"
-      - "${header_origin}"
-      - "${header_referer}"
-      - "${header_user_agent}"
-      - "${host}"
-      - "${network}"
-      - "${request_args}"
-      - "${request_method}"
-      - "${request_uri}"
-      - "${scheme}"
-      - "${ssl_verification_status}"
-      - "${client_certificate_validation}"
+      - $(header_accept)
+      - $(header_accept_encoding)
+      - $(header_accept_language)
+      - $(header_cookie)
+      - $(header_origin)
+      - $(header_referer)
+      - $(header_user_agent)
+      - $(host)
+      - $(network)
+      - $(request_args)
+      - $(request_method)
+      - $(request_uri)
+      - $(scheme)
+      - $(ssl_verification_status)
+      - $(client_certificate_validation)
     FirewallCriterionArgument:
-      additionalProperties: false
-      oneOf:
-      - description: "These values are only valid when using ${ssl_verification_status}\
-          \ variable."
-        nullable: true
-        type: string
-        x-extensible-enum:
-        - SUCCESS
-        - CERTIFICATE_VERIFICATION_ERROR
-        - MISSING_CLIENT_CERTIFICATE
-      - format: int64
-        nullable: true
-        type: integer
-      - nullable: true
-        type: string
+      description: "Can be one of: integer, string"
       title: FirewallCriterionArgument
+      type: string
     FirewallCriterionArgumentRequest:
-      additionalProperties: false
-      oneOf:
-      - description: "These values are only valid when using ${ssl_verification_status}\
-          \ variable."
-        nullable: true
-        type: string
-        x-extensible-enum:
-        - SUCCESS
-        - CERTIFICATE_VERIFICATION_ERROR
-        - MISSING_CLIENT_CERTIFICATE
-      - format: int64
-        nullable: true
-        type: integer
-      - nullable: true
-        type: string
+      description: "Can be one of: integer, string"
       title: FirewallCriterionArgumentRequest
+      type: string
     Page2:
       $ref: "#/components/schemas/PageConnector"
     PageRequest2:
@@ -77890,7 +77843,7 @@ components:
       title: PaginatedConnectorList
       type: object
     PatchedConnectorRequest2:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           http: "#/components/schemas/PatchedConnectorHTTPRequest"
@@ -77899,7 +77852,6 @@ components:
         propertyName: type
       oneOf:
       - $ref: "#/components/schemas/PatchedConnectorHTTPRequest"
-      - $ref: "#/components/schemas/PatchedConnectorRequest"
       - $ref: "#/components/schemas/PatchedConnectorRequest"
       title: PatchedConnectorRequest2
     PatchedRequestPhaseRule:
@@ -78045,7 +77997,7 @@ components:
       title: PatchedRequestPhaseRule
       type: object
     RequestPhaseBehavior2:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           deny: "#/components/schemas/BehaviorNoArgs"
@@ -78222,7 +78174,7 @@ components:
       title: RequestPhaseRule2
       type: object
     WAFExceptionCondition:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           any_http_header_name: "#/components/schemas/WAFExceptionGenericCondition"
@@ -78247,7 +78199,7 @@ components:
       - $ref: "#/components/schemas/WAFExceptionSpecificConditionOnValue"
       title: WAFExceptionCondition
     WAFExceptionConditionRequest:
-      additionalProperties: true
+      additionalProperties: false
       discriminator:
         mapping:
           any_http_header_name: "#/components/schemas/WAFExceptionGenericConditionRequest"
@@ -83085,7 +83037,7 @@ components:
         last_editor: last_editor
         active: true
         file_owner: file_owner
-        trigger: null
+        trigger: ""
         content: content
         file_mode: file_mode
         content_type: content_type
@@ -83111,7 +83063,8 @@ components:
           minLength: 1
           type: string
         trigger:
-          $ref: "#/components/schemas/ServiceResourceId_trigger"
+          allOf:
+          - $ref: "#/components/schemas/TriggerEnum"
         content:
           maxLength: 50
           minLength: 1
@@ -83156,7 +83109,7 @@ components:
         name: name
         file_owner: file_owner
         file_group: file_group
-        trigger: null
+        trigger: ""
         content: content
         file_mode: file_mode
       properties:
@@ -83169,7 +83122,8 @@ components:
           minLength: 1
           type: string
         trigger:
-          $ref: "#/components/schemas/ServiceResourceId_trigger"
+          allOf:
+          - $ref: "#/components/schemas/TriggerEnum"
         content:
           maxLength: 50
           minLength: 1
@@ -84452,7 +84406,7 @@ components:
           minLength: 1
           type: string
         certificate:
-          maxLength: 600000
+          maxLength: 1000000
           minLength: 1
           nullable: true
           type: string
@@ -84593,7 +84547,7 @@ components:
           minLength: 1
           type: string
         certificate:
-          maxLength: 600000
+          maxLength: 1000000
           minLength: 1
           nullable: true
           type: string
@@ -84889,7 +84843,7 @@ components:
           minLength: 1
           type: string
         certificate:
-          maxLength: 600000
+          maxLength: 1000000
           minLength: 1
           nullable: true
           type: string
@@ -85179,7 +85133,7 @@ components:
           minLength: 1
           type: string
         certificate:
-          maxLength: 600000
+          maxLength: 1000000
           minLength: 1
           nullable: true
           type: string
@@ -86611,23 +86565,22 @@ components:
         arg:
           type: object
       type: object
-    TLSWorkload_minimum_version:
-      nullable: true
+    FirewallBehaviorObjectArgs_attributes:
+      description: "Attributes object whose shape depends on the behavior type. Use\
+        \ SetCustomResponseAttributes for set_custom_response, SetRateLimitAttributes\
+        \ for set_rate_limit, SetWafAttributes for set_waf."
       oneOf:
-      - $ref: "#/components/schemas/MinimumVersionEnum"
-      - $ref: "#/components/schemas/BlankEnum"
-    BehaviorArgsAttributes_value:
-      description: Value can be string or integer depending on the behavior type
+      - $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseAttributes"
+      - $ref: "#/components/schemas/FirewallBehaviorSetRateLimitAttributes"
+      - $ref: "#/components/schemas/FirewallBehaviorSetWafAttributes"
+    FirewallBehaviorObjectArgsRequest_attributes:
+      description: "Attributes object whose shape depends on the behavior type. Use\
+        \ SetCustomResponseAttributes for set_custom_response, SetRateLimitAttributes\
+        \ for set_rate_limit, SetWafAttributes for set_waf."
       oneOf:
-      - type: string
-      - format: int64
-        maximum: 9223372036854775807
-        minimum: 1
-        type: integer
-    ServiceResourceId_trigger:
-      oneOf:
-      - $ref: "#/components/schemas/TriggerEnum"
-      - $ref: "#/components/schemas/BlankEnum"
+      - $ref: "#/components/schemas/FirewallBehaviorSetCustomResponseAttributesRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorSetRateLimitAttributesRequest"
+      - $ref: "#/components/schemas/FirewallBehaviorSetWafAttributesRequest"
   securitySchemes:
     BearerAuth:
       description: |-

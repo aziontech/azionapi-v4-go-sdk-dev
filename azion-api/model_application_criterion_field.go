@@ -24,11 +24,12 @@ var _ MappedNullable = &ApplicationCriterionField{}
 type ApplicationCriterionField struct {
 	// * `if` - if * `or` - or * `and` - and
 	Conditional string `json:"conditional"`
-	// * `${arg_<name>}` - ${arg_<name>} * `${args}` - ${args} * `${cookie_<name>}` - ${cookie_<name>} * `${device_group}` - ${device_group} * `${geoip_city_continent_code}` - ${geoip_city_continent_code} * `${geoip_city_country_code}` - ${geoip_city_country_code} * `${geoip_city_country_name}` - ${geoip_city_country_name} * `${geoip_city}` - ${geoip_city} * `${geoip_continent_code}` - ${geoip_continent_code} * `${geoip_country_code}` - ${geoip_country_code} * `${geoip_country_name}` - ${geoip_country_name} * `${geoip_region_name}` - ${geoip_region_name} * `${geoip_region}` - ${geoip_region} * `${host}` - ${host} * `${domain}` - ${domain} * `${http_<header_name>}` - ${http_<header_name>} * `${remote_addr}` - ${remote_addr} * `${remote_user}` - ${remote_user} * `${request_method}` - ${request_method} * `${request_uri}` - ${request_uri} * `${request}` - ${request} * `${scheme}` - ${scheme} * `${sent_http_<header_name>}` - ${sent_http_<header_name>} * `${status}` - ${status} * `${upstream_addr}` - ${upstream_addr} * `${upstream_cookie_<name>}` - ${upstream_cookie_<name>} * `${upstream_http_<header_name>}` - ${upstream_http_<header_name>} * `${upstream_status}` - ${upstream_status} * `${uri}` - ${uri} * `${server_addr}` - ${server_addr} * `${server_port}` - ${server_port} * `${ssl_client_cert}` - ${ssl_client_cert} * `${ssl_client_escaped_cert}` - ${ssl_client_escaped_cert} * `${ssl_client_fingerprint}` - ${ssl_client_fingerprint} * `${ssl_client_i_dn}` - ${ssl_client_i_dn} * `${ssl_client_s_dn_parsed}` - ${ssl_client_s_dn_parsed} * `${ssl_client_s_dn}` - ${ssl_client_s_dn} * `${ssl_client_serial}` - ${ssl_client_serial} * `${ssl_client_v_end}` - ${ssl_client_v_end} * `${ssl_client_v_remain}` - ${ssl_client_v_remain} * `${ssl_client_v_start}` - ${ssl_client_v_start} * `${ssl_client_verify}` - ${ssl_client_verify} * `${tcpinfo_rtt}` - ${tcpinfo_rtt} * `${remote_port}` - ${remote_port} * `${request_body}` - ${request_body}
+	// * `$(arg_<name>)` - $(arg_<name>) * `$(args)` - $(args) * `$(cookie_<name>)` - $(cookie_<name>) * `$(device_group)` - $(device_group) * `$(geoip_city_continent_code)` - $(geoip_city_continent_code) * `$(geoip_city_country_code)` - $(geoip_city_country_code) * `$(geoip_city_country_name)` - $(geoip_city_country_name) * `$(geoip_city)` - $(geoip_city) * `$(geoip_continent_code)` - $(geoip_continent_code) * `$(geoip_country_code)` - $(geoip_country_code) * `$(geoip_country_name)` - $(geoip_country_name) * `$(geoip_region_name)` - $(geoip_region_name) * `$(geoip_region)` - $(geoip_region) * `$(host)` - $(host) * `$(domain)` - $(domain) * `$(http_<header_name>)` - $(http_<header_name>) * `$(remote_addr)` - $(remote_addr) * `$(remote_user)` - $(remote_user) * `$(request_method)` - $(request_method) * `$(request_uri)` - $(request_uri) * `$(request)` - $(request) * `$(scheme)` - $(scheme) * `$(sent_http_<header_name>)` - $(sent_http_<header_name>) * `$(status)` - $(status) * `$(upstream_addr)` - $(upstream_addr) * `$(upstream_cookie_<name>)` - $(upstream_cookie_<name>) * `$(upstream_http_<header_name>)` - $(upstream_http_<header_name>) * `$(upstream_status)` - $(upstream_status) * `$(uri)` - $(uri) * `$(server_addr)` - $(server_addr) * `$(server_port)` - $(server_port) * `$(ssl_client_cert)` - $(ssl_client_cert) * `$(ssl_client_escaped_cert)` - $(ssl_client_escaped_cert) * `$(ssl_client_fingerprint)` - $(ssl_client_fingerprint) * `$(ssl_client_i_dn)` - $(ssl_client_i_dn) * `$(ssl_client_s_dn_parsed)` - $(ssl_client_s_dn_parsed) * `$(ssl_client_s_dn)` - $(ssl_client_s_dn) * `$(ssl_client_serial)` - $(ssl_client_serial) * `$(ssl_client_v_end)` - $(ssl_client_v_end) * `$(ssl_client_v_remain)` - $(ssl_client_v_remain) * `$(ssl_client_v_start)` - $(ssl_client_v_start) * `$(ssl_client_verify)` - $(ssl_client_verify) * `$(tcpinfo_rtt)` - $(tcpinfo_rtt) * `$(remote_port)` - $(remote_port) * `$(request_body)` - $(request_body)
 	Variable string `json:"variable"`
 	// * `does_not_exist` - does_not_exist * `does_not_match` - does_not_match * `does_not_start_with` - does_not_start_with * `exists` - exists * `is_equal` - is_equal * `is_in_list` - is_in_list * `is_not_equal` - is_not_equal * `is_not_in_list` - is_not_in_list * `matches` - matches * `starts_with` - starts_with
 	Operator string `json:"operator"`
-	Argument NullableApplicationCriterionArgument `json:"argument,omitempty"`
+	// Can be one of: integer, string
+	Argument NullableString `json:"argument,omitempty"`
 }
 
 type _ApplicationCriterionField ApplicationCriterionField
@@ -126,9 +127,9 @@ func (o *ApplicationCriterionField) SetOperator(v string) {
 }
 
 // GetArgument returns the Argument field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ApplicationCriterionField) GetArgument() ApplicationCriterionArgument {
+func (o *ApplicationCriterionField) GetArgument() string {
 	if o == nil || IsNil(o.Argument.Get()) {
-		var ret ApplicationCriterionArgument
+		var ret string
 		return ret
 	}
 	return *o.Argument.Get()
@@ -137,7 +138,7 @@ func (o *ApplicationCriterionField) GetArgument() ApplicationCriterionArgument {
 // GetArgumentOk returns a tuple with the Argument field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApplicationCriterionField) GetArgumentOk() (*ApplicationCriterionArgument, bool) {
+func (o *ApplicationCriterionField) GetArgumentOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -153,8 +154,8 @@ func (o *ApplicationCriterionField) HasArgument() bool {
 	return false
 }
 
-// SetArgument gets a reference to the given NullableApplicationCriterionArgument and assigns it to the Argument field.
-func (o *ApplicationCriterionField) SetArgument(v ApplicationCriterionArgument) {
+// SetArgument gets a reference to the given NullableString and assigns it to the Argument field.
+func (o *ApplicationCriterionField) SetArgument(v string) {
 	o.Argument.Set(&v)
 }
 // SetArgumentNil sets the value for Argument to be an explicit nil

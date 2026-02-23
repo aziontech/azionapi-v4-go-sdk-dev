@@ -173,13 +173,13 @@ type ApiCreateObjectKeyRequest struct {
 	ApiService *StorageObjectsAPIService
 	bucketName string
 	objectKey string
-	contentType *string
+	storageContentType *string
 	body *os.File
 }
 
-// The MIME type of the object being uploaded
-func (r ApiCreateObjectKeyRequest) ContentType(contentType string) ApiCreateObjectKeyRequest {
-	r.contentType = &contentType
+// The MIME type of the object being uploaded (Renamed from Content-Type to avoid SDK conflicts)
+func (r ApiCreateObjectKeyRequest) StorageContentType(storageContentType string) ApiCreateObjectKeyRequest {
+	r.storageContentType = &storageContentType
 	return r
 }
 
@@ -251,8 +251,8 @@ func (a *StorageObjectsAPIService) CreateObjectKeyExecute(r ApiCreateObjectKeyRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.contentType != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Content-Type", r.contentType, "simple", "")
+	if r.storageContentType != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Storage-Content-Type", r.storageContentType, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.body
@@ -1079,13 +1079,13 @@ type ApiUpdateObjectKeyRequest struct {
 	ApiService *StorageObjectsAPIService
 	bucketName string
 	objectKey string
-	contentType *string
+	storageContentType *string
 	body *os.File
 }
 
-// The MIME type of the object being uploaded
-func (r ApiUpdateObjectKeyRequest) ContentType(contentType string) ApiUpdateObjectKeyRequest {
-	r.contentType = &contentType
+// The MIME type of the object being uploaded (Renamed from Content-Type to avoid SDK conflicts)
+func (r ApiUpdateObjectKeyRequest) StorageContentType(storageContentType string) ApiUpdateObjectKeyRequest {
+	r.storageContentType = &storageContentType
 	return r
 }
 
@@ -1157,8 +1157,8 @@ func (a *StorageObjectsAPIService) UpdateObjectKeyExecute(r ApiUpdateObjectKeyRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.contentType != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Content-Type", r.contentType, "simple", "")
+	if r.storageContentType != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Storage-Content-Type", r.storageContentType, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.body

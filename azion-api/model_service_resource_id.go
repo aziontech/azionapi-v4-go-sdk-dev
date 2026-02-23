@@ -26,7 +26,8 @@ type ServiceResourceId struct {
 	Name string `json:"name"`
 	ContentHash string `json:"content_hash"`
 	ContentType *string `json:"content_type,omitempty"`
-	Trigger *ServiceResourceIdTrigger `json:"trigger,omitempty"`
+	// * `` -  * `install` - install * `uninstall` - uninstall * `reload` - reload
+	Trigger *string `json:"trigger,omitempty"`
 	Content *string `json:"content,omitempty"`
 	IsTemplate bool `json:"is_template"`
 	Active bool `json:"active"`
@@ -171,9 +172,9 @@ func (o *ServiceResourceId) SetContentType(v string) {
 }
 
 // GetTrigger returns the Trigger field value if set, zero value otherwise.
-func (o *ServiceResourceId) GetTrigger() ServiceResourceIdTrigger {
+func (o *ServiceResourceId) GetTrigger() string {
 	if o == nil || IsNil(o.Trigger) {
-		var ret ServiceResourceIdTrigger
+		var ret string
 		return ret
 	}
 	return *o.Trigger
@@ -181,7 +182,7 @@ func (o *ServiceResourceId) GetTrigger() ServiceResourceIdTrigger {
 
 // GetTriggerOk returns a tuple with the Trigger field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceResourceId) GetTriggerOk() (*ServiceResourceIdTrigger, bool) {
+func (o *ServiceResourceId) GetTriggerOk() (*string, bool) {
 	if o == nil || IsNil(o.Trigger) {
 		return nil, false
 	}
@@ -197,8 +198,8 @@ func (o *ServiceResourceId) HasTrigger() bool {
 	return false
 }
 
-// SetTrigger gets a reference to the given ServiceResourceIdTrigger and assigns it to the Trigger field.
-func (o *ServiceResourceId) SetTrigger(v ServiceResourceIdTrigger) {
+// SetTrigger gets a reference to the given string and assigns it to the Trigger field.
+func (o *ServiceResourceId) SetTrigger(v string) {
 	o.Trigger = &v
 }
 

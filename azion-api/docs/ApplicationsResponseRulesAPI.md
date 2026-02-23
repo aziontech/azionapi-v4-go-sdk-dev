@@ -36,7 +36,7 @@ import (
 
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	responsePhaseRuleRequest := *openapiclient.NewResponsePhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ResponsePhaseBehaviorRequest{openapiclient.ResponsePhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes(openapiclient.BehaviorArgsAttributes_value{Int64: new(int64)}))}}) // ResponsePhaseRuleRequest | 
+	responsePhaseRuleRequest := *openapiclient.NewResponsePhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ResponsePhaseBehaviorRequest{openapiclient.ResponsePhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes("Value_example"))}}) // ResponsePhaseRuleRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveApplicationResponseRule
 
-> RequestPhaseRuleResponse RetrieveApplicationResponseRule(ctx, applicationId, responseRuleId).Fields(fields).Execute()
+> ResponsePhaseRuleResponse RetrieveApplicationResponseRule(ctx, applicationId, responseRuleId).Fields(fields).Execute()
 
 Retrieve details of an Application Response Rule
 
@@ -363,7 +363,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsResponseRulesAPI.RetrieveApplicationResponseRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveApplicationResponseRule`: RequestPhaseRuleResponse
+	// response from `RetrieveApplicationResponseRule`: ResponsePhaseRuleResponse
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsResponseRulesAPI.RetrieveApplicationResponseRule`: %v\n", resp)
 }
 ```
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**RequestPhaseRuleResponse**](RequestPhaseRuleResponse.md)
+[**ResponsePhaseRuleResponse**](ResponsePhaseRuleResponse.md)
 
 ### Authorization
 
@@ -429,7 +429,7 @@ import (
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	responseRuleId := int64(789) // int64 | A unique integer value identifying the response rule.
-	responsePhaseRuleRequest := *openapiclient.NewResponsePhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ResponsePhaseBehaviorRequest{openapiclient.ResponsePhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes(openapiclient.BehaviorArgsAttributes_value{Int64: new(int64)}))}}) // ResponsePhaseRuleRequest | 
+	responsePhaseRuleRequest := *openapiclient.NewResponsePhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.ResponsePhaseBehaviorRequest{openapiclient.ResponsePhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes("Value_example"))}}) // ResponsePhaseRuleRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

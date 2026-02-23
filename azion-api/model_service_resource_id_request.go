@@ -24,7 +24,8 @@ var _ MappedNullable = &ServiceResourceIdRequest{}
 type ServiceResourceIdRequest struct {
 	Name string `json:"name"`
 	ContentType *string `json:"content_type,omitempty"`
-	Trigger *ServiceResourceIdTrigger `json:"trigger,omitempty"`
+	// * `` -  * `install` - install * `uninstall` - uninstall * `reload` - reload
+	Trigger *string `json:"trigger,omitempty"`
 	Content *string `json:"content,omitempty"`
 	FileGroup string `json:"file_group"`
 	FileMode string `json:"file_mode"`
@@ -111,9 +112,9 @@ func (o *ServiceResourceIdRequest) SetContentType(v string) {
 }
 
 // GetTrigger returns the Trigger field value if set, zero value otherwise.
-func (o *ServiceResourceIdRequest) GetTrigger() ServiceResourceIdTrigger {
+func (o *ServiceResourceIdRequest) GetTrigger() string {
 	if o == nil || IsNil(o.Trigger) {
-		var ret ServiceResourceIdTrigger
+		var ret string
 		return ret
 	}
 	return *o.Trigger
@@ -121,7 +122,7 @@ func (o *ServiceResourceIdRequest) GetTrigger() ServiceResourceIdTrigger {
 
 // GetTriggerOk returns a tuple with the Trigger field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceResourceIdRequest) GetTriggerOk() (*ServiceResourceIdTrigger, bool) {
+func (o *ServiceResourceIdRequest) GetTriggerOk() (*string, bool) {
 	if o == nil || IsNil(o.Trigger) {
 		return nil, false
 	}
@@ -137,8 +138,8 @@ func (o *ServiceResourceIdRequest) HasTrigger() bool {
 	return false
 }
 
-// SetTrigger gets a reference to the given ServiceResourceIdTrigger and assigns it to the Trigger field.
-func (o *ServiceResourceIdRequest) SetTrigger(v ServiceResourceIdTrigger) {
+// SetTrigger gets a reference to the given string and assigns it to the Trigger field.
+func (o *ServiceResourceIdRequest) SetTrigger(v string) {
 	o.Trigger = &v
 }
 

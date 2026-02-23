@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **ContentHash** | **string** |  | 
 **ContentType** | Pointer to **string** |  | [optional] 
-**Trigger** | Pointer to [**ServiceResourceIdTrigger**](ServiceResourceIdTrigger.md) |  | [optional] 
+**Trigger** | Pointer to **string** | * &#x60;&#x60; -  * &#x60;install&#x60; - install * &#x60;uninstall&#x60; - uninstall * &#x60;reload&#x60; - reload | [optional] 
 **Content** | Pointer to **string** |  | [optional] 
 **IsTemplate** | **bool** |  | 
 **Active** | **bool** |  | 
@@ -124,20 +124,20 @@ HasContentType returns a boolean if a field has been set.
 
 ### GetTrigger
 
-`func (o *ServiceResourceId) GetTrigger() ServiceResourceIdTrigger`
+`func (o *ServiceResourceId) GetTrigger() string`
 
 GetTrigger returns the Trigger field if non-nil, zero value otherwise.
 
 ### GetTriggerOk
 
-`func (o *ServiceResourceId) GetTriggerOk() (*ServiceResourceIdTrigger, bool)`
+`func (o *ServiceResourceId) GetTriggerOk() (*string, bool)`
 
 GetTriggerOk returns a tuple with the Trigger field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTrigger
 
-`func (o *ServiceResourceId) SetTrigger(v ServiceResourceIdTrigger)`
+`func (o *ServiceResourceId) SetTrigger(v string)`
 
 SetTrigger sets Trigger field to given value.
 

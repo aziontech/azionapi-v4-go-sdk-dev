@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -22,7 +23,6 @@ var _ MappedNullable = &FirewallBehaviorRunFunctionAttributes{}
 // FirewallBehaviorRunFunctionAttributes struct for FirewallBehaviorRunFunctionAttributes
 type FirewallBehaviorRunFunctionAttributes struct {
 	Value int64 `json:"value"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _FirewallBehaviorRunFunctionAttributes FirewallBehaviorRunFunctionAttributes
@@ -80,11 +80,6 @@ func (o FirewallBehaviorRunFunctionAttributes) MarshalJSON() ([]byte, error) {
 func (o FirewallBehaviorRunFunctionAttributes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["value"] = o.Value
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -112,20 +107,15 @@ func (o *FirewallBehaviorRunFunctionAttributes) UnmarshalJSON(data []byte) (err 
 
 	varFirewallBehaviorRunFunctionAttributes := _FirewallBehaviorRunFunctionAttributes{}
 
-	err = json.Unmarshal(data, &varFirewallBehaviorRunFunctionAttributes)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFirewallBehaviorRunFunctionAttributes)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FirewallBehaviorRunFunctionAttributes(varFirewallBehaviorRunFunctionAttributes)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "value")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

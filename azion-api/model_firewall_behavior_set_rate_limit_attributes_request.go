@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -27,7 +28,6 @@ type FirewallBehaviorSetRateLimitAttributesRequest struct {
 	LimitBy string `json:"limit_by"`
 	AverageRateLimit int64 `json:"average_rate_limit"`
 	MaximumBurstSize NullableInt64 `json:"maximum_burst_size,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _FirewallBehaviorSetRateLimitAttributesRequest FirewallBehaviorSetRateLimitAttributesRequest
@@ -191,11 +191,6 @@ func (o FirewallBehaviorSetRateLimitAttributesRequest) ToMap() (map[string]inter
 	if o.MaximumBurstSize.IsSet() {
 		toSerialize["maximum_burst_size"] = o.MaximumBurstSize.Get()
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -224,23 +219,15 @@ func (o *FirewallBehaviorSetRateLimitAttributesRequest) UnmarshalJSON(data []byt
 
 	varFirewallBehaviorSetRateLimitAttributesRequest := _FirewallBehaviorSetRateLimitAttributesRequest{}
 
-	err = json.Unmarshal(data, &varFirewallBehaviorSetRateLimitAttributesRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFirewallBehaviorSetRateLimitAttributesRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FirewallBehaviorSetRateLimitAttributesRequest(varFirewallBehaviorSetRateLimitAttributesRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "limit_by")
-		delete(additionalProperties, "average_rate_limit")
-		delete(additionalProperties, "maximum_burst_size")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

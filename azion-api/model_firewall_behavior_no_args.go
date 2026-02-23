@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -23,7 +24,6 @@ var _ MappedNullable = &FirewallBehaviorNoArgs{}
 type FirewallBehaviorNoArgs struct {
 	// * `deny` - deny * `drop` - drop
 	Type string `json:"type"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _FirewallBehaviorNoArgs FirewallBehaviorNoArgs
@@ -81,11 +81,6 @@ func (o FirewallBehaviorNoArgs) MarshalJSON() ([]byte, error) {
 func (o FirewallBehaviorNoArgs) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -113,20 +108,15 @@ func (o *FirewallBehaviorNoArgs) UnmarshalJSON(data []byte) (err error) {
 
 	varFirewallBehaviorNoArgs := _FirewallBehaviorNoArgs{}
 
-	err = json.Unmarshal(data, &varFirewallBehaviorNoArgs)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFirewallBehaviorNoArgs)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FirewallBehaviorNoArgs(varFirewallBehaviorNoArgs)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

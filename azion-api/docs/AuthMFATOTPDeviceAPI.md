@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-	body := interface{}(987) // interface{} |  (optional)
+	body := map[string]interface{}{ ... } // map[string]interface{} |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -56,7 +56,7 @@ Other parameters are passed through a pointer to a apiCreateTotpDeviceRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **interface{}** |  | 
+ **body** | **map[string]interface{}** |  | 
 
 ### Return type
 

@@ -4,12 +4,12 @@ All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateConnector**](ConnectorsAPI.md#CreateConnector) | **Post** /workspace/connectors | Create an Connector
-[**DeleteConnector**](ConnectorsAPI.md#DeleteConnector) | **Delete** /workspace/connectors/{connector_id} | Delete an Connector
+[**CreateConnector**](ConnectorsAPI.md#CreateConnector) | **Post** /workspace/connectors | Create a Connector
+[**DeleteConnector**](ConnectorsAPI.md#DeleteConnector) | **Delete** /workspace/connectors/{connector_id} | Delete a Connector
 [**ListConnectors**](ConnectorsAPI.md#ListConnectors) | **Get** /workspace/connectors | List Connectors
-[**PartialUpdateConnector**](ConnectorsAPI.md#PartialUpdateConnector) | **Patch** /workspace/connectors/{connector_id} | Partially update an Connector
-[**RetrieveConnector**](ConnectorsAPI.md#RetrieveConnector) | **Get** /workspace/connectors/{connector_id} | Retrieve details of an Connector
-[**UpdateConnector**](ConnectorsAPI.md#UpdateConnector) | **Put** /workspace/connectors/{connector_id} | Update an Connector
+[**PartialUpdateConnector**](ConnectorsAPI.md#PartialUpdateConnector) | **Patch** /workspace/connectors/{connector_id} | Partially update a Connector
+[**RetrieveConnector**](ConnectorsAPI.md#RetrieveConnector) | **Get** /workspace/connectors/{connector_id} | Retrieve details of a Connector
+[**UpdateConnector**](ConnectorsAPI.md#UpdateConnector) | **Put** /workspace/connectors/{connector_id} | Update a Connector
 
 
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 > ConnectorResponse CreateConnector(ctx).ConnectorRequest2(connectorRequest2).Execute()
 
-Create an Connector
+Create a Connector
 
 
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 > DeleteResponse DeleteConnector(ctx, connectorId).Execute()
 
-Delete an Connector
+Delete a Connector
 
 
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 > ConnectorResponse PartialUpdateConnector(ctx, connectorId).PatchedConnectorRequest2(patchedConnectorRequest2).Execute()
 
-Partially update an Connector
+Partially update a Connector
 
 
 
@@ -314,7 +314,7 @@ Name | Type | Description  | Notes
 
 > ConnectorResponse RetrieveConnector(ctx, connectorId).Fields(fields).Execute()
 
-Retrieve details of an Connector
+Retrieve details of a Connector
 
 
 
@@ -386,7 +386,7 @@ Name | Type | Description  | Notes
 
 > ConnectorResponse UpdateConnector(ctx, connectorId).ConnectorRequest2(connectorRequest2).Execute()
 
-Update an Connector
+Update a Connector
 
 
 
