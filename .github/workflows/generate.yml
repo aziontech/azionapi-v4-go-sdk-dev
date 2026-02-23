@@ -116,10 +116,14 @@ jobs:
         run: |
           temp_file=$(mktemp)
           while IFS= read -r file; do
-            basename=$(basename "$file")
-            if [ "$basename" = "openapi.yaml" ]; then
+            filename=$(basename "$file")
+            if [ "$filename" = "openapi.yaml" ]; then
               dir=$(dirname "$file")
-              new_file="${dir}/azion-api.yaml"
+              if [ "$dir" = "." ]; then
+                new_file="azion-api.yaml"
+              else
+                new_file="${dir}/azion-api.yaml"
+              fi
               echo "Renaming $file -> $new_file"
               mv "$file" "$new_file"
               echo "$new_file" >> "$temp_file"
@@ -128,6 +132,8 @@ jobs:
             fi
           done < yaml_files_list.txt
           mv "$temp_file" yaml_files_list.txt
+          echo "Updated yaml_files_list.txt contents:"
+          cat yaml_files_list.txt
         shell: bash
 
       - name: Run OpenAPI Generator for Changed Files
