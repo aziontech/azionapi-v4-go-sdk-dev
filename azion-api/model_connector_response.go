@@ -23,7 +23,7 @@ var _ MappedNullable = &ConnectorResponse{}
 // ConnectorResponse struct for ConnectorResponse
 type ConnectorResponse struct {
 	State *string `json:"state,omitempty"`
-	Data Connector2 `json:"data"`
+	Data Connector `json:"data"`
 }
 
 type _ConnectorResponse ConnectorResponse
@@ -32,7 +32,7 @@ type _ConnectorResponse ConnectorResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectorResponse(data Connector2) *ConnectorResponse {
+func NewConnectorResponse(data Connector) *ConnectorResponse {
 	this := ConnectorResponse{}
 	this.Data = data
 	return &this
@@ -79,9 +79,9 @@ func (o *ConnectorResponse) SetState(v string) {
 }
 
 // GetData returns the Data field value
-func (o *ConnectorResponse) GetData() Connector2 {
+func (o *ConnectorResponse) GetData() Connector {
 	if o == nil {
-		var ret Connector2
+		var ret Connector
 		return ret
 	}
 
@@ -90,7 +90,7 @@ func (o *ConnectorResponse) GetData() Connector2 {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorResponse) GetDataOk() (*Connector2, bool) {
+func (o *ConnectorResponse) GetDataOk() (*Connector, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -98,7 +98,7 @@ func (o *ConnectorResponse) GetDataOk() (*Connector2, bool) {
 }
 
 // SetData sets field value
-func (o *ConnectorResponse) SetData(v Connector2) {
+func (o *ConnectorResponse) SetData(v Connector) {
 	o.Data = v
 }
 

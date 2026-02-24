@@ -13,220 +13,124 @@ package azionapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
-// checks if the PatchedConnectorRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PatchedConnectorRequest{}
-
-// PatchedConnectorRequest struct for PatchedConnectorRequest
+// PatchedConnectorRequest - struct for PatchedConnectorRequest
 type PatchedConnectorRequest struct {
-	Name *string `json:"name,omitempty"`
-	Active *bool `json:"active,omitempty"`
-	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
-	Type string `json:"type"`
-	Attributes *ConnectorStorageAttributesRequest `json:"attributes,omitempty"`
+	PatchedConnectorHTTPRequest *PatchedConnectorHTTPRequest
+	PatchedConnectorRequestBase *PatchedConnectorRequestBase
 }
 
-type _PatchedConnectorRequest PatchedConnectorRequest
-
-// NewPatchedConnectorRequest instantiates a new PatchedConnectorRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewPatchedConnectorRequest(type_ string) *PatchedConnectorRequest {
-	this := PatchedConnectorRequest{}
-	this.Type = type_
-	return &this
-}
-
-// NewPatchedConnectorRequestWithDefaults instantiates a new PatchedConnectorRequest object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewPatchedConnectorRequestWithDefaults() *PatchedConnectorRequest {
-	this := PatchedConnectorRequest{}
-	return &this
-}
-
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *PatchedConnectorRequest) GetName() string {
-	if o == nil || IsNil(o.Name) {
-		var ret string
-		return ret
+// PatchedConnectorHTTPRequestAsPatchedConnectorRequest is a convenience function that returns PatchedConnectorHTTPRequest wrapped in PatchedConnectorRequest
+func PatchedConnectorHTTPRequestAsPatchedConnectorRequest(v *PatchedConnectorHTTPRequest) PatchedConnectorRequest {
+	return PatchedConnectorRequest{
+		PatchedConnectorHTTPRequest: v,
 	}
-	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedConnectorRequest) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
+// PatchedConnectorRequestBaseAsPatchedConnectorRequest is a convenience function that returns PatchedConnectorRequestBase wrapped in PatchedConnectorRequest
+func PatchedConnectorRequestBaseAsPatchedConnectorRequest(v *PatchedConnectorRequestBase) PatchedConnectorRequest {
+	return PatchedConnectorRequest{
+		PatchedConnectorRequestBase: v,
 	}
-	return o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *PatchedConnectorRequest) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
 
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PatchedConnectorRequest) SetName(v string) {
-	o.Name = &v
-}
-
-// GetActive returns the Active field value if set, zero value otherwise.
-func (o *PatchedConnectorRequest) GetActive() bool {
-	if o == nil || IsNil(o.Active) {
-		var ret bool
-		return ret
-	}
-	return *o.Active
-}
-
-// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedConnectorRequest) GetActiveOk() (*bool, bool) {
-	if o == nil || IsNil(o.Active) {
-		return nil, false
-	}
-	return o.Active, true
-}
-
-// HasActive returns a boolean if a field has been set.
-func (o *PatchedConnectorRequest) HasActive() bool {
-	if o != nil && !IsNil(o.Active) {
-		return true
-	}
-
-	return false
-}
-
-// SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *PatchedConnectorRequest) SetActive(v bool) {
-	o.Active = &v
-}
-
-// GetType returns the Type field value
-func (o *PatchedConnectorRequest) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *PatchedConnectorRequest) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *PatchedConnectorRequest) SetType(v string) {
-	o.Type = v
-}
-
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *PatchedConnectorRequest) GetAttributes() ConnectorStorageAttributesRequest {
-	if o == nil || IsNil(o.Attributes) {
-		var ret ConnectorStorageAttributesRequest
-		return ret
-	}
-	return *o.Attributes
-}
-
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedConnectorRequest) GetAttributesOk() (*ConnectorStorageAttributesRequest, bool) {
-	if o == nil || IsNil(o.Attributes) {
-		return nil, false
-	}
-	return o.Attributes, true
-}
-
-// HasAttributes returns a boolean if a field has been set.
-func (o *PatchedConnectorRequest) HasAttributes() bool {
-	if o != nil && !IsNil(o.Attributes) {
-		return true
-	}
-
-	return false
-}
-
-// SetAttributes gets a reference to the given ConnectorStorageAttributesRequest and assigns it to the Attributes field.
-func (o *PatchedConnectorRequest) SetAttributes(v ConnectorStorageAttributesRequest) {
-	o.Attributes = &v
-}
-
-func (o PatchedConnectorRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o PatchedConnectorRequest) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.Active) {
-		toSerialize["active"] = o.Active
-	}
-	toSerialize["type"] = o.Type
-	if !IsNil(o.Attributes) {
-		toSerialize["attributes"] = o.Attributes
-	}
-	return toSerialize, nil
-}
-
-func (o *PatchedConnectorRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *PatchedConnectorRequest) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into PatchedConnectorHTTPRequest
+	err = newStrictDecoder(data).Decode(&dst.PatchedConnectorHTTPRequest)
+	if err == nil {
+		jsonPatchedConnectorHTTPRequest, _ := json.Marshal(dst.PatchedConnectorHTTPRequest)
+		if string(jsonPatchedConnectorHTTPRequest) == "{}" { // empty struct
+			dst.PatchedConnectorHTTPRequest = nil
+		} else {
+			if err = validator.Validate(dst.PatchedConnectorHTTPRequest); err != nil {
+				dst.PatchedConnectorHTTPRequest = nil
+			} else {
+				match++
+			}
 		}
+	} else {
+		dst.PatchedConnectorHTTPRequest = nil
 	}
 
-	varPatchedConnectorRequest := _PatchedConnectorRequest{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPatchedConnectorRequest)
-
-	if err != nil {
-		return err
+	// try to unmarshal data into PatchedConnectorRequestBase
+	err = newStrictDecoder(data).Decode(&dst.PatchedConnectorRequestBase)
+	if err == nil {
+		jsonPatchedConnectorRequestBase, _ := json.Marshal(dst.PatchedConnectorRequestBase)
+		if string(jsonPatchedConnectorRequestBase) == "{}" { // empty struct
+			dst.PatchedConnectorRequestBase = nil
+		} else {
+			if err = validator.Validate(dst.PatchedConnectorRequestBase); err != nil {
+				dst.PatchedConnectorRequestBase = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.PatchedConnectorRequestBase = nil
 	}
 
-	*o = PatchedConnectorRequest(varPatchedConnectorRequest)
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.PatchedConnectorHTTPRequest = nil
+		dst.PatchedConnectorRequestBase = nil
 
-	return err
+		return fmt.Errorf("data matches more than one schema in oneOf(PatchedConnectorRequest)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(PatchedConnectorRequest)")
+	}
+}
+
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src PatchedConnectorRequest) MarshalJSON() ([]byte, error) {
+	if src.PatchedConnectorHTTPRequest != nil {
+		return json.Marshal(&src.PatchedConnectorHTTPRequest)
+	}
+
+	if src.PatchedConnectorRequestBase != nil {
+		return json.Marshal(&src.PatchedConnectorRequestBase)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *PatchedConnectorRequest) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.PatchedConnectorHTTPRequest != nil {
+		return obj.PatchedConnectorHTTPRequest
+	}
+
+	if obj.PatchedConnectorRequestBase != nil {
+		return obj.PatchedConnectorRequestBase
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj PatchedConnectorRequest) GetActualInstanceValue() (interface{}) {
+	if obj.PatchedConnectorHTTPRequest != nil {
+		return *obj.PatchedConnectorHTTPRequest
+	}
+
+	if obj.PatchedConnectorRequestBase != nil {
+		return *obj.PatchedConnectorRequestBase
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullablePatchedConnectorRequest struct {

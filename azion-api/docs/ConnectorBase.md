@@ -1,4 +1,4 @@
-# CustomPage
+# ConnectorBase
 
 ## Properties
 
@@ -10,170 +10,191 @@ Name | Type | Description | Notes
 **LastModified** | **time.Time** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | **string** |  | 
-**Pages** | [**[]PageBase**](PageBase.md) |  | 
+**Type** | **string** | Type of the connector  * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | 
+**Attributes** | [**ConnectorStorageAttributes**](ConnectorStorageAttributes.md) |  | 
 
 ## Methods
 
-### NewCustomPage
+### NewConnectorBase
 
-`func NewCustomPage(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, pages []PageBase, ) *CustomPage`
+`func NewConnectorBase(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, type_ string, attributes ConnectorStorageAttributes, ) *ConnectorBase`
 
-NewCustomPage instantiates a new CustomPage object
+NewConnectorBase instantiates a new ConnectorBase object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCustomPageWithDefaults
+### NewConnectorBaseWithDefaults
 
-`func NewCustomPageWithDefaults() *CustomPage`
+`func NewConnectorBaseWithDefaults() *ConnectorBase`
 
-NewCustomPageWithDefaults instantiates a new CustomPage object
+NewConnectorBaseWithDefaults instantiates a new ConnectorBase object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *CustomPage) GetId() int64`
+`func (o *ConnectorBase) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *CustomPage) GetIdOk() (*int64, bool)`
+`func (o *ConnectorBase) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *CustomPage) SetId(v int64)`
+`func (o *ConnectorBase) SetId(v int64)`
 
 SetId sets Id field to given value.
 
 
 ### GetName
 
-`func (o *CustomPage) GetName() string`
+`func (o *ConnectorBase) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *CustomPage) GetNameOk() (*string, bool)`
+`func (o *ConnectorBase) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *CustomPage) SetName(v string)`
+`func (o *ConnectorBase) SetName(v string)`
 
 SetName sets Name field to given value.
 
 
 ### GetLastEditor
 
-`func (o *CustomPage) GetLastEditor() string`
+`func (o *ConnectorBase) GetLastEditor() string`
 
 GetLastEditor returns the LastEditor field if non-nil, zero value otherwise.
 
 ### GetLastEditorOk
 
-`func (o *CustomPage) GetLastEditorOk() (*string, bool)`
+`func (o *ConnectorBase) GetLastEditorOk() (*string, bool)`
 
 GetLastEditorOk returns a tuple with the LastEditor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastEditor
 
-`func (o *CustomPage) SetLastEditor(v string)`
+`func (o *ConnectorBase) SetLastEditor(v string)`
 
 SetLastEditor sets LastEditor field to given value.
 
 
 ### GetLastModified
 
-`func (o *CustomPage) GetLastModified() time.Time`
+`func (o *ConnectorBase) GetLastModified() time.Time`
 
 GetLastModified returns the LastModified field if non-nil, zero value otherwise.
 
 ### GetLastModifiedOk
 
-`func (o *CustomPage) GetLastModifiedOk() (*time.Time, bool)`
+`func (o *ConnectorBase) GetLastModifiedOk() (*time.Time, bool)`
 
 GetLastModifiedOk returns a tuple with the LastModified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastModified
 
-`func (o *CustomPage) SetLastModified(v time.Time)`
+`func (o *ConnectorBase) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
 
 
 ### GetActive
 
-`func (o *CustomPage) GetActive() bool`
+`func (o *ConnectorBase) GetActive() bool`
 
 GetActive returns the Active field if non-nil, zero value otherwise.
 
 ### GetActiveOk
 
-`func (o *CustomPage) GetActiveOk() (*bool, bool)`
+`func (o *ConnectorBase) GetActiveOk() (*bool, bool)`
 
 GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetActive
 
-`func (o *CustomPage) SetActive(v bool)`
+`func (o *ConnectorBase) SetActive(v bool)`
 
 SetActive sets Active field to given value.
 
 ### HasActive
 
-`func (o *CustomPage) HasActive() bool`
+`func (o *ConnectorBase) HasActive() bool`
 
 HasActive returns a boolean if a field has been set.
 
 ### GetProductVersion
 
-`func (o *CustomPage) GetProductVersion() string`
+`func (o *ConnectorBase) GetProductVersion() string`
 
 GetProductVersion returns the ProductVersion field if non-nil, zero value otherwise.
 
 ### GetProductVersionOk
 
-`func (o *CustomPage) GetProductVersionOk() (*string, bool)`
+`func (o *ConnectorBase) GetProductVersionOk() (*string, bool)`
 
 GetProductVersionOk returns a tuple with the ProductVersion field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProductVersion
 
-`func (o *CustomPage) SetProductVersion(v string)`
+`func (o *ConnectorBase) SetProductVersion(v string)`
 
 SetProductVersion sets ProductVersion field to given value.
 
 
-### GetPages
+### GetType
 
-`func (o *CustomPage) GetPages() []PageBase`
+`func (o *ConnectorBase) GetType() string`
 
-GetPages returns the Pages field if non-nil, zero value otherwise.
+GetType returns the Type field if non-nil, zero value otherwise.
 
-### GetPagesOk
+### GetTypeOk
 
-`func (o *CustomPage) GetPagesOk() (*[]PageBase, bool)`
+`func (o *ConnectorBase) GetTypeOk() (*string, bool)`
 
-GetPagesOk returns a tuple with the Pages field if it's non-nil, zero value otherwise
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPages
+### SetType
 
-`func (o *CustomPage) SetPages(v []PageBase)`
+`func (o *ConnectorBase) SetType(v string)`
 
-SetPages sets Pages field to given value.
+SetType sets Type field to given value.
+
+
+### GetAttributes
+
+`func (o *ConnectorBase) GetAttributes() ConnectorStorageAttributes`
+
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+
+### GetAttributesOk
+
+`func (o *ConnectorBase) GetAttributesOk() (*ConnectorStorageAttributes, bool)`
+
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAttributes
+
+`func (o *ConnectorBase) SetAttributes(v ConnectorStorageAttributes)`
+
+SetAttributes sets Attributes field to given value.
 
 
 

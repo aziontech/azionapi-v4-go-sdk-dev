@@ -18,51 +18,50 @@ import (
 	"fmt"
 )
 
-// checks if the DataStream type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &DataStream{}
+// checks if the ConnectorBase type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ConnectorBase{}
 
-// DataStream struct for DataStream
-type DataStream struct {
+// ConnectorBase struct for ConnectorBase
+type ConnectorBase struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
-	ProductVersion string `json:"product_version"`
 	Active *bool `json:"active,omitempty"`
-	Inputs []InputInputDataSourceAttributes `json:"inputs"`
-	Transform []Transform `json:"transform"`
-	Outputs []OutputBase `json:"outputs"`
+	ProductVersion string `json:"product_version"`
+	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
+	Type string `json:"type"`
+	Attributes ConnectorStorageAttributes `json:"attributes"`
 }
 
-type _DataStream DataStream
+type _ConnectorBase ConnectorBase
 
-// NewDataStream instantiates a new DataStream object
+// NewConnectorBase instantiates a new ConnectorBase object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataStream(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, inputs []InputInputDataSourceAttributes, transform []Transform, outputs []OutputBase) *DataStream {
-	this := DataStream{}
+func NewConnectorBase(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, type_ string, attributes ConnectorStorageAttributes) *ConnectorBase {
+	this := ConnectorBase{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
 	this.ProductVersion = productVersion
-	this.Inputs = inputs
-	this.Transform = transform
-	this.Outputs = outputs
+	this.Type = type_
+	this.Attributes = attributes
 	return &this
 }
 
-// NewDataStreamWithDefaults instantiates a new DataStream object
+// NewConnectorBaseWithDefaults instantiates a new ConnectorBase object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewDataStreamWithDefaults() *DataStream {
-	this := DataStream{}
+func NewConnectorBaseWithDefaults() *ConnectorBase {
+	this := ConnectorBase{}
 	return &this
 }
 
 // GetId returns the Id field value
-func (o *DataStream) GetId() int64 {
+func (o *ConnectorBase) GetId() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -73,7 +72,7 @@ func (o *DataStream) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *DataStream) GetIdOk() (*int64, bool) {
+func (o *ConnectorBase) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -81,12 +80,12 @@ func (o *DataStream) GetIdOk() (*int64, bool) {
 }
 
 // SetId sets field value
-func (o *DataStream) SetId(v int64) {
+func (o *ConnectorBase) SetId(v int64) {
 	o.Id = v
 }
 
 // GetName returns the Name field value
-func (o *DataStream) GetName() string {
+func (o *ConnectorBase) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -97,7 +96,7 @@ func (o *DataStream) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *DataStream) GetNameOk() (*string, bool) {
+func (o *ConnectorBase) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -105,12 +104,12 @@ func (o *DataStream) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *DataStream) SetName(v string) {
+func (o *ConnectorBase) SetName(v string) {
 	o.Name = v
 }
 
 // GetLastEditor returns the LastEditor field value
-func (o *DataStream) GetLastEditor() string {
+func (o *ConnectorBase) GetLastEditor() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -121,7 +120,7 @@ func (o *DataStream) GetLastEditor() string {
 
 // GetLastEditorOk returns a tuple with the LastEditor field value
 // and a boolean to check if the value has been set.
-func (o *DataStream) GetLastEditorOk() (*string, bool) {
+func (o *ConnectorBase) GetLastEditorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -129,12 +128,12 @@ func (o *DataStream) GetLastEditorOk() (*string, bool) {
 }
 
 // SetLastEditor sets field value
-func (o *DataStream) SetLastEditor(v string) {
+func (o *ConnectorBase) SetLastEditor(v string) {
 	o.LastEditor = v
 }
 
 // GetLastModified returns the LastModified field value
-func (o *DataStream) GetLastModified() time.Time {
+func (o *ConnectorBase) GetLastModified() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -145,7 +144,7 @@ func (o *DataStream) GetLastModified() time.Time {
 
 // GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
-func (o *DataStream) GetLastModifiedOk() (*time.Time, bool) {
+func (o *ConnectorBase) GetLastModifiedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -153,12 +152,44 @@ func (o *DataStream) GetLastModifiedOk() (*time.Time, bool) {
 }
 
 // SetLastModified sets field value
-func (o *DataStream) SetLastModified(v time.Time) {
+func (o *ConnectorBase) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
+// GetActive returns the Active field value if set, zero value otherwise.
+func (o *ConnectorBase) GetActive() bool {
+	if o == nil || IsNil(o.Active) {
+		var ret bool
+		return ret
+	}
+	return *o.Active
+}
+
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConnectorBase) GetActiveOk() (*bool, bool) {
+	if o == nil || IsNil(o.Active) {
+		return nil, false
+	}
+	return o.Active, true
+}
+
+// HasActive returns a boolean if a field has been set.
+func (o *ConnectorBase) HasActive() bool {
+	if o != nil && !IsNil(o.Active) {
+		return true
+	}
+
+	return false
+}
+
+// SetActive gets a reference to the given bool and assigns it to the Active field.
+func (o *ConnectorBase) SetActive(v bool) {
+	o.Active = &v
+}
+
 // GetProductVersion returns the ProductVersion field value
-func (o *DataStream) GetProductVersion() string {
+func (o *ConnectorBase) GetProductVersion() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -169,7 +200,7 @@ func (o *DataStream) GetProductVersion() string {
 
 // GetProductVersionOk returns a tuple with the ProductVersion field value
 // and a boolean to check if the value has been set.
-func (o *DataStream) GetProductVersionOk() (*string, bool) {
+func (o *ConnectorBase) GetProductVersionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -177,115 +208,59 @@ func (o *DataStream) GetProductVersionOk() (*string, bool) {
 }
 
 // SetProductVersion sets field value
-func (o *DataStream) SetProductVersion(v string) {
+func (o *ConnectorBase) SetProductVersion(v string) {
 	o.ProductVersion = v
 }
 
-// GetActive returns the Active field value if set, zero value otherwise.
-func (o *DataStream) GetActive() bool {
-	if o == nil || IsNil(o.Active) {
-		var ret bool
-		return ret
-	}
-	return *o.Active
-}
-
-// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DataStream) GetActiveOk() (*bool, bool) {
-	if o == nil || IsNil(o.Active) {
-		return nil, false
-	}
-	return o.Active, true
-}
-
-// HasActive returns a boolean if a field has been set.
-func (o *DataStream) HasActive() bool {
-	if o != nil && !IsNil(o.Active) {
-		return true
-	}
-
-	return false
-}
-
-// SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *DataStream) SetActive(v bool) {
-	o.Active = &v
-}
-
-// GetInputs returns the Inputs field value
-func (o *DataStream) GetInputs() []InputInputDataSourceAttributes {
+// GetType returns the Type field value
+func (o *ConnectorBase) GetType() string {
 	if o == nil {
-		var ret []InputInputDataSourceAttributes
+		var ret string
 		return ret
 	}
 
-	return o.Inputs
+	return o.Type
 }
 
-// GetInputsOk returns a tuple with the Inputs field value
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *DataStream) GetInputsOk() ([]InputInputDataSourceAttributes, bool) {
+func (o *ConnectorBase) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Inputs, true
+	return &o.Type, true
 }
 
-// SetInputs sets field value
-func (o *DataStream) SetInputs(v []InputInputDataSourceAttributes) {
-	o.Inputs = v
+// SetType sets field value
+func (o *ConnectorBase) SetType(v string) {
+	o.Type = v
 }
 
-// GetTransform returns the Transform field value
-func (o *DataStream) GetTransform() []Transform {
+// GetAttributes returns the Attributes field value
+func (o *ConnectorBase) GetAttributes() ConnectorStorageAttributes {
 	if o == nil {
-		var ret []Transform
+		var ret ConnectorStorageAttributes
 		return ret
 	}
 
-	return o.Transform
+	return o.Attributes
 }
 
-// GetTransformOk returns a tuple with the Transform field value
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *DataStream) GetTransformOk() ([]Transform, bool) {
+func (o *ConnectorBase) GetAttributesOk() (*ConnectorStorageAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Transform, true
+	return &o.Attributes, true
 }
 
-// SetTransform sets field value
-func (o *DataStream) SetTransform(v []Transform) {
-	o.Transform = v
+// SetAttributes sets field value
+func (o *ConnectorBase) SetAttributes(v ConnectorStorageAttributes) {
+	o.Attributes = v
 }
 
-// GetOutputs returns the Outputs field value
-func (o *DataStream) GetOutputs() []OutputBase {
-	if o == nil {
-		var ret []OutputBase
-		return ret
-	}
-
-	return o.Outputs
-}
-
-// GetOutputsOk returns a tuple with the Outputs field value
-// and a boolean to check if the value has been set.
-func (o *DataStream) GetOutputsOk() ([]OutputBase, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Outputs, true
-}
-
-// SetOutputs sets field value
-func (o *DataStream) SetOutputs(v []OutputBase) {
-	o.Outputs = v
-}
-
-func (o DataStream) MarshalJSON() ([]byte, error) {
+func (o ConnectorBase) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -293,23 +268,22 @@ func (o DataStream) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o DataStream) ToMap() (map[string]interface{}, error) {
+func (o ConnectorBase) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
-	toSerialize["product_version"] = o.ProductVersion
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	toSerialize["inputs"] = o.Inputs
-	toSerialize["transform"] = o.Transform
-	toSerialize["outputs"] = o.Outputs
+	toSerialize["product_version"] = o.ProductVersion
+	toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
 	return toSerialize, nil
 }
 
-func (o *DataStream) UnmarshalJSON(data []byte) (err error) {
+func (o *ConnectorBase) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -319,9 +293,8 @@ func (o *DataStream) UnmarshalJSON(data []byte) (err error) {
 		"last_editor",
 		"last_modified",
 		"product_version",
-		"inputs",
-		"transform",
-		"outputs",
+		"type",
+		"attributes",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -338,53 +311,53 @@ func (o *DataStream) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varDataStream := _DataStream{}
+	varConnectorBase := _ConnectorBase{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDataStream)
+	err = decoder.Decode(&varConnectorBase)
 
 	if err != nil {
 		return err
 	}
 
-	*o = DataStream(varDataStream)
+	*o = ConnectorBase(varConnectorBase)
 
 	return err
 }
 
-type NullableDataStream struct {
-	value *DataStream
+type NullableConnectorBase struct {
+	value *ConnectorBase
 	isSet bool
 }
 
-func (v NullableDataStream) Get() *DataStream {
+func (v NullableConnectorBase) Get() *ConnectorBase {
 	return v.value
 }
 
-func (v *NullableDataStream) Set(val *DataStream) {
+func (v *NullableConnectorBase) Set(val *ConnectorBase) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDataStream) IsSet() bool {
+func (v NullableConnectorBase) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDataStream) Unset() {
+func (v *NullableConnectorBase) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDataStream(val *DataStream) *NullableDataStream {
-	return &NullableDataStream{value: val, isSet: true}
+func NewNullableConnectorBase(val *ConnectorBase) *NullableConnectorBase {
+	return &NullableConnectorBase{value: val, isSet: true}
 }
 
-func (v NullableDataStream) MarshalJSON() ([]byte, error) {
+func (v NullableConnectorBase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDataStream) UnmarshalJSON(src []byte) error {
+func (v *NullableConnectorBase) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

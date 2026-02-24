@@ -29,11 +29,11 @@ type ApiCreateApplicationRequestRuleRequest struct {
 	ctx context.Context
 	ApiService *ApplicationsRequestRulesAPIService
 	applicationId int64
-	requestPhaseRule2 *RequestPhaseRule2
+	requestPhaseRuleRequest *RequestPhaseRuleRequest
 }
 
-func (r ApiCreateApplicationRequestRuleRequest) RequestPhaseRule2(requestPhaseRule2 RequestPhaseRule2) ApiCreateApplicationRequestRuleRequest {
-	r.requestPhaseRule2 = &requestPhaseRule2
+func (r ApiCreateApplicationRequestRuleRequest) RequestPhaseRuleRequest(requestPhaseRuleRequest RequestPhaseRuleRequest) ApiCreateApplicationRequestRuleRequest {
+	r.requestPhaseRuleRequest = &requestPhaseRuleRequest
 	return r
 }
 
@@ -79,8 +79,8 @@ func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.requestPhaseRule2 == nil {
-		return localVarReturnValue, nil, reportError("requestPhaseRule2 is required and must be specified")
+	if r.requestPhaseRuleRequest == nil {
+		return localVarReturnValue, nil, reportError("requestPhaseRuleRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -101,7 +101,7 @@ func (a *ApplicationsRequestRulesAPIService) CreateApplicationRequestRuleExecute
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.requestPhaseRule2
+	localVarPostBody = r.requestPhaseRuleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1221,11 +1221,11 @@ type ApiUpdateApplicationRequestRuleRequest struct {
 	ApiService *ApplicationsRequestRulesAPIService
 	applicationId int64
 	requestRuleId int64
-	requestPhaseRule2 *RequestPhaseRule2
+	requestPhaseRuleRequest *RequestPhaseRuleRequest
 }
 
-func (r ApiUpdateApplicationRequestRuleRequest) RequestPhaseRule2(requestPhaseRule2 RequestPhaseRule2) ApiUpdateApplicationRequestRuleRequest {
-	r.requestPhaseRule2 = &requestPhaseRule2
+func (r ApiUpdateApplicationRequestRuleRequest) RequestPhaseRuleRequest(requestPhaseRuleRequest RequestPhaseRuleRequest) ApiUpdateApplicationRequestRuleRequest {
+	r.requestPhaseRuleRequest = &requestPhaseRuleRequest
 	return r
 }
 
@@ -1274,8 +1274,8 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.requestPhaseRule2 == nil {
-		return localVarReturnValue, nil, reportError("requestPhaseRule2 is required and must be specified")
+	if r.requestPhaseRuleRequest == nil {
+		return localVarReturnValue, nil, reportError("requestPhaseRuleRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1296,7 +1296,7 @@ func (a *ApplicationsRequestRulesAPIService) UpdateApplicationRequestRuleExecute
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.requestPhaseRule2
+	localVarPostBody = r.requestPhaseRuleRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

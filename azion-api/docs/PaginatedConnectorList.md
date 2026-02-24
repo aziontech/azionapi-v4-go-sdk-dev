@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **PageSize** | Pointer to **int64** | Number of items per page | [optional] 
 **Next** | Pointer to **NullableString** | URL to the next page of results | [optional] 
 **Previous** | Pointer to **NullableString** | URL to the previous page of results | [optional] 
-**Results** | Pointer to [**[]Connector2**](Connector2.md) |  | [optional] 
+**Results** | Pointer to [**[]Connector**](Connector.md) |  | [optional] 
 
 ## Methods
 
@@ -203,20 +203,20 @@ HasPrevious returns a boolean if a field has been set.
 UnsetPrevious ensures that no value is present for Previous, not even an explicit nil
 ### GetResults
 
-`func (o *PaginatedConnectorList) GetResults() []Connector2`
+`func (o *PaginatedConnectorList) GetResults() []Connector`
 
 GetResults returns the Results field if non-nil, zero value otherwise.
 
 ### GetResultsOk
 
-`func (o *PaginatedConnectorList) GetResultsOk() (*[]Connector2, bool)`
+`func (o *PaginatedConnectorList) GetResultsOk() (*[]Connector, bool)`
 
 GetResultsOk returns a tuple with the Results field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResults
 
-`func (o *PaginatedConnectorList) SetResults(v []Connector2)`
+`func (o *PaginatedConnectorList) SetResults(v []Connector)`
 
 SetResults sets Results field to given value.
 
