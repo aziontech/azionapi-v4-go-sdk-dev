@@ -655,8 +655,8 @@ type ApiListCreditCardsRequest struct {
 	ApiService *BillingPaymentsAPIService
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -673,13 +673,13 @@ func (r ApiListCreditCardsRequest) Ordering(ordering string) ApiListCreditCardsR
 }
 
 // A page number within the paginated result set.
-func (r ApiListCreditCardsRequest) Page(page int32) ApiListCreditCardsRequest {
+func (r ApiListCreditCardsRequest) Page(page int64) ApiListCreditCardsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListCreditCardsRequest) PageSize(pageSize int32) ApiListCreditCardsRequest {
+func (r ApiListCreditCardsRequest) PageSize(pageSize int64) ApiListCreditCardsRequest {
 	r.pageSize = &pageSize
 	return r
 }
@@ -905,8 +905,8 @@ type ApiListPaymentHistoryRequest struct {
 	ApiService *BillingPaymentsAPIService
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -923,13 +923,13 @@ func (r ApiListPaymentHistoryRequest) Ordering(ordering string) ApiListPaymentHi
 }
 
 // A page number within the paginated result set.
-func (r ApiListPaymentHistoryRequest) Page(page int32) ApiListPaymentHistoryRequest {
+func (r ApiListPaymentHistoryRequest) Page(page int64) ApiListPaymentHistoryRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListPaymentHistoryRequest) PageSize(pageSize int32) ApiListPaymentHistoryRequest {
+func (r ApiListPaymentHistoryRequest) PageSize(pageSize int64) ApiListPaymentHistoryRequest {
 	r.pageSize = &pageSize
 	return r
 }

@@ -455,8 +455,8 @@ type ApiListCacheSettingsRequest struct {
 	id *int64
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -485,13 +485,13 @@ func (r ApiListCacheSettingsRequest) Ordering(ordering string) ApiListCacheSetti
 }
 
 // A page number within the paginated result set.
-func (r ApiListCacheSettingsRequest) Page(page int32) ApiListCacheSettingsRequest {
+func (r ApiListCacheSettingsRequest) Page(page int64) ApiListCacheSettingsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListCacheSettingsRequest) PageSize(pageSize int32) ApiListCacheSettingsRequest {
+func (r ApiListCacheSettingsRequest) PageSize(pageSize int64) ApiListCacheSettingsRequest {
 	r.pageSize = &pageSize
 	return r
 }

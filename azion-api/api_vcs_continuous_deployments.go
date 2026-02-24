@@ -453,8 +453,8 @@ type ApiListContinuousDeploymentsRequest struct {
 	lastModifiedLte *time.Time
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	repository *string
 	search *string
 }
@@ -520,13 +520,13 @@ func (r ApiListContinuousDeploymentsRequest) Ordering(ordering string) ApiListCo
 }
 
 // A page number within the paginated result set.
-func (r ApiListContinuousDeploymentsRequest) Page(page int32) ApiListContinuousDeploymentsRequest {
+func (r ApiListContinuousDeploymentsRequest) Page(page int64) ApiListContinuousDeploymentsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListContinuousDeploymentsRequest) PageSize(pageSize int32) ApiListContinuousDeploymentsRequest {
+func (r ApiListContinuousDeploymentsRequest) PageSize(pageSize int64) ApiListContinuousDeploymentsRequest {
 	r.pageSize = &pageSize
 	return r
 }

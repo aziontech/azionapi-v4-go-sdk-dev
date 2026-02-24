@@ -451,8 +451,8 @@ type ApiListCustomPagesRequest struct {
 	lastModifiedLte *time.Time
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -505,13 +505,13 @@ func (r ApiListCustomPagesRequest) Ordering(ordering string) ApiListCustomPagesR
 }
 
 // A page number within the paginated result set.
-func (r ApiListCustomPagesRequest) Page(page int32) ApiListCustomPagesRequest {
+func (r ApiListCustomPagesRequest) Page(page int64) ApiListCustomPagesRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListCustomPagesRequest) PageSize(pageSize int32) ApiListCustomPagesRequest {
+func (r ApiListCustomPagesRequest) PageSize(pageSize int64) ApiListCustomPagesRequest {
 	r.pageSize = &pageSize
 	return r
 }

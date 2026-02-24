@@ -442,8 +442,8 @@ type ApiListServicesRequest struct {
 	fields *string
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 }
 
 // Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation.
@@ -465,13 +465,13 @@ func (r ApiListServicesRequest) Ordering(ordering string) ApiListServicesRequest
 }
 
 // A page number within the paginated result set.
-func (r ApiListServicesRequest) Page(page int32) ApiListServicesRequest {
+func (r ApiListServicesRequest) Page(page int64) ApiListServicesRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListServicesRequest) PageSize(pageSize int32) ApiListServicesRequest {
+func (r ApiListServicesRequest) PageSize(pageSize int64) ApiListServicesRequest {
 	r.pageSize = &pageSize
 	return r
 }

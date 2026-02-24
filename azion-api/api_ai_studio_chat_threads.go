@@ -441,8 +441,8 @@ type ApiListChatThreadsRequest struct {
 	ApiService *AIStudioChatThreadsAPIService
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -459,13 +459,13 @@ func (r ApiListChatThreadsRequest) Ordering(ordering string) ApiListChatThreadsR
 }
 
 // A page number within the paginated result set.
-func (r ApiListChatThreadsRequest) Page(page int32) ApiListChatThreadsRequest {
+func (r ApiListChatThreadsRequest) Page(page int64) ApiListChatThreadsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListChatThreadsRequest) PageSize(pageSize int32) ApiListChatThreadsRequest {
+func (r ApiListChatThreadsRequest) PageSize(pageSize int64) ApiListChatThreadsRequest {
 	r.pageSize = &pageSize
 	return r
 }

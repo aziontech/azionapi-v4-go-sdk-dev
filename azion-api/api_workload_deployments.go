@@ -455,8 +455,8 @@ type ApiListWorkloadDeploymentsRequest struct {
 	fields *string
 	id *int64
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 	tag *string
 }
@@ -486,13 +486,13 @@ func (r ApiListWorkloadDeploymentsRequest) Ordering(ordering string) ApiListWork
 }
 
 // A page number within the paginated result set.
-func (r ApiListWorkloadDeploymentsRequest) Page(page int32) ApiListWorkloadDeploymentsRequest {
+func (r ApiListWorkloadDeploymentsRequest) Page(page int64) ApiListWorkloadDeploymentsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListWorkloadDeploymentsRequest) PageSize(pageSize int32) ApiListWorkloadDeploymentsRequest {
+func (r ApiListWorkloadDeploymentsRequest) PageSize(pageSize int64) ApiListWorkloadDeploymentsRequest {
 	r.pageSize = &pageSize
 	return r
 }

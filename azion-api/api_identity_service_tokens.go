@@ -444,8 +444,8 @@ type ApiListServiceTokenRequest struct {
 	ApiService *IdentityServiceTokensAPIService
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -462,13 +462,13 @@ func (r ApiListServiceTokenRequest) Ordering(ordering string) ApiListServiceToke
 }
 
 // A page number within the paginated result set.
-func (r ApiListServiceTokenRequest) Page(page int32) ApiListServiceTokenRequest {
+func (r ApiListServiceTokenRequest) Page(page int64) ApiListServiceTokenRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListServiceTokenRequest) PageSize(pageSize int32) ApiListServiceTokenRequest {
+func (r ApiListServiceTokenRequest) PageSize(pageSize int64) ApiListServiceTokenRequest {
 	r.pageSize = &pageSize
 	return r
 }

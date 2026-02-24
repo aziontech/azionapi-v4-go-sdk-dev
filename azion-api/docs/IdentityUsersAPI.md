@@ -173,8 +173,8 @@ func main() {
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
 	locked := true // bool | Filters users by locked status.  - `true`: Returns only locked users.  - `false`: Returns only unlocked users.  - (not provided): Returns all users. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int32(56) // int32 | A page number within the paginated result set. (optional)
-	pageSize := int32(56) // int32 | A numeric value that indicates the number of items per page. (optional)
+	page := int64(789) // int64 | A page number within the paginated result set. (optional)
+	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -203,8 +203,8 @@ Name | Type | Description  | Notes
  **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
  **locked** | **bool** | Filters users by locked status.  - &#x60;true&#x60;: Returns only locked users.  - &#x60;false&#x60;: Returns only unlocked users.  - (not provided): Returns all users. | 
  **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int32** | A page number within the paginated result set. | 
- **pageSize** | **int32** | A numeric value that indicates the number of items per page. | 
+ **page** | **int64** | A page number within the paginated result set. | 
+ **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
 
 ### Return type

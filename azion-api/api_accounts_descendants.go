@@ -248,8 +248,8 @@ type ApiListDescendantsAccountsRequest struct {
 	lastModifiedLte *time.Time
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	parentId *string
 	search *string
 }
@@ -327,13 +327,13 @@ func (r ApiListDescendantsAccountsRequest) Ordering(ordering string) ApiListDesc
 }
 
 // A page number within the paginated result set.
-func (r ApiListDescendantsAccountsRequest) Page(page int32) ApiListDescendantsAccountsRequest {
+func (r ApiListDescendantsAccountsRequest) Page(page int64) ApiListDescendantsAccountsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListDescendantsAccountsRequest) PageSize(pageSize int32) ApiListDescendantsAccountsRequest {
+func (r ApiListDescendantsAccountsRequest) PageSize(pageSize int64) ApiListDescendantsAccountsRequest {
 	r.pageSize = &pageSize
 	return r
 }

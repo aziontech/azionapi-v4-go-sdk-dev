@@ -250,8 +250,8 @@ func main() {
 	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
 	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int32(56) // int32 | A page number within the paginated result set. (optional)
-	pageSize := int32(56) // int32 | A numeric value that indicates the number of items per page. (optional)
+	page := int64(789) // int64 | A page number within the paginated result set. (optional)
+	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
 	status := "status_example" // string | Filter by status (accepts comma-separated values). (optional)
 	updatedAtGte := time.Now() // time.Time | Filter by updated_at (greater than or equal). (optional)
@@ -288,8 +288,8 @@ Name | Type | Description  | Notes
  **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
  **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int32** | A page number within the paginated result set. | 
- **pageSize** | **int32** | A numeric value that indicates the number of items per page. | 
+ **page** | **int64** | A page number within the paginated result set. | 
+ **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
  **status** | **string** | Filter by status (accepts comma-separated values). | 
  **updatedAtGte** | **time.Time** | Filter by updated_at (greater than or equal). | 

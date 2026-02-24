@@ -444,8 +444,8 @@ type ApiListGrantsRequest struct {
 	ApiService *IdentityGrantsAPIService
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -462,13 +462,13 @@ func (r ApiListGrantsRequest) Ordering(ordering string) ApiListGrantsRequest {
 }
 
 // A page number within the paginated result set.
-func (r ApiListGrantsRequest) Page(page int32) ApiListGrantsRequest {
+func (r ApiListGrantsRequest) Page(page int64) ApiListGrantsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListGrantsRequest) PageSize(pageSize int32) ApiListGrantsRequest {
+func (r ApiListGrantsRequest) PageSize(pageSize int64) ApiListGrantsRequest {
 	r.pageSize = &pageSize
 	return r
 }

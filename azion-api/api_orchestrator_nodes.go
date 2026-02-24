@@ -235,8 +235,8 @@ type ApiListNodesRequest struct {
 	hashId *string
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -265,13 +265,13 @@ func (r ApiListNodesRequest) Ordering(ordering string) ApiListNodesRequest {
 }
 
 // A page number within the paginated result set.
-func (r ApiListNodesRequest) Page(page int32) ApiListNodesRequest {
+func (r ApiListNodesRequest) Page(page int64) ApiListNodesRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListNodesRequest) PageSize(pageSize int32) ApiListNodesRequest {
+func (r ApiListNodesRequest) PageSize(pageSize int64) ApiListNodesRequest {
 	r.pageSize = &pageSize
 	return r
 }

@@ -439,8 +439,8 @@ type ApiListReportsRequest struct {
 	id *int64
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 	type_ *string
 }
@@ -476,13 +476,13 @@ func (r ApiListReportsRequest) Ordering(ordering string) ApiListReportsRequest {
 }
 
 // A page number within the paginated result set.
-func (r ApiListReportsRequest) Page(page int32) ApiListReportsRequest {
+func (r ApiListReportsRequest) Page(page int64) ApiListReportsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListReportsRequest) PageSize(pageSize int32) ApiListReportsRequest {
+func (r ApiListReportsRequest) PageSize(pageSize int64) ApiListReportsRequest {
 	r.pageSize = &pageSize
 	return r
 }

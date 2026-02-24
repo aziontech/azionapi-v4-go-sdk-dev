@@ -182,8 +182,8 @@ func main() {
 	managed := true // bool | Filter by managed status. (optional)
 	name := "name_example" // string | Filter by certificate name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int32(56) // int32 | A page number within the paginated result set. (optional)
-	pageSize := int32(56) // int32 | A numeric value that indicates the number of items per page. (optional)
+	page := int64(789) // int64 | A page number within the paginated result set. (optional)
+	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	renewedAt := time.Now() // time.Time | Filter by exact renewed date and time. (optional)
 	renewedAtGte := time.Now() // time.Time | Filter by renewed date (greater than or equal). (optional)
 	renewedAtLte := time.Now() // time.Time | Filter by renewed date (less than or equal). (optional)
@@ -222,8 +222,8 @@ Name | Type | Description  | Notes
  **managed** | **bool** | Filter by managed status. | 
  **name** | **string** | Filter by certificate name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int32** | A page number within the paginated result set. | 
- **pageSize** | **int32** | A numeric value that indicates the number of items per page. | 
+ **page** | **int64** | A page number within the paginated result set. | 
+ **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **renewedAt** | **time.Time** | Filter by exact renewed date and time. | 
  **renewedAtGte** | **time.Time** | Filter by renewed date (greater than or equal). | 
  **renewedAtLte** | **time.Time** | Filter by renewed date (less than or equal). | 

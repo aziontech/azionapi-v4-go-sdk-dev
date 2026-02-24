@@ -660,8 +660,8 @@ type ApiListKnowledgeBasesLinkedToAToolRequest struct {
 	toolId int64
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -678,13 +678,13 @@ func (r ApiListKnowledgeBasesLinkedToAToolRequest) Ordering(ordering string) Api
 }
 
 // A page number within the paginated result set.
-func (r ApiListKnowledgeBasesLinkedToAToolRequest) Page(page int32) ApiListKnowledgeBasesLinkedToAToolRequest {
+func (r ApiListKnowledgeBasesLinkedToAToolRequest) Page(page int64) ApiListKnowledgeBasesLinkedToAToolRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListKnowledgeBasesLinkedToAToolRequest) PageSize(pageSize int32) ApiListKnowledgeBasesLinkedToAToolRequest {
+func (r ApiListKnowledgeBasesLinkedToAToolRequest) PageSize(pageSize int64) ApiListKnowledgeBasesLinkedToAToolRequest {
 	r.pageSize = &pageSize
 	return r
 }
@@ -913,8 +913,8 @@ type ApiListToolsRequest struct {
 	ApiService *AIStudioToolsAPIService
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -931,13 +931,13 @@ func (r ApiListToolsRequest) Ordering(ordering string) ApiListToolsRequest {
 }
 
 // A page number within the paginated result set.
-func (r ApiListToolsRequest) Page(page int32) ApiListToolsRequest {
+func (r ApiListToolsRequest) Page(page int64) ApiListToolsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListToolsRequest) PageSize(pageSize int32) ApiListToolsRequest {
+func (r ApiListToolsRequest) PageSize(pageSize int64) ApiListToolsRequest {
 	r.pageSize = &pageSize
 	return r
 }
