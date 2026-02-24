@@ -234,8 +234,8 @@ type ApiListIntegrationsRequest struct {
 	fields *string
 	id *int64
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	platform *string
 	scope *string
 	search *string
@@ -260,13 +260,13 @@ func (r ApiListIntegrationsRequest) Ordering(ordering string) ApiListIntegration
 }
 
 // A page number within the paginated result set.
-func (r ApiListIntegrationsRequest) Page(page int32) ApiListIntegrationsRequest {
+func (r ApiListIntegrationsRequest) Page(page int64) ApiListIntegrationsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListIntegrationsRequest) PageSize(pageSize int32) ApiListIntegrationsRequest {
+func (r ApiListIntegrationsRequest) PageSize(pageSize int64) ApiListIntegrationsRequest {
 	r.pageSize = &pageSize
 	return r
 }
@@ -514,8 +514,8 @@ type ApiListRepositoriesRequest struct {
 	integrationId int64
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -532,13 +532,13 @@ func (r ApiListRepositoriesRequest) Ordering(ordering string) ApiListRepositorie
 }
 
 // A page number within the paginated result set.
-func (r ApiListRepositoriesRequest) Page(page int32) ApiListRepositoriesRequest {
+func (r ApiListRepositoriesRequest) Page(page int64) ApiListRepositoriesRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListRepositoriesRequest) PageSize(pageSize int32) ApiListRepositoriesRequest {
+func (r ApiListRepositoriesRequest) PageSize(pageSize int64) ApiListRepositoriesRequest {
 	r.pageSize = &pageSize
 	return r
 }

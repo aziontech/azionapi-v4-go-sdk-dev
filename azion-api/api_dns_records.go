@@ -453,8 +453,8 @@ type ApiListDnsRecordsRequest struct {
 	zoneId int64
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -471,13 +471,13 @@ func (r ApiListDnsRecordsRequest) Ordering(ordering string) ApiListDnsRecordsReq
 }
 
 // A page number within the paginated result set.
-func (r ApiListDnsRecordsRequest) Page(page int32) ApiListDnsRecordsRequest {
+func (r ApiListDnsRecordsRequest) Page(page int64) ApiListDnsRecordsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListDnsRecordsRequest) PageSize(pageSize int32) ApiListDnsRecordsRequest {
+func (r ApiListDnsRecordsRequest) PageSize(pageSize int64) ApiListDnsRecordsRequest {
 	r.pageSize = &pageSize
 	return r
 }

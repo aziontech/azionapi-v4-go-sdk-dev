@@ -453,8 +453,8 @@ type ApiListCertificatesRequest struct {
 	managed *bool
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	renewedAt *time.Time
 	renewedAtGte *time.Time
 	renewedAtLte *time.Time
@@ -522,13 +522,13 @@ func (r ApiListCertificatesRequest) Ordering(ordering string) ApiListCertificate
 }
 
 // A page number within the paginated result set.
-func (r ApiListCertificatesRequest) Page(page int32) ApiListCertificatesRequest {
+func (r ApiListCertificatesRequest) Page(page int64) ApiListCertificatesRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListCertificatesRequest) PageSize(pageSize int32) ApiListCertificatesRequest {
+func (r ApiListCertificatesRequest) PageSize(pageSize int64) ApiListCertificatesRequest {
 	r.pageSize = &pageSize
 	return r
 }

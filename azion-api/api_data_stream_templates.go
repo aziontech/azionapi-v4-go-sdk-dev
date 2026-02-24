@@ -453,8 +453,8 @@ type ApiListTemplatesRequest struct {
 	lastModifiedLte *time.Time
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -519,13 +519,13 @@ func (r ApiListTemplatesRequest) Ordering(ordering string) ApiListTemplatesReque
 }
 
 // A page number within the paginated result set.
-func (r ApiListTemplatesRequest) Page(page int32) ApiListTemplatesRequest {
+func (r ApiListTemplatesRequest) Page(page int64) ApiListTemplatesRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListTemplatesRequest) PageSize(pageSize int32) ApiListTemplatesRequest {
+func (r ApiListTemplatesRequest) PageSize(pageSize int64) ApiListTemplatesRequest {
 	r.pageSize = &pageSize
 	return r
 }

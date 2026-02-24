@@ -453,8 +453,8 @@ type ApiListMessagesRequest struct {
 	threadId int64
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -471,13 +471,13 @@ func (r ApiListMessagesRequest) Ordering(ordering string) ApiListMessagesRequest
 }
 
 // A page number within the paginated result set.
-func (r ApiListMessagesRequest) Page(page int32) ApiListMessagesRequest {
+func (r ApiListMessagesRequest) Page(page int64) ApiListMessagesRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListMessagesRequest) PageSize(pageSize int32) ApiListMessagesRequest {
+func (r ApiListMessagesRequest) PageSize(pageSize int64) ApiListMessagesRequest {
 	r.pageSize = &pageSize
 	return r
 }

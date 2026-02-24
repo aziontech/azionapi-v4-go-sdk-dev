@@ -461,8 +461,8 @@ type ApiListWafExceptionsRequest struct {
 	lastModifiedGte *time.Time
 	lastModifiedLte *time.Time
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	path *string
 	search *string
 }
@@ -522,13 +522,13 @@ func (r ApiListWafExceptionsRequest) Ordering(ordering string) ApiListWafExcepti
 }
 
 // A page number within the paginated result set.
-func (r ApiListWafExceptionsRequest) Page(page int32) ApiListWafExceptionsRequest {
+func (r ApiListWafExceptionsRequest) Page(page int64) ApiListWafExceptionsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListWafExceptionsRequest) PageSize(pageSize int32) ApiListWafExceptionsRequest {
+func (r ApiListWafExceptionsRequest) PageSize(pageSize int64) ApiListWafExceptionsRequest {
 	r.pageSize = &pageSize
 	return r
 }

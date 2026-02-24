@@ -375,8 +375,8 @@ type ApiListNodeGroupsRequest struct {
 	ApiService *OrchestratorNodeGroupsAPIService
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -393,13 +393,13 @@ func (r ApiListNodeGroupsRequest) Ordering(ordering string) ApiListNodeGroupsReq
 }
 
 // A page number within the paginated result set.
-func (r ApiListNodeGroupsRequest) Page(page int32) ApiListNodeGroupsRequest {
+func (r ApiListNodeGroupsRequest) Page(page int64) ApiListNodeGroupsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListNodeGroupsRequest) PageSize(pageSize int32) ApiListNodeGroupsRequest {
+func (r ApiListNodeGroupsRequest) PageSize(pageSize int64) ApiListNodeGroupsRequest {
 	r.pageSize = &pageSize
 	return r
 }
@@ -549,8 +549,8 @@ type ApiListNodeGroupsByIDRequest struct {
 	nodeId int64
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -567,13 +567,13 @@ func (r ApiListNodeGroupsByIDRequest) Ordering(ordering string) ApiListNodeGroup
 }
 
 // A page number within the paginated result set.
-func (r ApiListNodeGroupsByIDRequest) Page(page int32) ApiListNodeGroupsByIDRequest {
+func (r ApiListNodeGroupsByIDRequest) Page(page int64) ApiListNodeGroupsByIDRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListNodeGroupsByIDRequest) PageSize(pageSize int32) ApiListNodeGroupsByIDRequest {
+func (r ApiListNodeGroupsByIDRequest) PageSize(pageSize int64) ApiListNodeGroupsByIDRequest {
 	r.pageSize = &pageSize
 	return r
 }

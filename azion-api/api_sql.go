@@ -688,8 +688,8 @@ type ApiListDatabasesRequest struct {
 	lastEditor *string
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 	status *string
 	updatedAtGte *time.Time
@@ -745,13 +745,13 @@ func (r ApiListDatabasesRequest) Ordering(ordering string) ApiListDatabasesReque
 }
 
 // A page number within the paginated result set.
-func (r ApiListDatabasesRequest) Page(page int32) ApiListDatabasesRequest {
+func (r ApiListDatabasesRequest) Page(page int64) ApiListDatabasesRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListDatabasesRequest) PageSize(pageSize int32) ApiListDatabasesRequest {
+func (r ApiListDatabasesRequest) PageSize(pageSize int64) ApiListDatabasesRequest {
 	r.pageSize = &pageSize
 	return r
 }

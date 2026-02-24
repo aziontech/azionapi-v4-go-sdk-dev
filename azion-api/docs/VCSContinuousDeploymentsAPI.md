@@ -181,8 +181,8 @@ func main() {
 	lastModifiedLte := time.Now() // time.Time | Filter by last modified date (less than or equal). (optional)
 	name := "name_example" // string | Filter by name (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
-	page := int32(56) // int32 | A page number within the paginated result set. (optional)
-	pageSize := int32(56) // int32 | A numeric value that indicates the number of items per page. (optional)
+	page := int64(789) // int64 | A page number within the paginated result set. (optional)
+	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	repository := "repository_example" // string | Filter by repository (case-insensitive, partial match). (optional)
 	search := "search_example" // string | A search term. (optional)
 
@@ -219,8 +219,8 @@ Name | Type | Description  | Notes
  **lastModifiedLte** | **time.Time** | Filter by last modified date (less than or equal). | 
  **name** | **string** | Filter by name (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. | 
- **page** | **int32** | A page number within the paginated result set. | 
- **pageSize** | **int32** | A numeric value that indicates the number of items per page. | 
+ **page** | **int64** | A page number within the paginated result set. | 
+ **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **repository** | **string** | Filter by repository (case-insensitive, partial match). | 
  **search** | **string** | A search term. | 
 

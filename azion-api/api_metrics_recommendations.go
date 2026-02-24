@@ -375,8 +375,8 @@ type ApiListRecommendationsRequest struct {
 	fields *string
 	id *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -405,13 +405,13 @@ func (r ApiListRecommendationsRequest) Ordering(ordering string) ApiListRecommen
 }
 
 // A page number within the paginated result set.
-func (r ApiListRecommendationsRequest) Page(page int32) ApiListRecommendationsRequest {
+func (r ApiListRecommendationsRequest) Page(page int64) ApiListRecommendationsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListRecommendationsRequest) PageSize(pageSize int32) ApiListRecommendationsRequest {
+func (r ApiListRecommendationsRequest) PageSize(pageSize int64) ApiListRecommendationsRequest {
 	r.pageSize = &pageSize
 	return r
 }

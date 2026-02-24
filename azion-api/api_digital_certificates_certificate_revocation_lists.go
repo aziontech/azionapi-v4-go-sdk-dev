@@ -457,8 +457,8 @@ type ApiListCertificateRevocationListsRequest struct {
 	nextUpdateGte *time.Time
 	nextUpdateLte *time.Time
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -547,13 +547,13 @@ func (r ApiListCertificateRevocationListsRequest) Ordering(ordering string) ApiL
 }
 
 // A page number within the paginated result set.
-func (r ApiListCertificateRevocationListsRequest) Page(page int32) ApiListCertificateRevocationListsRequest {
+func (r ApiListCertificateRevocationListsRequest) Page(page int64) ApiListCertificateRevocationListsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListCertificateRevocationListsRequest) PageSize(pageSize int32) ApiListCertificateRevocationListsRequest {
+func (r ApiListCertificateRevocationListsRequest) PageSize(pageSize int64) ApiListCertificateRevocationListsRequest {
 	r.pageSize = &pageSize
 	return r
 }

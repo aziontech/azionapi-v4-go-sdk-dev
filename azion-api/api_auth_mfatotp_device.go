@@ -431,8 +431,8 @@ type ApiListTotpDevicesRequest struct {
 	id *string
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -473,13 +473,13 @@ func (r ApiListTotpDevicesRequest) Ordering(ordering string) ApiListTotpDevicesR
 }
 
 // A page number within the paginated result set.
-func (r ApiListTotpDevicesRequest) Page(page int32) ApiListTotpDevicesRequest {
+func (r ApiListTotpDevicesRequest) Page(page int64) ApiListTotpDevicesRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListTotpDevicesRequest) PageSize(pageSize int32) ApiListTotpDevicesRequest {
+func (r ApiListTotpDevicesRequest) PageSize(pageSize int64) ApiListTotpDevicesRequest {
 	r.pageSize = &pageSize
 	return r
 }

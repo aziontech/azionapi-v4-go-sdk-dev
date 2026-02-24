@@ -661,8 +661,8 @@ type ApiListWafsRequest struct {
 	id *int64
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -691,13 +691,13 @@ func (r ApiListWafsRequest) Ordering(ordering string) ApiListWafsRequest {
 }
 
 // A page number within the paginated result set.
-func (r ApiListWafsRequest) Page(page int32) ApiListWafsRequest {
+func (r ApiListWafsRequest) Page(page int64) ApiListWafsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListWafsRequest) PageSize(pageSize int32) ApiListWafsRequest {
+func (r ApiListWafsRequest) PageSize(pageSize int64) ApiListWafsRequest {
 	r.pageSize = &pageSize
 	return r
 }

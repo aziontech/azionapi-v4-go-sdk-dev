@@ -288,8 +288,8 @@ type ApiListResourcesOfAServiceRequest struct {
 	serviceId int64
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -306,13 +306,13 @@ func (r ApiListResourcesOfAServiceRequest) Ordering(ordering string) ApiListReso
 }
 
 // A page number within the paginated result set.
-func (r ApiListResourcesOfAServiceRequest) Page(page int32) ApiListResourcesOfAServiceRequest {
+func (r ApiListResourcesOfAServiceRequest) Page(page int64) ApiListResourcesOfAServiceRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListResourcesOfAServiceRequest) PageSize(pageSize int32) ApiListResourcesOfAServiceRequest {
+func (r ApiListResourcesOfAServiceRequest) PageSize(pageSize int64) ApiListResourcesOfAServiceRequest {
 	r.pageSize = &pageSize
 	return r
 }

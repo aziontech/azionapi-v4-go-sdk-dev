@@ -462,8 +462,8 @@ type ApiListApplicationResponseRulesRequest struct {
 	orderGte *int64
 	orderLte *int64
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -528,13 +528,13 @@ func (r ApiListApplicationResponseRulesRequest) Ordering(ordering string) ApiLis
 }
 
 // A page number within the paginated result set.
-func (r ApiListApplicationResponseRulesRequest) Page(page int32) ApiListApplicationResponseRulesRequest {
+func (r ApiListApplicationResponseRulesRequest) Page(page int64) ApiListApplicationResponseRulesRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListApplicationResponseRulesRequest) PageSize(pageSize int32) ApiListApplicationResponseRulesRequest {
+func (r ApiListApplicationResponseRulesRequest) PageSize(pageSize int64) ApiListApplicationResponseRulesRequest {
 	r.pageSize = &pageSize
 	return r
 }

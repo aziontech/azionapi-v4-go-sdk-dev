@@ -445,8 +445,8 @@ type ApiListFavoritesRequest struct {
 	fields *string
 	id *int64
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 	type_ *string
 	uri *string
@@ -470,13 +470,13 @@ func (r ApiListFavoritesRequest) Ordering(ordering string) ApiListFavoritesReque
 }
 
 // A page number within the paginated result set.
-func (r ApiListFavoritesRequest) Page(page int32) ApiListFavoritesRequest {
+func (r ApiListFavoritesRequest) Page(page int64) ApiListFavoritesRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListFavoritesRequest) PageSize(pageSize int32) ApiListFavoritesRequest {
+func (r ApiListFavoritesRequest) PageSize(pageSize int64) ApiListFavoritesRequest {
 	r.pageSize = &pageSize
 	return r
 }

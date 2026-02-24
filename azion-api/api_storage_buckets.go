@@ -455,8 +455,8 @@ type ApiListBucketsRequest struct {
 	lastModifiedLte *time.Time
 	name *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 	status *string
 	workloadsAccess *string
@@ -535,13 +535,13 @@ func (r ApiListBucketsRequest) Ordering(ordering string) ApiListBucketsRequest {
 }
 
 // A page number within the paginated result set.
-func (r ApiListBucketsRequest) Page(page int32) ApiListBucketsRequest {
+func (r ApiListBucketsRequest) Page(page int64) ApiListBucketsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListBucketsRequest) PageSize(pageSize int32) ApiListBucketsRequest {
+func (r ApiListBucketsRequest) PageSize(pageSize int64) ApiListBucketsRequest {
 	r.pageSize = &pageSize
 	return r
 }

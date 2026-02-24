@@ -200,6 +200,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -208,6 +209,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -1210,6 +1212,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -1218,6 +1221,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -1405,6 +1409,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -1413,6 +1418,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -2279,6 +2285,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -2287,6 +2294,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -3597,6 +3605,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -3605,6 +3614,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -4469,6 +4479,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -4477,6 +4488,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -5465,6 +5477,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -5473,6 +5486,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -6064,6 +6078,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -6072,6 +6087,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: Filter by parent account ID (accepts comma-separated values).
@@ -7773,6 +7789,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -7781,6 +7798,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -8938,6 +8956,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -8946,6 +8965,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -9986,6 +10006,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -9994,6 +10015,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -11069,6 +11091,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -11077,6 +11100,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -12171,6 +12195,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -12179,6 +12204,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -13440,6 +13466,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -13448,6 +13475,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -15142,6 +15170,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -15150,6 +15179,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -15937,6 +15967,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -15945,6 +15976,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -16960,6 +16992,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -16968,6 +17001,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -17310,6 +17344,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -17318,6 +17353,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -18343,6 +18379,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -18351,6 +18388,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -19804,6 +19842,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -19812,6 +19851,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -20860,6 +20900,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -20868,6 +20909,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -21852,6 +21894,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -21860,6 +21903,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -22115,6 +22159,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -22123,6 +22168,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -23157,6 +23203,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -23165,6 +23212,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -24237,6 +24285,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -24245,6 +24294,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -25433,6 +25483,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -25441,6 +25492,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: Filter by exact renewed date and time.
@@ -26595,6 +26647,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -26603,6 +26656,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -27172,6 +27226,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -27180,6 +27235,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -28363,6 +28419,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -28371,6 +28428,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -29465,6 +29523,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -29473,6 +29532,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -30715,6 +30775,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -30723,6 +30784,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: Filter by runtime environment (accepts comma-separated values).
@@ -31700,6 +31762,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -31708,6 +31771,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -33024,6 +33088,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -33032,6 +33097,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -34650,6 +34716,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -34658,6 +34725,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -35996,6 +36064,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -36004,6 +36073,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -36980,6 +37050,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -36988,6 +37059,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       responses:
@@ -37232,6 +37304,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -37240,6 +37313,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -38198,6 +38272,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -38206,6 +38281,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -39117,6 +39193,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -39125,6 +39202,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -39866,6 +39944,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -39874,6 +39953,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -40305,6 +40385,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -40313,6 +40394,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: The unique identifier of the row
@@ -41404,6 +41486,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -41412,6 +41495,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -42454,6 +42538,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -42462,6 +42547,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -43454,6 +43540,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -43462,6 +43549,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -43805,6 +43893,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -43813,6 +43902,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -43964,6 +44054,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -43972,6 +44063,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -44670,6 +44762,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -44678,6 +44771,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -46000,6 +46094,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -46008,6 +46103,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -46411,6 +46507,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -46419,6 +46516,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       responses:
@@ -47700,6 +47798,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -47708,6 +47807,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -49509,6 +49609,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -49517,6 +49618,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -50488,6 +50590,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -50496,6 +50599,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -51409,6 +51513,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -51417,6 +51522,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -53232,6 +53338,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -53240,6 +53347,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -54012,6 +54120,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -54020,6 +54129,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: "Filter by repository (case-insensitive, partial match)."
@@ -55031,6 +55141,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -55039,6 +55150,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -55391,6 +55503,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -55399,6 +55512,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: Filter by platform id (exact match).
@@ -55925,6 +56039,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -55933,6 +56048,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -56129,6 +56245,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -56137,6 +56254,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -56333,6 +56451,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -56341,6 +56460,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -57533,6 +57653,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -57541,6 +57662,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: "Filter by path (case-insensitive, partial match)."
@@ -58589,6 +58711,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -58597,6 +58720,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -59739,6 +59863,7 @@ paths:
         name: page
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A numeric value that indicates the number of items per page.
@@ -59747,6 +59872,7 @@ paths:
         name: page_size
         required: false
         schema:
+          format: int64
           type: integer
         style: form
       - description: A search term.
@@ -60720,6 +60846,7 @@ components:
       name: page
       required: false
       schema:
+        format: int64
         type: integer
       style: form
     PageSizeParam:
@@ -60729,6 +60856,7 @@ components:
       name: page_size
       required: false
       schema:
+        format: int64
         type: integer
       style: form
     OrderingParam:

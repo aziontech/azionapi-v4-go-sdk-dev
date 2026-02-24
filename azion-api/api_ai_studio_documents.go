@@ -487,8 +487,8 @@ type ApiListDocumentsRequest struct {
 	kbId int64
 	fields *string
 	ordering *string
-	page *int32
-	pageSize *int32
+	page *int64
+	pageSize *int64
 	search *string
 }
 
@@ -505,13 +505,13 @@ func (r ApiListDocumentsRequest) Ordering(ordering string) ApiListDocumentsReque
 }
 
 // A page number within the paginated result set.
-func (r ApiListDocumentsRequest) Page(page int32) ApiListDocumentsRequest {
+func (r ApiListDocumentsRequest) Page(page int64) ApiListDocumentsRequest {
 	r.page = &page
 	return r
 }
 
 // A numeric value that indicates the number of items per page.
-func (r ApiListDocumentsRequest) PageSize(pageSize int32) ApiListDocumentsRequest {
+func (r ApiListDocumentsRequest) PageSize(pageSize int64) ApiListDocumentsRequest {
 	r.pageSize = &pageSize
 	return r
 }
