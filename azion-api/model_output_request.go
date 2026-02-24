@@ -13,140 +13,466 @@ package azionapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
-// checks if the OutputRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &OutputRequest{}
-
-// OutputRequest struct for OutputRequest
+// OutputRequest - struct for OutputRequest
 type OutputRequest struct {
-	// * `standard` - Standard HTTP/HTTPS POST * `kafka` - Apache Kafka * `s3` - Simple Storage Service (S3) * `big_query` - Google BigQuery * `elasticsearch` - Elasticsearch * `splunk` - Splunk * `aws_kinesis_firehose` - AWS Kinesis Data Firehose * `datadog` - Datadog * `qradar` - IBM QRadar * `azure_monitor` - Azure Monitor * `azure_blob_storage` - Azure Blob Storage
-	Type string `json:"type"`
-	Attributes OutputRequest2 `json:"attributes"`
+	AWSKinesisFirehoseEndpointRequest *AWSKinesisFirehoseEndpointRequest
+	AzureBlobStorageEndpointRequest *AzureBlobStorageEndpointRequest
+	AzureMonitorEndpointRequest *AzureMonitorEndpointRequest
+	BigQueryEndpointRequest *BigQueryEndpointRequest
+	DatadogEndpointRequest *DatadogEndpointRequest
+	ElasticsearchEndpointRequest *ElasticsearchEndpointRequest
+	HttpPostEndpointRequest *HttpPostEndpointRequest
+	KafkaEndpointRequest *KafkaEndpointRequest
+	QRadarEndpointRequest *QRadarEndpointRequest
+	S3EndpointRequest *S3EndpointRequest
+	SplunkEndpointRequest *SplunkEndpointRequest
 }
 
-type _OutputRequest OutputRequest
-
-// NewOutputRequest instantiates a new OutputRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewOutputRequest(type_ string, attributes OutputRequest2) *OutputRequest {
-	this := OutputRequest{}
-	this.Type = type_
-	this.Attributes = attributes
-	return &this
-}
-
-// NewOutputRequestWithDefaults instantiates a new OutputRequest object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewOutputRequestWithDefaults() *OutputRequest {
-	this := OutputRequest{}
-	return &this
-}
-
-// GetType returns the Type field value
-func (o *OutputRequest) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
+// AWSKinesisFirehoseEndpointRequestAsOutputRequest is a convenience function that returns AWSKinesisFirehoseEndpointRequest wrapped in OutputRequest
+func AWSKinesisFirehoseEndpointRequestAsOutputRequest(v *AWSKinesisFirehoseEndpointRequest) OutputRequest {
+	return OutputRequest{
+		AWSKinesisFirehoseEndpointRequest: v,
 	}
-
-	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *OutputRequest) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
+// AzureBlobStorageEndpointRequestAsOutputRequest is a convenience function that returns AzureBlobStorageEndpointRequest wrapped in OutputRequest
+func AzureBlobStorageEndpointRequestAsOutputRequest(v *AzureBlobStorageEndpointRequest) OutputRequest {
+	return OutputRequest{
+		AzureBlobStorageEndpointRequest: v,
 	}
-	return &o.Type, true
 }
 
-// SetType sets field value
-func (o *OutputRequest) SetType(v string) {
-	o.Type = v
-}
-
-// GetAttributes returns the Attributes field value
-func (o *OutputRequest) GetAttributes() OutputRequest2 {
-	if o == nil {
-		var ret OutputRequest2
-		return ret
+// AzureMonitorEndpointRequestAsOutputRequest is a convenience function that returns AzureMonitorEndpointRequest wrapped in OutputRequest
+func AzureMonitorEndpointRequestAsOutputRequest(v *AzureMonitorEndpointRequest) OutputRequest {
+	return OutputRequest{
+		AzureMonitorEndpointRequest: v,
 	}
-
-	return o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value
-// and a boolean to check if the value has been set.
-func (o *OutputRequest) GetAttributesOk() (*OutputRequest2, bool) {
-	if o == nil {
-		return nil, false
+// BigQueryEndpointRequestAsOutputRequest is a convenience function that returns BigQueryEndpointRequest wrapped in OutputRequest
+func BigQueryEndpointRequestAsOutputRequest(v *BigQueryEndpointRequest) OutputRequest {
+	return OutputRequest{
+		BigQueryEndpointRequest: v,
 	}
-	return &o.Attributes, true
 }
 
-// SetAttributes sets field value
-func (o *OutputRequest) SetAttributes(v OutputRequest2) {
-	o.Attributes = v
-}
-
-func (o OutputRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
+// DatadogEndpointRequestAsOutputRequest is a convenience function that returns DatadogEndpointRequest wrapped in OutputRequest
+func DatadogEndpointRequestAsOutputRequest(v *DatadogEndpointRequest) OutputRequest {
+	return OutputRequest{
+		DatadogEndpointRequest: v,
 	}
-	return json.Marshal(toSerialize)
 }
 
-func (o OutputRequest) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
-	toSerialize["attributes"] = o.Attributes
-	return toSerialize, nil
+// ElasticsearchEndpointRequestAsOutputRequest is a convenience function that returns ElasticsearchEndpointRequest wrapped in OutputRequest
+func ElasticsearchEndpointRequestAsOutputRequest(v *ElasticsearchEndpointRequest) OutputRequest {
+	return OutputRequest{
+		ElasticsearchEndpointRequest: v,
+	}
 }
 
-func (o *OutputRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"type",
-		"attributes",
+// HttpPostEndpointRequestAsOutputRequest is a convenience function that returns HttpPostEndpointRequest wrapped in OutputRequest
+func HttpPostEndpointRequestAsOutputRequest(v *HttpPostEndpointRequest) OutputRequest {
+	return OutputRequest{
+		HttpPostEndpointRequest: v,
 	}
+}
 
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
+// KafkaEndpointRequestAsOutputRequest is a convenience function that returns KafkaEndpointRequest wrapped in OutputRequest
+func KafkaEndpointRequestAsOutputRequest(v *KafkaEndpointRequest) OutputRequest {
+	return OutputRequest{
+		KafkaEndpointRequest: v,
 	}
+}
 
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
+// QRadarEndpointRequestAsOutputRequest is a convenience function that returns QRadarEndpointRequest wrapped in OutputRequest
+func QRadarEndpointRequestAsOutputRequest(v *QRadarEndpointRequest) OutputRequest {
+	return OutputRequest{
+		QRadarEndpointRequest: v,
+	}
+}
+
+// S3EndpointRequestAsOutputRequest is a convenience function that returns S3EndpointRequest wrapped in OutputRequest
+func S3EndpointRequestAsOutputRequest(v *S3EndpointRequest) OutputRequest {
+	return OutputRequest{
+		S3EndpointRequest: v,
+	}
+}
+
+// SplunkEndpointRequestAsOutputRequest is a convenience function that returns SplunkEndpointRequest wrapped in OutputRequest
+func SplunkEndpointRequestAsOutputRequest(v *SplunkEndpointRequest) OutputRequest {
+	return OutputRequest{
+		SplunkEndpointRequest: v,
+	}
+}
+
+
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *OutputRequest) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into AWSKinesisFirehoseEndpointRequest
+	err = newStrictDecoder(data).Decode(&dst.AWSKinesisFirehoseEndpointRequest)
+	if err == nil {
+		jsonAWSKinesisFirehoseEndpointRequest, _ := json.Marshal(dst.AWSKinesisFirehoseEndpointRequest)
+		if string(jsonAWSKinesisFirehoseEndpointRequest) == "{}" { // empty struct
+			dst.AWSKinesisFirehoseEndpointRequest = nil
+		} else {
+			if err = validator.Validate(dst.AWSKinesisFirehoseEndpointRequest); err != nil {
+				dst.AWSKinesisFirehoseEndpointRequest = nil
+			} else {
+				match++
+			}
 		}
+	} else {
+		dst.AWSKinesisFirehoseEndpointRequest = nil
 	}
 
-	varOutputRequest := _OutputRequest{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOutputRequest)
-
-	if err != nil {
-		return err
+	// try to unmarshal data into AzureBlobStorageEndpointRequest
+	err = newStrictDecoder(data).Decode(&dst.AzureBlobStorageEndpointRequest)
+	if err == nil {
+		jsonAzureBlobStorageEndpointRequest, _ := json.Marshal(dst.AzureBlobStorageEndpointRequest)
+		if string(jsonAzureBlobStorageEndpointRequest) == "{}" { // empty struct
+			dst.AzureBlobStorageEndpointRequest = nil
+		} else {
+			if err = validator.Validate(dst.AzureBlobStorageEndpointRequest); err != nil {
+				dst.AzureBlobStorageEndpointRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.AzureBlobStorageEndpointRequest = nil
 	}
 
-	*o = OutputRequest(varOutputRequest)
+	// try to unmarshal data into AzureMonitorEndpointRequest
+	err = newStrictDecoder(data).Decode(&dst.AzureMonitorEndpointRequest)
+	if err == nil {
+		jsonAzureMonitorEndpointRequest, _ := json.Marshal(dst.AzureMonitorEndpointRequest)
+		if string(jsonAzureMonitorEndpointRequest) == "{}" { // empty struct
+			dst.AzureMonitorEndpointRequest = nil
+		} else {
+			if err = validator.Validate(dst.AzureMonitorEndpointRequest); err != nil {
+				dst.AzureMonitorEndpointRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.AzureMonitorEndpointRequest = nil
+	}
 
-	return err
+	// try to unmarshal data into BigQueryEndpointRequest
+	err = newStrictDecoder(data).Decode(&dst.BigQueryEndpointRequest)
+	if err == nil {
+		jsonBigQueryEndpointRequest, _ := json.Marshal(dst.BigQueryEndpointRequest)
+		if string(jsonBigQueryEndpointRequest) == "{}" { // empty struct
+			dst.BigQueryEndpointRequest = nil
+		} else {
+			if err = validator.Validate(dst.BigQueryEndpointRequest); err != nil {
+				dst.BigQueryEndpointRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.BigQueryEndpointRequest = nil
+	}
+
+	// try to unmarshal data into DatadogEndpointRequest
+	err = newStrictDecoder(data).Decode(&dst.DatadogEndpointRequest)
+	if err == nil {
+		jsonDatadogEndpointRequest, _ := json.Marshal(dst.DatadogEndpointRequest)
+		if string(jsonDatadogEndpointRequest) == "{}" { // empty struct
+			dst.DatadogEndpointRequest = nil
+		} else {
+			if err = validator.Validate(dst.DatadogEndpointRequest); err != nil {
+				dst.DatadogEndpointRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.DatadogEndpointRequest = nil
+	}
+
+	// try to unmarshal data into ElasticsearchEndpointRequest
+	err = newStrictDecoder(data).Decode(&dst.ElasticsearchEndpointRequest)
+	if err == nil {
+		jsonElasticsearchEndpointRequest, _ := json.Marshal(dst.ElasticsearchEndpointRequest)
+		if string(jsonElasticsearchEndpointRequest) == "{}" { // empty struct
+			dst.ElasticsearchEndpointRequest = nil
+		} else {
+			if err = validator.Validate(dst.ElasticsearchEndpointRequest); err != nil {
+				dst.ElasticsearchEndpointRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ElasticsearchEndpointRequest = nil
+	}
+
+	// try to unmarshal data into HttpPostEndpointRequest
+	err = newStrictDecoder(data).Decode(&dst.HttpPostEndpointRequest)
+	if err == nil {
+		jsonHttpPostEndpointRequest, _ := json.Marshal(dst.HttpPostEndpointRequest)
+		if string(jsonHttpPostEndpointRequest) == "{}" { // empty struct
+			dst.HttpPostEndpointRequest = nil
+		} else {
+			if err = validator.Validate(dst.HttpPostEndpointRequest); err != nil {
+				dst.HttpPostEndpointRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.HttpPostEndpointRequest = nil
+	}
+
+	// try to unmarshal data into KafkaEndpointRequest
+	err = newStrictDecoder(data).Decode(&dst.KafkaEndpointRequest)
+	if err == nil {
+		jsonKafkaEndpointRequest, _ := json.Marshal(dst.KafkaEndpointRequest)
+		if string(jsonKafkaEndpointRequest) == "{}" { // empty struct
+			dst.KafkaEndpointRequest = nil
+		} else {
+			if err = validator.Validate(dst.KafkaEndpointRequest); err != nil {
+				dst.KafkaEndpointRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.KafkaEndpointRequest = nil
+	}
+
+	// try to unmarshal data into QRadarEndpointRequest
+	err = newStrictDecoder(data).Decode(&dst.QRadarEndpointRequest)
+	if err == nil {
+		jsonQRadarEndpointRequest, _ := json.Marshal(dst.QRadarEndpointRequest)
+		if string(jsonQRadarEndpointRequest) == "{}" { // empty struct
+			dst.QRadarEndpointRequest = nil
+		} else {
+			if err = validator.Validate(dst.QRadarEndpointRequest); err != nil {
+				dst.QRadarEndpointRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.QRadarEndpointRequest = nil
+	}
+
+	// try to unmarshal data into S3EndpointRequest
+	err = newStrictDecoder(data).Decode(&dst.S3EndpointRequest)
+	if err == nil {
+		jsonS3EndpointRequest, _ := json.Marshal(dst.S3EndpointRequest)
+		if string(jsonS3EndpointRequest) == "{}" { // empty struct
+			dst.S3EndpointRequest = nil
+		} else {
+			if err = validator.Validate(dst.S3EndpointRequest); err != nil {
+				dst.S3EndpointRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.S3EndpointRequest = nil
+	}
+
+	// try to unmarshal data into SplunkEndpointRequest
+	err = newStrictDecoder(data).Decode(&dst.SplunkEndpointRequest)
+	if err == nil {
+		jsonSplunkEndpointRequest, _ := json.Marshal(dst.SplunkEndpointRequest)
+		if string(jsonSplunkEndpointRequest) == "{}" { // empty struct
+			dst.SplunkEndpointRequest = nil
+		} else {
+			if err = validator.Validate(dst.SplunkEndpointRequest); err != nil {
+				dst.SplunkEndpointRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.SplunkEndpointRequest = nil
+	}
+
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.AWSKinesisFirehoseEndpointRequest = nil
+		dst.AzureBlobStorageEndpointRequest = nil
+		dst.AzureMonitorEndpointRequest = nil
+		dst.BigQueryEndpointRequest = nil
+		dst.DatadogEndpointRequest = nil
+		dst.ElasticsearchEndpointRequest = nil
+		dst.HttpPostEndpointRequest = nil
+		dst.KafkaEndpointRequest = nil
+		dst.QRadarEndpointRequest = nil
+		dst.S3EndpointRequest = nil
+		dst.SplunkEndpointRequest = nil
+
+		return fmt.Errorf("data matches more than one schema in oneOf(OutputRequest)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(OutputRequest)")
+	}
+}
+
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src OutputRequest) MarshalJSON() ([]byte, error) {
+	if src.AWSKinesisFirehoseEndpointRequest != nil {
+		return json.Marshal(&src.AWSKinesisFirehoseEndpointRequest)
+	}
+
+	if src.AzureBlobStorageEndpointRequest != nil {
+		return json.Marshal(&src.AzureBlobStorageEndpointRequest)
+	}
+
+	if src.AzureMonitorEndpointRequest != nil {
+		return json.Marshal(&src.AzureMonitorEndpointRequest)
+	}
+
+	if src.BigQueryEndpointRequest != nil {
+		return json.Marshal(&src.BigQueryEndpointRequest)
+	}
+
+	if src.DatadogEndpointRequest != nil {
+		return json.Marshal(&src.DatadogEndpointRequest)
+	}
+
+	if src.ElasticsearchEndpointRequest != nil {
+		return json.Marshal(&src.ElasticsearchEndpointRequest)
+	}
+
+	if src.HttpPostEndpointRequest != nil {
+		return json.Marshal(&src.HttpPostEndpointRequest)
+	}
+
+	if src.KafkaEndpointRequest != nil {
+		return json.Marshal(&src.KafkaEndpointRequest)
+	}
+
+	if src.QRadarEndpointRequest != nil {
+		return json.Marshal(&src.QRadarEndpointRequest)
+	}
+
+	if src.S3EndpointRequest != nil {
+		return json.Marshal(&src.S3EndpointRequest)
+	}
+
+	if src.SplunkEndpointRequest != nil {
+		return json.Marshal(&src.SplunkEndpointRequest)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *OutputRequest) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.AWSKinesisFirehoseEndpointRequest != nil {
+		return obj.AWSKinesisFirehoseEndpointRequest
+	}
+
+	if obj.AzureBlobStorageEndpointRequest != nil {
+		return obj.AzureBlobStorageEndpointRequest
+	}
+
+	if obj.AzureMonitorEndpointRequest != nil {
+		return obj.AzureMonitorEndpointRequest
+	}
+
+	if obj.BigQueryEndpointRequest != nil {
+		return obj.BigQueryEndpointRequest
+	}
+
+	if obj.DatadogEndpointRequest != nil {
+		return obj.DatadogEndpointRequest
+	}
+
+	if obj.ElasticsearchEndpointRequest != nil {
+		return obj.ElasticsearchEndpointRequest
+	}
+
+	if obj.HttpPostEndpointRequest != nil {
+		return obj.HttpPostEndpointRequest
+	}
+
+	if obj.KafkaEndpointRequest != nil {
+		return obj.KafkaEndpointRequest
+	}
+
+	if obj.QRadarEndpointRequest != nil {
+		return obj.QRadarEndpointRequest
+	}
+
+	if obj.S3EndpointRequest != nil {
+		return obj.S3EndpointRequest
+	}
+
+	if obj.SplunkEndpointRequest != nil {
+		return obj.SplunkEndpointRequest
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj OutputRequest) GetActualInstanceValue() (interface{}) {
+	if obj.AWSKinesisFirehoseEndpointRequest != nil {
+		return *obj.AWSKinesisFirehoseEndpointRequest
+	}
+
+	if obj.AzureBlobStorageEndpointRequest != nil {
+		return *obj.AzureBlobStorageEndpointRequest
+	}
+
+	if obj.AzureMonitorEndpointRequest != nil {
+		return *obj.AzureMonitorEndpointRequest
+	}
+
+	if obj.BigQueryEndpointRequest != nil {
+		return *obj.BigQueryEndpointRequest
+	}
+
+	if obj.DatadogEndpointRequest != nil {
+		return *obj.DatadogEndpointRequest
+	}
+
+	if obj.ElasticsearchEndpointRequest != nil {
+		return *obj.ElasticsearchEndpointRequest
+	}
+
+	if obj.HttpPostEndpointRequest != nil {
+		return *obj.HttpPostEndpointRequest
+	}
+
+	if obj.KafkaEndpointRequest != nil {
+		return *obj.KafkaEndpointRequest
+	}
+
+	if obj.QRadarEndpointRequest != nil {
+		return *obj.QRadarEndpointRequest
+	}
+
+	if obj.S3EndpointRequest != nil {
+		return *obj.S3EndpointRequest
+	}
+
+	if obj.SplunkEndpointRequest != nil {
+		return *obj.SplunkEndpointRequest
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableOutputRequest struct {

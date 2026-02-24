@@ -1,156 +1,141 @@
-# PatchedRequestPhaseRule
+# RequestPhaseRuleRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
+**Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Criteria** | Pointer to [**[][]ApplicationCriterionFieldRequest**]([]ApplicationCriterionFieldRequest.md) |  | [optional] 
-**Behaviors** | Pointer to [**[]RequestPhaseBehaviorRequest**](RequestPhaseBehaviorRequest.md) |  | [optional] 
+**Criteria** | [**[][]ApplicationCriterionFieldRequest**]([]ApplicationCriterionFieldRequest.md) |  | 
+**Behaviors** | [**[]RequestPhaseBehaviorRequest**](RequestPhaseBehaviorRequest.md) |  | 
 **Description** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
-### NewPatchedRequestPhaseRule
+### NewRequestPhaseRuleRequest
 
-`func NewPatchedRequestPhaseRule() *PatchedRequestPhaseRule`
+`func NewRequestPhaseRuleRequest(name string, criteria [][]ApplicationCriterionFieldRequest, behaviors []RequestPhaseBehaviorRequest, ) *RequestPhaseRuleRequest`
 
-NewPatchedRequestPhaseRule instantiates a new PatchedRequestPhaseRule object
+NewRequestPhaseRuleRequest instantiates a new RequestPhaseRuleRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewPatchedRequestPhaseRuleWithDefaults
+### NewRequestPhaseRuleRequestWithDefaults
 
-`func NewPatchedRequestPhaseRuleWithDefaults() *PatchedRequestPhaseRule`
+`func NewRequestPhaseRuleRequestWithDefaults() *RequestPhaseRuleRequest`
 
-NewPatchedRequestPhaseRuleWithDefaults instantiates a new PatchedRequestPhaseRule object
+NewRequestPhaseRuleRequestWithDefaults instantiates a new RequestPhaseRuleRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetName
 
-`func (o *PatchedRequestPhaseRule) GetName() string`
+`func (o *RequestPhaseRuleRequest) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *PatchedRequestPhaseRule) GetNameOk() (*string, bool)`
+`func (o *RequestPhaseRuleRequest) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *PatchedRequestPhaseRule) SetName(v string)`
+`func (o *RequestPhaseRuleRequest) SetName(v string)`
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *PatchedRequestPhaseRule) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetActive
 
-`func (o *PatchedRequestPhaseRule) GetActive() bool`
+`func (o *RequestPhaseRuleRequest) GetActive() bool`
 
 GetActive returns the Active field if non-nil, zero value otherwise.
 
 ### GetActiveOk
 
-`func (o *PatchedRequestPhaseRule) GetActiveOk() (*bool, bool)`
+`func (o *RequestPhaseRuleRequest) GetActiveOk() (*bool, bool)`
 
 GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetActive
 
-`func (o *PatchedRequestPhaseRule) SetActive(v bool)`
+`func (o *RequestPhaseRuleRequest) SetActive(v bool)`
 
 SetActive sets Active field to given value.
 
 ### HasActive
 
-`func (o *PatchedRequestPhaseRule) HasActive() bool`
+`func (o *RequestPhaseRuleRequest) HasActive() bool`
 
 HasActive returns a boolean if a field has been set.
 
 ### GetCriteria
 
-`func (o *PatchedRequestPhaseRule) GetCriteria() [][]ApplicationCriterionFieldRequest`
+`func (o *RequestPhaseRuleRequest) GetCriteria() [][]ApplicationCriterionFieldRequest`
 
 GetCriteria returns the Criteria field if non-nil, zero value otherwise.
 
 ### GetCriteriaOk
 
-`func (o *PatchedRequestPhaseRule) GetCriteriaOk() (*[][]ApplicationCriterionFieldRequest, bool)`
+`func (o *RequestPhaseRuleRequest) GetCriteriaOk() (*[][]ApplicationCriterionFieldRequest, bool)`
 
 GetCriteriaOk returns a tuple with the Criteria field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCriteria
 
-`func (o *PatchedRequestPhaseRule) SetCriteria(v [][]ApplicationCriterionFieldRequest)`
+`func (o *RequestPhaseRuleRequest) SetCriteria(v [][]ApplicationCriterionFieldRequest)`
 
 SetCriteria sets Criteria field to given value.
 
-### HasCriteria
-
-`func (o *PatchedRequestPhaseRule) HasCriteria() bool`
-
-HasCriteria returns a boolean if a field has been set.
 
 ### GetBehaviors
 
-`func (o *PatchedRequestPhaseRule) GetBehaviors() []RequestPhaseBehaviorRequest`
+`func (o *RequestPhaseRuleRequest) GetBehaviors() []RequestPhaseBehaviorRequest`
 
 GetBehaviors returns the Behaviors field if non-nil, zero value otherwise.
 
 ### GetBehaviorsOk
 
-`func (o *PatchedRequestPhaseRule) GetBehaviorsOk() (*[]RequestPhaseBehaviorRequest, bool)`
+`func (o *RequestPhaseRuleRequest) GetBehaviorsOk() (*[]RequestPhaseBehaviorRequest, bool)`
 
 GetBehaviorsOk returns a tuple with the Behaviors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBehaviors
 
-`func (o *PatchedRequestPhaseRule) SetBehaviors(v []RequestPhaseBehaviorRequest)`
+`func (o *RequestPhaseRuleRequest) SetBehaviors(v []RequestPhaseBehaviorRequest)`
 
 SetBehaviors sets Behaviors field to given value.
 
-### HasBehaviors
-
-`func (o *PatchedRequestPhaseRule) HasBehaviors() bool`
-
-HasBehaviors returns a boolean if a field has been set.
 
 ### GetDescription
 
-`func (o *PatchedRequestPhaseRule) GetDescription() string`
+`func (o *RequestPhaseRuleRequest) GetDescription() string`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *PatchedRequestPhaseRule) GetDescriptionOk() (*string, bool)`
+`func (o *RequestPhaseRuleRequest) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescription
 
-`func (o *PatchedRequestPhaseRule) SetDescription(v string)`
+`func (o *RequestPhaseRuleRequest) SetDescription(v string)`
 
 SetDescription sets Description field to given value.
 
 ### HasDescription
 
-`func (o *PatchedRequestPhaseRule) HasDescription() bool`
+`func (o *RequestPhaseRuleRequest) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
 

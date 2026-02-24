@@ -29,7 +29,7 @@ type CustomPage struct {
 	LastModified time.Time `json:"last_modified"`
 	Active *bool `json:"active,omitempty"`
 	ProductVersion string `json:"product_version"`
-	Pages []Page `json:"pages"`
+	Pages []PageBase `json:"pages"`
 }
 
 type _CustomPage CustomPage
@@ -38,7 +38,7 @@ type _CustomPage CustomPage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomPage(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, pages []Page) *CustomPage {
+func NewCustomPage(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, pages []PageBase) *CustomPage {
 	this := CustomPage{}
 	this.Id = id
 	this.Name = name
@@ -210,9 +210,9 @@ func (o *CustomPage) SetProductVersion(v string) {
 }
 
 // GetPages returns the Pages field value
-func (o *CustomPage) GetPages() []Page {
+func (o *CustomPage) GetPages() []PageBase {
 	if o == nil {
-		var ret []Page
+		var ret []PageBase
 		return ret
 	}
 
@@ -221,7 +221,7 @@ func (o *CustomPage) GetPages() []Page {
 
 // GetPagesOk returns a tuple with the Pages field value
 // and a boolean to check if the value has been set.
-func (o *CustomPage) GetPagesOk() ([]Page, bool) {
+func (o *CustomPage) GetPagesOk() ([]PageBase, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -229,7 +229,7 @@ func (o *CustomPage) GetPagesOk() ([]Page, bool) {
 }
 
 // SetPages sets field value
-func (o *CustomPage) SetPages(v []Page) {
+func (o *CustomPage) SetPages(v []PageBase) {
 	o.Pages = v
 }
 

@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **State** | Pointer to **string** |  | [optional] 
-**Data** | [**Connector2**](Connector2.md) |  | 
+**Data** | [**Connector**](Connector.md) |  | 
 
 ## Methods
 
 ### NewConnectorResponse
 
-`func NewConnectorResponse(data Connector2, ) *ConnectorResponse`
+`func NewConnectorResponse(data Connector, ) *ConnectorResponse`
 
 NewConnectorResponse instantiates a new ConnectorResponse object
 This constructor will assign default values to properties that have it defined,
@@ -53,20 +53,20 @@ HasState returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *ConnectorResponse) GetData() Connector2`
+`func (o *ConnectorResponse) GetData() Connector`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *ConnectorResponse) GetDataOk() (*Connector2, bool)`
+`func (o *ConnectorResponse) GetDataOk() (*Connector, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *ConnectorResponse) SetData(v Connector2)`
+`func (o *ConnectorResponse) SetData(v Connector)`
 
 SetData sets Data field to given value.
 

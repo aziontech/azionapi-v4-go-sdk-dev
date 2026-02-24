@@ -23,7 +23,7 @@ type PatchedRequestPhaseRule struct {
 	Name *string `json:"name,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	Criteria [][]ApplicationCriterionFieldRequest `json:"criteria,omitempty"`
-	Behaviors []RequestPhaseBehavior2 `json:"behaviors,omitempty"`
+	Behaviors []RequestPhaseBehaviorRequest `json:"behaviors,omitempty"`
 	Description *string `json:"description,omitempty"`
 }
 
@@ -141,9 +141,9 @@ func (o *PatchedRequestPhaseRule) SetCriteria(v [][]ApplicationCriterionFieldReq
 }
 
 // GetBehaviors returns the Behaviors field value if set, zero value otherwise.
-func (o *PatchedRequestPhaseRule) GetBehaviors() []RequestPhaseBehavior2 {
+func (o *PatchedRequestPhaseRule) GetBehaviors() []RequestPhaseBehaviorRequest {
 	if o == nil || IsNil(o.Behaviors) {
-		var ret []RequestPhaseBehavior2
+		var ret []RequestPhaseBehaviorRequest
 		return ret
 	}
 	return o.Behaviors
@@ -151,7 +151,7 @@ func (o *PatchedRequestPhaseRule) GetBehaviors() []RequestPhaseBehavior2 {
 
 // GetBehaviorsOk returns a tuple with the Behaviors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedRequestPhaseRule) GetBehaviorsOk() ([]RequestPhaseBehavior2, bool) {
+func (o *PatchedRequestPhaseRule) GetBehaviorsOk() ([]RequestPhaseBehaviorRequest, bool) {
 	if o == nil || IsNil(o.Behaviors) {
 		return nil, false
 	}
@@ -167,8 +167,8 @@ func (o *PatchedRequestPhaseRule) HasBehaviors() bool {
 	return false
 }
 
-// SetBehaviors gets a reference to the given []RequestPhaseBehavior2 and assigns it to the Behaviors field.
-func (o *PatchedRequestPhaseRule) SetBehaviors(v []RequestPhaseBehavior2) {
+// SetBehaviors gets a reference to the given []RequestPhaseBehaviorRequest and assigns it to the Behaviors field.
+func (o *PatchedRequestPhaseRule) SetBehaviors(v []RequestPhaseBehaviorRequest) {
 	o.Behaviors = v
 }
 

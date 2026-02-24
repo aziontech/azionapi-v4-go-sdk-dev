@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateConnector
 
-> ConnectorResponse CreateConnector(ctx).ConnectorRequest2(connectorRequest2).Execute()
+> ConnectorResponse CreateConnector(ctx).ConnectorRequest(connectorRequest).Execute()
 
 Create a Connector
 
@@ -34,11 +34,11 @@ import (
 )
 
 func main() {
-	connectorRequest2 := openapiclient.ConnectorRequest2{ConnectorHTTPRequest: openapiclient.NewConnectorHTTPRequest("Name_example", "Type_example", *openapiclient.NewConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // ConnectorRequest2 |  (optional)
+	connectorRequest := openapiclient.ConnectorRequest{ConnectorHTTPRequest: openapiclient.NewConnectorHTTPRequest("Name_example", "Type_example", *openapiclient.NewConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // ConnectorRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConnectorsAPI.CreateConnector(context.Background()).ConnectorRequest2(connectorRequest2).Execute()
+	resp, r, err := apiClient.ConnectorsAPI.CreateConnector(context.Background()).ConnectorRequest(connectorRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorsAPI.CreateConnector``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,7 +59,7 @@ Other parameters are passed through a pointer to a apiCreateConnectorRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connectorRequest2** | [**ConnectorRequest2**](ConnectorRequest2.md) |  | 
+ **connectorRequest** | [**ConnectorRequest**](ConnectorRequest.md) |  | 
 
 ### Return type
 
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateConnector
 
-> ConnectorResponse PartialUpdateConnector(ctx, connectorId).PatchedConnectorRequest2(patchedConnectorRequest2).Execute()
+> ConnectorResponse PartialUpdateConnector(ctx, connectorId).PatchedConnectorRequest(patchedConnectorRequest).Execute()
 
 Partially update a Connector
 
@@ -260,11 +260,11 @@ import (
 
 func main() {
 	connectorId := int64(789) // int64 | A unique integer value identifying the connector.
-	patchedConnectorRequest2 := openapiclient.PatchedConnectorRequest2{PatchedConnectorHTTPRequest: openapiclient.NewPatchedConnectorHTTPRequest("Type_example")} // PatchedConnectorRequest2 |  (optional)
+	patchedConnectorRequest := openapiclient.PatchedConnectorRequest{PatchedConnectorHTTPRequest: openapiclient.NewPatchedConnectorHTTPRequest("Type_example")} // PatchedConnectorRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConnectorsAPI.PartialUpdateConnector(context.Background(), connectorId).PatchedConnectorRequest2(patchedConnectorRequest2).Execute()
+	resp, r, err := apiClient.ConnectorsAPI.PartialUpdateConnector(context.Background(), connectorId).PatchedConnectorRequest(patchedConnectorRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorsAPI.PartialUpdateConnector``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -290,7 +290,7 @@ Other parameters are passed through a pointer to a apiPartialUpdateConnectorRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedConnectorRequest2** | [**PatchedConnectorRequest2**](PatchedConnectorRequest2.md) |  | 
+ **patchedConnectorRequest** | [**PatchedConnectorRequest**](PatchedConnectorRequest.md) |  | 
 
 ### Return type
 
@@ -384,7 +384,7 @@ Name | Type | Description  | Notes
 
 ## UpdateConnector
 
-> ConnectorResponse UpdateConnector(ctx, connectorId).ConnectorRequest2(connectorRequest2).Execute()
+> ConnectorResponse UpdateConnector(ctx, connectorId).ConnectorRequest(connectorRequest).Execute()
 
 Update a Connector
 
@@ -404,11 +404,11 @@ import (
 
 func main() {
 	connectorId := int64(789) // int64 | A unique integer value identifying the connector.
-	connectorRequest2 := openapiclient.ConnectorRequest2{ConnectorHTTPRequest: openapiclient.NewConnectorHTTPRequest("Name_example", "Type_example", *openapiclient.NewConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // ConnectorRequest2 |  (optional)
+	connectorRequest := openapiclient.ConnectorRequest{ConnectorHTTPRequest: openapiclient.NewConnectorHTTPRequest("Name_example", "Type_example", *openapiclient.NewConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // ConnectorRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConnectorsAPI.UpdateConnector(context.Background(), connectorId).ConnectorRequest2(connectorRequest2).Execute()
+	resp, r, err := apiClient.ConnectorsAPI.UpdateConnector(context.Background(), connectorId).ConnectorRequest(connectorRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorsAPI.UpdateConnector``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -434,7 +434,7 @@ Other parameters are passed through a pointer to a apiUpdateConnectorRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **connectorRequest2** | [**ConnectorRequest2**](ConnectorRequest2.md) |  | 
+ **connectorRequest** | [**ConnectorRequest**](ConnectorRequest.md) |  | 
 
 ### Return type
 

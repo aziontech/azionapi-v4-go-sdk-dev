@@ -12373,7 +12373,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RequestPhaseRule2"
+              $ref: "#/components/schemas/RequestPhaseRuleRequest"
         required: true
       responses:
         "201":
@@ -13048,7 +13048,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RequestPhaseRule2"
+              $ref: "#/components/schemas/RequestPhaseRuleRequest"
         required: true
       responses:
         "200":
@@ -17520,7 +17520,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ConnectorRequest2"
+              $ref: "#/components/schemas/ConnectorRequest"
       responses:
         "201":
           content:
@@ -17998,7 +17998,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PatchedConnectorRequest2"
+              $ref: "#/components/schemas/PatchedConnectorRequest"
       responses:
         "200":
           content:
@@ -18158,7 +18158,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ConnectorRequest2"
+              $ref: "#/components/schemas/ConnectorRequest"
       responses:
         "200":
           content:
@@ -64360,7 +64360,7 @@ components:
           type: array
         outputs:
           items:
-            $ref: "#/components/schemas/Output"
+            $ref: "#/components/schemas/OutputBase"
           type: array
       required:
       - id
@@ -64424,7 +64424,7 @@ components:
           type: array
         outputs:
           items:
-            $ref: "#/components/schemas/OutputRequest"
+            $ref: "#/components/schemas/OutputRequestBase"
           type: array
       required:
       - inputs
@@ -64788,100 +64788,6 @@ components:
       - type
       - use_tls
       title: KafkaEndpointRequest
-      type: object
-    Output:
-      additionalProperties: false
-      example:
-        attributes:
-          headers:
-            key: headers
-          log_line_separator: log_line_separator
-          payload_format: payload_format
-          type: type
-          url: https://openapi-generator.tech
-          max_size: 315634359
-        type: type
-      properties:
-        type:
-          description: |-
-            * `standard` - Standard HTTP/HTTPS POST
-            * `kafka` - Apache Kafka
-            * `s3` - Simple Storage Service (S3)
-            * `big_query` - Google BigQuery
-            * `elasticsearch` - Elasticsearch
-            * `splunk` - Splunk
-            * `aws_kinesis_firehose` - AWS Kinesis Data Firehose
-            * `datadog` - Datadog
-            * `qradar` - IBM QRadar
-            * `azure_monitor` - Azure Monitor
-            * `azure_blob_storage` - Azure Blob Storage
-          title: OutputTypeEnum
-          type: string
-          x-extensible-enum:
-          - standard
-          - kafka
-          - s3
-          - big_query
-          - elasticsearch
-          - splunk
-          - aws_kinesis_firehose
-          - datadog
-          - qradar
-          - azure_monitor
-          - azure_blob_storage
-        attributes:
-          $ref: "#/components/schemas/Output2"
-      required:
-      - attributes
-      - type
-      title: Output
-      type: object
-    OutputRequest:
-      additionalProperties: false
-      example:
-        attributes:
-          headers:
-            key: headers
-          log_line_separator: log_line_separator
-          payload_format: payload_format
-          type: type
-          url: https://openapi-generator.tech
-          max_size: 1294783612
-        type: type
-      properties:
-        type:
-          description: |-
-            * `standard` - Standard HTTP/HTTPS POST
-            * `kafka` - Apache Kafka
-            * `s3` - Simple Storage Service (S3)
-            * `big_query` - Google BigQuery
-            * `elasticsearch` - Elasticsearch
-            * `splunk` - Splunk
-            * `aws_kinesis_firehose` - AWS Kinesis Data Firehose
-            * `datadog` - Datadog
-            * `qradar` - IBM QRadar
-            * `azure_monitor` - Azure Monitor
-            * `azure_blob_storage` - Azure Blob Storage
-          title: OutputTypeEnum
-          type: string
-          x-extensible-enum:
-          - standard
-          - kafka
-          - s3
-          - big_query
-          - elasticsearch
-          - splunk
-          - aws_kinesis_firehose
-          - datadog
-          - qradar
-          - azure_monitor
-          - azure_blob_storage
-        attributes:
-          $ref: "#/components/schemas/OutputRequest2"
-      required:
-      - attributes
-      - type
-      title: OutputRequest
       type: object
     OutputTypeEnum:
       description: |-
@@ -65692,6 +65598,158 @@ components:
       - rate
       title: TransformSamplingRequest
       type: object
+    OutputBase:
+      additionalProperties: false
+      example:
+        attributes:
+          headers:
+            key: headers
+          log_line_separator: log_line_separator
+          payload_format: payload_format
+          type: type
+          url: https://openapi-generator.tech
+          max_size: 315634359
+        type: type
+      properties:
+        type:
+          description: |-
+            * `standard` - Standard HTTP/HTTPS POST
+            * `kafka` - Apache Kafka
+            * `s3` - Simple Storage Service (S3)
+            * `big_query` - Google BigQuery
+            * `elasticsearch` - Elasticsearch
+            * `splunk` - Splunk
+            * `aws_kinesis_firehose` - AWS Kinesis Data Firehose
+            * `datadog` - Datadog
+            * `qradar` - IBM QRadar
+            * `azure_monitor` - Azure Monitor
+            * `azure_blob_storage` - Azure Blob Storage
+          title: OutputTypeEnum
+          type: string
+          x-extensible-enum:
+          - standard
+          - kafka
+          - s3
+          - big_query
+          - elasticsearch
+          - splunk
+          - aws_kinesis_firehose
+          - datadog
+          - qradar
+          - azure_monitor
+          - azure_blob_storage
+        attributes:
+          $ref: "#/components/schemas/Output"
+      required:
+      - attributes
+      - type
+      title: OutputBase
+      type: object
+    Output:
+      additionalProperties: false
+      discriminator:
+        mapping:
+          standard: "#/components/schemas/HttpPostEndpoint"
+          kafka: "#/components/schemas/KafkaEndpoint"
+          s3: "#/components/schemas/S3Endpoint"
+          big_query: "#/components/schemas/BigQueryEndpoint"
+          elasticsearch: "#/components/schemas/ElasticsearchEndpoint"
+          aws_kinesis_firehose: "#/components/schemas/AWSKinesisFirehoseEndpoint"
+          datadog: "#/components/schemas/DatadogEndpoint"
+          qradar: "#/components/schemas/QRadarEndpoint"
+          azure_monitor: "#/components/schemas/AzureMonitorEndpoint"
+          azure_blob_storage: "#/components/schemas/AzureBlobStorageEndpoint"
+          splunk: "#/components/schemas/SplunkEndpoint"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/HttpPostEndpoint"
+      - $ref: "#/components/schemas/KafkaEndpoint"
+      - $ref: "#/components/schemas/S3Endpoint"
+      - $ref: "#/components/schemas/BigQueryEndpoint"
+      - $ref: "#/components/schemas/ElasticsearchEndpoint"
+      - $ref: "#/components/schemas/AWSKinesisFirehoseEndpoint"
+      - $ref: "#/components/schemas/DatadogEndpoint"
+      - $ref: "#/components/schemas/QRadarEndpoint"
+      - $ref: "#/components/schemas/AzureMonitorEndpoint"
+      - $ref: "#/components/schemas/AzureBlobStorageEndpoint"
+      - $ref: "#/components/schemas/SplunkEndpoint"
+      title: Output
+    OutputRequestBase:
+      additionalProperties: false
+      example:
+        attributes:
+          headers:
+            key: headers
+          log_line_separator: log_line_separator
+          payload_format: payload_format
+          type: type
+          url: https://openapi-generator.tech
+          max_size: 1294783612
+        type: type
+      properties:
+        type:
+          description: |-
+            * `standard` - Standard HTTP/HTTPS POST
+            * `kafka` - Apache Kafka
+            * `s3` - Simple Storage Service (S3)
+            * `big_query` - Google BigQuery
+            * `elasticsearch` - Elasticsearch
+            * `splunk` - Splunk
+            * `aws_kinesis_firehose` - AWS Kinesis Data Firehose
+            * `datadog` - Datadog
+            * `qradar` - IBM QRadar
+            * `azure_monitor` - Azure Monitor
+            * `azure_blob_storage` - Azure Blob Storage
+          title: OutputTypeEnum
+          type: string
+          x-extensible-enum:
+          - standard
+          - kafka
+          - s3
+          - big_query
+          - elasticsearch
+          - splunk
+          - aws_kinesis_firehose
+          - datadog
+          - qradar
+          - azure_monitor
+          - azure_blob_storage
+        attributes:
+          $ref: "#/components/schemas/OutputRequest"
+      required:
+      - attributes
+      - type
+      title: OutputRequestBase
+      type: object
+    OutputRequest:
+      additionalProperties: false
+      discriminator:
+        mapping:
+          standard: "#/components/schemas/HttpPostEndpointRequest"
+          kafka: "#/components/schemas/KafkaEndpointRequest"
+          s3: "#/components/schemas/S3EndpointRequest"
+          big_query: "#/components/schemas/BigQueryEndpointRequest"
+          elasticsearch: "#/components/schemas/ElasticsearchEndpointRequest"
+          aws_kinesis_firehose: "#/components/schemas/AWSKinesisFirehoseEndpointRequest"
+          datadog: "#/components/schemas/DatadogEndpointRequest"
+          qradar: "#/components/schemas/QRadarEndpointRequest"
+          azure_monitor: "#/components/schemas/AzureMonitorEndpointRequest"
+          azure_blob_storage: "#/components/schemas/AzureBlobStorageEndpointRequest"
+          splunk: "#/components/schemas/SplunkEndpointRequest"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/HttpPostEndpointRequest"
+      - $ref: "#/components/schemas/KafkaEndpointRequest"
+      - $ref: "#/components/schemas/S3EndpointRequest"
+      - $ref: "#/components/schemas/BigQueryEndpointRequest"
+      - $ref: "#/components/schemas/ElasticsearchEndpointRequest"
+      - $ref: "#/components/schemas/AWSKinesisFirehoseEndpointRequest"
+      - $ref: "#/components/schemas/DatadogEndpointRequest"
+      - $ref: "#/components/schemas/QRadarEndpointRequest"
+      - $ref: "#/components/schemas/AzureMonitorEndpointRequest"
+      - $ref: "#/components/schemas/AzureBlobStorageEndpointRequest"
+      - $ref: "#/components/schemas/SplunkEndpointRequest"
+      title: OutputRequest
     Input:
       $ref: "#/components/schemas/InputInputDataSourceAttributes"
     InputInputDataSourceAttributes:
@@ -65741,64 +65799,6 @@ components:
       - type
       title: InputShared
       type: object
-    Output2:
-      additionalProperties: false
-      discriminator:
-        mapping:
-          standard: "#/components/schemas/HttpPostEndpoint"
-          kafka: "#/components/schemas/KafkaEndpoint"
-          s3: "#/components/schemas/S3Endpoint"
-          big_query: "#/components/schemas/BigQueryEndpoint"
-          elasticsearch: "#/components/schemas/ElasticsearchEndpoint"
-          aws_kinesis_firehose: "#/components/schemas/AWSKinesisFirehoseEndpoint"
-          datadog: "#/components/schemas/DatadogEndpoint"
-          qradar: "#/components/schemas/QRadarEndpoint"
-          azure_monitor: "#/components/schemas/AzureMonitorEndpoint"
-          azure_blob_storage: "#/components/schemas/AzureBlobStorageEndpoint"
-          splunk: "#/components/schemas/SplunkEndpoint"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/HttpPostEndpoint"
-      - $ref: "#/components/schemas/KafkaEndpoint"
-      - $ref: "#/components/schemas/S3Endpoint"
-      - $ref: "#/components/schemas/BigQueryEndpoint"
-      - $ref: "#/components/schemas/ElasticsearchEndpoint"
-      - $ref: "#/components/schemas/AWSKinesisFirehoseEndpoint"
-      - $ref: "#/components/schemas/DatadogEndpoint"
-      - $ref: "#/components/schemas/QRadarEndpoint"
-      - $ref: "#/components/schemas/AzureMonitorEndpoint"
-      - $ref: "#/components/schemas/AzureBlobStorageEndpoint"
-      - $ref: "#/components/schemas/SplunkEndpoint"
-      title: Output2
-    OutputRequest2:
-      additionalProperties: false
-      discriminator:
-        mapping:
-          standard: "#/components/schemas/HttpPostEndpointRequest"
-          kafka: "#/components/schemas/KafkaEndpointRequest"
-          s3: "#/components/schemas/S3EndpointRequest"
-          big_query: "#/components/schemas/BigQueryEndpointRequest"
-          elasticsearch: "#/components/schemas/ElasticsearchEndpointRequest"
-          aws_kinesis_firehose: "#/components/schemas/AWSKinesisFirehoseEndpointRequest"
-          datadog: "#/components/schemas/DatadogEndpointRequest"
-          qradar: "#/components/schemas/QRadarEndpointRequest"
-          azure_monitor: "#/components/schemas/AzureMonitorEndpointRequest"
-          azure_blob_storage: "#/components/schemas/AzureBlobStorageEndpointRequest"
-          splunk: "#/components/schemas/SplunkEndpointRequest"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/HttpPostEndpointRequest"
-      - $ref: "#/components/schemas/KafkaEndpointRequest"
-      - $ref: "#/components/schemas/S3EndpointRequest"
-      - $ref: "#/components/schemas/BigQueryEndpointRequest"
-      - $ref: "#/components/schemas/ElasticsearchEndpointRequest"
-      - $ref: "#/components/schemas/AWSKinesisFirehoseEndpointRequest"
-      - $ref: "#/components/schemas/DatadogEndpointRequest"
-      - $ref: "#/components/schemas/QRadarEndpointRequest"
-      - $ref: "#/components/schemas/AzureMonitorEndpointRequest"
-      - $ref: "#/components/schemas/AzureBlobStorageEndpointRequest"
-      - $ref: "#/components/schemas/SplunkEndpointRequest"
-      title: OutputRequest2
     Transform:
       additionalProperties: false
       discriminator:
@@ -67733,50 +67733,6 @@ components:
       - if
       - or
       - and
-    Connector:
-      additionalProperties: false
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        last_editor:
-          maxLength: 250
-          minLength: 1
-          type: string
-        last_modified:
-          format: date-time
-          type: string
-        active:
-          type: boolean
-        product_version:
-          maxLength: 50
-          minLength: 3
-          type: string
-        type:
-          allOf:
-          - $ref: "#/components/schemas/OriginTypeEnum"
-          description: |-
-            Type of the connector
-
-            * `http` - HTTP
-            * `storage` - Storage
-            * `live_ingest` - Live Ingest
-        attributes:
-          $ref: "#/components/schemas/ConnectorStorageAttributes"
-      required:
-      - attributes
-      - id
-      - last_editor
-      - last_modified
-      - name
-      - product_version
-      - type
-      title: Connector
-      type: object
     ConnectorHTTP:
       additionalProperties: false
       example:
@@ -67949,32 +67905,6 @@ components:
       - type
       title: ConnectorHTTPRequest
       type: object
-    ConnectorRequest:
-      additionalProperties: false
-      properties:
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-        type:
-          allOf:
-          - $ref: "#/components/schemas/OriginTypeEnum"
-          description: |-
-            Type of the connector
-
-            * `http` - HTTP
-            * `storage` - Storage
-            * `live_ingest` - Live Ingest
-        attributes:
-          $ref: "#/components/schemas/ConnectorStorageAttributesRequest"
-      required:
-      - attributes
-      - name
-      - type
-      title: ConnectorRequest
-      type: object
     ConnectorStorageAttributes:
       additionalProperties: false
       properties:
@@ -68054,7 +67984,7 @@ components:
           type: string
         pages:
           items:
-            $ref: "#/components/schemas/Page"
+            $ref: "#/components/schemas/PageBase"
           type: array
       required:
       - id
@@ -68096,7 +68026,7 @@ components:
           type: boolean
         pages:
           items:
-            $ref: "#/components/schemas/PageRequest"
+            $ref: "#/components/schemas/PageRequestBase"
           type: array
       required:
       - name
@@ -70828,76 +70758,6 @@ components:
           type: object
       title: OriginShieldModuleRequest
       type: object
-    Page:
-      additionalProperties: false
-      example:
-        code: code
-        page:
-          attributes:
-            connector: 1294386359
-            custom_status_code: 397
-            ttl: 4622587
-            uri: uri
-          type: type
-      properties:
-        code:
-          description: |-
-            * `default` - default
-            * `400` - Bad Request
-            * `401` - Unauthorized
-            * `403` - Forbidden
-            * `404` - Not Found
-            * `405` - Method Not Allowed
-            * `406` - Not Acceptable
-            * `408` - Request Timeout
-            * `409` - Conflict
-            * `410` - Gone
-            * `411` - Length Required
-            * `414` - URI Too Long
-            * `415` - Unsupported Media Type
-            * `416` - Range Not Satisfiable
-            * `426` - Upgrade Required
-            * `429` - Too Many Requests
-            * `431` - Request Header Fields Too Large
-            * `500` - Internal Server Error
-            * `501` - Not Implemented
-            * `502` - Bad Gateway
-            * `503` - Service Unavailable
-            * `504` - Gateway Timeout
-            * `505` - HTTP Version Not Supported
-          title: CodeEnum
-          type: string
-          x-extensible-enum:
-          - default
-          - "400"
-          - "401"
-          - "403"
-          - "404"
-          - "405"
-          - "406"
-          - "408"
-          - "409"
-          - "410"
-          - "411"
-          - "414"
-          - "415"
-          - "416"
-          - "426"
-          - "429"
-          - "431"
-          - "500"
-          - "501"
-          - "502"
-          - "503"
-          - "504"
-          - "505"
-        page:
-          $ref: "#/components/schemas/PageConnector"
-      required:
-      - code
-      - page
-      title: Page
-      type: object
     PageConnector:
       additionalProperties: false
       example:
@@ -71005,76 +70865,6 @@ components:
       - attributes
       - type
       title: PageConnectorRequest
-      type: object
-    PageRequest:
-      additionalProperties: false
-      example:
-        code: code
-        page:
-          attributes:
-            connector: 171976545
-            custom_status_code: 173
-            ttl: 19008185
-            uri: uri
-          type: type
-      properties:
-        code:
-          description: |-
-            * `default` - default
-            * `400` - Bad Request
-            * `401` - Unauthorized
-            * `403` - Forbidden
-            * `404` - Not Found
-            * `405` - Method Not Allowed
-            * `406` - Not Acceptable
-            * `408` - Request Timeout
-            * `409` - Conflict
-            * `410` - Gone
-            * `411` - Length Required
-            * `414` - URI Too Long
-            * `415` - Unsupported Media Type
-            * `416` - Range Not Satisfiable
-            * `426` - Upgrade Required
-            * `429` - Too Many Requests
-            * `431` - Request Header Fields Too Large
-            * `500` - Internal Server Error
-            * `501` - Not Implemented
-            * `502` - Bad Gateway
-            * `503` - Service Unavailable
-            * `504` - Gateway Timeout
-            * `505` - HTTP Version Not Supported
-          title: CodeEnum
-          type: string
-          x-extensible-enum:
-          - default
-          - "400"
-          - "401"
-          - "403"
-          - "404"
-          - "405"
-          - "406"
-          - "408"
-          - "409"
-          - "410"
-          - "411"
-          - "414"
-          - "415"
-          - "416"
-          - "426"
-          - "429"
-          - "431"
-          - "500"
-          - "501"
-          - "502"
-          - "503"
-          - "504"
-          - "505"
-        page:
-          $ref: "#/components/schemas/PageConnectorRequest"
-      required:
-      - code
-      - page
-      title: PageRequest
       type: object
     PaginatedApplicationList:
       additionalProperties: false
@@ -73452,30 +73242,6 @@ components:
       - type
       title: PatchedConnectorHTTPRequest
       type: object
-    PatchedConnectorRequest:
-      additionalProperties: false
-      properties:
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-        type:
-          allOf:
-          - $ref: "#/components/schemas/OriginTypeEnum"
-          description: |-
-            Type of the connector
-
-            * `http` - HTTP
-            * `storage` - Storage
-            * `live_ingest` - Live Ingest
-        attributes:
-          $ref: "#/components/schemas/ConnectorStorageAttributesRequest"
-      required:
-      - type
-      title: PatchedConnectorRequest
-      type: object
     PatchedCustomPageRequest:
       additionalProperties: false
       example:
@@ -73507,7 +73273,7 @@ components:
           type: boolean
         pages:
           items:
-            $ref: "#/components/schemas/PageRequest"
+            $ref: "#/components/schemas/PageRequestBase"
           type: array
       title: PatchedCustomPageRequest
       type: object
@@ -74524,6 +74290,37 @@ components:
       - $ref: "#/components/schemas/BehaviorArgs"
       - $ref: "#/components/schemas/BehaviorCapture"
       title: RequestPhaseBehavior
+    RequestPhaseBehaviorRequest:
+      additionalProperties: false
+      discriminator:
+        mapping:
+          deny: "#/components/schemas/BehaviorNoArgs"
+          no_content: "#/components/schemas/BehaviorNoArgs"
+          deliver: "#/components/schemas/BehaviorNoArgs"
+          finish_request_phase: "#/components/schemas/BehaviorNoArgs"
+          forward_cookies: "#/components/schemas/BehaviorNoArgs"
+          optimize_images: "#/components/schemas/BehaviorNoArgs"
+          bypass_cache: "#/components/schemas/BehaviorNoArgs"
+          enable_gzip: "#/components/schemas/BehaviorNoArgs"
+          redirect_http_to_https: "#/components/schemas/BehaviorNoArgs"
+          redirect_to_301: "#/components/schemas/BehaviorArgs"
+          redirect_to_302: "#/components/schemas/BehaviorArgs"
+          rewrite_request: "#/components/schemas/BehaviorArgs"
+          add_request_header: "#/components/schemas/BehaviorArgs"
+          filter_request_header: "#/components/schemas/BehaviorArgs"
+          add_request_cookie: "#/components/schemas/BehaviorArgs"
+          filter_request_cookie: "#/components/schemas/BehaviorArgs"
+          set_origin: "#/components/schemas/BehaviorArgs"
+          run_function: "#/components/schemas/BehaviorArgs"
+          set_connector: "#/components/schemas/BehaviorArgs"
+          set_cache_policy: "#/components/schemas/BehaviorArgs"
+          capture_match_groups: "#/components/schemas/BehaviorCapture"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/BehaviorNoArgs"
+      - $ref: "#/components/schemas/BehaviorArgs"
+      - $ref: "#/components/schemas/BehaviorCapture"
+      title: RequestPhaseBehaviorRequest
     RequestPhaseRule:
       additionalProperties: false
       example:
@@ -74693,6 +74490,152 @@ components:
       - name
       - order
       title: RequestPhaseRule
+      type: object
+    RequestPhaseRuleRequest:
+      additionalProperties: false
+      example:
+        criteria:
+        - - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+        - - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+        - - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+        - - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+        - - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+          - argument: "{}"
+            conditional: conditional
+            variable: variable
+            operator: operator
+        behaviors:
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        - type: type
+        name: name
+        active: true
+        description: description
+      properties:
+        name:
+          maxLength: 250
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        criteria:
+          items:
+            items:
+              $ref: "#/components/schemas/ApplicationCriterionFieldRequest"
+            maxItems: 10
+            minItems: 1
+            type: array
+          maxItems: 5
+          minItems: 1
+          type: array
+        behaviors:
+          items:
+            $ref: "#/components/schemas/RequestPhaseBehaviorRequest"
+          maxItems: 10
+          minItems: 1
+          type: array
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+      required:
+      - behaviors
+      - criteria
+      - name
+      title: RequestPhaseRuleRequest
       type: object
     RequestPhaseRuleResponse:
       additionalProperties: false
@@ -77010,6 +76953,280 @@ components:
       - asn
       - countries
       - ip_cidr
+    ConnectorBase:
+      additionalProperties: false
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        last_editor:
+          maxLength: 250
+          minLength: 1
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        active:
+          type: boolean
+        product_version:
+          maxLength: 50
+          minLength: 3
+          type: string
+        type:
+          allOf:
+          - $ref: "#/components/schemas/OriginTypeEnum"
+          description: |-
+            Type of the connector
+
+            * `http` - HTTP
+            * `storage` - Storage
+            * `live_ingest` - Live Ingest
+        attributes:
+          $ref: "#/components/schemas/ConnectorStorageAttributes"
+      required:
+      - attributes
+      - id
+      - last_editor
+      - last_modified
+      - name
+      - product_version
+      - type
+      title: ConnectorBase
+      type: object
+    Connector:
+      additionalProperties: false
+      discriminator:
+        mapping:
+          http: "#/components/schemas/ConnectorHTTP"
+          storage: "#/components/schemas/ConnectorBase"
+          live_ingest: "#/components/schemas/ConnectorBase"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/ConnectorHTTP"
+      - $ref: "#/components/schemas/ConnectorBase"
+      title: Connector
+    ConnectorRequestBase:
+      additionalProperties: false
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        type:
+          allOf:
+          - $ref: "#/components/schemas/OriginTypeEnum"
+          description: |-
+            Type of the connector
+
+            * `http` - HTTP
+            * `storage` - Storage
+            * `live_ingest` - Live Ingest
+        attributes:
+          $ref: "#/components/schemas/ConnectorStorageAttributesRequest"
+      required:
+      - attributes
+      - name
+      - type
+      title: ConnectorRequestBase
+      type: object
+    ConnectorRequest:
+      additionalProperties: false
+      discriminator:
+        mapping:
+          http: "#/components/schemas/ConnectorHTTPRequest"
+          storage: "#/components/schemas/ConnectorRequestBase"
+          live_ingest: "#/components/schemas/ConnectorRequestBase"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/ConnectorHTTPRequest"
+      - $ref: "#/components/schemas/ConnectorRequestBase"
+      title: ConnectorRequest
+    PageBase:
+      additionalProperties: false
+      example:
+        code: code
+        page:
+          attributes:
+            connector: 1294386359
+            custom_status_code: 397
+            ttl: 4622587
+            uri: uri
+          type: type
+      properties:
+        code:
+          description: |-
+            * `default` - default
+            * `400` - Bad Request
+            * `401` - Unauthorized
+            * `403` - Forbidden
+            * `404` - Not Found
+            * `405` - Method Not Allowed
+            * `406` - Not Acceptable
+            * `408` - Request Timeout
+            * `409` - Conflict
+            * `410` - Gone
+            * `411` - Length Required
+            * `414` - URI Too Long
+            * `415` - Unsupported Media Type
+            * `416` - Range Not Satisfiable
+            * `426` - Upgrade Required
+            * `429` - Too Many Requests
+            * `431` - Request Header Fields Too Large
+            * `500` - Internal Server Error
+            * `501` - Not Implemented
+            * `502` - Bad Gateway
+            * `503` - Service Unavailable
+            * `504` - Gateway Timeout
+            * `505` - HTTP Version Not Supported
+          title: CodeEnum
+          type: string
+          x-extensible-enum:
+          - default
+          - "400"
+          - "401"
+          - "403"
+          - "404"
+          - "405"
+          - "406"
+          - "408"
+          - "409"
+          - "410"
+          - "411"
+          - "414"
+          - "415"
+          - "416"
+          - "426"
+          - "429"
+          - "431"
+          - "500"
+          - "501"
+          - "502"
+          - "503"
+          - "504"
+          - "505"
+        page:
+          $ref: "#/components/schemas/PageConnector"
+      required:
+      - code
+      - page
+      title: PageBase
+      type: object
+    Page:
+      $ref: "#/components/schemas/PageConnector"
+    PageRequestBase:
+      additionalProperties: false
+      example:
+        code: code
+        page:
+          attributes:
+            connector: 171976545
+            custom_status_code: 173
+            ttl: 19008185
+            uri: uri
+          type: type
+      properties:
+        code:
+          description: |-
+            * `default` - default
+            * `400` - Bad Request
+            * `401` - Unauthorized
+            * `403` - Forbidden
+            * `404` - Not Found
+            * `405` - Method Not Allowed
+            * `406` - Not Acceptable
+            * `408` - Request Timeout
+            * `409` - Conflict
+            * `410` - Gone
+            * `411` - Length Required
+            * `414` - URI Too Long
+            * `415` - Unsupported Media Type
+            * `416` - Range Not Satisfiable
+            * `426` - Upgrade Required
+            * `429` - Too Many Requests
+            * `431` - Request Header Fields Too Large
+            * `500` - Internal Server Error
+            * `501` - Not Implemented
+            * `502` - Bad Gateway
+            * `503` - Service Unavailable
+            * `504` - Gateway Timeout
+            * `505` - HTTP Version Not Supported
+          title: CodeEnum
+          type: string
+          x-extensible-enum:
+          - default
+          - "400"
+          - "401"
+          - "403"
+          - "404"
+          - "405"
+          - "406"
+          - "408"
+          - "409"
+          - "410"
+          - "411"
+          - "414"
+          - "415"
+          - "416"
+          - "426"
+          - "429"
+          - "431"
+          - "500"
+          - "501"
+          - "502"
+          - "503"
+          - "504"
+          - "505"
+        page:
+          $ref: "#/components/schemas/PageConnectorRequest"
+      required:
+      - code
+      - page
+      title: PageRequestBase
+      type: object
+    PageRequest:
+      $ref: "#/components/schemas/PageConnectorRequest"
+    PatchedConnectorRequestBase:
+      additionalProperties: false
+      properties:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+        type:
+          allOf:
+          - $ref: "#/components/schemas/OriginTypeEnum"
+          description: |-
+            Type of the connector
+
+            * `http` - HTTP
+            * `storage` - Storage
+            * `live_ingest` - Live Ingest
+        attributes:
+          $ref: "#/components/schemas/ConnectorStorageAttributesRequest"
+      required:
+      - type
+      title: PatchedConnectorRequestBase
+      type: object
+    PatchedConnectorRequest:
+      additionalProperties: false
+      discriminator:
+        mapping:
+          http: "#/components/schemas/PatchedConnectorHTTPRequest"
+          storage: "#/components/schemas/PatchedConnectorRequestBase"
+          live_ingest: "#/components/schemas/PatchedConnectorRequestBase"
+        propertyName: type
+      oneOf:
+      - $ref: "#/components/schemas/PatchedConnectorHTTPRequest"
+      - $ref: "#/components/schemas/PatchedConnectorRequestBase"
+      title: PatchedConnectorRequest
     ApplicationRequestPhaseRuleEngineOrder:
       additionalProperties: false
       example:
@@ -77028,30 +77245,6 @@ components:
       - order
       title: ApplicationRequestPhaseRuleEngineOrder
       type: object
-    Connector2:
-      additionalProperties: false
-      discriminator:
-        mapping:
-          http: "#/components/schemas/ConnectorHTTP"
-          storage: "#/components/schemas/Connector"
-          live_ingest: "#/components/schemas/Connector"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/ConnectorHTTP"
-      - $ref: "#/components/schemas/Connector"
-      title: Connector2
-    ConnectorRequest2:
-      additionalProperties: false
-      discriminator:
-        mapping:
-          http: "#/components/schemas/ConnectorHTTPRequest"
-          storage: "#/components/schemas/ConnectorRequest"
-          live_ingest: "#/components/schemas/ConnectorRequest"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/ConnectorHTTPRequest"
-      - $ref: "#/components/schemas/ConnectorRequest"
-      title: ConnectorRequest2
     ConnectorResponse:
       additionalProperties: false
       example:
@@ -77084,7 +77277,7 @@ components:
           minLength: 1
           type: string
         data:
-          $ref: "#/components/schemas/Connector2"
+          $ref: "#/components/schemas/Connector"
       required:
       - data
       title: ConnectorResponse
@@ -77867,10 +78060,6 @@ components:
       description: "Can be one of: integer, string"
       title: FirewallCriterionArgumentRequest
       type: string
-    Page2:
-      $ref: "#/components/schemas/PageConnector"
-    PageRequest2:
-      $ref: "#/components/schemas/PageConnectorRequest"
     PaginatedConnectorList:
       additionalProperties: false
       example:
@@ -77966,22 +78155,10 @@ components:
           type: string
         results:
           items:
-            $ref: "#/components/schemas/Connector2"
+            $ref: "#/components/schemas/Connector"
           type: array
       title: PaginatedConnectorList
       type: object
-    PatchedConnectorRequest2:
-      additionalProperties: false
-      discriminator:
-        mapping:
-          http: "#/components/schemas/PatchedConnectorHTTPRequest"
-          storage: "#/components/schemas/PatchedConnectorRequest"
-          live_ingest: "#/components/schemas/PatchedConnectorRequest"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/PatchedConnectorHTTPRequest"
-      - $ref: "#/components/schemas/PatchedConnectorRequest"
-      title: PatchedConnectorRequest2
     PatchedRequestPhaseRule:
       additionalProperties: false
       example:
@@ -78114,7 +78291,7 @@ components:
           type: array
         behaviors:
           items:
-            $ref: "#/components/schemas/RequestPhaseBehavior2"
+            $ref: "#/components/schemas/RequestPhaseBehaviorRequest"
           maxItems: 10
           minItems: 1
           type: array
@@ -78123,183 +78300,6 @@ components:
           minLength: 0
           type: string
       title: PatchedRequestPhaseRule
-      type: object
-    RequestPhaseBehavior2:
-      additionalProperties: false
-      discriminator:
-        mapping:
-          deny: "#/components/schemas/BehaviorNoArgs"
-          no_content: "#/components/schemas/BehaviorNoArgs"
-          deliver: "#/components/schemas/BehaviorNoArgs"
-          finish_request_phase: "#/components/schemas/BehaviorNoArgs"
-          forward_cookies: "#/components/schemas/BehaviorNoArgs"
-          optimize_images: "#/components/schemas/BehaviorNoArgs"
-          bypass_cache: "#/components/schemas/BehaviorNoArgs"
-          enable_gzip: "#/components/schemas/BehaviorNoArgs"
-          redirect_http_to_https: "#/components/schemas/BehaviorNoArgs"
-          redirect_to_301: "#/components/schemas/BehaviorArgs"
-          redirect_to_302: "#/components/schemas/BehaviorArgs"
-          rewrite_request: "#/components/schemas/BehaviorArgs"
-          add_request_header: "#/components/schemas/BehaviorArgs"
-          filter_request_header: "#/components/schemas/BehaviorArgs"
-          add_request_cookie: "#/components/schemas/BehaviorArgs"
-          filter_request_cookie: "#/components/schemas/BehaviorArgs"
-          set_origin: "#/components/schemas/BehaviorArgs"
-          run_function: "#/components/schemas/BehaviorArgs"
-          set_connector: "#/components/schemas/BehaviorArgs"
-          set_cache_policy: "#/components/schemas/BehaviorArgs"
-          capture_match_groups: "#/components/schemas/BehaviorCapture"
-        propertyName: type
-      oneOf:
-      - $ref: "#/components/schemas/BehaviorNoArgs"
-      - $ref: "#/components/schemas/BehaviorArgs"
-      - $ref: "#/components/schemas/BehaviorCapture"
-      title: RequestPhaseBehavior2
-    RequestPhaseRule2:
-      additionalProperties: false
-      example:
-        criteria:
-        - - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-        - - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-        - - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-        - - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-        - - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-          - argument: "{}"
-            conditional: conditional
-            variable: variable
-            operator: operator
-        behaviors:
-        - type: type
-        - type: type
-        - type: type
-        - type: type
-        - type: type
-        name: name
-        active: true
-        description: description
-      properties:
-        name:
-          maxLength: 250
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-        criteria:
-          items:
-            items:
-              $ref: "#/components/schemas/ApplicationCriterionFieldRequest"
-            maxItems: 10
-            minItems: 1
-            type: array
-          maxItems: 5
-          minItems: 1
-          type: array
-        behaviors:
-          items:
-            $ref: "#/components/schemas/RequestPhaseBehavior2"
-          maxItems: 10
-          minItems: 1
-          type: array
-        description:
-          maxLength: 1000
-          minLength: 0
-          type: string
-      required:
-      - behaviors
-      - criteria
-      - name
-      title: RequestPhaseRule2
       type: object
     WAFExceptionCondition:
       additionalProperties: false

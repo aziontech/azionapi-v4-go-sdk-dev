@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateApplicationRequestRule
 
-> RequestPhaseRuleResponse CreateApplicationRequestRule(ctx, applicationId).RequestPhaseRule2(requestPhaseRule2).Execute()
+> RequestPhaseRuleResponse CreateApplicationRequestRule(ctx, applicationId).RequestPhaseRuleRequest(requestPhaseRuleRequest).Execute()
 
 Create an Application Request Rule
 
@@ -36,11 +36,11 @@ import (
 
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	requestPhaseRule2 := *openapiclient.NewRequestPhaseRule2("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.RequestPhaseBehavior2{openapiclient.RequestPhaseBehavior2{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes("Value_example"))}}) // RequestPhaseRule2 | 
+	requestPhaseRuleRequest := *openapiclient.NewRequestPhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.RequestPhaseBehaviorRequest{openapiclient.RequestPhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes("Value_example"))}}) // RequestPhaseRuleRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.CreateApplicationRequestRule(context.Background(), applicationId).RequestPhaseRule2(requestPhaseRule2).Execute()
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.CreateApplicationRequestRule(context.Background(), applicationId).RequestPhaseRuleRequest(requestPhaseRuleRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.CreateApplicationRequestRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,7 +66,7 @@ Other parameters are passed through a pointer to a apiCreateApplicationRequestRu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **requestPhaseRule2** | [**RequestPhaseRule2**](RequestPhaseRule2.md) |  | 
+ **requestPhaseRuleRequest** | [**RequestPhaseRuleRequest**](RequestPhaseRuleRequest.md) |  | 
 
 ### Return type
 
@@ -408,7 +408,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApplicationRequestRule
 
-> RequestPhaseRuleResponse UpdateApplicationRequestRule(ctx, applicationId, requestRuleId).RequestPhaseRule2(requestPhaseRule2).Execute()
+> RequestPhaseRuleResponse UpdateApplicationRequestRule(ctx, applicationId, requestRuleId).RequestPhaseRuleRequest(requestPhaseRuleRequest).Execute()
 
 Update an Application Request Rule
 
@@ -429,11 +429,11 @@ import (
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	requestPhaseRule2 := *openapiclient.NewRequestPhaseRule2("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.RequestPhaseBehavior2{openapiclient.RequestPhaseBehavior2{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes("Value_example"))}}) // RequestPhaseRule2 | 
+	requestPhaseRuleRequest := *openapiclient.NewRequestPhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.RequestPhaseBehaviorRequest{openapiclient.RequestPhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes("Value_example"))}}) // RequestPhaseRuleRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ApplicationsRequestRulesAPI.UpdateApplicationRequestRule(context.Background(), applicationId, requestRuleId).RequestPhaseRule2(requestPhaseRule2).Execute()
+	resp, r, err := apiClient.ApplicationsRequestRulesAPI.UpdateApplicationRequestRule(context.Background(), applicationId, requestRuleId).RequestPhaseRuleRequest(requestPhaseRuleRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsRequestRulesAPI.UpdateApplicationRequestRule``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -461,7 +461,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **requestPhaseRule2** | [**RequestPhaseRule2**](RequestPhaseRule2.md) |  | 
+ **requestPhaseRuleRequest** | [**RequestPhaseRuleRequest**](RequestPhaseRuleRequest.md) |  | 
 
 ### Return type
 

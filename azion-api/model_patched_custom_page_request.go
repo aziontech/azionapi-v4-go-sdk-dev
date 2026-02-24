@@ -22,7 +22,7 @@ var _ MappedNullable = &PatchedCustomPageRequest{}
 type PatchedCustomPageRequest struct {
 	Name *string `json:"name,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	Pages []PageRequest `json:"pages,omitempty"`
+	Pages []PageRequestBase `json:"pages,omitempty"`
 }
 
 // NewPatchedCustomPageRequest instantiates a new PatchedCustomPageRequest object
@@ -107,9 +107,9 @@ func (o *PatchedCustomPageRequest) SetActive(v bool) {
 }
 
 // GetPages returns the Pages field value if set, zero value otherwise.
-func (o *PatchedCustomPageRequest) GetPages() []PageRequest {
+func (o *PatchedCustomPageRequest) GetPages() []PageRequestBase {
 	if o == nil || IsNil(o.Pages) {
-		var ret []PageRequest
+		var ret []PageRequestBase
 		return ret
 	}
 	return o.Pages
@@ -117,7 +117,7 @@ func (o *PatchedCustomPageRequest) GetPages() []PageRequest {
 
 // GetPagesOk returns a tuple with the Pages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedCustomPageRequest) GetPagesOk() ([]PageRequest, bool) {
+func (o *PatchedCustomPageRequest) GetPagesOk() ([]PageRequestBase, bool) {
 	if o == nil || IsNil(o.Pages) {
 		return nil, false
 	}
@@ -133,8 +133,8 @@ func (o *PatchedCustomPageRequest) HasPages() bool {
 	return false
 }
 
-// SetPages gets a reference to the given []PageRequest and assigns it to the Pages field.
-func (o *PatchedCustomPageRequest) SetPages(v []PageRequest) {
+// SetPages gets a reference to the given []PageRequestBase and assigns it to the Pages field.
+func (o *PatchedCustomPageRequest) SetPages(v []PageRequestBase) {
 	o.Pages = v
 }
 

@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequest{*openapiclient.NewPageRequest("Code_example", *openapiclient.NewPageConnectorRequest("Type_example", *openapiclient.NewPageConnectorAttributesRequest(int64(123))))}) // CustomPageRequest | 
+	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequestBase{*openapiclient.NewPageRequestBase("Code_example", *openapiclient.NewPageConnectorRequest("Type_example", *openapiclient.NewPageConnectorAttributesRequest(int64(123))))}) // CustomPageRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -402,7 +402,7 @@ import (
 
 func main() {
 	customPageId := int64(789) // int64 | A unique integer value identifying the custom page.
-	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequest{*openapiclient.NewPageRequest("Code_example", *openapiclient.NewPageConnectorRequest("Type_example", *openapiclient.NewPageConnectorAttributesRequest(int64(123))))}) // CustomPageRequest | 
+	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequestBase{*openapiclient.NewPageRequestBase("Code_example", *openapiclient.NewPageConnectorRequest("Type_example", *openapiclient.NewPageConnectorAttributesRequest(int64(123))))}) // CustomPageRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

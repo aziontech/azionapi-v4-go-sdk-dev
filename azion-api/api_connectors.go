@@ -28,11 +28,11 @@ type ConnectorsAPIService service
 type ApiCreateConnectorRequest struct {
 	ctx context.Context
 	ApiService *ConnectorsAPIService
-	connectorRequest2 *ConnectorRequest2
+	connectorRequest *ConnectorRequest
 }
 
-func (r ApiCreateConnectorRequest) ConnectorRequest2(connectorRequest2 ConnectorRequest2) ApiCreateConnectorRequest {
-	r.connectorRequest2 = &connectorRequest2
+func (r ApiCreateConnectorRequest) ConnectorRequest(connectorRequest ConnectorRequest) ApiCreateConnectorRequest {
+	r.connectorRequest = &connectorRequest
 	return r
 }
 
@@ -94,7 +94,7 @@ func (a *ConnectorsAPIService) CreateConnectorExecute(r ApiCreateConnectorReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.connectorRequest2
+	localVarPostBody = r.connectorRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -761,11 +761,11 @@ type ApiPartialUpdateConnectorRequest struct {
 	ctx context.Context
 	ApiService *ConnectorsAPIService
 	connectorId int64
-	patchedConnectorRequest2 *PatchedConnectorRequest2
+	patchedConnectorRequest *PatchedConnectorRequest
 }
 
-func (r ApiPartialUpdateConnectorRequest) PatchedConnectorRequest2(patchedConnectorRequest2 PatchedConnectorRequest2) ApiPartialUpdateConnectorRequest {
-	r.patchedConnectorRequest2 = &patchedConnectorRequest2
+func (r ApiPartialUpdateConnectorRequest) PatchedConnectorRequest(patchedConnectorRequest PatchedConnectorRequest) ApiPartialUpdateConnectorRequest {
+	r.patchedConnectorRequest = &patchedConnectorRequest
 	return r
 }
 
@@ -830,7 +830,7 @@ func (a *ConnectorsAPIService) PartialUpdateConnectorExecute(r ApiPartialUpdateC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedConnectorRequest2
+	localVarPostBody = r.patchedConnectorRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1187,11 +1187,11 @@ type ApiUpdateConnectorRequest struct {
 	ctx context.Context
 	ApiService *ConnectorsAPIService
 	connectorId int64
-	connectorRequest2 *ConnectorRequest2
+	connectorRequest *ConnectorRequest
 }
 
-func (r ApiUpdateConnectorRequest) ConnectorRequest2(connectorRequest2 ConnectorRequest2) ApiUpdateConnectorRequest {
-	r.connectorRequest2 = &connectorRequest2
+func (r ApiUpdateConnectorRequest) ConnectorRequest(connectorRequest ConnectorRequest) ApiUpdateConnectorRequest {
+	r.connectorRequest = &connectorRequest
 	return r
 }
 
@@ -1256,7 +1256,7 @@ func (a *ConnectorsAPIService) UpdateConnectorExecute(r ApiUpdateConnectorReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.connectorRequest2
+	localVarPostBody = r.connectorRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

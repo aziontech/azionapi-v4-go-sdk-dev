@@ -32,7 +32,7 @@ type PaginatedConnectorList struct {
 	Next NullableString `json:"next,omitempty"`
 	// URL to the previous page of results
 	Previous NullableString `json:"previous,omitempty"`
-	Results []Connector2 `json:"results,omitempty"`
+	Results []Connector `json:"results,omitempty"`
 }
 
 // NewPaginatedConnectorList instantiates a new PaginatedConnectorList object
@@ -265,9 +265,9 @@ func (o *PaginatedConnectorList) UnsetPrevious() {
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *PaginatedConnectorList) GetResults() []Connector2 {
+func (o *PaginatedConnectorList) GetResults() []Connector {
 	if o == nil || IsNil(o.Results) {
-		var ret []Connector2
+		var ret []Connector
 		return ret
 	}
 	return o.Results
@@ -275,7 +275,7 @@ func (o *PaginatedConnectorList) GetResults() []Connector2 {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedConnectorList) GetResultsOk() ([]Connector2, bool) {
+func (o *PaginatedConnectorList) GetResultsOk() ([]Connector, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -291,8 +291,8 @@ func (o *PaginatedConnectorList) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []Connector2 and assigns it to the Results field.
-func (o *PaginatedConnectorList) SetResults(v []Connector2) {
+// SetResults gets a reference to the given []Connector and assigns it to the Results field.
+func (o *PaginatedConnectorList) SetResults(v []Connector) {
 	o.Results = v
 }
 
