@@ -28,8 +28,7 @@ type ApplicationCriterionFieldRequest struct {
 	Variable string `json:"variable"`
 	// * `does_not_exist` - does_not_exist * `does_not_match` - does_not_match * `does_not_start_with` - does_not_start_with * `exists` - exists * `is_equal` - is_equal * `is_in_list` - is_in_list * `is_not_equal` - is_not_equal * `is_not_in_list` - is_not_in_list * `matches` - matches * `starts_with` - starts_with
 	Operator string `json:"operator"`
-	// Can be one of: integer, string
-	Argument NullableString `json:"argument,omitempty"`
+	Argument NullableApplicationCriterionArgumentRequest `json:"argument,omitempty"`
 }
 
 type _ApplicationCriterionFieldRequest ApplicationCriterionFieldRequest
@@ -127,9 +126,9 @@ func (o *ApplicationCriterionFieldRequest) SetOperator(v string) {
 }
 
 // GetArgument returns the Argument field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ApplicationCriterionFieldRequest) GetArgument() string {
+func (o *ApplicationCriterionFieldRequest) GetArgument() ApplicationCriterionArgumentRequest {
 	if o == nil || IsNil(o.Argument.Get()) {
-		var ret string
+		var ret ApplicationCriterionArgumentRequest
 		return ret
 	}
 	return *o.Argument.Get()
@@ -138,7 +137,7 @@ func (o *ApplicationCriterionFieldRequest) GetArgument() string {
 // GetArgumentOk returns a tuple with the Argument field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApplicationCriterionFieldRequest) GetArgumentOk() (*string, bool) {
+func (o *ApplicationCriterionFieldRequest) GetArgumentOk() (*ApplicationCriterionArgumentRequest, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -154,8 +153,8 @@ func (o *ApplicationCriterionFieldRequest) HasArgument() bool {
 	return false
 }
 
-// SetArgument gets a reference to the given NullableString and assigns it to the Argument field.
-func (o *ApplicationCriterionFieldRequest) SetArgument(v string) {
+// SetArgument gets a reference to the given NullableApplicationCriterionArgumentRequest and assigns it to the Argument field.
+func (o *ApplicationCriterionFieldRequest) SetArgument(v ApplicationCriterionArgumentRequest) {
 	o.Argument.Set(&v)
 }
 // SetArgumentNil sets the value for Argument to be an explicit nil

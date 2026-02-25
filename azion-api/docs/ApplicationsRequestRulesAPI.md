@@ -36,7 +36,7 @@ import (
 
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
-	requestPhaseRuleRequest := *openapiclient.NewRequestPhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.RequestPhaseBehaviorRequest{openapiclient.RequestPhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes("Value_example"))}}) // RequestPhaseRuleRequest | 
+	requestPhaseRuleRequest := *openapiclient.NewRequestPhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.RequestPhaseBehaviorRequest{openapiclient.RequestPhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes(*openapiclient.NewBehaviorArgsAttributesValue()))}}) // RequestPhaseRuleRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -429,7 +429,7 @@ import (
 func main() {
 	applicationId := int64(789) // int64 | A unique integer value identifying the application.
 	requestRuleId := int64(789) // int64 | A unique integer value identifying the request rule.
-	requestPhaseRuleRequest := *openapiclient.NewRequestPhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.RequestPhaseBehaviorRequest{openapiclient.RequestPhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes("Value_example"))}}) // RequestPhaseRuleRequest | 
+	requestPhaseRuleRequest := *openapiclient.NewRequestPhaseRuleRequest("Name_example", [][]ApplicationCriterionFieldRequest{[]openapiclient.ApplicationCriterionFieldRequest{*openapiclient.NewApplicationCriterionFieldRequest("Conditional_example", "Variable_example", "Operator_example")}}, []openapiclient.RequestPhaseBehaviorRequest{openapiclient.RequestPhaseBehaviorRequest{BehaviorArgs: openapiclient.NewBehaviorArgs("Type_example", *openapiclient.NewBehaviorArgsAttributes(*openapiclient.NewBehaviorArgsAttributesValue()))}}) // RequestPhaseRuleRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

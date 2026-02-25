@@ -114,6 +114,8 @@ docs/AlgType.md
 docs/Application.md
 docs/ApplicationAcceleratorModule.md
 docs/ApplicationAcceleratorModuleRequest.md
+docs/ApplicationCriterionArgument.md
+docs/ApplicationCriterionArgumentRequest.md
 docs/ApplicationCriterionField.md
 docs/ApplicationCriterionFieldRequest.md
 docs/ApplicationModules.md
@@ -140,6 +142,7 @@ docs/BaseQuery.md
 docs/BaseQueryRequest.md
 docs/BehaviorArgs.md
 docs/BehaviorArgsAttributes.md
+docs/BehaviorArgsAttributesValue.md
 docs/BehaviorCapture.md
 docs/BehaviorCaptureMatchGroupsAttributes.md
 docs/BehaviorNoArgs.md
@@ -285,6 +288,8 @@ docs/FirewallBehaviorSetRateLimitAttributes.md
 docs/FirewallBehaviorSetRateLimitAttributesRequest.md
 docs/FirewallBehaviorSetWafAttributes.md
 docs/FirewallBehaviorSetWafAttributesRequest.md
+docs/FirewallCriterionArgument.md
+docs/FirewallCriterionArgumentRequest.md
 docs/FirewallCriterionField.md
 docs/FirewallCriterionFieldRequest.md
 docs/FirewallFunctionInstance.md
@@ -843,6 +848,8 @@ model_alg_type.go
 model_application.go
 model_application_accelerator_module.go
 model_application_accelerator_module_request.go
+model_application_criterion_argument.go
+model_application_criterion_argument_request.go
 model_application_criterion_field.go
 model_application_criterion_field_request.go
 model_application_modules.go
@@ -865,6 +872,7 @@ model_base_query.go
 model_base_query_request.go
 model_behavior_args.go
 model_behavior_args_attributes.go
+model_behavior_args_attributes_value.go
 model_behavior_capture.go
 model_behavior_capture_match_groups_attributes.go
 model_behavior_no_args.go
@@ -995,6 +1003,8 @@ model_firewall_behavior_set_rate_limit_attributes.go
 model_firewall_behavior_set_rate_limit_attributes_request.go
 model_firewall_behavior_set_waf_attributes.go
 model_firewall_behavior_set_waf_attributes_request.go
+model_firewall_criterion_argument.go
+model_firewall_criterion_argument_request.go
 model_firewall_criterion_field.go
 model_firewall_criterion_field_request.go
 model_firewall_function_instance.go
