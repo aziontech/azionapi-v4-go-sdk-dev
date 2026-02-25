@@ -76775,8 +76775,7 @@ components:
       description: Behavior attributes containing the value parameter
       properties:
         value:
-          description: Value can be string or integer depending on the behavior type
-          type: string
+          $ref: "#/components/schemas/BehaviorArgsAttributes_value"
       required:
       - value
       type: object
@@ -77784,13 +77783,21 @@ components:
       - $(remote_port)
       - $(request_body)
     ApplicationCriterionArgument:
-      description: "Can be one of: integer, string"
+      additionalProperties: false
+      anyOf:
+      - format: int64
+        type: integer
+      - type: string
+      nullable: true
       title: ApplicationCriterionArgument
-      type: string
     ApplicationCriterionArgumentRequest:
-      description: "Can be one of: integer, string"
+      additionalProperties: false
+      anyOf:
+      - format: int64
+        type: integer
+      - type: string
+      nullable: true
       title: ApplicationCriterionArgumentRequest
-      type: string
     FirewallCriterionField:
       additionalProperties: false
       description: |-
@@ -78053,13 +78060,35 @@ components:
       - $(ssl_verification_status)
       - $(client_certificate_validation)
     FirewallCriterionArgument:
-      description: "Can be one of: integer, string"
+      additionalProperties: false
+      anyOf:
+      - description: "These values are only valid when using ${ssl_verification_status}\
+          \ variable."
+        type: string
+        x-extensible-enum:
+        - SUCCESS
+        - CERTIFICATE_VERIFICATION_ERROR
+        - MISSING_CLIENT_CERTIFICATE
+      - format: int64
+        type: integer
+      - type: string
+      nullable: true
       title: FirewallCriterionArgument
-      type: string
     FirewallCriterionArgumentRequest:
-      description: "Can be one of: integer, string"
+      additionalProperties: false
+      anyOf:
+      - description: "These values are only valid when using ${ssl_verification_status}\
+          \ variable."
+        type: string
+        x-extensible-enum:
+        - SUCCESS
+        - CERTIFICATE_VERIFICATION_ERROR
+        - MISSING_CLIENT_CERTIFICATE
+      - format: int64
+        type: integer
+      - type: string
+      nullable: true
       title: FirewallCriterionArgumentRequest
-      type: string
     PaginatedConnectorList:
       additionalProperties: false
       example:
@@ -86693,6 +86722,14 @@ components:
         arg:
           type: object
       type: object
+    BehaviorArgsAttributes_value:
+      anyOf:
+      - type: string
+      - format: int64
+        maximum: 9223372036854775807
+        minimum: 1
+        type: integer
+      description: Value can be string or integer depending on the behavior type
     FirewallBehaviorObjectArgs_attributes:
       description: "Attributes object whose shape depends on the behavior type. Use\
         \ SetCustomResponseAttributes for set_custom_response, SetRateLimitAttributes\

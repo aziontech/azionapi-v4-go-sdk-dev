@@ -14,79 +14,50 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
-// ApplicationCriterionArgumentRequest - struct for ApplicationCriterionArgumentRequest
+
+// ApplicationCriterionArgumentRequest struct for ApplicationCriterionArgumentRequest
 type ApplicationCriterionArgumentRequest struct {
 	Int64 *int64
 	String *string
 }
 
-// int64AsApplicationCriterionArgumentRequest is a convenience function that returns int64 wrapped in ApplicationCriterionArgumentRequest
-func Int64AsApplicationCriterionArgumentRequest(v *int64) ApplicationCriterionArgumentRequest {
-	return ApplicationCriterionArgumentRequest{
-		Int64: v,
-	}
-}
-
-// stringAsApplicationCriterionArgumentRequest is a convenience function that returns string wrapped in ApplicationCriterionArgumentRequest
-func StringAsApplicationCriterionArgumentRequest(v *string) ApplicationCriterionArgumentRequest {
-	return ApplicationCriterionArgumentRequest{
-		String: v,
-	}
-}
-
-
-// Unmarshal JSON data into one of the pointers in the struct
+// Unmarshal JSON data into any of the pointers in the struct
 func (dst *ApplicationCriterionArgumentRequest) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into Int64
-	err = newStrictDecoder(data).Decode(&dst.Int64)
+	// this object is nullable so check if the payload is null or empty string
+	if string(data) == "" || string(data) == "{}" {
+		return nil
+	}
+
+	// try to unmarshal JSON data into Int64
+	err = json.Unmarshal(data, &dst.Int64);
 	if err == nil {
 		jsonInt64, _ := json.Marshal(dst.Int64)
 		if string(jsonInt64) == "{}" { // empty struct
 			dst.Int64 = nil
 		} else {
-			if err = validator.Validate(dst.Int64); err != nil {
-				dst.Int64 = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.Int64, return on the first match
 		}
 	} else {
 		dst.Int64 = nil
 	}
 
-	// try to unmarshal data into String
-	err = newStrictDecoder(data).Decode(&dst.String)
+	// try to unmarshal JSON data into String
+	err = json.Unmarshal(data, &dst.String);
 	if err == nil {
 		jsonString, _ := json.Marshal(dst.String)
 		if string(jsonString) == "{}" { // empty struct
 			dst.String = nil
 		} else {
-			if err = validator.Validate(dst.String); err != nil {
-				dst.String = nil
-			} else {
-				match++
-			}
+			return nil // data stored in dst.String, return on the first match
 		}
 	} else {
 		dst.String = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.Int64 = nil
-		dst.String = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(ApplicationCriterionArgumentRequest)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(ApplicationCriterionArgumentRequest)")
-	}
+	return fmt.Errorf("data failed to match schemas in anyOf(ApplicationCriterionArgumentRequest)")
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
@@ -99,39 +70,9 @@ func (src ApplicationCriterionArgumentRequest) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.String)
 	}
 
-	return nil, nil // no data in oneOf schemas
+	return nil, nil // no data in anyOf schemas
 }
 
-// Get the actual instance
-func (obj *ApplicationCriterionArgumentRequest) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.Int64 != nil {
-		return obj.Int64
-	}
-
-	if obj.String != nil {
-		return obj.String
-	}
-
-	// all schemas are nil
-	return nil
-}
-
-// Get the actual instance value
-func (obj ApplicationCriterionArgumentRequest) GetActualInstanceValue() (interface{}) {
-	if obj.Int64 != nil {
-		return *obj.Int64
-	}
-
-	if obj.String != nil {
-		return *obj.String
-	}
-
-	// all schemas are nil
-	return nil
-}
 
 type NullableApplicationCriterionArgumentRequest struct {
 	value *ApplicationCriterionArgumentRequest

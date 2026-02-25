@@ -22,8 +22,7 @@ var _ MappedNullable = &BehaviorArgsAttributes{}
 
 // BehaviorArgsAttributes Behavior attributes containing the value parameter
 type BehaviorArgsAttributes struct {
-	// Value can be string or integer depending on the behavior type
-	Value string `json:"value"`
+	Value BehaviorArgsAttributesValue `json:"value"`
 }
 
 type _BehaviorArgsAttributes BehaviorArgsAttributes
@@ -32,7 +31,7 @@ type _BehaviorArgsAttributes BehaviorArgsAttributes
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBehaviorArgsAttributes(value string) *BehaviorArgsAttributes {
+func NewBehaviorArgsAttributes(value BehaviorArgsAttributesValue) *BehaviorArgsAttributes {
 	this := BehaviorArgsAttributes{}
 	this.Value = value
 	return &this
@@ -47,9 +46,9 @@ func NewBehaviorArgsAttributesWithDefaults() *BehaviorArgsAttributes {
 }
 
 // GetValue returns the Value field value
-func (o *BehaviorArgsAttributes) GetValue() string {
+func (o *BehaviorArgsAttributes) GetValue() BehaviorArgsAttributesValue {
 	if o == nil {
-		var ret string
+		var ret BehaviorArgsAttributesValue
 		return ret
 	}
 
@@ -58,7 +57,7 @@ func (o *BehaviorArgsAttributes) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *BehaviorArgsAttributes) GetValueOk() (*string, bool) {
+func (o *BehaviorArgsAttributes) GetValueOk() (*BehaviorArgsAttributesValue, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,7 +65,7 @@ func (o *BehaviorArgsAttributes) GetValueOk() (*string, bool) {
 }
 
 // SetValue sets field value
-func (o *BehaviorArgsAttributes) SetValue(v string) {
+func (o *BehaviorArgsAttributes) SetValue(v BehaviorArgsAttributesValue) {
 	o.Value = v
 }
 
