@@ -41,9 +41,9 @@ func (r ApiAuthUserLoginRequest) Execute() (*ResponseLogin, *http.Response, erro
 /*
 AuthUserLogin User Login – Generate JWT Tokens
 
-This endpoint performs user authentication and issues the user's JWT tokens.The response depends on whether multi-factor authentication (MFA) is enabled for the user:
+This endpoint performs user authentication and issues the user's JWT tokens. The response depends on whether multi-factor authentication (MFA) is enabled for the user:
  - If the user does not have MFA enabled, the API returns a TokenPair object containing the access_token and refresh_token, allowing immediate authentication.
- - If the user has MFA enabled, the response returns an MFAToken object.This temporary token must be used in the MFA verification endpoint to complete authentication.After successful verification of the second factor, the TokenPair is issued.
+ - If the user has MFA enabled, the response returns an MFAToken object. This temporary token must be used in the MFA verification endpoint to complete authentication. After successful verification of the second factor, the TokenPair is issued.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiAuthUserLoginRequest

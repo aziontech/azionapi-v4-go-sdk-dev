@@ -408,7 +408,7 @@ func (r ApiDeleteObjectKeyRequest) Execute() (*DeleteResponse, *http.Response, e
 /*
 DeleteObjectKey Delete object key
 
-Upon a successful deletion request, the object will be permanentlydeleted after a 24-hour grace period.
+Upon a successful deletion request, the object will be permanently deleted after a 24-hour grace period.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param bucketName The name of the bucket

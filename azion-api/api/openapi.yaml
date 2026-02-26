@@ -14634,9 +14634,9 @@ paths:
   /account/auth/login:
     post:
       description: |-
-        This endpoint performs user authentication and issues the user's JWT tokens.The response depends on whether multi-factor authentication (MFA) is enabled for the user:
+        This endpoint performs user authentication and issues the user's JWT tokens. The response depends on whether multi-factor authentication (MFA) is enabled for the user:
          - If the user does not have MFA enabled, the API returns a TokenPair object containing the access_token and refresh_token, allowing immediate authentication.
-         - If the user has MFA enabled, the response returns an MFAToken object.This temporary token must be used in the MFA verification endpoint to complete authentication.After successful verification of the second factor, the TokenPair is issued.
+         - If the user has MFA enabled, the response returns an MFAToken object. This temporary token must be used in the MFA verification endpoint to complete authentication. After successful verification of the second factor, the TokenPair is issued.
       operationId: auth_user_login
       requestBody:
         content:
@@ -16605,8 +16605,8 @@ paths:
       tags:
       - Billing & Payments
     patch:
-      description: Update the field 'is_default' to enable of an existing credit card.Only
-        the field 'is_default' is editable for an existing card.
+      description: Update the field 'is_default' to enable of an existing credit card.
+        Only the field 'is_default' is editable for an existing card.
       operationId: partial update credit card
       parameters:
       - explode: false
@@ -52355,8 +52355,8 @@ paths:
       - Storage - Objects
   /workspace/storage/buckets/{bucket_name}/objects/{object_key}:
     delete:
-      description: "Upon a successful deletion request, the object will be permanentlydeleted\
-        \ after a 24-hour grace period."
+      description: "Upon a successful deletion request, the object will be permanently\
+        \ deleted after a 24-hour grace period."
       operationId: delete_object_key
       parameters:
       - description: The name of the bucket
@@ -61031,6 +61031,7 @@ components:
       - $ref: "#/components/schemas/Reseller"
       - $ref: "#/components/schemas/Workspace"
     AccountInfo:
+      additionalProperties: false
       example:
         info:
           key: ""
@@ -61056,6 +61057,7 @@ components:
       - $ref: "#/components/schemas/ResellerRequest"
       - $ref: "#/components/schemas/WorkspaceRequest"
     Brand:
+      additionalProperties: false
       example:
         parent_id: 6
         created: 2000-01-23T04:56:07.000+00:00
@@ -61115,6 +61117,7 @@ components:
       - type
       type: object
     BrandRequest:
+      additionalProperties: false
       example:
         name: name
         type: type
@@ -61153,6 +61156,7 @@ components:
       - $ref: "#/components/schemas/CreateResellerRequest"
       - $ref: "#/components/schemas/CreateWorkspaceRequest"
     CreateBrandRequest:
+      additionalProperties: false
       description: |-
         Mixin to validate parent-child relationships between different account types.
 
@@ -61193,6 +61197,7 @@ components:
       - type
       type: object
     CreateOrganizationRequest:
+      additionalProperties: false
       description: |-
         Mixin to validate parent-child relationships between different account types.
 
@@ -61229,6 +61234,7 @@ components:
       - type
       type: object
     CreateResellerRequest:
+      additionalProperties: false
       description: |-
         Mixin to validate parent-child relationships between different account types.
 
@@ -61278,6 +61284,7 @@ components:
       - type
       type: object
     CreateWorkspaceRequest:
+      additionalProperties: false
       description: |-
         Mixin to validate parent-child relationships between different account types.
 
@@ -61314,6 +61321,7 @@ components:
       - type
       type: object
     Organization:
+      additionalProperties: false
       properties:
         id:
           format: int64
@@ -61398,6 +61406,7 @@ components:
       - type
       type: object
     OrganizationRequest:
+      additionalProperties: false
       properties:
         name:
           maxLength: 150
@@ -61433,6 +61442,7 @@ components:
       - $ref: "#/components/schemas/PatchedResellerRequest"
       - $ref: "#/components/schemas/PatchedWorkspaceRequest"
     PatchedBrandRequest:
+      additionalProperties: false
       example:
         name: name
         type: type
@@ -61457,6 +61467,7 @@ components:
       - type
       type: object
     PatchedOrganizationRequest:
+      additionalProperties: false
       properties:
         name:
           maxLength: 150
@@ -61478,6 +61489,7 @@ components:
       - type
       type: object
     PatchedResellerRequest:
+      additionalProperties: false
       properties:
         name:
           maxLength: 150
@@ -61511,6 +61523,7 @@ components:
       - type
       type: object
     PatchedWorkspaceRequest:
+      additionalProperties: false
       properties:
         name:
           maxLength: 150
@@ -61532,6 +61545,7 @@ components:
       - type
       type: object
     Reseller:
+      additionalProperties: false
       properties:
         id:
           format: int64
@@ -61593,6 +61607,7 @@ components:
       - type
       type: object
     ResellerRequest:
+      additionalProperties: false
       properties:
         name:
           maxLength: 150
@@ -61628,6 +61643,7 @@ components:
       - type
       type: object
     ResponseAccount:
+      additionalProperties: false
       example:
         data:
           parent_id: 6
@@ -61652,6 +61668,7 @@ components:
       - data
       type: object
     ResponseAccountInfo:
+      additionalProperties: false
       example:
         data:
           info:
@@ -61668,6 +61685,7 @@ components:
       - data
       type: object
     ResponseAsyncAccount:
+      additionalProperties: false
       example:
         data:
           parent_id: 6
@@ -61692,6 +61710,7 @@ components:
       - data
       type: object
     ResponseAsyncAccountInfo:
+      additionalProperties: false
       example:
         data:
           info:
@@ -61721,6 +61740,7 @@ components:
       - $ref: "#/components/schemas/Reseller"
       - $ref: "#/components/schemas/Workspace"
     ResponseRetrieveAccount:
+      additionalProperties: false
       example:
         data:
           parent_id: 6
@@ -61740,6 +61760,7 @@ components:
       - data
       type: object
     ResponseRetrieveAccountInfo:
+      additionalProperties: false
       example:
         data:
           info:
@@ -61751,6 +61772,7 @@ components:
       - data
       type: object
     Workspace:
+      additionalProperties: false
       properties:
         id:
           format: int64
@@ -61802,6 +61824,7 @@ components:
       - workspace_id
       type: object
     WorkspaceRequest:
+      additionalProperties: false
       properties:
         name:
           maxLength: 150
@@ -61824,6 +61847,7 @@ components:
       - type
       type: object
     PaginatedAccountList:
+      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -63160,6 +63184,7 @@ components:
       title: DeleteResponse
       type: object
     LockoutPolicy:
+      additionalProperties: false
       example:
         max_attempts: 8
         blocking_period: 868
@@ -63185,6 +63210,7 @@ components:
       - max_attempts
       type: object
     LockoutPolicyRequest:
+      additionalProperties: false
       example:
         max_attempts: 8
         blocking_period: 868
@@ -63210,6 +63236,7 @@ components:
       - max_attempts
       type: object
     LockoutPolicyResponse:
+      additionalProperties: false
       example:
         data:
           max_attempts: 8
@@ -63222,6 +63249,7 @@ components:
       - data
       type: object
     LoginRequest:
+      additionalProperties: false
       example:
         password: password
         account_id: 0
@@ -63258,6 +63286,7 @@ components:
       - $ref: "#/components/schemas/TokenPair"
       - $ref: "#/components/schemas/MFAToken"
     MFAToken:
+      additionalProperties: false
       description: |-
         Used when user has MFA enabled. Returns a temporary MFA token that must be
         verified with a TOTP code before receiving full access tokens.
@@ -63277,12 +63306,14 @@ components:
           type: string
         has_active_device:
           description: "Indicates whether the user already has an active TOTP device\
-            \ configured.If false, the user needs to set up a new device before using\
+            \ configured. If false, the user needs to set up a new device before using\
             \ MFA authentication."
           type: boolean
         response_type:
           description: Discriminator field for LoginResponse
           type: string
+          x-extensible-enum:
+          - MFAToken
       required:
       - access_token
       - has_active_device
@@ -63291,6 +63322,7 @@ components:
       - two_factor_type
       type: object
     PaginatedPolicyList:
+      additionalProperties: false
       example:
         next: https://api.example.com/items?page=3
         previous: https://api.example.com/items?page=1
@@ -63398,6 +63430,7 @@ components:
           type: array
       type: object
     PatchedPolicyRequest:
+      additionalProperties: false
       example:
         name: name
         active: true
@@ -63435,6 +63468,7 @@ components:
           type: array
       type: object
     Policy:
+      additionalProperties: false
       example:
         last_editor: last_editor
         name: name
@@ -63490,6 +63524,7 @@ components:
       - rules
       type: object
     PolicyRequest:
+      additionalProperties: false
       example:
         name: name
         active: true
@@ -63531,6 +63566,7 @@ components:
       - rules
       type: object
     PolicyResponse:
+      additionalProperties: false
       example:
         data:
           last_editor: last_editor
@@ -63571,6 +63607,7 @@ components:
       - data
       type: object
     PolicyRule:
+      additionalProperties: false
       example:
         condition:
           ip_address:
@@ -63614,6 +63651,7 @@ components:
       - resource
       type: object
     PolicyRuleCondition:
+      additionalProperties: false
       example:
         ip_address:
         - ip_address
@@ -63628,6 +63666,7 @@ components:
       - ip_address
       type: object
     PolicyRuleConditionRequest:
+      additionalProperties: false
       example:
         ip_address:
         - ip_address
@@ -63643,6 +63682,7 @@ components:
       - ip_address
       type: object
     PolicyRuleRequest:
+      additionalProperties: false
       example:
         condition:
           ip_address:
@@ -63687,6 +63727,7 @@ components:
       - resource
       type: object
     ResponseLogin:
+      additionalProperties: false
       example:
         data:
           access_token: access_token
@@ -63704,6 +63745,7 @@ components:
       - data
       type: object
     SessionTimeoutPolicy:
+      additionalProperties: false
       example:
         max_session_time: 13021
         max_idle_time: 116
@@ -63723,6 +63765,7 @@ components:
       - max_session_time
       type: object
     SessionTimeoutPolicyRequest:
+      additionalProperties: false
       example:
         max_session_time: 13021
         max_idle_time: 116
@@ -63742,6 +63785,7 @@ components:
       - max_session_time
       type: object
     SessionTimeoutPolicyResponse:
+      additionalProperties: false
       example:
         data:
           max_session_time: 13021
@@ -63753,6 +63797,7 @@ components:
       - data
       type: object
     StateExecutedResponse:
+      additionalProperties: false
       example:
         state: state
       properties:
@@ -63763,6 +63808,7 @@ components:
           type: string
       type: object
     TOTPDevice:
+      additionalProperties: false
       example:
         url: url
       properties:
@@ -63774,6 +63820,7 @@ components:
       - url
       type: object
     TOTPDeviceList:
+      additionalProperties: false
       example:
         user_id: 6
         name: name
@@ -63809,6 +63856,7 @@ components:
       - user_id
       type: object
     TOTPDeviceResponse:
+      additionalProperties: false
       example:
         data:
           url: url
@@ -63824,6 +63872,7 @@ components:
       - data
       type: object
     TOTPVerificationRequest:
+      additionalProperties: false
       description: |-
         Serializer for TOTP verification process.
 
@@ -63842,6 +63891,7 @@ components:
       - code
       type: object
     Token:
+      additionalProperties: false
       example:
         access_token: access_token
       properties:
@@ -63853,6 +63903,7 @@ components:
       - access_token
       type: object
     TokenPair:
+      additionalProperties: false
       description: |-
         Used when user does not have MFA enabled or after successful MFA verification.
         Returns both access and refresh tokens for API authentication.
@@ -63873,12 +63924,15 @@ components:
         response_type:
           description: Discriminator field for LoginResponse
           type: string
+          x-extensible-enum:
+          - TokenPair
       required:
       - access_token
       - refresh_token
       - response_type
       type: object
     TokenPairResponse:
+      additionalProperties: false
       example:
         data:
           access_token: access_token
@@ -63896,6 +63950,7 @@ components:
       - data
       type: object
     TokenRequest:
+      additionalProperties: false
       example:
         account_id: 0
       properties:
@@ -63906,6 +63961,7 @@ components:
           writeOnly: true
       type: object
     TokenResponse:
+      additionalProperties: false
       example:
         data:
           access_token: access_token
@@ -63921,6 +63977,7 @@ components:
       - data
       type: object
     UserLoginMethodResponse:
+      additionalProperties: false
       example:
         method: method
         url: https://openapi-generator.tech
@@ -63938,6 +63995,7 @@ components:
       - url
       type: object
     PaginatedTOTPDeviceList:
+      additionalProperties: false
       example:
         next: https://api.example.com/items?page=3
         previous: https://api.example.com/items?page=1
@@ -65945,6 +66003,7 @@ components:
           rate: 8
         type: type
     AlgType:
+      additionalProperties: false
       properties:
         id:
           format: int64
@@ -65960,6 +66019,7 @@ components:
       - slug
       type: object
     DNSSEC:
+      additionalProperties: false
       example:
         delegation_signer: "{}"
         enabled: true
@@ -65988,6 +66048,7 @@ components:
       - status
       type: object
     DNSSECRequest:
+      additionalProperties: false
       example:
         enabled: true
       properties:
@@ -65997,6 +66058,7 @@ components:
       - enabled
       type: object
     DNSSECResponse:
+      additionalProperties: false
       example:
         data:
           delegation_signer: "{}"
@@ -66009,6 +66071,7 @@ components:
       - data
       type: object
     DelegationSigner:
+      additionalProperties: false
       properties:
         algorithm_type:
           $ref: "#/components/schemas/AlgType"
@@ -66030,6 +66093,7 @@ components:
       - key_tag
       type: object
     PaginatedRecordList:
+      additionalProperties: false
       example:
         next: https://api.example.com/items?page=3
         previous: https://api.example.com/items?page=1
@@ -66105,6 +66169,7 @@ components:
           type: array
       type: object
     PaginatedZoneList:
+      additionalProperties: false
       example:
         next: https://api.example.com/items?page=3
         previous: https://api.example.com/items?page=1
@@ -66176,6 +66241,7 @@ components:
           type: array
       type: object
     PatchedDNSSECRequest:
+      additionalProperties: false
       example:
         enabled: true
       properties:
@@ -66183,6 +66249,7 @@ components:
           type: boolean
       type: object
     PatchedRecordRequest:
+      additionalProperties: false
       example:
         name: name
         description: description
@@ -66253,6 +66320,7 @@ components:
           type: integer
       type: object
     PatchedUpdateZoneRequest:
+      additionalProperties: false
       example:
         name: name
         active: true
@@ -66265,6 +66333,7 @@ components:
           type: boolean
       type: object
     Record:
+      additionalProperties: false
       example:
         name: name
         description: description
@@ -66343,6 +66412,7 @@ components:
       - type
       type: object
     RecordRequest:
+      additionalProperties: false
       example:
         name: name
         description: description
@@ -66417,6 +66487,7 @@ components:
       - type
       type: object
     RecordResponse:
+      additionalProperties: false
       example:
         data:
           name: name
@@ -66441,6 +66512,7 @@ components:
       - data
       type: object
     UpdateZoneRequest:
+      additionalProperties: false
       example:
         name: name
         active: true
@@ -66456,6 +66528,7 @@ components:
       - name
       type: object
     Zone:
+      additionalProperties: false
       example:
         product_version: product_version
         nameservers:
@@ -66496,6 +66569,7 @@ components:
       - product_version
       type: object
     ZoneRequest:
+      additionalProperties: false
       example:
         domain: domain
         name: name
@@ -66517,6 +66591,7 @@ components:
       - name
       type: object
     ZoneResponse:
+      additionalProperties: false
       example:
         data:
           product_version: product_version
@@ -68151,6 +68226,8 @@ components:
           type:
             description: Discriminator field for DeploymentStrategy
             type: string
+            x-extensible-enum:
+            - default
         required:
         - type
         title: DeploymentStrategyDefaultDeploymentStrategy
@@ -68171,6 +68248,8 @@ components:
           type:
             description: Discriminator field for DeploymentStrategyRequest
             type: string
+            x-extensible-enum:
+            - default
         required:
         - type
         title: DeploymentStrategyDefaultDeploymentStrategyRequest
@@ -75241,7 +75320,12 @@ components:
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
+        state: state
       properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
         data:
           $ref: "#/components/schemas/ResponsePhaseRule"
       required:
@@ -77290,7 +77374,7 @@ components:
         | -------- | ----------- | ----- | --------- | ---------|
         | ${arg_&lt;name&gt;} | Use this variable to match a query param. Replace &lt;name&gt; with the specific query param you want to match, replacing any '-' with '_'. Examples: ${arg_search}, ${arg_next}. | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${args} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
-        | ${cookie_&lt;name&gt;} | Use this variable to match cookies sent by the browser Cookie headers.Replace &lt;name&gt; with the specific cookie name you want to match, replacing any '-' with '_'. Examples: cookie_session_id, cookie_user_pref. | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
+        | ${cookie_&lt;name&gt;} | Use this variable to match cookies sent by the browser Cookie headers. Replace &lt;name&gt; with the specific cookie name you want to match, replacing any '-' with '_'. Examples: cookie_session_id, cookie_user_pref. | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${device_group} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${geoip_city_continent_code} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${geoip_city_country_code} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
@@ -77313,7 +77397,7 @@ components:
         | ${sent_http_&lt;header_name&gt;} | Use this variable to match HTTP headers sent to origin server. Replace &lt;header_name&gt; with the specific header you want to match, replacing any '-' with '_'. Examples: http_authorization, http_accept, http_x_debug. | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${status} |  | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${upstream_addr} |  | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
-        | ${upstream_cookie_&lt;name&gt;} | Use this variable to match cookies sent by the origin server in Set-Cookie headers.Replace &lt;name&gt; with the specific cookie you want to match, replacing any '-' with '_'. Examples: ${upstream_cookie_mycookie}, ${upstream_cookie_user_info}. | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
+        | ${upstream_cookie_&lt;name&gt;} | Use this variable to match cookies sent by the origin server in Set-Cookie headers. Replace &lt;name&gt; with the specific cookie you want to match, replacing any '-' with '_'. Examples: ${upstream_cookie_mycookie}, ${upstream_cookie_user_info}. | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${upstream_http_&lt;header_name&gt;} | Use this variable to match origin HTTP headers. Replace &lt;header_name&gt; with the specific header you want to match, replacing any '-' with '_'. If many origins are consulted while the request is processed, only headers from the last origin are stored. Examples: http_authorization, http_accept, http_x_debug. | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${upstream_status} |  | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${uri} | The normalized (urldecoded) URI of the request. | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
@@ -77493,7 +77577,7 @@ components:
         | -------- | ----------- | ----- | --------- | ---------|
         | ${arg_&lt;name&gt;} | Use this variable to match a query param. Replace &lt;name&gt; with the specific query param you want to match, replacing any '-' with '_'. Examples: ${arg_search}, ${arg_next}. | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${args} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
-        | ${cookie_&lt;name&gt;} | Use this variable to match cookies sent by the browser Cookie headers.Replace &lt;name&gt; with the specific cookie name you want to match, replacing any '-' with '_'. Examples: cookie_session_id, cookie_user_pref. | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
+        | ${cookie_&lt;name&gt;} | Use this variable to match cookies sent by the browser Cookie headers. Replace &lt;name&gt; with the specific cookie name you want to match, replacing any '-' with '_'. Examples: cookie_session_id, cookie_user_pref. | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${device_group} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${geoip_city_continent_code} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${geoip_city_country_code} |  | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
@@ -77516,7 +77600,7 @@ components:
         | ${sent_http_&lt;header_name&gt;} | Use this variable to match HTTP headers sent to origin server. Replace &lt;header_name&gt; with the specific header you want to match, replacing any '-' with '_'. Examples: http_authorization, http_accept, http_x_debug. | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${status} |  | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${upstream_addr} |  | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
-        | ${upstream_cookie_&lt;name&gt;} | Use this variable to match cookies sent by the origin server in Set-Cookie headers.Replace &lt;name&gt; with the specific cookie you want to match, replacing any '-' with '_'. Examples: ${upstream_cookie_mycookie}, ${upstream_cookie_user_info}. | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
+        | ${upstream_cookie_&lt;name&gt;} | Use this variable to match cookies sent by the origin server in Set-Cookie headers. Replace &lt;name&gt; with the specific cookie you want to match, replacing any '-' with '_'. Examples: ${upstream_cookie_mycookie}, ${upstream_cookie_user_info}. | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${upstream_http_&lt;header_name&gt;} | Use this variable to match origin HTTP headers. Replace &lt;header_name&gt; with the specific header you want to match, replacing any '-' with '_'. If many origins are consulted while the request is processed, only headers from the last origin are stored. Examples: http_authorization, http_accept, http_x_debug. | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${upstream_status} |  | response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
         | ${uri} | The normalized (urldecoded) URI of the request. | default, request, response | is_equal, is_not_equal, starts_with, does_not_start_with, matches, does_not_match, exists, does_not_exist | string |
@@ -78381,6 +78465,7 @@ components:
       - $ref: "#/components/schemas/WAFExceptionSpecificConditionOnValueRequest"
       title: WAFExceptionConditionRequest
     DatabaseDetail:
+      additionalProperties: false
       description: Detailed database representation with extended status information.
       example:
         product_version: product_version
@@ -78435,6 +78520,7 @@ components:
       - status
       type: object
     DatabaseDetailResponse:
+      additionalProperties: false
       example:
         data:
           product_version: product_version
@@ -78456,6 +78542,7 @@ components:
       - data
       type: object
     DatabaseRequest:
+      additionalProperties: false
       example:
         name: name
         active: true
@@ -78472,6 +78559,7 @@ components:
       - name
       type: object
     JSONAPIErrorObject:
+      additionalProperties: false
       description: Serializer for a single JSON:API error object.
       example:
         code: code
@@ -78513,6 +78601,7 @@ components:
           type: object
       type: object
     JSONAPIErrorSource:
+      additionalProperties: false
       description: Serializer for the 'source' object in a JSON:API error.
       properties:
         pointer:
@@ -78533,6 +78622,7 @@ components:
           type: string
       type: object
     PaginatedDatabaseDetailList:
+      additionalProperties: false
       example:
         next: https://api.example.com/items?page=3
         previous: https://api.example.com/items?page=1
@@ -78602,6 +78692,7 @@ components:
           type: array
       type: object
     SQLResult:
+      additionalProperties: false
       example:
         columns:
         - ""
@@ -78623,6 +78714,7 @@ components:
       - rows
       type: object
     SQLResultResponse:
+      additionalProperties: false
       example:
         data:
           columns:
@@ -78643,6 +78735,7 @@ components:
       - data
       type: object
     SQLStatementsRequest:
+      additionalProperties: false
       example:
         statements:
         - statements
@@ -78662,6 +78755,7 @@ components:
       - statements
       type: object
     ErrorResponse:
+      additionalProperties: false
       description: Serializer for a JSON:API error response.
       example:
         errors:
@@ -80367,6 +80461,7 @@ components:
       title: PaginatedUserList
       type: object
     Namespace:
+      additionalProperties: false
       example:
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
@@ -80390,6 +80485,7 @@ components:
       - name
       type: object
     NamespaceCreateRequest:
+      additionalProperties: false
       example:
         name: name
       properties:
@@ -80401,6 +80497,7 @@ components:
       - name
       type: object
     NamespaceList:
+      additionalProperties: false
       example:
         pagination:
           has_previous: true
@@ -80428,6 +80525,7 @@ components:
       - results
       type: object
     Pagination:
+      additionalProperties: false
       example:
         has_previous: true
         total_count: 146581297
@@ -80581,6 +80679,7 @@ components:
       title: ResponseRetrievePublisher
       type: object
     AggregatedField:
+      additionalProperties: false
       example:
         variable: variable
         aggregation: aggregation
@@ -80598,6 +80697,7 @@ components:
       - variable
       type: object
     AggregatedFieldRequest:
+      additionalProperties: false
       example:
         variable: variable
         aggregation: aggregation
@@ -80615,6 +80715,7 @@ components:
       - variable
       type: object
     BaseQuery:
+      additionalProperties: false
       description: |-
         Base Serializer for validating and processing queries associated with reports.
         Contains generic validations applied to all types of reports.
@@ -80695,6 +80796,7 @@ components:
       - order_direction
       type: object
     BaseQueryRequest:
+      additionalProperties: false
       description: |-
         Base Serializer for validating and processing queries associated with reports.
         Contains generic validations applied to all types of reports.
@@ -80768,6 +80870,7 @@ components:
       - order_direction
       type: object
     Dashboard:
+      additionalProperties: false
       example:
         scope: scope
         name: name
@@ -80805,6 +80908,7 @@ components:
       - scope
       type: object
     DashboardRequest:
+      additionalProperties: false
       example:
         scope: scope
         name: name
@@ -80828,6 +80932,7 @@ components:
       - scope
       type: object
     Folder:
+      additionalProperties: false
       example:
         scope: scope
         name: name
@@ -80858,6 +80963,7 @@ components:
       - scope
       type: object
     FolderRequest:
+      additionalProperties: false
       example:
         scope: scope
         name: name
@@ -80881,6 +80987,7 @@ components:
       - scope
       type: object
     LibraryReportRequest:
+      additionalProperties: false
       example:
         aggregation_type: aggregation_type
         library: true
@@ -81026,6 +81133,7 @@ components:
       - type
       type: object
     Order:
+      additionalProperties: false
       example:
         order:
         - 171976545
@@ -81042,6 +81150,7 @@ components:
       - order
       type: object
     OrderRequest:
+      additionalProperties: false
       example:
         order:
         - 171976545
@@ -81058,6 +81167,7 @@ components:
       - order
       type: object
     PatchedDashboardRequest:
+      additionalProperties: false
       example:
         scope: scope
         name: name
@@ -81078,6 +81188,7 @@ components:
           - user
       type: object
     PatchedFolderRequest:
+      additionalProperties: false
       example:
         scope: scope
         name: name
@@ -81098,6 +81209,7 @@ components:
           - user
       type: object
     RecommendationRequest:
+      additionalProperties: false
       example:
         dashboard_id: 171976545
       properties:
@@ -81111,6 +81223,7 @@ components:
       - dashboard_id
       type: object
     Report:
+      additionalProperties: false
       example:
         comparison_type: comparison_type
         x_axis: x_axis
@@ -81258,6 +81371,7 @@ components:
       - type
       type: object
     ReportRequest:
+      additionalProperties: false
       example:
         aggregation_type: aggregation_type
         library: true
@@ -81399,6 +81513,7 @@ components:
       - type
       type: object
     ResponseAsyncDashboard:
+      additionalProperties: false
       example:
         data:
           scope: scope
@@ -81417,6 +81532,7 @@ components:
       - data
       type: object
     ResponseAsyncFolder:
+      additionalProperties: false
       example:
         data:
           scope: scope
@@ -81434,6 +81550,7 @@ components:
       - data
       type: object
     ResponseAsyncOrder:
+      additionalProperties: false
       example:
         data:
           order:
@@ -81451,6 +81568,7 @@ components:
       - data
       type: object
     ResponseAsyncReport:
+      additionalProperties: false
       example:
         data:
           comparison_type: comparison_type
@@ -81516,6 +81634,7 @@ components:
       - data
       type: object
     ResponseAsyncRow:
+      additionalProperties: false
       example:
         data:
           id: 171976545
@@ -81533,6 +81652,7 @@ components:
       - data
       type: object
     ResponseDashboard:
+      additionalProperties: false
       example:
         data:
           scope: scope
@@ -81551,6 +81671,7 @@ components:
       - data
       type: object
     ResponseDeleteDashboard:
+      additionalProperties: false
       example:
         state: state
       properties:
@@ -81560,6 +81681,7 @@ components:
           type: string
       type: object
     ResponseDeleteFolder:
+      additionalProperties: false
       example:
         state: state
       properties:
@@ -81569,6 +81691,7 @@ components:
           type: string
       type: object
     ResponseDeleteRecommendation:
+      additionalProperties: false
       example:
         state: state
       properties:
@@ -81578,6 +81701,7 @@ components:
           type: string
       type: object
     ResponseDeleteReport:
+      additionalProperties: false
       example:
         state: state
       properties:
@@ -81587,6 +81711,7 @@ components:
           type: string
       type: object
     ResponseDeleteRow:
+      additionalProperties: false
       example:
         state: state
       properties:
@@ -81596,6 +81721,7 @@ components:
           type: string
       type: object
     ResponseFolder:
+      additionalProperties: false
       example:
         data:
           scope: scope
@@ -81613,6 +81739,7 @@ components:
       - data
       type: object
     ResponseListDashboard:
+      additionalProperties: false
       example:
         scope: scope
         name: name
@@ -81650,6 +81777,7 @@ components:
       - scope
       type: object
     ResponseListFolder:
+      additionalProperties: false
       example:
         scope: scope
         name: name
@@ -81680,6 +81808,7 @@ components:
       - scope
       type: object
     ResponseListReport:
+      additionalProperties: false
       example:
         comparison_type: comparison_type
         x_axis: x_axis
@@ -81827,6 +81956,7 @@ components:
       - type
       type: object
     ResponseListRow:
+      additionalProperties: false
       example:
         id: 171976545
         title: title
@@ -81852,6 +81982,7 @@ components:
       - title
       type: object
     ResponseOrder:
+      additionalProperties: false
       example:
         data:
           order:
@@ -81869,6 +82000,7 @@ components:
       - data
       type: object
     ResponseReport:
+      additionalProperties: false
       example:
         data:
           comparison_type: comparison_type
@@ -81934,6 +82066,7 @@ components:
       - data
       type: object
     ResponseRetrieveDashboard:
+      additionalProperties: false
       example:
         data:
           scope: scope
@@ -81947,6 +82080,7 @@ components:
       - data
       type: object
     ResponseRetrieveFolder:
+      additionalProperties: false
       example:
         data:
           scope: scope
@@ -81959,6 +82093,7 @@ components:
       - data
       type: object
     ResponseRetrieveReport:
+      additionalProperties: false
       example:
         data:
           comparison_type: comparison_type
@@ -82019,6 +82154,7 @@ components:
       - data
       type: object
     ResponseRetrieveRow:
+      additionalProperties: false
       example:
         data:
           id: 171976545
@@ -82031,6 +82167,7 @@ components:
       - data
       type: object
     ResponseRow:
+      additionalProperties: false
       example:
         data:
           id: 171976545
@@ -82048,6 +82185,7 @@ components:
       - data
       type: object
     Row:
+      additionalProperties: false
       example:
         id: 171976545
         title: title
@@ -82073,6 +82211,7 @@ components:
       - title
       type: object
     RowRequest:
+      additionalProperties: false
       example:
         title: title
       properties:
@@ -82084,6 +82223,7 @@ components:
       - title
       type: object
     PaginatedDashboardList:
+      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -82133,6 +82273,7 @@ components:
           type: array
       type: object
     PaginatedFolderList:
+      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -82180,6 +82321,7 @@ components:
           type: array
       type: object
     PaginatedReportList:
+      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -82323,6 +82465,7 @@ components:
           type: array
       type: object
     PaginatedRowList:
+      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -84029,6 +84172,7 @@ components:
       title: ResponsePaymentMethod
       type: object
     Bucket:
+      additionalProperties: false
       example:
         product_version: product_version
         workloads_access: workloads_access
@@ -84067,6 +84211,7 @@ components:
       - workloads_access
       type: object
     BucketCreate:
+      additionalProperties: false
       example:
         product_version: product_version
         workloads_access: workloads_access
@@ -84105,6 +84250,7 @@ components:
       - workloads_access
       type: object
     BucketCreateRequest:
+      additionalProperties: false
       example:
         workloads_access: workloads_access
         name: name
@@ -84128,6 +84274,7 @@ components:
       - workloads_access
       type: object
     BucketCreateResponse:
+      additionalProperties: false
       example:
         data:
           product_version: product_version
@@ -84147,6 +84294,7 @@ components:
       - data
       type: object
     BucketObject:
+      additionalProperties: false
       example:
         size: 0
         is_folder: true
@@ -84172,6 +84320,7 @@ components:
       - size
       type: object
     Credential:
+      additionalProperties: false
       example:
         secret_key: secret_key
         capabilities:
@@ -84228,6 +84377,7 @@ components:
       - secret_key
       type: object
     CredentialCreateRequest:
+      additionalProperties: false
       example:
         capabilities:
         - capabilities
@@ -84268,6 +84418,7 @@ components:
       - name
       type: object
     CredentialResponse:
+      additionalProperties: false
       example:
         data:
           secret_key: secret_key
@@ -84294,6 +84445,7 @@ components:
       - data
       type: object
     ObjectResponseAsyncData:
+      additionalProperties: false
       example:
         object_key: object_key
       properties:
@@ -84305,6 +84457,7 @@ components:
       - object_key
       type: object
     ObjectResponseData:
+      additionalProperties: false
       example:
         object_key: object_key
       properties:
@@ -84316,6 +84469,7 @@ components:
       - object_key
       type: object
     PaginatedBucketList:
+      additionalProperties: false
       example:
         next: https://api.example.com/items?page=3
         previous: https://api.example.com/items?page=1
@@ -84381,6 +84535,7 @@ components:
           type: array
       type: object
     PaginatedCredentialList:
+      additionalProperties: false
       example:
         next: https://api.example.com/items?page=3
         previous: https://api.example.com/items?page=1
@@ -84460,6 +84615,7 @@ components:
           type: array
       type: object
     PatchedBucketRequest:
+      additionalProperties: false
       example:
         workloads_access: workloads_access
       properties:
@@ -84475,6 +84631,7 @@ components:
           - restricted
       type: object
     ResponseBucketObject:
+      additionalProperties: false
       example:
         continuation_token: continuation_token
         results:
@@ -84501,6 +84658,7 @@ components:
       - results
       type: object
     SuccessObjectOperation:
+      additionalProperties: false
       example:
         data:
           object_key: object_key
@@ -84516,6 +84674,7 @@ components:
       - data
       type: object
     SuccessObjectOperationAsync:
+      additionalProperties: false
       example:
         data:
           object_key: object_key
@@ -84531,6 +84690,7 @@ components:
       - data
       type: object
     Certificate:
+      additionalProperties: false
       example:
         product_version: product_version
         csr: csr
@@ -84667,6 +84827,7 @@ components:
       - validity
       type: object
     CertificateRequest:
+      additionalProperties: false
       example:
         product_version: product_version
         source_certificate: 1294386359
@@ -84835,6 +84996,7 @@ components:
       - validity
       type: object
     CertificateResponse:
+      additionalProperties: false
       example:
         data:
           product_version: product_version
@@ -84871,6 +85033,7 @@ components:
       - data
       type: object
     CertificateRevocationList:
+      additionalProperties: false
       example:
         product_version: product_version
         last_editor: last_editor
@@ -84934,6 +85097,7 @@ components:
       - product_version
       type: object
     CertificateRevocationListResponse:
+      additionalProperties: false
       example:
         data:
           product_version: product_version
@@ -84958,6 +85122,7 @@ components:
       - data
       type: object
     CertificateSigningRequest:
+      additionalProperties: false
       example:
         country: country
         csr: csr
@@ -85159,6 +85324,7 @@ components:
       - validity
       type: object
     PaginatedCertificateList:
+      additionalProperties: false
       example:
         next: https://api.example.com/items?page=3
         previous: https://api.example.com/items?page=1
@@ -85258,6 +85424,7 @@ components:
           type: array
       type: object
     PatchedCertificate:
+      additionalProperties: false
       example:
         product_version: product_version
         csr: csr
@@ -85377,6 +85544,7 @@ components:
           type: string
       type: object
     PatchedCertificateRevocationList:
+      additionalProperties: false
       example:
         product_version: product_version
         last_editor: last_editor
@@ -85430,6 +85598,7 @@ components:
           type: string
       type: object
     PaginatedCertificateRevocationList:
+      additionalProperties: false
       example:
         next: https://api.example.com/items?page=3
         previous: https://api.example.com/items?page=1
@@ -85505,6 +85674,7 @@ components:
           type: array
       type: object
     BuildContextField:
+      additionalProperties: false
       example:
         field: field
         value: value
@@ -85527,6 +85697,7 @@ components:
       - value
       type: object
     BuildContextFieldRequest:
+      additionalProperties: false
       example:
         field: field
         value: value
@@ -85549,6 +85720,7 @@ components:
       - value
       type: object
     ContinuousDeployment:
+      additionalProperties: false
       example:
         execution_script: ""
         created: 2000-01-23T04:56:07.000+00:00
@@ -85624,6 +85796,7 @@ components:
       - repository
       type: object
     ContinuousDeploymentRequest:
+      additionalProperties: false
       example:
         integration_id: 171976545
         execution_script_id: 1294386359
@@ -85680,6 +85853,7 @@ components:
       - repository
       type: object
     Execution:
+      additionalProperties: false
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
         created_at: 2000-01-23T04:56:07.000+00:00
@@ -85706,6 +85880,7 @@ components:
       - updated_at
       type: object
     ExecutionScript:
+      additionalProperties: false
       example:
         template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
@@ -85727,6 +85902,7 @@ components:
       - template_uuid
       type: object
     Executor:
+      additionalProperties: false
       example:
         is_active: true
         name: name
@@ -85753,6 +85929,7 @@ components:
       - name
       type: object
     Integration:
+      additionalProperties: false
       example:
         provider:
           callback_url: callback_url
@@ -85779,6 +85956,7 @@ components:
       - scope_type
       type: object
     Platform:
+      additionalProperties: false
       example:
         callback_url: callback_url
         installation_url: installation_url
@@ -85800,6 +85978,7 @@ components:
       - name
       type: object
     ResponseAsyncContinuousDeployment:
+      additionalProperties: false
       example:
         data:
           execution_script: ""
@@ -85832,6 +86011,7 @@ components:
       - data
       type: object
     ResponseAsyncDeleteContinuousDeployment:
+      additionalProperties: false
       example:
         state: state
       properties:
@@ -85841,6 +86021,7 @@ components:
           type: string
       type: object
     ResponseAsyncDeleteIntegration:
+      additionalProperties: false
       example:
         state: state
       properties:
@@ -85850,6 +86031,7 @@ components:
           type: string
       type: object
     ResponseAsyncExecution:
+      additionalProperties: false
       example:
         data:
           updated_at: 2000-01-23T04:56:07.000+00:00
@@ -85868,6 +86050,7 @@ components:
       - data
       type: object
     ResponseAsyncExecutor:
+      additionalProperties: false
       example:
         data:
           is_active: true
@@ -85886,6 +86069,7 @@ components:
       - data
       type: object
     ResponseContinuousDeployment:
+      additionalProperties: false
       example:
         data:
           execution_script: ""
@@ -85918,6 +86102,7 @@ components:
       - data
       type: object
     ResponseDeleteContinuousDeployment:
+      additionalProperties: false
       example:
         state: state
       properties:
@@ -85927,6 +86112,7 @@ components:
           type: string
       type: object
     ResponseDeleteIntegration:
+      additionalProperties: false
       example:
         state: state
       properties:
@@ -85936,6 +86122,7 @@ components:
           type: string
       type: object
     ResponseExecution:
+      additionalProperties: false
       example:
         data:
           updated_at: 2000-01-23T04:56:07.000+00:00
@@ -85954,6 +86141,7 @@ components:
       - data
       type: object
     ResponseExecutor:
+      additionalProperties: false
       example:
         data:
           is_active: true
@@ -85972,6 +86160,7 @@ components:
       - data
       type: object
     ResponseListContinuousDeployment:
+      additionalProperties: false
       example:
         execution_script: ""
         created: 2000-01-23T04:56:07.000+00:00
@@ -86047,6 +86236,7 @@ components:
       - repository
       type: object
     ResponseListExecution:
+      additionalProperties: false
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
         created_at: 2000-01-23T04:56:07.000+00:00
@@ -86073,6 +86263,7 @@ components:
       - updated_at
       type: object
     ResponseListExecutionScript:
+      additionalProperties: false
       example:
         template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
@@ -86094,6 +86285,7 @@ components:
       - template_uuid
       type: object
     ResponseListIntegration:
+      additionalProperties: false
       example:
         provider:
           callback_url: callback_url
@@ -86120,6 +86312,7 @@ components:
       - scope_type
       type: object
     ResponseListPlatform:
+      additionalProperties: false
       example:
         callback_url: callback_url
         installation_url: installation_url
@@ -86141,6 +86334,7 @@ components:
       - name
       type: object
     ResponseListRepository:
+      additionalProperties: false
       example:
         visibility: visibility
         name: name
@@ -86170,6 +86364,7 @@ components:
       - visibility
       type: object
     ResponseRetrieveContinuousDeployment:
+      additionalProperties: false
       example:
         data:
           execution_script: ""
@@ -86197,6 +86392,7 @@ components:
       - data
       type: object
     ResponseRetrieveExecutionScript:
+      additionalProperties: false
       example:
         data:
           template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
@@ -86209,6 +86405,7 @@ components:
       - data
       type: object
     ResponseRetrieveExecutor:
+      additionalProperties: false
       example:
         data:
           is_active: true
@@ -86222,6 +86419,7 @@ components:
       - data
       type: object
     ResponseRetrieveIntegration:
+      additionalProperties: false
       example:
         data:
           provider:
@@ -86239,6 +86437,7 @@ components:
       - data
       type: object
     PatchContinuousDeploymentRequest:
+      additionalProperties: false
       example:
         integration_id: 171976545
         execution_script_id: 1294386359
@@ -86288,6 +86487,7 @@ components:
           writeOnly: true
       type: object
     PaginatedContinuousDeploymentList:
+      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -86365,6 +86565,7 @@ components:
           type: array
       type: object
     PaginatedExecutionList:
+      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -86414,6 +86615,7 @@ components:
           type: array
       type: object
     PaginatedExecutionScriptList:
+      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -86461,6 +86663,7 @@ components:
           type: array
       type: object
     PaginatedIntegrationList:
+      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -86518,6 +86721,7 @@ components:
           type: array
       type: object
     PaginatedPlatformList:
+      additionalProperties: false
       example:
         count: 123
         total_pages: 10
@@ -86567,6 +86771,7 @@ components:
           type: array
       type: object
     PaginatedRepositoryList:
+      additionalProperties: false
       example:
         count: 123
         total_pages: 10
