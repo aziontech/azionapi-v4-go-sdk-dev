@@ -1169,7 +1169,7 @@ func (r ApiPartialUpdateCreditCardRequest) Execute() (*ResponsePaymentMethod, *h
 /*
 PartialUpdateCreditCard Partially update a credit card
 
-Update the field 'is_default' to enable of an existing credit card.Only the field 'is_default' is editable for an existing card.
+Update the field 'is_default' to enable of an existing credit card. Only the field 'is_default' is editable for an existing card.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id

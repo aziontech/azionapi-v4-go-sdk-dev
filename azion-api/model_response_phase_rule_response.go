@@ -22,6 +22,7 @@ var _ MappedNullable = &ResponsePhaseRuleResponse{}
 
 // ResponsePhaseRuleResponse struct for ResponsePhaseRuleResponse
 type ResponsePhaseRuleResponse struct {
+	State *string `json:"state,omitempty"`
 	Data ResponsePhaseRule `json:"data"`
 }
 
@@ -43,6 +44,38 @@ func NewResponsePhaseRuleResponse(data ResponsePhaseRule) *ResponsePhaseRuleResp
 func NewResponsePhaseRuleResponseWithDefaults() *ResponsePhaseRuleResponse {
 	this := ResponsePhaseRuleResponse{}
 	return &this
+}
+
+// GetState returns the State field value if set, zero value otherwise.
+func (o *ResponsePhaseRuleResponse) GetState() string {
+	if o == nil || IsNil(o.State) {
+		var ret string
+		return ret
+	}
+	return *o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResponsePhaseRuleResponse) GetStateOk() (*string, bool) {
+	if o == nil || IsNil(o.State) {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *ResponsePhaseRuleResponse) HasState() bool {
+	if o != nil && !IsNil(o.State) {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given string and assigns it to the State field.
+func (o *ResponsePhaseRuleResponse) SetState(v string) {
+	o.State = &v
 }
 
 // GetData returns the Data field value
@@ -79,6 +112,9 @@ func (o ResponsePhaseRuleResponse) MarshalJSON() ([]byte, error) {
 
 func (o ResponsePhaseRuleResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
 	toSerialize["data"] = o.Data
 	return toSerialize, nil
 }
