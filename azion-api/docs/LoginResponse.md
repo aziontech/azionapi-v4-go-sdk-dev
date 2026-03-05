@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **ResponseType** | **string** | Discriminator field for LoginResponse | 
 **TwoFactorRequired** | **bool** | Specifies the type of two-factor authentication configured. Currently supports &#39;TOTP&#39; (Time-based One-Time Password). | 
 **TwoFactorType** | **string** | Indicates whether the user has an active TOTP device configured. If false, the user must register a device before using MFA authentication. | 
-**HasActiveDevice** | **bool** | Indicates whether the user already has an active TOTP device configured.If false, the user needs to set up a new device before using MFA authentication. | 
+**HasActiveDevice** | **bool** | Indicates whether the user already has an active TOTP device configured. If false, the user needs to set up a new device before using MFA authentication. | 
 
 ## Methods
 

@@ -23,6 +23,7 @@ var _ MappedNullable = &Credential{}
 
 // Credential struct for Credential
 type Credential struct {
+	Id int64 `json:"id"`
 	Name string `json:"name"`
 	AccessKey string `json:"access_key"`
 	SecretKey string `json:"secret_key"`
@@ -39,8 +40,9 @@ type _Credential Credential
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCredential(name string, accessKey string, secretKey string, capabilities []string, buckets []string, lastEditor NullableString, lastModified time.Time) *Credential {
+func NewCredential(id int64, name string, accessKey string, secretKey string, capabilities []string, buckets []string, lastEditor NullableString, lastModified time.Time) *Credential {
 	this := Credential{}
+	this.Id = id
 	this.Name = name
 	this.AccessKey = accessKey
 	this.SecretKey = secretKey
@@ -57,6 +59,30 @@ func NewCredential(name string, accessKey string, secretKey string, capabilities
 func NewCredentialWithDefaults() *Credential {
 	this := Credential{}
 	return &this
+}
+
+// GetId returns the Id field value
+func (o *Credential) GetId() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Credential) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *Credential) SetId(v int64) {
+	o.Id = v
 }
 
 // GetName returns the Name field value
@@ -271,6 +297,7 @@ func (o Credential) MarshalJSON() ([]byte, error) {
 
 func (o Credential) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["access_key"] = o.AccessKey
 	toSerialize["secret_key"] = o.SecretKey
@@ -289,6 +316,7 @@ func (o *Credential) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"id",
 		"name",
 		"access_key",
 		"secret_key",

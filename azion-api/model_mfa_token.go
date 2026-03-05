@@ -28,7 +28,7 @@ type MFAToken struct {
 	TwoFactorRequired bool `json:"two_factor_required"`
 	// Indicates whether the user has an active TOTP device configured. If false, the user must register a device before using MFA authentication.
 	TwoFactorType string `json:"two_factor_type"`
-	// Indicates whether the user already has an active TOTP device configured.If false, the user needs to set up a new device before using MFA authentication.
+	// Indicates whether the user already has an active TOTP device configured. If false, the user needs to set up a new device before using MFA authentication.
 	HasActiveDevice bool `json:"has_active_device"`
 	// Discriminator field for LoginResponse
 	ResponseType string `json:"response_type"`
