@@ -12,18 +12,18 @@ Name | Type | Description | Notes
 **Active** | Pointer to **bool** |  | [optional] 
 **Runtime** | Pointer to **string** | * &#x60;azion_js&#x60; - Azion JavaScript | [optional] 
 **ExecutionEnvironment** | Pointer to **string** | * &#x60;firewall&#x60; - Firewall * &#x60;application&#x60; - Application | [optional] 
-**Code** | **string** | String containing the function code. Maximum size: 20MB. | 
 **DefaultArgs** | Pointer to **interface{}** |  | [optional] 
 **AzionForm** | Pointer to [**EdgeFunctionsAzionForm**](EdgeFunctionsAzionForm.md) |  | [optional] 
 **ReferenceCount** | **int64** |  | 
 **Version** | **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | 
 **Vendor** | **string** |  | 
+**Code** | **string** | String containing the function code. Maximum size: 20.0MB | 
 
 ## Methods
 
 ### NewEdgeFunctions
 
-`func NewEdgeFunctions(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, code string, referenceCount int64, version string, vendor string, ) *EdgeFunctions`
+`func NewEdgeFunctions(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, code string, ) *EdgeFunctions`
 
 NewEdgeFunctions instantiates a new EdgeFunctions object
 This constructor will assign default values to properties that have it defined,
@@ -213,26 +213,6 @@ SetExecutionEnvironment sets ExecutionEnvironment field to given value.
 
 HasExecutionEnvironment returns a boolean if a field has been set.
 
-### GetCode
-
-`func (o *EdgeFunctions) GetCode() string`
-
-GetCode returns the Code field if non-nil, zero value otherwise.
-
-### GetCodeOk
-
-`func (o *EdgeFunctions) GetCodeOk() (*string, bool)`
-
-GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCode
-
-`func (o *EdgeFunctions) SetCode(v string)`
-
-SetCode sets Code field to given value.
-
-
 ### GetDefaultArgs
 
 `func (o *EdgeFunctions) GetDefaultArgs() interface{}`
@@ -351,6 +331,26 @@ and a boolean to check if the value has been set.
 `func (o *EdgeFunctions) SetVendor(v string)`
 
 SetVendor sets Vendor field to given value.
+
+
+### GetCode
+
+`func (o *EdgeFunctions) GetCode() string`
+
+GetCode returns the Code field if non-nil, zero value otherwise.
+
+### GetCodeOk
+
+`func (o *EdgeFunctions) GetCodeOk() (*string, bool)`
+
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCode
+
+`func (o *EdgeFunctions) SetCode(v string)`
+
+SetCode sets Code field to given value.
 
 
 

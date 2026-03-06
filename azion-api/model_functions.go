@@ -33,14 +33,14 @@ type Functions struct {
 	Runtime *string `json:"runtime,omitempty"`
 	// * `firewall` - Firewall * `application` - Application
 	ExecutionEnvironment *string `json:"execution_environment,omitempty"`
-	// String containing the function code. Maximum size: 20MB.
-	Code string `json:"code"`
 	DefaultArgs interface{} `json:"default_args,omitempty"`
 	AzionForm *FunctionsAzionForm `json:"azion_form,omitempty"`
 	ReferenceCount int64 `json:"reference_count"`
 	// Installed version, which may not be the latest if the vendor has released updates since installation.
 	Version string `json:"version"`
 	Vendor string `json:"vendor"`
+	// String containing the function code. Maximum size: 20.0MB
+	Code string `json:"code"`
 }
 
 type _Functions Functions
@@ -49,17 +49,17 @@ type _Functions Functions
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFunctions(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, code string, referenceCount int64, version string, vendor string) *Functions {
+func NewFunctions(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, code string) *Functions {
 	this := Functions{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
 	this.ProductVersion = productVersion
-	this.Code = code
 	this.ReferenceCount = referenceCount
 	this.Version = version
 	this.Vendor = vendor
+	this.Code = code
 	return &this
 }
 
@@ -287,30 +287,6 @@ func (o *Functions) SetExecutionEnvironment(v string) {
 	o.ExecutionEnvironment = &v
 }
 
-// GetCode returns the Code field value
-func (o *Functions) GetCode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Code
-}
-
-// GetCodeOk returns a tuple with the Code field value
-// and a boolean to check if the value has been set.
-func (o *Functions) GetCodeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Code, true
-}
-
-// SetCode sets field value
-func (o *Functions) SetCode(v string) {
-	o.Code = v
-}
-
 // GetDefaultArgs returns the DefaultArgs field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Functions) GetDefaultArgs() interface{} {
 	if o == nil {
@@ -448,6 +424,30 @@ func (o *Functions) SetVendor(v string) {
 	o.Vendor = v
 }
 
+// GetCode returns the Code field value
+func (o *Functions) GetCode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *Functions) GetCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
+// SetCode sets field value
+func (o *Functions) SetCode(v string) {
+	o.Code = v
+}
+
 func (o Functions) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -472,7 +472,6 @@ func (o Functions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExecutionEnvironment) {
 		toSerialize["execution_environment"] = o.ExecutionEnvironment
 	}
-	toSerialize["code"] = o.Code
 	if o.DefaultArgs != nil {
 		toSerialize["default_args"] = o.DefaultArgs
 	}
@@ -482,6 +481,7 @@ func (o Functions) ToMap() (map[string]interface{}, error) {
 	toSerialize["reference_count"] = o.ReferenceCount
 	toSerialize["version"] = o.Version
 	toSerialize["vendor"] = o.Vendor
+	toSerialize["code"] = o.Code
 	return toSerialize, nil
 }
 
@@ -495,10 +495,10 @@ func (o *Functions) UnmarshalJSON(data []byte) (err error) {
 		"last_editor",
 		"last_modified",
 		"product_version",
-		"code",
 		"reference_count",
 		"version",
 		"vendor",
+		"code",
 	}
 
 	allProperties := make(map[string]interface{})

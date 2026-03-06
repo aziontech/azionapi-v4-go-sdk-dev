@@ -68454,11 +68454,6 @@ components:
         execution_environment:
           allOf:
           - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
-        code:
-          description: "String containing the function code. Maximum size: 20MB."
-          maxLength: 52428800
-          minLength: 1
-          type: string
         default_args: {}
         azion_form:
           $ref: "#/components/schemas/Functions_azion_form"
@@ -68470,6 +68465,11 @@ components:
             \ has released updates since installation."
           type: string
         vendor:
+          type: string
+        code:
+          description: "String containing the function code. Maximum size: 20.0MB"
+          maxLength: 20971520
+          minLength: 1
           type: string
       required:
       - code
@@ -68556,14 +68556,14 @@ components:
         execution_environment:
           allOf:
           - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
-        code:
-          description: "String containing the function code. Maximum size: 20MB."
-          maxLength: 52428800
-          minLength: 1
-          type: string
         default_args: {}
         azion_form:
           $ref: "#/components/schemas/Functions_azion_form"
+        code:
+          description: "String containing the function code. Maximum size: 20.0MB"
+          maxLength: 20971520
+          minLength: 1
+          type: string
       required:
       - code
       - name
@@ -73446,14 +73446,14 @@ components:
         execution_environment:
           allOf:
           - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
-        code:
-          description: "String containing the function code. Maximum size: 20MB."
-          maxLength: 52428800
-          minLength: 1
-          type: string
         default_args: {}
         azion_form:
           $ref: "#/components/schemas/Functions_azion_form"
+        code:
+          description: "String containing the function code. Maximum size: 20.0MB"
+          maxLength: 20971520
+          minLength: 1
+          type: string
       title: PatchedFunctionsRequest
       type: object
     PatchedFirewallFunctionInstanceRequest:

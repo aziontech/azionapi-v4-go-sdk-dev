@@ -26,10 +26,10 @@ type PatchedFunctionsRequest struct {
 	Runtime *string `json:"runtime,omitempty"`
 	// * `firewall` - Firewall * `application` - Application
 	ExecutionEnvironment *string `json:"execution_environment,omitempty"`
-	// String containing the function code. Maximum size: 20MB.
-	Code *string `json:"code,omitempty"`
 	DefaultArgs interface{} `json:"default_args,omitempty"`
 	AzionForm *FunctionsAzionForm `json:"azion_form,omitempty"`
+	// String containing the function code. Maximum size: 20.0MB
+	Code *string `json:"code,omitempty"`
 }
 
 // NewPatchedFunctionsRequest instantiates a new PatchedFunctionsRequest object
@@ -177,38 +177,6 @@ func (o *PatchedFunctionsRequest) SetExecutionEnvironment(v string) {
 	o.ExecutionEnvironment = &v
 }
 
-// GetCode returns the Code field value if set, zero value otherwise.
-func (o *PatchedFunctionsRequest) GetCode() string {
-	if o == nil || IsNil(o.Code) {
-		var ret string
-		return ret
-	}
-	return *o.Code
-}
-
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedFunctionsRequest) GetCodeOk() (*string, bool) {
-	if o == nil || IsNil(o.Code) {
-		return nil, false
-	}
-	return o.Code, true
-}
-
-// HasCode returns a boolean if a field has been set.
-func (o *PatchedFunctionsRequest) HasCode() bool {
-	if o != nil && !IsNil(o.Code) {
-		return true
-	}
-
-	return false
-}
-
-// SetCode gets a reference to the given string and assigns it to the Code field.
-func (o *PatchedFunctionsRequest) SetCode(v string) {
-	o.Code = &v
-}
-
 // GetDefaultArgs returns the DefaultArgs field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PatchedFunctionsRequest) GetDefaultArgs() interface{} {
 	if o == nil {
@@ -274,6 +242,38 @@ func (o *PatchedFunctionsRequest) SetAzionForm(v FunctionsAzionForm) {
 	o.AzionForm = &v
 }
 
+// GetCode returns the Code field value if set, zero value otherwise.
+func (o *PatchedFunctionsRequest) GetCode() string {
+	if o == nil || IsNil(o.Code) {
+		var ret string
+		return ret
+	}
+	return *o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchedFunctionsRequest) GetCodeOk() (*string, bool) {
+	if o == nil || IsNil(o.Code) {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// HasCode returns a boolean if a field has been set.
+func (o *PatchedFunctionsRequest) HasCode() bool {
+	if o != nil && !IsNil(o.Code) {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given string and assigns it to the Code field.
+func (o *PatchedFunctionsRequest) SetCode(v string) {
+	o.Code = &v
+}
+
 func (o PatchedFunctionsRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -296,14 +296,14 @@ func (o PatchedFunctionsRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExecutionEnvironment) {
 		toSerialize["execution_environment"] = o.ExecutionEnvironment
 	}
-	if !IsNil(o.Code) {
-		toSerialize["code"] = o.Code
-	}
 	if o.DefaultArgs != nil {
 		toSerialize["default_args"] = o.DefaultArgs
 	}
 	if !IsNil(o.AzionForm) {
 		toSerialize["azion_form"] = o.AzionForm
+	}
+	if !IsNil(o.Code) {
+		toSerialize["code"] = o.Code
 	}
 	return toSerialize, nil
 }
