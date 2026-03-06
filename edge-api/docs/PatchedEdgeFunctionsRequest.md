@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **Active** | Pointer to **bool** |  | [optional] 
 **Runtime** | Pointer to **string** | * &#x60;azion_js&#x60; - Azion JavaScript | [optional] 
 **ExecutionEnvironment** | Pointer to **string** | * &#x60;firewall&#x60; - Firewall * &#x60;application&#x60; - Application | [optional] 
-**Code** | Pointer to **string** | String containing the function code. Maximum size: 20MB. | [optional] 
 **DefaultArgs** | Pointer to **interface{}** |  | [optional] 
 **AzionForm** | Pointer to [**EdgeFunctionsAzionForm**](EdgeFunctionsAzionForm.md) |  | [optional] 
+**Code** | Pointer to **string** | String containing the function code. Maximum size: 20.0MB | [optional] 
 
 ## Methods
 
@@ -131,31 +131,6 @@ SetExecutionEnvironment sets ExecutionEnvironment field to given value.
 
 HasExecutionEnvironment returns a boolean if a field has been set.
 
-### GetCode
-
-`func (o *PatchedEdgeFunctionsRequest) GetCode() string`
-
-GetCode returns the Code field if non-nil, zero value otherwise.
-
-### GetCodeOk
-
-`func (o *PatchedEdgeFunctionsRequest) GetCodeOk() (*string, bool)`
-
-GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCode
-
-`func (o *PatchedEdgeFunctionsRequest) SetCode(v string)`
-
-SetCode sets Code field to given value.
-
-### HasCode
-
-`func (o *PatchedEdgeFunctionsRequest) HasCode() bool`
-
-HasCode returns a boolean if a field has been set.
-
 ### GetDefaultArgs
 
 `func (o *PatchedEdgeFunctionsRequest) GetDefaultArgs() interface{}`
@@ -215,6 +190,31 @@ SetAzionForm sets AzionForm field to given value.
 `func (o *PatchedEdgeFunctionsRequest) HasAzionForm() bool`
 
 HasAzionForm returns a boolean if a field has been set.
+
+### GetCode
+
+`func (o *PatchedEdgeFunctionsRequest) GetCode() string`
+
+GetCode returns the Code field if non-nil, zero value otherwise.
+
+### GetCodeOk
+
+`func (o *PatchedEdgeFunctionsRequest) GetCodeOk() (*string, bool)`
+
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCode
+
+`func (o *PatchedEdgeFunctionsRequest) SetCode(v string)`
+
+SetCode sets Code field to given value.
+
+### HasCode
+
+`func (o *PatchedEdgeFunctionsRequest) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

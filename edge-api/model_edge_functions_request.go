@@ -27,10 +27,10 @@ type EdgeFunctionsRequest struct {
 	Runtime *string `json:"runtime,omitempty"`
 	// * `firewall` - Firewall * `application` - Application
 	ExecutionEnvironment *string `json:"execution_environment,omitempty"`
-	// String containing the function code. Maximum size: 20MB.
-	Code string `json:"code"`
 	DefaultArgs interface{} `json:"default_args,omitempty"`
 	AzionForm *EdgeFunctionsAzionForm `json:"azion_form,omitempty"`
+	// String containing the function code. Maximum size: 20.0MB
+	Code string `json:"code"`
 }
 
 type _EdgeFunctionsRequest EdgeFunctionsRequest
@@ -174,30 +174,6 @@ func (o *EdgeFunctionsRequest) SetExecutionEnvironment(v string) {
 	o.ExecutionEnvironment = &v
 }
 
-// GetCode returns the Code field value
-func (o *EdgeFunctionsRequest) GetCode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Code
-}
-
-// GetCodeOk returns a tuple with the Code field value
-// and a boolean to check if the value has been set.
-func (o *EdgeFunctionsRequest) GetCodeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Code, true
-}
-
-// SetCode sets field value
-func (o *EdgeFunctionsRequest) SetCode(v string) {
-	o.Code = v
-}
-
 // GetDefaultArgs returns the DefaultArgs field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EdgeFunctionsRequest) GetDefaultArgs() interface{} {
 	if o == nil {
@@ -263,6 +239,30 @@ func (o *EdgeFunctionsRequest) SetAzionForm(v EdgeFunctionsAzionForm) {
 	o.AzionForm = &v
 }
 
+// GetCode returns the Code field value
+func (o *EdgeFunctionsRequest) GetCode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *EdgeFunctionsRequest) GetCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
+// SetCode sets field value
+func (o *EdgeFunctionsRequest) SetCode(v string) {
+	o.Code = v
+}
+
 func (o EdgeFunctionsRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -283,13 +283,13 @@ func (o EdgeFunctionsRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExecutionEnvironment) {
 		toSerialize["execution_environment"] = o.ExecutionEnvironment
 	}
-	toSerialize["code"] = o.Code
 	if o.DefaultArgs != nil {
 		toSerialize["default_args"] = o.DefaultArgs
 	}
 	if !IsNil(o.AzionForm) {
 		toSerialize["azion_form"] = o.AzionForm
 	}
+	toSerialize["code"] = o.Code
 	return toSerialize, nil
 }
 
