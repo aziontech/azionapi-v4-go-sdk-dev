@@ -9477,7 +9477,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CacheSetting"
+                $ref: "#/components/schemas/CacheSettingResponse"
           description: Cache setting details retrieved successfully.
         "401":
           content:

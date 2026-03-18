@@ -906,7 +906,7 @@ func (r ApiRetrieveCacheSettingRequest) Fields(fields string) ApiRetrieveCacheSe
 	return r
 }
 
-func (r ApiRetrieveCacheSettingRequest) Execute() (*CacheSetting, *http.Response, error) {
+func (r ApiRetrieveCacheSettingRequest) Execute() (*CacheSettingResponse, *http.Response, error) {
 	return r.ApiService.RetrieveCacheSettingExecute(r)
 }
 
@@ -930,13 +930,13 @@ func (a *ApplicationsCacheSettingsAPIService) RetrieveCacheSetting(ctx context.C
 }
 
 // Execute executes the request
-//  @return CacheSetting
-func (a *ApplicationsCacheSettingsAPIService) RetrieveCacheSettingExecute(r ApiRetrieveCacheSettingRequest) (*CacheSetting, *http.Response, error) {
+//  @return CacheSettingResponse
+func (a *ApplicationsCacheSettingsAPIService) RetrieveCacheSettingExecute(r ApiRetrieveCacheSettingRequest) (*CacheSettingResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CacheSetting
+		localVarReturnValue  *CacheSettingResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ApplicationsCacheSettingsAPIService.RetrieveCacheSetting")
