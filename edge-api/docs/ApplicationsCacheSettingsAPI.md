@@ -319,7 +319,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveCacheSetting
 
-> CacheSetting RetrieveCacheSetting(ctx, applicationId, cacheSettingId).Fields(fields).Execute()
+> CacheSettingResponse RetrieveCacheSetting(ctx, applicationId, cacheSettingId).Fields(fields).Execute()
 
 Retrieve details of an Applications Cache Setting
 
@@ -349,7 +349,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationsCacheSettingsAPI.RetrieveCacheSetting``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveCacheSetting`: CacheSetting
+	// response from `RetrieveCacheSetting`: CacheSettingResponse
 	fmt.Fprintf(os.Stdout, "Response from `ApplicationsCacheSettingsAPI.RetrieveCacheSetting`: %v\n", resp)
 }
 ```
@@ -376,7 +376,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CacheSetting**](CacheSetting.md)
+[**CacheSettingResponse**](CacheSettingResponse.md)
 
 ### Authorization
 
