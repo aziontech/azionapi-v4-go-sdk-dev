@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **ReferenceCount** | **int64** |  | 
 **Version** | **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | 
 **Vendor** | **string** |  | 
-**Code** | **string** | String containing the function code. Maximum size: 20.0MB | 
+**Code** | **string** | String containing the function code. Maximum size: 50.0MB | 
 
 ## Methods
 

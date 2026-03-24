@@ -38,7 +38,7 @@ type EdgeFunctions struct {
 	// Installed version, which may not be the latest if the vendor has released updates since installation.
 	Version string `json:"version"`
 	Vendor string `json:"vendor"`
-	// String containing the function code. Maximum size: 20.0MB
+	// String containing the function code. Maximum size: 50.0MB
 	Code string `json:"code"`
 }
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **ExecutionEnvironment** | Pointer to **string** | * &#x60;firewall&#x60; - Firewall * &#x60;application&#x60; - Application | [optional] 
 **DefaultArgs** | Pointer to **interface{}** |  | [optional] 
 **AzionForm** | Pointer to [**FunctionsAzionForm**](FunctionsAzionForm.md) |  | [optional] 
-**Code** | Pointer to **string** | String containing the function code. Maximum size: 20.0MB | [optional] 
+**Code** | Pointer to **string** | String containing the function code. Maximum size: 50.0MB | [optional] 
 
 ## Methods
 

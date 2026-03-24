@@ -27,7 +27,7 @@ type PatchedEdgeFunctionsRequest struct {
 	ExecutionEnvironment *string `json:"execution_environment,omitempty"`
 	DefaultArgs interface{} `json:"default_args,omitempty"`
 	AzionForm *EdgeFunctionsAzionForm `json:"azion_form,omitempty"`
-	// String containing the function code. Maximum size: 20.0MB
+	// String containing the function code. Maximum size: 50.0MB
 	Code *string `json:"code,omitempty"`
 }
 
