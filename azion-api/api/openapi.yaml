@@ -68467,8 +68467,8 @@ components:
         vendor:
           type: string
         code:
-          description: "String containing the function code. Maximum size: 20.0MB"
-          maxLength: 20971520
+          description: "String containing the function code. Maximum size: 50.0MB"
+          maxLength: 52428800
           minLength: 1
           type: string
       required:
@@ -68560,8 +68560,8 @@ components:
         azion_form:
           $ref: "#/components/schemas/Functions_azion_form"
         code:
-          description: "String containing the function code. Maximum size: 20.0MB"
-          maxLength: 20971520
+          description: "String containing the function code. Maximum size: 50.0MB"
+          maxLength: 52428800
           minLength: 1
           type: string
       required:
@@ -73450,8 +73450,8 @@ components:
         azion_form:
           $ref: "#/components/schemas/Functions_azion_form"
         code:
-          description: "String containing the function code. Maximum size: 20.0MB"
-          maxLength: 20971520
+          description: "String containing the function code. Maximum size: 50.0MB"
+          maxLength: 52428800
           minLength: 1
           type: string
       title: PatchedFunctionsRequest
