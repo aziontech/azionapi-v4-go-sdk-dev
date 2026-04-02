@@ -25,6 +25,7 @@ type DataStream struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
 	LastEditor string `json:"last_editor"`
+	Created time.Time `json:"created"`
 	LastModified time.Time `json:"last_modified"`
 	ProductVersion string `json:"product_version"`
 	Active *bool `json:"active,omitempty"`
@@ -39,11 +40,12 @@ type _DataStream DataStream
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataStream(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, inputs []InputPolymorphicInputDataSourceAttributes, transform []TransformPolymorphic, outputs []Output) *DataStream {
+func NewDataStream(id int64, name string, lastEditor string, created time.Time, lastModified time.Time, productVersion string, inputs []InputPolymorphicInputDataSourceAttributes, transform []TransformPolymorphic, outputs []Output) *DataStream {
 	this := DataStream{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
+	this.Created = created
 	this.LastModified = lastModified
 	this.ProductVersion = productVersion
 	this.Inputs = inputs
@@ -130,6 +132,30 @@ func (o *DataStream) GetLastEditorOk() (*string, bool) {
 // SetLastEditor sets field value
 func (o *DataStream) SetLastEditor(v string) {
 	o.LastEditor = v
+}
+
+// GetCreated returns the Created field value
+func (o *DataStream) GetCreated() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *DataStream) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
+// SetCreated sets field value
+func (o *DataStream) SetCreated(v time.Time) {
+	o.Created = v
 }
 
 // GetLastModified returns the LastModified field value
@@ -297,6 +323,7 @@ func (o DataStream) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["last_editor"] = o.LastEditor
+	toSerialize["created"] = o.Created
 	toSerialize["last_modified"] = o.LastModified
 	toSerialize["product_version"] = o.ProductVersion
 	if !IsNil(o.Active) {
@@ -316,6 +343,7 @@ func (o *DataStream) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"last_editor",
+		"created",
 		"last_modified",
 		"product_version",
 		"inputs",

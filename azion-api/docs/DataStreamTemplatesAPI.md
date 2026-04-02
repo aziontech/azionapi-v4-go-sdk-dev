@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListTemplates
 
-> PaginatedTemplateList ListTemplates(ctx).Active(active).Custom(custom).DataSet(dataSet).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedTemplateList ListTemplates(ctx).Active(active).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Custom(custom).DataSet(dataSet).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Templates
 
@@ -172,6 +172,8 @@ import (
 
 func main() {
 	active := true // bool | Filter by active status. (optional)
+	createdAtGte := time.Now() // time.Time | Filter by created date (greater than or equal). (optional)
+	createdAtLte := time.Now() // time.Time | Filter by created date (less than or equal). (optional)
 	custom := true // bool | Filter by custom status (true for custom templates, false for default templates). (optional)
 	dataSet := "dataSet_example" // string | Filter by data set (case-insensitive, partial match). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
@@ -187,7 +189,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamTemplatesAPI.ListTemplates(context.Background()).Active(active).Custom(custom).DataSet(dataSet).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.DataStreamTemplatesAPI.ListTemplates(context.Background()).Active(active).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Custom(custom).DataSet(dataSet).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamTemplatesAPI.ListTemplates``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,6 +211,8 @@ Other parameters are passed through a pointer to a apiListTemplatesRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **active** | **bool** | Filter by active status. | 
+ **createdAtGte** | **time.Time** | Filter by created date (greater than or equal). | 
+ **createdAtLte** | **time.Time** | Filter by created date (less than or equal). | 
  **custom** | **bool** | Filter by custom status (true for custom templates, false for default templates). | 
  **dataSet** | **string** | Filter by data set (case-insensitive, partial match). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 

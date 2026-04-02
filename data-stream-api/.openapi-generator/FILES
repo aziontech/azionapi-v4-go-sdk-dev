@@ -24,6 +24,7 @@ docs/DataStreamStreamsAPI.md
 docs/DataStreamTemplatesAPI.md
 docs/DatadogEndpoint.md
 docs/DatadogEndpointRequest.md
+docs/DeleteResponse.md
 docs/ElasticsearchEndpoint.md
 docs/ElasticsearchEndpointRequest.md
 docs/HttpPostEndpoint.md
@@ -96,6 +97,7 @@ model_data_stream_request.go
 model_data_stream_response.go
 model_datadog_endpoint.go
 model_datadog_endpoint_request.go
+model_delete_response.go
 model_elasticsearch_endpoint.go
 model_elasticsearch_endpoint_request.go
 model_http_post_endpoint.go

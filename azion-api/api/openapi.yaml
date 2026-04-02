@@ -22076,6 +22076,24 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Filter by created date (greater than or equal).
+        explode: true
+        in: query
+        name: created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by created date (less than or equal).
+        explode: true
+        in: query
+        name: created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
       - description: Filter by data set id (accepts comma-separated values).
         explode: true
         in: query
@@ -23119,6 +23137,24 @@ paths:
         required: false
         schema:
           type: boolean
+        style: form
+      - description: Filter by created date (greater than or equal).
+        explode: true
+        in: query
+        name: created_at__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by created date (less than or equal).
+        explode: true
+        in: query
+        name: created_at__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
         style: form
       - description: "Filter by custom status (true for custom templates, false for\
           \ default templates)."
@@ -64338,17 +64374,23 @@ components:
       type: object
     DataSourceEnum:
       description: |-
-        * `http` - Applications
+        * `workloads` - Workloads
         * `waf` - WAF Events
-        * `functions` - Functions
-        * `activity` - Activity History
+        * `functions_console` - Functions Console
+        * `activity_history` - Activity History
+        * `http` - Applications
+        * `cells_console` - Functions
+        * `rtm_activity` - Activity History
       title: DataSourceEnum
       type: string
       x-extensible-enum:
-      - http
+      - workloads
       - waf
-      - functions
-      - activity
+      - functions_console
+      - activity_history
+      - http
+      - cells_console
+      - rtm_activity
     DataStream:
       additionalProperties: false
       example:
@@ -64379,6 +64421,7 @@ components:
         - attributes:
             rate: 60
           type: type
+        created: 2000-01-23T04:56:07.000+00:00
         inputs:
         - null
         - null
@@ -64398,6 +64441,9 @@ components:
         last_editor:
           maxLength: 100
           minLength: 1
+          type: string
+        created:
+          format: date-time
           type: string
         last_modified:
           format: date-time
@@ -64421,6 +64467,7 @@ components:
             $ref: "#/components/schemas/OutputBase"
           type: array
       required:
+      - created
       - id
       - inputs
       - last_editor
@@ -64522,6 +64569,7 @@ components:
           - attributes:
               rate: 60
             type: type
+          created: 2000-01-23T04:56:07.000+00:00
           inputs:
           - null
           - null
@@ -64724,17 +64772,23 @@ components:
       properties:
         data_source:
           description: |-
-            * `http` - Applications
+            * `workloads` - Workloads
             * `waf` - WAF Events
-            * `functions` - Functions
-            * `activity` - Activity History
+            * `functions_console` - Functions Console
+            * `activity_history` - Activity History
+            * `http` - Applications
+            * `cells_console` - Functions
+            * `rtm_activity` - Activity History
           title: DataSourceEnum
           type: string
           x-extensible-enum:
-          - http
+          - workloads
           - waf
-          - functions
-          - activity
+          - functions_console
+          - activity_history
+          - http
+          - cells_console
+          - rtm_activity
       required:
       - data_source
       title: InputDataSource
@@ -64782,17 +64836,23 @@ components:
       properties:
         data_source:
           description: |-
-            * `http` - Applications
+            * `workloads` - Workloads
             * `waf` - WAF Events
-            * `functions` - Functions
-            * `activity` - Activity History
+            * `functions_console` - Functions Console
+            * `activity_history` - Activity History
+            * `http` - Applications
+            * `cells_console` - Functions
+            * `rtm_activity` - Activity History
           title: DataSourceEnum
           type: string
           x-extensible-enum:
-          - http
+          - workloads
           - waf
-          - functions
-          - activity
+          - functions_console
+          - activity_history
+          - http
+          - cells_console
+          - rtm_activity
       required:
       - data_source
       title: InputDataSourceRequest
@@ -64973,6 +65033,7 @@ components:
           - attributes:
               rate: 60
             type: type
+          created: 2000-01-23T04:56:07.000+00:00
           inputs:
           - null
           - null
@@ -65008,6 +65069,7 @@ components:
           - attributes:
               rate: 60
             type: type
+          created: 2000-01-23T04:56:07.000+00:00
           inputs:
           - null
           - null
@@ -65076,6 +65138,7 @@ components:
         - last_editor: last_editor
           custom: true
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           data_set: data_set
           id: 0
@@ -65083,6 +65146,7 @@ components:
         - last_editor: last_editor
           custom: true
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           data_set: data_set
           id: 0
@@ -65373,6 +65437,7 @@ components:
         last_editor: last_editor
         custom: true
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         active: true
         data_set: data_set
         id: 0
@@ -65389,6 +65454,9 @@ components:
           maxLength: 100
           minLength: 1
           type: string
+        created_at:
+          format: date-time
+          type: string
         last_modified:
           format: date-time
           type: string
@@ -65401,6 +65469,7 @@ components:
           minLength: 1
           type: string
       required:
+      - created_at
       - custom
       - data_set
       - id
@@ -65438,6 +65507,7 @@ components:
           last_editor: last_editor
           custom: true
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           data_set: data_set
           id: 0

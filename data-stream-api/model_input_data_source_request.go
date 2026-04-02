@@ -21,7 +21,7 @@ var _ MappedNullable = &InputDataSourceRequest{}
 
 // InputDataSourceRequest struct for InputDataSourceRequest
 type InputDataSourceRequest struct {
-	// * `http` - Edge Applications * `waf` - WAF Events * `functions` - Edge Functions * `activity` - Activity History
+	// * `workloads` - Workloads * `waf` - WAF Events * `functions_console` - Functions Console * `activity_history` - Activity History * `http` - Applications * `cells_console` - Functions * `rtm_activity` - Activity History
 	DataSource string `json:"data_source"`
 }
 
