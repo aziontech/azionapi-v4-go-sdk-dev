@@ -12,12 +12,13 @@ Name | Type | Description | Notes
 **Active** | Pointer to **bool** |  | [optional] 
 **LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewFirewallFunctionInstance
 
-`func NewFirewallFunctionInstance(id int64, name string, function int64, lastEditor string, lastModified time.Time, ) *FirewallFunctionInstance`
+`func NewFirewallFunctionInstance(id int64, name string, function int64, lastEditor string, lastModified time.Time, createdAt time.Time, ) *FirewallFunctionInstance`
 
 NewFirewallFunctionInstance instantiates a new FirewallFunctionInstance object
 This constructor will assign default values to properties that have it defined,
@@ -215,6 +216,26 @@ and a boolean to check if the value has been set.
 `func (o *FirewallFunctionInstance) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
+
+
+### GetCreatedAt
+
+`func (o *FirewallFunctionInstance) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *FirewallFunctionInstance) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *FirewallFunctionInstance) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 

@@ -27,6 +27,7 @@ type FirewallRule struct {
 	Name string `json:"name"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
+	CreatedAt time.Time `json:"created_at"`
 	Active *bool `json:"active,omitempty"`
 	Criteria [][]FirewallCriterionField `json:"criteria"`
 	Behaviors []FirewallBehavior `json:"behaviors"`
@@ -40,12 +41,13 @@ type _FirewallRule FirewallRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirewallRule(id int64, name string, lastEditor string, lastModified time.Time, criteria [][]FirewallCriterionField, behaviors []FirewallBehavior, order int64) *FirewallRule {
+func NewFirewallRule(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, criteria [][]FirewallCriterionField, behaviors []FirewallBehavior, order int64) *FirewallRule {
 	this := FirewallRule{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
+	this.CreatedAt = createdAt
 	this.Criteria = criteria
 	this.Behaviors = behaviors
 	this.Order = order
@@ -154,6 +156,30 @@ func (o *FirewallRule) GetLastModifiedOk() (*time.Time, bool) {
 // SetLastModified sets field value
 func (o *FirewallRule) SetLastModified(v time.Time) {
 	o.LastModified = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *FirewallRule) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *FirewallRule) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *FirewallRule) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -306,6 +332,7 @@ func (o FirewallRule) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
+	toSerialize["created_at"] = o.CreatedAt
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
@@ -327,6 +354,7 @@ func (o *FirewallRule) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"last_editor",
 		"last_modified",
+		"created_at",
 		"criteria",
 		"behaviors",
 		"order",

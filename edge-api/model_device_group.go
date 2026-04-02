@@ -12,6 +12,7 @@ package edgeapi
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -25,6 +26,7 @@ type DeviceGroup struct {
 	Name string `json:"name"`
 	// Enter a valid regular expression pattern to identify user agents.
 	UserAgent string `json:"user_agent"`
+	CreatedAt NullableTime `json:"created_at"`
 }
 
 type _DeviceGroup DeviceGroup
@@ -33,11 +35,12 @@ type _DeviceGroup DeviceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeviceGroup(id int64, name string, userAgent string) *DeviceGroup {
+func NewDeviceGroup(id int64, name string, userAgent string, createdAt NullableTime) *DeviceGroup {
 	this := DeviceGroup{}
 	this.Id = id
 	this.Name = name
 	this.UserAgent = userAgent
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -121,6 +124,32 @@ func (o *DeviceGroup) SetUserAgent(v string) {
 	o.UserAgent = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+// If the value is explicit nil, the zero value for time.Time will be returned
+func (o *DeviceGroup) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return *o.CreatedAt.Get()
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeviceGroup) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
+}
+
+// SetCreatedAt sets field value
+func (o *DeviceGroup) SetCreatedAt(v time.Time) {
+	o.CreatedAt.Set(&v)
+}
+
 func (o DeviceGroup) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -134,6 +163,7 @@ func (o DeviceGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["user_agent"] = o.UserAgent
+	toSerialize["created_at"] = o.CreatedAt.Get()
 	return toSerialize, nil
 }
 
@@ -145,6 +175,7 @@ func (o *DeviceGroup) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"user_agent",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

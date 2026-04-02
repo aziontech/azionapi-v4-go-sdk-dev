@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Active** | Pointer to **bool** |  | [optional] 
 **LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
 **Infrastructure** | Pointer to **int64** | * &#x60;1&#x60; - Production Infrastructure (All Edge Locations) * &#x60;2&#x60; - Staging Infrastructure | [optional] 
 **Tls** | Pointer to [**TLSWorkload**](TLSWorkload.md) |  | [optional] 
 **Protocols** | Pointer to [**Protocols**](Protocols.md) |  | [optional] 
@@ -22,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewWorkload
 
-`func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, workloadDomain string, productVersion string, ) *Workload`
+`func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string, ) *Workload`
 
 NewWorkload instantiates a new Workload object
 This constructor will assign default values to properties that have it defined,
@@ -140,6 +141,26 @@ and a boolean to check if the value has been set.
 `func (o *Workload) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
+
+
+### GetCreatedAt
+
+`func (o *Workload) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Workload) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Workload) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetInfrastructure

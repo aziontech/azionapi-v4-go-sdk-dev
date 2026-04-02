@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Id** | **int64** |  | 
 **Name** | **string** |  | 
 **UserAgent** | **string** | Enter a valid regular expression pattern to identify user agents. | 
+**CreatedAt** | **NullableTime** |  | 
 
 ## Methods
 
 ### NewDeviceGroup
 
-`func NewDeviceGroup(id int64, name string, userAgent string, ) *DeviceGroup`
+`func NewDeviceGroup(id int64, name string, userAgent string, createdAt NullableTime, ) *DeviceGroup`
 
 NewDeviceGroup instantiates a new DeviceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -87,6 +88,36 @@ and a boolean to check if the value has been set.
 SetUserAgent sets UserAgent field to given value.
 
 
+### GetCreatedAt
+
+`func (o *DeviceGroup) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *DeviceGroup) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *DeviceGroup) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### SetCreatedAtNil
+
+`func (o *DeviceGroup) SetCreatedAtNil(b bool)`
+
+ SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+
+### UnsetCreatedAt
+`func (o *DeviceGroup) UnsetCreatedAt()`
+
+UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

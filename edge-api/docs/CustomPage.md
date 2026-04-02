@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | **string** |  | 
 **Pages** | [**[]Page**](Page.md) |  | 
@@ -16,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewCustomPage
 
-`func NewCustomPage(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, pages []Page, ) *CustomPage`
+`func NewCustomPage(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, pages []Page, ) *CustomPage`
 
 NewCustomPage instantiates a new CustomPage object
 This constructor will assign default values to properties that have it defined,
@@ -109,6 +110,26 @@ and a boolean to check if the value has been set.
 `func (o *CustomPage) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
+
+
+### GetCreatedAt
+
+`func (o *CustomPage) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *CustomPage) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *CustomPage) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetActive

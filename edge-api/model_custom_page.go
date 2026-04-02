@@ -26,6 +26,7 @@ type CustomPage struct {
 	Name string `json:"name"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
+	CreatedAt time.Time `json:"created_at"`
 	Active *bool `json:"active,omitempty"`
 	ProductVersion string `json:"product_version"`
 	Pages []Page `json:"pages"`
@@ -37,12 +38,13 @@ type _CustomPage CustomPage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomPage(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, pages []Page) *CustomPage {
+func NewCustomPage(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, pages []Page) *CustomPage {
 	this := CustomPage{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
+	this.CreatedAt = createdAt
 	this.ProductVersion = productVersion
 	this.Pages = pages
 	return &this
@@ -152,6 +154,30 @@ func (o *CustomPage) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *CustomPage) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *CustomPage) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *CustomPage) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *CustomPage) GetActive() bool {
 	if o == nil || IsNil(o.Active) {
@@ -246,6 +272,7 @@ func (o CustomPage) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
+	toSerialize["created_at"] = o.CreatedAt
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
@@ -263,6 +290,7 @@ func (o *CustomPage) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"last_editor",
 		"last_modified",
+		"created_at",
 		"product_version",
 		"pages",
 	}

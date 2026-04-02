@@ -32,6 +32,7 @@ type ResponsePhaseRule struct {
 	Order int64 `json:"order"`
 	LastEditor NullableString `json:"last_editor"`
 	LastModified NullableTime `json:"last_modified"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type _ResponsePhaseRule ResponsePhaseRule
@@ -40,7 +41,7 @@ type _ResponsePhaseRule ResponsePhaseRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponsePhaseRule(id int64, name string, criteria [][]ApplicationCriterionField, behaviors []ResponsePhaseBehavior, order int64, lastEditor NullableString, lastModified NullableTime) *ResponsePhaseRule {
+func NewResponsePhaseRule(id int64, name string, criteria [][]ApplicationCriterionField, behaviors []ResponsePhaseBehavior, order int64, lastEditor NullableString, lastModified NullableTime, createdAt time.Time) *ResponsePhaseRule {
 	this := ResponsePhaseRule{}
 	this.Id = id
 	this.Name = name
@@ -49,6 +50,7 @@ func NewResponsePhaseRule(id int64, name string, criteria [][]ApplicationCriteri
 	this.Order = order
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -296,6 +298,30 @@ func (o *ResponsePhaseRule) SetLastModified(v time.Time) {
 	o.LastModified.Set(&v)
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *ResponsePhaseRule) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *ResponsePhaseRule) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *ResponsePhaseRule) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
 func (o ResponsePhaseRule) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -319,6 +345,7 @@ func (o ResponsePhaseRule) ToMap() (map[string]interface{}, error) {
 	toSerialize["order"] = o.Order
 	toSerialize["last_editor"] = o.LastEditor.Get()
 	toSerialize["last_modified"] = o.LastModified.Get()
+	toSerialize["created_at"] = o.CreatedAt
 	return toSerialize, nil
 }
 
@@ -334,6 +361,7 @@ func (o *ResponsePhaseRule) UnmarshalJSON(data []byte) (err error) {
 		"order",
 		"last_editor",
 		"last_modified",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})
