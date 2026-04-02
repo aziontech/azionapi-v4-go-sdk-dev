@@ -30,6 +30,7 @@ type Firewall struct {
 	Active *bool `json:"active,omitempty"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
+	CreatedAt time.Time `json:"created_at"`
 	ProductVersion string `json:"product_version"`
 }
 
@@ -39,12 +40,13 @@ type _Firewall Firewall
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirewall(id int64, name string, lastEditor string, lastModified time.Time, productVersion string) *Firewall {
+func NewFirewall(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string) *Firewall {
 	this := Firewall{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
+	this.CreatedAt = createdAt
 	this.ProductVersion = productVersion
 	return &this
 }
@@ -249,6 +251,30 @@ func (o *Firewall) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *Firewall) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *Firewall) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *Firewall) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
 // GetProductVersion returns the ProductVersion field value
 func (o *Firewall) GetProductVersion() string {
 	if o == nil {
@@ -296,6 +322,7 @@ func (o Firewall) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
+	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["product_version"] = o.ProductVersion
 	return toSerialize, nil
 }
@@ -309,6 +336,7 @@ func (o *Firewall) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"last_editor",
 		"last_modified",
+		"created_at",
 		"product_version",
 	}
 

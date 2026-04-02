@@ -11,13 +11,14 @@ Name | Type | Description | Notes
 **Active** | Pointer to **bool** |  | [optional] 
 **LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
 **ProductVersion** | **string** |  | 
 
 ## Methods
 
 ### NewFirewall
 
-`func NewFirewall(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, ) *Firewall`
+`func NewFirewall(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, ) *Firewall`
 
 NewFirewall instantiates a new Firewall object
 This constructor will assign default values to properties that have it defined,
@@ -185,6 +186,26 @@ and a boolean to check if the value has been set.
 `func (o *Firewall) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
+
+
+### GetCreatedAt
+
+`func (o *Firewall) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Firewall) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Firewall) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetProductVersion

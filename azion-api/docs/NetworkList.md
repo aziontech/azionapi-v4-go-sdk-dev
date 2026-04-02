@@ -10,13 +10,14 @@ Name | Type | Description | Notes
 **Items** | **[]string** |  | 
 **LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
 ### NewNetworkList
 
-`func NewNetworkList(id int64, name string, type_ string, items []string, lastEditor string, lastModified time.Time, ) *NetworkList`
+`func NewNetworkList(id int64, name string, type_ string, items []string, lastEditor string, lastModified time.Time, createdAt time.Time, ) *NetworkList`
 
 NewNetworkList instantiates a new NetworkList object
 This constructor will assign default values to properties that have it defined,
@@ -149,6 +150,26 @@ and a boolean to check if the value has been set.
 `func (o *NetworkList) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
+
+
+### GetCreatedAt
+
+`func (o *NetworkList) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *NetworkList) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *NetworkList) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetActive

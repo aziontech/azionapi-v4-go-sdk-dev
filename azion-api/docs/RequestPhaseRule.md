@@ -13,12 +13,13 @@ Name | Type | Description | Notes
 **Order** | **int64** |  | 
 **LastEditor** | **NullableString** |  | 
 **LastModified** | **NullableTime** |  | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewRequestPhaseRule
 
-`func NewRequestPhaseRule(id int64, name string, criteria [][]ApplicationCriterionField, behaviors []RequestPhaseBehavior, order int64, lastEditor NullableString, lastModified NullableTime, ) *RequestPhaseRule`
+`func NewRequestPhaseRule(id int64, name string, criteria [][]ApplicationCriterionField, behaviors []RequestPhaseBehavior, order int64, lastEditor NullableString, lastModified NullableTime, createdAt time.Time, ) *RequestPhaseRule`
 
 NewRequestPhaseRule instantiates a new RequestPhaseRule object
 This constructor will assign default values to properties that have it defined,
@@ -243,6 +244,26 @@ SetLastModified sets LastModified field to given value.
 `func (o *RequestPhaseRule) UnsetLastModified()`
 
 UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
+### GetCreatedAt
+
+`func (o *RequestPhaseRule) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *RequestPhaseRule) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *RequestPhaseRule) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

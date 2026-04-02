@@ -9,13 +9,14 @@ Name | Type | Description | Notes
 **Type** | **string** | * &#x60;asn&#x60; - ASN * &#x60;countries&#x60; - Countries * &#x60;ip_cidr&#x60; - IP/CIDR | 
 **LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
 ### NewNetworkListSummary
 
-`func NewNetworkListSummary(id int64, name string, type_ string, lastEditor string, lastModified time.Time, ) *NetworkListSummary`
+`func NewNetworkListSummary(id int64, name string, type_ string, lastEditor string, lastModified time.Time, createdAt time.Time, ) *NetworkListSummary`
 
 NewNetworkListSummary instantiates a new NetworkListSummary object
 This constructor will assign default values to properties that have it defined,
@@ -128,6 +129,26 @@ and a boolean to check if the value has been set.
 `func (o *NetworkListSummary) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
+
+
+### GetCreatedAt
+
+`func (o *NetworkListSummary) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *NetworkListSummary) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *NetworkListSummary) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetActive

@@ -29,6 +29,7 @@ type NetworkList struct {
 	Items []string `json:"items"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
+	CreatedAt time.Time `json:"created_at"`
 	Active *bool `json:"active,omitempty"`
 }
 
@@ -38,7 +39,7 @@ type _NetworkList NetworkList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkList(id int64, name string, type_ string, items []string, lastEditor string, lastModified time.Time) *NetworkList {
+func NewNetworkList(id int64, name string, type_ string, items []string, lastEditor string, lastModified time.Time, createdAt time.Time) *NetworkList {
 	this := NetworkList{}
 	this.Id = id
 	this.Name = name
@@ -46,6 +47,7 @@ func NewNetworkList(id int64, name string, type_ string, items []string, lastEdi
 	this.Items = items
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -201,6 +203,30 @@ func (o *NetworkList) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *NetworkList) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *NetworkList) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *NetworkList) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *NetworkList) GetActive() bool {
 	if o == nil || IsNil(o.Active) {
@@ -249,6 +275,7 @@ func (o NetworkList) ToMap() (map[string]interface{}, error) {
 	toSerialize["items"] = o.Items
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
+	toSerialize["created_at"] = o.CreatedAt
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
@@ -266,6 +293,7 @@ func (o *NetworkList) UnmarshalJSON(data []byte) (err error) {
 		"items",
 		"last_editor",
 		"last_modified",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

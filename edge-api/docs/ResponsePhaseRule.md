@@ -13,12 +13,13 @@ Name | Type | Description | Notes
 **Order** | **int64** |  | 
 **LastEditor** | **NullableString** |  | 
 **LastModified** | **NullableTime** |  | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewResponsePhaseRule
 
-`func NewResponsePhaseRule(id int64, name string, criteria [][]EdgeApplicationCriterionField, behaviors []ResponsePhaseBehavior, order int64, lastEditor NullableString, lastModified NullableTime, ) *ResponsePhaseRule`
+`func NewResponsePhaseRule(id int64, name string, criteria [][]EdgeApplicationCriterionField, behaviors []ResponsePhaseBehavior, order int64, lastEditor NullableString, lastModified NullableTime, createdAt time.Time, ) *ResponsePhaseRule`
 
 NewResponsePhaseRule instantiates a new ResponsePhaseRule object
 This constructor will assign default values to properties that have it defined,
@@ -243,6 +244,26 @@ SetLastModified sets LastModified field to given value.
 `func (o *ResponsePhaseRule) UnsetLastModified()`
 
 UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
+### GetCreatedAt
+
+`func (o *ResponsePhaseRule) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *ResponsePhaseRule) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *ResponsePhaseRule) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

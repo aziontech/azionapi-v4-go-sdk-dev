@@ -12,6 +12,7 @@ package edgeapi
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -25,6 +26,7 @@ type CacheSetting struct {
 	Name string `json:"name"`
 	BrowserCache *BrowserCacheModule `json:"browser_cache,omitempty"`
 	Modules *CacheSettingsModules `json:"modules,omitempty"`
+	CreatedAt NullableTime `json:"created_at"`
 }
 
 type _CacheSetting CacheSetting
@@ -33,10 +35,11 @@ type _CacheSetting CacheSetting
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCacheSetting(id int64, name string) *CacheSetting {
+func NewCacheSetting(id int64, name string, createdAt NullableTime) *CacheSetting {
 	this := CacheSetting{}
 	this.Id = id
 	this.Name = name
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -160,6 +163,32 @@ func (o *CacheSetting) SetModules(v CacheSettingsModules) {
 	o.Modules = &v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+// If the value is explicit nil, the zero value for time.Time will be returned
+func (o *CacheSetting) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return *o.CreatedAt.Get()
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CacheSetting) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
+}
+
+// SetCreatedAt sets field value
+func (o *CacheSetting) SetCreatedAt(v time.Time) {
+	o.CreatedAt.Set(&v)
+}
+
 func (o CacheSetting) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -178,6 +207,7 @@ func (o CacheSetting) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Modules) {
 		toSerialize["modules"] = o.Modules
 	}
+	toSerialize["created_at"] = o.CreatedAt.Get()
 	return toSerialize, nil
 }
 
@@ -188,6 +218,7 @@ func (o *CacheSetting) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"name",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})
