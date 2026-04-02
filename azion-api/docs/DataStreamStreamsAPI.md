@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListDataStreams
 
-> PaginatedDataStreamList ListDataStreams(ctx).Active(active).DataSetId(dataSetId).DataSource(dataSource).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedDataStreamList ListDataStreams(ctx).Active(active).CreatedGte(createdGte).CreatedLte(createdLte).DataSetId(dataSetId).DataSource(dataSource).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List Data Streams
 
@@ -172,6 +172,8 @@ import (
 
 func main() {
 	active := true // bool | Filter by active status. (optional)
+	createdGte := time.Now() // time.Time | Filter by created date (greater than or equal). (optional)
+	createdLte := time.Now() // time.Time | Filter by created date (less than or equal). (optional)
 	dataSetId := int64(789) // int64 | Filter by data set id (accepts comma-separated values). (optional)
 	dataSource := "dataSource_example" // string | Filter by data source (accepts comma-separated values). (optional)
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
@@ -187,7 +189,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DataStreamStreamsAPI.ListDataStreams(context.Background()).Active(active).DataSetId(dataSetId).DataSource(dataSource).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+	resp, r, err := apiClient.DataStreamStreamsAPI.ListDataStreams(context.Background()).Active(active).CreatedGte(createdGte).CreatedLte(createdLte).DataSetId(dataSetId).DataSource(dataSource).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DataStreamStreamsAPI.ListDataStreams``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -209,6 +211,8 @@ Other parameters are passed through a pointer to a apiListDataStreamsRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **active** | **bool** | Filter by active status. | 
+ **createdGte** | **time.Time** | Filter by created date (greater than or equal). | 
+ **createdLte** | **time.Time** | Filter by created date (less than or equal). | 
  **dataSetId** | **int64** | Filter by data set id (accepts comma-separated values). | 
  **dataSource** | **string** | Filter by data source (accepts comma-separated values). | 
  **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 

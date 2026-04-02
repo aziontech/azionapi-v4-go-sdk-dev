@@ -444,6 +444,8 @@ type ApiListTemplatesRequest struct {
 	ctx context.Context
 	ApiService *DataStreamTemplatesAPIService
 	active *bool
+	createdAtGte *time.Time
+	createdAtLte *time.Time
 	custom *bool
 	dataSet *string
 	fields *string
@@ -461,6 +463,18 @@ type ApiListTemplatesRequest struct {
 // Filter by active status.
 func (r ApiListTemplatesRequest) Active(active bool) ApiListTemplatesRequest {
 	r.active = &active
+	return r
+}
+
+// Filter by created date (greater than or equal).
+func (r ApiListTemplatesRequest) CreatedAtGte(createdAtGte time.Time) ApiListTemplatesRequest {
+	r.createdAtGte = &createdAtGte
+	return r
+}
+
+// Filter by created date (less than or equal).
+func (r ApiListTemplatesRequest) CreatedAtLte(createdAtLte time.Time) ApiListTemplatesRequest {
+	r.createdAtLte = &createdAtLte
 	return r
 }
 
@@ -578,6 +592,12 @@ func (a *DataStreamTemplatesAPIService) ListTemplatesExecute(r ApiListTemplatesR
 
 	if r.active != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
+	}
+	if r.createdAtGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_at__gte", r.createdAtGte, "form", "")
+	}
+	if r.createdAtLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_at__lte", r.createdAtLte, "form", "")
 	}
 	if r.custom != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "custom", r.custom, "form", "")

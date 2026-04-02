@@ -444,6 +444,8 @@ type ApiListDataStreamsRequest struct {
 	ctx context.Context
 	ApiService *DataStreamStreamsAPIService
 	active *bool
+	createdGte *time.Time
+	createdLte *time.Time
 	dataSetId *int64
 	dataSource *string
 	fields *string
@@ -461,6 +463,18 @@ type ApiListDataStreamsRequest struct {
 // Filter by active status.
 func (r ApiListDataStreamsRequest) Active(active bool) ApiListDataStreamsRequest {
 	r.active = &active
+	return r
+}
+
+// Filter by created date (greater than or equal).
+func (r ApiListDataStreamsRequest) CreatedGte(createdGte time.Time) ApiListDataStreamsRequest {
+	r.createdGte = &createdGte
+	return r
+}
+
+// Filter by created date (less than or equal).
+func (r ApiListDataStreamsRequest) CreatedLte(createdLte time.Time) ApiListDataStreamsRequest {
+	r.createdLte = &createdLte
 	return r
 }
 
@@ -578,6 +592,12 @@ func (a *DataStreamStreamsAPIService) ListDataStreamsExecute(r ApiListDataStream
 
 	if r.active != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "active", r.active, "form", "")
+	}
+	if r.createdGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created__gte", r.createdGte, "form", "")
+	}
+	if r.createdLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created__lte", r.createdLte, "form", "")
 	}
 	if r.dataSetId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "data_set_id", r.dataSetId, "form", "")

@@ -28,6 +28,7 @@ type Workload struct {
 	Active *bool `json:"active,omitempty"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
+	CreatedAt time.Time `json:"created_at"`
 	// * `1` - Production Infrastructure (All Locations) * `2` - Staging Infrastructure
 	Infrastructure *int64 `json:"infrastructure,omitempty"`
 	Tls *TLSWorkload `json:"tls,omitempty"`
@@ -45,12 +46,13 @@ type _Workload Workload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, workloadDomain string, productVersion string) *Workload {
+func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string) *Workload {
 	this := Workload{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
+	this.CreatedAt = createdAt
 	this.WorkloadDomain = workloadDomain
 	this.ProductVersion = productVersion
 	return &this
@@ -190,6 +192,30 @@ func (o *Workload) GetLastModifiedOk() (*time.Time, bool) {
 // SetLastModified sets field value
 func (o *Workload) SetLastModified(v time.Time) {
 	o.LastModified = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *Workload) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *Workload) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *Workload) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
 }
 
 // GetInfrastructure returns the Infrastructure field value if set, zero value otherwise.
@@ -449,6 +475,7 @@ func (o Workload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
+	toSerialize["created_at"] = o.CreatedAt
 	if !IsNil(o.Infrastructure) {
 		toSerialize["infrastructure"] = o.Infrastructure
 	}
@@ -481,6 +508,7 @@ func (o *Workload) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"last_editor",
 		"last_modified",
+		"created_at",
 		"workload_domain",
 		"product_version",
 	}

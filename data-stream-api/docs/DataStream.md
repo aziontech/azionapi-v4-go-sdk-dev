@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | **int64** |  | 
 **Name** | **string** |  | 
 **LastEditor** | **string** |  | 
+**Created** | **time.Time** |  | 
 **LastModified** | **time.Time** |  | 
 **ProductVersion** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
@@ -18,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewDataStream
 
-`func NewDataStream(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, inputs []InputPolymorphicInputDataSourceAttributes, transform []TransformPolymorphic, outputs []Output, ) *DataStream`
+`func NewDataStream(id int64, name string, lastEditor string, created time.Time, lastModified time.Time, productVersion string, inputs []InputPolymorphicInputDataSourceAttributes, transform []TransformPolymorphic, outputs []Output, ) *DataStream`
 
 NewDataStream instantiates a new DataStream object
 This constructor will assign default values to properties that have it defined,
@@ -91,6 +92,26 @@ and a boolean to check if the value has been set.
 `func (o *DataStream) SetLastEditor(v string)`
 
 SetLastEditor sets LastEditor field to given value.
+
+
+### GetCreated
+
+`func (o *DataStream) GetCreated() time.Time`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *DataStream) GetCreatedOk() (*time.Time, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreated
+
+`func (o *DataStream) SetCreated(v time.Time)`
+
+SetCreated sets Created field to given value.
 
 
 ### GetLastModified

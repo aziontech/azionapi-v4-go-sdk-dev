@@ -26,6 +26,7 @@ type Template struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
 	LastEditor string `json:"last_editor"`
+	CreatedAt time.Time `json:"created_at"`
 	LastModified time.Time `json:"last_modified"`
 	Custom bool `json:"custom"`
 	Active *bool `json:"active,omitempty"`
@@ -38,11 +39,12 @@ type _Template Template
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTemplate(id int64, name string, lastEditor string, lastModified time.Time, custom bool, dataSet string) *Template {
+func NewTemplate(id int64, name string, lastEditor string, createdAt time.Time, lastModified time.Time, custom bool, dataSet string) *Template {
 	this := Template{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
+	this.CreatedAt = createdAt
 	this.LastModified = lastModified
 	this.Custom = custom
 	this.DataSet = dataSet
@@ -127,6 +129,30 @@ func (o *Template) GetLastEditorOk() (*string, bool) {
 // SetLastEditor sets field value
 func (o *Template) SetLastEditor(v string) {
 	o.LastEditor = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *Template) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *Template) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *Template) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
 }
 
 // GetLastModified returns the LastModified field value
@@ -246,6 +272,7 @@ func (o Template) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["last_editor"] = o.LastEditor
+	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["last_modified"] = o.LastModified
 	toSerialize["custom"] = o.Custom
 	if !IsNil(o.Active) {
@@ -263,6 +290,7 @@ func (o *Template) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"last_editor",
+		"created_at",
 		"last_modified",
 		"custom",
 		"data_set",

@@ -30,6 +30,7 @@ type WorkloadDeployment struct {
 	Strategy DeploymentStrategyDefaultDeploymentStrategy `json:"strategy"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type _WorkloadDeployment WorkloadDeployment
@@ -38,13 +39,14 @@ type _WorkloadDeployment WorkloadDeployment
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkloadDeployment(id int64, name string, strategy DeploymentStrategyDefaultDeploymentStrategy, lastEditor string, lastModified time.Time) *WorkloadDeployment {
+func NewWorkloadDeployment(id int64, name string, strategy DeploymentStrategyDefaultDeploymentStrategy, lastEditor string, lastModified time.Time, createdAt time.Time) *WorkloadDeployment {
 	this := WorkloadDeployment{}
 	this.Id = id
 	this.Name = name
 	this.Strategy = strategy
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -240,6 +242,30 @@ func (o *WorkloadDeployment) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *WorkloadDeployment) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *WorkloadDeployment) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *WorkloadDeployment) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
 func (o WorkloadDeployment) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -261,6 +287,7 @@ func (o WorkloadDeployment) ToMap() (map[string]interface{}, error) {
 	toSerialize["strategy"] = o.Strategy
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
+	toSerialize["created_at"] = o.CreatedAt
 	return toSerialize, nil
 }
 
@@ -274,6 +301,7 @@ func (o *WorkloadDeployment) UnmarshalJSON(data []byte) (err error) {
 		"strategy",
 		"last_editor",
 		"last_modified",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

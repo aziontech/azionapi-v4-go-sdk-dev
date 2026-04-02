@@ -22076,6 +22076,24 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Filter by created date (greater than or equal).
+        explode: true
+        in: query
+        name: created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by created date (less than or equal).
+        explode: true
+        in: query
+        name: created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
       - description: Filter by data set id (accepts comma-separated values).
         explode: true
         in: query
@@ -23119,6 +23137,24 @@ paths:
         required: false
         schema:
           type: boolean
+        style: form
+      - description: Filter by created date (greater than or equal).
+        explode: true
+        in: query
+        name: created_at__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by created date (less than or equal).
+        explode: true
+        in: query
+        name: created_at__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
         style: form
       - description: "Filter by custom status (true for custom templates, false for\
           \ default templates)."
@@ -64338,17 +64374,23 @@ components:
       type: object
     DataSourceEnum:
       description: |-
-        * `http` - Applications
+        * `workloads` - Workloads
         * `waf` - WAF Events
-        * `functions` - Functions
-        * `activity` - Activity History
+        * `functions_console` - Functions Console
+        * `activity_history` - Activity History
+        * `http` - Applications
+        * `cells_console` - Functions
+        * `rtm_activity` - Activity History
       title: DataSourceEnum
       type: string
       x-extensible-enum:
-      - http
+      - workloads
       - waf
-      - functions
-      - activity
+      - functions_console
+      - activity_history
+      - http
+      - cells_console
+      - rtm_activity
     DataStream:
       additionalProperties: false
       example:
@@ -64379,6 +64421,7 @@ components:
         - attributes:
             rate: 60
           type: type
+        created: 2000-01-23T04:56:07.000+00:00
         inputs:
         - null
         - null
@@ -64398,6 +64441,9 @@ components:
         last_editor:
           maxLength: 100
           minLength: 1
+          type: string
+        created:
+          format: date-time
           type: string
         last_modified:
           format: date-time
@@ -64421,6 +64467,7 @@ components:
             $ref: "#/components/schemas/OutputBase"
           type: array
       required:
+      - created
       - id
       - inputs
       - last_editor
@@ -64522,6 +64569,7 @@ components:
           - attributes:
               rate: 60
             type: type
+          created: 2000-01-23T04:56:07.000+00:00
           inputs:
           - null
           - null
@@ -64724,17 +64772,23 @@ components:
       properties:
         data_source:
           description: |-
-            * `http` - Applications
+            * `workloads` - Workloads
             * `waf` - WAF Events
-            * `functions` - Functions
-            * `activity` - Activity History
+            * `functions_console` - Functions Console
+            * `activity_history` - Activity History
+            * `http` - Applications
+            * `cells_console` - Functions
+            * `rtm_activity` - Activity History
           title: DataSourceEnum
           type: string
           x-extensible-enum:
-          - http
+          - workloads
           - waf
-          - functions
-          - activity
+          - functions_console
+          - activity_history
+          - http
+          - cells_console
+          - rtm_activity
       required:
       - data_source
       title: InputDataSource
@@ -64782,17 +64836,23 @@ components:
       properties:
         data_source:
           description: |-
-            * `http` - Applications
+            * `workloads` - Workloads
             * `waf` - WAF Events
-            * `functions` - Functions
-            * `activity` - Activity History
+            * `functions_console` - Functions Console
+            * `activity_history` - Activity History
+            * `http` - Applications
+            * `cells_console` - Functions
+            * `rtm_activity` - Activity History
           title: DataSourceEnum
           type: string
           x-extensible-enum:
-          - http
+          - workloads
           - waf
-          - functions
-          - activity
+          - functions_console
+          - activity_history
+          - http
+          - cells_console
+          - rtm_activity
       required:
       - data_source
       title: InputDataSourceRequest
@@ -64973,6 +65033,7 @@ components:
           - attributes:
               rate: 60
             type: type
+          created: 2000-01-23T04:56:07.000+00:00
           inputs:
           - null
           - null
@@ -65008,6 +65069,7 @@ components:
           - attributes:
               rate: 60
             type: type
+          created: 2000-01-23T04:56:07.000+00:00
           inputs:
           - null
           - null
@@ -65076,6 +65138,7 @@ components:
         - last_editor: last_editor
           custom: true
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           data_set: data_set
           id: 0
@@ -65083,6 +65146,7 @@ components:
         - last_editor: last_editor
           custom: true
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           data_set: data_set
           id: 0
@@ -65373,6 +65437,7 @@ components:
         last_editor: last_editor
         custom: true
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         active: true
         data_set: data_set
         id: 0
@@ -65389,6 +65454,9 @@ components:
           maxLength: 100
           minLength: 1
           type: string
+        created_at:
+          format: date-time
+          type: string
         last_modified:
           format: date-time
           type: string
@@ -65401,6 +65469,7 @@ components:
           minLength: 1
           type: string
       required:
+      - created_at
       - custom
       - data_set
       - id
@@ -65438,6 +65507,7 @@ components:
           last_editor: last_editor
           custom: true
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           data_set: data_set
           id: 0
@@ -67138,6 +67208,7 @@ components:
           max_age: 19008185
           behavior: ""
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
         modules:
           application_accelerator:
@@ -67181,7 +67252,12 @@ components:
           $ref: "#/components/schemas/BrowserCacheModule"
         modules:
           $ref: "#/components/schemas/CacheSettingsModules"
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
       required:
+      - created_at
       - id
       - name
       title: CacheSetting
@@ -67244,6 +67320,7 @@ components:
             max_age: 19008185
             behavior: ""
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           modules:
             application_accelerator:
@@ -67814,6 +67891,7 @@ components:
         product_version: product_version
         last_editor: last_editor
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         active: true
         attributes:
           addresses:
@@ -67847,6 +67925,9 @@ components:
         last_modified:
           format: date-time
           type: string
+        created_at:
+          format: date-time
+          type: string
         active:
           type: boolean
         product_version:
@@ -67866,6 +67947,7 @@ components:
           $ref: "#/components/schemas/ConnectorHTTPAttributes"
       required:
       - attributes
+      - created_at
       - id
       - last_editor
       - last_modified
@@ -68033,6 +68115,7 @@ components:
             type: type
         last_editor: last_editor
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         active: true
         id: 0
         last_modified: 2000-01-23T04:56:07.000+00:00
@@ -68051,6 +68134,9 @@ components:
         last_modified:
           format: date-time
           type: string
+        created_at:
+          format: date-time
+          type: string
         active:
           type: boolean
         product_version:
@@ -68062,6 +68148,7 @@ components:
             $ref: "#/components/schemas/PageBase"
           type: array
       required:
+      - created_at
       - id
       - last_editor
       - last_modified
@@ -68132,6 +68219,7 @@ components:
               type: type
           last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
@@ -68279,6 +68367,7 @@ components:
       additionalProperties: false
       example:
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
         user_agent: user_agent
       properties:
@@ -68294,7 +68383,12 @@ components:
           maxLength: 512
           minLength: 1
           type: string
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
       required:
+      - created_at
       - id
       - name
       - user_agent
@@ -68325,6 +68419,7 @@ components:
       example:
         data:
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           user_agent: user_agent
         state: state
@@ -68592,6 +68687,7 @@ components:
         last_editor: last_editor
         name: name
         active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
         last_modified: 2000-01-23T04:56:07.000+00:00
         modules:
@@ -68619,11 +68715,15 @@ components:
         last_modified:
           format: date-time
           type: string
+        created_at:
+          format: date-time
+          type: string
         product_version:
           maxLength: 50
           minLength: 3
           type: string
       required:
+      - created_at
       - id
       - last_editor
       - last_modified
@@ -68898,6 +68998,7 @@ components:
         last_editor: last_editor
         name: name
         active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
         azion_form:
           type: object
@@ -68975,7 +69076,11 @@ components:
         last_modified:
           format: date-time
           type: string
+        created_at:
+          format: date-time
+          type: string
       required:
+      - created_at
       - function
       - id
       - last_editor
@@ -69071,6 +69176,7 @@ components:
           last_editor: last_editor
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           azion_form:
             type: object
@@ -69234,6 +69340,7 @@ components:
           last_editor: last_editor
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
@@ -69365,6 +69472,7 @@ components:
         - type: type
         last_editor: last_editor
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         active: true
         description: description
         id: 0
@@ -69382,6 +69490,9 @@ components:
           maxLength: 255
           type: string
         last_modified:
+          format: date-time
+          type: string
+        created_at:
           format: date-time
           type: string
         active:
@@ -69413,6 +69524,7 @@ components:
           type: integer
       required:
       - behaviors
+      - created_at
       - criteria
       - id
       - last_editor
@@ -69698,6 +69810,7 @@ components:
           - type: type
           last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           description: description
           id: 0
@@ -69724,6 +69837,7 @@ components:
         last_editor: last_editor
         name: name
         active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
         azion_form:
           type: object
@@ -69801,7 +69915,11 @@ components:
         last_modified:
           format: date-time
           type: string
+        created_at:
+          format: date-time
+          type: string
       required:
+      - created_at
       - function
       - id
       - last_editor
@@ -69897,6 +70015,7 @@ components:
           last_editor: last_editor
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           azion_form:
             type: object
@@ -70580,6 +70699,7 @@ components:
       example:
         last_editor: last_editor
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         active: true
         id: 0
         type: type
@@ -70623,9 +70743,13 @@ components:
         last_modified:
           format: date-time
           type: string
+        created_at:
+          format: date-time
+          type: string
         active:
           type: boolean
       required:
+      - created_at
       - id
       - items
       - last_editor
@@ -70715,6 +70839,7 @@ components:
         data:
           last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           id: 0
           type: type
@@ -70742,6 +70867,7 @@ components:
       example:
         last_editor: last_editor
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         active: true
         id: 0
         type: type
@@ -70771,9 +70897,13 @@ components:
         last_modified:
           format: date-time
           type: string
+        created_at:
+          format: date-time
+          type: string
         active:
           type: boolean
       required:
+      - created_at
       - id
       - last_editor
       - last_modified
@@ -71039,6 +71169,7 @@ components:
             max_age: 19008185
             behavior: ""
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           modules:
             application_accelerator:
@@ -71074,6 +71205,7 @@ components:
             max_age: 19008185
             behavior: ""
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           modules:
             application_accelerator:
@@ -71182,6 +71314,7 @@ components:
               type: type
           last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
@@ -71205,6 +71338,7 @@ components:
               type: type
           last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
@@ -71266,9 +71400,11 @@ components:
         page: 1
         results:
         - name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           user_agent: user_agent
         - name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           user_agent: user_agent
         page_size: 10
@@ -71518,6 +71654,7 @@ components:
           last_editor: last_editor
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           azion_form:
             type: object
@@ -71576,6 +71713,7 @@ components:
           last_editor: last_editor
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           azion_form:
             type: object
@@ -71691,6 +71829,7 @@ components:
           last_editor: last_editor
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
@@ -71703,6 +71842,7 @@ components:
           last_editor: last_editor
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           modules:
@@ -71876,6 +72016,7 @@ components:
           - type: type
           last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           description: description
           id: 0
@@ -71990,6 +72131,7 @@ components:
           - type: type
           last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           description: description
           id: 0
@@ -72057,6 +72199,7 @@ components:
           last_editor: last_editor
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           azion_form:
             type: object
@@ -72115,6 +72258,7 @@ components:
           last_editor: last_editor
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           azion_form:
             type: object
@@ -72227,12 +72371,14 @@ components:
         results:
         - last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           id: 0
           type: type
           last_modified: 2000-01-23T04:56:07.000+00:00
         - last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           id: 0
           type: type
@@ -72405,6 +72551,7 @@ components:
           name: name
           active: true
           description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
@@ -72519,6 +72666,7 @@ components:
           name: name
           active: true
           description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
@@ -72690,6 +72838,7 @@ components:
           name: name
           active: true
           description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
@@ -72804,6 +72953,7 @@ components:
           name: name
           active: true
           description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
@@ -73052,6 +73202,7 @@ components:
           last_editor: last_editor
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           strategy:
             attributes:
@@ -73064,6 +73215,7 @@ components:
           last_editor: last_editor
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           strategy:
             attributes:
@@ -73132,6 +73284,7 @@ components:
         - product_version: product_version
           last_editor: last_editor
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
           - domains
@@ -73147,6 +73300,7 @@ components:
         - product_version: product_version
           last_editor: last_editor
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
           - domains
@@ -74514,6 +74668,7 @@ components:
         name: name
         active: true
         description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
         last_modified: 2000-01-23T04:56:07.000+00:00
         order: 119
@@ -74560,8 +74715,12 @@ components:
           format: date-time
           nullable: true
           type: string
+        created_at:
+          format: date-time
+          type: string
       required:
       - behaviors
+      - created_at
       - criteria
       - id
       - last_editor
@@ -74831,6 +74990,7 @@ components:
           name: name
           active: true
           description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
@@ -75000,6 +75160,7 @@ components:
         name: name
         active: true
         description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
         last_modified: 2000-01-23T04:56:07.000+00:00
         order: 119
@@ -75046,8 +75207,12 @@ components:
           format: date-time
           nullable: true
           type: string
+        created_at:
+          format: date-time
+          type: string
       required:
       - behaviors
+      - created_at
       - criteria
       - id
       - last_editor
@@ -75317,6 +75482,7 @@ components:
           name: name
           active: true
           description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           last_modified: 2000-01-23T04:56:07.000+00:00
           order: 119
@@ -76620,6 +76786,7 @@ components:
         product_version: product_version
         last_editor: last_editor
         active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
         domains:
         - domains
         - domains
@@ -76649,6 +76816,9 @@ components:
         last_modified:
           format: date-time
           type: string
+        created_at:
+          format: date-time
+          type: string
         infrastructure:
           allOf:
           - $ref: "#/components/schemas/InfrastructureEnum"
@@ -76672,6 +76842,7 @@ components:
         product_version:
           type: string
       required:
+      - created_at
       - id
       - last_editor
       - last_modified
@@ -76687,6 +76858,7 @@ components:
         last_editor: last_editor
         name: name
         active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
         strategy:
           attributes:
@@ -76716,7 +76888,11 @@ components:
         last_modified:
           format: date-time
           type: string
+        created_at:
+          format: date-time
+          type: string
       required:
+      - created_at
       - id
       - last_editor
       - last_modified
@@ -76760,6 +76936,7 @@ components:
           last_editor: last_editor
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           strategy:
             attributes:
@@ -76830,6 +77007,7 @@ components:
           product_version: product_version
           last_editor: last_editor
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           domains:
           - domains
           - domains
@@ -77053,6 +77231,9 @@ components:
         last_modified:
           format: date-time
           type: string
+        created_at:
+          format: date-time
+          type: string
         active:
           type: boolean
         product_version:
@@ -77072,6 +77253,7 @@ components:
           $ref: "#/components/schemas/ConnectorStorageAttributes"
       required:
       - attributes
+      - created_at
       - id
       - last_editor
       - last_modified
@@ -77335,6 +77517,7 @@ components:
           product_version: product_version
           last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           attributes:
             addresses:
@@ -78185,6 +78368,7 @@ components:
         - product_version: product_version
           last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           attributes:
             addresses:
@@ -78206,6 +78390,7 @@ components:
         - product_version: product_version
           last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           attributes:
             addresses:

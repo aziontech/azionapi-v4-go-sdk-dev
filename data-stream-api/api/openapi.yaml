@@ -218,6 +218,24 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Filter by created date (greater than or equal).
+        explode: true
+        in: query
+        name: created__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by created date (less than or equal).
+        explode: true
+        in: query
+        name: created__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
       - description: Filter by data set id (accepts comma-separated values).
         explode: true
         in: query
@@ -597,6 +615,12 @@ paths:
           type: integer
         style: simple
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: Ok
         "400":
           content:
             application/json:
@@ -709,8 +733,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "204":
-          description: No Content
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1163,6 +1185,24 @@ paths:
         schema:
           type: boolean
         style: form
+      - description: Filter by created date (greater than or equal).
+        explode: true
+        in: query
+        name: created_at__gte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by created date (less than or equal).
+        explode: true
+        in: query
+        name: created_at__lte
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
       - description: "Filter by custom status (true for custom templates, false for\
           \ default templates)."
         explode: true
@@ -1542,6 +1582,12 @@ paths:
           type: integer
         style: simple
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: Ok
         "400":
           content:
             application/json:
@@ -1654,8 +1700,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "204":
-          description: No Content
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -2359,17 +2403,23 @@ components:
       type: object
     DataSourceEnum:
       description: |-
-        * `http` - Edge Applications
+        * `workloads` - Workloads
         * `waf` - WAF Events
-        * `functions` - Edge Functions
-        * `activity` - Activity History
+        * `functions_console` - Functions Console
+        * `activity_history` - Activity History
+        * `http` - Applications
+        * `cells_console` - Functions
+        * `rtm_activity` - Activity History
       title: DataSourceEnum
       type: string
       x-extensible-enum:
-      - http
+      - workloads
       - waf
-      - functions
-      - activity
+      - functions_console
+      - activity_history
+      - http
+      - cells_console
+      - rtm_activity
     DataStream:
       additionalProperties: false
       example:
@@ -2400,6 +2450,7 @@ components:
         - attributes:
             rate: 60
           type: type
+        created: 2000-01-23T04:56:07.000+00:00
         inputs:
         - null
         - null
@@ -2419,6 +2470,9 @@ components:
         last_editor:
           maxLength: 100
           minLength: 1
+          type: string
+        created:
+          format: date-time
           type: string
         last_modified:
           format: date-time
@@ -2442,6 +2496,7 @@ components:
             $ref: "#/components/schemas/Output"
           type: array
       required:
+      - created
       - id
       - inputs
       - last_editor
@@ -2543,6 +2598,7 @@ components:
           - attributes:
               rate: 60
             type: type
+          created: 2000-01-23T04:56:07.000+00:00
           inputs:
           - null
           - null
@@ -2601,6 +2657,17 @@ components:
       - type
       - url
       title: DatadogEndpointRequest
+      type: object
+    DeleteResponse:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: DeleteResponse
       type: object
     ElasticsearchEndpoint:
       additionalProperties: false
@@ -2733,17 +2800,23 @@ components:
       properties:
         data_source:
           description: |-
-            * `http` - Edge Applications
+            * `workloads` - Workloads
             * `waf` - WAF Events
-            * `functions` - Edge Functions
-            * `activity` - Activity History
+            * `functions_console` - Functions Console
+            * `activity_history` - Activity History
+            * `http` - Applications
+            * `cells_console` - Functions
+            * `rtm_activity` - Activity History
           title: DataSourceEnum
           type: string
           x-extensible-enum:
-          - http
+          - workloads
           - waf
-          - functions
-          - activity
+          - functions_console
+          - activity_history
+          - http
+          - cells_console
+          - rtm_activity
       required:
       - data_source
       title: InputDataSource
@@ -2791,17 +2864,23 @@ components:
       properties:
         data_source:
           description: |-
-            * `http` - Edge Applications
+            * `workloads` - Workloads
             * `waf` - WAF Events
-            * `functions` - Edge Functions
-            * `activity` - Activity History
+            * `functions_console` - Functions Console
+            * `activity_history` - Activity History
+            * `http` - Applications
+            * `cells_console` - Functions
+            * `rtm_activity` - Activity History
           title: DataSourceEnum
           type: string
           x-extensible-enum:
-          - http
+          - workloads
           - waf
-          - functions
-          - activity
+          - functions_console
+          - activity_history
+          - http
+          - cells_console
+          - rtm_activity
       required:
       - data_source
       title: InputDataSourceRequest
@@ -3173,6 +3252,8 @@ components:
     PaginatedDataSourceList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -3213,6 +3294,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/DataSource"
@@ -3222,6 +3315,8 @@ components:
     PaginatedDataStreamList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -3253,6 +3348,7 @@ components:
           - attributes:
               rate: 60
             type: type
+          created: 2000-01-23T04:56:07.000+00:00
           inputs:
           - null
           - null
@@ -3288,6 +3384,7 @@ components:
           - attributes:
               rate: 60
             type: type
+          created: 2000-01-23T04:56:07.000+00:00
           inputs:
           - null
           - null
@@ -3326,6 +3423,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/DataStream"
@@ -3335,6 +3444,8 @@ components:
     PaginatedTemplateList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -3342,6 +3453,7 @@ components:
         - last_editor: last_editor
           custom: true
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           data_set: data_set
           id: 0
@@ -3349,6 +3461,7 @@ components:
         - last_editor: last_editor
           custom: true
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           data_set: data_set
           id: 0
@@ -3383,6 +3496,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/Template"
@@ -3615,6 +3740,7 @@ components:
         last_editor: last_editor
         custom: true
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         active: true
         data_set: data_set
         id: 0
@@ -3631,6 +3757,9 @@ components:
           maxLength: 100
           minLength: 1
           type: string
+        created_at:
+          format: date-time
+          type: string
         last_modified:
           format: date-time
           type: string
@@ -3643,6 +3772,7 @@ components:
           minLength: 1
           type: string
       required:
+      - created_at
       - custom
       - data_set
       - id
@@ -3680,6 +3810,7 @@ components:
           last_editor: last_editor
           custom: true
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           data_set: data_set
           id: 0

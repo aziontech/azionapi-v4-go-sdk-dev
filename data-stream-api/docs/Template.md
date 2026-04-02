@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | **int64** |  | 
 **Name** | **string** |  | 
 **LastEditor** | **string** |  | 
+**CreatedAt** | **time.Time** |  | 
 **LastModified** | **time.Time** |  | 
 **Custom** | **bool** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
@@ -16,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewTemplate
 
-`func NewTemplate(id int64, name string, lastEditor string, lastModified time.Time, custom bool, dataSet string, ) *Template`
+`func NewTemplate(id int64, name string, lastEditor string, createdAt time.Time, lastModified time.Time, custom bool, dataSet string, ) *Template`
 
 NewTemplate instantiates a new Template object
 This constructor will assign default values to properties that have it defined,
@@ -89,6 +90,26 @@ and a boolean to check if the value has been set.
 `func (o *Template) SetLastEditor(v string)`
 
 SetLastEditor sets LastEditor field to given value.
+
+
+### GetCreatedAt
+
+`func (o *Template) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Template) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Template) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetLastModified

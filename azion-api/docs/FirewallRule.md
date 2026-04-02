@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 **Criteria** | [**[][]FirewallCriterionField**]([]FirewallCriterionField.md) |  | 
 **Behaviors** | [**[]FirewallBehavior**](FirewallBehavior.md) |  | 
@@ -18,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewFirewallRule
 
-`func NewFirewallRule(id int64, name string, lastEditor string, lastModified time.Time, criteria [][]FirewallCriterionField, behaviors []FirewallBehavior, order int64, ) *FirewallRule`
+`func NewFirewallRule(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, criteria [][]FirewallCriterionField, behaviors []FirewallBehavior, order int64, ) *FirewallRule`
 
 NewFirewallRule instantiates a new FirewallRule object
 This constructor will assign default values to properties that have it defined,
@@ -111,6 +112,26 @@ and a boolean to check if the value has been set.
 `func (o *FirewallRule) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
+
+
+### GetCreatedAt
+
+`func (o *FirewallRule) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *FirewallRule) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *FirewallRule) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetActive

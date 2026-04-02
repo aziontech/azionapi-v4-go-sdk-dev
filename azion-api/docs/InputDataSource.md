@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DataSource** | **string** | * &#x60;http&#x60; - Applications * &#x60;waf&#x60; - WAF Events * &#x60;functions&#x60; - Functions * &#x60;activity&#x60; - Activity History | 
+**DataSource** | **string** | * &#x60;workloads&#x60; - Workloads * &#x60;waf&#x60; - WAF Events * &#x60;functions_console&#x60; - Functions Console * &#x60;activity_history&#x60; - Activity History * &#x60;http&#x60; - Applications * &#x60;cells_console&#x60; - Functions * &#x60;rtm_activity&#x60; - Activity History | 
 
 ## Methods
 
