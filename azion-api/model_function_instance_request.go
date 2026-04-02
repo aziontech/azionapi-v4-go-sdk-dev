@@ -24,7 +24,7 @@ var _ MappedNullable = &FunctionInstanceRequest{}
 type FunctionInstanceRequest struct {
 	Name string `json:"name"`
 	Args interface{} `json:"args,omitempty"`
-	AzionForm *FunctionsAzionForm `json:"azion_form,omitempty"`
+	AzionForm *FunctionAzionForm `json:"azion_form,omitempty"`
 	Function int64 `json:"function"`
 	Active *bool `json:"active,omitempty"`
 }
@@ -108,9 +108,9 @@ func (o *FunctionInstanceRequest) SetArgs(v interface{}) {
 }
 
 // GetAzionForm returns the AzionForm field value if set, zero value otherwise.
-func (o *FunctionInstanceRequest) GetAzionForm() FunctionsAzionForm {
+func (o *FunctionInstanceRequest) GetAzionForm() FunctionAzionForm {
 	if o == nil || IsNil(o.AzionForm) {
-		var ret FunctionsAzionForm
+		var ret FunctionAzionForm
 		return ret
 	}
 	return *o.AzionForm
@@ -118,7 +118,7 @@ func (o *FunctionInstanceRequest) GetAzionForm() FunctionsAzionForm {
 
 // GetAzionFormOk returns a tuple with the AzionForm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FunctionInstanceRequest) GetAzionFormOk() (*FunctionsAzionForm, bool) {
+func (o *FunctionInstanceRequest) GetAzionFormOk() (*FunctionAzionForm, bool) {
 	if o == nil || IsNil(o.AzionForm) {
 		return nil, false
 	}
@@ -134,8 +134,8 @@ func (o *FunctionInstanceRequest) HasAzionForm() bool {
 	return false
 }
 
-// SetAzionForm gets a reference to the given FunctionsAzionForm and assigns it to the AzionForm field.
-func (o *FunctionInstanceRequest) SetAzionForm(v FunctionsAzionForm) {
+// SetAzionForm gets a reference to the given FunctionAzionForm and assigns it to the AzionForm field.
+func (o *FunctionInstanceRequest) SetAzionForm(v FunctionAzionForm) {
 	o.AzionForm = &v
 }
 

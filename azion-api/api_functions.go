@@ -536,7 +536,7 @@ func (r ApiListFunctionsRequest) Search(search string) ApiListFunctionsRequest {
 	return r
 }
 
-func (r ApiListFunctionsRequest) Execute() (*PaginatedFunctionsList, *http.Response, error) {
+func (r ApiListFunctionsRequest) Execute() (*PaginatedEdgeFunctionList, *http.Response, error) {
 	return r.ApiService.ListFunctionsExecute(r)
 }
 
@@ -556,13 +556,13 @@ func (a *FunctionsAPIService) ListFunctions(ctx context.Context) ApiListFunction
 }
 
 // Execute executes the request
-//  @return PaginatedFunctionsList
-func (a *FunctionsAPIService) ListFunctionsExecute(r ApiListFunctionsRequest) (*PaginatedFunctionsList, *http.Response, error) {
+//  @return PaginatedEdgeFunctionList
+func (a *FunctionsAPIService) ListFunctionsExecute(r ApiListFunctionsRequest) (*PaginatedEdgeFunctionList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedFunctionsList
+		localVarReturnValue  *PaginatedEdgeFunctionList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionsAPIService.ListFunctions")

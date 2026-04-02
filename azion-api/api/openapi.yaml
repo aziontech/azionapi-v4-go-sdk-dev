@@ -30844,7 +30844,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedFunctionsList"
+                $ref: "#/components/schemas/PaginatedEdgeFunctionList"
           description: List of functions retrieved successfully.
         "401":
           content:
@@ -68443,6 +68443,120 @@ components:
       x-extensible-enum:
       - both
       - force_ipv4
+    Function:
+      additionalProperties: false
+      example:
+        product_version: product_version
+        last_editor: last_editor
+        active: true
+        runtime: ""
+        azion_form:
+          type: object
+          properties:
+            domain:
+              type: string
+              title: Domain
+              description: Domain where the cookie will be valid (use '.' at the beginning
+                for subdomains)
+            max_age:
+              type: integer
+              title: Max Age (seconds)
+              description: Cookie lifetime in seconds
+              minimum: 1
+              maximum: 31536000
+              format: int64
+            path:
+              type: string
+              title: Path
+              description: Path where the cookie will be valid
+            values:
+              type: array
+              title: Test Variations
+              description: List of A/B test variations with their respective weights
+              minItems: 2
+              maxItems: 10
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+                    title: Variation Value
+                    description: Unique variation identifier
+                    minLength: 1
+                    maxLength: 50
+                  weight:
+                    type: integer
+                    title: Weight
+                    description: Variance weight (higher weight = higher probability)
+                    minimum: 1
+                    maximum: 100
+                    format: int64
+                required:
+                - value
+                - weight
+                additionalProperties: false
+          required:
+          - domain
+          - max_age
+          - path
+          - values
+          additionalProperties: false
+        version: version
+        default_args: ""
+        vendor: vendor
+        name: name
+        execution_environment: ""
+        id: 0
+        reference_count: 6
+        last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 250
+          minLength: 1
+          type: string
+        last_editor:
+          maxLength: 250
+          type: string
+        last_modified:
+          format: date-time
+          type: string
+        product_version:
+          maxLength: 50
+          type: string
+        active:
+          type: boolean
+        runtime:
+          allOf:
+          - $ref: "#/components/schemas/RuntimeEnum"
+        execution_environment:
+          allOf:
+          - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
+        default_args: {}
+        azion_form:
+          $ref: "#/components/schemas/Function_azion_form"
+        reference_count:
+          format: int64
+          type: integer
+        version:
+          description: "Installed version, which may not be the latest if the vendor\
+            \ has released updates since installation."
+          type: string
+        vendor:
+          type: string
+      required:
+      - id
+      - last_editor
+      - last_modified
+      - name
+      - product_version
+      - reference_count
+      - vendor
+      - version
+      title: Function
+      type: object
     FunctionModule:
       additionalProperties: false
       properties:
@@ -68551,7 +68665,7 @@ components:
           - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
         default_args: {}
         azion_form:
-          $ref: "#/components/schemas/Functions_azion_form"
+          $ref: "#/components/schemas/Function_azion_form"
         reference_count:
           format: int64
           type: integer
@@ -68653,7 +68767,7 @@ components:
           - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
         default_args: {}
         azion_form:
-          $ref: "#/components/schemas/Functions_azion_form"
+          $ref: "#/components/schemas/Function_azion_form"
         code:
           description: "String containing the function code. Maximum size: 50.0MB"
           maxLength: 52428800
@@ -69062,7 +69176,7 @@ components:
           type: string
         args: {}
         azion_form:
-          $ref: "#/components/schemas/Functions_azion_form"
+          $ref: "#/components/schemas/Function_azion_form"
         function:
           format: int64
           maximum: 9223372036854775807
@@ -69154,7 +69268,7 @@ components:
           type: string
         args: {}
         azion_form:
-          $ref: "#/components/schemas/Functions_azion_form"
+          $ref: "#/components/schemas/Function_azion_form"
         function:
           format: int64
           maximum: 9223372036854775807
@@ -69901,7 +70015,7 @@ components:
           type: string
         args: {}
         azion_form:
-          $ref: "#/components/schemas/Functions_azion_form"
+          $ref: "#/components/schemas/Function_azion_form"
         function:
           format: int64
           maximum: 9223372036854775807
@@ -69993,7 +70107,7 @@ components:
           type: string
         args: {}
         azion_form:
-          $ref: "#/components/schemas/Functions_azion_form"
+          $ref: "#/components/schemas/Function_azion_form"
         function:
           format: int64
           maximum: 9223372036854775807
@@ -71455,7 +71569,7 @@ components:
           type: array
       title: PaginatedDeviceGroupList
       type: object
-    PaginatedFunctionsList:
+    PaginatedEdgeFunctionList:
       additionalProperties: false
       example:
         next: https://api.example.com/items?page=3
@@ -71465,7 +71579,6 @@ components:
         page: 1
         results:
         - product_version: product_version
-          code: code
           last_editor: last_editor
           active: true
           runtime: ""
@@ -71529,7 +71642,6 @@ components:
           reference_count: 6
           last_modified: 2000-01-23T04:56:07.000+00:00
         - product_version: product_version
-          code: code
           last_editor: last_editor
           active: true
           runtime: ""
@@ -71636,9 +71748,9 @@ components:
           type: string
         results:
           items:
-            $ref: "#/components/schemas/Functions"
+            $ref: "#/components/schemas/Function"
           type: array
-      title: PaginatedFunctionsList
+      title: PaginatedEdgeFunctionList
       type: object
     PaginatedFirewallFunctionInstanceList:
       additionalProperties: false
@@ -73602,7 +73714,7 @@ components:
           - $ref: "#/components/schemas/ExecutionEnvironmentEnum"
         default_args: {}
         azion_form:
-          $ref: "#/components/schemas/Functions_azion_form"
+          $ref: "#/components/schemas/Function_azion_form"
         code:
           description: "String containing the function code. Maximum size: 50.0MB"
           maxLength: 52428800
@@ -73676,7 +73788,7 @@ components:
           type: string
         args: {}
         azion_form:
-          $ref: "#/components/schemas/Functions_azion_form"
+          $ref: "#/components/schemas/Function_azion_form"
         function:
           format: int64
           maximum: 9223372036854775807
@@ -73917,7 +74029,7 @@ components:
           type: string
         args: {}
         azion_form:
-          $ref: "#/components/schemas/Functions_azion_form"
+          $ref: "#/components/schemas/Function_azion_form"
         function:
           format: int64
           maximum: 9223372036854775807
@@ -87060,7 +87172,7 @@ components:
         info:
           $ref: "#/components/schemas/UserInfoRequest"
       type: object
-    Functions_azion_form:
+    Function_azion_form:
       description: |
         JSON schema to be rendered as a json args form.
         - azion_form must be a JSON schema.

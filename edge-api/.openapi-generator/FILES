@@ -156,10 +156,11 @@ docs/EdgeFirewallCriterionField.md
 docs/EdgeFirewallCriterionFieldRequest.md
 docs/EdgeFirewallCriterionPolymorphicArgument.md
 docs/EdgeFirewallCriterionPolymorphicArgumentRequest.md
+docs/EdgeFunction.md
+docs/EdgeFunctionAzionForm.md
 docs/EdgeFunctionModule.md
 docs/EdgeFunctionModuleRequest.md
 docs/EdgeFunctions.md
-docs/EdgeFunctionsAzionForm.md
 docs/EdgeFunctionsRequest.md
 docs/Firewall.md
 docs/FirewallBehavior.md
@@ -248,7 +249,7 @@ docs/PaginatedCacheSettingList.md
 docs/PaginatedConnectorPolymorphicList.md
 docs/PaginatedCustomPageList.md
 docs/PaginatedDeviceGroupList.md
-docs/PaginatedEdgeFunctionsList.md
+docs/PaginatedEdgeFunctionList.md
 docs/PaginatedFirewallFunctionInstanceList.md
 docs/PaginatedFirewallList.md
 docs/PaginatedFirewallRuleList.md
@@ -483,10 +484,11 @@ model_edge_firewall_criterion_field.go
 model_edge_firewall_criterion_field_request.go
 model_edge_firewall_criterion_polymorphic_argument.go
 model_edge_firewall_criterion_polymorphic_argument_request.go
+model_edge_function.go
+model_edge_function_azion_form.go
 model_edge_function_module.go
 model_edge_function_module_request.go
 model_edge_functions.go
-model_edge_functions_azion_form.go
 model_edge_functions_request.go
 model_firewall.go
 model_firewall_behavior.go
@@ -570,7 +572,7 @@ model_paginated_cache_setting_list.go
 model_paginated_connector_polymorphic_list.go
 model_paginated_custom_page_list.go
 model_paginated_device_group_list.go
-model_paginated_edge_functions_list.go
+model_paginated_edge_function_list.go
 model_paginated_firewall_function_instance_list.go
 model_paginated_firewall_list.go
 model_paginated_firewall_rule_list.go

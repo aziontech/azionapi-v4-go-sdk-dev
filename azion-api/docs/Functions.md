@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Runtime** | Pointer to **string** | * &#x60;azion_js&#x60; - Azion JavaScript | [optional] 
 **ExecutionEnvironment** | Pointer to **string** | * &#x60;firewall&#x60; - Firewall * &#x60;application&#x60; - Application | [optional] 
 **DefaultArgs** | Pointer to **interface{}** |  | [optional] 
-**AzionForm** | Pointer to [**FunctionsAzionForm**](FunctionsAzionForm.md) |  | [optional] 
+**AzionForm** | Pointer to [**FunctionAzionForm**](FunctionAzionForm.md) |  | [optional] 
 **ReferenceCount** | **int64** |  | 
 **Version** | **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | 
 **Vendor** | **string** |  | 
@@ -250,20 +250,20 @@ HasDefaultArgs returns a boolean if a field has been set.
 UnsetDefaultArgs ensures that no value is present for DefaultArgs, not even an explicit nil
 ### GetAzionForm
 
-`func (o *Functions) GetAzionForm() FunctionsAzionForm`
+`func (o *Functions) GetAzionForm() FunctionAzionForm`
 
 GetAzionForm returns the AzionForm field if non-nil, zero value otherwise.
 
 ### GetAzionFormOk
 
-`func (o *Functions) GetAzionFormOk() (*FunctionsAzionForm, bool)`
+`func (o *Functions) GetAzionFormOk() (*FunctionAzionForm, bool)`
 
 GetAzionFormOk returns a tuple with the AzionForm field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAzionForm
 
-`func (o *Functions) SetAzionForm(v FunctionsAzionForm)`
+`func (o *Functions) SetAzionForm(v FunctionAzionForm)`
 
 SetAzionForm sets AzionForm field to given value.
 
