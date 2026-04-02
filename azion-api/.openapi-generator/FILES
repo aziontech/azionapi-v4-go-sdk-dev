@@ -310,6 +310,8 @@ docs/FirewallsFunctionAPI.md
 docs/FirewallsRulesEngineAPI.md
 docs/Folder.md
 docs/FolderRequest.md
+docs/Function.md
+docs/FunctionAzionForm.md
 docs/FunctionInstance.md
 docs/FunctionInstanceRequest.md
 docs/FunctionInstanceResponse.md
@@ -318,7 +320,6 @@ docs/FunctionModuleRequest.md
 docs/FunctionResponse.md
 docs/Functions.md
 docs/FunctionsAPI.md
-docs/FunctionsAzionForm.md
 docs/FunctionsRequest.md
 docs/Grant.md
 docs/GrantRequest.md
@@ -453,6 +454,7 @@ docs/PaginatedDataStreamList.md
 docs/PaginatedDatabaseDetailList.md
 docs/PaginatedDeviceGroupList.md
 docs/PaginatedDocumentList.md
+docs/PaginatedEdgeFunctionList.md
 docs/PaginatedExecutionList.md
 docs/PaginatedExecutionScriptList.md
 docs/PaginatedFavoriteList.md
@@ -461,7 +463,6 @@ docs/PaginatedFirewallList.md
 docs/PaginatedFirewallRuleList.md
 docs/PaginatedFolderList.md
 docs/PaginatedFunctionInstanceList.md
-docs/PaginatedFunctionsList.md
 docs/PaginatedGrantList.md
 docs/PaginatedGroupList.md
 docs/PaginatedIntegrationList.md
@@ -1022,6 +1023,8 @@ model_firewall_rule_request.go
 model_firewall_rule_response.go
 model_folder.go
 model_folder_request.go
+model_function.go
+model_function_azion_form.go
 model_function_instance.go
 model_function_instance_request.go
 model_function_instance_response.go
@@ -1029,7 +1032,6 @@ model_function_module.go
 model_function_module_request.go
 model_function_response.go
 model_functions.go
-model_functions_azion_form.go
 model_functions_request.go
 model_grant.go
 model_grant_request.go
@@ -1143,6 +1145,7 @@ model_paginated_data_stream_list.go
 model_paginated_database_detail_list.go
 model_paginated_device_group_list.go
 model_paginated_document_list.go
+model_paginated_edge_function_list.go
 model_paginated_execution_list.go
 model_paginated_execution_script_list.go
 model_paginated_favorite_list.go
@@ -1151,7 +1154,6 @@ model_paginated_firewall_list.go
 model_paginated_firewall_rule_list.go
 model_paginated_folder_list.go
 model_paginated_function_instance_list.go
-model_paginated_functions_list.go
 model_paginated_grant_list.go
 model_paginated_group_list.go
 model_paginated_integration_list.go

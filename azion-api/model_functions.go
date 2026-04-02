@@ -34,7 +34,7 @@ type Functions struct {
 	// * `firewall` - Firewall * `application` - Application
 	ExecutionEnvironment *string `json:"execution_environment,omitempty"`
 	DefaultArgs interface{} `json:"default_args,omitempty"`
-	AzionForm *FunctionsAzionForm `json:"azion_form,omitempty"`
+	AzionForm *FunctionAzionForm `json:"azion_form,omitempty"`
 	ReferenceCount int64 `json:"reference_count"`
 	// Installed version, which may not be the latest if the vendor has released updates since installation.
 	Version string `json:"version"`
@@ -321,9 +321,9 @@ func (o *Functions) SetDefaultArgs(v interface{}) {
 }
 
 // GetAzionForm returns the AzionForm field value if set, zero value otherwise.
-func (o *Functions) GetAzionForm() FunctionsAzionForm {
+func (o *Functions) GetAzionForm() FunctionAzionForm {
 	if o == nil || IsNil(o.AzionForm) {
-		var ret FunctionsAzionForm
+		var ret FunctionAzionForm
 		return ret
 	}
 	return *o.AzionForm
@@ -331,7 +331,7 @@ func (o *Functions) GetAzionForm() FunctionsAzionForm {
 
 // GetAzionFormOk returns a tuple with the AzionForm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Functions) GetAzionFormOk() (*FunctionsAzionForm, bool) {
+func (o *Functions) GetAzionFormOk() (*FunctionAzionForm, bool) {
 	if o == nil || IsNil(o.AzionForm) {
 		return nil, false
 	}
@@ -347,8 +347,8 @@ func (o *Functions) HasAzionForm() bool {
 	return false
 }
 
-// SetAzionForm gets a reference to the given FunctionsAzionForm and assigns it to the AzionForm field.
-func (o *Functions) SetAzionForm(v FunctionsAzionForm) {
+// SetAzionForm gets a reference to the given FunctionAzionForm and assigns it to the AzionForm field.
+func (o *Functions) SetAzionForm(v FunctionAzionForm) {
 	o.AzionForm = &v
 }
 

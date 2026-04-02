@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
 **Args** | Pointer to **interface{}** |  | [optional] 
-**AzionForm** | Pointer to [**FunctionsAzionForm**](FunctionsAzionForm.md) |  | [optional] 
+**AzionForm** | Pointer to [**FunctionAzionForm**](FunctionAzionForm.md) |  | [optional] 
 **Function** | Pointer to **int64** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 
@@ -91,20 +91,20 @@ HasArgs returns a boolean if a field has been set.
 UnsetArgs ensures that no value is present for Args, not even an explicit nil
 ### GetAzionForm
 
-`func (o *PatchedFunctionInstanceRequest) GetAzionForm() FunctionsAzionForm`
+`func (o *PatchedFunctionInstanceRequest) GetAzionForm() FunctionAzionForm`
 
 GetAzionForm returns the AzionForm field if non-nil, zero value otherwise.
 
 ### GetAzionFormOk
 
-`func (o *PatchedFunctionInstanceRequest) GetAzionFormOk() (*FunctionsAzionForm, bool)`
+`func (o *PatchedFunctionInstanceRequest) GetAzionFormOk() (*FunctionAzionForm, bool)`
 
 GetAzionFormOk returns a tuple with the AzionForm field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAzionForm
 
-`func (o *PatchedFunctionInstanceRequest) SetAzionForm(v FunctionsAzionForm)`
+`func (o *PatchedFunctionInstanceRequest) SetAzionForm(v FunctionAzionForm)`
 
 SetAzionForm sets AzionForm field to given value.
 

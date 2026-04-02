@@ -17,11 +17,11 @@ import (
 	"fmt"
 )
 
-// checks if the EdgeFunctions type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &EdgeFunctions{}
+// checks if the EdgeFunction type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &EdgeFunction{}
 
-// EdgeFunctions struct for EdgeFunctions
-type EdgeFunctions struct {
+// EdgeFunction struct for EdgeFunction
+type EdgeFunction struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
 	LastEditor string `json:"last_editor"`
@@ -38,18 +38,16 @@ type EdgeFunctions struct {
 	// Installed version, which may not be the latest if the vendor has released updates since installation.
 	Version string `json:"version"`
 	Vendor string `json:"vendor"`
-	// String containing the function code. Maximum size: 50.0MB
-	Code string `json:"code"`
 }
 
-type _EdgeFunctions EdgeFunctions
+type _EdgeFunction EdgeFunction
 
-// NewEdgeFunctions instantiates a new EdgeFunctions object
+// NewEdgeFunction instantiates a new EdgeFunction object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEdgeFunctions(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, code string) *EdgeFunctions {
-	this := EdgeFunctions{}
+func NewEdgeFunction(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string) *EdgeFunction {
+	this := EdgeFunction{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
@@ -58,20 +56,19 @@ func NewEdgeFunctions(id int64, name string, lastEditor string, lastModified tim
 	this.ReferenceCount = referenceCount
 	this.Version = version
 	this.Vendor = vendor
-	this.Code = code
 	return &this
 }
 
-// NewEdgeFunctionsWithDefaults instantiates a new EdgeFunctions object
+// NewEdgeFunctionWithDefaults instantiates a new EdgeFunction object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewEdgeFunctionsWithDefaults() *EdgeFunctions {
-	this := EdgeFunctions{}
+func NewEdgeFunctionWithDefaults() *EdgeFunction {
+	this := EdgeFunction{}
 	return &this
 }
 
 // GetId returns the Id field value
-func (o *EdgeFunctions) GetId() int64 {
+func (o *EdgeFunction) GetId() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -82,7 +79,7 @@ func (o *EdgeFunctions) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetIdOk() (*int64, bool) {
+func (o *EdgeFunction) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,12 +87,12 @@ func (o *EdgeFunctions) GetIdOk() (*int64, bool) {
 }
 
 // SetId sets field value
-func (o *EdgeFunctions) SetId(v int64) {
+func (o *EdgeFunction) SetId(v int64) {
 	o.Id = v
 }
 
 // GetName returns the Name field value
-func (o *EdgeFunctions) GetName() string {
+func (o *EdgeFunction) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -106,7 +103,7 @@ func (o *EdgeFunctions) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetNameOk() (*string, bool) {
+func (o *EdgeFunction) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,12 +111,12 @@ func (o *EdgeFunctions) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *EdgeFunctions) SetName(v string) {
+func (o *EdgeFunction) SetName(v string) {
 	o.Name = v
 }
 
 // GetLastEditor returns the LastEditor field value
-func (o *EdgeFunctions) GetLastEditor() string {
+func (o *EdgeFunction) GetLastEditor() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -130,7 +127,7 @@ func (o *EdgeFunctions) GetLastEditor() string {
 
 // GetLastEditorOk returns a tuple with the LastEditor field value
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetLastEditorOk() (*string, bool) {
+func (o *EdgeFunction) GetLastEditorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -138,12 +135,12 @@ func (o *EdgeFunctions) GetLastEditorOk() (*string, bool) {
 }
 
 // SetLastEditor sets field value
-func (o *EdgeFunctions) SetLastEditor(v string) {
+func (o *EdgeFunction) SetLastEditor(v string) {
 	o.LastEditor = v
 }
 
 // GetLastModified returns the LastModified field value
-func (o *EdgeFunctions) GetLastModified() time.Time {
+func (o *EdgeFunction) GetLastModified() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -154,7 +151,7 @@ func (o *EdgeFunctions) GetLastModified() time.Time {
 
 // GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetLastModifiedOk() (*time.Time, bool) {
+func (o *EdgeFunction) GetLastModifiedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -162,12 +159,12 @@ func (o *EdgeFunctions) GetLastModifiedOk() (*time.Time, bool) {
 }
 
 // SetLastModified sets field value
-func (o *EdgeFunctions) SetLastModified(v time.Time) {
+func (o *EdgeFunction) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
 // GetProductVersion returns the ProductVersion field value
-func (o *EdgeFunctions) GetProductVersion() string {
+func (o *EdgeFunction) GetProductVersion() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -178,7 +175,7 @@ func (o *EdgeFunctions) GetProductVersion() string {
 
 // GetProductVersionOk returns a tuple with the ProductVersion field value
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetProductVersionOk() (*string, bool) {
+func (o *EdgeFunction) GetProductVersionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -186,12 +183,12 @@ func (o *EdgeFunctions) GetProductVersionOk() (*string, bool) {
 }
 
 // SetProductVersion sets field value
-func (o *EdgeFunctions) SetProductVersion(v string) {
+func (o *EdgeFunction) SetProductVersion(v string) {
 	o.ProductVersion = v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *EdgeFunctions) GetActive() bool {
+func (o *EdgeFunction) GetActive() bool {
 	if o == nil || IsNil(o.Active) {
 		var ret bool
 		return ret
@@ -201,7 +198,7 @@ func (o *EdgeFunctions) GetActive() bool {
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetActiveOk() (*bool, bool) {
+func (o *EdgeFunction) GetActiveOk() (*bool, bool) {
 	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
@@ -209,7 +206,7 @@ func (o *EdgeFunctions) GetActiveOk() (*bool, bool) {
 }
 
 // HasActive returns a boolean if a field has been set.
-func (o *EdgeFunctions) HasActive() bool {
+func (o *EdgeFunction) HasActive() bool {
 	if o != nil && !IsNil(o.Active) {
 		return true
 	}
@@ -218,12 +215,12 @@ func (o *EdgeFunctions) HasActive() bool {
 }
 
 // SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *EdgeFunctions) SetActive(v bool) {
+func (o *EdgeFunction) SetActive(v bool) {
 	o.Active = &v
 }
 
 // GetRuntime returns the Runtime field value if set, zero value otherwise.
-func (o *EdgeFunctions) GetRuntime() string {
+func (o *EdgeFunction) GetRuntime() string {
 	if o == nil || IsNil(o.Runtime) {
 		var ret string
 		return ret
@@ -233,7 +230,7 @@ func (o *EdgeFunctions) GetRuntime() string {
 
 // GetRuntimeOk returns a tuple with the Runtime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetRuntimeOk() (*string, bool) {
+func (o *EdgeFunction) GetRuntimeOk() (*string, bool) {
 	if o == nil || IsNil(o.Runtime) {
 		return nil, false
 	}
@@ -241,7 +238,7 @@ func (o *EdgeFunctions) GetRuntimeOk() (*string, bool) {
 }
 
 // HasRuntime returns a boolean if a field has been set.
-func (o *EdgeFunctions) HasRuntime() bool {
+func (o *EdgeFunction) HasRuntime() bool {
 	if o != nil && !IsNil(o.Runtime) {
 		return true
 	}
@@ -250,12 +247,12 @@ func (o *EdgeFunctions) HasRuntime() bool {
 }
 
 // SetRuntime gets a reference to the given string and assigns it to the Runtime field.
-func (o *EdgeFunctions) SetRuntime(v string) {
+func (o *EdgeFunction) SetRuntime(v string) {
 	o.Runtime = &v
 }
 
 // GetExecutionEnvironment returns the ExecutionEnvironment field value if set, zero value otherwise.
-func (o *EdgeFunctions) GetExecutionEnvironment() string {
+func (o *EdgeFunction) GetExecutionEnvironment() string {
 	if o == nil || IsNil(o.ExecutionEnvironment) {
 		var ret string
 		return ret
@@ -265,7 +262,7 @@ func (o *EdgeFunctions) GetExecutionEnvironment() string {
 
 // GetExecutionEnvironmentOk returns a tuple with the ExecutionEnvironment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetExecutionEnvironmentOk() (*string, bool) {
+func (o *EdgeFunction) GetExecutionEnvironmentOk() (*string, bool) {
 	if o == nil || IsNil(o.ExecutionEnvironment) {
 		return nil, false
 	}
@@ -273,7 +270,7 @@ func (o *EdgeFunctions) GetExecutionEnvironmentOk() (*string, bool) {
 }
 
 // HasExecutionEnvironment returns a boolean if a field has been set.
-func (o *EdgeFunctions) HasExecutionEnvironment() bool {
+func (o *EdgeFunction) HasExecutionEnvironment() bool {
 	if o != nil && !IsNil(o.ExecutionEnvironment) {
 		return true
 	}
@@ -282,12 +279,12 @@ func (o *EdgeFunctions) HasExecutionEnvironment() bool {
 }
 
 // SetExecutionEnvironment gets a reference to the given string and assigns it to the ExecutionEnvironment field.
-func (o *EdgeFunctions) SetExecutionEnvironment(v string) {
+func (o *EdgeFunction) SetExecutionEnvironment(v string) {
 	o.ExecutionEnvironment = &v
 }
 
 // GetDefaultArgs returns the DefaultArgs field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EdgeFunctions) GetDefaultArgs() interface{} {
+func (o *EdgeFunction) GetDefaultArgs() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
@@ -298,7 +295,7 @@ func (o *EdgeFunctions) GetDefaultArgs() interface{} {
 // GetDefaultArgsOk returns a tuple with the DefaultArgs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EdgeFunctions) GetDefaultArgsOk() (*interface{}, bool) {
+func (o *EdgeFunction) GetDefaultArgsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.DefaultArgs) {
 		return nil, false
 	}
@@ -306,7 +303,7 @@ func (o *EdgeFunctions) GetDefaultArgsOk() (*interface{}, bool) {
 }
 
 // HasDefaultArgs returns a boolean if a field has been set.
-func (o *EdgeFunctions) HasDefaultArgs() bool {
+func (o *EdgeFunction) HasDefaultArgs() bool {
 	if o != nil && !IsNil(o.DefaultArgs) {
 		return true
 	}
@@ -315,12 +312,12 @@ func (o *EdgeFunctions) HasDefaultArgs() bool {
 }
 
 // SetDefaultArgs gets a reference to the given interface{} and assigns it to the DefaultArgs field.
-func (o *EdgeFunctions) SetDefaultArgs(v interface{}) {
+func (o *EdgeFunction) SetDefaultArgs(v interface{}) {
 	o.DefaultArgs = v
 }
 
 // GetAzionForm returns the AzionForm field value if set, zero value otherwise.
-func (o *EdgeFunctions) GetAzionForm() EdgeFunctionAzionForm {
+func (o *EdgeFunction) GetAzionForm() EdgeFunctionAzionForm {
 	if o == nil || IsNil(o.AzionForm) {
 		var ret EdgeFunctionAzionForm
 		return ret
@@ -330,7 +327,7 @@ func (o *EdgeFunctions) GetAzionForm() EdgeFunctionAzionForm {
 
 // GetAzionFormOk returns a tuple with the AzionForm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetAzionFormOk() (*EdgeFunctionAzionForm, bool) {
+func (o *EdgeFunction) GetAzionFormOk() (*EdgeFunctionAzionForm, bool) {
 	if o == nil || IsNil(o.AzionForm) {
 		return nil, false
 	}
@@ -338,7 +335,7 @@ func (o *EdgeFunctions) GetAzionFormOk() (*EdgeFunctionAzionForm, bool) {
 }
 
 // HasAzionForm returns a boolean if a field has been set.
-func (o *EdgeFunctions) HasAzionForm() bool {
+func (o *EdgeFunction) HasAzionForm() bool {
 	if o != nil && !IsNil(o.AzionForm) {
 		return true
 	}
@@ -347,12 +344,12 @@ func (o *EdgeFunctions) HasAzionForm() bool {
 }
 
 // SetAzionForm gets a reference to the given EdgeFunctionAzionForm and assigns it to the AzionForm field.
-func (o *EdgeFunctions) SetAzionForm(v EdgeFunctionAzionForm) {
+func (o *EdgeFunction) SetAzionForm(v EdgeFunctionAzionForm) {
 	o.AzionForm = &v
 }
 
 // GetReferenceCount returns the ReferenceCount field value
-func (o *EdgeFunctions) GetReferenceCount() int64 {
+func (o *EdgeFunction) GetReferenceCount() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -363,7 +360,7 @@ func (o *EdgeFunctions) GetReferenceCount() int64 {
 
 // GetReferenceCountOk returns a tuple with the ReferenceCount field value
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetReferenceCountOk() (*int64, bool) {
+func (o *EdgeFunction) GetReferenceCountOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -371,12 +368,12 @@ func (o *EdgeFunctions) GetReferenceCountOk() (*int64, bool) {
 }
 
 // SetReferenceCount sets field value
-func (o *EdgeFunctions) SetReferenceCount(v int64) {
+func (o *EdgeFunction) SetReferenceCount(v int64) {
 	o.ReferenceCount = v
 }
 
 // GetVersion returns the Version field value
-func (o *EdgeFunctions) GetVersion() string {
+func (o *EdgeFunction) GetVersion() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -387,7 +384,7 @@ func (o *EdgeFunctions) GetVersion() string {
 
 // GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetVersionOk() (*string, bool) {
+func (o *EdgeFunction) GetVersionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -395,12 +392,12 @@ func (o *EdgeFunctions) GetVersionOk() (*string, bool) {
 }
 
 // SetVersion sets field value
-func (o *EdgeFunctions) SetVersion(v string) {
+func (o *EdgeFunction) SetVersion(v string) {
 	o.Version = v
 }
 
 // GetVendor returns the Vendor field value
-func (o *EdgeFunctions) GetVendor() string {
+func (o *EdgeFunction) GetVendor() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -411,7 +408,7 @@ func (o *EdgeFunctions) GetVendor() string {
 
 // GetVendorOk returns a tuple with the Vendor field value
 // and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetVendorOk() (*string, bool) {
+func (o *EdgeFunction) GetVendorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -419,35 +416,11 @@ func (o *EdgeFunctions) GetVendorOk() (*string, bool) {
 }
 
 // SetVendor sets field value
-func (o *EdgeFunctions) SetVendor(v string) {
+func (o *EdgeFunction) SetVendor(v string) {
 	o.Vendor = v
 }
 
-// GetCode returns the Code field value
-func (o *EdgeFunctions) GetCode() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Code
-}
-
-// GetCodeOk returns a tuple with the Code field value
-// and a boolean to check if the value has been set.
-func (o *EdgeFunctions) GetCodeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Code, true
-}
-
-// SetCode sets field value
-func (o *EdgeFunctions) SetCode(v string) {
-	o.Code = v
-}
-
-func (o EdgeFunctions) MarshalJSON() ([]byte, error) {
+func (o EdgeFunction) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -455,7 +428,7 @@ func (o EdgeFunctions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o EdgeFunctions) ToMap() (map[string]interface{}, error) {
+func (o EdgeFunction) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
@@ -480,11 +453,10 @@ func (o EdgeFunctions) ToMap() (map[string]interface{}, error) {
 	toSerialize["reference_count"] = o.ReferenceCount
 	toSerialize["version"] = o.Version
 	toSerialize["vendor"] = o.Vendor
-	toSerialize["code"] = o.Code
 	return toSerialize, nil
 }
 
-func (o *EdgeFunctions) UnmarshalJSON(data []byte) (err error) {
+func (o *EdgeFunction) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -497,7 +469,6 @@ func (o *EdgeFunctions) UnmarshalJSON(data []byte) (err error) {
 		"reference_count",
 		"version",
 		"vendor",
-		"code",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -514,53 +485,53 @@ func (o *EdgeFunctions) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varEdgeFunctions := _EdgeFunctions{}
+	varEdgeFunction := _EdgeFunction{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEdgeFunctions)
+	err = decoder.Decode(&varEdgeFunction)
 
 	if err != nil {
 		return err
 	}
 
-	*o = EdgeFunctions(varEdgeFunctions)
+	*o = EdgeFunction(varEdgeFunction)
 
 	return err
 }
 
-type NullableEdgeFunctions struct {
-	value *EdgeFunctions
+type NullableEdgeFunction struct {
+	value *EdgeFunction
 	isSet bool
 }
 
-func (v NullableEdgeFunctions) Get() *EdgeFunctions {
+func (v NullableEdgeFunction) Get() *EdgeFunction {
 	return v.value
 }
 
-func (v *NullableEdgeFunctions) Set(val *EdgeFunctions) {
+func (v *NullableEdgeFunction) Set(val *EdgeFunction) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableEdgeFunctions) IsSet() bool {
+func (v NullableEdgeFunction) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableEdgeFunctions) Unset() {
+func (v *NullableEdgeFunction) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableEdgeFunctions(val *EdgeFunctions) *NullableEdgeFunctions {
-	return &NullableEdgeFunctions{value: val, isSet: true}
+func NewNullableEdgeFunction(val *EdgeFunction) *NullableEdgeFunction {
+	return &NullableEdgeFunction{value: val, isSet: true}
 }
 
-func (v NullableEdgeFunctions) MarshalJSON() ([]byte, error) {
+func (v NullableEdgeFunction) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableEdgeFunctions) UnmarshalJSON(src []byte) error {
+func (v *NullableEdgeFunction) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

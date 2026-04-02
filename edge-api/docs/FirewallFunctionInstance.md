@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **int64** |  | 
 **Name** | **string** |  | 
 **Args** | Pointer to **interface{}** |  | [optional] 
-**AzionForm** | Pointer to [**EdgeFunctionsAzionForm**](EdgeFunctionsAzionForm.md) |  | [optional] 
+**AzionForm** | Pointer to [**EdgeFunctionAzionForm**](EdgeFunctionAzionForm.md) |  | [optional] 
 **Function** | **int64** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 **LastEditor** | **string** |  | 
@@ -110,20 +110,20 @@ HasArgs returns a boolean if a field has been set.
 UnsetArgs ensures that no value is present for Args, not even an explicit nil
 ### GetAzionForm
 
-`func (o *FirewallFunctionInstance) GetAzionForm() EdgeFunctionsAzionForm`
+`func (o *FirewallFunctionInstance) GetAzionForm() EdgeFunctionAzionForm`
 
 GetAzionForm returns the AzionForm field if non-nil, zero value otherwise.
 
 ### GetAzionFormOk
 
-`func (o *FirewallFunctionInstance) GetAzionFormOk() (*EdgeFunctionsAzionForm, bool)`
+`func (o *FirewallFunctionInstance) GetAzionFormOk() (*EdgeFunctionAzionForm, bool)`
 
 GetAzionFormOk returns a tuple with the AzionForm field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAzionForm
 
-`func (o *FirewallFunctionInstance) SetAzionForm(v EdgeFunctionsAzionForm)`
+`func (o *FirewallFunctionInstance) SetAzionForm(v EdgeFunctionAzionForm)`
 
 SetAzionForm sets AzionForm field to given value.
 
