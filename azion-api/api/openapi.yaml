@@ -15992,7 +15992,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponsePaymentMethodList"
+                $ref: "#/components/schemas/PaginatedPaymentMethodResponseList"
           description: ""
         "401":
           content:
@@ -16142,13 +16142,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponsePaymentMethod"
+                $ref: "#/components/schemas/PaymentMethodResponse"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncPaymentMethod"
+                $ref: "#/components/schemas/PaymentMethodResponse"
           description: ""
         "401":
           content:
@@ -16301,13 +16301,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeletePaymentMethod"
+                $ref: "#/components/schemas/DeleteResponse"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeletePaymentMethod"
+                $ref: "#/components/schemas/DeleteResponse"
           description: ""
         "401":
           content:
@@ -16468,7 +16468,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponsePaymentMethod"
+                $ref: "#/components/schemas/PaymentMethodResponse"
           description: ""
         "401":
           content:
@@ -16649,13 +16649,13 @@ paths:
                       card_id: string
                       is_default: true
               schema:
-                $ref: "#/components/schemas/ResponsePaymentMethod"
+                $ref: "#/components/schemas/PaymentMethodResponse"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncPaymentMethod"
+                $ref: "#/components/schemas/PaymentMethodResponse"
           description: ""
         "400":
           content:
@@ -16822,13 +16822,13 @@ paths:
                       customer_stripe_id: string
                       description: string
               schema:
-                $ref: "#/components/schemas/ResponseCredit"
+                $ref: "#/components/schemas/CreditResponse"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncCredit"
+                $ref: "#/components/schemas/CreditResponse"
           description: ""
         "400":
           content:
@@ -84051,10 +84051,38 @@ components:
       - amount
       title: CreditRequest
       type: object
+    CreditResponse:
+      additionalProperties: false
+      example:
+        data:
+          amount: amount
+          created: created
+          customer_stripe_id: customer_stripe_id
+          description: description
+          currency: currency
+          entry_type: entry_type
+          expiration_date: expiration_date
+          client_id: client_id
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Credit"
+      required:
+      - data
+      title: CreditResponse
+      type: object
     PaginatedPaymentHistoryList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - amount_with_currency: amount_with_currency
           card_brand: card_brand
@@ -84070,23 +84098,62 @@ components:
           invoice_url: invoice_url
           status: status
           payment_due: 2000-01-23
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
           type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
+          type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/PaymentHistory"
           type: array
       title: PaginatedPaymentHistoryList
       type: object
-    PaginatedResponsePaymentMethodList:
+    PaginatedPaymentMethodResponseList:
       additionalProperties: false
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
+        total_pages: 10
+        page: 1
         results:
         - data:
             card_holder: card_holder
@@ -84116,18 +84183,53 @@ components:
             card_id: card_id
             card_address_zip: card_address_zip
           state: state
+        page_size: 10
       properties:
         count:
+          description: Total number of items
           example: 123
           format: int64
           maximum: 2147483647
           minimum: 0
           type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
+          type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
-            $ref: "#/components/schemas/ResponsePaymentMethod"
+            $ref: "#/components/schemas/PaymentMethodResponse"
           type: array
-      title: PaginatedResponsePaymentMethodList
+      title: PaginatedPaymentMethodResponseList
       type: object
     PatchedPartialUpdateRequest:
       additionalProperties: false
@@ -84342,42 +84444,7 @@ components:
       - stripe_token
       title: PaymentMethodRequest
       type: object
-    ResponseAsyncCredit:
-      additionalProperties: false
-      example:
-        data:
-          amount: amount
-          created: created
-          customer_stripe_id: customer_stripe_id
-          description: description
-          currency: currency
-          entry_type: entry_type
-          expiration_date: expiration_date
-          client_id: client_id
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Credit"
-      required:
-      - data
-      title: ResponseAsyncCredit
-      type: object
-    ResponseAsyncDeletePaymentMethod:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseAsyncDeletePaymentMethod
-      type: object
-    ResponseAsyncPaymentMethod:
+    PaymentMethodResponse:
       additionalProperties: false
       example:
         data:
@@ -84403,70 +84470,7 @@ components:
           $ref: "#/components/schemas/PaymentMethod"
       required:
       - data
-      title: ResponseAsyncPaymentMethod
-      type: object
-    ResponseCredit:
-      additionalProperties: false
-      example:
-        data:
-          amount: amount
-          created: created
-          customer_stripe_id: customer_stripe_id
-          description: description
-          currency: currency
-          entry_type: entry_type
-          expiration_date: expiration_date
-          client_id: client_id
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Credit"
-      required:
-      - data
-      title: ResponseCredit
-      type: object
-    ResponseDeletePaymentMethod:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      title: ResponseDeletePaymentMethod
-      type: object
-    ResponsePaymentMethod:
-      additionalProperties: false
-      example:
-        data:
-          card_holder: card_holder
-          card_last_4_digits: card_last_4_digits
-          card_address_line2: card_address_line2
-          card_address_line1: card_address_line1
-          card_country: card_country
-          card_brand: card_brand
-          card_expiration_month: 7
-          id: 0
-          is_default: true
-          card_expiration_year: 2033
-          card_id: card_id
-          card_address_zip: card_address_zip
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/PaymentMethod"
-      required:
-      - data
-      title: ResponsePaymentMethod
+      title: PaymentMethodResponse
       type: object
     Bucket:
       additionalProperties: false

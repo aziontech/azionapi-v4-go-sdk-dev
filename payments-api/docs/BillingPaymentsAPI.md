@@ -1,6 +1,6 @@
 # \BillingPaymentsAPI
 
-All URIs are relative to *https://stage-api.azion.com/v4*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -237,8 +237,8 @@ import (
 )
 
 func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
-	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+	ordering := "ordering_example" // string | Which field to use when ordering the results. (Valid fields: id, card_holder, card_brand, card_expiration_month, card_expiration_year, card_last_4_digits, card_address_zip, card_country, card_address_line1, card_address_line2, stripe_token, card_id, is_default) (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
 	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
 	search := "search_example" // string | A search term. (optional)
@@ -266,8 +266,8 @@ Other parameters are passed through a pointer to a apiListCreditCardsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
- **ordering** | **string** | Which field to use when ordering the results. | 
+ **fields** | **string** | Comma-separated list of field names to include in the response. | 
+ **ordering** | **string** | Which field to use when ordering the results. (Valid fields: id, card_holder, card_brand, card_expiration_month, card_expiration_year, card_last_4_digits, card_address_zip, card_country, card_address_line1, card_address_line2, stripe_token, card_id, is_default) | 
  **page** | **int64** | A page number within the paginated result set. | 
  **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
  **search** | **string** | A search term. | 
@@ -311,10 +311,10 @@ import (
 )
 
 func main() {
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
 	page := int64(789) // int64 | A page number within the paginated result set. (optional)
-	pageSize := int64(789) // int64 | A numeric value that indicates the number of items per page. (optional)
+	pageSize := int64(789) // int64 | Number of results to return per page. (optional)
 	search := "search_example" // string | A search term. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -340,10 +340,10 @@ Other parameters are passed through a pointer to a apiListPaymentHistoryRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
+ **fields** | **string** | Comma-separated list of field names to include in the response. | 
  **ordering** | **string** | Which field to use when ordering the results. | 
  **page** | **int64** | A page number within the paginated result set. | 
- **pageSize** | **int64** | A numeric value that indicates the number of items per page. | 
+ **pageSize** | **int64** | Number of results to return per page. | 
  **search** | **string** | A search term. | 
 
 ### Return type
@@ -458,7 +458,7 @@ import (
 
 func main() {
 	id := "id_example" // string | 
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -488,7 +488,7 @@ Other parameters are passed through a pointer to a apiRetrieveCreditCardRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
+ **fields** | **string** | Comma-separated list of field names to include in the response. | 
 
 ### Return type
 
