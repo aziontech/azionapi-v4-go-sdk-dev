@@ -1,0 +1,1712 @@
+openapi: 3.0.3
+info:
+  description: REST API OpenAPI documentation for the payments-api
+  title: payments-api
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /payments/credit_cards:
+    get:
+      description: List all credit cards owned by your account.
+      operationId: list credit cards
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          Which field to use when ordering the results.
+          (Valid fields: id, card_holder, card_brand, card_expiration_month, card_expiration_year, card_last_4_digits, card_address_zip, card_country, card_address_line1, card_address_line2, stripe_token, card_id, is_default)
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A numeric value that indicates the number of items per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedPaymentMethodResponseList"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: List of the credit cards
+      tags:
+      - Billing & Payments
+    post:
+      description: Create a new credit card for your account.
+      operationId: create credit card
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymentMethodRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentMethodResponse"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentMethodResponse"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Create a new credit card
+      tags:
+      - Billing & Payments
+  /payments/credit_cards/{id}:
+    delete:
+      description: Destruction of a specific credit card in your account.
+      operationId: destroy credit card
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteResponse"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Destroy a credit card
+      tags:
+      - Billing & Payments
+    get:
+      description: Retrieve details from a specific credit card in your account.
+      operationId: retrieve credit card
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentMethodResponse"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Retrieve details from a credit card
+      tags:
+      - Billing & Payments
+    patch:
+      description: Update the field 'is_default' to enable of an existing credit card.Only
+        the field 'is_default' is editable for an existing card.
+      operationId: partial update credit card
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              PartialUpdateExample:
+                summary: Example of partial update request body
+                value:
+                  is_default: true
+            schema:
+              $ref: "#/components/schemas/PatchedPartialUpdateRequest"
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                PartialUpdateResponseExample:
+                  summary: Example of partial update response body
+                  value:
+                    state: executed
+                    data:
+                      id: 0
+                      card_holder: string
+                      card_brand: string
+                      card_expiration_month: 12
+                      card_expiration_year: 2099
+                      card_last_4_digits: "1234"
+                      card_address_zip: string
+                      card_country: string
+                      card_address_line1: string
+                      card_address_line2: string
+                      card_id: string
+                      is_default: true
+              schema:
+                $ref: "#/components/schemas/PaymentMethodResponse"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymentMethodResponse"
+          description: ""
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Partially update a credit card
+      tags:
+      - Billing & Payments
+  /payments/credits:
+    post:
+      description: Add credit into the default credit card in US Dollars.
+      operationId: add credits
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreditRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              examples:
+                ResponseExample:
+                  description: This is the response format for a successful credit
+                    creation.
+                  summary: Response example
+                  value:
+                    state: executed
+                    data:
+                      client_id: string
+                      currency: string
+                      entry_type: string
+                      amount: "12.75"
+                      expiration_date: string
+                      created: string
+                      customer_stripe_id: string
+                      description: string
+              schema:
+                $ref: "#/components/schemas/CreditResponse"
+          description: ""
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreditResponse"
+          description: ""
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: Add credits using the default credit card
+      tags:
+      - Billing & Payments
+  /payments/history:
+    get:
+      description: List all details of the payment history.
+      operationId: list payment history
+      parameters:
+      - description: Comma-separated list of field names to include in the response.
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Which field to use when ordering the results.
+        explode: true
+        in: query
+        name: ordering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A page number within the paginated result set.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Number of results to return per page.
+        explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: A search term.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaginatedPaymentHistoryList"
+          description: ""
+        "401":
+          content:
+            application/json:
+              examples:
+                Error-10001:
+                  description: Invalid authentication credentials.
+                  summary: Authentication Failed
+                  value:
+                    errors:
+                    - status: "401"
+                      code: "10001"
+                      title: Authentication Failed
+                      detail: Invalid authentication credentials.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Authentication Failed
+        "403":
+          content:
+            application/json:
+              examples:
+                Error-10003:
+                  description: You do not have permission to perform this action.
+                  summary: Permission Denied
+                  value:
+                    errors:
+                    - status: "403"
+                      code: "10003"
+                      title: Permission Denied
+                      detail: You do not have permission to perform this action.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Permission Denied
+        "400":
+          content:
+            application/json:
+              examples:
+                Error-10000:
+                  description: Invalid data provided in the request.
+                  summary: Validation Error
+                  value:
+                    errors:
+                    - status: "400"
+                      code: "10000"
+                      title: Validation Error
+                      detail: Invalid data provided in the request.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Validation Error
+        "404":
+          content:
+            application/json:
+              examples:
+                Error-10004:
+                  description: Not found.
+                  summary: Not Found
+                  value:
+                    errors:
+                    - status: "404"
+                      code: "10004"
+                      title: Not Found
+                      detail: Not found.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Found
+        "405":
+          content:
+            application/json:
+              examples:
+                Error-10007:
+                  description: "Method \"{method}\" not allowed."
+                  summary: Method Not Allowed
+                  value:
+                    errors:
+                    - status: "405"
+                      code: "10007"
+                      title: Method Not Allowed
+                      detail: "Method \"{method}\" not allowed."
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Method Not Allowed
+        "406":
+          content:
+            application/json:
+              examples:
+                Error-10005:
+                  description: Could not satisfy the request Accept header.
+                  summary: Not Acceptable
+                  value:
+                    errors:
+                    - status: "406"
+                      code: "10005"
+                      title: Not Acceptable
+                      detail: Could not satisfy the request Accept header.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Not Acceptable
+        "429":
+          content:
+            application/json:
+              examples:
+                Error-10010:
+                  description: Request was throttled.
+                  summary: Throttled
+                  value:
+                    errors:
+                    - status: "429"
+                      code: "10010"
+                      title: Throttled
+                      detail: Request was throttled.
+              schema:
+                $ref: "#/components/schemas/JSONAPIErrorResponse"
+          description: Throttled
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      summary: List of the payment history
+      tags:
+      - Billing & Payments
+components:
+  schemas:
+    Credit:
+      additionalProperties: false
+      example:
+        amount: amount
+        created: created
+        customer_stripe_id: customer_stripe_id
+        description: description
+        currency: currency
+        entry_type: entry_type
+        expiration_date: expiration_date
+        client_id: client_id
+      properties:
+        amount:
+          format: decimal
+          type: string
+        client_id:
+          maxLength: 255
+          minLength: 1
+          type: string
+        currency:
+          maxLength: 255
+          minLength: 1
+          type: string
+        entry_type:
+          maxLength: 255
+          minLength: 1
+          type: string
+        expiration_date:
+          maxLength: 255
+          minLength: 1
+          type: string
+        created:
+          maxLength: 255
+          minLength: 1
+          type: string
+        customer_stripe_id:
+          maxLength: 255
+          minLength: 1
+          type: string
+        description:
+          maxLength: 255
+          minLength: 1
+          type: string
+      required:
+      - amount
+      - client_id
+      - created
+      - currency
+      - customer_stripe_id
+      - description
+      - entry_type
+      - expiration_date
+      title: Credit
+      type: object
+    CreditRequest:
+      additionalProperties: false
+      example:
+        amount: amount
+      properties:
+        amount:
+          format: decimal
+          type: string
+      required:
+      - amount
+      title: CreditRequest
+      type: object
+    CreditResponse:
+      additionalProperties: false
+      example:
+        data:
+          amount: amount
+          created: created
+          customer_stripe_id: customer_stripe_id
+          description: description
+          currency: currency
+          entry_type: entry_type
+          expiration_date: expiration_date
+          client_id: client_id
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Credit"
+      required:
+      - data
+      title: CreditResponse
+      type: object
+    DeleteResponse:
+      additionalProperties: false
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      title: DeleteResponse
+      type: object
+    JSONAPIErrorObject:
+      additionalProperties: false
+      description: Serializer for a single JSON:API error object.
+      example:
+        code: code
+        meta:
+          key: ""
+        detail: detail
+        source: ""
+        title: title
+        status: status
+      properties:
+        status:
+          description: The HTTP status code applicable to this problem
+          maxLength: 3
+          minLength: 3
+          type: string
+        code:
+          description: An application-specific error code
+          maxLength: 5
+          minLength: 5
+          type: string
+        title:
+          description: "A short, human-readable summary of the problem"
+          maxLength: 4096
+          minLength: 1
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of
+            the problem
+          maxLength: 4096
+          minLength: 1
+          type: string
+        source:
+          allOf:
+          - $ref: "#/components/schemas/JSONAPIErrorSource"
+          description: References to the primary source of the error
+        meta:
+          additionalProperties: {}
+          description: Non-standard meta-information about the error
+          type: object
+      title: JSONAPIErrorObject
+      type: object
+    JSONAPIErrorResponse:
+      additionalProperties: false
+      description: Serializer for a JSON:API error response.
+      example:
+        errors:
+        - code: code
+          meta:
+            key: ""
+          detail: detail
+          source: ""
+          title: title
+          status: status
+        - code: code
+          meta:
+            key: ""
+          detail: detail
+          source: ""
+          title: title
+          status: status
+      properties:
+        errors:
+          description: Array of error objects
+          items:
+            $ref: "#/components/schemas/JSONAPIErrorObject"
+          type: array
+      required:
+      - errors
+      title: JSONAPIErrorResponse
+      type: object
+    JSONAPIErrorSource:
+      additionalProperties: false
+      description: Serializer for the 'source' object in a JSON:API error.
+      properties:
+        pointer:
+          description: JSON Pointer to the value in the request document that caused
+            the error
+          maxLength: 4096
+          minLength: 1
+          type: string
+        parameter:
+          description: URI query parameter that caused the error
+          maxLength: 4096
+          minLength: 1
+          type: string
+        header:
+          description: Request header name that caused the error
+          maxLength: 4096
+          minLength: 1
+          type: string
+      title: JSONAPIErrorSource
+      type: object
+    PaginatedPaymentHistoryList:
+      additionalProperties: false
+      example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
+        count: 123
+        total_pages: 10
+        page: 1
+        results:
+        - amount_with_currency: amount_with_currency
+          card_brand: card_brand
+          payment_method_details: payment_method_details
+          invoice_number: invoice_number
+          invoice_url: invoice_url
+          status: status
+          payment_due: 2000-01-23
+        - amount_with_currency: amount_with_currency
+          card_brand: card_brand
+          payment_method_details: payment_method_details
+          invoice_number: invoice_number
+          invoice_url: invoice_url
+          status: status
+          payment_due: 2000-01-23
+        page_size: 10
+      properties:
+        count:
+          description: Total number of items
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
+          type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/PaymentHistory"
+          type: array
+      title: PaginatedPaymentHistoryList
+      type: object
+    PaginatedPaymentMethodResponseList:
+      additionalProperties: false
+      example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
+        count: 123
+        total_pages: 10
+        page: 1
+        results:
+        - data:
+            card_holder: card_holder
+            card_last_4_digits: card_last_4_digits
+            card_address_line2: card_address_line2
+            card_address_line1: card_address_line1
+            card_country: card_country
+            card_brand: card_brand
+            card_expiration_month: 7
+            id: 0
+            is_default: true
+            card_expiration_year: 2033
+            card_id: card_id
+            card_address_zip: card_address_zip
+          state: state
+        - data:
+            card_holder: card_holder
+            card_last_4_digits: card_last_4_digits
+            card_address_line2: card_address_line2
+            card_address_line1: card_address_line1
+            card_country: card_country
+            card_brand: card_brand
+            card_expiration_month: 7
+            id: 0
+            is_default: true
+            card_expiration_year: 2033
+            card_id: card_id
+            card_address_zip: card_address_zip
+          state: state
+        page_size: 10
+      properties:
+        count:
+          description: Total number of items
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
+          type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/PaymentMethodResponse"
+          type: array
+      title: PaginatedPaymentMethodResponseList
+      type: object
+    PatchedPartialUpdateRequest:
+      additionalProperties: false
+      example:
+        is_default: true
+      properties:
+        is_default:
+          type: boolean
+      title: PatchedPartialUpdateRequest
+      type: object
+    PaymentHistory:
+      additionalProperties: false
+      example:
+        amount_with_currency: amount_with_currency
+        card_brand: card_brand
+        payment_method_details: payment_method_details
+        invoice_number: invoice_number
+        invoice_url: invoice_url
+        status: status
+        payment_due: 2000-01-23
+      properties:
+        amount_with_currency:
+          maxLength: 50
+          minLength: 1
+          type: string
+        invoice_number:
+          maxLength: 100
+          minLength: 1
+          nullable: true
+          type: string
+        invoice_url:
+          maxLength: 100
+          minLength: 1
+          nullable: true
+          type: string
+        status:
+          maxLength: 30
+          minLength: 1
+          type: string
+        payment_due:
+          format: date
+          type: string
+        card_brand:
+          maxLength: 50
+          minLength: 1
+          nullable: true
+          type: string
+        payment_method_details:
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+      required:
+      - amount_with_currency
+      - card_brand
+      - invoice_number
+      - invoice_url
+      - payment_due
+      - payment_method_details
+      - status
+      title: PaymentHistory
+      type: object
+    PaymentMethod:
+      additionalProperties: false
+      example:
+        card_holder: card_holder
+        card_last_4_digits: card_last_4_digits
+        card_address_line2: card_address_line2
+        card_address_line1: card_address_line1
+        card_country: card_country
+        card_brand: card_brand
+        card_expiration_month: 7
+        id: 0
+        is_default: true
+        card_expiration_year: 2033
+        card_id: card_id
+        card_address_zip: card_address_zip
+      properties:
+        id:
+          format: int64
+          type: integer
+        card_holder:
+          maxLength: 255
+          minLength: 1
+          type: string
+        card_brand:
+          maxLength: 50
+          minLength: 1
+          type: string
+        card_expiration_month:
+          format: int64
+          maximum: 12
+          minimum: 1
+          type: integer
+        card_expiration_year:
+          format: int64
+          maximum: 2099
+          minimum: 2022
+          type: integer
+        card_last_4_digits:
+          maxLength: 4
+          minLength: 4
+          type: string
+        card_address_zip:
+          maxLength: 20
+          minLength: 1
+          type: string
+        card_country:
+          maxLength: 100
+          minLength: 1
+          type: string
+        card_address_line1:
+          maxLength: 255
+          minLength: 1
+          type: string
+        card_address_line2:
+          maxLength: 255
+          minLength: 1
+          type: string
+        card_id:
+          maxLength: 255
+          minLength: 1
+          type: string
+        is_default:
+          type: boolean
+      required:
+      - card_address_zip
+      - card_brand
+      - card_country
+      - card_expiration_month
+      - card_expiration_year
+      - card_holder
+      - card_id
+      - card_last_4_digits
+      - id
+      title: PaymentMethod
+      type: object
+    PaymentMethodRequest:
+      additionalProperties: false
+      example:
+        card_holder: card_holder
+        card_last_4_digits: card_last_4_digits
+        card_address_line2: card_address_line2
+        card_address_line1: card_address_line1
+        card_country: card_country
+        stripe_token: stripe_token
+        card_brand: card_brand
+        card_expiration_month: 1
+        is_default: true
+        card_expiration_year: 2068
+        card_id: card_id
+        card_address_zip: card_address_zip
+      properties:
+        card_holder:
+          maxLength: 255
+          minLength: 1
+          type: string
+        card_brand:
+          maxLength: 50
+          minLength: 1
+          type: string
+        card_expiration_month:
+          format: int64
+          maximum: 12
+          minimum: 1
+          type: integer
+        card_expiration_year:
+          format: int64
+          maximum: 2099
+          minimum: 2022
+          type: integer
+        card_last_4_digits:
+          maxLength: 4
+          minLength: 4
+          type: string
+        card_address_zip:
+          maxLength: 20
+          minLength: 1
+          type: string
+        card_country:
+          maxLength: 100
+          minLength: 1
+          type: string
+        card_address_line1:
+          maxLength: 255
+          minLength: 1
+          type: string
+        card_address_line2:
+          maxLength: 255
+          minLength: 1
+          type: string
+        stripe_token:
+          maxLength: 255
+          minLength: 1
+          type: string
+          writeOnly: true
+        card_id:
+          maxLength: 255
+          minLength: 1
+          type: string
+        is_default:
+          type: boolean
+      required:
+      - card_address_zip
+      - card_brand
+      - card_country
+      - card_expiration_month
+      - card_expiration_year
+      - card_holder
+      - card_id
+      - card_last_4_digits
+      - stripe_token
+      title: PaymentMethodRequest
+      type: object
+    PaymentMethodResponse:
+      additionalProperties: false
+      example:
+        data:
+          card_holder: card_holder
+          card_last_4_digits: card_last_4_digits
+          card_address_line2: card_address_line2
+          card_address_line1: card_address_line1
+          card_country: card_country
+          card_brand: card_brand
+          card_expiration_month: 7
+          id: 0
+          is_default: true
+          card_expiration_year: 2033
+          card_id: card_id
+          card_address_zip: card_address_zip
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/PaymentMethod"
+      required:
+      - data
+      title: PaymentMethodResponse
+      type: object
+  securitySchemes:
+    BearerAuth:
+      scheme: bearer
+      type: http
+    TokenAuth:
+      description: Token-based authentication with required prefix "Token"
+      in: header
+      name: Authorization
+      type: apiKey

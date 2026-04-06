@@ -218,6 +218,7 @@ docs/CredentialCreateRequest.md
 docs/CredentialResponse.md
 docs/Credit.md
 docs/CreditRequest.md
+docs/CreditResponse.md
 docs/CustomPage.md
 docs/CustomPageRequest.md
 docs/CustomPageResponse.md
@@ -474,13 +475,13 @@ docs/PaginatedNodeGroupsList.md
 docs/PaginatedNodeServicesList.md
 docs/PaginatedNodesList.md
 docs/PaginatedPaymentHistoryList.md
+docs/PaginatedPaymentMethodResponseList.md
 docs/PaginatedPlatformList.md
 docs/PaginatedPolicyList.md
 docs/PaginatedRecordList.md
 docs/PaginatedReportList.md
 docs/PaginatedRepositoryList.md
 docs/PaginatedRequestPhaseRuleList.md
-docs/PaginatedResponsePaymentMethodList.md
 docs/PaginatedResponsePhaseRuleList.md
 docs/PaginatedRowList.md
 docs/PaginatedServiceResourceList.md
@@ -545,6 +546,7 @@ docs/PatchedWorkspaceRequest.md
 docs/PaymentHistory.md
 docs/PaymentMethod.md
 docs/PaymentMethodRequest.md
+docs/PaymentMethodResponse.md
 docs/Platform.md
 docs/Policy.md
 docs/PolicyLockoutPolicyAPI.md
@@ -586,7 +588,6 @@ docs/ResponseAsyncAccount.md
 docs/ResponseAsyncAccountInfo.md
 docs/ResponseAsyncChatThread.md
 docs/ResponseAsyncContinuousDeployment.md
-docs/ResponseAsyncCredit.md
 docs/ResponseAsyncDashboard.md
 docs/ResponseAsyncDeleteChatThread.md
 docs/ResponseAsyncDeleteContinuousDeployment.md
@@ -596,7 +597,6 @@ docs/ResponseAsyncDeleteKnowledgeBase.md
 docs/ResponseAsyncDeleteMessage.md
 docs/ResponseAsyncDeleteNodeServiceBind.md
 docs/ResponseAsyncDeleteNodes.md
-docs/ResponseAsyncDeletePaymentMethod.md
 docs/ResponseAsyncDeleteServices.md
 docs/ResponseAsyncDeleteTool.md
 docs/ResponseAsyncDocument.md
@@ -609,7 +609,6 @@ docs/ResponseAsyncNodeGroupsById.md
 docs/ResponseAsyncNodeServices.md
 docs/ResponseAsyncNodes.md
 docs/ResponseAsyncOrder.md
-docs/ResponseAsyncPaymentMethod.md
 docs/ResponseAsyncReport.md
 docs/ResponseAsyncRow.md
 docs/ResponseAsyncServices.md
@@ -617,7 +616,6 @@ docs/ResponseAsyncTool.md
 docs/ResponseBucketObject.md
 docs/ResponseChatThread.md
 docs/ResponseContinuousDeployment.md
-docs/ResponseCredit.md
 docs/ResponseDashboard.md
 docs/ResponseDeleteChatThread.md
 docs/ResponseDeleteContinuousDeployment.md
@@ -630,7 +628,6 @@ docs/ResponseDeleteGroup.md
 docs/ResponseDeleteIntegration.md
 docs/ResponseDeleteKnowledgeBase.md
 docs/ResponseDeleteMessage.md
-docs/ResponseDeletePaymentMethod.md
 docs/ResponseDeleteRecommendation.md
 docs/ResponseDeleteReport.md
 docs/ResponseDeleteRow.md
@@ -669,7 +666,6 @@ docs/ResponseListUser.md
 docs/ResponseLogin.md
 docs/ResponseMessage.md
 docs/ResponseOrder.md
-docs/ResponsePaymentMethod.md
 docs/ResponsePhaseBehavior.md
 docs/ResponsePhaseBehaviorRequest.md
 docs/ResponsePhaseRule.md
@@ -946,6 +942,7 @@ model_credential_create_request.go
 model_credential_response.go
 model_credit.go
 model_credit_request.go
+model_credit_response.go
 model_custom_page.go
 model_custom_page_request.go
 model_custom_page_response.go
@@ -1165,13 +1162,13 @@ model_paginated_node_groups_list.go
 model_paginated_node_services_list.go
 model_paginated_nodes_list.go
 model_paginated_payment_history_list.go
+model_paginated_payment_method_response_list.go
 model_paginated_platform_list.go
 model_paginated_policy_list.go
 model_paginated_record_list.go
 model_paginated_report_list.go
 model_paginated_repository_list.go
 model_paginated_request_phase_rule_list.go
-model_paginated_response_payment_method_list.go
 model_paginated_response_phase_rule_list.go
 model_paginated_row_list.go
 model_paginated_service_resource_list.go
@@ -1236,6 +1233,7 @@ model_patched_workspace_request.go
 model_payment_history.go
 model_payment_method.go
 model_payment_method_request.go
+model_payment_method_response.go
 model_platform.go
 model_policy.go
 model_policy_request.go
@@ -1272,7 +1270,6 @@ model_response_async_account.go
 model_response_async_account_info.go
 model_response_async_chat_thread.go
 model_response_async_continuous_deployment.go
-model_response_async_credit.go
 model_response_async_dashboard.go
 model_response_async_delete_chat_thread.go
 model_response_async_delete_continuous_deployment.go
@@ -1282,7 +1279,6 @@ model_response_async_delete_knowledge_base.go
 model_response_async_delete_message.go
 model_response_async_delete_node_service_bind.go
 model_response_async_delete_nodes.go
-model_response_async_delete_payment_method.go
 model_response_async_delete_services.go
 model_response_async_delete_tool.go
 model_response_async_document.go
@@ -1295,7 +1291,6 @@ model_response_async_node_groups_by_id.go
 model_response_async_node_services.go
 model_response_async_nodes.go
 model_response_async_order.go
-model_response_async_payment_method.go
 model_response_async_report.go
 model_response_async_row.go
 model_response_async_services.go
@@ -1303,7 +1298,6 @@ model_response_async_tool.go
 model_response_bucket_object.go
 model_response_chat_thread.go
 model_response_continuous_deployment.go
-model_response_credit.go
 model_response_dashboard.go
 model_response_delete_chat_thread.go
 model_response_delete_continuous_deployment.go
@@ -1316,7 +1310,6 @@ model_response_delete_group.go
 model_response_delete_integration.go
 model_response_delete_knowledge_base.go
 model_response_delete_message.go
-model_response_delete_payment_method.go
 model_response_delete_recommendation.go
 model_response_delete_report.go
 model_response_delete_row.go
@@ -1355,7 +1348,6 @@ model_response_list_user.go
 model_response_login.go
 model_response_message.go
 model_response_order.go
-model_response_payment_method.go
 model_response_phase_behavior.go
 model_response_phase_behavior_request.go
 model_response_phase_rule.go
