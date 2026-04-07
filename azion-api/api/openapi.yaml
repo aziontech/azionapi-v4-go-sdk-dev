@@ -16648,6 +16648,7 @@ paths:
                       card_address_line2: string
                       card_id: string
                       is_default: true
+                      created_at: 2023-01-01T00:00:00Z
               schema:
                 $ref: "#/components/schemas/PaymentMethodResponse"
           description: ""
@@ -83917,31 +83918,33 @@ components:
         page: 1
         results:
         - data:
-            card_holder: card_holder
             card_last_4_digits: card_last_4_digits
             card_address_line2: card_address_line2
             card_address_line1: card_address_line1
+            created_at: 2000-01-23T04:56:07.000+00:00
+            is_default: true
+            card_expiration_year: 2033
+            card_id: card_id
+            card_holder: card_holder
             card_country: card_country
             card_brand: card_brand
             card_expiration_month: 7
             id: 0
-            is_default: true
-            card_expiration_year: 2033
-            card_id: card_id
             card_address_zip: card_address_zip
           state: state
         - data:
-            card_holder: card_holder
             card_last_4_digits: card_last_4_digits
             card_address_line2: card_address_line2
             card_address_line1: card_address_line1
+            created_at: 2000-01-23T04:56:07.000+00:00
+            is_default: true
+            card_expiration_year: 2033
+            card_id: card_id
+            card_holder: card_holder
             card_country: card_country
             card_brand: card_brand
             card_expiration_month: 7
             id: 0
-            is_default: true
-            card_expiration_year: 2033
-            card_id: card_id
             card_address_zip: card_address_zip
           state: state
         page_size: 10
@@ -84056,17 +84059,18 @@ components:
     PaymentMethod:
       additionalProperties: false
       example:
-        card_holder: card_holder
         card_last_4_digits: card_last_4_digits
         card_address_line2: card_address_line2
         card_address_line1: card_address_line1
+        created_at: 2000-01-23T04:56:07.000+00:00
+        is_default: true
+        card_expiration_year: 2033
+        card_id: card_id
+        card_holder: card_holder
         card_country: card_country
         card_brand: card_brand
         card_expiration_month: 7
         id: 0
-        is_default: true
-        card_expiration_year: 2033
-        card_id: card_id
         card_address_zip: card_address_zip
       properties:
         id:
@@ -84116,6 +84120,10 @@ components:
           type: string
         is_default:
           type: boolean
+        created_at:
+          format: date-time
+          nullable: true
+          type: string
       required:
       - card_address_zip
       - card_brand
@@ -84125,6 +84133,7 @@ components:
       - card_holder
       - card_id
       - card_last_4_digits
+      - created_at
       - id
       title: PaymentMethod
       type: object
@@ -84209,17 +84218,18 @@ components:
       additionalProperties: false
       example:
         data:
-          card_holder: card_holder
           card_last_4_digits: card_last_4_digits
           card_address_line2: card_address_line2
           card_address_line1: card_address_line1
+          created_at: 2000-01-23T04:56:07.000+00:00
+          is_default: true
+          card_expiration_year: 2033
+          card_id: card_id
+          card_holder: card_holder
           card_country: card_country
           card_brand: card_brand
           card_expiration_month: 7
           id: 0
-          is_default: true
-          card_expiration_year: 2033
-          card_id: card_id
           card_address_zip: card_address_zip
         state: state
       properties:

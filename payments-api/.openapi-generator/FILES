@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -39,5 +38,4 @@ model_payment_method.go
 model_payment_method_request.go
 model_payment_method_response.go
 response.go
-test/api_billing_payments_test.go
 utils.go
