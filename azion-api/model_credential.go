@@ -31,6 +31,7 @@ type Credential struct {
 	Buckets []string `json:"buckets"`
 	ExpirationDate *time.Time `json:"expiration_date,omitempty"`
 	LastEditor NullableString `json:"last_editor"`
+	CreatedAt time.Time `json:"created_at"`
 	LastModified time.Time `json:"last_modified"`
 }
 
@@ -40,7 +41,7 @@ type _Credential Credential
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCredential(id int64, name string, accessKey string, secretKey string, capabilities []string, buckets []string, lastEditor NullableString, lastModified time.Time) *Credential {
+func NewCredential(id int64, name string, accessKey string, secretKey string, capabilities []string, buckets []string, lastEditor NullableString, createdAt time.Time, lastModified time.Time) *Credential {
 	this := Credential{}
 	this.Id = id
 	this.Name = name
@@ -49,6 +50,7 @@ func NewCredential(id int64, name string, accessKey string, secretKey string, ca
 	this.Capabilities = capabilities
 	this.Buckets = buckets
 	this.LastEditor = lastEditor
+	this.CreatedAt = createdAt
 	this.LastModified = lastModified
 	return &this
 }
@@ -263,6 +265,30 @@ func (o *Credential) SetLastEditor(v string) {
 	o.LastEditor.Set(&v)
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *Credential) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *Credential) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *Credential) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
 // GetLastModified returns the LastModified field value
 func (o *Credential) GetLastModified() time.Time {
 	if o == nil {
@@ -307,6 +333,7 @@ func (o Credential) ToMap() (map[string]interface{}, error) {
 		toSerialize["expiration_date"] = o.ExpirationDate
 	}
 	toSerialize["last_editor"] = o.LastEditor.Get()
+	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["last_modified"] = o.LastModified
 	return toSerialize, nil
 }
@@ -323,6 +350,7 @@ func (o *Credential) UnmarshalJSON(data []byte) (err error) {
 		"capabilities",
 		"buckets",
 		"last_editor",
+		"created_at",
 		"last_modified",
 	}
 
