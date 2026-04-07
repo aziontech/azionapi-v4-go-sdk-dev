@@ -12,13 +12,14 @@ Name | Type | Description | Notes
 **Buckets** | **[]string** |  | 
 **ExpirationDate** | Pointer to **time.Time** |  | [optional] 
 **LastEditor** | **NullableString** |  | 
+**CreatedAt** | **time.Time** |  | 
 **LastModified** | **time.Time** |  | 
 
 ## Methods
 
 ### NewCredential
 
-`func NewCredential(id int64, name string, accessKey string, secretKey string, capabilities []string, buckets []string, lastEditor NullableString, lastModified time.Time, ) *Credential`
+`func NewCredential(id int64, name string, accessKey string, secretKey string, capabilities []string, buckets []string, lastEditor NullableString, createdAt time.Time, lastModified time.Time, ) *Credential`
 
 NewCredential instantiates a new Credential object
 This constructor will assign default values to properties that have it defined,
@@ -208,6 +209,26 @@ SetLastEditor sets LastEditor field to given value.
 `func (o *Credential) UnsetLastEditor()`
 
 UnsetLastEditor ensures that no value is present for LastEditor, not even an explicit nil
+### GetCreatedAt
+
+`func (o *Credential) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Credential) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Credential) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
 ### GetLastModified
 
 `func (o *Credential) GetLastModified() time.Time`

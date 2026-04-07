@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -34,6 +35,7 @@ type PaymentMethod struct {
 	CardAddressLine2 *string `json:"card_address_line2,omitempty"`
 	CardId string `json:"card_id"`
 	IsDefault *bool `json:"is_default,omitempty"`
+	CreatedAt NullableTime `json:"created_at"`
 }
 
 type _PaymentMethod PaymentMethod
@@ -42,7 +44,7 @@ type _PaymentMethod PaymentMethod
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPaymentMethod(id int64, cardHolder string, cardBrand string, cardExpirationMonth int64, cardExpirationYear int64, cardLast4Digits string, cardAddressZip string, cardCountry string, cardId string) *PaymentMethod {
+func NewPaymentMethod(id int64, cardHolder string, cardBrand string, cardExpirationMonth int64, cardExpirationYear int64, cardLast4Digits string, cardAddressZip string, cardCountry string, cardId string, createdAt NullableTime) *PaymentMethod {
 	this := PaymentMethod{}
 	this.Id = id
 	this.CardHolder = cardHolder
@@ -53,6 +55,7 @@ func NewPaymentMethod(id int64, cardHolder string, cardBrand string, cardExpirat
 	this.CardAddressZip = cardAddressZip
 	this.CardCountry = cardCountry
 	this.CardId = cardId
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -376,6 +379,32 @@ func (o *PaymentMethod) SetIsDefault(v bool) {
 	o.IsDefault = &v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+// If the value is explicit nil, the zero value for time.Time will be returned
+func (o *PaymentMethod) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return *o.CreatedAt.Get()
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PaymentMethod) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
+}
+
+// SetCreatedAt sets field value
+func (o *PaymentMethod) SetCreatedAt(v time.Time) {
+	o.CreatedAt.Set(&v)
+}
+
 func (o PaymentMethod) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -404,6 +433,7 @@ func (o PaymentMethod) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IsDefault) {
 		toSerialize["is_default"] = o.IsDefault
 	}
+	toSerialize["created_at"] = o.CreatedAt.Get()
 	return toSerialize, nil
 }
 
@@ -421,6 +451,7 @@ func (o *PaymentMethod) UnmarshalJSON(data []byte) (err error) {
 		"card_address_zip",
 		"card_country",
 		"card_id",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

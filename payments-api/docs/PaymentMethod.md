@@ -16,12 +16,13 @@ Name | Type | Description | Notes
 **CardAddressLine2** | Pointer to **string** |  | [optional] 
 **CardId** | **string** |  | 
 **IsDefault** | Pointer to **bool** |  | [optional] 
+**CreatedAt** | **NullableTime** |  | 
 
 ## Methods
 
 ### NewPaymentMethod
 
-`func NewPaymentMethod(id int64, cardHolder string, cardBrand string, cardExpirationMonth int64, cardExpirationYear int64, cardLast4Digits string, cardAddressZip string, cardCountry string, cardId string, ) *PaymentMethod`
+`func NewPaymentMethod(id int64, cardHolder string, cardBrand string, cardExpirationMonth int64, cardExpirationYear int64, cardLast4Digits string, cardAddressZip string, cardCountry string, cardId string, createdAt NullableTime, ) *PaymentMethod`
 
 NewPaymentMethod instantiates a new PaymentMethod object
 This constructor will assign default values to properties that have it defined,
@@ -291,6 +292,36 @@ SetIsDefault sets IsDefault field to given value.
 
 HasIsDefault returns a boolean if a field has been set.
 
+### GetCreatedAt
+
+`func (o *PaymentMethod) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *PaymentMethod) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *PaymentMethod) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### SetCreatedAtNil
+
+`func (o *PaymentMethod) SetCreatedAtNil(b bool)`
+
+ SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+
+### UnsetCreatedAt
+`func (o *PaymentMethod) UnsetCreatedAt()`
+
+UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
