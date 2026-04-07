@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateDashboard
 
-> ResponseDashboard CreateDashboard(ctx, folderId).DashboardRequest(dashboardRequest).Execute()
+> DashboardResponse CreateDashboard(ctx, folderId).DashboardRequest(dashboardRequest).Execute()
 
 Create a new dashboard
 
@@ -44,7 +44,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsDashboardAPI.CreateDashboard``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateDashboard`: ResponseDashboard
+	// response from `CreateDashboard`: DashboardResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsDashboardAPI.CreateDashboard`: %v\n", resp)
 }
 ```
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDashboard**](ResponseDashboard.md)
+[**DashboardResponse**](DashboardResponse.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDashboard
 
-> ResponseDeleteDashboard DeleteDashboard(ctx, dashboardId, folderId).Execute()
+> DeleteResponse DeleteDashboard(ctx, dashboardId, folderId).Execute()
 
 Delete a dashboard
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsDashboardAPI.DeleteDashboard``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteDashboard`: ResponseDeleteDashboard
+	// response from `DeleteDashboard`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsDashboardAPI.DeleteDashboard`: %v\n", resp)
 }
 ```
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteDashboard**](ResponseDeleteDashboard.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## ListDashboards
 
-> PaginatedResponseListDashboardList ListDashboards(ctx, folderId).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedDashboardListResponseList ListDashboards(ctx, folderId).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List of the dashboards
 
@@ -195,7 +195,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsDashboardAPI.ListDashboards``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListDashboards`: PaginatedResponseListDashboardList
+	// response from `ListDashboards`: PaginatedDashboardListResponseList
 	fmt.Fprintf(os.Stdout, "Response from `MetricsDashboardAPI.ListDashboards`: %v\n", resp)
 }
 ```
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedResponseListDashboardList**](PaginatedResponseListDashboardList.md)
+[**PaginatedDashboardListResponseList**](PaginatedDashboardListResponseList.md)
 
 ### Authorization
 
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateDashboard
 
-> ResponseDashboard PartialUpdateDashboard(ctx, dashboardId, folderId).PatchedDashboardRequest(patchedDashboardRequest).Execute()
+> DashboardResponse PartialUpdateDashboard(ctx, dashboardId, folderId).PatchedDashboardRequest(patchedDashboardRequest).Execute()
 
 Partially update a dashboard
 
@@ -274,7 +274,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsDashboardAPI.PartialUpdateDashboard``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateDashboard`: ResponseDashboard
+	// response from `PartialUpdateDashboard`: DashboardResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsDashboardAPI.PartialUpdateDashboard`: %v\n", resp)
 }
 ```
@@ -301,7 +301,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDashboard**](ResponseDashboard.md)
+[**DashboardResponse**](DashboardResponse.md)
 
 ### Authorization
 
@@ -319,7 +319,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveDashboard
 
-> ResponseRetrieveDashboard RetrieveDashboard(ctx, dashboardId, folderId).Fields(fields).Execute()
+> DashboardResponse RetrieveDashboard(ctx, dashboardId, folderId).Fields(fields).Execute()
 
 Retrieve details from a dashboard
 
@@ -349,7 +349,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsDashboardAPI.RetrieveDashboard``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveDashboard`: ResponseRetrieveDashboard
+	// response from `RetrieveDashboard`: DashboardResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsDashboardAPI.RetrieveDashboard`: %v\n", resp)
 }
 ```
@@ -376,7 +376,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveDashboard**](ResponseRetrieveDashboard.md)
+[**DashboardResponse**](DashboardResponse.md)
 
 ### Authorization
 
@@ -394,7 +394,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDashboard
 
-> ResponseDashboard UpdateDashboard(ctx, dashboardId, folderId).DashboardRequest(dashboardRequest).Execute()
+> DashboardResponse UpdateDashboard(ctx, dashboardId, folderId).DashboardRequest(dashboardRequest).Execute()
 
 Update a dashboard
 
@@ -424,7 +424,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsDashboardAPI.UpdateDashboard``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateDashboard`: ResponseDashboard
+	// response from `UpdateDashboard`: DashboardResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsDashboardAPI.UpdateDashboard`: %v\n", resp)
 }
 ```
@@ -451,7 +451,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDashboard**](ResponseDashboard.md)
+[**DashboardResponse**](DashboardResponse.md)
 
 ### Authorization
 

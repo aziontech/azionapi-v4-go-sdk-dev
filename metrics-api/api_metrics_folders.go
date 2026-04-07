@@ -34,7 +34,7 @@ func (r ApiCreateFolderRequest) FolderRequest(folderRequest FolderRequest) ApiCr
 	return r
 }
 
-func (r ApiCreateFolderRequest) Execute() (*ResponseFolder, *http.Response, error) {
+func (r ApiCreateFolderRequest) Execute() (*FolderResponse, *http.Response, error) {
 	return r.ApiService.CreateFolderExecute(r)
 }
 
@@ -54,13 +54,13 @@ func (a *MetricsFoldersAPIService) CreateFolder(ctx context.Context) ApiCreateFo
 }
 
 // Execute executes the request
-//  @return ResponseFolder
-func (a *MetricsFoldersAPIService) CreateFolderExecute(r ApiCreateFolderRequest) (*ResponseFolder, *http.Response, error) {
+//  @return FolderResponse
+func (a *MetricsFoldersAPIService) CreateFolderExecute(r ApiCreateFolderRequest) (*FolderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseFolder
+		localVarReturnValue  *FolderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsFoldersAPIService.CreateFolder")
@@ -207,7 +207,6 @@ func (a *MetricsFoldersAPIService) CreateFolderExecute(r ApiCreateFolderRequest)
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -230,7 +229,7 @@ type ApiDeleteFolderRequest struct {
 	folderId int64
 }
 
-func (r ApiDeleteFolderRequest) Execute() (*ResponseDeleteFolder, *http.Response, error) {
+func (r ApiDeleteFolderRequest) Execute() (*DeleteResponse, *http.Response, error) {
 	return r.ApiService.DeleteFolderExecute(r)
 }
 
@@ -252,13 +251,13 @@ func (a *MetricsFoldersAPIService) DeleteFolder(ctx context.Context, folderId in
 }
 
 // Execute executes the request
-//  @return ResponseDeleteFolder
-func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest) (*ResponseDeleteFolder, *http.Response, error) {
+//  @return DeleteResponse
+func (a *MetricsFoldersAPIService) DeleteFolderExecute(r ApiDeleteFolderRequest) (*DeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteFolder
+		localVarReturnValue  *DeleteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsFoldersAPIService.DeleteFolder")
@@ -401,7 +400,7 @@ func (r ApiListFoldersRequest) Search(search string) ApiListFoldersRequest {
 	return r
 }
 
-func (r ApiListFoldersRequest) Execute() (*PaginatedResponseListFolderList, *http.Response, error) {
+func (r ApiListFoldersRequest) Execute() (*PaginatedFolderListResponseList, *http.Response, error) {
 	return r.ApiService.ListFoldersExecute(r)
 }
 
@@ -421,13 +420,13 @@ func (a *MetricsFoldersAPIService) ListFolders(ctx context.Context) ApiListFolde
 }
 
 // Execute executes the request
-//  @return PaginatedResponseListFolderList
-func (a *MetricsFoldersAPIService) ListFoldersExecute(r ApiListFoldersRequest) (*PaginatedResponseListFolderList, *http.Response, error) {
+//  @return PaginatedFolderListResponseList
+func (a *MetricsFoldersAPIService) ListFoldersExecute(r ApiListFoldersRequest) (*PaginatedFolderListResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedResponseListFolderList
+		localVarReturnValue  *PaginatedFolderListResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsFoldersAPIService.ListFolders")
@@ -618,7 +617,7 @@ func (r ApiPartialUpdateFolderRequest) PatchedFolderRequest(patchedFolderRequest
 	return r
 }
 
-func (r ApiPartialUpdateFolderRequest) Execute() (*ResponseFolder, *http.Response, error) {
+func (r ApiPartialUpdateFolderRequest) Execute() (*FolderResponse, *http.Response, error) {
 	return r.ApiService.PartialUpdateFolderExecute(r)
 }
 
@@ -640,13 +639,13 @@ func (a *MetricsFoldersAPIService) PartialUpdateFolder(ctx context.Context, fold
 }
 
 // Execute executes the request
-//  @return ResponseFolder
-func (a *MetricsFoldersAPIService) PartialUpdateFolderExecute(r ApiPartialUpdateFolderRequest) (*ResponseFolder, *http.Response, error) {
+//  @return FolderResponse
+func (a *MetricsFoldersAPIService) PartialUpdateFolderExecute(r ApiPartialUpdateFolderRequest) (*FolderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseFolder
+		localVarReturnValue  *FolderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsFoldersAPIService.PartialUpdateFolder")
@@ -797,7 +796,6 @@ func (a *MetricsFoldersAPIService) PartialUpdateFolderExecute(r ApiPartialUpdate
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -827,7 +825,7 @@ func (r ApiRetrieveFolderRequest) Fields(fields string) ApiRetrieveFolderRequest
 	return r
 }
 
-func (r ApiRetrieveFolderRequest) Execute() (*ResponseRetrieveFolder, *http.Response, error) {
+func (r ApiRetrieveFolderRequest) Execute() (*FolderResponse, *http.Response, error) {
 	return r.ApiService.RetrieveFolderExecute(r)
 }
 
@@ -849,13 +847,13 @@ func (a *MetricsFoldersAPIService) RetrieveFolder(ctx context.Context, folderId 
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveFolder
-func (a *MetricsFoldersAPIService) RetrieveFolderExecute(r ApiRetrieveFolderRequest) (*ResponseRetrieveFolder, *http.Response, error) {
+//  @return FolderResponse
+func (a *MetricsFoldersAPIService) RetrieveFolderExecute(r ApiRetrieveFolderRequest) (*FolderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveFolder
+		localVarReturnValue  *FolderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsFoldersAPIService.RetrieveFolder")
@@ -1035,7 +1033,7 @@ func (r ApiUpdateFolderRequest) FolderRequest(folderRequest FolderRequest) ApiUp
 	return r
 }
 
-func (r ApiUpdateFolderRequest) Execute() (*ResponseFolder, *http.Response, error) {
+func (r ApiUpdateFolderRequest) Execute() (*FolderResponse, *http.Response, error) {
 	return r.ApiService.UpdateFolderExecute(r)
 }
 
@@ -1057,13 +1055,13 @@ func (a *MetricsFoldersAPIService) UpdateFolder(ctx context.Context, folderId in
 }
 
 // Execute executes the request
-//  @return ResponseFolder
-func (a *MetricsFoldersAPIService) UpdateFolderExecute(r ApiUpdateFolderRequest) (*ResponseFolder, *http.Response, error) {
+//  @return FolderResponse
+func (a *MetricsFoldersAPIService) UpdateFolderExecute(r ApiUpdateFolderRequest) (*FolderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseFolder
+		localVarReturnValue  *FolderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsFoldersAPIService.UpdateFolder")
@@ -1217,7 +1215,6 @@ func (a *MetricsFoldersAPIService) UpdateFolderExecute(r ApiUpdateFolderRequest)
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

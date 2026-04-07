@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -27,6 +28,7 @@ type LockoutPolicy struct {
 	MaxAttempts int64 `json:"max_attempts"`
 	// Blocking period in minutes
 	BlockingPeriod int64 `json:"blocking_period"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type _LockoutPolicy LockoutPolicy
@@ -35,11 +37,12 @@ type _LockoutPolicy LockoutPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLockoutPolicy(active bool, maxAttempts int64, blockingPeriod int64) *LockoutPolicy {
+func NewLockoutPolicy(active bool, maxAttempts int64, blockingPeriod int64, createdAt time.Time) *LockoutPolicy {
 	this := LockoutPolicy{}
 	this.Active = active
 	this.MaxAttempts = maxAttempts
 	this.BlockingPeriod = blockingPeriod
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -123,6 +126,30 @@ func (o *LockoutPolicy) SetBlockingPeriod(v int64) {
 	o.BlockingPeriod = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *LockoutPolicy) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *LockoutPolicy) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *LockoutPolicy) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
 func (o LockoutPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -136,6 +163,7 @@ func (o LockoutPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize["active"] = o.Active
 	toSerialize["max_attempts"] = o.MaxAttempts
 	toSerialize["blocking_period"] = o.BlockingPeriod
+	toSerialize["created_at"] = o.CreatedAt
 	return toSerialize, nil
 }
 
@@ -147,6 +175,7 @@ func (o *LockoutPolicy) UnmarshalJSON(data []byte) (err error) {
 		"active",
 		"max_attempts",
 		"blocking_period",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

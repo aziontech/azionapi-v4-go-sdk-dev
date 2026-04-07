@@ -12,6 +12,7 @@ package metricsapi
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -31,6 +32,7 @@ type Report struct {
 	// * `bits-per-second` - Sets the data unit to bits per second. * `bytes` - Sets the data unit to bytes. * `count` - Sets the data unit to counter. * `per-second` - Sets the data unit to per second. * `percentage` - Sets the data unit to percentage.
 	DataUnit string `json:"data_unit"`
 	Queries []BaseQuery `json:"queries"`
+	CreatedAt time.Time `json:"created_at"`
 	Order string `json:"order"`
 	Name string `json:"name"`
 	Rotated *bool `json:"rotated,omitempty"`
@@ -46,7 +48,7 @@ type _Report Report
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewReport(id int64, description string, type_ string, aggregationType string, dataUnit string, queries []BaseQuery, order string, name string) *Report {
+func NewReport(id int64, description string, type_ string, aggregationType string, dataUnit string, queries []BaseQuery, createdAt time.Time, order string, name string) *Report {
 	this := Report{}
 	this.Id = id
 	this.Description = description
@@ -54,6 +56,7 @@ func NewReport(id int64, description string, type_ string, aggregationType strin
 	this.AggregationType = aggregationType
 	this.DataUnit = dataUnit
 	this.Queries = queries
+	this.CreatedAt = createdAt
 	this.Order = order
 	this.Name = name
 	return &this
@@ -241,6 +244,30 @@ func (o *Report) GetQueriesOk() ([]BaseQuery, bool) {
 // SetQueries sets field value
 func (o *Report) SetQueries(v []BaseQuery) {
 	o.Queries = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+func (o *Report) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *Report) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *Report) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
 }
 
 // GetOrder returns the Order field value
@@ -448,6 +475,7 @@ func (o Report) ToMap() (map[string]interface{}, error) {
 	toSerialize["aggregation_type"] = o.AggregationType
 	toSerialize["data_unit"] = o.DataUnit
 	toSerialize["queries"] = o.Queries
+	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["order"] = o.Order
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Rotated) {
@@ -476,6 +504,7 @@ func (o *Report) UnmarshalJSON(data []byte) (err error) {
 		"aggregation_type",
 		"data_unit",
 		"queries",
+		"created_at",
 		"order",
 		"name",
 	}

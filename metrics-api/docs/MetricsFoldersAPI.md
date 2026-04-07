@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateFolder
 
-> ResponseFolder CreateFolder(ctx).FolderRequest(folderRequest).Execute()
+> FolderResponse CreateFolder(ctx).FolderRequest(folderRequest).Execute()
 
 Create a new folder
 
@@ -43,7 +43,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.CreateFolder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateFolder`: ResponseFolder
+	// response from `CreateFolder`: FolderResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.CreateFolder`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseFolder**](ResponseFolder.md)
+[**FolderResponse**](FolderResponse.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFolder
 
-> ResponseDeleteFolder DeleteFolder(ctx, folderId).Execute()
+> DeleteResponse DeleteFolder(ctx, folderId).Execute()
 
 Delete a folder
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.DeleteFolder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteFolder`: ResponseDeleteFolder
+	// response from `DeleteFolder`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.DeleteFolder`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteFolder**](ResponseDeleteFolder.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListFolders
 
-> PaginatedResponseListFolderList ListFolders(ctx).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedFolderListResponseList ListFolders(ctx).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List of the folders
 
@@ -185,7 +185,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.ListFolders``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListFolders`: PaginatedResponseListFolderList
+	// response from `ListFolders`: PaginatedFolderListResponseList
 	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.ListFolders`: %v\n", resp)
 }
 ```
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedResponseListFolderList**](PaginatedResponseListFolderList.md)
+[**PaginatedFolderListResponseList**](PaginatedFolderListResponseList.md)
 
 ### Authorization
 
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateFolder
 
-> ResponseFolder PartialUpdateFolder(ctx, folderId).PatchedFolderRequest(patchedFolderRequest).Execute()
+> FolderResponse PartialUpdateFolder(ctx, folderId).PatchedFolderRequest(patchedFolderRequest).Execute()
 
 Partially update a folder
 
@@ -258,7 +258,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.PartialUpdateFolder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateFolder`: ResponseFolder
+	// response from `PartialUpdateFolder`: FolderResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.PartialUpdateFolder`: %v\n", resp)
 }
 ```
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseFolder**](ResponseFolder.md)
+[**FolderResponse**](FolderResponse.md)
 
 ### Authorization
 
@@ -301,7 +301,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveFolder
 
-> ResponseRetrieveFolder RetrieveFolder(ctx, folderId).Fields(fields).Execute()
+> FolderResponse RetrieveFolder(ctx, folderId).Fields(fields).Execute()
 
 Retrieve details from a folder
 
@@ -330,7 +330,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.RetrieveFolder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveFolder`: ResponseRetrieveFolder
+	// response from `RetrieveFolder`: FolderResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.RetrieveFolder`: %v\n", resp)
 }
 ```
@@ -355,7 +355,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveFolder**](ResponseRetrieveFolder.md)
+[**FolderResponse**](FolderResponse.md)
 
 ### Authorization
 
@@ -373,7 +373,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFolder
 
-> ResponseFolder UpdateFolder(ctx, folderId).FolderRequest(folderRequest).Execute()
+> FolderResponse UpdateFolder(ctx, folderId).FolderRequest(folderRequest).Execute()
 
 Update a folder
 
@@ -402,7 +402,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsFoldersAPI.UpdateFolder``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateFolder`: ResponseFolder
+	// response from `UpdateFolder`: FolderResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsFoldersAPI.UpdateFolder`: %v\n", resp)
 }
 ```
@@ -427,7 +427,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseFolder**](ResponseFolder.md)
+[**FolderResponse**](FolderResponse.md)
 
 ### Authorization
 

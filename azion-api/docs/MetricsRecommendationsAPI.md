@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## CreateRecommendation
 
-> ResponseFolder CreateRecommendation(ctx).RecommendationRequest(recommendationRequest).Execute()
+> FolderResponse CreateRecommendation(ctx).RecommendationRequest(recommendationRequest).Execute()
 
 Create a new recommendation
 
@@ -40,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRecommendationsAPI.CreateRecommendation``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateRecommendation`: ResponseFolder
+	// response from `CreateRecommendation`: FolderResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsRecommendationsAPI.CreateRecommendation`: %v\n", resp)
 }
 ```
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseFolder**](ResponseFolder.md)
+[**FolderResponse**](FolderResponse.md)
 
 ### Authorization
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRecommendation
 
-> ResponseDeleteRecommendation DeleteRecommendation(ctx, recommendationId).Execute()
+> DeleteResponse DeleteRecommendation(ctx, recommendationId).Execute()
 
 Delete a recommendation
 
@@ -106,7 +106,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRecommendationsAPI.DeleteRecommendation``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteRecommendation`: ResponseDeleteRecommendation
+	// response from `DeleteRecommendation`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsRecommendationsAPI.DeleteRecommendation`: %v\n", resp)
 }
 ```
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteRecommendation**](ResponseDeleteRecommendation.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## ListRecommendations
 
-> PaginatedFolderList ListRecommendations(ctx).Dashboard(dashboard).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedFolderListResponseList ListRecommendations(ctx).Dashboard(dashboard).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List of the recommendations
 
@@ -182,7 +182,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRecommendationsAPI.ListRecommendations``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListRecommendations`: PaginatedFolderList
+	// response from `ListRecommendations`: PaginatedFolderListResponseList
 	fmt.Fprintf(os.Stdout, "Response from `MetricsRecommendationsAPI.ListRecommendations`: %v\n", resp)
 }
 ```
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedFolderList**](PaginatedFolderList.md)
+[**PaginatedFolderListResponseList**](PaginatedFolderListResponseList.md)
 
 ### Authorization
 

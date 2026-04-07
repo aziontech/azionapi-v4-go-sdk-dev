@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Active** | **bool** |  | 
 **MaxAttempts** | **int64** | Maximum number of failed login attempts before lockout | 
 **BlockingPeriod** | **int64** | Blocking period in minutes | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewLockoutPolicy
 
-`func NewLockoutPolicy(active bool, maxAttempts int64, blockingPeriod int64, ) *LockoutPolicy`
+`func NewLockoutPolicy(active bool, maxAttempts int64, blockingPeriod int64, createdAt time.Time, ) *LockoutPolicy`
 
 NewLockoutPolicy instantiates a new LockoutPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -85,6 +86,26 @@ and a boolean to check if the value has been set.
 `func (o *LockoutPolicy) SetBlockingPeriod(v int64)`
 
 SetBlockingPeriod sets BlockingPeriod field to given value.
+
+
+### GetCreatedAt
+
+`func (o *LockoutPolicy) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *LockoutPolicy) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *LockoutPolicy) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 

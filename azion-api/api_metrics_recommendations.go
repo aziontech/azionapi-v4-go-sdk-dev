@@ -35,7 +35,7 @@ func (r ApiCreateRecommendationRequest) RecommendationRequest(recommendationRequ
 	return r
 }
 
-func (r ApiCreateRecommendationRequest) Execute() (*ResponseFolder, *http.Response, error) {
+func (r ApiCreateRecommendationRequest) Execute() (*FolderResponse, *http.Response, error) {
 	return r.ApiService.CreateRecommendationExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *MetricsRecommendationsAPIService) CreateRecommendation(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return ResponseFolder
-func (a *MetricsRecommendationsAPIService) CreateRecommendationExecute(r ApiCreateRecommendationRequest) (*ResponseFolder, *http.Response, error) {
+//  @return FolderResponse
+func (a *MetricsRecommendationsAPIService) CreateRecommendationExecute(r ApiCreateRecommendationRequest) (*FolderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseFolder
+		localVarReturnValue  *FolderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRecommendationsAPIService.CreateRecommendation")
@@ -241,7 +241,7 @@ type ApiDeleteRecommendationRequest struct {
 	recommendationId int64
 }
 
-func (r ApiDeleteRecommendationRequest) Execute() (*ResponseDeleteRecommendation, *http.Response, error) {
+func (r ApiDeleteRecommendationRequest) Execute() (*DeleteResponse, *http.Response, error) {
 	return r.ApiService.DeleteRecommendationExecute(r)
 }
 
@@ -263,13 +263,13 @@ func (a *MetricsRecommendationsAPIService) DeleteRecommendation(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return ResponseDeleteRecommendation
-func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDeleteRecommendationRequest) (*ResponseDeleteRecommendation, *http.Response, error) {
+//  @return DeleteResponse
+func (a *MetricsRecommendationsAPIService) DeleteRecommendationExecute(r ApiDeleteRecommendationRequest) (*DeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteRecommendation
+		localVarReturnValue  *DeleteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRecommendationsAPIService.DeleteRecommendation")
@@ -422,7 +422,7 @@ func (r ApiListRecommendationsRequest) Search(search string) ApiListRecommendati
 	return r
 }
 
-func (r ApiListRecommendationsRequest) Execute() (*PaginatedFolderList, *http.Response, error) {
+func (r ApiListRecommendationsRequest) Execute() (*PaginatedFolderListResponseList, *http.Response, error) {
 	return r.ApiService.ListRecommendationsExecute(r)
 }
 
@@ -442,13 +442,13 @@ func (a *MetricsRecommendationsAPIService) ListRecommendations(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return PaginatedFolderList
-func (a *MetricsRecommendationsAPIService) ListRecommendationsExecute(r ApiListRecommendationsRequest) (*PaginatedFolderList, *http.Response, error) {
+//  @return PaginatedFolderListResponseList
+func (a *MetricsRecommendationsAPIService) ListRecommendationsExecute(r ApiListRecommendationsRequest) (*PaginatedFolderListResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedFolderList
+		localVarReturnValue  *PaginatedFolderListResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRecommendationsAPIService.ListRecommendations")

@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Id** | **int64** |  | 
 **Name** | **string** |  | 
 **Scope** | **string** | * &#x60;azion&#x60; - Items that have Azion scope can be shared to any account that has access permission. * &#x60;account&#x60; - Items that have Account scope can only be shared with account users. * &#x60;user&#x60; - Items that have User scope will only be available to the account user. | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewFolder
 
-`func NewFolder(id int64, name string, scope string, ) *Folder`
+`func NewFolder(id int64, name string, scope string, createdAt time.Time, ) *Folder`
 
 NewFolder instantiates a new Folder object
 This constructor will assign default values to properties that have it defined,
@@ -85,6 +86,26 @@ and a boolean to check if the value has been set.
 `func (o *Folder) SetScope(v string)`
 
 SetScope sets Scope field to given value.
+
+
+### GetCreatedAt
+
+`func (o *Folder) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Folder) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Folder) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 

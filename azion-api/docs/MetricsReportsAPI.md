@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateReport
 
-> ResponseReport CreateReport(ctx, dashboardId, folderId, rowId).ReportRequest(reportRequest).Execute()
+> ReportResponse CreateReport(ctx, dashboardId, folderId, rowId).ReportRequest(reportRequest).Execute()
 
 Create a new report
 
@@ -46,7 +46,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsReportsAPI.CreateReport``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateReport`: ResponseReport
+	// response from `CreateReport`: ReportResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsReportsAPI.CreateReport`: %v\n", resp)
 }
 ```
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseReport**](ResponseReport.md)
+[**ReportResponse**](ReportResponse.md)
 
 ### Authorization
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## DeleteReport
 
-> ResponseDeleteReport DeleteReport(ctx, dashboardId, folderId, reportId, rowId).Execute()
+> DeleteResponse DeleteReport(ctx, dashboardId, folderId, reportId, rowId).Execute()
 
 Delete a report
 
@@ -124,7 +124,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsReportsAPI.DeleteReport``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteReport`: ResponseDeleteReport
+	// response from `DeleteReport`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsReportsAPI.DeleteReport`: %v\n", resp)
 }
 ```
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteReport**](ResponseDeleteReport.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -172,7 +172,7 @@ Name | Type | Description  | Notes
 
 ## ListReports
 
-> PaginatedReportList ListReports(ctx, dashboardId, folderId, rowId).AggregationType(aggregationType).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Type_(type_).Execute()
+> PaginatedReportListResponseList ListReports(ctx, dashboardId, folderId, rowId).AggregationType(aggregationType).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Type_(type_).Execute()
 
 List of reports
 
@@ -211,7 +211,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsReportsAPI.ListReports``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListReports`: PaginatedReportList
+	// response from `ListReports`: PaginatedReportListResponseList
 	fmt.Fprintf(os.Stdout, "Response from `MetricsReportsAPI.ListReports`: %v\n", resp)
 }
 ```
@@ -248,7 +248,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedReportList**](PaginatedReportList.md)
+[**PaginatedReportListResponseList**](PaginatedReportListResponseList.md)
 
 ### Authorization
 
@@ -266,7 +266,7 @@ Name | Type | Description  | Notes
 
 ## OrderingReport
 
-> ResponseOrder OrderingReport(ctx, dashboardId, folderId, rowId).OrderRequest(orderRequest).Execute()
+> OrderResponse OrderingReport(ctx, dashboardId, folderId, rowId).OrderRequest(orderRequest).Execute()
 
 Ordering reports in row
 
@@ -297,7 +297,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsReportsAPI.OrderingReport``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `OrderingReport`: ResponseOrder
+	// response from `OrderingReport`: OrderResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsReportsAPI.OrderingReport`: %v\n", resp)
 }
 ```
@@ -326,7 +326,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseOrder**](ResponseOrder.md)
+[**OrderResponse**](OrderResponse.md)
 
 ### Authorization
 
@@ -344,7 +344,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveReport
 
-> ResponseRetrieveReport RetrieveReport(ctx, dashboardId, folderId, reportId, rowId).Fields(fields).Execute()
+> ReportResponse RetrieveReport(ctx, dashboardId, folderId, reportId, rowId).Fields(fields).Execute()
 
 Retrieve details from a report
 
@@ -376,7 +376,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsReportsAPI.RetrieveReport``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveReport`: ResponseRetrieveReport
+	// response from `RetrieveReport`: ReportResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsReportsAPI.RetrieveReport`: %v\n", resp)
 }
 ```
@@ -407,7 +407,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveReport**](ResponseRetrieveReport.md)
+[**ReportResponse**](ReportResponse.md)
 
 ### Authorization
 
@@ -425,7 +425,7 @@ Name | Type | Description  | Notes
 
 ## UpdateReport
 
-> ResponseReport UpdateReport(ctx, dashboardId, folderId, reportId, rowId).ReportRequest(reportRequest).Execute()
+> ReportResponse UpdateReport(ctx, dashboardId, folderId, reportId, rowId).ReportRequest(reportRequest).Execute()
 
 Update a report
 
@@ -457,7 +457,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsReportsAPI.UpdateReport``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateReport`: ResponseReport
+	// response from `UpdateReport`: ReportResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsReportsAPI.UpdateReport`: %v\n", resp)
 }
 ```
@@ -488,7 +488,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseReport**](ResponseReport.md)
+[**ReportResponse**](ReportResponse.md)
 
 ### Authorization
 
