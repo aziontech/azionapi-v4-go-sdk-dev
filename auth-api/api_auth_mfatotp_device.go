@@ -26,10 +26,10 @@ type AuthMFATOTPDeviceAPIService service
 type ApiCreateTotpDeviceRequest struct {
 	ctx context.Context
 	ApiService *AuthMFATOTPDeviceAPIService
-	body *interface{}
+	body *map[string]interface{}
 }
 
-func (r ApiCreateTotpDeviceRequest) Body(body interface{}) ApiCreateTotpDeviceRequest {
+func (r ApiCreateTotpDeviceRequest) Body(body map[string]interface{}) ApiCreateTotpDeviceRequest {
 	r.body = &body
 	return r
 }

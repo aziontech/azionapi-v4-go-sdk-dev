@@ -63225,6 +63225,7 @@ components:
         max_attempts: 8
         blocking_period: 868
         active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
       properties:
         active:
           type: boolean
@@ -63240,9 +63241,13 @@ components:
           maximum: 1440
           minimum: 1
           type: integer
+        created_at:
+          format: date-time
+          type: string
       required:
       - active
       - blocking_period
+      - created_at
       - max_attempts
       type: object
     LockoutPolicyRequest:
@@ -63278,6 +63283,7 @@ components:
           max_attempts: 8
           blocking_period: 868
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           $ref: "#/components/schemas/LockoutPolicy"
@@ -63368,6 +63374,7 @@ components:
         results:
         - last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           rules:
           - condition:
@@ -63394,6 +63401,7 @@ components:
           last_modified: 2000-01-23T04:56:07.000+00:00
         - last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           rules:
           - condition:
@@ -63508,6 +63516,7 @@ components:
       example:
         last_editor: last_editor
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         active: true
         rules:
         - condition:
@@ -63545,6 +63554,9 @@ components:
         last_modified:
           format: date-time
           type: string
+        created_at:
+          format: date-time
+          type: string
         active:
           type: boolean
         rules:
@@ -63553,6 +63565,7 @@ components:
           type: array
       required:
       - active
+      - created_at
       - id
       - last_editor
       - last_modified
@@ -63607,6 +63620,7 @@ components:
         data:
           last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           rules:
           - condition:
@@ -63783,6 +63797,7 @@ components:
     SessionTimeoutPolicy:
       additionalProperties: false
       example:
+        created_at: 2000-01-23T04:56:07.000+00:00
         max_session_time: 13021
         max_idle_time: 116
       properties:
@@ -63796,7 +63811,11 @@ components:
           maximum: 21600
           minimum: 5
           type: integer
+        created_at:
+          format: date-time
+          type: string
       required:
+      - created_at
       - max_idle_time
       - max_session_time
       type: object
@@ -63824,6 +63843,7 @@ components:
       additionalProperties: false
       example:
         data:
+          created_at: 2000-01-23T04:56:07.000+00:00
           max_session_time: 13021
           max_idle_time: 116
       properties:
