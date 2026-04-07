@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MaxIdleTime** | **int64** |  | 
 **MaxSessionTime** | **int64** |  | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewSessionTimeoutPolicy
 
-`func NewSessionTimeoutPolicy(maxIdleTime int64, maxSessionTime int64, ) *SessionTimeoutPolicy`
+`func NewSessionTimeoutPolicy(maxIdleTime int64, maxSessionTime int64, createdAt time.Time, ) *SessionTimeoutPolicy`
 
 NewSessionTimeoutPolicy instantiates a new SessionTimeoutPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -64,6 +65,26 @@ and a boolean to check if the value has been set.
 `func (o *SessionTimeoutPolicy) SetMaxSessionTime(v int64)`
 
 SetMaxSessionTime sets MaxSessionTime field to given value.
+
+
+### GetCreatedAt
+
+`func (o *SessionTimeoutPolicy) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *SessionTimeoutPolicy) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *SessionTimeoutPolicy) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 

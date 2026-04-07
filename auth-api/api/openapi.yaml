@@ -9,7 +9,7 @@ paths:
   /auth/login:
     post:
       description: |-
-        This endpoint performs user authentication and issues the user’s JWT tokens.The response depends on whether multi-factor authentication (MFA) is enabled for the user:
+        This endpoint performs user authentication and issues the user's JWT tokens.The response depends on whether multi-factor authentication (MFA) is enabled for the user:
          - If the user does not have MFA enabled, the API returns a TokenPair object containing the access_token and refresh_token, allowing immediate authentication.
          - If the user has MFA enabled, the response returns an MFAToken object.This temporary token must be used in the MFA verification endpoint to complete authentication.After successful verification of the second factor, the TokenPair is issued.
       operationId: auth_user_login
@@ -20,7 +20,7 @@ paths:
               $ref: "#/components/schemas/LoginRequest"
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
@@ -485,7 +485,10 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: {}
+            schema:
+              properties: {}
+              type: object
+        required: false
       responses:
         "201":
           content:
@@ -2320,7 +2323,7 @@ paths:
           application/json:
             schema: {}
       responses:
-        "200":
+        "201":
           content:
             application/json:
               examples:
@@ -2656,8 +2659,9 @@ components:
     LockoutPolicy:
       example:
         max_attempts: 8
-        blocking_period: 6
+        blocking_period: 868
         active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
       properties:
         active:
           type: boolean
@@ -2670,16 +2674,22 @@ components:
         blocking_period:
           description: Blocking period in minutes
           format: int64
+          maximum: 1440
+          minimum: 1
           type: integer
+        created_at:
+          format: date-time
+          type: string
       required:
       - active
       - blocking_period
+      - created_at
       - max_attempts
       type: object
     LockoutPolicyRequest:
       example:
         max_attempts: 8
-        blocking_period: 6
+        blocking_period: 868
         active: true
       properties:
         active:
@@ -2693,6 +2703,8 @@ components:
         blocking_period:
           description: Blocking period in minutes
           format: int64
+          maximum: 1440
+          minimum: 1
           type: integer
       required:
       - active
@@ -2703,8 +2715,9 @@ components:
       example:
         data:
           max_attempts: 8
-          blocking_period: 6
+          blocking_period: 868
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
       properties:
         data:
           $ref: "#/components/schemas/LockoutPolicy"
@@ -2778,12 +2791,15 @@ components:
       type: object
     PaginatedPolicyList:
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
         results:
         - last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           rules:
           - condition:
@@ -2810,6 +2826,7 @@ components:
           last_modified: 2000-01-23T04:56:07.000+00:00
         - last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           rules:
           - condition:
@@ -2864,6 +2881,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/Policy"
@@ -2871,6 +2900,8 @@ components:
       type: object
     PaginatedTOTPDeviceListList:
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -2915,6 +2946,18 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
             $ref: "#/components/schemas/TOTPDeviceList"
@@ -2961,6 +3004,7 @@ components:
       example:
         last_editor: last_editor
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         active: true
         rules:
         - condition:
@@ -2998,6 +3042,9 @@ components:
         last_modified:
           format: date-time
           type: string
+        created_at:
+          format: date-time
+          type: string
         active:
           type: boolean
         rules:
@@ -3006,6 +3053,7 @@ components:
           type: array
       required:
       - active
+      - created_at
       - id
       - last_editor
       - last_modified
@@ -3058,6 +3106,7 @@ components:
         data:
           last_editor: last_editor
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           active: true
           rules:
           - condition:
@@ -3227,6 +3276,7 @@ components:
       type: object
     SessionTimeoutPolicy:
       example:
+        created_at: 2000-01-23T04:56:07.000+00:00
         max_session_time: 13021
         max_idle_time: 116
       properties:
@@ -3240,7 +3290,11 @@ components:
           maximum: 21600
           minimum: 5
           type: integer
+        created_at:
+          format: date-time
+          type: string
       required:
+      - created_at
       - max_idle_time
       - max_session_time
       type: object
@@ -3266,6 +3320,7 @@ components:
     SessionTimeoutPolicyResponse:
       example:
         data:
+          created_at: 2000-01-23T04:56:07.000+00:00
           max_session_time: 13021
           max_idle_time: 116
       properties:

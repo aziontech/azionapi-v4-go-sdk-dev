@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
 **Active** | **bool** |  | 
 **Rules** | [**[]PolicyRule**](PolicyRule.md) |  | 
 
@@ -15,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewPolicy
 
-`func NewPolicy(id int64, name string, lastEditor string, lastModified time.Time, active bool, rules []PolicyRule, ) *Policy`
+`func NewPolicy(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, active bool, rules []PolicyRule, ) *Policy`
 
 NewPolicy instantiates a new Policy object
 This constructor will assign default values to properties that have it defined,
@@ -108,6 +109,26 @@ and a boolean to check if the value has been set.
 `func (o *Policy) SetLastModified(v time.Time)`
 
 SetLastModified sets LastModified field to given value.
+
+
+### GetCreatedAt
+
+`func (o *Policy) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Policy) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Policy) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetActive

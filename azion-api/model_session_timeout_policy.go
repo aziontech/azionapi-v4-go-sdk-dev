@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -24,6 +25,7 @@ var _ MappedNullable = &SessionTimeoutPolicy{}
 type SessionTimeoutPolicy struct {
 	MaxIdleTime int64 `json:"max_idle_time"`
 	MaxSessionTime int64 `json:"max_session_time"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type _SessionTimeoutPolicy SessionTimeoutPolicy
@@ -32,10 +34,11 @@ type _SessionTimeoutPolicy SessionTimeoutPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSessionTimeoutPolicy(maxIdleTime int64, maxSessionTime int64) *SessionTimeoutPolicy {
+func NewSessionTimeoutPolicy(maxIdleTime int64, maxSessionTime int64, createdAt time.Time) *SessionTimeoutPolicy {
 	this := SessionTimeoutPolicy{}
 	this.MaxIdleTime = maxIdleTime
 	this.MaxSessionTime = maxSessionTime
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -95,6 +98,30 @@ func (o *SessionTimeoutPolicy) SetMaxSessionTime(v int64) {
 	o.MaxSessionTime = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *SessionTimeoutPolicy) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *SessionTimeoutPolicy) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *SessionTimeoutPolicy) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
 func (o SessionTimeoutPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -107,6 +134,7 @@ func (o SessionTimeoutPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["max_idle_time"] = o.MaxIdleTime
 	toSerialize["max_session_time"] = o.MaxSessionTime
+	toSerialize["created_at"] = o.CreatedAt
 	return toSerialize, nil
 }
 
@@ -117,6 +145,7 @@ func (o *SessionTimeoutPolicy) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"max_idle_time",
 		"max_session_time",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})
