@@ -12,6 +12,7 @@ package metricsapi
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -26,6 +27,7 @@ type Dashboard struct {
 	// * `azion` - Items that have Azion scope can be shared to any account that has access permission. * `account` - Items that have Account scope can only be shared with account users. * `user` - Items that have User scope will only be available to the account user.
 	Scope string `json:"scope"`
 	FolderId int64 `json:"folder_id"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type _Dashboard Dashboard
@@ -34,12 +36,13 @@ type _Dashboard Dashboard
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDashboard(id int64, name string, scope string, folderId int64) *Dashboard {
+func NewDashboard(id int64, name string, scope string, folderId int64, createdAt time.Time) *Dashboard {
 	this := Dashboard{}
 	this.Id = id
 	this.Name = name
 	this.Scope = scope
 	this.FolderId = folderId
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -147,6 +150,30 @@ func (o *Dashboard) SetFolderId(v int64) {
 	o.FolderId = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *Dashboard) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *Dashboard) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *Dashboard) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
 func (o Dashboard) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -161,6 +188,7 @@ func (o Dashboard) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["scope"] = o.Scope
 	toSerialize["folder_id"] = o.FolderId
+	toSerialize["created_at"] = o.CreatedAt
 	return toSerialize, nil
 }
 
@@ -173,6 +201,7 @@ func (o *Dashboard) UnmarshalJSON(data []byte) (err error) {
 		"name",
 		"scope",
 		"folder_id",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

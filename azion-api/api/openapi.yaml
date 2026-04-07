@@ -37365,7 +37365,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedDashboardList"
+                $ref: "#/components/schemas/PaginatedDashboardListResponseList"
           description: Ok
         "400":
           content:
@@ -37527,7 +37527,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDashboard"
+                $ref: "#/components/schemas/DashboardResponse"
           description: Created
         "400":
           content:
@@ -37641,12 +37641,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDashboard"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -37701,7 +37695,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteDashboard"
+                $ref: "#/components/schemas/DeleteResponse"
           description: Successful deletion
         "500":
           content:
@@ -37765,7 +37759,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveDashboard"
+                $ref: "#/components/schemas/DashboardResponse"
           description: Ok
         "400":
           content:
@@ -37938,7 +37932,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDashboard"
+                $ref: "#/components/schemas/DashboardResponse"
           description: Ok
         "400":
           content:
@@ -38052,12 +38046,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDashboard"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -38118,7 +38106,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDashboard"
+                $ref: "#/components/schemas/DashboardResponse"
           description: Ok
         "400":
           content:
@@ -38232,12 +38220,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncDashboard"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -38333,7 +38315,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedFolderList"
+                $ref: "#/components/schemas/PaginatedFolderListResponseList"
           description: Ok
         "400":
           content:
@@ -38483,7 +38465,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseFolder"
+                $ref: "#/components/schemas/FolderResponse"
           description: Created
         "400":
           content:
@@ -38597,12 +38579,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncFolder"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -38646,7 +38622,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteFolder"
+                $ref: "#/components/schemas/DeleteResponse"
           description: Successful deletion
         "500":
           content:
@@ -38699,7 +38675,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveFolder"
+                $ref: "#/components/schemas/FolderResponse"
           description: Ok
         "400":
           content:
@@ -38861,7 +38837,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseFolder"
+                $ref: "#/components/schemas/FolderResponse"
           description: Ok
         "400":
           content:
@@ -38975,12 +38951,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncFolder"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -39030,7 +39000,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseFolder"
+                $ref: "#/components/schemas/FolderResponse"
           description: Ok
         "400":
           content:
@@ -39144,12 +39114,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncFolder"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -39263,7 +39227,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedReportList"
+                $ref: "#/components/schemas/PaginatedReportListResponseList"
           description: Ok
         "400":
           content:
@@ -39413,7 +39377,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseReport"
+                $ref: "#/components/schemas/ReportResponse"
           description: Created
         "400":
           content:
@@ -39527,12 +39491,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncReport"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -39576,7 +39534,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteReport"
+                $ref: "#/components/schemas/DeleteResponse"
           description: Successful deletion
         "500":
           content:
@@ -39629,7 +39587,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveReport"
+                $ref: "#/components/schemas/ReportResponse"
           description: Ok
         "400":
           content:
@@ -39792,7 +39750,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseReport"
+                $ref: "#/components/schemas/ReportResponse"
           description: Ok
         "400":
           content:
@@ -39906,12 +39864,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncReport"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -40005,7 +39957,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedFolderList"
+                $ref: "#/components/schemas/PaginatedFolderListResponseList"
           description: Ok
         "400":
           content:
@@ -40155,7 +40107,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseFolder"
+                $ref: "#/components/schemas/FolderResponse"
           description: Created
         "400":
           content:
@@ -40269,12 +40221,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncFolder"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -40318,7 +40264,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteRecommendation"
+                $ref: "#/components/schemas/DeleteResponse"
           description: Successful deletion
         "500":
           content:
@@ -40466,7 +40412,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedReportList"
+                $ref: "#/components/schemas/PaginatedReportListResponseList"
           description: Ok
         "400":
           content:
@@ -40650,7 +40596,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseReport"
+                $ref: "#/components/schemas/ReportResponse"
           description: Created
         "400":
           content:
@@ -40764,12 +40710,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncReport"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -40846,7 +40786,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteReport"
+                $ref: "#/components/schemas/DeleteResponse"
           description: Successful deletion
         "500":
           content:
@@ -40932,7 +40872,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveReport"
+                $ref: "#/components/schemas/ReportResponse"
           description: Ok
         "400":
           content:
@@ -41128,7 +41068,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseReport"
+                $ref: "#/components/schemas/ReportResponse"
           description: Ok
         "400":
           content:
@@ -41242,12 +41182,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncReport"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -41319,13 +41253,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseOrder"
+                $ref: "#/components/schemas/OrderResponse"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncOrder"
+                $ref: "#/components/schemas/OrderResponse"
           description: ""
         "400":
           content:
@@ -41556,7 +41490,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedRowList"
+                $ref: "#/components/schemas/PaginatedRowListResponseList"
           description: Ok
         "400":
           content:
@@ -41729,7 +41663,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRow"
+                $ref: "#/components/schemas/RowResponse"
           description: Created
         "400":
           content:
@@ -41843,12 +41777,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncRow"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -41914,7 +41842,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseDeleteRow"
+                $ref: "#/components/schemas/DeleteResponse"
           description: Successful deletion
         "500":
           content:
@@ -41989,7 +41917,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveRow"
+                $ref: "#/components/schemas/RowResponse"
           description: Ok
         "400":
           content:
@@ -42173,7 +42101,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRow"
+                $ref: "#/components/schemas/RowResponse"
           description: Ok
         "400":
           content:
@@ -42287,12 +42215,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncRow"
-          description: Accepted
         "500":
           content:
             application/json:
@@ -42353,13 +42275,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseOrder"
+                $ref: "#/components/schemas/OrderResponse"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncOrder"
+                $ref: "#/components/schemas/OrderResponse"
           description: ""
         "400":
           content:
@@ -81191,6 +81113,7 @@ components:
       example:
         scope: scope
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 171976545
         folder_id: 1294386359
       properties:
@@ -81218,7 +81141,56 @@ components:
           maximum: 2147483647
           minimum: 1
           type: integer
+        created_at:
+          format: date-time
+          minLength: 1
+          type: string
       required:
+      - created_at
+      - folder_id
+      - id
+      - name
+      - scope
+      type: object
+    DashboardListResponse:
+      additionalProperties: false
+      example:
+        scope: scope
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 171976545
+        folder_id: 1294386359
+      properties:
+        id:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        scope:
+          description: |-
+            * `azion` - Items that have Azion scope can be shared to any account that has access permission.
+            * `account` - Items that have Account scope can only be shared with account users.
+            * `user` - Items that have User scope will only be available to the account user.
+          type: string
+          x-extensible-enum:
+          - azion
+          - account
+          - user
+        folder_id:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        created_at:
+          format: date-time
+          minLength: 1
+          type: string
+      required:
+      - created_at
       - folder_id
       - id
       - name
@@ -81248,11 +81220,32 @@ components:
       - name
       - scope
       type: object
+    DashboardResponse:
+      additionalProperties: false
+      example:
+        data:
+          scope: scope
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 171976545
+          folder_id: 1294386359
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Dashboard"
+      required:
+      - data
+      type: object
     Folder:
       additionalProperties: false
       example:
         scope: scope
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 171976545
       properties:
         id:
@@ -81274,7 +81267,49 @@ components:
           - azion
           - account
           - user
+        created_at:
+          format: date-time
+          minLength: 1
+          type: string
       required:
+      - created_at
+      - id
+      - name
+      - scope
+      type: object
+    FolderListResponse:
+      additionalProperties: false
+      example:
+        scope: scope
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 171976545
+      properties:
+        id:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        scope:
+          description: |-
+            * `azion` - Items that have Azion scope can be shared to any account that has access permission.
+            * `account` - Items that have Account scope can only be shared with account users.
+            * `user` - Items that have User scope will only be available to the account user.
+          type: string
+          x-extensible-enum:
+          - azion
+          - account
+          - user
+        created_at:
+          format: date-time
+          minLength: 1
+          type: string
+      required:
+      - created_at
       - id
       - name
       - scope
@@ -81302,6 +81337,25 @@ components:
       required:
       - name
       - scope
+      type: object
+    FolderResponse:
+      additionalProperties: false
+      example:
+        data:
+          scope: scope
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 171976545
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Folder"
+      required:
+      - data
       type: object
     LibraryReportRequest:
       additionalProperties: false
@@ -81483,6 +81537,384 @@ components:
       required:
       - order
       type: object
+    OrderResponse:
+      additionalProperties: false
+      example:
+        data:
+          order:
+          - 171976545
+          - 171976545
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Order"
+      required:
+      - data
+      type: object
+    PaginatedDashboardListResponseList:
+      additionalProperties: false
+      example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
+        count: 123
+        total_pages: 10
+        page: 1
+        results:
+        - scope: scope
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 171976545
+          folder_id: 1294386359
+        - scope: scope
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 171976545
+          folder_id: 1294386359
+        page_size: 10
+      properties:
+        count:
+          description: Total number of items
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
+          type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          minLength: 1
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          minLength: 1
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/DashboardListResponse"
+          type: array
+      type: object
+    PaginatedFolderListResponseList:
+      additionalProperties: false
+      example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
+        count: 123
+        total_pages: 10
+        page: 1
+        results:
+        - scope: scope
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 171976545
+        - scope: scope
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 171976545
+        page_size: 10
+      properties:
+        count:
+          description: Total number of items
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
+          type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          minLength: 1
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          minLength: 1
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/FolderListResponse"
+          type: array
+      type: object
+    PaginatedReportListResponseList:
+      additionalProperties: false
+      example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
+        count: 123
+        total_pages: 10
+        page: 1
+        results:
+        - comparison_type: comparison_type
+          x_axis: x_axis
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          rotated: true
+          type: type
+          queries:
+          - max_y_axis: 1280358509
+            calculated_fields:
+            - calculated_fields
+            - calculated_fields
+            limit: 1465
+            top_x: true
+            group_by:
+            - group_by
+            - group_by
+            order_direction: order_direction
+            id: 1294386359
+            filters:
+              key: ""
+            dataset: dataset
+            aggregated_fields:
+            - variable: variable
+              aggregation: aggregation
+            - variable: variable
+              aggregation: aggregation
+          - max_y_axis: 1280358509
+            calculated_fields:
+            - calculated_fields
+            - calculated_fields
+            limit: 1465
+            top_x: true
+            group_by:
+            - group_by
+            - group_by
+            order_direction: order_direction
+            id: 1294386359
+            filters:
+              key: ""
+            dataset: dataset
+            aggregated_fields:
+            - variable: variable
+              aggregation: aggregation
+            - variable: variable
+              aggregation: aggregation
+          data_unit: data_unit
+          aggregation_type: aggregation_type
+          library: true
+          name: name
+          help_center_path: help_center_path
+          id: 171976545
+          order: order
+        - comparison_type: comparison_type
+          x_axis: x_axis
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          rotated: true
+          type: type
+          queries:
+          - max_y_axis: 1280358509
+            calculated_fields:
+            - calculated_fields
+            - calculated_fields
+            limit: 1465
+            top_x: true
+            group_by:
+            - group_by
+            - group_by
+            order_direction: order_direction
+            id: 1294386359
+            filters:
+              key: ""
+            dataset: dataset
+            aggregated_fields:
+            - variable: variable
+              aggregation: aggregation
+            - variable: variable
+              aggregation: aggregation
+          - max_y_axis: 1280358509
+            calculated_fields:
+            - calculated_fields
+            - calculated_fields
+            limit: 1465
+            top_x: true
+            group_by:
+            - group_by
+            - group_by
+            order_direction: order_direction
+            id: 1294386359
+            filters:
+              key: ""
+            dataset: dataset
+            aggregated_fields:
+            - variable: variable
+              aggregation: aggregation
+            - variable: variable
+              aggregation: aggregation
+          data_unit: data_unit
+          aggregation_type: aggregation_type
+          library: true
+          name: name
+          help_center_path: help_center_path
+          id: 171976545
+          order: order
+        page_size: 10
+      properties:
+        count:
+          description: Total number of items
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
+          type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          minLength: 1
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          minLength: 1
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/ReportListResponse"
+          type: array
+      type: object
+    PaginatedRowListResponseList:
+      additionalProperties: false
+      example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
+        count: 123
+        total_pages: 10
+        page: 1
+        results:
+        - id: 171976545
+          title: title
+          order: 1294386359
+        - id: 171976545
+          title: title
+          order: 1294386359
+        page_size: 10
+      properties:
+        count:
+          description: Total number of items
+          example: 123
+          format: int64
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+        total_pages:
+          description: Total number of pages
+          example: 10
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page:
+          description: Current page number
+          example: 1
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        page_size:
+          description: Number of items per page
+          example: 10
+          format: int64
+          maximum: 100
+          minimum: 1
+          type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          minLength: 1
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          minLength: 1
+          nullable: true
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/RowListResponse"
+          type: array
+      type: object
     PatchedDashboardRequest:
       additionalProperties: false
       example:
@@ -81545,6 +81977,7 @@ components:
         comparison_type: comparison_type
         x_axis: x_axis
         description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
         rotated: true
         type: type
         queries:
@@ -81651,6 +82084,10 @@ components:
           items:
             $ref: "#/components/schemas/BaseQuery"
           type: array
+        created_at:
+          format: date-time
+          minLength: 1
+          type: string
         order:
           minLength: 1
           type: string
@@ -81679,6 +82116,161 @@ components:
           type: boolean
       required:
       - aggregation_type
+      - created_at
+      - data_unit
+      - description
+      - id
+      - name
+      - order
+      - queries
+      - type
+      type: object
+    ReportListResponse:
+      additionalProperties: false
+      example:
+        comparison_type: comparison_type
+        x_axis: x_axis
+        description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
+        rotated: true
+        type: type
+        queries:
+        - max_y_axis: 1280358509
+          calculated_fields:
+          - calculated_fields
+          - calculated_fields
+          limit: 1465
+          top_x: true
+          group_by:
+          - group_by
+          - group_by
+          order_direction: order_direction
+          id: 1294386359
+          filters:
+            key: ""
+          dataset: dataset
+          aggregated_fields:
+          - variable: variable
+            aggregation: aggregation
+          - variable: variable
+            aggregation: aggregation
+        - max_y_axis: 1280358509
+          calculated_fields:
+          - calculated_fields
+          - calculated_fields
+          limit: 1465
+          top_x: true
+          group_by:
+          - group_by
+          - group_by
+          order_direction: order_direction
+          id: 1294386359
+          filters:
+            key: ""
+          dataset: dataset
+          aggregated_fields:
+          - variable: variable
+            aggregation: aggregation
+          - variable: variable
+            aggregation: aggregation
+        data_unit: data_unit
+        aggregation_type: aggregation_type
+        library: true
+        name: name
+        help_center_path: help_center_path
+        id: 171976545
+        order: order
+      properties:
+        id:
+          format: int64
+          maximum: 2147483647
+          minimum: 1
+          type: integer
+        description:
+          maxLength: 150
+          minLength: 1
+          type: string
+        type:
+          description: |-
+            * `big-numbers` - Big numbers report type, used for key performance indicators (KPIs).
+                        Ideal for highlighting a single numeric value in a visually striking way.
+            * `line` - Line report type, used for time series analysis, ideal for showing trends, growth or decrease.
+            * `map` - Map report type, used for geographic analysis, visualization of demographic data,
+                        monitoring of events in different locations.
+            * `ordered-bar` - Ordered bar report type, used for category ranking, performance comparison,
+                        frequency distribution analysis, ideal for highlighting highest or lowest values.
+            * `pie` - Pie chart report type, used for composition analysis, comparing parts of a whole,
+                        visualizing percentages. Ideal for showing the distribution of a data set into parts.
+          type: string
+          x-extensible-enum:
+          - big-numbers
+          - line
+          - map
+          - ordered-bar
+          - pie
+        x_axis:
+          maxLength: 100
+          minLength: 1
+          type: string
+        aggregation_type:
+          description: |-
+            * `avg` - Aggregation by average.
+            * `sum` - Aggregation by sum.
+          type: string
+          x-extensible-enum:
+          - avg
+          - sum
+        data_unit:
+          description: |-
+            * `bits-per-second` - Sets the data unit to bits per second.
+            * `bytes` - Sets the data unit to bytes.
+            * `count` - Sets the data unit to counter.
+            * `per-second` - Sets the data unit to per second.
+            * `percentage` - Sets the data unit to percentage.
+          type: string
+          x-extensible-enum:
+          - bits-per-second
+          - bytes
+          - count
+          - per-second
+          - percentage
+        queries:
+          items:
+            $ref: "#/components/schemas/BaseQuery"
+          type: array
+        created_at:
+          format: date-time
+          minLength: 1
+          type: string
+        order:
+          minLength: 1
+          type: string
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        rotated:
+          type: boolean
+        comparison_type:
+          description: |-
+            * `inverse` - The lower the value, the better the result or performance.
+            * `neutral` - There is no general rule to say whether a value is good or bad, as it depends on the context.
+            * `regular` - The higher the value, the better the result or performance.
+          type: string
+          x-extensible-enum:
+          - inverse
+          - neutral
+          - regular
+        help_center_path:
+          maxLength: 255
+          minLength: 1
+          nullable: true
+          type: string
+        library:
+          type: boolean
+      required:
+      - aggregation_type
+      - created_at
       - data_unit
       - description
       - id
@@ -81829,68 +82421,14 @@ components:
       - queries
       - type
       type: object
-    ResponseAsyncDashboard:
-      additionalProperties: false
-      example:
-        data:
-          scope: scope
-          name: name
-          id: 171976545
-          folder_id: 1294386359
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Dashboard"
-      required:
-      - data
-      type: object
-    ResponseAsyncFolder:
-      additionalProperties: false
-      example:
-        data:
-          scope: scope
-          name: name
-          id: 171976545
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Folder"
-      required:
-      - data
-      type: object
-    ResponseAsyncOrder:
-      additionalProperties: false
-      example:
-        data:
-          order:
-          - 171976545
-          - 171976545
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Order"
-      required:
-      - data
-      type: object
-    ResponseAsyncReport:
+    ReportResponse:
       additionalProperties: false
       example:
         data:
           comparison_type: comparison_type
           x_axis: x_axis
           description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
           rotated: true
           type: type
           queries:
@@ -81950,329 +82488,7 @@ components:
       required:
       - data
       type: object
-    ResponseAsyncRow:
-      additionalProperties: false
-      example:
-        data:
-          id: 171976545
-          title: title
-          order: 1294386359
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Row"
-      required:
-      - data
-      type: object
-    ResponseDashboard:
-      additionalProperties: false
-      example:
-        data:
-          scope: scope
-          name: name
-          id: 171976545
-          folder_id: 1294386359
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Dashboard"
-      required:
-      - data
-      type: object
-    ResponseDeleteDashboard:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseDeleteFolder:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseDeleteRecommendation:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseDeleteReport:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseDeleteRow:
-      additionalProperties: false
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseFolder:
-      additionalProperties: false
-      example:
-        data:
-          scope: scope
-          name: name
-          id: 171976545
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Folder"
-      required:
-      - data
-      type: object
-    ResponseListDashboard:
-      additionalProperties: false
-      example:
-        scope: scope
-        name: name
-        id: 171976545
-        folder_id: 1294386359
-      properties:
-        id:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        scope:
-          description: |-
-            * `azion` - Items that have Azion scope can be shared to any account that has access permission.
-            * `account` - Items that have Account scope can only be shared with account users.
-            * `user` - Items that have User scope will only be available to the account user.
-          type: string
-          x-extensible-enum:
-          - azion
-          - account
-          - user
-        folder_id:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-      required:
-      - folder_id
-      - id
-      - name
-      - scope
-      type: object
-    ResponseListFolder:
-      additionalProperties: false
-      example:
-        scope: scope
-        name: name
-        id: 171976545
-      properties:
-        id:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        scope:
-          description: |-
-            * `azion` - Items that have Azion scope can be shared to any account that has access permission.
-            * `account` - Items that have Account scope can only be shared with account users.
-            * `user` - Items that have User scope will only be available to the account user.
-          type: string
-          x-extensible-enum:
-          - azion
-          - account
-          - user
-      required:
-      - id
-      - name
-      - scope
-      type: object
-    ResponseListReport:
-      additionalProperties: false
-      example:
-        comparison_type: comparison_type
-        x_axis: x_axis
-        description: description
-        rotated: true
-        type: type
-        queries:
-        - max_y_axis: 1280358509
-          calculated_fields:
-          - calculated_fields
-          - calculated_fields
-          limit: 1465
-          top_x: true
-          group_by:
-          - group_by
-          - group_by
-          order_direction: order_direction
-          id: 1294386359
-          filters:
-            key: ""
-          dataset: dataset
-          aggregated_fields:
-          - variable: variable
-            aggregation: aggregation
-          - variable: variable
-            aggregation: aggregation
-        - max_y_axis: 1280358509
-          calculated_fields:
-          - calculated_fields
-          - calculated_fields
-          limit: 1465
-          top_x: true
-          group_by:
-          - group_by
-          - group_by
-          order_direction: order_direction
-          id: 1294386359
-          filters:
-            key: ""
-          dataset: dataset
-          aggregated_fields:
-          - variable: variable
-            aggregation: aggregation
-          - variable: variable
-            aggregation: aggregation
-        data_unit: data_unit
-        aggregation_type: aggregation_type
-        library: true
-        name: name
-        help_center_path: help_center_path
-        id: 171976545
-        order: order
-      properties:
-        id:
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        description:
-          maxLength: 150
-          minLength: 1
-          type: string
-        type:
-          description: |-
-            * `big-numbers` - Big numbers report type, used for key performance indicators (KPIs).
-                        Ideal for highlighting a single numeric value in a visually striking way.
-            * `line` - Line report type, used for time series analysis, ideal for showing trends, growth or decrease.
-            * `map` - Map report type, used for geographic analysis, visualization of demographic data,
-                        monitoring of events in different locations.
-            * `ordered-bar` - Ordered bar report type, used for category ranking, performance comparison,
-                        frequency distribution analysis, ideal for highlighting highest or lowest values.
-            * `pie` - Pie chart report type, used for composition analysis, comparing parts of a whole,
-                        visualizing percentages. Ideal for showing the distribution of a data set into parts.
-          type: string
-          x-extensible-enum:
-          - big-numbers
-          - line
-          - map
-          - ordered-bar
-          - pie
-        x_axis:
-          maxLength: 100
-          minLength: 1
-          type: string
-        aggregation_type:
-          description: |-
-            * `avg` - Aggregation by average.
-            * `sum` - Aggregation by sum.
-          type: string
-          x-extensible-enum:
-          - avg
-          - sum
-        data_unit:
-          description: |-
-            * `bits-per-second` - Sets the data unit to bits per second.
-            * `bytes` - Sets the data unit to bytes.
-            * `count` - Sets the data unit to counter.
-            * `per-second` - Sets the data unit to per second.
-            * `percentage` - Sets the data unit to percentage.
-          type: string
-          x-extensible-enum:
-          - bits-per-second
-          - bytes
-          - count
-          - per-second
-          - percentage
-        queries:
-          items:
-            $ref: "#/components/schemas/BaseQuery"
-          type: array
-        order:
-          minLength: 1
-          type: string
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        rotated:
-          type: boolean
-        comparison_type:
-          description: |-
-            * `inverse` - The lower the value, the better the result or performance.
-            * `neutral` - There is no general rule to say whether a value is good or bad, as it depends on the context.
-            * `regular` - The higher the value, the better the result or performance.
-          type: string
-          x-extensible-enum:
-          - inverse
-          - neutral
-          - regular
-        help_center_path:
-          maxLength: 255
-          minLength: 1
-          nullable: true
-          type: string
-        library:
-          type: boolean
-      required:
-      - aggregation_type
-      - data_unit
-      - description
-      - id
-      - name
-      - order
-      - queries
-      - type
-      type: object
-    ResponseListRow:
+    Row:
       additionalProperties: false
       example:
         id: 171976545
@@ -82298,210 +82514,7 @@ components:
       - order
       - title
       type: object
-    ResponseOrder:
-      additionalProperties: false
-      example:
-        data:
-          order:
-          - 171976545
-          - 171976545
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Order"
-      required:
-      - data
-      type: object
-    ResponseReport:
-      additionalProperties: false
-      example:
-        data:
-          comparison_type: comparison_type
-          x_axis: x_axis
-          description: description
-          rotated: true
-          type: type
-          queries:
-          - max_y_axis: 1280358509
-            calculated_fields:
-            - calculated_fields
-            - calculated_fields
-            limit: 1465
-            top_x: true
-            group_by:
-            - group_by
-            - group_by
-            order_direction: order_direction
-            id: 1294386359
-            filters:
-              key: ""
-            dataset: dataset
-            aggregated_fields:
-            - variable: variable
-              aggregation: aggregation
-            - variable: variable
-              aggregation: aggregation
-          - max_y_axis: 1280358509
-            calculated_fields:
-            - calculated_fields
-            - calculated_fields
-            limit: 1465
-            top_x: true
-            group_by:
-            - group_by
-            - group_by
-            order_direction: order_direction
-            id: 1294386359
-            filters:
-              key: ""
-            dataset: dataset
-            aggregated_fields:
-            - variable: variable
-              aggregation: aggregation
-            - variable: variable
-              aggregation: aggregation
-          data_unit: data_unit
-          aggregation_type: aggregation_type
-          library: true
-          name: name
-          help_center_path: help_center_path
-          id: 171976545
-          order: order
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Report"
-      required:
-      - data
-      type: object
-    ResponseRetrieveDashboard:
-      additionalProperties: false
-      example:
-        data:
-          scope: scope
-          name: name
-          id: 171976545
-          folder_id: 1294386359
-      properties:
-        data:
-          $ref: "#/components/schemas/Dashboard"
-      required:
-      - data
-      type: object
-    ResponseRetrieveFolder:
-      additionalProperties: false
-      example:
-        data:
-          scope: scope
-          name: name
-          id: 171976545
-      properties:
-        data:
-          $ref: "#/components/schemas/Folder"
-      required:
-      - data
-      type: object
-    ResponseRetrieveReport:
-      additionalProperties: false
-      example:
-        data:
-          comparison_type: comparison_type
-          x_axis: x_axis
-          description: description
-          rotated: true
-          type: type
-          queries:
-          - max_y_axis: 1280358509
-            calculated_fields:
-            - calculated_fields
-            - calculated_fields
-            limit: 1465
-            top_x: true
-            group_by:
-            - group_by
-            - group_by
-            order_direction: order_direction
-            id: 1294386359
-            filters:
-              key: ""
-            dataset: dataset
-            aggregated_fields:
-            - variable: variable
-              aggregation: aggregation
-            - variable: variable
-              aggregation: aggregation
-          - max_y_axis: 1280358509
-            calculated_fields:
-            - calculated_fields
-            - calculated_fields
-            limit: 1465
-            top_x: true
-            group_by:
-            - group_by
-            - group_by
-            order_direction: order_direction
-            id: 1294386359
-            filters:
-              key: ""
-            dataset: dataset
-            aggregated_fields:
-            - variable: variable
-              aggregation: aggregation
-            - variable: variable
-              aggregation: aggregation
-          data_unit: data_unit
-          aggregation_type: aggregation_type
-          library: true
-          name: name
-          help_center_path: help_center_path
-          id: 171976545
-          order: order
-      properties:
-        data:
-          $ref: "#/components/schemas/Report"
-      required:
-      - data
-      type: object
-    ResponseRetrieveRow:
-      additionalProperties: false
-      example:
-        data:
-          id: 171976545
-          title: title
-          order: 1294386359
-      properties:
-        data:
-          $ref: "#/components/schemas/Row"
-      required:
-      - data
-      type: object
-    ResponseRow:
-      additionalProperties: false
-      example:
-        data:
-          id: 171976545
-          title: title
-          order: 1294386359
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Row"
-      required:
-      - data
-      type: object
-    Row:
+    RowListResponse:
       additionalProperties: false
       example:
         id: 171976545
@@ -82539,295 +82552,23 @@ components:
       required:
       - title
       type: object
-    PaginatedDashboardList:
+    RowResponse:
       additionalProperties: false
       example:
-        count: 123
-        total_pages: 10
-        page: 1
-        results:
-        - scope: scope
-          name: name
+        data:
           id: 171976545
-          folder_id: 1294386359
-        - scope: scope
-          name: name
-          id: 171976545
-          folder_id: 1294386359
-        page_size: 10
-      properties:
-        count:
-          description: Total number of items
-          example: 123
-          format: int64
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        total_pages:
-          description: Total number of pages
-          example: 10
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        page:
-          description: Current page number
-          example: 1
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        page_size:
-          description: Number of items per page
-          example: 10
-          format: int64
-          maximum: 100
-          minimum: 1
-          type: integer
-        results:
-          items:
-            $ref: "#/components/schemas/ResponseListDashboard"
-          type: array
-      type: object
-    PaginatedFolderList:
-      additionalProperties: false
-      example:
-        count: 123
-        total_pages: 10
-        page: 1
-        results:
-        - scope: scope
-          name: name
-          id: 171976545
-        - scope: scope
-          name: name
-          id: 171976545
-        page_size: 10
-      properties:
-        count:
-          description: Total number of items
-          example: 123
-          format: int64
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        total_pages:
-          description: Total number of pages
-          example: 10
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        page:
-          description: Current page number
-          example: 1
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        page_size:
-          description: Number of items per page
-          example: 10
-          format: int64
-          maximum: 100
-          minimum: 1
-          type: integer
-        results:
-          items:
-            $ref: "#/components/schemas/ResponseListFolder"
-          type: array
-      type: object
-    PaginatedReportList:
-      additionalProperties: false
-      example:
-        count: 123
-        total_pages: 10
-        page: 1
-        results:
-        - comparison_type: comparison_type
-          x_axis: x_axis
-          description: description
-          rotated: true
-          type: type
-          queries:
-          - max_y_axis: 1280358509
-            calculated_fields:
-            - calculated_fields
-            - calculated_fields
-            limit: 1465
-            top_x: true
-            group_by:
-            - group_by
-            - group_by
-            order_direction: order_direction
-            id: 1294386359
-            filters:
-              key: ""
-            dataset: dataset
-            aggregated_fields:
-            - variable: variable
-              aggregation: aggregation
-            - variable: variable
-              aggregation: aggregation
-          - max_y_axis: 1280358509
-            calculated_fields:
-            - calculated_fields
-            - calculated_fields
-            limit: 1465
-            top_x: true
-            group_by:
-            - group_by
-            - group_by
-            order_direction: order_direction
-            id: 1294386359
-            filters:
-              key: ""
-            dataset: dataset
-            aggregated_fields:
-            - variable: variable
-              aggregation: aggregation
-            - variable: variable
-              aggregation: aggregation
-          data_unit: data_unit
-          aggregation_type: aggregation_type
-          library: true
-          name: name
-          help_center_path: help_center_path
-          id: 171976545
-          order: order
-        - comparison_type: comparison_type
-          x_axis: x_axis
-          description: description
-          rotated: true
-          type: type
-          queries:
-          - max_y_axis: 1280358509
-            calculated_fields:
-            - calculated_fields
-            - calculated_fields
-            limit: 1465
-            top_x: true
-            group_by:
-            - group_by
-            - group_by
-            order_direction: order_direction
-            id: 1294386359
-            filters:
-              key: ""
-            dataset: dataset
-            aggregated_fields:
-            - variable: variable
-              aggregation: aggregation
-            - variable: variable
-              aggregation: aggregation
-          - max_y_axis: 1280358509
-            calculated_fields:
-            - calculated_fields
-            - calculated_fields
-            limit: 1465
-            top_x: true
-            group_by:
-            - group_by
-            - group_by
-            order_direction: order_direction
-            id: 1294386359
-            filters:
-              key: ""
-            dataset: dataset
-            aggregated_fields:
-            - variable: variable
-              aggregation: aggregation
-            - variable: variable
-              aggregation: aggregation
-          data_unit: data_unit
-          aggregation_type: aggregation_type
-          library: true
-          name: name
-          help_center_path: help_center_path
-          id: 171976545
-          order: order
-        page_size: 10
-      properties:
-        count:
-          description: Total number of items
-          example: 123
-          format: int64
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        total_pages:
-          description: Total number of pages
-          example: 10
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        page:
-          description: Current page number
-          example: 1
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        page_size:
-          description: Number of items per page
-          example: 10
-          format: int64
-          maximum: 100
-          minimum: 1
-          type: integer
-        results:
-          items:
-            $ref: "#/components/schemas/ResponseListReport"
-          type: array
-      type: object
-    PaginatedRowList:
-      additionalProperties: false
-      example:
-        count: 123
-        total_pages: 10
-        page: 1
-        results:
-        - id: 171976545
           title: title
           order: 1294386359
-        - id: 171976545
-          title: title
-          order: 1294386359
-        page_size: 10
+        state: state
       properties:
-        count:
-          description: Total number of items
-          example: 123
-          format: int64
-          maximum: 2147483647
-          minimum: 0
-          type: integer
-        total_pages:
-          description: Total number of pages
-          example: 10
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        page:
-          description: Current page number
-          example: 1
-          format: int64
-          maximum: 2147483647
-          minimum: 1
-          type: integer
-        page_size:
-          description: Number of items per page
-          example: 10
-          format: int64
-          maximum: 100
-          minimum: 1
-          type: integer
-        results:
-          items:
-            $ref: "#/components/schemas/ResponseListRow"
-          type: array
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Row"
+      required:
+      - data
       type: object
     Content:
       additionalProperties: false

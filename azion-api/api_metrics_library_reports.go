@@ -35,7 +35,7 @@ func (r ApiCreateLibraryReportRequest) LibraryReportRequest(libraryReportRequest
 	return r
 }
 
-func (r ApiCreateLibraryReportRequest) Execute() (*ResponseReport, *http.Response, error) {
+func (r ApiCreateLibraryReportRequest) Execute() (*ReportResponse, *http.Response, error) {
 	return r.ApiService.CreateLibraryReportExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *MetricsLibraryReportsAPIService) CreateLibraryReport(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return ResponseReport
-func (a *MetricsLibraryReportsAPIService) CreateLibraryReportExecute(r ApiCreateLibraryReportRequest) (*ResponseReport, *http.Response, error) {
+//  @return ReportResponse
+func (a *MetricsLibraryReportsAPIService) CreateLibraryReportExecute(r ApiCreateLibraryReportRequest) (*ReportResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseReport
+		localVarReturnValue  *ReportResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsLibraryReportsAPIService.CreateLibraryReport")
@@ -241,7 +241,7 @@ type ApiDeleteLibraryReportRequest struct {
 	libraryReportId int64
 }
 
-func (r ApiDeleteLibraryReportRequest) Execute() (*ResponseDeleteReport, *http.Response, error) {
+func (r ApiDeleteLibraryReportRequest) Execute() (*DeleteResponse, *http.Response, error) {
 	return r.ApiService.DeleteLibraryReportExecute(r)
 }
 
@@ -263,13 +263,13 @@ func (a *MetricsLibraryReportsAPIService) DeleteLibraryReport(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return ResponseDeleteReport
-func (a *MetricsLibraryReportsAPIService) DeleteLibraryReportExecute(r ApiDeleteLibraryReportRequest) (*ResponseDeleteReport, *http.Response, error) {
+//  @return DeleteResponse
+func (a *MetricsLibraryReportsAPIService) DeleteLibraryReportExecute(r ApiDeleteLibraryReportRequest) (*DeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteReport
+		localVarReturnValue  *DeleteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsLibraryReportsAPIService.DeleteLibraryReport")
@@ -436,7 +436,7 @@ func (r ApiListLibraryReportsRequest) Type_(type_ string) ApiListLibraryReportsR
 	return r
 }
 
-func (r ApiListLibraryReportsRequest) Execute() (*PaginatedReportList, *http.Response, error) {
+func (r ApiListLibraryReportsRequest) Execute() (*PaginatedReportListResponseList, *http.Response, error) {
 	return r.ApiService.ListLibraryReportsExecute(r)
 }
 
@@ -456,13 +456,13 @@ func (a *MetricsLibraryReportsAPIService) ListLibraryReports(ctx context.Context
 }
 
 // Execute executes the request
-//  @return PaginatedReportList
-func (a *MetricsLibraryReportsAPIService) ListLibraryReportsExecute(r ApiListLibraryReportsRequest) (*PaginatedReportList, *http.Response, error) {
+//  @return PaginatedReportListResponseList
+func (a *MetricsLibraryReportsAPIService) ListLibraryReportsExecute(r ApiListLibraryReportsRequest) (*PaginatedReportListResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedReportList
+		localVarReturnValue  *PaginatedReportListResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsLibraryReportsAPIService.ListLibraryReports")
@@ -671,7 +671,7 @@ func (r ApiRetrieveLibraryReportRequest) Fields(fields string) ApiRetrieveLibrar
 	return r
 }
 
-func (r ApiRetrieveLibraryReportRequest) Execute() (*ResponseRetrieveReport, *http.Response, error) {
+func (r ApiRetrieveLibraryReportRequest) Execute() (*ReportResponse, *http.Response, error) {
 	return r.ApiService.RetrieveLibraryReportExecute(r)
 }
 
@@ -693,13 +693,13 @@ func (a *MetricsLibraryReportsAPIService) RetrieveLibraryReport(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveReport
-func (a *MetricsLibraryReportsAPIService) RetrieveLibraryReportExecute(r ApiRetrieveLibraryReportRequest) (*ResponseRetrieveReport, *http.Response, error) {
+//  @return ReportResponse
+func (a *MetricsLibraryReportsAPIService) RetrieveLibraryReportExecute(r ApiRetrieveLibraryReportRequest) (*ReportResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveReport
+		localVarReturnValue  *ReportResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsLibraryReportsAPIService.RetrieveLibraryReport")
@@ -890,7 +890,7 @@ func (r ApiUpdateLibraryReportRequest) LibraryReportRequest(libraryReportRequest
 	return r
 }
 
-func (r ApiUpdateLibraryReportRequest) Execute() (*ResponseReport, *http.Response, error) {
+func (r ApiUpdateLibraryReportRequest) Execute() (*ReportResponse, *http.Response, error) {
 	return r.ApiService.UpdateLibraryReportExecute(r)
 }
 
@@ -912,13 +912,13 @@ func (a *MetricsLibraryReportsAPIService) UpdateLibraryReport(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return ResponseReport
-func (a *MetricsLibraryReportsAPIService) UpdateLibraryReportExecute(r ApiUpdateLibraryReportRequest) (*ResponseReport, *http.Response, error) {
+//  @return ReportResponse
+func (a *MetricsLibraryReportsAPIService) UpdateLibraryReportExecute(r ApiUpdateLibraryReportRequest) (*ReportResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseReport
+		localVarReturnValue  *ReportResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsLibraryReportsAPIService.UpdateLibraryReport")

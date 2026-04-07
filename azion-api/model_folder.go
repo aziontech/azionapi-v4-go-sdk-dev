@@ -13,6 +13,7 @@ package azionapi
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -26,6 +27,7 @@ type Folder struct {
 	Name string `json:"name"`
 	// * `azion` - Items that have Azion scope can be shared to any account that has access permission. * `account` - Items that have Account scope can only be shared with account users. * `user` - Items that have User scope will only be available to the account user.
 	Scope string `json:"scope"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type _Folder Folder
@@ -34,11 +36,12 @@ type _Folder Folder
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFolder(id int64, name string, scope string) *Folder {
+func NewFolder(id int64, name string, scope string, createdAt time.Time) *Folder {
 	this := Folder{}
 	this.Id = id
 	this.Name = name
 	this.Scope = scope
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -122,6 +125,30 @@ func (o *Folder) SetScope(v string) {
 	o.Scope = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+func (o *Folder) GetCreatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *Folder) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
+// SetCreatedAt sets field value
+func (o *Folder) SetCreatedAt(v time.Time) {
+	o.CreatedAt = v
+}
+
 func (o Folder) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -135,6 +162,7 @@ func (o Folder) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["scope"] = o.Scope
+	toSerialize["created_at"] = o.CreatedAt
 	return toSerialize, nil
 }
 
@@ -146,6 +174,7 @@ func (o *Folder) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"scope",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

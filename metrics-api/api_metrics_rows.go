@@ -36,7 +36,7 @@ func (r ApiCreateRowRequest) RowRequest(rowRequest RowRequest) ApiCreateRowReque
 	return r
 }
 
-func (r ApiCreateRowRequest) Execute() (*ResponseRow, *http.Response, error) {
+func (r ApiCreateRowRequest) Execute() (*RowResponse, *http.Response, error) {
 	return r.ApiService.CreateRowExecute(r)
 }
 
@@ -60,13 +60,13 @@ func (a *MetricsRowsAPIService) CreateRow(ctx context.Context, dashboardId int64
 }
 
 // Execute executes the request
-//  @return ResponseRow
-func (a *MetricsRowsAPIService) CreateRowExecute(r ApiCreateRowRequest) (*ResponseRow, *http.Response, error) {
+//  @return RowResponse
+func (a *MetricsRowsAPIService) CreateRowExecute(r ApiCreateRowRequest) (*RowResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRow
+		localVarReturnValue  *RowResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRowsAPIService.CreateRow")
@@ -227,7 +227,6 @@ func (a *MetricsRowsAPIService) CreateRowExecute(r ApiCreateRowRequest) (*Respon
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -252,7 +251,7 @@ type ApiDeleteRowRequest struct {
 	rowId int64
 }
 
-func (r ApiDeleteRowRequest) Execute() (*ResponseDeleteRow, *http.Response, error) {
+func (r ApiDeleteRowRequest) Execute() (*DeleteResponse, *http.Response, error) {
 	return r.ApiService.DeleteRowExecute(r)
 }
 
@@ -278,13 +277,13 @@ func (a *MetricsRowsAPIService) DeleteRow(ctx context.Context, dashboardId int64
 }
 
 // Execute executes the request
-//  @return ResponseDeleteRow
-func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*ResponseDeleteRow, *http.Response, error) {
+//  @return DeleteResponse
+func (a *MetricsRowsAPIService) DeleteRowExecute(r ApiDeleteRowRequest) (*DeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteRow
+		localVarReturnValue  *DeleteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRowsAPIService.DeleteRow")
@@ -443,7 +442,7 @@ func (r ApiListRowsRequest) Title(title string) ApiListRowsRequest {
 	return r
 }
 
-func (r ApiListRowsRequest) Execute() (*PaginatedResponseListRowList, *http.Response, error) {
+func (r ApiListRowsRequest) Execute() (*PaginatedRowListResponseList, *http.Response, error) {
 	return r.ApiService.ListRowsExecute(r)
 }
 
@@ -467,13 +466,13 @@ func (a *MetricsRowsAPIService) ListRows(ctx context.Context, dashboardId int64,
 }
 
 // Execute executes the request
-//  @return PaginatedResponseListRowList
-func (a *MetricsRowsAPIService) ListRowsExecute(r ApiListRowsRequest) (*PaginatedResponseListRowList, *http.Response, error) {
+//  @return PaginatedRowListResponseList
+func (a *MetricsRowsAPIService) ListRowsExecute(r ApiListRowsRequest) (*PaginatedRowListResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedResponseListRowList
+		localVarReturnValue  *PaginatedRowListResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRowsAPIService.ListRows")
@@ -679,7 +678,7 @@ func (r ApiOrderingRowRequest) OrderRequest(orderRequest OrderRequest) ApiOrderi
 	return r
 }
 
-func (r ApiOrderingRowRequest) Execute() (*ResponseOrder, *http.Response, error) {
+func (r ApiOrderingRowRequest) Execute() (*OrderResponse, *http.Response, error) {
 	return r.ApiService.OrderingRowExecute(r)
 }
 
@@ -703,13 +702,13 @@ func (a *MetricsRowsAPIService) OrderingRow(ctx context.Context, dashboardId int
 }
 
 // Execute executes the request
-//  @return ResponseOrder
-func (a *MetricsRowsAPIService) OrderingRowExecute(r ApiOrderingRowRequest) (*ResponseOrder, *http.Response, error) {
+//  @return OrderResponse
+func (a *MetricsRowsAPIService) OrderingRowExecute(r ApiOrderingRowRequest) (*OrderResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseOrder
+		localVarReturnValue  *OrderResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRowsAPIService.OrderingRow")
@@ -901,7 +900,7 @@ func (r ApiRetrieveRowRequest) Fields(fields string) ApiRetrieveRowRequest {
 	return r
 }
 
-func (r ApiRetrieveRowRequest) Execute() (*ResponseRetrieveRow, *http.Response, error) {
+func (r ApiRetrieveRowRequest) Execute() (*RowResponse, *http.Response, error) {
 	return r.ApiService.RetrieveRowExecute(r)
 }
 
@@ -927,13 +926,13 @@ func (a *MetricsRowsAPIService) RetrieveRow(ctx context.Context, dashboardId int
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveRow
-func (a *MetricsRowsAPIService) RetrieveRowExecute(r ApiRetrieveRowRequest) (*ResponseRetrieveRow, *http.Response, error) {
+//  @return RowResponse
+func (a *MetricsRowsAPIService) RetrieveRowExecute(r ApiRetrieveRowRequest) (*RowResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveRow
+		localVarReturnValue  *RowResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRowsAPIService.RetrieveRow")
@@ -1129,7 +1128,7 @@ func (r ApiUpdateRowRequest) RowRequest(rowRequest RowRequest) ApiUpdateRowReque
 	return r
 }
 
-func (r ApiUpdateRowRequest) Execute() (*ResponseRow, *http.Response, error) {
+func (r ApiUpdateRowRequest) Execute() (*RowResponse, *http.Response, error) {
 	return r.ApiService.UpdateRowExecute(r)
 }
 
@@ -1155,13 +1154,13 @@ func (a *MetricsRowsAPIService) UpdateRow(ctx context.Context, dashboardId int64
 }
 
 // Execute executes the request
-//  @return ResponseRow
-func (a *MetricsRowsAPIService) UpdateRowExecute(r ApiUpdateRowRequest) (*ResponseRow, *http.Response, error) {
+//  @return RowResponse
+func (a *MetricsRowsAPIService) UpdateRowExecute(r ApiUpdateRowRequest) (*RowResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRow
+		localVarReturnValue  *RowResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsRowsAPIService.UpdateRow")
@@ -1329,7 +1328,6 @@ func (a *MetricsRowsAPIService) UpdateRowExecute(r ApiUpdateRowRequest) (*Respon
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

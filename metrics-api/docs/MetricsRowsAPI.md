@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateRow
 
-> ResponseRow CreateRow(ctx, dashboardId, folderId).RowRequest(rowRequest).Execute()
+> RowResponse CreateRow(ctx, dashboardId, folderId).RowRequest(rowRequest).Execute()
 
 Create a new row
 
@@ -45,7 +45,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.CreateRow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateRow`: ResponseRow
+	// response from `CreateRow`: RowResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.CreateRow`: %v\n", resp)
 }
 ```
@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRow**](ResponseRow.md)
+[**RowResponse**](RowResponse.md)
 
 ### Authorization
 
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## DeleteRow
 
-> ResponseDeleteRow DeleteRow(ctx, dashboardId, folderId, rowId).Execute()
+> DeleteResponse DeleteRow(ctx, dashboardId, folderId, rowId).Execute()
 
 Delete a row
 
@@ -120,7 +120,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.DeleteRow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteRow`: ResponseDeleteRow
+	// response from `DeleteRow`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.DeleteRow`: %v\n", resp)
 }
 ```
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteRow**](ResponseDeleteRow.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 ## ListRows
 
-> PaginatedResponseListRowList ListRows(ctx, dashboardId, folderId).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Title(title).Execute()
+> PaginatedRowListResponseList ListRows(ctx, dashboardId, folderId).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Title(title).Execute()
 
 List of the rows
 
@@ -202,7 +202,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.ListRows``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListRows`: PaginatedResponseListRowList
+	// response from `ListRows`: PaginatedRowListResponseList
 	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.ListRows`: %v\n", resp)
 }
 ```
@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedResponseListRowList**](PaginatedResponseListRowList.md)
+[**PaginatedRowListResponseList**](PaginatedRowListResponseList.md)
 
 ### Authorization
 
@@ -253,7 +253,7 @@ Name | Type | Description  | Notes
 
 ## OrderingRow
 
-> ResponseOrder OrderingRow(ctx, dashboardId, folderId).OrderRequest(orderRequest).Execute()
+> OrderResponse OrderingRow(ctx, dashboardId, folderId).OrderRequest(orderRequest).Execute()
 
 Ordering rows in dashboard
 
@@ -283,7 +283,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.OrderingRow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `OrderingRow`: ResponseOrder
+	// response from `OrderingRow`: OrderResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.OrderingRow`: %v\n", resp)
 }
 ```
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseOrder**](ResponseOrder.md)
+[**OrderResponse**](OrderResponse.md)
 
 ### Authorization
 
@@ -328,7 +328,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveRow
 
-> ResponseRetrieveRow RetrieveRow(ctx, dashboardId, folderId, rowId).Fields(fields).Execute()
+> RowResponse RetrieveRow(ctx, dashboardId, folderId, rowId).Fields(fields).Execute()
 
 Retrieve details from a row
 
@@ -359,7 +359,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.RetrieveRow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveRow`: ResponseRetrieveRow
+	// response from `RetrieveRow`: RowResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.RetrieveRow`: %v\n", resp)
 }
 ```
@@ -388,7 +388,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveRow**](ResponseRetrieveRow.md)
+[**RowResponse**](RowResponse.md)
 
 ### Authorization
 
@@ -406,7 +406,7 @@ Name | Type | Description  | Notes
 
 ## UpdateRow
 
-> ResponseRow UpdateRow(ctx, dashboardId, folderId, rowId).RowRequest(rowRequest).Execute()
+> RowResponse UpdateRow(ctx, dashboardId, folderId, rowId).RowRequest(rowRequest).Execute()
 
 Update a row
 
@@ -437,7 +437,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsRowsAPI.UpdateRow``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateRow`: ResponseRow
+	// response from `UpdateRow`: RowResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsRowsAPI.UpdateRow`: %v\n", resp)
 }
 ```
@@ -466,7 +466,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRow**](ResponseRow.md)
+[**RowResponse**](RowResponse.md)
 
 ### Authorization
 

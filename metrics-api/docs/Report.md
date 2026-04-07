@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **AggregationType** | **string** | * &#x60;avg&#x60; - Aggregation by average. * &#x60;sum&#x60; - Aggregation by sum. | 
 **DataUnit** | **string** | * &#x60;bits-per-second&#x60; - Sets the data unit to bits per second. * &#x60;bytes&#x60; - Sets the data unit to bytes. * &#x60;count&#x60; - Sets the data unit to counter. * &#x60;per-second&#x60; - Sets the data unit to per second. * &#x60;percentage&#x60; - Sets the data unit to percentage. | 
 **Queries** | [**[]BaseQuery**](BaseQuery.md) |  | 
+**CreatedAt** | **time.Time** |  | 
 **Order** | **string** |  | 
 **Name** | **string** |  | 
 **Rotated** | Pointer to **bool** |  | [optional] 
@@ -22,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewReport
 
-`func NewReport(id int64, description string, type_ string, aggregationType string, dataUnit string, queries []BaseQuery, order string, name string, ) *Report`
+`func NewReport(id int64, description string, type_ string, aggregationType string, dataUnit string, queries []BaseQuery, createdAt time.Time, order string, name string, ) *Report`
 
 NewReport instantiates a new Report object
 This constructor will assign default values to properties that have it defined,
@@ -180,6 +181,26 @@ and a boolean to check if the value has been set.
 `func (o *Report) SetQueries(v []BaseQuery)`
 
 SetQueries sets Queries field to given value.
+
+
+### GetCreatedAt
+
+`func (o *Report) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Report) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Report) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
 
 
 ### GetOrder

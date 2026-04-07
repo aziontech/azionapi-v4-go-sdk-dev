@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateLibraryReport
 
-> ResponseReport CreateLibraryReport(ctx).LibraryReportRequest(libraryReportRequest).Execute()
+> ReportResponse CreateLibraryReport(ctx).LibraryReportRequest(libraryReportRequest).Execute()
 
 Create a new library report
 
@@ -42,7 +42,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsLibraryReportsAPI.CreateLibraryReport``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateLibraryReport`: ResponseReport
+	// response from `CreateLibraryReport`: ReportResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsLibraryReportsAPI.CreateLibraryReport`: %v\n", resp)
 }
 ```
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseReport**](ResponseReport.md)
+[**ReportResponse**](ReportResponse.md)
 
 ### Authorization
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## DeleteLibraryReport
 
-> ResponseDeleteReport DeleteLibraryReport(ctx, libraryReportId).Execute()
+> DeleteResponse DeleteLibraryReport(ctx, libraryReportId).Execute()
 
 Delete a library report
 
@@ -108,7 +108,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsLibraryReportsAPI.DeleteLibraryReport``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteLibraryReport`: ResponseDeleteReport
+	// response from `DeleteLibraryReport`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsLibraryReportsAPI.DeleteLibraryReport`: %v\n", resp)
 }
 ```
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteReport**](ResponseDeleteReport.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## ListLibraryReports
 
-> PaginatedReportList ListLibraryReports(ctx).AggregationType(aggregationType).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Type_(type_).Execute()
+> PaginatedReportListResponseList ListLibraryReports(ctx).AggregationType(aggregationType).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Type_(type_).Execute()
 
 List of library reports
 
@@ -186,7 +186,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsLibraryReportsAPI.ListLibraryReports``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListLibraryReports`: PaginatedReportList
+	// response from `ListLibraryReports`: PaginatedReportListResponseList
 	fmt.Fprintf(os.Stdout, "Response from `MetricsLibraryReportsAPI.ListLibraryReports`: %v\n", resp)
 }
 ```
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedReportList**](PaginatedReportList.md)
+[**PaginatedReportListResponseList**](PaginatedReportListResponseList.md)
 
 ### Authorization
 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveLibraryReport
 
-> ResponseRetrieveReport RetrieveLibraryReport(ctx, libraryReportId).Fields(fields).Execute()
+> ReportResponse RetrieveLibraryReport(ctx, libraryReportId).Fields(fields).Execute()
 
 Retrieve details from a library report
 
@@ -261,7 +261,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsLibraryReportsAPI.RetrieveLibraryReport``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveLibraryReport`: ResponseRetrieveReport
+	// response from `RetrieveLibraryReport`: ReportResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsLibraryReportsAPI.RetrieveLibraryReport`: %v\n", resp)
 }
 ```
@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveReport**](ResponseRetrieveReport.md)
+[**ReportResponse**](ReportResponse.md)
 
 ### Authorization
 
@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
 
 ## UpdateLibraryReport
 
-> ResponseReport UpdateLibraryReport(ctx, libraryReportId).LibraryReportRequest(libraryReportRequest).Execute()
+> ReportResponse UpdateLibraryReport(ctx, libraryReportId).LibraryReportRequest(libraryReportRequest).Execute()
 
 Update a library report
 
@@ -333,7 +333,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsLibraryReportsAPI.UpdateLibraryReport``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateLibraryReport`: ResponseReport
+	// response from `UpdateLibraryReport`: ReportResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetricsLibraryReportsAPI.UpdateLibraryReport`: %v\n", resp)
 }
 ```
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseReport**](ResponseReport.md)
+[**ReportResponse**](ReportResponse.md)
 
 ### Authorization
 
