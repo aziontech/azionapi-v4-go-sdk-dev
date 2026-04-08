@@ -37,7 +37,7 @@ func (r ApiCreateExecutionRequest) Body(body map[string]interface{}) ApiCreateEx
 	return r
 }
 
-func (r ApiCreateExecutionRequest) Execute() (*ResponseExecution, *http.Response, error) {
+func (r ApiCreateExecutionRequest) Execute() (*ExecutionResponse, *http.Response, error) {
 	return r.ApiService.CreateExecutionExecute(r)
 }
 
@@ -59,13 +59,13 @@ func (a *VCSContinuousDeploymentExecutionsAPIService) CreateExecution(ctx contex
 }
 
 // Execute executes the request
-//  @return ResponseExecution
-func (a *VCSContinuousDeploymentExecutionsAPIService) CreateExecutionExecute(r ApiCreateExecutionRequest) (*ResponseExecution, *http.Response, error) {
+//  @return ExecutionResponse
+func (a *VCSContinuousDeploymentExecutionsAPIService) CreateExecutionExecute(r ApiCreateExecutionRequest) (*ExecutionResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseExecution
+		localVarReturnValue  *ExecutionResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentExecutionsAPIService.CreateExecution")
@@ -210,7 +210,6 @@ func (a *VCSContinuousDeploymentExecutionsAPIService) CreateExecutionExecute(r A
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -310,7 +309,7 @@ func (r ApiListExecutionsRequest) UpdatedAtLte(updatedAtLte time.Time) ApiListEx
 	return r
 }
 
-func (r ApiListExecutionsRequest) Execute() (*PaginatedResponseListExecutionList, *http.Response, error) {
+func (r ApiListExecutionsRequest) Execute() (*PaginatedExecutionListResponseList, *http.Response, error) {
 	return r.ApiService.ListExecutionsExecute(r)
 }
 
@@ -332,13 +331,13 @@ func (a *VCSContinuousDeploymentExecutionsAPIService) ListExecutions(ctx context
 }
 
 // Execute executes the request
-//  @return PaginatedResponseListExecutionList
-func (a *VCSContinuousDeploymentExecutionsAPIService) ListExecutionsExecute(r ApiListExecutionsRequest) (*PaginatedResponseListExecutionList, *http.Response, error) {
+//  @return PaginatedExecutionListResponseList
+func (a *VCSContinuousDeploymentExecutionsAPIService) ListExecutionsExecute(r ApiListExecutionsRequest) (*PaginatedExecutionListResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedResponseListExecutionList
+		localVarReturnValue  *PaginatedExecutionListResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentExecutionsAPIService.ListExecutions")

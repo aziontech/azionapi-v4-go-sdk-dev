@@ -77,7 +77,7 @@ func (r ApiListExecutionScriptsRequest) Search(search string) ApiListExecutionSc
 	return r
 }
 
-func (r ApiListExecutionScriptsRequest) Execute() (*PaginatedResponseListExecutionScriptList, *http.Response, error) {
+func (r ApiListExecutionScriptsRequest) Execute() (*PaginatedExecutionScriptListResponseList, *http.Response, error) {
 	return r.ApiService.ListExecutionScriptsExecute(r)
 }
 
@@ -97,13 +97,13 @@ func (a *VCSExecutionScriptsAPIService) ListExecutionScripts(ctx context.Context
 }
 
 // Execute executes the request
-//  @return PaginatedResponseListExecutionScriptList
-func (a *VCSExecutionScriptsAPIService) ListExecutionScriptsExecute(r ApiListExecutionScriptsRequest) (*PaginatedResponseListExecutionScriptList, *http.Response, error) {
+//  @return PaginatedExecutionScriptListResponseList
+func (a *VCSExecutionScriptsAPIService) ListExecutionScriptsExecute(r ApiListExecutionScriptsRequest) (*PaginatedExecutionScriptListResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedResponseListExecutionScriptList
+		localVarReturnValue  *PaginatedExecutionScriptListResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSExecutionScriptsAPIService.ListExecutionScripts")
@@ -295,7 +295,7 @@ func (r ApiRetrieveExecutionScriptRequest) Fields(fields string) ApiRetrieveExec
 	return r
 }
 
-func (r ApiRetrieveExecutionScriptRequest) Execute() (*ResponseRetrieveExecutionScript, *http.Response, error) {
+func (r ApiRetrieveExecutionScriptRequest) Execute() (*ExecutionScriptResponse, *http.Response, error) {
 	return r.ApiService.RetrieveExecutionScriptExecute(r)
 }
 
@@ -317,13 +317,13 @@ func (a *VCSExecutionScriptsAPIService) RetrieveExecutionScript(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveExecutionScript
-func (a *VCSExecutionScriptsAPIService) RetrieveExecutionScriptExecute(r ApiRetrieveExecutionScriptRequest) (*ResponseRetrieveExecutionScript, *http.Response, error) {
+//  @return ExecutionScriptResponse
+func (a *VCSExecutionScriptsAPIService) RetrieveExecutionScriptExecute(r ApiRetrieveExecutionScriptRequest) (*ExecutionScriptResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveExecutionScript
+		localVarReturnValue  *ExecutionScriptResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSExecutionScriptsAPIService.RetrieveExecutionScript")

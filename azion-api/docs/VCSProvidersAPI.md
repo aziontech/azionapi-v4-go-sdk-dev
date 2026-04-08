@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## ListProviders
 
-> PaginatedPlatformList ListProviders(ctx).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedPlatformListResponseList ListProviders(ctx).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List providers
 
@@ -44,7 +44,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSProvidersAPI.ListProviders``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListProviders`: PaginatedPlatformList
+	// response from `ListProviders`: PaginatedPlatformListResponseList
 	fmt.Fprintf(os.Stdout, "Response from `VCSProvidersAPI.ListProviders`: %v\n", resp)
 }
 ```
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedPlatformList**](PaginatedPlatformList.md)
+[**PaginatedPlatformListResponseList**](PaginatedPlatformListResponseList.md)
 
 ### Authorization
 

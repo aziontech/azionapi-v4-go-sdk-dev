@@ -77,7 +77,7 @@ func (r ApiListProvidersRequest) Search(search string) ApiListProvidersRequest {
 	return r
 }
 
-func (r ApiListProvidersRequest) Execute() (*PaginatedPlatformList, *http.Response, error) {
+func (r ApiListProvidersRequest) Execute() (*PaginatedPlatformListResponseList, *http.Response, error) {
 	return r.ApiService.ListProvidersExecute(r)
 }
 
@@ -97,13 +97,13 @@ func (a *VCSProvidersAPIService) ListProviders(ctx context.Context) ApiListProvi
 }
 
 // Execute executes the request
-//  @return PaginatedPlatformList
-func (a *VCSProvidersAPIService) ListProvidersExecute(r ApiListProvidersRequest) (*PaginatedPlatformList, *http.Response, error) {
+//  @return PaginatedPlatformListResponseList
+func (a *VCSProvidersAPIService) ListProvidersExecute(r ApiListProvidersRequest) (*PaginatedPlatformListResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedPlatformList
+		localVarReturnValue  *PaginatedPlatformListResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSProvidersAPIService.ListProviders")

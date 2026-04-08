@@ -30,7 +30,7 @@ type ApiDeleteIntegrationRequest struct {
 	integrationId string
 }
 
-func (r ApiDeleteIntegrationRequest) Execute() (*ResponseDeleteIntegration, *http.Response, error) {
+func (r ApiDeleteIntegrationRequest) Execute() (*DeleteResponse, *http.Response, error) {
 	return r.ApiService.DeleteIntegrationExecute(r)
 }
 
@@ -52,13 +52,13 @@ func (a *VCSIntegrationsAPIService) DeleteIntegration(ctx context.Context, integ
 }
 
 // Execute executes the request
-//  @return ResponseDeleteIntegration
-func (a *VCSIntegrationsAPIService) DeleteIntegrationExecute(r ApiDeleteIntegrationRequest) (*ResponseDeleteIntegration, *http.Response, error) {
+//  @return DeleteResponse
+func (a *VCSIntegrationsAPIService) DeleteIntegrationExecute(r ApiDeleteIntegrationRequest) (*DeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseDeleteIntegration
+		localVarReturnValue  *DeleteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSIntegrationsAPIService.DeleteIntegration")
@@ -289,7 +289,7 @@ func (r ApiListIntegrationsRequest) Search(search string) ApiListIntegrationsReq
 	return r
 }
 
-func (r ApiListIntegrationsRequest) Execute() (*PaginatedIntegrationList, *http.Response, error) {
+func (r ApiListIntegrationsRequest) Execute() (*PaginatedIntegrationListResponseList, *http.Response, error) {
 	return r.ApiService.ListIntegrationsExecute(r)
 }
 
@@ -309,13 +309,13 @@ func (a *VCSIntegrationsAPIService) ListIntegrations(ctx context.Context) ApiLis
 }
 
 // Execute executes the request
-//  @return PaginatedIntegrationList
-func (a *VCSIntegrationsAPIService) ListIntegrationsExecute(r ApiListIntegrationsRequest) (*PaginatedIntegrationList, *http.Response, error) {
+//  @return PaginatedIntegrationListResponseList
+func (a *VCSIntegrationsAPIService) ListIntegrationsExecute(r ApiListIntegrationsRequest) (*PaginatedIntegrationListResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedIntegrationList
+		localVarReturnValue  *PaginatedIntegrationListResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSIntegrationsAPIService.ListIntegrations")
@@ -549,7 +549,7 @@ func (r ApiListRepositoriesRequest) Search(search string) ApiListRepositoriesReq
 	return r
 }
 
-func (r ApiListRepositoriesRequest) Execute() (*PaginatedRepositoryList, *http.Response, error) {
+func (r ApiListRepositoriesRequest) Execute() (*PaginatedRepositoryListResponseList, *http.Response, error) {
 	return r.ApiService.ListRepositoriesExecute(r)
 }
 
@@ -571,13 +571,13 @@ func (a *VCSIntegrationsAPIService) ListRepositories(ctx context.Context, integr
 }
 
 // Execute executes the request
-//  @return PaginatedRepositoryList
-func (a *VCSIntegrationsAPIService) ListRepositoriesExecute(r ApiListRepositoriesRequest) (*PaginatedRepositoryList, *http.Response, error) {
+//  @return PaginatedRepositoryListResponseList
+func (a *VCSIntegrationsAPIService) ListRepositoriesExecute(r ApiListRepositoriesRequest) (*PaginatedRepositoryListResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedRepositoryList
+		localVarReturnValue  *PaginatedRepositoryListResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSIntegrationsAPIService.ListRepositories")
@@ -775,7 +775,7 @@ func (r ApiRetrieveIntegrationRequest) Fields(fields string) ApiRetrieveIntegrat
 	return r
 }
 
-func (r ApiRetrieveIntegrationRequest) Execute() (*ResponseRetrieveIntegration, *http.Response, error) {
+func (r ApiRetrieveIntegrationRequest) Execute() (*IntegrationResponse, *http.Response, error) {
 	return r.ApiService.RetrieveIntegrationExecute(r)
 }
 
@@ -797,13 +797,13 @@ func (a *VCSIntegrationsAPIService) RetrieveIntegration(ctx context.Context, int
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveIntegration
-func (a *VCSIntegrationsAPIService) RetrieveIntegrationExecute(r ApiRetrieveIntegrationRequest) (*ResponseRetrieveIntegration, *http.Response, error) {
+//  @return IntegrationResponse
+func (a *VCSIntegrationsAPIService) RetrieveIntegrationExecute(r ApiRetrieveIntegrationRequest) (*IntegrationResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveIntegration
+		localVarReturnValue  *IntegrationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSIntegrationsAPIService.RetrieveIntegration")

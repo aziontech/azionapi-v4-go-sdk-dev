@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## CreateExecution
 
-> ResponseExecution CreateExecution(ctx, continuousDeploymentId).Body(body).Execute()
+> ExecutionResponse CreateExecution(ctx, continuousDeploymentId).Body(body).Execute()
 
 Create a execution
 
@@ -40,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentExecutionsAPI.CreateExecution``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateExecution`: ResponseExecution
+	// response from `CreateExecution`: ExecutionResponse
 	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentExecutionsAPI.CreateExecution`: %v\n", resp)
 }
 ```
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseExecution**](ResponseExecution.md)
+[**ExecutionResponse**](ExecutionResponse.md)
 
 ### Authorization
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## ListExecutions
 
-> PaginatedExecutionList ListExecutions(ctx, continuousDeploymentId).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).UpdatedAtGte(updatedAtGte).UpdatedAtLte(updatedAtLte).Execute()
+> PaginatedExecutionListResponseList ListExecutions(ctx, continuousDeploymentId).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Status(status).UpdatedAtGte(updatedAtGte).UpdatedAtLte(updatedAtLte).Execute()
 
 List executions
 
@@ -123,7 +123,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentExecutionsAPI.ListExecutions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListExecutions`: PaginatedExecutionList
+	// response from `ListExecutions`: PaginatedExecutionListResponseList
 	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentExecutionsAPI.ListExecutions`: %v\n", resp)
 }
 ```
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedExecutionList**](PaginatedExecutionList.md)
+[**PaginatedExecutionListResponseList**](PaginatedExecutionListResponseList.md)
 
 ### Authorization
 

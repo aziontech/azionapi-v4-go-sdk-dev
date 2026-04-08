@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 **Scope** | **string** |  | 
 **ScopeType** | **string** |  | 
 **Provider** | [**Platform**](Platform.md) |  | 
+**CreatedAt** | **NullableTime** | Created date of the integration. | 
 
 ## Methods
 
 ### NewIntegration
 
-`func NewIntegration(id int64, scope string, scopeType string, provider Platform, ) *Integration`
+`func NewIntegration(id int64, scope string, scopeType string, provider Platform, createdAt NullableTime, ) *Integration`
 
 NewIntegration instantiates a new Integration object
 This constructor will assign default values to properties that have it defined,
@@ -108,6 +109,36 @@ and a boolean to check if the value has been set.
 SetProvider sets Provider field to given value.
 
 
+### GetCreatedAt
+
+`func (o *Integration) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Integration) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Integration) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### SetCreatedAtNil
+
+`func (o *Integration) SetCreatedAtNil(b bool)`
+
+ SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+
+### UnsetCreatedAt
+`func (o *Integration) UnsetCreatedAt()`
+
+UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

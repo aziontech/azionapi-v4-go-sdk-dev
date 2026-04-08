@@ -12,6 +12,7 @@ package vcsapi
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -25,6 +26,8 @@ type Integration struct {
 	Scope string `json:"scope"`
 	ScopeType string `json:"scope_type"`
 	Provider Platform `json:"provider"`
+	// Created date of the integration.
+	CreatedAt NullableTime `json:"created_at"`
 }
 
 type _Integration Integration
@@ -33,12 +36,13 @@ type _Integration Integration
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIntegration(id int64, scope string, scopeType string, provider Platform) *Integration {
+func NewIntegration(id int64, scope string, scopeType string, provider Platform, createdAt NullableTime) *Integration {
 	this := Integration{}
 	this.Id = id
 	this.Scope = scope
 	this.ScopeType = scopeType
 	this.Provider = provider
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -146,6 +150,32 @@ func (o *Integration) SetProvider(v Platform) {
 	o.Provider = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+// If the value is explicit nil, the zero value for time.Time will be returned
+func (o *Integration) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return *o.CreatedAt.Get()
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Integration) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
+}
+
+// SetCreatedAt sets field value
+func (o *Integration) SetCreatedAt(v time.Time) {
+	o.CreatedAt.Set(&v)
+}
+
 func (o Integration) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -160,6 +190,7 @@ func (o Integration) ToMap() (map[string]interface{}, error) {
 	toSerialize["scope"] = o.Scope
 	toSerialize["scope_type"] = o.ScopeType
 	toSerialize["provider"] = o.Provider
+	toSerialize["created_at"] = o.CreatedAt.Get()
 	return toSerialize, nil
 }
 
@@ -172,6 +203,7 @@ func (o *Integration) UnmarshalJSON(data []byte) (err error) {
 		"scope",
 		"scope_type",
 		"provider",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

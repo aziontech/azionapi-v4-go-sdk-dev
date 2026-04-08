@@ -35,7 +35,7 @@ func (r ApiCreateContinuousDeploymentRequest) ContinuousDeploymentRequest(contin
 	return r
 }
 
-func (r ApiCreateContinuousDeploymentRequest) Execute() (*ResponseContinuousDeployment, *http.Response, error) {
+func (r ApiCreateContinuousDeploymentRequest) Execute() (*ContinuousDeploymentResponse, *http.Response, error) {
 	return r.ApiService.CreateContinuousDeploymentExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *VCSContinuousDeploymentsAPIService) CreateContinuousDeployment(ctx cont
 }
 
 // Execute executes the request
-//  @return ResponseContinuousDeployment
-func (a *VCSContinuousDeploymentsAPIService) CreateContinuousDeploymentExecute(r ApiCreateContinuousDeploymentRequest) (*ResponseContinuousDeployment, *http.Response, error) {
+//  @return ContinuousDeploymentResponse
+func (a *VCSContinuousDeploymentsAPIService) CreateContinuousDeploymentExecute(r ApiCreateContinuousDeploymentRequest) (*ContinuousDeploymentResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseContinuousDeployment
+		localVarReturnValue  *ContinuousDeploymentResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentsAPIService.CreateContinuousDeployment")
@@ -208,7 +208,6 @@ func (a *VCSContinuousDeploymentsAPIService) CreateContinuousDeploymentExecute(r
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -231,7 +230,7 @@ type ApiDeleteContinuousDeploymentRequest struct {
 	continuousDeploymentId string
 }
 
-func (r ApiDeleteContinuousDeploymentRequest) Execute() (*ResponseAsyncDeleteContinuousDeployment, *http.Response, error) {
+func (r ApiDeleteContinuousDeploymentRequest) Execute() (*DeleteResponse, *http.Response, error) {
 	return r.ApiService.DeleteContinuousDeploymentExecute(r)
 }
 
@@ -253,13 +252,13 @@ func (a *VCSContinuousDeploymentsAPIService) DeleteContinuousDeployment(ctx cont
 }
 
 // Execute executes the request
-//  @return ResponseAsyncDeleteContinuousDeployment
-func (a *VCSContinuousDeploymentsAPIService) DeleteContinuousDeploymentExecute(r ApiDeleteContinuousDeploymentRequest) (*ResponseAsyncDeleteContinuousDeployment, *http.Response, error) {
+//  @return DeleteResponse
+func (a *VCSContinuousDeploymentsAPIService) DeleteContinuousDeploymentExecute(r ApiDeleteContinuousDeploymentRequest) (*DeleteResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseAsyncDeleteContinuousDeployment
+		localVarReturnValue  *DeleteResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentsAPIService.DeleteContinuousDeployment")
@@ -402,7 +401,6 @@ func (a *VCSContinuousDeploymentsAPIService) DeleteContinuousDeploymentExecute(r
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -522,7 +520,7 @@ func (r ApiListContinuousDeploymentsRequest) Search(search string) ApiListContin
 	return r
 }
 
-func (r ApiListContinuousDeploymentsRequest) Execute() (*PaginatedResponseListContinuousDeploymentList, *http.Response, error) {
+func (r ApiListContinuousDeploymentsRequest) Execute() (*PaginatedContinuousDeploymentListResponseList, *http.Response, error) {
 	return r.ApiService.ListContinuousDeploymentsExecute(r)
 }
 
@@ -542,13 +540,13 @@ func (a *VCSContinuousDeploymentsAPIService) ListContinuousDeployments(ctx conte
 }
 
 // Execute executes the request
-//  @return PaginatedResponseListContinuousDeploymentList
-func (a *VCSContinuousDeploymentsAPIService) ListContinuousDeploymentsExecute(r ApiListContinuousDeploymentsRequest) (*PaginatedResponseListContinuousDeploymentList, *http.Response, error) {
+//  @return PaginatedContinuousDeploymentListResponseList
+func (a *VCSContinuousDeploymentsAPIService) ListContinuousDeploymentsExecute(r ApiListContinuousDeploymentsRequest) (*PaginatedContinuousDeploymentListResponseList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedResponseListContinuousDeploymentList
+		localVarReturnValue  *PaginatedContinuousDeploymentListResponseList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentsAPIService.ListContinuousDeployments")
@@ -760,7 +758,7 @@ func (r ApiPartialUpdateContinuousDeploymentRequest) PatchedContinuousDeployment
 	return r
 }
 
-func (r ApiPartialUpdateContinuousDeploymentRequest) Execute() (*ResponseContinuousDeployment, *http.Response, error) {
+func (r ApiPartialUpdateContinuousDeploymentRequest) Execute() (*ContinuousDeploymentResponse, *http.Response, error) {
 	return r.ApiService.PartialUpdateContinuousDeploymentExecute(r)
 }
 
@@ -782,13 +780,13 @@ func (a *VCSContinuousDeploymentsAPIService) PartialUpdateContinuousDeployment(c
 }
 
 // Execute executes the request
-//  @return ResponseContinuousDeployment
-func (a *VCSContinuousDeploymentsAPIService) PartialUpdateContinuousDeploymentExecute(r ApiPartialUpdateContinuousDeploymentRequest) (*ResponseContinuousDeployment, *http.Response, error) {
+//  @return ContinuousDeploymentResponse
+func (a *VCSContinuousDeploymentsAPIService) PartialUpdateContinuousDeploymentExecute(r ApiPartialUpdateContinuousDeploymentRequest) (*ContinuousDeploymentResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseContinuousDeployment
+		localVarReturnValue  *ContinuousDeploymentResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentsAPIService.PartialUpdateContinuousDeployment")
@@ -933,7 +931,6 @@ func (a *VCSContinuousDeploymentsAPIService) PartialUpdateContinuousDeploymentEx
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -963,7 +960,7 @@ func (r ApiRetrieveContinuousDeploymentRequest) Fields(fields string) ApiRetriev
 	return r
 }
 
-func (r ApiRetrieveContinuousDeploymentRequest) Execute() (*ResponseRetrieveContinuousDeployment, *http.Response, error) {
+func (r ApiRetrieveContinuousDeploymentRequest) Execute() (*ContinuousDeploymentResponse, *http.Response, error) {
 	return r.ApiService.RetrieveContinuousDeploymentExecute(r)
 }
 
@@ -985,13 +982,13 @@ func (a *VCSContinuousDeploymentsAPIService) RetrieveContinuousDeployment(ctx co
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveContinuousDeployment
-func (a *VCSContinuousDeploymentsAPIService) RetrieveContinuousDeploymentExecute(r ApiRetrieveContinuousDeploymentRequest) (*ResponseRetrieveContinuousDeployment, *http.Response, error) {
+//  @return ContinuousDeploymentResponse
+func (a *VCSContinuousDeploymentsAPIService) RetrieveContinuousDeploymentExecute(r ApiRetrieveContinuousDeploymentRequest) (*ContinuousDeploymentResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveContinuousDeployment
+		localVarReturnValue  *ContinuousDeploymentResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentsAPIService.RetrieveContinuousDeployment")
@@ -1165,7 +1162,7 @@ func (r ApiUpdateContinuousDeploymentRequest) ContinuousDeploymentRequest(contin
 	return r
 }
 
-func (r ApiUpdateContinuousDeploymentRequest) Execute() (*ResponseContinuousDeployment, *http.Response, error) {
+func (r ApiUpdateContinuousDeploymentRequest) Execute() (*ContinuousDeploymentResponse, *http.Response, error) {
 	return r.ApiService.UpdateContinuousDeploymentExecute(r)
 }
 
@@ -1187,13 +1184,13 @@ func (a *VCSContinuousDeploymentsAPIService) UpdateContinuousDeployment(ctx cont
 }
 
 // Execute executes the request
-//  @return ResponseContinuousDeployment
-func (a *VCSContinuousDeploymentsAPIService) UpdateContinuousDeploymentExecute(r ApiUpdateContinuousDeploymentRequest) (*ResponseContinuousDeployment, *http.Response, error) {
+//  @return ContinuousDeploymentResponse
+func (a *VCSContinuousDeploymentsAPIService) UpdateContinuousDeploymentExecute(r ApiUpdateContinuousDeploymentRequest) (*ContinuousDeploymentResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseContinuousDeployment
+		localVarReturnValue  *ContinuousDeploymentResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentsAPIService.UpdateContinuousDeployment")
@@ -1341,7 +1338,6 @@ func (a *VCSContinuousDeploymentsAPIService) UpdateContinuousDeploymentExecute(r
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

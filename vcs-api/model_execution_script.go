@@ -12,6 +12,7 @@ package vcsapi
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -24,6 +25,8 @@ type ExecutionScript struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
 	TemplateUuid string `json:"template_uuid"`
+	// Created date of the execution script.
+	CreatedAt NullableTime `json:"created_at"`
 }
 
 type _ExecutionScript ExecutionScript
@@ -32,11 +35,12 @@ type _ExecutionScript ExecutionScript
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExecutionScript(id int64, name string, templateUuid string) *ExecutionScript {
+func NewExecutionScript(id int64, name string, templateUuid string, createdAt NullableTime) *ExecutionScript {
 	this := ExecutionScript{}
 	this.Id = id
 	this.Name = name
 	this.TemplateUuid = templateUuid
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -120,6 +124,32 @@ func (o *ExecutionScript) SetTemplateUuid(v string) {
 	o.TemplateUuid = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+// If the value is explicit nil, the zero value for time.Time will be returned
+func (o *ExecutionScript) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return *o.CreatedAt.Get()
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ExecutionScript) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
+}
+
+// SetCreatedAt sets field value
+func (o *ExecutionScript) SetCreatedAt(v time.Time) {
+	o.CreatedAt.Set(&v)
+}
+
 func (o ExecutionScript) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -133,6 +163,7 @@ func (o ExecutionScript) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["template_uuid"] = o.TemplateUuid
+	toSerialize["created_at"] = o.CreatedAt.Get()
 	return toSerialize, nil
 }
 
@@ -144,6 +175,7 @@ func (o *ExecutionScript) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"template_uuid",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

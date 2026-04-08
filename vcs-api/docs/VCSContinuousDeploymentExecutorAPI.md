@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## RetrieveExecutor
 
-> ResponseRetrieveExecutor RetrieveExecutor(ctx, continuousDeploymentId).Fields(fields).Execute()
+> ExecutorResponse RetrieveExecutor(ctx, continuousDeploymentId).Fields(fields).Execute()
 
 Retrieve details from a executor
 
@@ -40,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentExecutorAPI.RetrieveExecutor``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveExecutor`: ResponseRetrieveExecutor
+	// response from `RetrieveExecutor`: ExecutorResponse
 	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentExecutorAPI.RetrieveExecutor`: %v\n", resp)
 }
 ```
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveExecutor**](ResponseRetrieveExecutor.md)
+[**ExecutorResponse**](ExecutorResponse.md)
 
 ### Authorization
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## UpdateExecutor
 
-> ResponseExecutor UpdateExecutor(ctx, continuousDeploymentId).Body(body).Execute()
+> ExecutorResponse UpdateExecutor(ctx, continuousDeploymentId).Body(body).Execute()
 
 Update a executor
 
@@ -112,7 +112,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentExecutorAPI.UpdateExecutor``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateExecutor`: ResponseExecutor
+	// response from `UpdateExecutor`: ExecutorResponse
 	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentExecutorAPI.UpdateExecutor`: %v\n", resp)
 }
 ```
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseExecutor**](ResponseExecutor.md)
+[**ExecutorResponse**](ExecutorResponse.md)
 
 ### Authorization
 

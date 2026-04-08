@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Id** | **int64** |  | 
 **Name** | **string** |  | 
 **TemplateUuid** | **string** |  | 
+**CreatedAt** | **NullableTime** | Created date of the execution script. | 
 
 ## Methods
 
 ### NewExecutionScript
 
-`func NewExecutionScript(id int64, name string, templateUuid string, ) *ExecutionScript`
+`func NewExecutionScript(id int64, name string, templateUuid string, createdAt NullableTime, ) *ExecutionScript`
 
 NewExecutionScript instantiates a new ExecutionScript object
 This constructor will assign default values to properties that have it defined,
@@ -87,6 +88,36 @@ and a boolean to check if the value has been set.
 SetTemplateUuid sets TemplateUuid field to given value.
 
 
+### GetCreatedAt
+
+`func (o *ExecutionScript) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *ExecutionScript) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *ExecutionScript) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### SetCreatedAtNil
+
+`func (o *ExecutionScript) SetCreatedAtNil(b bool)`
+
+ SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+
+### UnsetCreatedAt
+`func (o *ExecutionScript) UnsetCreatedAt()`
+
+UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
