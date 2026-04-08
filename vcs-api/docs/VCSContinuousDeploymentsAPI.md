@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateContinuousDeployment
 
-> ResponseContinuousDeployment CreateContinuousDeployment(ctx).ContinuousDeploymentRequest(continuousDeploymentRequest).Execute()
+> ContinuousDeploymentResponse CreateContinuousDeployment(ctx).ContinuousDeploymentRequest(continuousDeploymentRequest).Execute()
 
 Create a continuous deployment
 
@@ -43,7 +43,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.CreateContinuousDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateContinuousDeployment`: ResponseContinuousDeployment
+	// response from `CreateContinuousDeployment`: ContinuousDeploymentResponse
 	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentsAPI.CreateContinuousDeployment`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseContinuousDeployment**](ResponseContinuousDeployment.md)
+[**ContinuousDeploymentResponse**](ContinuousDeploymentResponse.md)
 
 ### Authorization
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteContinuousDeployment
 
-> ResponseAsyncDeleteContinuousDeployment DeleteContinuousDeployment(ctx, continuousDeploymentId).Execute()
+> DeleteResponse DeleteContinuousDeployment(ctx, continuousDeploymentId).Execute()
 
 Delete a continuous deployment
 
@@ -109,7 +109,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.DeleteContinuousDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteContinuousDeployment`: ResponseAsyncDeleteContinuousDeployment
+	// response from `DeleteContinuousDeployment`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentsAPI.DeleteContinuousDeployment`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseAsyncDeleteContinuousDeployment**](ResponseAsyncDeleteContinuousDeployment.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## ListContinuousDeployments
 
-> PaginatedResponseListContinuousDeploymentList ListContinuousDeployments(ctx).Branch(branch).CreatedGte(createdGte).CreatedLte(createdLte).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Repository(repository).Search(search).Execute()
+> PaginatedContinuousDeploymentListResponseList ListContinuousDeployments(ctx).Branch(branch).CreatedGte(createdGte).CreatedLte(createdLte).Fields(fields).Id(id).LastEditor(lastEditor).LastModifiedGte(lastModifiedGte).LastModifiedLte(lastModifiedLte).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Repository(repository).Search(search).Execute()
 
 List continuous deployments
 
@@ -193,7 +193,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.ListContinuousDeployments``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListContinuousDeployments`: PaginatedResponseListContinuousDeploymentList
+	// response from `ListContinuousDeployments`: PaginatedContinuousDeploymentListResponseList
 	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentsAPI.ListContinuousDeployments`: %v\n", resp)
 }
 ```
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedResponseListContinuousDeploymentList**](PaginatedResponseListContinuousDeploymentList.md)
+[**PaginatedContinuousDeploymentListResponseList**](PaginatedContinuousDeploymentListResponseList.md)
 
 ### Authorization
 
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateContinuousDeployment
 
-> ResponseContinuousDeployment PartialUpdateContinuousDeployment(ctx, continuousDeploymentId).PatchedContinuousDeploymentRequest(patchedContinuousDeploymentRequest).Execute()
+> ContinuousDeploymentResponse PartialUpdateContinuousDeployment(ctx, continuousDeploymentId).PatchedContinuousDeploymentRequest(patchedContinuousDeploymentRequest).Execute()
 
 Partialy update a continuous deployment
 
@@ -273,7 +273,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.PartialUpdateContinuousDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PartialUpdateContinuousDeployment`: ResponseContinuousDeployment
+	// response from `PartialUpdateContinuousDeployment`: ContinuousDeploymentResponse
 	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentsAPI.PartialUpdateContinuousDeployment`: %v\n", resp)
 }
 ```
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseContinuousDeployment**](ResponseContinuousDeployment.md)
+[**ContinuousDeploymentResponse**](ContinuousDeploymentResponse.md)
 
 ### Authorization
 
@@ -316,7 +316,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveContinuousDeployment
 
-> ResponseRetrieveContinuousDeployment RetrieveContinuousDeployment(ctx, continuousDeploymentId).Fields(fields).Execute()
+> ContinuousDeploymentResponse RetrieveContinuousDeployment(ctx, continuousDeploymentId).Fields(fields).Execute()
 
 Retrieve details from a continuous deployment
 
@@ -345,7 +345,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.RetrieveContinuousDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveContinuousDeployment`: ResponseRetrieveContinuousDeployment
+	// response from `RetrieveContinuousDeployment`: ContinuousDeploymentResponse
 	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentsAPI.RetrieveContinuousDeployment`: %v\n", resp)
 }
 ```
@@ -370,7 +370,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveContinuousDeployment**](ResponseRetrieveContinuousDeployment.md)
+[**ContinuousDeploymentResponse**](ContinuousDeploymentResponse.md)
 
 ### Authorization
 
@@ -388,7 +388,7 @@ Name | Type | Description  | Notes
 
 ## UpdateContinuousDeployment
 
-> ResponseContinuousDeployment UpdateContinuousDeployment(ctx, continuousDeploymentId).ContinuousDeploymentRequest(continuousDeploymentRequest).Execute()
+> ContinuousDeploymentResponse UpdateContinuousDeployment(ctx, continuousDeploymentId).ContinuousDeploymentRequest(continuousDeploymentRequest).Execute()
 
 Update a continuous deployment
 
@@ -417,7 +417,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSContinuousDeploymentsAPI.UpdateContinuousDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateContinuousDeployment`: ResponseContinuousDeployment
+	// response from `UpdateContinuousDeployment`: ContinuousDeploymentResponse
 	fmt.Fprintf(os.Stdout, "Response from `VCSContinuousDeploymentsAPI.UpdateContinuousDeployment`: %v\n", resp)
 }
 ```
@@ -442,7 +442,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseContinuousDeployment**](ResponseContinuousDeployment.md)
+[**ContinuousDeploymentResponse**](ContinuousDeploymentResponse.md)
 
 ### Authorization
 

@@ -36,7 +36,7 @@ func (r ApiRetrieveExecutorRequest) Fields(fields string) ApiRetrieveExecutorReq
 	return r
 }
 
-func (r ApiRetrieveExecutorRequest) Execute() (*ResponseRetrieveExecutor, *http.Response, error) {
+func (r ApiRetrieveExecutorRequest) Execute() (*ExecutorResponse, *http.Response, error) {
 	return r.ApiService.RetrieveExecutorExecute(r)
 }
 
@@ -58,13 +58,13 @@ func (a *VCSContinuousDeploymentExecutorAPIService) RetrieveExecutor(ctx context
 }
 
 // Execute executes the request
-//  @return ResponseRetrieveExecutor
-func (a *VCSContinuousDeploymentExecutorAPIService) RetrieveExecutorExecute(r ApiRetrieveExecutorRequest) (*ResponseRetrieveExecutor, *http.Response, error) {
+//  @return ExecutorResponse
+func (a *VCSContinuousDeploymentExecutorAPIService) RetrieveExecutorExecute(r ApiRetrieveExecutorRequest) (*ExecutorResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseRetrieveExecutor
+		localVarReturnValue  *ExecutorResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentExecutorAPIService.RetrieveExecutor")
@@ -239,7 +239,7 @@ func (r ApiUpdateExecutorRequest) Body(body map[string]interface{}) ApiUpdateExe
 	return r
 }
 
-func (r ApiUpdateExecutorRequest) Execute() (*ResponseExecutor, *http.Response, error) {
+func (r ApiUpdateExecutorRequest) Execute() (*ExecutorResponse, *http.Response, error) {
 	return r.ApiService.UpdateExecutorExecute(r)
 }
 
@@ -261,13 +261,13 @@ func (a *VCSContinuousDeploymentExecutorAPIService) UpdateExecutor(ctx context.C
 }
 
 // Execute executes the request
-//  @return ResponseExecutor
-func (a *VCSContinuousDeploymentExecutorAPIService) UpdateExecutorExecute(r ApiUpdateExecutorRequest) (*ResponseExecutor, *http.Response, error) {
+//  @return ExecutorResponse
+func (a *VCSContinuousDeploymentExecutorAPIService) UpdateExecutorExecute(r ApiUpdateExecutorRequest) (*ExecutorResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseExecutor
+		localVarReturnValue  *ExecutorResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VCSContinuousDeploymentExecutorAPIService.UpdateExecutor")

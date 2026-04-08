@@ -135,7 +135,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponseListContinuousDeploymentList"
+                $ref: "#/components/schemas/PaginatedContinuousDeploymentListResponseList"
           description: Ok
         "400":
           content:
@@ -269,7 +269,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseContinuousDeployment"
+                $ref: "#/components/schemas/ContinuousDeploymentResponse"
           description: Created
         "400":
           content:
@@ -383,12 +383,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncContinuousDeployment"
-          description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -409,12 +403,12 @@ paths:
           type: string
         style: simple
       responses:
-        "202":
+        "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteContinuousDeployment"
-          description: Accepted
+                $ref: "#/components/schemas/DeleteResponse"
+          description: Ok
         "400":
           content:
             application/json:
@@ -527,8 +521,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "204":
-          description: No Content
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -560,7 +552,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveContinuousDeployment"
+                $ref: "#/components/schemas/ContinuousDeploymentResponse"
           description: Ok
         "400":
           content:
@@ -702,7 +694,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseContinuousDeployment"
+                $ref: "#/components/schemas/ContinuousDeploymentResponse"
           description: Ok
         "400":
           content:
@@ -816,12 +808,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncContinuousDeployment"
-          description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -851,7 +837,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseContinuousDeployment"
+                $ref: "#/components/schemas/ContinuousDeploymentResponse"
           description: Ok
         "400":
           content:
@@ -965,12 +951,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncContinuousDeployment"
-          description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1091,7 +1071,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponseListExecutionList"
+                $ref: "#/components/schemas/PaginatedExecutionListResponseList"
           description: Ok
         "400":
           content:
@@ -1236,7 +1216,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseExecution"
+                $ref: "#/components/schemas/ExecutionResponse"
           description: Created
         "400":
           content:
@@ -1350,12 +1330,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ResponseAsyncExecution"
-          description: Accepted
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -1389,7 +1363,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveExecutor"
+                $ref: "#/components/schemas/ExecutorResponse"
           description: Ok
         "400":
           content:
@@ -1534,13 +1508,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseExecutor"
+                $ref: "#/components/schemas/ExecutorResponse"
           description: ""
         "202":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncExecutor"
+                $ref: "#/components/schemas/ExecutorResponse"
           description: ""
         "400":
           content:
@@ -1729,7 +1703,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponseListExecutionScriptList"
+                $ref: "#/components/schemas/PaginatedExecutionScriptListResponseList"
           description: Ok
         "400":
           content:
@@ -1876,7 +1850,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveExecutionScript"
+                $ref: "#/components/schemas/ExecutionScriptResponse"
           description: Ok
         "400":
           content:
@@ -2073,7 +2047,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponseListIntegrationList"
+                $ref: "#/components/schemas/PaginatedIntegrationListResponseList"
           description: Ok
         "400":
           content:
@@ -2207,12 +2181,12 @@ paths:
           type: string
         style: simple
       responses:
-        "202":
+        "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseAsyncDeleteIntegration"
-          description: Accepted
+                $ref: "#/components/schemas/DeleteResponse"
+          description: Ok
         "400":
           content:
             application/json:
@@ -2325,8 +2299,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/JSONAPIErrorResponse"
           description: Permission Denied
-        "204":
-          description: No Content
       security:
       - TokenAuth: []
       - BearerAuth: []
@@ -2358,7 +2330,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ResponseRetrieveIntegration"
+                $ref: "#/components/schemas/IntegrationResponse"
           description: Ok
         "400":
           content:
@@ -2539,7 +2511,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponseListRepositoryList"
+                $ref: "#/components/schemas/PaginatedRepositoryListResponseList"
           description: Ok
         "400":
           content:
@@ -2728,7 +2700,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PaginatedResponseListPlatformList"
+                $ref: "#/components/schemas/PaginatedPlatformListResponseList"
           description: Ok
         "400":
           content:
@@ -2969,6 +2941,81 @@ components:
       - name
       - repository
       type: object
+    ContinuousDeploymentListResponse:
+      example:
+        execution_script: ""
+        created: 2000-01-23T04:56:07.000+00:00
+        last_editor: last_editor
+        name: name
+        deploy_context:
+          key: ""
+        integration: ""
+        build_context:
+        - field: field
+          value: value
+          instantiation_data_path: instantiation_data_path
+        - field: field
+          value: value
+          instantiation_data_path: instantiation_data_path
+        id: 0
+        repository: repository
+        branch: branch
+        last_modified: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        repository:
+          maxLength: 100
+          minLength: 1
+          type: string
+        branch:
+          maxLength: 255
+          minLength: 1
+          type: string
+        build_context:
+          items:
+            $ref: "#/components/schemas/BuildContextField"
+          type: array
+        deploy_context:
+          additionalProperties: {}
+          type: object
+        integration:
+          allOf:
+          - $ref: "#/components/schemas/Integration"
+        execution_script:
+          allOf:
+          - $ref: "#/components/schemas/ExecutionScript"
+        created:
+          description: Created date of the continuous deployment.
+          format: date-time
+          nullable: true
+          type: string
+        last_editor:
+          description: Last editor of the continuous deployment.
+          nullable: true
+          type: string
+        last_modified:
+          description: Last modified date of the continuous deployment.
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - branch
+      - build_context
+      - created
+      - execution_script
+      - id
+      - integration
+      - last_editor
+      - last_modified
+      - name
+      - repository
+      type: object
     ContinuousDeploymentRequest:
       example:
         integration_id: 171976545
@@ -3025,6 +3072,47 @@ components:
       - name
       - repository
       type: object
+    ContinuousDeploymentResponse:
+      example:
+        data:
+          execution_script: ""
+          created: 2000-01-23T04:56:07.000+00:00
+          last_editor: last_editor
+          name: name
+          deploy_context:
+            key: ""
+          integration: ""
+          build_context:
+          - field: field
+            value: value
+            instantiation_data_path: instantiation_data_path
+          - field: field
+            value: value
+            instantiation_data_path: instantiation_data_path
+          id: 0
+          repository: repository
+          branch: branch
+          last_modified: 2000-01-23T04:56:07.000+00:00
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/ContinuousDeployment"
+      required:
+      - data
+      type: object
+    DeleteResponse:
+      example:
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+      type: object
     Execution:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -3051,10 +3139,55 @@ components:
       - status
       - updated_at
       type: object
+    ExecutionListResponse:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        status: status
+      properties:
+        id:
+          format: int64
+          type: integer
+        status:
+          maxLength: 50
+          minLength: 1
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      required:
+      - created_at
+      - id
+      - status
+      - updated_at
+      type: object
+    ExecutionResponse:
+      example:
+        data:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+          status: status
+        state: state
+      properties:
+        state:
+          maxLength: 8
+          minLength: 1
+          type: string
+        data:
+          $ref: "#/components/schemas/Execution"
+      required:
+      - data
+      type: object
     ExecutionScript:
       example:
         template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
       properties:
         id:
@@ -3067,7 +3200,41 @@ components:
         template_uuid:
           format: uuid
           type: string
+        created_at:
+          description: Created date of the execution script.
+          format: date-time
+          nullable: true
+          type: string
       required:
+      - created_at
+      - id
+      - name
+      - template_uuid
+      type: object
+    ExecutionScriptListResponse:
+      example:
+        template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 0
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        template_uuid:
+          format: uuid
+          type: string
+        created_at:
+          description: Created date of the execution script.
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - created_at
       - id
       - name
       - template_uuid
@@ -3084,6 +3251,19 @@ components:
       required:
       - name
       - template_uuid
+      type: object
+    ExecutionScriptResponse:
+      example:
+        data:
+          template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+      properties:
+        data:
+          $ref: "#/components/schemas/ExecutionScript"
+      required:
+      - data
       type: object
     Executor:
       example:
@@ -3111,6 +3291,19 @@ components:
       - is_active
       - name
       type: object
+    ExecutorResponse:
+      example:
+        data:
+          is_active: true
+          name: name
+          id: 171976545
+          email: email
+      properties:
+        data:
+          $ref: "#/components/schemas/Executor"
+      required:
+      - data
+      type: object
     Integration:
       example:
         provider:
@@ -3119,6 +3312,7 @@ components:
           name: name
           id: id
         scope: scope
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
         scope_type: scope_type
       properties:
@@ -3131,11 +3325,68 @@ components:
           type: string
         provider:
           $ref: "#/components/schemas/Platform"
+        created_at:
+          description: Created date of the integration.
+          format: date-time
+          nullable: true
+          type: string
       required:
+      - created_at
       - id
       - provider
       - scope
       - scope_type
+      type: object
+    IntegrationListResponse:
+      example:
+        provider:
+          callback_url: callback_url
+          installation_url: installation_url
+          name: name
+          id: id
+        scope: scope
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        scope_type: scope_type
+      properties:
+        id:
+          format: int64
+          type: integer
+        scope:
+          type: string
+        scope_type:
+          type: string
+        provider:
+          $ref: "#/components/schemas/Platform"
+        created_at:
+          description: Created date of the integration.
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - created_at
+      - id
+      - provider
+      - scope
+      - scope_type
+      type: object
+    IntegrationResponse:
+      example:
+        data:
+          provider:
+            callback_url: callback_url
+            installation_url: installation_url
+            name: name
+            id: id
+          scope: scope
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: 0
+          scope_type: scope_type
+      properties:
+        data:
+          $ref: "#/components/schemas/Integration"
+      required:
+      - data
       type: object
     JSONAPIErrorObject:
       description: Serializer for a single JSON:API error object.
@@ -3225,8 +3476,10 @@ components:
           minLength: 1
           type: string
       type: object
-    PaginatedResponseListContinuousDeploymentList:
+    PaginatedContinuousDeploymentListResponseList:
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -3297,13 +3550,27 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
-            $ref: "#/components/schemas/ResponseListContinuousDeployment"
+            $ref: "#/components/schemas/ContinuousDeploymentListResponse"
           type: array
       type: object
-    PaginatedResponseListExecutionList:
+    PaginatedExecutionListResponseList:
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -3346,22 +3613,38 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
-            $ref: "#/components/schemas/ResponseListExecution"
+            $ref: "#/components/schemas/ExecutionListResponse"
           type: array
       type: object
-    PaginatedResponseListExecutionScriptList:
+    PaginatedExecutionScriptListResponseList:
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
         results:
         - template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
         - template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
         page_size: 10
       properties:
@@ -3393,13 +3676,27 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
-            $ref: "#/components/schemas/ResponseListExecutionScript"
+            $ref: "#/components/schemas/ExecutionScriptListResponse"
           type: array
       type: object
-    PaginatedResponseListIntegrationList:
+    PaginatedIntegrationListResponseList:
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -3410,6 +3707,7 @@ components:
             name: name
             id: id
           scope: scope
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           scope_type: scope_type
         - provider:
@@ -3418,6 +3716,7 @@ components:
             name: name
             id: id
           scope: scope
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           scope_type: scope_type
         page_size: 10
@@ -3450,13 +3749,27 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
-            $ref: "#/components/schemas/ResponseListIntegration"
+            $ref: "#/components/schemas/IntegrationListResponse"
           type: array
       type: object
-    PaginatedResponseListPlatformList:
+    PaginatedPlatformListResponseList:
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -3499,13 +3812,27 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
-            $ref: "#/components/schemas/ResponseListPlatform"
+            $ref: "#/components/schemas/PlatformListResponse"
           type: array
       type: object
-    PaginatedResponseListRepositoryList:
+    PaginatedRepositoryListResponseList:
       example:
+        next: https://api.example.com/items?page=3
+        previous: https://api.example.com/items?page=1
         count: 123
         total_pages: 10
         page: 1
@@ -3548,9 +3875,21 @@ components:
           maximum: 100
           minimum: 1
           type: integer
+        next:
+          description: URL to the next page of results
+          example: https://api.example.com/items?page=3
+          format: uri
+          nullable: true
+          type: string
+        previous:
+          description: URL to the previous page of results
+          example: https://api.example.com/items?page=1
+          format: uri
+          nullable: true
+          type: string
         results:
           items:
-            $ref: "#/components/schemas/ResponseListRepository"
+            $ref: "#/components/schemas/RepositoryListResponse"
           type: array
       type: object
     PatchedContinuousDeploymentRequest:
@@ -3623,323 +3962,7 @@ components:
       - installation_url
       - name
       type: object
-    ResponseAsyncContinuousDeployment:
-      example:
-        data:
-          execution_script: ""
-          created: 2000-01-23T04:56:07.000+00:00
-          last_editor: last_editor
-          name: name
-          deploy_context:
-            key: ""
-          integration: ""
-          build_context:
-          - field: field
-            value: value
-            instantiation_data_path: instantiation_data_path
-          - field: field
-            value: value
-            instantiation_data_path: instantiation_data_path
-          id: 0
-          repository: repository
-          branch: branch
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/ContinuousDeployment"
-      required:
-      - data
-      type: object
-    ResponseAsyncDeleteContinuousDeployment:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseAsyncDeleteIntegration:
-      example:
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseAsyncExecution:
-      example:
-        data:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-          status: status
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Execution"
-      required:
-      - data
-      type: object
-    ResponseAsyncExecutor:
-      example:
-        data:
-          is_active: true
-          name: name
-          id: 171976545
-          email: email
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Executor"
-      required:
-      - data
-      type: object
-    ResponseContinuousDeployment:
-      example:
-        data:
-          execution_script: ""
-          created: 2000-01-23T04:56:07.000+00:00
-          last_editor: last_editor
-          name: name
-          deploy_context:
-            key: ""
-          integration: ""
-          build_context:
-          - field: field
-            value: value
-            instantiation_data_path: instantiation_data_path
-          - field: field
-            value: value
-            instantiation_data_path: instantiation_data_path
-          id: 0
-          repository: repository
-          branch: branch
-          last_modified: 2000-01-23T04:56:07.000+00:00
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/ContinuousDeployment"
-      required:
-      - data
-      type: object
-    ResponseDeleteContinuousDeployment:
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseDeleteIntegration:
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-      type: object
-    ResponseExecution:
-      example:
-        data:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: 0
-          status: status
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Execution"
-      required:
-      - data
-      type: object
-    ResponseExecutor:
-      example:
-        data:
-          is_active: true
-          name: name
-          id: 171976545
-          email: email
-        state: state
-      properties:
-        state:
-          maxLength: 8
-          minLength: 1
-          type: string
-        data:
-          $ref: "#/components/schemas/Executor"
-      required:
-      - data
-      type: object
-    ResponseListContinuousDeployment:
-      example:
-        execution_script: ""
-        created: 2000-01-23T04:56:07.000+00:00
-        last_editor: last_editor
-        name: name
-        deploy_context:
-          key: ""
-        integration: ""
-        build_context:
-        - field: field
-          value: value
-          instantiation_data_path: instantiation_data_path
-        - field: field
-          value: value
-          instantiation_data_path: instantiation_data_path
-        id: 0
-        repository: repository
-        branch: branch
-        last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        repository:
-          maxLength: 100
-          minLength: 1
-          type: string
-        branch:
-          maxLength: 255
-          minLength: 1
-          type: string
-        build_context:
-          items:
-            $ref: "#/components/schemas/BuildContextField"
-          type: array
-        deploy_context:
-          additionalProperties: {}
-          type: object
-        integration:
-          allOf:
-          - $ref: "#/components/schemas/Integration"
-        execution_script:
-          allOf:
-          - $ref: "#/components/schemas/ExecutionScript"
-        created:
-          description: Created date of the continuous deployment.
-          format: date-time
-          nullable: true
-          type: string
-        last_editor:
-          description: Last editor of the continuous deployment.
-          nullable: true
-          type: string
-        last_modified:
-          description: Last modified date of the continuous deployment.
-          format: date-time
-          nullable: true
-          type: string
-      required:
-      - branch
-      - build_context
-      - created
-      - execution_script
-      - id
-      - integration
-      - last_editor
-      - last_modified
-      - name
-      - repository
-      type: object
-    ResponseListExecution:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: 0
-        status: status
-      properties:
-        id:
-          format: int64
-          type: integer
-        status:
-          maxLength: 50
-          minLength: 1
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-      required:
-      - created_at
-      - id
-      - status
-      - updated_at
-      type: object
-    ResponseListExecutionScript:
-      example:
-        template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-        name: name
-        id: 0
-      properties:
-        id:
-          format: int64
-          type: integer
-        name:
-          maxLength: 100
-          minLength: 1
-          type: string
-        template_uuid:
-          format: uuid
-          type: string
-      required:
-      - id
-      - name
-      - template_uuid
-      type: object
-    ResponseListIntegration:
-      example:
-        provider:
-          callback_url: callback_url
-          installation_url: installation_url
-          name: name
-          id: id
-        scope: scope
-        id: 0
-        scope_type: scope_type
-      properties:
-        id:
-          format: int64
-          type: integer
-        scope:
-          type: string
-        scope_type:
-          type: string
-        provider:
-          $ref: "#/components/schemas/Platform"
-      required:
-      - id
-      - provider
-      - scope
-      - scope_type
-      type: object
-    ResponseListPlatform:
+    PlatformListResponse:
       example:
         callback_url: callback_url
         installation_url: installation_url
@@ -3960,7 +3983,7 @@ components:
       - installation_url
       - name
       type: object
-    ResponseListRepository:
+    RepositoryListResponse:
       example:
         visibility: visibility
         name: name
@@ -3988,75 +4011,6 @@ components:
       - name
       - url
       - visibility
-      type: object
-    ResponseRetrieveContinuousDeployment:
-      example:
-        data:
-          execution_script: ""
-          created: 2000-01-23T04:56:07.000+00:00
-          last_editor: last_editor
-          name: name
-          deploy_context:
-            key: ""
-          integration: ""
-          build_context:
-          - field: field
-            value: value
-            instantiation_data_path: instantiation_data_path
-          - field: field
-            value: value
-            instantiation_data_path: instantiation_data_path
-          id: 0
-          repository: repository
-          branch: branch
-          last_modified: 2000-01-23T04:56:07.000+00:00
-      properties:
-        data:
-          $ref: "#/components/schemas/ContinuousDeployment"
-      required:
-      - data
-      type: object
-    ResponseRetrieveExecutionScript:
-      example:
-        data:
-          template_uuid: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
-          name: name
-          id: 0
-      properties:
-        data:
-          $ref: "#/components/schemas/ExecutionScript"
-      required:
-      - data
-      type: object
-    ResponseRetrieveExecutor:
-      example:
-        data:
-          is_active: true
-          name: name
-          id: 171976545
-          email: email
-      properties:
-        data:
-          $ref: "#/components/schemas/Executor"
-      required:
-      - data
-      type: object
-    ResponseRetrieveIntegration:
-      example:
-        data:
-          provider:
-            callback_url: callback_url
-            installation_url: installation_url
-            name: name
-            id: id
-          scope: scope
-          id: 0
-          scope_type: scope_type
-      properties:
-        data:
-          $ref: "#/components/schemas/Integration"
-      required:
-      - data
       type: object
   securitySchemes:
     BearerAuth:

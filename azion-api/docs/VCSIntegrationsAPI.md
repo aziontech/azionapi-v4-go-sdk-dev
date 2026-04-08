@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## DeleteIntegration
 
-> ResponseDeleteIntegration DeleteIntegration(ctx, integrationId).Execute()
+> DeleteResponse DeleteIntegration(ctx, integrationId).Execute()
 
 Delete an integration
 
@@ -41,7 +41,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSIntegrationsAPI.DeleteIntegration``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `DeleteIntegration`: ResponseDeleteIntegration
+	// response from `DeleteIntegration`: DeleteResponse
 	fmt.Fprintf(os.Stdout, "Response from `VCSIntegrationsAPI.DeleteIntegration`: %v\n", resp)
 }
 ```
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseDeleteIntegration**](ResponseDeleteIntegration.md)
+[**DeleteResponse**](DeleteResponse.md)
 
 ### Authorization
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## ListIntegrations
 
-> PaginatedIntegrationList ListIntegrations(ctx).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Platform(platform).Scope(scope).Search(search).Execute()
+> PaginatedIntegrationListResponseList ListIntegrations(ctx).Fields(fields).Id(id).Ordering(ordering).Page(page).PageSize(pageSize).Platform(platform).Scope(scope).Search(search).Execute()
 
 List integrations
 
@@ -118,7 +118,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSIntegrationsAPI.ListIntegrations``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListIntegrations`: PaginatedIntegrationList
+	// response from `ListIntegrations`: PaginatedIntegrationListResponseList
 	fmt.Fprintf(os.Stdout, "Response from `VCSIntegrationsAPI.ListIntegrations`: %v\n", resp)
 }
 ```
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedIntegrationList**](PaginatedIntegrationList.md)
+[**PaginatedIntegrationListResponseList**](PaginatedIntegrationListResponseList.md)
 
 ### Authorization
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ## ListRepositories
 
-> PaginatedRepositoryList ListRepositories(ctx, integrationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedRepositoryListResponseList ListRepositories(ctx, integrationId).Fields(fields).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List integration repositories.
 
@@ -196,7 +196,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSIntegrationsAPI.ListRepositories``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListRepositories`: PaginatedRepositoryList
+	// response from `ListRepositories`: PaginatedRepositoryListResponseList
 	fmt.Fprintf(os.Stdout, "Response from `VCSIntegrationsAPI.ListRepositories`: %v\n", resp)
 }
 ```
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedRepositoryList**](PaginatedRepositoryList.md)
+[**PaginatedRepositoryListResponseList**](PaginatedRepositoryListResponseList.md)
 
 ### Authorization
 
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveIntegration
 
-> ResponseRetrieveIntegration RetrieveIntegration(ctx, integrationId).Fields(fields).Execute()
+> IntegrationResponse RetrieveIntegration(ctx, integrationId).Fields(fields).Execute()
 
 Retrieve details from a integration
 
@@ -272,7 +272,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSIntegrationsAPI.RetrieveIntegration``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveIntegration`: ResponseRetrieveIntegration
+	// response from `RetrieveIntegration`: IntegrationResponse
 	fmt.Fprintf(os.Stdout, "Response from `VCSIntegrationsAPI.RetrieveIntegration`: %v\n", resp)
 }
 ```
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveIntegration**](ResponseRetrieveIntegration.md)
+[**IntegrationResponse**](IntegrationResponse.md)
 
 ### Authorization
 

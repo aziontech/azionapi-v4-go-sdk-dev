@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## ListExecutionScripts
 
-> PaginatedResponseListExecutionScriptList ListExecutionScripts(ctx).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
+> PaginatedExecutionScriptListResponseList ListExecutionScripts(ctx).Fields(fields).Id(id).Name(name).Ordering(ordering).Page(page).PageSize(pageSize).Search(search).Execute()
 
 List execution scripts
 
@@ -45,7 +45,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSExecutionScriptsAPI.ListExecutionScripts``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListExecutionScripts`: PaginatedResponseListExecutionScriptList
+	// response from `ListExecutionScripts`: PaginatedExecutionScriptListResponseList
 	fmt.Fprintf(os.Stdout, "Response from `VCSExecutionScriptsAPI.ListExecutionScripts`: %v\n", resp)
 }
 ```
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PaginatedResponseListExecutionScriptList**](PaginatedResponseListExecutionScriptList.md)
+[**PaginatedExecutionScriptListResponseList**](PaginatedExecutionScriptListResponseList.md)
 
 ### Authorization
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveExecutionScript
 
-> ResponseRetrieveExecutionScript RetrieveExecutionScript(ctx, executionScriptId).Fields(fields).Execute()
+> ExecutionScriptResponse RetrieveExecutionScript(ctx, executionScriptId).Fields(fields).Execute()
 
 Retrieve details from a execution script
 
@@ -118,7 +118,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `VCSExecutionScriptsAPI.RetrieveExecutionScript``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `RetrieveExecutionScript`: ResponseRetrieveExecutionScript
+	// response from `RetrieveExecutionScript`: ExecutionScriptResponse
 	fmt.Fprintf(os.Stdout, "Response from `VCSExecutionScriptsAPI.RetrieveExecutionScript`: %v\n", resp)
 }
 ```
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ResponseRetrieveExecutionScript**](ResponseRetrieveExecutionScript.md)
+[**ExecutionScriptResponse**](ExecutionScriptResponse.md)
 
 ### Authorization
 
