@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** | Indicates if the certificate revocation list is active. This field cannot be set to false. | [optional] 
 **LastEditor** | **string** |  | 
+**CreatedAt** | **NullableTime** | Timestamp of the certificate revocation list creation on the platform. | 
 **LastModified** | **time.Time** | Timestamp of the last modification made to the certificate content on the platform. | 
 **ProductVersion** | **string** |  | 
 **Issuer** | **string** |  | 
@@ -19,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewCertificateRevocationList
 
-`func NewCertificateRevocationList(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, issuer string, lastUpdate time.Time, nextUpdate time.Time, crl string, ) *CertificateRevocationList`
+`func NewCertificateRevocationList(id int64, name string, lastEditor string, createdAt NullableTime, lastModified time.Time, productVersion string, issuer string, lastUpdate time.Time, nextUpdate time.Time, crl string, ) *CertificateRevocationList`
 
 NewCertificateRevocationList instantiates a new CertificateRevocationList object
 This constructor will assign default values to properties that have it defined,
@@ -119,6 +120,36 @@ and a boolean to check if the value has been set.
 SetLastEditor sets LastEditor field to given value.
 
 
+### GetCreatedAt
+
+`func (o *CertificateRevocationList) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *CertificateRevocationList) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *CertificateRevocationList) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### SetCreatedAtNil
+
+`func (o *CertificateRevocationList) SetCreatedAtNil(b bool)`
+
+ SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+
+### UnsetCreatedAt
+`func (o *CertificateRevocationList) UnsetCreatedAt()`
+
+UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
 ### GetLastModified
 
 `func (o *CertificateRevocationList) GetLastModified() time.Time`

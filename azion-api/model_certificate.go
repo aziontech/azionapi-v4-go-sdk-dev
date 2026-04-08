@@ -33,7 +33,7 @@ type Certificate struct {
 	// The value can't be changed after the certificate creation.  * `certificate` - Certificate * `trusted_ca_certificate` - Trusted CA Certificate
 	Type *string `json:"type,omitempty"`
 	Managed bool `json:"managed"`
-	// * `challenge_verification` - Challenge Verification * `active` - Active * `pending` - Pending * `failed` - Failed
+	// * `pending` - Pending * `challenge_verification` - Challenge Verification * `active` - Active * `inactive` - Inactive * `expired` - Expired * `failed` - Failed
 	Status string `json:"status"`
 	StatusDetail string `json:"status_detail"`
 	Csr NullableString `json:"csr"`
@@ -45,6 +45,8 @@ type Certificate struct {
 	Active *bool `json:"active,omitempty"`
 	ProductVersion string `json:"product_version"`
 	LastEditor string `json:"last_editor"`
+	// Timestamp of the certificate creation on the platform.
+	CreatedAt NullableTime `json:"created_at"`
 	// Timestamp of the last modification made to the certificate content on the platform.
 	LastModified time.Time `json:"last_modified"`
 	// Timestamp indicating when the managed certificate was renewed on our platform.
@@ -57,7 +59,7 @@ type _Certificate Certificate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificate(id int64, name string, issuer NullableString, subjectName []string, validity NullableString, managed bool, status string, statusDetail string, csr NullableString, challenge string, authority string, keyAlgorithm string, productVersion string, lastEditor string, lastModified time.Time, renewedAt NullableTime) *Certificate {
+func NewCertificate(id int64, name string, issuer NullableString, subjectName []string, validity NullableString, managed bool, status string, statusDetail string, csr NullableString, challenge string, authority string, keyAlgorithm string, productVersion string, lastEditor string, createdAt NullableTime, lastModified time.Time, renewedAt NullableTime) *Certificate {
 	this := Certificate{}
 	this.Id = id
 	this.Name = name
@@ -73,6 +75,7 @@ func NewCertificate(id int64, name string, issuer NullableString, subjectName []
 	this.KeyAlgorithm = keyAlgorithm
 	this.ProductVersion = productVersion
 	this.LastEditor = lastEditor
+	this.CreatedAt = createdAt
 	this.LastModified = lastModified
 	this.RenewedAt = renewedAt
 	return &this
@@ -576,6 +579,32 @@ func (o *Certificate) SetLastEditor(v string) {
 	o.LastEditor = v
 }
 
+// GetCreatedAt returns the CreatedAt field value
+// If the value is explicit nil, the zero value for time.Time will be returned
+func (o *Certificate) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return *o.CreatedAt.Get()
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Certificate) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
+}
+
+// SetCreatedAt sets field value
+func (o *Certificate) SetCreatedAt(v time.Time) {
+	o.CreatedAt.Set(&v)
+}
+
 // GetLastModified returns the LastModified field value
 func (o *Certificate) GetLastModified() time.Time {
 	if o == nil {
@@ -662,6 +691,7 @@ func (o Certificate) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["product_version"] = o.ProductVersion
 	toSerialize["last_editor"] = o.LastEditor
+	toSerialize["created_at"] = o.CreatedAt.Get()
 	toSerialize["last_modified"] = o.LastModified
 	toSerialize["renewed_at"] = o.RenewedAt.Get()
 	return toSerialize, nil
@@ -686,6 +716,7 @@ func (o *Certificate) UnmarshalJSON(data []byte) (err error) {
 		"key_algorithm",
 		"product_version",
 		"last_editor",
+		"created_at",
 		"last_modified",
 		"renewed_at",
 	}

@@ -35,7 +35,7 @@ import (
 )
 
 func main() {
-	certificate := *openapiclient.NewCertificate(int64(123), "Name_example", "Issuer_example", []string{"SubjectName_example"}, "Validity_example", false, "Status_example", "StatusDetail_example", "Csr_example", "Challenge_example", "Authority_example", "KeyAlgorithm_example", "ProductVersion_example", "LastEditor_example", time.Now(), time.Now()) // Certificate | 
+	certificate := *openapiclient.NewCertificate(int64(123), "Name_example", "Issuer_example", []string{"SubjectName_example"}, "Validity_example", false, "Status_example", "StatusDetail_example", "Csr_example", "Challenge_example", "Authority_example", "KeyAlgorithm_example", "ProductVersion_example", "LastEditor_example", time.Now(), time.Now(), time.Now()) // Certificate | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -414,7 +414,7 @@ import (
 
 func main() {
 	certificateId := int64(789) // int64 | The unique identifier of the certificate
-	certificate := *openapiclient.NewCertificate(int64(123), "Name_example", "Issuer_example", []string{"SubjectName_example"}, "Validity_example", false, "Status_example", "StatusDetail_example", "Csr_example", "Challenge_example", "Authority_example", "KeyAlgorithm_example", "ProductVersion_example", "LastEditor_example", time.Now(), time.Now()) // Certificate | 
+	certificate := *openapiclient.NewCertificate(int64(123), "Name_example", "Issuer_example", []string{"SubjectName_example"}, "Validity_example", false, "Status_example", "StatusDetail_example", "Csr_example", "Challenge_example", "Authority_example", "KeyAlgorithm_example", "ProductVersion_example", "LastEditor_example", time.Now(), time.Now(), time.Now()) // Certificate | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

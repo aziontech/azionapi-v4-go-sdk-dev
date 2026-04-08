@@ -84785,6 +84785,7 @@ components:
         last_editor: last_editor
         certificate: certificate
         active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
         private_key: private_key
         key_algorithm: key_algorithm
         type: type
@@ -84845,15 +84846,19 @@ components:
           type: boolean
         status:
           description: |-
+            * `pending` - Pending
             * `challenge_verification` - Challenge Verification
             * `active` - Active
-            * `pending` - Pending
+            * `inactive` - Inactive
+            * `expired` - Expired
             * `failed` - Failed
           type: string
           x-extensible-enum:
+          - pending
           - challenge_verification
           - active
-          - pending
+          - inactive
+          - expired
           - failed
         status_detail:
           maxLength: 500
@@ -84885,6 +84890,11 @@ components:
           type: string
         last_editor:
           type: string
+        created_at:
+          description: Timestamp of the certificate creation on the platform.
+          format: date-time
+          nullable: true
+          type: string
         last_modified:
           description: Timestamp of the last modification made to the certificate
             content on the platform.
@@ -84899,6 +84909,7 @@ components:
       required:
       - authority
       - challenge
+      - created_at
       - csr
       - id
       - issuer
@@ -84923,6 +84934,7 @@ components:
         last_editor: last_editor
         certificate: certificate
         active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
         private_key: private_key
         key_algorithm: key_algorithm
         type: type
@@ -84987,15 +84999,19 @@ components:
           type: boolean
         status:
           description: |-
+            * `pending` - Pending
             * `challenge_verification` - Challenge Verification
             * `active` - Active
-            * `pending` - Pending
+            * `inactive` - Inactive
+            * `expired` - Expired
             * `failed` - Failed
           type: string
           x-extensible-enum:
+          - pending
           - challenge_verification
           - active
-          - pending
+          - inactive
+          - expired
           - failed
         status_detail:
           maxLength: 500
@@ -85035,6 +85051,11 @@ components:
           type: string
         last_editor:
           type: string
+        created_at:
+          description: Timestamp of the certificate creation on the platform.
+          format: date-time
+          nullable: true
+          type: string
         last_modified:
           description: Timestamp of the last modification made to the certificate
             content on the platform.
@@ -85069,19 +85090,7 @@ components:
       - authority
       - challenge
       - common_name
-      - csr
-      - id
-      - issuer
-      - last_editor
-      - last_modified
-      - managed
       - name
-      - product_version
-      - renewed_at
-      - status
-      - status_detail
-      - subject_name
-      - validity
       type: object
     CertificateResponse:
       additionalProperties: false
@@ -85092,6 +85101,7 @@ components:
           last_editor: last_editor
           certificate: certificate
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           private_key: private_key
           key_algorithm: key_algorithm
           type: type
@@ -85128,6 +85138,7 @@ components:
         last_update: 2000-01-23T04:56:07.000+00:00
         name: name
         active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
         crl: crl
         last_modified: 2000-01-23T04:56:07.000+00:00
@@ -85146,6 +85157,12 @@ components:
             field cannot be set to false.
           type: boolean
         last_editor:
+          type: string
+        created_at:
+          description: Timestamp of the certificate revocation list creation on the
+            platform.
+          format: date-time
+          nullable: true
           type: string
         last_modified:
           description: Timestamp of the last modification made to the certificate
@@ -85174,6 +85191,7 @@ components:
           minLength: 1
           type: string
       required:
+      - created_at
       - crl
       - id
       - issuer
@@ -85193,6 +85211,7 @@ components:
           last_update: 2000-01-23T04:56:07.000+00:00
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           crl: crl
           last_modified: 2000-01-23T04:56:07.000+00:00
@@ -85215,6 +85234,7 @@ components:
         country: country
         csr: csr
         certificate: certificate
+        created_at: 2000-01-23T04:56:07.000+00:00
         type: type
         alternative_names:
         - alternative_names
@@ -85287,15 +85307,19 @@ components:
           type: boolean
         status:
           description: |-
+            * `pending` - Pending
             * `challenge_verification` - Challenge Verification
             * `active` - Active
-            * `pending` - Pending
+            * `inactive` - Inactive
+            * `expired` - Expired
             * `failed` - Failed
           type: string
           x-extensible-enum:
+          - pending
           - challenge_verification
           - active
-          - pending
+          - inactive
+          - expired
           - failed
         status_detail:
           maxLength: 500
@@ -85334,6 +85358,11 @@ components:
           minLength: 3
           type: string
         last_editor:
+          type: string
+        created_at:
+          description: Timestamp of the certificate creation on the platform.
+          format: date-time
+          nullable: true
           type: string
         last_modified:
           description: Timestamp of the last modification made to the certificate
@@ -85388,28 +85417,14 @@ components:
           type: string
           writeOnly: true
       required:
-      - authority
-      - challenge
       - common_name
       - country
-      - csr
       - email
-      - id
-      - issuer
-      - last_editor
-      - last_modified
       - locality
-      - managed
       - name
       - organization
       - organization_unity
-      - product_version
-      - renewed_at
       - state
-      - status
-      - status_detail
-      - subject_name
-      - validity
       type: object
     PaginatedCertificateList:
       additionalProperties: false
@@ -85425,6 +85440,7 @@ components:
           last_editor: last_editor
           certificate: certificate
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           private_key: private_key
           key_algorithm: key_algorithm
           type: type
@@ -85447,6 +85463,7 @@ components:
           last_editor: last_editor
           certificate: certificate
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           private_key: private_key
           key_algorithm: key_algorithm
           type: type
@@ -85519,6 +85536,7 @@ components:
         last_editor: last_editor
         certificate: certificate
         active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
         private_key: private_key
         key_algorithm: key_algorithm
         type: type
@@ -85579,15 +85597,19 @@ components:
           type: boolean
         status:
           description: |-
+            * `pending` - Pending
             * `challenge_verification` - Challenge Verification
             * `active` - Active
-            * `pending` - Pending
+            * `inactive` - Inactive
+            * `expired` - Expired
             * `failed` - Failed
           type: string
           x-extensible-enum:
+          - pending
           - challenge_verification
           - active
-          - pending
+          - inactive
+          - expired
           - failed
         status_detail:
           maxLength: 500
@@ -85619,6 +85641,11 @@ components:
           type: string
         last_editor:
           type: string
+        created_at:
+          description: Timestamp of the certificate creation on the platform.
+          format: date-time
+          nullable: true
+          type: string
         last_modified:
           description: Timestamp of the last modification made to the certificate
             content on the platform.
@@ -85639,6 +85666,7 @@ components:
         last_update: 2000-01-23T04:56:07.000+00:00
         name: name
         active: true
+        created_at: 2000-01-23T04:56:07.000+00:00
         id: 0
         crl: crl
         last_modified: 2000-01-23T04:56:07.000+00:00
@@ -85657,6 +85685,12 @@ components:
             field cannot be set to false.
           type: boolean
         last_editor:
+          type: string
+        created_at:
+          description: Timestamp of the certificate revocation list creation on the
+            platform.
+          format: date-time
+          nullable: true
           type: string
         last_modified:
           description: Timestamp of the last modification made to the certificate
@@ -85699,6 +85733,7 @@ components:
           last_update: 2000-01-23T04:56:07.000+00:00
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           crl: crl
           last_modified: 2000-01-23T04:56:07.000+00:00
@@ -85709,6 +85744,7 @@ components:
           last_update: 2000-01-23T04:56:07.000+00:00
           name: name
           active: true
+          created_at: 2000-01-23T04:56:07.000+00:00
           id: 0
           crl: crl
           last_modified: 2000-01-23T04:56:07.000+00:00
