@@ -30,7 +30,7 @@ type PatchedCertificate struct {
 	// The value can't be changed after the certificate creation.  * `edge_certificate` - Edge Certificate * `trusted_ca_certificate` - Trusted CA Certificate
 	Type *string `json:"type,omitempty"`
 	Managed *bool `json:"managed,omitempty"`
-	// * `challenge_verification` - Challenge Verification * `active` - Active * `pending` - Pending * `failed` - Failed
+	// * `pending` - Pending * `challenge_verification` - Challenge Verification * `active` - Active * `inactive` - Inactive * `expired` - Expired * `failed` - Failed
 	Status *string `json:"status,omitempty"`
 	StatusDetail *string `json:"status_detail,omitempty"`
 	Csr NullableString `json:"csr,omitempty"`
@@ -42,6 +42,8 @@ type PatchedCertificate struct {
 	Active *bool `json:"active,omitempty"`
 	ProductVersion *string `json:"product_version,omitempty"`
 	LastEditor *string `json:"last_editor,omitempty"`
+	// Timestamp of the certificate creation on the platform.
+	CreatedAt NullableTime `json:"created_at,omitempty"`
 	// Timestamp of the last modification made to the certificate content on the platform.
 	LastModified *time.Time `json:"last_modified,omitempty"`
 	// Timestamp indicating when the managed certificate was renewed on our platform.
@@ -691,6 +693,48 @@ func (o *PatchedCertificate) SetLastEditor(v string) {
 	o.LastEditor = &v
 }
 
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedCertificate) GetCreatedAt() time.Time {
+	if o == nil || IsNil(o.CreatedAt.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt.Get()
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedCertificate) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *PatchedCertificate) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given NullableTime and assigns it to the CreatedAt field.
+func (o *PatchedCertificate) SetCreatedAt(v time.Time) {
+	o.CreatedAt.Set(&v)
+}
+// SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+func (o *PatchedCertificate) SetCreatedAtNil() {
+	o.CreatedAt.Set(nil)
+}
+
+// UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
+func (o *PatchedCertificate) UnsetCreatedAt() {
+	o.CreatedAt.Unset()
+}
+
 // GetLastModified returns the LastModified field value if set, zero value otherwise.
 func (o *PatchedCertificate) GetLastModified() time.Time {
 	if o == nil || IsNil(o.LastModified) {
@@ -828,6 +872,9 @@ func (o PatchedCertificate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LastEditor) {
 		toSerialize["last_editor"] = o.LastEditor
+	}
+	if o.CreatedAt.IsSet() {
+		toSerialize["created_at"] = o.CreatedAt.Get()
 	}
 	if !IsNil(o.LastModified) {
 		toSerialize["last_modified"] = o.LastModified

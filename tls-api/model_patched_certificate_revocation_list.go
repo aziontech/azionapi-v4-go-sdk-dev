@@ -25,6 +25,8 @@ type PatchedCertificateRevocationList struct {
 	// Indicates if the certificate revocation list is active. This field cannot be set to false.
 	Active *bool `json:"active,omitempty"`
 	LastEditor *string `json:"last_editor,omitempty"`
+	// Timestamp of the certificate revocation list creation on the platform.
+	CreatedAt NullableTime `json:"created_at,omitempty"`
 	// Timestamp of the last modification made to the certificate content on the platform.
 	LastModified *time.Time `json:"last_modified,omitempty"`
 	ProductVersion *string `json:"product_version,omitempty"`
@@ -179,6 +181,48 @@ func (o *PatchedCertificateRevocationList) HasLastEditor() bool {
 // SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
 func (o *PatchedCertificateRevocationList) SetLastEditor(v string) {
 	o.LastEditor = &v
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchedCertificateRevocationList) GetCreatedAt() time.Time {
+	if o == nil || IsNil(o.CreatedAt.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt.Get()
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchedCertificateRevocationList) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *PatchedCertificateRevocationList) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given NullableTime and assigns it to the CreatedAt field.
+func (o *PatchedCertificateRevocationList) SetCreatedAt(v time.Time) {
+	o.CreatedAt.Set(&v)
+}
+// SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+func (o *PatchedCertificateRevocationList) SetCreatedAtNil() {
+	o.CreatedAt.Set(nil)
+}
+
+// UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
+func (o *PatchedCertificateRevocationList) UnsetCreatedAt() {
+	o.CreatedAt.Unset()
 }
 
 // GetLastModified returns the LastModified field value if set, zero value otherwise.
@@ -394,6 +438,9 @@ func (o PatchedCertificateRevocationList) ToMap() (map[string]interface{}, error
 	}
 	if !IsNil(o.LastEditor) {
 		toSerialize["last_editor"] = o.LastEditor
+	}
+	if o.CreatedAt.IsSet() {
+		toSerialize["created_at"] = o.CreatedAt.Get()
 	}
 	if !IsNil(o.LastModified) {
 		toSerialize["last_modified"] = o.LastModified

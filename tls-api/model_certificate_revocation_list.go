@@ -27,6 +27,8 @@ type CertificateRevocationList struct {
 	// Indicates if the certificate revocation list is active. This field cannot be set to false.
 	Active *bool `json:"active,omitempty"`
 	LastEditor string `json:"last_editor"`
+	// Timestamp of the certificate revocation list creation on the platform.
+	CreatedAt NullableTime `json:"created_at"`
 	// Timestamp of the last modification made to the certificate content on the platform.
 	LastModified time.Time `json:"last_modified"`
 	ProductVersion string `json:"product_version"`
@@ -44,11 +46,12 @@ type _CertificateRevocationList CertificateRevocationList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificateRevocationList(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, issuer string, lastUpdate time.Time, nextUpdate time.Time, crl string) *CertificateRevocationList {
+func NewCertificateRevocationList(id int64, name string, lastEditor string, createdAt NullableTime, lastModified time.Time, productVersion string, issuer string, lastUpdate time.Time, nextUpdate time.Time, crl string) *CertificateRevocationList {
 	this := CertificateRevocationList{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
+	this.CreatedAt = createdAt
 	this.LastModified = lastModified
 	this.ProductVersion = productVersion
 	this.Issuer = issuer
@@ -168,6 +171,32 @@ func (o *CertificateRevocationList) GetLastEditorOk() (*string, bool) {
 // SetLastEditor sets field value
 func (o *CertificateRevocationList) SetLastEditor(v string) {
 	o.LastEditor = v
+}
+
+// GetCreatedAt returns the CreatedAt field value
+// If the value is explicit nil, the zero value for time.Time will be returned
+func (o *CertificateRevocationList) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return *o.CreatedAt.Get()
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateRevocationList) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
+}
+
+// SetCreatedAt sets field value
+func (o *CertificateRevocationList) SetCreatedAt(v time.Time) {
+	o.CreatedAt.Set(&v)
 }
 
 // GetLastModified returns the LastModified field value
@@ -330,6 +359,7 @@ func (o CertificateRevocationList) ToMap() (map[string]interface{}, error) {
 		toSerialize["active"] = o.Active
 	}
 	toSerialize["last_editor"] = o.LastEditor
+	toSerialize["created_at"] = o.CreatedAt.Get()
 	toSerialize["last_modified"] = o.LastModified
 	toSerialize["product_version"] = o.ProductVersion
 	toSerialize["issuer"] = o.Issuer
@@ -347,6 +377,7 @@ func (o *CertificateRevocationList) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"last_editor",
+		"created_at",
 		"last_modified",
 		"product_version",
 		"issuer",
