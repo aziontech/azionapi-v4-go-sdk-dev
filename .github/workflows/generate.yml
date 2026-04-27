@@ -145,6 +145,7 @@ jobs:
             npx @openapitools/openapi-generator-cli generate -i "$file" -g go -o "./${removed}" --package-name "${pkg_name}"
             echo 'go.mod' >> ./${removed}/.gitignore
             echo 'go.sum' >> ./${removed}/.gitignore
+            echo 'api/openapi.yaml' >> ./${removed}/.gitignore
           done < yaml_files_list.txt
 
       - name: Commit and Push Generated SDKs
