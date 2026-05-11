@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Mtls** | Pointer to [**MTLSRequest**](MTLSRequest.md) |  | [optional] 
 **Domains** | Pointer to **[]string** |  | [optional] 
 **WorkloadDomainAllowAccess** | Pointer to **bool** |  | [optional] 
+**Environments** | Pointer to [**[]WorkloadEnvironmentBindingRequest**](WorkloadEnvironmentBindingRequest.md) | Environment bindings for v6 accounts | [optional] 
 
 ## Methods
 
@@ -231,6 +232,31 @@ SetWorkloadDomainAllowAccess sets WorkloadDomainAllowAccess field to given value
 `func (o *PatchedWorkloadRequest) HasWorkloadDomainAllowAccess() bool`
 
 HasWorkloadDomainAllowAccess returns a boolean if a field has been set.
+
+### GetEnvironments
+
+`func (o *PatchedWorkloadRequest) GetEnvironments() []WorkloadEnvironmentBindingRequest`
+
+GetEnvironments returns the Environments field if non-nil, zero value otherwise.
+
+### GetEnvironmentsOk
+
+`func (o *PatchedWorkloadRequest) GetEnvironmentsOk() (*[]WorkloadEnvironmentBindingRequest, bool)`
+
+GetEnvironmentsOk returns a tuple with the Environments field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnvironments
+
+`func (o *PatchedWorkloadRequest) SetEnvironments(v []WorkloadEnvironmentBindingRequest)`
+
+SetEnvironments sets Environments field to given value.
+
+### HasEnvironments
+
+`func (o *PatchedWorkloadRequest) HasEnvironments() bool`
+
+HasEnvironments returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,13 +12,16 @@ Name | Type | Description | Notes
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | **string** |  | 
 **Type** | **string** | Type of the connector  * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | 
-**Attributes** | [**ConnectorStorageAttributes**](ConnectorStorageAttributes.md) |  | 
+**IsVersioned** | **bool** |  | 
+**Version** | **NullableInt64** |  | 
+**VersionState** | **NullableString** |  | 
+**Attributes** | [**ConnectorLiveIngestAttributes**](ConnectorLiveIngestAttributes.md) |  | 
 
 ## Methods
 
 ### NewConnectorPolymorphic
 
-`func NewConnectorPolymorphic(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, attributes ConnectorStorageAttributes, ) *ConnectorPolymorphic`
+`func NewConnectorPolymorphic(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, isVersioned bool, version NullableInt64, versionState NullableString, attributes ConnectorLiveIngestAttributes, ) *ConnectorPolymorphic`
 
 NewConnectorPolymorphic instantiates a new ConnectorPolymorphic object
 This constructor will assign default values to properties that have it defined,
@@ -198,22 +201,102 @@ and a boolean to check if the value has been set.
 SetType sets Type field to given value.
 
 
+### GetIsVersioned
+
+`func (o *ConnectorPolymorphic) GetIsVersioned() bool`
+
+GetIsVersioned returns the IsVersioned field if non-nil, zero value otherwise.
+
+### GetIsVersionedOk
+
+`func (o *ConnectorPolymorphic) GetIsVersionedOk() (*bool, bool)`
+
+GetIsVersionedOk returns a tuple with the IsVersioned field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsVersioned
+
+`func (o *ConnectorPolymorphic) SetIsVersioned(v bool)`
+
+SetIsVersioned sets IsVersioned field to given value.
+
+
+### GetVersion
+
+`func (o *ConnectorPolymorphic) GetVersion() int64`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *ConnectorPolymorphic) GetVersionOk() (*int64, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersion
+
+`func (o *ConnectorPolymorphic) SetVersion(v int64)`
+
+SetVersion sets Version field to given value.
+
+
+### SetVersionNil
+
+`func (o *ConnectorPolymorphic) SetVersionNil(b bool)`
+
+ SetVersionNil sets the value for Version to be an explicit nil
+
+### UnsetVersion
+`func (o *ConnectorPolymorphic) UnsetVersion()`
+
+UnsetVersion ensures that no value is present for Version, not even an explicit nil
+### GetVersionState
+
+`func (o *ConnectorPolymorphic) GetVersionState() string`
+
+GetVersionState returns the VersionState field if non-nil, zero value otherwise.
+
+### GetVersionStateOk
+
+`func (o *ConnectorPolymorphic) GetVersionStateOk() (*string, bool)`
+
+GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionState
+
+`func (o *ConnectorPolymorphic) SetVersionState(v string)`
+
+SetVersionState sets VersionState field to given value.
+
+
+### SetVersionStateNil
+
+`func (o *ConnectorPolymorphic) SetVersionStateNil(b bool)`
+
+ SetVersionStateNil sets the value for VersionState to be an explicit nil
+
+### UnsetVersionState
+`func (o *ConnectorPolymorphic) UnsetVersionState()`
+
+UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 ### GetAttributes
 
-`func (o *ConnectorPolymorphic) GetAttributes() ConnectorStorageAttributes`
+`func (o *ConnectorPolymorphic) GetAttributes() ConnectorLiveIngestAttributes`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *ConnectorPolymorphic) GetAttributesOk() (*ConnectorStorageAttributes, bool)`
+`func (o *ConnectorPolymorphic) GetAttributesOk() (*ConnectorLiveIngestAttributes, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *ConnectorPolymorphic) SetAttributes(v ConnectorStorageAttributes)`
+`func (o *ConnectorPolymorphic) SetAttributes(v ConnectorLiveIngestAttributes)`
 
 SetAttributes sets Attributes field to given value.
 
