@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | **string** |  | 
 **Name** | **string** |  | 
 **LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
@@ -12,12 +12,15 @@ Name | Type | Description | Notes
 **Active** | Pointer to **bool** |  | [optional] 
 **Debug** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | **string** |  | 
+**IsVersioned** | **bool** |  | 
+**Version** | **int64** |  | 
+**VersionState** | **string** |  | 
 
 ## Methods
 
 ### NewApplication
 
-`func NewApplication(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, ) *Application`
+`func NewApplication(id string, name string, lastEditor string, lastModified time.Time, productVersion string, isVersioned bool, version int64, versionState string, ) *Application`
 
 NewApplication instantiates a new Application object
 This constructor will assign default values to properties that have it defined,
@@ -34,20 +37,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Application) GetId() int64`
+`func (o *Application) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Application) GetIdOk() (*int64, bool)`
+`func (o *Application) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Application) SetId(v int64)`
+`func (o *Application) SetId(v string)`
 
 SetId sets Id field to given value.
 
@@ -205,6 +208,66 @@ and a boolean to check if the value has been set.
 `func (o *Application) SetProductVersion(v string)`
 
 SetProductVersion sets ProductVersion field to given value.
+
+
+### GetIsVersioned
+
+`func (o *Application) GetIsVersioned() bool`
+
+GetIsVersioned returns the IsVersioned field if non-nil, zero value otherwise.
+
+### GetIsVersionedOk
+
+`func (o *Application) GetIsVersionedOk() (*bool, bool)`
+
+GetIsVersionedOk returns a tuple with the IsVersioned field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsVersioned
+
+`func (o *Application) SetIsVersioned(v bool)`
+
+SetIsVersioned sets IsVersioned field to given value.
+
+
+### GetVersion
+
+`func (o *Application) GetVersion() int64`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *Application) GetVersionOk() (*int64, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersion
+
+`func (o *Application) SetVersion(v int64)`
+
+SetVersion sets Version field to given value.
+
+
+### GetVersionState
+
+`func (o *Application) GetVersionState() string`
+
+GetVersionState returns the VersionState field if non-nil, zero value otherwise.
+
+### GetVersionStateOk
+
+`func (o *Application) GetVersionStateOk() (*string, bool)`
+
+GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionState
+
+`func (o *Application) SetVersionState(v string)`
+
+SetVersionState sets VersionState field to given value.
 
 
 
