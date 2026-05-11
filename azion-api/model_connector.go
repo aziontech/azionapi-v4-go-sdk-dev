@@ -19,21 +19,21 @@ import (
 
 // Connector - struct for Connector
 type Connector struct {
-	ConnectorBase *ConnectorBase
-	ConnectorHTTP *ConnectorHTTP
+	ConnectorConnector *ConnectorConnector
+	ConnectorConnectorHTTP *ConnectorConnectorHTTP
 }
 
-// ConnectorBaseAsConnector is a convenience function that returns ConnectorBase wrapped in Connector
-func ConnectorBaseAsConnector(v *ConnectorBase) Connector {
+// ConnectorConnectorAsConnector is a convenience function that returns ConnectorConnector wrapped in Connector
+func ConnectorConnectorAsConnector(v *ConnectorConnector) Connector {
 	return Connector{
-		ConnectorBase: v,
+		ConnectorConnector: v,
 	}
 }
 
-// ConnectorHTTPAsConnector is a convenience function that returns ConnectorHTTP wrapped in Connector
-func ConnectorHTTPAsConnector(v *ConnectorHTTP) Connector {
+// ConnectorConnectorHTTPAsConnector is a convenience function that returns ConnectorConnectorHTTP wrapped in Connector
+func ConnectorConnectorHTTPAsConnector(v *ConnectorConnectorHTTP) Connector {
 	return Connector{
-		ConnectorHTTP: v,
+		ConnectorConnectorHTTP: v,
 	}
 }
 
@@ -42,44 +42,44 @@ func ConnectorHTTPAsConnector(v *ConnectorHTTP) Connector {
 func (dst *Connector) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into ConnectorBase
-	err = newStrictDecoder(data).Decode(&dst.ConnectorBase)
+	// try to unmarshal data into ConnectorConnector
+	err = newStrictDecoder(data).Decode(&dst.ConnectorConnector)
 	if err == nil {
-		jsonConnectorBase, _ := json.Marshal(dst.ConnectorBase)
-		if string(jsonConnectorBase) == "{}" { // empty struct
-			dst.ConnectorBase = nil
+		jsonConnectorConnector, _ := json.Marshal(dst.ConnectorConnector)
+		if string(jsonConnectorConnector) == "{}" { // empty struct
+			dst.ConnectorConnector = nil
 		} else {
-			if err = validator.Validate(dst.ConnectorBase); err != nil {
-				dst.ConnectorBase = nil
+			if err = validator.Validate(dst.ConnectorConnector); err != nil {
+				dst.ConnectorConnector = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ConnectorBase = nil
+		dst.ConnectorConnector = nil
 	}
 
-	// try to unmarshal data into ConnectorHTTP
-	err = newStrictDecoder(data).Decode(&dst.ConnectorHTTP)
+	// try to unmarshal data into ConnectorConnectorHTTP
+	err = newStrictDecoder(data).Decode(&dst.ConnectorConnectorHTTP)
 	if err == nil {
-		jsonConnectorHTTP, _ := json.Marshal(dst.ConnectorHTTP)
-		if string(jsonConnectorHTTP) == "{}" { // empty struct
-			dst.ConnectorHTTP = nil
+		jsonConnectorConnectorHTTP, _ := json.Marshal(dst.ConnectorConnectorHTTP)
+		if string(jsonConnectorConnectorHTTP) == "{}" { // empty struct
+			dst.ConnectorConnectorHTTP = nil
 		} else {
-			if err = validator.Validate(dst.ConnectorHTTP); err != nil {
-				dst.ConnectorHTTP = nil
+			if err = validator.Validate(dst.ConnectorConnectorHTTP); err != nil {
+				dst.ConnectorConnectorHTTP = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ConnectorHTTP = nil
+		dst.ConnectorConnectorHTTP = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.ConnectorBase = nil
-		dst.ConnectorHTTP = nil
+		dst.ConnectorConnector = nil
+		dst.ConnectorConnectorHTTP = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(Connector)")
 	} else if match == 1 {
@@ -91,12 +91,12 @@ func (dst *Connector) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src Connector) MarshalJSON() ([]byte, error) {
-	if src.ConnectorBase != nil {
-		return json.Marshal(&src.ConnectorBase)
+	if src.ConnectorConnector != nil {
+		return json.Marshal(&src.ConnectorConnector)
 	}
 
-	if src.ConnectorHTTP != nil {
-		return json.Marshal(&src.ConnectorHTTP)
+	if src.ConnectorConnectorHTTP != nil {
+		return json.Marshal(&src.ConnectorConnectorHTTP)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -107,12 +107,12 @@ func (obj *Connector) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.ConnectorBase != nil {
-		return obj.ConnectorBase
+	if obj.ConnectorConnector != nil {
+		return obj.ConnectorConnector
 	}
 
-	if obj.ConnectorHTTP != nil {
-		return obj.ConnectorHTTP
+	if obj.ConnectorConnectorHTTP != nil {
+		return obj.ConnectorConnectorHTTP
 	}
 
 	// all schemas are nil
@@ -121,12 +121,12 @@ func (obj *Connector) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj Connector) GetActualInstanceValue() (interface{}) {
-	if obj.ConnectorBase != nil {
-		return *obj.ConnectorBase
+	if obj.ConnectorConnector != nil {
+		return *obj.ConnectorConnector
 	}
 
-	if obj.ConnectorHTTP != nil {
-		return *obj.ConnectorHTTP
+	if obj.ConnectorConnectorHTTP != nil {
+		return *obj.ConnectorConnectorHTTP
 	}
 
 	// all schemas are nil

@@ -68,6 +68,8 @@ type APIClient struct {
 
 	AccountsLoggedInAPI *AccountsLoggedInAPIService
 
+	ApplicationVersionsAPI *ApplicationVersionsAPIService
+
 	ApplicationsAPI *ApplicationsAPIService
 
 	ApplicationsCacheSettingsAPI *ApplicationsCacheSettingsAPIService
@@ -91,6 +93,8 @@ type APIClient struct {
 	BillingInvoicesAPI *BillingInvoicesAPIService
 
 	BillingPaymentsAPI *BillingPaymentsAPIService
+
+	ConnectorVersionsAPI *ConnectorVersionsAPIService
 
 	ConnectorsAPI *ConnectorsAPIService
 
@@ -206,6 +210,8 @@ type APIClient struct {
 
 	WorkloadDeploymentsAPI *WorkloadDeploymentsAPIService
 
+	WorkloadVersionsAPI *WorkloadVersionsAPIService
+
 	WorkloadsAPI *WorkloadsAPIService
 }
 
@@ -234,6 +240,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AccountsDescendantsAPI = (*AccountsDescendantsAPIService)(&c.common)
 	c.AccountsInfoAPI = (*AccountsInfoAPIService)(&c.common)
 	c.AccountsLoggedInAPI = (*AccountsLoggedInAPIService)(&c.common)
+	c.ApplicationVersionsAPI = (*ApplicationVersionsAPIService)(&c.common)
 	c.ApplicationsAPI = (*ApplicationsAPIService)(&c.common)
 	c.ApplicationsCacheSettingsAPI = (*ApplicationsCacheSettingsAPIService)(&c.common)
 	c.ApplicationsDeviceGroupsAPI = (*ApplicationsDeviceGroupsAPIService)(&c.common)
@@ -246,6 +253,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AuthRevokeAPI = (*AuthRevokeAPIService)(&c.common)
 	c.BillingInvoicesAPI = (*BillingInvoicesAPIService)(&c.common)
 	c.BillingPaymentsAPI = (*BillingPaymentsAPIService)(&c.common)
+	c.ConnectorVersionsAPI = (*ConnectorVersionsAPIService)(&c.common)
 	c.ConnectorsAPI = (*ConnectorsAPIService)(&c.common)
 	c.CustomPagesAPI = (*CustomPagesAPIService)(&c.common)
 	c.DNSDNSSECAPI = (*DNSDNSSECAPIService)(&c.common)
@@ -303,6 +311,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.WAFsAPI = (*WAFsAPIService)(&c.common)
 	c.WAFsExceptionsAPI = (*WAFsExceptionsAPIService)(&c.common)
 	c.WorkloadDeploymentsAPI = (*WorkloadDeploymentsAPIService)(&c.common)
+	c.WorkloadVersionsAPI = (*WorkloadVersionsAPIService)(&c.common)
 	c.WorkloadsAPI = (*WorkloadsAPIService)(&c.common)
 
 	return c

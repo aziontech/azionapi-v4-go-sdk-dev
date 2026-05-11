@@ -13,7 +13,6 @@ package edgeapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -31,7 +30,11 @@ type Connector struct {
 	ProductVersion string `json:"product_version"`
 	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
 	Type string `json:"type"`
+	IsVersioned bool `json:"is_versioned"`
+	Version NullableInt64 `json:"version"`
+	VersionState NullableString `json:"version_state"`
 	Attributes ConnectorStorageAttributes `json:"attributes"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Connector Connector
@@ -40,7 +43,7 @@ type _Connector Connector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnector(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, attributes ConnectorStorageAttributes) *Connector {
+func NewConnector(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, isVersioned bool, version NullableInt64, versionState NullableString, attributes ConnectorStorageAttributes) *Connector {
 	this := Connector{}
 	this.Id = id
 	this.Name = name
@@ -49,6 +52,9 @@ func NewConnector(id int64, name string, lastEditor string, lastModified time.Ti
 	this.CreatedAt = createdAt
 	this.ProductVersion = productVersion
 	this.Type = type_
+	this.IsVersioned = isVersioned
+	this.Version = version
+	this.VersionState = versionState
 	this.Attributes = attributes
 	return &this
 }
@@ -261,6 +267,82 @@ func (o *Connector) SetType(v string) {
 	o.Type = v
 }
 
+// GetIsVersioned returns the IsVersioned field value
+func (o *Connector) GetIsVersioned() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsVersioned
+}
+
+// GetIsVersionedOk returns a tuple with the IsVersioned field value
+// and a boolean to check if the value has been set.
+func (o *Connector) GetIsVersionedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsVersioned, true
+}
+
+// SetIsVersioned sets field value
+func (o *Connector) SetIsVersioned(v bool) {
+	o.IsVersioned = v
+}
+
+// GetVersion returns the Version field value
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *Connector) GetVersion() int64 {
+	if o == nil || o.Version.Get() == nil {
+		var ret int64
+		return ret
+	}
+
+	return *o.Version.Get()
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Connector) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Version.Get(), o.Version.IsSet()
+}
+
+// SetVersion sets field value
+func (o *Connector) SetVersion(v int64) {
+	o.Version.Set(&v)
+}
+
+// GetVersionState returns the VersionState field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Connector) GetVersionState() string {
+	if o == nil || o.VersionState.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.VersionState.Get()
+}
+
+// GetVersionStateOk returns a tuple with the VersionState field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Connector) GetVersionStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VersionState.Get(), o.VersionState.IsSet()
+}
+
+// SetVersionState sets field value
+func (o *Connector) SetVersionState(v string) {
+	o.VersionState.Set(&v)
+}
+
 // GetAttributes returns the Attributes field value
 func (o *Connector) GetAttributes() ConnectorStorageAttributes {
 	if o == nil {
@@ -305,7 +387,15 @@ func (o Connector) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["product_version"] = o.ProductVersion
 	toSerialize["type"] = o.Type
+	toSerialize["is_versioned"] = o.IsVersioned
+	toSerialize["version"] = o.Version.Get()
+	toSerialize["version_state"] = o.VersionState.Get()
 	toSerialize["attributes"] = o.Attributes
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -321,6 +411,9 @@ func (o *Connector) UnmarshalJSON(data []byte) (err error) {
 		"created_at",
 		"product_version",
 		"type",
+		"is_versioned",
+		"version",
+		"version_state",
 		"attributes",
 	}
 
@@ -340,15 +433,31 @@ func (o *Connector) UnmarshalJSON(data []byte) (err error) {
 
 	varConnector := _Connector{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConnector)
+	err = json.Unmarshal(data, &varConnector)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Connector(varConnector)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "last_editor")
+		delete(additionalProperties, "last_modified")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "product_version")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "is_versioned")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "version_state")
+		delete(additionalProperties, "attributes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
