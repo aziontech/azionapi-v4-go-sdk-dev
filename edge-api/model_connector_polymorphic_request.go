@@ -19,7 +19,8 @@ import (
 // ConnectorPolymorphicRequest - struct for ConnectorPolymorphicRequest
 type ConnectorPolymorphicRequest struct {
 	ConnectorHTTPRequest *ConnectorHTTPRequest
-	ConnectorRequest *ConnectorRequest
+	ConnectorLiveIngestRequest *ConnectorLiveIngestRequest
+	ConnectorStorageRequest *ConnectorStorageRequest
 }
 
 // ConnectorHTTPRequestAsConnectorPolymorphicRequest is a convenience function that returns ConnectorHTTPRequest wrapped in ConnectorPolymorphicRequest
@@ -29,10 +30,17 @@ func ConnectorHTTPRequestAsConnectorPolymorphicRequest(v *ConnectorHTTPRequest) 
 	}
 }
 
-// ConnectorRequestAsConnectorPolymorphicRequest is a convenience function that returns ConnectorRequest wrapped in ConnectorPolymorphicRequest
-func ConnectorRequestAsConnectorPolymorphicRequest(v *ConnectorRequest) ConnectorPolymorphicRequest {
+// ConnectorLiveIngestRequestAsConnectorPolymorphicRequest is a convenience function that returns ConnectorLiveIngestRequest wrapped in ConnectorPolymorphicRequest
+func ConnectorLiveIngestRequestAsConnectorPolymorphicRequest(v *ConnectorLiveIngestRequest) ConnectorPolymorphicRequest {
 	return ConnectorPolymorphicRequest{
-		ConnectorRequest: v,
+		ConnectorLiveIngestRequest: v,
+	}
+}
+
+// ConnectorStorageRequestAsConnectorPolymorphicRequest is a convenience function that returns ConnectorStorageRequest wrapped in ConnectorPolymorphicRequest
+func ConnectorStorageRequestAsConnectorPolymorphicRequest(v *ConnectorStorageRequest) ConnectorPolymorphicRequest {
+	return ConnectorPolymorphicRequest{
+		ConnectorStorageRequest: v,
 	}
 }
 
@@ -58,27 +66,45 @@ func (dst *ConnectorPolymorphicRequest) UnmarshalJSON(data []byte) error {
 		dst.ConnectorHTTPRequest = nil
 	}
 
-	// try to unmarshal data into ConnectorRequest
-	err = newStrictDecoder(data).Decode(&dst.ConnectorRequest)
+	// try to unmarshal data into ConnectorLiveIngestRequest
+	err = newStrictDecoder(data).Decode(&dst.ConnectorLiveIngestRequest)
 	if err == nil {
-		jsonConnectorRequest, _ := json.Marshal(dst.ConnectorRequest)
-		if string(jsonConnectorRequest) == "{}" { // empty struct
-			dst.ConnectorRequest = nil
+		jsonConnectorLiveIngestRequest, _ := json.Marshal(dst.ConnectorLiveIngestRequest)
+		if string(jsonConnectorLiveIngestRequest) == "{}" { // empty struct
+			dst.ConnectorLiveIngestRequest = nil
 		} else {
-			if err = validator.Validate(dst.ConnectorRequest); err != nil {
-				dst.ConnectorRequest = nil
+			if err = validator.Validate(dst.ConnectorLiveIngestRequest); err != nil {
+				dst.ConnectorLiveIngestRequest = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ConnectorRequest = nil
+		dst.ConnectorLiveIngestRequest = nil
+	}
+
+	// try to unmarshal data into ConnectorStorageRequest
+	err = newStrictDecoder(data).Decode(&dst.ConnectorStorageRequest)
+	if err == nil {
+		jsonConnectorStorageRequest, _ := json.Marshal(dst.ConnectorStorageRequest)
+		if string(jsonConnectorStorageRequest) == "{}" { // empty struct
+			dst.ConnectorStorageRequest = nil
+		} else {
+			if err = validator.Validate(dst.ConnectorStorageRequest); err != nil {
+				dst.ConnectorStorageRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ConnectorStorageRequest = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.ConnectorHTTPRequest = nil
-		dst.ConnectorRequest = nil
+		dst.ConnectorLiveIngestRequest = nil
+		dst.ConnectorStorageRequest = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(ConnectorPolymorphicRequest)")
 	} else if match == 1 {
@@ -94,8 +120,12 @@ func (src ConnectorPolymorphicRequest) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ConnectorHTTPRequest)
 	}
 
-	if src.ConnectorRequest != nil {
-		return json.Marshal(&src.ConnectorRequest)
+	if src.ConnectorLiveIngestRequest != nil {
+		return json.Marshal(&src.ConnectorLiveIngestRequest)
+	}
+
+	if src.ConnectorStorageRequest != nil {
+		return json.Marshal(&src.ConnectorStorageRequest)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -110,8 +140,12 @@ func (obj *ConnectorPolymorphicRequest) GetActualInstance() (interface{}) {
 		return obj.ConnectorHTTPRequest
 	}
 
-	if obj.ConnectorRequest != nil {
-		return obj.ConnectorRequest
+	if obj.ConnectorLiveIngestRequest != nil {
+		return obj.ConnectorLiveIngestRequest
+	}
+
+	if obj.ConnectorStorageRequest != nil {
+		return obj.ConnectorStorageRequest
 	}
 
 	// all schemas are nil
@@ -124,8 +158,12 @@ func (obj ConnectorPolymorphicRequest) GetActualInstanceValue() (interface{}) {
 		return *obj.ConnectorHTTPRequest
 	}
 
-	if obj.ConnectorRequest != nil {
-		return *obj.ConnectorRequest
+	if obj.ConnectorLiveIngestRequest != nil {
+		return *obj.ConnectorLiveIngestRequest
+	}
+
+	if obj.ConnectorStorageRequest != nil {
+		return *obj.ConnectorStorageRequest
 	}
 
 	// all schemas are nil
