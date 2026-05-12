@@ -24,7 +24,6 @@ var _ MappedNullable = &ConnectorHTTPRequest{}
 type ConnectorHTTPRequest struct {
 	Name string `json:"name"`
 	Active *bool `json:"active,omitempty"`
-	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
 	Type string `json:"type"`
 	Attributes ConnectorHTTPAttributesRequest `json:"attributes"`
 }

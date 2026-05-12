@@ -13,7 +13,6 @@ package edgeapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
 	"fmt"
 )
 
@@ -29,9 +28,13 @@ type ConnectorHTTP struct {
 	CreatedAt time.Time `json:"created_at"`
 	Active *bool `json:"active,omitempty"`
 	ProductVersion string `json:"product_version"`
-	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
 	Type string `json:"type"`
+	IsVersioned bool `json:"is_versioned"`
+	Version NullableInt64 `json:"version"`
+	VersionState NullableString `json:"version_state"`
+	VersionId NullableString `json:"version_id"`
 	Attributes ConnectorHTTPAttributes `json:"attributes"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ConnectorHTTP ConnectorHTTP
@@ -40,7 +43,7 @@ type _ConnectorHTTP ConnectorHTTP
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectorHTTP(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, attributes ConnectorHTTPAttributes) *ConnectorHTTP {
+func NewConnectorHTTP(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString, attributes ConnectorHTTPAttributes) *ConnectorHTTP {
 	this := ConnectorHTTP{}
 	this.Id = id
 	this.Name = name
@@ -49,6 +52,10 @@ func NewConnectorHTTP(id int64, name string, lastEditor string, lastModified tim
 	this.CreatedAt = createdAt
 	this.ProductVersion = productVersion
 	this.Type = type_
+	this.IsVersioned = isVersioned
+	this.Version = version
+	this.VersionState = versionState
+	this.VersionId = versionId
 	this.Attributes = attributes
 	return &this
 }
@@ -261,6 +268,108 @@ func (o *ConnectorHTTP) SetType(v string) {
 	o.Type = v
 }
 
+// GetIsVersioned returns the IsVersioned field value
+func (o *ConnectorHTTP) GetIsVersioned() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsVersioned
+}
+
+// GetIsVersionedOk returns a tuple with the IsVersioned field value
+// and a boolean to check if the value has been set.
+func (o *ConnectorHTTP) GetIsVersionedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsVersioned, true
+}
+
+// SetIsVersioned sets field value
+func (o *ConnectorHTTP) SetIsVersioned(v bool) {
+	o.IsVersioned = v
+}
+
+// GetVersion returns the Version field value
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *ConnectorHTTP) GetVersion() int64 {
+	if o == nil || o.Version.Get() == nil {
+		var ret int64
+		return ret
+	}
+
+	return *o.Version.Get()
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectorHTTP) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Version.Get(), o.Version.IsSet()
+}
+
+// SetVersion sets field value
+func (o *ConnectorHTTP) SetVersion(v int64) {
+	o.Version.Set(&v)
+}
+
+// GetVersionState returns the VersionState field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ConnectorHTTP) GetVersionState() string {
+	if o == nil || o.VersionState.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.VersionState.Get()
+}
+
+// GetVersionStateOk returns a tuple with the VersionState field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectorHTTP) GetVersionStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VersionState.Get(), o.VersionState.IsSet()
+}
+
+// SetVersionState sets field value
+func (o *ConnectorHTTP) SetVersionState(v string) {
+	o.VersionState.Set(&v)
+}
+
+// GetVersionId returns the VersionId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ConnectorHTTP) GetVersionId() string {
+	if o == nil || o.VersionId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.VersionId.Get()
+}
+
+// GetVersionIdOk returns a tuple with the VersionId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectorHTTP) GetVersionIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VersionId.Get(), o.VersionId.IsSet()
+}
+
+// SetVersionId sets field value
+func (o *ConnectorHTTP) SetVersionId(v string) {
+	o.VersionId.Set(&v)
+}
+
 // GetAttributes returns the Attributes field value
 func (o *ConnectorHTTP) GetAttributes() ConnectorHTTPAttributes {
 	if o == nil {
@@ -305,7 +414,16 @@ func (o ConnectorHTTP) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["product_version"] = o.ProductVersion
 	toSerialize["type"] = o.Type
+	toSerialize["is_versioned"] = o.IsVersioned
+	toSerialize["version"] = o.Version.Get()
+	toSerialize["version_state"] = o.VersionState.Get()
+	toSerialize["version_id"] = o.VersionId.Get()
 	toSerialize["attributes"] = o.Attributes
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -321,6 +439,10 @@ func (o *ConnectorHTTP) UnmarshalJSON(data []byte) (err error) {
 		"created_at",
 		"product_version",
 		"type",
+		"is_versioned",
+		"version",
+		"version_state",
+		"version_id",
 		"attributes",
 	}
 
@@ -340,15 +462,32 @@ func (o *ConnectorHTTP) UnmarshalJSON(data []byte) (err error) {
 
 	varConnectorHTTP := _ConnectorHTTP{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConnectorHTTP)
+	err = json.Unmarshal(data, &varConnectorHTTP)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ConnectorHTTP(varConnectorHTTP)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "last_editor")
+		delete(additionalProperties, "last_modified")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "product_version")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "is_versioned")
+		delete(additionalProperties, "version")
+		delete(additionalProperties, "version_state")
+		delete(additionalProperties, "version_id")
+		delete(additionalProperties, "attributes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
