@@ -17,40 +17,40 @@ import (
 	"fmt"
 )
 
-// checks if the PatchedConnectorHTTPRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PatchedConnectorHTTPRequest{}
+// checks if the PatchedConnectorLiveIngestRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchedConnectorLiveIngestRequest{}
 
-// PatchedConnectorHTTPRequest struct for PatchedConnectorHTTPRequest
-type PatchedConnectorHTTPRequest struct {
+// PatchedConnectorLiveIngestRequest struct for PatchedConnectorLiveIngestRequest
+type PatchedConnectorLiveIngestRequest struct {
 	Name *string `json:"name,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	// * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
 	Type string `json:"type"`
-	Attributes *ConnectorHTTPAttributesRequest `json:"attributes,omitempty"`
+	Attributes *ConnectorLiveIngestAttributesRequest `json:"attributes,omitempty"`
 }
 
-type _PatchedConnectorHTTPRequest PatchedConnectorHTTPRequest
+type _PatchedConnectorLiveIngestRequest PatchedConnectorLiveIngestRequest
 
-// NewPatchedConnectorHTTPRequest instantiates a new PatchedConnectorHTTPRequest object
+// NewPatchedConnectorLiveIngestRequest instantiates a new PatchedConnectorLiveIngestRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPatchedConnectorHTTPRequest(type_ string) *PatchedConnectorHTTPRequest {
-	this := PatchedConnectorHTTPRequest{}
+func NewPatchedConnectorLiveIngestRequest(type_ string) *PatchedConnectorLiveIngestRequest {
+	this := PatchedConnectorLiveIngestRequest{}
 	this.Type = type_
 	return &this
 }
 
-// NewPatchedConnectorHTTPRequestWithDefaults instantiates a new PatchedConnectorHTTPRequest object
+// NewPatchedConnectorLiveIngestRequestWithDefaults instantiates a new PatchedConnectorLiveIngestRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPatchedConnectorHTTPRequestWithDefaults() *PatchedConnectorHTTPRequest {
-	this := PatchedConnectorHTTPRequest{}
+func NewPatchedConnectorLiveIngestRequestWithDefaults() *PatchedConnectorLiveIngestRequest {
+	this := PatchedConnectorLiveIngestRequest{}
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PatchedConnectorHTTPRequest) GetName() string {
+func (o *PatchedConnectorLiveIngestRequest) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -60,7 +60,7 @@ func (o *PatchedConnectorHTTPRequest) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedConnectorHTTPRequest) GetNameOk() (*string, bool) {
+func (o *PatchedConnectorLiveIngestRequest) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *PatchedConnectorHTTPRequest) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *PatchedConnectorHTTPRequest) HasName() bool {
+func (o *PatchedConnectorLiveIngestRequest) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -77,12 +77,12 @@ func (o *PatchedConnectorHTTPRequest) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PatchedConnectorHTTPRequest) SetName(v string) {
+func (o *PatchedConnectorLiveIngestRequest) SetName(v string) {
 	o.Name = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *PatchedConnectorHTTPRequest) GetActive() bool {
+func (o *PatchedConnectorLiveIngestRequest) GetActive() bool {
 	if o == nil || IsNil(o.Active) {
 		var ret bool
 		return ret
@@ -92,7 +92,7 @@ func (o *PatchedConnectorHTTPRequest) GetActive() bool {
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedConnectorHTTPRequest) GetActiveOk() (*bool, bool) {
+func (o *PatchedConnectorLiveIngestRequest) GetActiveOk() (*bool, bool) {
 	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *PatchedConnectorHTTPRequest) GetActiveOk() (*bool, bool) {
 }
 
 // HasActive returns a boolean if a field has been set.
-func (o *PatchedConnectorHTTPRequest) HasActive() bool {
+func (o *PatchedConnectorLiveIngestRequest) HasActive() bool {
 	if o != nil && !IsNil(o.Active) {
 		return true
 	}
@@ -109,12 +109,12 @@ func (o *PatchedConnectorHTTPRequest) HasActive() bool {
 }
 
 // SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *PatchedConnectorHTTPRequest) SetActive(v bool) {
+func (o *PatchedConnectorLiveIngestRequest) SetActive(v bool) {
 	o.Active = &v
 }
 
 // GetType returns the Type field value
-func (o *PatchedConnectorHTTPRequest) GetType() string {
+func (o *PatchedConnectorLiveIngestRequest) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -125,7 +125,7 @@ func (o *PatchedConnectorHTTPRequest) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *PatchedConnectorHTTPRequest) GetTypeOk() (*string, bool) {
+func (o *PatchedConnectorLiveIngestRequest) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -133,14 +133,14 @@ func (o *PatchedConnectorHTTPRequest) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *PatchedConnectorHTTPRequest) SetType(v string) {
+func (o *PatchedConnectorLiveIngestRequest) SetType(v string) {
 	o.Type = v
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *PatchedConnectorHTTPRequest) GetAttributes() ConnectorHTTPAttributesRequest {
+func (o *PatchedConnectorLiveIngestRequest) GetAttributes() ConnectorLiveIngestAttributesRequest {
 	if o == nil || IsNil(o.Attributes) {
-		var ret ConnectorHTTPAttributesRequest
+		var ret ConnectorLiveIngestAttributesRequest
 		return ret
 	}
 	return *o.Attributes
@@ -148,7 +148,7 @@ func (o *PatchedConnectorHTTPRequest) GetAttributes() ConnectorHTTPAttributesReq
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedConnectorHTTPRequest) GetAttributesOk() (*ConnectorHTTPAttributesRequest, bool) {
+func (o *PatchedConnectorLiveIngestRequest) GetAttributesOk() (*ConnectorLiveIngestAttributesRequest, bool) {
 	if o == nil || IsNil(o.Attributes) {
 		return nil, false
 	}
@@ -156,7 +156,7 @@ func (o *PatchedConnectorHTTPRequest) GetAttributesOk() (*ConnectorHTTPAttribute
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *PatchedConnectorHTTPRequest) HasAttributes() bool {
+func (o *PatchedConnectorLiveIngestRequest) HasAttributes() bool {
 	if o != nil && !IsNil(o.Attributes) {
 		return true
 	}
@@ -164,12 +164,12 @@ func (o *PatchedConnectorHTTPRequest) HasAttributes() bool {
 	return false
 }
 
-// SetAttributes gets a reference to the given ConnectorHTTPAttributesRequest and assigns it to the Attributes field.
-func (o *PatchedConnectorHTTPRequest) SetAttributes(v ConnectorHTTPAttributesRequest) {
+// SetAttributes gets a reference to the given ConnectorLiveIngestAttributesRequest and assigns it to the Attributes field.
+func (o *PatchedConnectorLiveIngestRequest) SetAttributes(v ConnectorLiveIngestAttributesRequest) {
 	o.Attributes = &v
 }
 
-func (o PatchedConnectorHTTPRequest) MarshalJSON() ([]byte, error) {
+func (o PatchedConnectorLiveIngestRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -177,7 +177,7 @@ func (o PatchedConnectorHTTPRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PatchedConnectorHTTPRequest) ToMap() (map[string]interface{}, error) {
+func (o PatchedConnectorLiveIngestRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -192,7 +192,7 @@ func (o PatchedConnectorHTTPRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *PatchedConnectorHTTPRequest) UnmarshalJSON(data []byte) (err error) {
+func (o *PatchedConnectorLiveIngestRequest) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -214,53 +214,53 @@ func (o *PatchedConnectorHTTPRequest) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varPatchedConnectorHTTPRequest := _PatchedConnectorHTTPRequest{}
+	varPatchedConnectorLiveIngestRequest := _PatchedConnectorLiveIngestRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPatchedConnectorHTTPRequest)
+	err = decoder.Decode(&varPatchedConnectorLiveIngestRequest)
 
 	if err != nil {
 		return err
 	}
 
-	*o = PatchedConnectorHTTPRequest(varPatchedConnectorHTTPRequest)
+	*o = PatchedConnectorLiveIngestRequest(varPatchedConnectorLiveIngestRequest)
 
 	return err
 }
 
-type NullablePatchedConnectorHTTPRequest struct {
-	value *PatchedConnectorHTTPRequest
+type NullablePatchedConnectorLiveIngestRequest struct {
+	value *PatchedConnectorLiveIngestRequest
 	isSet bool
 }
 
-func (v NullablePatchedConnectorHTTPRequest) Get() *PatchedConnectorHTTPRequest {
+func (v NullablePatchedConnectorLiveIngestRequest) Get() *PatchedConnectorLiveIngestRequest {
 	return v.value
 }
 
-func (v *NullablePatchedConnectorHTTPRequest) Set(val *PatchedConnectorHTTPRequest) {
+func (v *NullablePatchedConnectorLiveIngestRequest) Set(val *PatchedConnectorLiveIngestRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePatchedConnectorHTTPRequest) IsSet() bool {
+func (v NullablePatchedConnectorLiveIngestRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePatchedConnectorHTTPRequest) Unset() {
+func (v *NullablePatchedConnectorLiveIngestRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePatchedConnectorHTTPRequest(val *PatchedConnectorHTTPRequest) *NullablePatchedConnectorHTTPRequest {
-	return &NullablePatchedConnectorHTTPRequest{value: val, isSet: true}
+func NewNullablePatchedConnectorLiveIngestRequest(val *PatchedConnectorLiveIngestRequest) *NullablePatchedConnectorLiveIngestRequest {
+	return &NullablePatchedConnectorLiveIngestRequest{value: val, isSet: true}
 }
 
-func (v NullablePatchedConnectorHTTPRequest) MarshalJSON() ([]byte, error) {
+func (v NullablePatchedConnectorLiveIngestRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePatchedConnectorHTTPRequest) UnmarshalJSON(src []byte) error {
+func (v *NullablePatchedConnectorLiveIngestRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

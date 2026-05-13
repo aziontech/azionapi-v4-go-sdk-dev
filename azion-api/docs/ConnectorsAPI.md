@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	connectorRequest := openapiclient.ConnectorRequest{ConnectorConnectorHTTPRequest: openapiclient.NewConnectorConnectorHTTPRequest("Type_example", "Name_example", *openapiclient.NewConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // ConnectorRequest |  (optional)
+	connectorRequest := openapiclient.ConnectorRequest{ConnectorHTTPRequest: openapiclient.NewConnectorHTTPRequest("Name_example", "Type_example", *openapiclient.NewConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // ConnectorRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -260,7 +260,7 @@ import (
 
 func main() {
 	connectorId := int64(789) // int64 | A unique integer value identifying the connector.
-	patchedConnectorRequest := openapiclient.PatchedConnectorRequest{ConnectorConnectorHTTPRequest: openapiclient.NewConnectorConnectorHTTPRequest("Type_example", "Name_example", *openapiclient.NewConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // PatchedConnectorRequest |  (optional)
+	patchedConnectorRequest := openapiclient.PatchedConnectorRequest{PatchedConnectorHTTPRequest: openapiclient.NewPatchedConnectorHTTPRequest("Type_example")} // PatchedConnectorRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -404,7 +404,7 @@ import (
 
 func main() {
 	connectorId := int64(789) // int64 | A unique integer value identifying the connector.
-	connectorRequest := openapiclient.ConnectorRequest{ConnectorConnectorHTTPRequest: openapiclient.NewConnectorConnectorHTTPRequest("Type_example", "Name_example", *openapiclient.NewConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // ConnectorRequest |  (optional)
+	connectorRequest := openapiclient.ConnectorRequest{ConnectorHTTPRequest: openapiclient.NewConnectorHTTPRequest("Name_example", "Type_example", *openapiclient.NewConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // ConnectorRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

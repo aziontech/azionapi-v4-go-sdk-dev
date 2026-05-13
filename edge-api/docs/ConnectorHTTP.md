@@ -11,17 +11,18 @@ Name | Type | Description | Notes
 **CreatedAt** | **time.Time** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | **string** |  | 
-**Type** | **string** | Type of the connector  * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | 
+**Type** | **string** |  | 
 **IsVersioned** | **bool** |  | 
 **Version** | **NullableInt64** |  | 
 **VersionState** | **NullableString** |  | 
+**VersionId** | **NullableString** |  | 
 **Attributes** | [**ConnectorHTTPAttributes**](ConnectorHTTPAttributes.md) |  | 
 
 ## Methods
 
 ### NewConnectorHTTP
 
-`func NewConnectorHTTP(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, isVersioned bool, version NullableInt64, versionState NullableString, attributes ConnectorHTTPAttributes, ) *ConnectorHTTP`
+`func NewConnectorHTTP(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString, attributes ConnectorHTTPAttributes, ) *ConnectorHTTP`
 
 NewConnectorHTTP instantiates a new ConnectorHTTP object
 This constructor will assign default values to properties that have it defined,
@@ -281,6 +282,36 @@ SetVersionState sets VersionState field to given value.
 `func (o *ConnectorHTTP) UnsetVersionState()`
 
 UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
+### GetVersionId
+
+`func (o *ConnectorHTTP) GetVersionId() string`
+
+GetVersionId returns the VersionId field if non-nil, zero value otherwise.
+
+### GetVersionIdOk
+
+`func (o *ConnectorHTTP) GetVersionIdOk() (*string, bool)`
+
+GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionId
+
+`func (o *ConnectorHTTP) SetVersionId(v string)`
+
+SetVersionId sets VersionId field to given value.
+
+
+### SetVersionIdNil
+
+`func (o *ConnectorHTTP) SetVersionIdNil(b bool)`
+
+ SetVersionIdNil sets the value for VersionId to be an explicit nil
+
+### UnsetVersionId
+`func (o *ConnectorHTTP) UnsetVersionId()`
+
+UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
 ### GetAttributes
 
 `func (o *ConnectorHTTP) GetAttributes() ConnectorHTTPAttributes`

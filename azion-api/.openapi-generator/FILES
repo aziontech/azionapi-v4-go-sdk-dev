@@ -197,12 +197,6 @@ docs/CloneApplicationRequest.md
 docs/CloneFirewallRequest.md
 docs/CloneWAFRequest.md
 docs/Connector.md
-docs/ConnectorConnectorHTTP.md
-docs/ConnectorConnectorHTTPRequest.md
-docs/ConnectorConnectorLiveIngest.md
-docs/ConnectorConnectorLiveIngestRequest.md
-docs/ConnectorConnectorStorage.md
-docs/ConnectorConnectorStorageRequest.md
 docs/ConnectorHTTP.md
 docs/ConnectorHTTPAttributes.md
 docs/ConnectorHTTPAttributesRequest.md
@@ -213,7 +207,6 @@ docs/ConnectorLiveIngestAttributesRequest.md
 docs/ConnectorLiveIngestRequest.md
 docs/ConnectorRequest.md
 docs/ConnectorResponse.md
-docs/ConnectorShared.md
 docs/ConnectorStorage.md
 docs/ConnectorStorageAttributes.md
 docs/ConnectorStorageAttributesRequest.md
@@ -535,7 +528,10 @@ docs/PatchedCacheSettingRequest.md
 docs/PatchedCertificate.md
 docs/PatchedCertificateRevocationList.md
 docs/PatchedChatThreadRequest.md
+docs/PatchedConnectorHTTPRequest.md
+docs/PatchedConnectorLiveIngestRequest.md
 docs/PatchedConnectorRequest.md
+docs/PatchedConnectorStorageRequest.md
 docs/PatchedContinuousDeploymentRequest.md
 docs/PatchedCustomPageRequest.md
 docs/PatchedDNSSECRequest.md
@@ -916,12 +912,6 @@ model_clone_application_request.go
 model_clone_firewall_request.go
 model_clone_waf_request.go
 model_connector.go
-model_connector_connector_http.go
-model_connector_connector_http_request.go
-model_connector_connector_live_ingest.go
-model_connector_connector_live_ingest_request.go
-model_connector_connector_storage.go
-model_connector_connector_storage_request.go
 model_connector_http.go
 model_connector_http_attributes.go
 model_connector_http_attributes_request.go
@@ -932,7 +922,6 @@ model_connector_live_ingest_attributes_request.go
 model_connector_live_ingest_request.go
 model_connector_request.go
 model_connector_response.go
-model_connector_shared.go
 model_connector_storage.go
 model_connector_storage_attributes.go
 model_connector_storage_attributes_request.go
@@ -1215,7 +1204,10 @@ model_patched_cache_setting_request.go
 model_patched_certificate.go
 model_patched_certificate_revocation_list.go
 model_patched_chat_thread_request.go
+model_patched_connector_http_request.go
+model_patched_connector_live_ingest_request.go
 model_patched_connector_request.go
+model_patched_connector_storage_request.go
 model_patched_continuous_deployment_request.go
 model_patched_custom_page_request.go
 model_patched_dashboard_request.go
