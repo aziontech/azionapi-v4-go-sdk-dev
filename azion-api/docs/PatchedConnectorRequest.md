@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Type** | **string** | Discriminator field for ConnectorRequest | 
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Attributes** | [**ConnectorStorageAttributesRequest**](ConnectorStorageAttributesRequest.md) |  | 
+**Attributes** | [**ConnectorLiveIngestAttributesRequest**](ConnectorLiveIngestAttributesRequest.md) |  | 
 
 ## Methods
 
 ### NewPatchedConnectorRequest
 
-`func NewPatchedConnectorRequest(type_ string, name string, attributes ConnectorStorageAttributesRequest, ) *PatchedConnectorRequest`
+`func NewPatchedConnectorRequest(type_ string, name string, attributes ConnectorLiveIngestAttributesRequest, ) *PatchedConnectorRequest`
 
 NewPatchedConnectorRequest instantiates a new PatchedConnectorRequest object
 This constructor will assign default values to properties that have it defined,
@@ -95,20 +95,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetAttributes
 
-`func (o *PatchedConnectorRequest) GetAttributes() ConnectorStorageAttributesRequest`
+`func (o *PatchedConnectorRequest) GetAttributes() ConnectorLiveIngestAttributesRequest`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *PatchedConnectorRequest) GetAttributesOk() (*ConnectorStorageAttributesRequest, bool)`
+`func (o *PatchedConnectorRequest) GetAttributesOk() (*ConnectorLiveIngestAttributesRequest, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *PatchedConnectorRequest) SetAttributes(v ConnectorStorageAttributesRequest)`
+`func (o *PatchedConnectorRequest) SetAttributes(v ConnectorLiveIngestAttributesRequest)`
 
 SetAttributes sets Attributes field to given value.
 

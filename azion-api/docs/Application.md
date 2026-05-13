@@ -15,12 +15,13 @@ Name | Type | Description | Notes
 **IsVersioned** | **bool** |  | 
 **Version** | **int64** |  | 
 **VersionState** | **string** |  | 
+**VersionId** | **string** |  | 
 
 ## Methods
 
 ### NewApplication
 
-`func NewApplication(id string, name string, lastEditor string, lastModified time.Time, productVersion string, isVersioned bool, version int64, versionState string, ) *Application`
+`func NewApplication(id string, name string, lastEditor string, lastModified time.Time, productVersion string, isVersioned bool, version int64, versionState string, versionId string, ) *Application`
 
 NewApplication instantiates a new Application object
 This constructor will assign default values to properties that have it defined,
@@ -268,6 +269,26 @@ and a boolean to check if the value has been set.
 `func (o *Application) SetVersionState(v string)`
 
 SetVersionState sets VersionState field to given value.
+
+
+### GetVersionId
+
+`func (o *Application) GetVersionId() string`
+
+GetVersionId returns the VersionId field if non-nil, zero value otherwise.
+
+### GetVersionIdOk
+
+`func (o *Application) GetVersionIdOk() (*string, bool)`
+
+GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionId
+
+`func (o *Application) SetVersionId(v string)`
+
+SetVersionId sets VersionId field to given value.
 
 
 

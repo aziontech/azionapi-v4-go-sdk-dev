@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SourceVersion** | Pointer to **NullableInt64** | Version number to clone from. If omitted, clones latest. | [optional] 
+**SourceVersion** | Pointer to **NullableString** | ULID of the version to clone from. If omitted, clones latest ready. | [optional] 
 **Comment** | Pointer to **string** | Description for the new version | [optional] 
 **Override** | Pointer to **map[string]interface{}** | Field overrides to apply on the cloned version. | [optional] 
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetSourceVersion
 
-`func (o *VersionCreateRequest) GetSourceVersion() int64`
+`func (o *VersionCreateRequest) GetSourceVersion() string`
 
 GetSourceVersion returns the SourceVersion field if non-nil, zero value otherwise.
 
 ### GetSourceVersionOk
 
-`func (o *VersionCreateRequest) GetSourceVersionOk() (*int64, bool)`
+`func (o *VersionCreateRequest) GetSourceVersionOk() (*string, bool)`
 
 GetSourceVersionOk returns a tuple with the SourceVersion field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSourceVersion
 
-`func (o *VersionCreateRequest) SetSourceVersion(v int64)`
+`func (o *VersionCreateRequest) SetSourceVersion(v string)`
 
 SetSourceVersion sets SourceVersion field to given value.
 

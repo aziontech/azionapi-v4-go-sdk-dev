@@ -18,10 +18,10 @@ import (
 // checks if the PatchedVersionCreateRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PatchedVersionCreateRequest{}
 
-// PatchedVersionCreateRequest Serializer for creating a new version (clone).  The API receives the source version number (optional), a comment/description, and optional field overrides to apply on the cloned version before saving.
+// PatchedVersionCreateRequest Serializer for creating a new version (clone).  The API receives the source version ULID (optional), a comment/description, and optional field overrides to apply on the cloned version before saving.
 type PatchedVersionCreateRequest struct {
-	// Version number to clone from. If omitted, clones latest.
-	SourceVersion NullableInt64 `json:"source_version,omitempty"`
+	// ULID of the version to clone from. If omitted, clones latest ready.
+	SourceVersion NullableString `json:"source_version,omitempty"`
 	// Description for the new version
 	Comment *string `json:"comment,omitempty"`
 	// Field overrides to apply on the cloned version.
@@ -46,9 +46,9 @@ func NewPatchedVersionCreateRequestWithDefaults() *PatchedVersionCreateRequest {
 }
 
 // GetSourceVersion returns the SourceVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchedVersionCreateRequest) GetSourceVersion() int64 {
+func (o *PatchedVersionCreateRequest) GetSourceVersion() string {
 	if o == nil || IsNil(o.SourceVersion.Get()) {
-		var ret int64
+		var ret string
 		return ret
 	}
 	return *o.SourceVersion.Get()
@@ -57,7 +57,7 @@ func (o *PatchedVersionCreateRequest) GetSourceVersion() int64 {
 // GetSourceVersionOk returns a tuple with the SourceVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchedVersionCreateRequest) GetSourceVersionOk() (*int64, bool) {
+func (o *PatchedVersionCreateRequest) GetSourceVersionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -73,8 +73,8 @@ func (o *PatchedVersionCreateRequest) HasSourceVersion() bool {
 	return false
 }
 
-// SetSourceVersion gets a reference to the given NullableInt64 and assigns it to the SourceVersion field.
-func (o *PatchedVersionCreateRequest) SetSourceVersion(v int64) {
+// SetSourceVersion gets a reference to the given NullableString and assigns it to the SourceVersion field.
+func (o *PatchedVersionCreateRequest) SetSourceVersion(v string) {
 	o.SourceVersion.Set(&v)
 }
 // SetSourceVersionNil sets the value for SourceVersion to be an explicit nil
