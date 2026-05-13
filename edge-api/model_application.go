@@ -22,7 +22,7 @@ var _ MappedNullable = &Application{}
 
 // Application struct for Application
 type Application struct {
-	Id int64 `json:"id"`
+	Id string `json:"id"`
 	Name string `json:"name"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
@@ -30,6 +30,9 @@ type Application struct {
 	Active *bool `json:"active,omitempty"`
 	Debug *bool `json:"debug,omitempty"`
 	ProductVersion string `json:"product_version"`
+	IsVersioned bool `json:"is_versioned"`
+	Version int64 `json:"version"`
+	VersionState string `json:"version_state"`
 }
 
 type _Application Application
@@ -38,13 +41,16 @@ type _Application Application
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplication(id int64, name string, lastEditor string, lastModified time.Time, productVersion string) *Application {
+func NewApplication(id string, name string, lastEditor string, lastModified time.Time, productVersion string, isVersioned bool, version int64, versionState string) *Application {
 	this := Application{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
 	this.ProductVersion = productVersion
+	this.IsVersioned = isVersioned
+	this.Version = version
+	this.VersionState = versionState
 	return &this
 }
 
@@ -57,9 +63,9 @@ func NewApplicationWithDefaults() *Application {
 }
 
 // GetId returns the Id field value
-func (o *Application) GetId() int64 {
+func (o *Application) GetId() string {
 	if o == nil {
-		var ret int64
+		var ret string
 		return ret
 	}
 
@@ -68,7 +74,7 @@ func (o *Application) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Application) GetIdOk() (*int64, bool) {
+func (o *Application) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -76,7 +82,7 @@ func (o *Application) GetIdOk() (*int64, bool) {
 }
 
 // SetId sets field value
-func (o *Application) SetId(v int64) {
+func (o *Application) SetId(v string) {
 	o.Id = v
 }
 
@@ -272,6 +278,78 @@ func (o *Application) SetProductVersion(v string) {
 	o.ProductVersion = v
 }
 
+// GetIsVersioned returns the IsVersioned field value
+func (o *Application) GetIsVersioned() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsVersioned
+}
+
+// GetIsVersionedOk returns a tuple with the IsVersioned field value
+// and a boolean to check if the value has been set.
+func (o *Application) GetIsVersionedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsVersioned, true
+}
+
+// SetIsVersioned sets field value
+func (o *Application) SetIsVersioned(v bool) {
+	o.IsVersioned = v
+}
+
+// GetVersion returns the Version field value
+func (o *Application) GetVersion() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *Application) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
+// SetVersion sets field value
+func (o *Application) SetVersion(v int64) {
+	o.Version = v
+}
+
+// GetVersionState returns the VersionState field value
+func (o *Application) GetVersionState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.VersionState
+}
+
+// GetVersionStateOk returns a tuple with the VersionState field value
+// and a boolean to check if the value has been set.
+func (o *Application) GetVersionStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VersionState, true
+}
+
+// SetVersionState sets field value
+func (o *Application) SetVersionState(v string) {
+	o.VersionState = v
+}
+
 func (o Application) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -296,6 +374,9 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 		toSerialize["debug"] = o.Debug
 	}
 	toSerialize["product_version"] = o.ProductVersion
+	toSerialize["is_versioned"] = o.IsVersioned
+	toSerialize["version"] = o.Version
+	toSerialize["version_state"] = o.VersionState
 	return toSerialize, nil
 }
 
@@ -309,6 +390,9 @@ func (o *Application) UnmarshalJSON(data []byte) (err error) {
 		"last_editor",
 		"last_modified",
 		"product_version",
+		"is_versioned",
+		"version",
+		"version_state",
 	}
 
 	allProperties := make(map[string]interface{})

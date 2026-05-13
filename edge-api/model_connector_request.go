@@ -12,7 +12,6 @@ package edgeapi
 
 import (
 	"encoding/json"
-	"bytes"
 	"fmt"
 )
 
@@ -26,6 +25,7 @@ type ConnectorRequest struct {
 	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
 	Type string `json:"type"`
 	Attributes ConnectorStorageAttributesRequest `json:"attributes"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ConnectorRequest ConnectorRequest
@@ -170,6 +170,11 @@ func (o ConnectorRequest) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -199,15 +204,23 @@ func (o *ConnectorRequest) UnmarshalJSON(data []byte) (err error) {
 
 	varConnectorRequest := _ConnectorRequest{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConnectorRequest)
+	err = json.Unmarshal(data, &varConnectorRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ConnectorRequest(varConnectorRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "active")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "attributes")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

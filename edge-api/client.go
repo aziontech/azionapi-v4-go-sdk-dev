@@ -49,6 +49,8 @@ type APIClient struct {
 
 	// API Services
 
+	ApplicationVersionsAPI *ApplicationVersionsAPIService
+
 	ApplicationsAPI *ApplicationsAPIService
 
 	ApplicationsCacheSettingsAPI *ApplicationsCacheSettingsAPIService
@@ -60,6 +62,8 @@ type APIClient struct {
 	ApplicationsRequestRulesAPI *ApplicationsRequestRulesAPIService
 
 	ApplicationsResponseRulesAPI *ApplicationsResponseRulesAPIService
+
+	ConnectorVersionsAPI *ConnectorVersionsAPIService
 
 	ConnectorsAPI *ConnectorsAPIService
 
@@ -83,6 +87,8 @@ type APIClient struct {
 
 	WorkloadDeploymentsAPI *WorkloadDeploymentsAPIService
 
+	WorkloadVersionsAPI *WorkloadVersionsAPIService
+
 	WorkloadsAPI *WorkloadsAPIService
 }
 
@@ -102,12 +108,14 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.ApplicationVersionsAPI = (*ApplicationVersionsAPIService)(&c.common)
 	c.ApplicationsAPI = (*ApplicationsAPIService)(&c.common)
 	c.ApplicationsCacheSettingsAPI = (*ApplicationsCacheSettingsAPIService)(&c.common)
 	c.ApplicationsDeviceGroupsAPI = (*ApplicationsDeviceGroupsAPIService)(&c.common)
 	c.ApplicationsFunctionAPI = (*ApplicationsFunctionAPIService)(&c.common)
 	c.ApplicationsRequestRulesAPI = (*ApplicationsRequestRulesAPIService)(&c.common)
 	c.ApplicationsResponseRulesAPI = (*ApplicationsResponseRulesAPIService)(&c.common)
+	c.ConnectorVersionsAPI = (*ConnectorVersionsAPIService)(&c.common)
 	c.ConnectorsAPI = (*ConnectorsAPIService)(&c.common)
 	c.CustomPagesAPI = (*CustomPagesAPIService)(&c.common)
 	c.FirewallsAPI = (*FirewallsAPIService)(&c.common)
@@ -119,6 +127,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.WAFsAPI = (*WAFsAPIService)(&c.common)
 	c.WAFsExceptionsAPI = (*WAFsExceptionsAPIService)(&c.common)
 	c.WorkloadDeploymentsAPI = (*WorkloadDeploymentsAPIService)(&c.common)
+	c.WorkloadVersionsAPI = (*WorkloadVersionsAPIService)(&c.common)
 	c.WorkloadsAPI = (*WorkloadsAPIService)(&c.common)
 
 	return c

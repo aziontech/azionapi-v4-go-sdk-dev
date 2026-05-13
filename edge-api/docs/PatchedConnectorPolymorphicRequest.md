@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
+**Type** | **string** | Type of the connector  * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | 
+**Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | Pointer to **string** | Type of the connector  * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | [optional] 
-**Attributes** | Pointer to [**ConnectorStorageAttributesRequest**](ConnectorStorageAttributesRequest.md) |  | [optional] 
+**Attributes** | [**ConnectorStorageAttributesRequest**](ConnectorStorageAttributesRequest.md) |  | 
 
 ## Methods
 
 ### NewPatchedConnectorPolymorphicRequest
 
-`func NewPatchedConnectorPolymorphicRequest() *PatchedConnectorPolymorphicRequest`
+`func NewPatchedConnectorPolymorphicRequest(type_ string, name string, attributes ConnectorStorageAttributesRequest, ) *PatchedConnectorPolymorphicRequest`
 
 NewPatchedConnectorPolymorphicRequest instantiates a new PatchedConnectorPolymorphicRequest object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +27,26 @@ will change when the set of required properties is changed
 NewPatchedConnectorPolymorphicRequestWithDefaults instantiates a new PatchedConnectorPolymorphicRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetType
+
+`func (o *PatchedConnectorPolymorphicRequest) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *PatchedConnectorPolymorphicRequest) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *PatchedConnectorPolymorphicRequest) SetType(v string)`
+
+SetType sets Type field to given value.
+
 
 ### GetName
 
@@ -47,11 +67,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *PatchedConnectorPolymorphicRequest) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -78,31 +93,6 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetType
-
-`func (o *PatchedConnectorPolymorphicRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *PatchedConnectorPolymorphicRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *PatchedConnectorPolymorphicRequest) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *PatchedConnectorPolymorphicRequest) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
 ### GetAttributes
 
 `func (o *PatchedConnectorPolymorphicRequest) GetAttributes() ConnectorStorageAttributesRequest`
@@ -122,11 +112,6 @@ and a boolean to check if the value has been set.
 
 SetAttributes sets Attributes field to given value.
 
-### HasAttributes
-
-`func (o *PatchedConnectorPolymorphicRequest) HasAttributes() bool`
-
-HasAttributes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

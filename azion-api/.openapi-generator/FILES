@@ -11,6 +11,7 @@ api_ai_studio_documents.go
 api_ai_studio_knowledge_bases.go
 api_ai_studio_messages.go
 api_ai_studio_tools.go
+api_application_versions.go
 api_applications.go
 api_applications_cache_settings.go
 api_applications_device_groups.go
@@ -23,6 +24,7 @@ api_auth_refresh_access_token.go
 api_auth_revoke.go
 api_billing_invoices.go
 api_billing_payments.go
+api_connector_versions.go
 api_connectors.go
 api_custom_pages.go
 api_data_stream_data_sources.go
@@ -80,6 +82,7 @@ api_vcs_providers.go
 api_wafs.go
 api_wafs_exceptions.go
 api_workload_deployments.go
+api_workload_versions.go
 api_workloads.go
 client.go
 configuration.go
@@ -124,6 +127,7 @@ docs/ApplicationRequest.md
 docs/ApplicationRequestPhaseRuleEngineOrder.md
 docs/ApplicationResponse.md
 docs/ApplicationResponsePhaseRuleEngineOrderRequest.md
+docs/ApplicationVersionsAPI.md
 docs/ApplicationsAPI.md
 docs/ApplicationsCacheSettingsAPI.md
 docs/ApplicationsDeviceGroupsAPI.md
@@ -194,6 +198,10 @@ docs/CloneFirewallRequest.md
 docs/CloneWAFRequest.md
 docs/Connector.md
 docs/ConnectorBase.md
+docs/ConnectorConnector.md
+docs/ConnectorConnectorHTTP.md
+docs/ConnectorConnectorHTTPRequest.md
+docs/ConnectorConnectorRequest.md
 docs/ConnectorHTTP.md
 docs/ConnectorHTTPAttributes.md
 docs/ConnectorHTTPAttributesRequest.md
@@ -201,8 +209,10 @@ docs/ConnectorHTTPRequest.md
 docs/ConnectorRequest.md
 docs/ConnectorRequestBase.md
 docs/ConnectorResponse.md
+docs/ConnectorShared.md
 docs/ConnectorStorageAttributes.md
 docs/ConnectorStorageAttributesRequest.md
+docs/ConnectorVersionsAPI.md
 docs/ConnectorsAPI.md
 docs/Content.md
 docs/ContentRequest.md
@@ -519,9 +529,7 @@ docs/PatchedCacheSettingRequest.md
 docs/PatchedCertificate.md
 docs/PatchedCertificateRevocationList.md
 docs/PatchedChatThreadRequest.md
-docs/PatchedConnectorHTTPRequest.md
 docs/PatchedConnectorRequest.md
-docs/PatchedConnectorRequestBase.md
 docs/PatchedContinuousDeploymentRequest.md
 docs/PatchedCustomPageRequest.md
 docs/PatchedDNSSECRequest.md
@@ -552,6 +560,7 @@ docs/PatchedTemplateRequest.md
 docs/PatchedToolRequest.md
 docs/PatchedUpdateZoneRequest.md
 docs/PatchedUserRequest.md
+docs/PatchedVersionCreateRequest.md
 docs/PatchedWAFRequest.md
 docs/PatchedWAFRuleRequest.md
 docs/PatchedWorkloadDeploymentRequest.md
@@ -770,6 +779,10 @@ docs/VCSContinuousDeploymentsAPI.md
 docs/VCSExecutionScriptsAPI.md
 docs/VCSIntegrationsAPI.md
 docs/VCSProvidersAPI.md
+docs/VersionArchiveRequest.md
+docs/VersionBuildRequest.md
+docs/VersionCancelRequest.md
+docs/VersionCreateRequest.md
 docs/WAF.md
 docs/WAFEngineSettingsAttributesField.md
 docs/WAFEngineSettingsAttributesFieldRequest.md
@@ -795,8 +808,10 @@ docs/WorkloadDeployment.md
 docs/WorkloadDeploymentRequest.md
 docs/WorkloadDeploymentResponse.md
 docs/WorkloadDeploymentsAPI.md
+docs/WorkloadEnvironmentBindingRequest.md
 docs/WorkloadRequest.md
 docs/WorkloadResponse.md
+docs/WorkloadVersionsAPI.md
 docs/WorkloadsAPI.md
 docs/Workspace.md
 docs/WorkspaceRequest.md
@@ -896,6 +911,10 @@ model_clone_firewall_request.go
 model_clone_waf_request.go
 model_connector.go
 model_connector_base.go
+model_connector_connector.go
+model_connector_connector_http.go
+model_connector_connector_http_request.go
+model_connector_connector_request.go
 model_connector_http.go
 model_connector_http_attributes.go
 model_connector_http_attributes_request.go
@@ -903,6 +922,7 @@ model_connector_http_request.go
 model_connector_request.go
 model_connector_request_base.go
 model_connector_response.go
+model_connector_shared.go
 model_connector_storage_attributes.go
 model_connector_storage_attributes_request.go
 model_content.go
@@ -1183,9 +1203,7 @@ model_patched_cache_setting_request.go
 model_patched_certificate.go
 model_patched_certificate_revocation_list.go
 model_patched_chat_thread_request.go
-model_patched_connector_http_request.go
 model_patched_connector_request.go
-model_patched_connector_request_base.go
 model_patched_continuous_deployment_request.go
 model_patched_custom_page_request.go
 model_patched_dashboard_request.go
@@ -1216,6 +1234,7 @@ model_patched_template_request.go
 model_patched_tool_request.go
 model_patched_update_zone_request.go
 model_patched_user_request.go
+model_patched_version_create_request.go
 model_patched_waf_request.go
 model_patched_waf_rule_request.go
 model_patched_workload_deployment_request.go
@@ -1418,6 +1437,10 @@ model_user_info.go
 model_user_info_request.go
 model_user_login_method_response.go
 model_user_request.go
+model_version_archive_request.go
+model_version_build_request.go
+model_version_cancel_request.go
+model_version_create_request.go
 model_waf.go
 model_waf_engine_settings_attributes_field.go
 model_waf_engine_settings_attributes_field_request.go
@@ -1440,6 +1463,7 @@ model_workload.go
 model_workload_deployment.go
 model_workload_deployment_request.go
 model_workload_deployment_response.go
+model_workload_environment_binding_request.go
 model_workload_request.go
 model_workload_response.go
 model_workspace.go
@@ -1448,4 +1472,7 @@ model_zone.go
 model_zone_request.go
 model_zone_response.go
 response.go
+test/api_application_versions_test.go
+test/api_connector_versions_test.go
+test/api_workload_versions_test.go
 utils.go

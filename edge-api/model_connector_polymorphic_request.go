@@ -18,21 +18,21 @@ import (
 
 // ConnectorPolymorphicRequest - struct for ConnectorPolymorphicRequest
 type ConnectorPolymorphicRequest struct {
-	ConnectorHTTPRequest *ConnectorHTTPRequest
-	ConnectorRequest *ConnectorRequest
+	ConnectorPolymorphicConnectorHTTPRequest *ConnectorPolymorphicConnectorHTTPRequest
+	ConnectorPolymorphicConnectorRequest *ConnectorPolymorphicConnectorRequest
 }
 
-// ConnectorHTTPRequestAsConnectorPolymorphicRequest is a convenience function that returns ConnectorHTTPRequest wrapped in ConnectorPolymorphicRequest
-func ConnectorHTTPRequestAsConnectorPolymorphicRequest(v *ConnectorHTTPRequest) ConnectorPolymorphicRequest {
+// ConnectorPolymorphicConnectorHTTPRequestAsConnectorPolymorphicRequest is a convenience function that returns ConnectorPolymorphicConnectorHTTPRequest wrapped in ConnectorPolymorphicRequest
+func ConnectorPolymorphicConnectorHTTPRequestAsConnectorPolymorphicRequest(v *ConnectorPolymorphicConnectorHTTPRequest) ConnectorPolymorphicRequest {
 	return ConnectorPolymorphicRequest{
-		ConnectorHTTPRequest: v,
+		ConnectorPolymorphicConnectorHTTPRequest: v,
 	}
 }
 
-// ConnectorRequestAsConnectorPolymorphicRequest is a convenience function that returns ConnectorRequest wrapped in ConnectorPolymorphicRequest
-func ConnectorRequestAsConnectorPolymorphicRequest(v *ConnectorRequest) ConnectorPolymorphicRequest {
+// ConnectorPolymorphicConnectorRequestAsConnectorPolymorphicRequest is a convenience function that returns ConnectorPolymorphicConnectorRequest wrapped in ConnectorPolymorphicRequest
+func ConnectorPolymorphicConnectorRequestAsConnectorPolymorphicRequest(v *ConnectorPolymorphicConnectorRequest) ConnectorPolymorphicRequest {
 	return ConnectorPolymorphicRequest{
-		ConnectorRequest: v,
+		ConnectorPolymorphicConnectorRequest: v,
 	}
 }
 
@@ -41,44 +41,44 @@ func ConnectorRequestAsConnectorPolymorphicRequest(v *ConnectorRequest) Connecto
 func (dst *ConnectorPolymorphicRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into ConnectorHTTPRequest
-	err = newStrictDecoder(data).Decode(&dst.ConnectorHTTPRequest)
+	// try to unmarshal data into ConnectorPolymorphicConnectorHTTPRequest
+	err = newStrictDecoder(data).Decode(&dst.ConnectorPolymorphicConnectorHTTPRequest)
 	if err == nil {
-		jsonConnectorHTTPRequest, _ := json.Marshal(dst.ConnectorHTTPRequest)
-		if string(jsonConnectorHTTPRequest) == "{}" { // empty struct
-			dst.ConnectorHTTPRequest = nil
+		jsonConnectorPolymorphicConnectorHTTPRequest, _ := json.Marshal(dst.ConnectorPolymorphicConnectorHTTPRequest)
+		if string(jsonConnectorPolymorphicConnectorHTTPRequest) == "{}" { // empty struct
+			dst.ConnectorPolymorphicConnectorHTTPRequest = nil
 		} else {
-			if err = validator.Validate(dst.ConnectorHTTPRequest); err != nil {
-				dst.ConnectorHTTPRequest = nil
+			if err = validator.Validate(dst.ConnectorPolymorphicConnectorHTTPRequest); err != nil {
+				dst.ConnectorPolymorphicConnectorHTTPRequest = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ConnectorHTTPRequest = nil
+		dst.ConnectorPolymorphicConnectorHTTPRequest = nil
 	}
 
-	// try to unmarshal data into ConnectorRequest
-	err = newStrictDecoder(data).Decode(&dst.ConnectorRequest)
+	// try to unmarshal data into ConnectorPolymorphicConnectorRequest
+	err = newStrictDecoder(data).Decode(&dst.ConnectorPolymorphicConnectorRequest)
 	if err == nil {
-		jsonConnectorRequest, _ := json.Marshal(dst.ConnectorRequest)
-		if string(jsonConnectorRequest) == "{}" { // empty struct
-			dst.ConnectorRequest = nil
+		jsonConnectorPolymorphicConnectorRequest, _ := json.Marshal(dst.ConnectorPolymorphicConnectorRequest)
+		if string(jsonConnectorPolymorphicConnectorRequest) == "{}" { // empty struct
+			dst.ConnectorPolymorphicConnectorRequest = nil
 		} else {
-			if err = validator.Validate(dst.ConnectorRequest); err != nil {
-				dst.ConnectorRequest = nil
+			if err = validator.Validate(dst.ConnectorPolymorphicConnectorRequest); err != nil {
+				dst.ConnectorPolymorphicConnectorRequest = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ConnectorRequest = nil
+		dst.ConnectorPolymorphicConnectorRequest = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
-		dst.ConnectorHTTPRequest = nil
-		dst.ConnectorRequest = nil
+		dst.ConnectorPolymorphicConnectorHTTPRequest = nil
+		dst.ConnectorPolymorphicConnectorRequest = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(ConnectorPolymorphicRequest)")
 	} else if match == 1 {
@@ -90,12 +90,12 @@ func (dst *ConnectorPolymorphicRequest) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src ConnectorPolymorphicRequest) MarshalJSON() ([]byte, error) {
-	if src.ConnectorHTTPRequest != nil {
-		return json.Marshal(&src.ConnectorHTTPRequest)
+	if src.ConnectorPolymorphicConnectorHTTPRequest != nil {
+		return json.Marshal(&src.ConnectorPolymorphicConnectorHTTPRequest)
 	}
 
-	if src.ConnectorRequest != nil {
-		return json.Marshal(&src.ConnectorRequest)
+	if src.ConnectorPolymorphicConnectorRequest != nil {
+		return json.Marshal(&src.ConnectorPolymorphicConnectorRequest)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -106,12 +106,12 @@ func (obj *ConnectorPolymorphicRequest) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
-	if obj.ConnectorHTTPRequest != nil {
-		return obj.ConnectorHTTPRequest
+	if obj.ConnectorPolymorphicConnectorHTTPRequest != nil {
+		return obj.ConnectorPolymorphicConnectorHTTPRequest
 	}
 
-	if obj.ConnectorRequest != nil {
-		return obj.ConnectorRequest
+	if obj.ConnectorPolymorphicConnectorRequest != nil {
+		return obj.ConnectorPolymorphicConnectorRequest
 	}
 
 	// all schemas are nil
@@ -120,12 +120,12 @@ func (obj *ConnectorPolymorphicRequest) GetActualInstance() (interface{}) {
 
 // Get the actual instance value
 func (obj ConnectorPolymorphicRequest) GetActualInstanceValue() (interface{}) {
-	if obj.ConnectorHTTPRequest != nil {
-		return *obj.ConnectorHTTPRequest
+	if obj.ConnectorPolymorphicConnectorHTTPRequest != nil {
+		return *obj.ConnectorPolymorphicConnectorHTTPRequest
 	}
 
-	if obj.ConnectorRequest != nil {
-		return *obj.ConnectorRequest
+	if obj.ConnectorPolymorphicConnectorRequest != nil {
+		return *obj.ConnectorPolymorphicConnectorRequest
 	}
 
 	// all schemas are nil
