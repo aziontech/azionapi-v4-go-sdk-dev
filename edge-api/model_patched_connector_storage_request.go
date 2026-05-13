@@ -14,37 +14,37 @@ import (
 	"encoding/json"
 )
 
-// checks if the PatchedConnectorHTTPRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PatchedConnectorHTTPRequest{}
+// checks if the PatchedConnectorStorageRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchedConnectorStorageRequest{}
 
-// PatchedConnectorHTTPRequest struct for PatchedConnectorHTTPRequest
-type PatchedConnectorHTTPRequest struct {
+// PatchedConnectorStorageRequest struct for PatchedConnectorStorageRequest
+type PatchedConnectorStorageRequest struct {
 	Name *string `json:"name,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	// * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
 	Type *string `json:"type,omitempty"`
-	Attributes *ConnectorHTTPAttributesRequest `json:"attributes,omitempty"`
+	Attributes *ConnectorStorageAttributesRequest `json:"attributes,omitempty"`
 }
 
-// NewPatchedConnectorHTTPRequest instantiates a new PatchedConnectorHTTPRequest object
+// NewPatchedConnectorStorageRequest instantiates a new PatchedConnectorStorageRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPatchedConnectorHTTPRequest() *PatchedConnectorHTTPRequest {
-	this := PatchedConnectorHTTPRequest{}
+func NewPatchedConnectorStorageRequest() *PatchedConnectorStorageRequest {
+	this := PatchedConnectorStorageRequest{}
 	return &this
 }
 
-// NewPatchedConnectorHTTPRequestWithDefaults instantiates a new PatchedConnectorHTTPRequest object
+// NewPatchedConnectorStorageRequestWithDefaults instantiates a new PatchedConnectorStorageRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPatchedConnectorHTTPRequestWithDefaults() *PatchedConnectorHTTPRequest {
-	this := PatchedConnectorHTTPRequest{}
+func NewPatchedConnectorStorageRequestWithDefaults() *PatchedConnectorStorageRequest {
+	this := PatchedConnectorStorageRequest{}
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PatchedConnectorHTTPRequest) GetName() string {
+func (o *PatchedConnectorStorageRequest) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -54,7 +54,7 @@ func (o *PatchedConnectorHTTPRequest) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedConnectorHTTPRequest) GetNameOk() (*string, bool) {
+func (o *PatchedConnectorStorageRequest) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *PatchedConnectorHTTPRequest) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *PatchedConnectorHTTPRequest) HasName() bool {
+func (o *PatchedConnectorStorageRequest) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -71,12 +71,12 @@ func (o *PatchedConnectorHTTPRequest) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PatchedConnectorHTTPRequest) SetName(v string) {
+func (o *PatchedConnectorStorageRequest) SetName(v string) {
 	o.Name = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *PatchedConnectorHTTPRequest) GetActive() bool {
+func (o *PatchedConnectorStorageRequest) GetActive() bool {
 	if o == nil || IsNil(o.Active) {
 		var ret bool
 		return ret
@@ -86,7 +86,7 @@ func (o *PatchedConnectorHTTPRequest) GetActive() bool {
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedConnectorHTTPRequest) GetActiveOk() (*bool, bool) {
+func (o *PatchedConnectorStorageRequest) GetActiveOk() (*bool, bool) {
 	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *PatchedConnectorHTTPRequest) GetActiveOk() (*bool, bool) {
 }
 
 // HasActive returns a boolean if a field has been set.
-func (o *PatchedConnectorHTTPRequest) HasActive() bool {
+func (o *PatchedConnectorStorageRequest) HasActive() bool {
 	if o != nil && !IsNil(o.Active) {
 		return true
 	}
@@ -103,12 +103,12 @@ func (o *PatchedConnectorHTTPRequest) HasActive() bool {
 }
 
 // SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *PatchedConnectorHTTPRequest) SetActive(v bool) {
+func (o *PatchedConnectorStorageRequest) SetActive(v bool) {
 	o.Active = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *PatchedConnectorHTTPRequest) GetType() string {
+func (o *PatchedConnectorStorageRequest) GetType() string {
 	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
@@ -118,7 +118,7 @@ func (o *PatchedConnectorHTTPRequest) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedConnectorHTTPRequest) GetTypeOk() (*string, bool) {
+func (o *PatchedConnectorStorageRequest) GetTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -126,7 +126,7 @@ func (o *PatchedConnectorHTTPRequest) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *PatchedConnectorHTTPRequest) HasType() bool {
+func (o *PatchedConnectorStorageRequest) HasType() bool {
 	if o != nil && !IsNil(o.Type) {
 		return true
 	}
@@ -135,14 +135,14 @@ func (o *PatchedConnectorHTTPRequest) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *PatchedConnectorHTTPRequest) SetType(v string) {
+func (o *PatchedConnectorStorageRequest) SetType(v string) {
 	o.Type = &v
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *PatchedConnectorHTTPRequest) GetAttributes() ConnectorHTTPAttributesRequest {
+func (o *PatchedConnectorStorageRequest) GetAttributes() ConnectorStorageAttributesRequest {
 	if o == nil || IsNil(o.Attributes) {
-		var ret ConnectorHTTPAttributesRequest
+		var ret ConnectorStorageAttributesRequest
 		return ret
 	}
 	return *o.Attributes
@@ -150,7 +150,7 @@ func (o *PatchedConnectorHTTPRequest) GetAttributes() ConnectorHTTPAttributesReq
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedConnectorHTTPRequest) GetAttributesOk() (*ConnectorHTTPAttributesRequest, bool) {
+func (o *PatchedConnectorStorageRequest) GetAttributesOk() (*ConnectorStorageAttributesRequest, bool) {
 	if o == nil || IsNil(o.Attributes) {
 		return nil, false
 	}
@@ -158,7 +158,7 @@ func (o *PatchedConnectorHTTPRequest) GetAttributesOk() (*ConnectorHTTPAttribute
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *PatchedConnectorHTTPRequest) HasAttributes() bool {
+func (o *PatchedConnectorStorageRequest) HasAttributes() bool {
 	if o != nil && !IsNil(o.Attributes) {
 		return true
 	}
@@ -166,12 +166,12 @@ func (o *PatchedConnectorHTTPRequest) HasAttributes() bool {
 	return false
 }
 
-// SetAttributes gets a reference to the given ConnectorHTTPAttributesRequest and assigns it to the Attributes field.
-func (o *PatchedConnectorHTTPRequest) SetAttributes(v ConnectorHTTPAttributesRequest) {
+// SetAttributes gets a reference to the given ConnectorStorageAttributesRequest and assigns it to the Attributes field.
+func (o *PatchedConnectorStorageRequest) SetAttributes(v ConnectorStorageAttributesRequest) {
 	o.Attributes = &v
 }
 
-func (o PatchedConnectorHTTPRequest) MarshalJSON() ([]byte, error) {
+func (o PatchedConnectorStorageRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -179,7 +179,7 @@ func (o PatchedConnectorHTTPRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PatchedConnectorHTTPRequest) ToMap() (map[string]interface{}, error) {
+func (o PatchedConnectorStorageRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -196,38 +196,38 @@ func (o PatchedConnectorHTTPRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullablePatchedConnectorHTTPRequest struct {
-	value *PatchedConnectorHTTPRequest
+type NullablePatchedConnectorStorageRequest struct {
+	value *PatchedConnectorStorageRequest
 	isSet bool
 }
 
-func (v NullablePatchedConnectorHTTPRequest) Get() *PatchedConnectorHTTPRequest {
+func (v NullablePatchedConnectorStorageRequest) Get() *PatchedConnectorStorageRequest {
 	return v.value
 }
 
-func (v *NullablePatchedConnectorHTTPRequest) Set(val *PatchedConnectorHTTPRequest) {
+func (v *NullablePatchedConnectorStorageRequest) Set(val *PatchedConnectorStorageRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePatchedConnectorHTTPRequest) IsSet() bool {
+func (v NullablePatchedConnectorStorageRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePatchedConnectorHTTPRequest) Unset() {
+func (v *NullablePatchedConnectorStorageRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePatchedConnectorHTTPRequest(val *PatchedConnectorHTTPRequest) *NullablePatchedConnectorHTTPRequest {
-	return &NullablePatchedConnectorHTTPRequest{value: val, isSet: true}
+func NewNullablePatchedConnectorStorageRequest(val *PatchedConnectorStorageRequest) *NullablePatchedConnectorStorageRequest {
+	return &NullablePatchedConnectorStorageRequest{value: val, isSet: true}
 }
 
-func (v NullablePatchedConnectorHTTPRequest) MarshalJSON() ([]byte, error) {
+func (v NullablePatchedConnectorStorageRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePatchedConnectorHTTPRequest) UnmarshalJSON(src []byte) error {
+func (v *NullablePatchedConnectorStorageRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

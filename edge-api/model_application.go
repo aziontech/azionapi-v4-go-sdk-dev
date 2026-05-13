@@ -33,6 +33,7 @@ type Application struct {
 	IsVersioned bool `json:"is_versioned"`
 	Version int64 `json:"version"`
 	VersionState string `json:"version_state"`
+	VersionId string `json:"version_id"`
 }
 
 type _Application Application
@@ -41,7 +42,7 @@ type _Application Application
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplication(id string, name string, lastEditor string, lastModified time.Time, productVersion string, isVersioned bool, version int64, versionState string) *Application {
+func NewApplication(id string, name string, lastEditor string, lastModified time.Time, productVersion string, isVersioned bool, version int64, versionState string, versionId string) *Application {
 	this := Application{}
 	this.Id = id
 	this.Name = name
@@ -51,6 +52,7 @@ func NewApplication(id string, name string, lastEditor string, lastModified time
 	this.IsVersioned = isVersioned
 	this.Version = version
 	this.VersionState = versionState
+	this.VersionId = versionId
 	return &this
 }
 
@@ -350,6 +352,30 @@ func (o *Application) SetVersionState(v string) {
 	o.VersionState = v
 }
 
+// GetVersionId returns the VersionId field value
+func (o *Application) GetVersionId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.VersionId
+}
+
+// GetVersionIdOk returns a tuple with the VersionId field value
+// and a boolean to check if the value has been set.
+func (o *Application) GetVersionIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VersionId, true
+}
+
+// SetVersionId sets field value
+func (o *Application) SetVersionId(v string) {
+	o.VersionId = v
+}
+
 func (o Application) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -377,6 +403,7 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	toSerialize["is_versioned"] = o.IsVersioned
 	toSerialize["version"] = o.Version
 	toSerialize["version_state"] = o.VersionState
+	toSerialize["version_id"] = o.VersionId
 	return toSerialize, nil
 }
 
@@ -393,6 +420,7 @@ func (o *Application) UnmarshalJSON(data []byte) (err error) {
 		"is_versioned",
 		"version",
 		"version_state",
+		"version_id",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | **string** | Type of the connector  * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | 
+**Type** | **string** |  | 
 **Attributes** | [**ConnectorHTTPAttributesRequest**](ConnectorHTTPAttributesRequest.md) |  | 
 
 ## Methods

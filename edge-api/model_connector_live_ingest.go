@@ -17,11 +17,11 @@ import (
 	"fmt"
 )
 
-// checks if the ConnectorHTTP type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ConnectorHTTP{}
+// checks if the ConnectorLiveIngest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ConnectorLiveIngest{}
 
-// ConnectorHTTP struct for ConnectorHTTP
-type ConnectorHTTP struct {
+// ConnectorLiveIngest struct for ConnectorLiveIngest
+type ConnectorLiveIngest struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
 	LastEditor string `json:"last_editor"`
@@ -34,17 +34,17 @@ type ConnectorHTTP struct {
 	Version NullableInt64 `json:"version"`
 	VersionState NullableString `json:"version_state"`
 	VersionId NullableString `json:"version_id"`
-	Attributes ConnectorHTTPAttributes `json:"attributes"`
+	Attributes ConnectorLiveIngestAttributes `json:"attributes"`
 }
 
-type _ConnectorHTTP ConnectorHTTP
+type _ConnectorLiveIngest ConnectorLiveIngest
 
-// NewConnectorHTTP instantiates a new ConnectorHTTP object
+// NewConnectorLiveIngest instantiates a new ConnectorLiveIngest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectorHTTP(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString, attributes ConnectorHTTPAttributes) *ConnectorHTTP {
-	this := ConnectorHTTP{}
+func NewConnectorLiveIngest(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString, attributes ConnectorLiveIngestAttributes) *ConnectorLiveIngest {
+	this := ConnectorLiveIngest{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
@@ -60,16 +60,16 @@ func NewConnectorHTTP(id int64, name string, lastEditor string, lastModified tim
 	return &this
 }
 
-// NewConnectorHTTPWithDefaults instantiates a new ConnectorHTTP object
+// NewConnectorLiveIngestWithDefaults instantiates a new ConnectorLiveIngest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewConnectorHTTPWithDefaults() *ConnectorHTTP {
-	this := ConnectorHTTP{}
+func NewConnectorLiveIngestWithDefaults() *ConnectorLiveIngest {
+	this := ConnectorLiveIngest{}
 	return &this
 }
 
 // GetId returns the Id field value
-func (o *ConnectorHTTP) GetId() int64 {
+func (o *ConnectorLiveIngest) GetId() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -80,7 +80,7 @@ func (o *ConnectorHTTP) GetId() int64 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorHTTP) GetIdOk() (*int64, bool) {
+func (o *ConnectorLiveIngest) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -88,12 +88,12 @@ func (o *ConnectorHTTP) GetIdOk() (*int64, bool) {
 }
 
 // SetId sets field value
-func (o *ConnectorHTTP) SetId(v int64) {
+func (o *ConnectorLiveIngest) SetId(v int64) {
 	o.Id = v
 }
 
 // GetName returns the Name field value
-func (o *ConnectorHTTP) GetName() string {
+func (o *ConnectorLiveIngest) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -104,7 +104,7 @@ func (o *ConnectorHTTP) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorHTTP) GetNameOk() (*string, bool) {
+func (o *ConnectorLiveIngest) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,12 +112,12 @@ func (o *ConnectorHTTP) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *ConnectorHTTP) SetName(v string) {
+func (o *ConnectorLiveIngest) SetName(v string) {
 	o.Name = v
 }
 
 // GetLastEditor returns the LastEditor field value
-func (o *ConnectorHTTP) GetLastEditor() string {
+func (o *ConnectorLiveIngest) GetLastEditor() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -128,7 +128,7 @@ func (o *ConnectorHTTP) GetLastEditor() string {
 
 // GetLastEditorOk returns a tuple with the LastEditor field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorHTTP) GetLastEditorOk() (*string, bool) {
+func (o *ConnectorLiveIngest) GetLastEditorOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -136,12 +136,12 @@ func (o *ConnectorHTTP) GetLastEditorOk() (*string, bool) {
 }
 
 // SetLastEditor sets field value
-func (o *ConnectorHTTP) SetLastEditor(v string) {
+func (o *ConnectorLiveIngest) SetLastEditor(v string) {
 	o.LastEditor = v
 }
 
 // GetLastModified returns the LastModified field value
-func (o *ConnectorHTTP) GetLastModified() time.Time {
+func (o *ConnectorLiveIngest) GetLastModified() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -152,7 +152,7 @@ func (o *ConnectorHTTP) GetLastModified() time.Time {
 
 // GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorHTTP) GetLastModifiedOk() (*time.Time, bool) {
+func (o *ConnectorLiveIngest) GetLastModifiedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -160,12 +160,12 @@ func (o *ConnectorHTTP) GetLastModifiedOk() (*time.Time, bool) {
 }
 
 // SetLastModified sets field value
-func (o *ConnectorHTTP) SetLastModified(v time.Time) {
+func (o *ConnectorLiveIngest) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
 // GetCreatedAt returns the CreatedAt field value
-func (o *ConnectorHTTP) GetCreatedAt() time.Time {
+func (o *ConnectorLiveIngest) GetCreatedAt() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -176,7 +176,7 @@ func (o *ConnectorHTTP) GetCreatedAt() time.Time {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorHTTP) GetCreatedAtOk() (*time.Time, bool) {
+func (o *ConnectorLiveIngest) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -184,12 +184,12 @@ func (o *ConnectorHTTP) GetCreatedAtOk() (*time.Time, bool) {
 }
 
 // SetCreatedAt sets field value
-func (o *ConnectorHTTP) SetCreatedAt(v time.Time) {
+func (o *ConnectorLiveIngest) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *ConnectorHTTP) GetActive() bool {
+func (o *ConnectorLiveIngest) GetActive() bool {
 	if o == nil || IsNil(o.Active) {
 		var ret bool
 		return ret
@@ -199,7 +199,7 @@ func (o *ConnectorHTTP) GetActive() bool {
 
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ConnectorHTTP) GetActiveOk() (*bool, bool) {
+func (o *ConnectorLiveIngest) GetActiveOk() (*bool, bool) {
 	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
@@ -207,7 +207,7 @@ func (o *ConnectorHTTP) GetActiveOk() (*bool, bool) {
 }
 
 // HasActive returns a boolean if a field has been set.
-func (o *ConnectorHTTP) HasActive() bool {
+func (o *ConnectorLiveIngest) HasActive() bool {
 	if o != nil && !IsNil(o.Active) {
 		return true
 	}
@@ -216,12 +216,12 @@ func (o *ConnectorHTTP) HasActive() bool {
 }
 
 // SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *ConnectorHTTP) SetActive(v bool) {
+func (o *ConnectorLiveIngest) SetActive(v bool) {
 	o.Active = &v
 }
 
 // GetProductVersion returns the ProductVersion field value
-func (o *ConnectorHTTP) GetProductVersion() string {
+func (o *ConnectorLiveIngest) GetProductVersion() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -232,7 +232,7 @@ func (o *ConnectorHTTP) GetProductVersion() string {
 
 // GetProductVersionOk returns a tuple with the ProductVersion field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorHTTP) GetProductVersionOk() (*string, bool) {
+func (o *ConnectorLiveIngest) GetProductVersionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -240,12 +240,12 @@ func (o *ConnectorHTTP) GetProductVersionOk() (*string, bool) {
 }
 
 // SetProductVersion sets field value
-func (o *ConnectorHTTP) SetProductVersion(v string) {
+func (o *ConnectorLiveIngest) SetProductVersion(v string) {
 	o.ProductVersion = v
 }
 
 // GetType returns the Type field value
-func (o *ConnectorHTTP) GetType() string {
+func (o *ConnectorLiveIngest) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -256,7 +256,7 @@ func (o *ConnectorHTTP) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorHTTP) GetTypeOk() (*string, bool) {
+func (o *ConnectorLiveIngest) GetTypeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -264,12 +264,12 @@ func (o *ConnectorHTTP) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *ConnectorHTTP) SetType(v string) {
+func (o *ConnectorLiveIngest) SetType(v string) {
 	o.Type = v
 }
 
 // GetIsVersioned returns the IsVersioned field value
-func (o *ConnectorHTTP) GetIsVersioned() bool {
+func (o *ConnectorLiveIngest) GetIsVersioned() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -280,7 +280,7 @@ func (o *ConnectorHTTP) GetIsVersioned() bool {
 
 // GetIsVersionedOk returns a tuple with the IsVersioned field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorHTTP) GetIsVersionedOk() (*bool, bool) {
+func (o *ConnectorLiveIngest) GetIsVersionedOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -288,13 +288,13 @@ func (o *ConnectorHTTP) GetIsVersionedOk() (*bool, bool) {
 }
 
 // SetIsVersioned sets field value
-func (o *ConnectorHTTP) SetIsVersioned(v bool) {
+func (o *ConnectorLiveIngest) SetIsVersioned(v bool) {
 	o.IsVersioned = v
 }
 
 // GetVersion returns the Version field value
 // If the value is explicit nil, the zero value for int64 will be returned
-func (o *ConnectorHTTP) GetVersion() int64 {
+func (o *ConnectorLiveIngest) GetVersion() int64 {
 	if o == nil || o.Version.Get() == nil {
 		var ret int64
 		return ret
@@ -306,7 +306,7 @@ func (o *ConnectorHTTP) GetVersion() int64 {
 // GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ConnectorHTTP) GetVersionOk() (*int64, bool) {
+func (o *ConnectorLiveIngest) GetVersionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -314,13 +314,13 @@ func (o *ConnectorHTTP) GetVersionOk() (*int64, bool) {
 }
 
 // SetVersion sets field value
-func (o *ConnectorHTTP) SetVersion(v int64) {
+func (o *ConnectorLiveIngest) SetVersion(v int64) {
 	o.Version.Set(&v)
 }
 
 // GetVersionState returns the VersionState field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *ConnectorHTTP) GetVersionState() string {
+func (o *ConnectorLiveIngest) GetVersionState() string {
 	if o == nil || o.VersionState.Get() == nil {
 		var ret string
 		return ret
@@ -332,7 +332,7 @@ func (o *ConnectorHTTP) GetVersionState() string {
 // GetVersionStateOk returns a tuple with the VersionState field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ConnectorHTTP) GetVersionStateOk() (*string, bool) {
+func (o *ConnectorLiveIngest) GetVersionStateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -340,13 +340,13 @@ func (o *ConnectorHTTP) GetVersionStateOk() (*string, bool) {
 }
 
 // SetVersionState sets field value
-func (o *ConnectorHTTP) SetVersionState(v string) {
+func (o *ConnectorLiveIngest) SetVersionState(v string) {
 	o.VersionState.Set(&v)
 }
 
 // GetVersionId returns the VersionId field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *ConnectorHTTP) GetVersionId() string {
+func (o *ConnectorLiveIngest) GetVersionId() string {
 	if o == nil || o.VersionId.Get() == nil {
 		var ret string
 		return ret
@@ -358,7 +358,7 @@ func (o *ConnectorHTTP) GetVersionId() string {
 // GetVersionIdOk returns a tuple with the VersionId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ConnectorHTTP) GetVersionIdOk() (*string, bool) {
+func (o *ConnectorLiveIngest) GetVersionIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -366,14 +366,14 @@ func (o *ConnectorHTTP) GetVersionIdOk() (*string, bool) {
 }
 
 // SetVersionId sets field value
-func (o *ConnectorHTTP) SetVersionId(v string) {
+func (o *ConnectorLiveIngest) SetVersionId(v string) {
 	o.VersionId.Set(&v)
 }
 
 // GetAttributes returns the Attributes field value
-func (o *ConnectorHTTP) GetAttributes() ConnectorHTTPAttributes {
+func (o *ConnectorLiveIngest) GetAttributes() ConnectorLiveIngestAttributes {
 	if o == nil {
-		var ret ConnectorHTTPAttributes
+		var ret ConnectorLiveIngestAttributes
 		return ret
 	}
 
@@ -382,7 +382,7 @@ func (o *ConnectorHTTP) GetAttributes() ConnectorHTTPAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *ConnectorHTTP) GetAttributesOk() (*ConnectorHTTPAttributes, bool) {
+func (o *ConnectorLiveIngest) GetAttributesOk() (*ConnectorLiveIngestAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -390,11 +390,11 @@ func (o *ConnectorHTTP) GetAttributesOk() (*ConnectorHTTPAttributes, bool) {
 }
 
 // SetAttributes sets field value
-func (o *ConnectorHTTP) SetAttributes(v ConnectorHTTPAttributes) {
+func (o *ConnectorLiveIngest) SetAttributes(v ConnectorLiveIngestAttributes) {
 	o.Attributes = v
 }
 
-func (o ConnectorHTTP) MarshalJSON() ([]byte, error) {
+func (o ConnectorLiveIngest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -402,7 +402,7 @@ func (o ConnectorHTTP) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ConnectorHTTP) ToMap() (map[string]interface{}, error) {
+func (o ConnectorLiveIngest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
@@ -422,7 +422,7 @@ func (o ConnectorHTTP) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *ConnectorHTTP) UnmarshalJSON(data []byte) (err error) {
+func (o *ConnectorLiveIngest) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -455,53 +455,53 @@ func (o *ConnectorHTTP) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varConnectorHTTP := _ConnectorHTTP{}
+	varConnectorLiveIngest := _ConnectorLiveIngest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConnectorHTTP)
+	err = decoder.Decode(&varConnectorLiveIngest)
 
 	if err != nil {
 		return err
 	}
 
-	*o = ConnectorHTTP(varConnectorHTTP)
+	*o = ConnectorLiveIngest(varConnectorLiveIngest)
 
 	return err
 }
 
-type NullableConnectorHTTP struct {
-	value *ConnectorHTTP
+type NullableConnectorLiveIngest struct {
+	value *ConnectorLiveIngest
 	isSet bool
 }
 
-func (v NullableConnectorHTTP) Get() *ConnectorHTTP {
+func (v NullableConnectorLiveIngest) Get() *ConnectorLiveIngest {
 	return v.value
 }
 
-func (v *NullableConnectorHTTP) Set(val *ConnectorHTTP) {
+func (v *NullableConnectorLiveIngest) Set(val *ConnectorLiveIngest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableConnectorHTTP) IsSet() bool {
+func (v NullableConnectorLiveIngest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableConnectorHTTP) Unset() {
+func (v *NullableConnectorLiveIngest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableConnectorHTTP(val *ConnectorHTTP) *NullableConnectorHTTP {
-	return &NullableConnectorHTTP{value: val, isSet: true}
+func NewNullableConnectorLiveIngest(val *ConnectorLiveIngest) *NullableConnectorLiveIngest {
+	return &NullableConnectorLiveIngest{value: val, isSet: true}
 }
 
-func (v NullableConnectorHTTP) MarshalJSON() ([]byte, error) {
+func (v NullableConnectorLiveIngest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableConnectorHTTP) UnmarshalJSON(src []byte) error {
+func (v *NullableConnectorLiveIngest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
