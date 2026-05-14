@@ -27,7 +27,7 @@ type ConnectorVersionsAPIService service
 type ApiArchiveConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	versionArchiveRequest *VersionArchiveRequest
 }
@@ -47,11 +47,11 @@ ArchiveConnectorVersion Archive a Connector version
 Archive a ready version (soft-delete).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Connector resource.
  @return ApiArchiveConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) ArchiveConnectorVersion(ctx context.Context, id int64, resourcePk int64) ApiArchiveConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) ArchiveConnectorVersion(ctx context.Context, id string, resourcePk int64) ApiArchiveConnectorVersionRequest {
 	return ApiArchiveConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -155,7 +155,7 @@ func (a *ConnectorVersionsAPIService) ArchiveConnectorVersionExecute(r ApiArchiv
 type ApiBuildConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	versionBuildRequest *VersionBuildRequest
 }
@@ -175,11 +175,11 @@ BuildConnectorVersion Build a Connector version
 Trigger a build for a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Connector resource.
  @return ApiBuildConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) BuildConnectorVersion(ctx context.Context, id int64, resourcePk int64) ApiBuildConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) BuildConnectorVersion(ctx context.Context, id string, resourcePk int64) ApiBuildConnectorVersionRequest {
 	return ApiBuildConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -283,7 +283,7 @@ func (a *ConnectorVersionsAPIService) BuildConnectorVersionExecute(r ApiBuildCon
 type ApiCancelConnectorVersionBuildRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	versionCancelRequest *VersionCancelRequest
 }
@@ -303,11 +303,11 @@ CancelConnectorVersionBuild Cancel a Connector version build
 Cancel a queued or building version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Connector resource.
  @return ApiCancelConnectorVersionBuildRequest
 */
-func (a *ConnectorVersionsAPIService) CancelConnectorVersionBuild(ctx context.Context, id int64, resourcePk int64) ApiCancelConnectorVersionBuildRequest {
+func (a *ConnectorVersionsAPIService) CancelConnectorVersionBuild(ctx context.Context, id string, resourcePk int64) ApiCancelConnectorVersionBuildRequest {
 	return ApiCancelConnectorVersionBuildRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -535,7 +535,7 @@ func (a *ConnectorVersionsAPIService) CreateConnectorVersionExecute(r ApiCreateC
 type ApiDeleteConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 }
 
@@ -549,11 +549,11 @@ DeleteConnectorVersion Delete a Connector version
 Delete a specific version of a Connector.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Connector resource.
  @return ApiDeleteConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) DeleteConnectorVersion(ctx context.Context, id int64, resourcePk int64) ApiDeleteConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) DeleteConnectorVersion(ctx context.Context, id string, resourcePk int64) ApiDeleteConnectorVersionRequest {
 	return ApiDeleteConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -781,7 +781,7 @@ func (a *ConnectorVersionsAPIService) ListConnectorVersionsExecute(r ApiListConn
 type ApiPartialUpdateConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
@@ -801,11 +801,11 @@ PartialUpdateConnectorVersion Partially update a Connector version
 Partially update a draft version of a Connector.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Connector resource.
  @return ApiPartialUpdateConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) PartialUpdateConnectorVersion(ctx context.Context, id int64, resourcePk int64) ApiPartialUpdateConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) PartialUpdateConnectorVersion(ctx context.Context, id string, resourcePk int64) ApiPartialUpdateConnectorVersionRequest {
 	return ApiPartialUpdateConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -909,7 +909,7 @@ func (a *ConnectorVersionsAPIService) PartialUpdateConnectorVersionExecute(r Api
 type ApiRetrieveConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	fields *string
 }
@@ -930,11 +930,11 @@ RetrieveConnectorVersion Retrieve a Connector version
 Retrieve details of a specific version of a Connector.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Connector resource.
  @return ApiRetrieveConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) RetrieveConnectorVersion(ctx context.Context, id int64, resourcePk int64) ApiRetrieveConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) RetrieveConnectorVersion(ctx context.Context, id string, resourcePk int64) ApiRetrieveConnectorVersionRequest {
 	return ApiRetrieveConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1039,7 +1039,7 @@ func (a *ConnectorVersionsAPIService) RetrieveConnectorVersionExecute(r ApiRetri
 type ApiUpdateConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	versionCreateRequest *VersionCreateRequest
 }
@@ -1059,11 +1059,11 @@ UpdateConnectorVersion Update a Connector version
 Update a draft version of a Connector.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Connector resource.
  @return ApiUpdateConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) UpdateConnectorVersion(ctx context.Context, id int64, resourcePk int64) ApiUpdateConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) UpdateConnectorVersion(ctx context.Context, id string, resourcePk int64) ApiUpdateConnectorVersionRequest {
 	return ApiUpdateConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,

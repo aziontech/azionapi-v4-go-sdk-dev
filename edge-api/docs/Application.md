@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | 
+**Id** | **int64** |  | 
 **Name** | **string** |  | 
 **LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
@@ -14,14 +14,14 @@ Name | Type | Description | Notes
 **ProductVersion** | **string** |  | 
 **IsVersioned** | **bool** |  | 
 **Version** | **int64** |  | 
-**VersionState** | **string** |  | 
-**VersionId** | **string** |  | 
+**VersionState** | **NullableString** |  | 
+**VersionId** | **NullableString** |  | 
 
 ## Methods
 
 ### NewApplication
 
-`func NewApplication(id string, name string, lastEditor string, lastModified time.Time, productVersion string, isVersioned bool, version int64, versionState string, versionId string, ) *Application`
+`func NewApplication(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, isVersioned bool, version int64, versionState NullableString, versionId NullableString, ) *Application`
 
 NewApplication instantiates a new Application object
 This constructor will assign default values to properties that have it defined,
@@ -38,20 +38,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Application) GetId() string`
+`func (o *Application) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Application) GetIdOk() (*string, bool)`
+`func (o *Application) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Application) SetId(v string)`
+`func (o *Application) SetId(v int64)`
 
 SetId sets Id field to given value.
 
@@ -271,6 +271,16 @@ and a boolean to check if the value has been set.
 SetVersionState sets VersionState field to given value.
 
 
+### SetVersionStateNil
+
+`func (o *Application) SetVersionStateNil(b bool)`
+
+ SetVersionStateNil sets the value for VersionState to be an explicit nil
+
+### UnsetVersionState
+`func (o *Application) UnsetVersionState()`
+
+UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 ### GetVersionId
 
 `func (o *Application) GetVersionId() string`
@@ -291,6 +301,16 @@ and a boolean to check if the value has been set.
 SetVersionId sets VersionId field to given value.
 
 
+### SetVersionIdNil
+
+`func (o *Application) SetVersionIdNil(b bool)`
+
+ SetVersionIdNil sets the value for VersionId to be an explicit nil
+
+### UnsetVersionId
+`func (o *Application) UnsetVersionId()`
+
+UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

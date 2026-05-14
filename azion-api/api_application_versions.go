@@ -27,7 +27,7 @@ type ApplicationVersionsAPIService service
 type ApiArchiveApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	versionArchiveRequest *VersionArchiveRequest
 }
@@ -47,11 +47,11 @@ ArchiveApplicationVersion Archive an Application version
 Archive a ready version (soft-delete).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID (global_id) of the Application resource.
  @return ApiArchiveApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) ArchiveApplicationVersion(ctx context.Context, id int64, resourcePk int64) ApiArchiveApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) ArchiveApplicationVersion(ctx context.Context, id string, resourcePk int64) ApiArchiveApplicationVersionRequest {
 	return ApiArchiveApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -155,7 +155,7 @@ func (a *ApplicationVersionsAPIService) ArchiveApplicationVersionExecute(r ApiAr
 type ApiBuildApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	versionBuildRequest *VersionBuildRequest
 }
@@ -175,11 +175,11 @@ BuildApplicationVersion Build an Application version
 Trigger a build for a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID (global_id) of the Application resource.
  @return ApiBuildApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) BuildApplicationVersion(ctx context.Context, id int64, resourcePk int64) ApiBuildApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) BuildApplicationVersion(ctx context.Context, id string, resourcePk int64) ApiBuildApplicationVersionRequest {
 	return ApiBuildApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -283,7 +283,7 @@ func (a *ApplicationVersionsAPIService) BuildApplicationVersionExecute(r ApiBuil
 type ApiCancelApplicationVersionBuildRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	versionBuildRequest *VersionBuildRequest
 }
@@ -303,11 +303,11 @@ CancelApplicationVersionBuild Cancel an Application version build
 Cancel a queued or building version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID (global_id) of the Application resource.
  @return ApiCancelApplicationVersionBuildRequest
 */
-func (a *ApplicationVersionsAPIService) CancelApplicationVersionBuild(ctx context.Context, id int64, resourcePk int64) ApiCancelApplicationVersionBuildRequest {
+func (a *ApplicationVersionsAPIService) CancelApplicationVersionBuild(ctx context.Context, id string, resourcePk int64) ApiCancelApplicationVersionBuildRequest {
 	return ApiCancelApplicationVersionBuildRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -535,7 +535,7 @@ func (a *ApplicationVersionsAPIService) CreateApplicationVersionExecute(r ApiCre
 type ApiDeleteApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 }
 
@@ -549,11 +549,11 @@ DeleteApplicationVersion Delete an Application version
 Delete a specific version of an Application.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID (global_id) of the Application resource.
  @return ApiDeleteApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) DeleteApplicationVersion(ctx context.Context, id int64, resourcePk int64) ApiDeleteApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) DeleteApplicationVersion(ctx context.Context, id string, resourcePk int64) ApiDeleteApplicationVersionRequest {
 	return ApiDeleteApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -781,7 +781,7 @@ func (a *ApplicationVersionsAPIService) ListApplicationVersionsExecute(r ApiList
 type ApiPartialUpdateApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
@@ -801,11 +801,11 @@ PartialUpdateApplicationVersion Partially update an Application version
 Partially update a draft version of an Application.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID (global_id) of the Application resource.
  @return ApiPartialUpdateApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) PartialUpdateApplicationVersion(ctx context.Context, id int64, resourcePk int64) ApiPartialUpdateApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) PartialUpdateApplicationVersion(ctx context.Context, id string, resourcePk int64) ApiPartialUpdateApplicationVersionRequest {
 	return ApiPartialUpdateApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -909,7 +909,7 @@ func (a *ApplicationVersionsAPIService) PartialUpdateApplicationVersionExecute(r
 type ApiRetrieveApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	fields *string
 }
@@ -930,11 +930,11 @@ RetrieveApplicationVersion Retrieve an Application version
 Retrieve details of a specific version of an Application.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID (global_id) of the Application resource.
  @return ApiRetrieveApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) RetrieveApplicationVersion(ctx context.Context, id int64, resourcePk int64) ApiRetrieveApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) RetrieveApplicationVersion(ctx context.Context, id string, resourcePk int64) ApiRetrieveApplicationVersionRequest {
 	return ApiRetrieveApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1039,7 +1039,7 @@ func (a *ApplicationVersionsAPIService) RetrieveApplicationVersionExecute(r ApiR
 type ApiUpdateApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	versionCreateRequest *VersionCreateRequest
 }
@@ -1059,11 +1059,11 @@ UpdateApplicationVersion Update an Application version
 Update a draft version of an Application.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID (global_id) of the Application resource.
  @return ApiUpdateApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) UpdateApplicationVersion(ctx context.Context, id int64, resourcePk int64) ApiUpdateApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) UpdateApplicationVersion(ctx context.Context, id string, resourcePk int64) ApiUpdateApplicationVersionRequest {
 	return ApiUpdateApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,

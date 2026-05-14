@@ -23,7 +23,7 @@ var _ MappedNullable = &Application{}
 
 // Application struct for Application
 type Application struct {
-	Id string `json:"id"`
+	Id int64 `json:"id"`
 	Name string `json:"name"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
@@ -33,8 +33,8 @@ type Application struct {
 	ProductVersion string `json:"product_version"`
 	IsVersioned bool `json:"is_versioned"`
 	Version int64 `json:"version"`
-	VersionState string `json:"version_state"`
-	VersionId string `json:"version_id"`
+	VersionState NullableString `json:"version_state"`
+	VersionId NullableString `json:"version_id"`
 }
 
 type _Application Application
@@ -43,7 +43,7 @@ type _Application Application
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplication(id string, name string, lastEditor string, lastModified time.Time, productVersion string, isVersioned bool, version int64, versionState string, versionId string) *Application {
+func NewApplication(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, isVersioned bool, version int64, versionState NullableString, versionId NullableString) *Application {
 	this := Application{}
 	this.Id = id
 	this.Name = name
@@ -66,9 +66,9 @@ func NewApplicationWithDefaults() *Application {
 }
 
 // GetId returns the Id field value
-func (o *Application) GetId() string {
+func (o *Application) GetId() int64 {
 	if o == nil {
-		var ret string
+		var ret int64
 		return ret
 	}
 
@@ -77,7 +77,7 @@ func (o *Application) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Application) GetIdOk() (*string, bool) {
+func (o *Application) GetIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,7 +85,7 @@ func (o *Application) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *Application) SetId(v string) {
+func (o *Application) SetId(v int64) {
 	o.Id = v
 }
 
@@ -330,51 +330,55 @@ func (o *Application) SetVersion(v int64) {
 }
 
 // GetVersionState returns the VersionState field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *Application) GetVersionState() string {
-	if o == nil {
+	if o == nil || o.VersionState.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.VersionState
+	return *o.VersionState.Get()
 }
 
 // GetVersionStateOk returns a tuple with the VersionState field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Application) GetVersionStateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.VersionState, true
+	return o.VersionState.Get(), o.VersionState.IsSet()
 }
 
 // SetVersionState sets field value
 func (o *Application) SetVersionState(v string) {
-	o.VersionState = v
+	o.VersionState.Set(&v)
 }
 
 // GetVersionId returns the VersionId field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *Application) GetVersionId() string {
-	if o == nil {
+	if o == nil || o.VersionId.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.VersionId
+	return *o.VersionId.Get()
 }
 
 // GetVersionIdOk returns a tuple with the VersionId field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Application) GetVersionIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.VersionId, true
+	return o.VersionId.Get(), o.VersionId.IsSet()
 }
 
 // SetVersionId sets field value
 func (o *Application) SetVersionId(v string) {
-	o.VersionId = v
+	o.VersionId.Set(&v)
 }
 
 func (o Application) MarshalJSON() ([]byte, error) {
@@ -403,8 +407,8 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 	toSerialize["product_version"] = o.ProductVersion
 	toSerialize["is_versioned"] = o.IsVersioned
 	toSerialize["version"] = o.Version
-	toSerialize["version_state"] = o.VersionState
-	toSerialize["version_id"] = o.VersionId
+	toSerialize["version_state"] = o.VersionState.Get()
+	toSerialize["version_id"] = o.VersionId.Get()
 	return toSerialize, nil
 }
 
