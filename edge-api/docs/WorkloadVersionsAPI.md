@@ -37,7 +37,7 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The version number.
+	id := "id_example" // string | The ULID identifier of the version.
 	resourcePk := int64(789) // int64 | The ID of the Workload resource.
 	versionArchiveRequest := *openapiclient.NewVersionArchiveRequest() // VersionArchiveRequest |  (optional)
 
@@ -57,7 +57,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The version number. | 
+**id** | **string** | The ULID identifier of the version. | 
 **resourcePk** | **int64** | The ID of the Workload resource. | 
 
 ### Other Parameters
@@ -110,7 +110,7 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The version number.
+	id := "id_example" // string | The ULID identifier of the version.
 	resourcePk := int64(789) // int64 | The ID of the Workload resource.
 	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
 
@@ -130,7 +130,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The version number. | 
+**id** | **string** | The ULID identifier of the version. | 
 **resourcePk** | **int64** | The ID of the Workload resource. | 
 
 ### Other Parameters
@@ -183,7 +183,7 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The version number.
+	id := "id_example" // string | The ULID identifier of the version.
 	resourcePk := int64(789) // int64 | The ID of the Workload resource.
 	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
 
@@ -203,7 +203,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The version number. | 
+**id** | **string** | The ULID identifier of the version. | 
 **resourcePk** | **int64** | The ID of the Workload resource. | 
 
 ### Other Parameters
@@ -326,7 +326,7 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The version number.
+	id := "id_example" // string | The ULID identifier of the version.
 	resourcePk := int64(789) // int64 | The ID of the Workload resource.
 
 	configuration := openapiclient.NewConfiguration()
@@ -345,7 +345,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The version number. | 
+**id** | **string** | The ULID identifier of the version. | 
 **resourcePk** | **int64** | The ID of the Workload resource. | 
 
 ### Other Parameters
@@ -467,7 +467,7 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The version number.
+	id := "id_example" // string | The ULID identifier of the version.
 	resourcePk := int64(789) // int64 | The ID of the Workload resource.
 	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
 
@@ -487,7 +487,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The version number. | 
+**id** | **string** | The ULID identifier of the version. | 
 **resourcePk** | **int64** | The ID of the Workload resource. | 
 
 ### Other Parameters
@@ -540,7 +540,7 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The version number.
+	id := "id_example" // string | The ULID identifier of the version.
 	resourcePk := int64(789) // int64 | The ID of the Workload resource.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
@@ -560,7 +560,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The version number. | 
+**id** | **string** | The ULID identifier of the version. | 
 **resourcePk** | **int64** | The ID of the Workload resource. | 
 
 ### Other Parameters
@@ -613,7 +613,7 @@ import (
 )
 
 func main() {
-	id := int64(789) // int64 | The version number.
+	id := "id_example" // string | The ULID identifier of the version.
 	resourcePk := int64(789) // int64 | The ID of the Workload resource.
 	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
@@ -633,7 +633,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **int64** | The version number. | 
+**id** | **string** | The ULID identifier of the version. | 
 **resourcePk** | **int64** | The ID of the Workload resource. | 
 
 ### Other Parameters

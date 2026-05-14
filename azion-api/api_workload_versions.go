@@ -27,7 +27,7 @@ type WorkloadVersionsAPIService service
 type ApiArchiveWorkloadVersionRequest struct {
 	ctx context.Context
 	ApiService *WorkloadVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	versionArchiveRequest *VersionArchiveRequest
 }
@@ -47,11 +47,11 @@ ArchiveWorkloadVersion Archive a Workload version
 Archive a ready version (soft-delete).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Workload resource.
  @return ApiArchiveWorkloadVersionRequest
 */
-func (a *WorkloadVersionsAPIService) ArchiveWorkloadVersion(ctx context.Context, id int64, resourcePk int64) ApiArchiveWorkloadVersionRequest {
+func (a *WorkloadVersionsAPIService) ArchiveWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiArchiveWorkloadVersionRequest {
 	return ApiArchiveWorkloadVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -155,7 +155,7 @@ func (a *WorkloadVersionsAPIService) ArchiveWorkloadVersionExecute(r ApiArchiveW
 type ApiBuildWorkloadVersionRequest struct {
 	ctx context.Context
 	ApiService *WorkloadVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	versionBuildRequest *VersionBuildRequest
 }
@@ -175,11 +175,11 @@ BuildWorkloadVersion Build a Workload version
 Trigger a build for a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Workload resource.
  @return ApiBuildWorkloadVersionRequest
 */
-func (a *WorkloadVersionsAPIService) BuildWorkloadVersion(ctx context.Context, id int64, resourcePk int64) ApiBuildWorkloadVersionRequest {
+func (a *WorkloadVersionsAPIService) BuildWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiBuildWorkloadVersionRequest {
 	return ApiBuildWorkloadVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -283,7 +283,7 @@ func (a *WorkloadVersionsAPIService) BuildWorkloadVersionExecute(r ApiBuildWorkl
 type ApiCancelWorkloadVersionBuildRequest struct {
 	ctx context.Context
 	ApiService *WorkloadVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	versionBuildRequest *VersionBuildRequest
 }
@@ -303,11 +303,11 @@ CancelWorkloadVersionBuild Cancel a Workload version build
 Cancel a queued or building version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Workload resource.
  @return ApiCancelWorkloadVersionBuildRequest
 */
-func (a *WorkloadVersionsAPIService) CancelWorkloadVersionBuild(ctx context.Context, id int64, resourcePk int64) ApiCancelWorkloadVersionBuildRequest {
+func (a *WorkloadVersionsAPIService) CancelWorkloadVersionBuild(ctx context.Context, id string, resourcePk int64) ApiCancelWorkloadVersionBuildRequest {
 	return ApiCancelWorkloadVersionBuildRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -535,7 +535,7 @@ func (a *WorkloadVersionsAPIService) CreateWorkloadVersionExecute(r ApiCreateWor
 type ApiDeleteWorkloadVersionRequest struct {
 	ctx context.Context
 	ApiService *WorkloadVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 }
 
@@ -549,11 +549,11 @@ DeleteWorkloadVersion Delete a Workload version
 Delete a specific version of a Workload.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Workload resource.
  @return ApiDeleteWorkloadVersionRequest
 */
-func (a *WorkloadVersionsAPIService) DeleteWorkloadVersion(ctx context.Context, id int64, resourcePk int64) ApiDeleteWorkloadVersionRequest {
+func (a *WorkloadVersionsAPIService) DeleteWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiDeleteWorkloadVersionRequest {
 	return ApiDeleteWorkloadVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -781,7 +781,7 @@ func (a *WorkloadVersionsAPIService) ListWorkloadVersionsExecute(r ApiListWorklo
 type ApiPartialUpdateWorkloadVersionRequest struct {
 	ctx context.Context
 	ApiService *WorkloadVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
@@ -801,11 +801,11 @@ PartialUpdateWorkloadVersion Partially update a Workload version
 Partially update a draft version of a Workload.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Workload resource.
  @return ApiPartialUpdateWorkloadVersionRequest
 */
-func (a *WorkloadVersionsAPIService) PartialUpdateWorkloadVersion(ctx context.Context, id int64, resourcePk int64) ApiPartialUpdateWorkloadVersionRequest {
+func (a *WorkloadVersionsAPIService) PartialUpdateWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiPartialUpdateWorkloadVersionRequest {
 	return ApiPartialUpdateWorkloadVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -909,7 +909,7 @@ func (a *WorkloadVersionsAPIService) PartialUpdateWorkloadVersionExecute(r ApiPa
 type ApiRetrieveWorkloadVersionRequest struct {
 	ctx context.Context
 	ApiService *WorkloadVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	fields *string
 }
@@ -930,11 +930,11 @@ RetrieveWorkloadVersion Retrieve a Workload version
 Retrieve details of a specific version of a Workload.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Workload resource.
  @return ApiRetrieveWorkloadVersionRequest
 */
-func (a *WorkloadVersionsAPIService) RetrieveWorkloadVersion(ctx context.Context, id int64, resourcePk int64) ApiRetrieveWorkloadVersionRequest {
+func (a *WorkloadVersionsAPIService) RetrieveWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiRetrieveWorkloadVersionRequest {
 	return ApiRetrieveWorkloadVersionRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1039,7 +1039,7 @@ func (a *WorkloadVersionsAPIService) RetrieveWorkloadVersionExecute(r ApiRetriev
 type ApiUpdateWorkloadVersionRequest struct {
 	ctx context.Context
 	ApiService *WorkloadVersionsAPIService
-	id int64
+	id string
 	resourcePk int64
 	versionCreateRequest *VersionCreateRequest
 }
@@ -1059,11 +1059,11 @@ UpdateWorkloadVersion Update a Workload version
 Update a draft version of a Workload.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The version number.
+ @param id The ULID identifier of the version.
  @param resourcePk The ID of the Workload resource.
  @return ApiUpdateWorkloadVersionRequest
 */
-func (a *WorkloadVersionsAPIService) UpdateWorkloadVersion(ctx context.Context, id int64, resourcePk int64) ApiUpdateWorkloadVersionRequest {
+func (a *WorkloadVersionsAPIService) UpdateWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiUpdateWorkloadVersionRequest {
 	return ApiUpdateWorkloadVersionRequest{
 		ApiService: a,
 		ctx: ctx,
