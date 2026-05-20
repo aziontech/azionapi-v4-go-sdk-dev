@@ -31,6 +31,10 @@ type Firewall struct {
 	LastModified time.Time `json:"last_modified"`
 	CreatedAt time.Time `json:"created_at"`
 	ProductVersion string `json:"product_version"`
+	IsVersioned bool `json:"is_versioned"`
+	Version NullableInt64 `json:"version"`
+	VersionState NullableString `json:"version_state"`
+	VersionId NullableString `json:"version_id"`
 }
 
 type _Firewall Firewall
@@ -39,7 +43,7 @@ type _Firewall Firewall
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirewall(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string) *Firewall {
+func NewFirewall(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString) *Firewall {
 	this := Firewall{}
 	this.Id = id
 	this.Name = name
@@ -47,6 +51,10 @@ func NewFirewall(id int64, name string, lastEditor string, lastModified time.Tim
 	this.LastModified = lastModified
 	this.CreatedAt = createdAt
 	this.ProductVersion = productVersion
+	this.IsVersioned = isVersioned
+	this.Version = version
+	this.VersionState = versionState
+	this.VersionId = versionId
 	return &this
 }
 
@@ -298,6 +306,108 @@ func (o *Firewall) SetProductVersion(v string) {
 	o.ProductVersion = v
 }
 
+// GetIsVersioned returns the IsVersioned field value
+func (o *Firewall) GetIsVersioned() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsVersioned
+}
+
+// GetIsVersionedOk returns a tuple with the IsVersioned field value
+// and a boolean to check if the value has been set.
+func (o *Firewall) GetIsVersionedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsVersioned, true
+}
+
+// SetIsVersioned sets field value
+func (o *Firewall) SetIsVersioned(v bool) {
+	o.IsVersioned = v
+}
+
+// GetVersion returns the Version field value
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *Firewall) GetVersion() int64 {
+	if o == nil || o.Version.Get() == nil {
+		var ret int64
+		return ret
+	}
+
+	return *o.Version.Get()
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Firewall) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Version.Get(), o.Version.IsSet()
+}
+
+// SetVersion sets field value
+func (o *Firewall) SetVersion(v int64) {
+	o.Version.Set(&v)
+}
+
+// GetVersionState returns the VersionState field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Firewall) GetVersionState() string {
+	if o == nil || o.VersionState.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.VersionState.Get()
+}
+
+// GetVersionStateOk returns a tuple with the VersionState field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Firewall) GetVersionStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VersionState.Get(), o.VersionState.IsSet()
+}
+
+// SetVersionState sets field value
+func (o *Firewall) SetVersionState(v string) {
+	o.VersionState.Set(&v)
+}
+
+// GetVersionId returns the VersionId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Firewall) GetVersionId() string {
+	if o == nil || o.VersionId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.VersionId.Get()
+}
+
+// GetVersionIdOk returns a tuple with the VersionId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Firewall) GetVersionIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VersionId.Get(), o.VersionId.IsSet()
+}
+
+// SetVersionId sets field value
+func (o *Firewall) SetVersionId(v string) {
+	o.VersionId.Set(&v)
+}
+
 func (o Firewall) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -323,6 +433,10 @@ func (o Firewall) ToMap() (map[string]interface{}, error) {
 	toSerialize["last_modified"] = o.LastModified
 	toSerialize["created_at"] = o.CreatedAt
 	toSerialize["product_version"] = o.ProductVersion
+	toSerialize["is_versioned"] = o.IsVersioned
+	toSerialize["version"] = o.Version.Get()
+	toSerialize["version_state"] = o.VersionState.Get()
+	toSerialize["version_id"] = o.VersionId.Get()
 	return toSerialize, nil
 }
 
@@ -337,6 +451,10 @@ func (o *Firewall) UnmarshalJSON(data []byte) (err error) {
 		"last_modified",
 		"created_at",
 		"product_version",
+		"is_versioned",
+		"version",
+		"version_state",
+		"version_id",
 	}
 
 	allProperties := make(map[string]interface{})

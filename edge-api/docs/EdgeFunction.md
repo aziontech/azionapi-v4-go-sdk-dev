@@ -17,12 +17,16 @@ Name | Type | Description | Notes
 **ReferenceCount** | **int64** |  | 
 **Version** | **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | 
 **Vendor** | **string** |  | 
+**IsVersioned** | **bool** |  | 
+**VersionNumber** | **NullableInt64** |  | 
+**VersionState** | **NullableString** |  | 
+**VersionId** | **NullableString** |  | 
 
 ## Methods
 
 ### NewEdgeFunction
 
-`func NewEdgeFunction(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, ) *EdgeFunction`
+`func NewEdgeFunction(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, isVersioned bool, versionNumber NullableInt64, versionState NullableString, versionId NullableString, ) *EdgeFunction`
 
 NewEdgeFunction instantiates a new EdgeFunction object
 This constructor will assign default values to properties that have it defined,
@@ -332,6 +336,116 @@ and a boolean to check if the value has been set.
 SetVendor sets Vendor field to given value.
 
 
+### GetIsVersioned
+
+`func (o *EdgeFunction) GetIsVersioned() bool`
+
+GetIsVersioned returns the IsVersioned field if non-nil, zero value otherwise.
+
+### GetIsVersionedOk
+
+`func (o *EdgeFunction) GetIsVersionedOk() (*bool, bool)`
+
+GetIsVersionedOk returns a tuple with the IsVersioned field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsVersioned
+
+`func (o *EdgeFunction) SetIsVersioned(v bool)`
+
+SetIsVersioned sets IsVersioned field to given value.
+
+
+### GetVersionNumber
+
+`func (o *EdgeFunction) GetVersionNumber() int64`
+
+GetVersionNumber returns the VersionNumber field if non-nil, zero value otherwise.
+
+### GetVersionNumberOk
+
+`func (o *EdgeFunction) GetVersionNumberOk() (*int64, bool)`
+
+GetVersionNumberOk returns a tuple with the VersionNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionNumber
+
+`func (o *EdgeFunction) SetVersionNumber(v int64)`
+
+SetVersionNumber sets VersionNumber field to given value.
+
+
+### SetVersionNumberNil
+
+`func (o *EdgeFunction) SetVersionNumberNil(b bool)`
+
+ SetVersionNumberNil sets the value for VersionNumber to be an explicit nil
+
+### UnsetVersionNumber
+`func (o *EdgeFunction) UnsetVersionNumber()`
+
+UnsetVersionNumber ensures that no value is present for VersionNumber, not even an explicit nil
+### GetVersionState
+
+`func (o *EdgeFunction) GetVersionState() string`
+
+GetVersionState returns the VersionState field if non-nil, zero value otherwise.
+
+### GetVersionStateOk
+
+`func (o *EdgeFunction) GetVersionStateOk() (*string, bool)`
+
+GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionState
+
+`func (o *EdgeFunction) SetVersionState(v string)`
+
+SetVersionState sets VersionState field to given value.
+
+
+### SetVersionStateNil
+
+`func (o *EdgeFunction) SetVersionStateNil(b bool)`
+
+ SetVersionStateNil sets the value for VersionState to be an explicit nil
+
+### UnsetVersionState
+`func (o *EdgeFunction) UnsetVersionState()`
+
+UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
+### GetVersionId
+
+`func (o *EdgeFunction) GetVersionId() string`
+
+GetVersionId returns the VersionId field if non-nil, zero value otherwise.
+
+### GetVersionIdOk
+
+`func (o *EdgeFunction) GetVersionIdOk() (*string, bool)`
+
+GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionId
+
+`func (o *EdgeFunction) SetVersionId(v string)`
+
+SetVersionId sets VersionId field to given value.
+
+
+### SetVersionIdNil
+
+`func (o *EdgeFunction) SetVersionIdNil(b bool)`
+
+ SetVersionIdNil sets the value for VersionId to be an explicit nil
+
+### UnsetVersionId
+`func (o *EdgeFunction) UnsetVersionId()`
+
+UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

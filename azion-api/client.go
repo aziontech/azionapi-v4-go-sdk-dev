@@ -98,6 +98,8 @@ type APIClient struct {
 
 	ConnectorsAPI *ConnectorsAPIService
 
+	CustomPageVersionsAPI *CustomPageVersionsAPIService
+
 	CustomPagesAPI *CustomPagesAPIService
 
 	DNSDNSSECAPI *DNSDNSSECAPIService
@@ -122,11 +124,15 @@ type APIClient struct {
 
 	FavoritesAPI *FavoritesAPIService
 
+	FirewallVersionsAPI *FirewallVersionsAPIService
+
 	FirewallsAPI *FirewallsAPIService
 
 	FirewallsFunctionAPI *FirewallsFunctionAPIService
 
 	FirewallsRulesEngineAPI *FirewallsRulesEngineAPIService
+
+	FunctionVersionsAPI *FunctionVersionsAPIService
 
 	FunctionsAPI *FunctionsAPIService
 
@@ -159,6 +165,8 @@ type APIClient struct {
 	MetricsReportsAPI *MetricsReportsAPIService
 
 	MetricsRowsAPI *MetricsRowsAPIService
+
+	NetworkListVersionsAPI *NetworkListVersionsAPIService
 
 	NetworkListsAPI *NetworkListsAPIService
 
@@ -203,6 +211,8 @@ type APIClient struct {
 	VCSIntegrationsAPI *VCSIntegrationsAPIService
 
 	VCSProvidersAPI *VCSProvidersAPIService
+
+	WAFVersionsAPI *WAFVersionsAPIService
 
 	WAFsAPI *WAFsAPIService
 
@@ -255,6 +265,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.BillingPaymentsAPI = (*BillingPaymentsAPIService)(&c.common)
 	c.ConnectorVersionsAPI = (*ConnectorVersionsAPIService)(&c.common)
 	c.ConnectorsAPI = (*ConnectorsAPIService)(&c.common)
+	c.CustomPageVersionsAPI = (*CustomPageVersionsAPIService)(&c.common)
 	c.CustomPagesAPI = (*CustomPagesAPIService)(&c.common)
 	c.DNSDNSSECAPI = (*DNSDNSSECAPIService)(&c.common)
 	c.DNSRecordsAPI = (*DNSRecordsAPIService)(&c.common)
@@ -267,9 +278,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DigitalCertificatesCertificatesAPI = (*DigitalCertificatesCertificatesAPIService)(&c.common)
 	c.DigitalCertificatesRequestACertificateAPI = (*DigitalCertificatesRequestACertificateAPIService)(&c.common)
 	c.FavoritesAPI = (*FavoritesAPIService)(&c.common)
+	c.FirewallVersionsAPI = (*FirewallVersionsAPIService)(&c.common)
 	c.FirewallsAPI = (*FirewallsAPIService)(&c.common)
 	c.FirewallsFunctionAPI = (*FirewallsFunctionAPIService)(&c.common)
 	c.FirewallsRulesEngineAPI = (*FirewallsRulesEngineAPIService)(&c.common)
+	c.FunctionVersionsAPI = (*FunctionVersionsAPIService)(&c.common)
 	c.FunctionsAPI = (*FunctionsAPIService)(&c.common)
 	c.IdentityGrantsAPI = (*IdentityGrantsAPIService)(&c.common)
 	c.IdentityGroupMembersAPI = (*IdentityGroupMembersAPIService)(&c.common)
@@ -286,6 +299,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.MetricsRecommendationsAPI = (*MetricsRecommendationsAPIService)(&c.common)
 	c.MetricsReportsAPI = (*MetricsReportsAPIService)(&c.common)
 	c.MetricsRowsAPI = (*MetricsRowsAPIService)(&c.common)
+	c.NetworkListVersionsAPI = (*NetworkListVersionsAPIService)(&c.common)
 	c.NetworkListsAPI = (*NetworkListsAPIService)(&c.common)
 	c.OrchestratorNodeGroupsAPI = (*OrchestratorNodeGroupsAPIService)(&c.common)
 	c.OrchestratorNodeServicesAPI = (*OrchestratorNodeServicesAPIService)(&c.common)
@@ -308,6 +322,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.VCSExecutionScriptsAPI = (*VCSExecutionScriptsAPIService)(&c.common)
 	c.VCSIntegrationsAPI = (*VCSIntegrationsAPIService)(&c.common)
 	c.VCSProvidersAPI = (*VCSProvidersAPIService)(&c.common)
+	c.WAFVersionsAPI = (*WAFVersionsAPIService)(&c.common)
 	c.WAFsAPI = (*WAFsAPIService)(&c.common)
 	c.WAFsExceptionsAPI = (*WAFsExceptionsAPIService)(&c.common)
 	c.WorkloadDeploymentsAPI = (*WorkloadDeploymentsAPIService)(&c.common)

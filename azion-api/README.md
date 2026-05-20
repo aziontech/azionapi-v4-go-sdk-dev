@@ -195,6 +195,15 @@ Class | Method | HTTP request | Description
 *ConnectorsAPI* | [**PartialUpdateConnector**](docs/ConnectorsAPI.md#partialupdateconnector) | **Patch** /workspace/connectors/{connector_id} | Partially update a Connector
 *ConnectorsAPI* | [**RetrieveConnector**](docs/ConnectorsAPI.md#retrieveconnector) | **Get** /workspace/connectors/{connector_id} | Retrieve details of a Connector
 *ConnectorsAPI* | [**UpdateConnector**](docs/ConnectorsAPI.md#updateconnector) | **Put** /workspace/connectors/{connector_id} | Update a Connector
+*CustomPageVersionsAPI* | [**ArchiveCustomPageVersion**](docs/CustomPageVersionsAPI.md#archivecustompageversion) | **Post** /workspace/custom_pages/{resource_pk}/versions/{id}/archive | Archive a Custom Page version
+*CustomPageVersionsAPI* | [**BuildCustomPageVersion**](docs/CustomPageVersionsAPI.md#buildcustompageversion) | **Post** /workspace/custom_pages/{resource_pk}/versions/{id}/build | Build a Custom Page version
+*CustomPageVersionsAPI* | [**CancelCustomPageVersionBuild**](docs/CustomPageVersionsAPI.md#cancelcustompageversionbuild) | **Post** /workspace/custom_pages/{resource_pk}/versions/{id}/cancel | Cancel a Custom Page version build
+*CustomPageVersionsAPI* | [**CreateCustomPageVersion**](docs/CustomPageVersionsAPI.md#createcustompageversion) | **Post** /workspace/custom_pages/{resource_pk}/versions | Create a new Custom Page version
+*CustomPageVersionsAPI* | [**DeleteCustomPageVersion**](docs/CustomPageVersionsAPI.md#deletecustompageversion) | **Delete** /workspace/custom_pages/{resource_pk}/versions/{id} | Delete a Custom Page version
+*CustomPageVersionsAPI* | [**ListCustomPageVersions**](docs/CustomPageVersionsAPI.md#listcustompageversions) | **Get** /workspace/custom_pages/{resource_pk}/versions | List Custom Page versions
+*CustomPageVersionsAPI* | [**PartialUpdateCustomPageVersion**](docs/CustomPageVersionsAPI.md#partialupdatecustompageversion) | **Patch** /workspace/custom_pages/{resource_pk}/versions/{id} | Partially update a Custom Page version
+*CustomPageVersionsAPI* | [**RetrieveCustomPageVersion**](docs/CustomPageVersionsAPI.md#retrievecustompageversion) | **Get** /workspace/custom_pages/{resource_pk}/versions/{id} | Retrieve a Custom Page version
+*CustomPageVersionsAPI* | [**UpdateCustomPageVersion**](docs/CustomPageVersionsAPI.md#updatecustompageversion) | **Put** /workspace/custom_pages/{resource_pk}/versions/{id} | Update a Custom Page version
 *CustomPagesAPI* | [**CreateCustomPage**](docs/CustomPagesAPI.md#createcustompage) | **Post** /workspace/custom_pages | Create a Custom Page
 *CustomPagesAPI* | [**DeleteCustomPage**](docs/CustomPagesAPI.md#deletecustompage) | **Delete** /workspace/custom_pages/{custom_page_id} | Delete a Custom Page
 *CustomPagesAPI* | [**ListCustomPages**](docs/CustomPagesAPI.md#listcustompages) | **Get** /workspace/custom_pages | List Custom Pages
@@ -246,6 +255,15 @@ Class | Method | HTTP request | Description
 *FavoritesAPI* | [**CreateFavorite**](docs/FavoritesAPI.md#createfavorite) | **Post** /identity/user/favorites | Create a new favorite
 *FavoritesAPI* | [**DeleteFavorite**](docs/FavoritesAPI.md#deletefavorite) | **Delete** /identity/user/favorites/{favorite_id} | Delete a favorite
 *FavoritesAPI* | [**ListFavorites**](docs/FavoritesAPI.md#listfavorites) | **Get** /identity/user/favorites | List of the favorites
+*FirewallVersionsAPI* | [**ArchiveFirewallVersion**](docs/FirewallVersionsAPI.md#archivefirewallversion) | **Post** /workspace/firewalls/{resource_pk}/versions/{id}/archive | Archive a Firewall version
+*FirewallVersionsAPI* | [**BuildFirewallVersion**](docs/FirewallVersionsAPI.md#buildfirewallversion) | **Post** /workspace/firewalls/{resource_pk}/versions/{id}/build | Build a Firewall version
+*FirewallVersionsAPI* | [**CancelFirewallVersionBuild**](docs/FirewallVersionsAPI.md#cancelfirewallversionbuild) | **Post** /workspace/firewalls/{resource_pk}/versions/{id}/cancel | Cancel a Firewall version build
+*FirewallVersionsAPI* | [**CreateFirewallVersion**](docs/FirewallVersionsAPI.md#createfirewallversion) | **Post** /workspace/firewalls/{resource_pk}/versions | Create a new Firewall version
+*FirewallVersionsAPI* | [**DeleteFirewallVersion**](docs/FirewallVersionsAPI.md#deletefirewallversion) | **Delete** /workspace/firewalls/{resource_pk}/versions/{id} | Delete a Firewall version
+*FirewallVersionsAPI* | [**ListFirewallVersions**](docs/FirewallVersionsAPI.md#listfirewallversions) | **Get** /workspace/firewalls/{resource_pk}/versions | List Firewall versions
+*FirewallVersionsAPI* | [**PartialUpdateFirewallVersion**](docs/FirewallVersionsAPI.md#partialupdatefirewallversion) | **Patch** /workspace/firewalls/{resource_pk}/versions/{id} | Partially update a Firewall version
+*FirewallVersionsAPI* | [**RetrieveFirewallVersion**](docs/FirewallVersionsAPI.md#retrievefirewallversion) | **Get** /workspace/firewalls/{resource_pk}/versions/{id} | Retrieve a Firewall version
+*FirewallVersionsAPI* | [**UpdateFirewallVersion**](docs/FirewallVersionsAPI.md#updatefirewallversion) | **Put** /workspace/firewalls/{resource_pk}/versions/{id} | Update a Firewall version
 *FirewallsAPI* | [**CloneFirewall**](docs/FirewallsAPI.md#clonefirewall) | **Post** /workspace/firewalls/{firewall_id}/clone | Clone a Firewall
 *FirewallsAPI* | [**CreateFirewall**](docs/FirewallsAPI.md#createfirewall) | **Post** /workspace/firewalls | Create a Firewall
 *FirewallsAPI* | [**DeleteFirewall**](docs/FirewallsAPI.md#deletefirewall) | **Delete** /workspace/firewalls/{firewall_id} | Delete a Firewall
@@ -266,6 +284,14 @@ Class | Method | HTTP request | Description
 *FirewallsRulesEngineAPI* | [**PartialUpdateFirewallRule**](docs/FirewallsRulesEngineAPI.md#partialupdatefirewallrule) | **Patch** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Partially update an Firewall Rule
 *FirewallsRulesEngineAPI* | [**RetrieveFirewallRule**](docs/FirewallsRulesEngineAPI.md#retrievefirewallrule) | **Get** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Retrieve details of an Firewall Rule
 *FirewallsRulesEngineAPI* | [**UpdateFirewallRule**](docs/FirewallsRulesEngineAPI.md#updatefirewallrule) | **Put** /workspace/firewalls/{firewall_id}/request_rules/{request_rule_id} | Update an Firewall Rule
+*FunctionVersionsAPI* | [**ArchiveFunctionVersion**](docs/FunctionVersionsAPI.md#archivefunctionversion) | **Post** /workspace/functions/{resource_pk}/versions/{id}/archive | Archive a Function version
+*FunctionVersionsAPI* | [**CancelFunctionVersionBuild**](docs/FunctionVersionsAPI.md#cancelfunctionversionbuild) | **Post** /workspace/functions/{resource_pk}/versions/{id}/cancel | Cancel a Function version build
+*FunctionVersionsAPI* | [**CreateFunctionVersion**](docs/FunctionVersionsAPI.md#createfunctionversion) | **Post** /workspace/functions/{resource_pk}/versions | Create a new Function version
+*FunctionVersionsAPI* | [**DeleteFunctionVersion**](docs/FunctionVersionsAPI.md#deletefunctionversion) | **Delete** /workspace/functions/{resource_pk}/versions/{id} | Delete a Function version
+*FunctionVersionsAPI* | [**ListFunctionVersions**](docs/FunctionVersionsAPI.md#listfunctionversions) | **Get** /workspace/functions/{resource_pk}/versions | List Function versions
+*FunctionVersionsAPI* | [**PartialUpdateFunctionVersion**](docs/FunctionVersionsAPI.md#partialupdatefunctionversion) | **Patch** /workspace/functions/{resource_pk}/versions/{id} | Partially update a Function version
+*FunctionVersionsAPI* | [**RetrieveFunctionVersion**](docs/FunctionVersionsAPI.md#retrievefunctionversion) | **Get** /workspace/functions/{resource_pk}/versions/{id} | Retrieve a Function version
+*FunctionVersionsAPI* | [**UpdateFunctionVersion**](docs/FunctionVersionsAPI.md#updatefunctionversion) | **Put** /workspace/functions/{resource_pk}/versions/{id} | Update a Function version
 *FunctionsAPI* | [**CreateFunction**](docs/FunctionsAPI.md#createfunction) | **Post** /workspace/functions | Create an Function
 *FunctionsAPI* | [**DeleteFunction**](docs/FunctionsAPI.md#deletefunction) | **Delete** /workspace/functions/{function_id} | Delete an Function
 *FunctionsAPI* | [**ListFunctions**](docs/FunctionsAPI.md#listfunctions) | **Get** /workspace/functions | List Functions
@@ -339,6 +365,15 @@ Class | Method | HTTP request | Description
 *MetricsRowsAPI* | [**OrderingRow**](docs/MetricsRowsAPI.md#orderingrow) | **Put** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/order | Ordering rows in dashboard
 *MetricsRowsAPI* | [**RetrieveRow**](docs/MetricsRowsAPI.md#retrieverow) | **Get** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id} | Retrieve details from a row
 *MetricsRowsAPI* | [**UpdateRow**](docs/MetricsRowsAPI.md#updaterow) | **Put** /metrics/folders/{folder_id}/dashboards/{dashboard_id}/rows/{row_id} | Update a row
+*NetworkListVersionsAPI* | [**ArchiveNetworkListVersion**](docs/NetworkListVersionsAPI.md#archivenetworklistversion) | **Post** /workspace/network_lists/{resource_pk}/versions/{id}/archive | Archive a Network List version
+*NetworkListVersionsAPI* | [**BuildNetworkListVersion**](docs/NetworkListVersionsAPI.md#buildnetworklistversion) | **Post** /workspace/network_lists/{resource_pk}/versions/{id}/build | Build a Network List version
+*NetworkListVersionsAPI* | [**CancelNetworkListVersionBuild**](docs/NetworkListVersionsAPI.md#cancelnetworklistversionbuild) | **Post** /workspace/network_lists/{resource_pk}/versions/{id}/cancel | Cancel a Network List version build
+*NetworkListVersionsAPI* | [**CreateNetworkListVersion**](docs/NetworkListVersionsAPI.md#createnetworklistversion) | **Post** /workspace/network_lists/{resource_pk}/versions | Create a new Network List version
+*NetworkListVersionsAPI* | [**DeleteNetworkListVersion**](docs/NetworkListVersionsAPI.md#deletenetworklistversion) | **Delete** /workspace/network_lists/{resource_pk}/versions/{id} | Delete a Network List version
+*NetworkListVersionsAPI* | [**ListNetworkListVersions**](docs/NetworkListVersionsAPI.md#listnetworklistversions) | **Get** /workspace/network_lists/{resource_pk}/versions | List Network List versions
+*NetworkListVersionsAPI* | [**PartialUpdateNetworkListVersion**](docs/NetworkListVersionsAPI.md#partialupdatenetworklistversion) | **Patch** /workspace/network_lists/{resource_pk}/versions/{id} | Partially update a Network List version
+*NetworkListVersionsAPI* | [**RetrieveNetworkListVersion**](docs/NetworkListVersionsAPI.md#retrievenetworklistversion) | **Get** /workspace/network_lists/{resource_pk}/versions/{id} | Retrieve a Network List version
+*NetworkListVersionsAPI* | [**UpdateNetworkListVersion**](docs/NetworkListVersionsAPI.md#updatenetworklistversion) | **Put** /workspace/network_lists/{resource_pk}/versions/{id} | Update a Network List version
 *NetworkListsAPI* | [**CreateNetworkList**](docs/NetworkListsAPI.md#createnetworklist) | **Post** /workspace/network_lists | Create a Network List
 *NetworkListsAPI* | [**DeleteNetworkList**](docs/NetworkListsAPI.md#deletenetworklist) | **Delete** /workspace/network_lists/{network_list_id} | Delete a Network List
 *NetworkListsAPI* | [**ListNetworkLists**](docs/NetworkListsAPI.md#listnetworklists) | **Get** /workspace/network_lists | List Network Lists
@@ -426,6 +461,15 @@ Class | Method | HTTP request | Description
 *VCSIntegrationsAPI* | [**ListRepositories**](docs/VCSIntegrationsAPI.md#listrepositories) | **Get** /vcs/integrations/{integration_id}/repositories | List integration repositories.
 *VCSIntegrationsAPI* | [**RetrieveIntegration**](docs/VCSIntegrationsAPI.md#retrieveintegration) | **Get** /vcs/integrations/{integration_id} | Retrieve details from a integration
 *VCSProvidersAPI* | [**ListProviders**](docs/VCSProvidersAPI.md#listproviders) | **Get** /vcs/providers | List providers
+*WAFVersionsAPI* | [**ArchiveWafVersion**](docs/WAFVersionsAPI.md#archivewafversion) | **Post** /workspace/wafs/{resource_pk}/versions/{id}/archive | Archive a WAF version
+*WAFVersionsAPI* | [**BuildWafVersion**](docs/WAFVersionsAPI.md#buildwafversion) | **Post** /workspace/wafs/{resource_pk}/versions/{id}/build | Build a WAF version
+*WAFVersionsAPI* | [**CancelWafVersionBuild**](docs/WAFVersionsAPI.md#cancelwafversionbuild) | **Post** /workspace/wafs/{resource_pk}/versions/{id}/cancel | Cancel a WAF version build
+*WAFVersionsAPI* | [**CreateWafVersion**](docs/WAFVersionsAPI.md#createwafversion) | **Post** /workspace/wafs/{resource_pk}/versions | Create a new WAF version
+*WAFVersionsAPI* | [**DeleteWafVersion**](docs/WAFVersionsAPI.md#deletewafversion) | **Delete** /workspace/wafs/{resource_pk}/versions/{id} | Delete a WAF version
+*WAFVersionsAPI* | [**ListWafVersions**](docs/WAFVersionsAPI.md#listwafversions) | **Get** /workspace/wafs/{resource_pk}/versions | List WAF versions
+*WAFVersionsAPI* | [**PartialUpdateWafVersion**](docs/WAFVersionsAPI.md#partialupdatewafversion) | **Patch** /workspace/wafs/{resource_pk}/versions/{id} | Partially update a WAF version
+*WAFVersionsAPI* | [**RetrieveWafVersion**](docs/WAFVersionsAPI.md#retrievewafversion) | **Get** /workspace/wafs/{resource_pk}/versions/{id} | Retrieve a WAF version
+*WAFVersionsAPI* | [**UpdateWafVersion**](docs/WAFVersionsAPI.md#updatewafversion) | **Put** /workspace/wafs/{resource_pk}/versions/{id} | Update a WAF version
 *WAFsAPI* | [**CloneWaf**](docs/WAFsAPI.md#clonewaf) | **Post** /workspace/wafs/{waf_id}/clone | Clone a Web Application Firewall (WAF)
 *WAFsAPI* | [**CreateWaf**](docs/WAFsAPI.md#createwaf) | **Post** /workspace/wafs | Create a Web Application Firewall (WAF)
 *WAFsAPI* | [**DeleteWaf**](docs/WAFsAPI.md#deletewaf) | **Delete** /workspace/wafs/{waf_id} | Delete a Web Application Firewall (WAF)
