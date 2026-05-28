@@ -26,6 +26,7 @@ api_billing_invoices.go
 api_billing_payments.go
 api_connector_versions.go
 api_connectors.go
+api_custom_page_versions.go
 api_custom_pages.go
 api_data_stream_data_sources.go
 api_data_stream_streams.go
@@ -38,9 +39,11 @@ api_dns_records.go
 api_dns_zones.go
 api_dnsdnssec.go
 api_favorites.go
+api_firewall_versions.go
 api_firewalls.go
 api_firewalls_function.go
 api_firewalls_rules_engine.go
+api_function_versions.go
 api_functions.go
 api_identity_grants.go
 api_identity_group_members.go
@@ -57,6 +60,7 @@ api_metrics_library_reports.go
 api_metrics_recommendations.go
 api_metrics_reports.go
 api_metrics_rows.go
+api_network_list_versions.go
 api_network_lists.go
 api_orchestrator_node_groups.go
 api_orchestrator_node_services.go
@@ -79,6 +83,7 @@ api_vcs_continuous_deployments.go
 api_vcs_execution_scripts.go
 api_vcs_integrations.go
 api_vcs_providers.go
+api_waf_versions.go
 api_wafs.go
 api_wafs_exceptions.go
 api_workload_deployments.go
@@ -233,6 +238,7 @@ docs/CreditResponse.md
 docs/CustomPage.md
 docs/CustomPageRequest.md
 docs/CustomPageResponse.md
+docs/CustomPageVersionsAPI.md
 docs/CustomPagesAPI.md
 docs/DNSDNSSECAPI.md
 docs/DNSRecordsAPI.md
@@ -324,6 +330,7 @@ docs/FirewallRule.md
 docs/FirewallRuleEngineOrderRequest.md
 docs/FirewallRuleRequest.md
 docs/FirewallRuleResponse.md
+docs/FirewallVersionsAPI.md
 docs/FirewallsAPI.md
 docs/FirewallsFunctionAPI.md
 docs/FirewallsRulesEngineAPI.md
@@ -339,6 +346,7 @@ docs/FunctionInstanceResponse.md
 docs/FunctionModule.md
 docs/FunctionModuleRequest.md
 docs/FunctionResponse.md
+docs/FunctionVersionsAPI.md
 docs/Functions.md
 docs/FunctionsAPI.md
 docs/FunctionsRequest.md
@@ -422,6 +430,7 @@ docs/NetworkList.md
 docs/NetworkListRequest.md
 docs/NetworkListResponse.md
 docs/NetworkListSummary.md
+docs/NetworkListVersionsAPI.md
 docs/NetworkListsAPI.md
 docs/NodeGroups.md
 docs/NodeGroupsById.md
@@ -803,6 +812,7 @@ docs/WAFResponse.md
 docs/WAFRule.md
 docs/WAFRuleRequest.md
 docs/WAFRuleResponse.md
+docs/WAFVersionsAPI.md
 docs/WAFsAPI.md
 docs/WAFsExceptionsAPI.md
 docs/Workload.md
@@ -1476,4 +1486,9 @@ model_zone.go
 model_zone_request.go
 model_zone_response.go
 response.go
+test/api_custom_page_versions_test.go
+test/api_firewall_versions_test.go
+test/api_function_versions_test.go
+test/api_network_list_versions_test.go
+test/api_waf_versions_test.go
 utils.go

@@ -67,7 +67,11 @@ type APIClient struct {
 
 	ConnectorsAPI *ConnectorsAPIService
 
+	CustomPageVersionsAPI *CustomPageVersionsAPIService
+
 	CustomPagesAPI *CustomPagesAPIService
+
+	FirewallVersionsAPI *FirewallVersionsAPIService
 
 	FirewallsAPI *FirewallsAPIService
 
@@ -75,11 +79,17 @@ type APIClient struct {
 
 	FirewallsRulesEngineAPI *FirewallsRulesEngineAPIService
 
+	FunctionVersionsAPI *FunctionVersionsAPIService
+
 	FunctionsAPI *FunctionsAPIService
+
+	NetworkListVersionsAPI *NetworkListVersionsAPIService
 
 	NetworkListsAPI *NetworkListsAPIService
 
 	PurgeAPI *PurgeAPIService
+
+	WAFVersionsAPI *WAFVersionsAPIService
 
 	WAFsAPI *WAFsAPIService
 
@@ -117,13 +127,18 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ApplicationsResponseRulesAPI = (*ApplicationsResponseRulesAPIService)(&c.common)
 	c.ConnectorVersionsAPI = (*ConnectorVersionsAPIService)(&c.common)
 	c.ConnectorsAPI = (*ConnectorsAPIService)(&c.common)
+	c.CustomPageVersionsAPI = (*CustomPageVersionsAPIService)(&c.common)
 	c.CustomPagesAPI = (*CustomPagesAPIService)(&c.common)
+	c.FirewallVersionsAPI = (*FirewallVersionsAPIService)(&c.common)
 	c.FirewallsAPI = (*FirewallsAPIService)(&c.common)
 	c.FirewallsFunctionAPI = (*FirewallsFunctionAPIService)(&c.common)
 	c.FirewallsRulesEngineAPI = (*FirewallsRulesEngineAPIService)(&c.common)
+	c.FunctionVersionsAPI = (*FunctionVersionsAPIService)(&c.common)
 	c.FunctionsAPI = (*FunctionsAPIService)(&c.common)
+	c.NetworkListVersionsAPI = (*NetworkListVersionsAPIService)(&c.common)
 	c.NetworkListsAPI = (*NetworkListsAPIService)(&c.common)
 	c.PurgeAPI = (*PurgeAPIService)(&c.common)
+	c.WAFVersionsAPI = (*WAFVersionsAPIService)(&c.common)
 	c.WAFsAPI = (*WAFsAPIService)(&c.common)
 	c.WAFsExceptionsAPI = (*WAFsExceptionsAPIService)(&c.common)
 	c.WorkloadDeploymentsAPI = (*WorkloadDeploymentsAPIService)(&c.common)

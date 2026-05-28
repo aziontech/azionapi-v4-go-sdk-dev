@@ -30,6 +30,10 @@ type CustomPage struct {
 	Active *bool `json:"active,omitempty"`
 	ProductVersion string `json:"product_version"`
 	Pages []Page `json:"pages"`
+	IsVersioned bool `json:"is_versioned"`
+	Version NullableInt64 `json:"version"`
+	VersionState NullableString `json:"version_state"`
+	VersionId NullableString `json:"version_id"`
 }
 
 type _CustomPage CustomPage
@@ -38,7 +42,7 @@ type _CustomPage CustomPage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomPage(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, pages []Page) *CustomPage {
+func NewCustomPage(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, pages []Page, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString) *CustomPage {
 	this := CustomPage{}
 	this.Id = id
 	this.Name = name
@@ -47,6 +51,10 @@ func NewCustomPage(id int64, name string, lastEditor string, lastModified time.T
 	this.CreatedAt = createdAt
 	this.ProductVersion = productVersion
 	this.Pages = pages
+	this.IsVersioned = isVersioned
+	this.Version = version
+	this.VersionState = versionState
+	this.VersionId = versionId
 	return &this
 }
 
@@ -258,6 +266,108 @@ func (o *CustomPage) SetPages(v []Page) {
 	o.Pages = v
 }
 
+// GetIsVersioned returns the IsVersioned field value
+func (o *CustomPage) GetIsVersioned() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.IsVersioned
+}
+
+// GetIsVersionedOk returns a tuple with the IsVersioned field value
+// and a boolean to check if the value has been set.
+func (o *CustomPage) GetIsVersionedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsVersioned, true
+}
+
+// SetIsVersioned sets field value
+func (o *CustomPage) SetIsVersioned(v bool) {
+	o.IsVersioned = v
+}
+
+// GetVersion returns the Version field value
+// If the value is explicit nil, the zero value for int64 will be returned
+func (o *CustomPage) GetVersion() int64 {
+	if o == nil || o.Version.Get() == nil {
+		var ret int64
+		return ret
+	}
+
+	return *o.Version.Get()
+}
+
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CustomPage) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Version.Get(), o.Version.IsSet()
+}
+
+// SetVersion sets field value
+func (o *CustomPage) SetVersion(v int64) {
+	o.Version.Set(&v)
+}
+
+// GetVersionState returns the VersionState field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *CustomPage) GetVersionState() string {
+	if o == nil || o.VersionState.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.VersionState.Get()
+}
+
+// GetVersionStateOk returns a tuple with the VersionState field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CustomPage) GetVersionStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VersionState.Get(), o.VersionState.IsSet()
+}
+
+// SetVersionState sets field value
+func (o *CustomPage) SetVersionState(v string) {
+	o.VersionState.Set(&v)
+}
+
+// GetVersionId returns the VersionId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *CustomPage) GetVersionId() string {
+	if o == nil || o.VersionId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.VersionId.Get()
+}
+
+// GetVersionIdOk returns a tuple with the VersionId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CustomPage) GetVersionIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VersionId.Get(), o.VersionId.IsSet()
+}
+
+// SetVersionId sets field value
+func (o *CustomPage) SetVersionId(v string) {
+	o.VersionId.Set(&v)
+}
+
 func (o CustomPage) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -278,6 +388,10 @@ func (o CustomPage) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["product_version"] = o.ProductVersion
 	toSerialize["pages"] = o.Pages
+	toSerialize["is_versioned"] = o.IsVersioned
+	toSerialize["version"] = o.Version.Get()
+	toSerialize["version_state"] = o.VersionState.Get()
+	toSerialize["version_id"] = o.VersionId.Get()
 	return toSerialize, nil
 }
 
@@ -293,6 +407,10 @@ func (o *CustomPage) UnmarshalJSON(data []byte) (err error) {
 		"created_at",
 		"product_version",
 		"pages",
+		"is_versioned",
+		"version",
+		"version_state",
+		"version_id",
 	}
 
 	allProperties := make(map[string]interface{})

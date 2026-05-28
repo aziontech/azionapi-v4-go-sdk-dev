@@ -11,13 +11,18 @@ api_applications_request_rules.go
 api_applications_response_rules.go
 api_connector_versions.go
 api_connectors.go
+api_custom_page_versions.go
 api_custom_pages.go
+api_firewall_versions.go
 api_firewalls.go
 api_firewalls_function.go
 api_firewalls_rules_engine.go
+api_function_versions.go
 api_functions.go
+api_network_list_versions.go
 api_network_lists.go
 api_purge.go
+api_waf_versions.go
 api_wafs.go
 api_wafs_exceptions.go
 api_workload_deployments.go
@@ -145,6 +150,7 @@ docs/ConnectorsAPI.md
 docs/CustomPage.md
 docs/CustomPageRequest.md
 docs/CustomPageResponse.md
+docs/CustomPageVersionsAPI.md
 docs/CustomPagesAPI.md
 docs/DefaultDeploymentStrategy.md
 docs/DefaultDeploymentStrategyAttrs.md
@@ -204,6 +210,7 @@ docs/FirewallRule.md
 docs/FirewallRuleEngineOrderRequest.md
 docs/FirewallRuleRequest.md
 docs/FirewallRuleResponse.md
+docs/FirewallVersionsAPI.md
 docs/FirewallsAPI.md
 docs/FirewallsFunctionAPI.md
 docs/FirewallsRulesEngineAPI.md
@@ -211,6 +218,7 @@ docs/FunctionInstance.md
 docs/FunctionInstanceRequest.md
 docs/FunctionInstanceResponse.md
 docs/FunctionResponse.md
+docs/FunctionVersionsAPI.md
 docs/FunctionsAPI.md
 docs/HMAC.md
 docs/HMACRequest.md
@@ -240,6 +248,7 @@ docs/NetworkList.md
 docs/NetworkListRequest.md
 docs/NetworkListResponse.md
 docs/NetworkListSummary.md
+docs/NetworkListVersionsAPI.md
 docs/NetworkListsAPI.md
 docs/OriginIPACL.md
 docs/OriginIPACLRequest.md
@@ -360,6 +369,7 @@ docs/WAFResponse.md
 docs/WAFRule.md
 docs/WAFRuleRequest.md
 docs/WAFRuleResponse.md
+docs/WAFVersionsAPI.md
 docs/WAFsAPI.md
 docs/WAFsExceptionsAPI.md
 docs/Workload.md
@@ -704,4 +714,9 @@ model_workload_environment_binding_request.go
 model_workload_request.go
 model_workload_response.go
 response.go
+test/api_custom_page_versions_test.go
+test/api_firewall_versions_test.go
+test/api_function_versions_test.go
+test/api_network_list_versions_test.go
+test/api_waf_versions_test.go
 utils.go
