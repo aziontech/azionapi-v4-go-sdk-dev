@@ -17,9 +17,9 @@ import (
 // checks if the PatchedVersionCreateRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PatchedVersionCreateRequest{}
 
-// PatchedVersionCreateRequest Serializer for creating a new version (clone).  The API receives the source version ULID (optional), a comment/description, and optional field overrides to apply on the cloned version before saving.
+// PatchedVersionCreateRequest Serializer for creating a new version (clone).  The API receives the source version ID (optional), a comment/description, and optional field overrides to apply on the cloned version before saving.
 type PatchedVersionCreateRequest struct {
-	// ULID of the version to clone from. If omitted, clones latest ready.
+	// ID of the version to clone from. If omitted, clones latest ready.
 	SourceVersion NullableString `json:"source_version,omitempty"`
 	// Description for the new version
 	Comment *string `json:"comment,omitempty"`

@@ -26,8 +26,8 @@ type FirewallVersionsAPIService service
 type ApiArchiveFirewallVersionRequest struct {
 	ctx context.Context
 	ApiService *FirewallVersionsAPIService
-	id string
-	resourcePk int64
+	firewallId int64
+	versionId string
 	versionArchiveRequest *VersionArchiveRequest
 }
 
@@ -46,16 +46,16 @@ ArchiveFirewallVersion Archive a Firewall version
 Archive a ready version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Firewall resource.
+ @param firewallId The ID of the Firewall resource.
+ @param versionId The identifier of the version.
  @return ApiArchiveFirewallVersionRequest
 */
-func (a *FirewallVersionsAPIService) ArchiveFirewallVersion(ctx context.Context, id string, resourcePk int64) ApiArchiveFirewallVersionRequest {
+func (a *FirewallVersionsAPIService) ArchiveFirewallVersion(ctx context.Context, firewallId int64, versionId string) ApiArchiveFirewallVersionRequest {
 	return ApiArchiveFirewallVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		firewallId: firewallId,
+		versionId: versionId,
 	}
 }
 
@@ -72,9 +72,9 @@ func (a *FirewallVersionsAPIService) ArchiveFirewallVersionExecute(r ApiArchiveF
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{resource_pk}/versions/{id}/archive"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/versions/{version_id}/archive"
+	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -144,8 +144,8 @@ func (a *FirewallVersionsAPIService) ArchiveFirewallVersionExecute(r ApiArchiveF
 type ApiBuildFirewallVersionRequest struct {
 	ctx context.Context
 	ApiService *FirewallVersionsAPIService
-	id string
-	resourcePk int64
+	firewallId int64
+	versionId string
 	versionBuildRequest *VersionBuildRequest
 }
 
@@ -164,16 +164,16 @@ BuildFirewallVersion Build a Firewall version
 Trigger a build for a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Firewall resource.
+ @param firewallId The ID of the Firewall resource.
+ @param versionId The identifier of the version.
  @return ApiBuildFirewallVersionRequest
 */
-func (a *FirewallVersionsAPIService) BuildFirewallVersion(ctx context.Context, id string, resourcePk int64) ApiBuildFirewallVersionRequest {
+func (a *FirewallVersionsAPIService) BuildFirewallVersion(ctx context.Context, firewallId int64, versionId string) ApiBuildFirewallVersionRequest {
 	return ApiBuildFirewallVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		firewallId: firewallId,
+		versionId: versionId,
 	}
 }
 
@@ -190,9 +190,9 @@ func (a *FirewallVersionsAPIService) BuildFirewallVersionExecute(r ApiBuildFirew
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{resource_pk}/versions/{id}/build"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/versions/{version_id}/build"
+	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -262,8 +262,8 @@ func (a *FirewallVersionsAPIService) BuildFirewallVersionExecute(r ApiBuildFirew
 type ApiCancelFirewallVersionBuildRequest struct {
 	ctx context.Context
 	ApiService *FirewallVersionsAPIService
-	id string
-	resourcePk int64
+	firewallId int64
+	versionId string
 	versionCancelRequest *VersionCancelRequest
 }
 
@@ -282,16 +282,16 @@ CancelFirewallVersionBuild Cancel a Firewall version build
 Cancel a queued or building version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Firewall resource.
+ @param firewallId The ID of the Firewall resource.
+ @param versionId The identifier of the version.
  @return ApiCancelFirewallVersionBuildRequest
 */
-func (a *FirewallVersionsAPIService) CancelFirewallVersionBuild(ctx context.Context, id string, resourcePk int64) ApiCancelFirewallVersionBuildRequest {
+func (a *FirewallVersionsAPIService) CancelFirewallVersionBuild(ctx context.Context, firewallId int64, versionId string) ApiCancelFirewallVersionBuildRequest {
 	return ApiCancelFirewallVersionBuildRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		firewallId: firewallId,
+		versionId: versionId,
 	}
 }
 
@@ -308,9 +308,9 @@ func (a *FirewallVersionsAPIService) CancelFirewallVersionBuildExecute(r ApiCanc
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{resource_pk}/versions/{id}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/versions/{version_id}/cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -380,7 +380,7 @@ func (a *FirewallVersionsAPIService) CancelFirewallVersionBuildExecute(r ApiCanc
 type ApiCreateFirewallVersionRequest struct {
 	ctx context.Context
 	ApiService *FirewallVersionsAPIService
-	resourcePk int64
+	firewallId int64
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -399,14 +399,14 @@ CreateFirewallVersion Create a new Firewall version
 Create a new version by cloning.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the Firewall resource.
+ @param firewallId The ID of the Firewall resource.
  @return ApiCreateFirewallVersionRequest
 */
-func (a *FirewallVersionsAPIService) CreateFirewallVersion(ctx context.Context, resourcePk int64) ApiCreateFirewallVersionRequest {
+func (a *FirewallVersionsAPIService) CreateFirewallVersion(ctx context.Context, firewallId int64) ApiCreateFirewallVersionRequest {
 	return ApiCreateFirewallVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		firewallId: firewallId,
 	}
 }
 
@@ -423,8 +423,8 @@ func (a *FirewallVersionsAPIService) CreateFirewallVersionExecute(r ApiCreateFir
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -494,8 +494,8 @@ func (a *FirewallVersionsAPIService) CreateFirewallVersionExecute(r ApiCreateFir
 type ApiDeleteFirewallVersionRequest struct {
 	ctx context.Context
 	ApiService *FirewallVersionsAPIService
-	id string
-	resourcePk int64
+	firewallId int64
+	versionId string
 }
 
 func (r ApiDeleteFirewallVersionRequest) Execute() (*http.Response, error) {
@@ -508,16 +508,16 @@ DeleteFirewallVersion Delete a Firewall version
 Delete a specific version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Firewall resource.
+ @param firewallId The ID of the Firewall resource.
+ @param versionId The identifier of the version.
  @return ApiDeleteFirewallVersionRequest
 */
-func (a *FirewallVersionsAPIService) DeleteFirewallVersion(ctx context.Context, id string, resourcePk int64) ApiDeleteFirewallVersionRequest {
+func (a *FirewallVersionsAPIService) DeleteFirewallVersion(ctx context.Context, firewallId int64, versionId string) ApiDeleteFirewallVersionRequest {
 	return ApiDeleteFirewallVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		firewallId: firewallId,
+		versionId: versionId,
 	}
 }
 
@@ -534,9 +534,9 @@ func (a *FirewallVersionsAPIService) DeleteFirewallVersionExecute(r ApiDeleteFir
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -604,7 +604,7 @@ func (a *FirewallVersionsAPIService) DeleteFirewallVersionExecute(r ApiDeleteFir
 type ApiListFirewallVersionsRequest struct {
 	ctx context.Context
 	ApiService *FirewallVersionsAPIService
-	resourcePk int64
+	firewallId int64
 	fields *string
 }
 
@@ -624,14 +624,14 @@ ListFirewallVersions List Firewall versions
 List all versions of a specific Firewall.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the Firewall resource.
+ @param firewallId The ID of the Firewall resource.
  @return ApiListFirewallVersionsRequest
 */
-func (a *FirewallVersionsAPIService) ListFirewallVersions(ctx context.Context, resourcePk int64) ApiListFirewallVersionsRequest {
+func (a *FirewallVersionsAPIService) ListFirewallVersions(ctx context.Context, firewallId int64) ApiListFirewallVersionsRequest {
 	return ApiListFirewallVersionsRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		firewallId: firewallId,
 	}
 }
 
@@ -648,8 +648,8 @@ func (a *FirewallVersionsAPIService) ListFirewallVersionsExecute(r ApiListFirewa
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -720,8 +720,8 @@ func (a *FirewallVersionsAPIService) ListFirewallVersionsExecute(r ApiListFirewa
 type ApiPartialUpdateFirewallVersionRequest struct {
 	ctx context.Context
 	ApiService *FirewallVersionsAPIService
-	id string
-	resourcePk int64
+	firewallId int64
+	versionId string
 	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
@@ -740,16 +740,16 @@ PartialUpdateFirewallVersion Partially update a Firewall version
 Partially update a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Firewall resource.
+ @param firewallId The ID of the Firewall resource.
+ @param versionId The identifier of the version.
  @return ApiPartialUpdateFirewallVersionRequest
 */
-func (a *FirewallVersionsAPIService) PartialUpdateFirewallVersion(ctx context.Context, id string, resourcePk int64) ApiPartialUpdateFirewallVersionRequest {
+func (a *FirewallVersionsAPIService) PartialUpdateFirewallVersion(ctx context.Context, firewallId int64, versionId string) ApiPartialUpdateFirewallVersionRequest {
 	return ApiPartialUpdateFirewallVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		firewallId: firewallId,
+		versionId: versionId,
 	}
 }
 
@@ -766,9 +766,9 @@ func (a *FirewallVersionsAPIService) PartialUpdateFirewallVersionExecute(r ApiPa
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -838,8 +838,8 @@ func (a *FirewallVersionsAPIService) PartialUpdateFirewallVersionExecute(r ApiPa
 type ApiRetrieveFirewallVersionRequest struct {
 	ctx context.Context
 	ApiService *FirewallVersionsAPIService
-	id string
-	resourcePk int64
+	firewallId int64
+	versionId string
 	fields *string
 }
 
@@ -859,16 +859,16 @@ RetrieveFirewallVersion Retrieve a Firewall version
 Retrieve details of a specific version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Firewall resource.
+ @param firewallId The ID of the Firewall resource.
+ @param versionId The identifier of the version.
  @return ApiRetrieveFirewallVersionRequest
 */
-func (a *FirewallVersionsAPIService) RetrieveFirewallVersion(ctx context.Context, id string, resourcePk int64) ApiRetrieveFirewallVersionRequest {
+func (a *FirewallVersionsAPIService) RetrieveFirewallVersion(ctx context.Context, firewallId int64, versionId string) ApiRetrieveFirewallVersionRequest {
 	return ApiRetrieveFirewallVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		firewallId: firewallId,
+		versionId: versionId,
 	}
 }
 
@@ -885,9 +885,9 @@ func (a *FirewallVersionsAPIService) RetrieveFirewallVersionExecute(r ApiRetriev
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -958,8 +958,8 @@ func (a *FirewallVersionsAPIService) RetrieveFirewallVersionExecute(r ApiRetriev
 type ApiUpdateFirewallVersionRequest struct {
 	ctx context.Context
 	ApiService *FirewallVersionsAPIService
-	id string
-	resourcePk int64
+	firewallId int64
+	versionId string
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -978,16 +978,16 @@ UpdateFirewallVersion Update a Firewall version
 Update a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Firewall resource.
+ @param firewallId The ID of the Firewall resource.
+ @param versionId The identifier of the version.
  @return ApiUpdateFirewallVersionRequest
 */
-func (a *FirewallVersionsAPIService) UpdateFirewallVersion(ctx context.Context, id string, resourcePk int64) ApiUpdateFirewallVersionRequest {
+func (a *FirewallVersionsAPIService) UpdateFirewallVersion(ctx context.Context, firewallId int64, versionId string) ApiUpdateFirewallVersionRequest {
 	return ApiUpdateFirewallVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		firewallId: firewallId,
+		versionId: versionId,
 	}
 }
 
@@ -1004,9 +1004,9 @@ func (a *FirewallVersionsAPIService) UpdateFirewallVersionExecute(r ApiUpdateFir
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/firewalls/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/firewalls/{firewall_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"firewall_id"+"}", url.PathEscape(parameterValueToString(r.firewallId, "firewallId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

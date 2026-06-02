@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ArchiveConnectorVersion**](ConnectorVersionsAPI.md#ArchiveConnectorVersion) | **Post** /workspace/connectors/{resource_pk}/versions/{id}/archive | Archive a Connector version
-[**BuildConnectorVersion**](ConnectorVersionsAPI.md#BuildConnectorVersion) | **Post** /workspace/connectors/{resource_pk}/versions/{id}/build | Build a Connector version
-[**CancelConnectorVersionBuild**](ConnectorVersionsAPI.md#CancelConnectorVersionBuild) | **Post** /workspace/connectors/{resource_pk}/versions/{id}/cancel | Cancel a Connector version build
-[**CreateConnectorVersion**](ConnectorVersionsAPI.md#CreateConnectorVersion) | **Post** /workspace/connectors/{resource_pk}/versions | Create a new Connector version
-[**DeleteConnectorVersion**](ConnectorVersionsAPI.md#DeleteConnectorVersion) | **Delete** /workspace/connectors/{resource_pk}/versions/{id} | Delete a Connector version
-[**ListConnectorVersions**](ConnectorVersionsAPI.md#ListConnectorVersions) | **Get** /workspace/connectors/{resource_pk}/versions | List Connector versions
-[**PartialUpdateConnectorVersion**](ConnectorVersionsAPI.md#PartialUpdateConnectorVersion) | **Patch** /workspace/connectors/{resource_pk}/versions/{id} | Partially update a Connector version
-[**RetrieveConnectorVersion**](ConnectorVersionsAPI.md#RetrieveConnectorVersion) | **Get** /workspace/connectors/{resource_pk}/versions/{id} | Retrieve a Connector version
-[**UpdateConnectorVersion**](ConnectorVersionsAPI.md#UpdateConnectorVersion) | **Put** /workspace/connectors/{resource_pk}/versions/{id} | Update a Connector version
+[**ArchiveConnectorVersion**](ConnectorVersionsAPI.md#ArchiveConnectorVersion) | **Post** /workspace/connectors/{connector_id}/versions/{version_id}/archive | Archive a Connector version
+[**BuildConnectorVersion**](ConnectorVersionsAPI.md#BuildConnectorVersion) | **Post** /workspace/connectors/{connector_id}/versions/{version_id}/build | Build a Connector version
+[**CancelConnectorVersionBuild**](ConnectorVersionsAPI.md#CancelConnectorVersionBuild) | **Post** /workspace/connectors/{connector_id}/versions/{version_id}/cancel | Cancel a Connector version build
+[**CreateConnectorVersion**](ConnectorVersionsAPI.md#CreateConnectorVersion) | **Post** /workspace/connectors/{connector_id}/versions | Create a new Connector version
+[**DeleteConnectorVersion**](ConnectorVersionsAPI.md#DeleteConnectorVersion) | **Delete** /workspace/connectors/{connector_id}/versions/{version_id} | Delete a Connector version
+[**ListConnectorVersions**](ConnectorVersionsAPI.md#ListConnectorVersions) | **Get** /workspace/connectors/{connector_id}/versions | List Connector versions
+[**PartialUpdateConnectorVersion**](ConnectorVersionsAPI.md#PartialUpdateConnectorVersion) | **Patch** /workspace/connectors/{connector_id}/versions/{version_id} | Partially update a Connector version
+[**RetrieveConnectorVersion**](ConnectorVersionsAPI.md#RetrieveConnectorVersion) | **Get** /workspace/connectors/{connector_id}/versions/{version_id} | Retrieve a Connector version
+[**UpdateConnectorVersion**](ConnectorVersionsAPI.md#UpdateConnectorVersion) | **Put** /workspace/connectors/{connector_id}/versions/{version_id} | Update a Connector version
 
 
 
 ## ArchiveConnectorVersion
 
-> ArchiveConnectorVersion(ctx, id, resourcePk).VersionArchiveRequest(versionArchiveRequest).Execute()
+> ArchiveConnectorVersion(ctx, connectorId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
 
 Archive a Connector version
 
@@ -37,13 +37,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Connector resource.
+	connectorId := int64(789) // int64 | The ID of the Connector resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionArchiveRequest := *openapiclient.NewVersionArchiveRequest() // VersionArchiveRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ConnectorVersionsAPI.ArchiveConnectorVersion(context.Background(), id, resourcePk).VersionArchiveRequest(versionArchiveRequest).Execute()
+	r, err := apiClient.ConnectorVersionsAPI.ArchiveConnectorVersion(context.Background(), connectorId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorVersionsAPI.ArchiveConnectorVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,8 +57,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Connector resource. | 
+**connectorId** | **int64** | The ID of the Connector resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## BuildConnectorVersion
 
-> BuildConnectorVersion(ctx, id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+> BuildConnectorVersion(ctx, connectorId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
 
 Build a Connector version
 
@@ -110,13 +110,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Connector resource.
+	connectorId := int64(789) // int64 | The ID of the Connector resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ConnectorVersionsAPI.BuildConnectorVersion(context.Background(), id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+	r, err := apiClient.ConnectorVersionsAPI.BuildConnectorVersion(context.Background(), connectorId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorVersionsAPI.BuildConnectorVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,8 +130,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Connector resource. | 
+**connectorId** | **int64** | The ID of the Connector resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## CancelConnectorVersionBuild
 
-> CancelConnectorVersionBuild(ctx, id, resourcePk).VersionCancelRequest(versionCancelRequest).Execute()
+> CancelConnectorVersionBuild(ctx, connectorId, versionId).VersionCancelRequest(versionCancelRequest).Execute()
 
 Cancel a Connector version build
 
@@ -183,13 +183,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Connector resource.
+	connectorId := int64(789) // int64 | The ID of the Connector resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionCancelRequest := *openapiclient.NewVersionCancelRequest() // VersionCancelRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ConnectorVersionsAPI.CancelConnectorVersionBuild(context.Background(), id, resourcePk).VersionCancelRequest(versionCancelRequest).Execute()
+	r, err := apiClient.ConnectorVersionsAPI.CancelConnectorVersionBuild(context.Background(), connectorId, versionId).VersionCancelRequest(versionCancelRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorVersionsAPI.CancelConnectorVersionBuild``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -203,8 +203,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Connector resource. | 
+**connectorId** | **int64** | The ID of the Connector resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## CreateConnectorVersion
 
-> CreateConnectorVersion(ctx, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+> CreateConnectorVersion(ctx, connectorId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Create a new Connector version
 
@@ -256,12 +256,12 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID of the Connector resource.
+	connectorId := int64(789) // int64 | The ID of the Connector resource.
 	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ConnectorVersionsAPI.CreateConnectorVersion(context.Background(), resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.ConnectorVersionsAPI.CreateConnectorVersion(context.Background(), connectorId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorVersionsAPI.CreateConnectorVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,7 +275,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID of the Connector resource. | 
+**connectorId** | **int64** | The ID of the Connector resource. | 
 
 ### Other Parameters
 
@@ -307,7 +307,7 @@ Name | Type | Description  | Notes
 
 ## DeleteConnectorVersion
 
-> DeleteConnectorVersion(ctx, id, resourcePk).Execute()
+> DeleteConnectorVersion(ctx, connectorId, versionId).Execute()
 
 Delete a Connector version
 
@@ -326,12 +326,12 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Connector resource.
+	connectorId := int64(789) // int64 | The ID of the Connector resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ConnectorVersionsAPI.DeleteConnectorVersion(context.Background(), id, resourcePk).Execute()
+	r, err := apiClient.ConnectorVersionsAPI.DeleteConnectorVersion(context.Background(), connectorId, versionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorVersionsAPI.DeleteConnectorVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -345,8 +345,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Connector resource. | 
+**connectorId** | **int64** | The ID of the Connector resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ## ListConnectorVersions
 
-> ListConnectorVersions(ctx, resourcePk).Fields(fields).Execute()
+> ListConnectorVersions(ctx, connectorId).Fields(fields).Execute()
 
 List Connector versions
 
@@ -397,12 +397,12 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID of the Connector resource.
+	connectorId := int64(789) // int64 | The ID of the Connector resource.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ConnectorVersionsAPI.ListConnectorVersions(context.Background(), resourcePk).Fields(fields).Execute()
+	r, err := apiClient.ConnectorVersionsAPI.ListConnectorVersions(context.Background(), connectorId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorVersionsAPI.ListConnectorVersions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -416,7 +416,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID of the Connector resource. | 
+**connectorId** | **int64** | The ID of the Connector resource. | 
 
 ### Other Parameters
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateConnectorVersion
 
-> PartialUpdateConnectorVersion(ctx, id, resourcePk).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+> PartialUpdateConnectorVersion(ctx, connectorId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 
 Partially update a Connector version
 
@@ -467,13 +467,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Connector resource.
+	connectorId := int64(789) // int64 | The ID of the Connector resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ConnectorVersionsAPI.PartialUpdateConnectorVersion(context.Background(), id, resourcePk).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+	r, err := apiClient.ConnectorVersionsAPI.PartialUpdateConnectorVersion(context.Background(), connectorId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorVersionsAPI.PartialUpdateConnectorVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -487,8 +487,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Connector resource. | 
+**connectorId** | **int64** | The ID of the Connector resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -521,7 +521,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveConnectorVersion
 
-> RetrieveConnectorVersion(ctx, id, resourcePk).Fields(fields).Execute()
+> RetrieveConnectorVersion(ctx, connectorId, versionId).Fields(fields).Execute()
 
 Retrieve a Connector version
 
@@ -540,13 +540,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Connector resource.
+	connectorId := int64(789) // int64 | The ID of the Connector resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ConnectorVersionsAPI.RetrieveConnectorVersion(context.Background(), id, resourcePk).Fields(fields).Execute()
+	r, err := apiClient.ConnectorVersionsAPI.RetrieveConnectorVersion(context.Background(), connectorId, versionId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorVersionsAPI.RetrieveConnectorVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -560,8 +560,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Connector resource. | 
+**connectorId** | **int64** | The ID of the Connector resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 
 ## UpdateConnectorVersion
 
-> UpdateConnectorVersion(ctx, id, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+> UpdateConnectorVersion(ctx, connectorId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Update a Connector version
 
@@ -613,13 +613,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Connector resource.
+	connectorId := int64(789) // int64 | The ID of the Connector resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ConnectorVersionsAPI.UpdateConnectorVersion(context.Background(), id, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.ConnectorVersionsAPI.UpdateConnectorVersion(context.Background(), connectorId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorVersionsAPI.UpdateConnectorVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -633,8 +633,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Connector resource. | 
+**connectorId** | **int64** | The ID of the Connector resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 

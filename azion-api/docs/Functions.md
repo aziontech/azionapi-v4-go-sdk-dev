@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **Version** | **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | 
 **Vendor** | **string** |  | 
 **IsVersioned** | **bool** |  | 
-**VersionNumber** | **NullableInt64** |  | 
+**ResourceVersion** | **NullableInt64** |  | 
 **VersionState** | **NullableString** |  | 
 **VersionId** | **NullableString** |  | 
 **Code** | **string** | String containing the function code. Maximum size: 50.0MB | 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewFunctions
 
-`func NewFunctions(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, isVersioned bool, versionNumber NullableInt64, versionState NullableString, versionId NullableString, code string, ) *Functions`
+`func NewFunctions(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, isVersioned bool, resourceVersion NullableInt64, versionState NullableString, versionId NullableString, code string, ) *Functions`
 
 NewFunctions instantiates a new Functions object
 This constructor will assign default values to properties that have it defined,
@@ -357,36 +357,36 @@ and a boolean to check if the value has been set.
 SetIsVersioned sets IsVersioned field to given value.
 
 
-### GetVersionNumber
+### GetResourceVersion
 
-`func (o *Functions) GetVersionNumber() int64`
+`func (o *Functions) GetResourceVersion() int64`
 
-GetVersionNumber returns the VersionNumber field if non-nil, zero value otherwise.
+GetResourceVersion returns the ResourceVersion field if non-nil, zero value otherwise.
 
-### GetVersionNumberOk
+### GetResourceVersionOk
 
-`func (o *Functions) GetVersionNumberOk() (*int64, bool)`
+`func (o *Functions) GetResourceVersionOk() (*int64, bool)`
 
-GetVersionNumberOk returns a tuple with the VersionNumber field if it's non-nil, zero value otherwise
+GetResourceVersionOk returns a tuple with the ResourceVersion field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVersionNumber
+### SetResourceVersion
 
-`func (o *Functions) SetVersionNumber(v int64)`
+`func (o *Functions) SetResourceVersion(v int64)`
 
-SetVersionNumber sets VersionNumber field to given value.
+SetResourceVersion sets ResourceVersion field to given value.
 
 
-### SetVersionNumberNil
+### SetResourceVersionNil
 
-`func (o *Functions) SetVersionNumberNil(b bool)`
+`func (o *Functions) SetResourceVersionNil(b bool)`
 
- SetVersionNumberNil sets the value for VersionNumber to be an explicit nil
+ SetResourceVersionNil sets the value for ResourceVersion to be an explicit nil
 
-### UnsetVersionNumber
-`func (o *Functions) UnsetVersionNumber()`
+### UnsetResourceVersion
+`func (o *Functions) UnsetResourceVersion()`
 
-UnsetVersionNumber ensures that no value is present for VersionNumber, not even an explicit nil
+UnsetResourceVersion ensures that no value is present for ResourceVersion, not even an explicit nil
 ### GetVersionState
 
 `func (o *Functions) GetVersionState() string`

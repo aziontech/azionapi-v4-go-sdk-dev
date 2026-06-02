@@ -37,7 +37,6 @@ type Workload struct {
 	WorkloadDomainAllowAccess *bool `json:"workload_domain_allow_access,omitempty"`
 	WorkloadDomain string `json:"workload_domain"`
 	ProductVersion string `json:"product_version"`
-	VersionState NullableString `json:"version_state"`
 }
 
 type _Workload Workload
@@ -46,7 +45,7 @@ type _Workload Workload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string, versionState NullableString) *Workload {
+func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string) *Workload {
 	this := Workload{}
 	this.Id = id
 	this.Name = name
@@ -55,7 +54,6 @@ func NewWorkload(id int64, name string, lastEditor string, lastModified time.Tim
 	this.CreatedAt = createdAt
 	this.WorkloadDomain = workloadDomain
 	this.ProductVersion = productVersion
-	this.VersionState = versionState
 	return &this
 }
 
@@ -459,32 +457,6 @@ func (o *Workload) SetProductVersion(v string) {
 	o.ProductVersion = v
 }
 
-// GetVersionState returns the VersionState field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *Workload) GetVersionState() string {
-	if o == nil || o.VersionState.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Workload) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// SetVersionState sets field value
-func (o *Workload) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-
 func (o Workload) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -523,7 +495,6 @@ func (o Workload) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["workload_domain"] = o.WorkloadDomain
 	toSerialize["product_version"] = o.ProductVersion
-	toSerialize["version_state"] = o.VersionState.Get()
 	return toSerialize, nil
 }
 
@@ -539,7 +510,6 @@ func (o *Workload) UnmarshalJSON(data []byte) (err error) {
 		"created_at",
 		"workload_domain",
 		"product_version",
-		"version_state",
 	}
 
 	allProperties := make(map[string]interface{})

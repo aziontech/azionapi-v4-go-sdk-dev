@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SourceVersion** | Pointer to **NullableString** | ULID of the version to clone from. If omitted, clones latest ready. | [optional] 
+**SourceVersion** | Pointer to **NullableString** | ID of the version to clone from. If omitted, clones latest ready. | [optional] 
 **Comment** | Pointer to **string** | Description for the new version | [optional] 
 **Override** | Pointer to **map[string]interface{}** | Field overrides to apply on the cloned version. | [optional] 
 

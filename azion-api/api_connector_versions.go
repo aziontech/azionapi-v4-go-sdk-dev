@@ -27,8 +27,8 @@ type ConnectorVersionsAPIService service
 type ApiArchiveConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id string
-	resourcePk int64
+	connectorId int64
+	versionId string
 	versionArchiveRequest *VersionArchiveRequest
 }
 
@@ -47,16 +47,16 @@ ArchiveConnectorVersion Archive a Connector version
 Archive a ready version (soft-delete).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Connector resource.
+ @param connectorId The ID of the Connector resource.
+ @param versionId The identifier of the version.
  @return ApiArchiveConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) ArchiveConnectorVersion(ctx context.Context, id string, resourcePk int64) ApiArchiveConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) ArchiveConnectorVersion(ctx context.Context, connectorId int64, versionId string) ApiArchiveConnectorVersionRequest {
 	return ApiArchiveConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		connectorId: connectorId,
+		versionId: versionId,
 	}
 }
 
@@ -73,9 +73,9 @@ func (a *ConnectorVersionsAPIService) ArchiveConnectorVersionExecute(r ApiArchiv
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/connectors/{resource_pk}/versions/{id}/archive"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/connectors/{connector_id}/versions/{version_id}/archive"
+	localVarPath = strings.Replace(localVarPath, "{"+"connector_id"+"}", url.PathEscape(parameterValueToString(r.connectorId, "connectorId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -155,8 +155,8 @@ func (a *ConnectorVersionsAPIService) ArchiveConnectorVersionExecute(r ApiArchiv
 type ApiBuildConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id string
-	resourcePk int64
+	connectorId int64
+	versionId string
 	versionBuildRequest *VersionBuildRequest
 }
 
@@ -175,16 +175,16 @@ BuildConnectorVersion Build a Connector version
 Trigger a build for a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Connector resource.
+ @param connectorId The ID of the Connector resource.
+ @param versionId The identifier of the version.
  @return ApiBuildConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) BuildConnectorVersion(ctx context.Context, id string, resourcePk int64) ApiBuildConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) BuildConnectorVersion(ctx context.Context, connectorId int64, versionId string) ApiBuildConnectorVersionRequest {
 	return ApiBuildConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		connectorId: connectorId,
+		versionId: versionId,
 	}
 }
 
@@ -201,9 +201,9 @@ func (a *ConnectorVersionsAPIService) BuildConnectorVersionExecute(r ApiBuildCon
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/connectors/{resource_pk}/versions/{id}/build"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/connectors/{connector_id}/versions/{version_id}/build"
+	localVarPath = strings.Replace(localVarPath, "{"+"connector_id"+"}", url.PathEscape(parameterValueToString(r.connectorId, "connectorId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -283,8 +283,8 @@ func (a *ConnectorVersionsAPIService) BuildConnectorVersionExecute(r ApiBuildCon
 type ApiCancelConnectorVersionBuildRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id string
-	resourcePk int64
+	connectorId int64
+	versionId string
 	versionCancelRequest *VersionCancelRequest
 }
 
@@ -303,16 +303,16 @@ CancelConnectorVersionBuild Cancel a Connector version build
 Cancel a queued or building version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Connector resource.
+ @param connectorId The ID of the Connector resource.
+ @param versionId The identifier of the version.
  @return ApiCancelConnectorVersionBuildRequest
 */
-func (a *ConnectorVersionsAPIService) CancelConnectorVersionBuild(ctx context.Context, id string, resourcePk int64) ApiCancelConnectorVersionBuildRequest {
+func (a *ConnectorVersionsAPIService) CancelConnectorVersionBuild(ctx context.Context, connectorId int64, versionId string) ApiCancelConnectorVersionBuildRequest {
 	return ApiCancelConnectorVersionBuildRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		connectorId: connectorId,
+		versionId: versionId,
 	}
 }
 
@@ -329,9 +329,9 @@ func (a *ConnectorVersionsAPIService) CancelConnectorVersionBuildExecute(r ApiCa
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/connectors/{resource_pk}/versions/{id}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/connectors/{connector_id}/versions/{version_id}/cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"connector_id"+"}", url.PathEscape(parameterValueToString(r.connectorId, "connectorId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -411,7 +411,7 @@ func (a *ConnectorVersionsAPIService) CancelConnectorVersionBuildExecute(r ApiCa
 type ApiCreateConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	resourcePk int64
+	connectorId int64
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -430,14 +430,14 @@ CreateConnectorVersion Create a new Connector version
 Create a new version by cloning an existing one.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the Connector resource.
+ @param connectorId The ID of the Connector resource.
  @return ApiCreateConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) CreateConnectorVersion(ctx context.Context, resourcePk int64) ApiCreateConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) CreateConnectorVersion(ctx context.Context, connectorId int64) ApiCreateConnectorVersionRequest {
 	return ApiCreateConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		connectorId: connectorId,
 	}
 }
 
@@ -454,8 +454,8 @@ func (a *ConnectorVersionsAPIService) CreateConnectorVersionExecute(r ApiCreateC
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/connectors/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/connectors/{connector_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"connector_id"+"}", url.PathEscape(parameterValueToString(r.connectorId, "connectorId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -535,8 +535,8 @@ func (a *ConnectorVersionsAPIService) CreateConnectorVersionExecute(r ApiCreateC
 type ApiDeleteConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id string
-	resourcePk int64
+	connectorId int64
+	versionId string
 }
 
 func (r ApiDeleteConnectorVersionRequest) Execute() (*http.Response, error) {
@@ -549,16 +549,16 @@ DeleteConnectorVersion Delete a Connector version
 Delete a specific version of a Connector.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Connector resource.
+ @param connectorId The ID of the Connector resource.
+ @param versionId The identifier of the version.
  @return ApiDeleteConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) DeleteConnectorVersion(ctx context.Context, id string, resourcePk int64) ApiDeleteConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) DeleteConnectorVersion(ctx context.Context, connectorId int64, versionId string) ApiDeleteConnectorVersionRequest {
 	return ApiDeleteConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		connectorId: connectorId,
+		versionId: versionId,
 	}
 }
 
@@ -575,9 +575,9 @@ func (a *ConnectorVersionsAPIService) DeleteConnectorVersionExecute(r ApiDeleteC
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/connectors/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/connectors/{connector_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"connector_id"+"}", url.PathEscape(parameterValueToString(r.connectorId, "connectorId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -655,7 +655,7 @@ func (a *ConnectorVersionsAPIService) DeleteConnectorVersionExecute(r ApiDeleteC
 type ApiListConnectorVersionsRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	resourcePk int64
+	connectorId int64
 	fields *string
 }
 
@@ -675,14 +675,14 @@ ListConnectorVersions List Connector versions
 List all versions of a specific Connector.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the Connector resource.
+ @param connectorId The ID of the Connector resource.
  @return ApiListConnectorVersionsRequest
 */
-func (a *ConnectorVersionsAPIService) ListConnectorVersions(ctx context.Context, resourcePk int64) ApiListConnectorVersionsRequest {
+func (a *ConnectorVersionsAPIService) ListConnectorVersions(ctx context.Context, connectorId int64) ApiListConnectorVersionsRequest {
 	return ApiListConnectorVersionsRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		connectorId: connectorId,
 	}
 }
 
@@ -699,8 +699,8 @@ func (a *ConnectorVersionsAPIService) ListConnectorVersionsExecute(r ApiListConn
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/connectors/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/connectors/{connector_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"connector_id"+"}", url.PathEscape(parameterValueToString(r.connectorId, "connectorId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -781,8 +781,8 @@ func (a *ConnectorVersionsAPIService) ListConnectorVersionsExecute(r ApiListConn
 type ApiPartialUpdateConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id string
-	resourcePk int64
+	connectorId int64
+	versionId string
 	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
@@ -801,16 +801,16 @@ PartialUpdateConnectorVersion Partially update a Connector version
 Partially update a draft version of a Connector.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Connector resource.
+ @param connectorId The ID of the Connector resource.
+ @param versionId The identifier of the version.
  @return ApiPartialUpdateConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) PartialUpdateConnectorVersion(ctx context.Context, id string, resourcePk int64) ApiPartialUpdateConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) PartialUpdateConnectorVersion(ctx context.Context, connectorId int64, versionId string) ApiPartialUpdateConnectorVersionRequest {
 	return ApiPartialUpdateConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		connectorId: connectorId,
+		versionId: versionId,
 	}
 }
 
@@ -827,9 +827,9 @@ func (a *ConnectorVersionsAPIService) PartialUpdateConnectorVersionExecute(r Api
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/connectors/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/connectors/{connector_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"connector_id"+"}", url.PathEscape(parameterValueToString(r.connectorId, "connectorId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -909,8 +909,8 @@ func (a *ConnectorVersionsAPIService) PartialUpdateConnectorVersionExecute(r Api
 type ApiRetrieveConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id string
-	resourcePk int64
+	connectorId int64
+	versionId string
 	fields *string
 }
 
@@ -930,16 +930,16 @@ RetrieveConnectorVersion Retrieve a Connector version
 Retrieve details of a specific version of a Connector.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Connector resource.
+ @param connectorId The ID of the Connector resource.
+ @param versionId The identifier of the version.
  @return ApiRetrieveConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) RetrieveConnectorVersion(ctx context.Context, id string, resourcePk int64) ApiRetrieveConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) RetrieveConnectorVersion(ctx context.Context, connectorId int64, versionId string) ApiRetrieveConnectorVersionRequest {
 	return ApiRetrieveConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		connectorId: connectorId,
+		versionId: versionId,
 	}
 }
 
@@ -956,9 +956,9 @@ func (a *ConnectorVersionsAPIService) RetrieveConnectorVersionExecute(r ApiRetri
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/connectors/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/connectors/{connector_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"connector_id"+"}", url.PathEscape(parameterValueToString(r.connectorId, "connectorId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1039,8 +1039,8 @@ func (a *ConnectorVersionsAPIService) RetrieveConnectorVersionExecute(r ApiRetri
 type ApiUpdateConnectorVersionRequest struct {
 	ctx context.Context
 	ApiService *ConnectorVersionsAPIService
-	id string
-	resourcePk int64
+	connectorId int64
+	versionId string
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -1059,16 +1059,16 @@ UpdateConnectorVersion Update a Connector version
 Update a draft version of a Connector.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Connector resource.
+ @param connectorId The ID of the Connector resource.
+ @param versionId The identifier of the version.
  @return ApiUpdateConnectorVersionRequest
 */
-func (a *ConnectorVersionsAPIService) UpdateConnectorVersion(ctx context.Context, id string, resourcePk int64) ApiUpdateConnectorVersionRequest {
+func (a *ConnectorVersionsAPIService) UpdateConnectorVersion(ctx context.Context, connectorId int64, versionId string) ApiUpdateConnectorVersionRequest {
 	return ApiUpdateConnectorVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		connectorId: connectorId,
+		versionId: versionId,
 	}
 }
 
@@ -1085,9 +1085,9 @@ func (a *ConnectorVersionsAPIService) UpdateConnectorVersionExecute(r ApiUpdateC
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/connectors/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/connectors/{connector_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"connector_id"+"}", url.PathEscape(parameterValueToString(r.connectorId, "connectorId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ArchiveFirewallVersion**](FirewallVersionsAPI.md#ArchiveFirewallVersion) | **Post** /workspace/firewalls/{resource_pk}/versions/{id}/archive | Archive a Firewall version
-[**BuildFirewallVersion**](FirewallVersionsAPI.md#BuildFirewallVersion) | **Post** /workspace/firewalls/{resource_pk}/versions/{id}/build | Build a Firewall version
-[**CancelFirewallVersionBuild**](FirewallVersionsAPI.md#CancelFirewallVersionBuild) | **Post** /workspace/firewalls/{resource_pk}/versions/{id}/cancel | Cancel a Firewall version build
-[**CreateFirewallVersion**](FirewallVersionsAPI.md#CreateFirewallVersion) | **Post** /workspace/firewalls/{resource_pk}/versions | Create a new Firewall version
-[**DeleteFirewallVersion**](FirewallVersionsAPI.md#DeleteFirewallVersion) | **Delete** /workspace/firewalls/{resource_pk}/versions/{id} | Delete a Firewall version
-[**ListFirewallVersions**](FirewallVersionsAPI.md#ListFirewallVersions) | **Get** /workspace/firewalls/{resource_pk}/versions | List Firewall versions
-[**PartialUpdateFirewallVersion**](FirewallVersionsAPI.md#PartialUpdateFirewallVersion) | **Patch** /workspace/firewalls/{resource_pk}/versions/{id} | Partially update a Firewall version
-[**RetrieveFirewallVersion**](FirewallVersionsAPI.md#RetrieveFirewallVersion) | **Get** /workspace/firewalls/{resource_pk}/versions/{id} | Retrieve a Firewall version
-[**UpdateFirewallVersion**](FirewallVersionsAPI.md#UpdateFirewallVersion) | **Put** /workspace/firewalls/{resource_pk}/versions/{id} | Update a Firewall version
+[**ArchiveFirewallVersion**](FirewallVersionsAPI.md#ArchiveFirewallVersion) | **Post** /workspace/firewalls/{firewall_id}/versions/{version_id}/archive | Archive a Firewall version
+[**BuildFirewallVersion**](FirewallVersionsAPI.md#BuildFirewallVersion) | **Post** /workspace/firewalls/{firewall_id}/versions/{version_id}/build | Build a Firewall version
+[**CancelFirewallVersionBuild**](FirewallVersionsAPI.md#CancelFirewallVersionBuild) | **Post** /workspace/firewalls/{firewall_id}/versions/{version_id}/cancel | Cancel a Firewall version build
+[**CreateFirewallVersion**](FirewallVersionsAPI.md#CreateFirewallVersion) | **Post** /workspace/firewalls/{firewall_id}/versions | Create a new Firewall version
+[**DeleteFirewallVersion**](FirewallVersionsAPI.md#DeleteFirewallVersion) | **Delete** /workspace/firewalls/{firewall_id}/versions/{version_id} | Delete a Firewall version
+[**ListFirewallVersions**](FirewallVersionsAPI.md#ListFirewallVersions) | **Get** /workspace/firewalls/{firewall_id}/versions | List Firewall versions
+[**PartialUpdateFirewallVersion**](FirewallVersionsAPI.md#PartialUpdateFirewallVersion) | **Patch** /workspace/firewalls/{firewall_id}/versions/{version_id} | Partially update a Firewall version
+[**RetrieveFirewallVersion**](FirewallVersionsAPI.md#RetrieveFirewallVersion) | **Get** /workspace/firewalls/{firewall_id}/versions/{version_id} | Retrieve a Firewall version
+[**UpdateFirewallVersion**](FirewallVersionsAPI.md#UpdateFirewallVersion) | **Put** /workspace/firewalls/{firewall_id}/versions/{version_id} | Update a Firewall version
 
 
 
 ## ArchiveFirewallVersion
 
-> ArchiveFirewallVersion(ctx, id, resourcePk).VersionArchiveRequest(versionArchiveRequest).Execute()
+> ArchiveFirewallVersion(ctx, firewallId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
 
 Archive a Firewall version
 
@@ -37,13 +37,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Firewall resource.
+	firewallId := int64(789) // int64 | The ID of the Firewall resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionArchiveRequest := *openapiclient.NewVersionArchiveRequest() // VersionArchiveRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FirewallVersionsAPI.ArchiveFirewallVersion(context.Background(), id, resourcePk).VersionArchiveRequest(versionArchiveRequest).Execute()
+	r, err := apiClient.FirewallVersionsAPI.ArchiveFirewallVersion(context.Background(), firewallId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallVersionsAPI.ArchiveFirewallVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,8 +57,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Firewall resource. | 
+**firewallId** | **int64** | The ID of the Firewall resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## BuildFirewallVersion
 
-> BuildFirewallVersion(ctx, id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+> BuildFirewallVersion(ctx, firewallId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
 
 Build a Firewall version
 
@@ -110,13 +110,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Firewall resource.
+	firewallId := int64(789) // int64 | The ID of the Firewall resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FirewallVersionsAPI.BuildFirewallVersion(context.Background(), id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+	r, err := apiClient.FirewallVersionsAPI.BuildFirewallVersion(context.Background(), firewallId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallVersionsAPI.BuildFirewallVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,8 +130,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Firewall resource. | 
+**firewallId** | **int64** | The ID of the Firewall resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## CancelFirewallVersionBuild
 
-> CancelFirewallVersionBuild(ctx, id, resourcePk).VersionCancelRequest(versionCancelRequest).Execute()
+> CancelFirewallVersionBuild(ctx, firewallId, versionId).VersionCancelRequest(versionCancelRequest).Execute()
 
 Cancel a Firewall version build
 
@@ -183,13 +183,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Firewall resource.
+	firewallId := int64(789) // int64 | The ID of the Firewall resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionCancelRequest := *openapiclient.NewVersionCancelRequest() // VersionCancelRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FirewallVersionsAPI.CancelFirewallVersionBuild(context.Background(), id, resourcePk).VersionCancelRequest(versionCancelRequest).Execute()
+	r, err := apiClient.FirewallVersionsAPI.CancelFirewallVersionBuild(context.Background(), firewallId, versionId).VersionCancelRequest(versionCancelRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallVersionsAPI.CancelFirewallVersionBuild``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -203,8 +203,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Firewall resource. | 
+**firewallId** | **int64** | The ID of the Firewall resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## CreateFirewallVersion
 
-> CreateFirewallVersion(ctx, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+> CreateFirewallVersion(ctx, firewallId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Create a new Firewall version
 
@@ -256,12 +256,12 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID of the Firewall resource.
+	firewallId := int64(789) // int64 | The ID of the Firewall resource.
 	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FirewallVersionsAPI.CreateFirewallVersion(context.Background(), resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.FirewallVersionsAPI.CreateFirewallVersion(context.Background(), firewallId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallVersionsAPI.CreateFirewallVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,7 +275,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID of the Firewall resource. | 
+**firewallId** | **int64** | The ID of the Firewall resource. | 
 
 ### Other Parameters
 
@@ -307,7 +307,7 @@ Name | Type | Description  | Notes
 
 ## DeleteFirewallVersion
 
-> DeleteFirewallVersion(ctx, id, resourcePk).Execute()
+> DeleteFirewallVersion(ctx, firewallId, versionId).Execute()
 
 Delete a Firewall version
 
@@ -326,12 +326,12 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Firewall resource.
+	firewallId := int64(789) // int64 | The ID of the Firewall resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FirewallVersionsAPI.DeleteFirewallVersion(context.Background(), id, resourcePk).Execute()
+	r, err := apiClient.FirewallVersionsAPI.DeleteFirewallVersion(context.Background(), firewallId, versionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallVersionsAPI.DeleteFirewallVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -345,8 +345,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Firewall resource. | 
+**firewallId** | **int64** | The ID of the Firewall resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ## ListFirewallVersions
 
-> ListFirewallVersions(ctx, resourcePk).Fields(fields).Execute()
+> ListFirewallVersions(ctx, firewallId).Fields(fields).Execute()
 
 List Firewall versions
 
@@ -397,12 +397,12 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID of the Firewall resource.
+	firewallId := int64(789) // int64 | The ID of the Firewall resource.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FirewallVersionsAPI.ListFirewallVersions(context.Background(), resourcePk).Fields(fields).Execute()
+	r, err := apiClient.FirewallVersionsAPI.ListFirewallVersions(context.Background(), firewallId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallVersionsAPI.ListFirewallVersions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -416,7 +416,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID of the Firewall resource. | 
+**firewallId** | **int64** | The ID of the Firewall resource. | 
 
 ### Other Parameters
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateFirewallVersion
 
-> PartialUpdateFirewallVersion(ctx, id, resourcePk).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+> PartialUpdateFirewallVersion(ctx, firewallId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 
 Partially update a Firewall version
 
@@ -467,13 +467,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Firewall resource.
+	firewallId := int64(789) // int64 | The ID of the Firewall resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FirewallVersionsAPI.PartialUpdateFirewallVersion(context.Background(), id, resourcePk).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+	r, err := apiClient.FirewallVersionsAPI.PartialUpdateFirewallVersion(context.Background(), firewallId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallVersionsAPI.PartialUpdateFirewallVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -487,8 +487,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Firewall resource. | 
+**firewallId** | **int64** | The ID of the Firewall resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -521,7 +521,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveFirewallVersion
 
-> RetrieveFirewallVersion(ctx, id, resourcePk).Fields(fields).Execute()
+> RetrieveFirewallVersion(ctx, firewallId, versionId).Fields(fields).Execute()
 
 Retrieve a Firewall version
 
@@ -540,13 +540,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Firewall resource.
+	firewallId := int64(789) // int64 | The ID of the Firewall resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FirewallVersionsAPI.RetrieveFirewallVersion(context.Background(), id, resourcePk).Fields(fields).Execute()
+	r, err := apiClient.FirewallVersionsAPI.RetrieveFirewallVersion(context.Background(), firewallId, versionId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallVersionsAPI.RetrieveFirewallVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -560,8 +560,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Firewall resource. | 
+**firewallId** | **int64** | The ID of the Firewall resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFirewallVersion
 
-> UpdateFirewallVersion(ctx, id, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+> UpdateFirewallVersion(ctx, firewallId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Update a Firewall version
 
@@ -613,13 +613,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Firewall resource.
+	firewallId := int64(789) // int64 | The ID of the Firewall resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FirewallVersionsAPI.UpdateFirewallVersion(context.Background(), id, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.FirewallVersionsAPI.UpdateFirewallVersion(context.Background(), firewallId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallVersionsAPI.UpdateFirewallVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -633,8 +633,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Firewall resource. | 
+**firewallId** | **int64** | The ID of the Firewall resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 

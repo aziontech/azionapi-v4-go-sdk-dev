@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ArchiveWafVersion**](WAFVersionsAPI.md#ArchiveWafVersion) | **Post** /workspace/wafs/{resource_pk}/versions/{id}/archive | Archive a WAF version
-[**BuildWafVersion**](WAFVersionsAPI.md#BuildWafVersion) | **Post** /workspace/wafs/{resource_pk}/versions/{id}/build | Build a WAF version
-[**CancelWafVersionBuild**](WAFVersionsAPI.md#CancelWafVersionBuild) | **Post** /workspace/wafs/{resource_pk}/versions/{id}/cancel | Cancel a WAF version build
-[**CreateWafVersion**](WAFVersionsAPI.md#CreateWafVersion) | **Post** /workspace/wafs/{resource_pk}/versions | Create a new WAF version
-[**DeleteWafVersion**](WAFVersionsAPI.md#DeleteWafVersion) | **Delete** /workspace/wafs/{resource_pk}/versions/{id} | Delete a WAF version
-[**ListWafVersions**](WAFVersionsAPI.md#ListWafVersions) | **Get** /workspace/wafs/{resource_pk}/versions | List WAF versions
-[**PartialUpdateWafVersion**](WAFVersionsAPI.md#PartialUpdateWafVersion) | **Patch** /workspace/wafs/{resource_pk}/versions/{id} | Partially update a WAF version
-[**RetrieveWafVersion**](WAFVersionsAPI.md#RetrieveWafVersion) | **Get** /workspace/wafs/{resource_pk}/versions/{id} | Retrieve a WAF version
-[**UpdateWafVersion**](WAFVersionsAPI.md#UpdateWafVersion) | **Put** /workspace/wafs/{resource_pk}/versions/{id} | Update a WAF version
+[**ArchiveWafVersion**](WAFVersionsAPI.md#ArchiveWafVersion) | **Post** /workspace/wafs/{waf_id}/versions/{version_id}/archive | Archive a WAF version
+[**BuildWafVersion**](WAFVersionsAPI.md#BuildWafVersion) | **Post** /workspace/wafs/{waf_id}/versions/{version_id}/build | Build a WAF version
+[**CancelWafVersionBuild**](WAFVersionsAPI.md#CancelWafVersionBuild) | **Post** /workspace/wafs/{waf_id}/versions/{version_id}/cancel | Cancel a WAF version build
+[**CreateWafVersion**](WAFVersionsAPI.md#CreateWafVersion) | **Post** /workspace/wafs/{waf_id}/versions | Create a new WAF version
+[**DeleteWafVersion**](WAFVersionsAPI.md#DeleteWafVersion) | **Delete** /workspace/wafs/{waf_id}/versions/{version_id} | Delete a WAF version
+[**ListWafVersions**](WAFVersionsAPI.md#ListWafVersions) | **Get** /workspace/wafs/{waf_id}/versions | List WAF versions
+[**PartialUpdateWafVersion**](WAFVersionsAPI.md#PartialUpdateWafVersion) | **Patch** /workspace/wafs/{waf_id}/versions/{version_id} | Partially update a WAF version
+[**RetrieveWafVersion**](WAFVersionsAPI.md#RetrieveWafVersion) | **Get** /workspace/wafs/{waf_id}/versions/{version_id} | Retrieve a WAF version
+[**UpdateWafVersion**](WAFVersionsAPI.md#UpdateWafVersion) | **Put** /workspace/wafs/{waf_id}/versions/{version_id} | Update a WAF version
 
 
 
 ## ArchiveWafVersion
 
-> ArchiveWafVersion(ctx, id, resourcePk).VersionArchiveRequest(versionArchiveRequest).Execute()
+> ArchiveWafVersion(ctx, versionId, wafId).VersionArchiveRequest(versionArchiveRequest).Execute()
 
 Archive a WAF version
 
@@ -37,13 +37,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the WAF resource.
+	versionId := "versionId_example" // string | The identifier of the version.
+	wafId := int64(789) // int64 | The ID of the WAF resource.
 	versionArchiveRequest := *openapiclient.NewVersionArchiveRequest() // VersionArchiveRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WAFVersionsAPI.ArchiveWafVersion(context.Background(), id, resourcePk).VersionArchiveRequest(versionArchiveRequest).Execute()
+	r, err := apiClient.WAFVersionsAPI.ArchiveWafVersion(context.Background(), versionId, wafId).VersionArchiveRequest(versionArchiveRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFVersionsAPI.ArchiveWafVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,8 +57,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the WAF resource. | 
+**versionId** | **string** | The identifier of the version. | 
+**wafId** | **int64** | The ID of the WAF resource. | 
 
 ### Other Parameters
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## BuildWafVersion
 
-> BuildWafVersion(ctx, id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+> BuildWafVersion(ctx, versionId, wafId).VersionBuildRequest(versionBuildRequest).Execute()
 
 Build a WAF version
 
@@ -110,13 +110,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the WAF resource.
+	versionId := "versionId_example" // string | The identifier of the version.
+	wafId := int64(789) // int64 | The ID of the WAF resource.
 	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WAFVersionsAPI.BuildWafVersion(context.Background(), id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+	r, err := apiClient.WAFVersionsAPI.BuildWafVersion(context.Background(), versionId, wafId).VersionBuildRequest(versionBuildRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFVersionsAPI.BuildWafVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,8 +130,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the WAF resource. | 
+**versionId** | **string** | The identifier of the version. | 
+**wafId** | **int64** | The ID of the WAF resource. | 
 
 ### Other Parameters
 
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## CancelWafVersionBuild
 
-> CancelWafVersionBuild(ctx, id, resourcePk).VersionCancelRequest(versionCancelRequest).Execute()
+> CancelWafVersionBuild(ctx, versionId, wafId).VersionCancelRequest(versionCancelRequest).Execute()
 
 Cancel a WAF version build
 
@@ -183,13 +183,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the WAF resource.
+	versionId := "versionId_example" // string | The identifier of the version.
+	wafId := int64(789) // int64 | The ID of the WAF resource.
 	versionCancelRequest := *openapiclient.NewVersionCancelRequest() // VersionCancelRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WAFVersionsAPI.CancelWafVersionBuild(context.Background(), id, resourcePk).VersionCancelRequest(versionCancelRequest).Execute()
+	r, err := apiClient.WAFVersionsAPI.CancelWafVersionBuild(context.Background(), versionId, wafId).VersionCancelRequest(versionCancelRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFVersionsAPI.CancelWafVersionBuild``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -203,8 +203,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the WAF resource. | 
+**versionId** | **string** | The identifier of the version. | 
+**wafId** | **int64** | The ID of the WAF resource. | 
 
 ### Other Parameters
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## CreateWafVersion
 
-> CreateWafVersion(ctx, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+> CreateWafVersion(ctx, wafId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Create a new WAF version
 
@@ -256,12 +256,12 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID of the WAF resource.
+	wafId := int64(789) // int64 | The ID of the WAF resource.
 	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WAFVersionsAPI.CreateWafVersion(context.Background(), resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.WAFVersionsAPI.CreateWafVersion(context.Background(), wafId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFVersionsAPI.CreateWafVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,7 +275,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID of the WAF resource. | 
+**wafId** | **int64** | The ID of the WAF resource. | 
 
 ### Other Parameters
 
@@ -307,7 +307,7 @@ Name | Type | Description  | Notes
 
 ## DeleteWafVersion
 
-> DeleteWafVersion(ctx, id, resourcePk).Execute()
+> DeleteWafVersion(ctx, versionId, wafId).Execute()
 
 Delete a WAF version
 
@@ -326,12 +326,12 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the WAF resource.
+	versionId := "versionId_example" // string | The identifier of the version.
+	wafId := int64(789) // int64 | The ID of the WAF resource.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WAFVersionsAPI.DeleteWafVersion(context.Background(), id, resourcePk).Execute()
+	r, err := apiClient.WAFVersionsAPI.DeleteWafVersion(context.Background(), versionId, wafId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFVersionsAPI.DeleteWafVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -345,8 +345,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the WAF resource. | 
+**versionId** | **string** | The identifier of the version. | 
+**wafId** | **int64** | The ID of the WAF resource. | 
 
 ### Other Parameters
 
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ## ListWafVersions
 
-> ListWafVersions(ctx, resourcePk).Fields(fields).Execute()
+> ListWafVersions(ctx, wafId).Fields(fields).Execute()
 
 List WAF versions
 
@@ -397,12 +397,12 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID of the WAF resource.
+	wafId := int64(789) // int64 | The ID of the WAF resource.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WAFVersionsAPI.ListWafVersions(context.Background(), resourcePk).Fields(fields).Execute()
+	r, err := apiClient.WAFVersionsAPI.ListWafVersions(context.Background(), wafId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFVersionsAPI.ListWafVersions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -416,7 +416,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID of the WAF resource. | 
+**wafId** | **int64** | The ID of the WAF resource. | 
 
 ### Other Parameters
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateWafVersion
 
-> PartialUpdateWafVersion(ctx, id, resourcePk).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+> PartialUpdateWafVersion(ctx, versionId, wafId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 
 Partially update a WAF version
 
@@ -467,13 +467,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the WAF resource.
+	versionId := "versionId_example" // string | The identifier of the version.
+	wafId := int64(789) // int64 | The ID of the WAF resource.
 	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WAFVersionsAPI.PartialUpdateWafVersion(context.Background(), id, resourcePk).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+	r, err := apiClient.WAFVersionsAPI.PartialUpdateWafVersion(context.Background(), versionId, wafId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFVersionsAPI.PartialUpdateWafVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -487,8 +487,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the WAF resource. | 
+**versionId** | **string** | The identifier of the version. | 
+**wafId** | **int64** | The ID of the WAF resource. | 
 
 ### Other Parameters
 
@@ -521,7 +521,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveWafVersion
 
-> RetrieveWafVersion(ctx, id, resourcePk).Fields(fields).Execute()
+> RetrieveWafVersion(ctx, versionId, wafId).Fields(fields).Execute()
 
 Retrieve a WAF version
 
@@ -540,13 +540,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the WAF resource.
+	versionId := "versionId_example" // string | The identifier of the version.
+	wafId := int64(789) // int64 | The ID of the WAF resource.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WAFVersionsAPI.RetrieveWafVersion(context.Background(), id, resourcePk).Fields(fields).Execute()
+	r, err := apiClient.WAFVersionsAPI.RetrieveWafVersion(context.Background(), versionId, wafId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFVersionsAPI.RetrieveWafVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -560,8 +560,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the WAF resource. | 
+**versionId** | **string** | The identifier of the version. | 
+**wafId** | **int64** | The ID of the WAF resource. | 
 
 ### Other Parameters
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 
 ## UpdateWafVersion
 
-> UpdateWafVersion(ctx, id, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+> UpdateWafVersion(ctx, versionId, wafId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Update a WAF version
 
@@ -613,13 +613,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the WAF resource.
+	versionId := "versionId_example" // string | The identifier of the version.
+	wafId := int64(789) // int64 | The ID of the WAF resource.
 	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WAFVersionsAPI.UpdateWafVersion(context.Background(), id, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.WAFVersionsAPI.UpdateWafVersion(context.Background(), versionId, wafId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WAFVersionsAPI.UpdateWafVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -633,8 +633,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the WAF resource. | 
+**versionId** | **string** | The identifier of the version. | 
+**wafId** | **int64** | The ID of the WAF resource. | 
 
 ### Other Parameters
 

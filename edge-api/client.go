@@ -97,8 +97,6 @@ type APIClient struct {
 
 	WorkloadDeploymentsAPI *WorkloadDeploymentsAPIService
 
-	WorkloadVersionsAPI *WorkloadVersionsAPIService
-
 	WorkloadsAPI *WorkloadsAPIService
 }
 
@@ -142,7 +140,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.WAFsAPI = (*WAFsAPIService)(&c.common)
 	c.WAFsExceptionsAPI = (*WAFsExceptionsAPIService)(&c.common)
 	c.WorkloadDeploymentsAPI = (*WorkloadDeploymentsAPIService)(&c.common)
-	c.WorkloadVersionsAPI = (*WorkloadVersionsAPIService)(&c.common)
 	c.WorkloadsAPI = (*WorkloadsAPIService)(&c.common)
 
 	return c
