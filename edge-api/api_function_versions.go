@@ -26,8 +26,8 @@ type FunctionVersionsAPIService service
 type ApiArchiveFunctionVersionRequest struct {
 	ctx context.Context
 	ApiService *FunctionVersionsAPIService
-	id string
-	resourcePk int64
+	functionId int64
+	versionId string
 	versionArchiveRequest *VersionArchiveRequest
 }
 
@@ -46,16 +46,16 @@ ArchiveFunctionVersion Archive a Function version
 Archive a ready version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Function resource.
+ @param functionId The ID of the Function resource.
+ @param versionId The identifier of the version.
  @return ApiArchiveFunctionVersionRequest
 */
-func (a *FunctionVersionsAPIService) ArchiveFunctionVersion(ctx context.Context, id string, resourcePk int64) ApiArchiveFunctionVersionRequest {
+func (a *FunctionVersionsAPIService) ArchiveFunctionVersion(ctx context.Context, functionId int64, versionId string) ApiArchiveFunctionVersionRequest {
 	return ApiArchiveFunctionVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		functionId: functionId,
+		versionId: versionId,
 	}
 }
 
@@ -72,9 +72,9 @@ func (a *FunctionVersionsAPIService) ArchiveFunctionVersionExecute(r ApiArchiveF
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/functions/{resource_pk}/versions/{id}/archive"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/functions/{function_id}/versions/{version_id}/archive"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -141,11 +141,129 @@ func (a *FunctionVersionsAPIService) ArchiveFunctionVersionExecute(r ApiArchiveF
 	return localVarHTTPResponse, nil
 }
 
+type ApiBuildFunctionVersionRequest struct {
+	ctx context.Context
+	ApiService *FunctionVersionsAPIService
+	functionId int64
+	versionId string
+	versionBuildRequest *VersionBuildRequest
+}
+
+func (r ApiBuildFunctionVersionRequest) VersionBuildRequest(versionBuildRequest VersionBuildRequest) ApiBuildFunctionVersionRequest {
+	r.versionBuildRequest = &versionBuildRequest
+	return r
+}
+
+func (r ApiBuildFunctionVersionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.BuildFunctionVersionExecute(r)
+}
+
+/*
+BuildFunctionVersion Build a Function version
+
+Trigger a build for a draft version.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param functionId The ID of the Function resource.
+ @param versionId The identifier of the version.
+ @return ApiBuildFunctionVersionRequest
+*/
+func (a *FunctionVersionsAPIService) BuildFunctionVersion(ctx context.Context, functionId int64, versionId string) ApiBuildFunctionVersionRequest {
+	return ApiBuildFunctionVersionRequest{
+		ApiService: a,
+		ctx: ctx,
+		functionId: functionId,
+		versionId: versionId,
+	}
+}
+
+// Execute executes the request
+func (a *FunctionVersionsAPIService) BuildFunctionVersionExecute(r ApiBuildFunctionVersionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FunctionVersionsAPIService.BuildFunctionVersion")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspace/functions/{function_id}/versions/{version_id}/build"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.versionBuildRequest
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["TokenAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiCancelFunctionVersionBuildRequest struct {
 	ctx context.Context
 	ApiService *FunctionVersionsAPIService
-	id string
-	resourcePk int64
+	functionId int64
+	versionId string
 	versionCancelRequest *VersionCancelRequest
 }
 
@@ -164,16 +282,16 @@ CancelFunctionVersionBuild Cancel a Function version build
 Cancel a queued or building version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Function resource.
+ @param functionId The ID of the Function resource.
+ @param versionId The identifier of the version.
  @return ApiCancelFunctionVersionBuildRequest
 */
-func (a *FunctionVersionsAPIService) CancelFunctionVersionBuild(ctx context.Context, id string, resourcePk int64) ApiCancelFunctionVersionBuildRequest {
+func (a *FunctionVersionsAPIService) CancelFunctionVersionBuild(ctx context.Context, functionId int64, versionId string) ApiCancelFunctionVersionBuildRequest {
 	return ApiCancelFunctionVersionBuildRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		functionId: functionId,
+		versionId: versionId,
 	}
 }
 
@@ -190,9 +308,9 @@ func (a *FunctionVersionsAPIService) CancelFunctionVersionBuildExecute(r ApiCanc
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/functions/{resource_pk}/versions/{id}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/functions/{function_id}/versions/{version_id}/cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -262,7 +380,7 @@ func (a *FunctionVersionsAPIService) CancelFunctionVersionBuildExecute(r ApiCanc
 type ApiCreateFunctionVersionRequest struct {
 	ctx context.Context
 	ApiService *FunctionVersionsAPIService
-	resourcePk int64
+	functionId int64
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -281,14 +399,14 @@ CreateFunctionVersion Create a new Function version
 Create a new version by cloning.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the Function resource.
+ @param functionId The ID of the Function resource.
  @return ApiCreateFunctionVersionRequest
 */
-func (a *FunctionVersionsAPIService) CreateFunctionVersion(ctx context.Context, resourcePk int64) ApiCreateFunctionVersionRequest {
+func (a *FunctionVersionsAPIService) CreateFunctionVersion(ctx context.Context, functionId int64) ApiCreateFunctionVersionRequest {
 	return ApiCreateFunctionVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		functionId: functionId,
 	}
 }
 
@@ -305,8 +423,8 @@ func (a *FunctionVersionsAPIService) CreateFunctionVersionExecute(r ApiCreateFun
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/functions/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/functions/{function_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -376,8 +494,8 @@ func (a *FunctionVersionsAPIService) CreateFunctionVersionExecute(r ApiCreateFun
 type ApiDeleteFunctionVersionRequest struct {
 	ctx context.Context
 	ApiService *FunctionVersionsAPIService
-	id string
-	resourcePk int64
+	functionId int64
+	versionId string
 }
 
 func (r ApiDeleteFunctionVersionRequest) Execute() (*http.Response, error) {
@@ -390,16 +508,16 @@ DeleteFunctionVersion Delete a Function version
 Delete a specific version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Function resource.
+ @param functionId The ID of the Function resource.
+ @param versionId The identifier of the version.
  @return ApiDeleteFunctionVersionRequest
 */
-func (a *FunctionVersionsAPIService) DeleteFunctionVersion(ctx context.Context, id string, resourcePk int64) ApiDeleteFunctionVersionRequest {
+func (a *FunctionVersionsAPIService) DeleteFunctionVersion(ctx context.Context, functionId int64, versionId string) ApiDeleteFunctionVersionRequest {
 	return ApiDeleteFunctionVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		functionId: functionId,
+		versionId: versionId,
 	}
 }
 
@@ -416,9 +534,9 @@ func (a *FunctionVersionsAPIService) DeleteFunctionVersionExecute(r ApiDeleteFun
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/functions/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/functions/{function_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -486,7 +604,7 @@ func (a *FunctionVersionsAPIService) DeleteFunctionVersionExecute(r ApiDeleteFun
 type ApiListFunctionVersionsRequest struct {
 	ctx context.Context
 	ApiService *FunctionVersionsAPIService
-	resourcePk int64
+	functionId int64
 	fields *string
 }
 
@@ -506,14 +624,14 @@ ListFunctionVersions List Function versions
 List all versions of a specific Function.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the Function resource.
+ @param functionId The ID of the Function resource.
  @return ApiListFunctionVersionsRequest
 */
-func (a *FunctionVersionsAPIService) ListFunctionVersions(ctx context.Context, resourcePk int64) ApiListFunctionVersionsRequest {
+func (a *FunctionVersionsAPIService) ListFunctionVersions(ctx context.Context, functionId int64) ApiListFunctionVersionsRequest {
 	return ApiListFunctionVersionsRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		functionId: functionId,
 	}
 }
 
@@ -530,8 +648,8 @@ func (a *FunctionVersionsAPIService) ListFunctionVersionsExecute(r ApiListFuncti
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/functions/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/functions/{function_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -602,8 +720,8 @@ func (a *FunctionVersionsAPIService) ListFunctionVersionsExecute(r ApiListFuncti
 type ApiPartialUpdateFunctionVersionRequest struct {
 	ctx context.Context
 	ApiService *FunctionVersionsAPIService
-	id string
-	resourcePk int64
+	functionId int64
+	versionId string
 	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
@@ -622,16 +740,16 @@ PartialUpdateFunctionVersion Partially update a Function version
 Partially update a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Function resource.
+ @param functionId The ID of the Function resource.
+ @param versionId The identifier of the version.
  @return ApiPartialUpdateFunctionVersionRequest
 */
-func (a *FunctionVersionsAPIService) PartialUpdateFunctionVersion(ctx context.Context, id string, resourcePk int64) ApiPartialUpdateFunctionVersionRequest {
+func (a *FunctionVersionsAPIService) PartialUpdateFunctionVersion(ctx context.Context, functionId int64, versionId string) ApiPartialUpdateFunctionVersionRequest {
 	return ApiPartialUpdateFunctionVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		functionId: functionId,
+		versionId: versionId,
 	}
 }
 
@@ -648,9 +766,9 @@ func (a *FunctionVersionsAPIService) PartialUpdateFunctionVersionExecute(r ApiPa
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/functions/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/functions/{function_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -720,8 +838,8 @@ func (a *FunctionVersionsAPIService) PartialUpdateFunctionVersionExecute(r ApiPa
 type ApiRetrieveFunctionVersionRequest struct {
 	ctx context.Context
 	ApiService *FunctionVersionsAPIService
-	id string
-	resourcePk int64
+	functionId int64
+	versionId string
 	fields *string
 }
 
@@ -741,16 +859,16 @@ RetrieveFunctionVersion Retrieve a Function version
 Retrieve details of a specific version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Function resource.
+ @param functionId The ID of the Function resource.
+ @param versionId The identifier of the version.
  @return ApiRetrieveFunctionVersionRequest
 */
-func (a *FunctionVersionsAPIService) RetrieveFunctionVersion(ctx context.Context, id string, resourcePk int64) ApiRetrieveFunctionVersionRequest {
+func (a *FunctionVersionsAPIService) RetrieveFunctionVersion(ctx context.Context, functionId int64, versionId string) ApiRetrieveFunctionVersionRequest {
 	return ApiRetrieveFunctionVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		functionId: functionId,
+		versionId: versionId,
 	}
 }
 
@@ -767,9 +885,9 @@ func (a *FunctionVersionsAPIService) RetrieveFunctionVersionExecute(r ApiRetriev
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/functions/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/functions/{function_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -840,8 +958,8 @@ func (a *FunctionVersionsAPIService) RetrieveFunctionVersionExecute(r ApiRetriev
 type ApiUpdateFunctionVersionRequest struct {
 	ctx context.Context
 	ApiService *FunctionVersionsAPIService
-	id string
-	resourcePk int64
+	functionId int64
+	versionId string
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -860,16 +978,16 @@ UpdateFunctionVersion Update a Function version
 Update a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Function resource.
+ @param functionId The ID of the Function resource.
+ @param versionId The identifier of the version.
  @return ApiUpdateFunctionVersionRequest
 */
-func (a *FunctionVersionsAPIService) UpdateFunctionVersion(ctx context.Context, id string, resourcePk int64) ApiUpdateFunctionVersionRequest {
+func (a *FunctionVersionsAPIService) UpdateFunctionVersion(ctx context.Context, functionId int64, versionId string) ApiUpdateFunctionVersionRequest {
 	return ApiUpdateFunctionVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		functionId: functionId,
+		versionId: versionId,
 	}
 }
 
@@ -886,9 +1004,9 @@ func (a *FunctionVersionsAPIService) UpdateFunctionVersionExecute(r ApiUpdateFun
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/functions/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/functions/{function_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"function_id"+"}", url.PathEscape(parameterValueToString(r.functionId, "functionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

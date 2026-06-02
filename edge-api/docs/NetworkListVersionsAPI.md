@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ArchiveNetworkListVersion**](NetworkListVersionsAPI.md#ArchiveNetworkListVersion) | **Post** /workspace/network_lists/{resource_pk}/versions/{id}/archive | Archive a Network List version
-[**BuildNetworkListVersion**](NetworkListVersionsAPI.md#BuildNetworkListVersion) | **Post** /workspace/network_lists/{resource_pk}/versions/{id}/build | Build a Network List version
-[**CancelNetworkListVersionBuild**](NetworkListVersionsAPI.md#CancelNetworkListVersionBuild) | **Post** /workspace/network_lists/{resource_pk}/versions/{id}/cancel | Cancel a Network List version build
-[**CreateNetworkListVersion**](NetworkListVersionsAPI.md#CreateNetworkListVersion) | **Post** /workspace/network_lists/{resource_pk}/versions | Create a new Network List version
-[**DeleteNetworkListVersion**](NetworkListVersionsAPI.md#DeleteNetworkListVersion) | **Delete** /workspace/network_lists/{resource_pk}/versions/{id} | Delete a Network List version
-[**ListNetworkListVersions**](NetworkListVersionsAPI.md#ListNetworkListVersions) | **Get** /workspace/network_lists/{resource_pk}/versions | List Network List versions
-[**PartialUpdateNetworkListVersion**](NetworkListVersionsAPI.md#PartialUpdateNetworkListVersion) | **Patch** /workspace/network_lists/{resource_pk}/versions/{id} | Partially update a Network List version
-[**RetrieveNetworkListVersion**](NetworkListVersionsAPI.md#RetrieveNetworkListVersion) | **Get** /workspace/network_lists/{resource_pk}/versions/{id} | Retrieve a Network List version
-[**UpdateNetworkListVersion**](NetworkListVersionsAPI.md#UpdateNetworkListVersion) | **Put** /workspace/network_lists/{resource_pk}/versions/{id} | Update a Network List version
+[**ArchiveNetworkListVersion**](NetworkListVersionsAPI.md#ArchiveNetworkListVersion) | **Post** /workspace/network_lists/{network_list_id}/versions/{version_id}/archive | Archive a Network List version
+[**BuildNetworkListVersion**](NetworkListVersionsAPI.md#BuildNetworkListVersion) | **Post** /workspace/network_lists/{network_list_id}/versions/{version_id}/build | Build a Network List version
+[**CancelNetworkListVersionBuild**](NetworkListVersionsAPI.md#CancelNetworkListVersionBuild) | **Post** /workspace/network_lists/{network_list_id}/versions/{version_id}/cancel | Cancel a Network List version build
+[**CreateNetworkListVersion**](NetworkListVersionsAPI.md#CreateNetworkListVersion) | **Post** /workspace/network_lists/{network_list_id}/versions | Create a new Network List version
+[**DeleteNetworkListVersion**](NetworkListVersionsAPI.md#DeleteNetworkListVersion) | **Delete** /workspace/network_lists/{network_list_id}/versions/{version_id} | Delete a Network List version
+[**ListNetworkListVersions**](NetworkListVersionsAPI.md#ListNetworkListVersions) | **Get** /workspace/network_lists/{network_list_id}/versions | List Network List versions
+[**PartialUpdateNetworkListVersion**](NetworkListVersionsAPI.md#PartialUpdateNetworkListVersion) | **Patch** /workspace/network_lists/{network_list_id}/versions/{version_id} | Partially update a Network List version
+[**RetrieveNetworkListVersion**](NetworkListVersionsAPI.md#RetrieveNetworkListVersion) | **Get** /workspace/network_lists/{network_list_id}/versions/{version_id} | Retrieve a Network List version
+[**UpdateNetworkListVersion**](NetworkListVersionsAPI.md#UpdateNetworkListVersion) | **Put** /workspace/network_lists/{network_list_id}/versions/{version_id} | Update a Network List version
 
 
 
 ## ArchiveNetworkListVersion
 
-> ArchiveNetworkListVersion(ctx, id, resourcePk).VersionArchiveRequest(versionArchiveRequest).Execute()
+> ArchiveNetworkListVersion(ctx, networkListId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
 
 Archive a Network List version
 
@@ -37,13 +37,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Network List resource.
+	networkListId := int64(789) // int64 | The ID of the Network List resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionArchiveRequest := *openapiclient.NewVersionArchiveRequest() // VersionArchiveRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.ArchiveNetworkListVersion(context.Background(), id, resourcePk).VersionArchiveRequest(versionArchiveRequest).Execute()
+	r, err := apiClient.NetworkListVersionsAPI.ArchiveNetworkListVersion(context.Background(), networkListId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.ArchiveNetworkListVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,8 +57,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Network List resource. | 
+**networkListId** | **int64** | The ID of the Network List resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## BuildNetworkListVersion
 
-> BuildNetworkListVersion(ctx, id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+> BuildNetworkListVersion(ctx, networkListId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
 
 Build a Network List version
 
@@ -110,13 +110,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Network List resource.
+	networkListId := int64(789) // int64 | The ID of the Network List resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.BuildNetworkListVersion(context.Background(), id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+	r, err := apiClient.NetworkListVersionsAPI.BuildNetworkListVersion(context.Background(), networkListId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.BuildNetworkListVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,8 +130,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Network List resource. | 
+**networkListId** | **int64** | The ID of the Network List resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## CancelNetworkListVersionBuild
 
-> CancelNetworkListVersionBuild(ctx, id, resourcePk).VersionCancelRequest(versionCancelRequest).Execute()
+> CancelNetworkListVersionBuild(ctx, networkListId, versionId).VersionCancelRequest(versionCancelRequest).Execute()
 
 Cancel a Network List version build
 
@@ -183,13 +183,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Network List resource.
+	networkListId := int64(789) // int64 | The ID of the Network List resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionCancelRequest := *openapiclient.NewVersionCancelRequest() // VersionCancelRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.CancelNetworkListVersionBuild(context.Background(), id, resourcePk).VersionCancelRequest(versionCancelRequest).Execute()
+	r, err := apiClient.NetworkListVersionsAPI.CancelNetworkListVersionBuild(context.Background(), networkListId, versionId).VersionCancelRequest(versionCancelRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.CancelNetworkListVersionBuild``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -203,8 +203,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Network List resource. | 
+**networkListId** | **int64** | The ID of the Network List resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## CreateNetworkListVersion
 
-> CreateNetworkListVersion(ctx, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+> CreateNetworkListVersion(ctx, networkListId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Create a new Network List version
 
@@ -256,12 +256,12 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID of the Network List resource.
+	networkListId := int64(789) // int64 | The ID of the Network List resource.
 	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.CreateNetworkListVersion(context.Background(), resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.NetworkListVersionsAPI.CreateNetworkListVersion(context.Background(), networkListId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.CreateNetworkListVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,7 +275,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID of the Network List resource. | 
+**networkListId** | **int64** | The ID of the Network List resource. | 
 
 ### Other Parameters
 
@@ -307,7 +307,7 @@ Name | Type | Description  | Notes
 
 ## DeleteNetworkListVersion
 
-> DeleteNetworkListVersion(ctx, id, resourcePk).Execute()
+> DeleteNetworkListVersion(ctx, networkListId, versionId).Execute()
 
 Delete a Network List version
 
@@ -326,12 +326,12 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Network List resource.
+	networkListId := int64(789) // int64 | The ID of the Network List resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.DeleteNetworkListVersion(context.Background(), id, resourcePk).Execute()
+	r, err := apiClient.NetworkListVersionsAPI.DeleteNetworkListVersion(context.Background(), networkListId, versionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.DeleteNetworkListVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -345,8 +345,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Network List resource. | 
+**networkListId** | **int64** | The ID of the Network List resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ## ListNetworkListVersions
 
-> ListNetworkListVersions(ctx, resourcePk).Fields(fields).Execute()
+> ListNetworkListVersions(ctx, networkListId).Fields(fields).Execute()
 
 List Network List versions
 
@@ -397,12 +397,12 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID of the Network List resource.
+	networkListId := int64(789) // int64 | The ID of the Network List resource.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.ListNetworkListVersions(context.Background(), resourcePk).Fields(fields).Execute()
+	r, err := apiClient.NetworkListVersionsAPI.ListNetworkListVersions(context.Background(), networkListId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.ListNetworkListVersions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -416,7 +416,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID of the Network List resource. | 
+**networkListId** | **int64** | The ID of the Network List resource. | 
 
 ### Other Parameters
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateNetworkListVersion
 
-> PartialUpdateNetworkListVersion(ctx, id, resourcePk).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+> PartialUpdateNetworkListVersion(ctx, networkListId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 
 Partially update a Network List version
 
@@ -467,13 +467,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Network List resource.
+	networkListId := int64(789) // int64 | The ID of the Network List resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.PartialUpdateNetworkListVersion(context.Background(), id, resourcePk).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+	r, err := apiClient.NetworkListVersionsAPI.PartialUpdateNetworkListVersion(context.Background(), networkListId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.PartialUpdateNetworkListVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -487,8 +487,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Network List resource. | 
+**networkListId** | **int64** | The ID of the Network List resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -521,7 +521,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveNetworkListVersion
 
-> RetrieveNetworkListVersion(ctx, id, resourcePk).Fields(fields).Execute()
+> RetrieveNetworkListVersion(ctx, networkListId, versionId).Fields(fields).Execute()
 
 Retrieve a Network List version
 
@@ -540,13 +540,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Network List resource.
+	networkListId := int64(789) // int64 | The ID of the Network List resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.RetrieveNetworkListVersion(context.Background(), id, resourcePk).Fields(fields).Execute()
+	r, err := apiClient.NetworkListVersionsAPI.RetrieveNetworkListVersion(context.Background(), networkListId, versionId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.RetrieveNetworkListVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -560,8 +560,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Network List resource. | 
+**networkListId** | **int64** | The ID of the Network List resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkListVersion
 
-> UpdateNetworkListVersion(ctx, id, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+> UpdateNetworkListVersion(ctx, networkListId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Update a Network List version
 
@@ -613,13 +613,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Network List resource.
+	networkListId := int64(789) // int64 | The ID of the Network List resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.UpdateNetworkListVersion(context.Background(), id, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.NetworkListVersionsAPI.UpdateNetworkListVersion(context.Background(), networkListId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.UpdateNetworkListVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -633,8 +633,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Network List resource. | 
+**networkListId** | **int64** | The ID of the Network List resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 

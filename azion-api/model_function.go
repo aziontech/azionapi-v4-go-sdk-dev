@@ -40,7 +40,7 @@ type Function struct {
 	Version string `json:"version"`
 	Vendor string `json:"vendor"`
 	IsVersioned bool `json:"is_versioned"`
-	VersionNumber NullableInt64 `json:"version_number"`
+	ResourceVersion NullableInt64 `json:"resource_version"`
 	VersionState NullableString `json:"version_state"`
 	VersionId NullableString `json:"version_id"`
 }
@@ -51,7 +51,7 @@ type _Function Function
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFunction(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, isVersioned bool, versionNumber NullableInt64, versionState NullableString, versionId NullableString) *Function {
+func NewFunction(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, isVersioned bool, resourceVersion NullableInt64, versionState NullableString, versionId NullableString) *Function {
 	this := Function{}
 	this.Id = id
 	this.Name = name
@@ -62,7 +62,7 @@ func NewFunction(id int64, name string, lastEditor string, lastModified time.Tim
 	this.Version = version
 	this.Vendor = vendor
 	this.IsVersioned = isVersioned
-	this.VersionNumber = versionNumber
+	this.ResourceVersion = resourceVersion
 	this.VersionState = versionState
 	this.VersionId = versionId
 	return &this
@@ -453,30 +453,30 @@ func (o *Function) SetIsVersioned(v bool) {
 	o.IsVersioned = v
 }
 
-// GetVersionNumber returns the VersionNumber field value
+// GetResourceVersion returns the ResourceVersion field value
 // If the value is explicit nil, the zero value for int64 will be returned
-func (o *Function) GetVersionNumber() int64 {
-	if o == nil || o.VersionNumber.Get() == nil {
+func (o *Function) GetResourceVersion() int64 {
+	if o == nil || o.ResourceVersion.Get() == nil {
 		var ret int64
 		return ret
 	}
 
-	return *o.VersionNumber.Get()
+	return *o.ResourceVersion.Get()
 }
 
-// GetVersionNumberOk returns a tuple with the VersionNumber field value
+// GetResourceVersionOk returns a tuple with the ResourceVersion field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Function) GetVersionNumberOk() (*int64, bool) {
+func (o *Function) GetResourceVersionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.VersionNumber.Get(), o.VersionNumber.IsSet()
+	return o.ResourceVersion.Get(), o.ResourceVersion.IsSet()
 }
 
-// SetVersionNumber sets field value
-func (o *Function) SetVersionNumber(v int64) {
-	o.VersionNumber.Set(&v)
+// SetResourceVersion sets field value
+func (o *Function) SetResourceVersion(v int64) {
+	o.ResourceVersion.Set(&v)
 }
 
 // GetVersionState returns the VersionState field value
@@ -565,7 +565,7 @@ func (o Function) ToMap() (map[string]interface{}, error) {
 	toSerialize["version"] = o.Version
 	toSerialize["vendor"] = o.Vendor
 	toSerialize["is_versioned"] = o.IsVersioned
-	toSerialize["version_number"] = o.VersionNumber.Get()
+	toSerialize["resource_version"] = o.ResourceVersion.Get()
 	toSerialize["version_state"] = o.VersionState.Get()
 	toSerialize["version_id"] = o.VersionId.Get()
 	return toSerialize, nil
@@ -585,7 +585,7 @@ func (o *Function) UnmarshalJSON(data []byte) (err error) {
 		"version",
 		"vendor",
 		"is_versioned",
-		"version_number",
+		"resource_version",
 		"version_state",
 		"version_id",
 	}

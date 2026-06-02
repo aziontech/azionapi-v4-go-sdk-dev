@@ -29,8 +29,6 @@ type PatchedWorkloadRequest struct {
 	Mtls *MTLSRequest `json:"mtls,omitempty"`
 	Domains []string `json:"domains,omitempty"`
 	WorkloadDomainAllowAccess *bool `json:"workload_domain_allow_access,omitempty"`
-	// Environment bindings for v6 accounts
-	Environments []WorkloadEnvironmentBindingRequest `json:"environments,omitempty"`
 }
 
 // NewPatchedWorkloadRequest instantiates a new PatchedWorkloadRequest object
@@ -306,38 +304,6 @@ func (o *PatchedWorkloadRequest) SetWorkloadDomainAllowAccess(v bool) {
 	o.WorkloadDomainAllowAccess = &v
 }
 
-// GetEnvironments returns the Environments field value if set, zero value otherwise.
-func (o *PatchedWorkloadRequest) GetEnvironments() []WorkloadEnvironmentBindingRequest {
-	if o == nil || IsNil(o.Environments) {
-		var ret []WorkloadEnvironmentBindingRequest
-		return ret
-	}
-	return o.Environments
-}
-
-// GetEnvironmentsOk returns a tuple with the Environments field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedWorkloadRequest) GetEnvironmentsOk() ([]WorkloadEnvironmentBindingRequest, bool) {
-	if o == nil || IsNil(o.Environments) {
-		return nil, false
-	}
-	return o.Environments, true
-}
-
-// HasEnvironments returns a boolean if a field has been set.
-func (o *PatchedWorkloadRequest) HasEnvironments() bool {
-	if o != nil && !IsNil(o.Environments) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnvironments gets a reference to the given []WorkloadEnvironmentBindingRequest and assigns it to the Environments field.
-func (o *PatchedWorkloadRequest) SetEnvironments(v []WorkloadEnvironmentBindingRequest) {
-	o.Environments = v
-}
-
 func (o PatchedWorkloadRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -371,9 +337,6 @@ func (o PatchedWorkloadRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.WorkloadDomainAllowAccess) {
 		toSerialize["workload_domain_allow_access"] = o.WorkloadDomainAllowAccess
-	}
-	if !IsNil(o.Environments) {
-		toSerialize["environments"] = o.Environments
 	}
 	return toSerialize, nil
 }

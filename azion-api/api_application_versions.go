@@ -27,8 +27,8 @@ type ApplicationVersionsAPIService service
 type ApiArchiveApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id string
-	resourcePk int64
+	applicationId int64
+	versionId string
 	versionArchiveRequest *VersionArchiveRequest
 }
 
@@ -47,16 +47,16 @@ ArchiveApplicationVersion Archive an Application version
 Archive a ready version (soft-delete).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID (global_id) of the Application resource.
+ @param applicationId The ID (global_id) of the Application resource.
+ @param versionId The identifier of the version.
  @return ApiArchiveApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) ArchiveApplicationVersion(ctx context.Context, id string, resourcePk int64) ApiArchiveApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) ArchiveApplicationVersion(ctx context.Context, applicationId int64, versionId string) ApiArchiveApplicationVersionRequest {
 	return ApiArchiveApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		applicationId: applicationId,
+		versionId: versionId,
 	}
 }
 
@@ -73,9 +73,9 @@ func (a *ApplicationVersionsAPIService) ArchiveApplicationVersionExecute(r ApiAr
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{resource_pk}/versions/{id}/archive"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/versions/{version_id}/archive"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -155,8 +155,8 @@ func (a *ApplicationVersionsAPIService) ArchiveApplicationVersionExecute(r ApiAr
 type ApiBuildApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id string
-	resourcePk int64
+	applicationId int64
+	versionId string
 	versionBuildRequest *VersionBuildRequest
 }
 
@@ -175,16 +175,16 @@ BuildApplicationVersion Build an Application version
 Trigger a build for a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID (global_id) of the Application resource.
+ @param applicationId The ID (global_id) of the Application resource.
+ @param versionId The identifier of the version.
  @return ApiBuildApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) BuildApplicationVersion(ctx context.Context, id string, resourcePk int64) ApiBuildApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) BuildApplicationVersion(ctx context.Context, applicationId int64, versionId string) ApiBuildApplicationVersionRequest {
 	return ApiBuildApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		applicationId: applicationId,
+		versionId: versionId,
 	}
 }
 
@@ -201,9 +201,9 @@ func (a *ApplicationVersionsAPIService) BuildApplicationVersionExecute(r ApiBuil
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{resource_pk}/versions/{id}/build"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/versions/{version_id}/build"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -283,8 +283,8 @@ func (a *ApplicationVersionsAPIService) BuildApplicationVersionExecute(r ApiBuil
 type ApiCancelApplicationVersionBuildRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id string
-	resourcePk int64
+	applicationId int64
+	versionId string
 	versionBuildRequest *VersionBuildRequest
 }
 
@@ -303,16 +303,16 @@ CancelApplicationVersionBuild Cancel an Application version build
 Cancel a queued or building version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID (global_id) of the Application resource.
+ @param applicationId The ID (global_id) of the Application resource.
+ @param versionId The identifier of the version.
  @return ApiCancelApplicationVersionBuildRequest
 */
-func (a *ApplicationVersionsAPIService) CancelApplicationVersionBuild(ctx context.Context, id string, resourcePk int64) ApiCancelApplicationVersionBuildRequest {
+func (a *ApplicationVersionsAPIService) CancelApplicationVersionBuild(ctx context.Context, applicationId int64, versionId string) ApiCancelApplicationVersionBuildRequest {
 	return ApiCancelApplicationVersionBuildRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		applicationId: applicationId,
+		versionId: versionId,
 	}
 }
 
@@ -329,9 +329,9 @@ func (a *ApplicationVersionsAPIService) CancelApplicationVersionBuildExecute(r A
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{resource_pk}/versions/{id}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/versions/{version_id}/cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -411,7 +411,7 @@ func (a *ApplicationVersionsAPIService) CancelApplicationVersionBuildExecute(r A
 type ApiCreateApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	resourcePk int64
+	applicationId int64
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -430,14 +430,14 @@ CreateApplicationVersion Create a new Application version
 Create a new version by cloning an existing one.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID (global_id) of the Application resource.
+ @param applicationId The ID (global_id) of the Application resource.
  @return ApiCreateApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) CreateApplicationVersion(ctx context.Context, resourcePk int64) ApiCreateApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) CreateApplicationVersion(ctx context.Context, applicationId int64) ApiCreateApplicationVersionRequest {
 	return ApiCreateApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		applicationId: applicationId,
 	}
 }
 
@@ -454,8 +454,8 @@ func (a *ApplicationVersionsAPIService) CreateApplicationVersionExecute(r ApiCre
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -535,8 +535,8 @@ func (a *ApplicationVersionsAPIService) CreateApplicationVersionExecute(r ApiCre
 type ApiDeleteApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id string
-	resourcePk int64
+	applicationId int64
+	versionId string
 }
 
 func (r ApiDeleteApplicationVersionRequest) Execute() (*http.Response, error) {
@@ -549,16 +549,16 @@ DeleteApplicationVersion Delete an Application version
 Delete a specific version of an Application.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID (global_id) of the Application resource.
+ @param applicationId The ID (global_id) of the Application resource.
+ @param versionId The identifier of the version.
  @return ApiDeleteApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) DeleteApplicationVersion(ctx context.Context, id string, resourcePk int64) ApiDeleteApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) DeleteApplicationVersion(ctx context.Context, applicationId int64, versionId string) ApiDeleteApplicationVersionRequest {
 	return ApiDeleteApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		applicationId: applicationId,
+		versionId: versionId,
 	}
 }
 
@@ -575,9 +575,9 @@ func (a *ApplicationVersionsAPIService) DeleteApplicationVersionExecute(r ApiDel
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -655,7 +655,7 @@ func (a *ApplicationVersionsAPIService) DeleteApplicationVersionExecute(r ApiDel
 type ApiListApplicationVersionsRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	resourcePk int64
+	applicationId int64
 	fields *string
 }
 
@@ -675,14 +675,14 @@ ListApplicationVersions List Application versions
 List all versions of a specific Application.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID (global_id) of the Application resource.
+ @param applicationId The ID (global_id) of the Application resource.
  @return ApiListApplicationVersionsRequest
 */
-func (a *ApplicationVersionsAPIService) ListApplicationVersions(ctx context.Context, resourcePk int64) ApiListApplicationVersionsRequest {
+func (a *ApplicationVersionsAPIService) ListApplicationVersions(ctx context.Context, applicationId int64) ApiListApplicationVersionsRequest {
 	return ApiListApplicationVersionsRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		applicationId: applicationId,
 	}
 }
 
@@ -699,8 +699,8 @@ func (a *ApplicationVersionsAPIService) ListApplicationVersionsExecute(r ApiList
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -781,8 +781,8 @@ func (a *ApplicationVersionsAPIService) ListApplicationVersionsExecute(r ApiList
 type ApiPartialUpdateApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id string
-	resourcePk int64
+	applicationId int64
+	versionId string
 	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
@@ -801,16 +801,16 @@ PartialUpdateApplicationVersion Partially update an Application version
 Partially update a draft version of an Application.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID (global_id) of the Application resource.
+ @param applicationId The ID (global_id) of the Application resource.
+ @param versionId The identifier of the version.
  @return ApiPartialUpdateApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) PartialUpdateApplicationVersion(ctx context.Context, id string, resourcePk int64) ApiPartialUpdateApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) PartialUpdateApplicationVersion(ctx context.Context, applicationId int64, versionId string) ApiPartialUpdateApplicationVersionRequest {
 	return ApiPartialUpdateApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		applicationId: applicationId,
+		versionId: versionId,
 	}
 }
 
@@ -827,9 +827,9 @@ func (a *ApplicationVersionsAPIService) PartialUpdateApplicationVersionExecute(r
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -909,8 +909,8 @@ func (a *ApplicationVersionsAPIService) PartialUpdateApplicationVersionExecute(r
 type ApiRetrieveApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id string
-	resourcePk int64
+	applicationId int64
+	versionId string
 	fields *string
 }
 
@@ -930,16 +930,16 @@ RetrieveApplicationVersion Retrieve an Application version
 Retrieve details of a specific version of an Application.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID (global_id) of the Application resource.
+ @param applicationId The ID (global_id) of the Application resource.
+ @param versionId The identifier of the version.
  @return ApiRetrieveApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) RetrieveApplicationVersion(ctx context.Context, id string, resourcePk int64) ApiRetrieveApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) RetrieveApplicationVersion(ctx context.Context, applicationId int64, versionId string) ApiRetrieveApplicationVersionRequest {
 	return ApiRetrieveApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		applicationId: applicationId,
+		versionId: versionId,
 	}
 }
 
@@ -956,9 +956,9 @@ func (a *ApplicationVersionsAPIService) RetrieveApplicationVersionExecute(r ApiR
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1039,8 +1039,8 @@ func (a *ApplicationVersionsAPIService) RetrieveApplicationVersionExecute(r ApiR
 type ApiUpdateApplicationVersionRequest struct {
 	ctx context.Context
 	ApiService *ApplicationVersionsAPIService
-	id string
-	resourcePk int64
+	applicationId int64
+	versionId string
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -1059,16 +1059,16 @@ UpdateApplicationVersion Update an Application version
 Update a draft version of an Application.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID (global_id) of the Application resource.
+ @param applicationId The ID (global_id) of the Application resource.
+ @param versionId The identifier of the version.
  @return ApiUpdateApplicationVersionRequest
 */
-func (a *ApplicationVersionsAPIService) UpdateApplicationVersion(ctx context.Context, id string, resourcePk int64) ApiUpdateApplicationVersionRequest {
+func (a *ApplicationVersionsAPIService) UpdateApplicationVersion(ctx context.Context, applicationId int64, versionId string) ApiUpdateApplicationVersionRequest {
 	return ApiUpdateApplicationVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		applicationId: applicationId,
+		versionId: versionId,
 	}
 }
 
@@ -1085,9 +1085,9 @@ func (a *ApplicationVersionsAPIService) UpdateApplicationVersionExecute(r ApiUpd
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/applications/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/applications/{application_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"application_id"+"}", url.PathEscape(parameterValueToString(r.applicationId, "applicationId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -27,8 +27,8 @@ type WAFVersionsAPIService service
 type ApiArchiveWafVersionRequest struct {
 	ctx context.Context
 	ApiService *WAFVersionsAPIService
-	id string
-	resourcePk int64
+	versionId string
+	wafId int64
 	versionArchiveRequest *VersionArchiveRequest
 }
 
@@ -47,16 +47,16 @@ ArchiveWafVersion Archive a WAF version
 Archive a ready version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the WAF resource.
+ @param versionId The identifier of the version.
+ @param wafId The ID of the WAF resource.
  @return ApiArchiveWafVersionRequest
 */
-func (a *WAFVersionsAPIService) ArchiveWafVersion(ctx context.Context, id string, resourcePk int64) ApiArchiveWafVersionRequest {
+func (a *WAFVersionsAPIService) ArchiveWafVersion(ctx context.Context, versionId string, wafId int64) ApiArchiveWafVersionRequest {
 	return ApiArchiveWafVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		versionId: versionId,
+		wafId: wafId,
 	}
 }
 
@@ -73,9 +73,9 @@ func (a *WAFVersionsAPIService) ArchiveWafVersionExecute(r ApiArchiveWafVersionR
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/wafs/{resource_pk}/versions/{id}/archive"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/wafs/{waf_id}/versions/{version_id}/archive"
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"waf_id"+"}", url.PathEscape(parameterValueToString(r.wafId, "wafId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -155,8 +155,8 @@ func (a *WAFVersionsAPIService) ArchiveWafVersionExecute(r ApiArchiveWafVersionR
 type ApiBuildWafVersionRequest struct {
 	ctx context.Context
 	ApiService *WAFVersionsAPIService
-	id string
-	resourcePk int64
+	versionId string
+	wafId int64
 	versionBuildRequest *VersionBuildRequest
 }
 
@@ -175,16 +175,16 @@ BuildWafVersion Build a WAF version
 Trigger a build for a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the WAF resource.
+ @param versionId The identifier of the version.
+ @param wafId The ID of the WAF resource.
  @return ApiBuildWafVersionRequest
 */
-func (a *WAFVersionsAPIService) BuildWafVersion(ctx context.Context, id string, resourcePk int64) ApiBuildWafVersionRequest {
+func (a *WAFVersionsAPIService) BuildWafVersion(ctx context.Context, versionId string, wafId int64) ApiBuildWafVersionRequest {
 	return ApiBuildWafVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		versionId: versionId,
+		wafId: wafId,
 	}
 }
 
@@ -201,9 +201,9 @@ func (a *WAFVersionsAPIService) BuildWafVersionExecute(r ApiBuildWafVersionReque
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/wafs/{resource_pk}/versions/{id}/build"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/wafs/{waf_id}/versions/{version_id}/build"
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"waf_id"+"}", url.PathEscape(parameterValueToString(r.wafId, "wafId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -283,8 +283,8 @@ func (a *WAFVersionsAPIService) BuildWafVersionExecute(r ApiBuildWafVersionReque
 type ApiCancelWafVersionBuildRequest struct {
 	ctx context.Context
 	ApiService *WAFVersionsAPIService
-	id string
-	resourcePk int64
+	versionId string
+	wafId int64
 	versionCancelRequest *VersionCancelRequest
 }
 
@@ -303,16 +303,16 @@ CancelWafVersionBuild Cancel a WAF version build
 Cancel a queued or building version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the WAF resource.
+ @param versionId The identifier of the version.
+ @param wafId The ID of the WAF resource.
  @return ApiCancelWafVersionBuildRequest
 */
-func (a *WAFVersionsAPIService) CancelWafVersionBuild(ctx context.Context, id string, resourcePk int64) ApiCancelWafVersionBuildRequest {
+func (a *WAFVersionsAPIService) CancelWafVersionBuild(ctx context.Context, versionId string, wafId int64) ApiCancelWafVersionBuildRequest {
 	return ApiCancelWafVersionBuildRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		versionId: versionId,
+		wafId: wafId,
 	}
 }
 
@@ -329,9 +329,9 @@ func (a *WAFVersionsAPIService) CancelWafVersionBuildExecute(r ApiCancelWafVersi
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/wafs/{resource_pk}/versions/{id}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/wafs/{waf_id}/versions/{version_id}/cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"waf_id"+"}", url.PathEscape(parameterValueToString(r.wafId, "wafId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -411,7 +411,7 @@ func (a *WAFVersionsAPIService) CancelWafVersionBuildExecute(r ApiCancelWafVersi
 type ApiCreateWafVersionRequest struct {
 	ctx context.Context
 	ApiService *WAFVersionsAPIService
-	resourcePk int64
+	wafId int64
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -430,14 +430,14 @@ CreateWafVersion Create a new WAF version
 Create a new version by cloning.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the WAF resource.
+ @param wafId The ID of the WAF resource.
  @return ApiCreateWafVersionRequest
 */
-func (a *WAFVersionsAPIService) CreateWafVersion(ctx context.Context, resourcePk int64) ApiCreateWafVersionRequest {
+func (a *WAFVersionsAPIService) CreateWafVersion(ctx context.Context, wafId int64) ApiCreateWafVersionRequest {
 	return ApiCreateWafVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		wafId: wafId,
 	}
 }
 
@@ -454,8 +454,8 @@ func (a *WAFVersionsAPIService) CreateWafVersionExecute(r ApiCreateWafVersionReq
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/wafs/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/wafs/{waf_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"waf_id"+"}", url.PathEscape(parameterValueToString(r.wafId, "wafId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -535,8 +535,8 @@ func (a *WAFVersionsAPIService) CreateWafVersionExecute(r ApiCreateWafVersionReq
 type ApiDeleteWafVersionRequest struct {
 	ctx context.Context
 	ApiService *WAFVersionsAPIService
-	id string
-	resourcePk int64
+	versionId string
+	wafId int64
 }
 
 func (r ApiDeleteWafVersionRequest) Execute() (*http.Response, error) {
@@ -549,16 +549,16 @@ DeleteWafVersion Delete a WAF version
 Delete a specific version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the WAF resource.
+ @param versionId The identifier of the version.
+ @param wafId The ID of the WAF resource.
  @return ApiDeleteWafVersionRequest
 */
-func (a *WAFVersionsAPIService) DeleteWafVersion(ctx context.Context, id string, resourcePk int64) ApiDeleteWafVersionRequest {
+func (a *WAFVersionsAPIService) DeleteWafVersion(ctx context.Context, versionId string, wafId int64) ApiDeleteWafVersionRequest {
 	return ApiDeleteWafVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		versionId: versionId,
+		wafId: wafId,
 	}
 }
 
@@ -575,9 +575,9 @@ func (a *WAFVersionsAPIService) DeleteWafVersionExecute(r ApiDeleteWafVersionReq
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/wafs/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/wafs/{waf_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"waf_id"+"}", url.PathEscape(parameterValueToString(r.wafId, "wafId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -655,7 +655,7 @@ func (a *WAFVersionsAPIService) DeleteWafVersionExecute(r ApiDeleteWafVersionReq
 type ApiListWafVersionsRequest struct {
 	ctx context.Context
 	ApiService *WAFVersionsAPIService
-	resourcePk int64
+	wafId int64
 	fields *string
 }
 
@@ -675,14 +675,14 @@ ListWafVersions List WAF versions
 List all versions of a specific WAF.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the WAF resource.
+ @param wafId The ID of the WAF resource.
  @return ApiListWafVersionsRequest
 */
-func (a *WAFVersionsAPIService) ListWafVersions(ctx context.Context, resourcePk int64) ApiListWafVersionsRequest {
+func (a *WAFVersionsAPIService) ListWafVersions(ctx context.Context, wafId int64) ApiListWafVersionsRequest {
 	return ApiListWafVersionsRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		wafId: wafId,
 	}
 }
 
@@ -699,8 +699,8 @@ func (a *WAFVersionsAPIService) ListWafVersionsExecute(r ApiListWafVersionsReque
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/wafs/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/wafs/{waf_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"waf_id"+"}", url.PathEscape(parameterValueToString(r.wafId, "wafId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -781,8 +781,8 @@ func (a *WAFVersionsAPIService) ListWafVersionsExecute(r ApiListWafVersionsReque
 type ApiPartialUpdateWafVersionRequest struct {
 	ctx context.Context
 	ApiService *WAFVersionsAPIService
-	id string
-	resourcePk int64
+	versionId string
+	wafId int64
 	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
@@ -801,16 +801,16 @@ PartialUpdateWafVersion Partially update a WAF version
 Partially update a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the WAF resource.
+ @param versionId The identifier of the version.
+ @param wafId The ID of the WAF resource.
  @return ApiPartialUpdateWafVersionRequest
 */
-func (a *WAFVersionsAPIService) PartialUpdateWafVersion(ctx context.Context, id string, resourcePk int64) ApiPartialUpdateWafVersionRequest {
+func (a *WAFVersionsAPIService) PartialUpdateWafVersion(ctx context.Context, versionId string, wafId int64) ApiPartialUpdateWafVersionRequest {
 	return ApiPartialUpdateWafVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		versionId: versionId,
+		wafId: wafId,
 	}
 }
 
@@ -827,9 +827,9 @@ func (a *WAFVersionsAPIService) PartialUpdateWafVersionExecute(r ApiPartialUpdat
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/wafs/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/wafs/{waf_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"waf_id"+"}", url.PathEscape(parameterValueToString(r.wafId, "wafId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -909,8 +909,8 @@ func (a *WAFVersionsAPIService) PartialUpdateWafVersionExecute(r ApiPartialUpdat
 type ApiRetrieveWafVersionRequest struct {
 	ctx context.Context
 	ApiService *WAFVersionsAPIService
-	id string
-	resourcePk int64
+	versionId string
+	wafId int64
 	fields *string
 }
 
@@ -930,16 +930,16 @@ RetrieveWafVersion Retrieve a WAF version
 Retrieve details of a specific version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the WAF resource.
+ @param versionId The identifier of the version.
+ @param wafId The ID of the WAF resource.
  @return ApiRetrieveWafVersionRequest
 */
-func (a *WAFVersionsAPIService) RetrieveWafVersion(ctx context.Context, id string, resourcePk int64) ApiRetrieveWafVersionRequest {
+func (a *WAFVersionsAPIService) RetrieveWafVersion(ctx context.Context, versionId string, wafId int64) ApiRetrieveWafVersionRequest {
 	return ApiRetrieveWafVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		versionId: versionId,
+		wafId: wafId,
 	}
 }
 
@@ -956,9 +956,9 @@ func (a *WAFVersionsAPIService) RetrieveWafVersionExecute(r ApiRetrieveWafVersio
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/wafs/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/wafs/{waf_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"waf_id"+"}", url.PathEscape(parameterValueToString(r.wafId, "wafId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1039,8 +1039,8 @@ func (a *WAFVersionsAPIService) RetrieveWafVersionExecute(r ApiRetrieveWafVersio
 type ApiUpdateWafVersionRequest struct {
 	ctx context.Context
 	ApiService *WAFVersionsAPIService
-	id string
-	resourcePk int64
+	versionId string
+	wafId int64
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -1059,16 +1059,16 @@ UpdateWafVersion Update a WAF version
 Update a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the WAF resource.
+ @param versionId The identifier of the version.
+ @param wafId The ID of the WAF resource.
  @return ApiUpdateWafVersionRequest
 */
-func (a *WAFVersionsAPIService) UpdateWafVersion(ctx context.Context, id string, resourcePk int64) ApiUpdateWafVersionRequest {
+func (a *WAFVersionsAPIService) UpdateWafVersion(ctx context.Context, versionId string, wafId int64) ApiUpdateWafVersionRequest {
 	return ApiUpdateWafVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		versionId: versionId,
+		wafId: wafId,
 	}
 }
 
@@ -1085,9 +1085,9 @@ func (a *WAFVersionsAPIService) UpdateWafVersionExecute(r ApiUpdateWafVersionReq
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/wafs/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/wafs/{waf_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"waf_id"+"}", url.PathEscape(parameterValueToString(r.wafId, "wafId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

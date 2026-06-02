@@ -26,7 +26,6 @@ api_waf_versions.go
 api_wafs.go
 api_wafs_exceptions.go
 api_workload_deployments.go
-api_workload_versions.go
 api_workloads.go
 client.go
 configuration.go
@@ -377,11 +376,8 @@ docs/WorkloadDeployment.md
 docs/WorkloadDeploymentRequest.md
 docs/WorkloadDeploymentResponse.md
 docs/WorkloadDeploymentsAPI.md
-docs/WorkloadEnvironmentBinding.md
-docs/WorkloadEnvironmentBindingRequest.md
 docs/WorkloadRequest.md
 docs/WorkloadResponse.md
-docs/WorkloadVersionsAPI.md
 docs/WorkloadsAPI.md
 git_push.sh
 go.mod
@@ -709,14 +705,7 @@ model_workload.go
 model_workload_deployment.go
 model_workload_deployment_request.go
 model_workload_deployment_response.go
-model_workload_environment_binding.go
-model_workload_environment_binding_request.go
 model_workload_request.go
 model_workload_response.go
 response.go
-test/api_custom_page_versions_test.go
-test/api_firewall_versions_test.go
-test/api_function_versions_test.go
-test/api_network_list_versions_test.go
-test/api_waf_versions_test.go
 utils.go

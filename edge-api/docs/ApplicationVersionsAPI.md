@@ -4,21 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ArchiveApplicationVersion**](ApplicationVersionsAPI.md#ArchiveApplicationVersion) | **Post** /workspace/applications/{resource_pk}/versions/{id}/archive | Archive an Application version
-[**BuildApplicationVersion**](ApplicationVersionsAPI.md#BuildApplicationVersion) | **Post** /workspace/applications/{resource_pk}/versions/{id}/build | Build an Application version
-[**CancelApplicationVersionBuild**](ApplicationVersionsAPI.md#CancelApplicationVersionBuild) | **Post** /workspace/applications/{resource_pk}/versions/{id}/cancel | Cancel an Application version build
-[**CreateApplicationVersion**](ApplicationVersionsAPI.md#CreateApplicationVersion) | **Post** /workspace/applications/{resource_pk}/versions | Create a new Application version
-[**DeleteApplicationVersion**](ApplicationVersionsAPI.md#DeleteApplicationVersion) | **Delete** /workspace/applications/{resource_pk}/versions/{id} | Delete an Application version
-[**ListApplicationVersions**](ApplicationVersionsAPI.md#ListApplicationVersions) | **Get** /workspace/applications/{resource_pk}/versions | List Application versions
-[**PartialUpdateApplicationVersion**](ApplicationVersionsAPI.md#PartialUpdateApplicationVersion) | **Patch** /workspace/applications/{resource_pk}/versions/{id} | Partially update an Application version
-[**RetrieveApplicationVersion**](ApplicationVersionsAPI.md#RetrieveApplicationVersion) | **Get** /workspace/applications/{resource_pk}/versions/{id} | Retrieve an Application version
-[**UpdateApplicationVersion**](ApplicationVersionsAPI.md#UpdateApplicationVersion) | **Put** /workspace/applications/{resource_pk}/versions/{id} | Update an Application version
+[**ArchiveApplicationVersion**](ApplicationVersionsAPI.md#ArchiveApplicationVersion) | **Post** /workspace/applications/{application_id}/versions/{version_id}/archive | Archive an Application version
+[**BuildApplicationVersion**](ApplicationVersionsAPI.md#BuildApplicationVersion) | **Post** /workspace/applications/{application_id}/versions/{version_id}/build | Build an Application version
+[**CancelApplicationVersionBuild**](ApplicationVersionsAPI.md#CancelApplicationVersionBuild) | **Post** /workspace/applications/{application_id}/versions/{version_id}/cancel | Cancel an Application version build
+[**CreateApplicationVersion**](ApplicationVersionsAPI.md#CreateApplicationVersion) | **Post** /workspace/applications/{application_id}/versions | Create a new Application version
+[**DeleteApplicationVersion**](ApplicationVersionsAPI.md#DeleteApplicationVersion) | **Delete** /workspace/applications/{application_id}/versions/{version_id} | Delete an Application version
+[**ListApplicationVersions**](ApplicationVersionsAPI.md#ListApplicationVersions) | **Get** /workspace/applications/{application_id}/versions | List Application versions
+[**PartialUpdateApplicationVersion**](ApplicationVersionsAPI.md#PartialUpdateApplicationVersion) | **Patch** /workspace/applications/{application_id}/versions/{version_id} | Partially update an Application version
+[**RetrieveApplicationVersion**](ApplicationVersionsAPI.md#RetrieveApplicationVersion) | **Get** /workspace/applications/{application_id}/versions/{version_id} | Retrieve an Application version
+[**UpdateApplicationVersion**](ApplicationVersionsAPI.md#UpdateApplicationVersion) | **Put** /workspace/applications/{application_id}/versions/{version_id} | Update an Application version
 
 
 
 ## ArchiveApplicationVersion
 
-> ArchiveApplicationVersion(ctx, id, resourcePk).VersionArchiveRequest(versionArchiveRequest).Execute()
+> ArchiveApplicationVersion(ctx, applicationId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
 
 Archive an Application version
 
@@ -37,13 +37,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID (global_id) of the Application resource.
+	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionArchiveRequest := *openapiclient.NewVersionArchiveRequest() // VersionArchiveRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.ArchiveApplicationVersion(context.Background(), id, resourcePk).VersionArchiveRequest(versionArchiveRequest).Execute()
+	r, err := apiClient.ApplicationVersionsAPI.ArchiveApplicationVersion(context.Background(), applicationId, versionId).VersionArchiveRequest(versionArchiveRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.ArchiveApplicationVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,8 +57,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID (global_id) of the Application resource. | 
+**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## BuildApplicationVersion
 
-> BuildApplicationVersion(ctx, id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+> BuildApplicationVersion(ctx, applicationId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
 
 Build an Application version
 
@@ -110,13 +110,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID (global_id) of the Application resource.
+	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.BuildApplicationVersion(context.Background(), id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+	r, err := apiClient.ApplicationVersionsAPI.BuildApplicationVersion(context.Background(), applicationId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.BuildApplicationVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,8 +130,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID (global_id) of the Application resource. | 
+**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 
 ## CancelApplicationVersionBuild
 
-> CancelApplicationVersionBuild(ctx, id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+> CancelApplicationVersionBuild(ctx, applicationId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
 
 Cancel an Application version build
 
@@ -183,13 +183,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID (global_id) of the Application resource.
+	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.CancelApplicationVersionBuild(context.Background(), id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+	r, err := apiClient.ApplicationVersionsAPI.CancelApplicationVersionBuild(context.Background(), applicationId, versionId).VersionBuildRequest(versionBuildRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.CancelApplicationVersionBuild``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -203,8 +203,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID (global_id) of the Application resource. | 
+**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 ## CreateApplicationVersion
 
-> CreateApplicationVersion(ctx, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+> CreateApplicationVersion(ctx, applicationId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Create a new Application version
 
@@ -256,12 +256,12 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID (global_id) of the Application resource.
+	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
 	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.CreateApplicationVersion(context.Background(), resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.ApplicationVersionsAPI.CreateApplicationVersion(context.Background(), applicationId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.CreateApplicationVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -275,7 +275,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID (global_id) of the Application resource. | 
+**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
 
 ### Other Parameters
 
@@ -307,7 +307,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApplicationVersion
 
-> DeleteApplicationVersion(ctx, id, resourcePk).Execute()
+> DeleteApplicationVersion(ctx, applicationId, versionId).Execute()
 
 Delete an Application version
 
@@ -326,12 +326,12 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID (global_id) of the Application resource.
+	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.DeleteApplicationVersion(context.Background(), id, resourcePk).Execute()
+	r, err := apiClient.ApplicationVersionsAPI.DeleteApplicationVersion(context.Background(), applicationId, versionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.DeleteApplicationVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -345,8 +345,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID (global_id) of the Application resource. | 
+**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ## ListApplicationVersions
 
-> ListApplicationVersions(ctx, resourcePk).Fields(fields).Execute()
+> ListApplicationVersions(ctx, applicationId).Fields(fields).Execute()
 
 List Application versions
 
@@ -397,12 +397,12 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID (global_id) of the Application resource.
+	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.ListApplicationVersions(context.Background(), resourcePk).Fields(fields).Execute()
+	r, err := apiClient.ApplicationVersionsAPI.ListApplicationVersions(context.Background(), applicationId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.ListApplicationVersions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -416,7 +416,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID (global_id) of the Application resource. | 
+**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
 
 ### Other Parameters
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateApplicationVersion
 
-> PartialUpdateApplicationVersion(ctx, id, resourcePk).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+> PartialUpdateApplicationVersion(ctx, applicationId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 
 Partially update an Application version
 
@@ -467,13 +467,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID (global_id) of the Application resource.
+	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.PartialUpdateApplicationVersion(context.Background(), id, resourcePk).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+	r, err := apiClient.ApplicationVersionsAPI.PartialUpdateApplicationVersion(context.Background(), applicationId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.PartialUpdateApplicationVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -487,8 +487,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID (global_id) of the Application resource. | 
+**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -521,7 +521,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveApplicationVersion
 
-> RetrieveApplicationVersion(ctx, id, resourcePk).Fields(fields).Execute()
+> RetrieveApplicationVersion(ctx, applicationId, versionId).Fields(fields).Execute()
 
 Retrieve an Application version
 
@@ -540,13 +540,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID (global_id) of the Application resource.
+	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.RetrieveApplicationVersion(context.Background(), id, resourcePk).Fields(fields).Execute()
+	r, err := apiClient.ApplicationVersionsAPI.RetrieveApplicationVersion(context.Background(), applicationId, versionId).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.RetrieveApplicationVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -560,8 +560,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID (global_id) of the Application resource. | 
+**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApplicationVersion
 
-> UpdateApplicationVersion(ctx, id, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+> UpdateApplicationVersion(ctx, applicationId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Update an Application version
 
@@ -613,13 +613,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID (global_id) of the Application resource.
+	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
+	versionId := "versionId_example" // string | The identifier of the version.
 	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.UpdateApplicationVersion(context.Background(), id, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.ApplicationVersionsAPI.UpdateApplicationVersion(context.Background(), applicationId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.UpdateApplicationVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -633,8 +633,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID (global_id) of the Application resource. | 
+**applicationId** | **int64** | The ID (global_id) of the Application resource. | 
+**versionId** | **string** | The identifier of the version. | 
 
 ### Other Parameters
 

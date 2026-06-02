@@ -18,13 +18,12 @@ Name | Type | Description | Notes
 **WorkloadDomainAllowAccess** | Pointer to **bool** |  | [optional] 
 **WorkloadDomain** | **string** |  | 
 **ProductVersion** | **string** |  | 
-**VersionState** | **NullableString** |  | 
 
 ## Methods
 
 ### NewWorkload
 
-`func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string, versionState NullableString, ) *Workload`
+`func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string, ) *Workload`
 
 NewWorkload instantiates a new Workload object
 This constructor will assign default values to properties that have it defined,
@@ -354,36 +353,6 @@ and a boolean to check if the value has been set.
 SetProductVersion sets ProductVersion field to given value.
 
 
-### GetVersionState
-
-`func (o *Workload) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *Workload) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *Workload) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-
-### SetVersionStateNil
-
-`func (o *Workload) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *Workload) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

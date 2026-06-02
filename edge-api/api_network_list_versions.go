@@ -26,8 +26,8 @@ type NetworkListVersionsAPIService service
 type ApiArchiveNetworkListVersionRequest struct {
 	ctx context.Context
 	ApiService *NetworkListVersionsAPIService
-	id string
-	resourcePk int64
+	networkListId int64
+	versionId string
 	versionArchiveRequest *VersionArchiveRequest
 }
 
@@ -46,16 +46,16 @@ ArchiveNetworkListVersion Archive a Network List version
 Archive a ready version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Network List resource.
+ @param networkListId The ID of the Network List resource.
+ @param versionId The identifier of the version.
  @return ApiArchiveNetworkListVersionRequest
 */
-func (a *NetworkListVersionsAPIService) ArchiveNetworkListVersion(ctx context.Context, id string, resourcePk int64) ApiArchiveNetworkListVersionRequest {
+func (a *NetworkListVersionsAPIService) ArchiveNetworkListVersion(ctx context.Context, networkListId int64, versionId string) ApiArchiveNetworkListVersionRequest {
 	return ApiArchiveNetworkListVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		networkListId: networkListId,
+		versionId: versionId,
 	}
 }
 
@@ -72,9 +72,9 @@ func (a *NetworkListVersionsAPIService) ArchiveNetworkListVersionExecute(r ApiAr
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/network_lists/{resource_pk}/versions/{id}/archive"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/network_lists/{network_list_id}/versions/{version_id}/archive"
+	localVarPath = strings.Replace(localVarPath, "{"+"network_list_id"+"}", url.PathEscape(parameterValueToString(r.networkListId, "networkListId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -144,8 +144,8 @@ func (a *NetworkListVersionsAPIService) ArchiveNetworkListVersionExecute(r ApiAr
 type ApiBuildNetworkListVersionRequest struct {
 	ctx context.Context
 	ApiService *NetworkListVersionsAPIService
-	id string
-	resourcePk int64
+	networkListId int64
+	versionId string
 	versionBuildRequest *VersionBuildRequest
 }
 
@@ -164,16 +164,16 @@ BuildNetworkListVersion Build a Network List version
 Trigger a build for a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Network List resource.
+ @param networkListId The ID of the Network List resource.
+ @param versionId The identifier of the version.
  @return ApiBuildNetworkListVersionRequest
 */
-func (a *NetworkListVersionsAPIService) BuildNetworkListVersion(ctx context.Context, id string, resourcePk int64) ApiBuildNetworkListVersionRequest {
+func (a *NetworkListVersionsAPIService) BuildNetworkListVersion(ctx context.Context, networkListId int64, versionId string) ApiBuildNetworkListVersionRequest {
 	return ApiBuildNetworkListVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		networkListId: networkListId,
+		versionId: versionId,
 	}
 }
 
@@ -190,9 +190,9 @@ func (a *NetworkListVersionsAPIService) BuildNetworkListVersionExecute(r ApiBuil
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/network_lists/{resource_pk}/versions/{id}/build"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/network_lists/{network_list_id}/versions/{version_id}/build"
+	localVarPath = strings.Replace(localVarPath, "{"+"network_list_id"+"}", url.PathEscape(parameterValueToString(r.networkListId, "networkListId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -262,8 +262,8 @@ func (a *NetworkListVersionsAPIService) BuildNetworkListVersionExecute(r ApiBuil
 type ApiCancelNetworkListVersionBuildRequest struct {
 	ctx context.Context
 	ApiService *NetworkListVersionsAPIService
-	id string
-	resourcePk int64
+	networkListId int64
+	versionId string
 	versionCancelRequest *VersionCancelRequest
 }
 
@@ -282,16 +282,16 @@ CancelNetworkListVersionBuild Cancel a Network List version build
 Cancel a queued or building version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Network List resource.
+ @param networkListId The ID of the Network List resource.
+ @param versionId The identifier of the version.
  @return ApiCancelNetworkListVersionBuildRequest
 */
-func (a *NetworkListVersionsAPIService) CancelNetworkListVersionBuild(ctx context.Context, id string, resourcePk int64) ApiCancelNetworkListVersionBuildRequest {
+func (a *NetworkListVersionsAPIService) CancelNetworkListVersionBuild(ctx context.Context, networkListId int64, versionId string) ApiCancelNetworkListVersionBuildRequest {
 	return ApiCancelNetworkListVersionBuildRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		networkListId: networkListId,
+		versionId: versionId,
 	}
 }
 
@@ -308,9 +308,9 @@ func (a *NetworkListVersionsAPIService) CancelNetworkListVersionBuildExecute(r A
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/network_lists/{resource_pk}/versions/{id}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/network_lists/{network_list_id}/versions/{version_id}/cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"network_list_id"+"}", url.PathEscape(parameterValueToString(r.networkListId, "networkListId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -380,7 +380,7 @@ func (a *NetworkListVersionsAPIService) CancelNetworkListVersionBuildExecute(r A
 type ApiCreateNetworkListVersionRequest struct {
 	ctx context.Context
 	ApiService *NetworkListVersionsAPIService
-	resourcePk int64
+	networkListId int64
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -399,14 +399,14 @@ CreateNetworkListVersion Create a new Network List version
 Create a new version by cloning.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the Network List resource.
+ @param networkListId The ID of the Network List resource.
  @return ApiCreateNetworkListVersionRequest
 */
-func (a *NetworkListVersionsAPIService) CreateNetworkListVersion(ctx context.Context, resourcePk int64) ApiCreateNetworkListVersionRequest {
+func (a *NetworkListVersionsAPIService) CreateNetworkListVersion(ctx context.Context, networkListId int64) ApiCreateNetworkListVersionRequest {
 	return ApiCreateNetworkListVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		networkListId: networkListId,
 	}
 }
 
@@ -423,8 +423,8 @@ func (a *NetworkListVersionsAPIService) CreateNetworkListVersionExecute(r ApiCre
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/network_lists/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/network_lists/{network_list_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"network_list_id"+"}", url.PathEscape(parameterValueToString(r.networkListId, "networkListId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -494,8 +494,8 @@ func (a *NetworkListVersionsAPIService) CreateNetworkListVersionExecute(r ApiCre
 type ApiDeleteNetworkListVersionRequest struct {
 	ctx context.Context
 	ApiService *NetworkListVersionsAPIService
-	id string
-	resourcePk int64
+	networkListId int64
+	versionId string
 }
 
 func (r ApiDeleteNetworkListVersionRequest) Execute() (*http.Response, error) {
@@ -508,16 +508,16 @@ DeleteNetworkListVersion Delete a Network List version
 Delete a specific version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Network List resource.
+ @param networkListId The ID of the Network List resource.
+ @param versionId The identifier of the version.
  @return ApiDeleteNetworkListVersionRequest
 */
-func (a *NetworkListVersionsAPIService) DeleteNetworkListVersion(ctx context.Context, id string, resourcePk int64) ApiDeleteNetworkListVersionRequest {
+func (a *NetworkListVersionsAPIService) DeleteNetworkListVersion(ctx context.Context, networkListId int64, versionId string) ApiDeleteNetworkListVersionRequest {
 	return ApiDeleteNetworkListVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		networkListId: networkListId,
+		versionId: versionId,
 	}
 }
 
@@ -534,9 +534,9 @@ func (a *NetworkListVersionsAPIService) DeleteNetworkListVersionExecute(r ApiDel
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/network_lists/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/network_lists/{network_list_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"network_list_id"+"}", url.PathEscape(parameterValueToString(r.networkListId, "networkListId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -604,7 +604,7 @@ func (a *NetworkListVersionsAPIService) DeleteNetworkListVersionExecute(r ApiDel
 type ApiListNetworkListVersionsRequest struct {
 	ctx context.Context
 	ApiService *NetworkListVersionsAPIService
-	resourcePk int64
+	networkListId int64
 	fields *string
 }
 
@@ -624,14 +624,14 @@ ListNetworkListVersions List Network List versions
 List all versions of a specific Network List.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the Network List resource.
+ @param networkListId The ID of the Network List resource.
  @return ApiListNetworkListVersionsRequest
 */
-func (a *NetworkListVersionsAPIService) ListNetworkListVersions(ctx context.Context, resourcePk int64) ApiListNetworkListVersionsRequest {
+func (a *NetworkListVersionsAPIService) ListNetworkListVersions(ctx context.Context, networkListId int64) ApiListNetworkListVersionsRequest {
 	return ApiListNetworkListVersionsRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		networkListId: networkListId,
 	}
 }
 
@@ -648,8 +648,8 @@ func (a *NetworkListVersionsAPIService) ListNetworkListVersionsExecute(r ApiList
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/network_lists/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/network_lists/{network_list_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"network_list_id"+"}", url.PathEscape(parameterValueToString(r.networkListId, "networkListId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -720,8 +720,8 @@ func (a *NetworkListVersionsAPIService) ListNetworkListVersionsExecute(r ApiList
 type ApiPartialUpdateNetworkListVersionRequest struct {
 	ctx context.Context
 	ApiService *NetworkListVersionsAPIService
-	id string
-	resourcePk int64
+	networkListId int64
+	versionId string
 	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
@@ -740,16 +740,16 @@ PartialUpdateNetworkListVersion Partially update a Network List version
 Partially update a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Network List resource.
+ @param networkListId The ID of the Network List resource.
+ @param versionId The identifier of the version.
  @return ApiPartialUpdateNetworkListVersionRequest
 */
-func (a *NetworkListVersionsAPIService) PartialUpdateNetworkListVersion(ctx context.Context, id string, resourcePk int64) ApiPartialUpdateNetworkListVersionRequest {
+func (a *NetworkListVersionsAPIService) PartialUpdateNetworkListVersion(ctx context.Context, networkListId int64, versionId string) ApiPartialUpdateNetworkListVersionRequest {
 	return ApiPartialUpdateNetworkListVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		networkListId: networkListId,
+		versionId: versionId,
 	}
 }
 
@@ -766,9 +766,9 @@ func (a *NetworkListVersionsAPIService) PartialUpdateNetworkListVersionExecute(r
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/network_lists/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/network_lists/{network_list_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"network_list_id"+"}", url.PathEscape(parameterValueToString(r.networkListId, "networkListId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -838,8 +838,8 @@ func (a *NetworkListVersionsAPIService) PartialUpdateNetworkListVersionExecute(r
 type ApiRetrieveNetworkListVersionRequest struct {
 	ctx context.Context
 	ApiService *NetworkListVersionsAPIService
-	id string
-	resourcePk int64
+	networkListId int64
+	versionId string
 	fields *string
 }
 
@@ -859,16 +859,16 @@ RetrieveNetworkListVersion Retrieve a Network List version
 Retrieve details of a specific version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Network List resource.
+ @param networkListId The ID of the Network List resource.
+ @param versionId The identifier of the version.
  @return ApiRetrieveNetworkListVersionRequest
 */
-func (a *NetworkListVersionsAPIService) RetrieveNetworkListVersion(ctx context.Context, id string, resourcePk int64) ApiRetrieveNetworkListVersionRequest {
+func (a *NetworkListVersionsAPIService) RetrieveNetworkListVersion(ctx context.Context, networkListId int64, versionId string) ApiRetrieveNetworkListVersionRequest {
 	return ApiRetrieveNetworkListVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		networkListId: networkListId,
+		versionId: versionId,
 	}
 }
 
@@ -885,9 +885,9 @@ func (a *NetworkListVersionsAPIService) RetrieveNetworkListVersionExecute(r ApiR
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/network_lists/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/network_lists/{network_list_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"network_list_id"+"}", url.PathEscape(parameterValueToString(r.networkListId, "networkListId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -958,8 +958,8 @@ func (a *NetworkListVersionsAPIService) RetrieveNetworkListVersionExecute(r ApiR
 type ApiUpdateNetworkListVersionRequest struct {
 	ctx context.Context
 	ApiService *NetworkListVersionsAPIService
-	id string
-	resourcePk int64
+	networkListId int64
+	versionId string
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -978,16 +978,16 @@ UpdateNetworkListVersion Update a Network List version
 Update a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Network List resource.
+ @param networkListId The ID of the Network List resource.
+ @param versionId The identifier of the version.
  @return ApiUpdateNetworkListVersionRequest
 */
-func (a *NetworkListVersionsAPIService) UpdateNetworkListVersion(ctx context.Context, id string, resourcePk int64) ApiUpdateNetworkListVersionRequest {
+func (a *NetworkListVersionsAPIService) UpdateNetworkListVersion(ctx context.Context, networkListId int64, versionId string) ApiUpdateNetworkListVersionRequest {
 	return ApiUpdateNetworkListVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		networkListId: networkListId,
+		versionId: versionId,
 	}
 }
 
@@ -1004,9 +1004,9 @@ func (a *NetworkListVersionsAPIService) UpdateNetworkListVersionExecute(r ApiUpd
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/network_lists/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/network_lists/{network_list_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"network_list_id"+"}", url.PathEscape(parameterValueToString(r.networkListId, "networkListId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

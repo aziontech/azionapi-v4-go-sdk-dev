@@ -27,8 +27,8 @@ type CustomPageVersionsAPIService service
 type ApiArchiveCustomPageVersionRequest struct {
 	ctx context.Context
 	ApiService *CustomPageVersionsAPIService
-	id string
-	resourcePk int64
+	customPageId int64
+	versionId string
 	versionArchiveRequest *VersionArchiveRequest
 }
 
@@ -47,16 +47,16 @@ ArchiveCustomPageVersion Archive a Custom Page version
 Archive a ready version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Custom Page resource.
+ @param customPageId The ID of the Custom Page resource.
+ @param versionId The identifier of the version.
  @return ApiArchiveCustomPageVersionRequest
 */
-func (a *CustomPageVersionsAPIService) ArchiveCustomPageVersion(ctx context.Context, id string, resourcePk int64) ApiArchiveCustomPageVersionRequest {
+func (a *CustomPageVersionsAPIService) ArchiveCustomPageVersion(ctx context.Context, customPageId int64, versionId string) ApiArchiveCustomPageVersionRequest {
 	return ApiArchiveCustomPageVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		customPageId: customPageId,
+		versionId: versionId,
 	}
 }
 
@@ -73,9 +73,9 @@ func (a *CustomPageVersionsAPIService) ArchiveCustomPageVersionExecute(r ApiArch
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/custom_pages/{resource_pk}/versions/{id}/archive"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/custom_pages/{custom_page_id}/versions/{version_id}/archive"
+	localVarPath = strings.Replace(localVarPath, "{"+"custom_page_id"+"}", url.PathEscape(parameterValueToString(r.customPageId, "customPageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -155,8 +155,8 @@ func (a *CustomPageVersionsAPIService) ArchiveCustomPageVersionExecute(r ApiArch
 type ApiBuildCustomPageVersionRequest struct {
 	ctx context.Context
 	ApiService *CustomPageVersionsAPIService
-	id string
-	resourcePk int64
+	customPageId int64
+	versionId string
 	versionBuildRequest *VersionBuildRequest
 }
 
@@ -175,16 +175,16 @@ BuildCustomPageVersion Build a Custom Page version
 Trigger a build for a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Custom Page resource.
+ @param customPageId The ID of the Custom Page resource.
+ @param versionId The identifier of the version.
  @return ApiBuildCustomPageVersionRequest
 */
-func (a *CustomPageVersionsAPIService) BuildCustomPageVersion(ctx context.Context, id string, resourcePk int64) ApiBuildCustomPageVersionRequest {
+func (a *CustomPageVersionsAPIService) BuildCustomPageVersion(ctx context.Context, customPageId int64, versionId string) ApiBuildCustomPageVersionRequest {
 	return ApiBuildCustomPageVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		customPageId: customPageId,
+		versionId: versionId,
 	}
 }
 
@@ -201,9 +201,9 @@ func (a *CustomPageVersionsAPIService) BuildCustomPageVersionExecute(r ApiBuildC
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/custom_pages/{resource_pk}/versions/{id}/build"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/custom_pages/{custom_page_id}/versions/{version_id}/build"
+	localVarPath = strings.Replace(localVarPath, "{"+"custom_page_id"+"}", url.PathEscape(parameterValueToString(r.customPageId, "customPageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -283,8 +283,8 @@ func (a *CustomPageVersionsAPIService) BuildCustomPageVersionExecute(r ApiBuildC
 type ApiCancelCustomPageVersionBuildRequest struct {
 	ctx context.Context
 	ApiService *CustomPageVersionsAPIService
-	id string
-	resourcePk int64
+	customPageId int64
+	versionId string
 	versionCancelRequest *VersionCancelRequest
 }
 
@@ -303,16 +303,16 @@ CancelCustomPageVersionBuild Cancel a Custom Page version build
 Cancel a queued or building version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Custom Page resource.
+ @param customPageId The ID of the Custom Page resource.
+ @param versionId The identifier of the version.
  @return ApiCancelCustomPageVersionBuildRequest
 */
-func (a *CustomPageVersionsAPIService) CancelCustomPageVersionBuild(ctx context.Context, id string, resourcePk int64) ApiCancelCustomPageVersionBuildRequest {
+func (a *CustomPageVersionsAPIService) CancelCustomPageVersionBuild(ctx context.Context, customPageId int64, versionId string) ApiCancelCustomPageVersionBuildRequest {
 	return ApiCancelCustomPageVersionBuildRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		customPageId: customPageId,
+		versionId: versionId,
 	}
 }
 
@@ -329,9 +329,9 @@ func (a *CustomPageVersionsAPIService) CancelCustomPageVersionBuildExecute(r Api
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/custom_pages/{resource_pk}/versions/{id}/cancel"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/custom_pages/{custom_page_id}/versions/{version_id}/cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"custom_page_id"+"}", url.PathEscape(parameterValueToString(r.customPageId, "customPageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -411,7 +411,7 @@ func (a *CustomPageVersionsAPIService) CancelCustomPageVersionBuildExecute(r Api
 type ApiCreateCustomPageVersionRequest struct {
 	ctx context.Context
 	ApiService *CustomPageVersionsAPIService
-	resourcePk int64
+	customPageId int64
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -430,14 +430,14 @@ CreateCustomPageVersion Create a new Custom Page version
 Create a new version by cloning.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the Custom Page resource.
+ @param customPageId The ID of the Custom Page resource.
  @return ApiCreateCustomPageVersionRequest
 */
-func (a *CustomPageVersionsAPIService) CreateCustomPageVersion(ctx context.Context, resourcePk int64) ApiCreateCustomPageVersionRequest {
+func (a *CustomPageVersionsAPIService) CreateCustomPageVersion(ctx context.Context, customPageId int64) ApiCreateCustomPageVersionRequest {
 	return ApiCreateCustomPageVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		customPageId: customPageId,
 	}
 }
 
@@ -454,8 +454,8 @@ func (a *CustomPageVersionsAPIService) CreateCustomPageVersionExecute(r ApiCreat
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/custom_pages/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/custom_pages/{custom_page_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"custom_page_id"+"}", url.PathEscape(parameterValueToString(r.customPageId, "customPageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -535,8 +535,8 @@ func (a *CustomPageVersionsAPIService) CreateCustomPageVersionExecute(r ApiCreat
 type ApiDeleteCustomPageVersionRequest struct {
 	ctx context.Context
 	ApiService *CustomPageVersionsAPIService
-	id string
-	resourcePk int64
+	customPageId int64
+	versionId string
 }
 
 func (r ApiDeleteCustomPageVersionRequest) Execute() (*http.Response, error) {
@@ -549,16 +549,16 @@ DeleteCustomPageVersion Delete a Custom Page version
 Delete a specific version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Custom Page resource.
+ @param customPageId The ID of the Custom Page resource.
+ @param versionId The identifier of the version.
  @return ApiDeleteCustomPageVersionRequest
 */
-func (a *CustomPageVersionsAPIService) DeleteCustomPageVersion(ctx context.Context, id string, resourcePk int64) ApiDeleteCustomPageVersionRequest {
+func (a *CustomPageVersionsAPIService) DeleteCustomPageVersion(ctx context.Context, customPageId int64, versionId string) ApiDeleteCustomPageVersionRequest {
 	return ApiDeleteCustomPageVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		customPageId: customPageId,
+		versionId: versionId,
 	}
 }
 
@@ -575,9 +575,9 @@ func (a *CustomPageVersionsAPIService) DeleteCustomPageVersionExecute(r ApiDelet
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/custom_pages/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/custom_pages/{custom_page_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"custom_page_id"+"}", url.PathEscape(parameterValueToString(r.customPageId, "customPageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -655,7 +655,7 @@ func (a *CustomPageVersionsAPIService) DeleteCustomPageVersionExecute(r ApiDelet
 type ApiListCustomPageVersionsRequest struct {
 	ctx context.Context
 	ApiService *CustomPageVersionsAPIService
-	resourcePk int64
+	customPageId int64
 	fields *string
 }
 
@@ -675,14 +675,14 @@ ListCustomPageVersions List Custom Page versions
 List all versions of a specific Custom Page.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the Custom Page resource.
+ @param customPageId The ID of the Custom Page resource.
  @return ApiListCustomPageVersionsRequest
 */
-func (a *CustomPageVersionsAPIService) ListCustomPageVersions(ctx context.Context, resourcePk int64) ApiListCustomPageVersionsRequest {
+func (a *CustomPageVersionsAPIService) ListCustomPageVersions(ctx context.Context, customPageId int64) ApiListCustomPageVersionsRequest {
 	return ApiListCustomPageVersionsRequest{
 		ApiService: a,
 		ctx: ctx,
-		resourcePk: resourcePk,
+		customPageId: customPageId,
 	}
 }
 
@@ -699,8 +699,8 @@ func (a *CustomPageVersionsAPIService) ListCustomPageVersionsExecute(r ApiListCu
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/custom_pages/{resource_pk}/versions"
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/custom_pages/{custom_page_id}/versions"
+	localVarPath = strings.Replace(localVarPath, "{"+"custom_page_id"+"}", url.PathEscape(parameterValueToString(r.customPageId, "customPageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -781,8 +781,8 @@ func (a *CustomPageVersionsAPIService) ListCustomPageVersionsExecute(r ApiListCu
 type ApiPartialUpdateCustomPageVersionRequest struct {
 	ctx context.Context
 	ApiService *CustomPageVersionsAPIService
-	id string
-	resourcePk int64
+	customPageId int64
+	versionId string
 	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
@@ -801,16 +801,16 @@ PartialUpdateCustomPageVersion Partially update a Custom Page version
 Partially update a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Custom Page resource.
+ @param customPageId The ID of the Custom Page resource.
+ @param versionId The identifier of the version.
  @return ApiPartialUpdateCustomPageVersionRequest
 */
-func (a *CustomPageVersionsAPIService) PartialUpdateCustomPageVersion(ctx context.Context, id string, resourcePk int64) ApiPartialUpdateCustomPageVersionRequest {
+func (a *CustomPageVersionsAPIService) PartialUpdateCustomPageVersion(ctx context.Context, customPageId int64, versionId string) ApiPartialUpdateCustomPageVersionRequest {
 	return ApiPartialUpdateCustomPageVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		customPageId: customPageId,
+		versionId: versionId,
 	}
 }
 
@@ -827,9 +827,9 @@ func (a *CustomPageVersionsAPIService) PartialUpdateCustomPageVersionExecute(r A
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/custom_pages/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/custom_pages/{custom_page_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"custom_page_id"+"}", url.PathEscape(parameterValueToString(r.customPageId, "customPageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -909,8 +909,8 @@ func (a *CustomPageVersionsAPIService) PartialUpdateCustomPageVersionExecute(r A
 type ApiRetrieveCustomPageVersionRequest struct {
 	ctx context.Context
 	ApiService *CustomPageVersionsAPIService
-	id string
-	resourcePk int64
+	customPageId int64
+	versionId string
 	fields *string
 }
 
@@ -930,16 +930,16 @@ RetrieveCustomPageVersion Retrieve a Custom Page version
 Retrieve details of a specific version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Custom Page resource.
+ @param customPageId The ID of the Custom Page resource.
+ @param versionId The identifier of the version.
  @return ApiRetrieveCustomPageVersionRequest
 */
-func (a *CustomPageVersionsAPIService) RetrieveCustomPageVersion(ctx context.Context, id string, resourcePk int64) ApiRetrieveCustomPageVersionRequest {
+func (a *CustomPageVersionsAPIService) RetrieveCustomPageVersion(ctx context.Context, customPageId int64, versionId string) ApiRetrieveCustomPageVersionRequest {
 	return ApiRetrieveCustomPageVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		customPageId: customPageId,
+		versionId: versionId,
 	}
 }
 
@@ -956,9 +956,9 @@ func (a *CustomPageVersionsAPIService) RetrieveCustomPageVersionExecute(r ApiRet
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/custom_pages/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/custom_pages/{custom_page_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"custom_page_id"+"}", url.PathEscape(parameterValueToString(r.customPageId, "customPageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1039,8 +1039,8 @@ func (a *CustomPageVersionsAPIService) RetrieveCustomPageVersionExecute(r ApiRet
 type ApiUpdateCustomPageVersionRequest struct {
 	ctx context.Context
 	ApiService *CustomPageVersionsAPIService
-	id string
-	resourcePk int64
+	customPageId int64
+	versionId string
 	versionCreateRequest *VersionCreateRequest
 }
 
@@ -1059,16 +1059,16 @@ UpdateCustomPageVersion Update a Custom Page version
 Update a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Custom Page resource.
+ @param customPageId The ID of the Custom Page resource.
+ @param versionId The identifier of the version.
  @return ApiUpdateCustomPageVersionRequest
 */
-func (a *CustomPageVersionsAPIService) UpdateCustomPageVersion(ctx context.Context, id string, resourcePk int64) ApiUpdateCustomPageVersionRequest {
+func (a *CustomPageVersionsAPIService) UpdateCustomPageVersion(ctx context.Context, customPageId int64, versionId string) ApiUpdateCustomPageVersionRequest {
 	return ApiUpdateCustomPageVersionRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
-		resourcePk: resourcePk,
+		customPageId: customPageId,
+		versionId: versionId,
 	}
 }
 
@@ -1085,9 +1085,9 @@ func (a *CustomPageVersionsAPIService) UpdateCustomPageVersionExecute(r ApiUpdat
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/workspace/custom_pages/{resource_pk}/versions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+	localVarPath := localBasePath + "/workspace/custom_pages/{custom_page_id}/versions/{version_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"custom_page_id"+"}", url.PathEscape(parameterValueToString(r.customPageId, "customPageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"version_id"+"}", url.PathEscape(parameterValueToString(r.versionId, "versionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
