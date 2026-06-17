@@ -46,8 +46,8 @@ ArchiveWorkloadVersion Archive a Workload version
 Archive a ready version (soft-delete).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Workload resource.
+ @param id The short ID identifier of the version.
+ @param resourcePk The global_id of the Workload resource.
  @return ApiArchiveWorkloadVersionRequest
 */
 func (a *WorkloadVersionsAPIService) ArchiveWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiArchiveWorkloadVersionRequest {
@@ -164,8 +164,8 @@ BuildWorkloadVersion Build a Workload version
 Trigger a build for a draft version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Workload resource.
+ @param id The short ID identifier of the version.
+ @param resourcePk The global_id of the Workload resource.
  @return ApiBuildWorkloadVersionRequest
 */
 func (a *WorkloadVersionsAPIService) BuildWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiBuildWorkloadVersionRequest {
@@ -264,11 +264,11 @@ type ApiCancelWorkloadVersionBuildRequest struct {
 	ApiService *WorkloadVersionsAPIService
 	id string
 	resourcePk int64
-	versionBuildRequest *VersionBuildRequest
+	versionCancelRequest *VersionCancelRequest
 }
 
-func (r ApiCancelWorkloadVersionBuildRequest) VersionBuildRequest(versionBuildRequest VersionBuildRequest) ApiCancelWorkloadVersionBuildRequest {
-	r.versionBuildRequest = &versionBuildRequest
+func (r ApiCancelWorkloadVersionBuildRequest) VersionCancelRequest(versionCancelRequest VersionCancelRequest) ApiCancelWorkloadVersionBuildRequest {
+	r.versionCancelRequest = &versionCancelRequest
 	return r
 }
 
@@ -282,8 +282,8 @@ CancelWorkloadVersionBuild Cancel a Workload version build
 Cancel a queued or building version.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Workload resource.
+ @param id The short ID identifier of the version.
+ @param resourcePk The global_id of the Workload resource.
  @return ApiCancelWorkloadVersionBuildRequest
 */
 func (a *WorkloadVersionsAPIService) CancelWorkloadVersionBuild(ctx context.Context, id string, resourcePk int64) ApiCancelWorkloadVersionBuildRequest {
@@ -334,7 +334,7 @@ func (a *WorkloadVersionsAPIService) CancelWorkloadVersionBuildExecute(r ApiCanc
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.versionBuildRequest
+	localVarPostBody = r.versionCancelRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -399,7 +399,7 @@ CreateWorkloadVersion Create a new Workload version
 Create a new version by cloning an existing one.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the Workload resource.
+ @param resourcePk The global_id of the Workload resource.
  @return ApiCreateWorkloadVersionRequest
 */
 func (a *WorkloadVersionsAPIService) CreateWorkloadVersion(ctx context.Context, resourcePk int64) ApiCreateWorkloadVersionRequest {
@@ -508,8 +508,8 @@ DeleteWorkloadVersion Delete a Workload version
 Delete a specific version of a Workload.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Workload resource.
+ @param id The short ID identifier of the version.
+ @param resourcePk The global_id of the Workload resource.
  @return ApiDeleteWorkloadVersionRequest
 */
 func (a *WorkloadVersionsAPIService) DeleteWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiDeleteWorkloadVersionRequest {
@@ -624,7 +624,7 @@ ListWorkloadVersions List Workload versions
 List all versions of a specific Workload.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param resourcePk The ID of the Workload resource.
+ @param resourcePk The global_id of the Workload resource.
  @return ApiListWorkloadVersionsRequest
 */
 func (a *WorkloadVersionsAPIService) ListWorkloadVersions(ctx context.Context, resourcePk int64) ApiListWorkloadVersionsRequest {
@@ -722,11 +722,11 @@ type ApiPartialUpdateWorkloadVersionRequest struct {
 	ApiService *WorkloadVersionsAPIService
 	id string
 	resourcePk int64
-	patchedVersionCreateRequest *PatchedVersionCreateRequest
+	patchedWorkloadRequest *PatchedWorkloadRequest
 }
 
-func (r ApiPartialUpdateWorkloadVersionRequest) PatchedVersionCreateRequest(patchedVersionCreateRequest PatchedVersionCreateRequest) ApiPartialUpdateWorkloadVersionRequest {
-	r.patchedVersionCreateRequest = &patchedVersionCreateRequest
+func (r ApiPartialUpdateWorkloadVersionRequest) PatchedWorkloadRequest(patchedWorkloadRequest PatchedWorkloadRequest) ApiPartialUpdateWorkloadVersionRequest {
+	r.patchedWorkloadRequest = &patchedWorkloadRequest
 	return r
 }
 
@@ -740,8 +740,8 @@ PartialUpdateWorkloadVersion Partially update a Workload version
 Partially update a draft version of a Workload.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Workload resource.
+ @param id The short ID identifier of the version.
+ @param resourcePk The global_id of the Workload resource.
  @return ApiPartialUpdateWorkloadVersionRequest
 */
 func (a *WorkloadVersionsAPIService) PartialUpdateWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiPartialUpdateWorkloadVersionRequest {
@@ -792,7 +792,7 @@ func (a *WorkloadVersionsAPIService) PartialUpdateWorkloadVersionExecute(r ApiPa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedVersionCreateRequest
+	localVarPostBody = r.patchedWorkloadRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -859,8 +859,8 @@ RetrieveWorkloadVersion Retrieve a Workload version
 Retrieve details of a specific version of a Workload.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Workload resource.
+ @param id The short ID identifier of the version.
+ @param resourcePk The global_id of the Workload resource.
  @return ApiRetrieveWorkloadVersionRequest
 */
 func (a *WorkloadVersionsAPIService) RetrieveWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiRetrieveWorkloadVersionRequest {
@@ -955,16 +955,134 @@ func (a *WorkloadVersionsAPIService) RetrieveWorkloadVersionExecute(r ApiRetriev
 	return localVarHTTPResponse, nil
 }
 
+type ApiRollbackWorkloadVersionRequest struct {
+	ctx context.Context
+	ApiService *WorkloadVersionsAPIService
+	id string
+	resourcePk int64
+	versionArchiveRequest *VersionArchiveRequest
+}
+
+func (r ApiRollbackWorkloadVersionRequest) VersionArchiveRequest(versionArchiveRequest VersionArchiveRequest) ApiRollbackWorkloadVersionRequest {
+	r.versionArchiveRequest = &versionArchiveRequest
+	return r
+}
+
+func (r ApiRollbackWorkloadVersionRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RollbackWorkloadVersionExecute(r)
+}
+
+/*
+RollbackWorkloadVersion Rollback to a Workload version
+
+Clone an archived version and promote it to active.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The short ID identifier of the version.
+ @param resourcePk The global_id of the Workload resource.
+ @return ApiRollbackWorkloadVersionRequest
+*/
+func (a *WorkloadVersionsAPIService) RollbackWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiRollbackWorkloadVersionRequest {
+	return ApiRollbackWorkloadVersionRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+		resourcePk: resourcePk,
+	}
+}
+
+// Execute executes the request
+func (a *WorkloadVersionsAPIService) RollbackWorkloadVersionExecute(r ApiRollbackWorkloadVersionRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WorkloadVersionsAPIService.RollbackWorkloadVersion")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/workspace/workloads/{resource_pk}/versions/{id}/rollback"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resource_pk"+"}", url.PathEscape(parameterValueToString(r.resourcePk, "resourcePk")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.versionArchiveRequest
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["TokenAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiUpdateWorkloadVersionRequest struct {
 	ctx context.Context
 	ApiService *WorkloadVersionsAPIService
 	id string
 	resourcePk int64
-	versionCreateRequest *VersionCreateRequest
+	workloadRequest *WorkloadRequest
 }
 
-func (r ApiUpdateWorkloadVersionRequest) VersionCreateRequest(versionCreateRequest VersionCreateRequest) ApiUpdateWorkloadVersionRequest {
-	r.versionCreateRequest = &versionCreateRequest
+func (r ApiUpdateWorkloadVersionRequest) WorkloadRequest(workloadRequest WorkloadRequest) ApiUpdateWorkloadVersionRequest {
+	r.workloadRequest = &workloadRequest
 	return r
 }
 
@@ -978,8 +1096,8 @@ UpdateWorkloadVersion Update a Workload version
 Update a draft version of a Workload.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The ULID identifier of the version.
- @param resourcePk The ID of the Workload resource.
+ @param id The short ID identifier of the version.
+ @param resourcePk The global_id of the Workload resource.
  @return ApiUpdateWorkloadVersionRequest
 */
 func (a *WorkloadVersionsAPIService) UpdateWorkloadVersion(ctx context.Context, id string, resourcePk int64) ApiUpdateWorkloadVersionRequest {
@@ -1011,6 +1129,9 @@ func (a *WorkloadVersionsAPIService) UpdateWorkloadVersionExecute(r ApiUpdateWor
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.workloadRequest == nil {
+		return nil, reportError("workloadRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1030,7 +1151,7 @@ func (a *WorkloadVersionsAPIService) UpdateWorkloadVersionExecute(r ApiUpdateWor
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.versionCreateRequest
+	localVarPostBody = r.workloadRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -9,18 +9,16 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **LastEditor** | **string** |  | 
 **LastModified** | **time.Time** |  | 
-**ProductVersion** | Pointer to **NullableString** |  | [optional] 
+**ProductVersion** | **NullableString** |  | 
 **EngineSettings** | Pointer to [**WAFEngineSettingsField**](WAFEngineSettingsField.md) |  | [optional] 
-**IsVersioned** | **bool** |  | 
-**Version** | **NullableInt64** |  | 
-**VersionState** | **NullableString** |  | 
-**VersionId** | **NullableString** |  | 
+**VersionId** | **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | 
+**State** | **NullableString** | Build state of this version (queued, building, ready, error, ...) | 
 
 ## Methods
 
 ### NewWAF
 
-`func NewWAF(id int64, name string, lastEditor string, lastModified time.Time, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString, ) *WAF`
+`func NewWAF(id int64, name string, lastEditor string, lastModified time.Time, productVersion NullableString, versionId NullableString, state NullableString, ) *WAF`
 
 NewWAF instantiates a new WAF object
 This constructor will assign default values to properties that have it defined,
@@ -159,11 +157,6 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
-### HasProductVersion
-
-`func (o *WAF) HasProductVersion() bool`
-
-HasProductVersion returns a boolean if a field has been set.
 
 ### SetProductVersionNil
 
@@ -200,86 +193,6 @@ SetEngineSettings sets EngineSettings field to given value.
 
 HasEngineSettings returns a boolean if a field has been set.
 
-### GetIsVersioned
-
-`func (o *WAF) GetIsVersioned() bool`
-
-GetIsVersioned returns the IsVersioned field if non-nil, zero value otherwise.
-
-### GetIsVersionedOk
-
-`func (o *WAF) GetIsVersionedOk() (*bool, bool)`
-
-GetIsVersionedOk returns a tuple with the IsVersioned field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsVersioned
-
-`func (o *WAF) SetIsVersioned(v bool)`
-
-SetIsVersioned sets IsVersioned field to given value.
-
-
-### GetVersion
-
-`func (o *WAF) GetVersion() int64`
-
-GetVersion returns the Version field if non-nil, zero value otherwise.
-
-### GetVersionOk
-
-`func (o *WAF) GetVersionOk() (*int64, bool)`
-
-GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersion
-
-`func (o *WAF) SetVersion(v int64)`
-
-SetVersion sets Version field to given value.
-
-
-### SetVersionNil
-
-`func (o *WAF) SetVersionNil(b bool)`
-
- SetVersionNil sets the value for Version to be an explicit nil
-
-### UnsetVersion
-`func (o *WAF) UnsetVersion()`
-
-UnsetVersion ensures that no value is present for Version, not even an explicit nil
-### GetVersionState
-
-`func (o *WAF) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *WAF) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *WAF) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-
-### SetVersionStateNil
-
-`func (o *WAF) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *WAF) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 ### GetVersionId
 
 `func (o *WAF) GetVersionId() string`
@@ -310,6 +223,36 @@ SetVersionId sets VersionId field to given value.
 `func (o *WAF) UnsetVersionId()`
 
 UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
+### GetState
+
+`func (o *WAF) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *WAF) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *WAF) SetState(v string)`
+
+SetState sets State field to given value.
+
+
+### SetStateNil
+
+`func (o *WAF) SetStateNil(b bool)`
+
+ SetStateNil sets the value for State to be an explicit nil
+
+### UnsetState
+`func (o *WAF) UnsetState()`
+
+UnsetState ensures that no value is present for State, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

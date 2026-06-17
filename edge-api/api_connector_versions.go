@@ -722,11 +722,11 @@ type ApiPartialUpdateConnectorVersionRequest struct {
 	ApiService *ConnectorVersionsAPIService
 	connectorId int64
 	versionId string
-	patchedVersionCreateRequest *PatchedVersionCreateRequest
+	patchedConnectorPolymorphicRequest *PatchedConnectorPolymorphicRequest
 }
 
-func (r ApiPartialUpdateConnectorVersionRequest) PatchedVersionCreateRequest(patchedVersionCreateRequest PatchedVersionCreateRequest) ApiPartialUpdateConnectorVersionRequest {
-	r.patchedVersionCreateRequest = &patchedVersionCreateRequest
+func (r ApiPartialUpdateConnectorVersionRequest) PatchedConnectorPolymorphicRequest(patchedConnectorPolymorphicRequest PatchedConnectorPolymorphicRequest) ApiPartialUpdateConnectorVersionRequest {
+	r.patchedConnectorPolymorphicRequest = &patchedConnectorPolymorphicRequest
 	return r
 }
 
@@ -792,7 +792,7 @@ func (a *ConnectorVersionsAPIService) PartialUpdateConnectorVersionExecute(r Api
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedVersionCreateRequest
+	localVarPostBody = r.patchedConnectorPolymorphicRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -960,11 +960,11 @@ type ApiUpdateConnectorVersionRequest struct {
 	ApiService *ConnectorVersionsAPIService
 	connectorId int64
 	versionId string
-	versionCreateRequest *VersionCreateRequest
+	connectorPolymorphicRequest *ConnectorPolymorphicRequest
 }
 
-func (r ApiUpdateConnectorVersionRequest) VersionCreateRequest(versionCreateRequest VersionCreateRequest) ApiUpdateConnectorVersionRequest {
-	r.versionCreateRequest = &versionCreateRequest
+func (r ApiUpdateConnectorVersionRequest) ConnectorPolymorphicRequest(connectorPolymorphicRequest ConnectorPolymorphicRequest) ApiUpdateConnectorVersionRequest {
+	r.connectorPolymorphicRequest = &connectorPolymorphicRequest
 	return r
 }
 
@@ -1030,7 +1030,7 @@ func (a *ConnectorVersionsAPIService) UpdateConnectorVersionExecute(r ApiUpdateC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.versionCreateRequest
+	localVarPostBody = r.connectorPolymorphicRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

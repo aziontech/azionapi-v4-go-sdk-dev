@@ -13,8 +13,6 @@ package edgeapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
-	"fmt"
 )
 
 // checks if the NetworkList type satisfies the MappedNullable interface at compile time
@@ -31,10 +29,10 @@ type NetworkList struct {
 	LastModified time.Time `json:"last_modified"`
 	CreatedAt time.Time `json:"created_at"`
 	Active *bool `json:"active,omitempty"`
-	IsVersioned bool `json:"is_versioned"`
-	Version NullableInt64 `json:"version"`
-	VersionState NullableString `json:"version_state"`
+	// ID of the version metadata (use in /versions/{id} URLs)
 	VersionId NullableString `json:"version_id"`
+	// Build state of this version (queued, building, ready, error, ...)
+	State NullableString `json:"state"`
 }
 
 type _NetworkList NetworkList
@@ -43,7 +41,7 @@ type _NetworkList NetworkList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkList(id int64, name string, type_ string, items []string, lastEditor string, lastModified time.Time, createdAt time.Time, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString) *NetworkList {
+func NewNetworkList(id int64, name string, type_ string, items []string, lastEditor string, lastModified time.Time, createdAt time.Time, versionId NullableString, state NullableString) *NetworkList {
 	this := NetworkList{}
 	this.Id = id
 	this.Name = name
@@ -52,10 +50,8 @@ func NewNetworkList(id int64, name string, type_ string, items []string, lastEdi
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
 	this.CreatedAt = createdAt
-	this.IsVersioned = isVersioned
-	this.Version = version
-	this.VersionState = versionState
 	this.VersionId = versionId
+	this.State = state
 	return &this
 }
 
@@ -267,82 +263,6 @@ func (o *NetworkList) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetIsVersioned returns the IsVersioned field value
-func (o *NetworkList) GetIsVersioned() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsVersioned
-}
-
-// GetIsVersionedOk returns a tuple with the IsVersioned field value
-// and a boolean to check if the value has been set.
-func (o *NetworkList) GetIsVersionedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsVersioned, true
-}
-
-// SetIsVersioned sets field value
-func (o *NetworkList) SetIsVersioned(v bool) {
-	o.IsVersioned = v
-}
-
-// GetVersion returns the Version field value
-// If the value is explicit nil, the zero value for int64 will be returned
-func (o *NetworkList) GetVersion() int64 {
-	if o == nil || o.Version.Get() == nil {
-		var ret int64
-		return ret
-	}
-
-	return *o.Version.Get()
-}
-
-// GetVersionOk returns a tuple with the Version field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NetworkList) GetVersionOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Version.Get(), o.Version.IsSet()
-}
-
-// SetVersion sets field value
-func (o *NetworkList) SetVersion(v int64) {
-	o.Version.Set(&v)
-}
-
-// GetVersionState returns the VersionState field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *NetworkList) GetVersionState() string {
-	if o == nil || o.VersionState.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NetworkList) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// SetVersionState sets field value
-func (o *NetworkList) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-
 // GetVersionId returns the VersionId field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *NetworkList) GetVersionId() string {
@@ -369,6 +289,32 @@ func (o *NetworkList) SetVersionId(v string) {
 	o.VersionId.Set(&v)
 }
 
+// GetState returns the State field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *NetworkList) GetState() string {
+	if o == nil || o.State.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.State.Get()
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetworkList) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.State.Get(), o.State.IsSet()
+}
+
+// SetState sets field value
+func (o *NetworkList) SetState(v string) {
+	o.State.Set(&v)
+}
+
 func (o NetworkList) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -389,58 +335,9 @@ func (o NetworkList) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	toSerialize["is_versioned"] = o.IsVersioned
-	toSerialize["version"] = o.Version.Get()
-	toSerialize["version_state"] = o.VersionState.Get()
 	toSerialize["version_id"] = o.VersionId.Get()
+	toSerialize["state"] = o.State.Get()
 	return toSerialize, nil
-}
-
-func (o *NetworkList) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"type",
-		"items",
-		"last_editor",
-		"last_modified",
-		"created_at",
-		"is_versioned",
-		"version",
-		"version_state",
-		"version_id",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varNetworkList := _NetworkList{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varNetworkList)
-
-	if err != nil {
-		return err
-	}
-
-	*o = NetworkList(varNetworkList)
-
-	return err
 }
 
 type NullableNetworkList struct {

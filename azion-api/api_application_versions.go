@@ -783,11 +783,11 @@ type ApiPartialUpdateApplicationVersionRequest struct {
 	ApiService *ApplicationVersionsAPIService
 	applicationId int64
 	versionId string
-	patchedVersionCreateRequest *PatchedVersionCreateRequest
+	patchedApplicationRequest *PatchedApplicationRequest
 }
 
-func (r ApiPartialUpdateApplicationVersionRequest) PatchedVersionCreateRequest(patchedVersionCreateRequest PatchedVersionCreateRequest) ApiPartialUpdateApplicationVersionRequest {
-	r.patchedVersionCreateRequest = &patchedVersionCreateRequest
+func (r ApiPartialUpdateApplicationVersionRequest) PatchedApplicationRequest(patchedApplicationRequest PatchedApplicationRequest) ApiPartialUpdateApplicationVersionRequest {
+	r.patchedApplicationRequest = &patchedApplicationRequest
 	return r
 }
 
@@ -853,7 +853,7 @@ func (a *ApplicationVersionsAPIService) PartialUpdateApplicationVersionExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedVersionCreateRequest
+	localVarPostBody = r.patchedApplicationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1041,11 +1041,11 @@ type ApiUpdateApplicationVersionRequest struct {
 	ApiService *ApplicationVersionsAPIService
 	applicationId int64
 	versionId string
-	versionCreateRequest *VersionCreateRequest
+	applicationRequest *ApplicationRequest
 }
 
-func (r ApiUpdateApplicationVersionRequest) VersionCreateRequest(versionCreateRequest VersionCreateRequest) ApiUpdateApplicationVersionRequest {
-	r.versionCreateRequest = &versionCreateRequest
+func (r ApiUpdateApplicationVersionRequest) ApplicationRequest(applicationRequest ApplicationRequest) ApiUpdateApplicationVersionRequest {
+	r.applicationRequest = &applicationRequest
 	return r
 }
 
@@ -1092,6 +1092,9 @@ func (a *ApplicationVersionsAPIService) UpdateApplicationVersionExecute(r ApiUpd
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.applicationRequest == nil {
+		return nil, reportError("applicationRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1111,7 +1114,7 @@ func (a *ApplicationVersionsAPIService) UpdateApplicationVersionExecute(r ApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.versionCreateRequest
+	localVarPostBody = r.applicationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

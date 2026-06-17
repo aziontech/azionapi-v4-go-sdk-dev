@@ -18,7 +18,7 @@ import (
 // checks if the WorkloadRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &WorkloadRequest{}
 
-// WorkloadRequest struct for WorkloadRequest
+// WorkloadRequest Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers. ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
 type WorkloadRequest struct {
 	Name string `json:"name"`
 	Active *bool `json:"active,omitempty"`
@@ -29,6 +29,7 @@ type WorkloadRequest struct {
 	Mtls *MTLSRequest `json:"mtls,omitempty"`
 	Domains []string `json:"domains,omitempty"`
 	WorkloadDomainAllowAccess *bool `json:"workload_domain_allow_access,omitempty"`
+	Bindings []WorkloadBindingRequest `json:"bindings,omitempty"`
 }
 
 type _WorkloadRequest WorkloadRequest
@@ -299,6 +300,38 @@ func (o *WorkloadRequest) SetWorkloadDomainAllowAccess(v bool) {
 	o.WorkloadDomainAllowAccess = &v
 }
 
+// GetBindings returns the Bindings field value if set, zero value otherwise.
+func (o *WorkloadRequest) GetBindings() []WorkloadBindingRequest {
+	if o == nil || IsNil(o.Bindings) {
+		var ret []WorkloadBindingRequest
+		return ret
+	}
+	return o.Bindings
+}
+
+// GetBindingsOk returns a tuple with the Bindings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkloadRequest) GetBindingsOk() ([]WorkloadBindingRequest, bool) {
+	if o == nil || IsNil(o.Bindings) {
+		return nil, false
+	}
+	return o.Bindings, true
+}
+
+// HasBindings returns a boolean if a field has been set.
+func (o *WorkloadRequest) HasBindings() bool {
+	if o != nil && !IsNil(o.Bindings) {
+		return true
+	}
+
+	return false
+}
+
+// SetBindings gets a reference to the given []WorkloadBindingRequest and assigns it to the Bindings field.
+func (o *WorkloadRequest) SetBindings(v []WorkloadBindingRequest) {
+	o.Bindings = v
+}
+
 func (o WorkloadRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -330,6 +363,9 @@ func (o WorkloadRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.WorkloadDomainAllowAccess) {
 		toSerialize["workload_domain_allow_access"] = o.WorkloadDomainAllowAccess
+	}
+	if !IsNil(o.Bindings) {
+		toSerialize["bindings"] = o.Bindings
 	}
 	return toSerialize, nil
 }

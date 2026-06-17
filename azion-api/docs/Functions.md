@@ -17,17 +17,15 @@ Name | Type | Description | Notes
 **ReferenceCount** | **int64** |  | 
 **Version** | **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | 
 **Vendor** | **string** |  | 
-**IsVersioned** | **bool** |  | 
-**ResourceVersion** | **NullableInt64** |  | 
-**VersionState** | **NullableString** |  | 
-**VersionId** | **NullableString** |  | 
+**VersionId** | **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | 
+**State** | **NullableString** | Build state of this version (queued, building, ready, error, ...) | 
 **Code** | **string** | String containing the function code. Maximum size: 50.0MB | 
 
 ## Methods
 
 ### NewFunctions
 
-`func NewFunctions(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, isVersioned bool, resourceVersion NullableInt64, versionState NullableString, versionId NullableString, code string, ) *Functions`
+`func NewFunctions(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, versionId NullableString, state NullableString, code string, ) *Functions`
 
 NewFunctions instantiates a new Functions object
 This constructor will assign default values to properties that have it defined,
@@ -337,86 +335,6 @@ and a boolean to check if the value has been set.
 SetVendor sets Vendor field to given value.
 
 
-### GetIsVersioned
-
-`func (o *Functions) GetIsVersioned() bool`
-
-GetIsVersioned returns the IsVersioned field if non-nil, zero value otherwise.
-
-### GetIsVersionedOk
-
-`func (o *Functions) GetIsVersionedOk() (*bool, bool)`
-
-GetIsVersionedOk returns a tuple with the IsVersioned field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsVersioned
-
-`func (o *Functions) SetIsVersioned(v bool)`
-
-SetIsVersioned sets IsVersioned field to given value.
-
-
-### GetResourceVersion
-
-`func (o *Functions) GetResourceVersion() int64`
-
-GetResourceVersion returns the ResourceVersion field if non-nil, zero value otherwise.
-
-### GetResourceVersionOk
-
-`func (o *Functions) GetResourceVersionOk() (*int64, bool)`
-
-GetResourceVersionOk returns a tuple with the ResourceVersion field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetResourceVersion
-
-`func (o *Functions) SetResourceVersion(v int64)`
-
-SetResourceVersion sets ResourceVersion field to given value.
-
-
-### SetResourceVersionNil
-
-`func (o *Functions) SetResourceVersionNil(b bool)`
-
- SetResourceVersionNil sets the value for ResourceVersion to be an explicit nil
-
-### UnsetResourceVersion
-`func (o *Functions) UnsetResourceVersion()`
-
-UnsetResourceVersion ensures that no value is present for ResourceVersion, not even an explicit nil
-### GetVersionState
-
-`func (o *Functions) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *Functions) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *Functions) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-
-### SetVersionStateNil
-
-`func (o *Functions) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *Functions) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 ### GetVersionId
 
 `func (o *Functions) GetVersionId() string`
@@ -447,6 +365,36 @@ SetVersionId sets VersionId field to given value.
 `func (o *Functions) UnsetVersionId()`
 
 UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
+### GetState
+
+`func (o *Functions) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *Functions) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *Functions) SetState(v string)`
+
+SetState sets State field to given value.
+
+
+### SetStateNil
+
+`func (o *Functions) SetStateNil(b bool)`
+
+ SetStateNil sets the value for State to be an explicit nil
+
+### UnsetState
+`func (o *Functions) UnsetState()`
+
+UnsetState ensures that no value is present for State, not even an explicit nil
 ### GetCode
 
 `func (o *Functions) GetCode() string`

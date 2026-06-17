@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateApplicationVersion
 
-> PartialUpdateApplicationVersion(ctx, applicationId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+> PartialUpdateApplicationVersion(ctx, applicationId, versionId).PatchedApplicationRequest(patchedApplicationRequest).Execute()
 
 Partially update an Application version
 
@@ -469,11 +469,11 @@ import (
 func main() {
 	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
 	versionId := "versionId_example" // string | The identifier of the version.
-	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
+	patchedApplicationRequest := *openapiclient.NewPatchedApplicationRequest() // PatchedApplicationRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.PartialUpdateApplicationVersion(context.Background(), applicationId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+	r, err := apiClient.ApplicationVersionsAPI.PartialUpdateApplicationVersion(context.Background(), applicationId, versionId).PatchedApplicationRequest(patchedApplicationRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.PartialUpdateApplicationVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -499,7 +499,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedVersionCreateRequest** | [**PatchedVersionCreateRequest**](PatchedVersionCreateRequest.md) |  | 
+ **patchedApplicationRequest** | [**PatchedApplicationRequest**](PatchedApplicationRequest.md) |  | 
 
 ### Return type
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApplicationVersion
 
-> UpdateApplicationVersion(ctx, applicationId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
+> UpdateApplicationVersion(ctx, applicationId, versionId).ApplicationRequest(applicationRequest).Execute()
 
 Update an Application version
 
@@ -615,11 +615,11 @@ import (
 func main() {
 	applicationId := int64(789) // int64 | The ID (global_id) of the Application resource.
 	versionId := "versionId_example" // string | The identifier of the version.
-	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
+	applicationRequest := *openapiclient.NewApplicationRequest("Name_example") // ApplicationRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ApplicationVersionsAPI.UpdateApplicationVersion(context.Background(), applicationId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.ApplicationVersionsAPI.UpdateApplicationVersion(context.Background(), applicationId, versionId).ApplicationRequest(applicationRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ApplicationVersionsAPI.UpdateApplicationVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -645,7 +645,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
+ **applicationRequest** | [**ApplicationRequest**](ApplicationRequest.md) |  | 
 
 ### Return type
 

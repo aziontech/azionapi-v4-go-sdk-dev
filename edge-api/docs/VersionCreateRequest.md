@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SourceVersion** | Pointer to **NullableString** | ID of the version to clone from. If omitted, clones latest ready. | [optional] 
 **Comment** | Pointer to **string** | Description for the new version | [optional] 
-**Override** | Pointer to **map[string]interface{}** | Field overrides to apply on the cloned version. | [optional] 
 
 ## Methods
 
@@ -86,31 +85,6 @@ SetComment sets Comment field to given value.
 `func (o *VersionCreateRequest) HasComment() bool`
 
 HasComment returns a boolean if a field has been set.
-
-### GetOverride
-
-`func (o *VersionCreateRequest) GetOverride() map[string]interface{}`
-
-GetOverride returns the Override field if non-nil, zero value otherwise.
-
-### GetOverrideOk
-
-`func (o *VersionCreateRequest) GetOverrideOk() (*map[string]interface{}, bool)`
-
-GetOverrideOk returns a tuple with the Override field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOverride
-
-`func (o *VersionCreateRequest) SetOverride(v map[string]interface{})`
-
-SetOverride sets Override field to given value.
-
-### HasOverride
-
-`func (o *VersionCreateRequest) HasOverride() bool`
-
-HasOverride returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

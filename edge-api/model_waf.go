@@ -13,26 +13,24 @@ package edgeapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
-	"fmt"
 )
 
 // checks if the WAF type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &WAF{}
 
-// WAF struct for WAF
+// WAF Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers.ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
 type WAF struct {
 	Id int64 `json:"id"`
 	Active *bool `json:"active,omitempty"`
 	Name string `json:"name"`
 	LastEditor string `json:"last_editor"`
 	LastModified time.Time `json:"last_modified"`
-	ProductVersion NullableString `json:"product_version,omitempty"`
+	ProductVersion NullableString `json:"product_version"`
 	EngineSettings *WAFEngineSettingsField `json:"engine_settings,omitempty"`
-	IsVersioned bool `json:"is_versioned"`
-	Version NullableInt64 `json:"version"`
-	VersionState NullableString `json:"version_state"`
+	// ID of the version metadata (use in /versions/{id} URLs)
 	VersionId NullableString `json:"version_id"`
+	// Build state of this version (queued, building, ready, error, ...)
+	State NullableString `json:"state"`
 }
 
 type _WAF WAF
@@ -41,16 +39,15 @@ type _WAF WAF
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWAF(id int64, name string, lastEditor string, lastModified time.Time, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString) *WAF {
+func NewWAF(id int64, name string, lastEditor string, lastModified time.Time, productVersion NullableString, versionId NullableString, state NullableString) *WAF {
 	this := WAF{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
-	this.IsVersioned = isVersioned
-	this.Version = version
-	this.VersionState = versionState
+	this.ProductVersion = productVersion
 	this.VersionId = versionId
+	this.State = state
 	return &this
 }
 
@@ -190,16 +187,18 @@ func (o *WAF) SetLastModified(v time.Time) {
 	o.LastModified = v
 }
 
-// GetProductVersion returns the ProductVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetProductVersion returns the ProductVersion field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *WAF) GetProductVersion() string {
-	if o == nil || IsNil(o.ProductVersion.Get()) {
+	if o == nil || o.ProductVersion.Get() == nil {
 		var ret string
 		return ret
 	}
+
 	return *o.ProductVersion.Get()
 }
 
-// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
+// GetProductVersionOk returns a tuple with the ProductVersion field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WAF) GetProductVersionOk() (*string, bool) {
@@ -209,27 +208,9 @@ func (o *WAF) GetProductVersionOk() (*string, bool) {
 	return o.ProductVersion.Get(), o.ProductVersion.IsSet()
 }
 
-// HasProductVersion returns a boolean if a field has been set.
-func (o *WAF) HasProductVersion() bool {
-	if o != nil && o.ProductVersion.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProductVersion gets a reference to the given NullableString and assigns it to the ProductVersion field.
+// SetProductVersion sets field value
 func (o *WAF) SetProductVersion(v string) {
 	o.ProductVersion.Set(&v)
-}
-// SetProductVersionNil sets the value for ProductVersion to be an explicit nil
-func (o *WAF) SetProductVersionNil() {
-	o.ProductVersion.Set(nil)
-}
-
-// UnsetProductVersion ensures that no value is present for ProductVersion, not even an explicit nil
-func (o *WAF) UnsetProductVersion() {
-	o.ProductVersion.Unset()
 }
 
 // GetEngineSettings returns the EngineSettings field value if set, zero value otherwise.
@@ -264,82 +245,6 @@ func (o *WAF) SetEngineSettings(v WAFEngineSettingsField) {
 	o.EngineSettings = &v
 }
 
-// GetIsVersioned returns the IsVersioned field value
-func (o *WAF) GetIsVersioned() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsVersioned
-}
-
-// GetIsVersionedOk returns a tuple with the IsVersioned field value
-// and a boolean to check if the value has been set.
-func (o *WAF) GetIsVersionedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsVersioned, true
-}
-
-// SetIsVersioned sets field value
-func (o *WAF) SetIsVersioned(v bool) {
-	o.IsVersioned = v
-}
-
-// GetVersion returns the Version field value
-// If the value is explicit nil, the zero value for int64 will be returned
-func (o *WAF) GetVersion() int64 {
-	if o == nil || o.Version.Get() == nil {
-		var ret int64
-		return ret
-	}
-
-	return *o.Version.Get()
-}
-
-// GetVersionOk returns a tuple with the Version field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WAF) GetVersionOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Version.Get(), o.Version.IsSet()
-}
-
-// SetVersion sets field value
-func (o *WAF) SetVersion(v int64) {
-	o.Version.Set(&v)
-}
-
-// GetVersionState returns the VersionState field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *WAF) GetVersionState() string {
-	if o == nil || o.VersionState.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WAF) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// SetVersionState sets field value
-func (o *WAF) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-
 // GetVersionId returns the VersionId field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *WAF) GetVersionId() string {
@@ -366,6 +271,32 @@ func (o *WAF) SetVersionId(v string) {
 	o.VersionId.Set(&v)
 }
 
+// GetState returns the State field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *WAF) GetState() string {
+	if o == nil || o.State.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.State.Get()
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WAF) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.State.Get(), o.State.IsSet()
+}
+
+// SetState sets field value
+func (o *WAF) SetState(v string) {
+	o.State.Set(&v)
+}
+
 func (o WAF) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -383,61 +314,13 @@ func (o WAF) ToMap() (map[string]interface{}, error) {
 	toSerialize["name"] = o.Name
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
-	if o.ProductVersion.IsSet() {
-		toSerialize["product_version"] = o.ProductVersion.Get()
-	}
+	toSerialize["product_version"] = o.ProductVersion.Get()
 	if !IsNil(o.EngineSettings) {
 		toSerialize["engine_settings"] = o.EngineSettings
 	}
-	toSerialize["is_versioned"] = o.IsVersioned
-	toSerialize["version"] = o.Version.Get()
-	toSerialize["version_state"] = o.VersionState.Get()
 	toSerialize["version_id"] = o.VersionId.Get()
+	toSerialize["state"] = o.State.Get()
 	return toSerialize, nil
-}
-
-func (o *WAF) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"last_editor",
-		"last_modified",
-		"is_versioned",
-		"version",
-		"version_state",
-		"version_id",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWAF := _WAF{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWAF)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WAF(varWAF)
-
-	return err
 }
 
 type NullableWAF struct {
