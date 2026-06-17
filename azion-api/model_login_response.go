@@ -14,11 +14,13 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
+
+	"gopkg.in/validator.v2"
 )
 
 // LoginResponse - struct for LoginResponse
 type LoginResponse struct {
-	MFAToken *MFAToken
+	MFAToken  *MFAToken
 	TokenPair *TokenPair
 }
 
@@ -35,7 +37,6 @@ func TokenPairAsLoginResponse(v *TokenPair) LoginResponse {
 		TokenPair: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *LoginResponse) UnmarshalJSON(data []byte) error {
@@ -102,7 +103,7 @@ func (src LoginResponse) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LoginResponse) GetActualInstance() (interface{}) {
+func (obj *LoginResponse) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -119,7 +120,7 @@ func (obj *LoginResponse) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj LoginResponse) GetActualInstanceValue() (interface{}) {
+func (obj LoginResponse) GetActualInstanceValue() interface{} {
 	if obj.MFAToken != nil {
 		return *obj.MFAToken
 	}
@@ -167,5 +168,3 @@ func (v *NullableLoginResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -14,14 +14,16 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
+
+	"gopkg.in/validator.v2"
 )
 
 // ResponseListAccount - struct for ResponseListAccount
 type ResponseListAccount struct {
-	Brand *Brand
+	Brand        *Brand
 	Organization *Organization
-	Reseller *Reseller
-	Workspace *Workspace
+	Reseller     *Reseller
+	Workspace    *Workspace
 }
 
 // BrandAsResponseListAccount is a convenience function that returns Brand wrapped in ResponseListAccount
@@ -51,7 +53,6 @@ func WorkspaceAsResponseListAccount(v *Workspace) ResponseListAccount {
 		Workspace: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ResponseListAccount) UnmarshalJSON(data []byte) error {
@@ -162,7 +163,7 @@ func (src ResponseListAccount) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ResponseListAccount) GetActualInstance() (interface{}) {
+func (obj *ResponseListAccount) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -187,7 +188,7 @@ func (obj *ResponseListAccount) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj ResponseListAccount) GetActualInstanceValue() (interface{}) {
+func (obj ResponseListAccount) GetActualInstanceValue() interface{} {
 	if obj.Brand != nil {
 		return *obj.Brand
 	}
@@ -243,5 +244,3 @@ func (v *NullableResponseListAccount) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
