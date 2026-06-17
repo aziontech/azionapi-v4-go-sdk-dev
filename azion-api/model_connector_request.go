@@ -14,13 +14,15 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
+
+	"gopkg.in/validator.v2"
 )
 
 // ConnectorRequest - struct for ConnectorRequest
 type ConnectorRequest struct {
-	ConnectorHTTPRequest *ConnectorHTTPRequest
+	ConnectorHTTPRequest       *ConnectorHTTPRequest
 	ConnectorLiveIngestRequest *ConnectorLiveIngestRequest
-	ConnectorStorageRequest *ConnectorStorageRequest
+	ConnectorStorageRequest    *ConnectorStorageRequest
 }
 
 // ConnectorHTTPRequestAsConnectorRequest is a convenience function that returns ConnectorHTTPRequest wrapped in ConnectorRequest
@@ -43,7 +45,6 @@ func ConnectorStorageRequestAsConnectorRequest(v *ConnectorStorageRequest) Conne
 		ConnectorStorageRequest: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ConnectorRequest) UnmarshalJSON(data []byte) error {
@@ -132,7 +133,7 @@ func (src ConnectorRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ConnectorRequest) GetActualInstance() (interface{}) {
+func (obj *ConnectorRequest) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -153,7 +154,7 @@ func (obj *ConnectorRequest) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj ConnectorRequest) GetActualInstanceValue() (interface{}) {
+func (obj ConnectorRequest) GetActualInstanceValue() interface{} {
 	if obj.ConnectorHTTPRequest != nil {
 		return *obj.ConnectorHTTPRequest
 	}
@@ -205,5 +206,3 @@ func (v *NullableConnectorRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

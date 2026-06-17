@@ -14,13 +14,15 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
+
+	"gopkg.in/validator.v2"
 )
 
 // PatchedConnectorRequest - struct for PatchedConnectorRequest
 type PatchedConnectorRequest struct {
-	PatchedConnectorHTTPRequest *PatchedConnectorHTTPRequest
+	PatchedConnectorHTTPRequest       *PatchedConnectorHTTPRequest
 	PatchedConnectorLiveIngestRequest *PatchedConnectorLiveIngestRequest
-	PatchedConnectorStorageRequest *PatchedConnectorStorageRequest
+	PatchedConnectorStorageRequest    *PatchedConnectorStorageRequest
 }
 
 // PatchedConnectorHTTPRequestAsPatchedConnectorRequest is a convenience function that returns PatchedConnectorHTTPRequest wrapped in PatchedConnectorRequest
@@ -43,7 +45,6 @@ func PatchedConnectorStorageRequestAsPatchedConnectorRequest(v *PatchedConnector
 		PatchedConnectorStorageRequest: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *PatchedConnectorRequest) UnmarshalJSON(data []byte) error {
@@ -132,7 +133,7 @@ func (src PatchedConnectorRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *PatchedConnectorRequest) GetActualInstance() (interface{}) {
+func (obj *PatchedConnectorRequest) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -153,7 +154,7 @@ func (obj *PatchedConnectorRequest) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj PatchedConnectorRequest) GetActualInstanceValue() (interface{}) {
+func (obj PatchedConnectorRequest) GetActualInstanceValue() interface{} {
 	if obj.PatchedConnectorHTTPRequest != nil {
 		return *obj.PatchedConnectorHTTPRequest
 	}
@@ -205,5 +206,3 @@ func (v *NullablePatchedConnectorRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -14,13 +14,15 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
+
+	"gopkg.in/validator.v2"
 )
 
 // FirewallBehaviorObjectArgsAttributes - Attributes object whose shape depends on the behavior type. Use SetCustomResponseAttributes for set_custom_response, SetRateLimitAttributes for set_rate_limit, SetWafAttributes for set_waf.
 type FirewallBehaviorObjectArgsAttributes struct {
 	FirewallBehaviorSetCustomResponseAttributes *FirewallBehaviorSetCustomResponseAttributes
-	FirewallBehaviorSetRateLimitAttributes *FirewallBehaviorSetRateLimitAttributes
-	FirewallBehaviorSetWafAttributes *FirewallBehaviorSetWafAttributes
+	FirewallBehaviorSetRateLimitAttributes      *FirewallBehaviorSetRateLimitAttributes
+	FirewallBehaviorSetWafAttributes            *FirewallBehaviorSetWafAttributes
 }
 
 // FirewallBehaviorSetCustomResponseAttributesAsFirewallBehaviorObjectArgsAttributes is a convenience function that returns FirewallBehaviorSetCustomResponseAttributes wrapped in FirewallBehaviorObjectArgsAttributes
@@ -43,7 +45,6 @@ func FirewallBehaviorSetWafAttributesAsFirewallBehaviorObjectArgsAttributes(v *F
 		FirewallBehaviorSetWafAttributes: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *FirewallBehaviorObjectArgsAttributes) UnmarshalJSON(data []byte) error {
@@ -132,7 +133,7 @@ func (src FirewallBehaviorObjectArgsAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *FirewallBehaviorObjectArgsAttributes) GetActualInstance() (interface{}) {
+func (obj *FirewallBehaviorObjectArgsAttributes) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -153,7 +154,7 @@ func (obj *FirewallBehaviorObjectArgsAttributes) GetActualInstance() (interface{
 }
 
 // Get the actual instance value
-func (obj FirewallBehaviorObjectArgsAttributes) GetActualInstanceValue() (interface{}) {
+func (obj FirewallBehaviorObjectArgsAttributes) GetActualInstanceValue() interface{} {
 	if obj.FirewallBehaviorSetCustomResponseAttributes != nil {
 		return *obj.FirewallBehaviorSetCustomResponseAttributes
 	}
@@ -205,5 +206,3 @@ func (v *NullableFirewallBehaviorObjectArgsAttributes) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

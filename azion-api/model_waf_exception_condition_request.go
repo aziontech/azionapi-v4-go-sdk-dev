@@ -14,12 +14,14 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
+
+	"gopkg.in/validator.v2"
 )
 
 // WAFExceptionConditionRequest - struct for WAFExceptionConditionRequest
 type WAFExceptionConditionRequest struct {
-	WAFExceptionGenericConditionRequest *WAFExceptionGenericConditionRequest
-	WAFExceptionSpecificConditionOnNameRequest *WAFExceptionSpecificConditionOnNameRequest
+	WAFExceptionGenericConditionRequest         *WAFExceptionGenericConditionRequest
+	WAFExceptionSpecificConditionOnNameRequest  *WAFExceptionSpecificConditionOnNameRequest
 	WAFExceptionSpecificConditionOnValueRequest *WAFExceptionSpecificConditionOnValueRequest
 }
 
@@ -43,7 +45,6 @@ func WAFExceptionSpecificConditionOnValueRequestAsWAFExceptionConditionRequest(v
 		WAFExceptionSpecificConditionOnValueRequest: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *WAFExceptionConditionRequest) UnmarshalJSON(data []byte) error {
@@ -132,7 +133,7 @@ func (src WAFExceptionConditionRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *WAFExceptionConditionRequest) GetActualInstance() (interface{}) {
+func (obj *WAFExceptionConditionRequest) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -153,7 +154,7 @@ func (obj *WAFExceptionConditionRequest) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj WAFExceptionConditionRequest) GetActualInstanceValue() (interface{}) {
+func (obj WAFExceptionConditionRequest) GetActualInstanceValue() interface{} {
 	if obj.WAFExceptionGenericConditionRequest != nil {
 		return *obj.WAFExceptionGenericConditionRequest
 	}
@@ -205,5 +206,3 @@ func (v *NullableWAFExceptionConditionRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
