@@ -14,14 +14,12 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
-
-	"gopkg.in/validator.v2"
 )
 
 // FirewallBehaviorRequest - struct for FirewallBehaviorRequest
 type FirewallBehaviorRequest struct {
-	FirewallBehaviorArgsRequest       *FirewallBehaviorArgsRequest
-	FirewallBehaviorNoArgsRequest     *FirewallBehaviorNoArgsRequest
+	FirewallBehaviorArgsRequest *FirewallBehaviorArgsRequest
+	FirewallBehaviorNoArgsRequest *FirewallBehaviorNoArgsRequest
 	FirewallBehaviorObjectArgsRequest *FirewallBehaviorObjectArgsRequest
 }
 
@@ -45,6 +43,7 @@ func FirewallBehaviorObjectArgsRequestAsFirewallBehaviorRequest(v *FirewallBehav
 		FirewallBehaviorObjectArgsRequest: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *FirewallBehaviorRequest) UnmarshalJSON(data []byte) error {
@@ -133,7 +132,7 @@ func (src FirewallBehaviorRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *FirewallBehaviorRequest) GetActualInstance() interface{} {
+func (obj *FirewallBehaviorRequest) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -154,7 +153,7 @@ func (obj *FirewallBehaviorRequest) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj FirewallBehaviorRequest) GetActualInstanceValue() interface{} {
+func (obj FirewallBehaviorRequest) GetActualInstanceValue() (interface{}) {
 	if obj.FirewallBehaviorArgsRequest != nil {
 		return *obj.FirewallBehaviorArgsRequest
 	}
@@ -206,3 +205,5 @@ func (v *NullableFirewallBehaviorRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

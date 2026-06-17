@@ -13,14 +13,12 @@ package tlsapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
-	"fmt"
 )
 
 // checks if the CertificateRevocationList type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CertificateRevocationList{}
 
-// CertificateRevocationList struct for CertificateRevocationList
+// CertificateRevocationList Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers.ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
 type CertificateRevocationList struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
@@ -38,6 +36,10 @@ type CertificateRevocationList struct {
 	// Timestamp of the next scheduled update from the certification revocation list issuer.
 	NextUpdate time.Time `json:"next_update"`
 	Crl string `json:"crl"`
+	// ID of the version metadata (use in /versions/{id} URLs)
+	VersionId NullableString `json:"version_id"`
+	// Build state of this version (queued, building, ready, error, ...)
+	State NullableString `json:"state"`
 }
 
 type _CertificateRevocationList CertificateRevocationList
@@ -46,7 +48,7 @@ type _CertificateRevocationList CertificateRevocationList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificateRevocationList(id int64, name string, lastEditor string, createdAt NullableTime, lastModified time.Time, productVersion string, issuer string, lastUpdate time.Time, nextUpdate time.Time, crl string) *CertificateRevocationList {
+func NewCertificateRevocationList(id int64, name string, lastEditor string, createdAt NullableTime, lastModified time.Time, productVersion string, issuer string, lastUpdate time.Time, nextUpdate time.Time, crl string, versionId NullableString, state NullableString) *CertificateRevocationList {
 	this := CertificateRevocationList{}
 	this.Id = id
 	this.Name = name
@@ -58,6 +60,8 @@ func NewCertificateRevocationList(id int64, name string, lastEditor string, crea
 	this.LastUpdate = lastUpdate
 	this.NextUpdate = nextUpdate
 	this.Crl = crl
+	this.VersionId = versionId
+	this.State = state
 	return &this
 }
 
@@ -343,6 +347,58 @@ func (o *CertificateRevocationList) SetCrl(v string) {
 	o.Crl = v
 }
 
+// GetVersionId returns the VersionId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *CertificateRevocationList) GetVersionId() string {
+	if o == nil || o.VersionId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.VersionId.Get()
+}
+
+// GetVersionIdOk returns a tuple with the VersionId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateRevocationList) GetVersionIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VersionId.Get(), o.VersionId.IsSet()
+}
+
+// SetVersionId sets field value
+func (o *CertificateRevocationList) SetVersionId(v string) {
+	o.VersionId.Set(&v)
+}
+
+// GetState returns the State field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *CertificateRevocationList) GetState() string {
+	if o == nil || o.State.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.State.Get()
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CertificateRevocationList) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.State.Get(), o.State.IsSet()
+}
+
+// SetState sets field value
+func (o *CertificateRevocationList) SetState(v string) {
+	o.State.Set(&v)
+}
+
 func (o CertificateRevocationList) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -366,53 +422,9 @@ func (o CertificateRevocationList) ToMap() (map[string]interface{}, error) {
 	toSerialize["last_update"] = o.LastUpdate
 	toSerialize["next_update"] = o.NextUpdate
 	toSerialize["crl"] = o.Crl
+	toSerialize["version_id"] = o.VersionId.Get()
+	toSerialize["state"] = o.State.Get()
 	return toSerialize, nil
-}
-
-func (o *CertificateRevocationList) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"last_editor",
-		"created_at",
-		"last_modified",
-		"product_version",
-		"issuer",
-		"last_update",
-		"next_update",
-		"crl",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCertificateRevocationList := _CertificateRevocationList{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCertificateRevocationList)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CertificateRevocationList(varCertificateRevocationList)
-
-	return err
 }
 
 type NullableCertificateRevocationList struct {

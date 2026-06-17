@@ -14,15 +14,13 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
-
-	"gopkg.in/validator.v2"
 )
 
 // ResponsePhaseBehavior - struct for ResponsePhaseBehavior
 type ResponsePhaseBehavior struct {
-	BehaviorArgs    *BehaviorArgs
+	BehaviorArgs *BehaviorArgs
 	BehaviorCapture *BehaviorCapture
-	BehaviorNoArgs  *BehaviorNoArgs
+	BehaviorNoArgs *BehaviorNoArgs
 }
 
 // BehaviorArgsAsResponsePhaseBehavior is a convenience function that returns BehaviorArgs wrapped in ResponsePhaseBehavior
@@ -45,6 +43,7 @@ func BehaviorNoArgsAsResponsePhaseBehavior(v *BehaviorNoArgs) ResponsePhaseBehav
 		BehaviorNoArgs: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ResponsePhaseBehavior) UnmarshalJSON(data []byte) error {
@@ -133,7 +132,7 @@ func (src ResponsePhaseBehavior) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ResponsePhaseBehavior) GetActualInstance() interface{} {
+func (obj *ResponsePhaseBehavior) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -154,7 +153,7 @@ func (obj *ResponsePhaseBehavior) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj ResponsePhaseBehavior) GetActualInstanceValue() interface{} {
+func (obj ResponsePhaseBehavior) GetActualInstanceValue() (interface{}) {
 	if obj.BehaviorArgs != nil {
 		return *obj.BehaviorArgs
 	}
@@ -206,3 +205,5 @@ func (v *NullableResponsePhaseBehavior) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -14,23 +14,21 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
-
-	"gopkg.in/validator.v2"
 )
 
 // OutputRequest - struct for OutputRequest
 type OutputRequest struct {
 	AWSKinesisFirehoseEndpointRequest *AWSKinesisFirehoseEndpointRequest
-	AzureBlobStorageEndpointRequest   *AzureBlobStorageEndpointRequest
-	AzureMonitorEndpointRequest       *AzureMonitorEndpointRequest
-	BigQueryEndpointRequest           *BigQueryEndpointRequest
-	DatadogEndpointRequest            *DatadogEndpointRequest
-	ElasticsearchEndpointRequest      *ElasticsearchEndpointRequest
-	HttpPostEndpointRequest           *HttpPostEndpointRequest
-	KafkaEndpointRequest              *KafkaEndpointRequest
-	QRadarEndpointRequest             *QRadarEndpointRequest
-	S3EndpointRequest                 *S3EndpointRequest
-	SplunkEndpointRequest             *SplunkEndpointRequest
+	AzureBlobStorageEndpointRequest *AzureBlobStorageEndpointRequest
+	AzureMonitorEndpointRequest *AzureMonitorEndpointRequest
+	BigQueryEndpointRequest *BigQueryEndpointRequest
+	DatadogEndpointRequest *DatadogEndpointRequest
+	ElasticsearchEndpointRequest *ElasticsearchEndpointRequest
+	HttpPostEndpointRequest *HttpPostEndpointRequest
+	KafkaEndpointRequest *KafkaEndpointRequest
+	QRadarEndpointRequest *QRadarEndpointRequest
+	S3EndpointRequest *S3EndpointRequest
+	SplunkEndpointRequest *SplunkEndpointRequest
 }
 
 // AWSKinesisFirehoseEndpointRequestAsOutputRequest is a convenience function that returns AWSKinesisFirehoseEndpointRequest wrapped in OutputRequest
@@ -109,6 +107,7 @@ func SplunkEndpointRequestAsOutputRequest(v *SplunkEndpointRequest) OutputReques
 		SplunkEndpointRequest: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *OutputRequest) UnmarshalJSON(data []byte) error {
@@ -373,7 +372,7 @@ func (src OutputRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *OutputRequest) GetActualInstance() interface{} {
+func (obj *OutputRequest) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -426,7 +425,7 @@ func (obj *OutputRequest) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj OutputRequest) GetActualInstanceValue() interface{} {
+func (obj OutputRequest) GetActualInstanceValue() (interface{}) {
 	if obj.AWSKinesisFirehoseEndpointRequest != nil {
 		return *obj.AWSKinesisFirehoseEndpointRequest
 	}
@@ -510,3 +509,5 @@ func (v *NullableOutputRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

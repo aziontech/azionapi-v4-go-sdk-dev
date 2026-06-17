@@ -14,16 +14,14 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
-
-	"gopkg.in/validator.v2"
 )
 
 // PatchedAccountRequest - struct for PatchedAccountRequest
 type PatchedAccountRequest struct {
-	PatchedBrandRequest        *PatchedBrandRequest
+	PatchedBrandRequest *PatchedBrandRequest
 	PatchedOrganizationRequest *PatchedOrganizationRequest
-	PatchedResellerRequest     *PatchedResellerRequest
-	PatchedWorkspaceRequest    *PatchedWorkspaceRequest
+	PatchedResellerRequest *PatchedResellerRequest
+	PatchedWorkspaceRequest *PatchedWorkspaceRequest
 }
 
 // PatchedBrandRequestAsPatchedAccountRequest is a convenience function that returns PatchedBrandRequest wrapped in PatchedAccountRequest
@@ -53,6 +51,7 @@ func PatchedWorkspaceRequestAsPatchedAccountRequest(v *PatchedWorkspaceRequest) 
 		PatchedWorkspaceRequest: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *PatchedAccountRequest) UnmarshalJSON(data []byte) error {
@@ -163,7 +162,7 @@ func (src PatchedAccountRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *PatchedAccountRequest) GetActualInstance() interface{} {
+func (obj *PatchedAccountRequest) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -188,7 +187,7 @@ func (obj *PatchedAccountRequest) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj PatchedAccountRequest) GetActualInstanceValue() interface{} {
+func (obj PatchedAccountRequest) GetActualInstanceValue() (interface{}) {
 	if obj.PatchedBrandRequest != nil {
 		return *obj.PatchedBrandRequest
 	}
@@ -244,3 +243,5 @@ func (v *NullablePatchedAccountRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

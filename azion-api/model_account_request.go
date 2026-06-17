@@ -14,16 +14,14 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
-
-	"gopkg.in/validator.v2"
 )
 
 // AccountRequest - struct for AccountRequest
 type AccountRequest struct {
-	BrandRequest        *BrandRequest
+	BrandRequest *BrandRequest
 	OrganizationRequest *OrganizationRequest
-	ResellerRequest     *ResellerRequest
-	WorkspaceRequest    *WorkspaceRequest
+	ResellerRequest *ResellerRequest
+	WorkspaceRequest *WorkspaceRequest
 }
 
 // BrandRequestAsAccountRequest is a convenience function that returns BrandRequest wrapped in AccountRequest
@@ -53,6 +51,7 @@ func WorkspaceRequestAsAccountRequest(v *WorkspaceRequest) AccountRequest {
 		WorkspaceRequest: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *AccountRequest) UnmarshalJSON(data []byte) error {
@@ -163,7 +162,7 @@ func (src AccountRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *AccountRequest) GetActualInstance() interface{} {
+func (obj *AccountRequest) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -188,7 +187,7 @@ func (obj *AccountRequest) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj AccountRequest) GetActualInstanceValue() interface{} {
+func (obj AccountRequest) GetActualInstanceValue() (interface{}) {
 	if obj.BrandRequest != nil {
 		return *obj.BrandRequest
 	}
@@ -244,3 +243,5 @@ func (v *NullableAccountRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
