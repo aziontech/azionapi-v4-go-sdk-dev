@@ -245,6 +245,7 @@ func (o *FunctionInstanceRequest) UnmarshalJSON(data []byte) (err error) {
 	varFunctionInstanceRequest := _FunctionInstanceRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFunctionInstanceRequest)
 
 	if err != nil {

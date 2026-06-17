@@ -294,6 +294,7 @@ func (o *DatabaseDetail) UnmarshalJSON(data []byte) (err error) {
 	varDatabaseDetail := _DatabaseDetail{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDatabaseDetail)
 
 	if err != nil {

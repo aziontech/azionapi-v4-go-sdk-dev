@@ -195,6 +195,7 @@ func (o *BucketObject) UnmarshalJSON(data []byte) (err error) {
 	varBucketObject := _BucketObject{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBucketObject)
 
 	if err != nil {

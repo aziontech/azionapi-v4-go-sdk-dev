@@ -221,6 +221,7 @@ func (o *AWSKinesisFirehoseEndpointRequest) UnmarshalJSON(data []byte) (err erro
 	varAWSKinesisFirehoseEndpointRequest := _AWSKinesisFirehoseEndpointRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAWSKinesisFirehoseEndpointRequest)
 
 	if err != nil {

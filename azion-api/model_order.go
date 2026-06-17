@@ -108,6 +108,7 @@ func (o *Order) UnmarshalJSON(data []byte) (err error) {
 	varOrder := _Order{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varOrder)
 
 	if err != nil {

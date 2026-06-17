@@ -284,6 +284,7 @@ func (o *PaymentHistory) UnmarshalJSON(data []byte) (err error) {
 	varPaymentHistory := _PaymentHistory{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPaymentHistory)
 
 	if err != nil {

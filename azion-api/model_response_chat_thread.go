@@ -144,6 +144,7 @@ func (o *ResponseChatThread) UnmarshalJSON(data []byte) (err error) {
 	varResponseChatThread := _ResponseChatThread{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseChatThread)
 
 	if err != nil {

@@ -144,6 +144,7 @@ func (o *ResponseTool) UnmarshalJSON(data []byte) (err error) {
 	varResponseTool := _ResponseTool{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseTool)
 
 	if err != nil {

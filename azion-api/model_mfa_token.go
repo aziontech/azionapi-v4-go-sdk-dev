@@ -225,6 +225,7 @@ func (o *MFAToken) UnmarshalJSON(data []byte) (err error) {
 	varMFAToken := _MFAToken{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varMFAToken)
 
 	if err != nil {

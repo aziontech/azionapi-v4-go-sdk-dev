@@ -283,6 +283,7 @@ func (o *HttpPostEndpointRequest) UnmarshalJSON(data []byte) (err error) {
 	varHttpPostEndpointRequest := _HttpPostEndpointRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varHttpPostEndpointRequest)
 
 	if err != nil {

@@ -193,6 +193,7 @@ func (o *ExecutionListResponse) UnmarshalJSON(data []byte) (err error) {
 	varExecutionListResponse := _ExecutionListResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varExecutionListResponse)
 
 	if err != nil {

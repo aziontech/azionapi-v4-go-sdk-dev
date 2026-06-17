@@ -193,6 +193,7 @@ func (o *ResponseListFavorite) UnmarshalJSON(data []byte) (err error) {
 	varResponseListFavorite := _ResponseListFavorite{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseListFavorite)
 
 	if err != nil {

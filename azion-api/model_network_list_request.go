@@ -201,6 +201,7 @@ func (o *NetworkListRequest) UnmarshalJSON(data []byte) (err error) {
 	varNetworkListRequest := _NetworkListRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkListRequest)
 
 	if err != nil {

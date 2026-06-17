@@ -406,6 +406,7 @@ func (o *ContinuousDeploymentListResponse) UnmarshalJSON(data []byte) (err error
 	varContinuousDeploymentListResponse := _ContinuousDeploymentListResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varContinuousDeploymentListResponse)
 
 	if err != nil {

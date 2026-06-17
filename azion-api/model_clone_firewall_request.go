@@ -108,6 +108,7 @@ func (o *CloneFirewallRequest) UnmarshalJSON(data []byte) (err error) {
 	varCloneFirewallRequest := _CloneFirewallRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCloneFirewallRequest)
 
 	if err != nil {

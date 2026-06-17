@@ -213,6 +213,7 @@ func (o *ApplicationCriterionFieldRequest) UnmarshalJSON(data []byte) (err error
 	varApplicationCriterionFieldRequest := _ApplicationCriterionFieldRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varApplicationCriterionFieldRequest)
 
 	if err != nil {

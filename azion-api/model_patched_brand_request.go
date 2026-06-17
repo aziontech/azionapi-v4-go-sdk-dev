@@ -145,6 +145,7 @@ func (o *PatchedBrandRequest) UnmarshalJSON(data []byte) (err error) {
 	varPatchedBrandRequest := _PatchedBrandRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPatchedBrandRequest)
 
 	if err != nil {

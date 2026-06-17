@@ -200,6 +200,7 @@ func (o *DefaultDeploymentStrategyAttrs) UnmarshalJSON(data []byte) (err error) 
 	varDefaultDeploymentStrategyAttrs := _DefaultDeploymentStrategyAttrs{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDefaultDeploymentStrategyAttrs)
 
 	if err != nil {

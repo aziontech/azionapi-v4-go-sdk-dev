@@ -108,6 +108,7 @@ func (o *ResponseRetrieveTool) UnmarshalJSON(data []byte) (err error) {
 	varResponseRetrieveTool := _ResponseRetrieveTool{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseRetrieveTool)
 
 	if err != nil {

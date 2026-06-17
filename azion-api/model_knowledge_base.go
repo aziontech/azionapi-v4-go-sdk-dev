@@ -380,6 +380,7 @@ func (o *KnowledgeBase) UnmarshalJSON(data []byte) (err error) {
 	varKnowledgeBase := _KnowledgeBase{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varKnowledgeBase)
 
 	if err != nil {

@@ -144,6 +144,7 @@ func (o *ResponseAsyncNodeServices) UnmarshalJSON(data []byte) (err error) {
 	varResponseAsyncNodeServices := _ResponseAsyncNodeServices{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseAsyncNodeServices)
 
 	if err != nil {

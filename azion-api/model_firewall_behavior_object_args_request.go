@@ -137,6 +137,7 @@ func (o *FirewallBehaviorObjectArgsRequest) UnmarshalJSON(data []byte) (err erro
 	varFirewallBehaviorObjectArgsRequest := _FirewallBehaviorObjectArgsRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFirewallBehaviorObjectArgsRequest)
 
 	if err != nil {

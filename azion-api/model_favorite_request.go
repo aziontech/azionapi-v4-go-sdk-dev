@@ -108,6 +108,7 @@ func (o *FavoriteRequest) UnmarshalJSON(data []byte) (err error) {
 	varFavoriteRequest := _FavoriteRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFavoriteRequest)
 
 	if err != nil {

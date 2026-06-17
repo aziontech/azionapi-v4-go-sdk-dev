@@ -222,6 +222,7 @@ func (o *DashboardListResponse) UnmarshalJSON(data []byte) (err error) {
 	varDashboardListResponse := _DashboardListResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDashboardListResponse)
 
 	if err != nil {

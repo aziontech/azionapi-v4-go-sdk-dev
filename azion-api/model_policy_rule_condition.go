@@ -108,6 +108,7 @@ func (o *PolicyRuleCondition) UnmarshalJSON(data []byte) (err error) {
 	varPolicyRuleCondition := _PolicyRuleCondition{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPolicyRuleCondition)
 
 	if err != nil {

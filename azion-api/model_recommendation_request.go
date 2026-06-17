@@ -108,6 +108,7 @@ func (o *RecommendationRequest) UnmarshalJSON(data []byte) (err error) {
 	varRecommendationRequest := _RecommendationRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varRecommendationRequest)
 
 	if err != nil {

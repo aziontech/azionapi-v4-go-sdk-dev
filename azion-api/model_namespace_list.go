@@ -136,6 +136,7 @@ func (o *NamespaceList) UnmarshalJSON(data []byte) (err error) {
 	varNamespaceList := _NamespaceList{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNamespaceList)
 
 	if err != nil {

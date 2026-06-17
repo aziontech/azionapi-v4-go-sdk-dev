@@ -138,6 +138,7 @@ func (o *ResponseBucketObject) UnmarshalJSON(data []byte) (err error) {
 	varResponseBucketObject := _ResponseBucketObject{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseBucketObject)
 
 	if err != nil {

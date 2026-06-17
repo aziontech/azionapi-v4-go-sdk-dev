@@ -138,6 +138,7 @@ func (o *SQLResult) UnmarshalJSON(data []byte) (err error) {
 	varSQLResult := _SQLResult{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSQLResult)
 
 	if err != nil {

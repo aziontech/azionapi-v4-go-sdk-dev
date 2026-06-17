@@ -108,6 +108,7 @@ func (o *TransformShared) UnmarshalJSON(data []byte) (err error) {
 	varTransformShared := _TransformShared{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varTransformShared)
 
 	if err != nil {

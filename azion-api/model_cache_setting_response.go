@@ -144,6 +144,7 @@ func (o *CacheSettingResponse) UnmarshalJSON(data []byte) (err error) {
 	varCacheSettingResponse := _CacheSettingResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCacheSettingResponse)
 
 	if err != nil {

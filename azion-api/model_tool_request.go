@@ -244,6 +244,7 @@ func (o *ToolRequest) UnmarshalJSON(data []byte) (err error) {
 	varToolRequest := _ToolRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varToolRequest)
 
 	if err != nil {

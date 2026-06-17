@@ -108,6 +108,7 @@ func (o *CreditRequest) UnmarshalJSON(data []byte) (err error) {
 	varCreditRequest := _CreditRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCreditRequest)
 
 	if err != nil {

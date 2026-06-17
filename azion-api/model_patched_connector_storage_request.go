@@ -217,6 +217,7 @@ func (o *PatchedConnectorStorageRequest) UnmarshalJSON(data []byte) (err error) 
 	varPatchedConnectorStorageRequest := _PatchedConnectorStorageRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPatchedConnectorStorageRequest)
 
 	if err != nil {

@@ -217,6 +217,7 @@ func (o *PatchedConnectorLiveIngestRequest) UnmarshalJSON(data []byte) (err erro
 	varPatchedConnectorLiveIngestRequest := _PatchedConnectorLiveIngestRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPatchedConnectorLiveIngestRequest)
 
 	if err != nil {

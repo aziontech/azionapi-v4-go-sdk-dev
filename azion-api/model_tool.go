@@ -357,6 +357,7 @@ func (o *Tool) UnmarshalJSON(data []byte) (err error) {
 	varTool := _Tool{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varTool)
 
 	if err != nil {

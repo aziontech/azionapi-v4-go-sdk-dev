@@ -405,6 +405,7 @@ func (o *ResponseListServiceToken) UnmarshalJSON(data []byte) (err error) {
 	varResponseListServiceToken := _ResponseListServiceToken{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseListServiceToken)
 
 	if err != nil {

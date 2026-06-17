@@ -108,6 +108,7 @@ func (o *IntegrationResponse) UnmarshalJSON(data []byte) (err error) {
 	varIntegrationResponse := _IntegrationResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varIntegrationResponse)
 
 	if err != nil {

@@ -136,6 +136,7 @@ func (o *AggregatedField) UnmarshalJSON(data []byte) (err error) {
 	varAggregatedField := _AggregatedField{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAggregatedField)
 
 	if err != nil {

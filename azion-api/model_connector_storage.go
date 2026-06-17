@@ -403,6 +403,7 @@ func (o *ConnectorStorage) UnmarshalJSON(data []byte) (err error) {
 	varConnectorStorage := _ConnectorStorage{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varConnectorStorage)
 
 	if err != nil {

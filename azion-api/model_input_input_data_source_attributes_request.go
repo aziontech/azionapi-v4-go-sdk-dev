@@ -137,6 +137,7 @@ func (o *InputInputDataSourceAttributesRequest) UnmarshalJSON(data []byte) (err 
 	varInputInputDataSourceAttributesRequest := _InputInputDataSourceAttributesRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varInputInputDataSourceAttributesRequest)
 
 	if err != nil {

@@ -239,6 +239,7 @@ func (o *CacheSetting) UnmarshalJSON(data []byte) (err error) {
 	varCacheSetting := _CacheSetting{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCacheSetting)
 
 	if err != nil {

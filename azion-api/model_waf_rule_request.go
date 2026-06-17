@@ -292,6 +292,7 @@ func (o *WAFRuleRequest) UnmarshalJSON(data []byte) (err error) {
 	varWAFRuleRequest := _WAFRuleRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWAFRuleRequest)
 
 	if err != nil {

@@ -144,6 +144,7 @@ func (o *ConnectorStorageAttributes) UnmarshalJSON(data []byte) (err error) {
 	varConnectorStorageAttributes := _ConnectorStorageAttributes{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varConnectorStorageAttributes)
 
 	if err != nil {

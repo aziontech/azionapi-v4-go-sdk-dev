@@ -220,6 +220,7 @@ func (o *ServiceResourceRequest) UnmarshalJSON(data []byte) (err error) {
 	varServiceResourceRequest := _ServiceResourceRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varServiceResourceRequest)
 
 	if err != nil {

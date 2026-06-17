@@ -1139,6 +1139,7 @@ func (o *CertificateSigningRequest) UnmarshalJSON(data []byte) (err error) {
 	varCertificateSigningRequest := _CertificateSigningRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCertificateSigningRequest)
 
 	if err != nil {

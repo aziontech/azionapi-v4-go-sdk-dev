@@ -196,6 +196,7 @@ func (o *ExecutionScript) UnmarshalJSON(data []byte) (err error) {
 	varExecutionScript := _ExecutionScript{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varExecutionScript)
 
 	if err != nil {

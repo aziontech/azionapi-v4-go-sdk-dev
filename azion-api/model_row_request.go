@@ -108,6 +108,7 @@ func (o *RowRequest) UnmarshalJSON(data []byte) (err error) {
 	varRowRequest := _RowRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varRowRequest)
 
 	if err != nil {

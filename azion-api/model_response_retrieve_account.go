@@ -108,6 +108,7 @@ func (o *ResponseRetrieveAccount) UnmarshalJSON(data []byte) (err error) {
 	varResponseRetrieveAccount := _ResponseRetrieveAccount{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseRetrieveAccount)
 
 	if err != nil {

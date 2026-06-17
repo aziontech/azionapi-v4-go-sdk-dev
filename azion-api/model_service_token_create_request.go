@@ -209,6 +209,7 @@ func (o *ServiceTokenCreateRequest) UnmarshalJSON(data []byte) (err error) {
 	varServiceTokenCreateRequest := _ServiceTokenCreateRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varServiceTokenCreateRequest)
 
 	if err != nil {

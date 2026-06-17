@@ -183,6 +183,7 @@ func (o *LoginRequest) UnmarshalJSON(data []byte) (err error) {
 	varLoginRequest := _LoginRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varLoginRequest)
 
 	if err != nil {

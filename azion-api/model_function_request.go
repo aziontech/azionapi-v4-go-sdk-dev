@@ -320,6 +320,7 @@ func (o *FunctionRequest) UnmarshalJSON(data []byte) (err error) {
 	varFunctionRequest := _FunctionRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFunctionRequest)
 
 	if err != nil {

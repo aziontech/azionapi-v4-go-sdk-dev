@@ -800,6 +800,7 @@ func (o *Certificate) UnmarshalJSON(data []byte) (err error) {
 	varCertificate := _Certificate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCertificate)
 
 	if err != nil {

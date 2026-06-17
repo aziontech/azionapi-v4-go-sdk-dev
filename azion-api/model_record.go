@@ -338,6 +338,7 @@ func (o *Record) UnmarshalJSON(data []byte) (err error) {
 	varRecord := _Record{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varRecord)
 
 	if err != nil {

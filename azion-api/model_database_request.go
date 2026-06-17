@@ -146,6 +146,7 @@ func (o *DatabaseRequest) UnmarshalJSON(data []byte) (err error) {
 	varDatabaseRequest := _DatabaseRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDatabaseRequest)
 
 	if err != nil {

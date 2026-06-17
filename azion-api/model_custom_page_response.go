@@ -144,6 +144,7 @@ func (o *CustomPageResponse) UnmarshalJSON(data []byte) (err error) {
 	varCustomPageResponse := _CustomPageResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCustomPageResponse)
 
 	if err != nil {

@@ -192,6 +192,7 @@ func (o *PlatformListResponse) UnmarshalJSON(data []byte) (err error) {
 	varPlatformListResponse := _PlatformListResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPlatformListResponse)
 
 	if err != nil {

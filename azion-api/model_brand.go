@@ -334,6 +334,7 @@ func (o *Brand) UnmarshalJSON(data []byte) (err error) {
 	varBrand := _Brand{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBrand)
 
 	if err != nil {

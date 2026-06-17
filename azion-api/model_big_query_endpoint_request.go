@@ -221,6 +221,7 @@ func (o *BigQueryEndpointRequest) UnmarshalJSON(data []byte) (err error) {
 	varBigQueryEndpointRequest := _BigQueryEndpointRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBigQueryEndpointRequest)
 
 	if err != nil {

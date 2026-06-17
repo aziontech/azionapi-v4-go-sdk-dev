@@ -136,6 +136,7 @@ func (o *ToolKBLink) UnmarshalJSON(data []byte) (err error) {
 	varToolKBLink := _ToolKBLink{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varToolKBLink)
 
 	if err != nil {

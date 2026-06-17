@@ -136,6 +136,7 @@ func (o *BehaviorCapture) UnmarshalJSON(data []byte) (err error) {
 	varBehaviorCapture := _BehaviorCapture{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBehaviorCapture)
 
 	if err != nil {

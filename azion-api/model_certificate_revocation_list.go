@@ -466,6 +466,7 @@ func (o *CertificateRevocationList) UnmarshalJSON(data []byte) (err error) {
 	varCertificateRevocationList := _CertificateRevocationList{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCertificateRevocationList)
 
 	if err != nil {

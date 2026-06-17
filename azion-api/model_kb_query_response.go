@@ -108,6 +108,7 @@ func (o *KBQueryResponse) UnmarshalJSON(data []byte) (err error) {
 	varKBQueryResponse := _KBQueryResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varKBQueryResponse)
 
 	if err != nil {

@@ -109,6 +109,7 @@ func (o *ConnectorLiveIngestAttributesRequest) UnmarshalJSON(data []byte) (err e
 	varConnectorLiveIngestAttributesRequest := _ConnectorLiveIngestAttributesRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varConnectorLiveIngestAttributesRequest)
 
 	if err != nil {

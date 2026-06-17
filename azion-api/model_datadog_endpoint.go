@@ -165,6 +165,7 @@ func (o *DatadogEndpoint) UnmarshalJSON(data []byte) (err error) {
 	varDatadogEndpoint := _DatadogEndpoint{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDatadogEndpoint)
 
 	if err != nil {

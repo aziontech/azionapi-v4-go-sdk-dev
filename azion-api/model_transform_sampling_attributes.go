@@ -137,6 +137,7 @@ func (o *TransformSamplingAttributes) UnmarshalJSON(data []byte) (err error) {
 	varTransformSamplingAttributes := _TransformSamplingAttributes{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varTransformSamplingAttributes)
 
 	if err != nil {

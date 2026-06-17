@@ -144,6 +144,7 @@ func (o *CertificateResponse) UnmarshalJSON(data []byte) (err error) {
 	varCertificateResponse := _CertificateResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCertificateResponse)
 
 	if err != nil {

@@ -145,6 +145,7 @@ func (o *PatchedWorkspaceRequest) UnmarshalJSON(data []byte) (err error) {
 	varPatchedWorkspaceRequest := _PatchedWorkspaceRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPatchedWorkspaceRequest)
 
 	if err != nil {

@@ -139,6 +139,7 @@ func (o *ResponseDeleteServiceToken) UnmarshalJSON(data []byte) (err error) {
 	varResponseDeleteServiceToken := _ResponseDeleteServiceToken{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseDeleteServiceToken)
 
 	if err != nil {

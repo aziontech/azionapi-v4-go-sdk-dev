@@ -469,6 +469,7 @@ func (o *ServiceResourceId) UnmarshalJSON(data []byte) (err error) {
 	varServiceResourceId := _ServiceResourceId{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varServiceResourceId)
 
 	if err != nil {

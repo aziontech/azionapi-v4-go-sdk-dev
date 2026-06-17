@@ -137,6 +137,7 @@ func (o *UserLoginMethodResponse) UnmarshalJSON(data []byte) (err error) {
 	varUserLoginMethodResponse := _UserLoginMethodResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUserLoginMethodResponse)
 
 	if err != nil {

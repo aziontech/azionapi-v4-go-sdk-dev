@@ -266,6 +266,7 @@ func (o *KBQueryResult) UnmarshalJSON(data []byte) (err error) {
 	varKBQueryResult := _KBQueryResult{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varKBQueryResult)
 
 	if err != nil {

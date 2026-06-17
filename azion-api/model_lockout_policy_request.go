@@ -166,6 +166,7 @@ func (o *LockoutPolicyRequest) UnmarshalJSON(data []byte) (err error) {
 	varLockoutPolicyRequest := _LockoutPolicyRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varLockoutPolicyRequest)
 
 	if err != nil {

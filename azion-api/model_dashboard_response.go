@@ -144,6 +144,7 @@ func (o *DashboardResponse) UnmarshalJSON(data []byte) (err error) {
 	varDashboardResponse := _DashboardResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDashboardResponse)
 
 	if err != nil {

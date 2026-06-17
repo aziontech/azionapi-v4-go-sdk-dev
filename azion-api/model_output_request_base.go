@@ -137,6 +137,7 @@ func (o *OutputRequestBase) UnmarshalJSON(data []byte) (err error) {
 	varOutputRequestBase := _OutputRequestBase{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varOutputRequestBase)
 
 	if err != nil {

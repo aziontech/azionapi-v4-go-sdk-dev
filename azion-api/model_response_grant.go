@@ -137,6 +137,7 @@ func (o *ResponseGrant) UnmarshalJSON(data []byte) (err error) {
 	varResponseGrant := _ResponseGrant{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseGrant)
 
 	if err != nil {

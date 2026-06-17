@@ -566,6 +566,7 @@ func (o *CRLVersionCreate) UnmarshalJSON(data []byte) (err error) {
 	varCRLVersionCreate := _CRLVersionCreate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCRLVersionCreate)
 
 	if err != nil {

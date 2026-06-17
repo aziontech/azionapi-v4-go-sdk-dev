@@ -266,6 +266,7 @@ func (o *Address) UnmarshalJSON(data []byte) (err error) {
 	varAddress := _Address{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAddress)
 
 	if err != nil {

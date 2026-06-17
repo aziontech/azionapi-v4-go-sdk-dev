@@ -348,6 +348,7 @@ func (o *NetworkListSummary) UnmarshalJSON(data []byte) (err error) {
 	varNetworkListSummary := _NetworkListSummary{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkListSummary)
 
 	if err != nil {

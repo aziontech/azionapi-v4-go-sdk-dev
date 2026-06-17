@@ -137,6 +137,7 @@ func (o *WAFExceptionSpecificConditionOnNameRequest) UnmarshalJSON(data []byte) 
 	varWAFExceptionSpecificConditionOnNameRequest := _WAFExceptionSpecificConditionOnNameRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWAFExceptionSpecificConditionOnNameRequest)
 
 	if err != nil {

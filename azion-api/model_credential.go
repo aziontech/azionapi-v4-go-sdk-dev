@@ -371,6 +371,7 @@ func (o *Credential) UnmarshalJSON(data []byte) (err error) {
 	varCredential := _Credential{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCredential)
 
 	if err != nil {
