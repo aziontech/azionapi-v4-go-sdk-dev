@@ -14,23 +14,21 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
-
-	"gopkg.in/validator.v2"
 )
 
 // Output - struct for Output
 type Output struct {
 	AWSKinesisFirehoseEndpoint *AWSKinesisFirehoseEndpoint
-	AzureBlobStorageEndpoint   *AzureBlobStorageEndpoint
-	AzureMonitorEndpoint       *AzureMonitorEndpoint
-	BigQueryEndpoint           *BigQueryEndpoint
-	DatadogEndpoint            *DatadogEndpoint
-	ElasticsearchEndpoint      *ElasticsearchEndpoint
-	HttpPostEndpoint           *HttpPostEndpoint
-	KafkaEndpoint              *KafkaEndpoint
-	QRadarEndpoint             *QRadarEndpoint
-	S3Endpoint                 *S3Endpoint
-	SplunkEndpoint             *SplunkEndpoint
+	AzureBlobStorageEndpoint *AzureBlobStorageEndpoint
+	AzureMonitorEndpoint *AzureMonitorEndpoint
+	BigQueryEndpoint *BigQueryEndpoint
+	DatadogEndpoint *DatadogEndpoint
+	ElasticsearchEndpoint *ElasticsearchEndpoint
+	HttpPostEndpoint *HttpPostEndpoint
+	KafkaEndpoint *KafkaEndpoint
+	QRadarEndpoint *QRadarEndpoint
+	S3Endpoint *S3Endpoint
+	SplunkEndpoint *SplunkEndpoint
 }
 
 // AWSKinesisFirehoseEndpointAsOutput is a convenience function that returns AWSKinesisFirehoseEndpoint wrapped in Output
@@ -109,6 +107,7 @@ func SplunkEndpointAsOutput(v *SplunkEndpoint) Output {
 		SplunkEndpoint: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Output) UnmarshalJSON(data []byte) error {
@@ -373,7 +372,7 @@ func (src Output) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *Output) GetActualInstance() interface{} {
+func (obj *Output) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -426,7 +425,7 @@ func (obj *Output) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj Output) GetActualInstanceValue() interface{} {
+func (obj Output) GetActualInstanceValue() (interface{}) {
 	if obj.AWSKinesisFirehoseEndpoint != nil {
 		return *obj.AWSKinesisFirehoseEndpoint
 	}
@@ -510,3 +509,5 @@ func (v *NullableOutput) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

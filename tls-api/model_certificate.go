@@ -13,14 +13,12 @@ package tlsapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
-	"fmt"
 )
 
 // checks if the Certificate type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Certificate{}
 
-// Certificate struct for Certificate
+// Certificate Certificate payload with build state fields (``version_id``, ``state``).
 type Certificate struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
@@ -50,6 +48,10 @@ type Certificate struct {
 	LastModified time.Time `json:"last_modified"`
 	// Timestamp indicating when the managed certificate was renewed on our platform.
 	RenewedAt NullableTime `json:"renewed_at"`
+	// ID of the version metadata (use in /versions/{id} URLs)
+	VersionId NullableString `json:"version_id"`
+	// Build state of this version (queued, building, ready, error, ...)
+	State NullableString `json:"state"`
 }
 
 type _Certificate Certificate
@@ -58,7 +60,7 @@ type _Certificate Certificate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificate(id int64, name string, issuer NullableString, subjectName []string, validity NullableString, managed bool, status string, statusDetail string, csr NullableString, challenge string, authority string, keyAlgorithm string, productVersion string, lastEditor string, createdAt NullableTime, lastModified time.Time, renewedAt NullableTime) *Certificate {
+func NewCertificate(id int64, name string, issuer NullableString, subjectName []string, validity NullableString, managed bool, status string, statusDetail string, csr NullableString, challenge string, authority string, keyAlgorithm string, productVersion string, lastEditor string, createdAt NullableTime, lastModified time.Time, renewedAt NullableTime, versionId NullableString, state NullableString) *Certificate {
 	this := Certificate{}
 	this.Id = id
 	this.Name = name
@@ -77,6 +79,8 @@ func NewCertificate(id int64, name string, issuer NullableString, subjectName []
 	this.CreatedAt = createdAt
 	this.LastModified = lastModified
 	this.RenewedAt = renewedAt
+	this.VersionId = versionId
+	this.State = state
 	return &this
 }
 
@@ -654,6 +658,58 @@ func (o *Certificate) SetRenewedAt(v time.Time) {
 	o.RenewedAt.Set(&v)
 }
 
+// GetVersionId returns the VersionId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Certificate) GetVersionId() string {
+	if o == nil || o.VersionId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.VersionId.Get()
+}
+
+// GetVersionIdOk returns a tuple with the VersionId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Certificate) GetVersionIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VersionId.Get(), o.VersionId.IsSet()
+}
+
+// SetVersionId sets field value
+func (o *Certificate) SetVersionId(v string) {
+	o.VersionId.Set(&v)
+}
+
+// GetState returns the State field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Certificate) GetState() string {
+	if o == nil || o.State.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.State.Get()
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Certificate) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.State.Get(), o.State.IsSet()
+}
+
+// SetState sets field value
+func (o *Certificate) SetState(v string) {
+	o.State.Set(&v)
+}
+
 func (o Certificate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -693,60 +749,9 @@ func (o Certificate) ToMap() (map[string]interface{}, error) {
 	toSerialize["created_at"] = o.CreatedAt.Get()
 	toSerialize["last_modified"] = o.LastModified
 	toSerialize["renewed_at"] = o.RenewedAt.Get()
+	toSerialize["version_id"] = o.VersionId.Get()
+	toSerialize["state"] = o.State.Get()
 	return toSerialize, nil
-}
-
-func (o *Certificate) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"issuer",
-		"subject_name",
-		"validity",
-		"managed",
-		"status",
-		"status_detail",
-		"csr",
-		"challenge",
-		"authority",
-		"key_algorithm",
-		"product_version",
-		"last_editor",
-		"created_at",
-		"last_modified",
-		"renewed_at",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCertificate := _Certificate{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCertificate)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Certificate(varCertificate)
-
-	return err
 }
 
 type NullableCertificate struct {

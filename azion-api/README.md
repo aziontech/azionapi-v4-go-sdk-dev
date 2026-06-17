@@ -212,6 +212,22 @@ Class | Method | HTTP request | Description
 *BillingPaymentsAPI* | [**ListPaymentHistory**](docs/BillingPaymentsAPI.md#listpaymenthistory) | **Get** /payments/history | List of the payment history
 *BillingPaymentsAPI* | [**PartialUpdateCreditCard**](docs/BillingPaymentsAPI.md#partialupdatecreditcard) | **Patch** /payments/credit_cards/{id} | Partially update a credit card
 *BillingPaymentsAPI* | [**RetrieveCreditCard**](docs/BillingPaymentsAPI.md#retrievecreditcard) | **Get** /payments/credit_cards/{id} | Retrieve details from a credit card
+*CRLVersionsAPI* | [**ArchiveCrlVersion**](docs/CRLVersionsAPI.md#archivecrlversion) | **Post** /workspace/tls/crls/{resource_pk}/versions/{id}/archive | Archive a CRL version
+*CRLVersionsAPI* | [**CancelCrlVersionBuild**](docs/CRLVersionsAPI.md#cancelcrlversionbuild) | **Post** /workspace/tls/crls/{resource_pk}/versions/{id}/cancel | Cancel a CRL version build
+*CRLVersionsAPI* | [**CreateCrlVersion**](docs/CRLVersionsAPI.md#createcrlversion) | **Post** /workspace/tls/crls/{resource_pk}/versions | Create a new CRL version
+*CRLVersionsAPI* | [**DeleteCrlVersion**](docs/CRLVersionsAPI.md#deletecrlversion) | **Delete** /workspace/tls/crls/{resource_pk}/versions/{id} | Delete a CRL version
+*CRLVersionsAPI* | [**ListCrlVersions**](docs/CRLVersionsAPI.md#listcrlversions) | **Get** /workspace/tls/crls/{resource_pk}/versions | List CRL versions
+*CRLVersionsAPI* | [**PartialUpdateCrlVersion**](docs/CRLVersionsAPI.md#partialupdatecrlversion) | **Patch** /workspace/tls/crls/{resource_pk}/versions/{id} | Partially update a CRL version
+*CRLVersionsAPI* | [**RetrieveCrlVersion**](docs/CRLVersionsAPI.md#retrievecrlversion) | **Get** /workspace/tls/crls/{resource_pk}/versions/{id} | Retrieve a CRL version
+*CRLVersionsAPI* | [**UpdateCrlVersion**](docs/CRLVersionsAPI.md#updatecrlversion) | **Put** /workspace/tls/crls/{resource_pk}/versions/{id} | Update a CRL version
+*CertificateVersionsAPI* | [**ArchiveCertificateVersion**](docs/CertificateVersionsAPI.md#archivecertificateversion) | **Post** /workspace/tls/certificates/{resource_pk}/versions/{id}/archive | Archive a certificate version
+*CertificateVersionsAPI* | [**CancelCertificateVersionBuild**](docs/CertificateVersionsAPI.md#cancelcertificateversionbuild) | **Post** /workspace/tls/certificates/{resource_pk}/versions/{id}/cancel | Cancel a certificate version build
+*CertificateVersionsAPI* | [**CreateCertificateVersion**](docs/CertificateVersionsAPI.md#createcertificateversion) | **Post** /workspace/tls/certificates/{resource_pk}/versions | Create a new certificate version
+*CertificateVersionsAPI* | [**DeleteCertificateVersion**](docs/CertificateVersionsAPI.md#deletecertificateversion) | **Delete** /workspace/tls/certificates/{resource_pk}/versions/{id} | Delete a certificate version
+*CertificateVersionsAPI* | [**ListCertificateVersions**](docs/CertificateVersionsAPI.md#listcertificateversions) | **Get** /workspace/tls/certificates/{resource_pk}/versions | List certificate versions
+*CertificateVersionsAPI* | [**PartialUpdateCertificateVersion**](docs/CertificateVersionsAPI.md#partialupdatecertificateversion) | **Patch** /workspace/tls/certificates/{resource_pk}/versions/{id} | Partially update a certificate version
+*CertificateVersionsAPI* | [**RetrieveCertificateVersion**](docs/CertificateVersionsAPI.md#retrievecertificateversion) | **Get** /workspace/tls/certificates/{resource_pk}/versions/{id} | Retrieve a certificate version
+*CertificateVersionsAPI* | [**UpdateCertificateVersion**](docs/CertificateVersionsAPI.md#updatecertificateversion) | **Put** /workspace/tls/certificates/{resource_pk}/versions/{id} | Update a certificate version
 *ConnectorVersionsAPI* | [**ArchiveConnectorVersion**](docs/ConnectorVersionsAPI.md#archiveconnectorversion) | **Post** /workspace/connectors/{connector_id}/versions/{version_id}/archive | Archive a Connector version
 *ConnectorVersionsAPI* | [**BuildConnectorVersion**](docs/ConnectorVersionsAPI.md#buildconnectorversion) | **Post** /workspace/connectors/{connector_id}/versions/{version_id}/build | Build a Connector version
 *ConnectorVersionsAPI* | [**CancelConnectorVersionBuild**](docs/ConnectorVersionsAPI.md#cancelconnectorversionbuild) | **Post** /workspace/connectors/{connector_id}/versions/{version_id}/cancel | Cancel a Connector version build
@@ -608,6 +624,7 @@ Class | Method | HTTP request | Description
  - [BucketObject](docs/BucketObject.md)
  - [BuildContextField](docs/BuildContextField.md)
  - [BuildContextFieldRequest](docs/BuildContextFieldRequest.md)
+ - [CRLVersionCreate](docs/CRLVersionCreate.md)
  - [CacheModule](docs/CacheModule.md)
  - [CacheModuleRequest](docs/CacheModuleRequest.md)
  - [CacheSetting](docs/CacheSetting.md)
@@ -633,6 +650,7 @@ Class | Method | HTTP request | Description
  - [CertificateRevocationList](docs/CertificateRevocationList.md)
  - [CertificateRevocationListResponse](docs/CertificateRevocationListResponse.md)
  - [CertificateSigningRequest](docs/CertificateSigningRequest.md)
+ - [CertificateVersionCreate](docs/CertificateVersionCreate.md)
  - [ChatThread](docs/ChatThread.md)
  - [ChatThreadRequest](docs/ChatThreadRequest.md)
  - [Chunk](docs/Chunk.md)
@@ -1169,8 +1187,10 @@ Class | Method | HTTP request | Description
  - [UserInfoRequest](docs/UserInfoRequest.md)
  - [UserLoginMethodResponse](docs/UserLoginMethodResponse.md)
  - [UserRequest](docs/UserRequest.md)
+ - [VersionArchive](docs/VersionArchive.md)
  - [VersionArchiveRequest](docs/VersionArchiveRequest.md)
  - [VersionBuildRequest](docs/VersionBuildRequest.md)
+ - [VersionCancel](docs/VersionCancel.md)
  - [VersionCancelRequest](docs/VersionCancelRequest.md)
  - [VersionCreateRequest](docs/VersionCreateRequest.md)
  - [WAF](docs/WAF.md)

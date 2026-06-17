@@ -14,15 +14,13 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
-
-	"gopkg.in/validator.v2"
 )
 
 // Connector - struct for Connector
 type Connector struct {
-	ConnectorHTTP       *ConnectorHTTP
+	ConnectorHTTP *ConnectorHTTP
 	ConnectorLiveIngest *ConnectorLiveIngest
-	ConnectorStorage    *ConnectorStorage
+	ConnectorStorage *ConnectorStorage
 }
 
 // ConnectorHTTPAsConnector is a convenience function that returns ConnectorHTTP wrapped in Connector
@@ -45,6 +43,7 @@ func ConnectorStorageAsConnector(v *ConnectorStorage) Connector {
 		ConnectorStorage: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Connector) UnmarshalJSON(data []byte) error {
@@ -133,7 +132,7 @@ func (src Connector) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *Connector) GetActualInstance() interface{} {
+func (obj *Connector) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -154,7 +153,7 @@ func (obj *Connector) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj Connector) GetActualInstanceValue() interface{} {
+func (obj Connector) GetActualInstanceValue() (interface{}) {
 	if obj.ConnectorHTTP != nil {
 		return *obj.ConnectorHTTP
 	}
@@ -206,3 +205,5 @@ func (v *NullableConnector) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

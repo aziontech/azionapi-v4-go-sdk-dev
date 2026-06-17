@@ -94,6 +94,10 @@ type APIClient struct {
 
 	BillingPaymentsAPI *BillingPaymentsAPIService
 
+	CRLVersionsAPI *CRLVersionsAPIService
+
+	CertificateVersionsAPI *CertificateVersionsAPIService
+
 	ConnectorVersionsAPI *ConnectorVersionsAPIService
 
 	ConnectorsAPI *ConnectorsAPIService
@@ -261,6 +265,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AuthRevokeAPI = (*AuthRevokeAPIService)(&c.common)
 	c.BillingInvoicesAPI = (*BillingInvoicesAPIService)(&c.common)
 	c.BillingPaymentsAPI = (*BillingPaymentsAPIService)(&c.common)
+	c.CRLVersionsAPI = (*CRLVersionsAPIService)(&c.common)
+	c.CertificateVersionsAPI = (*CertificateVersionsAPIService)(&c.common)
 	c.ConnectorVersionsAPI = (*ConnectorVersionsAPIService)(&c.common)
 	c.ConnectorsAPI = (*ConnectorsAPIService)(&c.common)
 	c.CustomPageVersionsAPI = (*CustomPageVersionsAPIService)(&c.common)
