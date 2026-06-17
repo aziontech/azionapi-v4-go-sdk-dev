@@ -26,10 +26,10 @@ func Test_azionapi_ConnectorVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var connectorId int64
+		var versionId string
 
-		httpRes, err := apiClient.ConnectorVersionsAPI.ArchiveConnectorVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ConnectorVersionsAPI.ArchiveConnectorVersion(context.Background(), connectorId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -40,10 +40,10 @@ func Test_azionapi_ConnectorVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var connectorId int64
+		var versionId string
 
-		httpRes, err := apiClient.ConnectorVersionsAPI.BuildConnectorVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ConnectorVersionsAPI.BuildConnectorVersion(context.Background(), connectorId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -54,10 +54,10 @@ func Test_azionapi_ConnectorVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var connectorId int64
+		var versionId string
 
-		httpRes, err := apiClient.ConnectorVersionsAPI.CancelConnectorVersionBuild(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ConnectorVersionsAPI.CancelConnectorVersionBuild(context.Background(), connectorId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -68,9 +68,9 @@ func Test_azionapi_ConnectorVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePk int64
+		var connectorId int64
 
-		httpRes, err := apiClient.ConnectorVersionsAPI.CreateConnectorVersion(context.Background(), resourcePk).Execute()
+		httpRes, err := apiClient.ConnectorVersionsAPI.CreateConnectorVersion(context.Background(), connectorId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -81,10 +81,10 @@ func Test_azionapi_ConnectorVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var connectorId int64
+		var versionId string
 
-		httpRes, err := apiClient.ConnectorVersionsAPI.DeleteConnectorVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ConnectorVersionsAPI.DeleteConnectorVersion(context.Background(), connectorId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -95,9 +95,9 @@ func Test_azionapi_ConnectorVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePk int64
+		var connectorId int64
 
-		httpRes, err := apiClient.ConnectorVersionsAPI.ListConnectorVersions(context.Background(), resourcePk).Execute()
+		httpRes, err := apiClient.ConnectorVersionsAPI.ListConnectorVersions(context.Background(), connectorId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -108,10 +108,10 @@ func Test_azionapi_ConnectorVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var connectorId int64
+		var versionId string
 
-		httpRes, err := apiClient.ConnectorVersionsAPI.PartialUpdateConnectorVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ConnectorVersionsAPI.PartialUpdateConnectorVersion(context.Background(), connectorId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -122,10 +122,10 @@ func Test_azionapi_ConnectorVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var connectorId int64
+		var versionId string
 
-		httpRes, err := apiClient.ConnectorVersionsAPI.RetrieveConnectorVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ConnectorVersionsAPI.RetrieveConnectorVersion(context.Background(), connectorId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -136,10 +136,10 @@ func Test_azionapi_ConnectorVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var connectorId int64
+		var versionId string
 
-		httpRes, err := apiClient.ConnectorVersionsAPI.UpdateConnectorVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ConnectorVersionsAPI.UpdateConnectorVersion(context.Background(), connectorId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

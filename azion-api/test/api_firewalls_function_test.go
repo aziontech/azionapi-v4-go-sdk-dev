@@ -36,6 +36,21 @@ func Test_azionapi_FirewallsFunctionAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test FirewallsFunctionAPIService CreateFirewallFunction2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var firewallId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.FirewallsFunctionAPI.CreateFirewallFunction2(context.Background(), firewallId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test FirewallsFunctionAPIService DeleteFirewallFunction", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -51,6 +66,22 @@ func Test_azionapi_FirewallsFunctionAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test FirewallsFunctionAPIService DeleteFirewallFunction2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var firewallId int64
+		var functionId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.FirewallsFunctionAPI.DeleteFirewallFunction2(context.Background(), firewallId, functionId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test FirewallsFunctionAPIService ListFirewallFunction", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -58,6 +89,21 @@ func Test_azionapi_FirewallsFunctionAPIService(t *testing.T) {
 		var firewallId int64
 
 		resp, httpRes, err := apiClient.FirewallsFunctionAPI.ListFirewallFunction(context.Background(), firewallId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test FirewallsFunctionAPIService ListFirewallFunction2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var firewallId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.FirewallsFunctionAPI.ListFirewallFunction2(context.Background(), firewallId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -80,6 +126,22 @@ func Test_azionapi_FirewallsFunctionAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test FirewallsFunctionAPIService PartialUpdateFirewallFunction2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var firewallId int64
+		var functionId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.FirewallsFunctionAPI.PartialUpdateFirewallFunction2(context.Background(), firewallId, functionId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test FirewallsFunctionAPIService RetrieveFirewallFunction", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -95,6 +157,22 @@ func Test_azionapi_FirewallsFunctionAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test FirewallsFunctionAPIService RetrieveFirewallFunction2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var firewallId int64
+		var functionId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.FirewallsFunctionAPI.RetrieveFirewallFunction2(context.Background(), firewallId, functionId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test FirewallsFunctionAPIService UpdateFirewallFunction", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -103,6 +181,22 @@ func Test_azionapi_FirewallsFunctionAPIService(t *testing.T) {
 		var functionId int64
 
 		resp, httpRes, err := apiClient.FirewallsFunctionAPI.UpdateFirewallFunction(context.Background(), firewallId, functionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test FirewallsFunctionAPIService UpdateFirewallFunction2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var firewallId int64
+		var functionId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.FirewallsFunctionAPI.UpdateFirewallFunction2(context.Background(), firewallId, functionId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -13,8 +13,6 @@ package azionapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the WAFExceptionSpecificConditionOnValue type satisfies the MappedNullable interface at compile time
@@ -109,44 +107,6 @@ func (o WAFExceptionSpecificConditionOnValue) ToMap() (map[string]interface{}, e
 	toSerialize["match"] = o.Match
 	toSerialize["value"] = o.Value
 	return toSerialize, nil
-}
-
-func (o *WAFExceptionSpecificConditionOnValue) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"match",
-		"value",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWAFExceptionSpecificConditionOnValue := _WAFExceptionSpecificConditionOnValue{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWAFExceptionSpecificConditionOnValue)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WAFExceptionSpecificConditionOnValue(varWAFExceptionSpecificConditionOnValue)
-
-	return err
 }
 
 type NullableWAFExceptionSpecificConditionOnValue struct {

@@ -36,6 +36,21 @@ func Test_azionapi_WAFsExceptionsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test WAFsExceptionsAPIService CreateWafException2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var versionId string
+		var wafId int64
+
+		resp, httpRes, err := apiClient.WAFsExceptionsAPI.CreateWafException2(context.Background(), versionId, wafId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test WAFsExceptionsAPIService DeleteWafException", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -51,6 +66,22 @@ func Test_azionapi_WAFsExceptionsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test WAFsExceptionsAPIService DeleteWafException2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var exceptionId int64
+		var versionId string
+		var wafId int64
+
+		resp, httpRes, err := apiClient.WAFsExceptionsAPI.DeleteWafException2(context.Background(), exceptionId, versionId, wafId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test WAFsExceptionsAPIService ListWafExceptions", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -58,6 +89,21 @@ func Test_azionapi_WAFsExceptionsAPIService(t *testing.T) {
 		var wafId int64
 
 		resp, httpRes, err := apiClient.WAFsExceptionsAPI.ListWafExceptions(context.Background(), wafId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test WAFsExceptionsAPIService ListWafExceptions2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var versionId string
+		var wafId int64
+
+		resp, httpRes, err := apiClient.WAFsExceptionsAPI.ListWafExceptions2(context.Background(), versionId, wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -80,6 +126,22 @@ func Test_azionapi_WAFsExceptionsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test WAFsExceptionsAPIService PartialUpdateWafException2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var exceptionId int64
+		var versionId string
+		var wafId int64
+
+		resp, httpRes, err := apiClient.WAFsExceptionsAPI.PartialUpdateWafException2(context.Background(), exceptionId, versionId, wafId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test WAFsExceptionsAPIService RetrieveWafException", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -95,6 +157,22 @@ func Test_azionapi_WAFsExceptionsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test WAFsExceptionsAPIService RetrieveWafException2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var exceptionId int64
+		var versionId string
+		var wafId int64
+
+		resp, httpRes, err := apiClient.WAFsExceptionsAPI.RetrieveWafException2(context.Background(), exceptionId, versionId, wafId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test WAFsExceptionsAPIService UpdateWafException", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -103,6 +181,22 @@ func Test_azionapi_WAFsExceptionsAPIService(t *testing.T) {
 		var wafId int64
 
 		resp, httpRes, err := apiClient.WAFsExceptionsAPI.UpdateWafException(context.Background(), exceptionId, wafId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test WAFsExceptionsAPIService UpdateWafException2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var exceptionId int64
+		var versionId string
+		var wafId int64
+
+		resp, httpRes, err := apiClient.WAFsExceptionsAPI.UpdateWafException2(context.Background(), exceptionId, versionId, wafId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

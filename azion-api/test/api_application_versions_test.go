@@ -26,10 +26,10 @@ func Test_azionapi_ApplicationVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var applicationId int64
+		var versionId string
 
-		httpRes, err := apiClient.ApplicationVersionsAPI.ArchiveApplicationVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ApplicationVersionsAPI.ArchiveApplicationVersion(context.Background(), applicationId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -40,10 +40,10 @@ func Test_azionapi_ApplicationVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var applicationId int64
+		var versionId string
 
-		httpRes, err := apiClient.ApplicationVersionsAPI.BuildApplicationVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ApplicationVersionsAPI.BuildApplicationVersion(context.Background(), applicationId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -54,10 +54,10 @@ func Test_azionapi_ApplicationVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var applicationId int64
+		var versionId string
 
-		httpRes, err := apiClient.ApplicationVersionsAPI.CancelApplicationVersionBuild(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ApplicationVersionsAPI.CancelApplicationVersionBuild(context.Background(), applicationId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -68,9 +68,9 @@ func Test_azionapi_ApplicationVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePk int64
+		var applicationId int64
 
-		httpRes, err := apiClient.ApplicationVersionsAPI.CreateApplicationVersion(context.Background(), resourcePk).Execute()
+		httpRes, err := apiClient.ApplicationVersionsAPI.CreateApplicationVersion(context.Background(), applicationId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -81,10 +81,10 @@ func Test_azionapi_ApplicationVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var applicationId int64
+		var versionId string
 
-		httpRes, err := apiClient.ApplicationVersionsAPI.DeleteApplicationVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ApplicationVersionsAPI.DeleteApplicationVersion(context.Background(), applicationId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -95,9 +95,9 @@ func Test_azionapi_ApplicationVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePk int64
+		var applicationId int64
 
-		httpRes, err := apiClient.ApplicationVersionsAPI.ListApplicationVersions(context.Background(), resourcePk).Execute()
+		httpRes, err := apiClient.ApplicationVersionsAPI.ListApplicationVersions(context.Background(), applicationId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -108,10 +108,10 @@ func Test_azionapi_ApplicationVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var applicationId int64
+		var versionId string
 
-		httpRes, err := apiClient.ApplicationVersionsAPI.PartialUpdateApplicationVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ApplicationVersionsAPI.PartialUpdateApplicationVersion(context.Background(), applicationId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -122,10 +122,10 @@ func Test_azionapi_ApplicationVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var applicationId int64
+		var versionId string
 
-		httpRes, err := apiClient.ApplicationVersionsAPI.RetrieveApplicationVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ApplicationVersionsAPI.RetrieveApplicationVersion(context.Background(), applicationId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -136,10 +136,10 @@ func Test_azionapi_ApplicationVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id int64
-		var resourcePk int64
+		var applicationId int64
+		var versionId string
 
-		httpRes, err := apiClient.ApplicationVersionsAPI.UpdateApplicationVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.ApplicationVersionsAPI.UpdateApplicationVersion(context.Background(), applicationId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

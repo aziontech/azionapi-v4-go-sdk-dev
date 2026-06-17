@@ -13,8 +13,6 @@ package azionapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the ResponseListFavorite type satisfies the MappedNullable interface at compile time
@@ -163,46 +161,6 @@ func (o ResponseListFavorite) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["name"] = o.Name
 	return toSerialize, nil
-}
-
-func (o *ResponseListFavorite) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"uri",
-		"type",
-		"name",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varResponseListFavorite := _ResponseListFavorite{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varResponseListFavorite)
-
-	if err != nil {
-		return err
-	}
-
-	*o = ResponseListFavorite(varResponseListFavorite)
-
-	return err
 }
 
 type NullableResponseListFavorite struct {

@@ -36,6 +36,21 @@ func Test_azionapi_ApplicationsDeviceGroupsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsDeviceGroupsAPIService CreateDeviceGroup2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.CreateDeviceGroup2(context.Background(), applicationId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsDeviceGroupsAPIService DeleteDeviceGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -51,6 +66,22 @@ func Test_azionapi_ApplicationsDeviceGroupsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsDeviceGroupsAPIService DeleteDeviceGroup2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var deviceGroupId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.DeleteDeviceGroup2(context.Background(), applicationId, deviceGroupId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsDeviceGroupsAPIService ListDeviceGroups", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -58,6 +89,21 @@ func Test_azionapi_ApplicationsDeviceGroupsAPIService(t *testing.T) {
 		var applicationId int64
 
 		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.ListDeviceGroups(context.Background(), applicationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ApplicationsDeviceGroupsAPIService ListDeviceGroups2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.ListDeviceGroups2(context.Background(), applicationId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -80,6 +126,22 @@ func Test_azionapi_ApplicationsDeviceGroupsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsDeviceGroupsAPIService PartialUpdateDeviceGroup2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var deviceGroupId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.PartialUpdateDeviceGroup2(context.Background(), applicationId, deviceGroupId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsDeviceGroupsAPIService RetrieveDeviceGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -95,6 +157,22 @@ func Test_azionapi_ApplicationsDeviceGroupsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsDeviceGroupsAPIService RetrieveDeviceGroup2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var deviceGroupId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.RetrieveDeviceGroup2(context.Background(), applicationId, deviceGroupId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsDeviceGroupsAPIService UpdateDeviceGroup", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -103,6 +181,22 @@ func Test_azionapi_ApplicationsDeviceGroupsAPIService(t *testing.T) {
 		var deviceGroupId int64
 
 		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.UpdateDeviceGroup(context.Background(), applicationId, deviceGroupId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ApplicationsDeviceGroupsAPIService UpdateDeviceGroup2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var deviceGroupId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsDeviceGroupsAPI.UpdateDeviceGroup2(context.Background(), applicationId, deviceGroupId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

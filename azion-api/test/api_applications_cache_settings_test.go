@@ -36,6 +36,21 @@ func Test_azionapi_ApplicationsCacheSettingsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsCacheSettingsAPIService CreateCacheSetting2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.CreateCacheSetting2(context.Background(), applicationId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsCacheSettingsAPIService DeleteCacheSetting", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -51,6 +66,22 @@ func Test_azionapi_ApplicationsCacheSettingsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsCacheSettingsAPIService DeleteCacheSetting2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var cacheSettingId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.DeleteCacheSetting2(context.Background(), applicationId, cacheSettingId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsCacheSettingsAPIService ListCacheSettings", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -58,6 +89,21 @@ func Test_azionapi_ApplicationsCacheSettingsAPIService(t *testing.T) {
 		var applicationId int64
 
 		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.ListCacheSettings(context.Background(), applicationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ApplicationsCacheSettingsAPIService ListCacheSettings2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.ListCacheSettings2(context.Background(), applicationId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -80,6 +126,22 @@ func Test_azionapi_ApplicationsCacheSettingsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsCacheSettingsAPIService PartialUpdateCacheSetting2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var cacheSettingId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.PartialUpdateCacheSetting2(context.Background(), applicationId, cacheSettingId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsCacheSettingsAPIService RetrieveCacheSetting", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -95,6 +157,22 @@ func Test_azionapi_ApplicationsCacheSettingsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsCacheSettingsAPIService RetrieveCacheSetting2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var cacheSettingId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.RetrieveCacheSetting2(context.Background(), applicationId, cacheSettingId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsCacheSettingsAPIService UpdateCacheSetting", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -103,6 +181,22 @@ func Test_azionapi_ApplicationsCacheSettingsAPIService(t *testing.T) {
 		var cacheSettingId int64
 
 		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.UpdateCacheSetting(context.Background(), applicationId, cacheSettingId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ApplicationsCacheSettingsAPIService UpdateCacheSetting2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var cacheSettingId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsCacheSettingsAPI.UpdateCacheSetting2(context.Background(), applicationId, cacheSettingId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -26,10 +26,24 @@ func Test_azionapi_FunctionVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var functionId int64
+		var versionId string
 
-		httpRes, err := apiClient.FunctionVersionsAPI.ArchiveFunctionVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FunctionVersionsAPI.ArchiveFunctionVersion(context.Background(), functionId, versionId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test FunctionVersionsAPIService BuildFunctionVersion", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var functionId int64
+		var versionId string
+
+		httpRes, err := apiClient.FunctionVersionsAPI.BuildFunctionVersion(context.Background(), functionId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -40,10 +54,10 @@ func Test_azionapi_FunctionVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var functionId int64
+		var versionId string
 
-		httpRes, err := apiClient.FunctionVersionsAPI.CancelFunctionVersionBuild(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FunctionVersionsAPI.CancelFunctionVersionBuild(context.Background(), functionId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -54,9 +68,9 @@ func Test_azionapi_FunctionVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePk int64
+		var functionId int64
 
-		httpRes, err := apiClient.FunctionVersionsAPI.CreateFunctionVersion(context.Background(), resourcePk).Execute()
+		httpRes, err := apiClient.FunctionVersionsAPI.CreateFunctionVersion(context.Background(), functionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -67,10 +81,10 @@ func Test_azionapi_FunctionVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var functionId int64
+		var versionId string
 
-		httpRes, err := apiClient.FunctionVersionsAPI.DeleteFunctionVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FunctionVersionsAPI.DeleteFunctionVersion(context.Background(), functionId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -81,9 +95,9 @@ func Test_azionapi_FunctionVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePk int64
+		var functionId int64
 
-		httpRes, err := apiClient.FunctionVersionsAPI.ListFunctionVersions(context.Background(), resourcePk).Execute()
+		httpRes, err := apiClient.FunctionVersionsAPI.ListFunctionVersions(context.Background(), functionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -94,10 +108,10 @@ func Test_azionapi_FunctionVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var functionId int64
+		var versionId string
 
-		httpRes, err := apiClient.FunctionVersionsAPI.PartialUpdateFunctionVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FunctionVersionsAPI.PartialUpdateFunctionVersion(context.Background(), functionId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -108,10 +122,10 @@ func Test_azionapi_FunctionVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var functionId int64
+		var versionId string
 
-		httpRes, err := apiClient.FunctionVersionsAPI.RetrieveFunctionVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FunctionVersionsAPI.RetrieveFunctionVersion(context.Background(), functionId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -122,10 +136,10 @@ func Test_azionapi_FunctionVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var functionId int64
+		var versionId string
 
-		httpRes, err := apiClient.FunctionVersionsAPI.UpdateFunctionVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FunctionVersionsAPI.UpdateFunctionVersion(context.Background(), functionId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

@@ -36,6 +36,21 @@ func Test_azionapi_ApplicationsFunctionAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsFunctionAPIService CreateApplicationFunctionInstance2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.CreateApplicationFunctionInstance2(context.Background(), applicationId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsFunctionAPIService DeleteApplicationFunctionInstance", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -51,6 +66,22 @@ func Test_azionapi_ApplicationsFunctionAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsFunctionAPIService DeleteApplicationFunctionInstance2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var functionId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.DeleteApplicationFunctionInstance2(context.Background(), applicationId, functionId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsFunctionAPIService ListApplicationFunctionInstances", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -58,6 +89,21 @@ func Test_azionapi_ApplicationsFunctionAPIService(t *testing.T) {
 		var applicationId int64
 
 		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.ListApplicationFunctionInstances(context.Background(), applicationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ApplicationsFunctionAPIService ListApplicationFunctionInstances2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.ListApplicationFunctionInstances2(context.Background(), applicationId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -80,6 +126,22 @@ func Test_azionapi_ApplicationsFunctionAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsFunctionAPIService PartialUpdateApplicationFunctionInstance2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var functionId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.PartialUpdateApplicationFunctionInstance2(context.Background(), applicationId, functionId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsFunctionAPIService RetrieveApplicationFunctionInstance", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -95,6 +157,22 @@ func Test_azionapi_ApplicationsFunctionAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsFunctionAPIService RetrieveApplicationFunctionInstance2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var functionId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.RetrieveApplicationFunctionInstance2(context.Background(), applicationId, functionId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsFunctionAPIService UpdateApplicationFunctionInstance", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -103,6 +181,22 @@ func Test_azionapi_ApplicationsFunctionAPIService(t *testing.T) {
 		var functionId int64
 
 		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.UpdateApplicationFunctionInstance(context.Background(), applicationId, functionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ApplicationsFunctionAPIService UpdateApplicationFunctionInstance2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var functionId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsFunctionAPI.UpdateApplicationFunctionInstance2(context.Background(), applicationId, functionId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

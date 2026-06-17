@@ -26,10 +26,10 @@ func Test_azionapi_CustomPageVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var customPageId int64
+		var versionId string
 
-		httpRes, err := apiClient.CustomPageVersionsAPI.ArchiveCustomPageVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.CustomPageVersionsAPI.ArchiveCustomPageVersion(context.Background(), customPageId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -40,10 +40,10 @@ func Test_azionapi_CustomPageVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var customPageId int64
+		var versionId string
 
-		httpRes, err := apiClient.CustomPageVersionsAPI.BuildCustomPageVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.CustomPageVersionsAPI.BuildCustomPageVersion(context.Background(), customPageId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -54,10 +54,10 @@ func Test_azionapi_CustomPageVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var customPageId int64
+		var versionId string
 
-		httpRes, err := apiClient.CustomPageVersionsAPI.CancelCustomPageVersionBuild(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.CustomPageVersionsAPI.CancelCustomPageVersionBuild(context.Background(), customPageId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -68,9 +68,9 @@ func Test_azionapi_CustomPageVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePk int64
+		var customPageId int64
 
-		httpRes, err := apiClient.CustomPageVersionsAPI.CreateCustomPageVersion(context.Background(), resourcePk).Execute()
+		httpRes, err := apiClient.CustomPageVersionsAPI.CreateCustomPageVersion(context.Background(), customPageId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -81,10 +81,10 @@ func Test_azionapi_CustomPageVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var customPageId int64
+		var versionId string
 
-		httpRes, err := apiClient.CustomPageVersionsAPI.DeleteCustomPageVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.CustomPageVersionsAPI.DeleteCustomPageVersion(context.Background(), customPageId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -95,9 +95,9 @@ func Test_azionapi_CustomPageVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePk int64
+		var customPageId int64
 
-		httpRes, err := apiClient.CustomPageVersionsAPI.ListCustomPageVersions(context.Background(), resourcePk).Execute()
+		httpRes, err := apiClient.CustomPageVersionsAPI.ListCustomPageVersions(context.Background(), customPageId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -108,10 +108,10 @@ func Test_azionapi_CustomPageVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var customPageId int64
+		var versionId string
 
-		httpRes, err := apiClient.CustomPageVersionsAPI.PartialUpdateCustomPageVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.CustomPageVersionsAPI.PartialUpdateCustomPageVersion(context.Background(), customPageId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -122,10 +122,10 @@ func Test_azionapi_CustomPageVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var customPageId int64
+		var versionId string
 
-		httpRes, err := apiClient.CustomPageVersionsAPI.RetrieveCustomPageVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.CustomPageVersionsAPI.RetrieveCustomPageVersion(context.Background(), customPageId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -136,10 +136,10 @@ func Test_azionapi_CustomPageVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var customPageId int64
+		var versionId string
 
-		httpRes, err := apiClient.CustomPageVersionsAPI.UpdateCustomPageVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.CustomPageVersionsAPI.UpdateCustomPageVersion(context.Background(), customPageId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

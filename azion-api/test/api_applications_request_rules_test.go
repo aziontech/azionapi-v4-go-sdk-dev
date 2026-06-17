@@ -36,6 +36,21 @@ func Test_azionapi_ApplicationsRequestRulesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsRequestRulesAPIService CreateApplicationRequestRule2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsRequestRulesAPI.CreateApplicationRequestRule2(context.Background(), applicationId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsRequestRulesAPIService DeleteApplicationRequestRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -51,6 +66,22 @@ func Test_azionapi_ApplicationsRequestRulesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsRequestRulesAPIService DeleteApplicationRequestRule2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var requestRuleId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsRequestRulesAPI.DeleteApplicationRequestRule2(context.Background(), applicationId, requestRuleId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsRequestRulesAPIService ListApplicationRequestRules", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -58,6 +89,21 @@ func Test_azionapi_ApplicationsRequestRulesAPIService(t *testing.T) {
 		var applicationId int64
 
 		resp, httpRes, err := apiClient.ApplicationsRequestRulesAPI.ListApplicationRequestRules(context.Background(), applicationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ApplicationsRequestRulesAPIService ListApplicationRequestRules2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsRequestRulesAPI.ListApplicationRequestRules2(context.Background(), applicationId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -80,6 +126,22 @@ func Test_azionapi_ApplicationsRequestRulesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsRequestRulesAPIService PartialUpdateApplicationRequestRule2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var requestRuleId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsRequestRulesAPI.PartialUpdateApplicationRequestRule2(context.Background(), applicationId, requestRuleId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsRequestRulesAPIService RetrieveApplicationRequestRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -88,6 +150,22 @@ func Test_azionapi_ApplicationsRequestRulesAPIService(t *testing.T) {
 		var requestRuleId int64
 
 		resp, httpRes, err := apiClient.ApplicationsRequestRulesAPI.RetrieveApplicationRequestRule(context.Background(), applicationId, requestRuleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ApplicationsRequestRulesAPIService RetrieveApplicationRequestRule2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var requestRuleId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsRequestRulesAPI.RetrieveApplicationRequestRule2(context.Background(), applicationId, requestRuleId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -110,6 +188,22 @@ func Test_azionapi_ApplicationsRequestRulesAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ApplicationsRequestRulesAPIService UpdateApplicationRequestRule2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var requestRuleId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsRequestRulesAPI.UpdateApplicationRequestRule2(context.Background(), applicationId, requestRuleId, versionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ApplicationsRequestRulesAPIService UpdateApplicationRequestRulesOrder", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -117,6 +211,21 @@ func Test_azionapi_ApplicationsRequestRulesAPIService(t *testing.T) {
 		var applicationId int64
 
 		resp, httpRes, err := apiClient.ApplicationsRequestRulesAPI.UpdateApplicationRequestRulesOrder(context.Background(), applicationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ApplicationsRequestRulesAPIService UpdateApplicationRequestRulesOrder2", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId int64
+		var versionId string
+
+		resp, httpRes, err := apiClient.ApplicationsRequestRulesAPI.UpdateApplicationRequestRulesOrder2(context.Background(), applicationId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

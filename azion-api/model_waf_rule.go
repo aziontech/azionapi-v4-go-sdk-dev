@@ -14,8 +14,6 @@ package azionapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
-	"fmt"
 )
 
 // checks if the WAFRule type satisfies the MappedNullable interface at compile time
@@ -346,47 +344,6 @@ func (o WAFRule) ToMap() (map[string]interface{}, error) {
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
 	return toSerialize, nil
-}
-
-func (o *WAFRule) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"conditions",
-		"last_editor",
-		"last_modified",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWAFRule := _WAFRule{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWAFRule)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WAFRule(varWAFRule)
-
-	return err
 }
 
 type NullableWAFRule struct {

@@ -14,8 +14,6 @@ package azionapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
-	"fmt"
 )
 
 // checks if the CertificateRevocationList type satisfies the MappedNullable interface at compile time
@@ -368,52 +366,6 @@ func (o CertificateRevocationList) ToMap() (map[string]interface{}, error) {
 	toSerialize["next_update"] = o.NextUpdate
 	toSerialize["crl"] = o.Crl
 	return toSerialize, nil
-}
-
-func (o *CertificateRevocationList) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"last_editor",
-		"created_at",
-		"last_modified",
-		"product_version",
-		"issuer",
-		"last_update",
-		"next_update",
-		"crl",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varCertificateRevocationList := _CertificateRevocationList{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCertificateRevocationList)
-
-	if err != nil {
-		return err
-	}
-
-	*o = CertificateRevocationList(varCertificateRevocationList)
-
-	return err
 }
 
 type NullableCertificateRevocationList struct {

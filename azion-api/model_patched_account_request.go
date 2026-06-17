@@ -14,7 +14,6 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // PatchedAccountRequest - struct for PatchedAccountRequest

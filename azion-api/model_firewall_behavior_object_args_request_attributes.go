@@ -14,7 +14,6 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // FirewallBehaviorObjectArgsRequestAttributes - Attributes object whose shape depends on the behavior type. Use SetCustomResponseAttributes for set_custom_response, SetRateLimitAttributes for set_rate_limit, SetWafAttributes for set_waf.

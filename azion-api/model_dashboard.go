@@ -14,8 +14,6 @@ package azionapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
-	"fmt"
 )
 
 // checks if the Dashboard type satisfies the MappedNullable interface at compile time
@@ -191,47 +189,6 @@ func (o Dashboard) ToMap() (map[string]interface{}, error) {
 	toSerialize["folder_id"] = o.FolderId
 	toSerialize["created_at"] = o.CreatedAt
 	return toSerialize, nil
-}
-
-func (o *Dashboard) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"scope",
-		"folder_id",
-		"created_at",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varDashboard := _Dashboard{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDashboard)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Dashboard(varDashboard)
-
-	return err
 }
 
 type NullableDashboard struct {

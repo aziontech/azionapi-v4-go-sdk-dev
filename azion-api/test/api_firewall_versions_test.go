@@ -26,10 +26,10 @@ func Test_azionapi_FirewallVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var firewallId int64
+		var versionId string
 
-		httpRes, err := apiClient.FirewallVersionsAPI.ArchiveFirewallVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FirewallVersionsAPI.ArchiveFirewallVersion(context.Background(), firewallId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -40,10 +40,10 @@ func Test_azionapi_FirewallVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var firewallId int64
+		var versionId string
 
-		httpRes, err := apiClient.FirewallVersionsAPI.BuildFirewallVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FirewallVersionsAPI.BuildFirewallVersion(context.Background(), firewallId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -54,10 +54,10 @@ func Test_azionapi_FirewallVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var firewallId int64
+		var versionId string
 
-		httpRes, err := apiClient.FirewallVersionsAPI.CancelFirewallVersionBuild(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FirewallVersionsAPI.CancelFirewallVersionBuild(context.Background(), firewallId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -68,9 +68,9 @@ func Test_azionapi_FirewallVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePk int64
+		var firewallId int64
 
-		httpRes, err := apiClient.FirewallVersionsAPI.CreateFirewallVersion(context.Background(), resourcePk).Execute()
+		httpRes, err := apiClient.FirewallVersionsAPI.CreateFirewallVersion(context.Background(), firewallId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -81,10 +81,10 @@ func Test_azionapi_FirewallVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var firewallId int64
+		var versionId string
 
-		httpRes, err := apiClient.FirewallVersionsAPI.DeleteFirewallVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FirewallVersionsAPI.DeleteFirewallVersion(context.Background(), firewallId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -95,9 +95,9 @@ func Test_azionapi_FirewallVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePk int64
+		var firewallId int64
 
-		httpRes, err := apiClient.FirewallVersionsAPI.ListFirewallVersions(context.Background(), resourcePk).Execute()
+		httpRes, err := apiClient.FirewallVersionsAPI.ListFirewallVersions(context.Background(), firewallId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -108,10 +108,10 @@ func Test_azionapi_FirewallVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var firewallId int64
+		var versionId string
 
-		httpRes, err := apiClient.FirewallVersionsAPI.PartialUpdateFirewallVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FirewallVersionsAPI.PartialUpdateFirewallVersion(context.Background(), firewallId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -122,10 +122,10 @@ func Test_azionapi_FirewallVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var firewallId int64
+		var versionId string
 
-		httpRes, err := apiClient.FirewallVersionsAPI.RetrieveFirewallVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FirewallVersionsAPI.RetrieveFirewallVersion(context.Background(), firewallId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -136,10 +136,10 @@ func Test_azionapi_FirewallVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var firewallId int64
+		var versionId string
 
-		httpRes, err := apiClient.FirewallVersionsAPI.UpdateFirewallVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.FirewallVersionsAPI.UpdateFirewallVersion(context.Background(), firewallId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

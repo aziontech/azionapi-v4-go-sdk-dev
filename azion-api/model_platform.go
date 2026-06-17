@@ -13,8 +13,6 @@ package azionapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the Platform type satisfies the MappedNullable interface at compile time
@@ -162,46 +160,6 @@ func (o Platform) ToMap() (map[string]interface{}, error) {
 	toSerialize["installation_url"] = o.InstallationUrl
 	toSerialize["callback_url"] = o.CallbackUrl
 	return toSerialize, nil
-}
-
-func (o *Platform) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"installation_url",
-		"callback_url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varPlatform := _Platform{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPlatform)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Platform(varPlatform)
-
-	return err
 }
 
 type NullablePlatform struct {

@@ -26,10 +26,10 @@ func Test_azionapi_NetworkListVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var networkListId int64
+		var versionId string
 
-		httpRes, err := apiClient.NetworkListVersionsAPI.ArchiveNetworkListVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.NetworkListVersionsAPI.ArchiveNetworkListVersion(context.Background(), networkListId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -40,10 +40,10 @@ func Test_azionapi_NetworkListVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var networkListId int64
+		var versionId string
 
-		httpRes, err := apiClient.NetworkListVersionsAPI.BuildNetworkListVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.NetworkListVersionsAPI.BuildNetworkListVersion(context.Background(), networkListId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -54,10 +54,10 @@ func Test_azionapi_NetworkListVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var networkListId int64
+		var versionId string
 
-		httpRes, err := apiClient.NetworkListVersionsAPI.CancelNetworkListVersionBuild(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.NetworkListVersionsAPI.CancelNetworkListVersionBuild(context.Background(), networkListId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -68,9 +68,9 @@ func Test_azionapi_NetworkListVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePk int64
+		var networkListId int64
 
-		httpRes, err := apiClient.NetworkListVersionsAPI.CreateNetworkListVersion(context.Background(), resourcePk).Execute()
+		httpRes, err := apiClient.NetworkListVersionsAPI.CreateNetworkListVersion(context.Background(), networkListId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -81,10 +81,10 @@ func Test_azionapi_NetworkListVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var networkListId int64
+		var versionId string
 
-		httpRes, err := apiClient.NetworkListVersionsAPI.DeleteNetworkListVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.NetworkListVersionsAPI.DeleteNetworkListVersion(context.Background(), networkListId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -95,9 +95,9 @@ func Test_azionapi_NetworkListVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var resourcePk int64
+		var networkListId int64
 
-		httpRes, err := apiClient.NetworkListVersionsAPI.ListNetworkListVersions(context.Background(), resourcePk).Execute()
+		httpRes, err := apiClient.NetworkListVersionsAPI.ListNetworkListVersions(context.Background(), networkListId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -108,10 +108,10 @@ func Test_azionapi_NetworkListVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var networkListId int64
+		var versionId string
 
-		httpRes, err := apiClient.NetworkListVersionsAPI.PartialUpdateNetworkListVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.NetworkListVersionsAPI.PartialUpdateNetworkListVersion(context.Background(), networkListId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -122,10 +122,10 @@ func Test_azionapi_NetworkListVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var networkListId int64
+		var versionId string
 
-		httpRes, err := apiClient.NetworkListVersionsAPI.RetrieveNetworkListVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.NetworkListVersionsAPI.RetrieveNetworkListVersion(context.Background(), networkListId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -136,10 +136,10 @@ func Test_azionapi_NetworkListVersionsAPIService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var id string
-		var resourcePk int64
+		var networkListId int64
+		var versionId string
 
-		httpRes, err := apiClient.NetworkListVersionsAPI.UpdateNetworkListVersion(context.Background(), id, resourcePk).Execute()
+		httpRes, err := apiClient.NetworkListVersionsAPI.UpdateNetworkListVersion(context.Background(), networkListId, versionId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

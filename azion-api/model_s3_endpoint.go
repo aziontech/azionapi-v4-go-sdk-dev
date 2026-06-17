@@ -13,8 +13,6 @@ package azionapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the S3Endpoint type satisfies the MappedNullable interface at compile time
@@ -291,49 +289,6 @@ func (o S3Endpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize["host_url"] = o.HostUrl
 	toSerialize["type"] = o.Type
 	return toSerialize, nil
-}
-
-func (o *S3Endpoint) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"access_key",
-		"secret_key",
-		"region",
-		"bucket_name",
-		"content_type",
-		"host_url",
-		"type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varS3Endpoint := _S3Endpoint{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varS3Endpoint)
-
-	if err != nil {
-		return err
-	}
-
-	*o = S3Endpoint(varS3Endpoint)
-
-	return err
 }
 
 type NullableS3Endpoint struct {

@@ -13,8 +13,6 @@ package azionapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the DelegationSigner type satisfies the MappedNullable interface at compile time
@@ -162,46 +160,6 @@ func (o DelegationSigner) ToMap() (map[string]interface{}, error) {
 	toSerialize["digest_type"] = o.DigestType
 	toSerialize["key_tag"] = o.KeyTag
 	return toSerialize, nil
-}
-
-func (o *DelegationSigner) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"algorithm_type",
-		"digest",
-		"digest_type",
-		"key_tag",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varDelegationSigner := _DelegationSigner{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDelegationSigner)
-
-	if err != nil {
-		return err
-	}
-
-	*o = DelegationSigner(varDelegationSigner)
-
-	return err
 }
 
 type NullableDelegationSigner struct {
