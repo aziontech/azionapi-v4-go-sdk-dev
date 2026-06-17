@@ -25,8 +25,10 @@ api_auth_refresh_access_token.go
 api_auth_revoke.go
 api_billing_invoices.go
 api_billing_payments.go
+api_certificate_versions.go
 api_connector_versions.go
 api_connectors.go
+api_crl_versions.go
 api_custom_page_versions.go
 api_custom_pages.go
 api_data_stream_data_sources.go
@@ -170,6 +172,8 @@ docs/BucketCreateResponse.md
 docs/BucketObject.md
 docs/BuildContextField.md
 docs/BuildContextFieldRequest.md
+docs/CRLVersionCreate.md
+docs/CRLVersionsAPI.md
 docs/CacheModule.md
 docs/CacheModuleRequest.md
 docs/CacheSetting.md
@@ -195,6 +199,8 @@ docs/CertificateResponse.md
 docs/CertificateRevocationList.md
 docs/CertificateRevocationListResponse.md
 docs/CertificateSigningRequest.md
+docs/CertificateVersionCreate.md
+docs/CertificateVersionsAPI.md
 docs/ChatThread.md
 docs/ChatThreadRequest.md
 docs/Chunk.md
@@ -790,8 +796,10 @@ docs/VCSContinuousDeploymentsAPI.md
 docs/VCSExecutionScriptsAPI.md
 docs/VCSIntegrationsAPI.md
 docs/VCSProvidersAPI.md
+docs/VersionArchive.md
 docs/VersionArchiveRequest.md
 docs/VersionBuildRequest.md
+docs/VersionCancel.md
 docs/VersionCancelRequest.md
 docs/VersionCreateRequest.md
 docs/WAF.md
@@ -913,6 +921,7 @@ model_certificate_response.go
 model_certificate_revocation_list.go
 model_certificate_revocation_list_response.go
 model_certificate_signing_request.go
+model_certificate_version_create.go
 model_chat_thread.go
 model_chat_thread_request.go
 model_chunk.go
@@ -951,6 +960,7 @@ model_credential_response.go
 model_credit.go
 model_credit_request.go
 model_credit_response.go
+model_crl_version_create.go
 model_custom_page.go
 model_custom_page_request.go
 model_custom_page_response.go
@@ -1449,8 +1459,10 @@ model_user_info.go
 model_user_info_request.go
 model_user_login_method_response.go
 model_user_request.go
+model_version_archive.go
 model_version_archive_request.go
 model_version_build_request.go
+model_version_cancel.go
 model_version_cancel_request.go
 model_version_create_request.go
 model_waf.go
@@ -1505,8 +1517,10 @@ test/api_auth_refresh_access_token_test.go
 test/api_auth_revoke_test.go
 test/api_billing_invoices_test.go
 test/api_billing_payments_test.go
+test/api_certificate_versions_test.go
 test/api_connector_versions_test.go
 test/api_connectors_test.go
+test/api_crl_versions_test.go
 test/api_custom_page_versions_test.go
 test/api_custom_pages_test.go
 test/api_data_stream_data_sources_test.go

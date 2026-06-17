@@ -14,15 +14,14 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
-
 	"gopkg.in/validator.v2"
 )
 
 // Transform - struct for Transform
 type Transform struct {
 	TransformTransformFilterWorkloadsAttributes *TransformTransformFilterWorkloadsAttributes
-	TransformTransformRenderTemplateAttributes  *TransformTransformRenderTemplateAttributes
-	TransformTransformSamplingAttributes        *TransformTransformSamplingAttributes
+	TransformTransformRenderTemplateAttributes *TransformTransformRenderTemplateAttributes
+	TransformTransformSamplingAttributes *TransformTransformSamplingAttributes
 }
 
 // TransformTransformFilterWorkloadsAttributesAsTransform is a convenience function that returns TransformTransformFilterWorkloadsAttributes wrapped in Transform
@@ -45,6 +44,7 @@ func TransformTransformSamplingAttributesAsTransform(v *TransformTransformSampli
 		TransformTransformSamplingAttributes: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Transform) UnmarshalJSON(data []byte) error {
@@ -133,7 +133,7 @@ func (src Transform) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *Transform) GetActualInstance() interface{} {
+func (obj *Transform) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -154,7 +154,7 @@ func (obj *Transform) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj Transform) GetActualInstanceValue() interface{} {
+func (obj Transform) GetActualInstanceValue() (interface{}) {
 	if obj.TransformTransformFilterWorkloadsAttributes != nil {
 		return *obj.TransformTransformFilterWorkloadsAttributes
 	}
@@ -206,3 +206,5 @@ func (v *NullableTransform) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
