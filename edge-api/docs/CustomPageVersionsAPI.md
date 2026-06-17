@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateCustomPageVersion
 
-> PartialUpdateCustomPageVersion(ctx, customPageId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+> PartialUpdateCustomPageVersion(ctx, customPageId, versionId).PatchedCustomPageRequest(patchedCustomPageRequest).Execute()
 
 Partially update a Custom Page version
 
@@ -469,11 +469,11 @@ import (
 func main() {
 	customPageId := int64(789) // int64 | The ID of the Custom Page resource.
 	versionId := "versionId_example" // string | The identifier of the version.
-	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
+	patchedCustomPageRequest := *openapiclient.NewPatchedCustomPageRequest() // PatchedCustomPageRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CustomPageVersionsAPI.PartialUpdateCustomPageVersion(context.Background(), customPageId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+	r, err := apiClient.CustomPageVersionsAPI.PartialUpdateCustomPageVersion(context.Background(), customPageId, versionId).PatchedCustomPageRequest(patchedCustomPageRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPageVersionsAPI.PartialUpdateCustomPageVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -499,7 +499,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedVersionCreateRequest** | [**PatchedVersionCreateRequest**](PatchedVersionCreateRequest.md) |  | 
+ **patchedCustomPageRequest** | [**PatchedCustomPageRequest**](PatchedCustomPageRequest.md) |  | 
 
 ### Return type
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomPageVersion
 
-> UpdateCustomPageVersion(ctx, customPageId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
+> UpdateCustomPageVersion(ctx, customPageId, versionId).CustomPageRequest(customPageRequest).Execute()
 
 Update a Custom Page version
 
@@ -615,11 +615,11 @@ import (
 func main() {
 	customPageId := int64(789) // int64 | The ID of the Custom Page resource.
 	versionId := "versionId_example" // string | The identifier of the version.
-	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
+	customPageRequest := *openapiclient.NewCustomPageRequest("Name_example", []openapiclient.PageRequest{*openapiclient.NewPageRequest("Code_example", *openapiclient.NewPageConnectorRequest(*openapiclient.NewPageConnectorAttributesRequest(int64(123))))}) // CustomPageRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CustomPageVersionsAPI.UpdateCustomPageVersion(context.Background(), customPageId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.CustomPageVersionsAPI.UpdateCustomPageVersion(context.Background(), customPageId, versionId).CustomPageRequest(customPageRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomPageVersionsAPI.UpdateCustomPageVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -645,7 +645,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
+ **customPageRequest** | [**CustomPageRequest**](CustomPageRequest.md) |  | 
 
 ### Return type
 

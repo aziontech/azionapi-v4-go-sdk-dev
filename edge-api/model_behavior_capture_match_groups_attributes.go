@@ -12,8 +12,6 @@ package edgeapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the BehaviorCaptureMatchGroupsAttributes type satisfies the MappedNullable interface at compile time
@@ -134,45 +132,6 @@ func (o BehaviorCaptureMatchGroupsAttributes) ToMap() (map[string]interface{}, e
 	toSerialize["regex"] = o.Regex
 	toSerialize["captured_array"] = o.CapturedArray
 	return toSerialize, nil
-}
-
-func (o *BehaviorCaptureMatchGroupsAttributes) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"subject",
-		"regex",
-		"captured_array",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varBehaviorCaptureMatchGroupsAttributes := _BehaviorCaptureMatchGroupsAttributes{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBehaviorCaptureMatchGroupsAttributes)
-
-	if err != nil {
-		return err
-	}
-
-	*o = BehaviorCaptureMatchGroupsAttributes(varBehaviorCaptureMatchGroupsAttributes)
-
-	return err
 }
 
 type NullableBehaviorCaptureMatchGroupsAttributes struct {

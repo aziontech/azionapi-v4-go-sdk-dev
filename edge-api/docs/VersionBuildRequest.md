@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TraceId** | Pointer to **string** | Trace ID for observability | [optional] 
 **Comment** | Pointer to **string** | Comment for this build request | [optional] 
 
 ## Methods
@@ -25,31 +24,6 @@ will change when the set of required properties is changed
 NewVersionBuildRequestWithDefaults instantiates a new VersionBuildRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetTraceId
-
-`func (o *VersionBuildRequest) GetTraceId() string`
-
-GetTraceId returns the TraceId field if non-nil, zero value otherwise.
-
-### GetTraceIdOk
-
-`func (o *VersionBuildRequest) GetTraceIdOk() (*string, bool)`
-
-GetTraceIdOk returns a tuple with the TraceId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTraceId
-
-`func (o *VersionBuildRequest) SetTraceId(v string)`
-
-SetTraceId sets TraceId field to given value.
-
-### HasTraceId
-
-`func (o *VersionBuildRequest) HasTraceId() bool`
-
-HasTraceId returns a boolean if a field has been set.
 
 ### GetComment
 

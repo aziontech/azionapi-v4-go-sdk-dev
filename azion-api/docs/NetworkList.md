@@ -12,16 +12,14 @@ Name | Type | Description | Notes
 **LastModified** | **time.Time** |  | 
 **CreatedAt** | **time.Time** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**IsVersioned** | **bool** |  | 
-**Version** | **NullableInt64** |  | 
-**VersionState** | **NullableString** |  | 
-**VersionId** | **NullableString** |  | 
+**VersionId** | **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | 
+**State** | **NullableString** | Build state of this version (queued, building, ready, error, ...) | 
 
 ## Methods
 
 ### NewNetworkList
 
-`func NewNetworkList(id int64, name string, type_ string, items []string, lastEditor string, lastModified time.Time, createdAt time.Time, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString, ) *NetworkList`
+`func NewNetworkList(id int64, name string, type_ string, items []string, lastEditor string, lastModified time.Time, createdAt time.Time, versionId NullableString, state NullableString, ) *NetworkList`
 
 NewNetworkList instantiates a new NetworkList object
 This constructor will assign default values to properties that have it defined,
@@ -201,86 +199,6 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetIsVersioned
-
-`func (o *NetworkList) GetIsVersioned() bool`
-
-GetIsVersioned returns the IsVersioned field if non-nil, zero value otherwise.
-
-### GetIsVersionedOk
-
-`func (o *NetworkList) GetIsVersionedOk() (*bool, bool)`
-
-GetIsVersionedOk returns a tuple with the IsVersioned field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsVersioned
-
-`func (o *NetworkList) SetIsVersioned(v bool)`
-
-SetIsVersioned sets IsVersioned field to given value.
-
-
-### GetVersion
-
-`func (o *NetworkList) GetVersion() int64`
-
-GetVersion returns the Version field if non-nil, zero value otherwise.
-
-### GetVersionOk
-
-`func (o *NetworkList) GetVersionOk() (*int64, bool)`
-
-GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersion
-
-`func (o *NetworkList) SetVersion(v int64)`
-
-SetVersion sets Version field to given value.
-
-
-### SetVersionNil
-
-`func (o *NetworkList) SetVersionNil(b bool)`
-
- SetVersionNil sets the value for Version to be an explicit nil
-
-### UnsetVersion
-`func (o *NetworkList) UnsetVersion()`
-
-UnsetVersion ensures that no value is present for Version, not even an explicit nil
-### GetVersionState
-
-`func (o *NetworkList) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *NetworkList) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *NetworkList) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-
-### SetVersionStateNil
-
-`func (o *NetworkList) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *NetworkList) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 ### GetVersionId
 
 `func (o *NetworkList) GetVersionId() string`
@@ -311,6 +229,36 @@ SetVersionId sets VersionId field to given value.
 `func (o *NetworkList) UnsetVersionId()`
 
 UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
+### GetState
+
+`func (o *NetworkList) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *NetworkList) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *NetworkList) SetState(v string)`
+
+SetState sets State field to given value.
+
+
+### SetStateNil
+
+`func (o *NetworkList) SetStateNil(b bool)`
+
+ SetStateNil sets the value for State to be an explicit nil
+
+### UnsetState
+`func (o *NetworkList) UnsetState()`
+
+UnsetState ensures that no value is present for State, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

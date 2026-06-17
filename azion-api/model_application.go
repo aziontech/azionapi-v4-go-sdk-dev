@@ -19,7 +19,7 @@ import (
 // checks if the Application type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Application{}
 
-// Application struct for Application
+// Application Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers. ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
 type Application struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
@@ -29,10 +29,10 @@ type Application struct {
 	Active *bool `json:"active,omitempty"`
 	Debug *bool `json:"debug,omitempty"`
 	ProductVersion string `json:"product_version"`
-	IsVersioned bool `json:"is_versioned"`
-	Version int64 `json:"version"`
-	VersionState NullableString `json:"version_state"`
+	// ID of the version metadata (use in /versions/{id} URLs)
 	VersionId NullableString `json:"version_id"`
+	// Build state of this version (queued, building, ready, error, ...)
+	State NullableString `json:"state"`
 }
 
 type _Application Application
@@ -41,17 +41,15 @@ type _Application Application
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApplication(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, isVersioned bool, version int64, versionState NullableString, versionId NullableString) *Application {
+func NewApplication(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, versionId NullableString, state NullableString) *Application {
 	this := Application{}
 	this.Id = id
 	this.Name = name
 	this.LastEditor = lastEditor
 	this.LastModified = lastModified
 	this.ProductVersion = productVersion
-	this.IsVersioned = isVersioned
-	this.Version = version
-	this.VersionState = versionState
 	this.VersionId = versionId
+	this.State = state
 	return &this
 }
 
@@ -279,80 +277,6 @@ func (o *Application) SetProductVersion(v string) {
 	o.ProductVersion = v
 }
 
-// GetIsVersioned returns the IsVersioned field value
-func (o *Application) GetIsVersioned() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsVersioned
-}
-
-// GetIsVersionedOk returns a tuple with the IsVersioned field value
-// and a boolean to check if the value has been set.
-func (o *Application) GetIsVersionedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsVersioned, true
-}
-
-// SetIsVersioned sets field value
-func (o *Application) SetIsVersioned(v bool) {
-	o.IsVersioned = v
-}
-
-// GetVersion returns the Version field value
-func (o *Application) GetVersion() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Version
-}
-
-// GetVersionOk returns a tuple with the Version field value
-// and a boolean to check if the value has been set.
-func (o *Application) GetVersionOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Version, true
-}
-
-// SetVersion sets field value
-func (o *Application) SetVersion(v int64) {
-	o.Version = v
-}
-
-// GetVersionState returns the VersionState field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *Application) GetVersionState() string {
-	if o == nil || o.VersionState.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Application) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// SetVersionState sets field value
-func (o *Application) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-
 // GetVersionId returns the VersionId field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *Application) GetVersionId() string {
@@ -379,6 +303,32 @@ func (o *Application) SetVersionId(v string) {
 	o.VersionId.Set(&v)
 }
 
+// GetState returns the State field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Application) GetState() string {
+	if o == nil || o.State.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.State.Get()
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Application) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.State.Get(), o.State.IsSet()
+}
+
+// SetState sets field value
+func (o *Application) SetState(v string) {
+	o.State.Set(&v)
+}
+
 func (o Application) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -403,10 +353,8 @@ func (o Application) ToMap() (map[string]interface{}, error) {
 		toSerialize["debug"] = o.Debug
 	}
 	toSerialize["product_version"] = o.ProductVersion
-	toSerialize["is_versioned"] = o.IsVersioned
-	toSerialize["version"] = o.Version
-	toSerialize["version_state"] = o.VersionState.Get()
 	toSerialize["version_id"] = o.VersionId.Get()
+	toSerialize["state"] = o.State.Get()
 	return toSerialize, nil
 }
 

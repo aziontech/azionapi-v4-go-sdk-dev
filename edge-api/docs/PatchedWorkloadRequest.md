@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Mtls** | Pointer to [**MTLSRequest**](MTLSRequest.md) |  | [optional] 
 **Domains** | Pointer to **[]string** |  | [optional] 
 **WorkloadDomainAllowAccess** | Pointer to **bool** |  | [optional] 
+**Bindings** | Pointer to [**[]WorkloadBindingRequest**](WorkloadBindingRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -231,6 +232,31 @@ SetWorkloadDomainAllowAccess sets WorkloadDomainAllowAccess field to given value
 `func (o *PatchedWorkloadRequest) HasWorkloadDomainAllowAccess() bool`
 
 HasWorkloadDomainAllowAccess returns a boolean if a field has been set.
+
+### GetBindings
+
+`func (o *PatchedWorkloadRequest) GetBindings() []WorkloadBindingRequest`
+
+GetBindings returns the Bindings field if non-nil, zero value otherwise.
+
+### GetBindingsOk
+
+`func (o *PatchedWorkloadRequest) GetBindingsOk() (*[]WorkloadBindingRequest, bool)`
+
+GetBindingsOk returns a tuple with the Bindings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBindings
+
+`func (o *PatchedWorkloadRequest) SetBindings(v []WorkloadBindingRequest)`
+
+SetBindings sets Bindings field to given value.
+
+### HasBindings
+
+`func (o *PatchedWorkloadRequest) HasBindings() bool`
+
+HasBindings returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

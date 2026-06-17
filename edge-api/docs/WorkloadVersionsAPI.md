@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**ListWorkloadVersions**](WorkloadVersionsAPI.md#ListWorkloadVersions) | **Get** /workspace/workloads/{resource_pk}/versions | List Workload versions
 [**PartialUpdateWorkloadVersion**](WorkloadVersionsAPI.md#PartialUpdateWorkloadVersion) | **Patch** /workspace/workloads/{resource_pk}/versions/{id} | Partially update a Workload version
 [**RetrieveWorkloadVersion**](WorkloadVersionsAPI.md#RetrieveWorkloadVersion) | **Get** /workspace/workloads/{resource_pk}/versions/{id} | Retrieve a Workload version
+[**RollbackWorkloadVersion**](WorkloadVersionsAPI.md#RollbackWorkloadVersion) | **Post** /workspace/workloads/{resource_pk}/versions/{id}/rollback | Rollback to a Workload version
 [**UpdateWorkloadVersion**](WorkloadVersionsAPI.md#UpdateWorkloadVersion) | **Put** /workspace/workloads/{resource_pk}/versions/{id} | Update a Workload version
 
 
@@ -37,8 +38,8 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Workload resource.
+	id := "id_example" // string | The short ID identifier of the version.
+	resourcePk := int64(789) // int64 | The global_id of the Workload resource.
 	versionArchiveRequest := *openapiclient.NewVersionArchiveRequest() // VersionArchiveRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -57,8 +58,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Workload resource. | 
+**id** | **string** | The short ID identifier of the version. | 
+**resourcePk** | **int64** | The global_id of the Workload resource. | 
 
 ### Other Parameters
 
@@ -110,8 +111,8 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Workload resource.
+	id := "id_example" // string | The short ID identifier of the version.
+	resourcePk := int64(789) // int64 | The global_id of the Workload resource.
 	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -130,8 +131,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Workload resource. | 
+**id** | **string** | The short ID identifier of the version. | 
+**resourcePk** | **int64** | The global_id of the Workload resource. | 
 
 ### Other Parameters
 
@@ -164,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## CancelWorkloadVersionBuild
 
-> CancelWorkloadVersionBuild(ctx, id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+> CancelWorkloadVersionBuild(ctx, id, resourcePk).VersionCancelRequest(versionCancelRequest).Execute()
 
 Cancel a Workload version build
 
@@ -183,13 +184,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Workload resource.
-	versionBuildRequest := *openapiclient.NewVersionBuildRequest() // VersionBuildRequest |  (optional)
+	id := "id_example" // string | The short ID identifier of the version.
+	resourcePk := int64(789) // int64 | The global_id of the Workload resource.
+	versionCancelRequest := *openapiclient.NewVersionCancelRequest() // VersionCancelRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WorkloadVersionsAPI.CancelWorkloadVersionBuild(context.Background(), id, resourcePk).VersionBuildRequest(versionBuildRequest).Execute()
+	r, err := apiClient.WorkloadVersionsAPI.CancelWorkloadVersionBuild(context.Background(), id, resourcePk).VersionCancelRequest(versionCancelRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadVersionsAPI.CancelWorkloadVersionBuild``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -203,8 +204,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Workload resource. | 
+**id** | **string** | The short ID identifier of the version. | 
+**resourcePk** | **int64** | The global_id of the Workload resource. | 
 
 ### Other Parameters
 
@@ -215,7 +216,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **versionBuildRequest** | [**VersionBuildRequest**](VersionBuildRequest.md) |  | 
+ **versionCancelRequest** | [**VersionCancelRequest**](VersionCancelRequest.md) |  | 
 
 ### Return type
 
@@ -256,7 +257,7 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID of the Workload resource.
+	resourcePk := int64(789) // int64 | The global_id of the Workload resource.
 	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -275,7 +276,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID of the Workload resource. | 
+**resourcePk** | **int64** | The global_id of the Workload resource. | 
 
 ### Other Parameters
 
@@ -326,8 +327,8 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Workload resource.
+	id := "id_example" // string | The short ID identifier of the version.
+	resourcePk := int64(789) // int64 | The global_id of the Workload resource.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -345,8 +346,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Workload resource. | 
+**id** | **string** | The short ID identifier of the version. | 
+**resourcePk** | **int64** | The global_id of the Workload resource. | 
 
 ### Other Parameters
 
@@ -397,7 +398,7 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID of the Workload resource.
+	resourcePk := int64(789) // int64 | The global_id of the Workload resource.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -416,7 +417,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID of the Workload resource. | 
+**resourcePk** | **int64** | The global_id of the Workload resource. | 
 
 ### Other Parameters
 
@@ -448,7 +449,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateWorkloadVersion
 
-> PartialUpdateWorkloadVersion(ctx, id, resourcePk).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+> PartialUpdateWorkloadVersion(ctx, id, resourcePk).PatchedWorkloadRequest(patchedWorkloadRequest).Execute()
 
 Partially update a Workload version
 
@@ -467,13 +468,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Workload resource.
-	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
+	id := "id_example" // string | The short ID identifier of the version.
+	resourcePk := int64(789) // int64 | The global_id of the Workload resource.
+	patchedWorkloadRequest := *openapiclient.NewPatchedWorkloadRequest() // PatchedWorkloadRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WorkloadVersionsAPI.PartialUpdateWorkloadVersion(context.Background(), id, resourcePk).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+	r, err := apiClient.WorkloadVersionsAPI.PartialUpdateWorkloadVersion(context.Background(), id, resourcePk).PatchedWorkloadRequest(patchedWorkloadRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadVersionsAPI.PartialUpdateWorkloadVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -487,8 +488,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Workload resource. | 
+**id** | **string** | The short ID identifier of the version. | 
+**resourcePk** | **int64** | The global_id of the Workload resource. | 
 
 ### Other Parameters
 
@@ -499,7 +500,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedVersionCreateRequest** | [**PatchedVersionCreateRequest**](PatchedVersionCreateRequest.md) |  | 
+ **patchedWorkloadRequest** | [**PatchedWorkloadRequest**](PatchedWorkloadRequest.md) |  | 
 
 ### Return type
 
@@ -540,8 +541,8 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Workload resource.
+	id := "id_example" // string | The short ID identifier of the version.
+	resourcePk := int64(789) // int64 | The global_id of the Workload resource.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -560,8 +561,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Workload resource. | 
+**id** | **string** | The short ID identifier of the version. | 
+**resourcePk** | **int64** | The global_id of the Workload resource. | 
 
 ### Other Parameters
 
@@ -592,9 +593,82 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RollbackWorkloadVersion
+
+> RollbackWorkloadVersion(ctx, id, resourcePk).VersionArchiveRequest(versionArchiveRequest).Execute()
+
+Rollback to a Workload version
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	id := "id_example" // string | The short ID identifier of the version.
+	resourcePk := int64(789) // int64 | The global_id of the Workload resource.
+	versionArchiveRequest := *openapiclient.NewVersionArchiveRequest() // VersionArchiveRequest |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.WorkloadVersionsAPI.RollbackWorkloadVersion(context.Background(), id, resourcePk).VersionArchiveRequest(versionArchiveRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadVersionsAPI.RollbackWorkloadVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The short ID identifier of the version. | 
+**resourcePk** | **int64** | The global_id of the Workload resource. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRollbackWorkloadVersionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **versionArchiveRequest** | [**VersionArchiveRequest**](VersionArchiveRequest.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateWorkloadVersion
 
-> UpdateWorkloadVersion(ctx, id, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+> UpdateWorkloadVersion(ctx, id, resourcePk).WorkloadRequest(workloadRequest).Execute()
 
 Update a Workload version
 
@@ -613,13 +687,13 @@ import (
 )
 
 func main() {
-	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the Workload resource.
-	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
+	id := "id_example" // string | The short ID identifier of the version.
+	resourcePk := int64(789) // int64 | The global_id of the Workload resource.
+	workloadRequest := *openapiclient.NewWorkloadRequest("Name_example") // WorkloadRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.WorkloadVersionsAPI.UpdateWorkloadVersion(context.Background(), id, resourcePk).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.WorkloadVersionsAPI.UpdateWorkloadVersion(context.Background(), id, resourcePk).WorkloadRequest(workloadRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadVersionsAPI.UpdateWorkloadVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -633,8 +707,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the Workload resource. | 
+**id** | **string** | The short ID identifier of the version. | 
+**resourcePk** | **int64** | The global_id of the Workload resource. | 
 
 ### Other Parameters
 
@@ -645,7 +719,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
+ **workloadRequest** | [**WorkloadRequest**](WorkloadRequest.md) |  | 
 
 ### Return type
 

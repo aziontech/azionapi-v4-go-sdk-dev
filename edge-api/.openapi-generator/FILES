@@ -26,6 +26,7 @@ api_waf_versions.go
 api_wafs.go
 api_wafs_exceptions.go
 api_workload_deployments.go
+api_workload_versions.go
 api_workloads.go
 client.go
 configuration.go
@@ -216,6 +217,7 @@ docs/FirewallsRulesEngineAPI.md
 docs/FunctionInstance.md
 docs/FunctionInstanceRequest.md
 docs/FunctionInstanceResponse.md
+docs/FunctionRequest.md
 docs/FunctionResponse.md
 docs/FunctionVersionsAPI.md
 docs/FunctionsAPI.md
@@ -291,10 +293,10 @@ docs/PatchedFirewallFunctionInstanceRequest.md
 docs/PatchedFirewallRequest.md
 docs/PatchedFirewallRuleRequest.md
 docs/PatchedFunctionInstanceRequest.md
+docs/PatchedFunctionRequest.md
 docs/PatchedNetworkListRequest.md
 docs/PatchedRequestPhaseRuleRequest.md
 docs/PatchedResponsePhaseRuleRequest.md
-docs/PatchedVersionCreateRequest.md
 docs/PatchedWAFRequest.md
 docs/PatchedWAFRuleRequest.md
 docs/PatchedWorkloadDeploymentRequest.md
@@ -372,12 +374,15 @@ docs/WAFVersionsAPI.md
 docs/WAFsAPI.md
 docs/WAFsExceptionsAPI.md
 docs/Workload.md
+docs/WorkloadBinding.md
+docs/WorkloadBindingRequest.md
 docs/WorkloadDeployment.md
 docs/WorkloadDeploymentRequest.md
 docs/WorkloadDeploymentResponse.md
 docs/WorkloadDeploymentsAPI.md
 docs/WorkloadRequest.md
 docs/WorkloadResponse.md
+docs/WorkloadVersionsAPI.md
 docs/WorkloadsAPI.md
 git_push.sh
 go.mod
@@ -554,6 +559,7 @@ model_firewall_rule_response.go
 model_function_instance.go
 model_function_instance_request.go
 model_function_instance_response.go
+model_function_request.go
 model_function_response.go
 model_hmac.go
 model_hmac_request.go
@@ -625,10 +631,10 @@ model_patched_firewall_function_instance_request.go
 model_patched_firewall_request.go
 model_patched_firewall_rule_request.go
 model_patched_function_instance_request.go
+model_patched_function_request.go
 model_patched_network_list_request.go
 model_patched_request_phase_rule_request.go
 model_patched_response_phase_rule_request.go
-model_patched_version_create_request.go
 model_patched_waf_request.go
 model_patched_waf_rule_request.go
 model_patched_workload_deployment_request.go
@@ -702,6 +708,8 @@ model_waf_rule.go
 model_waf_rule_request.go
 model_waf_rule_response.go
 model_workload.go
+model_workload_binding.go
+model_workload_binding_request.go
 model_workload_deployment.go
 model_workload_deployment_request.go
 model_workload_deployment_response.go

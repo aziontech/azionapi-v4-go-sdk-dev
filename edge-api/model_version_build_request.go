@@ -19,8 +19,6 @@ var _ MappedNullable = &VersionBuildRequest{}
 
 // VersionBuildRequest Serializer for triggering a version build.  Accepts optional metadata for the build request.
 type VersionBuildRequest struct {
-	// Trace ID for observability
-	TraceId *string `json:"trace_id,omitempty"`
 	// Comment for this build request
 	Comment *string `json:"comment,omitempty"`
 }
@@ -40,38 +38,6 @@ func NewVersionBuildRequest() *VersionBuildRequest {
 func NewVersionBuildRequestWithDefaults() *VersionBuildRequest {
 	this := VersionBuildRequest{}
 	return &this
-}
-
-// GetTraceId returns the TraceId field value if set, zero value otherwise.
-func (o *VersionBuildRequest) GetTraceId() string {
-	if o == nil || IsNil(o.TraceId) {
-		var ret string
-		return ret
-	}
-	return *o.TraceId
-}
-
-// GetTraceIdOk returns a tuple with the TraceId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VersionBuildRequest) GetTraceIdOk() (*string, bool) {
-	if o == nil || IsNil(o.TraceId) {
-		return nil, false
-	}
-	return o.TraceId, true
-}
-
-// HasTraceId returns a boolean if a field has been set.
-func (o *VersionBuildRequest) HasTraceId() bool {
-	if o != nil && !IsNil(o.TraceId) {
-		return true
-	}
-
-	return false
-}
-
-// SetTraceId gets a reference to the given string and assigns it to the TraceId field.
-func (o *VersionBuildRequest) SetTraceId(v string) {
-	o.TraceId = &v
 }
 
 // GetComment returns the Comment field value if set, zero value otherwise.
@@ -116,9 +82,6 @@ func (o VersionBuildRequest) MarshalJSON() ([]byte, error) {
 
 func (o VersionBuildRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.TraceId) {
-		toSerialize["trace_id"] = o.TraceId
-	}
 	if !IsNil(o.Comment) {
 		toSerialize["comment"] = o.Comment
 	}

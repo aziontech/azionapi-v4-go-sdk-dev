@@ -17,13 +17,16 @@ Name | Type | Description | Notes
 **Domains** | Pointer to **[]string** |  | [optional] 
 **WorkloadDomainAllowAccess** | Pointer to **bool** |  | [optional] 
 **WorkloadDomain** | **string** |  | 
+**Bindings** | Pointer to [**[]WorkloadBinding**](WorkloadBinding.md) |  | [optional] 
 **ProductVersion** | **string** |  | 
+**VersionId** | **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | 
+**State** | **NullableString** | Build state of this version (queued, building, ready, error, ...) | 
 
 ## Methods
 
 ### NewWorkload
 
-`func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string, ) *Workload`
+`func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string, versionId NullableString, state NullableString, ) *Workload`
 
 NewWorkload instantiates a new Workload object
 This constructor will assign default values to properties that have it defined,
@@ -333,6 +336,31 @@ and a boolean to check if the value has been set.
 SetWorkloadDomain sets WorkloadDomain field to given value.
 
 
+### GetBindings
+
+`func (o *Workload) GetBindings() []WorkloadBinding`
+
+GetBindings returns the Bindings field if non-nil, zero value otherwise.
+
+### GetBindingsOk
+
+`func (o *Workload) GetBindingsOk() (*[]WorkloadBinding, bool)`
+
+GetBindingsOk returns a tuple with the Bindings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBindings
+
+`func (o *Workload) SetBindings(v []WorkloadBinding)`
+
+SetBindings sets Bindings field to given value.
+
+### HasBindings
+
+`func (o *Workload) HasBindings() bool`
+
+HasBindings returns a boolean if a field has been set.
+
 ### GetProductVersion
 
 `func (o *Workload) GetProductVersion() string`
@@ -353,6 +381,66 @@ and a boolean to check if the value has been set.
 SetProductVersion sets ProductVersion field to given value.
 
 
+### GetVersionId
+
+`func (o *Workload) GetVersionId() string`
+
+GetVersionId returns the VersionId field if non-nil, zero value otherwise.
+
+### GetVersionIdOk
+
+`func (o *Workload) GetVersionIdOk() (*string, bool)`
+
+GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionId
+
+`func (o *Workload) SetVersionId(v string)`
+
+SetVersionId sets VersionId field to given value.
+
+
+### SetVersionIdNil
+
+`func (o *Workload) SetVersionIdNil(b bool)`
+
+ SetVersionIdNil sets the value for VersionId to be an explicit nil
+
+### UnsetVersionId
+`func (o *Workload) UnsetVersionId()`
+
+UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
+### GetState
+
+`func (o *Workload) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *Workload) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *Workload) SetState(v string)`
+
+SetState sets State field to given value.
+
+
+### SetStateNil
+
+`func (o *Workload) SetStateNil(b bool)`
+
+ SetStateNil sets the value for State to be an explicit nil
+
+### UnsetState
+`func (o *Workload) UnsetState()`
+
+UnsetState ensures that no value is present for State, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

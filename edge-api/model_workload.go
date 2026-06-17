@@ -13,14 +13,12 @@ package edgeapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
-	"fmt"
 )
 
 // checks if the Workload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Workload{}
 
-// Workload struct for Workload
+// Workload Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers.ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
 type Workload struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
@@ -36,7 +34,12 @@ type Workload struct {
 	Domains []string `json:"domains,omitempty"`
 	WorkloadDomainAllowAccess *bool `json:"workload_domain_allow_access,omitempty"`
 	WorkloadDomain string `json:"workload_domain"`
+	Bindings []WorkloadBinding `json:"bindings,omitempty"`
 	ProductVersion string `json:"product_version"`
+	// ID of the version metadata (use in /versions/{id} URLs)
+	VersionId NullableString `json:"version_id"`
+	// Build state of this version (queued, building, ready, error, ...)
+	State NullableString `json:"state"`
 }
 
 type _Workload Workload
@@ -45,7 +48,7 @@ type _Workload Workload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string) *Workload {
+func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string, versionId NullableString, state NullableString) *Workload {
 	this := Workload{}
 	this.Id = id
 	this.Name = name
@@ -54,6 +57,8 @@ func NewWorkload(id int64, name string, lastEditor string, lastModified time.Tim
 	this.CreatedAt = createdAt
 	this.WorkloadDomain = workloadDomain
 	this.ProductVersion = productVersion
+	this.VersionId = versionId
+	this.State = state
 	return &this
 }
 
@@ -433,6 +438,38 @@ func (o *Workload) SetWorkloadDomain(v string) {
 	o.WorkloadDomain = v
 }
 
+// GetBindings returns the Bindings field value if set, zero value otherwise.
+func (o *Workload) GetBindings() []WorkloadBinding {
+	if o == nil || IsNil(o.Bindings) {
+		var ret []WorkloadBinding
+		return ret
+	}
+	return o.Bindings
+}
+
+// GetBindingsOk returns a tuple with the Bindings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Workload) GetBindingsOk() ([]WorkloadBinding, bool) {
+	if o == nil || IsNil(o.Bindings) {
+		return nil, false
+	}
+	return o.Bindings, true
+}
+
+// HasBindings returns a boolean if a field has been set.
+func (o *Workload) HasBindings() bool {
+	if o != nil && !IsNil(o.Bindings) {
+		return true
+	}
+
+	return false
+}
+
+// SetBindings gets a reference to the given []WorkloadBinding and assigns it to the Bindings field.
+func (o *Workload) SetBindings(v []WorkloadBinding) {
+	o.Bindings = v
+}
+
 // GetProductVersion returns the ProductVersion field value
 func (o *Workload) GetProductVersion() string {
 	if o == nil {
@@ -455,6 +492,58 @@ func (o *Workload) GetProductVersionOk() (*string, bool) {
 // SetProductVersion sets field value
 func (o *Workload) SetProductVersion(v string) {
 	o.ProductVersion = v
+}
+
+// GetVersionId returns the VersionId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Workload) GetVersionId() string {
+	if o == nil || o.VersionId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.VersionId.Get()
+}
+
+// GetVersionIdOk returns a tuple with the VersionId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Workload) GetVersionIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VersionId.Get(), o.VersionId.IsSet()
+}
+
+// SetVersionId sets field value
+func (o *Workload) SetVersionId(v string) {
+	o.VersionId.Set(&v)
+}
+
+// GetState returns the State field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Workload) GetState() string {
+	if o == nil || o.State.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.State.Get()
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Workload) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.State.Get(), o.State.IsSet()
+}
+
+// SetState sets field value
+func (o *Workload) SetState(v string) {
+	o.State.Set(&v)
 }
 
 func (o Workload) MarshalJSON() ([]byte, error) {
@@ -494,51 +583,13 @@ func (o Workload) ToMap() (map[string]interface{}, error) {
 		toSerialize["workload_domain_allow_access"] = o.WorkloadDomainAllowAccess
 	}
 	toSerialize["workload_domain"] = o.WorkloadDomain
+	if !IsNil(o.Bindings) {
+		toSerialize["bindings"] = o.Bindings
+	}
 	toSerialize["product_version"] = o.ProductVersion
+	toSerialize["version_id"] = o.VersionId.Get()
+	toSerialize["state"] = o.State.Get()
 	return toSerialize, nil
-}
-
-func (o *Workload) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"last_editor",
-		"last_modified",
-		"created_at",
-		"workload_domain",
-		"product_version",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWorkload := _Workload{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWorkload)
-
-	if err != nil {
-		return err
-	}
-
-	*o = Workload(varWorkload)
-
-	return err
 }
 
 type NullableWorkload struct {

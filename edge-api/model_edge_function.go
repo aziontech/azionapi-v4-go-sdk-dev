@@ -13,14 +13,12 @@ package edgeapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
-	"fmt"
 )
 
 // checks if the EdgeFunction type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &EdgeFunction{}
 
-// EdgeFunction struct for EdgeFunction
+// EdgeFunction Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers.ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
 type EdgeFunction struct {
 	Id int64 `json:"id"`
 	Name string `json:"name"`
@@ -38,10 +36,10 @@ type EdgeFunction struct {
 	// Installed version, which may not be the latest if the vendor has released updates since installation.
 	Version string `json:"version"`
 	Vendor string `json:"vendor"`
-	IsVersioned bool `json:"is_versioned"`
-	ResourceVersion NullableInt64 `json:"resource_version"`
-	VersionState NullableString `json:"version_state"`
+	// ID of the version metadata (use in /versions/{id} URLs)
 	VersionId NullableString `json:"version_id"`
+	// Build state of this version (queued, building, ready, error, ...)
+	State NullableString `json:"state"`
 }
 
 type _EdgeFunction EdgeFunction
@@ -50,7 +48,7 @@ type _EdgeFunction EdgeFunction
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEdgeFunction(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, isVersioned bool, resourceVersion NullableInt64, versionState NullableString, versionId NullableString) *EdgeFunction {
+func NewEdgeFunction(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, versionId NullableString, state NullableString) *EdgeFunction {
 	this := EdgeFunction{}
 	this.Id = id
 	this.Name = name
@@ -60,10 +58,8 @@ func NewEdgeFunction(id int64, name string, lastEditor string, lastModified time
 	this.ReferenceCount = referenceCount
 	this.Version = version
 	this.Vendor = vendor
-	this.IsVersioned = isVersioned
-	this.ResourceVersion = resourceVersion
-	this.VersionState = versionState
 	this.VersionId = versionId
+	this.State = state
 	return &this
 }
 
@@ -428,82 +424,6 @@ func (o *EdgeFunction) SetVendor(v string) {
 	o.Vendor = v
 }
 
-// GetIsVersioned returns the IsVersioned field value
-func (o *EdgeFunction) GetIsVersioned() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsVersioned
-}
-
-// GetIsVersionedOk returns a tuple with the IsVersioned field value
-// and a boolean to check if the value has been set.
-func (o *EdgeFunction) GetIsVersionedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsVersioned, true
-}
-
-// SetIsVersioned sets field value
-func (o *EdgeFunction) SetIsVersioned(v bool) {
-	o.IsVersioned = v
-}
-
-// GetResourceVersion returns the ResourceVersion field value
-// If the value is explicit nil, the zero value for int64 will be returned
-func (o *EdgeFunction) GetResourceVersion() int64 {
-	if o == nil || o.ResourceVersion.Get() == nil {
-		var ret int64
-		return ret
-	}
-
-	return *o.ResourceVersion.Get()
-}
-
-// GetResourceVersionOk returns a tuple with the ResourceVersion field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EdgeFunction) GetResourceVersionOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResourceVersion.Get(), o.ResourceVersion.IsSet()
-}
-
-// SetResourceVersion sets field value
-func (o *EdgeFunction) SetResourceVersion(v int64) {
-	o.ResourceVersion.Set(&v)
-}
-
-// GetVersionState returns the VersionState field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *EdgeFunction) GetVersionState() string {
-	if o == nil || o.VersionState.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EdgeFunction) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// SetVersionState sets field value
-func (o *EdgeFunction) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-
 // GetVersionId returns the VersionId field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *EdgeFunction) GetVersionId() string {
@@ -528,6 +448,32 @@ func (o *EdgeFunction) GetVersionIdOk() (*string, bool) {
 // SetVersionId sets field value
 func (o *EdgeFunction) SetVersionId(v string) {
 	o.VersionId.Set(&v)
+}
+
+// GetState returns the State field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *EdgeFunction) GetState() string {
+	if o == nil || o.State.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.State.Get()
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EdgeFunction) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.State.Get(), o.State.IsSet()
+}
+
+// SetState sets field value
+func (o *EdgeFunction) SetState(v string) {
+	o.State.Set(&v)
 }
 
 func (o EdgeFunction) MarshalJSON() ([]byte, error) {
@@ -563,59 +509,9 @@ func (o EdgeFunction) ToMap() (map[string]interface{}, error) {
 	toSerialize["reference_count"] = o.ReferenceCount
 	toSerialize["version"] = o.Version
 	toSerialize["vendor"] = o.Vendor
-	toSerialize["is_versioned"] = o.IsVersioned
-	toSerialize["resource_version"] = o.ResourceVersion.Get()
-	toSerialize["version_state"] = o.VersionState.Get()
 	toSerialize["version_id"] = o.VersionId.Get()
+	toSerialize["state"] = o.State.Get()
 	return toSerialize, nil
-}
-
-func (o *EdgeFunction) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"last_editor",
-		"last_modified",
-		"product_version",
-		"reference_count",
-		"version",
-		"vendor",
-		"is_versioned",
-		"resource_version",
-		"version_state",
-		"version_id",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varEdgeFunction := _EdgeFunction{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEdgeFunction)
-
-	if err != nil {
-		return err
-	}
-
-	*o = EdgeFunction(varEdgeFunction)
-
-	return err
 }
 
 type NullableEdgeFunction struct {

@@ -97,6 +97,8 @@ type APIClient struct {
 
 	WorkloadDeploymentsAPI *WorkloadDeploymentsAPIService
 
+	WorkloadVersionsAPI *WorkloadVersionsAPIService
+
 	WorkloadsAPI *WorkloadsAPIService
 }
 
@@ -140,6 +142,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.WAFsAPI = (*WAFsAPIService)(&c.common)
 	c.WAFsExceptionsAPI = (*WAFsExceptionsAPIService)(&c.common)
 	c.WorkloadDeploymentsAPI = (*WorkloadDeploymentsAPIService)(&c.common)
+	c.WorkloadVersionsAPI = (*WorkloadVersionsAPIService)(&c.common)
 	c.WorkloadsAPI = (*WorkloadsAPIService)(&c.common)
 
 	return c
@@ -509,6 +512,15 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 	}
 	if s, ok := v.(*string); ok {
 		*s = string(b)
+		return nil
+	}
+	if r, ok := v.(*io.Reader); ok {
+		*r = bytes.NewReader(b)
+		return nil
+	}
+	// Must stay before the JSON branch: json.Unmarshal would base64-decode into *[]byte.
+	if p, ok := v.(*[]byte); ok {
+		*p = b
 		return nil
 	}
 	if f, ok := v.(*os.File); ok {

@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**VersionId** | **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | 
+**State** | **NullableString** | Build state of this version (queued, building, ready, error, ...) | 
 **Id** | **int64** |  | 
 **Name** | **string** |  | 
 **LastEditor** | **string** |  | 
@@ -12,17 +14,13 @@ Name | Type | Description | Notes
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | **string** |  | 
 **Type** | **string** |  | 
-**IsVersioned** | **bool** |  | 
-**Version** | **NullableInt64** |  | 
-**VersionState** | **NullableString** |  | 
-**VersionId** | **NullableString** |  | 
 **Attributes** | [**ConnectorLiveIngestAttributes**](ConnectorLiveIngestAttributes.md) |  | 
 
 ## Methods
 
 ### NewConnector
 
-`func NewConnector(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString, attributes ConnectorLiveIngestAttributes, ) *Connector`
+`func NewConnector(versionId NullableString, state NullableString, id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, attributes ConnectorLiveIngestAttributes, ) *Connector`
 
 NewConnector instantiates a new Connector object
 This constructor will assign default values to properties that have it defined,
@@ -37,6 +35,66 @@ NewConnectorWithDefaults instantiates a new Connector object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetVersionId
+
+`func (o *Connector) GetVersionId() string`
+
+GetVersionId returns the VersionId field if non-nil, zero value otherwise.
+
+### GetVersionIdOk
+
+`func (o *Connector) GetVersionIdOk() (*string, bool)`
+
+GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionId
+
+`func (o *Connector) SetVersionId(v string)`
+
+SetVersionId sets VersionId field to given value.
+
+
+### SetVersionIdNil
+
+`func (o *Connector) SetVersionIdNil(b bool)`
+
+ SetVersionIdNil sets the value for VersionId to be an explicit nil
+
+### UnsetVersionId
+`func (o *Connector) UnsetVersionId()`
+
+UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
+### GetState
+
+`func (o *Connector) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *Connector) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *Connector) SetState(v string)`
+
+SetState sets State field to given value.
+
+
+### SetStateNil
+
+`func (o *Connector) SetStateNil(b bool)`
+
+ SetStateNil sets the value for State to be an explicit nil
+
+### UnsetState
+`func (o *Connector) UnsetState()`
+
+UnsetState ensures that no value is present for State, not even an explicit nil
 ### GetId
 
 `func (o *Connector) GetId() int64`
@@ -202,116 +260,6 @@ and a boolean to check if the value has been set.
 SetType sets Type field to given value.
 
 
-### GetIsVersioned
-
-`func (o *Connector) GetIsVersioned() bool`
-
-GetIsVersioned returns the IsVersioned field if non-nil, zero value otherwise.
-
-### GetIsVersionedOk
-
-`func (o *Connector) GetIsVersionedOk() (*bool, bool)`
-
-GetIsVersionedOk returns a tuple with the IsVersioned field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIsVersioned
-
-`func (o *Connector) SetIsVersioned(v bool)`
-
-SetIsVersioned sets IsVersioned field to given value.
-
-
-### GetVersion
-
-`func (o *Connector) GetVersion() int64`
-
-GetVersion returns the Version field if non-nil, zero value otherwise.
-
-### GetVersionOk
-
-`func (o *Connector) GetVersionOk() (*int64, bool)`
-
-GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersion
-
-`func (o *Connector) SetVersion(v int64)`
-
-SetVersion sets Version field to given value.
-
-
-### SetVersionNil
-
-`func (o *Connector) SetVersionNil(b bool)`
-
- SetVersionNil sets the value for Version to be an explicit nil
-
-### UnsetVersion
-`func (o *Connector) UnsetVersion()`
-
-UnsetVersion ensures that no value is present for Version, not even an explicit nil
-### GetVersionState
-
-`func (o *Connector) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *Connector) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *Connector) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-
-### SetVersionStateNil
-
-`func (o *Connector) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *Connector) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
-### GetVersionId
-
-`func (o *Connector) GetVersionId() string`
-
-GetVersionId returns the VersionId field if non-nil, zero value otherwise.
-
-### GetVersionIdOk
-
-`func (o *Connector) GetVersionIdOk() (*string, bool)`
-
-GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionId
-
-`func (o *Connector) SetVersionId(v string)`
-
-SetVersionId sets VersionId field to given value.
-
-
-### SetVersionIdNil
-
-`func (o *Connector) SetVersionIdNil(b bool)`
-
- SetVersionIdNil sets the value for VersionId to be an explicit nil
-
-### UnsetVersionId
-`func (o *Connector) UnsetVersionId()`
-
-UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
 ### GetAttributes
 
 `func (o *Connector) GetAttributes() ConnectorLiveIngestAttributes`

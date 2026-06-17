@@ -12,18 +12,15 @@ package edgeapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the WAFRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &WAFRequest{}
 
-// WAFRequest struct for WAFRequest
+// WAFRequest Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers.ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
 type WAFRequest struct {
 	Active *bool `json:"active,omitempty"`
 	Name string `json:"name"`
-	ProductVersion NullableString `json:"product_version,omitempty"`
 	EngineSettings *WAFEngineSettingsFieldRequest `json:"engine_settings,omitempty"`
 }
 
@@ -103,48 +100,6 @@ func (o *WAFRequest) SetName(v string) {
 	o.Name = v
 }
 
-// GetProductVersion returns the ProductVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WAFRequest) GetProductVersion() string {
-	if o == nil || IsNil(o.ProductVersion.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ProductVersion.Get()
-}
-
-// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WAFRequest) GetProductVersionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ProductVersion.Get(), o.ProductVersion.IsSet()
-}
-
-// HasProductVersion returns a boolean if a field has been set.
-func (o *WAFRequest) HasProductVersion() bool {
-	if o != nil && o.ProductVersion.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProductVersion gets a reference to the given NullableString and assigns it to the ProductVersion field.
-func (o *WAFRequest) SetProductVersion(v string) {
-	o.ProductVersion.Set(&v)
-}
-// SetProductVersionNil sets the value for ProductVersion to be an explicit nil
-func (o *WAFRequest) SetProductVersionNil() {
-	o.ProductVersion.Set(nil)
-}
-
-// UnsetProductVersion ensures that no value is present for ProductVersion, not even an explicit nil
-func (o *WAFRequest) UnsetProductVersion() {
-	o.ProductVersion.Unset()
-}
-
 // GetEngineSettings returns the EngineSettings field value if set, zero value otherwise.
 func (o *WAFRequest) GetEngineSettings() WAFEngineSettingsFieldRequest {
 	if o == nil || IsNil(o.EngineSettings) {
@@ -191,50 +146,10 @@ func (o WAFRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["active"] = o.Active
 	}
 	toSerialize["name"] = o.Name
-	if o.ProductVersion.IsSet() {
-		toSerialize["product_version"] = o.ProductVersion.Get()
-	}
 	if !IsNil(o.EngineSettings) {
 		toSerialize["engine_settings"] = o.EngineSettings
 	}
 	return toSerialize, nil
-}
-
-func (o *WAFRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"name",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varWAFRequest := _WAFRequest{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWAFRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = WAFRequest(varWAFRequest)
-
-	return err
 }
 
 type NullableWAFRequest struct {

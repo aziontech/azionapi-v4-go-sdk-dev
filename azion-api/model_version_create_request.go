@@ -18,14 +18,12 @@ import (
 // checks if the VersionCreateRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &VersionCreateRequest{}
 
-// VersionCreateRequest Serializer for creating a new version (clone).  The API receives the source version ID (optional), a comment/description, and optional field overrides to apply on the cloned version before saving.
+// VersionCreateRequest Serializer for creating a new version (clone).  The API receives the source version ID (optional) and a comment/description.  Resource field overrides are now sent as top-level keys alongside these fields and validated by the ``resource_serializer_class`` in the viewset.
 type VersionCreateRequest struct {
 	// ID of the version to clone from. If omitted, clones latest ready.
 	SourceVersion NullableString `json:"source_version,omitempty"`
 	// Description for the new version
 	Comment *string `json:"comment,omitempty"`
-	// Field overrides to apply on the cloned version.
-	Override map[string]interface{} `json:"override,omitempty"`
 }
 
 // NewVersionCreateRequest instantiates a new VersionCreateRequest object
@@ -119,38 +117,6 @@ func (o *VersionCreateRequest) SetComment(v string) {
 	o.Comment = &v
 }
 
-// GetOverride returns the Override field value if set, zero value otherwise.
-func (o *VersionCreateRequest) GetOverride() map[string]interface{} {
-	if o == nil || IsNil(o.Override) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.Override
-}
-
-// GetOverrideOk returns a tuple with the Override field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VersionCreateRequest) GetOverrideOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Override) {
-		return map[string]interface{}{}, false
-	}
-	return o.Override, true
-}
-
-// HasOverride returns a boolean if a field has been set.
-func (o *VersionCreateRequest) HasOverride() bool {
-	if o != nil && !IsNil(o.Override) {
-		return true
-	}
-
-	return false
-}
-
-// SetOverride gets a reference to the given map[string]interface{} and assigns it to the Override field.
-func (o *VersionCreateRequest) SetOverride(v map[string]interface{}) {
-	o.Override = v
-}
-
 func (o VersionCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -166,9 +132,6 @@ func (o VersionCreateRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Comment) {
 		toSerialize["comment"] = o.Comment
-	}
-	if !IsNil(o.Override) {
-		toSerialize["override"] = o.Override
 	}
 	return toSerialize, nil
 }

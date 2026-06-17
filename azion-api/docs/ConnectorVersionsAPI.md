@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateConnectorVersion
 
-> PartialUpdateConnectorVersion(ctx, connectorId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+> PartialUpdateConnectorVersion(ctx, connectorId, versionId).PatchedConnectorRequest(patchedConnectorRequest).Execute()
 
 Partially update a Connector version
 
@@ -469,11 +469,11 @@ import (
 func main() {
 	connectorId := int64(789) // int64 | The ID of the Connector resource.
 	versionId := "versionId_example" // string | The identifier of the version.
-	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
+	patchedConnectorRequest := openapiclient.PatchedConnectorRequest{PatchedConnectorHTTPRequest: openapiclient.NewPatchedConnectorHTTPRequest("Type_example")} // PatchedConnectorRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ConnectorVersionsAPI.PartialUpdateConnectorVersion(context.Background(), connectorId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
+	r, err := apiClient.ConnectorVersionsAPI.PartialUpdateConnectorVersion(context.Background(), connectorId, versionId).PatchedConnectorRequest(patchedConnectorRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorVersionsAPI.PartialUpdateConnectorVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -499,7 +499,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedVersionCreateRequest** | [**PatchedVersionCreateRequest**](PatchedVersionCreateRequest.md) |  | 
+ **patchedConnectorRequest** | [**PatchedConnectorRequest**](PatchedConnectorRequest.md) |  | 
 
 ### Return type
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 
 ## UpdateConnectorVersion
 
-> UpdateConnectorVersion(ctx, connectorId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
+> UpdateConnectorVersion(ctx, connectorId, versionId).ConnectorRequest(connectorRequest).Execute()
 
 Update a Connector version
 
@@ -615,11 +615,11 @@ import (
 func main() {
 	connectorId := int64(789) // int64 | The ID of the Connector resource.
 	versionId := "versionId_example" // string | The identifier of the version.
-	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
+	connectorRequest := openapiclient.ConnectorRequest{ConnectorHTTPRequest: openapiclient.NewConnectorHTTPRequest("Name_example", "Type_example", *openapiclient.NewConnectorHTTPAttributesRequest([]openapiclient.AddressRequest{*openapiclient.NewAddressRequest("Address_example")}))} // ConnectorRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.ConnectorVersionsAPI.UpdateConnectorVersion(context.Background(), connectorId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
+	r, err := apiClient.ConnectorVersionsAPI.UpdateConnectorVersion(context.Background(), connectorId, versionId).ConnectorRequest(connectorRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectorVersionsAPI.UpdateConnectorVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -645,7 +645,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
+ **connectorRequest** | [**ConnectorRequest**](ConnectorRequest.md) |  | 
 
 ### Return type
 
