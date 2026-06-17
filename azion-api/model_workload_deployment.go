@@ -14,6 +14,8 @@ package azionapi
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the WorkloadDeployment type satisfies the MappedNullable interface at compile time
@@ -287,6 +289,48 @@ func (o WorkloadDeployment) ToMap() (map[string]interface{}, error) {
 	toSerialize["last_modified"] = o.LastModified
 	toSerialize["created_at"] = o.CreatedAt
 	return toSerialize, nil
+}
+
+func (o *WorkloadDeployment) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"name",
+		"strategy",
+		"last_editor",
+		"last_modified",
+		"created_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varWorkloadDeployment := _WorkloadDeployment{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varWorkloadDeployment)
+
+	if err != nil {
+		return err
+	}
+
+	*o = WorkloadDeployment(varWorkloadDeployment)
+
+	return err
 }
 
 type NullableWorkloadDeployment struct {

@@ -14,6 +14,8 @@ package azionapi
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Functions type satisfies the MappedNullable interface at compile time
@@ -541,6 +543,53 @@ func (o Functions) ToMap() (map[string]interface{}, error) {
 	toSerialize["state"] = o.State.Get()
 	toSerialize["code"] = o.Code
 	return toSerialize, nil
+}
+
+func (o *Functions) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"name",
+		"last_editor",
+		"last_modified",
+		"product_version",
+		"reference_count",
+		"version",
+		"vendor",
+		"version_id",
+		"state",
+		"code",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFunctions := _Functions{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFunctions)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Functions(varFunctions)
+
+	return err
 }
 
 type NullableFunctions struct {

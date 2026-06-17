@@ -14,6 +14,8 @@ package azionapi
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ConnectorLiveIngest type satisfies the MappedNullable interface at compile time
@@ -365,6 +367,52 @@ func (o ConnectorLiveIngest) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
 	return toSerialize, nil
+}
+
+func (o *ConnectorLiveIngest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"version_id",
+		"state",
+		"id",
+		"name",
+		"last_editor",
+		"last_modified",
+		"created_at",
+		"product_version",
+		"type",
+		"attributes",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varConnectorLiveIngest := _ConnectorLiveIngest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varConnectorLiveIngest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ConnectorLiveIngest(varConnectorLiveIngest)
+
+	return err
 }
 
 type NullableConnectorLiveIngest struct {

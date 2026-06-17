@@ -14,6 +14,8 @@ package azionapi
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ExecutionScript type satisfies the MappedNullable interface at compile time
@@ -164,6 +166,46 @@ func (o ExecutionScript) ToMap() (map[string]interface{}, error) {
 	toSerialize["template_uuid"] = o.TemplateUuid
 	toSerialize["created_at"] = o.CreatedAt.Get()
 	return toSerialize, nil
+}
+
+func (o *ExecutionScript) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"name",
+		"template_uuid",
+		"created_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varExecutionScript := _ExecutionScript{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varExecutionScript)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ExecutionScript(varExecutionScript)
+
+	return err
 }
 
 type NullableExecutionScript struct {

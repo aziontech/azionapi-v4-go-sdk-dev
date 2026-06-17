@@ -13,6 +13,8 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ResponseDeleteFavorite type satisfies the MappedNullable interface at compile time
@@ -109,6 +111,44 @@ func (o ResponseDeleteFavorite) ToMap() (map[string]interface{}, error) {
 	toSerialize["state"] = o.State
 	toSerialize["data"] = o.Data.Get()
 	return toSerialize, nil
+}
+
+func (o *ResponseDeleteFavorite) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"state",
+		"data",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varResponseDeleteFavorite := _ResponseDeleteFavorite{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varResponseDeleteFavorite)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ResponseDeleteFavorite(varResponseDeleteFavorite)
+
+	return err
 }
 
 type NullableResponseDeleteFavorite struct {

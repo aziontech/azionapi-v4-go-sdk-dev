@@ -13,6 +13,8 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the DataStreamRequest type satisfies the MappedNullable interface at compile time
@@ -196,6 +198,46 @@ func (o DataStreamRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["transform"] = o.Transform
 	toSerialize["outputs"] = o.Outputs
 	return toSerialize, nil
+}
+
+func (o *DataStreamRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"inputs",
+		"transform",
+		"outputs",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDataStreamRequest := _DataStreamRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varDataStreamRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DataStreamRequest(varDataStreamRequest)
+
+	return err
 }
 
 type NullableDataStreamRequest struct {

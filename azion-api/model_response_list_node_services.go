@@ -13,6 +13,8 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ResponseListNodeServices type satisfies the MappedNullable interface at compile time
@@ -241,6 +243,45 @@ func (o ResponseListNodeServices) ToMap() (map[string]interface{}, error) {
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
 	return toSerialize, nil
+}
+
+func (o *ResponseListNodeServices) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"service_id",
+		"last_editor",
+		"last_modified",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varResponseListNodeServices := _ResponseListNodeServices{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varResponseListNodeServices)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ResponseListNodeServices(varResponseListNodeServices)
+
+	return err
 }
 
 type NullableResponseListNodeServices struct {

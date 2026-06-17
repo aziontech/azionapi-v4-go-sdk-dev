@@ -14,6 +14,8 @@ package azionapi
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the CredentialCreateRequest type satisfies the MappedNullable interface at compile time
@@ -180,6 +182,44 @@ func (o CredentialCreateRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["expiration_date"] = o.ExpirationDate
 	}
 	return toSerialize, nil
+}
+
+func (o *CredentialCreateRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"capabilities",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCredentialCreateRequest := _CredentialCreateRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCredentialCreateRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CredentialCreateRequest(varCredentialCreateRequest)
+
+	return err
 }
 
 type NullableCredentialCreateRequest struct {

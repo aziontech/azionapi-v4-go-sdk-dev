@@ -13,6 +13,8 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ResponseBucketObject type satisfies the MappedNullable interface at compile time
@@ -108,6 +110,44 @@ func (o ResponseBucketObject) ToMap() (map[string]interface{}, error) {
 	toSerialize["continuation_token"] = o.ContinuationToken.Get()
 	toSerialize["results"] = o.Results
 	return toSerialize, nil
+}
+
+func (o *ResponseBucketObject) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"continuation_token",
+		"results",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varResponseBucketObject := _ResponseBucketObject{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varResponseBucketObject)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ResponseBucketObject(varResponseBucketObject)
+
+	return err
 }
 
 type NullableResponseBucketObject struct {

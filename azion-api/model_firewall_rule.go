@@ -14,6 +14,8 @@ package azionapi
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the FirewallRule type satisfies the MappedNullable interface at compile time
@@ -341,6 +343,50 @@ func (o FirewallRule) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["order"] = o.Order
 	return toSerialize, nil
+}
+
+func (o *FirewallRule) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"name",
+		"last_editor",
+		"last_modified",
+		"created_at",
+		"criteria",
+		"behaviors",
+		"order",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFirewallRule := _FirewallRule{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFirewallRule)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FirewallRule(varFirewallRule)
+
+	return err
 }
 
 type NullableFirewallRule struct {

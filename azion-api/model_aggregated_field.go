@@ -13,6 +13,8 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the AggregatedField type satisfies the MappedNullable interface at compile time
@@ -106,6 +108,44 @@ func (o AggregatedField) ToMap() (map[string]interface{}, error) {
 	toSerialize["aggregation"] = o.Aggregation
 	toSerialize["variable"] = o.Variable
 	return toSerialize, nil
+}
+
+func (o *AggregatedField) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"aggregation",
+		"variable",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAggregatedField := _AggregatedField{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAggregatedField)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AggregatedField(varAggregatedField)
+
+	return err
 }
 
 type NullableAggregatedField struct {

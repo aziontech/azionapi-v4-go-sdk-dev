@@ -13,6 +13,8 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the PaymentMethodRequest type satisfies the MappedNullable interface at compile time
@@ -403,6 +405,51 @@ func (o PaymentMethodRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["is_default"] = o.IsDefault
 	}
 	return toSerialize, nil
+}
+
+func (o *PaymentMethodRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"card_holder",
+		"card_brand",
+		"card_expiration_month",
+		"card_expiration_year",
+		"card_last_4_digits",
+		"card_address_zip",
+		"card_country",
+		"stripe_token",
+		"card_id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPaymentMethodRequest := _PaymentMethodRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPaymentMethodRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PaymentMethodRequest(varPaymentMethodRequest)
+
+	return err
 }
 
 type NullablePaymentMethodRequest struct {

@@ -14,6 +14,8 @@ package azionapi
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the CertificateRequest type satisfies the MappedNullable interface at compile time
@@ -969,6 +971,46 @@ func (o CertificateRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["source_certificate"] = o.SourceCertificate.Get()
 	}
 	return toSerialize, nil
+}
+
+func (o *CertificateRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"challenge",
+		"authority",
+		"common_name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCertificateRequest := _CertificateRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCertificateRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CertificateRequest(varCertificateRequest)
+
+	return err
 }
 
 type NullableCertificateRequest struct {

@@ -13,6 +13,8 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Nodes type satisfies the MappedNullable interface at compile time
@@ -306,6 +308,50 @@ func (o Nodes) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["product_version"] = o.ProductVersion
 	return toSerialize, nil
+}
+
+func (o *Nodes) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"hash_id",
+		"name",
+		"status",
+		"active",
+		"last_editor",
+		"last_modified",
+		"product_version",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varNodes := _Nodes{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varNodes)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Nodes(varNodes)
+
+	return err
 }
 
 type NullableNodes struct {

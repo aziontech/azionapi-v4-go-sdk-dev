@@ -13,6 +13,8 @@ package azionapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the NodeServiceBind type satisfies the MappedNullable interface at compile time
@@ -214,6 +216,48 @@ func (o NodeServiceBind) ToMap() (map[string]interface{}, error) {
 	toSerialize["last_editor"] = o.LastEditor
 	toSerialize["last_modified"] = o.LastModified
 	return toSerialize, nil
+}
+
+func (o *NodeServiceBind) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"service_name",
+		"service_id",
+		"active",
+		"last_editor",
+		"last_modified",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varNodeServiceBind := _NodeServiceBind{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varNodeServiceBind)
+
+	if err != nil {
+		return err
+	}
+
+	*o = NodeServiceBind(varNodeServiceBind)
+
+	return err
 }
 
 type NullableNodeServiceBind struct {
