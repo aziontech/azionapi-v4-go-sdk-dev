@@ -301,7 +301,6 @@ func (o *ServiceResourceIdRequest) UnmarshalJSON(data []byte) (err error) {
 	varServiceResourceIdRequest := _ServiceResourceIdRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varServiceResourceIdRequest)
 
 	if err != nil {

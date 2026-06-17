@@ -284,7 +284,6 @@ func (o *ContinuousDeploymentRequest) UnmarshalJSON(data []byte) (err error) {
 	varContinuousDeploymentRequest := _ContinuousDeploymentRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varContinuousDeploymentRequest)
 
 	if err != nil {

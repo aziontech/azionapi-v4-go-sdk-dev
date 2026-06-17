@@ -137,7 +137,6 @@ func (o *BehaviorArgs) UnmarshalJSON(data []byte) (err error) {
 	varBehaviorArgs := _BehaviorArgs{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBehaviorArgs)
 
 	if err != nil {

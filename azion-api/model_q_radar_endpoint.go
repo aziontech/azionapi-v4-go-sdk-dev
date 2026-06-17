@@ -137,7 +137,6 @@ func (o *QRadarEndpoint) UnmarshalJSON(data []byte) (err error) {
 	varQRadarEndpoint := _QRadarEndpoint{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varQRadarEndpoint)
 
 	if err != nil {

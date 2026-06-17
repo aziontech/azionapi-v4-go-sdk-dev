@@ -108,7 +108,6 @@ func (o *TransformFilterWorkloads) UnmarshalJSON(data []byte) (err error) {
 	varTransformFilterWorkloads := _TransformFilterWorkloads{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varTransformFilterWorkloads)
 
 	if err != nil {

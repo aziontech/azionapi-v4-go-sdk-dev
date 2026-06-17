@@ -174,7 +174,6 @@ func (o *NodesRequest) UnmarshalJSON(data []byte) (err error) {
 	varNodesRequest := _NodesRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNodesRequest)
 
 	if err != nil {

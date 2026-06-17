@@ -200,7 +200,6 @@ func (o *ConnectorHTTPRequest) UnmarshalJSON(data []byte) (err error) {
 	varConnectorHTTPRequest := _ConnectorHTTPRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varConnectorHTTPRequest)
 
 	if err != nil {

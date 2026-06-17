@@ -239,7 +239,6 @@ func (o *AzureMonitorEndpoint) UnmarshalJSON(data []byte) (err error) {
 	varAzureMonitorEndpoint := _AzureMonitorEndpoint{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAzureMonitorEndpoint)
 
 	if err != nil {

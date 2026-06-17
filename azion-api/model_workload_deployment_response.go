@@ -144,7 +144,6 @@ func (o *WorkloadDeploymentResponse) UnmarshalJSON(data []byte) (err error) {
 	varWorkloadDeploymentResponse := _WorkloadDeploymentResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWorkloadDeploymentResponse)
 
 	if err != nil {

@@ -192,7 +192,6 @@ func (o *DelegationSigner) UnmarshalJSON(data []byte) (err error) {
 	varDelegationSigner := _DelegationSigner{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDelegationSigner)
 
 	if err != nil {

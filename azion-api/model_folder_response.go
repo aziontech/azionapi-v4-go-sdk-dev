@@ -144,7 +144,6 @@ func (o *FolderResponse) UnmarshalJSON(data []byte) (err error) {
 	varFolderResponse := _FolderResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFolderResponse)
 
 	if err != nil {

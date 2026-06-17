@@ -218,7 +218,6 @@ func (o *PatchedResellerRequest) UnmarshalJSON(data []byte) (err error) {
 	varPatchedResellerRequest := _PatchedResellerRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPatchedResellerRequest)
 
 	if err != nil {

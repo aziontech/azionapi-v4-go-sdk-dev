@@ -108,7 +108,6 @@ func (o *InputShared) UnmarshalJSON(data []byte) (err error) {
 	varInputShared := _InputShared{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varInputShared)
 
 	if err != nil {

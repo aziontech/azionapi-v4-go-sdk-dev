@@ -248,7 +248,6 @@ func (o *Content) UnmarshalJSON(data []byte) (err error) {
 	varContent := _Content{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varContent)
 
 	if err != nil {

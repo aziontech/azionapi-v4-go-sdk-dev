@@ -391,7 +391,6 @@ func (o *BaseQueryRequest) UnmarshalJSON(data []byte) (err error) {
 	varBaseQueryRequest := _BaseQueryRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBaseQueryRequest)
 
 	if err != nil {

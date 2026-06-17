@@ -324,7 +324,6 @@ func (o *S3Endpoint) UnmarshalJSON(data []byte) (err error) {
 	varS3Endpoint := _S3Endpoint{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varS3Endpoint)
 
 	if err != nil {

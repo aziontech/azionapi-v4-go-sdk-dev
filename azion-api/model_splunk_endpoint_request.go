@@ -165,7 +165,6 @@ func (o *SplunkEndpointRequest) UnmarshalJSON(data []byte) (err error) {
 	varSplunkEndpointRequest := _SplunkEndpointRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSplunkEndpointRequest)
 
 	if err != nil {

@@ -144,7 +144,6 @@ func (o *NodeGroupsById) UnmarshalJSON(data []byte) (err error) {
 	varNodeGroupsById := _NodeGroupsById{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNodeGroupsById)
 
 	if err != nil {

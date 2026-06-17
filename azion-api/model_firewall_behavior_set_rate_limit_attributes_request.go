@@ -220,7 +220,6 @@ func (o *FirewallBehaviorSetRateLimitAttributesRequest) UnmarshalJSON(data []byt
 	varFirewallBehaviorSetRateLimitAttributesRequest := _FirewallBehaviorSetRateLimitAttributesRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFirewallBehaviorSetRateLimitAttributesRequest)
 
 	if err != nil {

@@ -213,7 +213,6 @@ func (o *FirewallCriterionField) UnmarshalJSON(data []byte) (err error) {
 	varFirewallCriterionField := _FirewallCriterionField{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFirewallCriterionField)
 
 	if err != nil {

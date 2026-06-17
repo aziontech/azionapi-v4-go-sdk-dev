@@ -357,7 +357,6 @@ func (o *WAF) UnmarshalJSON(data []byte) (err error) {
 	varWAF := _WAF{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWAF)
 
 	if err != nil {

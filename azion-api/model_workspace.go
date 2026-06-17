@@ -362,7 +362,6 @@ func (o *Workspace) UnmarshalJSON(data []byte) (err error) {
 	varWorkspace := _Workspace{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWorkspace)
 
 	if err != nil {

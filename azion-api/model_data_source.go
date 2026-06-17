@@ -164,7 +164,6 @@ func (o *DataSource) UnmarshalJSON(data []byte) (err error) {
 	varDataSource := _DataSource{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDataSource)
 
 	if err != nil {

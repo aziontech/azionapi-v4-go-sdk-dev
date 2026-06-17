@@ -109,7 +109,6 @@ func (o *WAFExceptionGenericConditionRequest) UnmarshalJSON(data []byte) (err er
 	varWAFExceptionGenericConditionRequest := _WAFExceptionGenericConditionRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWAFExceptionGenericConditionRequest)
 
 	if err != nil {

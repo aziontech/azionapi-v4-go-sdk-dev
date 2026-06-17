@@ -228,7 +228,6 @@ func (o *DataStreamRequest) UnmarshalJSON(data []byte) (err error) {
 	varDataStreamRequest := _DataStreamRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDataStreamRequest)
 
 	if err != nil {

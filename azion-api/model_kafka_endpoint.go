@@ -193,7 +193,6 @@ func (o *KafkaEndpoint) UnmarshalJSON(data []byte) (err error) {
 	varKafkaEndpoint := _KafkaEndpoint{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varKafkaEndpoint)
 
 	if err != nil {

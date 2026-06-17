@@ -109,7 +109,6 @@ func (o *SQLStatementsRequest) UnmarshalJSON(data []byte) (err error) {
 	varSQLStatementsRequest := _SQLStatementsRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSQLStatementsRequest)
 
 	if err != nil {

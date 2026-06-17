@@ -180,7 +180,6 @@ func (o *FirewallBehaviorSetCustomResponseAttributesRequest) UnmarshalJSON(data 
 	varFirewallBehaviorSetCustomResponseAttributesRequest := _FirewallBehaviorSetCustomResponseAttributesRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFirewallBehaviorSetCustomResponseAttributesRequest)
 
 	if err != nil {

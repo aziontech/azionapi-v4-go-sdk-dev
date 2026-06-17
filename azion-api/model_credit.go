@@ -304,7 +304,6 @@ func (o *Credit) UnmarshalJSON(data []byte) (err error) {
 	varCredit := _Credit{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCredit)
 
 	if err != nil {

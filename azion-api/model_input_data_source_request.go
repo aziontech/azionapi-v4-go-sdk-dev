@@ -109,7 +109,6 @@ func (o *InputDataSourceRequest) UnmarshalJSON(data []byte) (err error) {
 	varInputDataSourceRequest := _InputDataSourceRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varInputDataSourceRequest)
 
 	if err != nil {

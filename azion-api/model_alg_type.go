@@ -136,7 +136,6 @@ func (o *AlgType) UnmarshalJSON(data []byte) (err error) {
 	varAlgType := _AlgType{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAlgType)
 
 	if err != nil {

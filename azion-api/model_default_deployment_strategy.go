@@ -108,7 +108,6 @@ func (o *DefaultDeploymentStrategy) UnmarshalJSON(data []byte) (err error) {
 	varDefaultDeploymentStrategy := _DefaultDeploymentStrategy{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDefaultDeploymentStrategy)
 
 	if err != nil {

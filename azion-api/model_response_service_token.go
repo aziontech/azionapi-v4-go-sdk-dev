@@ -137,7 +137,6 @@ func (o *ResponseServiceToken) UnmarshalJSON(data []byte) (err error) {
 	varResponseServiceToken := _ResponseServiceToken{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseServiceToken)
 
 	if err != nil {

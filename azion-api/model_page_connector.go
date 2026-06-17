@@ -136,7 +136,6 @@ func (o *PageConnector) UnmarshalJSON(data []byte) (err error) {
 	varPageConnector := _PageConnector{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPageConnector)
 
 	if err != nil {

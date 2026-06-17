@@ -144,7 +144,6 @@ func (o *ResponseListNodeGroupsById) UnmarshalJSON(data []byte) (err error) {
 	varResponseListNodeGroupsById := _ResponseListNodeGroupsById{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseListNodeGroupsById)
 
 	if err != nil {

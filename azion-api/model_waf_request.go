@@ -180,7 +180,6 @@ func (o *WAFRequest) UnmarshalJSON(data []byte) (err error) {
 	varWAFRequest := _WAFRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWAFRequest)
 
 	if err != nil {

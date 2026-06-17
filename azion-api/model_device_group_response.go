@@ -144,7 +144,6 @@ func (o *DeviceGroupResponse) UnmarshalJSON(data []byte) (err error) {
 	varDeviceGroupResponse := _DeviceGroupResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDeviceGroupResponse)
 
 	if err != nil {

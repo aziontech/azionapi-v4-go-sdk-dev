@@ -108,7 +108,6 @@ func (o *NamespaceCreateRequest) UnmarshalJSON(data []byte) (err error) {
 	varNamespaceCreateRequest := _NamespaceCreateRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNamespaceCreateRequest)
 
 	if err != nil {

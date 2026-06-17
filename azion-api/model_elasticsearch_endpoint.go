@@ -165,7 +165,6 @@ func (o *ElasticsearchEndpoint) UnmarshalJSON(data []byte) (err error) {
 	varElasticsearchEndpoint := _ElasticsearchEndpoint{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varElasticsearchEndpoint)
 
 	if err != nil {

@@ -200,7 +200,6 @@ func (o *NodeGroups) UnmarshalJSON(data []byte) (err error) {
 	varNodeGroups := _NodeGroups{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNodeGroups)
 
 	if err != nil {

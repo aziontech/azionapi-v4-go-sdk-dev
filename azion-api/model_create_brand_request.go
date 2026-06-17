@@ -165,7 +165,6 @@ func (o *CreateBrandRequest) UnmarshalJSON(data []byte) (err error) {
 	varCreateBrandRequest := _CreateBrandRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCreateBrandRequest)
 
 	if err != nil {

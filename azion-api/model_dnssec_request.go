@@ -108,7 +108,6 @@ func (o *DNSSECRequest) UnmarshalJSON(data []byte) (err error) {
 	varDNSSECRequest := _DNSSECRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDNSSECRequest)
 
 	if err != nil {

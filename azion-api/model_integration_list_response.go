@@ -224,7 +224,6 @@ func (o *IntegrationListResponse) UnmarshalJSON(data []byte) (err error) {
 	varIntegrationListResponse := _IntegrationListResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varIntegrationListResponse)
 
 	if err != nil {

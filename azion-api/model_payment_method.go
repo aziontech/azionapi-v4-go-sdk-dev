@@ -471,7 +471,6 @@ func (o *PaymentMethod) UnmarshalJSON(data []byte) (err error) {
 	varPaymentMethod := _PaymentMethod{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPaymentMethod)
 
 	if err != nil {

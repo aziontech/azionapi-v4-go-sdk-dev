@@ -136,7 +136,6 @@ func (o *KBAskResponse) UnmarshalJSON(data []byte) (err error) {
 	varKBAskResponse := _KBAskResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varKBAskResponse)
 
 	if err != nil {

@@ -194,7 +194,6 @@ func (o *FolderListResponse) UnmarshalJSON(data []byte) (err error) {
 	varFolderListResponse := _FolderListResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFolderListResponse)
 
 	if err != nil {

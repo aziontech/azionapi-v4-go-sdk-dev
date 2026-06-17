@@ -222,7 +222,6 @@ func (o *Bucket) UnmarshalJSON(data []byte) (err error) {
 	varBucket := _Bucket{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBucket)
 
 	if err != nil {

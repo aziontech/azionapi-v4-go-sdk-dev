@@ -377,7 +377,6 @@ func (o *WAFRule) UnmarshalJSON(data []byte) (err error) {
 	varWAFRule := _WAFRule{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWAFRule)
 
 	if err != nil {

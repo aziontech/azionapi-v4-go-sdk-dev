@@ -145,7 +145,6 @@ func (o *Purge) UnmarshalJSON(data []byte) (err error) {
 	varPurge := _Purge{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPurge)
 
 	if err != nil {

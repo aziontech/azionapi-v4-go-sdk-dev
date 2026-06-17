@@ -180,7 +180,6 @@ func (o *CacheSettingRequest) UnmarshalJSON(data []byte) (err error) {
 	varCacheSettingRequest := _CacheSettingRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCacheSettingRequest)
 
 	if err != nil {

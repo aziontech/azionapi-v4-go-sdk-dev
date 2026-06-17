@@ -108,7 +108,6 @@ func (o *CloneWAFRequest) UnmarshalJSON(data []byte) (err error) {
 	varCloneWAFRequest := _CloneWAFRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCloneWAFRequest)
 
 	if err != nil {

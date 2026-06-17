@@ -137,7 +137,6 @@ func (o *ResponseServiceTokenRenew) UnmarshalJSON(data []byte) (err error) {
 	varResponseServiceTokenRenew := _ResponseServiceTokenRenew{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseServiceTokenRenew)
 
 	if err != nil {

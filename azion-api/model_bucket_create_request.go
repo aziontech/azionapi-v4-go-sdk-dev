@@ -137,7 +137,6 @@ func (o *BucketCreateRequest) UnmarshalJSON(data []byte) (err error) {
 	varBucketCreateRequest := _BucketCreateRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBucketCreateRequest)
 
 	if err != nil {

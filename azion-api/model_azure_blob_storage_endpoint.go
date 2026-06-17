@@ -193,7 +193,6 @@ func (o *AzureBlobStorageEndpoint) UnmarshalJSON(data []byte) (err error) {
 	varAzureBlobStorageEndpoint := _AzureBlobStorageEndpoint{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAzureBlobStorageEndpoint)
 
 	if err != nil {

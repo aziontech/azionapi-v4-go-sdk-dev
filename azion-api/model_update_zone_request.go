@@ -136,7 +136,6 @@ func (o *UpdateZoneRequest) UnmarshalJSON(data []byte) (err error) {
 	varUpdateZoneRequest := _UpdateZoneRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUpdateZoneRequest)
 
 	if err != nil {

@@ -144,7 +144,6 @@ func (o *CreditResponse) UnmarshalJSON(data []byte) (err error) {
 	varCreditResponse := _CreditResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCreditResponse)
 
 	if err != nil {

@@ -146,7 +146,6 @@ func (o *ThresholdsConfigField) UnmarshalJSON(data []byte) (err error) {
 	varThresholdsConfigField := _ThresholdsConfigField{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varThresholdsConfigField)
 
 	if err != nil {

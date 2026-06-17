@@ -172,7 +172,6 @@ func (o *BuildContextField) UnmarshalJSON(data []byte) (err error) {
 	varBuildContextField := _BuildContextField{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBuildContextField)
 
 	if err != nil {

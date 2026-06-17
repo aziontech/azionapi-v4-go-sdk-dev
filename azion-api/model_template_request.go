@@ -172,7 +172,6 @@ func (o *TemplateRequest) UnmarshalJSON(data []byte) (err error) {
 	varTemplateRequest := _TemplateRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varTemplateRequest)
 
 	if err != nil {

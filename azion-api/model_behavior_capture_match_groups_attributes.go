@@ -164,7 +164,6 @@ func (o *BehaviorCaptureMatchGroupsAttributes) UnmarshalJSON(data []byte) (err e
 	varBehaviorCaptureMatchGroupsAttributes := _BehaviorCaptureMatchGroupsAttributes{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBehaviorCaptureMatchGroupsAttributes)
 
 	if err != nil {

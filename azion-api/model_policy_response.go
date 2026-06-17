@@ -144,7 +144,6 @@ func (o *PolicyResponse) UnmarshalJSON(data []byte) (err error) {
 	varPolicyResponse := _PolicyResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPolicyResponse)
 
 	if err != nil {

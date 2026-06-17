@@ -137,7 +137,6 @@ func (o *FirewallBehaviorSetWafAttributesRequest) UnmarshalJSON(data []byte) (er
 	varFirewallBehaviorSetWafAttributesRequest := _FirewallBehaviorSetWafAttributesRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFirewallBehaviorSetWafAttributesRequest)
 
 	if err != nil {

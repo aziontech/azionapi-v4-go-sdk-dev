@@ -403,7 +403,6 @@ func (o *ConnectorHTTP) UnmarshalJSON(data []byte) (err error) {
 	varConnectorHTTP := _ConnectorHTTP{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varConnectorHTTP)
 
 	if err != nil {

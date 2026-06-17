@@ -236,7 +236,6 @@ func (o *PageConnectorAttributesRequest) UnmarshalJSON(data []byte) (err error) 
 	varPageConnectorAttributesRequest := _PageConnectorAttributesRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPageConnectorAttributesRequest)
 
 	if err != nil {
