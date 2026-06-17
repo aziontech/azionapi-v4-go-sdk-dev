@@ -143,11 +143,6 @@ jobs:
             removed=$(echo ${file} | cut -d. -f1)
             pkg_name=$(echo ${removed} | tr -d '-')
             npx @openapitools/openapi-generator-cli generate -i "$file" -g go -o "./${removed}" --package-name "${pkg_name}"
-
-            # Disable strict decoding so unknown JSON fields don't cause unmarshal errors.
-            # Removes every "<decoder>.DisallowUnknownFields()" call from the generated code.
-            find "./${removed}" -name '*.go' -exec sed -i '/DisallowUnknownFields()/d' {} +
-
             echo 'go.mod' >> ./${removed}/.gitignore
             echo 'go.sum' >> ./${removed}/.gitignore
             echo 'api/openapi.yaml' >> ./${removed}/.gitignore
