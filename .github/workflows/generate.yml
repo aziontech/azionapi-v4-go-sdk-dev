@@ -150,7 +150,7 @@ jobs:
             # is precomputed from azion-api.yaml (see the file's header); scoped to
             # azion-api because other packages have different oneOf schemas.
             if [ "$removed" = "azion-api" ]; then
-              keep="scripts/azion_api_oneof_keep_strict.txt"
+              keep=".github/workflows/azion_api_oneof_keep_strict.txt"
               find "./${removed}" -name '*.go' | while read -r gofile; do
                 if ! grep -v '^#' "$keep" | grep -qxF "$(basename "$gofile")"; then
                   sed -i '/DisallowUnknownFields()/d' "$gofile"
