@@ -248,7 +248,6 @@ func (o *NodeServiceBind) UnmarshalJSON(data []byte) (err error) {
 	varNodeServiceBind := _NodeServiceBind{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNodeServiceBind)
 
 	if err != nil {

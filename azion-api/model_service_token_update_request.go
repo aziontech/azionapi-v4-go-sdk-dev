@@ -180,7 +180,6 @@ func (o *ServiceTokenUpdateRequest) UnmarshalJSON(data []byte) (err error) {
 	varServiceTokenUpdateRequest := _ServiceTokenUpdateRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varServiceTokenUpdateRequest)
 
 	if err != nil {

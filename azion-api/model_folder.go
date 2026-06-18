@@ -194,7 +194,6 @@ func (o *Folder) UnmarshalJSON(data []byte) (err error) {
 	varFolder := _Folder{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFolder)
 
 	if err != nil {

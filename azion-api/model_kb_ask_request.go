@@ -190,7 +190,6 @@ func (o *KBAskRequest) UnmarshalJSON(data []byte) (err error) {
 	varKBAskRequest := _KBAskRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varKBAskRequest)
 
 	if err != nil {

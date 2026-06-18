@@ -830,7 +830,6 @@ func (o *CertificateVersionCreate) UnmarshalJSON(data []byte) (err error) {
 	varCertificateVersionCreate := _CertificateVersionCreate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCertificateVersionCreate)
 
 	if err != nil {

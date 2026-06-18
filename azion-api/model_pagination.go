@@ -248,7 +248,6 @@ func (o *Pagination) UnmarshalJSON(data []byte) (err error) {
 	varPagination := _Pagination{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPagination)
 
 	if err != nil {

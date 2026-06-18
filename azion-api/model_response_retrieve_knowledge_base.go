@@ -108,7 +108,6 @@ func (o *ResponseRetrieveKnowledgeBase) UnmarshalJSON(data []byte) (err error) {
 	varResponseRetrieveKnowledgeBase := _ResponseRetrieveKnowledgeBase{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseRetrieveKnowledgeBase)
 
 	if err != nil {

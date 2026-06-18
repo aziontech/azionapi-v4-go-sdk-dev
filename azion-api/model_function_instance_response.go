@@ -144,7 +144,6 @@ func (o *FunctionInstanceResponse) UnmarshalJSON(data []byte) (err error) {
 	varFunctionInstanceResponse := _FunctionInstanceResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFunctionInstanceResponse)
 
 	if err != nil {

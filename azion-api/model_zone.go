@@ -248,7 +248,6 @@ func (o *Zone) UnmarshalJSON(data []byte) (err error) {
 	varZone := _Zone{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varZone)
 
 	if err != nil {

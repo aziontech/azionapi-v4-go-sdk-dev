@@ -193,7 +193,6 @@ func (o *Execution) UnmarshalJSON(data []byte) (err error) {
 	varExecution := _Execution{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varExecution)
 
 	if err != nil {

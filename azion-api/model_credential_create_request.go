@@ -210,7 +210,6 @@ func (o *CredentialCreateRequest) UnmarshalJSON(data []byte) (err error) {
 	varCredentialCreateRequest := _CredentialCreateRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCredentialCreateRequest)
 
 	if err != nil {

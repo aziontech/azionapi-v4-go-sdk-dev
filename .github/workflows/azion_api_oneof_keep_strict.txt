@@ -1,0 +1,119 @@
+# azion-api models that MUST keep `decoder.DisallowUnknownFields()`.
+#
+# These are every schema that takes part in a `oneOf` in azion-api.yaml
+# (the oneOf containers and their variant members) plus utils.go, which hosts
+# newStrictDecoder used by the containers. oneOf disambiguation relies on strict
+# decoding to reject a payload that belongs to a sibling variant; without it,
+# e.g. {"type":"set_connector","attributes":{...}} matches both BehaviorArgs and
+# BehaviorNoArgs and unmarshaling fails with
+# "data matches more than one schema in oneOf(RequestPhaseBehavior)".
+#
+# Every OTHER model has DisallowUnknownFields stripped after generation so new
+# API fields don't break the SDK. Computed once from azion-api.yaml; regenerate
+# this list if the spec's oneOf set changes. Lines starting with # are ignored.
+model_account.go
+model_account_request.go
+model_aws_kinesis_firehose_endpoint.go
+model_aws_kinesis_firehose_endpoint_request.go
+model_azure_blob_storage_endpoint.go
+model_azure_blob_storage_endpoint_request.go
+model_azure_monitor_endpoint.go
+model_azure_monitor_endpoint_request.go
+model_behavior_args.go
+model_behavior_capture.go
+model_behavior_no_args.go
+model_big_query_endpoint.go
+model_big_query_endpoint_request.go
+model_brand.go
+model_brand_request.go
+model_connector.go
+model_connector_http.go
+model_connector_http_request.go
+model_connector_live_ingest.go
+model_connector_live_ingest_request.go
+model_connector_request.go
+model_connector_storage.go
+model_connector_storage_request.go
+model_create_account_request.go
+model_create_brand_request.go
+model_create_organization_request.go
+model_create_reseller_request.go
+model_create_workspace_request.go
+model_datadog_endpoint.go
+model_datadog_endpoint_request.go
+model_deployment_strategy_default_deployment_strategy.go
+model_deployment_strategy_default_deployment_strategy_request.go
+model_elasticsearch_endpoint.go
+model_elasticsearch_endpoint_request.go
+model_firewall_behavior.go
+model_firewall_behavior_args.go
+model_firewall_behavior_args_request.go
+model_firewall_behavior_no_args.go
+model_firewall_behavior_no_args_request.go
+model_firewall_behavior_object_args.go
+model_firewall_behavior_object_args_request.go
+model_firewall_behavior_request.go
+model_firewall_behavior_set_custom_response_attributes.go
+model_firewall_behavior_set_custom_response_attributes_request.go
+model_firewall_behavior_set_rate_limit_attributes.go
+model_firewall_behavior_set_rate_limit_attributes_request.go
+model_firewall_behavior_set_waf_attributes.go
+model_firewall_behavior_set_waf_attributes_request.go
+model_http_post_endpoint.go
+model_http_post_endpoint_request.go
+model_input_input_data_source_attributes.go
+model_input_input_data_source_attributes_request.go
+model_kafka_endpoint.go
+model_kafka_endpoint_request.go
+model_login_response.go
+model_mfa_token.go
+model_organization.go
+model_organization_request.go
+model_output.go
+model_output_request.go
+model_page.go
+model_page_connector.go
+model_page_connector_request.go
+model_page_request.go
+model_patched_account_request.go
+model_patched_brand_request.go
+model_patched_connector_http_request.go
+model_patched_connector_live_ingest_request.go
+model_patched_connector_request.go
+model_patched_connector_storage_request.go
+model_patched_organization_request.go
+model_patched_reseller_request.go
+model_patched_workspace_request.go
+model_q_radar_endpoint.go
+model_q_radar_endpoint_request.go
+model_request_phase_behavior.go
+model_request_phase_behavior_request.go
+model_reseller.go
+model_reseller_request.go
+model_response_list_account.go
+model_response_phase_behavior.go
+model_response_phase_behavior_request.go
+model_s3_endpoint.go
+model_s3_endpoint_request.go
+model_splunk_endpoint.go
+model_splunk_endpoint_request.go
+model_token_pair.go
+model_transform.go
+model_transform_request.go
+model_transform_transform_filter_workloads_attributes.go
+model_transform_transform_filter_workloads_attributes_request.go
+model_transform_transform_render_template_attributes.go
+model_transform_transform_render_template_attributes_request.go
+model_transform_transform_sampling_attributes.go
+model_transform_transform_sampling_attributes_request.go
+model_waf_exception_condition.go
+model_waf_exception_condition_request.go
+model_waf_exception_generic_condition.go
+model_waf_exception_generic_condition_request.go
+model_waf_exception_specific_condition_on_name.go
+model_waf_exception_specific_condition_on_name_request.go
+model_waf_exception_specific_condition_on_value.go
+model_waf_exception_specific_condition_on_value_request.go
+model_workspace.go
+model_workspace_request.go
+utils.go

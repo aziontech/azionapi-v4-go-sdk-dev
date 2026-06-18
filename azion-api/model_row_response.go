@@ -144,7 +144,6 @@ func (o *RowResponse) UnmarshalJSON(data []byte) (err error) {
 	varRowResponse := _RowResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varRowResponse)
 
 	if err != nil {

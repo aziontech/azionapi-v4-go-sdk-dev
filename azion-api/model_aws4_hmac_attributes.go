@@ -200,7 +200,6 @@ func (o *AWS4HMACAttributes) UnmarshalJSON(data []byte) (err error) {
 	varAWS4HMACAttributes := _AWS4HMACAttributes{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAWS4HMACAttributes)
 
 	if err != nil {

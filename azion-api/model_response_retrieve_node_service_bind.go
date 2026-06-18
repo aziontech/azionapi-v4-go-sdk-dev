@@ -108,7 +108,6 @@ func (o *ResponseRetrieveNodeServiceBind) UnmarshalJSON(data []byte) (err error)
 	varResponseRetrieveNodeServiceBind := _ResponseRetrieveNodeServiceBind{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseRetrieveNodeServiceBind)
 
 	if err != nil {

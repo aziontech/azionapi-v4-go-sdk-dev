@@ -245,7 +245,6 @@ func (o *FirewallFunctionInstanceRequest) UnmarshalJSON(data []byte) (err error)
 	varFirewallFunctionInstanceRequest := _FirewallFunctionInstanceRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFirewallFunctionInstanceRequest)
 
 	if err != nil {

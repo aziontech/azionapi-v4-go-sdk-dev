@@ -506,7 +506,6 @@ func (o *ResponseListUser) UnmarshalJSON(data []byte) (err error) {
 	varResponseListUser := _ResponseListUser{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseListUser)
 
 	if err != nil {

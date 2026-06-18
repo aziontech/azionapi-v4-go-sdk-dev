@@ -397,7 +397,6 @@ func (o *WorkloadRequest) UnmarshalJSON(data []byte) (err error) {
 	varWorkloadRequest := _WorkloadRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWorkloadRequest)
 
 	if err != nil {

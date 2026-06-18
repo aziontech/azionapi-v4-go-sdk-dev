@@ -137,7 +137,6 @@ func (o *TransformRenderTemplateAttributesRequest) UnmarshalJSON(data []byte) (e
 	varTransformRenderTemplateAttributesRequest := _TransformRenderTemplateAttributesRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varTransformRenderTemplateAttributesRequest)
 
 	if err != nil {

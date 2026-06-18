@@ -167,7 +167,6 @@ func (o *DNSSEC) UnmarshalJSON(data []byte) (err error) {
 	varDNSSEC := _DNSSEC{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDNSSEC)
 
 	if err != nil {

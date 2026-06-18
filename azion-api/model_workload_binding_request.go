@@ -172,7 +172,6 @@ func (o *WorkloadBindingRequest) UnmarshalJSON(data []byte) (err error) {
 	varWorkloadBindingRequest := _WorkloadBindingRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWorkloadBindingRequest)
 
 	if err != nil {

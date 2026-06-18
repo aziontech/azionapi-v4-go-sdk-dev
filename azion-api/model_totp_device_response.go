@@ -144,7 +144,6 @@ func (o *TOTPDeviceResponse) UnmarshalJSON(data []byte) (err error) {
 	varTOTPDeviceResponse := _TOTPDeviceResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varTOTPDeviceResponse)
 
 	if err != nil {

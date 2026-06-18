@@ -144,7 +144,6 @@ func (o *ResponsePhaseRuleResponse) UnmarshalJSON(data []byte) (err error) {
 	varResponsePhaseRuleResponse := _ResponsePhaseRuleResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponsePhaseRuleResponse)
 
 	if err != nil {

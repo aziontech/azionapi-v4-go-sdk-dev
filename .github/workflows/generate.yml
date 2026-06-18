@@ -143,6 +143,21 @@ jobs:
             removed=$(echo ${file} | cut -d. -f1)
             pkg_name=$(echo ${removed} | tr -d '-')
             npx @openapitools/openapi-generator-cli generate -i "$file" -g go -o "./${removed}" --package-name "${pkg_name}"
+
+            # Strip decoder.DisallowUnknownFields() so new/unknown API fields don't
+            # break unmarshaling, EXCEPT in models that take part in a oneOf, where
+            # strict decoding is required for variant disambiguation. The keep-list
+            # is precomputed from azion-api.yaml (see the file's header); scoped to
+            # azion-api because other packages have different oneOf schemas.
+            if [ "$removed" = "azion-api" ]; then
+              keep=".github/workflows/azion_api_oneof_keep_strict.txt"
+              find "./${removed}" -name '*.go' | while read -r gofile; do
+                if ! grep -v '^#' "$keep" | grep -qxF "$(basename "$gofile")"; then
+                  sed -i '/DisallowUnknownFields()/d' "$gofile"
+                fi
+              done
+            fi
+
             echo 'go.mod' >> ./${removed}/.gitignore
             echo 'go.sum' >> ./${removed}/.gitignore
             echo 'api/openapi.yaml' >> ./${removed}/.gitignore

@@ -471,7 +471,6 @@ func (o *LibraryReportRequest) UnmarshalJSON(data []byte) (err error) {
 	varLibraryReportRequest := _LibraryReportRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varLibraryReportRequest)
 
 	if err != nil {

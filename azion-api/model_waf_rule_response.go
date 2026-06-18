@@ -144,7 +144,6 @@ func (o *WAFRuleResponse) UnmarshalJSON(data []byte) (err error) {
 	varWAFRuleResponse := _WAFRuleResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWAFRuleResponse)
 
 	if err != nil {

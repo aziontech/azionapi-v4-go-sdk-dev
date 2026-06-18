@@ -109,7 +109,6 @@ func (o *TOTPVerificationRequest) UnmarshalJSON(data []byte) (err error) {
 	varTOTPVerificationRequest := _TOTPVerificationRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varTOTPVerificationRequest)
 
 	if err != nil {

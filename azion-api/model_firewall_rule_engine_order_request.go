@@ -108,7 +108,6 @@ func (o *FirewallRuleEngineOrderRequest) UnmarshalJSON(data []byte) (err error) 
 	varFirewallRuleEngineOrderRequest := _FirewallRuleEngineOrderRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFirewallRuleEngineOrderRequest)
 
 	if err != nil {

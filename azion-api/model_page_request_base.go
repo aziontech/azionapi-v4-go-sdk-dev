@@ -137,7 +137,6 @@ func (o *PageRequestBase) UnmarshalJSON(data []byte) (err error) {
 	varPageRequestBase := _PageRequestBase{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPageRequestBase)
 
 	if err != nil {

@@ -144,7 +144,6 @@ func (o *ConnectorResponse) UnmarshalJSON(data []byte) (err error) {
 	varConnectorResponse := _ConnectorResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varConnectorResponse)
 
 	if err != nil {

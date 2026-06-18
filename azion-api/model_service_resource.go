@@ -416,7 +416,6 @@ func (o *ServiceResource) UnmarshalJSON(data []byte) (err error) {
 	varServiceResource := _ServiceResource{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varServiceResource)
 
 	if err != nil {

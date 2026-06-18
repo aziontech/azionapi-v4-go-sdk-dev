@@ -358,7 +358,6 @@ func (o *FirewallFunctionInstance) UnmarshalJSON(data []byte) (err error) {
 	varFirewallFunctionInstance := _FirewallFunctionInstance{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFirewallFunctionInstance)
 
 	if err != nil {

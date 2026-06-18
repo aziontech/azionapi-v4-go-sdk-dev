@@ -144,7 +144,6 @@ func (o *SuccessObjectOperation) UnmarshalJSON(data []byte) (err error) {
 	varSuccessObjectOperation := _SuccessObjectOperation{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSuccessObjectOperation)
 
 	if err != nil {

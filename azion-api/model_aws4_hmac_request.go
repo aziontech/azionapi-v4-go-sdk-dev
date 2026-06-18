@@ -145,7 +145,6 @@ func (o *AWS4HMACRequest) UnmarshalJSON(data []byte) (err error) {
 	varAWS4HMACRequest := _AWS4HMACRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varAWS4HMACRequest)
 
 	if err != nil {

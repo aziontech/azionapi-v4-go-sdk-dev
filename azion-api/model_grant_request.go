@@ -291,7 +291,6 @@ func (o *GrantRequest) UnmarshalJSON(data []byte) (err error) {
 	varGrantRequest := _GrantRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varGrantRequest)
 
 	if err != nil {

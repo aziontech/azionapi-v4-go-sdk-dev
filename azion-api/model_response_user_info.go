@@ -137,7 +137,6 @@ func (o *ResponseUserInfo) UnmarshalJSON(data []byte) (err error) {
 	varResponseUserInfo := _ResponseUserInfo{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varResponseUserInfo)
 
 	if err != nil {

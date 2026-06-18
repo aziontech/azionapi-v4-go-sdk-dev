@@ -108,7 +108,6 @@ func (o *ApplicationResponsePhaseRuleEngineOrderRequest) UnmarshalJSON(data []by
 	varApplicationResponsePhaseRuleEngineOrderRequest := _ApplicationResponsePhaseRuleEngineOrderRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varApplicationResponsePhaseRuleEngineOrderRequest)
 
 	if err != nil {

@@ -136,7 +136,6 @@ func (o *SessionTimeoutPolicyRequest) UnmarshalJSON(data []byte) (err error) {
 	varSessionTimeoutPolicyRequest := _SessionTimeoutPolicyRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSessionTimeoutPolicyRequest)
 
 	if err != nil {

@@ -144,7 +144,6 @@ func (o *PaymentMethodResponse) UnmarshalJSON(data []byte) (err error) {
 	varPaymentMethodResponse := _PaymentMethodResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPaymentMethodResponse)
 
 	if err != nil {
