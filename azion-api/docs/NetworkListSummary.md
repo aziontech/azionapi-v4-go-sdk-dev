@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
 **Type** | **string** | * &#x60;asn&#x60; - ASN * &#x60;countries&#x60; - Countries * &#x60;ip_cidr&#x60; - IP/CIDR | 
-**LastEditor** | **string** |  | 
-**LastModified** | **time.Time** |  | 
-**CreatedAt** | **time.Time** |  | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**VersionId** | **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | 
-**State** | **NullableString** | Build state of this version (queued, building, ready, error, ...) | 
+**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
+**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 
 ## Methods
 
 ### NewNetworkListSummary
 
-`func NewNetworkListSummary(id int64, name string, type_ string, lastEditor string, lastModified time.Time, createdAt time.Time, versionId NullableString, state NullableString, ) *NetworkListSummary`
+`func NewNetworkListSummary(name string, type_ string, ) *NetworkListSummary`
 
 NewNetworkListSummary instantiates a new NetworkListSummary object
 This constructor will assign default values to properties that have it defined,
@@ -52,6 +52,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *NetworkListSummary) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -112,6 +117,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *NetworkListSummary) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -132,6 +142,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *NetworkListSummary) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -152,6 +167,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *NetworkListSummary) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -197,6 +217,11 @@ and a boolean to check if the value has been set.
 
 SetVersionId sets VersionId field to given value.
 
+### HasVersionId
+
+`func (o *NetworkListSummary) HasVersionId() bool`
+
+HasVersionId returns a boolean if a field has been set.
 
 ### SetVersionIdNil
 
@@ -227,6 +252,11 @@ and a boolean to check if the value has been set.
 
 SetState sets State field to given value.
 
+### HasState
+
+`func (o *NetworkListSummary) HasState() bool`
+
+HasState returns a boolean if a field has been set.
 
 ### SetStateNil
 

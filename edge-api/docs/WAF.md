@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **Name** | **string** |  | 
-**LastEditor** | **string** |  | 
-**LastModified** | **time.Time** |  | 
-**ProductVersion** | **NullableString** |  | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
+**ProductVersion** | Pointer to **NullableString** |  | [optional] 
 **EngineSettings** | Pointer to [**WAFEngineSettingsField**](WAFEngineSettingsField.md) |  | [optional] 
-**VersionId** | **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | 
-**State** | **NullableString** | Build state of this version (queued, building, ready, error, ...) | 
+**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
+**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 
 ## Methods
 
 ### NewWAF
 
-`func NewWAF(id int64, name string, lastEditor string, lastModified time.Time, productVersion NullableString, versionId NullableString, state NullableString, ) *WAF`
+`func NewWAF(name string, ) *WAF`
 
 NewWAF instantiates a new WAF object
 This constructor will assign default values to properties that have it defined,
@@ -52,6 +52,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *WAF) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -117,6 +122,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *WAF) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -137,6 +147,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *WAF) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetProductVersion
 
@@ -157,6 +172,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *WAF) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 ### SetProductVersionNil
 
@@ -212,6 +232,11 @@ and a boolean to check if the value has been set.
 
 SetVersionId sets VersionId field to given value.
 
+### HasVersionId
+
+`func (o *WAF) HasVersionId() bool`
+
+HasVersionId returns a boolean if a field has been set.
 
 ### SetVersionIdNil
 
@@ -242,6 +267,11 @@ and a boolean to check if the value has been set.
 
 SetState sets State field to given value.
 
+### HasState
+
+`func (o *WAF) HasState() bool`
+
+HasState returns a boolean if a field has been set.
 
 ### SetStateNil
 

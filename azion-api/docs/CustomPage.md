@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
-**LastEditor** | **string** |  | 
-**LastModified** | **time.Time** |  | 
-**CreatedAt** | **time.Time** |  | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**ProductVersion** | **string** |  | 
+**ProductVersion** | Pointer to **string** |  | [optional] 
 **Pages** | [**[]PageBase**](PageBase.md) |  | 
-**VersionId** | **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | 
-**State** | **NullableString** | Build state of this version (queued, building, ready, error, ...) | 
+**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
+**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 
 ## Methods
 
 ### NewCustomPage
 
-`func NewCustomPage(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, pages []PageBase, versionId NullableString, state NullableString, ) *CustomPage`
+`func NewCustomPage(name string, pages []PageBase, ) *CustomPage`
 
 NewCustomPage instantiates a new CustomPage object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +53,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *CustomPage) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -93,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *CustomPage) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -113,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *CustomPage) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -133,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *CustomPage) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -178,6 +198,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *CustomPage) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 ### GetPages
 
@@ -218,6 +243,11 @@ and a boolean to check if the value has been set.
 
 SetVersionId sets VersionId field to given value.
 
+### HasVersionId
+
+`func (o *CustomPage) HasVersionId() bool`
+
+HasVersionId returns a boolean if a field has been set.
 
 ### SetVersionIdNil
 
@@ -248,6 +278,11 @@ and a boolean to check if the value has been set.
 
 SetState sets State field to given value.
 
+### HasState
+
+`func (o *CustomPage) HasState() bool`
+
+HasState returns a boolean if a field has been set.
 
 ### SetStateNil
 

@@ -12,6 +12,8 @@ package edgeapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ResponseBehaviorRunFunctionAttributesRequest type satisfies the MappedNullable interface at compile time
@@ -78,6 +80,43 @@ func (o ResponseBehaviorRunFunctionAttributesRequest) ToMap() (map[string]interf
 	toSerialize := map[string]interface{}{}
 	toSerialize["value"] = o.Value
 	return toSerialize, nil
+}
+
+func (o *ResponseBehaviorRunFunctionAttributesRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"value",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varResponseBehaviorRunFunctionAttributesRequest := _ResponseBehaviorRunFunctionAttributesRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varResponseBehaviorRunFunctionAttributesRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ResponseBehaviorRunFunctionAttributesRequest(varResponseBehaviorRunFunctionAttributesRequest)
+
+	return err
 }
 
 type NullableResponseBehaviorRunFunctionAttributesRequest struct {

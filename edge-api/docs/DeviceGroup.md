@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
 **UserAgent** | **string** | Enter a valid regular expression pattern to identify user agents. | 
-**CreatedAt** | **NullableTime** |  | 
+**CreatedAt** | Pointer to **NullableTime** |  | [optional] 
 
 ## Methods
 
 ### NewDeviceGroup
 
-`func NewDeviceGroup(id int64, name string, userAgent string, createdAt NullableTime, ) *DeviceGroup`
+`func NewDeviceGroup(name string, userAgent string, ) *DeviceGroup`
 
 NewDeviceGroup instantiates a new DeviceGroup object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *DeviceGroup) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -107,6 +112,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *DeviceGroup) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### SetCreatedAtNil
 

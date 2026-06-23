@@ -12,6 +12,8 @@ package edgeapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the FunctionRequest type satisfies the MappedNullable interface at compile time
@@ -289,6 +291,44 @@ func (o FunctionRequest) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["code"] = o.Code
 	return toSerialize, nil
+}
+
+func (o *FunctionRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"code",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFunctionRequest := _FunctionRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFunctionRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FunctionRequest(varFunctionRequest)
+
+	return err
 }
 
 type NullableFunctionRequest struct {

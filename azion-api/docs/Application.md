@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
-**LastEditor** | **string** |  | 
-**LastModified** | **time.Time** |  | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
 **Modules** | Pointer to [**ApplicationModules**](ApplicationModules.md) |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **Debug** | Pointer to **bool** |  | [optional] 
-**ProductVersion** | **string** |  | 
-**VersionId** | **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | 
-**State** | **NullableString** | Build state of this version (queued, building, ready, error, ...) | 
+**ProductVersion** | Pointer to **string** |  | [optional] 
+**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
+**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 
 ## Methods
 
 ### NewApplication
 
-`func NewApplication(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, versionId NullableString, state NullableString, ) *Application`
+`func NewApplication(name string, ) *Application`
 
 NewApplication instantiates a new Application object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +53,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Application) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -93,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *Application) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -113,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *Application) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetModules
 
@@ -208,6 +223,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *Application) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 ### GetVersionId
 
@@ -228,6 +248,11 @@ and a boolean to check if the value has been set.
 
 SetVersionId sets VersionId field to given value.
 
+### HasVersionId
+
+`func (o *Application) HasVersionId() bool`
+
+HasVersionId returns a boolean if a field has been set.
 
 ### SetVersionIdNil
 
@@ -258,6 +283,11 @@ and a boolean to check if the value has been set.
 
 SetState sets State field to given value.
 
+### HasState
+
+`func (o *Application) HasState() bool`
+
+HasState returns a boolean if a field has been set.
 
 ### SetStateNil
 

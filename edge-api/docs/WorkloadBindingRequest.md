@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **EnvironmentId** | **string** |  | 
 **DeploymentId** | **string** |  | 
 **Domains** | Pointer to **[]string** |  | [optional] 
+**AutoDomainAllowAccess** | Pointer to **bool** |  | [optional] 
+**Certificate** | Pointer to **NullableInt64** |  | [optional] 
 
 ## Methods
 
@@ -92,6 +94,66 @@ SetDomains sets Domains field to given value.
 
 HasDomains returns a boolean if a field has been set.
 
+### GetAutoDomainAllowAccess
+
+`func (o *WorkloadBindingRequest) GetAutoDomainAllowAccess() bool`
+
+GetAutoDomainAllowAccess returns the AutoDomainAllowAccess field if non-nil, zero value otherwise.
+
+### GetAutoDomainAllowAccessOk
+
+`func (o *WorkloadBindingRequest) GetAutoDomainAllowAccessOk() (*bool, bool)`
+
+GetAutoDomainAllowAccessOk returns a tuple with the AutoDomainAllowAccess field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoDomainAllowAccess
+
+`func (o *WorkloadBindingRequest) SetAutoDomainAllowAccess(v bool)`
+
+SetAutoDomainAllowAccess sets AutoDomainAllowAccess field to given value.
+
+### HasAutoDomainAllowAccess
+
+`func (o *WorkloadBindingRequest) HasAutoDomainAllowAccess() bool`
+
+HasAutoDomainAllowAccess returns a boolean if a field has been set.
+
+### GetCertificate
+
+`func (o *WorkloadBindingRequest) GetCertificate() int64`
+
+GetCertificate returns the Certificate field if non-nil, zero value otherwise.
+
+### GetCertificateOk
+
+`func (o *WorkloadBindingRequest) GetCertificateOk() (*int64, bool)`
+
+GetCertificateOk returns a tuple with the Certificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificate
+
+`func (o *WorkloadBindingRequest) SetCertificate(v int64)`
+
+SetCertificate sets Certificate field to given value.
+
+### HasCertificate
+
+`func (o *WorkloadBindingRequest) HasCertificate() bool`
+
+HasCertificate returns a boolean if a field has been set.
+
+### SetCertificateNil
+
+`func (o *WorkloadBindingRequest) SetCertificateNil(b bool)`
+
+ SetCertificateNil sets the value for Certificate to be an explicit nil
+
+### UnsetCertificate
+`func (o *WorkloadBindingRequest) UnsetCertificate()`
+
+UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

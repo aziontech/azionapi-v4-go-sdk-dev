@@ -12,6 +12,7 @@ package edgeapi
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the FirewallBehaviorRunFunctionAttributesRequest type satisfies the MappedNullable interface at compile time
@@ -84,6 +85,48 @@ func (o FirewallBehaviorRunFunctionAttributesRequest) ToMap() (map[string]interf
 	}
 
 	return toSerialize, nil
+}
+
+func (o *FirewallBehaviorRunFunctionAttributesRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"value",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFirewallBehaviorRunFunctionAttributesRequest := _FirewallBehaviorRunFunctionAttributesRequest{}
+
+	err = json.Unmarshal(data, &varFirewallBehaviorRunFunctionAttributesRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FirewallBehaviorRunFunctionAttributesRequest(varFirewallBehaviorRunFunctionAttributesRequest)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "value")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableFirewallBehaviorRunFunctionAttributesRequest struct {

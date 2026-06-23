@@ -23,14 +23,14 @@ var _ MappedNullable = &WorkloadDeployment{}
 
 // WorkloadDeployment struct for WorkloadDeployment
 type WorkloadDeployment struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
 	Current *bool `json:"current,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	Strategy DeploymentStrategyDefaultDeploymentStrategy `json:"strategy"`
-	LastEditor string `json:"last_editor"`
-	LastModified time.Time `json:"last_modified"`
-	CreatedAt time.Time `json:"created_at"`
+	LastEditor *string `json:"last_editor,omitempty"`
+	LastModified *time.Time `json:"last_modified,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
 }
 
 type _WorkloadDeployment WorkloadDeployment
@@ -39,14 +39,10 @@ type _WorkloadDeployment WorkloadDeployment
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkloadDeployment(id int64, name string, strategy DeploymentStrategyDefaultDeploymentStrategy, lastEditor string, lastModified time.Time, createdAt time.Time) *WorkloadDeployment {
+func NewWorkloadDeployment(name string, strategy DeploymentStrategyDefaultDeploymentStrategy) *WorkloadDeployment {
 	this := WorkloadDeployment{}
-	this.Id = id
 	this.Name = name
 	this.Strategy = strategy
-	this.LastEditor = lastEditor
-	this.LastModified = lastModified
-	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -58,28 +54,36 @@ func NewWorkloadDeploymentWithDefaults() *WorkloadDeployment {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *WorkloadDeployment) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkloadDeployment) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *WorkloadDeployment) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *WorkloadDeployment) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -194,76 +198,100 @@ func (o *WorkloadDeployment) SetStrategy(v DeploymentStrategyDefaultDeploymentSt
 	o.Strategy = v
 }
 
-// GetLastEditor returns the LastEditor field value
+// GetLastEditor returns the LastEditor field value if set, zero value otherwise.
 func (o *WorkloadDeployment) GetLastEditor() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		var ret string
 		return ret
 	}
-
-	return o.LastEditor
+	return *o.LastEditor
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value
+// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkloadDeployment) GetLastEditorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		return nil, false
 	}
-	return &o.LastEditor, true
+	return o.LastEditor, true
 }
 
-// SetLastEditor sets field value
+// HasLastEditor returns a boolean if a field has been set.
+func (o *WorkloadDeployment) HasLastEditor() bool {
+	if o != nil && !IsNil(o.LastEditor) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
 func (o *WorkloadDeployment) SetLastEditor(v string) {
-	o.LastEditor = v
+	o.LastEditor = &v
 }
 
-// GetLastModified returns the LastModified field value
+// GetLastModified returns the LastModified field value if set, zero value otherwise.
 func (o *WorkloadDeployment) GetLastModified() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.LastModified
+	return *o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value
+// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkloadDeployment) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		return nil, false
 	}
-	return &o.LastModified, true
+	return o.LastModified, true
 }
 
-// SetLastModified sets field value
+// HasLastModified returns a boolean if a field has been set.
+func (o *WorkloadDeployment) HasLastModified() bool {
+	if o != nil && !IsNil(o.LastModified) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
 func (o *WorkloadDeployment) SetLastModified(v time.Time) {
-	o.LastModified = v
+	o.LastModified = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *WorkloadDeployment) GetCreatedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WorkloadDeployment) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *WorkloadDeployment) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *WorkloadDeployment) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
 func (o WorkloadDeployment) MarshalJSON() ([]byte, error) {
@@ -276,7 +304,9 @@ func (o WorkloadDeployment) MarshalJSON() ([]byte, error) {
 
 func (o WorkloadDeployment) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Current) {
 		toSerialize["current"] = o.Current
@@ -285,9 +315,15 @@ func (o WorkloadDeployment) ToMap() (map[string]interface{}, error) {
 		toSerialize["active"] = o.Active
 	}
 	toSerialize["strategy"] = o.Strategy
-	toSerialize["last_editor"] = o.LastEditor
-	toSerialize["last_modified"] = o.LastModified
-	toSerialize["created_at"] = o.CreatedAt
+	if !IsNil(o.LastEditor) {
+		toSerialize["last_editor"] = o.LastEditor
+	}
+	if !IsNil(o.LastModified) {
+		toSerialize["last_modified"] = o.LastModified
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
 	return toSerialize, nil
 }
 
@@ -296,12 +332,8 @@ func (o *WorkloadDeployment) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
 		"name",
 		"strategy",
-		"last_editor",
-		"last_modified",
-		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

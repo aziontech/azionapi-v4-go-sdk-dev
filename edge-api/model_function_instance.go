@@ -13,6 +13,8 @@ package edgeapi
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the FunctionInstance type satisfies the MappedNullable interface at compile time
@@ -20,15 +22,15 @@ var _ MappedNullable = &FunctionInstance{}
 
 // FunctionInstance Serializer for Application Function Instances
 type FunctionInstance struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
 	Args interface{} `json:"args,omitempty"`
 	AzionForm *EdgeFunctionAzionForm `json:"azion_form,omitempty"`
 	Function int64 `json:"function"`
 	Active *bool `json:"active,omitempty"`
-	LastEditor string `json:"last_editor"`
-	LastModified time.Time `json:"last_modified"`
-	CreatedAt time.Time `json:"created_at"`
+	LastEditor *string `json:"last_editor,omitempty"`
+	LastModified *time.Time `json:"last_modified,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
 }
 
 type _FunctionInstance FunctionInstance
@@ -37,14 +39,10 @@ type _FunctionInstance FunctionInstance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFunctionInstance(id int64, name string, function int64, lastEditor string, lastModified time.Time, createdAt time.Time) *FunctionInstance {
+func NewFunctionInstance(name string, function int64) *FunctionInstance {
 	this := FunctionInstance{}
-	this.Id = id
 	this.Name = name
 	this.Function = function
-	this.LastEditor = lastEditor
-	this.LastModified = lastModified
-	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -56,28 +54,36 @@ func NewFunctionInstanceWithDefaults() *FunctionInstance {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *FunctionInstance) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionInstance) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *FunctionInstance) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *FunctionInstance) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -225,76 +231,100 @@ func (o *FunctionInstance) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetLastEditor returns the LastEditor field value
+// GetLastEditor returns the LastEditor field value if set, zero value otherwise.
 func (o *FunctionInstance) GetLastEditor() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		var ret string
 		return ret
 	}
-
-	return o.LastEditor
+	return *o.LastEditor
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value
+// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionInstance) GetLastEditorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		return nil, false
 	}
-	return &o.LastEditor, true
+	return o.LastEditor, true
 }
 
-// SetLastEditor sets field value
+// HasLastEditor returns a boolean if a field has been set.
+func (o *FunctionInstance) HasLastEditor() bool {
+	if o != nil && !IsNil(o.LastEditor) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
 func (o *FunctionInstance) SetLastEditor(v string) {
-	o.LastEditor = v
+	o.LastEditor = &v
 }
 
-// GetLastModified returns the LastModified field value
+// GetLastModified returns the LastModified field value if set, zero value otherwise.
 func (o *FunctionInstance) GetLastModified() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.LastModified
+	return *o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value
+// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionInstance) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		return nil, false
 	}
-	return &o.LastModified, true
+	return o.LastModified, true
 }
 
-// SetLastModified sets field value
+// HasLastModified returns a boolean if a field has been set.
+func (o *FunctionInstance) HasLastModified() bool {
+	if o != nil && !IsNil(o.LastModified) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
 func (o *FunctionInstance) SetLastModified(v time.Time) {
-	o.LastModified = v
+	o.LastModified = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *FunctionInstance) GetCreatedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FunctionInstance) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *FunctionInstance) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *FunctionInstance) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
 func (o FunctionInstance) MarshalJSON() ([]byte, error) {
@@ -307,7 +337,9 @@ func (o FunctionInstance) MarshalJSON() ([]byte, error) {
 
 func (o FunctionInstance) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
 	if o.Args != nil {
 		toSerialize["args"] = o.Args
@@ -319,10 +351,54 @@ func (o FunctionInstance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	toSerialize["last_editor"] = o.LastEditor
-	toSerialize["last_modified"] = o.LastModified
-	toSerialize["created_at"] = o.CreatedAt
+	if !IsNil(o.LastEditor) {
+		toSerialize["last_editor"] = o.LastEditor
+	}
+	if !IsNil(o.LastModified) {
+		toSerialize["last_modified"] = o.LastModified
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
 	return toSerialize, nil
+}
+
+func (o *FunctionInstance) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"function",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varFunctionInstance := _FunctionInstance{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFunctionInstance)
+
+	if err != nil {
+		return err
+	}
+
+	*o = FunctionInstance(varFunctionInstance)
+
+	return err
 }
 
 type NullableFunctionInstance struct {

@@ -13,6 +13,8 @@ package edgeapi
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ResponsePhaseRule type satisfies the MappedNullable interface at compile time
@@ -20,16 +22,16 @@ var _ MappedNullable = &ResponsePhaseRule{}
 
 // ResponsePhaseRule struct for ResponsePhaseRule
 type ResponsePhaseRule struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
 	Active *bool `json:"active,omitempty"`
 	Criteria [][]EdgeApplicationCriterionField `json:"criteria"`
 	Behaviors []ResponsePhaseBehavior `json:"behaviors"`
 	Description *string `json:"description,omitempty"`
-	Order int64 `json:"order"`
-	LastEditor NullableString `json:"last_editor"`
-	LastModified NullableTime `json:"last_modified"`
-	CreatedAt time.Time `json:"created_at"`
+	Order *int64 `json:"order,omitempty"`
+	LastEditor NullableString `json:"last_editor,omitempty"`
+	LastModified NullableTime `json:"last_modified,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
 }
 
 type _ResponsePhaseRule ResponsePhaseRule
@@ -38,16 +40,11 @@ type _ResponsePhaseRule ResponsePhaseRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponsePhaseRule(id int64, name string, criteria [][]EdgeApplicationCriterionField, behaviors []ResponsePhaseBehavior, order int64, lastEditor NullableString, lastModified NullableTime, createdAt time.Time) *ResponsePhaseRule {
+func NewResponsePhaseRule(name string, criteria [][]EdgeApplicationCriterionField, behaviors []ResponsePhaseBehavior) *ResponsePhaseRule {
 	this := ResponsePhaseRule{}
-	this.Id = id
 	this.Name = name
 	this.Criteria = criteria
 	this.Behaviors = behaviors
-	this.Order = order
-	this.LastEditor = lastEditor
-	this.LastModified = lastModified
-	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -59,28 +56,36 @@ func NewResponsePhaseRuleWithDefaults() *ResponsePhaseRule {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *ResponsePhaseRule) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ResponsePhaseRule) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *ResponsePhaseRule) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *ResponsePhaseRule) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -219,42 +224,48 @@ func (o *ResponsePhaseRule) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetOrder returns the Order field value
+// GetOrder returns the Order field value if set, zero value otherwise.
 func (o *ResponsePhaseRule) GetOrder() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Order) {
 		var ret int64
 		return ret
 	}
-
-	return o.Order
+	return *o.Order
 }
 
-// GetOrderOk returns a tuple with the Order field value
+// GetOrderOk returns a tuple with the Order field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ResponsePhaseRule) GetOrderOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Order) {
 		return nil, false
 	}
-	return &o.Order, true
+	return o.Order, true
 }
 
-// SetOrder sets field value
+// HasOrder returns a boolean if a field has been set.
+func (o *ResponsePhaseRule) HasOrder() bool {
+	if o != nil && !IsNil(o.Order) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrder gets a reference to the given int64 and assigns it to the Order field.
 func (o *ResponsePhaseRule) SetOrder(v int64) {
-	o.Order = v
+	o.Order = &v
 }
 
-// GetLastEditor returns the LastEditor field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetLastEditor returns the LastEditor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ResponsePhaseRule) GetLastEditor() string {
-	if o == nil || o.LastEditor.Get() == nil {
+	if o == nil || IsNil(o.LastEditor.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.LastEditor.Get()
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value
+// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ResponsePhaseRule) GetLastEditorOk() (*string, bool) {
@@ -264,23 +275,39 @@ func (o *ResponsePhaseRule) GetLastEditorOk() (*string, bool) {
 	return o.LastEditor.Get(), o.LastEditor.IsSet()
 }
 
-// SetLastEditor sets field value
+// HasLastEditor returns a boolean if a field has been set.
+func (o *ResponsePhaseRule) HasLastEditor() bool {
+	if o != nil && o.LastEditor.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastEditor gets a reference to the given NullableString and assigns it to the LastEditor field.
 func (o *ResponsePhaseRule) SetLastEditor(v string) {
 	o.LastEditor.Set(&v)
 }
+// SetLastEditorNil sets the value for LastEditor to be an explicit nil
+func (o *ResponsePhaseRule) SetLastEditorNil() {
+	o.LastEditor.Set(nil)
+}
 
-// GetLastModified returns the LastModified field value
-// If the value is explicit nil, the zero value for time.Time will be returned
+// UnsetLastEditor ensures that no value is present for LastEditor, not even an explicit nil
+func (o *ResponsePhaseRule) UnsetLastEditor() {
+	o.LastEditor.Unset()
+}
+
+// GetLastModified returns the LastModified field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ResponsePhaseRule) GetLastModified() time.Time {
-	if o == nil || o.LastModified.Get() == nil {
+	if o == nil || IsNil(o.LastModified.Get()) {
 		var ret time.Time
 		return ret
 	}
-
 	return *o.LastModified.Get()
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value
+// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ResponsePhaseRule) GetLastModifiedOk() (*time.Time, bool) {
@@ -290,33 +317,59 @@ func (o *ResponsePhaseRule) GetLastModifiedOk() (*time.Time, bool) {
 	return o.LastModified.Get(), o.LastModified.IsSet()
 }
 
-// SetLastModified sets field value
+// HasLastModified returns a boolean if a field has been set.
+func (o *ResponsePhaseRule) HasLastModified() bool {
+	if o != nil && o.LastModified.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastModified gets a reference to the given NullableTime and assigns it to the LastModified field.
 func (o *ResponsePhaseRule) SetLastModified(v time.Time) {
 	o.LastModified.Set(&v)
 }
+// SetLastModifiedNil sets the value for LastModified to be an explicit nil
+func (o *ResponsePhaseRule) SetLastModifiedNil() {
+	o.LastModified.Set(nil)
+}
 
-// GetCreatedAt returns the CreatedAt field value
+// UnsetLastModified ensures that no value is present for LastModified, not even an explicit nil
+func (o *ResponsePhaseRule) UnsetLastModified() {
+	o.LastModified.Unset()
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *ResponsePhaseRule) GetCreatedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ResponsePhaseRule) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *ResponsePhaseRule) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *ResponsePhaseRule) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
 func (o ResponsePhaseRule) MarshalJSON() ([]byte, error) {
@@ -329,7 +382,9 @@ func (o ResponsePhaseRule) MarshalJSON() ([]byte, error) {
 
 func (o ResponsePhaseRule) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
@@ -339,11 +394,58 @@ func (o ResponsePhaseRule) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["order"] = o.Order
-	toSerialize["last_editor"] = o.LastEditor.Get()
-	toSerialize["last_modified"] = o.LastModified.Get()
-	toSerialize["created_at"] = o.CreatedAt
+	if !IsNil(o.Order) {
+		toSerialize["order"] = o.Order
+	}
+	if o.LastEditor.IsSet() {
+		toSerialize["last_editor"] = o.LastEditor.Get()
+	}
+	if o.LastModified.IsSet() {
+		toSerialize["last_modified"] = o.LastModified.Get()
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
 	return toSerialize, nil
+}
+
+func (o *ResponsePhaseRule) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"criteria",
+		"behaviors",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varResponsePhaseRule := _ResponsePhaseRule{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varResponsePhaseRule)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ResponsePhaseRule(varResponsePhaseRule)
+
+	return err
 }
 
 type NullableResponsePhaseRule struct {
