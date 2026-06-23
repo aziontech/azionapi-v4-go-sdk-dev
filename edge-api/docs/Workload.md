@@ -4,29 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**LastEditor** | **string** |  | 
-**LastModified** | **time.Time** |  | 
-**CreatedAt** | **time.Time** |  | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Infrastructure** | Pointer to **int64** | * &#x60;1&#x60; - Production Infrastructure (All Edge Locations) * &#x60;2&#x60; - Staging Infrastructure | [optional] 
 **Tls** | Pointer to [**TLSWorkload**](TLSWorkload.md) |  | [optional] 
 **Protocols** | Pointer to [**Protocols**](Protocols.md) |  | [optional] 
 **Mtls** | Pointer to [**MTLS**](MTLS.md) |  | [optional] 
 **Domains** | Pointer to **[]string** |  | [optional] 
 **WorkloadDomainAllowAccess** | Pointer to **bool** |  | [optional] 
-**WorkloadDomain** | **string** |  | 
+**WorkloadDomain** | Pointer to **string** |  | [optional] 
 **Bindings** | Pointer to [**[]WorkloadBinding**](WorkloadBinding.md) |  | [optional] 
-**ProductVersion** | **string** |  | 
-**VersionId** | **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | 
-**State** | **NullableString** | Build state of this version (queued, building, ready, error, ...) | 
+**ProductVersion** | Pointer to **string** |  | [optional] 
+**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
+**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 
 ## Methods
 
 ### NewWorkload
 
-`func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string, versionId NullableString, state NullableString, ) *Workload`
+`func NewWorkload(name string, ) *Workload`
 
 NewWorkload instantiates a new Workload object
 This constructor will assign default values to properties that have it defined,
@@ -60,6 +60,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Workload) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -125,6 +130,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *Workload) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -145,6 +155,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *Workload) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -165,6 +180,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *Workload) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetInfrastructure
 
@@ -335,6 +355,11 @@ and a boolean to check if the value has been set.
 
 SetWorkloadDomain sets WorkloadDomain field to given value.
 
+### HasWorkloadDomain
+
+`func (o *Workload) HasWorkloadDomain() bool`
+
+HasWorkloadDomain returns a boolean if a field has been set.
 
 ### GetBindings
 
@@ -380,6 +405,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *Workload) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 ### GetVersionId
 
@@ -400,6 +430,11 @@ and a boolean to check if the value has been set.
 
 SetVersionId sets VersionId field to given value.
 
+### HasVersionId
+
+`func (o *Workload) HasVersionId() bool`
+
+HasVersionId returns a boolean if a field has been set.
 
 ### SetVersionIdNil
 
@@ -430,6 +465,11 @@ and a boolean to check if the value has been set.
 
 SetState sets State field to given value.
 
+### HasState
+
+`func (o *Workload) HasState() bool`
+
+HasState returns a boolean if a field has been set.
 
 ### SetStateNil
 

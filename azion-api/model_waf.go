@@ -23,17 +23,17 @@ var _ MappedNullable = &WAF{}
 
 // WAF Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers. ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
 type WAF struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	Name string `json:"name"`
-	LastEditor string `json:"last_editor"`
-	LastModified time.Time `json:"last_modified"`
-	ProductVersion NullableString `json:"product_version"`
+	LastEditor *string `json:"last_editor,omitempty"`
+	LastModified *time.Time `json:"last_modified,omitempty"`
+	ProductVersion NullableString `json:"product_version,omitempty"`
 	EngineSettings *WAFEngineSettingsField `json:"engine_settings,omitempty"`
 	// ID of the version metadata (use in /versions/{id} URLs)
-	VersionId NullableString `json:"version_id"`
+	VersionId NullableString `json:"version_id,omitempty"`
 	// Build state of this version (queued, building, ready, error, ...)
-	State NullableString `json:"state"`
+	State NullableString `json:"state,omitempty"`
 }
 
 type _WAF WAF
@@ -42,15 +42,9 @@ type _WAF WAF
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWAF(id int64, name string, lastEditor string, lastModified time.Time, productVersion NullableString, versionId NullableString, state NullableString) *WAF {
+func NewWAF(name string) *WAF {
 	this := WAF{}
-	this.Id = id
 	this.Name = name
-	this.LastEditor = lastEditor
-	this.LastModified = lastModified
-	this.ProductVersion = productVersion
-	this.VersionId = versionId
-	this.State = state
 	return &this
 }
 
@@ -62,28 +56,36 @@ func NewWAFWithDefaults() *WAF {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *WAF) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WAF) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *WAF) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *WAF) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -142,66 +144,80 @@ func (o *WAF) SetName(v string) {
 	o.Name = v
 }
 
-// GetLastEditor returns the LastEditor field value
+// GetLastEditor returns the LastEditor field value if set, zero value otherwise.
 func (o *WAF) GetLastEditor() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		var ret string
 		return ret
 	}
-
-	return o.LastEditor
+	return *o.LastEditor
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value
+// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WAF) GetLastEditorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		return nil, false
 	}
-	return &o.LastEditor, true
+	return o.LastEditor, true
 }
 
-// SetLastEditor sets field value
+// HasLastEditor returns a boolean if a field has been set.
+func (o *WAF) HasLastEditor() bool {
+	if o != nil && !IsNil(o.LastEditor) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
 func (o *WAF) SetLastEditor(v string) {
-	o.LastEditor = v
+	o.LastEditor = &v
 }
 
-// GetLastModified returns the LastModified field value
+// GetLastModified returns the LastModified field value if set, zero value otherwise.
 func (o *WAF) GetLastModified() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.LastModified
+	return *o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value
+// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *WAF) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		return nil, false
 	}
-	return &o.LastModified, true
+	return o.LastModified, true
 }
 
-// SetLastModified sets field value
+// HasLastModified returns a boolean if a field has been set.
+func (o *WAF) HasLastModified() bool {
+	if o != nil && !IsNil(o.LastModified) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
 func (o *WAF) SetLastModified(v time.Time) {
-	o.LastModified = v
+	o.LastModified = &v
 }
 
-// GetProductVersion returns the ProductVersion field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetProductVersion returns the ProductVersion field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WAF) GetProductVersion() string {
-	if o == nil || o.ProductVersion.Get() == nil {
+	if o == nil || IsNil(o.ProductVersion.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.ProductVersion.Get()
 }
 
-// GetProductVersionOk returns a tuple with the ProductVersion field value
+// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WAF) GetProductVersionOk() (*string, bool) {
@@ -211,9 +227,27 @@ func (o *WAF) GetProductVersionOk() (*string, bool) {
 	return o.ProductVersion.Get(), o.ProductVersion.IsSet()
 }
 
-// SetProductVersion sets field value
+// HasProductVersion returns a boolean if a field has been set.
+func (o *WAF) HasProductVersion() bool {
+	if o != nil && o.ProductVersion.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetProductVersion gets a reference to the given NullableString and assigns it to the ProductVersion field.
 func (o *WAF) SetProductVersion(v string) {
 	o.ProductVersion.Set(&v)
+}
+// SetProductVersionNil sets the value for ProductVersion to be an explicit nil
+func (o *WAF) SetProductVersionNil() {
+	o.ProductVersion.Set(nil)
+}
+
+// UnsetProductVersion ensures that no value is present for ProductVersion, not even an explicit nil
+func (o *WAF) UnsetProductVersion() {
+	o.ProductVersion.Unset()
 }
 
 // GetEngineSettings returns the EngineSettings field value if set, zero value otherwise.
@@ -248,18 +282,16 @@ func (o *WAF) SetEngineSettings(v WAFEngineSettingsField) {
 	o.EngineSettings = &v
 }
 
-// GetVersionId returns the VersionId field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetVersionId returns the VersionId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WAF) GetVersionId() string {
-	if o == nil || o.VersionId.Get() == nil {
+	if o == nil || IsNil(o.VersionId.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.VersionId.Get()
 }
 
-// GetVersionIdOk returns a tuple with the VersionId field value
+// GetVersionIdOk returns a tuple with the VersionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WAF) GetVersionIdOk() (*string, bool) {
@@ -269,23 +301,39 @@ func (o *WAF) GetVersionIdOk() (*string, bool) {
 	return o.VersionId.Get(), o.VersionId.IsSet()
 }
 
-// SetVersionId sets field value
+// HasVersionId returns a boolean if a field has been set.
+func (o *WAF) HasVersionId() bool {
+	if o != nil && o.VersionId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVersionId gets a reference to the given NullableString and assigns it to the VersionId field.
 func (o *WAF) SetVersionId(v string) {
 	o.VersionId.Set(&v)
 }
+// SetVersionIdNil sets the value for VersionId to be an explicit nil
+func (o *WAF) SetVersionIdNil() {
+	o.VersionId.Set(nil)
+}
 
-// GetState returns the State field value
-// If the value is explicit nil, the zero value for string will be returned
+// UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
+func (o *WAF) UnsetVersionId() {
+	o.VersionId.Unset()
+}
+
+// GetState returns the State field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WAF) GetState() string {
-	if o == nil || o.State.Get() == nil {
+	if o == nil || IsNil(o.State.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.State.Get()
 }
 
-// GetStateOk returns a tuple with the State field value
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WAF) GetStateOk() (*string, bool) {
@@ -295,9 +343,27 @@ func (o *WAF) GetStateOk() (*string, bool) {
 	return o.State.Get(), o.State.IsSet()
 }
 
-// SetState sets field value
+// HasState returns a boolean if a field has been set.
+func (o *WAF) HasState() bool {
+	if o != nil && o.State.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given NullableString and assigns it to the State field.
 func (o *WAF) SetState(v string) {
 	o.State.Set(&v)
+}
+// SetStateNil sets the value for State to be an explicit nil
+func (o *WAF) SetStateNil() {
+	o.State.Set(nil)
+}
+
+// UnsetState ensures that no value is present for State, not even an explicit nil
+func (o *WAF) UnsetState() {
+	o.State.Unset()
 }
 
 func (o WAF) MarshalJSON() ([]byte, error) {
@@ -310,19 +376,31 @@ func (o WAF) MarshalJSON() ([]byte, error) {
 
 func (o WAF) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
 	toSerialize["name"] = o.Name
-	toSerialize["last_editor"] = o.LastEditor
-	toSerialize["last_modified"] = o.LastModified
-	toSerialize["product_version"] = o.ProductVersion.Get()
+	if !IsNil(o.LastEditor) {
+		toSerialize["last_editor"] = o.LastEditor
+	}
+	if !IsNil(o.LastModified) {
+		toSerialize["last_modified"] = o.LastModified
+	}
+	if o.ProductVersion.IsSet() {
+		toSerialize["product_version"] = o.ProductVersion.Get()
+	}
 	if !IsNil(o.EngineSettings) {
 		toSerialize["engine_settings"] = o.EngineSettings
 	}
-	toSerialize["version_id"] = o.VersionId.Get()
-	toSerialize["state"] = o.State.Get()
+	if o.VersionId.IsSet() {
+		toSerialize["version_id"] = o.VersionId.Get()
+	}
+	if o.State.IsSet() {
+		toSerialize["state"] = o.State.Get()
+	}
 	return toSerialize, nil
 }
 
@@ -331,13 +409,7 @@ func (o *WAF) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
 		"name",
-		"last_editor",
-		"last_modified",
-		"product_version",
-		"version_id",
-		"state",
 	}
 
 	allProperties := make(map[string]interface{})

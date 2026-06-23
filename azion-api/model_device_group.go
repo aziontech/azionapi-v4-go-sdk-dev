@@ -23,11 +23,11 @@ var _ MappedNullable = &DeviceGroup{}
 
 // DeviceGroup struct for DeviceGroup
 type DeviceGroup struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
 	// Enter a valid regular expression pattern to identify user agents.
 	UserAgent string `json:"user_agent"`
-	CreatedAt NullableTime `json:"created_at"`
+	CreatedAt NullableTime `json:"created_at,omitempty"`
 }
 
 type _DeviceGroup DeviceGroup
@@ -36,12 +36,10 @@ type _DeviceGroup DeviceGroup
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeviceGroup(id int64, name string, userAgent string, createdAt NullableTime) *DeviceGroup {
+func NewDeviceGroup(name string, userAgent string) *DeviceGroup {
 	this := DeviceGroup{}
-	this.Id = id
 	this.Name = name
 	this.UserAgent = userAgent
-	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -53,28 +51,36 @@ func NewDeviceGroupWithDefaults() *DeviceGroup {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *DeviceGroup) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceGroup) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *DeviceGroup) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *DeviceGroup) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -125,18 +131,16 @@ func (o *DeviceGroup) SetUserAgent(v string) {
 	o.UserAgent = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-// If the value is explicit nil, the zero value for time.Time will be returned
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DeviceGroup) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt.Get() == nil {
+	if o == nil || IsNil(o.CreatedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
-
 	return *o.CreatedAt.Get()
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeviceGroup) GetCreatedAtOk() (*time.Time, bool) {
@@ -146,9 +150,27 @@ func (o *DeviceGroup) GetCreatedAtOk() (*time.Time, bool) {
 	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *DeviceGroup) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given NullableTime and assigns it to the CreatedAt field.
 func (o *DeviceGroup) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
+}
+// SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+func (o *DeviceGroup) SetCreatedAtNil() {
+	o.CreatedAt.Set(nil)
+}
+
+// UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
+func (o *DeviceGroup) UnsetCreatedAt() {
+	o.CreatedAt.Unset()
 }
 
 func (o DeviceGroup) MarshalJSON() ([]byte, error) {
@@ -161,10 +183,14 @@ func (o DeviceGroup) MarshalJSON() ([]byte, error) {
 
 func (o DeviceGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["user_agent"] = o.UserAgent
-	toSerialize["created_at"] = o.CreatedAt.Get()
+	if o.CreatedAt.IsSet() {
+		toSerialize["created_at"] = o.CreatedAt.Get()
+	}
 	return toSerialize, nil
 }
 
@@ -173,10 +199,8 @@ func (o *DeviceGroup) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
 		"name",
 		"user_agent",
-		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

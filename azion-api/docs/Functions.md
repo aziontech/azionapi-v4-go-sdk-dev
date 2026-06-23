@@ -4,28 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
-**LastEditor** | **string** |  | 
-**LastModified** | **time.Time** |  | 
-**ProductVersion** | **string** |  | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
+**ProductVersion** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **Runtime** | Pointer to **string** | * &#x60;azion_js&#x60; - Azion JavaScript | [optional] 
 **ExecutionEnvironment** | Pointer to **string** | * &#x60;firewall&#x60; - Firewall * &#x60;application&#x60; - Application | [optional] 
 **DefaultArgs** | Pointer to **interface{}** |  | [optional] 
 **AzionForm** | Pointer to [**FunctionAzionForm**](FunctionAzionForm.md) |  | [optional] 
-**ReferenceCount** | **int64** |  | 
-**Version** | **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | 
-**Vendor** | **string** |  | 
-**VersionId** | **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | 
-**State** | **NullableString** | Build state of this version (queued, building, ready, error, ...) | 
+**ReferenceCount** | Pointer to **int64** |  | [optional] 
+**Version** | Pointer to **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | [optional] 
+**Vendor** | Pointer to **string** |  | [optional] 
+**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
+**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 **Code** | **string** | String containing the function code. Maximum size: 50.0MB | 
 
 ## Methods
 
 ### NewFunctions
 
-`func NewFunctions(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, versionId NullableString, state NullableString, code string, ) *Functions`
+`func NewFunctions(name string, code string, ) *Functions`
 
 NewFunctions instantiates a new Functions object
 This constructor will assign default values to properties that have it defined,
@@ -59,6 +59,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Functions) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -99,6 +104,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *Functions) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -119,6 +129,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *Functions) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetProductVersion
 
@@ -139,6 +154,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *Functions) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -294,6 +314,11 @@ and a boolean to check if the value has been set.
 
 SetReferenceCount sets ReferenceCount field to given value.
 
+### HasReferenceCount
+
+`func (o *Functions) HasReferenceCount() bool`
+
+HasReferenceCount returns a boolean if a field has been set.
 
 ### GetVersion
 
@@ -314,6 +339,11 @@ and a boolean to check if the value has been set.
 
 SetVersion sets Version field to given value.
 
+### HasVersion
+
+`func (o *Functions) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
 
 ### GetVendor
 
@@ -334,6 +364,11 @@ and a boolean to check if the value has been set.
 
 SetVendor sets Vendor field to given value.
 
+### HasVendor
+
+`func (o *Functions) HasVendor() bool`
+
+HasVendor returns a boolean if a field has been set.
 
 ### GetVersionId
 
@@ -354,6 +389,11 @@ and a boolean to check if the value has been set.
 
 SetVersionId sets VersionId field to given value.
 
+### HasVersionId
+
+`func (o *Functions) HasVersionId() bool`
+
+HasVersionId returns a boolean if a field has been set.
 
 ### SetVersionIdNil
 
@@ -384,6 +424,11 @@ and a boolean to check if the value has been set.
 
 SetState sets State field to given value.
 
+### HasState
+
+`func (o *Functions) HasState() bool`
+
+HasState returns a boolean if a field has been set.
 
 ### SetStateNil
 

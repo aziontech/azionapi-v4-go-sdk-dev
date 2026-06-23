@@ -13,6 +13,8 @@ package edgeapi
 import (
 	"encoding/json"
 	"time"
+	"bytes"
+	"fmt"
 )
 
 // checks if the CacheSetting type satisfies the MappedNullable interface at compile time
@@ -20,11 +22,11 @@ var _ MappedNullable = &CacheSetting{}
 
 // CacheSetting struct for CacheSetting
 type CacheSetting struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
 	BrowserCache *BrowserCacheModule `json:"browser_cache,omitempty"`
 	Modules *CacheSettingsModules `json:"modules,omitempty"`
-	CreatedAt NullableTime `json:"created_at"`
+	CreatedAt NullableTime `json:"created_at,omitempty"`
 }
 
 type _CacheSetting CacheSetting
@@ -33,11 +35,9 @@ type _CacheSetting CacheSetting
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCacheSetting(id int64, name string, createdAt NullableTime) *CacheSetting {
+func NewCacheSetting(name string) *CacheSetting {
 	this := CacheSetting{}
-	this.Id = id
 	this.Name = name
-	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -49,28 +49,36 @@ func NewCacheSettingWithDefaults() *CacheSetting {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *CacheSetting) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CacheSetting) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *CacheSetting) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *CacheSetting) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -161,18 +169,16 @@ func (o *CacheSetting) SetModules(v CacheSettingsModules) {
 	o.Modules = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
-// If the value is explicit nil, the zero value for time.Time will be returned
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CacheSetting) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt.Get() == nil {
+	if o == nil || IsNil(o.CreatedAt.Get()) {
 		var ret time.Time
 		return ret
 	}
-
 	return *o.CreatedAt.Get()
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CacheSetting) GetCreatedAtOk() (*time.Time, bool) {
@@ -182,9 +188,27 @@ func (o *CacheSetting) GetCreatedAtOk() (*time.Time, bool) {
 	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *CacheSetting) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given NullableTime and assigns it to the CreatedAt field.
 func (o *CacheSetting) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
+}
+// SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
+func (o *CacheSetting) SetCreatedAtNil() {
+	o.CreatedAt.Set(nil)
+}
+
+// UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
+func (o *CacheSetting) UnsetCreatedAt() {
+	o.CreatedAt.Unset()
 }
 
 func (o CacheSetting) MarshalJSON() ([]byte, error) {
@@ -197,7 +221,9 @@ func (o CacheSetting) MarshalJSON() ([]byte, error) {
 
 func (o CacheSetting) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
 	if !IsNil(o.BrowserCache) {
 		toSerialize["browser_cache"] = o.BrowserCache
@@ -205,8 +231,47 @@ func (o CacheSetting) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Modules) {
 		toSerialize["modules"] = o.Modules
 	}
-	toSerialize["created_at"] = o.CreatedAt.Get()
+	if o.CreatedAt.IsSet() {
+		toSerialize["created_at"] = o.CreatedAt.Get()
+	}
 	return toSerialize, nil
+}
+
+func (o *CacheSetting) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varCacheSetting := _CacheSetting{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varCacheSetting)
+
+	if err != nil {
+		return err
+	}
+
+	*o = CacheSetting(varCacheSetting)
+
+	return err
 }
 
 type NullableCacheSetting struct {

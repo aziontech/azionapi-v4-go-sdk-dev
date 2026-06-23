@@ -25,6 +25,9 @@ type WorkloadBinding struct {
 	EnvironmentId string `json:"environment_id"`
 	DeploymentId string `json:"deployment_id"`
 	Domains []string `json:"domains,omitempty"`
+	AutoDomain *string `json:"auto_domain,omitempty"`
+	AutoDomainAllowAccess *bool `json:"auto_domain_allow_access,omitempty"`
+	Certificate NullableInt64 `json:"certificate,omitempty"`
 }
 
 type _WorkloadBinding WorkloadBinding
@@ -128,6 +131,112 @@ func (o *WorkloadBinding) SetDomains(v []string) {
 	o.Domains = v
 }
 
+// GetAutoDomain returns the AutoDomain field value if set, zero value otherwise.
+func (o *WorkloadBinding) GetAutoDomain() string {
+	if o == nil || IsNil(o.AutoDomain) {
+		var ret string
+		return ret
+	}
+	return *o.AutoDomain
+}
+
+// GetAutoDomainOk returns a tuple with the AutoDomain field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkloadBinding) GetAutoDomainOk() (*string, bool) {
+	if o == nil || IsNil(o.AutoDomain) {
+		return nil, false
+	}
+	return o.AutoDomain, true
+}
+
+// HasAutoDomain returns a boolean if a field has been set.
+func (o *WorkloadBinding) HasAutoDomain() bool {
+	if o != nil && !IsNil(o.AutoDomain) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoDomain gets a reference to the given string and assigns it to the AutoDomain field.
+func (o *WorkloadBinding) SetAutoDomain(v string) {
+	o.AutoDomain = &v
+}
+
+// GetAutoDomainAllowAccess returns the AutoDomainAllowAccess field value if set, zero value otherwise.
+func (o *WorkloadBinding) GetAutoDomainAllowAccess() bool {
+	if o == nil || IsNil(o.AutoDomainAllowAccess) {
+		var ret bool
+		return ret
+	}
+	return *o.AutoDomainAllowAccess
+}
+
+// GetAutoDomainAllowAccessOk returns a tuple with the AutoDomainAllowAccess field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkloadBinding) GetAutoDomainAllowAccessOk() (*bool, bool) {
+	if o == nil || IsNil(o.AutoDomainAllowAccess) {
+		return nil, false
+	}
+	return o.AutoDomainAllowAccess, true
+}
+
+// HasAutoDomainAllowAccess returns a boolean if a field has been set.
+func (o *WorkloadBinding) HasAutoDomainAllowAccess() bool {
+	if o != nil && !IsNil(o.AutoDomainAllowAccess) {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoDomainAllowAccess gets a reference to the given bool and assigns it to the AutoDomainAllowAccess field.
+func (o *WorkloadBinding) SetAutoDomainAllowAccess(v bool) {
+	o.AutoDomainAllowAccess = &v
+}
+
+// GetCertificate returns the Certificate field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WorkloadBinding) GetCertificate() int64 {
+	if o == nil || IsNil(o.Certificate.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.Certificate.Get()
+}
+
+// GetCertificateOk returns a tuple with the Certificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WorkloadBinding) GetCertificateOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Certificate.Get(), o.Certificate.IsSet()
+}
+
+// HasCertificate returns a boolean if a field has been set.
+func (o *WorkloadBinding) HasCertificate() bool {
+	if o != nil && o.Certificate.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificate gets a reference to the given NullableInt64 and assigns it to the Certificate field.
+func (o *WorkloadBinding) SetCertificate(v int64) {
+	o.Certificate.Set(&v)
+}
+// SetCertificateNil sets the value for Certificate to be an explicit nil
+func (o *WorkloadBinding) SetCertificateNil() {
+	o.Certificate.Set(nil)
+}
+
+// UnsetCertificate ensures that no value is present for Certificate, not even an explicit nil
+func (o *WorkloadBinding) UnsetCertificate() {
+	o.Certificate.Unset()
+}
+
 func (o WorkloadBinding) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -142,6 +251,15 @@ func (o WorkloadBinding) ToMap() (map[string]interface{}, error) {
 	toSerialize["deployment_id"] = o.DeploymentId
 	if !IsNil(o.Domains) {
 		toSerialize["domains"] = o.Domains
+	}
+	if !IsNil(o.AutoDomain) {
+		toSerialize["auto_domain"] = o.AutoDomain
+	}
+	if !IsNil(o.AutoDomainAllowAccess) {
+		toSerialize["auto_domain_allow_access"] = o.AutoDomainAllowAccess
+	}
+	if o.Certificate.IsSet() {
+		toSerialize["certificate"] = o.Certificate.Get()
 	}
 	return toSerialize, nil
 }
