@@ -1,25 +1,25 @@
-# \CertificateVersionsAPI
+# \CRLVersionsAPI
 
-All URIs are relative to *https://stage-api.azion.com/v4*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ArchiveCertificateVersion**](CertificateVersionsAPI.md#ArchiveCertificateVersion) | **Post** /workspace/tls/certificates/{resource_pk}/versions/{id}/archive | Archive a certificate version
-[**CancelCertificateVersionBuild**](CertificateVersionsAPI.md#CancelCertificateVersionBuild) | **Post** /workspace/tls/certificates/{resource_pk}/versions/{id}/cancel | Cancel a certificate version build
-[**CreateCertificateVersion**](CertificateVersionsAPI.md#CreateCertificateVersion) | **Post** /workspace/tls/certificates/{resource_pk}/versions | Create a new certificate version
-[**DeleteCertificateVersion**](CertificateVersionsAPI.md#DeleteCertificateVersion) | **Delete** /workspace/tls/certificates/{resource_pk}/versions/{id} | Delete a certificate version
-[**ListCertificateVersions**](CertificateVersionsAPI.md#ListCertificateVersions) | **Get** /workspace/tls/certificates/{resource_pk}/versions | List certificate versions
-[**PartialUpdateCertificateVersion**](CertificateVersionsAPI.md#PartialUpdateCertificateVersion) | **Patch** /workspace/tls/certificates/{resource_pk}/versions/{id} | Partially update a certificate version
-[**RetrieveCertificateVersion**](CertificateVersionsAPI.md#RetrieveCertificateVersion) | **Get** /workspace/tls/certificates/{resource_pk}/versions/{id} | Retrieve a certificate version
-[**UpdateCertificateVersion**](CertificateVersionsAPI.md#UpdateCertificateVersion) | **Put** /workspace/tls/certificates/{resource_pk}/versions/{id} | Update a certificate version
+[**ArchiveCrlVersion**](CRLVersionsAPI.md#ArchiveCrlVersion) | **Post** /workspace/tls/crls/{resource_pk}/versions/{id}/archive | Archive a CRL version
+[**CancelCrlVersionBuild**](CRLVersionsAPI.md#CancelCrlVersionBuild) | **Post** /workspace/tls/crls/{resource_pk}/versions/{id}/cancel | Cancel a CRL version build
+[**CreateCrlVersion**](CRLVersionsAPI.md#CreateCrlVersion) | **Post** /workspace/tls/crls/{resource_pk}/versions | Create a new CRL version
+[**DeleteCrlVersion**](CRLVersionsAPI.md#DeleteCrlVersion) | **Delete** /workspace/tls/crls/{resource_pk}/versions/{id} | Delete a CRL version
+[**ListCrlVersions**](CRLVersionsAPI.md#ListCrlVersions) | **Get** /workspace/tls/crls/{resource_pk}/versions | List CRL versions
+[**PartialUpdateCrlVersion**](CRLVersionsAPI.md#PartialUpdateCrlVersion) | **Patch** /workspace/tls/crls/{resource_pk}/versions/{id} | Partially update a CRL version
+[**RetrieveCrlVersion**](CRLVersionsAPI.md#RetrieveCrlVersion) | **Get** /workspace/tls/crls/{resource_pk}/versions/{id} | Retrieve a CRL version
+[**UpdateCrlVersion**](CRLVersionsAPI.md#UpdateCrlVersion) | **Put** /workspace/tls/crls/{resource_pk}/versions/{id} | Update a CRL version
 
 
 
-## ArchiveCertificateVersion
+## ArchiveCrlVersion
 
-> ArchiveCertificateVersion(ctx, id, resourcePk).VersionArchive(versionArchive).Execute()
+> ArchiveCrlVersion(ctx, id, resourcePk).VersionArchive(versionArchive).Execute()
 
-Archive a certificate version
+Archive a CRL version
 
 
 
@@ -37,14 +37,14 @@ import (
 
 func main() {
 	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the certificate resource.
+	resourcePk := int64(789) // int64 | The ID of the CRL resource.
 	versionArchive := *openapiclient.NewVersionArchive() // VersionArchive |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CertificateVersionsAPI.ArchiveCertificateVersion(context.Background(), id, resourcePk).VersionArchive(versionArchive).Execute()
+	r, err := apiClient.CRLVersionsAPI.ArchiveCrlVersion(context.Background(), id, resourcePk).VersionArchive(versionArchive).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CertificateVersionsAPI.ArchiveCertificateVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CRLVersionsAPI.ArchiveCrlVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -57,11 +57,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the certificate resource. | 
+**resourcePk** | **int64** | The ID of the CRL resource. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiArchiveCertificateVersionRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiArchiveCrlVersionRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -81,18 +81,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## CancelCertificateVersionBuild
+## CancelCrlVersionBuild
 
-> CancelCertificateVersionBuild(ctx, id, resourcePk).VersionCancel(versionCancel).Execute()
+> CancelCrlVersionBuild(ctx, id, resourcePk).VersionCancel(versionCancel).Execute()
 
-Cancel a certificate version build
+Cancel a CRL version build
 
 
 
@@ -110,14 +110,14 @@ import (
 
 func main() {
 	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the certificate resource.
+	resourcePk := int64(789) // int64 | The ID of the CRL resource.
 	versionCancel := *openapiclient.NewVersionCancel() // VersionCancel |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CertificateVersionsAPI.CancelCertificateVersionBuild(context.Background(), id, resourcePk).VersionCancel(versionCancel).Execute()
+	r, err := apiClient.CRLVersionsAPI.CancelCrlVersionBuild(context.Background(), id, resourcePk).VersionCancel(versionCancel).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CertificateVersionsAPI.CancelCertificateVersionBuild``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CRLVersionsAPI.CancelCrlVersionBuild``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -130,11 +130,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the certificate resource. | 
+**resourcePk** | **int64** | The ID of the CRL resource. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCancelCertificateVersionBuildRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCancelCrlVersionBuildRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -154,18 +154,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## CreateCertificateVersion
+## CreateCrlVersion
 
-> CreateCertificateVersion(ctx, resourcePk).CertificateVersionCreate(certificateVersionCreate).Execute()
+> CreateCrlVersion(ctx, resourcePk).CRLVersionCreate(cRLVersionCreate).Execute()
 
-Create a new certificate version
+Create a new CRL version
 
 
 
@@ -182,14 +182,14 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID of the certificate resource.
-	certificateVersionCreate := *openapiclient.NewCertificateVersionCreate() // CertificateVersionCreate |  (optional)
+	resourcePk := int64(789) // int64 | The ID of the CRL resource.
+	cRLVersionCreate := *openapiclient.NewCRLVersionCreate() // CRLVersionCreate |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CertificateVersionsAPI.CreateCertificateVersion(context.Background(), resourcePk).CertificateVersionCreate(certificateVersionCreate).Execute()
+	r, err := apiClient.CRLVersionsAPI.CreateCrlVersion(context.Background(), resourcePk).CRLVersionCreate(cRLVersionCreate).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CertificateVersionsAPI.CreateCertificateVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CRLVersionsAPI.CreateCrlVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -201,17 +201,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID of the certificate resource. | 
+**resourcePk** | **int64** | The ID of the CRL resource. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateCertificateVersionRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateCrlVersionRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **certificateVersionCreate** | [**CertificateVersionCreate**](CertificateVersionCreate.md) |  | 
+ **cRLVersionCreate** | [**CRLVersionCreate**](CRLVersionCreate.md) |  | 
 
 ### Return type
 
@@ -224,18 +224,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## DeleteCertificateVersion
+## DeleteCrlVersion
 
-> DeleteCertificateVersion(ctx, id, resourcePk).Execute()
+> DeleteCrlVersion(ctx, id, resourcePk).Execute()
 
-Delete a certificate version
+Delete a CRL version
 
 
 
@@ -253,13 +253,13 @@ import (
 
 func main() {
 	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the certificate resource.
+	resourcePk := int64(789) // int64 | The ID of the CRL resource.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CertificateVersionsAPI.DeleteCertificateVersion(context.Background(), id, resourcePk).Execute()
+	r, err := apiClient.CRLVersionsAPI.DeleteCrlVersion(context.Background(), id, resourcePk).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CertificateVersionsAPI.DeleteCertificateVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CRLVersionsAPI.DeleteCrlVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -272,11 +272,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the certificate resource. | 
+**resourcePk** | **int64** | The ID of the CRL resource. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteCertificateVersionRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteCrlVersionRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -295,18 +295,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## ListCertificateVersions
+## ListCrlVersions
 
-> ListCertificateVersions(ctx, resourcePk).Fields(fields).Execute()
+> ListCrlVersions(ctx, resourcePk).Fields(fields).Execute()
 
-List certificate versions
+List CRL versions
 
 
 
@@ -323,14 +323,14 @@ import (
 )
 
 func main() {
-	resourcePk := int64(789) // int64 | The ID of the certificate resource.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+	resourcePk := int64(789) // int64 | The ID of the CRL resource.
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CertificateVersionsAPI.ListCertificateVersions(context.Background(), resourcePk).Fields(fields).Execute()
+	r, err := apiClient.CRLVersionsAPI.ListCrlVersions(context.Background(), resourcePk).Fields(fields).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CertificateVersionsAPI.ListCertificateVersions``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CRLVersionsAPI.ListCrlVersions``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -342,17 +342,17 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**resourcePk** | **int64** | The ID of the certificate resource. | 
+**resourcePk** | **int64** | The ID of the CRL resource. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListCertificateVersionsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListCrlVersionsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
+ **fields** | **string** | Comma-separated list of field names to include in the response. | 
 
 ### Return type
 
@@ -365,18 +365,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## PartialUpdateCertificateVersion
+## PartialUpdateCrlVersion
 
-> PartialUpdateCertificateVersion(ctx, id, resourcePk).PatchedCertificate(patchedCertificate).Execute()
+> PartialUpdateCrlVersion(ctx, id, resourcePk).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
 
-Partially update a certificate version
+Partially update a CRL version
 
 
 
@@ -394,14 +394,14 @@ import (
 
 func main() {
 	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the certificate resource.
-	patchedCertificate := *openapiclient.NewPatchedCertificate() // PatchedCertificate |  (optional)
+	resourcePk := int64(789) // int64 | The ID of the CRL resource.
+	patchedCertificateRevocationList := *openapiclient.NewPatchedCertificateRevocationList() // PatchedCertificateRevocationList |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CertificateVersionsAPI.PartialUpdateCertificateVersion(context.Background(), id, resourcePk).PatchedCertificate(patchedCertificate).Execute()
+	r, err := apiClient.CRLVersionsAPI.PartialUpdateCrlVersion(context.Background(), id, resourcePk).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CertificateVersionsAPI.PartialUpdateCertificateVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CRLVersionsAPI.PartialUpdateCrlVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -414,18 +414,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the certificate resource. | 
+**resourcePk** | **int64** | The ID of the CRL resource. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiPartialUpdateCertificateVersionRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiPartialUpdateCrlVersionRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedCertificate** | [**PatchedCertificate**](PatchedCertificate.md) |  | 
+ **patchedCertificateRevocationList** | [**PatchedCertificateRevocationList**](PatchedCertificateRevocationList.md) |  | 
 
 ### Return type
 
@@ -438,18 +438,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## RetrieveCertificateVersion
+## RetrieveCrlVersion
 
-> RetrieveCertificateVersion(ctx, id, resourcePk).Fields(fields).Execute()
+> RetrieveCrlVersion(ctx, id, resourcePk).Fields(fields).Execute()
 
-Retrieve a certificate version
+Retrieve a CRL version
 
 
 
@@ -467,14 +467,14 @@ import (
 
 func main() {
 	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the certificate resource.
-	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+	resourcePk := int64(789) // int64 | The ID of the CRL resource.
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CertificateVersionsAPI.RetrieveCertificateVersion(context.Background(), id, resourcePk).Fields(fields).Execute()
+	r, err := apiClient.CRLVersionsAPI.RetrieveCrlVersion(context.Background(), id, resourcePk).Fields(fields).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CertificateVersionsAPI.RetrieveCertificateVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CRLVersionsAPI.RetrieveCrlVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -487,18 +487,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the certificate resource. | 
+**resourcePk** | **int64** | The ID of the CRL resource. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiRetrieveCertificateVersionRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiRetrieveCrlVersionRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
+ **fields** | **string** | Comma-separated list of field names to include in the response. | 
 
 ### Return type
 
@@ -511,18 +511,18 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## UpdateCertificateVersion
+## UpdateCrlVersion
 
-> UpdateCertificateVersion(ctx, id, resourcePk).Certificate(certificate).Execute()
+> UpdateCrlVersion(ctx, id, resourcePk).CertificateRevocationList(certificateRevocationList).Execute()
 
-Update a certificate version
+Update a CRL version
 
 
 
@@ -540,14 +540,14 @@ import (
 
 func main() {
 	id := "id_example" // string | The ULID identifier of the version.
-	resourcePk := int64(789) // int64 | The ID of the certificate resource.
-	certificate := *openapiclient.NewCertificate("Name_example") // Certificate | 
+	resourcePk := int64(789) // int64 | The ID of the CRL resource.
+	certificateRevocationList := *openapiclient.NewCertificateRevocationList("Name_example", "Crl_example") // CertificateRevocationList | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.CertificateVersionsAPI.UpdateCertificateVersion(context.Background(), id, resourcePk).Certificate(certificate).Execute()
+	r, err := apiClient.CRLVersionsAPI.UpdateCrlVersion(context.Background(), id, resourcePk).CertificateRevocationList(certificateRevocationList).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CertificateVersionsAPI.UpdateCertificateVersion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CRLVersionsAPI.UpdateCrlVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -560,18 +560,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** | The ULID identifier of the version. | 
-**resourcePk** | **int64** | The ID of the certificate resource. | 
+**resourcePk** | **int64** | The ID of the CRL resource. | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateCertificateVersionRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateCrlVersionRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **certificate** | [**Certificate**](Certificate.md) |  | 
+ **certificateRevocationList** | [**CertificateRevocationList**](CertificateRevocationList.md) |  | 
 
 ### Return type
 
@@ -584,7 +584,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

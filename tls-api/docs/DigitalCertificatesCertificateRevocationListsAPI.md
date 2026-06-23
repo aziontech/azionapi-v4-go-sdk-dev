@@ -30,12 +30,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-	certificateRevocationList := *openapiclient.NewCertificateRevocationList(int64(123), "Name_example", "LastEditor_example", time.Now(), time.Now(), "ProductVersion_example", "Issuer_example", time.Now(), time.Now(), "Crl_example") // CertificateRevocationList | 
+	certificateRevocationList := *openapiclient.NewCertificateRevocationList("Name_example", "Crl_example") // CertificateRevocationList | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -410,13 +409,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 	crlId := int64(789) // int64 | The unique identifier of the certificate revocation list
-	certificateRevocationList := *openapiclient.NewCertificateRevocationList(int64(123), "Name_example", "LastEditor_example", time.Now(), time.Now(), "ProductVersion_example", "Issuer_example", time.Now(), time.Now(), "Crl_example") // CertificateRevocationList | 
+	certificateRevocationList := *openapiclient.NewCertificateRevocationList("Name_example", "Crl_example") // CertificateRevocationList | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

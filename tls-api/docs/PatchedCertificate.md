@@ -25,6 +25,8 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **NullableTime** | Timestamp of the certificate creation on the platform. | [optional] 
 **LastModified** | Pointer to **time.Time** | Timestamp of the last modification made to the certificate content on the platform. | [optional] 
 **RenewedAt** | Pointer to **NullableTime** | Timestamp indicating when the managed certificate was renewed on our platform. | [optional] 
+**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
+**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 
 ## Methods
 
@@ -640,6 +642,76 @@ HasRenewedAt returns a boolean if a field has been set.
 `func (o *PatchedCertificate) UnsetRenewedAt()`
 
 UnsetRenewedAt ensures that no value is present for RenewedAt, not even an explicit nil
+### GetVersionId
+
+`func (o *PatchedCertificate) GetVersionId() string`
+
+GetVersionId returns the VersionId field if non-nil, zero value otherwise.
+
+### GetVersionIdOk
+
+`func (o *PatchedCertificate) GetVersionIdOk() (*string, bool)`
+
+GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionId
+
+`func (o *PatchedCertificate) SetVersionId(v string)`
+
+SetVersionId sets VersionId field to given value.
+
+### HasVersionId
+
+`func (o *PatchedCertificate) HasVersionId() bool`
+
+HasVersionId returns a boolean if a field has been set.
+
+### SetVersionIdNil
+
+`func (o *PatchedCertificate) SetVersionIdNil(b bool)`
+
+ SetVersionIdNil sets the value for VersionId to be an explicit nil
+
+### UnsetVersionId
+`func (o *PatchedCertificate) UnsetVersionId()`
+
+UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
+### GetState
+
+`func (o *PatchedCertificate) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *PatchedCertificate) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *PatchedCertificate) SetState(v string)`
+
+SetState sets State field to given value.
+
+### HasState
+
+`func (o *PatchedCertificate) HasState() bool`
+
+HasState returns a boolean if a field has been set.
+
+### SetStateNil
+
+`func (o *PatchedCertificate) SetStateNil(b bool)`
+
+ SetStateNil sets the value for State to be an explicit nil
+
+### UnsetState
+`func (o *PatchedCertificate) UnsetState()`
+
+UnsetState ensures that no value is present for State, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
