@@ -4,27 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Certificate** | Pointer to **NullableString** |  | [optional] 
 **PrivateKey** | Pointer to **NullableString** |  | [optional] 
-**Issuer** | **NullableString** |  | 
-**SubjectName** | **[]string** |  | 
-**Validity** | **NullableString** |  | 
+**Issuer** | Pointer to **NullableString** |  | [optional] 
+**SubjectName** | Pointer to **[]string** |  | [optional] 
+**Validity** | Pointer to **NullableString** |  | [optional] 
 **Type** | Pointer to **string** | The value can&#39;t be changed after the certificate creation.  * &#x60;certificate&#x60; - Certificate * &#x60;trusted_ca_certificate&#x60; - Trusted CA Certificate | [optional] 
-**Managed** | **bool** |  | 
-**Status** | **string** | * &#x60;pending&#x60; - Pending * &#x60;challenge_verification&#x60; - Challenge Verification * &#x60;active&#x60; - Active * &#x60;inactive&#x60; - Inactive * &#x60;expired&#x60; - Expired * &#x60;failed&#x60; - Failed | 
-**StatusDetail** | **string** |  | 
-**Csr** | **NullableString** |  | 
-**Challenge** | **string** | * &#x60;dns&#x60; - Uses DNS to solve the ACME challenge. * &#x60;http&#x60; - Uses HTTP to solve the ACME challenge. | 
-**Authority** | **string** | * &#x60;lets_encrypt&#x60; - lets_encrypt | 
-**KeyAlgorithm** | **string** |  | 
+**Managed** | Pointer to **bool** |  | [optional] 
+**Status** | Pointer to **string** | * &#x60;pending&#x60; - Pending * &#x60;challenge_verification&#x60; - Challenge Verification * &#x60;active&#x60; - Active * &#x60;inactive&#x60; - Inactive * &#x60;expired&#x60; - Expired * &#x60;failed&#x60; - Failed | [optional] 
+**StatusDetail** | Pointer to **string** |  | [optional] 
+**Csr** | Pointer to **NullableString** |  | [optional] 
+**Challenge** | Pointer to **string** | * &#x60;dns&#x60; - Uses DNS to solve the ACME challenge. * &#x60;http&#x60; - Uses HTTP to solve the ACME challenge. | [optional] 
+**Authority** | Pointer to **string** | * &#x60;lets_encrypt&#x60; - lets_encrypt | [optional] 
+**KeyAlgorithm** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**ProductVersion** | **string** |  | 
-**LastEditor** | **string** |  | 
-**CreatedAt** | **NullableTime** | Timestamp of the certificate creation on the platform. | 
-**LastModified** | **time.Time** | Timestamp of the last modification made to the certificate content on the platform. | 
-**RenewedAt** | **NullableTime** | Timestamp indicating when the managed certificate was renewed on our platform. | 
+**ProductVersion** | Pointer to **string** |  | [optional] 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **NullableTime** | Timestamp of the certificate creation on the platform. | [optional] 
+**LastModified** | Pointer to **time.Time** | Timestamp of the last modification made to the certificate content on the platform. | [optional] 
+**RenewedAt** | Pointer to **NullableTime** | Timestamp indicating when the managed certificate was renewed on our platform. | [optional] 
 **SourceVersion** | Pointer to **NullableString** | ID of the version to clone from. If omitted, clones the latest ready version. | [optional] 
 **Comment** | Pointer to **string** | Description for the new version. | [optional] 
 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 
 ### NewCertificateVersionCreate
 
-`func NewCertificateVersionCreate(id int64, issuer NullableString, subjectName []string, validity NullableString, managed bool, status string, statusDetail string, csr NullableString, challenge string, authority string, keyAlgorithm string, productVersion string, lastEditor string, createdAt NullableTime, lastModified time.Time, renewedAt NullableTime, ) *CertificateVersionCreate`
+`func NewCertificateVersionCreate() *CertificateVersionCreate`
 
 NewCertificateVersionCreate instantiates a new CertificateVersionCreate object
 This constructor will assign default values to properties that have it defined,
@@ -66,6 +66,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *CertificateVersionCreate) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -181,6 +186,11 @@ and a boolean to check if the value has been set.
 
 SetIssuer sets Issuer field to given value.
 
+### HasIssuer
+
+`func (o *CertificateVersionCreate) HasIssuer() bool`
+
+HasIssuer returns a boolean if a field has been set.
 
 ### SetIssuerNil
 
@@ -211,6 +221,11 @@ and a boolean to check if the value has been set.
 
 SetSubjectName sets SubjectName field to given value.
 
+### HasSubjectName
+
+`func (o *CertificateVersionCreate) HasSubjectName() bool`
+
+HasSubjectName returns a boolean if a field has been set.
 
 ### GetValidity
 
@@ -231,6 +246,11 @@ and a boolean to check if the value has been set.
 
 SetValidity sets Validity field to given value.
 
+### HasValidity
+
+`func (o *CertificateVersionCreate) HasValidity() bool`
+
+HasValidity returns a boolean if a field has been set.
 
 ### SetValidityNil
 
@@ -286,6 +306,11 @@ and a boolean to check if the value has been set.
 
 SetManaged sets Managed field to given value.
 
+### HasManaged
+
+`func (o *CertificateVersionCreate) HasManaged() bool`
+
+HasManaged returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -306,6 +331,11 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *CertificateVersionCreate) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetStatusDetail
 
@@ -326,6 +356,11 @@ and a boolean to check if the value has been set.
 
 SetStatusDetail sets StatusDetail field to given value.
 
+### HasStatusDetail
+
+`func (o *CertificateVersionCreate) HasStatusDetail() bool`
+
+HasStatusDetail returns a boolean if a field has been set.
 
 ### GetCsr
 
@@ -346,6 +381,11 @@ and a boolean to check if the value has been set.
 
 SetCsr sets Csr field to given value.
 
+### HasCsr
+
+`func (o *CertificateVersionCreate) HasCsr() bool`
+
+HasCsr returns a boolean if a field has been set.
 
 ### SetCsrNil
 
@@ -376,6 +416,11 @@ and a boolean to check if the value has been set.
 
 SetChallenge sets Challenge field to given value.
 
+### HasChallenge
+
+`func (o *CertificateVersionCreate) HasChallenge() bool`
+
+HasChallenge returns a boolean if a field has been set.
 
 ### GetAuthority
 
@@ -396,6 +441,11 @@ and a boolean to check if the value has been set.
 
 SetAuthority sets Authority field to given value.
 
+### HasAuthority
+
+`func (o *CertificateVersionCreate) HasAuthority() bool`
+
+HasAuthority returns a boolean if a field has been set.
 
 ### GetKeyAlgorithm
 
@@ -416,6 +466,11 @@ and a boolean to check if the value has been set.
 
 SetKeyAlgorithm sets KeyAlgorithm field to given value.
 
+### HasKeyAlgorithm
+
+`func (o *CertificateVersionCreate) HasKeyAlgorithm() bool`
+
+HasKeyAlgorithm returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -461,6 +516,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *CertificateVersionCreate) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 ### GetLastEditor
 
@@ -481,6 +541,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *CertificateVersionCreate) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -501,6 +566,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *CertificateVersionCreate) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### SetCreatedAtNil
 
@@ -531,6 +601,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *CertificateVersionCreate) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetRenewedAt
 
@@ -551,6 +626,11 @@ and a boolean to check if the value has been set.
 
 SetRenewedAt sets RenewedAt field to given value.
 
+### HasRenewedAt
+
+`func (o *CertificateVersionCreate) HasRenewedAt() bool`
+
+HasRenewedAt returns a boolean if a field has been set.
 
 ### SetRenewedAtNil
 

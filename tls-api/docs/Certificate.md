@@ -4,33 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
 **Certificate** | Pointer to **NullableString** |  | [optional] 
 **PrivateKey** | Pointer to **NullableString** |  | [optional] 
-**Issuer** | **NullableString** |  | 
-**SubjectName** | **[]string** |  | 
-**Validity** | **NullableString** |  | 
+**Issuer** | Pointer to **NullableString** |  | [optional] 
+**SubjectName** | Pointer to **[]string** |  | [optional] 
+**Validity** | Pointer to **NullableString** |  | [optional] 
 **Type** | Pointer to **string** | The value can&#39;t be changed after the certificate creation.  * &#x60;edge_certificate&#x60; - Edge Certificate * &#x60;trusted_ca_certificate&#x60; - Trusted CA Certificate | [optional] 
-**Managed** | **bool** |  | 
-**Status** | **string** | * &#x60;pending&#x60; - Pending * &#x60;challenge_verification&#x60; - Challenge Verification * &#x60;active&#x60; - Active * &#x60;inactive&#x60; - Inactive * &#x60;expired&#x60; - Expired * &#x60;failed&#x60; - Failed | 
-**StatusDetail** | **string** |  | 
-**Csr** | **NullableString** |  | 
-**Challenge** | **string** | * &#x60;dns&#x60; - Uses DNS to solve the ACME challenge. * &#x60;http&#x60; - Uses HTTP to solve the ACME challenge. | 
-**Authority** | **string** | * &#x60;lets_encrypt&#x60; - lets_encrypt | 
-**KeyAlgorithm** | **string** |  | 
+**Managed** | Pointer to **bool** |  | [optional] 
+**Status** | Pointer to **string** | * &#x60;pending&#x60; - Pending * &#x60;challenge_verification&#x60; - Challenge Verification * &#x60;active&#x60; - Active * &#x60;inactive&#x60; - Inactive * &#x60;expired&#x60; - Expired * &#x60;failed&#x60; - Failed | [optional] 
+**StatusDetail** | Pointer to **string** |  | [optional] 
+**Csr** | Pointer to **NullableString** |  | [optional] 
+**Challenge** | Pointer to **string** | * &#x60;dns&#x60; - Uses DNS to solve the ACME challenge. * &#x60;http&#x60; - Uses HTTP to solve the ACME challenge. | [optional] 
+**Authority** | Pointer to **string** | * &#x60;lets_encrypt&#x60; - lets_encrypt | [optional] 
+**KeyAlgorithm** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**ProductVersion** | **string** |  | 
-**LastEditor** | **string** |  | 
-**CreatedAt** | **NullableTime** | Timestamp of the certificate creation on the platform. | 
-**LastModified** | **time.Time** | Timestamp of the last modification made to the certificate content on the platform. | 
-**RenewedAt** | **NullableTime** | Timestamp indicating when the managed certificate was renewed on our platform. | 
+**ProductVersion** | Pointer to **string** |  | [optional] 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **NullableTime** | Timestamp of the certificate creation on the platform. | [optional] 
+**LastModified** | Pointer to **time.Time** | Timestamp of the last modification made to the certificate content on the platform. | [optional] 
+**RenewedAt** | Pointer to **NullableTime** | Timestamp indicating when the managed certificate was renewed on our platform. | [optional] 
+**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
+**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 
 ## Methods
 
 ### NewCertificate
 
-`func NewCertificate(id int64, name string, issuer NullableString, subjectName []string, validity NullableString, managed bool, status string, statusDetail string, csr NullableString, challenge string, authority string, keyAlgorithm string, productVersion string, lastEditor string, createdAt NullableTime, lastModified time.Time, renewedAt NullableTime, ) *Certificate`
+`func NewCertificate(name string, ) *Certificate`
 
 NewCertificate instantiates a new Certificate object
 This constructor will assign default values to properties that have it defined,
@@ -64,6 +66,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Certificate) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -174,6 +181,11 @@ and a boolean to check if the value has been set.
 
 SetIssuer sets Issuer field to given value.
 
+### HasIssuer
+
+`func (o *Certificate) HasIssuer() bool`
+
+HasIssuer returns a boolean if a field has been set.
 
 ### SetIssuerNil
 
@@ -204,6 +216,11 @@ and a boolean to check if the value has been set.
 
 SetSubjectName sets SubjectName field to given value.
 
+### HasSubjectName
+
+`func (o *Certificate) HasSubjectName() bool`
+
+HasSubjectName returns a boolean if a field has been set.
 
 ### GetValidity
 
@@ -224,6 +241,11 @@ and a boolean to check if the value has been set.
 
 SetValidity sets Validity field to given value.
 
+### HasValidity
+
+`func (o *Certificate) HasValidity() bool`
+
+HasValidity returns a boolean if a field has been set.
 
 ### SetValidityNil
 
@@ -279,6 +301,11 @@ and a boolean to check if the value has been set.
 
 SetManaged sets Managed field to given value.
 
+### HasManaged
+
+`func (o *Certificate) HasManaged() bool`
+
+HasManaged returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -299,6 +326,11 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *Certificate) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetStatusDetail
 
@@ -319,6 +351,11 @@ and a boolean to check if the value has been set.
 
 SetStatusDetail sets StatusDetail field to given value.
 
+### HasStatusDetail
+
+`func (o *Certificate) HasStatusDetail() bool`
+
+HasStatusDetail returns a boolean if a field has been set.
 
 ### GetCsr
 
@@ -339,6 +376,11 @@ and a boolean to check if the value has been set.
 
 SetCsr sets Csr field to given value.
 
+### HasCsr
+
+`func (o *Certificate) HasCsr() bool`
+
+HasCsr returns a boolean if a field has been set.
 
 ### SetCsrNil
 
@@ -369,6 +411,11 @@ and a boolean to check if the value has been set.
 
 SetChallenge sets Challenge field to given value.
 
+### HasChallenge
+
+`func (o *Certificate) HasChallenge() bool`
+
+HasChallenge returns a boolean if a field has been set.
 
 ### GetAuthority
 
@@ -389,6 +436,11 @@ and a boolean to check if the value has been set.
 
 SetAuthority sets Authority field to given value.
 
+### HasAuthority
+
+`func (o *Certificate) HasAuthority() bool`
+
+HasAuthority returns a boolean if a field has been set.
 
 ### GetKeyAlgorithm
 
@@ -409,6 +461,11 @@ and a boolean to check if the value has been set.
 
 SetKeyAlgorithm sets KeyAlgorithm field to given value.
 
+### HasKeyAlgorithm
+
+`func (o *Certificate) HasKeyAlgorithm() bool`
+
+HasKeyAlgorithm returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -454,6 +511,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *Certificate) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 ### GetLastEditor
 
@@ -474,6 +536,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *Certificate) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -494,6 +561,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *Certificate) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### SetCreatedAtNil
 
@@ -524,6 +596,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *Certificate) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetRenewedAt
 
@@ -544,6 +621,11 @@ and a boolean to check if the value has been set.
 
 SetRenewedAt sets RenewedAt field to given value.
 
+### HasRenewedAt
+
+`func (o *Certificate) HasRenewedAt() bool`
+
+HasRenewedAt returns a boolean if a field has been set.
 
 ### SetRenewedAtNil
 
@@ -555,6 +637,76 @@ SetRenewedAt sets RenewedAt field to given value.
 `func (o *Certificate) UnsetRenewedAt()`
 
 UnsetRenewedAt ensures that no value is present for RenewedAt, not even an explicit nil
+### GetVersionId
+
+`func (o *Certificate) GetVersionId() string`
+
+GetVersionId returns the VersionId field if non-nil, zero value otherwise.
+
+### GetVersionIdOk
+
+`func (o *Certificate) GetVersionIdOk() (*string, bool)`
+
+GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionId
+
+`func (o *Certificate) SetVersionId(v string)`
+
+SetVersionId sets VersionId field to given value.
+
+### HasVersionId
+
+`func (o *Certificate) HasVersionId() bool`
+
+HasVersionId returns a boolean if a field has been set.
+
+### SetVersionIdNil
+
+`func (o *Certificate) SetVersionIdNil(b bool)`
+
+ SetVersionIdNil sets the value for VersionId to be an explicit nil
+
+### UnsetVersionId
+`func (o *Certificate) UnsetVersionId()`
+
+UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
+### GetState
+
+`func (o *Certificate) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *Certificate) GetStateOk() (*string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetState
+
+`func (o *Certificate) SetState(v string)`
+
+SetState sets State field to given value.
+
+### HasState
+
+`func (o *Certificate) HasState() bool`
+
+HasState returns a boolean if a field has been set.
+
+### SetStateNil
+
+`func (o *Certificate) SetStateNil(b bool)`
+
+ SetStateNil sets the value for State to be an explicit nil
+
+### UnsetState
+`func (o *Certificate) UnsetState()`
+
+UnsetState ensures that no value is present for State, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

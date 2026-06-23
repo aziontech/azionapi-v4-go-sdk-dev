@@ -178,13 +178,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 	resourcePk := int64(789) // int64 | The ID of the CRL resource.
-	cRLVersionCreate := *openapiclient.NewCRLVersionCreate(int64(123), "LastEditor_example", time.Now(), time.Now(), "ProductVersion_example", "Issuer_example", time.Now(), time.Now(), "VersionId_example", "State_example") // CRLVersionCreate |  (optional)
+	cRLVersionCreate := *openapiclient.NewCRLVersionCreate() // CRLVersionCreate |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -536,14 +535,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 	id := "id_example" // string | The ULID identifier of the version.
 	resourcePk := int64(789) // int64 | The ID of the CRL resource.
-	certificateRevocationList := *openapiclient.NewCertificateRevocationList(int64(123), "Name_example", "LastEditor_example", time.Now(), time.Now(), "ProductVersion_example", "Issuer_example", time.Now(), time.Now(), "Crl_example", "VersionId_example", "State_example") // CertificateRevocationList | 
+	certificateRevocationList := *openapiclient.NewCertificateRevocationList("Name_example", "Crl_example") // CertificateRevocationList | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

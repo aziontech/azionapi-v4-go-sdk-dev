@@ -49,6 +49,10 @@ type APIClient struct {
 
 	// API Services
 
+	CRLVersionsAPI *CRLVersionsAPIService
+
+	CertificateVersionsAPI *CertificateVersionsAPIService
+
 	DigitalCertificatesCertificateRevocationListsAPI *DigitalCertificatesCertificateRevocationListsAPIService
 
 	DigitalCertificatesCertificateSigningRequestsAPI *DigitalCertificatesCertificateSigningRequestsAPIService
@@ -74,6 +78,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.CRLVersionsAPI = (*CRLVersionsAPIService)(&c.common)
+	c.CertificateVersionsAPI = (*CertificateVersionsAPIService)(&c.common)
 	c.DigitalCertificatesCertificateRevocationListsAPI = (*DigitalCertificatesCertificateRevocationListsAPIService)(&c.common)
 	c.DigitalCertificatesCertificateSigningRequestsAPI = (*DigitalCertificatesCertificateSigningRequestsAPIService)(&c.common)
 	c.DigitalCertificatesCertificatesAPI = (*DigitalCertificatesCertificatesAPIService)(&c.common)
@@ -446,6 +452,15 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 	}
 	if s, ok := v.(*string); ok {
 		*s = string(b)
+		return nil
+	}
+	if r, ok := v.(*io.Reader); ok {
+		*r = bytes.NewReader(b)
+		return nil
+	}
+	// Must stay before the JSON branch: json.Unmarshal would base64-decode into *[]byte.
+	if p, ok := v.(*[]byte); ok {
+		*p = b
 		return nil
 	}
 	if f, ok := v.(*os.File); ok {
