@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **NextUpdate** | Pointer to **time.Time** | Timestamp of the next scheduled update from the certification revocation list issuer. | [optional] 
 **Crl** | **string** |  | 
 **VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
-**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
+**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 
 ## Methods
 
@@ -347,41 +347,41 @@ HasVersionId returns a boolean if a field has been set.
 `func (o *CertificateRevocationList) UnsetVersionId()`
 
 UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-### GetState
+### GetVersionState
 
-`func (o *CertificateRevocationList) GetState() string`
+`func (o *CertificateRevocationList) GetVersionState() string`
 
-GetState returns the State field if non-nil, zero value otherwise.
+GetVersionState returns the VersionState field if non-nil, zero value otherwise.
 
-### GetStateOk
+### GetVersionStateOk
 
-`func (o *CertificateRevocationList) GetStateOk() (*string, bool)`
+`func (o *CertificateRevocationList) GetVersionStateOk() (*string, bool)`
 
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetState
+### SetVersionState
 
-`func (o *CertificateRevocationList) SetState(v string)`
+`func (o *CertificateRevocationList) SetVersionState(v string)`
 
-SetState sets State field to given value.
+SetVersionState sets VersionState field to given value.
 
-### HasState
+### HasVersionState
 
-`func (o *CertificateRevocationList) HasState() bool`
+`func (o *CertificateRevocationList) HasVersionState() bool`
 
-HasState returns a boolean if a field has been set.
+HasVersionState returns a boolean if a field has been set.
 
-### SetStateNil
+### SetVersionStateNil
 
-`func (o *CertificateRevocationList) SetStateNil(b bool)`
+`func (o *CertificateRevocationList) SetVersionStateNil(b bool)`
 
- SetStateNil sets the value for State to be an explicit nil
+ SetVersionStateNil sets the value for VersionState to be an explicit nil
 
-### UnsetState
-`func (o *CertificateRevocationList) UnsetState()`
+### UnsetVersionState
+`func (o *CertificateRevocationList) UnsetVersionState()`
 
-UnsetState ensures that no value is present for State, not even an explicit nil
+UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

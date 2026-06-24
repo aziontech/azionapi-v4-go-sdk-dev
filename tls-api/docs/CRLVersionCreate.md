@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **NextUpdate** | Pointer to **time.Time** | Timestamp of the next scheduled update from the certification revocation list issuer. | [optional] 
 **Crl** | Pointer to **string** |  | [optional] 
 **VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
-**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
+**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 **SourceVersion** | Pointer to **NullableString** | ID of the version to clone from. If omitted, clones the latest ready version. | [optional] 
 **Comment** | Pointer to **string** | Description for the new version. | [optional] 
 
@@ -359,41 +359,41 @@ HasVersionId returns a boolean if a field has been set.
 `func (o *CRLVersionCreate) UnsetVersionId()`
 
 UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-### GetState
+### GetVersionState
 
-`func (o *CRLVersionCreate) GetState() string`
+`func (o *CRLVersionCreate) GetVersionState() string`
 
-GetState returns the State field if non-nil, zero value otherwise.
+GetVersionState returns the VersionState field if non-nil, zero value otherwise.
 
-### GetStateOk
+### GetVersionStateOk
 
-`func (o *CRLVersionCreate) GetStateOk() (*string, bool)`
+`func (o *CRLVersionCreate) GetVersionStateOk() (*string, bool)`
 
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetState
+### SetVersionState
 
-`func (o *CRLVersionCreate) SetState(v string)`
+`func (o *CRLVersionCreate) SetVersionState(v string)`
 
-SetState sets State field to given value.
+SetVersionState sets VersionState field to given value.
 
-### HasState
+### HasVersionState
 
-`func (o *CRLVersionCreate) HasState() bool`
+`func (o *CRLVersionCreate) HasVersionState() bool`
 
-HasState returns a boolean if a field has been set.
+HasVersionState returns a boolean if a field has been set.
 
-### SetStateNil
+### SetVersionStateNil
 
-`func (o *CRLVersionCreate) SetStateNil(b bool)`
+`func (o *CRLVersionCreate) SetVersionStateNil(b bool)`
 
- SetStateNil sets the value for State to be an explicit nil
+ SetVersionStateNil sets the value for VersionState to be an explicit nil
 
-### UnsetState
-`func (o *CRLVersionCreate) UnsetState()`
+### UnsetVersionState
+`func (o *CRLVersionCreate) UnsetVersionState()`
 
-UnsetState ensures that no value is present for State, not even an explicit nil
+UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 ### GetSourceVersion
 
 `func (o *CRLVersionCreate) GetSourceVersion() string`
