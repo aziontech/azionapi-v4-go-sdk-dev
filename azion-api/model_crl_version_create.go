@@ -40,7 +40,7 @@ type CRLVersionCreate struct {
 	// ID of the version metadata (use in /versions/{id} URLs)
 	VersionId NullableString `json:"version_id,omitempty"`
 	// Build state of this version (queued, building, ready, error, ...)
-	State NullableString `json:"state,omitempty"`
+	VersionState NullableString `json:"version_state,omitempty"`
 	// ID of the version to clone from. If omitted, clones the latest ready version.
 	SourceVersion NullableString `json:"source_version,omitempty"`
 	// Description for the new version.
@@ -468,46 +468,46 @@ func (o *CRLVersionCreate) UnsetVersionId() {
 	o.VersionId.Unset()
 }
 
-// GetState returns the State field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CRLVersionCreate) GetState() string {
-	if o == nil || IsNil(o.State.Get()) {
+// GetVersionState returns the VersionState field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CRLVersionCreate) GetVersionState() string {
+	if o == nil || IsNil(o.VersionState.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.State.Get()
+	return *o.VersionState.Get()
 }
 
-// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// GetVersionStateOk returns a tuple with the VersionState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CRLVersionCreate) GetStateOk() (*string, bool) {
+func (o *CRLVersionCreate) GetVersionStateOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.State.Get(), o.State.IsSet()
+	return o.VersionState.Get(), o.VersionState.IsSet()
 }
 
-// HasState returns a boolean if a field has been set.
-func (o *CRLVersionCreate) HasState() bool {
-	if o != nil && o.State.IsSet() {
+// HasVersionState returns a boolean if a field has been set.
+func (o *CRLVersionCreate) HasVersionState() bool {
+	if o != nil && o.VersionState.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetState gets a reference to the given NullableString and assigns it to the State field.
-func (o *CRLVersionCreate) SetState(v string) {
-	o.State.Set(&v)
+// SetVersionState gets a reference to the given NullableString and assigns it to the VersionState field.
+func (o *CRLVersionCreate) SetVersionState(v string) {
+	o.VersionState.Set(&v)
 }
-// SetStateNil sets the value for State to be an explicit nil
-func (o *CRLVersionCreate) SetStateNil() {
-	o.State.Set(nil)
+// SetVersionStateNil sets the value for VersionState to be an explicit nil
+func (o *CRLVersionCreate) SetVersionStateNil() {
+	o.VersionState.Set(nil)
 }
 
-// UnsetState ensures that no value is present for State, not even an explicit nil
-func (o *CRLVersionCreate) UnsetState() {
-	o.State.Unset()
+// UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
+func (o *CRLVersionCreate) UnsetVersionState() {
+	o.VersionState.Unset()
 }
 
 // GetSourceVersion returns the SourceVersion field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -630,8 +630,8 @@ func (o CRLVersionCreate) ToMap() (map[string]interface{}, error) {
 	if o.VersionId.IsSet() {
 		toSerialize["version_id"] = o.VersionId.Get()
 	}
-	if o.State.IsSet() {
-		toSerialize["state"] = o.State.Get()
+	if o.VersionState.IsSet() {
+		toSerialize["version_state"] = o.VersionState.Get()
 	}
 	if o.SourceVersion.IsSet() {
 		toSerialize["source_version"] = o.SourceVersion.Get()

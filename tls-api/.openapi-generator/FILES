@@ -56,6 +56,4 @@ model_patched_certificate_revocation_list.go
 model_version_archive.go
 model_version_cancel.go
 response.go
-test/api_certificate_versions_test.go
-test/api_crl_versions_test.go
 utils.go
