@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **ProductVersion** | Pointer to **NullableString** |  | [optional] 
 **EngineSettings** | Pointer to [**WAFEngineSettingsField**](WAFEngineSettingsField.md) |  | [optional] 
 **VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
-**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
+**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 
 ## Methods
 
@@ -248,41 +248,41 @@ HasVersionId returns a boolean if a field has been set.
 `func (o *WAF) UnsetVersionId()`
 
 UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-### GetState
+### GetVersionState
 
-`func (o *WAF) GetState() string`
+`func (o *WAF) GetVersionState() string`
 
-GetState returns the State field if non-nil, zero value otherwise.
+GetVersionState returns the VersionState field if non-nil, zero value otherwise.
 
-### GetStateOk
+### GetVersionStateOk
 
-`func (o *WAF) GetStateOk() (*string, bool)`
+`func (o *WAF) GetVersionStateOk() (*string, bool)`
 
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetState
+### SetVersionState
 
-`func (o *WAF) SetState(v string)`
+`func (o *WAF) SetVersionState(v string)`
 
-SetState sets State field to given value.
+SetVersionState sets VersionState field to given value.
 
-### HasState
+### HasVersionState
 
-`func (o *WAF) HasState() bool`
+`func (o *WAF) HasVersionState() bool`
 
-HasState returns a boolean if a field has been set.
+HasVersionState returns a boolean if a field has been set.
 
-### SetStateNil
+### SetVersionStateNil
 
-`func (o *WAF) SetStateNil(b bool)`
+`func (o *WAF) SetVersionStateNil(b bool)`
 
- SetStateNil sets the value for State to be an explicit nil
+ SetVersionStateNil sets the value for VersionState to be an explicit nil
 
-### UnsetState
-`func (o *WAF) UnsetState()`
+### UnsetVersionState
+`func (o *WAF) UnsetVersionState()`
 
-UnsetState ensures that no value is present for State, not even an explicit nil
+UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

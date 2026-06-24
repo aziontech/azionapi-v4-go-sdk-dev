@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **Version** | Pointer to **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | [optional] 
 **Vendor** | Pointer to **string** |  | [optional] 
 **VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
-**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
+**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 **Code** | **string** | String containing the function code. Maximum size: 50.0MB | 
 
 ## Methods
@@ -405,41 +405,41 @@ HasVersionId returns a boolean if a field has been set.
 `func (o *EdgeFunctions) UnsetVersionId()`
 
 UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-### GetState
+### GetVersionState
 
-`func (o *EdgeFunctions) GetState() string`
+`func (o *EdgeFunctions) GetVersionState() string`
 
-GetState returns the State field if non-nil, zero value otherwise.
+GetVersionState returns the VersionState field if non-nil, zero value otherwise.
 
-### GetStateOk
+### GetVersionStateOk
 
-`func (o *EdgeFunctions) GetStateOk() (*string, bool)`
+`func (o *EdgeFunctions) GetVersionStateOk() (*string, bool)`
 
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetState
+### SetVersionState
 
-`func (o *EdgeFunctions) SetState(v string)`
+`func (o *EdgeFunctions) SetVersionState(v string)`
 
-SetState sets State field to given value.
+SetVersionState sets VersionState field to given value.
 
-### HasState
+### HasVersionState
 
-`func (o *EdgeFunctions) HasState() bool`
+`func (o *EdgeFunctions) HasVersionState() bool`
 
-HasState returns a boolean if a field has been set.
+HasVersionState returns a boolean if a field has been set.
 
-### SetStateNil
+### SetVersionStateNil
 
-`func (o *EdgeFunctions) SetStateNil(b bool)`
+`func (o *EdgeFunctions) SetVersionStateNil(b bool)`
 
- SetStateNil sets the value for State to be an explicit nil
+ SetVersionStateNil sets the value for VersionState to be an explicit nil
 
-### UnsetState
-`func (o *EdgeFunctions) UnsetState()`
+### UnsetVersionState
+`func (o *EdgeFunctions) UnsetVersionState()`
 
-UnsetState ensures that no value is present for State, not even an explicit nil
+UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 ### GetCode
 
 `func (o *EdgeFunctions) GetCode() string`

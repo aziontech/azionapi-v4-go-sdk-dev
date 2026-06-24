@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
-**State** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
+**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 **Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
 **LastEditor** | Pointer to **string** |  | [optional] 
@@ -70,41 +70,41 @@ HasVersionId returns a boolean if a field has been set.
 `func (o *ConnectorStorage) UnsetVersionId()`
 
 UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-### GetState
+### GetVersionState
 
-`func (o *ConnectorStorage) GetState() string`
+`func (o *ConnectorStorage) GetVersionState() string`
 
-GetState returns the State field if non-nil, zero value otherwise.
+GetVersionState returns the VersionState field if non-nil, zero value otherwise.
 
-### GetStateOk
+### GetVersionStateOk
 
-`func (o *ConnectorStorage) GetStateOk() (*string, bool)`
+`func (o *ConnectorStorage) GetVersionStateOk() (*string, bool)`
 
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetState
+### SetVersionState
 
-`func (o *ConnectorStorage) SetState(v string)`
+`func (o *ConnectorStorage) SetVersionState(v string)`
 
-SetState sets State field to given value.
+SetVersionState sets VersionState field to given value.
 
-### HasState
+### HasVersionState
 
-`func (o *ConnectorStorage) HasState() bool`
+`func (o *ConnectorStorage) HasVersionState() bool`
 
-HasState returns a boolean if a field has been set.
+HasVersionState returns a boolean if a field has been set.
 
-### SetStateNil
+### SetVersionStateNil
 
-`func (o *ConnectorStorage) SetStateNil(b bool)`
+`func (o *ConnectorStorage) SetVersionStateNil(b bool)`
 
- SetStateNil sets the value for State to be an explicit nil
+ SetVersionStateNil sets the value for VersionState to be an explicit nil
 
-### UnsetState
-`func (o *ConnectorStorage) UnsetState()`
+### UnsetVersionState
+`func (o *ConnectorStorage) UnsetVersionState()`
 
-UnsetState ensures that no value is present for State, not even an explicit nil
+UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 ### GetId
 
 `func (o *ConnectorStorage) GetId() int64`
