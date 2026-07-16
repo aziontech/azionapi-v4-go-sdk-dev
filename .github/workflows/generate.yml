@@ -4,6 +4,8 @@ on:
   pull_request:
     types: [opened, synchronize]
 
+permissions: {}
+
 jobs:
   generate-sdk:
     permissions:
@@ -28,40 +30,37 @@ jobs:
           && apt install gh -y
         shell: bash
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3.9.1
         with:
           node-version: 18
 
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@17f84c3641ba7b8f6deff6309fc4c864478f5d62 # v3.14.1
         with:
           distribution: 'temurin'
           java-version: '11'
 
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: run safe dir
         run: git config --global --add safe.directory /__w/azionapi-v4-go-sdk-dev/azionapi-v4-go-sdk-dev
 
-      - name: Get PR Commit Message
-        id: pr_commit_message
-        run: |
-          COMMIT_MSG=$(git log --format=%B -n 1 ${{ github.event.pull_request.head.sha }})
-          echo "Commit message: $COMMIT_MSG"
-          echo "commit_msg=$COMMIT_MSG" >> $GITHUB_OUTPUT
-        shell: bash
-
       - name: Check if Commit Message Matches
         id: check-commit
+        env:
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          echo "Commit message -> " ${{ steps.pr_commit_message.outputs.commit_msg }}
-          if [[ "${{ steps.pr_commit_message.outputs.commit_msg }}" == *"chore: updated YAML files"* ]]; then
-            echo "run_commit=true" >> $GITHUB_OUTPUT
+          # Keep the untrusted commit message inside a shell variable and never
+          # interpolate an expression directly into a run block (script injection).
+          COMMIT_MSG=$(git log --format=%B -n 1 "$HEAD_SHA")
+          echo "Commit message -> $COMMIT_MSG"
+          if [[ "$COMMIT_MSG" == *"chore: updated YAML files"* ]]; then
+            echo "run_commit=true" >> "$GITHUB_OUTPUT"
           else
             echo "::warning::Commit message does not match. Skipping workflow."
-            echo "run_commit=false" >> $GITHUB_OUTPUT
+            echo "run_commit=false" >> "$GITHUB_OUTPUT"
           fi
         shell: bash
 
@@ -165,6 +164,8 @@ jobs:
 
       - name: Commit and Push Generated SDKs
         if: steps.find-yaml.outputs.run_sdk == 'true'
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -179,7 +180,7 @@ jobs:
             echo "::warning::No SDK changes to commit."
           else
             git commit -m "Auto-generated SDKs for YAML files"
-            git push origin ${{ github.event.pull_request.head.ref }}
+            git push origin "$HEAD_REF"
           fi
 
       - name: Notify Slack

@@ -8,33 +8,40 @@ on:
         required: true
         type: string
 
+permissions: {}
+
 jobs:
   clean-directory:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Delete directory
+        env:
+          DIR_PATH: ${{ inputs.directory_path }}
         run: |
-          if [ -d "${{ inputs.directory_path }}" ]; then
-            rm -rf "${{ inputs.directory_path }}"
-            echo "Directory ${{ inputs.directory_path }} deleted successfully"
+          # Pass the dispatch input via env to avoid shell injection.
+          if [ -d "$DIR_PATH" ]; then
+            rm -rf "$DIR_PATH"
+            echo "Directory $DIR_PATH deleted successfully"
           else
-            echo "Directory ${{ inputs.directory_path }} does not exist"
+            echo "Directory $DIR_PATH does not exist"
             exit 1
           fi
-      
+
       - name: Commit and push changes
+        env:
+          DIR_PATH: ${{ inputs.directory_path }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "chore: clean SDK directory ${{ inputs.directory_path }}"
+          git commit -m "chore: clean SDK directory $DIR_PATH"
           git push origin main
