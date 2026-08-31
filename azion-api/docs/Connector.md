@@ -4,23 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
-**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
+**Id** | **int64** |  | 
 **Name** | **string** |  | 
-**LastEditor** | Pointer to **string** |  | [optional] 
-**LastModified** | Pointer to **time.Time** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**LastEditor** | **string** |  | 
+**LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**ProductVersion** | Pointer to **string** |  | [optional] 
-**Type** | **string** |  | 
-**Attributes** | [**ConnectorLiveIngestAttributes**](ConnectorLiveIngestAttributes.md) |  | 
+**ProductVersion** | **string** |  | 
+**Type** | **string** | Type of the connector  * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | 
+**Attributes** | [**ConnectorStorageAttributes**](ConnectorStorageAttributes.md) |  | 
 
 ## Methods
 
 ### NewConnector
 
-`func NewConnector(name string, type_ string, attributes ConnectorLiveIngestAttributes, ) *Connector`
+`func NewConnector(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, attributes ConnectorStorageAttributes, ) *Connector`
 
 NewConnector instantiates a new Connector object
 This constructor will assign default values to properties that have it defined,
@@ -35,76 +33,6 @@ NewConnectorWithDefaults instantiates a new Connector object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetVersionId
-
-`func (o *Connector) GetVersionId() string`
-
-GetVersionId returns the VersionId field if non-nil, zero value otherwise.
-
-### GetVersionIdOk
-
-`func (o *Connector) GetVersionIdOk() (*string, bool)`
-
-GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionId
-
-`func (o *Connector) SetVersionId(v string)`
-
-SetVersionId sets VersionId field to given value.
-
-### HasVersionId
-
-`func (o *Connector) HasVersionId() bool`
-
-HasVersionId returns a boolean if a field has been set.
-
-### SetVersionIdNil
-
-`func (o *Connector) SetVersionIdNil(b bool)`
-
- SetVersionIdNil sets the value for VersionId to be an explicit nil
-
-### UnsetVersionId
-`func (o *Connector) UnsetVersionId()`
-
-UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-### GetVersionState
-
-`func (o *Connector) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *Connector) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *Connector) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-### HasVersionState
-
-`func (o *Connector) HasVersionState() bool`
-
-HasVersionState returns a boolean if a field has been set.
-
-### SetVersionStateNil
-
-`func (o *Connector) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *Connector) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 ### GetId
 
 `func (o *Connector) GetId() int64`
@@ -124,11 +52,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *Connector) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -169,11 +92,6 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
-### HasLastEditor
-
-`func (o *Connector) HasLastEditor() bool`
-
-HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -194,11 +112,6 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
-### HasLastModified
-
-`func (o *Connector) HasLastModified() bool`
-
-HasLastModified returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -219,11 +132,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *Connector) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -269,11 +177,6 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
-### HasProductVersion
-
-`func (o *Connector) HasProductVersion() bool`
-
-HasProductVersion returns a boolean if a field has been set.
 
 ### GetType
 
@@ -297,20 +200,20 @@ SetType sets Type field to given value.
 
 ### GetAttributes
 
-`func (o *Connector) GetAttributes() ConnectorLiveIngestAttributes`
+`func (o *Connector) GetAttributes() ConnectorStorageAttributes`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *Connector) GetAttributesOk() (*ConnectorLiveIngestAttributes, bool)`
+`func (o *Connector) GetAttributesOk() (*ConnectorStorageAttributes, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *Connector) SetAttributes(v ConnectorLiveIngestAttributes)`
+`func (o *Connector) SetAttributes(v ConnectorStorageAttributes)`
 
 SetAttributes sets Attributes field to given value.
 

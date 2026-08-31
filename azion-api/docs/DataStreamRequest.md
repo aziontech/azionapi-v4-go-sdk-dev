@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **Active** | Pointer to **bool** |  | [optional] 
 **Inputs** | [**[]InputInputDataSourceAttributesRequest**](InputInputDataSourceAttributesRequest.md) |  | 
 **Transform** | [**[]TransformRequest**](TransformRequest.md) |  | 
-**Outputs** | [**[]OutputRequestBase**](OutputRequestBase.md) |  | 
+**Outputs** | [**[]OutputRequest**](OutputRequest.md) |  | 
 
 ## Methods
 
 ### NewDataStreamRequest
 
-`func NewDataStreamRequest(name string, inputs []InputInputDataSourceAttributesRequest, transform []TransformRequest, outputs []OutputRequestBase, ) *DataStreamRequest`
+`func NewDataStreamRequest(name string, inputs []InputInputDataSourceAttributesRequest, transform []TransformRequest, outputs []OutputRequest, ) *DataStreamRequest`
 
 NewDataStreamRequest instantiates a new DataStreamRequest object
 This constructor will assign default values to properties that have it defined,
@@ -116,20 +116,20 @@ SetTransform sets Transform field to given value.
 
 ### GetOutputs
 
-`func (o *DataStreamRequest) GetOutputs() []OutputRequestBase`
+`func (o *DataStreamRequest) GetOutputs() []OutputRequest`
 
 GetOutputs returns the Outputs field if non-nil, zero value otherwise.
 
 ### GetOutputsOk
 
-`func (o *DataStreamRequest) GetOutputsOk() (*[]OutputRequestBase, bool)`
+`func (o *DataStreamRequest) GetOutputsOk() (*[]OutputRequest, bool)`
 
 GetOutputsOk returns a tuple with the Outputs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOutputs
 
-`func (o *DataStreamRequest) SetOutputs(v []OutputRequestBase)`
+`func (o *DataStreamRequest) SetOutputs(v []OutputRequest)`
 
 SetOutputs sets Outputs field to given value.
 

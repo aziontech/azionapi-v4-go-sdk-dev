@@ -21,21 +21,17 @@ import (
 // checks if the Firewall type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Firewall{}
 
-// Firewall Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``version_state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers. ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
+// Firewall struct for Firewall
 type Firewall struct {
-	Id *int64 `json:"id,omitempty"`
+	Id int64 `json:"id"`
 	Name string `json:"name"`
 	Modules *FirewallModules `json:"modules,omitempty"`
 	Debug *bool `json:"debug,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	LastEditor *string `json:"last_editor,omitempty"`
-	LastModified *time.Time `json:"last_modified,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	ProductVersion *string `json:"product_version,omitempty"`
-	// ID of the version metadata (use in /versions/{id} URLs)
-	VersionId NullableString `json:"version_id,omitempty"`
-	// Build state of this version (queued, building, ready, error, ...)
-	VersionState NullableString `json:"version_state,omitempty"`
+	LastEditor string `json:"last_editor"`
+	LastModified time.Time `json:"last_modified"`
+	CreatedAt time.Time `json:"created_at"`
+	ProductVersion string `json:"product_version"`
 }
 
 type _Firewall Firewall
@@ -44,9 +40,14 @@ type _Firewall Firewall
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirewall(name string) *Firewall {
+func NewFirewall(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string) *Firewall {
 	this := Firewall{}
+	this.Id = id
 	this.Name = name
+	this.LastEditor = lastEditor
+	this.LastModified = lastModified
+	this.CreatedAt = createdAt
+	this.ProductVersion = productVersion
 	return &this
 }
 
@@ -58,36 +59,28 @@ func NewFirewallWithDefaults() *Firewall {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *Firewall) GetId() int64 {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Firewall) GetIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *Firewall) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given int64 and assigns it to the Id field.
+// SetId sets field value
 func (o *Firewall) SetId(v int64) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetName returns the Name field value
@@ -210,216 +203,100 @@ func (o *Firewall) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetLastEditor returns the LastEditor field value if set, zero value otherwise.
+// GetLastEditor returns the LastEditor field value
 func (o *Firewall) GetLastEditor() string {
-	if o == nil || IsNil(o.LastEditor) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LastEditor
+
+	return o.LastEditor
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
+// GetLastEditorOk returns a tuple with the LastEditor field value
 // and a boolean to check if the value has been set.
 func (o *Firewall) GetLastEditorOk() (*string, bool) {
-	if o == nil || IsNil(o.LastEditor) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastEditor, true
+	return &o.LastEditor, true
 }
 
-// HasLastEditor returns a boolean if a field has been set.
-func (o *Firewall) HasLastEditor() bool {
-	if o != nil && !IsNil(o.LastEditor) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
+// SetLastEditor sets field value
 func (o *Firewall) SetLastEditor(v string) {
-	o.LastEditor = &v
+	o.LastEditor = v
 }
 
-// GetLastModified returns the LastModified field value if set, zero value otherwise.
+// GetLastModified returns the LastModified field value
 func (o *Firewall) GetLastModified() time.Time {
-	if o == nil || IsNil(o.LastModified) {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.LastModified
+
+	return o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
+// GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
 func (o *Firewall) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.LastModified) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastModified, true
+	return &o.LastModified, true
 }
 
-// HasLastModified returns a boolean if a field has been set.
-func (o *Firewall) HasLastModified() bool {
-	if o != nil && !IsNil(o.LastModified) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
+// SetLastModified sets field value
 func (o *Firewall) SetLastModified(v time.Time) {
-	o.LastModified = &v
+	o.LastModified = v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// GetCreatedAt returns the CreatedAt field value
 func (o *Firewall) GetCreatedAt() time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.CreatedAt
+
+	return o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *Firewall) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return &o.CreatedAt, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *Firewall) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+// SetCreatedAt sets field value
 func (o *Firewall) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
+	o.CreatedAt = v
 }
 
-// GetProductVersion returns the ProductVersion field value if set, zero value otherwise.
+// GetProductVersion returns the ProductVersion field value
 func (o *Firewall) GetProductVersion() string {
-	if o == nil || IsNil(o.ProductVersion) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ProductVersion
+
+	return o.ProductVersion
 }
 
-// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
+// GetProductVersionOk returns a tuple with the ProductVersion field value
 // and a boolean to check if the value has been set.
 func (o *Firewall) GetProductVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.ProductVersion) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ProductVersion, true
+	return &o.ProductVersion, true
 }
 
-// HasProductVersion returns a boolean if a field has been set.
-func (o *Firewall) HasProductVersion() bool {
-	if o != nil && !IsNil(o.ProductVersion) {
-		return true
-	}
-
-	return false
-}
-
-// SetProductVersion gets a reference to the given string and assigns it to the ProductVersion field.
+// SetProductVersion sets field value
 func (o *Firewall) SetProductVersion(v string) {
-	o.ProductVersion = &v
-}
-
-// GetVersionId returns the VersionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Firewall) GetVersionId() string {
-	if o == nil || IsNil(o.VersionId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VersionId.Get()
-}
-
-// GetVersionIdOk returns a tuple with the VersionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Firewall) GetVersionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionId.Get(), o.VersionId.IsSet()
-}
-
-// HasVersionId returns a boolean if a field has been set.
-func (o *Firewall) HasVersionId() bool {
-	if o != nil && o.VersionId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionId gets a reference to the given NullableString and assigns it to the VersionId field.
-func (o *Firewall) SetVersionId(v string) {
-	o.VersionId.Set(&v)
-}
-// SetVersionIdNil sets the value for VersionId to be an explicit nil
-func (o *Firewall) SetVersionIdNil() {
-	o.VersionId.Set(nil)
-}
-
-// UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-func (o *Firewall) UnsetVersionId() {
-	o.VersionId.Unset()
-}
-
-// GetVersionState returns the VersionState field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Firewall) GetVersionState() string {
-	if o == nil || IsNil(o.VersionState.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Firewall) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// HasVersionState returns a boolean if a field has been set.
-func (o *Firewall) HasVersionState() bool {
-	if o != nil && o.VersionState.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionState gets a reference to the given NullableString and assigns it to the VersionState field.
-func (o *Firewall) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-// SetVersionStateNil sets the value for VersionState to be an explicit nil
-func (o *Firewall) SetVersionStateNil() {
-	o.VersionState.Set(nil)
-}
-
-// UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
-func (o *Firewall) UnsetVersionState() {
-	o.VersionState.Unset()
+	o.ProductVersion = v
 }
 
 func (o Firewall) MarshalJSON() ([]byte, error) {
@@ -432,9 +309,7 @@ func (o Firewall) MarshalJSON() ([]byte, error) {
 
 func (o Firewall) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Modules) {
 		toSerialize["modules"] = o.Modules
@@ -445,24 +320,10 @@ func (o Firewall) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if !IsNil(o.LastEditor) {
-		toSerialize["last_editor"] = o.LastEditor
-	}
-	if !IsNil(o.LastModified) {
-		toSerialize["last_modified"] = o.LastModified
-	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !IsNil(o.ProductVersion) {
-		toSerialize["product_version"] = o.ProductVersion
-	}
-	if o.VersionId.IsSet() {
-		toSerialize["version_id"] = o.VersionId.Get()
-	}
-	if o.VersionState.IsSet() {
-		toSerialize["version_state"] = o.VersionState.Get()
-	}
+	toSerialize["last_editor"] = o.LastEditor
+	toSerialize["last_modified"] = o.LastModified
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["product_version"] = o.ProductVersion
 	return toSerialize, nil
 }
 
@@ -471,7 +332,12 @@ func (o *Firewall) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"id",
 		"name",
+		"last_editor",
+		"last_modified",
+		"created_at",
+		"product_version",
 	}
 
 	allProperties := make(map[string]interface{})

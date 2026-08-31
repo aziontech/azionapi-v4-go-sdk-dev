@@ -4,22 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** |  | [optional] 
+**Id** | **int64** |  | 
 **Name** | **string** |  | 
-**LastEditor** | Pointer to **string** |  | [optional] 
-**LastModified** | Pointer to **time.Time** |  | [optional] 
+**LastEditor** | **string** |  | 
+**LastModified** | **time.Time** |  | 
 **Modules** | Pointer to [**ApplicationModules**](ApplicationModules.md) |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **Debug** | Pointer to **bool** |  | [optional] 
-**ProductVersion** | Pointer to **string** |  | [optional] 
-**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
-**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
+**ProductVersion** | **string** |  | 
 
 ## Methods
 
 ### NewApplication
 
-`func NewApplication(name string, ) *Application`
+`func NewApplication(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, ) *Application`
 
 NewApplication instantiates a new Application object
 This constructor will assign default values to properties that have it defined,
@@ -53,11 +51,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *Application) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -98,11 +91,6 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
-### HasLastEditor
-
-`func (o *Application) HasLastEditor() bool`
-
-HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -123,11 +111,6 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
-### HasLastModified
-
-`func (o *Application) HasLastModified() bool`
-
-HasLastModified returns a boolean if a field has been set.
 
 ### GetModules
 
@@ -223,82 +206,7 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
-### HasProductVersion
 
-`func (o *Application) HasProductVersion() bool`
-
-HasProductVersion returns a boolean if a field has been set.
-
-### GetVersionId
-
-`func (o *Application) GetVersionId() string`
-
-GetVersionId returns the VersionId field if non-nil, zero value otherwise.
-
-### GetVersionIdOk
-
-`func (o *Application) GetVersionIdOk() (*string, bool)`
-
-GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionId
-
-`func (o *Application) SetVersionId(v string)`
-
-SetVersionId sets VersionId field to given value.
-
-### HasVersionId
-
-`func (o *Application) HasVersionId() bool`
-
-HasVersionId returns a boolean if a field has been set.
-
-### SetVersionIdNil
-
-`func (o *Application) SetVersionIdNil(b bool)`
-
- SetVersionIdNil sets the value for VersionId to be an explicit nil
-
-### UnsetVersionId
-`func (o *Application) UnsetVersionId()`
-
-UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-### GetVersionState
-
-`func (o *Application) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *Application) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *Application) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-### HasVersionState
-
-`func (o *Application) HasVersionState() bool`
-
-HasVersionState returns a boolean if a field has been set.
-
-### SetVersionStateNil
-
-`func (o *Application) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *Application) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

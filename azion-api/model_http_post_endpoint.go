@@ -27,8 +27,6 @@ type HttpPostEndpoint struct {
 	PayloadFormat *string `json:"payload_format,omitempty"`
 	MaxSize NullableInt64 `json:"max_size,omitempty"`
 	Headers map[string]string `json:"headers"`
-	// Type identifier for this endpoint (standard)
-	Type string `json:"type"`
 }
 
 type _HttpPostEndpoint HttpPostEndpoint
@@ -37,11 +35,10 @@ type _HttpPostEndpoint HttpPostEndpoint
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHttpPostEndpoint(url string, headers map[string]string, type_ string) *HttpPostEndpoint {
+func NewHttpPostEndpoint(url string, headers map[string]string) *HttpPostEndpoint {
 	this := HttpPostEndpoint{}
 	this.Url = url
 	this.Headers = headers
-	this.Type = type_
 	return &this
 }
 
@@ -207,30 +204,6 @@ func (o *HttpPostEndpoint) SetHeaders(v map[string]string) {
 	o.Headers = v
 }
 
-// GetType returns the Type field value
-func (o *HttpPostEndpoint) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *HttpPostEndpoint) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *HttpPostEndpoint) SetType(v string) {
-	o.Type = v
-}
-
 func (o HttpPostEndpoint) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -252,7 +225,6 @@ func (o HttpPostEndpoint) ToMap() (map[string]interface{}, error) {
 		toSerialize["max_size"] = o.MaxSize.Get()
 	}
 	toSerialize["headers"] = o.Headers
-	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -263,7 +235,6 @@ func (o *HttpPostEndpoint) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"url",
 		"headers",
-		"type",
 	}
 
 	allProperties := make(map[string]interface{})

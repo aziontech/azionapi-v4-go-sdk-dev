@@ -4,21 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** |  | [optional] 
+**Id** | **int64** |  | 
 **Name** | **string** |  | 
 **Type** | **string** | * &#x60;asn&#x60; - ASN * &#x60;countries&#x60; - Countries * &#x60;ip_cidr&#x60; - IP/CIDR | 
-**LastEditor** | Pointer to **string** |  | [optional] 
-**LastModified** | Pointer to **time.Time** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**LastEditor** | **string** |  | 
+**LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
-**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 
 ## Methods
 
 ### NewNetworkListSummary
 
-`func NewNetworkListSummary(name string, type_ string, ) *NetworkListSummary`
+`func NewNetworkListSummary(id int64, name string, type_ string, lastEditor string, lastModified time.Time, createdAt time.Time, ) *NetworkListSummary`
 
 NewNetworkListSummary instantiates a new NetworkListSummary object
 This constructor will assign default values to properties that have it defined,
@@ -52,11 +50,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *NetworkListSummary) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -117,11 +110,6 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
-### HasLastEditor
-
-`func (o *NetworkListSummary) HasLastEditor() bool`
-
-HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -142,11 +130,6 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
-### HasLastModified
-
-`func (o *NetworkListSummary) HasLastModified() bool`
-
-HasLastModified returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -167,11 +150,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *NetworkListSummary) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -198,76 +176,6 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetVersionId
-
-`func (o *NetworkListSummary) GetVersionId() string`
-
-GetVersionId returns the VersionId field if non-nil, zero value otherwise.
-
-### GetVersionIdOk
-
-`func (o *NetworkListSummary) GetVersionIdOk() (*string, bool)`
-
-GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionId
-
-`func (o *NetworkListSummary) SetVersionId(v string)`
-
-SetVersionId sets VersionId field to given value.
-
-### HasVersionId
-
-`func (o *NetworkListSummary) HasVersionId() bool`
-
-HasVersionId returns a boolean if a field has been set.
-
-### SetVersionIdNil
-
-`func (o *NetworkListSummary) SetVersionIdNil(b bool)`
-
- SetVersionIdNil sets the value for VersionId to be an explicit nil
-
-### UnsetVersionId
-`func (o *NetworkListSummary) UnsetVersionId()`
-
-UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-### GetVersionState
-
-`func (o *NetworkListSummary) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *NetworkListSummary) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *NetworkListSummary) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-### HasVersionState
-
-`func (o *NetworkListSummary) HasVersionState() bool`
-
-HasVersionState returns a boolean if a field has been set.
-
-### SetVersionStateNil
-
-`func (o *NetworkListSummary) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *NetworkListSummary) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

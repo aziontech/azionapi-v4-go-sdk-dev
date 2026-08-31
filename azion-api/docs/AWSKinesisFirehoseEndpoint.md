@@ -8,13 +8,12 @@ Name | Type | Description | Notes
 **StreamName** | **string** |  | 
 **Region** | **string** |  | 
 **SecretKey** | **string** |  | 
-**Type** | **string** | Type identifier for this endpoint (aws_kinesis_firehose) | 
 
 ## Methods
 
 ### NewAWSKinesisFirehoseEndpoint
 
-`func NewAWSKinesisFirehoseEndpoint(accessKey string, streamName string, region string, secretKey string, type_ string, ) *AWSKinesisFirehoseEndpoint`
+`func NewAWSKinesisFirehoseEndpoint(accessKey string, streamName string, region string, secretKey string, ) *AWSKinesisFirehoseEndpoint`
 
 NewAWSKinesisFirehoseEndpoint instantiates a new AWSKinesisFirehoseEndpoint object
 This constructor will assign default values to properties that have it defined,
@@ -107,26 +106,6 @@ and a boolean to check if the value has been set.
 `func (o *AWSKinesisFirehoseEndpoint) SetSecretKey(v string)`
 
 SetSecretKey sets SecretKey field to given value.
-
-
-### GetType
-
-`func (o *AWSKinesisFirehoseEndpoint) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *AWSKinesisFirehoseEndpoint) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *AWSKinesisFirehoseEndpoint) SetType(v string)`
-
-SetType sets Type field to given value.
 
 
 

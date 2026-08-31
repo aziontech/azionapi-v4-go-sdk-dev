@@ -4,23 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** |  | [optional] 
+**Id** | **int64** |  | 
 **Name** | **string** |  | 
 **Modules** | Pointer to [**FirewallModules**](FirewallModules.md) |  | [optional] 
 **Debug** | Pointer to **bool** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**LastEditor** | Pointer to **string** |  | [optional] 
-**LastModified** | Pointer to **time.Time** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**ProductVersion** | Pointer to **string** |  | [optional] 
-**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
-**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
+**LastEditor** | **string** |  | 
+**LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
+**ProductVersion** | **string** |  | 
 
 ## Methods
 
 ### NewFirewall
 
-`func NewFirewall(name string, ) *Firewall`
+`func NewFirewall(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, ) *Firewall`
 
 NewFirewall instantiates a new Firewall object
 This constructor will assign default values to properties that have it defined,
@@ -54,11 +52,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *Firewall) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -174,11 +167,6 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
-### HasLastEditor
-
-`func (o *Firewall) HasLastEditor() bool`
-
-HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -199,11 +187,6 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
-### HasLastModified
-
-`func (o *Firewall) HasLastModified() bool`
-
-HasLastModified returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -224,11 +207,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *Firewall) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 ### GetProductVersion
 
@@ -249,82 +227,7 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
-### HasProductVersion
 
-`func (o *Firewall) HasProductVersion() bool`
-
-HasProductVersion returns a boolean if a field has been set.
-
-### GetVersionId
-
-`func (o *Firewall) GetVersionId() string`
-
-GetVersionId returns the VersionId field if non-nil, zero value otherwise.
-
-### GetVersionIdOk
-
-`func (o *Firewall) GetVersionIdOk() (*string, bool)`
-
-GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionId
-
-`func (o *Firewall) SetVersionId(v string)`
-
-SetVersionId sets VersionId field to given value.
-
-### HasVersionId
-
-`func (o *Firewall) HasVersionId() bool`
-
-HasVersionId returns a boolean if a field has been set.
-
-### SetVersionIdNil
-
-`func (o *Firewall) SetVersionIdNil(b bool)`
-
- SetVersionIdNil sets the value for VersionId to be an explicit nil
-
-### UnsetVersionId
-`func (o *Firewall) UnsetVersionId()`
-
-UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-### GetVersionState
-
-`func (o *Firewall) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *Firewall) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *Firewall) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-### HasVersionState
-
-`func (o *Firewall) HasVersionState() bool`
-
-HasVersionState returns a boolean if a field has been set.
-
-### SetVersionStateNil
-
-`func (o *Firewall) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *Firewall) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

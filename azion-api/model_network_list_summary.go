@@ -21,20 +21,16 @@ import (
 // checks if the NetworkListSummary type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &NetworkListSummary{}
 
-// NetworkListSummary Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``version_state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers. ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
+// NetworkListSummary struct for NetworkListSummary
 type NetworkListSummary struct {
-	Id *int64 `json:"id,omitempty"`
+	Id int64 `json:"id"`
 	Name string `json:"name"`
 	// * `asn` - ASN * `countries` - Countries * `ip_cidr` - IP/CIDR
 	Type string `json:"type"`
-	LastEditor *string `json:"last_editor,omitempty"`
-	LastModified *time.Time `json:"last_modified,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	LastEditor string `json:"last_editor"`
+	LastModified time.Time `json:"last_modified"`
+	CreatedAt time.Time `json:"created_at"`
 	Active *bool `json:"active,omitempty"`
-	// ID of the version metadata (use in /versions/{id} URLs)
-	VersionId NullableString `json:"version_id,omitempty"`
-	// Build state of this version (queued, building, ready, error, ...)
-	VersionState NullableString `json:"version_state,omitempty"`
 }
 
 type _NetworkListSummary NetworkListSummary
@@ -43,10 +39,14 @@ type _NetworkListSummary NetworkListSummary
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNetworkListSummary(name string, type_ string) *NetworkListSummary {
+func NewNetworkListSummary(id int64, name string, type_ string, lastEditor string, lastModified time.Time, createdAt time.Time) *NetworkListSummary {
 	this := NetworkListSummary{}
+	this.Id = id
 	this.Name = name
 	this.Type = type_
+	this.LastEditor = lastEditor
+	this.LastModified = lastModified
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -58,36 +58,28 @@ func NewNetworkListSummaryWithDefaults() *NetworkListSummary {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *NetworkListSummary) GetId() int64 {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *NetworkListSummary) GetIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *NetworkListSummary) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given int64 and assigns it to the Id field.
+// SetId sets field value
 func (o *NetworkListSummary) SetId(v int64) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetName returns the Name field value
@@ -138,100 +130,76 @@ func (o *NetworkListSummary) SetType(v string) {
 	o.Type = v
 }
 
-// GetLastEditor returns the LastEditor field value if set, zero value otherwise.
+// GetLastEditor returns the LastEditor field value
 func (o *NetworkListSummary) GetLastEditor() string {
-	if o == nil || IsNil(o.LastEditor) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LastEditor
+
+	return o.LastEditor
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
+// GetLastEditorOk returns a tuple with the LastEditor field value
 // and a boolean to check if the value has been set.
 func (o *NetworkListSummary) GetLastEditorOk() (*string, bool) {
-	if o == nil || IsNil(o.LastEditor) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastEditor, true
+	return &o.LastEditor, true
 }
 
-// HasLastEditor returns a boolean if a field has been set.
-func (o *NetworkListSummary) HasLastEditor() bool {
-	if o != nil && !IsNil(o.LastEditor) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
+// SetLastEditor sets field value
 func (o *NetworkListSummary) SetLastEditor(v string) {
-	o.LastEditor = &v
+	o.LastEditor = v
 }
 
-// GetLastModified returns the LastModified field value if set, zero value otherwise.
+// GetLastModified returns the LastModified field value
 func (o *NetworkListSummary) GetLastModified() time.Time {
-	if o == nil || IsNil(o.LastModified) {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.LastModified
+
+	return o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
+// GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
 func (o *NetworkListSummary) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.LastModified) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastModified, true
+	return &o.LastModified, true
 }
 
-// HasLastModified returns a boolean if a field has been set.
-func (o *NetworkListSummary) HasLastModified() bool {
-	if o != nil && !IsNil(o.LastModified) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
+// SetLastModified sets field value
 func (o *NetworkListSummary) SetLastModified(v time.Time) {
-	o.LastModified = &v
+	o.LastModified = v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// GetCreatedAt returns the CreatedAt field value
 func (o *NetworkListSummary) GetCreatedAt() time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.CreatedAt
+
+	return o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *NetworkListSummary) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return &o.CreatedAt, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *NetworkListSummary) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+// SetCreatedAt sets field value
 func (o *NetworkListSummary) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
+	o.CreatedAt = v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -266,90 +234,6 @@ func (o *NetworkListSummary) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetVersionId returns the VersionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *NetworkListSummary) GetVersionId() string {
-	if o == nil || IsNil(o.VersionId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VersionId.Get()
-}
-
-// GetVersionIdOk returns a tuple with the VersionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NetworkListSummary) GetVersionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionId.Get(), o.VersionId.IsSet()
-}
-
-// HasVersionId returns a boolean if a field has been set.
-func (o *NetworkListSummary) HasVersionId() bool {
-	if o != nil && o.VersionId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionId gets a reference to the given NullableString and assigns it to the VersionId field.
-func (o *NetworkListSummary) SetVersionId(v string) {
-	o.VersionId.Set(&v)
-}
-// SetVersionIdNil sets the value for VersionId to be an explicit nil
-func (o *NetworkListSummary) SetVersionIdNil() {
-	o.VersionId.Set(nil)
-}
-
-// UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-func (o *NetworkListSummary) UnsetVersionId() {
-	o.VersionId.Unset()
-}
-
-// GetVersionState returns the VersionState field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *NetworkListSummary) GetVersionState() string {
-	if o == nil || IsNil(o.VersionState.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *NetworkListSummary) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// HasVersionState returns a boolean if a field has been set.
-func (o *NetworkListSummary) HasVersionState() bool {
-	if o != nil && o.VersionState.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionState gets a reference to the given NullableString and assigns it to the VersionState field.
-func (o *NetworkListSummary) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-// SetVersionStateNil sets the value for VersionState to be an explicit nil
-func (o *NetworkListSummary) SetVersionStateNil() {
-	o.VersionState.Set(nil)
-}
-
-// UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
-func (o *NetworkListSummary) UnsetVersionState() {
-	o.VersionState.Unset()
-}
-
 func (o NetworkListSummary) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -360,28 +244,14 @@ func (o NetworkListSummary) MarshalJSON() ([]byte, error) {
 
 func (o NetworkListSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	toSerialize["type"] = o.Type
-	if !IsNil(o.LastEditor) {
-		toSerialize["last_editor"] = o.LastEditor
-	}
-	if !IsNil(o.LastModified) {
-		toSerialize["last_modified"] = o.LastModified
-	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
+	toSerialize["last_editor"] = o.LastEditor
+	toSerialize["last_modified"] = o.LastModified
+	toSerialize["created_at"] = o.CreatedAt
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
-	}
-	if o.VersionId.IsSet() {
-		toSerialize["version_id"] = o.VersionId.Get()
-	}
-	if o.VersionState.IsSet() {
-		toSerialize["version_state"] = o.VersionState.Get()
 	}
 	return toSerialize, nil
 }
@@ -391,8 +261,12 @@ func (o *NetworkListSummary) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"id",
 		"name",
 		"type",
+		"last_editor",
+		"last_modified",
+		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

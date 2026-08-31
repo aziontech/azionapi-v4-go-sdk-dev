@@ -1,11 +1,10 @@
 # \AuthMFATOTPDeviceAPI
 
-All URIs are relative to *https://stage-api.azion.com/v4*
+All URIs are relative to *https://api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateTotpDevice**](AuthMFATOTPDeviceAPI.md#CreateTotpDevice) | **Post** /account/auth/mfa/totp | Create a TOTP device
-[**DeleteTotpDevice**](AuthMFATOTPDeviceAPI.md#DeleteTotpDevice) | **Delete** /auth/mfa/totp/{device_id} | Delete a TOTP device
 [**ListTotpDevices**](AuthMFATOTPDeviceAPI.md#ListTotpDevices) | **Get** /account/auth/mfa/totp | List of TOTP devices
 
 
@@ -69,76 +68,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteTotpDevice
-
-> DeleteResponse DeleteTotpDevice(ctx, deviceId).Execute()
-
-Delete a TOTP device
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	deviceId := int64(789) // int64 | A unique integer value identifying the TOTP device.
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthMFATOTPDeviceAPI.DeleteTotpDevice(context.Background(), deviceId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `AuthMFATOTPDeviceAPI.DeleteTotpDevice``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `DeleteTotpDevice`: DeleteResponse
-	fmt.Fprintf(os.Stdout, "Response from `AuthMFATOTPDeviceAPI.DeleteTotpDevice`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deviceId** | **int64** | A unique integer value identifying the TOTP device. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteTotpDeviceRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**DeleteResponse**](DeleteResponse.md)
-
-### Authorization
-
-[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

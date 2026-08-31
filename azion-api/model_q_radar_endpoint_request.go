@@ -23,8 +23,6 @@ var _ MappedNullable = &QRadarEndpointRequest{}
 // QRadarEndpointRequest struct for QRadarEndpointRequest
 type QRadarEndpointRequest struct {
 	Url string `json:"url"`
-	// Type identifier for this endpoint (qradar)
-	Type string `json:"type"`
 }
 
 type _QRadarEndpointRequest QRadarEndpointRequest
@@ -33,10 +31,9 @@ type _QRadarEndpointRequest QRadarEndpointRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewQRadarEndpointRequest(url string, type_ string) *QRadarEndpointRequest {
+func NewQRadarEndpointRequest(url string) *QRadarEndpointRequest {
 	this := QRadarEndpointRequest{}
 	this.Url = url
-	this.Type = type_
 	return &this
 }
 
@@ -72,30 +69,6 @@ func (o *QRadarEndpointRequest) SetUrl(v string) {
 	o.Url = v
 }
 
-// GetType returns the Type field value
-func (o *QRadarEndpointRequest) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *QRadarEndpointRequest) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *QRadarEndpointRequest) SetType(v string) {
-	o.Type = v
-}
-
 func (o QRadarEndpointRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -107,7 +80,6 @@ func (o QRadarEndpointRequest) MarshalJSON() ([]byte, error) {
 func (o QRadarEndpointRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
-	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -117,7 +89,6 @@ func (o *QRadarEndpointRequest) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"url",
-		"type",
 	}
 
 	allProperties := make(map[string]interface{})

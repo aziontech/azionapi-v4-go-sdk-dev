@@ -19,7 +19,7 @@ import (
 // checks if the PatchedCertificate type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PatchedCertificate{}
 
-// PatchedCertificate Certificate payload with build state fields (``version_id``, ``version_state``).
+// PatchedCertificate struct for PatchedCertificate
 type PatchedCertificate struct {
 	Id *int64 `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
@@ -49,10 +49,6 @@ type PatchedCertificate struct {
 	LastModified *time.Time `json:"last_modified,omitempty"`
 	// Timestamp indicating when the managed certificate was renewed on our platform.
 	RenewedAt NullableTime `json:"renewed_at,omitempty"`
-	// ID of the version metadata (use in /versions/{id} URLs)
-	VersionId NullableString `json:"version_id,omitempty"`
-	// Build state of this version (queued, building, ready, error, ...)
-	VersionState NullableString `json:"version_state,omitempty"`
 }
 
 // NewPatchedCertificate instantiates a new PatchedCertificate object
@@ -814,90 +810,6 @@ func (o *PatchedCertificate) UnsetRenewedAt() {
 	o.RenewedAt.Unset()
 }
 
-// GetVersionId returns the VersionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchedCertificate) GetVersionId() string {
-	if o == nil || IsNil(o.VersionId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VersionId.Get()
-}
-
-// GetVersionIdOk returns a tuple with the VersionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchedCertificate) GetVersionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionId.Get(), o.VersionId.IsSet()
-}
-
-// HasVersionId returns a boolean if a field has been set.
-func (o *PatchedCertificate) HasVersionId() bool {
-	if o != nil && o.VersionId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionId gets a reference to the given NullableString and assigns it to the VersionId field.
-func (o *PatchedCertificate) SetVersionId(v string) {
-	o.VersionId.Set(&v)
-}
-// SetVersionIdNil sets the value for VersionId to be an explicit nil
-func (o *PatchedCertificate) SetVersionIdNil() {
-	o.VersionId.Set(nil)
-}
-
-// UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-func (o *PatchedCertificate) UnsetVersionId() {
-	o.VersionId.Unset()
-}
-
-// GetVersionState returns the VersionState field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchedCertificate) GetVersionState() string {
-	if o == nil || IsNil(o.VersionState.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchedCertificate) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// HasVersionState returns a boolean if a field has been set.
-func (o *PatchedCertificate) HasVersionState() bool {
-	if o != nil && o.VersionState.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionState gets a reference to the given NullableString and assigns it to the VersionState field.
-func (o *PatchedCertificate) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-// SetVersionStateNil sets the value for VersionState to be an explicit nil
-func (o *PatchedCertificate) SetVersionStateNil() {
-	o.VersionState.Set(nil)
-}
-
-// UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
-func (o *PatchedCertificate) UnsetVersionState() {
-	o.VersionState.Unset()
-}
-
 func (o PatchedCertificate) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -970,12 +882,6 @@ func (o PatchedCertificate) ToMap() (map[string]interface{}, error) {
 	}
 	if o.RenewedAt.IsSet() {
 		toSerialize["renewed_at"] = o.RenewedAt.Get()
-	}
-	if o.VersionId.IsSet() {
-		toSerialize["version_id"] = o.VersionId.Get()
-	}
-	if o.VersionState.IsSet() {
-		toSerialize["version_state"] = o.VersionState.Get()
 	}
 	return toSerialize, nil
 }

@@ -13,13 +13,13 @@ Name | Type | Description | Notes
 **Active** | Pointer to **bool** |  | [optional] 
 **Inputs** | [**[]InputInputDataSourceAttributes**](InputInputDataSourceAttributes.md) |  | 
 **Transform** | [**[]Transform**](Transform.md) |  | 
-**Outputs** | [**[]OutputBase**](OutputBase.md) |  | 
+**Outputs** | [**[]Output**](Output.md) |  | 
 
 ## Methods
 
 ### NewDataStream
 
-`func NewDataStream(id int64, name string, lastEditor string, created time.Time, lastModified time.Time, productVersion string, inputs []InputInputDataSourceAttributes, transform []Transform, outputs []OutputBase, ) *DataStream`
+`func NewDataStream(id int64, name string, lastEditor string, created time.Time, lastModified time.Time, productVersion string, inputs []InputInputDataSourceAttributes, transform []Transform, outputs []Output, ) *DataStream`
 
 NewDataStream instantiates a new DataStream object
 This constructor will assign default values to properties that have it defined,
@@ -221,20 +221,20 @@ SetTransform sets Transform field to given value.
 
 ### GetOutputs
 
-`func (o *DataStream) GetOutputs() []OutputBase`
+`func (o *DataStream) GetOutputs() []Output`
 
 GetOutputs returns the Outputs field if non-nil, zero value otherwise.
 
 ### GetOutputsOk
 
-`func (o *DataStream) GetOutputsOk() (*[]OutputBase, bool)`
+`func (o *DataStream) GetOutputsOk() (*[]Output, bool)`
 
 GetOutputsOk returns a tuple with the Outputs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOutputs
 
-`func (o *DataStream) SetOutputs(v []OutputBase)`
+`func (o *DataStream) SetOutputs(v []Output)`
 
 SetOutputs sets Outputs field to given value.
 

@@ -21,28 +21,24 @@ import (
 // checks if the CertificateRevocationList type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CertificateRevocationList{}
 
-// CertificateRevocationList Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``version_state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers. ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
+// CertificateRevocationList struct for CertificateRevocationList
 type CertificateRevocationList struct {
-	Id *int64 `json:"id,omitempty"`
+	Id int64 `json:"id"`
 	Name string `json:"name"`
 	// Indicates if the certificate revocation list is active. This field cannot be set to false.
 	Active *bool `json:"active,omitempty"`
-	LastEditor *string `json:"last_editor,omitempty"`
+	LastEditor string `json:"last_editor"`
 	// Timestamp of the certificate revocation list creation on the platform.
-	CreatedAt NullableTime `json:"created_at,omitempty"`
+	CreatedAt NullableTime `json:"created_at"`
 	// Timestamp of the last modification made to the certificate content on the platform.
-	LastModified *time.Time `json:"last_modified,omitempty"`
-	ProductVersion *string `json:"product_version,omitempty"`
-	Issuer *string `json:"issuer,omitempty"`
+	LastModified time.Time `json:"last_modified"`
+	ProductVersion string `json:"product_version"`
+	Issuer string `json:"issuer"`
 	// Timestamp of the last update issued by the certification revocation list issuer.
-	LastUpdate *time.Time `json:"last_update,omitempty"`
+	LastUpdate time.Time `json:"last_update"`
 	// Timestamp of the next scheduled update from the certification revocation list issuer.
-	NextUpdate *time.Time `json:"next_update,omitempty"`
+	NextUpdate time.Time `json:"next_update"`
 	Crl string `json:"crl"`
-	// ID of the version metadata (use in /versions/{id} URLs)
-	VersionId NullableString `json:"version_id,omitempty"`
-	// Build state of this version (queued, building, ready, error, ...)
-	VersionState NullableString `json:"version_state,omitempty"`
 }
 
 type _CertificateRevocationList CertificateRevocationList
@@ -51,9 +47,17 @@ type _CertificateRevocationList CertificateRevocationList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificateRevocationList(name string, crl string) *CertificateRevocationList {
+func NewCertificateRevocationList(id int64, name string, lastEditor string, createdAt NullableTime, lastModified time.Time, productVersion string, issuer string, lastUpdate time.Time, nextUpdate time.Time, crl string) *CertificateRevocationList {
 	this := CertificateRevocationList{}
+	this.Id = id
 	this.Name = name
+	this.LastEditor = lastEditor
+	this.CreatedAt = createdAt
+	this.LastModified = lastModified
+	this.ProductVersion = productVersion
+	this.Issuer = issuer
+	this.LastUpdate = lastUpdate
+	this.NextUpdate = nextUpdate
 	this.Crl = crl
 	return &this
 }
@@ -66,36 +70,28 @@ func NewCertificateRevocationListWithDefaults() *CertificateRevocationList {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *CertificateRevocationList) GetId() int64 {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *CertificateRevocationList) GetIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *CertificateRevocationList) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given int64 and assigns it to the Id field.
+// SetId sets field value
 func (o *CertificateRevocationList) SetId(v int64) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetName returns the Name field value
@@ -154,48 +150,42 @@ func (o *CertificateRevocationList) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetLastEditor returns the LastEditor field value if set, zero value otherwise.
+// GetLastEditor returns the LastEditor field value
 func (o *CertificateRevocationList) GetLastEditor() string {
-	if o == nil || IsNil(o.LastEditor) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LastEditor
+
+	return o.LastEditor
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
+// GetLastEditorOk returns a tuple with the LastEditor field value
 // and a boolean to check if the value has been set.
 func (o *CertificateRevocationList) GetLastEditorOk() (*string, bool) {
-	if o == nil || IsNil(o.LastEditor) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastEditor, true
+	return &o.LastEditor, true
 }
 
-// HasLastEditor returns a boolean if a field has been set.
-func (o *CertificateRevocationList) HasLastEditor() bool {
-	if o != nil && !IsNil(o.LastEditor) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
+// SetLastEditor sets field value
 func (o *CertificateRevocationList) SetLastEditor(v string) {
-	o.LastEditor = &v
+	o.LastEditor = v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCreatedAt returns the CreatedAt field value
+// If the value is explicit nil, the zero value for time.Time will be returned
 func (o *CertificateRevocationList) GetCreatedAt() time.Time {
-	if o == nil || IsNil(o.CreatedAt.Get()) {
+	if o == nil || o.CreatedAt.Get() == nil {
 		var ret time.Time
 		return ret
 	}
+
 	return *o.CreatedAt.Get()
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CertificateRevocationList) GetCreatedAtOk() (*time.Time, bool) {
@@ -205,187 +195,129 @@ func (o *CertificateRevocationList) GetCreatedAtOk() (*time.Time, bool) {
 	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *CertificateRevocationList) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given NullableTime and assigns it to the CreatedAt field.
+// SetCreatedAt sets field value
 func (o *CertificateRevocationList) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
-// SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-func (o *CertificateRevocationList) SetCreatedAtNil() {
-	o.CreatedAt.Set(nil)
-}
 
-// UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
-func (o *CertificateRevocationList) UnsetCreatedAt() {
-	o.CreatedAt.Unset()
-}
-
-// GetLastModified returns the LastModified field value if set, zero value otherwise.
+// GetLastModified returns the LastModified field value
 func (o *CertificateRevocationList) GetLastModified() time.Time {
-	if o == nil || IsNil(o.LastModified) {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.LastModified
+
+	return o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
+// GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
 func (o *CertificateRevocationList) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.LastModified) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastModified, true
+	return &o.LastModified, true
 }
 
-// HasLastModified returns a boolean if a field has been set.
-func (o *CertificateRevocationList) HasLastModified() bool {
-	if o != nil && !IsNil(o.LastModified) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
+// SetLastModified sets field value
 func (o *CertificateRevocationList) SetLastModified(v time.Time) {
-	o.LastModified = &v
+	o.LastModified = v
 }
 
-// GetProductVersion returns the ProductVersion field value if set, zero value otherwise.
+// GetProductVersion returns the ProductVersion field value
 func (o *CertificateRevocationList) GetProductVersion() string {
-	if o == nil || IsNil(o.ProductVersion) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ProductVersion
+
+	return o.ProductVersion
 }
 
-// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
+// GetProductVersionOk returns a tuple with the ProductVersion field value
 // and a boolean to check if the value has been set.
 func (o *CertificateRevocationList) GetProductVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.ProductVersion) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ProductVersion, true
+	return &o.ProductVersion, true
 }
 
-// HasProductVersion returns a boolean if a field has been set.
-func (o *CertificateRevocationList) HasProductVersion() bool {
-	if o != nil && !IsNil(o.ProductVersion) {
-		return true
-	}
-
-	return false
-}
-
-// SetProductVersion gets a reference to the given string and assigns it to the ProductVersion field.
+// SetProductVersion sets field value
 func (o *CertificateRevocationList) SetProductVersion(v string) {
-	o.ProductVersion = &v
+	o.ProductVersion = v
 }
 
-// GetIssuer returns the Issuer field value if set, zero value otherwise.
+// GetIssuer returns the Issuer field value
 func (o *CertificateRevocationList) GetIssuer() string {
-	if o == nil || IsNil(o.Issuer) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Issuer
+
+	return o.Issuer
 }
 
-// GetIssuerOk returns a tuple with the Issuer field value if set, nil otherwise
+// GetIssuerOk returns a tuple with the Issuer field value
 // and a boolean to check if the value has been set.
 func (o *CertificateRevocationList) GetIssuerOk() (*string, bool) {
-	if o == nil || IsNil(o.Issuer) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Issuer, true
+	return &o.Issuer, true
 }
 
-// HasIssuer returns a boolean if a field has been set.
-func (o *CertificateRevocationList) HasIssuer() bool {
-	if o != nil && !IsNil(o.Issuer) {
-		return true
-	}
-
-	return false
-}
-
-// SetIssuer gets a reference to the given string and assigns it to the Issuer field.
+// SetIssuer sets field value
 func (o *CertificateRevocationList) SetIssuer(v string) {
-	o.Issuer = &v
+	o.Issuer = v
 }
 
-// GetLastUpdate returns the LastUpdate field value if set, zero value otherwise.
+// GetLastUpdate returns the LastUpdate field value
 func (o *CertificateRevocationList) GetLastUpdate() time.Time {
-	if o == nil || IsNil(o.LastUpdate) {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.LastUpdate
+
+	return o.LastUpdate
 }
 
-// GetLastUpdateOk returns a tuple with the LastUpdate field value if set, nil otherwise
+// GetLastUpdateOk returns a tuple with the LastUpdate field value
 // and a boolean to check if the value has been set.
 func (o *CertificateRevocationList) GetLastUpdateOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.LastUpdate) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastUpdate, true
+	return &o.LastUpdate, true
 }
 
-// HasLastUpdate returns a boolean if a field has been set.
-func (o *CertificateRevocationList) HasLastUpdate() bool {
-	if o != nil && !IsNil(o.LastUpdate) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastUpdate gets a reference to the given time.Time and assigns it to the LastUpdate field.
+// SetLastUpdate sets field value
 func (o *CertificateRevocationList) SetLastUpdate(v time.Time) {
-	o.LastUpdate = &v
+	o.LastUpdate = v
 }
 
-// GetNextUpdate returns the NextUpdate field value if set, zero value otherwise.
+// GetNextUpdate returns the NextUpdate field value
 func (o *CertificateRevocationList) GetNextUpdate() time.Time {
-	if o == nil || IsNil(o.NextUpdate) {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.NextUpdate
+
+	return o.NextUpdate
 }
 
-// GetNextUpdateOk returns a tuple with the NextUpdate field value if set, nil otherwise
+// GetNextUpdateOk returns a tuple with the NextUpdate field value
 // and a boolean to check if the value has been set.
 func (o *CertificateRevocationList) GetNextUpdateOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.NextUpdate) {
+	if o == nil {
 		return nil, false
 	}
-	return o.NextUpdate, true
+	return &o.NextUpdate, true
 }
 
-// HasNextUpdate returns a boolean if a field has been set.
-func (o *CertificateRevocationList) HasNextUpdate() bool {
-	if o != nil && !IsNil(o.NextUpdate) {
-		return true
-	}
-
-	return false
-}
-
-// SetNextUpdate gets a reference to the given time.Time and assigns it to the NextUpdate field.
+// SetNextUpdate sets field value
 func (o *CertificateRevocationList) SetNextUpdate(v time.Time) {
-	o.NextUpdate = &v
+	o.NextUpdate = v
 }
 
 // GetCrl returns the Crl field value
@@ -412,90 +344,6 @@ func (o *CertificateRevocationList) SetCrl(v string) {
 	o.Crl = v
 }
 
-// GetVersionId returns the VersionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateRevocationList) GetVersionId() string {
-	if o == nil || IsNil(o.VersionId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VersionId.Get()
-}
-
-// GetVersionIdOk returns a tuple with the VersionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateRevocationList) GetVersionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionId.Get(), o.VersionId.IsSet()
-}
-
-// HasVersionId returns a boolean if a field has been set.
-func (o *CertificateRevocationList) HasVersionId() bool {
-	if o != nil && o.VersionId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionId gets a reference to the given NullableString and assigns it to the VersionId field.
-func (o *CertificateRevocationList) SetVersionId(v string) {
-	o.VersionId.Set(&v)
-}
-// SetVersionIdNil sets the value for VersionId to be an explicit nil
-func (o *CertificateRevocationList) SetVersionIdNil() {
-	o.VersionId.Set(nil)
-}
-
-// UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-func (o *CertificateRevocationList) UnsetVersionId() {
-	o.VersionId.Unset()
-}
-
-// GetVersionState returns the VersionState field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CertificateRevocationList) GetVersionState() string {
-	if o == nil || IsNil(o.VersionState.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CertificateRevocationList) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// HasVersionState returns a boolean if a field has been set.
-func (o *CertificateRevocationList) HasVersionState() bool {
-	if o != nil && o.VersionState.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionState gets a reference to the given NullableString and assigns it to the VersionState field.
-func (o *CertificateRevocationList) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-// SetVersionStateNil sets the value for VersionState to be an explicit nil
-func (o *CertificateRevocationList) SetVersionStateNil() {
-	o.VersionState.Set(nil)
-}
-
-// UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
-func (o *CertificateRevocationList) UnsetVersionState() {
-	o.VersionState.Unset()
-}
-
 func (o CertificateRevocationList) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -506,41 +354,19 @@ func (o CertificateRevocationList) MarshalJSON() ([]byte, error) {
 
 func (o CertificateRevocationList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if !IsNil(o.LastEditor) {
-		toSerialize["last_editor"] = o.LastEditor
-	}
-	if o.CreatedAt.IsSet() {
-		toSerialize["created_at"] = o.CreatedAt.Get()
-	}
-	if !IsNil(o.LastModified) {
-		toSerialize["last_modified"] = o.LastModified
-	}
-	if !IsNil(o.ProductVersion) {
-		toSerialize["product_version"] = o.ProductVersion
-	}
-	if !IsNil(o.Issuer) {
-		toSerialize["issuer"] = o.Issuer
-	}
-	if !IsNil(o.LastUpdate) {
-		toSerialize["last_update"] = o.LastUpdate
-	}
-	if !IsNil(o.NextUpdate) {
-		toSerialize["next_update"] = o.NextUpdate
-	}
+	toSerialize["last_editor"] = o.LastEditor
+	toSerialize["created_at"] = o.CreatedAt.Get()
+	toSerialize["last_modified"] = o.LastModified
+	toSerialize["product_version"] = o.ProductVersion
+	toSerialize["issuer"] = o.Issuer
+	toSerialize["last_update"] = o.LastUpdate
+	toSerialize["next_update"] = o.NextUpdate
 	toSerialize["crl"] = o.Crl
-	if o.VersionId.IsSet() {
-		toSerialize["version_id"] = o.VersionId.Get()
-	}
-	if o.VersionState.IsSet() {
-		toSerialize["version_state"] = o.VersionState.Get()
-	}
 	return toSerialize, nil
 }
 
@@ -549,7 +375,15 @@ func (o *CertificateRevocationList) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"id",
 		"name",
+		"last_editor",
+		"created_at",
+		"last_modified",
+		"product_version",
+		"issuer",
+		"last_update",
+		"next_update",
 		"crl",
 	}
 

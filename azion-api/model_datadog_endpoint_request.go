@@ -24,8 +24,6 @@ var _ MappedNullable = &DatadogEndpointRequest{}
 type DatadogEndpointRequest struct {
 	Url string `json:"url"`
 	ApiKey string `json:"api_key"`
-	// Type identifier for this endpoint (datadog)
-	Type string `json:"type"`
 }
 
 type _DatadogEndpointRequest DatadogEndpointRequest
@@ -34,11 +32,10 @@ type _DatadogEndpointRequest DatadogEndpointRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDatadogEndpointRequest(url string, apiKey string, type_ string) *DatadogEndpointRequest {
+func NewDatadogEndpointRequest(url string, apiKey string) *DatadogEndpointRequest {
 	this := DatadogEndpointRequest{}
 	this.Url = url
 	this.ApiKey = apiKey
-	this.Type = type_
 	return &this
 }
 
@@ -98,30 +95,6 @@ func (o *DatadogEndpointRequest) SetApiKey(v string) {
 	o.ApiKey = v
 }
 
-// GetType returns the Type field value
-func (o *DatadogEndpointRequest) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *DatadogEndpointRequest) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *DatadogEndpointRequest) SetType(v string) {
-	o.Type = v
-}
-
 func (o DatadogEndpointRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -134,7 +107,6 @@ func (o DatadogEndpointRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
 	toSerialize["api_key"] = o.ApiKey
-	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -145,7 +117,6 @@ func (o *DatadogEndpointRequest) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"url",
 		"api_key",
-		"type",
 	}
 
 	allProperties := make(map[string]interface{})
