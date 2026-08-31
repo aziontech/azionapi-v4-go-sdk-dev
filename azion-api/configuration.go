@@ -97,7 +97,7 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://api.azion.com/v4",
+				URL: "https://stage-api.azion.com/v4",
 				Description: "No description provided",
 			},
 		},

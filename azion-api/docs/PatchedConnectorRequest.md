@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | **string** | Type of the connector  * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | 
-**Attributes** | Pointer to [**ConnectorStorageAttributesRequest**](ConnectorStorageAttributesRequest.md) |  | [optional] 
+**Type** | **string** | * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | 
+**Attributes** | Pointer to [**ConnectorLiveIngestAttributesRequest**](ConnectorLiveIngestAttributesRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -100,20 +100,20 @@ SetType sets Type field to given value.
 
 ### GetAttributes
 
-`func (o *PatchedConnectorRequest) GetAttributes() ConnectorStorageAttributesRequest`
+`func (o *PatchedConnectorRequest) GetAttributes() ConnectorLiveIngestAttributesRequest`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *PatchedConnectorRequest) GetAttributesOk() (*ConnectorStorageAttributesRequest, bool)`
+`func (o *PatchedConnectorRequest) GetAttributesOk() (*ConnectorLiveIngestAttributesRequest, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *PatchedConnectorRequest) SetAttributes(v ConnectorStorageAttributesRequest)`
+`func (o *PatchedConnectorRequest) SetAttributes(v ConnectorLiveIngestAttributesRequest)`
 
 SetAttributes sets Attributes field to given value.
 

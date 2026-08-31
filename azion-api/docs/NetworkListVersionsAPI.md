@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateNetworkListVersion
 
-> PartialUpdateNetworkListVersion(ctx, networkListId, versionId).PatchedNetworkListRequest(patchedNetworkListRequest).Execute()
+> PartialUpdateNetworkListVersion(ctx, networkListId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 
 Partially update a Network List version
 
@@ -469,11 +469,11 @@ import (
 func main() {
 	networkListId := int64(789) // int64 | The ID of the Network List resource.
 	versionId := "versionId_example" // string | The identifier of the version.
-	patchedNetworkListRequest := *openapiclient.NewPatchedNetworkListRequest() // PatchedNetworkListRequest |  (optional)
+	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.PartialUpdateNetworkListVersion(context.Background(), networkListId, versionId).PatchedNetworkListRequest(patchedNetworkListRequest).Execute()
+	r, err := apiClient.NetworkListVersionsAPI.PartialUpdateNetworkListVersion(context.Background(), networkListId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.PartialUpdateNetworkListVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -499,7 +499,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedNetworkListRequest** | [**PatchedNetworkListRequest**](PatchedNetworkListRequest.md) |  | 
+ **patchedVersionCreateRequest** | [**PatchedVersionCreateRequest**](PatchedVersionCreateRequest.md) |  | 
 
 ### Return type
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 
 ## UpdateNetworkListVersion
 
-> UpdateNetworkListVersion(ctx, networkListId, versionId).NetworkListRequest(networkListRequest).Execute()
+> UpdateNetworkListVersion(ctx, networkListId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Update a Network List version
 
@@ -615,11 +615,11 @@ import (
 func main() {
 	networkListId := int64(789) // int64 | The ID of the Network List resource.
 	versionId := "versionId_example" // string | The identifier of the version.
-	networkListRequest := *openapiclient.NewNetworkListRequest("Name_example", "Type_example", []string{"Items_example"}) // NetworkListRequest | 
+	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.NetworkListVersionsAPI.UpdateNetworkListVersion(context.Background(), networkListId, versionId).NetworkListRequest(networkListRequest).Execute()
+	r, err := apiClient.NetworkListVersionsAPI.UpdateNetworkListVersion(context.Background(), networkListId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListVersionsAPI.UpdateNetworkListVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -645,7 +645,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **networkListRequest** | [**NetworkListRequest**](NetworkListRequest.md) |  | 
+ **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
 
 ### Return type
 

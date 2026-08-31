@@ -15,11 +15,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the VersionCreateRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &VersionCreateRequest{}
+// checks if the PatchedVersionCreateRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchedVersionCreateRequest{}
 
-// VersionCreateRequest Serializer for creating a new version (clone).  The API receives the source version ID (optional), a comment/description, and optional field overrides to apply on the cloned version before saving.
-type VersionCreateRequest struct {
+// PatchedVersionCreateRequest Serializer for creating a new version (clone).  The API receives the source version ID (optional), a comment/description, and optional field overrides to apply on the cloned version before saving.
+type PatchedVersionCreateRequest struct {
 	// ID of the version to clone from. If omitted, clones latest ready.
 	SourceVersion NullableString `json:"source_version,omitempty"`
 	// Description for the new version
@@ -28,25 +28,25 @@ type VersionCreateRequest struct {
 	Override map[string]interface{} `json:"override,omitempty"`
 }
 
-// NewVersionCreateRequest instantiates a new VersionCreateRequest object
+// NewPatchedVersionCreateRequest instantiates a new PatchedVersionCreateRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVersionCreateRequest() *VersionCreateRequest {
-	this := VersionCreateRequest{}
+func NewPatchedVersionCreateRequest() *PatchedVersionCreateRequest {
+	this := PatchedVersionCreateRequest{}
 	return &this
 }
 
-// NewVersionCreateRequestWithDefaults instantiates a new VersionCreateRequest object
+// NewPatchedVersionCreateRequestWithDefaults instantiates a new PatchedVersionCreateRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewVersionCreateRequestWithDefaults() *VersionCreateRequest {
-	this := VersionCreateRequest{}
+func NewPatchedVersionCreateRequestWithDefaults() *PatchedVersionCreateRequest {
+	this := PatchedVersionCreateRequest{}
 	return &this
 }
 
 // GetSourceVersion returns the SourceVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *VersionCreateRequest) GetSourceVersion() string {
+func (o *PatchedVersionCreateRequest) GetSourceVersion() string {
 	if o == nil || IsNil(o.SourceVersion.Get()) {
 		var ret string
 		return ret
@@ -57,7 +57,7 @@ func (o *VersionCreateRequest) GetSourceVersion() string {
 // GetSourceVersionOk returns a tuple with the SourceVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *VersionCreateRequest) GetSourceVersionOk() (*string, bool) {
+func (o *PatchedVersionCreateRequest) GetSourceVersionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *VersionCreateRequest) GetSourceVersionOk() (*string, bool) {
 }
 
 // HasSourceVersion returns a boolean if a field has been set.
-func (o *VersionCreateRequest) HasSourceVersion() bool {
+func (o *PatchedVersionCreateRequest) HasSourceVersion() bool {
 	if o != nil && o.SourceVersion.IsSet() {
 		return true
 	}
@@ -74,21 +74,21 @@ func (o *VersionCreateRequest) HasSourceVersion() bool {
 }
 
 // SetSourceVersion gets a reference to the given NullableString and assigns it to the SourceVersion field.
-func (o *VersionCreateRequest) SetSourceVersion(v string) {
+func (o *PatchedVersionCreateRequest) SetSourceVersion(v string) {
 	o.SourceVersion.Set(&v)
 }
 // SetSourceVersionNil sets the value for SourceVersion to be an explicit nil
-func (o *VersionCreateRequest) SetSourceVersionNil() {
+func (o *PatchedVersionCreateRequest) SetSourceVersionNil() {
 	o.SourceVersion.Set(nil)
 }
 
 // UnsetSourceVersion ensures that no value is present for SourceVersion, not even an explicit nil
-func (o *VersionCreateRequest) UnsetSourceVersion() {
+func (o *PatchedVersionCreateRequest) UnsetSourceVersion() {
 	o.SourceVersion.Unset()
 }
 
 // GetComment returns the Comment field value if set, zero value otherwise.
-func (o *VersionCreateRequest) GetComment() string {
+func (o *PatchedVersionCreateRequest) GetComment() string {
 	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
@@ -98,7 +98,7 @@ func (o *VersionCreateRequest) GetComment() string {
 
 // GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VersionCreateRequest) GetCommentOk() (*string, bool) {
+func (o *PatchedVersionCreateRequest) GetCommentOk() (*string, bool) {
 	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
@@ -106,7 +106,7 @@ func (o *VersionCreateRequest) GetCommentOk() (*string, bool) {
 }
 
 // HasComment returns a boolean if a field has been set.
-func (o *VersionCreateRequest) HasComment() bool {
+func (o *PatchedVersionCreateRequest) HasComment() bool {
 	if o != nil && !IsNil(o.Comment) {
 		return true
 	}
@@ -115,12 +115,12 @@ func (o *VersionCreateRequest) HasComment() bool {
 }
 
 // SetComment gets a reference to the given string and assigns it to the Comment field.
-func (o *VersionCreateRequest) SetComment(v string) {
+func (o *PatchedVersionCreateRequest) SetComment(v string) {
 	o.Comment = &v
 }
 
 // GetOverride returns the Override field value if set, zero value otherwise.
-func (o *VersionCreateRequest) GetOverride() map[string]interface{} {
+func (o *PatchedVersionCreateRequest) GetOverride() map[string]interface{} {
 	if o == nil || IsNil(o.Override) {
 		var ret map[string]interface{}
 		return ret
@@ -130,7 +130,7 @@ func (o *VersionCreateRequest) GetOverride() map[string]interface{} {
 
 // GetOverrideOk returns a tuple with the Override field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VersionCreateRequest) GetOverrideOk() (map[string]interface{}, bool) {
+func (o *PatchedVersionCreateRequest) GetOverrideOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Override) {
 		return map[string]interface{}{}, false
 	}
@@ -138,7 +138,7 @@ func (o *VersionCreateRequest) GetOverrideOk() (map[string]interface{}, bool) {
 }
 
 // HasOverride returns a boolean if a field has been set.
-func (o *VersionCreateRequest) HasOverride() bool {
+func (o *PatchedVersionCreateRequest) HasOverride() bool {
 	if o != nil && !IsNil(o.Override) {
 		return true
 	}
@@ -147,11 +147,11 @@ func (o *VersionCreateRequest) HasOverride() bool {
 }
 
 // SetOverride gets a reference to the given map[string]interface{} and assigns it to the Override field.
-func (o *VersionCreateRequest) SetOverride(v map[string]interface{}) {
+func (o *PatchedVersionCreateRequest) SetOverride(v map[string]interface{}) {
 	o.Override = v
 }
 
-func (o VersionCreateRequest) MarshalJSON() ([]byte, error) {
+func (o PatchedVersionCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -159,7 +159,7 @@ func (o VersionCreateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o VersionCreateRequest) ToMap() (map[string]interface{}, error) {
+func (o PatchedVersionCreateRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.SourceVersion.IsSet() {
 		toSerialize["source_version"] = o.SourceVersion.Get()
@@ -173,38 +173,38 @@ func (o VersionCreateRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableVersionCreateRequest struct {
-	value *VersionCreateRequest
+type NullablePatchedVersionCreateRequest struct {
+	value *PatchedVersionCreateRequest
 	isSet bool
 }
 
-func (v NullableVersionCreateRequest) Get() *VersionCreateRequest {
+func (v NullablePatchedVersionCreateRequest) Get() *PatchedVersionCreateRequest {
 	return v.value
 }
 
-func (v *NullableVersionCreateRequest) Set(val *VersionCreateRequest) {
+func (v *NullablePatchedVersionCreateRequest) Set(val *PatchedVersionCreateRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableVersionCreateRequest) IsSet() bool {
+func (v NullablePatchedVersionCreateRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableVersionCreateRequest) Unset() {
+func (v *NullablePatchedVersionCreateRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableVersionCreateRequest(val *VersionCreateRequest) *NullableVersionCreateRequest {
-	return &NullableVersionCreateRequest{value: val, isSet: true}
+func NewNullablePatchedVersionCreateRequest(val *PatchedVersionCreateRequest) *NullablePatchedVersionCreateRequest {
+	return &NullablePatchedVersionCreateRequest{value: val, isSet: true}
 }
 
-func (v NullableVersionCreateRequest) MarshalJSON() ([]byte, error) {
+func (v NullablePatchedVersionCreateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableVersionCreateRequest) UnmarshalJSON(src []byte) error {
+func (v *NullablePatchedVersionCreateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

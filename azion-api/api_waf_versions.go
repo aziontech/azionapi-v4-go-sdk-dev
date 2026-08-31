@@ -783,11 +783,11 @@ type ApiPartialUpdateWafVersionRequest struct {
 	ApiService *WAFVersionsAPIService
 	versionId string
 	wafId int64
-	patchedWAFRequest *PatchedWAFRequest
+	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
-func (r ApiPartialUpdateWafVersionRequest) PatchedWAFRequest(patchedWAFRequest PatchedWAFRequest) ApiPartialUpdateWafVersionRequest {
-	r.patchedWAFRequest = &patchedWAFRequest
+func (r ApiPartialUpdateWafVersionRequest) PatchedVersionCreateRequest(patchedVersionCreateRequest PatchedVersionCreateRequest) ApiPartialUpdateWafVersionRequest {
+	r.patchedVersionCreateRequest = &patchedVersionCreateRequest
 	return r
 }
 
@@ -853,7 +853,7 @@ func (a *WAFVersionsAPIService) PartialUpdateWafVersionExecute(r ApiPartialUpdat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedWAFRequest
+	localVarPostBody = r.patchedVersionCreateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1041,11 +1041,11 @@ type ApiUpdateWafVersionRequest struct {
 	ApiService *WAFVersionsAPIService
 	versionId string
 	wafId int64
-	wAFRequest *WAFRequest
+	versionCreateRequest *VersionCreateRequest
 }
 
-func (r ApiUpdateWafVersionRequest) WAFRequest(wAFRequest WAFRequest) ApiUpdateWafVersionRequest {
-	r.wAFRequest = &wAFRequest
+func (r ApiUpdateWafVersionRequest) VersionCreateRequest(versionCreateRequest VersionCreateRequest) ApiUpdateWafVersionRequest {
+	r.versionCreateRequest = &versionCreateRequest
 	return r
 }
 
@@ -1092,9 +1092,6 @@ func (a *WAFVersionsAPIService) UpdateWafVersionExecute(r ApiUpdateWafVersionReq
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.wAFRequest == nil {
-		return nil, reportError("wAFRequest is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1114,7 +1111,7 @@ func (a *WAFVersionsAPIService) UpdateWafVersionExecute(r ApiUpdateWafVersionReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.wAFRequest
+	localVarPostBody = r.versionCreateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

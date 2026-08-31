@@ -783,11 +783,11 @@ type ApiPartialUpdateFunctionVersionRequest struct {
 	ApiService *FunctionVersionsAPIService
 	functionId int64
 	versionId string
-	patchedFunctionRequest *PatchedFunctionRequest
+	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
-func (r ApiPartialUpdateFunctionVersionRequest) PatchedFunctionRequest(patchedFunctionRequest PatchedFunctionRequest) ApiPartialUpdateFunctionVersionRequest {
-	r.patchedFunctionRequest = &patchedFunctionRequest
+func (r ApiPartialUpdateFunctionVersionRequest) PatchedVersionCreateRequest(patchedVersionCreateRequest PatchedVersionCreateRequest) ApiPartialUpdateFunctionVersionRequest {
+	r.patchedVersionCreateRequest = &patchedVersionCreateRequest
 	return r
 }
 
@@ -853,7 +853,7 @@ func (a *FunctionVersionsAPIService) PartialUpdateFunctionVersionExecute(r ApiPa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedFunctionRequest
+	localVarPostBody = r.patchedVersionCreateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1041,11 +1041,11 @@ type ApiUpdateFunctionVersionRequest struct {
 	ApiService *FunctionVersionsAPIService
 	functionId int64
 	versionId string
-	functionRequest *FunctionRequest
+	versionCreateRequest *VersionCreateRequest
 }
 
-func (r ApiUpdateFunctionVersionRequest) FunctionRequest(functionRequest FunctionRequest) ApiUpdateFunctionVersionRequest {
-	r.functionRequest = &functionRequest
+func (r ApiUpdateFunctionVersionRequest) VersionCreateRequest(versionCreateRequest VersionCreateRequest) ApiUpdateFunctionVersionRequest {
+	r.versionCreateRequest = &versionCreateRequest
 	return r
 }
 
@@ -1092,9 +1092,6 @@ func (a *FunctionVersionsAPIService) UpdateFunctionVersionExecute(r ApiUpdateFun
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.functionRequest == nil {
-		return nil, reportError("functionRequest is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1114,7 +1111,7 @@ func (a *FunctionVersionsAPIService) UpdateFunctionVersionExecute(r ApiUpdateFun
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.functionRequest
+	localVarPostBody = r.versionCreateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

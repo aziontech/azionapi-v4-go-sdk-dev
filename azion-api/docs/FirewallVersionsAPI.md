@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateFirewallVersion
 
-> PartialUpdateFirewallVersion(ctx, firewallId, versionId).PatchedFirewallRequest(patchedFirewallRequest).Execute()
+> PartialUpdateFirewallVersion(ctx, firewallId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 
 Partially update a Firewall version
 
@@ -469,11 +469,11 @@ import (
 func main() {
 	firewallId := int64(789) // int64 | The ID of the Firewall resource.
 	versionId := "versionId_example" // string | The identifier of the version.
-	patchedFirewallRequest := *openapiclient.NewPatchedFirewallRequest() // PatchedFirewallRequest |  (optional)
+	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FirewallVersionsAPI.PartialUpdateFirewallVersion(context.Background(), firewallId, versionId).PatchedFirewallRequest(patchedFirewallRequest).Execute()
+	r, err := apiClient.FirewallVersionsAPI.PartialUpdateFirewallVersion(context.Background(), firewallId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallVersionsAPI.PartialUpdateFirewallVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -499,7 +499,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedFirewallRequest** | [**PatchedFirewallRequest**](PatchedFirewallRequest.md) |  | 
+ **patchedVersionCreateRequest** | [**PatchedVersionCreateRequest**](PatchedVersionCreateRequest.md) |  | 
 
 ### Return type
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFirewallVersion
 
-> UpdateFirewallVersion(ctx, firewallId, versionId).FirewallRequest(firewallRequest).Execute()
+> UpdateFirewallVersion(ctx, firewallId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Update a Firewall version
 
@@ -615,11 +615,11 @@ import (
 func main() {
 	firewallId := int64(789) // int64 | The ID of the Firewall resource.
 	versionId := "versionId_example" // string | The identifier of the version.
-	firewallRequest := *openapiclient.NewFirewallRequest("Name_example") // FirewallRequest | 
+	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FirewallVersionsAPI.UpdateFirewallVersion(context.Background(), firewallId, versionId).FirewallRequest(firewallRequest).Execute()
+	r, err := apiClient.FirewallVersionsAPI.UpdateFirewallVersion(context.Background(), firewallId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FirewallVersionsAPI.UpdateFirewallVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -645,7 +645,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **firewallRequest** | [**FirewallRequest**](FirewallRequest.md) |  | 
+ **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
 
 ### Return type
 

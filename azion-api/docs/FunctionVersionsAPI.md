@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateFunctionVersion
 
-> PartialUpdateFunctionVersion(ctx, functionId, versionId).PatchedFunctionRequest(patchedFunctionRequest).Execute()
+> PartialUpdateFunctionVersion(ctx, functionId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 
 Partially update a Function version
 
@@ -469,11 +469,11 @@ import (
 func main() {
 	functionId := int64(789) // int64 | The ID of the Function resource.
 	versionId := "versionId_example" // string | The identifier of the version.
-	patchedFunctionRequest := *openapiclient.NewPatchedFunctionRequest() // PatchedFunctionRequest |  (optional)
+	patchedVersionCreateRequest := *openapiclient.NewPatchedVersionCreateRequest() // PatchedVersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FunctionVersionsAPI.PartialUpdateFunctionVersion(context.Background(), functionId, versionId).PatchedFunctionRequest(patchedFunctionRequest).Execute()
+	r, err := apiClient.FunctionVersionsAPI.PartialUpdateFunctionVersion(context.Background(), functionId, versionId).PatchedVersionCreateRequest(patchedVersionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionVersionsAPI.PartialUpdateFunctionVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -499,7 +499,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchedFunctionRequest** | [**PatchedFunctionRequest**](PatchedFunctionRequest.md) |  | 
+ **patchedVersionCreateRequest** | [**PatchedVersionCreateRequest**](PatchedVersionCreateRequest.md) |  | 
 
 ### Return type
 
@@ -594,7 +594,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFunctionVersion
 
-> UpdateFunctionVersion(ctx, functionId, versionId).FunctionRequest(functionRequest).Execute()
+> UpdateFunctionVersion(ctx, functionId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 
 Update a Function version
 
@@ -615,11 +615,11 @@ import (
 func main() {
 	functionId := int64(789) // int64 | The ID of the Function resource.
 	versionId := "versionId_example" // string | The identifier of the version.
-	functionRequest := *openapiclient.NewFunctionRequest("Name_example", "Code_example") // FunctionRequest | 
+	versionCreateRequest := *openapiclient.NewVersionCreateRequest() // VersionCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.FunctionVersionsAPI.UpdateFunctionVersion(context.Background(), functionId, versionId).FunctionRequest(functionRequest).Execute()
+	r, err := apiClient.FunctionVersionsAPI.UpdateFunctionVersion(context.Background(), functionId, versionId).VersionCreateRequest(versionCreateRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionVersionsAPI.UpdateFunctionVersion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -645,7 +645,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **functionRequest** | [**FunctionRequest**](FunctionRequest.md) |  | 
+ **versionCreateRequest** | [**VersionCreateRequest**](VersionCreateRequest.md) |  | 
 
 ### Return type
 

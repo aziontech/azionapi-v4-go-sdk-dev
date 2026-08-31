@@ -783,11 +783,11 @@ type ApiPartialUpdateFirewallVersionRequest struct {
 	ApiService *FirewallVersionsAPIService
 	firewallId int64
 	versionId string
-	patchedFirewallRequest *PatchedFirewallRequest
+	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
-func (r ApiPartialUpdateFirewallVersionRequest) PatchedFirewallRequest(patchedFirewallRequest PatchedFirewallRequest) ApiPartialUpdateFirewallVersionRequest {
-	r.patchedFirewallRequest = &patchedFirewallRequest
+func (r ApiPartialUpdateFirewallVersionRequest) PatchedVersionCreateRequest(patchedVersionCreateRequest PatchedVersionCreateRequest) ApiPartialUpdateFirewallVersionRequest {
+	r.patchedVersionCreateRequest = &patchedVersionCreateRequest
 	return r
 }
 
@@ -853,7 +853,7 @@ func (a *FirewallVersionsAPIService) PartialUpdateFirewallVersionExecute(r ApiPa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedFirewallRequest
+	localVarPostBody = r.patchedVersionCreateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1041,11 +1041,11 @@ type ApiUpdateFirewallVersionRequest struct {
 	ApiService *FirewallVersionsAPIService
 	firewallId int64
 	versionId string
-	firewallRequest *FirewallRequest
+	versionCreateRequest *VersionCreateRequest
 }
 
-func (r ApiUpdateFirewallVersionRequest) FirewallRequest(firewallRequest FirewallRequest) ApiUpdateFirewallVersionRequest {
-	r.firewallRequest = &firewallRequest
+func (r ApiUpdateFirewallVersionRequest) VersionCreateRequest(versionCreateRequest VersionCreateRequest) ApiUpdateFirewallVersionRequest {
+	r.versionCreateRequest = &versionCreateRequest
 	return r
 }
 
@@ -1092,9 +1092,6 @@ func (a *FirewallVersionsAPIService) UpdateFirewallVersionExecute(r ApiUpdateFir
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.firewallRequest == nil {
-		return nil, reportError("firewallRequest is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1114,7 +1111,7 @@ func (a *FirewallVersionsAPIService) UpdateFirewallVersionExecute(r ApiUpdateFir
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.firewallRequest
+	localVarPostBody = r.versionCreateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
