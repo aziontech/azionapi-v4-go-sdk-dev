@@ -1,6 +1,6 @@
 # \SQLAPI
 
-All URIs are relative to *https://api.azion.com/v4*
+All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

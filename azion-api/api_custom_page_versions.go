@@ -783,11 +783,11 @@ type ApiPartialUpdateCustomPageVersionRequest struct {
 	ApiService *CustomPageVersionsAPIService
 	customPageId int64
 	versionId string
-	patchedCustomPageRequest *PatchedCustomPageRequest
+	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
-func (r ApiPartialUpdateCustomPageVersionRequest) PatchedCustomPageRequest(patchedCustomPageRequest PatchedCustomPageRequest) ApiPartialUpdateCustomPageVersionRequest {
-	r.patchedCustomPageRequest = &patchedCustomPageRequest
+func (r ApiPartialUpdateCustomPageVersionRequest) PatchedVersionCreateRequest(patchedVersionCreateRequest PatchedVersionCreateRequest) ApiPartialUpdateCustomPageVersionRequest {
+	r.patchedVersionCreateRequest = &patchedVersionCreateRequest
 	return r
 }
 
@@ -853,7 +853,7 @@ func (a *CustomPageVersionsAPIService) PartialUpdateCustomPageVersionExecute(r A
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedCustomPageRequest
+	localVarPostBody = r.patchedVersionCreateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1041,11 +1041,11 @@ type ApiUpdateCustomPageVersionRequest struct {
 	ApiService *CustomPageVersionsAPIService
 	customPageId int64
 	versionId string
-	customPageRequest *CustomPageRequest
+	versionCreateRequest *VersionCreateRequest
 }
 
-func (r ApiUpdateCustomPageVersionRequest) CustomPageRequest(customPageRequest CustomPageRequest) ApiUpdateCustomPageVersionRequest {
-	r.customPageRequest = &customPageRequest
+func (r ApiUpdateCustomPageVersionRequest) VersionCreateRequest(versionCreateRequest VersionCreateRequest) ApiUpdateCustomPageVersionRequest {
+	r.versionCreateRequest = &versionCreateRequest
 	return r
 }
 
@@ -1092,9 +1092,6 @@ func (a *CustomPageVersionsAPIService) UpdateCustomPageVersionExecute(r ApiUpdat
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.customPageRequest == nil {
-		return nil, reportError("customPageRequest is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1114,7 +1111,7 @@ func (a *CustomPageVersionsAPIService) UpdateCustomPageVersionExecute(r ApiUpdat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.customPageRequest
+	localVarPostBody = r.versionCreateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

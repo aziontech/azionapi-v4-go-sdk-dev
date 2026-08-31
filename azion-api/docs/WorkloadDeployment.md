@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** |  | [optional] 
+**Id** | **int64** |  | 
 **Name** | **string** |  | 
 **Current** | Pointer to **bool** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **Strategy** | [**DeploymentStrategyDefaultDeploymentStrategy**](DeploymentStrategyDefaultDeploymentStrategy.md) |  | 
-**LastEditor** | Pointer to **string** |  | [optional] 
-**LastModified** | Pointer to **time.Time** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**LastEditor** | **string** |  | 
+**LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewWorkloadDeployment
 
-`func NewWorkloadDeployment(name string, strategy DeploymentStrategyDefaultDeploymentStrategy, ) *WorkloadDeployment`
+`func NewWorkloadDeployment(id int64, name string, strategy DeploymentStrategyDefaultDeploymentStrategy, lastEditor string, lastModified time.Time, createdAt time.Time, ) *WorkloadDeployment`
 
 NewWorkloadDeployment instantiates a new WorkloadDeployment object
 This constructor will assign default values to properties that have it defined,
@@ -51,11 +51,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *WorkloadDeployment) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -166,11 +161,6 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
-### HasLastEditor
-
-`func (o *WorkloadDeployment) HasLastEditor() bool`
-
-HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -191,11 +181,6 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
-### HasLastModified
-
-`func (o *WorkloadDeployment) HasLastModified() bool`
-
-HasLastModified returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -216,11 +201,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *WorkloadDeployment) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

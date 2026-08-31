@@ -50,6 +50,26 @@ type APIClient struct {
 
 	// API Services
 
+	AIStudioChatThreadsAPI *AIStudioChatThreadsAPIService
+
+	AIStudioChunksAPI *AIStudioChunksAPIService
+
+	AIStudioDocumentsAPI *AIStudioDocumentsAPIService
+
+	AIStudioKnowledgeBasesAPI *AIStudioKnowledgeBasesAPIService
+
+	AIStudioMessagesAPI *AIStudioMessagesAPIService
+
+	AIStudioToolsAPI *AIStudioToolsAPIService
+
+	AccountsDescendantsAPI *AccountsDescendantsAPIService
+
+	AccountsInfoAPI *AccountsInfoAPIService
+
+	AccountsLoggedInAPI *AccountsLoggedInAPIService
+
+	ApplicationVersionsAPI *ApplicationVersionsAPIService
+
 	ApplicationsAPI *ApplicationsAPIService
 
 	ApplicationsCacheSettingsAPI *ApplicationsCacheSettingsAPIService
@@ -70,7 +90,15 @@ type APIClient struct {
 
 	AuthRevokeAPI *AuthRevokeAPIService
 
+	BillingInvoicesAPI *BillingInvoicesAPIService
+
+	BillingPaymentsAPI *BillingPaymentsAPIService
+
+	ConnectorVersionsAPI *ConnectorVersionsAPIService
+
 	ConnectorsAPI *ConnectorsAPIService
+
+	CustomPageVersionsAPI *CustomPageVersionsAPIService
 
 	CustomPagesAPI *CustomPagesAPIService
 
@@ -94,15 +122,71 @@ type APIClient struct {
 
 	DigitalCertificatesRequestACertificateAPI *DigitalCertificatesRequestACertificateAPIService
 
+	FavoritesAPI *FavoritesAPIService
+
+	FirewallVersionsAPI *FirewallVersionsAPIService
+
 	FirewallsAPI *FirewallsAPIService
 
 	FirewallsFunctionAPI *FirewallsFunctionAPIService
 
 	FirewallsRulesEngineAPI *FirewallsRulesEngineAPIService
 
+	FunctionVersionsAPI *FunctionVersionsAPIService
+
 	FunctionsAPI *FunctionsAPIService
 
+	IdentityGrantsAPI *IdentityGrantsAPIService
+
+	IdentityGroupMembersAPI *IdentityGroupMembersAPIService
+
+	IdentityGroupsAPI *IdentityGroupsAPIService
+
+	IdentityLoggedInUserAPI *IdentityLoggedInUserAPIService
+
+	IdentityServiceTokenRenewAPI *IdentityServiceTokenRenewAPIService
+
+	IdentityServiceTokensAPI *IdentityServiceTokensAPIService
+
+	IdentityUserInfoAPI *IdentityUserInfoAPIService
+
+	IdentityUsersAPI *IdentityUsersAPIService
+
+	KVNamespacesAPI *KVNamespacesAPIService
+
+	MetricsDashboardAPI *MetricsDashboardAPIService
+
+	MetricsFoldersAPI *MetricsFoldersAPIService
+
+	MetricsLibraryReportsAPI *MetricsLibraryReportsAPIService
+
+	MetricsRecommendationsAPI *MetricsRecommendationsAPIService
+
+	MetricsReportsAPI *MetricsReportsAPIService
+
+	MetricsRowsAPI *MetricsRowsAPIService
+
+	NetworkListVersionsAPI *NetworkListVersionsAPIService
+
 	NetworkListsAPI *NetworkListsAPIService
+
+	OrchestratorNodeGroupsAPI *OrchestratorNodeGroupsAPIService
+
+	OrchestratorNodeServicesAPI *OrchestratorNodeServicesAPIService
+
+	OrchestratorNodesAPI *OrchestratorNodesAPIService
+
+	OrchestratorServiceResourcesAPI *OrchestratorServiceResourcesAPIService
+
+	OrchestratorServicesAPI *OrchestratorServicesAPIService
+
+	PolicyLockoutPolicyAPI *PolicyLockoutPolicyAPIService
+
+	PolicyPoliciesAPI *PolicyPoliciesAPIService
+
+	PolicySessionTimeoutPolicyAPI *PolicySessionTimeoutPolicyAPIService
+
+	PublisherManagementAPI *PublisherManagementAPIService
 
 	PurgeAPI *PurgeAPIService
 
@@ -110,11 +194,31 @@ type APIClient struct {
 
 	StorageBucketsAPI *StorageBucketsAPIService
 
+	StorageCredentialsAPI *StorageCredentialsAPIService
+
 	StorageObjectsAPI *StorageObjectsAPIService
+
+	UsersLockoutAPI *UsersLockoutAPIService
+
+	VCSContinuousDeploymentExecutionsAPI *VCSContinuousDeploymentExecutionsAPIService
+
+	VCSContinuousDeploymentExecutorAPI *VCSContinuousDeploymentExecutorAPIService
+
+	VCSContinuousDeploymentsAPI *VCSContinuousDeploymentsAPIService
+
+	VCSExecutionScriptsAPI *VCSExecutionScriptsAPIService
+
+	VCSIntegrationsAPI *VCSIntegrationsAPIService
+
+	VCSProvidersAPI *VCSProvidersAPIService
+
+	WAFVersionsAPI *WAFVersionsAPIService
 
 	WAFsAPI *WAFsAPIService
 
 	WAFsExceptionsAPI *WAFsExceptionsAPIService
+
+	WorkloadDeploymentsAPI *WorkloadDeploymentsAPIService
 
 	WorkloadsAPI *WorkloadsAPIService
 }
@@ -135,6 +239,16 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.AIStudioChatThreadsAPI = (*AIStudioChatThreadsAPIService)(&c.common)
+	c.AIStudioChunksAPI = (*AIStudioChunksAPIService)(&c.common)
+	c.AIStudioDocumentsAPI = (*AIStudioDocumentsAPIService)(&c.common)
+	c.AIStudioKnowledgeBasesAPI = (*AIStudioKnowledgeBasesAPIService)(&c.common)
+	c.AIStudioMessagesAPI = (*AIStudioMessagesAPIService)(&c.common)
+	c.AIStudioToolsAPI = (*AIStudioToolsAPIService)(&c.common)
+	c.AccountsDescendantsAPI = (*AccountsDescendantsAPIService)(&c.common)
+	c.AccountsInfoAPI = (*AccountsInfoAPIService)(&c.common)
+	c.AccountsLoggedInAPI = (*AccountsLoggedInAPIService)(&c.common)
+	c.ApplicationVersionsAPI = (*ApplicationVersionsAPIService)(&c.common)
 	c.ApplicationsAPI = (*ApplicationsAPIService)(&c.common)
 	c.ApplicationsCacheSettingsAPI = (*ApplicationsCacheSettingsAPIService)(&c.common)
 	c.ApplicationsDeviceGroupsAPI = (*ApplicationsDeviceGroupsAPIService)(&c.common)
@@ -145,7 +259,11 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AuthMFATOTPDeviceAPI = (*AuthMFATOTPDeviceAPIService)(&c.common)
 	c.AuthRefreshAccessTokenAPI = (*AuthRefreshAccessTokenAPIService)(&c.common)
 	c.AuthRevokeAPI = (*AuthRevokeAPIService)(&c.common)
+	c.BillingInvoicesAPI = (*BillingInvoicesAPIService)(&c.common)
+	c.BillingPaymentsAPI = (*BillingPaymentsAPIService)(&c.common)
+	c.ConnectorVersionsAPI = (*ConnectorVersionsAPIService)(&c.common)
 	c.ConnectorsAPI = (*ConnectorsAPIService)(&c.common)
+	c.CustomPageVersionsAPI = (*CustomPageVersionsAPIService)(&c.common)
 	c.CustomPagesAPI = (*CustomPagesAPIService)(&c.common)
 	c.DNSDNSSECAPI = (*DNSDNSSECAPIService)(&c.common)
 	c.DNSRecordsAPI = (*DNSRecordsAPIService)(&c.common)
@@ -157,17 +275,55 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DigitalCertificatesCertificateSigningRequestsAPI = (*DigitalCertificatesCertificateSigningRequestsAPIService)(&c.common)
 	c.DigitalCertificatesCertificatesAPI = (*DigitalCertificatesCertificatesAPIService)(&c.common)
 	c.DigitalCertificatesRequestACertificateAPI = (*DigitalCertificatesRequestACertificateAPIService)(&c.common)
+	c.FavoritesAPI = (*FavoritesAPIService)(&c.common)
+	c.FirewallVersionsAPI = (*FirewallVersionsAPIService)(&c.common)
 	c.FirewallsAPI = (*FirewallsAPIService)(&c.common)
 	c.FirewallsFunctionAPI = (*FirewallsFunctionAPIService)(&c.common)
 	c.FirewallsRulesEngineAPI = (*FirewallsRulesEngineAPIService)(&c.common)
+	c.FunctionVersionsAPI = (*FunctionVersionsAPIService)(&c.common)
 	c.FunctionsAPI = (*FunctionsAPIService)(&c.common)
+	c.IdentityGrantsAPI = (*IdentityGrantsAPIService)(&c.common)
+	c.IdentityGroupMembersAPI = (*IdentityGroupMembersAPIService)(&c.common)
+	c.IdentityGroupsAPI = (*IdentityGroupsAPIService)(&c.common)
+	c.IdentityLoggedInUserAPI = (*IdentityLoggedInUserAPIService)(&c.common)
+	c.IdentityServiceTokenRenewAPI = (*IdentityServiceTokenRenewAPIService)(&c.common)
+	c.IdentityServiceTokensAPI = (*IdentityServiceTokensAPIService)(&c.common)
+	c.IdentityUserInfoAPI = (*IdentityUserInfoAPIService)(&c.common)
+	c.IdentityUsersAPI = (*IdentityUsersAPIService)(&c.common)
+	c.KVNamespacesAPI = (*KVNamespacesAPIService)(&c.common)
+	c.MetricsDashboardAPI = (*MetricsDashboardAPIService)(&c.common)
+	c.MetricsFoldersAPI = (*MetricsFoldersAPIService)(&c.common)
+	c.MetricsLibraryReportsAPI = (*MetricsLibraryReportsAPIService)(&c.common)
+	c.MetricsRecommendationsAPI = (*MetricsRecommendationsAPIService)(&c.common)
+	c.MetricsReportsAPI = (*MetricsReportsAPIService)(&c.common)
+	c.MetricsRowsAPI = (*MetricsRowsAPIService)(&c.common)
+	c.NetworkListVersionsAPI = (*NetworkListVersionsAPIService)(&c.common)
 	c.NetworkListsAPI = (*NetworkListsAPIService)(&c.common)
+	c.OrchestratorNodeGroupsAPI = (*OrchestratorNodeGroupsAPIService)(&c.common)
+	c.OrchestratorNodeServicesAPI = (*OrchestratorNodeServicesAPIService)(&c.common)
+	c.OrchestratorNodesAPI = (*OrchestratorNodesAPIService)(&c.common)
+	c.OrchestratorServiceResourcesAPI = (*OrchestratorServiceResourcesAPIService)(&c.common)
+	c.OrchestratorServicesAPI = (*OrchestratorServicesAPIService)(&c.common)
+	c.PolicyLockoutPolicyAPI = (*PolicyLockoutPolicyAPIService)(&c.common)
+	c.PolicyPoliciesAPI = (*PolicyPoliciesAPIService)(&c.common)
+	c.PolicySessionTimeoutPolicyAPI = (*PolicySessionTimeoutPolicyAPIService)(&c.common)
+	c.PublisherManagementAPI = (*PublisherManagementAPIService)(&c.common)
 	c.PurgeAPI = (*PurgeAPIService)(&c.common)
 	c.SQLAPI = (*SQLAPIService)(&c.common)
 	c.StorageBucketsAPI = (*StorageBucketsAPIService)(&c.common)
+	c.StorageCredentialsAPI = (*StorageCredentialsAPIService)(&c.common)
 	c.StorageObjectsAPI = (*StorageObjectsAPIService)(&c.common)
+	c.UsersLockoutAPI = (*UsersLockoutAPIService)(&c.common)
+	c.VCSContinuousDeploymentExecutionsAPI = (*VCSContinuousDeploymentExecutionsAPIService)(&c.common)
+	c.VCSContinuousDeploymentExecutorAPI = (*VCSContinuousDeploymentExecutorAPIService)(&c.common)
+	c.VCSContinuousDeploymentsAPI = (*VCSContinuousDeploymentsAPIService)(&c.common)
+	c.VCSExecutionScriptsAPI = (*VCSExecutionScriptsAPIService)(&c.common)
+	c.VCSIntegrationsAPI = (*VCSIntegrationsAPIService)(&c.common)
+	c.VCSProvidersAPI = (*VCSProvidersAPIService)(&c.common)
+	c.WAFVersionsAPI = (*WAFVersionsAPIService)(&c.common)
 	c.WAFsAPI = (*WAFsAPIService)(&c.common)
 	c.WAFsExceptionsAPI = (*WAFsExceptionsAPIService)(&c.common)
+	c.WorkloadDeploymentsAPI = (*WorkloadDeploymentsAPIService)(&c.common)
 	c.WorkloadsAPI = (*WorkloadsAPIService)(&c.common)
 
 	return c

@@ -783,11 +783,11 @@ type ApiPartialUpdateNetworkListVersionRequest struct {
 	ApiService *NetworkListVersionsAPIService
 	networkListId int64
 	versionId string
-	patchedNetworkListRequest *PatchedNetworkListRequest
+	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
-func (r ApiPartialUpdateNetworkListVersionRequest) PatchedNetworkListRequest(patchedNetworkListRequest PatchedNetworkListRequest) ApiPartialUpdateNetworkListVersionRequest {
-	r.patchedNetworkListRequest = &patchedNetworkListRequest
+func (r ApiPartialUpdateNetworkListVersionRequest) PatchedVersionCreateRequest(patchedVersionCreateRequest PatchedVersionCreateRequest) ApiPartialUpdateNetworkListVersionRequest {
+	r.patchedVersionCreateRequest = &patchedVersionCreateRequest
 	return r
 }
 
@@ -853,7 +853,7 @@ func (a *NetworkListVersionsAPIService) PartialUpdateNetworkListVersionExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedNetworkListRequest
+	localVarPostBody = r.patchedVersionCreateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1041,11 +1041,11 @@ type ApiUpdateNetworkListVersionRequest struct {
 	ApiService *NetworkListVersionsAPIService
 	networkListId int64
 	versionId string
-	networkListRequest *NetworkListRequest
+	versionCreateRequest *VersionCreateRequest
 }
 
-func (r ApiUpdateNetworkListVersionRequest) NetworkListRequest(networkListRequest NetworkListRequest) ApiUpdateNetworkListVersionRequest {
-	r.networkListRequest = &networkListRequest
+func (r ApiUpdateNetworkListVersionRequest) VersionCreateRequest(versionCreateRequest VersionCreateRequest) ApiUpdateNetworkListVersionRequest {
+	r.versionCreateRequest = &versionCreateRequest
 	return r
 }
 
@@ -1092,9 +1092,6 @@ func (a *NetworkListVersionsAPIService) UpdateNetworkListVersionExecute(r ApiUpd
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.networkListRequest == nil {
-		return nil, reportError("networkListRequest is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1114,7 +1111,7 @@ func (a *NetworkListVersionsAPIService) UpdateNetworkListVersionExecute(r ApiUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.networkListRequest
+	localVarPostBody = r.versionCreateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

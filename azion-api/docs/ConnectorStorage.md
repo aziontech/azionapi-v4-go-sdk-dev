@@ -4,23 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
-**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
-**Id** | Pointer to **int64** |  | [optional] 
+**Id** | **int64** |  | 
 **Name** | **string** |  | 
-**LastEditor** | Pointer to **string** |  | [optional] 
-**LastModified** | Pointer to **time.Time** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**LastEditor** | **string** |  | 
+**LastModified** | **time.Time** |  | 
+**CreatedAt** | **time.Time** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**ProductVersion** | Pointer to **string** |  | [optional] 
+**ProductVersion** | **string** |  | 
 **Type** | **string** |  | 
+**IsVersioned** | **bool** |  | 
+**Version** | **NullableInt64** |  | 
+**VersionState** | **NullableString** |  | 
+**VersionId** | **NullableString** |  | 
 **Attributes** | [**ConnectorStorageAttributes**](ConnectorStorageAttributes.md) |  | 
 
 ## Methods
 
 ### NewConnectorStorage
 
-`func NewConnectorStorage(name string, type_ string, attributes ConnectorStorageAttributes, ) *ConnectorStorage`
+`func NewConnectorStorage(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString, attributes ConnectorStorageAttributes, ) *ConnectorStorage`
 
 NewConnectorStorage instantiates a new ConnectorStorage object
 This constructor will assign default values to properties that have it defined,
@@ -35,76 +37,6 @@ NewConnectorStorageWithDefaults instantiates a new ConnectorStorage object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetVersionId
-
-`func (o *ConnectorStorage) GetVersionId() string`
-
-GetVersionId returns the VersionId field if non-nil, zero value otherwise.
-
-### GetVersionIdOk
-
-`func (o *ConnectorStorage) GetVersionIdOk() (*string, bool)`
-
-GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionId
-
-`func (o *ConnectorStorage) SetVersionId(v string)`
-
-SetVersionId sets VersionId field to given value.
-
-### HasVersionId
-
-`func (o *ConnectorStorage) HasVersionId() bool`
-
-HasVersionId returns a boolean if a field has been set.
-
-### SetVersionIdNil
-
-`func (o *ConnectorStorage) SetVersionIdNil(b bool)`
-
- SetVersionIdNil sets the value for VersionId to be an explicit nil
-
-### UnsetVersionId
-`func (o *ConnectorStorage) UnsetVersionId()`
-
-UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-### GetVersionState
-
-`func (o *ConnectorStorage) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *ConnectorStorage) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *ConnectorStorage) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-### HasVersionState
-
-`func (o *ConnectorStorage) HasVersionState() bool`
-
-HasVersionState returns a boolean if a field has been set.
-
-### SetVersionStateNil
-
-`func (o *ConnectorStorage) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *ConnectorStorage) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 ### GetId
 
 `func (o *ConnectorStorage) GetId() int64`
@@ -124,11 +56,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *ConnectorStorage) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -169,11 +96,6 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
-### HasLastEditor
-
-`func (o *ConnectorStorage) HasLastEditor() bool`
-
-HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -194,11 +116,6 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
-### HasLastModified
-
-`func (o *ConnectorStorage) HasLastModified() bool`
-
-HasLastModified returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -219,11 +136,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *ConnectorStorage) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -269,11 +181,6 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
-### HasProductVersion
-
-`func (o *ConnectorStorage) HasProductVersion() bool`
-
-HasProductVersion returns a boolean if a field has been set.
 
 ### GetType
 
@@ -295,6 +202,116 @@ and a boolean to check if the value has been set.
 SetType sets Type field to given value.
 
 
+### GetIsVersioned
+
+`func (o *ConnectorStorage) GetIsVersioned() bool`
+
+GetIsVersioned returns the IsVersioned field if non-nil, zero value otherwise.
+
+### GetIsVersionedOk
+
+`func (o *ConnectorStorage) GetIsVersionedOk() (*bool, bool)`
+
+GetIsVersionedOk returns a tuple with the IsVersioned field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsVersioned
+
+`func (o *ConnectorStorage) SetIsVersioned(v bool)`
+
+SetIsVersioned sets IsVersioned field to given value.
+
+
+### GetVersion
+
+`func (o *ConnectorStorage) GetVersion() int64`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *ConnectorStorage) GetVersionOk() (*int64, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersion
+
+`func (o *ConnectorStorage) SetVersion(v int64)`
+
+SetVersion sets Version field to given value.
+
+
+### SetVersionNil
+
+`func (o *ConnectorStorage) SetVersionNil(b bool)`
+
+ SetVersionNil sets the value for Version to be an explicit nil
+
+### UnsetVersion
+`func (o *ConnectorStorage) UnsetVersion()`
+
+UnsetVersion ensures that no value is present for Version, not even an explicit nil
+### GetVersionState
+
+`func (o *ConnectorStorage) GetVersionState() string`
+
+GetVersionState returns the VersionState field if non-nil, zero value otherwise.
+
+### GetVersionStateOk
+
+`func (o *ConnectorStorage) GetVersionStateOk() (*string, bool)`
+
+GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionState
+
+`func (o *ConnectorStorage) SetVersionState(v string)`
+
+SetVersionState sets VersionState field to given value.
+
+
+### SetVersionStateNil
+
+`func (o *ConnectorStorage) SetVersionStateNil(b bool)`
+
+ SetVersionStateNil sets the value for VersionState to be an explicit nil
+
+### UnsetVersionState
+`func (o *ConnectorStorage) UnsetVersionState()`
+
+UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
+### GetVersionId
+
+`func (o *ConnectorStorage) GetVersionId() string`
+
+GetVersionId returns the VersionId field if non-nil, zero value otherwise.
+
+### GetVersionIdOk
+
+`func (o *ConnectorStorage) GetVersionIdOk() (*string, bool)`
+
+GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionId
+
+`func (o *ConnectorStorage) SetVersionId(v string)`
+
+SetVersionId sets VersionId field to given value.
+
+
+### SetVersionIdNil
+
+`func (o *ConnectorStorage) SetVersionIdNil(b bool)`
+
+ SetVersionIdNil sets the value for VersionId to be an explicit nil
+
+### UnsetVersionId
+`func (o *ConnectorStorage) UnsetVersionId()`
+
+UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
 ### GetAttributes
 
 `func (o *ConnectorStorage) GetAttributes() ConnectorStorageAttributes`

@@ -783,11 +783,11 @@ type ApiPartialUpdateConnectorVersionRequest struct {
 	ApiService *ConnectorVersionsAPIService
 	connectorId int64
 	versionId string
-	patchedConnectorRequest *PatchedConnectorRequest
+	patchedVersionCreateRequest *PatchedVersionCreateRequest
 }
 
-func (r ApiPartialUpdateConnectorVersionRequest) PatchedConnectorRequest(patchedConnectorRequest PatchedConnectorRequest) ApiPartialUpdateConnectorVersionRequest {
-	r.patchedConnectorRequest = &patchedConnectorRequest
+func (r ApiPartialUpdateConnectorVersionRequest) PatchedVersionCreateRequest(patchedVersionCreateRequest PatchedVersionCreateRequest) ApiPartialUpdateConnectorVersionRequest {
+	r.patchedVersionCreateRequest = &patchedVersionCreateRequest
 	return r
 }
 
@@ -853,7 +853,7 @@ func (a *ConnectorVersionsAPIService) PartialUpdateConnectorVersionExecute(r Api
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedConnectorRequest
+	localVarPostBody = r.patchedVersionCreateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1041,11 +1041,11 @@ type ApiUpdateConnectorVersionRequest struct {
 	ApiService *ConnectorVersionsAPIService
 	connectorId int64
 	versionId string
-	connectorRequest *ConnectorRequest
+	versionCreateRequest *VersionCreateRequest
 }
 
-func (r ApiUpdateConnectorVersionRequest) ConnectorRequest(connectorRequest ConnectorRequest) ApiUpdateConnectorVersionRequest {
-	r.connectorRequest = &connectorRequest
+func (r ApiUpdateConnectorVersionRequest) VersionCreateRequest(versionCreateRequest VersionCreateRequest) ApiUpdateConnectorVersionRequest {
+	r.versionCreateRequest = &versionCreateRequest
 	return r
 }
 
@@ -1111,7 +1111,7 @@ func (a *ConnectorVersionsAPIService) UpdateConnectorVersionExecute(r ApiUpdateC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.connectorRequest
+	localVarPostBody = r.versionCreateRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

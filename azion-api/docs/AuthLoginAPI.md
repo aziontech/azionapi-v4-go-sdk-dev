@@ -1,11 +1,12 @@
 # \AuthLoginAPI
 
-All URIs are relative to *https://api.azion.com/v4*
+All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AuthUserLogin**](AuthLoginAPI.md#AuthUserLogin) | **Post** /account/auth/login | User Login – Generate JWT Tokens
 [**AuthUserLoginMethod**](AuthLoginAPI.md#AuthUserLoginMethod) | **Get** /account/auth/login/method | Check User Authentication Method
+[**TotpVerify**](AuthLoginAPI.md#TotpVerify) | **Post** /account/auth/mfa/totp/verify | Retrieve user JWT tokens by MFA auth
 
 
 
@@ -136,6 +137,72 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TotpVerify
+
+> TokenPairResponse TotpVerify(ctx).TOTPVerificationRequest(tOTPVerificationRequest).Execute()
+
+Retrieve user JWT tokens by MFA auth
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	tOTPVerificationRequest := *openapiclient.NewTOTPVerificationRequest("Code_example") // TOTPVerificationRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AuthLoginAPI.TotpVerify(context.Background()).TOTPVerificationRequest(tOTPVerificationRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AuthLoginAPI.TotpVerify``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TotpVerify`: TokenPairResponse
+	fmt.Fprintf(os.Stdout, "Response from `AuthLoginAPI.TotpVerify`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTotpVerifyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tOTPVerificationRequest** | [**TOTPVerificationRequest**](TOTPVerificationRequest.md) |  | 
+
+### Return type
+
+[**TokenPairResponse**](TokenPairResponse.md)
+
+### Authorization
+
+[JwtMfaAuthentication](../README.md#JwtMfaAuthentication)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
