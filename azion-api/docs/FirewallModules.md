@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DdosProtection** | Pointer to [**FirewallModule**](FirewallModule.md) |  | [optional] 
+**DdosProtection** | [**FirewallModule**](FirewallModule.md) |  | 
 **Functions** | Pointer to [**FirewallModule**](FirewallModule.md) |  | [optional] 
 **NetworkProtection** | Pointer to [**FirewallModule**](FirewallModule.md) |  | [optional] 
 **Waf** | Pointer to [**FirewallModule**](FirewallModule.md) |  | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewFirewallModules
 
-`func NewFirewallModules() *FirewallModules`
+`func NewFirewallModules(ddosProtection FirewallModule, ) *FirewallModules`
 
 NewFirewallModules instantiates a new FirewallModules object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetDdosProtection sets DdosProtection field to given value.
 
-### HasDdosProtection
-
-`func (o *FirewallModules) HasDdosProtection() bool`
-
-HasDdosProtection returns a boolean if a field has been set.
 
 ### GetFunctions
 

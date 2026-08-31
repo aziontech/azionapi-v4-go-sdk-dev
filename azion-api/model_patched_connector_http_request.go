@@ -20,11 +20,11 @@ import (
 // checks if the PatchedConnectorHTTPRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PatchedConnectorHTTPRequest{}
 
-// PatchedConnectorHTTPRequest Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``version_state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers. ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
+// PatchedConnectorHTTPRequest struct for PatchedConnectorHTTPRequest
 type PatchedConnectorHTTPRequest struct {
 	Name *string `json:"name,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	// * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
+	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
 	Type string `json:"type"`
 	Attributes *ConnectorHTTPAttributesRequest `json:"attributes,omitempty"`
 }

@@ -21,14 +21,14 @@ import (
 // checks if the Workload type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Workload{}
 
-// Workload Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``version_state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers. ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
+// Workload struct for Workload
 type Workload struct {
-	Id *int64 `json:"id,omitempty"`
+	Id int64 `json:"id"`
 	Name string `json:"name"`
 	Active *bool `json:"active,omitempty"`
-	LastEditor *string `json:"last_editor,omitempty"`
-	LastModified *time.Time `json:"last_modified,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	LastEditor string `json:"last_editor"`
+	LastModified time.Time `json:"last_modified"`
+	CreatedAt time.Time `json:"created_at"`
 	// * `1` - Production Infrastructure (All Locations) * `2` - Staging Infrastructure
 	Infrastructure *int64 `json:"infrastructure,omitempty"`
 	Tls *TLSWorkload `json:"tls,omitempty"`
@@ -36,13 +36,8 @@ type Workload struct {
 	Mtls *MTLS `json:"mtls,omitempty"`
 	Domains []string `json:"domains,omitempty"`
 	WorkloadDomainAllowAccess *bool `json:"workload_domain_allow_access,omitempty"`
-	WorkloadDomain *string `json:"workload_domain,omitempty"`
-	Bindings []WorkloadBinding `json:"bindings,omitempty"`
-	ProductVersion *string `json:"product_version,omitempty"`
-	// ID of the version metadata (use in /versions/{id} URLs)
-	VersionId NullableString `json:"version_id,omitempty"`
-	// Build state of this version (queued, building, ready, error, ...)
-	VersionState NullableString `json:"version_state,omitempty"`
+	WorkloadDomain string `json:"workload_domain"`
+	ProductVersion string `json:"product_version"`
 }
 
 type _Workload Workload
@@ -51,9 +46,15 @@ type _Workload Workload
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkload(name string) *Workload {
+func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string) *Workload {
 	this := Workload{}
+	this.Id = id
 	this.Name = name
+	this.LastEditor = lastEditor
+	this.LastModified = lastModified
+	this.CreatedAt = createdAt
+	this.WorkloadDomain = workloadDomain
+	this.ProductVersion = productVersion
 	return &this
 }
 
@@ -65,36 +66,28 @@ func NewWorkloadWithDefaults() *Workload {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *Workload) GetId() int64 {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Workload) GetIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *Workload) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given int64 and assigns it to the Id field.
+// SetId sets field value
 func (o *Workload) SetId(v int64) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetName returns the Name field value
@@ -153,100 +146,76 @@ func (o *Workload) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetLastEditor returns the LastEditor field value if set, zero value otherwise.
+// GetLastEditor returns the LastEditor field value
 func (o *Workload) GetLastEditor() string {
-	if o == nil || IsNil(o.LastEditor) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LastEditor
+
+	return o.LastEditor
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
+// GetLastEditorOk returns a tuple with the LastEditor field value
 // and a boolean to check if the value has been set.
 func (o *Workload) GetLastEditorOk() (*string, bool) {
-	if o == nil || IsNil(o.LastEditor) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastEditor, true
+	return &o.LastEditor, true
 }
 
-// HasLastEditor returns a boolean if a field has been set.
-func (o *Workload) HasLastEditor() bool {
-	if o != nil && !IsNil(o.LastEditor) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
+// SetLastEditor sets field value
 func (o *Workload) SetLastEditor(v string) {
-	o.LastEditor = &v
+	o.LastEditor = v
 }
 
-// GetLastModified returns the LastModified field value if set, zero value otherwise.
+// GetLastModified returns the LastModified field value
 func (o *Workload) GetLastModified() time.Time {
-	if o == nil || IsNil(o.LastModified) {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.LastModified
+
+	return o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
+// GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
 func (o *Workload) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.LastModified) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastModified, true
+	return &o.LastModified, true
 }
 
-// HasLastModified returns a boolean if a field has been set.
-func (o *Workload) HasLastModified() bool {
-	if o != nil && !IsNil(o.LastModified) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
+// SetLastModified sets field value
 func (o *Workload) SetLastModified(v time.Time) {
-	o.LastModified = &v
+	o.LastModified = v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// GetCreatedAt returns the CreatedAt field value
 func (o *Workload) GetCreatedAt() time.Time {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.CreatedAt
+
+	return o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *Workload) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return &o.CreatedAt, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *Workload) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+// SetCreatedAt sets field value
 func (o *Workload) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
+	o.CreatedAt = v
 }
 
 // GetInfrastructure returns the Infrastructure field value if set, zero value otherwise.
@@ -441,184 +410,52 @@ func (o *Workload) SetWorkloadDomainAllowAccess(v bool) {
 	o.WorkloadDomainAllowAccess = &v
 }
 
-// GetWorkloadDomain returns the WorkloadDomain field value if set, zero value otherwise.
+// GetWorkloadDomain returns the WorkloadDomain field value
 func (o *Workload) GetWorkloadDomain() string {
-	if o == nil || IsNil(o.WorkloadDomain) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.WorkloadDomain
+
+	return o.WorkloadDomain
 }
 
-// GetWorkloadDomainOk returns a tuple with the WorkloadDomain field value if set, nil otherwise
+// GetWorkloadDomainOk returns a tuple with the WorkloadDomain field value
 // and a boolean to check if the value has been set.
 func (o *Workload) GetWorkloadDomainOk() (*string, bool) {
-	if o == nil || IsNil(o.WorkloadDomain) {
+	if o == nil {
 		return nil, false
 	}
-	return o.WorkloadDomain, true
+	return &o.WorkloadDomain, true
 }
 
-// HasWorkloadDomain returns a boolean if a field has been set.
-func (o *Workload) HasWorkloadDomain() bool {
-	if o != nil && !IsNil(o.WorkloadDomain) {
-		return true
-	}
-
-	return false
-}
-
-// SetWorkloadDomain gets a reference to the given string and assigns it to the WorkloadDomain field.
+// SetWorkloadDomain sets field value
 func (o *Workload) SetWorkloadDomain(v string) {
-	o.WorkloadDomain = &v
+	o.WorkloadDomain = v
 }
 
-// GetBindings returns the Bindings field value if set, zero value otherwise.
-func (o *Workload) GetBindings() []WorkloadBinding {
-	if o == nil || IsNil(o.Bindings) {
-		var ret []WorkloadBinding
-		return ret
-	}
-	return o.Bindings
-}
-
-// GetBindingsOk returns a tuple with the Bindings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Workload) GetBindingsOk() ([]WorkloadBinding, bool) {
-	if o == nil || IsNil(o.Bindings) {
-		return nil, false
-	}
-	return o.Bindings, true
-}
-
-// HasBindings returns a boolean if a field has been set.
-func (o *Workload) HasBindings() bool {
-	if o != nil && !IsNil(o.Bindings) {
-		return true
-	}
-
-	return false
-}
-
-// SetBindings gets a reference to the given []WorkloadBinding and assigns it to the Bindings field.
-func (o *Workload) SetBindings(v []WorkloadBinding) {
-	o.Bindings = v
-}
-
-// GetProductVersion returns the ProductVersion field value if set, zero value otherwise.
+// GetProductVersion returns the ProductVersion field value
 func (o *Workload) GetProductVersion() string {
-	if o == nil || IsNil(o.ProductVersion) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ProductVersion
+
+	return o.ProductVersion
 }
 
-// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
+// GetProductVersionOk returns a tuple with the ProductVersion field value
 // and a boolean to check if the value has been set.
 func (o *Workload) GetProductVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.ProductVersion) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ProductVersion, true
+	return &o.ProductVersion, true
 }
 
-// HasProductVersion returns a boolean if a field has been set.
-func (o *Workload) HasProductVersion() bool {
-	if o != nil && !IsNil(o.ProductVersion) {
-		return true
-	}
-
-	return false
-}
-
-// SetProductVersion gets a reference to the given string and assigns it to the ProductVersion field.
+// SetProductVersion sets field value
 func (o *Workload) SetProductVersion(v string) {
-	o.ProductVersion = &v
-}
-
-// GetVersionId returns the VersionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Workload) GetVersionId() string {
-	if o == nil || IsNil(o.VersionId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VersionId.Get()
-}
-
-// GetVersionIdOk returns a tuple with the VersionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Workload) GetVersionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionId.Get(), o.VersionId.IsSet()
-}
-
-// HasVersionId returns a boolean if a field has been set.
-func (o *Workload) HasVersionId() bool {
-	if o != nil && o.VersionId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionId gets a reference to the given NullableString and assigns it to the VersionId field.
-func (o *Workload) SetVersionId(v string) {
-	o.VersionId.Set(&v)
-}
-// SetVersionIdNil sets the value for VersionId to be an explicit nil
-func (o *Workload) SetVersionIdNil() {
-	o.VersionId.Set(nil)
-}
-
-// UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-func (o *Workload) UnsetVersionId() {
-	o.VersionId.Unset()
-}
-
-// GetVersionState returns the VersionState field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Workload) GetVersionState() string {
-	if o == nil || IsNil(o.VersionState.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Workload) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// HasVersionState returns a boolean if a field has been set.
-func (o *Workload) HasVersionState() bool {
-	if o != nil && o.VersionState.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionState gets a reference to the given NullableString and assigns it to the VersionState field.
-func (o *Workload) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-// SetVersionStateNil sets the value for VersionState to be an explicit nil
-func (o *Workload) SetVersionStateNil() {
-	o.VersionState.Set(nil)
-}
-
-// UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
-func (o *Workload) UnsetVersionState() {
-	o.VersionState.Unset()
+	o.ProductVersion = v
 }
 
 func (o Workload) MarshalJSON() ([]byte, error) {
@@ -631,22 +468,14 @@ func (o Workload) MarshalJSON() ([]byte, error) {
 
 func (o Workload) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if !IsNil(o.LastEditor) {
-		toSerialize["last_editor"] = o.LastEditor
-	}
-	if !IsNil(o.LastModified) {
-		toSerialize["last_modified"] = o.LastModified
-	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
+	toSerialize["last_editor"] = o.LastEditor
+	toSerialize["last_modified"] = o.LastModified
+	toSerialize["created_at"] = o.CreatedAt
 	if !IsNil(o.Infrastructure) {
 		toSerialize["infrastructure"] = o.Infrastructure
 	}
@@ -665,21 +494,8 @@ func (o Workload) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WorkloadDomainAllowAccess) {
 		toSerialize["workload_domain_allow_access"] = o.WorkloadDomainAllowAccess
 	}
-	if !IsNil(o.WorkloadDomain) {
-		toSerialize["workload_domain"] = o.WorkloadDomain
-	}
-	if !IsNil(o.Bindings) {
-		toSerialize["bindings"] = o.Bindings
-	}
-	if !IsNil(o.ProductVersion) {
-		toSerialize["product_version"] = o.ProductVersion
-	}
-	if o.VersionId.IsSet() {
-		toSerialize["version_id"] = o.VersionId.Get()
-	}
-	if o.VersionState.IsSet() {
-		toSerialize["version_state"] = o.VersionState.Get()
-	}
+	toSerialize["workload_domain"] = o.WorkloadDomain
+	toSerialize["product_version"] = o.ProductVersion
 	return toSerialize, nil
 }
 
@@ -688,7 +504,13 @@ func (o *Workload) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"id",
 		"name",
+		"last_editor",
+		"last_modified",
+		"created_at",
+		"workload_domain",
+		"product_version",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -1,6 +1,6 @@
 # \DigitalCertificatesCertificatesAPI
 
-All URIs are relative to *https://stage-api.azion.com/v4*
+All URIs are relative to *https://api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,11 +30,12 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-	certificate := *openapiclient.NewCertificate("Name_example") // Certificate | 
+	certificate := *openapiclient.NewCertificate(int64(123), "Name_example", "Issuer_example", []string{"SubjectName_example"}, "Validity_example", false, "Status_example", "StatusDetail_example", "Csr_example", "Challenge_example", "Authority_example", "KeyAlgorithm_example", "ProductVersion_example", "LastEditor_example", time.Now(), time.Now(), time.Now()) // Certificate | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -407,12 +408,13 @@ import (
 	"context"
 	"fmt"
 	"os"
+    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 	certificateId := int64(789) // int64 | The unique identifier of the certificate
-	certificate := *openapiclient.NewCertificate("Name_example") // Certificate | 
+	certificate := *openapiclient.NewCertificate(int64(123), "Name_example", "Issuer_example", []string{"SubjectName_example"}, "Validity_example", false, "Status_example", "StatusDetail_example", "Csr_example", "Challenge_example", "Authority_example", "KeyAlgorithm_example", "ProductVersion_example", "LastEditor_example", time.Now(), time.Now(), time.Now()) // Certificate | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

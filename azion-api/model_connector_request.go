@@ -20,8 +20,7 @@ import (
 // ConnectorRequest - struct for ConnectorRequest
 type ConnectorRequest struct {
 	ConnectorHTTPRequest *ConnectorHTTPRequest
-	ConnectorLiveIngestRequest *ConnectorLiveIngestRequest
-	ConnectorStorageRequest *ConnectorStorageRequest
+	ConnectorRequestBase *ConnectorRequestBase
 }
 
 // ConnectorHTTPRequestAsConnectorRequest is a convenience function that returns ConnectorHTTPRequest wrapped in ConnectorRequest
@@ -31,17 +30,10 @@ func ConnectorHTTPRequestAsConnectorRequest(v *ConnectorHTTPRequest) ConnectorRe
 	}
 }
 
-// ConnectorLiveIngestRequestAsConnectorRequest is a convenience function that returns ConnectorLiveIngestRequest wrapped in ConnectorRequest
-func ConnectorLiveIngestRequestAsConnectorRequest(v *ConnectorLiveIngestRequest) ConnectorRequest {
+// ConnectorRequestBaseAsConnectorRequest is a convenience function that returns ConnectorRequestBase wrapped in ConnectorRequest
+func ConnectorRequestBaseAsConnectorRequest(v *ConnectorRequestBase) ConnectorRequest {
 	return ConnectorRequest{
-		ConnectorLiveIngestRequest: v,
-	}
-}
-
-// ConnectorStorageRequestAsConnectorRequest is a convenience function that returns ConnectorStorageRequest wrapped in ConnectorRequest
-func ConnectorStorageRequestAsConnectorRequest(v *ConnectorStorageRequest) ConnectorRequest {
-	return ConnectorRequest{
-		ConnectorStorageRequest: v,
+		ConnectorRequestBase: v,
 	}
 }
 
@@ -67,50 +59,36 @@ func (dst *ConnectorRequest) UnmarshalJSON(data []byte) error {
 		dst.ConnectorHTTPRequest = nil
 	}
 
-	// try to unmarshal data into ConnectorLiveIngestRequest
-	err = newStrictDecoder(data).Decode(&dst.ConnectorLiveIngestRequest)
+	// try to unmarshal data into ConnectorRequestBase
+	err = newStrictDecoder(data).Decode(&dst.ConnectorRequestBase)
 	if err == nil {
-		jsonConnectorLiveIngestRequest, _ := json.Marshal(dst.ConnectorLiveIngestRequest)
-		if string(jsonConnectorLiveIngestRequest) == "{}" { // empty struct
-			dst.ConnectorLiveIngestRequest = nil
+		jsonConnectorRequestBase, _ := json.Marshal(dst.ConnectorRequestBase)
+		if string(jsonConnectorRequestBase) == "{}" { // empty struct
+			dst.ConnectorRequestBase = nil
 		} else {
-			if err = validator.Validate(dst.ConnectorLiveIngestRequest); err != nil {
-				dst.ConnectorLiveIngestRequest = nil
+			if err = validator.Validate(dst.ConnectorRequestBase); err != nil {
+				dst.ConnectorRequestBase = nil
 			} else {
 				match++
 			}
 		}
 	} else {
-		dst.ConnectorLiveIngestRequest = nil
-	}
-
-	// try to unmarshal data into ConnectorStorageRequest
-	err = newStrictDecoder(data).Decode(&dst.ConnectorStorageRequest)
-	if err == nil {
-		jsonConnectorStorageRequest, _ := json.Marshal(dst.ConnectorStorageRequest)
-		if string(jsonConnectorStorageRequest) == "{}" { // empty struct
-			dst.ConnectorStorageRequest = nil
-		} else {
-			if err = validator.Validate(dst.ConnectorStorageRequest); err != nil {
-				dst.ConnectorStorageRequest = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.ConnectorStorageRequest = nil
+		dst.ConnectorRequestBase = nil
 	}
 
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.ConnectorHTTPRequest = nil
-		dst.ConnectorLiveIngestRequest = nil
-		dst.ConnectorStorageRequest = nil
+		dst.ConnectorRequestBase = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(ConnectorRequest)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
+		if err != nil {
+			return fmt.Errorf("data failed to match schemas in oneOf(ConnectorRequest): %v", err)
+		}
+
 		return fmt.Errorf("data failed to match schemas in oneOf(ConnectorRequest)")
 	}
 }
@@ -121,12 +99,8 @@ func (src ConnectorRequest) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ConnectorHTTPRequest)
 	}
 
-	if src.ConnectorLiveIngestRequest != nil {
-		return json.Marshal(&src.ConnectorLiveIngestRequest)
-	}
-
-	if src.ConnectorStorageRequest != nil {
-		return json.Marshal(&src.ConnectorStorageRequest)
+	if src.ConnectorRequestBase != nil {
+		return json.Marshal(&src.ConnectorRequestBase)
 	}
 
 	return nil, nil // no data in oneOf schemas
@@ -141,12 +115,8 @@ func (obj *ConnectorRequest) GetActualInstance() (interface{}) {
 		return obj.ConnectorHTTPRequest
 	}
 
-	if obj.ConnectorLiveIngestRequest != nil {
-		return obj.ConnectorLiveIngestRequest
-	}
-
-	if obj.ConnectorStorageRequest != nil {
-		return obj.ConnectorStorageRequest
+	if obj.ConnectorRequestBase != nil {
+		return obj.ConnectorRequestBase
 	}
 
 	// all schemas are nil
@@ -159,12 +129,8 @@ func (obj ConnectorRequest) GetActualInstanceValue() (interface{}) {
 		return *obj.ConnectorHTTPRequest
 	}
 
-	if obj.ConnectorLiveIngestRequest != nil {
-		return *obj.ConnectorLiveIngestRequest
-	}
-
-	if obj.ConnectorStorageRequest != nil {
-		return *obj.ConnectorStorageRequest
+	if obj.ConnectorRequestBase != nil {
+		return *obj.ConnectorRequestBase
 	}
 
 	// all schemas are nil

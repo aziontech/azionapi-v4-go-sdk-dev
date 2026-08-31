@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** |  | [optional] 
+**Id** | **int64** |  | 
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 **Criteria** | [**[][]ApplicationCriterionField**]([]ApplicationCriterionField.md) |  | 
 **Behaviors** | [**[]ResponsePhaseBehavior**](ResponsePhaseBehavior.md) |  | 
 **Description** | Pointer to **string** |  | [optional] 
-**Order** | Pointer to **int64** |  | [optional] 
-**LastEditor** | Pointer to **NullableString** |  | [optional] 
-**LastModified** | Pointer to **NullableTime** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**Order** | **int64** |  | 
+**LastEditor** | **NullableString** |  | 
+**LastModified** | **NullableTime** |  | 
+**CreatedAt** | **time.Time** |  | 
 
 ## Methods
 
 ### NewResponsePhaseRule
 
-`func NewResponsePhaseRule(name string, criteria [][]ApplicationCriterionField, behaviors []ResponsePhaseBehavior, ) *ResponsePhaseRule`
+`func NewResponsePhaseRule(id int64, name string, criteria [][]ApplicationCriterionField, behaviors []ResponsePhaseBehavior, order int64, lastEditor NullableString, lastModified NullableTime, createdAt time.Time, ) *ResponsePhaseRule`
 
 NewResponsePhaseRule instantiates a new ResponsePhaseRule object
 This constructor will assign default values to properties that have it defined,
@@ -53,11 +53,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *ResponsePhaseRule) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -188,11 +183,6 @@ and a boolean to check if the value has been set.
 
 SetOrder sets Order field to given value.
 
-### HasOrder
-
-`func (o *ResponsePhaseRule) HasOrder() bool`
-
-HasOrder returns a boolean if a field has been set.
 
 ### GetLastEditor
 
@@ -213,11 +203,6 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
-### HasLastEditor
-
-`func (o *ResponsePhaseRule) HasLastEditor() bool`
-
-HasLastEditor returns a boolean if a field has been set.
 
 ### SetLastEditorNil
 
@@ -248,11 +233,6 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
-### HasLastModified
-
-`func (o *ResponsePhaseRule) HasLastModified() bool`
-
-HasLastModified returns a boolean if a field has been set.
 
 ### SetLastModifiedNil
 
@@ -283,11 +263,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *ResponsePhaseRule) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

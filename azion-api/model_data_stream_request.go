@@ -26,7 +26,7 @@ type DataStreamRequest struct {
 	Active *bool `json:"active,omitempty"`
 	Inputs []InputInputDataSourceAttributesRequest `json:"inputs"`
 	Transform []TransformRequest `json:"transform"`
-	Outputs []OutputRequestBase `json:"outputs"`
+	Outputs []OutputRequest `json:"outputs"`
 }
 
 type _DataStreamRequest DataStreamRequest
@@ -35,7 +35,7 @@ type _DataStreamRequest DataStreamRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataStreamRequest(name string, inputs []InputInputDataSourceAttributesRequest, transform []TransformRequest, outputs []OutputRequestBase) *DataStreamRequest {
+func NewDataStreamRequest(name string, inputs []InputInputDataSourceAttributesRequest, transform []TransformRequest, outputs []OutputRequest) *DataStreamRequest {
 	this := DataStreamRequest{}
 	this.Name = name
 	this.Inputs = inputs
@@ -157,9 +157,9 @@ func (o *DataStreamRequest) SetTransform(v []TransformRequest) {
 }
 
 // GetOutputs returns the Outputs field value
-func (o *DataStreamRequest) GetOutputs() []OutputRequestBase {
+func (o *DataStreamRequest) GetOutputs() []OutputRequest {
 	if o == nil {
-		var ret []OutputRequestBase
+		var ret []OutputRequest
 		return ret
 	}
 
@@ -168,7 +168,7 @@ func (o *DataStreamRequest) GetOutputs() []OutputRequestBase {
 
 // GetOutputsOk returns a tuple with the Outputs field value
 // and a boolean to check if the value has been set.
-func (o *DataStreamRequest) GetOutputsOk() ([]OutputRequestBase, bool) {
+func (o *DataStreamRequest) GetOutputsOk() ([]OutputRequest, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -176,7 +176,7 @@ func (o *DataStreamRequest) GetOutputsOk() ([]OutputRequestBase, bool) {
 }
 
 // SetOutputs sets field value
-func (o *DataStreamRequest) SetOutputs(v []OutputRequestBase) {
+func (o *DataStreamRequest) SetOutputs(v []OutputRequest) {
 	o.Outputs = v
 }
 

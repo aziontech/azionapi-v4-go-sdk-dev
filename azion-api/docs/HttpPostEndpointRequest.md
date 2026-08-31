@@ -9,13 +9,12 @@ Name | Type | Description | Notes
 **PayloadFormat** | Pointer to **string** |  | [optional] 
 **MaxSize** | Pointer to **NullableInt64** |  | [optional] 
 **Headers** | **map[string]string** |  | 
-**Type** | **string** | Type identifier for this endpoint (standard) | 
 
 ## Methods
 
 ### NewHttpPostEndpointRequest
 
-`func NewHttpPostEndpointRequest(url string, headers map[string]string, type_ string, ) *HttpPostEndpointRequest`
+`func NewHttpPostEndpointRequest(url string, headers map[string]string, ) *HttpPostEndpointRequest`
 
 NewHttpPostEndpointRequest instantiates a new HttpPostEndpointRequest object
 This constructor will assign default values to properties that have it defined,
@@ -153,26 +152,6 @@ and a boolean to check if the value has been set.
 `func (o *HttpPostEndpointRequest) SetHeaders(v map[string]string)`
 
 SetHeaders sets Headers field to given value.
-
-
-### GetType
-
-`func (o *HttpPostEndpointRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *HttpPostEndpointRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *HttpPostEndpointRequest) SetType(v string)`
-
-SetType sets Type field to given value.
 
 
 

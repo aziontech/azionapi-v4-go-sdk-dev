@@ -1,6 +1,6 @@
 # \DataStreamStreamsAPI
 
-All URIs are relative to *https://stage-api.azion.com/v4*
+All URIs are relative to *https://api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	dataStreamRequest := *openapiclient.NewDataStreamRequest("Name_example", []openapiclient.InputInputDataSourceAttributesRequest{*openapiclient.NewInputInputDataSourceAttributesRequest("Type_example", *openapiclient.NewInputDataSourceRequest("DataSource_example"))}, []openapiclient.TransformRequest{openapiclient.TransformRequest{TransformTransformFilterWorkloadsAttributesRequest: openapiclient.NewTransformTransformFilterWorkloadsAttributesRequest("Type_example", *openapiclient.NewTransformFilterWorkloadsRequest([]int64{int64(123)}))}}, []openapiclient.OutputRequestBase{*openapiclient.NewOutputRequestBase("Type_example", openapiclient.OutputRequest{AWSKinesisFirehoseEndpointRequest: openapiclient.NewAWSKinesisFirehoseEndpointRequest("AccessKey_example", "StreamName_example", "Region_example", "SecretKey_example", "Type_example")})}) // DataStreamRequest | 
+	dataStreamRequest := *openapiclient.NewDataStreamRequest("Name_example", []openapiclient.InputInputDataSourceAttributesRequest{*openapiclient.NewInputInputDataSourceAttributesRequest("Type_example", *openapiclient.NewInputDataSourceRequest("DataSource_example"))}, []openapiclient.TransformRequest{openapiclient.TransformRequest{TransformTransformFilterWorkloadsAttributesRequest: openapiclient.NewTransformTransformFilterWorkloadsAttributesRequest("Type_example", *openapiclient.NewTransformFilterWorkloadsRequest([]int64{int64(123)}))}}, []openapiclient.OutputRequest{openapiclient.OutputRequest{AWSKinesisFirehoseEndpointAttributesRequest: openapiclient.NewAWSKinesisFirehoseEndpointAttributesRequest("Type_example", *openapiclient.NewAWSKinesisFirehoseEndpointRequest("AccessKey_example", "StreamName_example", "Region_example", "SecretKey_example"))}}) // DataStreamRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -410,7 +410,7 @@ import (
 
 func main() {
 	streamId := int64(789) // int64 | A unique integer value identifying the data stream.
-	dataStreamRequest := *openapiclient.NewDataStreamRequest("Name_example", []openapiclient.InputInputDataSourceAttributesRequest{*openapiclient.NewInputInputDataSourceAttributesRequest("Type_example", *openapiclient.NewInputDataSourceRequest("DataSource_example"))}, []openapiclient.TransformRequest{openapiclient.TransformRequest{TransformTransformFilterWorkloadsAttributesRequest: openapiclient.NewTransformTransformFilterWorkloadsAttributesRequest("Type_example", *openapiclient.NewTransformFilterWorkloadsRequest([]int64{int64(123)}))}}, []openapiclient.OutputRequestBase{*openapiclient.NewOutputRequestBase("Type_example", openapiclient.OutputRequest{AWSKinesisFirehoseEndpointRequest: openapiclient.NewAWSKinesisFirehoseEndpointRequest("AccessKey_example", "StreamName_example", "Region_example", "SecretKey_example", "Type_example")})}) // DataStreamRequest | 
+	dataStreamRequest := *openapiclient.NewDataStreamRequest("Name_example", []openapiclient.InputInputDataSourceAttributesRequest{*openapiclient.NewInputInputDataSourceAttributesRequest("Type_example", *openapiclient.NewInputDataSourceRequest("DataSource_example"))}, []openapiclient.TransformRequest{openapiclient.TransformRequest{TransformTransformFilterWorkloadsAttributesRequest: openapiclient.NewTransformTransformFilterWorkloadsAttributesRequest("Type_example", *openapiclient.NewTransformFilterWorkloadsRequest([]int64{int64(123)}))}}, []openapiclient.OutputRequest{openapiclient.OutputRequest{AWSKinesisFirehoseEndpointAttributesRequest: openapiclient.NewAWSKinesisFirehoseEndpointAttributesRequest("Type_example", *openapiclient.NewAWSKinesisFirehoseEndpointRequest("AccessKey_example", "StreamName_example", "Region_example", "SecretKey_example"))}}) // DataStreamRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

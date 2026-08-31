@@ -24,8 +24,6 @@ var _ MappedNullable = &ElasticsearchEndpointRequest{}
 type ElasticsearchEndpointRequest struct {
 	Url string `json:"url"`
 	ApiKey string `json:"api_key"`
-	// Type identifier for this endpoint (elasticsearch)
-	Type string `json:"type"`
 }
 
 type _ElasticsearchEndpointRequest ElasticsearchEndpointRequest
@@ -34,11 +32,10 @@ type _ElasticsearchEndpointRequest ElasticsearchEndpointRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewElasticsearchEndpointRequest(url string, apiKey string, type_ string) *ElasticsearchEndpointRequest {
+func NewElasticsearchEndpointRequest(url string, apiKey string) *ElasticsearchEndpointRequest {
 	this := ElasticsearchEndpointRequest{}
 	this.Url = url
 	this.ApiKey = apiKey
-	this.Type = type_
 	return &this
 }
 
@@ -98,30 +95,6 @@ func (o *ElasticsearchEndpointRequest) SetApiKey(v string) {
 	o.ApiKey = v
 }
 
-// GetType returns the Type field value
-func (o *ElasticsearchEndpointRequest) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *ElasticsearchEndpointRequest) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *ElasticsearchEndpointRequest) SetType(v string) {
-	o.Type = v
-}
-
 func (o ElasticsearchEndpointRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -134,7 +107,6 @@ func (o ElasticsearchEndpointRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
 	toSerialize["api_key"] = o.ApiKey
-	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -145,7 +117,6 @@ func (o *ElasticsearchEndpointRequest) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"url",
 		"api_key",
-		"type",
 	}
 
 	allProperties := make(map[string]interface{})

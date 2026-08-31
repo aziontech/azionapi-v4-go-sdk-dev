@@ -21,40 +21,36 @@ import (
 // checks if the Certificate type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Certificate{}
 
-// Certificate Certificate payload with build state fields (``version_id``, ``version_state``).
+// Certificate struct for Certificate
 type Certificate struct {
-	Id *int64 `json:"id,omitempty"`
+	Id int64 `json:"id"`
 	Name string `json:"name"`
 	Certificate NullableString `json:"certificate,omitempty"`
 	PrivateKey NullableString `json:"private_key,omitempty"`
-	Issuer NullableString `json:"issuer,omitempty"`
-	SubjectName []string `json:"subject_name,omitempty"`
-	Validity NullableString `json:"validity,omitempty"`
+	Issuer NullableString `json:"issuer"`
+	SubjectName []string `json:"subject_name"`
+	Validity NullableString `json:"validity"`
 	// The value can't be changed after the certificate creation.  * `certificate` - Certificate * `trusted_ca_certificate` - Trusted CA Certificate
 	Type *string `json:"type,omitempty"`
-	Managed *bool `json:"managed,omitempty"`
+	Managed bool `json:"managed"`
 	// * `pending` - Pending * `challenge_verification` - Challenge Verification * `active` - Active * `inactive` - Inactive * `expired` - Expired * `failed` - Failed
-	Status *string `json:"status,omitempty"`
-	StatusDetail *string `json:"status_detail,omitempty"`
-	Csr NullableString `json:"csr,omitempty"`
+	Status string `json:"status"`
+	StatusDetail string `json:"status_detail"`
+	Csr NullableString `json:"csr"`
 	// * `dns` - Uses DNS to solve the ACME challenge. * `http` - Uses HTTP to solve the ACME challenge.
-	Challenge *string `json:"challenge,omitempty"`
+	Challenge string `json:"challenge"`
 	// * `lets_encrypt` - lets_encrypt
-	Authority *string `json:"authority,omitempty"`
-	KeyAlgorithm *string `json:"key_algorithm,omitempty"`
+	Authority string `json:"authority"`
+	KeyAlgorithm string `json:"key_algorithm"`
 	Active *bool `json:"active,omitempty"`
-	ProductVersion *string `json:"product_version,omitempty"`
-	LastEditor *string `json:"last_editor,omitempty"`
+	ProductVersion string `json:"product_version"`
+	LastEditor string `json:"last_editor"`
 	// Timestamp of the certificate creation on the platform.
-	CreatedAt NullableTime `json:"created_at,omitempty"`
+	CreatedAt NullableTime `json:"created_at"`
 	// Timestamp of the last modification made to the certificate content on the platform.
-	LastModified *time.Time `json:"last_modified,omitempty"`
+	LastModified time.Time `json:"last_modified"`
 	// Timestamp indicating when the managed certificate was renewed on our platform.
-	RenewedAt NullableTime `json:"renewed_at,omitempty"`
-	// ID of the version metadata (use in /versions/{id} URLs)
-	VersionId NullableString `json:"version_id,omitempty"`
-	// Build state of this version (queued, building, ready, error, ...)
-	VersionState NullableString `json:"version_state,omitempty"`
+	RenewedAt NullableTime `json:"renewed_at"`
 }
 
 type _Certificate Certificate
@@ -63,9 +59,25 @@ type _Certificate Certificate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCertificate(name string) *Certificate {
+func NewCertificate(id int64, name string, issuer NullableString, subjectName []string, validity NullableString, managed bool, status string, statusDetail string, csr NullableString, challenge string, authority string, keyAlgorithm string, productVersion string, lastEditor string, createdAt NullableTime, lastModified time.Time, renewedAt NullableTime) *Certificate {
 	this := Certificate{}
+	this.Id = id
 	this.Name = name
+	this.Issuer = issuer
+	this.SubjectName = subjectName
+	this.Validity = validity
+	this.Managed = managed
+	this.Status = status
+	this.StatusDetail = statusDetail
+	this.Csr = csr
+	this.Challenge = challenge
+	this.Authority = authority
+	this.KeyAlgorithm = keyAlgorithm
+	this.ProductVersion = productVersion
+	this.LastEditor = lastEditor
+	this.CreatedAt = createdAt
+	this.LastModified = lastModified
+	this.RenewedAt = renewedAt
 	return &this
 }
 
@@ -77,36 +89,28 @@ func NewCertificateWithDefaults() *Certificate {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *Certificate) GetId() int64 {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *Certificate) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given int64 and assigns it to the Id field.
+// SetId sets field value
 func (o *Certificate) SetId(v int64) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetName returns the Name field value
@@ -217,16 +221,18 @@ func (o *Certificate) UnsetPrivateKey() {
 	o.PrivateKey.Unset()
 }
 
-// GetIssuer returns the Issuer field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetIssuer returns the Issuer field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *Certificate) GetIssuer() string {
-	if o == nil || IsNil(o.Issuer.Get()) {
+	if o == nil || o.Issuer.Get() == nil {
 		var ret string
 		return ret
 	}
+
 	return *o.Issuer.Get()
 }
 
-// GetIssuerOk returns a tuple with the Issuer field value if set, nil otherwise
+// GetIssuerOk returns a tuple with the Issuer field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Certificate) GetIssuerOk() (*string, bool) {
@@ -236,71 +242,47 @@ func (o *Certificate) GetIssuerOk() (*string, bool) {
 	return o.Issuer.Get(), o.Issuer.IsSet()
 }
 
-// HasIssuer returns a boolean if a field has been set.
-func (o *Certificate) HasIssuer() bool {
-	if o != nil && o.Issuer.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetIssuer gets a reference to the given NullableString and assigns it to the Issuer field.
+// SetIssuer sets field value
 func (o *Certificate) SetIssuer(v string) {
 	o.Issuer.Set(&v)
 }
-// SetIssuerNil sets the value for Issuer to be an explicit nil
-func (o *Certificate) SetIssuerNil() {
-	o.Issuer.Set(nil)
-}
 
-// UnsetIssuer ensures that no value is present for Issuer, not even an explicit nil
-func (o *Certificate) UnsetIssuer() {
-	o.Issuer.Unset()
-}
-
-// GetSubjectName returns the SubjectName field value if set, zero value otherwise.
+// GetSubjectName returns the SubjectName field value
 func (o *Certificate) GetSubjectName() []string {
-	if o == nil || IsNil(o.SubjectName) {
+	if o == nil {
 		var ret []string
 		return ret
 	}
+
 	return o.SubjectName
 }
 
-// GetSubjectNameOk returns a tuple with the SubjectName field value if set, nil otherwise
+// GetSubjectNameOk returns a tuple with the SubjectName field value
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetSubjectNameOk() ([]string, bool) {
-	if o == nil || IsNil(o.SubjectName) {
+	if o == nil {
 		return nil, false
 	}
 	return o.SubjectName, true
 }
 
-// HasSubjectName returns a boolean if a field has been set.
-func (o *Certificate) HasSubjectName() bool {
-	if o != nil && !IsNil(o.SubjectName) {
-		return true
-	}
-
-	return false
-}
-
-// SetSubjectName gets a reference to the given []string and assigns it to the SubjectName field.
+// SetSubjectName sets field value
 func (o *Certificate) SetSubjectName(v []string) {
 	o.SubjectName = v
 }
 
-// GetValidity returns the Validity field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetValidity returns the Validity field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *Certificate) GetValidity() string {
-	if o == nil || IsNil(o.Validity.Get()) {
+	if o == nil || o.Validity.Get() == nil {
 		var ret string
 		return ret
 	}
+
 	return *o.Validity.Get()
 }
 
-// GetValidityOk returns a tuple with the Validity field value if set, nil otherwise
+// GetValidityOk returns a tuple with the Validity field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Certificate) GetValidityOk() (*string, bool) {
@@ -310,27 +292,9 @@ func (o *Certificate) GetValidityOk() (*string, bool) {
 	return o.Validity.Get(), o.Validity.IsSet()
 }
 
-// HasValidity returns a boolean if a field has been set.
-func (o *Certificate) HasValidity() bool {
-	if o != nil && o.Validity.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetValidity gets a reference to the given NullableString and assigns it to the Validity field.
+// SetValidity sets field value
 func (o *Certificate) SetValidity(v string) {
 	o.Validity.Set(&v)
-}
-// SetValidityNil sets the value for Validity to be an explicit nil
-func (o *Certificate) SetValidityNil() {
-	o.Validity.Set(nil)
-}
-
-// UnsetValidity ensures that no value is present for Validity, not even an explicit nil
-func (o *Certificate) UnsetValidity() {
-	o.Validity.Unset()
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -365,112 +329,90 @@ func (o *Certificate) SetType(v string) {
 	o.Type = &v
 }
 
-// GetManaged returns the Managed field value if set, zero value otherwise.
+// GetManaged returns the Managed field value
 func (o *Certificate) GetManaged() bool {
-	if o == nil || IsNil(o.Managed) {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Managed
+
+	return o.Managed
 }
 
-// GetManagedOk returns a tuple with the Managed field value if set, nil otherwise
+// GetManagedOk returns a tuple with the Managed field value
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetManagedOk() (*bool, bool) {
-	if o == nil || IsNil(o.Managed) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Managed, true
+	return &o.Managed, true
 }
 
-// HasManaged returns a boolean if a field has been set.
-func (o *Certificate) HasManaged() bool {
-	if o != nil && !IsNil(o.Managed) {
-		return true
-	}
-
-	return false
-}
-
-// SetManaged gets a reference to the given bool and assigns it to the Managed field.
+// SetManaged sets field value
 func (o *Certificate) SetManaged(v bool) {
-	o.Managed = &v
+	o.Managed = v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
+// GetStatus returns the Status field value
 func (o *Certificate) GetStatus() string {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Status
+
+	return o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Status, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *Certificate) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
+// SetStatus sets field value
 func (o *Certificate) SetStatus(v string) {
-	o.Status = &v
+	o.Status = v
 }
 
-// GetStatusDetail returns the StatusDetail field value if set, zero value otherwise.
+// GetStatusDetail returns the StatusDetail field value
 func (o *Certificate) GetStatusDetail() string {
-	if o == nil || IsNil(o.StatusDetail) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.StatusDetail
+
+	return o.StatusDetail
 }
 
-// GetStatusDetailOk returns a tuple with the StatusDetail field value if set, nil otherwise
+// GetStatusDetailOk returns a tuple with the StatusDetail field value
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetStatusDetailOk() (*string, bool) {
-	if o == nil || IsNil(o.StatusDetail) {
+	if o == nil {
 		return nil, false
 	}
-	return o.StatusDetail, true
+	return &o.StatusDetail, true
 }
 
-// HasStatusDetail returns a boolean if a field has been set.
-func (o *Certificate) HasStatusDetail() bool {
-	if o != nil && !IsNil(o.StatusDetail) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatusDetail gets a reference to the given string and assigns it to the StatusDetail field.
+// SetStatusDetail sets field value
 func (o *Certificate) SetStatusDetail(v string) {
-	o.StatusDetail = &v
+	o.StatusDetail = v
 }
 
-// GetCsr returns the Csr field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCsr returns the Csr field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *Certificate) GetCsr() string {
-	if o == nil || IsNil(o.Csr.Get()) {
+	if o == nil || o.Csr.Get() == nil {
 		var ret string
 		return ret
 	}
+
 	return *o.Csr.Get()
 }
 
-// GetCsrOk returns a tuple with the Csr field value if set, nil otherwise
+// GetCsrOk returns a tuple with the Csr field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Certificate) GetCsrOk() (*string, bool) {
@@ -480,123 +422,81 @@ func (o *Certificate) GetCsrOk() (*string, bool) {
 	return o.Csr.Get(), o.Csr.IsSet()
 }
 
-// HasCsr returns a boolean if a field has been set.
-func (o *Certificate) HasCsr() bool {
-	if o != nil && o.Csr.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCsr gets a reference to the given NullableString and assigns it to the Csr field.
+// SetCsr sets field value
 func (o *Certificate) SetCsr(v string) {
 	o.Csr.Set(&v)
 }
-// SetCsrNil sets the value for Csr to be an explicit nil
-func (o *Certificate) SetCsrNil() {
-	o.Csr.Set(nil)
-}
 
-// UnsetCsr ensures that no value is present for Csr, not even an explicit nil
-func (o *Certificate) UnsetCsr() {
-	o.Csr.Unset()
-}
-
-// GetChallenge returns the Challenge field value if set, zero value otherwise.
+// GetChallenge returns the Challenge field value
 func (o *Certificate) GetChallenge() string {
-	if o == nil || IsNil(o.Challenge) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Challenge
+
+	return o.Challenge
 }
 
-// GetChallengeOk returns a tuple with the Challenge field value if set, nil otherwise
+// GetChallengeOk returns a tuple with the Challenge field value
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetChallengeOk() (*string, bool) {
-	if o == nil || IsNil(o.Challenge) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Challenge, true
+	return &o.Challenge, true
 }
 
-// HasChallenge returns a boolean if a field has been set.
-func (o *Certificate) HasChallenge() bool {
-	if o != nil && !IsNil(o.Challenge) {
-		return true
-	}
-
-	return false
-}
-
-// SetChallenge gets a reference to the given string and assigns it to the Challenge field.
+// SetChallenge sets field value
 func (o *Certificate) SetChallenge(v string) {
-	o.Challenge = &v
+	o.Challenge = v
 }
 
-// GetAuthority returns the Authority field value if set, zero value otherwise.
+// GetAuthority returns the Authority field value
 func (o *Certificate) GetAuthority() string {
-	if o == nil || IsNil(o.Authority) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Authority
+
+	return o.Authority
 }
 
-// GetAuthorityOk returns a tuple with the Authority field value if set, nil otherwise
+// GetAuthorityOk returns a tuple with the Authority field value
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetAuthorityOk() (*string, bool) {
-	if o == nil || IsNil(o.Authority) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Authority, true
+	return &o.Authority, true
 }
 
-// HasAuthority returns a boolean if a field has been set.
-func (o *Certificate) HasAuthority() bool {
-	if o != nil && !IsNil(o.Authority) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthority gets a reference to the given string and assigns it to the Authority field.
+// SetAuthority sets field value
 func (o *Certificate) SetAuthority(v string) {
-	o.Authority = &v
+	o.Authority = v
 }
 
-// GetKeyAlgorithm returns the KeyAlgorithm field value if set, zero value otherwise.
+// GetKeyAlgorithm returns the KeyAlgorithm field value
 func (o *Certificate) GetKeyAlgorithm() string {
-	if o == nil || IsNil(o.KeyAlgorithm) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.KeyAlgorithm
+
+	return o.KeyAlgorithm
 }
 
-// GetKeyAlgorithmOk returns a tuple with the KeyAlgorithm field value if set, nil otherwise
+// GetKeyAlgorithmOk returns a tuple with the KeyAlgorithm field value
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetKeyAlgorithmOk() (*string, bool) {
-	if o == nil || IsNil(o.KeyAlgorithm) {
+	if o == nil {
 		return nil, false
 	}
-	return o.KeyAlgorithm, true
+	return &o.KeyAlgorithm, true
 }
 
-// HasKeyAlgorithm returns a boolean if a field has been set.
-func (o *Certificate) HasKeyAlgorithm() bool {
-	if o != nil && !IsNil(o.KeyAlgorithm) {
-		return true
-	}
-
-	return false
-}
-
-// SetKeyAlgorithm gets a reference to the given string and assigns it to the KeyAlgorithm field.
+// SetKeyAlgorithm sets field value
 func (o *Certificate) SetKeyAlgorithm(v string) {
-	o.KeyAlgorithm = &v
+	o.KeyAlgorithm = v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -631,80 +531,66 @@ func (o *Certificate) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetProductVersion returns the ProductVersion field value if set, zero value otherwise.
+// GetProductVersion returns the ProductVersion field value
 func (o *Certificate) GetProductVersion() string {
-	if o == nil || IsNil(o.ProductVersion) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ProductVersion
+
+	return o.ProductVersion
 }
 
-// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
+// GetProductVersionOk returns a tuple with the ProductVersion field value
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetProductVersionOk() (*string, bool) {
-	if o == nil || IsNil(o.ProductVersion) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ProductVersion, true
+	return &o.ProductVersion, true
 }
 
-// HasProductVersion returns a boolean if a field has been set.
-func (o *Certificate) HasProductVersion() bool {
-	if o != nil && !IsNil(o.ProductVersion) {
-		return true
-	}
-
-	return false
-}
-
-// SetProductVersion gets a reference to the given string and assigns it to the ProductVersion field.
+// SetProductVersion sets field value
 func (o *Certificate) SetProductVersion(v string) {
-	o.ProductVersion = &v
+	o.ProductVersion = v
 }
 
-// GetLastEditor returns the LastEditor field value if set, zero value otherwise.
+// GetLastEditor returns the LastEditor field value
 func (o *Certificate) GetLastEditor() string {
-	if o == nil || IsNil(o.LastEditor) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LastEditor
+
+	return o.LastEditor
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
+// GetLastEditorOk returns a tuple with the LastEditor field value
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetLastEditorOk() (*string, bool) {
-	if o == nil || IsNil(o.LastEditor) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastEditor, true
+	return &o.LastEditor, true
 }
 
-// HasLastEditor returns a boolean if a field has been set.
-func (o *Certificate) HasLastEditor() bool {
-	if o != nil && !IsNil(o.LastEditor) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
+// SetLastEditor sets field value
 func (o *Certificate) SetLastEditor(v string) {
-	o.LastEditor = &v
+	o.LastEditor = v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCreatedAt returns the CreatedAt field value
+// If the value is explicit nil, the zero value for time.Time will be returned
 func (o *Certificate) GetCreatedAt() time.Time {
-	if o == nil || IsNil(o.CreatedAt.Get()) {
+	if o == nil || o.CreatedAt.Get() == nil {
 		var ret time.Time
 		return ret
 	}
+
 	return *o.CreatedAt.Get()
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Certificate) GetCreatedAtOk() (*time.Time, bool) {
@@ -714,71 +600,47 @@ func (o *Certificate) GetCreatedAtOk() (*time.Time, bool) {
 	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *Certificate) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given NullableTime and assigns it to the CreatedAt field.
+// SetCreatedAt sets field value
 func (o *Certificate) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
-// SetCreatedAtNil sets the value for CreatedAt to be an explicit nil
-func (o *Certificate) SetCreatedAtNil() {
-	o.CreatedAt.Set(nil)
-}
 
-// UnsetCreatedAt ensures that no value is present for CreatedAt, not even an explicit nil
-func (o *Certificate) UnsetCreatedAt() {
-	o.CreatedAt.Unset()
-}
-
-// GetLastModified returns the LastModified field value if set, zero value otherwise.
+// GetLastModified returns the LastModified field value
 func (o *Certificate) GetLastModified() time.Time {
-	if o == nil || IsNil(o.LastModified) {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.LastModified
+
+	return o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
+// GetLastModifiedOk returns a tuple with the LastModified field value
 // and a boolean to check if the value has been set.
 func (o *Certificate) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil || IsNil(o.LastModified) {
+	if o == nil {
 		return nil, false
 	}
-	return o.LastModified, true
+	return &o.LastModified, true
 }
 
-// HasLastModified returns a boolean if a field has been set.
-func (o *Certificate) HasLastModified() bool {
-	if o != nil && !IsNil(o.LastModified) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
+// SetLastModified sets field value
 func (o *Certificate) SetLastModified(v time.Time) {
-	o.LastModified = &v
+	o.LastModified = v
 }
 
-// GetRenewedAt returns the RenewedAt field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetRenewedAt returns the RenewedAt field value
+// If the value is explicit nil, the zero value for time.Time will be returned
 func (o *Certificate) GetRenewedAt() time.Time {
-	if o == nil || IsNil(o.RenewedAt.Get()) {
+	if o == nil || o.RenewedAt.Get() == nil {
 		var ret time.Time
 		return ret
 	}
+
 	return *o.RenewedAt.Get()
 }
 
-// GetRenewedAtOk returns a tuple with the RenewedAt field value if set, nil otherwise
+// GetRenewedAtOk returns a tuple with the RenewedAt field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Certificate) GetRenewedAtOk() (*time.Time, bool) {
@@ -788,111 +650,9 @@ func (o *Certificate) GetRenewedAtOk() (*time.Time, bool) {
 	return o.RenewedAt.Get(), o.RenewedAt.IsSet()
 }
 
-// HasRenewedAt returns a boolean if a field has been set.
-func (o *Certificate) HasRenewedAt() bool {
-	if o != nil && o.RenewedAt.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRenewedAt gets a reference to the given NullableTime and assigns it to the RenewedAt field.
+// SetRenewedAt sets field value
 func (o *Certificate) SetRenewedAt(v time.Time) {
 	o.RenewedAt.Set(&v)
-}
-// SetRenewedAtNil sets the value for RenewedAt to be an explicit nil
-func (o *Certificate) SetRenewedAtNil() {
-	o.RenewedAt.Set(nil)
-}
-
-// UnsetRenewedAt ensures that no value is present for RenewedAt, not even an explicit nil
-func (o *Certificate) UnsetRenewedAt() {
-	o.RenewedAt.Unset()
-}
-
-// GetVersionId returns the VersionId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Certificate) GetVersionId() string {
-	if o == nil || IsNil(o.VersionId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VersionId.Get()
-}
-
-// GetVersionIdOk returns a tuple with the VersionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Certificate) GetVersionIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionId.Get(), o.VersionId.IsSet()
-}
-
-// HasVersionId returns a boolean if a field has been set.
-func (o *Certificate) HasVersionId() bool {
-	if o != nil && o.VersionId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionId gets a reference to the given NullableString and assigns it to the VersionId field.
-func (o *Certificate) SetVersionId(v string) {
-	o.VersionId.Set(&v)
-}
-// SetVersionIdNil sets the value for VersionId to be an explicit nil
-func (o *Certificate) SetVersionIdNil() {
-	o.VersionId.Set(nil)
-}
-
-// UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-func (o *Certificate) UnsetVersionId() {
-	o.VersionId.Unset()
-}
-
-// GetVersionState returns the VersionState field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *Certificate) GetVersionState() string {
-	if o == nil || IsNil(o.VersionState.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Certificate) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// HasVersionState returns a boolean if a field has been set.
-func (o *Certificate) HasVersionState() bool {
-	if o != nil && o.VersionState.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetVersionState gets a reference to the given NullableString and assigns it to the VersionState field.
-func (o *Certificate) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-// SetVersionStateNil sets the value for VersionState to be an explicit nil
-func (o *Certificate) SetVersionStateNil() {
-	o.VersionState.Set(nil)
-}
-
-// UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
-func (o *Certificate) UnsetVersionState() {
-	o.VersionState.Unset()
 }
 
 func (o Certificate) MarshalJSON() ([]byte, error) {
@@ -905,9 +665,7 @@ func (o Certificate) MarshalJSON() ([]byte, error) {
 
 func (o Certificate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	toSerialize["name"] = o.Name
 	if o.Certificate.IsSet() {
 		toSerialize["certificate"] = o.Certificate.Get()
@@ -915,63 +673,27 @@ func (o Certificate) ToMap() (map[string]interface{}, error) {
 	if o.PrivateKey.IsSet() {
 		toSerialize["private_key"] = o.PrivateKey.Get()
 	}
-	if o.Issuer.IsSet() {
-		toSerialize["issuer"] = o.Issuer.Get()
-	}
-	if !IsNil(o.SubjectName) {
-		toSerialize["subject_name"] = o.SubjectName
-	}
-	if o.Validity.IsSet() {
-		toSerialize["validity"] = o.Validity.Get()
-	}
+	toSerialize["issuer"] = o.Issuer.Get()
+	toSerialize["subject_name"] = o.SubjectName
+	toSerialize["validity"] = o.Validity.Get()
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !IsNil(o.Managed) {
-		toSerialize["managed"] = o.Managed
-	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !IsNil(o.StatusDetail) {
-		toSerialize["status_detail"] = o.StatusDetail
-	}
-	if o.Csr.IsSet() {
-		toSerialize["csr"] = o.Csr.Get()
-	}
-	if !IsNil(o.Challenge) {
-		toSerialize["challenge"] = o.Challenge
-	}
-	if !IsNil(o.Authority) {
-		toSerialize["authority"] = o.Authority
-	}
-	if !IsNil(o.KeyAlgorithm) {
-		toSerialize["key_algorithm"] = o.KeyAlgorithm
-	}
+	toSerialize["managed"] = o.Managed
+	toSerialize["status"] = o.Status
+	toSerialize["status_detail"] = o.StatusDetail
+	toSerialize["csr"] = o.Csr.Get()
+	toSerialize["challenge"] = o.Challenge
+	toSerialize["authority"] = o.Authority
+	toSerialize["key_algorithm"] = o.KeyAlgorithm
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if !IsNil(o.ProductVersion) {
-		toSerialize["product_version"] = o.ProductVersion
-	}
-	if !IsNil(o.LastEditor) {
-		toSerialize["last_editor"] = o.LastEditor
-	}
-	if o.CreatedAt.IsSet() {
-		toSerialize["created_at"] = o.CreatedAt.Get()
-	}
-	if !IsNil(o.LastModified) {
-		toSerialize["last_modified"] = o.LastModified
-	}
-	if o.RenewedAt.IsSet() {
-		toSerialize["renewed_at"] = o.RenewedAt.Get()
-	}
-	if o.VersionId.IsSet() {
-		toSerialize["version_id"] = o.VersionId.Get()
-	}
-	if o.VersionState.IsSet() {
-		toSerialize["version_state"] = o.VersionState.Get()
-	}
+	toSerialize["product_version"] = o.ProductVersion
+	toSerialize["last_editor"] = o.LastEditor
+	toSerialize["created_at"] = o.CreatedAt.Get()
+	toSerialize["last_modified"] = o.LastModified
+	toSerialize["renewed_at"] = o.RenewedAt.Get()
 	return toSerialize, nil
 }
 
@@ -980,7 +702,23 @@ func (o *Certificate) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"id",
 		"name",
+		"issuer",
+		"subject_name",
+		"validity",
+		"managed",
+		"status",
+		"status_detail",
+		"csr",
+		"challenge",
+		"authority",
+		"key_algorithm",
+		"product_version",
+		"last_editor",
+		"created_at",
+		"last_modified",
+		"renewed_at",
 	}
 
 	allProperties := make(map[string]interface{})

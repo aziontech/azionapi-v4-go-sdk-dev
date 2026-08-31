@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** |  | [optional] 
+**Id** | **int64** |  | 
 **Name** | **string** |  | 
 **BrowserCache** | Pointer to [**BrowserCacheModule**](BrowserCacheModule.md) |  | [optional] 
 **Modules** | Pointer to [**CacheSettingsModules**](CacheSettingsModules.md) |  | [optional] 
-**CreatedAt** | Pointer to **NullableTime** |  | [optional] 
+**CreatedAt** | **NullableTime** |  | 
 
 ## Methods
 
 ### NewCacheSetting
 
-`func NewCacheSetting(name string, ) *CacheSetting`
+`func NewCacheSetting(id int64, name string, createdAt NullableTime, ) *CacheSetting`
 
 NewCacheSetting instantiates a new CacheSetting object
 This constructor will assign default values to properties that have it defined,
@@ -48,11 +48,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *CacheSetting) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -143,11 +138,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *CacheSetting) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 ### SetCreatedAtNil
 
