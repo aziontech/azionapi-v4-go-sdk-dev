@@ -1,0 +1,255 @@
+openapi: 3.0.3
+info:
+  title: kv-api
+  version: 1.0.0
+  description: REST API OpenAPI documentation for the KV API
+paths:
+  /workspace/kv/namespaces:
+    get:
+      operationId: list_namespaces
+      description: Returns a paginated list of namespaces for the authenticated account.
+      summary: List namespaces
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+          pattern: ^.*$
+        description: Comma-separated list of fields to include in the response
+      - in: query
+        name: page
+        schema:
+          type: integer
+        description: Page number for pagination
+      - in: query
+        name: page_size
+        schema:
+          type: integer
+        description: Number of items per page
+      tags:
+      - KV - Namespaces
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamespaceList'
+          description: Paginated list of namespaces
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Validation error
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal server error
+    post:
+      operationId: create_namespace
+      description: Creates a new namespace in the authenticated account.
+      summary: Create namespace
+      tags:
+      - KV - Namespaces
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NamespaceCreateRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Namespace'
+          description: Namespace created
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Validation error
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal server error
+  /workspace/kv/namespaces/{namespace}:
+    get:
+      operationId: retrieve_namespace
+      description: Returns a specific namespace by name, if it belongs to the authenticated
+        account.
+      summary: Retrieve namespace
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+          pattern: ^.*$
+        description: Comma-separated list of fields to include in the response
+      - in: path
+        name: namespace
+        schema:
+          type: string
+          pattern: ^.*$
+        description: The unique identifier (name) of the namespace
+        required: true
+      tags:
+      - KV - Namespaces
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Namespace'
+          description: Namespace details
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Namespace not found
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Validation error
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal server error
+components:
+  schemas:
+    ErrorDetail:
+      type: object
+      properties:
+        code:
+          type: string
+          maxLength: 100
+          minLength: 1
+          pattern: ^.*$
+        message:
+          type: string
+          maxLength: 500
+          minLength: 1
+          pattern: ^.*$
+        details:
+          type: object
+          additionalProperties: {}
+      required:
+      - code
+      - message
+    ErrorResponse:
+      type: object
+      properties:
+        state:
+          enum:
+          - error
+          type: string
+          description: '* `error` - error'
+          x-extensible-enum:
+          - error
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+      required:
+      - error
+      - state
+    Namespace:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 63
+          minLength: 3
+          pattern: ^.*$
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+          pattern: ^.*$
+        last_modified:
+          type: string
+          format: date-time
+          nullable: true
+          pattern: ^.*$
+      required:
+      - created_at
+      - last_modified
+      - name
+    NamespaceCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 3
+          maxLength: 63
+          pattern: ^.*$
+      required:
+      - name
+    NamespaceList:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Namespace'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+      required:
+      - pagination
+      - results
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          maximum: 999999
+          minimum: 1
+        page_size:
+          type: integer
+          maximum: 1000
+          minimum: 1
+        total_count:
+          type: integer
+          maximum: 999999999
+          minimum: 0
+        total_pages:
+          type: integer
+          maximum: 999999
+          minimum: 0
+        has_next:
+          type: boolean
+        has_previous:
+          type: boolean
+      required:
+      - has_next
+      - has_previous
+      - page
+      - page_size
+      - total_count
+      - total_pages
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
