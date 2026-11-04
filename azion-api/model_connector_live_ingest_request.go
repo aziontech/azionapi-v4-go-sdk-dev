@@ -24,6 +24,7 @@ var _ MappedNullable = &ConnectorLiveIngestRequest{}
 type ConnectorLiveIngestRequest struct {
 	Name string `json:"name"`
 	Active *bool `json:"active,omitempty"`
+	// Discriminator field for ConnectorRequest
 	Type string `json:"type"`
 	Attributes ConnectorLiveIngestAttributesRequest `json:"attributes"`
 }

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
+**Type** | **string** | Discriminator field for Page | 
 **Attributes** | [**PageConnectorAttributes**](PageConnectorAttributes.md) |  | 
 
 ## Methods

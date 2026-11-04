@@ -24,7 +24,7 @@ var _ MappedNullable = &PatchedConnectorLiveIngestRequest{}
 type PatchedConnectorLiveIngestRequest struct {
 	Name *string `json:"name,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	// * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
+	// Discriminator field for PatchedConnectorRequest
 	Type string `json:"type"`
 	Attributes *ConnectorLiveIngestAttributesRequest `json:"attributes,omitempty"`
 }

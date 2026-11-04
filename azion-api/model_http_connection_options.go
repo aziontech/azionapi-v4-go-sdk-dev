@@ -20,7 +20,7 @@ var _ MappedNullable = &HTTPConnectionOptions{}
 
 // HTTPConnectionOptions struct for HTTPConnectionOptions
 type HTTPConnectionOptions struct {
-	// DNS resolution policy: force IPv4 or both (IPv4 and IPv6) when connecting.  * `both` - Both * `force_ipv4` - Force IPv4
+	// DNS resolution policy: force IPv4, force IPv6 or both (IPv4 and IPv6) when connecting.  * `both` - Both * `force_ipv4` - Force IPv4 * `force_ipv6` - Force IPv6
 	DnsResolution *string `json:"dns_resolution,omitempty"`
 	// Transport protocol policy: preserve current scheme, force HTTP, or force HTTPS.  * `preserve` - Preserve * `force_https` - Force HTTPS * `force_http` - Force HTTP
 	TransportPolicy *string `json:"transport_policy,omitempty"`
@@ -28,7 +28,7 @@ type HTTPConnectionOptions struct {
 	HttpVersionPolicy *string `json:"http_version_policy,omitempty"`
 	// Optional custom host used to override the default target hostname during connection.
 	Host *string `json:"host,omitempty"`
-	// Optional prefix to add to all request paths (e.g., '/v1').
+	// Optional prefix to add to all request paths (e.g., '/api/v1').
 	PathPrefix *string `json:"path_prefix,omitempty"`
 	// If true, automatically follows HTTP redirects from the target server.
 	FollowingRedirect *bool `json:"following_redirect,omitempty"`

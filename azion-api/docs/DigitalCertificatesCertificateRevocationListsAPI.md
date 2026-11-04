@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#CreateCertificateRevocationList) | **Post** /workspace/tls/crls | Create a certificate revocation lists (CRL)
 [**DeleteCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#DeleteCertificateRevocationList) | **Delete** /workspace/tls/crls/{crl_id} | Delete a certificate revocation list
 [**ListCertificateRevocationLists**](DigitalCertificatesCertificateRevocationListsAPI.md#ListCertificateRevocationLists) | **Get** /workspace/tls/crls | List certificate revocation lists (CRL)
-[**PartialUpdateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#PartialUpdateCertificateRevocationList) | **Patch** /workspace/tls/crls/{crl_id} | Update a certificate revocation lists (CRL)
+[**PartialUpdateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#PartialUpdateCertificateRevocationList) | **Patch** /workspace/tls/crls/{crl_id} | Partially update a certificate revocation lists (CRL)
 [**RetrieveCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#RetrieveCertificateRevocationList) | **Get** /workspace/tls/crls/{crl_id} | Retrieve details from a certificate revocation lists (CRL)
 [**UpdateCertificateRevocationList**](DigitalCertificatesCertificateRevocationListsAPI.md#UpdateCertificateRevocationList) | **Put** /workspace/tls/crls/{crl_id} | Update a certificate revocation lists (CRL)
 
@@ -30,12 +30,11 @@ import (
 	"context"
 	"fmt"
 	"os"
-    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-	certificateRevocationList := *openapiclient.NewCertificateRevocationList(int64(123), "Name_example", "LastEditor_example", time.Now(), time.Now(), "ProductVersion_example", "Issuer_example", time.Now(), time.Now(), "Crl_example") // CertificateRevocationList | 
+	certificateRevocationList := *openapiclient.NewCertificateRevocationList("Name_example", "Crl_example") // CertificateRevocationList | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -253,7 +252,7 @@ Name | Type | Description  | Notes
 
 > CertificateRevocationListResponse PartialUpdateCertificateRevocationList(ctx, crlId).PatchedCertificateRevocationList(patchedCertificateRevocationList).Execute()
 
-Update a certificate revocation lists (CRL)
+Partially update a certificate revocation lists (CRL)
 
 
 
@@ -410,13 +409,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-    "time"
 	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 	crlId := int64(789) // int64 | The unique identifier of the certificate revocation list
-	certificateRevocationList := *openapiclient.NewCertificateRevocationList(int64(123), "Name_example", "LastEditor_example", time.Now(), time.Now(), "ProductVersion_example", "Issuer_example", time.Now(), time.Now(), "Crl_example") // CertificateRevocationList | 
+	certificateRevocationList := *openapiclient.NewCertificateRevocationList("Name_example", "Crl_example") // CertificateRevocationList | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

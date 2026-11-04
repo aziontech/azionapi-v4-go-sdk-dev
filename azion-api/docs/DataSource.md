@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Slug** | **string** |  | 
-**Name** | **string** |  | 
-**Active** | **bool** |  | 
+**Slug** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
+**Active** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
 ### NewDataSource
 
-`func NewDataSource(slug string, name string, active bool, ) *DataSource`
+`func NewDataSource() *DataSource`
 
 NewDataSource instantiates a new DataSource object
 This constructor will assign default values to properties that have it defined,
@@ -46,6 +46,11 @@ and a boolean to check if the value has been set.
 
 SetSlug sets Slug field to given value.
 
+### HasSlug
+
+`func (o *DataSource) HasSlug() bool`
+
+HasSlug returns a boolean if a field has been set.
 
 ### GetName
 
@@ -66,6 +71,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *DataSource) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -86,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetActive sets Active field to given value.
 
+### HasActive
+
+`func (o *DataSource) HasActive() bool`
+
+HasActive returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

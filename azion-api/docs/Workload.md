@@ -4,26 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**LastEditor** | **string** |  | 
-**LastModified** | **time.Time** |  | 
-**CreatedAt** | **time.Time** |  | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Infrastructure** | Pointer to **int64** | * &#x60;1&#x60; - Production Infrastructure (All Locations) * &#x60;2&#x60; - Staging Infrastructure | [optional] 
 **Tls** | Pointer to [**TLSWorkload**](TLSWorkload.md) |  | [optional] 
 **Protocols** | Pointer to [**Protocols**](Protocols.md) |  | [optional] 
 **Mtls** | Pointer to [**MTLS**](MTLS.md) |  | [optional] 
 **Domains** | Pointer to **[]string** |  | [optional] 
 **WorkloadDomainAllowAccess** | Pointer to **bool** |  | [optional] 
-**WorkloadDomain** | **string** |  | 
-**ProductVersion** | **string** |  | 
+**WorkloadDomain** | Pointer to **string** |  | [optional] 
+**ProductVersion** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewWorkload
 
-`func NewWorkload(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, workloadDomain string, productVersion string, ) *Workload`
+`func NewWorkload(name string, ) *Workload`
 
 NewWorkload instantiates a new Workload object
 This constructor will assign default values to properties that have it defined,
@@ -57,6 +57,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Workload) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -122,6 +127,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *Workload) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -142,6 +152,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *Workload) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -162,6 +177,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *Workload) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetInfrastructure
 
@@ -332,6 +352,11 @@ and a boolean to check if the value has been set.
 
 SetWorkloadDomain sets WorkloadDomain field to given value.
 
+### HasWorkloadDomain
+
+`func (o *Workload) HasWorkloadDomain() bool`
+
+HasWorkloadDomain returns a boolean if a field has been set.
 
 ### GetProductVersion
 
@@ -352,6 +377,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *Workload) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
