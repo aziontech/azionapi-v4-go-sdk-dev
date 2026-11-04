@@ -13,8 +13,6 @@ package storageapi
 import (
 	"encoding/json"
 	"time"
-	"bytes"
-	"fmt"
 )
 
 // checks if the BucketObject type satisfies the MappedNullable interface at compile time
@@ -22,26 +20,20 @@ var _ MappedNullable = &BucketObject{}
 
 // BucketObject struct for BucketObject
 type BucketObject struct {
-	Key string `json:"key"`
-	LastModified time.Time `json:"last_modified"`
+	Key *string `json:"key,omitempty"`
+	LastModified *time.Time `json:"last_modified,omitempty"`
 	// Size of the object in bytes
-	Size int64 `json:"size"`
+	Size *int64 `json:"size,omitempty"`
 	// Whether this entry represents a folder
-	IsFolder bool `json:"is_folder"`
+	IsFolder *bool `json:"is_folder,omitempty"`
 }
-
-type _BucketObject BucketObject
 
 // NewBucketObject instantiates a new BucketObject object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucketObject(key string, lastModified time.Time, size int64, isFolder bool) *BucketObject {
+func NewBucketObject() *BucketObject {
 	this := BucketObject{}
-	this.Key = key
-	this.LastModified = lastModified
-	this.Size = size
-	this.IsFolder = isFolder
 	return &this
 }
 
@@ -53,100 +45,132 @@ func NewBucketObjectWithDefaults() *BucketObject {
 	return &this
 }
 
-// GetKey returns the Key field value
+// GetKey returns the Key field value if set, zero value otherwise.
 func (o *BucketObject) GetKey() string {
-	if o == nil {
+	if o == nil || IsNil(o.Key) {
 		var ret string
 		return ret
 	}
-
-	return o.Key
+	return *o.Key
 }
 
-// GetKeyOk returns a tuple with the Key field value
+// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BucketObject) GetKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Key) {
 		return nil, false
 	}
-	return &o.Key, true
+	return o.Key, true
 }
 
-// SetKey sets field value
+// HasKey returns a boolean if a field has been set.
+func (o *BucketObject) HasKey() bool {
+	if o != nil && !IsNil(o.Key) {
+		return true
+	}
+
+	return false
+}
+
+// SetKey gets a reference to the given string and assigns it to the Key field.
 func (o *BucketObject) SetKey(v string) {
-	o.Key = v
+	o.Key = &v
 }
 
-// GetLastModified returns the LastModified field value
+// GetLastModified returns the LastModified field value if set, zero value otherwise.
 func (o *BucketObject) GetLastModified() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.LastModified
+	return *o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value
+// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BucketObject) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		return nil, false
 	}
-	return &o.LastModified, true
+	return o.LastModified, true
 }
 
-// SetLastModified sets field value
+// HasLastModified returns a boolean if a field has been set.
+func (o *BucketObject) HasLastModified() bool {
+	if o != nil && !IsNil(o.LastModified) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
 func (o *BucketObject) SetLastModified(v time.Time) {
-	o.LastModified = v
+	o.LastModified = &v
 }
 
-// GetSize returns the Size field value
+// GetSize returns the Size field value if set, zero value otherwise.
 func (o *BucketObject) GetSize() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Size) {
 		var ret int64
 		return ret
 	}
-
-	return o.Size
+	return *o.Size
 }
 
-// GetSizeOk returns a tuple with the Size field value
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BucketObject) GetSizeOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Size) {
 		return nil, false
 	}
-	return &o.Size, true
+	return o.Size, true
 }
 
-// SetSize sets field value
+// HasSize returns a boolean if a field has been set.
+func (o *BucketObject) HasSize() bool {
+	if o != nil && !IsNil(o.Size) {
+		return true
+	}
+
+	return false
+}
+
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
 func (o *BucketObject) SetSize(v int64) {
-	o.Size = v
+	o.Size = &v
 }
 
-// GetIsFolder returns the IsFolder field value
+// GetIsFolder returns the IsFolder field value if set, zero value otherwise.
 func (o *BucketObject) GetIsFolder() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsFolder) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsFolder
+	return *o.IsFolder
 }
 
-// GetIsFolderOk returns a tuple with the IsFolder field value
+// GetIsFolderOk returns a tuple with the IsFolder field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BucketObject) GetIsFolderOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsFolder) {
 		return nil, false
 	}
-	return &o.IsFolder, true
+	return o.IsFolder, true
 }
 
-// SetIsFolder sets field value
+// HasIsFolder returns a boolean if a field has been set.
+func (o *BucketObject) HasIsFolder() bool {
+	if o != nil && !IsNil(o.IsFolder) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsFolder gets a reference to the given bool and assigns it to the IsFolder field.
 func (o *BucketObject) SetIsFolder(v bool) {
-	o.IsFolder = v
+	o.IsFolder = &v
 }
 
 func (o BucketObject) MarshalJSON() ([]byte, error) {
@@ -159,51 +183,19 @@ func (o BucketObject) MarshalJSON() ([]byte, error) {
 
 func (o BucketObject) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["key"] = o.Key
-	toSerialize["last_modified"] = o.LastModified
-	toSerialize["size"] = o.Size
-	toSerialize["is_folder"] = o.IsFolder
+	if !IsNil(o.Key) {
+		toSerialize["key"] = o.Key
+	}
+	if !IsNil(o.LastModified) {
+		toSerialize["last_modified"] = o.LastModified
+	}
+	if !IsNil(o.Size) {
+		toSerialize["size"] = o.Size
+	}
+	if !IsNil(o.IsFolder) {
+		toSerialize["is_folder"] = o.IsFolder
+	}
 	return toSerialize, nil
-}
-
-func (o *BucketObject) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"key",
-		"last_modified",
-		"size",
-		"is_folder",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varBucketObject := _BucketObject{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBucketObject)
-
-	if err != nil {
-		return err
-	}
-
-	*o = BucketObject(varBucketObject)
-
-	return err
 }
 
 type NullableBucketObject struct {

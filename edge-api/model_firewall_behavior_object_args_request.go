@@ -12,6 +12,7 @@ package edgeapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -23,7 +24,6 @@ type FirewallBehaviorObjectArgsRequest struct {
 	// Behavior type
 	Type string `json:"type"`
 	Attributes FirewallBehaviorObjectArgsRequestAttributes `json:"attributes"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _FirewallBehaviorObjectArgsRequest FirewallBehaviorObjectArgsRequest
@@ -107,11 +107,6 @@ func (o FirewallBehaviorObjectArgsRequest) ToMap() (map[string]interface{}, erro
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -140,21 +135,15 @@ func (o *FirewallBehaviorObjectArgsRequest) UnmarshalJSON(data []byte) (err erro
 
 	varFirewallBehaviorObjectArgsRequest := _FirewallBehaviorObjectArgsRequest{}
 
-	err = json.Unmarshal(data, &varFirewallBehaviorObjectArgsRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFirewallBehaviorObjectArgsRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FirewallBehaviorObjectArgsRequest(varFirewallBehaviorObjectArgsRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "attributes")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

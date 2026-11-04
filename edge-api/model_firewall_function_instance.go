@@ -25,7 +25,7 @@ type FirewallFunctionInstance struct {
 	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
 	Args interface{} `json:"args,omitempty"`
-	AzionForm *EdgeFunctionAzionForm `json:"azion_form,omitempty"`
+	AzionForm *FunctionAzionForm `json:"azion_form,omitempty"`
 	Function int64 `json:"function"`
 	Active *bool `json:"active,omitempty"`
 	LastEditor *string `json:"last_editor,omitempty"`
@@ -144,9 +144,9 @@ func (o *FirewallFunctionInstance) SetArgs(v interface{}) {
 }
 
 // GetAzionForm returns the AzionForm field value if set, zero value otherwise.
-func (o *FirewallFunctionInstance) GetAzionForm() EdgeFunctionAzionForm {
+func (o *FirewallFunctionInstance) GetAzionForm() FunctionAzionForm {
 	if o == nil || IsNil(o.AzionForm) {
-		var ret EdgeFunctionAzionForm
+		var ret FunctionAzionForm
 		return ret
 	}
 	return *o.AzionForm
@@ -154,7 +154,7 @@ func (o *FirewallFunctionInstance) GetAzionForm() EdgeFunctionAzionForm {
 
 // GetAzionFormOk returns a tuple with the AzionForm field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FirewallFunctionInstance) GetAzionFormOk() (*EdgeFunctionAzionForm, bool) {
+func (o *FirewallFunctionInstance) GetAzionFormOk() (*FunctionAzionForm, bool) {
 	if o == nil || IsNil(o.AzionForm) {
 		return nil, false
 	}
@@ -170,8 +170,8 @@ func (o *FirewallFunctionInstance) HasAzionForm() bool {
 	return false
 }
 
-// SetAzionForm gets a reference to the given EdgeFunctionAzionForm and assigns it to the AzionForm field.
-func (o *FirewallFunctionInstance) SetAzionForm(v EdgeFunctionAzionForm) {
+// SetAzionForm gets a reference to the given FunctionAzionForm and assigns it to the AzionForm field.
+func (o *FirewallFunctionInstance) SetAzionForm(v FunctionAzionForm) {
 	o.AzionForm = &v
 }
 

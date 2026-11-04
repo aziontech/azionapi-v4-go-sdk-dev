@@ -827,7 +827,7 @@ func (r ApiPartialUpdateCertificateRevocationListRequest) Execute() (*Certificat
 }
 
 /*
-PartialUpdateCertificateRevocationList Update a certificate revocation lists (CRL)
+PartialUpdateCertificateRevocationList Partially update a certificate revocation lists (CRL)
 
 Update one or more fields of an existing certificate revocation lists (CRL) without affecting other fields.
 

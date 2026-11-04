@@ -28,7 +28,7 @@ type FirewallRule struct {
 	LastModified *time.Time `json:"last_modified,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	Criteria [][]EdgeFirewallCriterionField `json:"criteria"`
+	Criteria [][]FirewallCriterionField `json:"criteria"`
 	Behaviors []FirewallBehavior `json:"behaviors"`
 	Description *string `json:"description,omitempty"`
 	Order *int64 `json:"order,omitempty"`
@@ -40,7 +40,7 @@ type _FirewallRule FirewallRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirewallRule(name string, criteria [][]EdgeFirewallCriterionField, behaviors []FirewallBehavior) *FirewallRule {
+func NewFirewallRule(name string, criteria [][]FirewallCriterionField, behaviors []FirewallBehavior) *FirewallRule {
 	this := FirewallRule{}
 	this.Name = name
 	this.Criteria = criteria
@@ -241,9 +241,9 @@ func (o *FirewallRule) SetActive(v bool) {
 }
 
 // GetCriteria returns the Criteria field value
-func (o *FirewallRule) GetCriteria() [][]EdgeFirewallCriterionField {
+func (o *FirewallRule) GetCriteria() [][]FirewallCriterionField {
 	if o == nil {
-		var ret [][]EdgeFirewallCriterionField
+		var ret [][]FirewallCriterionField
 		return ret
 	}
 
@@ -252,7 +252,7 @@ func (o *FirewallRule) GetCriteria() [][]EdgeFirewallCriterionField {
 
 // GetCriteriaOk returns a tuple with the Criteria field value
 // and a boolean to check if the value has been set.
-func (o *FirewallRule) GetCriteriaOk() ([][]EdgeFirewallCriterionField, bool) {
+func (o *FirewallRule) GetCriteriaOk() ([][]FirewallCriterionField, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -260,7 +260,7 @@ func (o *FirewallRule) GetCriteriaOk() ([][]EdgeFirewallCriterionField, bool) {
 }
 
 // SetCriteria sets field value
-func (o *FirewallRule) SetCriteria(v [][]EdgeFirewallCriterionField) {
+func (o *FirewallRule) SetCriteria(v [][]FirewallCriterionField) {
 	o.Criteria = v
 }
 

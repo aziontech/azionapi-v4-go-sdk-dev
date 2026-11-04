@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
-**AccessKey** | **string** |  | 
-**SecretKey** | **string** |  | 
+**AccessKey** | Pointer to **string** |  | [optional] 
+**SecretKey** | Pointer to **string** |  | [optional] 
 **Capabilities** | **[]string** |  | 
-**Buckets** | **[]string** |  | 
+**Buckets** | Pointer to **[]string** |  | [optional] 
 **ExpirationDate** | Pointer to **time.Time** |  | [optional] 
-**LastEditor** | **NullableString** |  | 
-**CreatedAt** | **time.Time** |  | 
-**LastModified** | **time.Time** |  | 
+**LastEditor** | Pointer to **NullableString** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
 ### NewCredential
 
-`func NewCredential(id int64, name string, accessKey string, secretKey string, capabilities []string, buckets []string, lastEditor NullableString, createdAt time.Time, lastModified time.Time, ) *Credential`
+`func NewCredential(name string, capabilities []string, ) *Credential`
 
 NewCredential instantiates a new Credential object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +53,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Credential) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -93,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetAccessKey sets AccessKey field to given value.
 
+### HasAccessKey
+
+`func (o *Credential) HasAccessKey() bool`
+
+HasAccessKey returns a boolean if a field has been set.
 
 ### GetSecretKey
 
@@ -113,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetSecretKey sets SecretKey field to given value.
 
+### HasSecretKey
+
+`func (o *Credential) HasSecretKey() bool`
+
+HasSecretKey returns a boolean if a field has been set.
 
 ### GetCapabilities
 
@@ -153,6 +168,11 @@ and a boolean to check if the value has been set.
 
 SetBuckets sets Buckets field to given value.
 
+### HasBuckets
+
+`func (o *Credential) HasBuckets() bool`
+
+HasBuckets returns a boolean if a field has been set.
 
 ### GetExpirationDate
 
@@ -198,6 +218,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *Credential) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### SetLastEditorNil
 
@@ -228,6 +253,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *Credential) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -248,6 +278,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *Credential) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

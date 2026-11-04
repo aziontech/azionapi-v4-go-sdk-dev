@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **PageSize** | Pointer to **int64** | Number of items per page | [optional] 
 **Next** | Pointer to **NullableString** | URL to the next page of results | [optional] 
 **Previous** | Pointer to **NullableString** | URL to the previous page of results | [optional] 
-**Results** | Pointer to [**[]EdgeFunction**](EdgeFunction.md) |  | [optional] 
+**Results** | Pointer to [**[]Function**](Function.md) |  | [optional] 
 
 ## Methods
 
@@ -203,20 +203,20 @@ HasPrevious returns a boolean if a field has been set.
 UnsetPrevious ensures that no value is present for Previous, not even an explicit nil
 ### GetResults
 
-`func (o *PaginatedEdgeFunctionList) GetResults() []EdgeFunction`
+`func (o *PaginatedEdgeFunctionList) GetResults() []Function`
 
 GetResults returns the Results field if non-nil, zero value otherwise.
 
 ### GetResultsOk
 
-`func (o *PaginatedEdgeFunctionList) GetResultsOk() (*[]EdgeFunction, bool)`
+`func (o *PaginatedEdgeFunctionList) GetResultsOk() (*[]Function, bool)`
 
 GetResultsOk returns a tuple with the Results field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetResults
 
-`func (o *PaginatedEdgeFunctionList) SetResults(v []EdgeFunction)`
+`func (o *PaginatedEdgeFunctionList) SetResults(v []Function)`
 
 SetResults sets Results field to given value.
 

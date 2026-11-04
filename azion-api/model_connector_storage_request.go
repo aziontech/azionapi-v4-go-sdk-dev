@@ -24,6 +24,7 @@ var _ MappedNullable = &ConnectorStorageRequest{}
 type ConnectorStorageRequest struct {
 	Name string `json:"name"`
 	Active *bool `json:"active,omitempty"`
+	// Discriminator field for ConnectorRequest
 	Type string `json:"type"`
 	Attributes ConnectorStorageAttributesRequest `json:"attributes"`
 }

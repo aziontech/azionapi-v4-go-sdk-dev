@@ -21,7 +21,7 @@ var _ MappedNullable = &PatchedFirewallRuleRequest{}
 type PatchedFirewallRuleRequest struct {
 	Name *string `json:"name,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	Criteria [][]EdgeFirewallCriterionFieldRequest `json:"criteria,omitempty"`
+	Criteria [][]FirewallCriterionFieldRequest `json:"criteria,omitempty"`
 	Behaviors []FirewallBehaviorRequest `json:"behaviors,omitempty"`
 	Description *string `json:"description,omitempty"`
 }
@@ -108,9 +108,9 @@ func (o *PatchedFirewallRuleRequest) SetActive(v bool) {
 }
 
 // GetCriteria returns the Criteria field value if set, zero value otherwise.
-func (o *PatchedFirewallRuleRequest) GetCriteria() [][]EdgeFirewallCriterionFieldRequest {
+func (o *PatchedFirewallRuleRequest) GetCriteria() [][]FirewallCriterionFieldRequest {
 	if o == nil || IsNil(o.Criteria) {
-		var ret [][]EdgeFirewallCriterionFieldRequest
+		var ret [][]FirewallCriterionFieldRequest
 		return ret
 	}
 	return o.Criteria
@@ -118,7 +118,7 @@ func (o *PatchedFirewallRuleRequest) GetCriteria() [][]EdgeFirewallCriterionFiel
 
 // GetCriteriaOk returns a tuple with the Criteria field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedFirewallRuleRequest) GetCriteriaOk() ([][]EdgeFirewallCriterionFieldRequest, bool) {
+func (o *PatchedFirewallRuleRequest) GetCriteriaOk() ([][]FirewallCriterionFieldRequest, bool) {
 	if o == nil || IsNil(o.Criteria) {
 		return nil, false
 	}
@@ -134,8 +134,8 @@ func (o *PatchedFirewallRuleRequest) HasCriteria() bool {
 	return false
 }
 
-// SetCriteria gets a reference to the given [][]EdgeFirewallCriterionFieldRequest and assigns it to the Criteria field.
-func (o *PatchedFirewallRuleRequest) SetCriteria(v [][]EdgeFirewallCriterionFieldRequest) {
+// SetCriteria gets a reference to the given [][]FirewallCriterionFieldRequest and assigns it to the Criteria field.
+func (o *PatchedFirewallRuleRequest) SetCriteria(v [][]FirewallCriterionFieldRequest) {
 	o.Criteria = v
 }
 

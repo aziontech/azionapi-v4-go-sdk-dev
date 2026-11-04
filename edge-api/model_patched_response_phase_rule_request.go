@@ -21,7 +21,7 @@ var _ MappedNullable = &PatchedResponsePhaseRuleRequest{}
 type PatchedResponsePhaseRuleRequest struct {
 	Name *string `json:"name,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	Criteria [][]EdgeApplicationCriterionFieldRequest `json:"criteria,omitempty"`
+	Criteria [][]ApplicationCriterionFieldRequest `json:"criteria,omitempty"`
 	Behaviors []ResponsePhaseBehaviorRequest `json:"behaviors,omitempty"`
 	Description *string `json:"description,omitempty"`
 }
@@ -108,9 +108,9 @@ func (o *PatchedResponsePhaseRuleRequest) SetActive(v bool) {
 }
 
 // GetCriteria returns the Criteria field value if set, zero value otherwise.
-func (o *PatchedResponsePhaseRuleRequest) GetCriteria() [][]EdgeApplicationCriterionFieldRequest {
+func (o *PatchedResponsePhaseRuleRequest) GetCriteria() [][]ApplicationCriterionFieldRequest {
 	if o == nil || IsNil(o.Criteria) {
-		var ret [][]EdgeApplicationCriterionFieldRequest
+		var ret [][]ApplicationCriterionFieldRequest
 		return ret
 	}
 	return o.Criteria
@@ -118,7 +118,7 @@ func (o *PatchedResponsePhaseRuleRequest) GetCriteria() [][]EdgeApplicationCrite
 
 // GetCriteriaOk returns a tuple with the Criteria field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedResponsePhaseRuleRequest) GetCriteriaOk() ([][]EdgeApplicationCriterionFieldRequest, bool) {
+func (o *PatchedResponsePhaseRuleRequest) GetCriteriaOk() ([][]ApplicationCriterionFieldRequest, bool) {
 	if o == nil || IsNil(o.Criteria) {
 		return nil, false
 	}
@@ -134,8 +134,8 @@ func (o *PatchedResponsePhaseRuleRequest) HasCriteria() bool {
 	return false
 }
 
-// SetCriteria gets a reference to the given [][]EdgeApplicationCriterionFieldRequest and assigns it to the Criteria field.
-func (o *PatchedResponsePhaseRuleRequest) SetCriteria(v [][]EdgeApplicationCriterionFieldRequest) {
+// SetCriteria gets a reference to the given [][]ApplicationCriterionFieldRequest and assigns it to the Criteria field.
+func (o *PatchedResponsePhaseRuleRequest) SetCriteria(v [][]ApplicationCriterionFieldRequest) {
 	o.Criteria = v
 }
 

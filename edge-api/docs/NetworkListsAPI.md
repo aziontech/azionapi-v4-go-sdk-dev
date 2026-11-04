@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreateNetworkList**](NetworkListsAPI.md#CreateNetworkList) | **Post** /workspace/network_lists | Create a Network List
 [**DeleteNetworkList**](NetworkListsAPI.md#DeleteNetworkList) | **Delete** /workspace/network_lists/{network_list_id} | Delete a Network List
 [**ListNetworkLists**](NetworkListsAPI.md#ListNetworkLists) | **Get** /workspace/network_lists | List Network Lists
+[**ListOriginShieldIps**](NetworkListsAPI.md#ListOriginShieldIps) | **Get** /workspace/network_lists/origin_shield | List Origin Shield IPs
 [**PartialUpdateNetworkList**](NetworkListsAPI.md#PartialUpdateNetworkList) | **Patch** /workspace/network_lists/{network_list_id} | Partially update a Network List
 [**RetrieveNetworkList**](NetworkListsAPI.md#RetrieveNetworkList) | **Get** /workspace/network_lists/{network_list_id} | Retrieve details of a Network List
 [**UpdateNetworkList**](NetworkListsAPI.md#UpdateNetworkList) | **Put** /workspace/network_lists/{network_list_id} | Update a Network List
@@ -221,6 +222,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PaginatedNetworkListSummaryList**](PaginatedNetworkListSummaryList.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListOriginShieldIps
+
+> NetworkListOriginShieldIPsResponse ListOriginShieldIps(ctx).Fields(fields).Execute()
+
+List Origin Shield IPs
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.NetworkListsAPI.ListOriginShieldIps(context.Background()).Fields(fields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `NetworkListsAPI.ListOriginShieldIps``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListOriginShieldIps`: NetworkListOriginShieldIPsResponse
+	fmt.Fprintf(os.Stdout, "Response from `NetworkListsAPI.ListOriginShieldIps`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListOriginShieldIpsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fields** | **string** | Comma-separated list of field names to include in the response. | 
+
+### Return type
+
+[**NetworkListOriginShieldIPsResponse**](NetworkListOriginShieldIPsResponse.md)
 
 ### Authorization
 

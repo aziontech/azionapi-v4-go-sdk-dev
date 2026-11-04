@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
-**LastEditor** | **string** |  | 
-**LastModified** | **time.Time** |  | 
-**CreatedAt** | **time.Time** |  | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **Criteria** | [**[][]FirewallCriterionField**]([]FirewallCriterionField.md) |  | 
 **Behaviors** | [**[]FirewallBehavior**](FirewallBehavior.md) |  | 
 **Description** | Pointer to **string** |  | [optional] 
-**Order** | **int64** |  | 
+**Order** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
 ### NewFirewallRule
 
-`func NewFirewallRule(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, criteria [][]FirewallCriterionField, behaviors []FirewallBehavior, order int64, ) *FirewallRule`
+`func NewFirewallRule(name string, criteria [][]FirewallCriterionField, behaviors []FirewallBehavior, ) *FirewallRule`
 
 NewFirewallRule instantiates a new FirewallRule object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +53,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *FirewallRule) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -93,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *FirewallRule) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -113,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *FirewallRule) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -133,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *FirewallRule) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -243,6 +263,11 @@ and a boolean to check if the value has been set.
 
 SetOrder sets Order field to given value.
 
+### HasOrder
+
+`func (o *FirewallRule) HasOrder() bool`
+
+HasOrder returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

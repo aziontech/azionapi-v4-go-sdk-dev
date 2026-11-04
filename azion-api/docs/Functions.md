@@ -4,30 +4,30 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
-**LastEditor** | **string** |  | 
-**LastModified** | **time.Time** |  | 
-**ProductVersion** | **string** |  | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
+**ProductVersion** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **Runtime** | Pointer to **string** | * &#x60;azion_js&#x60; - Azion JavaScript | [optional] 
 **ExecutionEnvironment** | Pointer to **string** | * &#x60;firewall&#x60; - Firewall * &#x60;application&#x60; - Application | [optional] 
 **DefaultArgs** | Pointer to **interface{}** |  | [optional] 
 **AzionForm** | Pointer to [**FunctionAzionForm**](FunctionAzionForm.md) |  | [optional] 
-**ReferenceCount** | **int64** |  | 
-**Version** | **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | 
-**Vendor** | **string** |  | 
-**IsVersioned** | **bool** |  | 
-**ResourceVersion** | **NullableInt64** |  | 
-**VersionState** | **NullableString** |  | 
-**VersionId** | **NullableString** |  | 
+**ReferenceCount** | Pointer to **int64** |  | [optional] 
+**Version** | Pointer to **string** | Installed version, which may not be the latest if the vendor has released updates since installation. | [optional] 
+**Vendor** | Pointer to **string** |  | [optional] 
+**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
+**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
+**IsVersioned** | Pointer to **bool** |  | [optional] 
+**ResourceVersion** | Pointer to **NullableInt64** |  | [optional] 
 **Code** | **string** | String containing the function code. Maximum size: 50.0MB | 
 
 ## Methods
 
 ### NewFunctions
 
-`func NewFunctions(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, isVersioned bool, resourceVersion NullableInt64, versionState NullableString, versionId NullableString, code string, ) *Functions`
+`func NewFunctions(name string, code string, ) *Functions`
 
 NewFunctions instantiates a new Functions object
 This constructor will assign default values to properties that have it defined,
@@ -61,6 +61,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Functions) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -101,6 +106,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *Functions) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -121,6 +131,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *Functions) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetProductVersion
 
@@ -141,6 +156,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *Functions) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -296,6 +316,11 @@ and a boolean to check if the value has been set.
 
 SetReferenceCount sets ReferenceCount field to given value.
 
+### HasReferenceCount
+
+`func (o *Functions) HasReferenceCount() bool`
+
+HasReferenceCount returns a boolean if a field has been set.
 
 ### GetVersion
 
@@ -316,6 +341,11 @@ and a boolean to check if the value has been set.
 
 SetVersion sets Version field to given value.
 
+### HasVersion
+
+`func (o *Functions) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
 
 ### GetVendor
 
@@ -336,7 +366,82 @@ and a boolean to check if the value has been set.
 
 SetVendor sets Vendor field to given value.
 
+### HasVendor
 
+`func (o *Functions) HasVendor() bool`
+
+HasVendor returns a boolean if a field has been set.
+
+### GetVersionId
+
+`func (o *Functions) GetVersionId() string`
+
+GetVersionId returns the VersionId field if non-nil, zero value otherwise.
+
+### GetVersionIdOk
+
+`func (o *Functions) GetVersionIdOk() (*string, bool)`
+
+GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionId
+
+`func (o *Functions) SetVersionId(v string)`
+
+SetVersionId sets VersionId field to given value.
+
+### HasVersionId
+
+`func (o *Functions) HasVersionId() bool`
+
+HasVersionId returns a boolean if a field has been set.
+
+### SetVersionIdNil
+
+`func (o *Functions) SetVersionIdNil(b bool)`
+
+ SetVersionIdNil sets the value for VersionId to be an explicit nil
+
+### UnsetVersionId
+`func (o *Functions) UnsetVersionId()`
+
+UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
+### GetVersionState
+
+`func (o *Functions) GetVersionState() string`
+
+GetVersionState returns the VersionState field if non-nil, zero value otherwise.
+
+### GetVersionStateOk
+
+`func (o *Functions) GetVersionStateOk() (*string, bool)`
+
+GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionState
+
+`func (o *Functions) SetVersionState(v string)`
+
+SetVersionState sets VersionState field to given value.
+
+### HasVersionState
+
+`func (o *Functions) HasVersionState() bool`
+
+HasVersionState returns a boolean if a field has been set.
+
+### SetVersionStateNil
+
+`func (o *Functions) SetVersionStateNil(b bool)`
+
+ SetVersionStateNil sets the value for VersionState to be an explicit nil
+
+### UnsetVersionState
+`func (o *Functions) UnsetVersionState()`
+
+UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 ### GetIsVersioned
 
 `func (o *Functions) GetIsVersioned() bool`
@@ -356,6 +461,11 @@ and a boolean to check if the value has been set.
 
 SetIsVersioned sets IsVersioned field to given value.
 
+### HasIsVersioned
+
+`func (o *Functions) HasIsVersioned() bool`
+
+HasIsVersioned returns a boolean if a field has been set.
 
 ### GetResourceVersion
 
@@ -376,6 +486,11 @@ and a boolean to check if the value has been set.
 
 SetResourceVersion sets ResourceVersion field to given value.
 
+### HasResourceVersion
+
+`func (o *Functions) HasResourceVersion() bool`
+
+HasResourceVersion returns a boolean if a field has been set.
 
 ### SetResourceVersionNil
 
@@ -387,66 +502,6 @@ SetResourceVersion sets ResourceVersion field to given value.
 `func (o *Functions) UnsetResourceVersion()`
 
 UnsetResourceVersion ensures that no value is present for ResourceVersion, not even an explicit nil
-### GetVersionState
-
-`func (o *Functions) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *Functions) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *Functions) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-
-### SetVersionStateNil
-
-`func (o *Functions) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *Functions) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
-### GetVersionId
-
-`func (o *Functions) GetVersionId() string`
-
-GetVersionId returns the VersionId field if non-nil, zero value otherwise.
-
-### GetVersionIdOk
-
-`func (o *Functions) GetVersionIdOk() (*string, bool)`
-
-GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionId
-
-`func (o *Functions) SetVersionId(v string)`
-
-SetVersionId sets VersionId field to given value.
-
-
-### SetVersionIdNil
-
-`func (o *Functions) SetVersionIdNil(b bool)`
-
- SetVersionIdNil sets the value for VersionId to be an explicit nil
-
-### UnsetVersionId
-`func (o *Functions) UnsetVersionId()`
-
-UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
 ### GetCode
 
 `func (o *Functions) GetCode() string`

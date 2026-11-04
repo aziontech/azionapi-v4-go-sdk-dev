@@ -13,8 +13,6 @@ package azionapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the FirewallModules type satisfies the MappedNullable interface at compile time
@@ -22,21 +20,18 @@ var _ MappedNullable = &FirewallModules{}
 
 // FirewallModules struct for FirewallModules
 type FirewallModules struct {
-	DdosProtection FirewallModule `json:"ddos_protection"`
+	DdosProtection *FirewallModule `json:"ddos_protection,omitempty"`
 	Functions *FirewallModule `json:"functions,omitempty"`
 	NetworkProtection *FirewallModule `json:"network_protection,omitempty"`
 	Waf *FirewallModule `json:"waf,omitempty"`
 }
 
-type _FirewallModules FirewallModules
-
 // NewFirewallModules instantiates a new FirewallModules object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirewallModules(ddosProtection FirewallModule) *FirewallModules {
+func NewFirewallModules() *FirewallModules {
 	this := FirewallModules{}
-	this.DdosProtection = ddosProtection
 	return &this
 }
 
@@ -48,28 +43,36 @@ func NewFirewallModulesWithDefaults() *FirewallModules {
 	return &this
 }
 
-// GetDdosProtection returns the DdosProtection field value
+// GetDdosProtection returns the DdosProtection field value if set, zero value otherwise.
 func (o *FirewallModules) GetDdosProtection() FirewallModule {
-	if o == nil {
+	if o == nil || IsNil(o.DdosProtection) {
 		var ret FirewallModule
 		return ret
 	}
-
-	return o.DdosProtection
+	return *o.DdosProtection
 }
 
-// GetDdosProtectionOk returns a tuple with the DdosProtection field value
+// GetDdosProtectionOk returns a tuple with the DdosProtection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FirewallModules) GetDdosProtectionOk() (*FirewallModule, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DdosProtection) {
 		return nil, false
 	}
-	return &o.DdosProtection, true
+	return o.DdosProtection, true
 }
 
-// SetDdosProtection sets field value
+// HasDdosProtection returns a boolean if a field has been set.
+func (o *FirewallModules) HasDdosProtection() bool {
+	if o != nil && !IsNil(o.DdosProtection) {
+		return true
+	}
+
+	return false
+}
+
+// SetDdosProtection gets a reference to the given FirewallModule and assigns it to the DdosProtection field.
 func (o *FirewallModules) SetDdosProtection(v FirewallModule) {
-	o.DdosProtection = v
+	o.DdosProtection = &v
 }
 
 // GetFunctions returns the Functions field value if set, zero value otherwise.
@@ -178,7 +181,9 @@ func (o FirewallModules) MarshalJSON() ([]byte, error) {
 
 func (o FirewallModules) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["ddos_protection"] = o.DdosProtection
+	if !IsNil(o.DdosProtection) {
+		toSerialize["ddos_protection"] = o.DdosProtection
+	}
 	if !IsNil(o.Functions) {
 		toSerialize["functions"] = o.Functions
 	}
@@ -189,42 +194,6 @@ func (o FirewallModules) ToMap() (map[string]interface{}, error) {
 		toSerialize["waf"] = o.Waf
 	}
 	return toSerialize, nil
-}
-
-func (o *FirewallModules) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"ddos_protection",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varFirewallModules := _FirewallModules{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	err = decoder.Decode(&varFirewallModules)
-
-	if err != nil {
-		return err
-	}
-
-	*o = FirewallModules(varFirewallModules)
-
-	return err
 }
 
 type NullableFirewallModules struct {

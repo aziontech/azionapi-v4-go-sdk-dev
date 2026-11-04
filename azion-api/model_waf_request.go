@@ -24,7 +24,6 @@ var _ MappedNullable = &WAFRequest{}
 type WAFRequest struct {
 	Active *bool `json:"active,omitempty"`
 	Name string `json:"name"`
-	ProductVersion NullableString `json:"product_version,omitempty"`
 	EngineSettings *WAFEngineSettingsFieldRequest `json:"engine_settings,omitempty"`
 }
 
@@ -104,48 +103,6 @@ func (o *WAFRequest) SetName(v string) {
 	o.Name = v
 }
 
-// GetProductVersion returns the ProductVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WAFRequest) GetProductVersion() string {
-	if o == nil || IsNil(o.ProductVersion.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ProductVersion.Get()
-}
-
-// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WAFRequest) GetProductVersionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ProductVersion.Get(), o.ProductVersion.IsSet()
-}
-
-// HasProductVersion returns a boolean if a field has been set.
-func (o *WAFRequest) HasProductVersion() bool {
-	if o != nil && o.ProductVersion.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetProductVersion gets a reference to the given NullableString and assigns it to the ProductVersion field.
-func (o *WAFRequest) SetProductVersion(v string) {
-	o.ProductVersion.Set(&v)
-}
-// SetProductVersionNil sets the value for ProductVersion to be an explicit nil
-func (o *WAFRequest) SetProductVersionNil() {
-	o.ProductVersion.Set(nil)
-}
-
-// UnsetProductVersion ensures that no value is present for ProductVersion, not even an explicit nil
-func (o *WAFRequest) UnsetProductVersion() {
-	o.ProductVersion.Unset()
-}
-
 // GetEngineSettings returns the EngineSettings field value if set, zero value otherwise.
 func (o *WAFRequest) GetEngineSettings() WAFEngineSettingsFieldRequest {
 	if o == nil || IsNil(o.EngineSettings) {
@@ -192,9 +149,6 @@ func (o WAFRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["active"] = o.Active
 	}
 	toSerialize["name"] = o.Name
-	if o.ProductVersion.IsSet() {
-		toSerialize["product_version"] = o.ProductVersion.Get()
-	}
 	if !IsNil(o.EngineSettings) {
 		toSerialize["engine_settings"] = o.EngineSettings
 	}

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **LastModified** | Pointer to **time.Time** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Criteria** | [**[][]EdgeFirewallCriterionField**]([]EdgeFirewallCriterionField.md) |  | 
+**Criteria** | [**[][]FirewallCriterionField**]([]FirewallCriterionField.md) |  | 
 **Behaviors** | [**[]FirewallBehavior**](FirewallBehavior.md) |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Order** | Pointer to **int64** |  | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewFirewallRule
 
-`func NewFirewallRule(name string, criteria [][]EdgeFirewallCriterionField, behaviors []FirewallBehavior, ) *FirewallRule`
+`func NewFirewallRule(name string, criteria [][]FirewallCriterionField, behaviors []FirewallBehavior, ) *FirewallRule`
 
 NewFirewallRule instantiates a new FirewallRule object
 This constructor will assign default values to properties that have it defined,
@@ -181,20 +181,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetCriteria
 
-`func (o *FirewallRule) GetCriteria() [][]EdgeFirewallCriterionField`
+`func (o *FirewallRule) GetCriteria() [][]FirewallCriterionField`
 
 GetCriteria returns the Criteria field if non-nil, zero value otherwise.
 
 ### GetCriteriaOk
 
-`func (o *FirewallRule) GetCriteriaOk() (*[][]EdgeFirewallCriterionField, bool)`
+`func (o *FirewallRule) GetCriteriaOk() (*[][]FirewallCriterionField, bool)`
 
 GetCriteriaOk returns a tuple with the Criteria field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCriteria
 
-`func (o *FirewallRule) SetCriteria(v [][]EdgeFirewallCriterionField)`
+`func (o *FirewallRule) SetCriteria(v [][]FirewallCriterionField)`
 
 SetCriteria sets Criteria field to given value.
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Criteria** | Pointer to [**[][]EdgeApplicationCriterionFieldRequest**]([]EdgeApplicationCriterionFieldRequest.md) |  | [optional] 
+**Criteria** | Pointer to [**[][]ApplicationCriterionFieldRequest**]([]ApplicationCriterionFieldRequest.md) |  | [optional] 
 **Behaviors** | Pointer to [**[]ResponsePhaseBehaviorRequest**](ResponsePhaseBehaviorRequest.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 
@@ -81,20 +81,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetCriteria
 
-`func (o *PatchedResponsePhaseRuleRequest) GetCriteria() [][]EdgeApplicationCriterionFieldRequest`
+`func (o *PatchedResponsePhaseRuleRequest) GetCriteria() [][]ApplicationCriterionFieldRequest`
 
 GetCriteria returns the Criteria field if non-nil, zero value otherwise.
 
 ### GetCriteriaOk
 
-`func (o *PatchedResponsePhaseRuleRequest) GetCriteriaOk() (*[][]EdgeApplicationCriterionFieldRequest, bool)`
+`func (o *PatchedResponsePhaseRuleRequest) GetCriteriaOk() (*[][]ApplicationCriterionFieldRequest, bool)`
 
 GetCriteriaOk returns a tuple with the Criteria field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCriteria
 
-`func (o *PatchedResponsePhaseRuleRequest) SetCriteria(v [][]EdgeApplicationCriterionFieldRequest)`
+`func (o *PatchedResponsePhaseRuleRequest) SetCriteria(v [][]ApplicationCriterionFieldRequest)`
 
 SetCriteria sets Criteria field to given value.
 

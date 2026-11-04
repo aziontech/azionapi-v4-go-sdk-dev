@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | **string** | Discriminator field for Page | 
 **Attributes** | [**PageConnectorAttributes**](PageConnectorAttributes.md) |  | 
 
 ## Methods
 
 ### NewPageConnector
 
-`func NewPageConnector(attributes PageConnectorAttributes, ) *PageConnector`
+`func NewPageConnector(type_ string, attributes PageConnectorAttributes, ) *PageConnector`
 
 NewPageConnector instantiates a new PageConnector object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *PageConnector) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetAttributes
 

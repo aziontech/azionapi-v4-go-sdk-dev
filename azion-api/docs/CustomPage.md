@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
-**LastEditor** | **string** |  | 
-**LastModified** | **time.Time** |  | 
-**CreatedAt** | **time.Time** |  | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**ProductVersion** | **string** |  | 
+**ProductVersion** | Pointer to **string** |  | [optional] 
 **Pages** | [**[]PageBase**](PageBase.md) |  | 
-**IsVersioned** | **bool** |  | 
-**Version** | **NullableInt64** |  | 
-**VersionState** | **NullableString** |  | 
-**VersionId** | **NullableString** |  | 
+**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
+**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
+**IsVersioned** | Pointer to **bool** |  | [optional] 
+**Version** | Pointer to **NullableInt64** |  | [optional] 
 
 ## Methods
 
 ### NewCustomPage
 
-`func NewCustomPage(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, pages []PageBase, isVersioned bool, version NullableInt64, versionState NullableString, versionId NullableString, ) *CustomPage`
+`func NewCustomPage(name string, pages []PageBase, ) *CustomPage`
 
 NewCustomPage instantiates a new CustomPage object
 This constructor will assign default values to properties that have it defined,
@@ -55,6 +55,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *CustomPage) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -95,6 +100,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *CustomPage) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -115,6 +125,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *CustomPage) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -135,6 +150,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *CustomPage) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -180,6 +200,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *CustomPage) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 ### GetPages
 
@@ -201,6 +226,76 @@ and a boolean to check if the value has been set.
 SetPages sets Pages field to given value.
 
 
+### GetVersionId
+
+`func (o *CustomPage) GetVersionId() string`
+
+GetVersionId returns the VersionId field if non-nil, zero value otherwise.
+
+### GetVersionIdOk
+
+`func (o *CustomPage) GetVersionIdOk() (*string, bool)`
+
+GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionId
+
+`func (o *CustomPage) SetVersionId(v string)`
+
+SetVersionId sets VersionId field to given value.
+
+### HasVersionId
+
+`func (o *CustomPage) HasVersionId() bool`
+
+HasVersionId returns a boolean if a field has been set.
+
+### SetVersionIdNil
+
+`func (o *CustomPage) SetVersionIdNil(b bool)`
+
+ SetVersionIdNil sets the value for VersionId to be an explicit nil
+
+### UnsetVersionId
+`func (o *CustomPage) UnsetVersionId()`
+
+UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
+### GetVersionState
+
+`func (o *CustomPage) GetVersionState() string`
+
+GetVersionState returns the VersionState field if non-nil, zero value otherwise.
+
+### GetVersionStateOk
+
+`func (o *CustomPage) GetVersionStateOk() (*string, bool)`
+
+GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersionState
+
+`func (o *CustomPage) SetVersionState(v string)`
+
+SetVersionState sets VersionState field to given value.
+
+### HasVersionState
+
+`func (o *CustomPage) HasVersionState() bool`
+
+HasVersionState returns a boolean if a field has been set.
+
+### SetVersionStateNil
+
+`func (o *CustomPage) SetVersionStateNil(b bool)`
+
+ SetVersionStateNil sets the value for VersionState to be an explicit nil
+
+### UnsetVersionState
+`func (o *CustomPage) UnsetVersionState()`
+
+UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 ### GetIsVersioned
 
 `func (o *CustomPage) GetIsVersioned() bool`
@@ -220,6 +315,11 @@ and a boolean to check if the value has been set.
 
 SetIsVersioned sets IsVersioned field to given value.
 
+### HasIsVersioned
+
+`func (o *CustomPage) HasIsVersioned() bool`
+
+HasIsVersioned returns a boolean if a field has been set.
 
 ### GetVersion
 
@@ -240,6 +340,11 @@ and a boolean to check if the value has been set.
 
 SetVersion sets Version field to given value.
 
+### HasVersion
+
+`func (o *CustomPage) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
 
 ### SetVersionNil
 
@@ -251,66 +356,6 @@ SetVersion sets Version field to given value.
 `func (o *CustomPage) UnsetVersion()`
 
 UnsetVersion ensures that no value is present for Version, not even an explicit nil
-### GetVersionState
-
-`func (o *CustomPage) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *CustomPage) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *CustomPage) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-
-### SetVersionStateNil
-
-`func (o *CustomPage) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *CustomPage) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
-### GetVersionId
-
-`func (o *CustomPage) GetVersionId() string`
-
-GetVersionId returns the VersionId field if non-nil, zero value otherwise.
-
-### GetVersionIdOk
-
-`func (o *CustomPage) GetVersionIdOk() (*string, bool)`
-
-GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionId
-
-`func (o *CustomPage) SetVersionId(v string)`
-
-SetVersionId sets VersionId field to given value.
-
-
-### SetVersionIdNil
-
-`func (o *CustomPage) SetVersionIdNil(b bool)`
-
- SetVersionIdNil sets the value for VersionId to be an explicit nil
-
-### UnsetVersionId
-`func (o *CustomPage) UnsetVersionId()`
-
-UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

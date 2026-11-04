@@ -23,7 +23,7 @@ var _ MappedNullable = &FirewallRuleRequest{}
 type FirewallRuleRequest struct {
 	Name string `json:"name"`
 	Active *bool `json:"active,omitempty"`
-	Criteria [][]EdgeFirewallCriterionFieldRequest `json:"criteria"`
+	Criteria [][]FirewallCriterionFieldRequest `json:"criteria"`
 	Behaviors []FirewallBehaviorRequest `json:"behaviors"`
 	Description *string `json:"description,omitempty"`
 }
@@ -34,7 +34,7 @@ type _FirewallRuleRequest FirewallRuleRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFirewallRuleRequest(name string, criteria [][]EdgeFirewallCriterionFieldRequest, behaviors []FirewallBehaviorRequest) *FirewallRuleRequest {
+func NewFirewallRuleRequest(name string, criteria [][]FirewallCriterionFieldRequest, behaviors []FirewallBehaviorRequest) *FirewallRuleRequest {
 	this := FirewallRuleRequest{}
 	this.Name = name
 	this.Criteria = criteria
@@ -107,9 +107,9 @@ func (o *FirewallRuleRequest) SetActive(v bool) {
 }
 
 // GetCriteria returns the Criteria field value
-func (o *FirewallRuleRequest) GetCriteria() [][]EdgeFirewallCriterionFieldRequest {
+func (o *FirewallRuleRequest) GetCriteria() [][]FirewallCriterionFieldRequest {
 	if o == nil {
-		var ret [][]EdgeFirewallCriterionFieldRequest
+		var ret [][]FirewallCriterionFieldRequest
 		return ret
 	}
 
@@ -118,7 +118,7 @@ func (o *FirewallRuleRequest) GetCriteria() [][]EdgeFirewallCriterionFieldReques
 
 // GetCriteriaOk returns a tuple with the Criteria field value
 // and a boolean to check if the value has been set.
-func (o *FirewallRuleRequest) GetCriteriaOk() ([][]EdgeFirewallCriterionFieldRequest, bool) {
+func (o *FirewallRuleRequest) GetCriteriaOk() ([][]FirewallCriterionFieldRequest, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -126,7 +126,7 @@ func (o *FirewallRuleRequest) GetCriteriaOk() ([][]EdgeFirewallCriterionFieldReq
 }
 
 // SetCriteria sets field value
-func (o *FirewallRuleRequest) SetCriteria(v [][]EdgeFirewallCriterionFieldRequest) {
+func (o *FirewallRuleRequest) SetCriteria(v [][]FirewallCriterionFieldRequest) {
 	o.Criteria = v
 }
 

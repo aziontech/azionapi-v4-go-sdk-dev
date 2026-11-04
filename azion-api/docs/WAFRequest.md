@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Active** | Pointer to **bool** |  | [optional] 
 **Name** | **string** |  | 
-**ProductVersion** | Pointer to **NullableString** |  | [optional] 
 **EngineSettings** | Pointer to [**WAFEngineSettingsFieldRequest**](WAFEngineSettingsFieldRequest.md) |  | [optional] 
 
 ## Methods
@@ -73,41 +72,6 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetProductVersion
-
-`func (o *WAFRequest) GetProductVersion() string`
-
-GetProductVersion returns the ProductVersion field if non-nil, zero value otherwise.
-
-### GetProductVersionOk
-
-`func (o *WAFRequest) GetProductVersionOk() (*string, bool)`
-
-GetProductVersionOk returns a tuple with the ProductVersion field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetProductVersion
-
-`func (o *WAFRequest) SetProductVersion(v string)`
-
-SetProductVersion sets ProductVersion field to given value.
-
-### HasProductVersion
-
-`func (o *WAFRequest) HasProductVersion() bool`
-
-HasProductVersion returns a boolean if a field has been set.
-
-### SetProductVersionNil
-
-`func (o *WAFRequest) SetProductVersionNil(b bool)`
-
- SetProductVersionNil sets the value for ProductVersion to be an explicit nil
-
-### UnsetProductVersion
-`func (o *WAFRequest) UnsetProductVersion()`
-
-UnsetProductVersion ensures that no value is present for ProductVersion, not even an explicit nil
 ### GetEngineSettings
 
 `func (o *WAFRequest) GetEngineSettings() WAFEngineSettingsFieldRequest`

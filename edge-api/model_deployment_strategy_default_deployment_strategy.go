@@ -12,6 +12,7 @@ package edgeapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -20,9 +21,9 @@ var _ MappedNullable = &DeploymentStrategyDefaultDeploymentStrategy{}
 
 // DeploymentStrategyDefaultDeploymentStrategy struct for DeploymentStrategyDefaultDeploymentStrategy
 type DeploymentStrategyDefaultDeploymentStrategy struct {
+	// Discriminator field for DeploymentStrategy
 	Type string `json:"type"`
 	Attributes DefaultDeploymentStrategyAttrs `json:"attributes"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _DeploymentStrategyDefaultDeploymentStrategy DeploymentStrategyDefaultDeploymentStrategy
@@ -106,11 +107,6 @@ func (o DeploymentStrategyDefaultDeploymentStrategy) ToMap() (map[string]interfa
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -139,21 +135,15 @@ func (o *DeploymentStrategyDefaultDeploymentStrategy) UnmarshalJSON(data []byte)
 
 	varDeploymentStrategyDefaultDeploymentStrategy := _DeploymentStrategyDefaultDeploymentStrategy{}
 
-	err = json.Unmarshal(data, &varDeploymentStrategyDefaultDeploymentStrategy)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varDeploymentStrategyDefaultDeploymentStrategy)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DeploymentStrategyDefaultDeploymentStrategy(varDeploymentStrategyDefaultDeploymentStrategy)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "attributes")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

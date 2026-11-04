@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Criteria** | [**[][]EdgeApplicationCriterionField**]([]EdgeApplicationCriterionField.md) |  | 
+**Criteria** | [**[][]ApplicationCriterionField**]([]ApplicationCriterionField.md) |  | 
 **Behaviors** | [**[]RequestPhaseBehavior**](RequestPhaseBehavior.md) |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Order** | Pointer to **int64** |  | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewRequestPhaseRule
 
-`func NewRequestPhaseRule(name string, criteria [][]EdgeApplicationCriterionField, behaviors []RequestPhaseBehavior, ) *RequestPhaseRule`
+`func NewRequestPhaseRule(name string, criteria [][]ApplicationCriterionField, behaviors []RequestPhaseBehavior, ) *RequestPhaseRule`
 
 NewRequestPhaseRule instantiates a new RequestPhaseRule object
 This constructor will assign default values to properties that have it defined,
@@ -106,20 +106,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetCriteria
 
-`func (o *RequestPhaseRule) GetCriteria() [][]EdgeApplicationCriterionField`
+`func (o *RequestPhaseRule) GetCriteria() [][]ApplicationCriterionField`
 
 GetCriteria returns the Criteria field if non-nil, zero value otherwise.
 
 ### GetCriteriaOk
 
-`func (o *RequestPhaseRule) GetCriteriaOk() (*[][]EdgeApplicationCriterionField, bool)`
+`func (o *RequestPhaseRule) GetCriteriaOk() (*[][]ApplicationCriterionField, bool)`
 
 GetCriteriaOk returns a tuple with the Criteria field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCriteria
 
-`func (o *RequestPhaseRule) SetCriteria(v [][]EdgeApplicationCriterionField)`
+`func (o *RequestPhaseRule) SetCriteria(v [][]ApplicationCriterionField)`
 
 SetCriteria sets Criteria field to given value.
 

@@ -25,9 +25,9 @@ type BucketCreate struct {
 	Name string `json:"name"`
 	// * `read_only` - read_only * `read_write` - read_write * `restricted` - restricted
 	WorkloadsAccess string `json:"workloads_access"`
-	LastEditor string `json:"last_editor"`
-	LastModified time.Time `json:"last_modified"`
-	ProductVersion string `json:"product_version"`
+	LastEditor *string `json:"last_editor,omitempty"`
+	LastModified *time.Time `json:"last_modified,omitempty"`
+	ProductVersion *string `json:"product_version,omitempty"`
 }
 
 type _BucketCreate BucketCreate
@@ -36,13 +36,10 @@ type _BucketCreate BucketCreate
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBucketCreate(name string, workloadsAccess string, lastEditor string, lastModified time.Time, productVersion string) *BucketCreate {
+func NewBucketCreate(name string, workloadsAccess string) *BucketCreate {
 	this := BucketCreate{}
 	this.Name = name
 	this.WorkloadsAccess = workloadsAccess
-	this.LastEditor = lastEditor
-	this.LastModified = lastModified
-	this.ProductVersion = productVersion
 	return &this
 }
 
@@ -102,76 +99,100 @@ func (o *BucketCreate) SetWorkloadsAccess(v string) {
 	o.WorkloadsAccess = v
 }
 
-// GetLastEditor returns the LastEditor field value
+// GetLastEditor returns the LastEditor field value if set, zero value otherwise.
 func (o *BucketCreate) GetLastEditor() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		var ret string
 		return ret
 	}
-
-	return o.LastEditor
+	return *o.LastEditor
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value
+// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BucketCreate) GetLastEditorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		return nil, false
 	}
-	return &o.LastEditor, true
+	return o.LastEditor, true
 }
 
-// SetLastEditor sets field value
+// HasLastEditor returns a boolean if a field has been set.
+func (o *BucketCreate) HasLastEditor() bool {
+	if o != nil && !IsNil(o.LastEditor) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
 func (o *BucketCreate) SetLastEditor(v string) {
-	o.LastEditor = v
+	o.LastEditor = &v
 }
 
-// GetLastModified returns the LastModified field value
+// GetLastModified returns the LastModified field value if set, zero value otherwise.
 func (o *BucketCreate) GetLastModified() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.LastModified
+	return *o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value
+// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BucketCreate) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		return nil, false
 	}
-	return &o.LastModified, true
+	return o.LastModified, true
 }
 
-// SetLastModified sets field value
+// HasLastModified returns a boolean if a field has been set.
+func (o *BucketCreate) HasLastModified() bool {
+	if o != nil && !IsNil(o.LastModified) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
 func (o *BucketCreate) SetLastModified(v time.Time) {
-	o.LastModified = v
+	o.LastModified = &v
 }
 
-// GetProductVersion returns the ProductVersion field value
+// GetProductVersion returns the ProductVersion field value if set, zero value otherwise.
 func (o *BucketCreate) GetProductVersion() string {
-	if o == nil {
+	if o == nil || IsNil(o.ProductVersion) {
 		var ret string
 		return ret
 	}
-
-	return o.ProductVersion
+	return *o.ProductVersion
 }
 
-// GetProductVersionOk returns a tuple with the ProductVersion field value
+// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *BucketCreate) GetProductVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProductVersion) {
 		return nil, false
 	}
-	return &o.ProductVersion, true
+	return o.ProductVersion, true
 }
 
-// SetProductVersion sets field value
+// HasProductVersion returns a boolean if a field has been set.
+func (o *BucketCreate) HasProductVersion() bool {
+	if o != nil && !IsNil(o.ProductVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetProductVersion gets a reference to the given string and assigns it to the ProductVersion field.
 func (o *BucketCreate) SetProductVersion(v string) {
-	o.ProductVersion = v
+	o.ProductVersion = &v
 }
 
 func (o BucketCreate) MarshalJSON() ([]byte, error) {
@@ -186,9 +207,15 @@ func (o BucketCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
 	toSerialize["workloads_access"] = o.WorkloadsAccess
-	toSerialize["last_editor"] = o.LastEditor
-	toSerialize["last_modified"] = o.LastModified
-	toSerialize["product_version"] = o.ProductVersion
+	if !IsNil(o.LastEditor) {
+		toSerialize["last_editor"] = o.LastEditor
+	}
+	if !IsNil(o.LastModified) {
+		toSerialize["last_modified"] = o.LastModified
+	}
+	if !IsNil(o.ProductVersion) {
+		toSerialize["product_version"] = o.ProductVersion
+	}
 	return toSerialize, nil
 }
 
@@ -199,9 +226,6 @@ func (o *BucketCreate) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"name",
 		"workloads_access",
-		"last_editor",
-		"last_modified",
-		"product_version",
 	}
 
 	allProperties := make(map[string]interface{})

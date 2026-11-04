@@ -20,7 +20,7 @@ var _ MappedNullable = &ApplicationModulesRequest{}
 // ApplicationModulesRequest struct for ApplicationModulesRequest
 type ApplicationModulesRequest struct {
 	Cache *CacheModuleRequest `json:"cache,omitempty"`
-	Functions *EdgeFunctionModuleRequest `json:"functions,omitempty"`
+	Functions *FunctionModuleRequest `json:"functions,omitempty"`
 	ApplicationAccelerator *ApplicationAcceleratorModuleRequest `json:"application_accelerator,omitempty"`
 	ImageProcessor *ImageProcessorModuleRequest `json:"image_processor,omitempty"`
 }
@@ -75,9 +75,9 @@ func (o *ApplicationModulesRequest) SetCache(v CacheModuleRequest) {
 }
 
 // GetFunctions returns the Functions field value if set, zero value otherwise.
-func (o *ApplicationModulesRequest) GetFunctions() EdgeFunctionModuleRequest {
+func (o *ApplicationModulesRequest) GetFunctions() FunctionModuleRequest {
 	if o == nil || IsNil(o.Functions) {
-		var ret EdgeFunctionModuleRequest
+		var ret FunctionModuleRequest
 		return ret
 	}
 	return *o.Functions
@@ -85,7 +85,7 @@ func (o *ApplicationModulesRequest) GetFunctions() EdgeFunctionModuleRequest {
 
 // GetFunctionsOk returns a tuple with the Functions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationModulesRequest) GetFunctionsOk() (*EdgeFunctionModuleRequest, bool) {
+func (o *ApplicationModulesRequest) GetFunctionsOk() (*FunctionModuleRequest, bool) {
 	if o == nil || IsNil(o.Functions) {
 		return nil, false
 	}
@@ -101,8 +101,8 @@ func (o *ApplicationModulesRequest) HasFunctions() bool {
 	return false
 }
 
-// SetFunctions gets a reference to the given EdgeFunctionModuleRequest and assigns it to the Functions field.
-func (o *ApplicationModulesRequest) SetFunctions(v EdgeFunctionModuleRequest) {
+// SetFunctions gets a reference to the given FunctionModuleRequest and assigns it to the Functions field.
+func (o *ApplicationModulesRequest) SetFunctions(v FunctionModuleRequest) {
 	o.Functions = &v
 }
 

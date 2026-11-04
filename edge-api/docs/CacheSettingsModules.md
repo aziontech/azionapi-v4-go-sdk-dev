@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cache** | Pointer to [**CacheSettingsEdgeCacheModule**](CacheSettingsEdgeCacheModule.md) |  | [optional] 
+**Cache** | Pointer to [**CacheSettingsCacheModule**](CacheSettingsCacheModule.md) |  | [optional] 
 **ApplicationAccelerator** | Pointer to [**CacheSettingsApplicationAcceleratorModule**](CacheSettingsApplicationAcceleratorModule.md) |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCache
 
-`func (o *CacheSettingsModules) GetCache() CacheSettingsEdgeCacheModule`
+`func (o *CacheSettingsModules) GetCache() CacheSettingsCacheModule`
 
 GetCache returns the Cache field if non-nil, zero value otherwise.
 
 ### GetCacheOk
 
-`func (o *CacheSettingsModules) GetCacheOk() (*CacheSettingsEdgeCacheModule, bool)`
+`func (o *CacheSettingsModules) GetCacheOk() (*CacheSettingsCacheModule, bool)`
 
 GetCacheOk returns a tuple with the Cache field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCache
 
-`func (o *CacheSettingsModules) SetCache(v CacheSettingsEdgeCacheModule)`
+`func (o *CacheSettingsModules) SetCache(v CacheSettingsCacheModule)`
 
 SetCache sets Cache field to given value.
 

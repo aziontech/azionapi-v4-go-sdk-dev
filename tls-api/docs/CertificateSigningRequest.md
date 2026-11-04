@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Issuer** | Pointer to **NullableString** |  | [optional] 
 **SubjectName** | Pointer to **[]string** |  | [optional] 
 **Validity** | Pointer to **NullableString** |  | [optional] 
-**Type** | Pointer to **string** | The value can&#39;t be changed after the certificate creation.  * &#x60;edge_certificate&#x60; - Edge Certificate * &#x60;trusted_ca_certificate&#x60; - Trusted CA Certificate | [optional] 
+**Type** | Pointer to **string** | The value can&#39;t be changed after the certificate creation.  * &#x60;edge_certificate&#x60; - Certificate * &#x60;trusted_ca_certificate&#x60; - Trusted CA Certificate | [optional] 
 **Managed** | Pointer to **bool** |  | [optional] 
 **Status** | Pointer to **string** | * &#x60;pending&#x60; - Pending * &#x60;challenge_verification&#x60; - Challenge Verification * &#x60;active&#x60; - Active * &#x60;inactive&#x60; - Inactive * &#x60;expired&#x60; - Expired * &#x60;failed&#x60; - Failed | [optional] 
 **StatusDetail** | Pointer to **string** |  | [optional] 

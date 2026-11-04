@@ -22,16 +22,16 @@ var _ MappedNullable = &Credential{}
 
 // Credential struct for Credential
 type Credential struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
-	AccessKey string `json:"access_key"`
-	SecretKey string `json:"secret_key"`
+	AccessKey *string `json:"access_key,omitempty"`
+	SecretKey *string `json:"secret_key,omitempty"`
 	Capabilities []string `json:"capabilities"`
-	Buckets []string `json:"buckets"`
+	Buckets []string `json:"buckets,omitempty"`
 	ExpirationDate *time.Time `json:"expiration_date,omitempty"`
-	LastEditor NullableString `json:"last_editor"`
-	CreatedAt time.Time `json:"created_at"`
-	LastModified time.Time `json:"last_modified"`
+	LastEditor NullableString `json:"last_editor,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	LastModified *time.Time `json:"last_modified,omitempty"`
 }
 
 type _Credential Credential
@@ -40,17 +40,10 @@ type _Credential Credential
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCredential(id int64, name string, accessKey string, secretKey string, capabilities []string, buckets []string, lastEditor NullableString, createdAt time.Time, lastModified time.Time) *Credential {
+func NewCredential(name string, capabilities []string) *Credential {
 	this := Credential{}
-	this.Id = id
 	this.Name = name
-	this.AccessKey = accessKey
-	this.SecretKey = secretKey
 	this.Capabilities = capabilities
-	this.Buckets = buckets
-	this.LastEditor = lastEditor
-	this.CreatedAt = createdAt
-	this.LastModified = lastModified
 	return &this
 }
 
@@ -62,28 +55,36 @@ func NewCredentialWithDefaults() *Credential {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *Credential) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Credential) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *Credential) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *Credential) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -110,52 +111,68 @@ func (o *Credential) SetName(v string) {
 	o.Name = v
 }
 
-// GetAccessKey returns the AccessKey field value
+// GetAccessKey returns the AccessKey field value if set, zero value otherwise.
 func (o *Credential) GetAccessKey() string {
-	if o == nil {
+	if o == nil || IsNil(o.AccessKey) {
 		var ret string
 		return ret
 	}
-
-	return o.AccessKey
+	return *o.AccessKey
 }
 
-// GetAccessKeyOk returns a tuple with the AccessKey field value
+// GetAccessKeyOk returns a tuple with the AccessKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Credential) GetAccessKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AccessKey) {
 		return nil, false
 	}
-	return &o.AccessKey, true
+	return o.AccessKey, true
 }
 
-// SetAccessKey sets field value
+// HasAccessKey returns a boolean if a field has been set.
+func (o *Credential) HasAccessKey() bool {
+	if o != nil && !IsNil(o.AccessKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccessKey gets a reference to the given string and assigns it to the AccessKey field.
 func (o *Credential) SetAccessKey(v string) {
-	o.AccessKey = v
+	o.AccessKey = &v
 }
 
-// GetSecretKey returns the SecretKey field value
+// GetSecretKey returns the SecretKey field value if set, zero value otherwise.
 func (o *Credential) GetSecretKey() string {
-	if o == nil {
+	if o == nil || IsNil(o.SecretKey) {
 		var ret string
 		return ret
 	}
-
-	return o.SecretKey
+	return *o.SecretKey
 }
 
-// GetSecretKeyOk returns a tuple with the SecretKey field value
+// GetSecretKeyOk returns a tuple with the SecretKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Credential) GetSecretKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SecretKey) {
 		return nil, false
 	}
-	return &o.SecretKey, true
+	return o.SecretKey, true
 }
 
-// SetSecretKey sets field value
+// HasSecretKey returns a boolean if a field has been set.
+func (o *Credential) HasSecretKey() bool {
+	if o != nil && !IsNil(o.SecretKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetSecretKey gets a reference to the given string and assigns it to the SecretKey field.
 func (o *Credential) SetSecretKey(v string) {
-	o.SecretKey = v
+	o.SecretKey = &v
 }
 
 // GetCapabilities returns the Capabilities field value
@@ -182,26 +199,34 @@ func (o *Credential) SetCapabilities(v []string) {
 	o.Capabilities = v
 }
 
-// GetBuckets returns the Buckets field value
+// GetBuckets returns the Buckets field value if set, zero value otherwise.
 func (o *Credential) GetBuckets() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Buckets) {
 		var ret []string
 		return ret
 	}
-
 	return o.Buckets
 }
 
-// GetBucketsOk returns a tuple with the Buckets field value
+// GetBucketsOk returns a tuple with the Buckets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Credential) GetBucketsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Buckets) {
 		return nil, false
 	}
 	return o.Buckets, true
 }
 
-// SetBuckets sets field value
+// HasBuckets returns a boolean if a field has been set.
+func (o *Credential) HasBuckets() bool {
+	if o != nil && !IsNil(o.Buckets) {
+		return true
+	}
+
+	return false
+}
+
+// SetBuckets gets a reference to the given []string and assigns it to the Buckets field.
 func (o *Credential) SetBuckets(v []string) {
 	o.Buckets = v
 }
@@ -238,18 +263,16 @@ func (o *Credential) SetExpirationDate(v time.Time) {
 	o.ExpirationDate = &v
 }
 
-// GetLastEditor returns the LastEditor field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetLastEditor returns the LastEditor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Credential) GetLastEditor() string {
-	if o == nil || o.LastEditor.Get() == nil {
+	if o == nil || IsNil(o.LastEditor.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.LastEditor.Get()
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value
+// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Credential) GetLastEditorOk() (*string, bool) {
@@ -259,57 +282,91 @@ func (o *Credential) GetLastEditorOk() (*string, bool) {
 	return o.LastEditor.Get(), o.LastEditor.IsSet()
 }
 
-// SetLastEditor sets field value
+// HasLastEditor returns a boolean if a field has been set.
+func (o *Credential) HasLastEditor() bool {
+	if o != nil && o.LastEditor.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastEditor gets a reference to the given NullableString and assigns it to the LastEditor field.
 func (o *Credential) SetLastEditor(v string) {
 	o.LastEditor.Set(&v)
 }
+// SetLastEditorNil sets the value for LastEditor to be an explicit nil
+func (o *Credential) SetLastEditorNil() {
+	o.LastEditor.Set(nil)
+}
 
-// GetCreatedAt returns the CreatedAt field value
+// UnsetLastEditor ensures that no value is present for LastEditor, not even an explicit nil
+func (o *Credential) UnsetLastEditor() {
+	o.LastEditor.Unset()
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Credential) GetCreatedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Credential) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Credential) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *Credential) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetLastModified returns the LastModified field value
+// GetLastModified returns the LastModified field value if set, zero value otherwise.
 func (o *Credential) GetLastModified() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.LastModified
+	return *o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value
+// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Credential) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		return nil, false
 	}
-	return &o.LastModified, true
+	return o.LastModified, true
 }
 
-// SetLastModified sets field value
+// HasLastModified returns a boolean if a field has been set.
+func (o *Credential) HasLastModified() bool {
+	if o != nil && !IsNil(o.LastModified) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
 func (o *Credential) SetLastModified(v time.Time) {
-	o.LastModified = v
+	o.LastModified = &v
 }
 
 func (o Credential) MarshalJSON() ([]byte, error) {
@@ -322,18 +379,32 @@ func (o Credential) MarshalJSON() ([]byte, error) {
 
 func (o Credential) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
-	toSerialize["access_key"] = o.AccessKey
-	toSerialize["secret_key"] = o.SecretKey
+	if !IsNil(o.AccessKey) {
+		toSerialize["access_key"] = o.AccessKey
+	}
+	if !IsNil(o.SecretKey) {
+		toSerialize["secret_key"] = o.SecretKey
+	}
 	toSerialize["capabilities"] = o.Capabilities
-	toSerialize["buckets"] = o.Buckets
+	if !IsNil(o.Buckets) {
+		toSerialize["buckets"] = o.Buckets
+	}
 	if !IsNil(o.ExpirationDate) {
 		toSerialize["expiration_date"] = o.ExpirationDate
 	}
-	toSerialize["last_editor"] = o.LastEditor.Get()
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["last_modified"] = o.LastModified
+	if o.LastEditor.IsSet() {
+		toSerialize["last_editor"] = o.LastEditor.Get()
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.LastModified) {
+		toSerialize["last_modified"] = o.LastModified
+	}
 	return toSerialize, nil
 }
 
@@ -342,15 +413,8 @@ func (o *Credential) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
 		"name",
-		"access_key",
-		"secret_key",
 		"capabilities",
-		"buckets",
-		"last_editor",
-		"created_at",
-		"last_modified",
 	}
 
 	allProperties := make(map[string]interface{})

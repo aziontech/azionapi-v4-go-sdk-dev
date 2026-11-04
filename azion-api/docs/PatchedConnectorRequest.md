@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | **string** | Discriminator field for PatchedConnectorRequest | 
 **Name** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | **string** | * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | 
 **Attributes** | Pointer to [**ConnectorLiveIngestAttributesRequest**](ConnectorLiveIngestAttributesRequest.md) |  | [optional] 
 
 ## Methods
@@ -27,6 +27,26 @@ will change when the set of required properties is changed
 NewPatchedConnectorRequestWithDefaults instantiates a new PatchedConnectorRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetType
+
+`func (o *PatchedConnectorRequest) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *PatchedConnectorRequest) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *PatchedConnectorRequest) SetType(v string)`
+
+SetType sets Type field to given value.
+
 
 ### GetName
 
@@ -77,26 +97,6 @@ SetActive sets Active field to given value.
 `func (o *PatchedConnectorRequest) HasActive() bool`
 
 HasActive returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *PatchedConnectorRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *PatchedConnectorRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *PatchedConnectorRequest) SetType(v string)`
-
-SetType sets Type field to given value.
-
 
 ### GetAttributes
 

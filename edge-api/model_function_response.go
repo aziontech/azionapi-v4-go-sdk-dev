@@ -22,7 +22,7 @@ var _ MappedNullable = &FunctionResponse{}
 // FunctionResponse struct for FunctionResponse
 type FunctionResponse struct {
 	State *string `json:"state,omitempty"`
-	Data EdgeFunctions `json:"data"`
+	Data Functions `json:"data"`
 }
 
 type _FunctionResponse FunctionResponse
@@ -31,7 +31,7 @@ type _FunctionResponse FunctionResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFunctionResponse(data EdgeFunctions) *FunctionResponse {
+func NewFunctionResponse(data Functions) *FunctionResponse {
 	this := FunctionResponse{}
 	this.Data = data
 	return &this
@@ -78,9 +78,9 @@ func (o *FunctionResponse) SetState(v string) {
 }
 
 // GetData returns the Data field value
-func (o *FunctionResponse) GetData() EdgeFunctions {
+func (o *FunctionResponse) GetData() Functions {
 	if o == nil {
-		var ret EdgeFunctions
+		var ret Functions
 		return ret
 	}
 
@@ -89,7 +89,7 @@ func (o *FunctionResponse) GetData() EdgeFunctions {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *FunctionResponse) GetDataOk() (*EdgeFunctions, bool) {
+func (o *FunctionResponse) GetDataOk() (*Functions, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -97,7 +97,7 @@ func (o *FunctionResponse) GetDataOk() (*EdgeFunctions, bool) {
 }
 
 // SetData sets field value
-func (o *FunctionResponse) SetData(v EdgeFunctions) {
+func (o *FunctionResponse) SetData(v Functions) {
 	o.Data = v
 }
 
