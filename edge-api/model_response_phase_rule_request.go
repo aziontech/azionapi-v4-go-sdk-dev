@@ -23,7 +23,7 @@ var _ MappedNullable = &ResponsePhaseRuleRequest{}
 type ResponsePhaseRuleRequest struct {
 	Name string `json:"name"`
 	Active *bool `json:"active,omitempty"`
-	Criteria [][]EdgeApplicationCriterionFieldRequest `json:"criteria"`
+	Criteria [][]ApplicationCriterionFieldRequest `json:"criteria"`
 	Behaviors []ResponsePhaseBehaviorRequest `json:"behaviors"`
 	Description *string `json:"description,omitempty"`
 }
@@ -34,7 +34,7 @@ type _ResponsePhaseRuleRequest ResponsePhaseRuleRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponsePhaseRuleRequest(name string, criteria [][]EdgeApplicationCriterionFieldRequest, behaviors []ResponsePhaseBehaviorRequest) *ResponsePhaseRuleRequest {
+func NewResponsePhaseRuleRequest(name string, criteria [][]ApplicationCriterionFieldRequest, behaviors []ResponsePhaseBehaviorRequest) *ResponsePhaseRuleRequest {
 	this := ResponsePhaseRuleRequest{}
 	this.Name = name
 	this.Criteria = criteria
@@ -107,9 +107,9 @@ func (o *ResponsePhaseRuleRequest) SetActive(v bool) {
 }
 
 // GetCriteria returns the Criteria field value
-func (o *ResponsePhaseRuleRequest) GetCriteria() [][]EdgeApplicationCriterionFieldRequest {
+func (o *ResponsePhaseRuleRequest) GetCriteria() [][]ApplicationCriterionFieldRequest {
 	if o == nil {
-		var ret [][]EdgeApplicationCriterionFieldRequest
+		var ret [][]ApplicationCriterionFieldRequest
 		return ret
 	}
 
@@ -118,7 +118,7 @@ func (o *ResponsePhaseRuleRequest) GetCriteria() [][]EdgeApplicationCriterionFie
 
 // GetCriteriaOk returns a tuple with the Criteria field value
 // and a boolean to check if the value has been set.
-func (o *ResponsePhaseRuleRequest) GetCriteriaOk() ([][]EdgeApplicationCriterionFieldRequest, bool) {
+func (o *ResponsePhaseRuleRequest) GetCriteriaOk() ([][]ApplicationCriterionFieldRequest, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -126,7 +126,7 @@ func (o *ResponsePhaseRuleRequest) GetCriteriaOk() ([][]EdgeApplicationCriterion
 }
 
 // SetCriteria sets field value
-func (o *ResponsePhaseRuleRequest) SetCriteria(v [][]EdgeApplicationCriterionFieldRequest) {
+func (o *ResponsePhaseRuleRequest) SetCriteria(v [][]ApplicationCriterionFieldRequest) {
 	o.Criteria = v
 }
 

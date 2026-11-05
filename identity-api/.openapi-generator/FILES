@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -153,13 +152,4 @@ model_user_info.go
 model_user_info_request.go
 model_user_request.go
 response.go
-test/api_favorites_test.go
-test/api_identity_grants_test.go
-test/api_identity_group_members_test.go
-test/api_identity_groups_test.go
-test/api_identity_logged_in_user_test.go
-test/api_identity_service_token_renew_test.go
-test/api_identity_service_tokens_test.go
-test/api_identity_user_info_test.go
-test/api_identity_users_test.go
 utils.go

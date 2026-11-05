@@ -20,8 +20,10 @@ import (
 // checks if the ConnectorHTTP type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ConnectorHTTP{}
 
-// ConnectorHTTP Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``version_state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers.ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
+// ConnectorHTTP struct for ConnectorHTTP
 type ConnectorHTTP struct {
+	IsVersioned *bool `json:"is_versioned,omitempty"`
+	Version NullableInt64 `json:"version,omitempty"`
 	// ID of the version metadata (use in /versions/{id} URLs)
 	VersionId NullableString `json:"version_id,omitempty"`
 	// Build state of this version (queued, building, ready, error, ...)
@@ -33,6 +35,7 @@ type ConnectorHTTP struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	ProductVersion *string `json:"product_version,omitempty"`
+	// Discriminator field for Connector
 	Type string `json:"type"`
 	Attributes ConnectorHTTPAttributes `json:"attributes"`
 }
@@ -57,6 +60,80 @@ func NewConnectorHTTP(name string, type_ string, attributes ConnectorHTTPAttribu
 func NewConnectorHTTPWithDefaults() *ConnectorHTTP {
 	this := ConnectorHTTP{}
 	return &this
+}
+
+// GetIsVersioned returns the IsVersioned field value if set, zero value otherwise.
+func (o *ConnectorHTTP) GetIsVersioned() bool {
+	if o == nil || IsNil(o.IsVersioned) {
+		var ret bool
+		return ret
+	}
+	return *o.IsVersioned
+}
+
+// GetIsVersionedOk returns a tuple with the IsVersioned field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConnectorHTTP) GetIsVersionedOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsVersioned) {
+		return nil, false
+	}
+	return o.IsVersioned, true
+}
+
+// HasIsVersioned returns a boolean if a field has been set.
+func (o *ConnectorHTTP) HasIsVersioned() bool {
+	if o != nil && !IsNil(o.IsVersioned) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsVersioned gets a reference to the given bool and assigns it to the IsVersioned field.
+func (o *ConnectorHTTP) SetIsVersioned(v bool) {
+	o.IsVersioned = &v
+}
+
+// GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConnectorHTTP) GetVersion() int64 {
+	if o == nil || IsNil(o.Version.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.Version.Get()
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectorHTTP) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Version.Get(), o.Version.IsSet()
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *ConnectorHTTP) HasVersion() bool {
+	if o != nil && o.Version.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given NullableInt64 and assigns it to the Version field.
+func (o *ConnectorHTTP) SetVersion(v int64) {
+	o.Version.Set(&v)
+}
+// SetVersionNil sets the value for Version to be an explicit nil
+func (o *ConnectorHTTP) SetVersionNil() {
+	o.Version.Set(nil)
+}
+
+// UnsetVersion ensures that no value is present for Version, not even an explicit nil
+func (o *ConnectorHTTP) UnsetVersion() {
+	o.Version.Unset()
 }
 
 // GetVersionId returns the VersionId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -417,6 +494,12 @@ func (o ConnectorHTTP) MarshalJSON() ([]byte, error) {
 
 func (o ConnectorHTTP) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IsVersioned) {
+		toSerialize["is_versioned"] = o.IsVersioned
+	}
+	if o.Version.IsSet() {
+		toSerialize["version"] = o.Version.Get()
+	}
 	if o.VersionId.IsSet() {
 		toSerialize["version_id"] = o.VersionId.Get()
 	}

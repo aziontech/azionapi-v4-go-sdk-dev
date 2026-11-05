@@ -29,7 +29,7 @@ type CertificateRequest struct {
 	Issuer NullableString `json:"issuer,omitempty"`
 	SubjectName []string `json:"subject_name,omitempty"`
 	Validity NullableString `json:"validity,omitempty"`
-	// The value can't be changed after the certificate creation.  * `edge_certificate` - Edge Certificate * `trusted_ca_certificate` - Trusted CA Certificate
+	// The value can't be changed after the certificate creation.  * `edge_certificate` - Certificate * `trusted_ca_certificate` - Trusted CA Certificate
 	Type *string `json:"type,omitempty"`
 	Managed *bool `json:"managed,omitempty"`
 	// * `pending` - Pending * `challenge_verification` - Challenge Verification * `active` - Active * `inactive` - Inactive * `expired` - Expired * `failed` - Failed

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cache** | Pointer to [**CacheModule**](CacheModule.md) |  | [optional] 
-**Functions** | Pointer to [**EdgeFunctionModule**](EdgeFunctionModule.md) |  | [optional] 
+**Functions** | Pointer to [**FunctionModule**](FunctionModule.md) |  | [optional] 
 **ApplicationAccelerator** | Pointer to [**ApplicationAcceleratorModule**](ApplicationAcceleratorModule.md) |  | [optional] 
 **ImageProcessor** | Pointer to [**ImageProcessorModule**](ImageProcessorModule.md) |  | [optional] 
 
@@ -55,20 +55,20 @@ HasCache returns a boolean if a field has been set.
 
 ### GetFunctions
 
-`func (o *ApplicationModules) GetFunctions() EdgeFunctionModule`
+`func (o *ApplicationModules) GetFunctions() FunctionModule`
 
 GetFunctions returns the Functions field if non-nil, zero value otherwise.
 
 ### GetFunctionsOk
 
-`func (o *ApplicationModules) GetFunctionsOk() (*EdgeFunctionModule, bool)`
+`func (o *ApplicationModules) GetFunctionsOk() (*FunctionModule, bool)`
 
 GetFunctionsOk returns a tuple with the Functions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFunctions
 
-`func (o *ApplicationModules) SetFunctions(v EdgeFunctionModule)`
+`func (o *ApplicationModules) SetFunctions(v FunctionModule)`
 
 SetFunctions sets Functions field to given value.
 

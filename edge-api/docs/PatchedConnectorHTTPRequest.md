@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | Pointer to **string** | * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | [optional] 
+**Type** | **string** | Discriminator field for PatchedConnectorRequest | 
 **Attributes** | Pointer to [**ConnectorHTTPAttributesRequest**](ConnectorHTTPAttributesRequest.md) |  | [optional] 
 
 ## Methods
 
 ### NewPatchedConnectorHTTPRequest
 
-`func NewPatchedConnectorHTTPRequest() *PatchedConnectorHTTPRequest`
+`func NewPatchedConnectorHTTPRequest(type_ string, ) *PatchedConnectorHTTPRequest`
 
 NewPatchedConnectorHTTPRequest instantiates a new PatchedConnectorHTTPRequest object
 This constructor will assign default values to properties that have it defined,
@@ -97,11 +97,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *PatchedConnectorHTTPRequest) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetAttributes
 

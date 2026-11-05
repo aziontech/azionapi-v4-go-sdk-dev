@@ -27,15 +27,15 @@ type ConnectorsAPIService service
 type ApiCreateConnectorRequest struct {
 	ctx context.Context
 	ApiService *ConnectorsAPIService
-	connectorPolymorphicRequest *ConnectorPolymorphicRequest
+	connectorRequest *ConnectorRequest
 }
 
-func (r ApiCreateConnectorRequest) ConnectorPolymorphicRequest(connectorPolymorphicRequest ConnectorPolymorphicRequest) ApiCreateConnectorRequest {
-	r.connectorPolymorphicRequest = &connectorPolymorphicRequest
+func (r ApiCreateConnectorRequest) ConnectorRequest(connectorRequest ConnectorRequest) ApiCreateConnectorRequest {
+	r.connectorRequest = &connectorRequest
 	return r
 }
 
-func (r ApiCreateConnectorRequest) Execute() (*ConnectorPolymorphicResponse, *http.Response, error) {
+func (r ApiCreateConnectorRequest) Execute() (*ConnectorResponse, *http.Response, error) {
 	return r.ApiService.CreateConnectorExecute(r)
 }
 
@@ -55,13 +55,13 @@ func (a *ConnectorsAPIService) CreateConnector(ctx context.Context) ApiCreateCon
 }
 
 // Execute executes the request
-//  @return ConnectorPolymorphicResponse
-func (a *ConnectorsAPIService) CreateConnectorExecute(r ApiCreateConnectorRequest) (*ConnectorPolymorphicResponse, *http.Response, error) {
+//  @return ConnectorResponse
+func (a *ConnectorsAPIService) CreateConnectorExecute(r ApiCreateConnectorRequest) (*ConnectorResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ConnectorPolymorphicResponse
+		localVarReturnValue  *ConnectorResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectorsAPIService.CreateConnector")
@@ -93,7 +93,7 @@ func (a *ConnectorsAPIService) CreateConnectorExecute(r ApiCreateConnectorReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.connectorPolymorphicRequest
+	localVarPostBody = r.connectorRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -131,7 +131,7 @@ func (a *ConnectorsAPIService) CreateConnectorExecute(r ApiCreateConnectorReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -142,7 +142,7 @@ func (a *ConnectorsAPIService) CreateConnectorExecute(r ApiCreateConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -153,7 +153,7 @@ func (a *ConnectorsAPIService) CreateConnectorExecute(r ApiCreateConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -164,7 +164,7 @@ func (a *ConnectorsAPIService) CreateConnectorExecute(r ApiCreateConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -175,7 +175,7 @@ func (a *ConnectorsAPIService) CreateConnectorExecute(r ApiCreateConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -186,7 +186,7 @@ func (a *ConnectorsAPIService) CreateConnectorExecute(r ApiCreateConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -197,7 +197,18 @@ func (a *ConnectorsAPIService) CreateConnectorExecute(r ApiCreateConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -237,7 +248,7 @@ DeleteConnector Delete a Connector
 Delete a specific Connector in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectorId A unique integer value identifying the edge connector.
+ @param connectorId A unique integer value identifying the connector.
  @return ApiDeleteConnectorRequest
 */
 func (a *ConnectorsAPIService) DeleteConnector(ctx context.Context, connectorId int64) ApiDeleteConnectorRequest {
@@ -324,7 +335,7 @@ func (a *ConnectorsAPIService) DeleteConnectorExecute(r ApiDeleteConnectorReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -335,7 +346,7 @@ func (a *ConnectorsAPIService) DeleteConnectorExecute(r ApiDeleteConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -346,7 +357,7 @@ func (a *ConnectorsAPIService) DeleteConnectorExecute(r ApiDeleteConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -357,7 +368,7 @@ func (a *ConnectorsAPIService) DeleteConnectorExecute(r ApiDeleteConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -368,7 +379,7 @@ func (a *ConnectorsAPIService) DeleteConnectorExecute(r ApiDeleteConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -379,7 +390,7 @@ func (a *ConnectorsAPIService) DeleteConnectorExecute(r ApiDeleteConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -390,7 +401,18 @@ func (a *ConnectorsAPIService) DeleteConnectorExecute(r ApiDeleteConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -503,7 +525,7 @@ func (r ApiListConnectorsRequest) TypeIn(typeIn string) ApiListConnectorsRequest
 	return r
 }
 
-func (r ApiListConnectorsRequest) Execute() (*PaginatedConnectorPolymorphicList, *http.Response, error) {
+func (r ApiListConnectorsRequest) Execute() (*PaginatedConnectorList, *http.Response, error) {
 	return r.ApiService.ListConnectorsExecute(r)
 }
 
@@ -523,13 +545,13 @@ func (a *ConnectorsAPIService) ListConnectors(ctx context.Context) ApiListConnec
 }
 
 // Execute executes the request
-//  @return PaginatedConnectorPolymorphicList
-func (a *ConnectorsAPIService) ListConnectorsExecute(r ApiListConnectorsRequest) (*PaginatedConnectorPolymorphicList, *http.Response, error) {
+//  @return PaginatedConnectorList
+func (a *ConnectorsAPIService) ListConnectorsExecute(r ApiListConnectorsRequest) (*PaginatedConnectorList, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PaginatedConnectorPolymorphicList
+		localVarReturnValue  *PaginatedConnectorList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectorsAPIService.ListConnectors")
@@ -633,7 +655,7 @@ func (a *ConnectorsAPIService) ListConnectorsExecute(r ApiListConnectorsRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -644,7 +666,7 @@ func (a *ConnectorsAPIService) ListConnectorsExecute(r ApiListConnectorsRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -655,7 +677,7 @@ func (a *ConnectorsAPIService) ListConnectorsExecute(r ApiListConnectorsRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -666,7 +688,7 @@ func (a *ConnectorsAPIService) ListConnectorsExecute(r ApiListConnectorsRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -677,7 +699,7 @@ func (a *ConnectorsAPIService) ListConnectorsExecute(r ApiListConnectorsRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -688,7 +710,7 @@ func (a *ConnectorsAPIService) ListConnectorsExecute(r ApiListConnectorsRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -699,7 +721,18 @@ func (a *ConnectorsAPIService) ListConnectorsExecute(r ApiListConnectorsRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -727,15 +760,15 @@ type ApiPartialUpdateConnectorRequest struct {
 	ctx context.Context
 	ApiService *ConnectorsAPIService
 	connectorId int64
-	patchedConnectorPolymorphicRequest *PatchedConnectorPolymorphicRequest
+	patchedConnectorRequest *PatchedConnectorRequest
 }
 
-func (r ApiPartialUpdateConnectorRequest) PatchedConnectorPolymorphicRequest(patchedConnectorPolymorphicRequest PatchedConnectorPolymorphicRequest) ApiPartialUpdateConnectorRequest {
-	r.patchedConnectorPolymorphicRequest = &patchedConnectorPolymorphicRequest
+func (r ApiPartialUpdateConnectorRequest) PatchedConnectorRequest(patchedConnectorRequest PatchedConnectorRequest) ApiPartialUpdateConnectorRequest {
+	r.patchedConnectorRequest = &patchedConnectorRequest
 	return r
 }
 
-func (r ApiPartialUpdateConnectorRequest) Execute() (*ConnectorPolymorphicResponse, *http.Response, error) {
+func (r ApiPartialUpdateConnectorRequest) Execute() (*ConnectorResponse, *http.Response, error) {
 	return r.ApiService.PartialUpdateConnectorExecute(r)
 }
 
@@ -745,7 +778,7 @@ PartialUpdateConnector Partially update a Connector
 Update one or more fields of an existing Connector without affecting other fields.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectorId A unique integer value identifying the edge connector.
+ @param connectorId A unique integer value identifying the connector.
  @return ApiPartialUpdateConnectorRequest
 */
 func (a *ConnectorsAPIService) PartialUpdateConnector(ctx context.Context, connectorId int64) ApiPartialUpdateConnectorRequest {
@@ -757,13 +790,13 @@ func (a *ConnectorsAPIService) PartialUpdateConnector(ctx context.Context, conne
 }
 
 // Execute executes the request
-//  @return ConnectorPolymorphicResponse
-func (a *ConnectorsAPIService) PartialUpdateConnectorExecute(r ApiPartialUpdateConnectorRequest) (*ConnectorPolymorphicResponse, *http.Response, error) {
+//  @return ConnectorResponse
+func (a *ConnectorsAPIService) PartialUpdateConnectorExecute(r ApiPartialUpdateConnectorRequest) (*ConnectorResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ConnectorPolymorphicResponse
+		localVarReturnValue  *ConnectorResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectorsAPIService.PartialUpdateConnector")
@@ -796,7 +829,7 @@ func (a *ConnectorsAPIService) PartialUpdateConnectorExecute(r ApiPartialUpdateC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchedConnectorPolymorphicRequest
+	localVarPostBody = r.patchedConnectorRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -834,7 +867,7 @@ func (a *ConnectorsAPIService) PartialUpdateConnectorExecute(r ApiPartialUpdateC
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -845,7 +878,7 @@ func (a *ConnectorsAPIService) PartialUpdateConnectorExecute(r ApiPartialUpdateC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -856,7 +889,7 @@ func (a *ConnectorsAPIService) PartialUpdateConnectorExecute(r ApiPartialUpdateC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -867,7 +900,7 @@ func (a *ConnectorsAPIService) PartialUpdateConnectorExecute(r ApiPartialUpdateC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -878,7 +911,7 @@ func (a *ConnectorsAPIService) PartialUpdateConnectorExecute(r ApiPartialUpdateC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -889,7 +922,7 @@ func (a *ConnectorsAPIService) PartialUpdateConnectorExecute(r ApiPartialUpdateC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -900,7 +933,18 @@ func (a *ConnectorsAPIService) PartialUpdateConnectorExecute(r ApiPartialUpdateC
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -937,7 +981,7 @@ func (r ApiRetrieveConnectorRequest) Fields(fields string) ApiRetrieveConnectorR
 	return r
 }
 
-func (r ApiRetrieveConnectorRequest) Execute() (*ConnectorPolymorphicResponse, *http.Response, error) {
+func (r ApiRetrieveConnectorRequest) Execute() (*ConnectorResponse, *http.Response, error) {
 	return r.ApiService.RetrieveConnectorExecute(r)
 }
 
@@ -947,7 +991,7 @@ RetrieveConnector Retrieve details of a Connector
 Retrieve details of a specific Connector in your account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectorId A unique integer value identifying the edge connector.
+ @param connectorId A unique integer value identifying the connector.
  @return ApiRetrieveConnectorRequest
 */
 func (a *ConnectorsAPIService) RetrieveConnector(ctx context.Context, connectorId int64) ApiRetrieveConnectorRequest {
@@ -959,13 +1003,13 @@ func (a *ConnectorsAPIService) RetrieveConnector(ctx context.Context, connectorI
 }
 
 // Execute executes the request
-//  @return ConnectorPolymorphicResponse
-func (a *ConnectorsAPIService) RetrieveConnectorExecute(r ApiRetrieveConnectorRequest) (*ConnectorPolymorphicResponse, *http.Response, error) {
+//  @return ConnectorResponse
+func (a *ConnectorsAPIService) RetrieveConnectorExecute(r ApiRetrieveConnectorRequest) (*ConnectorResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ConnectorPolymorphicResponse
+		localVarReturnValue  *ConnectorResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectorsAPIService.RetrieveConnector")
@@ -1037,7 +1081,7 @@ func (a *ConnectorsAPIService) RetrieveConnectorExecute(r ApiRetrieveConnectorRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1048,7 +1092,7 @@ func (a *ConnectorsAPIService) RetrieveConnectorExecute(r ApiRetrieveConnectorRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1059,7 +1103,7 @@ func (a *ConnectorsAPIService) RetrieveConnectorExecute(r ApiRetrieveConnectorRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1070,7 +1114,7 @@ func (a *ConnectorsAPIService) RetrieveConnectorExecute(r ApiRetrieveConnectorRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1081,7 +1125,7 @@ func (a *ConnectorsAPIService) RetrieveConnectorExecute(r ApiRetrieveConnectorRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1092,7 +1136,7 @@ func (a *ConnectorsAPIService) RetrieveConnectorExecute(r ApiRetrieveConnectorRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1103,7 +1147,18 @@ func (a *ConnectorsAPIService) RetrieveConnectorExecute(r ApiRetrieveConnectorRe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1131,15 +1186,15 @@ type ApiUpdateConnectorRequest struct {
 	ctx context.Context
 	ApiService *ConnectorsAPIService
 	connectorId int64
-	connectorPolymorphicRequest *ConnectorPolymorphicRequest
+	connectorRequest *ConnectorRequest
 }
 
-func (r ApiUpdateConnectorRequest) ConnectorPolymorphicRequest(connectorPolymorphicRequest ConnectorPolymorphicRequest) ApiUpdateConnectorRequest {
-	r.connectorPolymorphicRequest = &connectorPolymorphicRequest
+func (r ApiUpdateConnectorRequest) ConnectorRequest(connectorRequest ConnectorRequest) ApiUpdateConnectorRequest {
+	r.connectorRequest = &connectorRequest
 	return r
 }
 
-func (r ApiUpdateConnectorRequest) Execute() (*ConnectorPolymorphicResponse, *http.Response, error) {
+func (r ApiUpdateConnectorRequest) Execute() (*ConnectorResponse, *http.Response, error) {
 	return r.ApiService.UpdateConnectorExecute(r)
 }
 
@@ -1149,7 +1204,7 @@ UpdateConnector Update a Connector
 Update an existing Connector. This replaces the entire Connector with the new data provided.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param connectorId A unique integer value identifying the edge connector.
+ @param connectorId A unique integer value identifying the connector.
  @return ApiUpdateConnectorRequest
 */
 func (a *ConnectorsAPIService) UpdateConnector(ctx context.Context, connectorId int64) ApiUpdateConnectorRequest {
@@ -1161,13 +1216,13 @@ func (a *ConnectorsAPIService) UpdateConnector(ctx context.Context, connectorId 
 }
 
 // Execute executes the request
-//  @return ConnectorPolymorphicResponse
-func (a *ConnectorsAPIService) UpdateConnectorExecute(r ApiUpdateConnectorRequest) (*ConnectorPolymorphicResponse, *http.Response, error) {
+//  @return ConnectorResponse
+func (a *ConnectorsAPIService) UpdateConnectorExecute(r ApiUpdateConnectorRequest) (*ConnectorResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ConnectorPolymorphicResponse
+		localVarReturnValue  *ConnectorResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectorsAPIService.UpdateConnector")
@@ -1200,7 +1255,7 @@ func (a *ConnectorsAPIService) UpdateConnectorExecute(r ApiUpdateConnectorReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.connectorPolymorphicRequest
+	localVarPostBody = r.connectorRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1238,7 +1293,7 @@ func (a *ConnectorsAPIService) UpdateConnectorExecute(r ApiUpdateConnectorReques
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1249,7 +1304,7 @@ func (a *ConnectorsAPIService) UpdateConnectorExecute(r ApiUpdateConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1260,7 +1315,7 @@ func (a *ConnectorsAPIService) UpdateConnectorExecute(r ApiUpdateConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1271,7 +1326,7 @@ func (a *ConnectorsAPIService) UpdateConnectorExecute(r ApiUpdateConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1282,7 +1337,7 @@ func (a *ConnectorsAPIService) UpdateConnectorExecute(r ApiUpdateConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1293,7 +1348,7 @@ func (a *ConnectorsAPIService) UpdateConnectorExecute(r ApiUpdateConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1304,7 +1359,18 @@ func (a *ConnectorsAPIService) UpdateConnectorExecute(r ApiUpdateConnectorReques
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v JSONAPIErrorResponse
+			var v ErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

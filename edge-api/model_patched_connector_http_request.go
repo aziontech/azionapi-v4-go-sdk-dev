@@ -12,26 +12,31 @@ package edgeapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the PatchedConnectorHTTPRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PatchedConnectorHTTPRequest{}
 
-// PatchedConnectorHTTPRequest Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``version_state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers.ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
+// PatchedConnectorHTTPRequest struct for PatchedConnectorHTTPRequest
 type PatchedConnectorHTTPRequest struct {
 	Name *string `json:"name,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	// * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
-	Type *string `json:"type,omitempty"`
+	// Discriminator field for PatchedConnectorRequest
+	Type string `json:"type"`
 	Attributes *ConnectorHTTPAttributesRequest `json:"attributes,omitempty"`
 }
+
+type _PatchedConnectorHTTPRequest PatchedConnectorHTTPRequest
 
 // NewPatchedConnectorHTTPRequest instantiates a new PatchedConnectorHTTPRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPatchedConnectorHTTPRequest() *PatchedConnectorHTTPRequest {
+func NewPatchedConnectorHTTPRequest(type_ string) *PatchedConnectorHTTPRequest {
 	this := PatchedConnectorHTTPRequest{}
+	this.Type = type_
 	return &this
 }
 
@@ -107,36 +112,28 @@ func (o *PatchedConnectorHTTPRequest) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *PatchedConnectorHTTPRequest) GetType() string {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *PatchedConnectorHTTPRequest) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *PatchedConnectorHTTPRequest) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType sets field value
 func (o *PatchedConnectorHTTPRequest) SetType(v string) {
-	o.Type = &v
+	o.Type = v
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
@@ -187,13 +184,48 @@ func (o PatchedConnectorHTTPRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if !IsNil(o.Attributes) {
 		toSerialize["attributes"] = o.Attributes
 	}
 	return toSerialize, nil
+}
+
+func (o *PatchedConnectorHTTPRequest) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPatchedConnectorHTTPRequest := _PatchedConnectorHTTPRequest{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPatchedConnectorHTTPRequest)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchedConnectorHTTPRequest(varPatchedConnectorHTTPRequest)
+
+	return err
 }
 
 type NullablePatchedConnectorHTTPRequest struct {

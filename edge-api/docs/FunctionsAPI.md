@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateFunction
 
-> FunctionResponse CreateFunction(ctx).EdgeFunctionsRequest(edgeFunctionsRequest).Execute()
+> FunctionResponse CreateFunction(ctx).FunctionsRequest(functionsRequest).Execute()
 
 Create an Function
 
@@ -34,11 +34,11 @@ import (
 )
 
 func main() {
-	edgeFunctionsRequest := *openapiclient.NewEdgeFunctionsRequest("Name_example", "Code_example") // EdgeFunctionsRequest | 
+	functionsRequest := *openapiclient.NewFunctionsRequest("Name_example", "Code_example") // FunctionsRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FunctionsAPI.CreateFunction(context.Background()).EdgeFunctionsRequest(edgeFunctionsRequest).Execute()
+	resp, r, err := apiClient.FunctionsAPI.CreateFunction(context.Background()).FunctionsRequest(functionsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.CreateFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,7 +59,7 @@ Other parameters are passed through a pointer to a apiCreateFunctionRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **edgeFunctionsRequest** | [**EdgeFunctionsRequest**](EdgeFunctionsRequest.md) |  | 
+ **functionsRequest** | [**FunctionsRequest**](FunctionsRequest.md) |  | 
 
 ### Return type
 
@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	functionId := int64(789) // int64 | A unique integer value identifying the edge function.
+	functionId := int64(789) // int64 | A unique integer value identifying the function.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -120,7 +120,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | A unique integer value identifying the edge function. | 
+**functionId** | **int64** | A unique integer value identifying the function. | 
 
 ### Other Parameters
 
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 
 ## PartialUpdateFunction
 
-> FunctionResponse PartialUpdateFunction(ctx, functionId).PatchedEdgeFunctionsRequest(patchedEdgeFunctionsRequest).Execute()
+> FunctionResponse PartialUpdateFunction(ctx, functionId).PatchedFunctionsRequest(patchedFunctionsRequest).Execute()
 
 Partially update an Function
 
@@ -261,12 +261,12 @@ import (
 )
 
 func main() {
-	functionId := int64(789) // int64 | A unique integer value identifying the edge function.
-	patchedEdgeFunctionsRequest := *openapiclient.NewPatchedEdgeFunctionsRequest() // PatchedEdgeFunctionsRequest |  (optional)
+	functionId := int64(789) // int64 | A unique integer value identifying the function.
+	patchedFunctionsRequest := *openapiclient.NewPatchedFunctionsRequest() // PatchedFunctionsRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FunctionsAPI.PartialUpdateFunction(context.Background(), functionId).PatchedEdgeFunctionsRequest(patchedEdgeFunctionsRequest).Execute()
+	resp, r, err := apiClient.FunctionsAPI.PartialUpdateFunction(context.Background(), functionId).PatchedFunctionsRequest(patchedFunctionsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.PartialUpdateFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -282,7 +282,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | A unique integer value identifying the edge function. | 
+**functionId** | **int64** | A unique integer value identifying the function. | 
 
 ### Other Parameters
 
@@ -292,7 +292,7 @@ Other parameters are passed through a pointer to a apiPartialUpdateFunctionReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchedEdgeFunctionsRequest** | [**PatchedEdgeFunctionsRequest**](PatchedEdgeFunctionsRequest.md) |  | 
+ **patchedFunctionsRequest** | [**PatchedFunctionsRequest**](PatchedFunctionsRequest.md) |  | 
 
 ### Return type
 
@@ -333,7 +333,7 @@ import (
 )
 
 func main() {
-	functionId := int64(789) // int64 | A unique integer value identifying the edge function.
+	functionId := int64(789) // int64 | A unique integer value identifying the function.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -354,7 +354,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | A unique integer value identifying the edge function. | 
+**functionId** | **int64** | A unique integer value identifying the function. | 
 
 ### Other Parameters
 
@@ -386,7 +386,7 @@ Name | Type | Description  | Notes
 
 ## UpdateFunction
 
-> FunctionResponse UpdateFunction(ctx, functionId).EdgeFunctionsRequest(edgeFunctionsRequest).Execute()
+> FunctionResponse UpdateFunction(ctx, functionId).FunctionsRequest(functionsRequest).Execute()
 
 Update an Function
 
@@ -405,12 +405,12 @@ import (
 )
 
 func main() {
-	functionId := int64(789) // int64 | A unique integer value identifying the edge function.
-	edgeFunctionsRequest := *openapiclient.NewEdgeFunctionsRequest("Name_example", "Code_example") // EdgeFunctionsRequest | 
+	functionId := int64(789) // int64 | A unique integer value identifying the function.
+	functionsRequest := *openapiclient.NewFunctionsRequest("Name_example", "Code_example") // FunctionsRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FunctionsAPI.UpdateFunction(context.Background(), functionId).EdgeFunctionsRequest(edgeFunctionsRequest).Execute()
+	resp, r, err := apiClient.FunctionsAPI.UpdateFunction(context.Background(), functionId).FunctionsRequest(functionsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FunctionsAPI.UpdateFunction``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -426,7 +426,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**functionId** | **int64** | A unique integer value identifying the edge function. | 
+**functionId** | **int64** | A unique integer value identifying the function. | 
 
 ### Other Parameters
 
@@ -436,7 +436,7 @@ Other parameters are passed through a pointer to a apiUpdateFunctionRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **edgeFunctionsRequest** | [**EdgeFunctionsRequest**](EdgeFunctionsRequest.md) |  | 
+ **functionsRequest** | [**FunctionsRequest**](FunctionsRequest.md) |  | 
 
 ### Return type
 

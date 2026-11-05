@@ -12,454 +12,166 @@ package edgeapi
 
 import (
 	"encoding/json"
-	"time"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
-// checks if the Connector type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &Connector{}
-
-// Connector struct for Connector
+// Connector - struct for Connector
 type Connector struct {
-	Id int64 `json:"id"`
-	Name string `json:"name"`
-	LastEditor string `json:"last_editor"`
-	LastModified time.Time `json:"last_modified"`
-	CreatedAt time.Time `json:"created_at"`
-	Active *bool `json:"active,omitempty"`
-	ProductVersion string `json:"product_version"`
-	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
-	Type string `json:"type"`
-	IsVersioned bool `json:"is_versioned"`
-	Version NullableInt64 `json:"version"`
-	VersionState NullableString `json:"version_state"`
-	Attributes ConnectorStorageAttributes `json:"attributes"`
-	AdditionalProperties map[string]interface{}
+	ConnectorHTTP *ConnectorHTTP
+	ConnectorLiveIngest *ConnectorLiveIngest
+	ConnectorStorage *ConnectorStorage
 }
 
-type _Connector Connector
-
-// NewConnector instantiates a new Connector object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewConnector(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, productVersion string, type_ string, isVersioned bool, version NullableInt64, versionState NullableString, attributes ConnectorStorageAttributes) *Connector {
-	this := Connector{}
-	this.Id = id
-	this.Name = name
-	this.LastEditor = lastEditor
-	this.LastModified = lastModified
-	this.CreatedAt = createdAt
-	this.ProductVersion = productVersion
-	this.Type = type_
-	this.IsVersioned = isVersioned
-	this.Version = version
-	this.VersionState = versionState
-	this.Attributes = attributes
-	return &this
-}
-
-// NewConnectorWithDefaults instantiates a new Connector object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewConnectorWithDefaults() *Connector {
-	this := Connector{}
-	return &this
-}
-
-// GetId returns the Id field value
-func (o *Connector) GetId() int64 {
-	if o == nil {
-		var ret int64
-		return ret
+// ConnectorHTTPAsConnector is a convenience function that returns ConnectorHTTP wrapped in Connector
+func ConnectorHTTPAsConnector(v *ConnectorHTTP) Connector {
+	return Connector{
+		ConnectorHTTP: v,
 	}
-
-	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *Connector) GetIdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
+// ConnectorLiveIngestAsConnector is a convenience function that returns ConnectorLiveIngest wrapped in Connector
+func ConnectorLiveIngestAsConnector(v *ConnectorLiveIngest) Connector {
+	return Connector{
+		ConnectorLiveIngest: v,
 	}
-	return &o.Id, true
 }
 
-// SetId sets field value
-func (o *Connector) SetId(v int64) {
-	o.Id = v
-}
-
-// GetName returns the Name field value
-func (o *Connector) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
+// ConnectorStorageAsConnector is a convenience function that returns ConnectorStorage wrapped in Connector
+func ConnectorStorageAsConnector(v *ConnectorStorage) Connector {
+	return Connector{
+		ConnectorStorage: v,
 	}
-
-	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *Connector) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
 
-// SetName sets field value
-func (o *Connector) SetName(v string) {
-	o.Name = v
-}
-
-// GetLastEditor returns the LastEditor field value
-func (o *Connector) GetLastEditor() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.LastEditor
-}
-
-// GetLastEditorOk returns a tuple with the LastEditor field value
-// and a boolean to check if the value has been set.
-func (o *Connector) GetLastEditorOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastEditor, true
-}
-
-// SetLastEditor sets field value
-func (o *Connector) SetLastEditor(v string) {
-	o.LastEditor = v
-}
-
-// GetLastModified returns the LastModified field value
-func (o *Connector) GetLastModified() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.LastModified
-}
-
-// GetLastModifiedOk returns a tuple with the LastModified field value
-// and a boolean to check if the value has been set.
-func (o *Connector) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LastModified, true
-}
-
-// SetLastModified sets field value
-func (o *Connector) SetLastModified(v time.Time) {
-	o.LastModified = v
-}
-
-// GetCreatedAt returns the CreatedAt field value
-func (o *Connector) GetCreatedAt() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
-// and a boolean to check if the value has been set.
-func (o *Connector) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CreatedAt, true
-}
-
-// SetCreatedAt sets field value
-func (o *Connector) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
-}
-
-// GetActive returns the Active field value if set, zero value otherwise.
-func (o *Connector) GetActive() bool {
-	if o == nil || IsNil(o.Active) {
-		var ret bool
-		return ret
-	}
-	return *o.Active
-}
-
-// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Connector) GetActiveOk() (*bool, bool) {
-	if o == nil || IsNil(o.Active) {
-		return nil, false
-	}
-	return o.Active, true
-}
-
-// HasActive returns a boolean if a field has been set.
-func (o *Connector) HasActive() bool {
-	if o != nil && !IsNil(o.Active) {
-		return true
-	}
-
-	return false
-}
-
-// SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *Connector) SetActive(v bool) {
-	o.Active = &v
-}
-
-// GetProductVersion returns the ProductVersion field value
-func (o *Connector) GetProductVersion() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ProductVersion
-}
-
-// GetProductVersionOk returns a tuple with the ProductVersion field value
-// and a boolean to check if the value has been set.
-func (o *Connector) GetProductVersionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ProductVersion, true
-}
-
-// SetProductVersion sets field value
-func (o *Connector) SetProductVersion(v string) {
-	o.ProductVersion = v
-}
-
-// GetType returns the Type field value
-func (o *Connector) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *Connector) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *Connector) SetType(v string) {
-	o.Type = v
-}
-
-// GetIsVersioned returns the IsVersioned field value
-func (o *Connector) GetIsVersioned() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsVersioned
-}
-
-// GetIsVersionedOk returns a tuple with the IsVersioned field value
-// and a boolean to check if the value has been set.
-func (o *Connector) GetIsVersionedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsVersioned, true
-}
-
-// SetIsVersioned sets field value
-func (o *Connector) SetIsVersioned(v bool) {
-	o.IsVersioned = v
-}
-
-// GetVersion returns the Version field value
-// If the value is explicit nil, the zero value for int64 will be returned
-func (o *Connector) GetVersion() int64 {
-	if o == nil || o.Version.Get() == nil {
-		var ret int64
-		return ret
-	}
-
-	return *o.Version.Get()
-}
-
-// GetVersionOk returns a tuple with the Version field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Connector) GetVersionOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Version.Get(), o.Version.IsSet()
-}
-
-// SetVersion sets field value
-func (o *Connector) SetVersion(v int64) {
-	o.Version.Set(&v)
-}
-
-// GetVersionState returns the VersionState field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *Connector) GetVersionState() string {
-	if o == nil || o.VersionState.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Connector) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// SetVersionState sets field value
-func (o *Connector) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-
-// GetAttributes returns the Attributes field value
-func (o *Connector) GetAttributes() ConnectorStorageAttributes {
-	if o == nil {
-		var ret ConnectorStorageAttributes
-		return ret
-	}
-
-	return o.Attributes
-}
-
-// GetAttributesOk returns a tuple with the Attributes field value
-// and a boolean to check if the value has been set.
-func (o *Connector) GetAttributesOk() (*ConnectorStorageAttributes, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Attributes, true
-}
-
-// SetAttributes sets field value
-func (o *Connector) SetAttributes(v ConnectorStorageAttributes) {
-	o.Attributes = v
-}
-
-func (o Connector) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o Connector) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["name"] = o.Name
-	toSerialize["last_editor"] = o.LastEditor
-	toSerialize["last_modified"] = o.LastModified
-	toSerialize["created_at"] = o.CreatedAt
-	if !IsNil(o.Active) {
-		toSerialize["active"] = o.Active
-	}
-	toSerialize["product_version"] = o.ProductVersion
-	toSerialize["type"] = o.Type
-	toSerialize["is_versioned"] = o.IsVersioned
-	toSerialize["version"] = o.Version.Get()
-	toSerialize["version_state"] = o.VersionState.Get()
-	toSerialize["attributes"] = o.Attributes
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
-	return toSerialize, nil
-}
-
-func (o *Connector) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"name",
-		"last_editor",
-		"last_modified",
-		"created_at",
-		"product_version",
-		"type",
-		"is_versioned",
-		"version",
-		"version_state",
-		"attributes",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *Connector) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into ConnectorHTTP
+	err = newStrictDecoder(data).Decode(&dst.ConnectorHTTP)
+	if err == nil {
+		jsonConnectorHTTP, _ := json.Marshal(dst.ConnectorHTTP)
+		if string(jsonConnectorHTTP) == "{}" { // empty struct
+			dst.ConnectorHTTP = nil
+		} else {
+			if err = validator.Validate(dst.ConnectorHTTP); err != nil {
+				dst.ConnectorHTTP = nil
+			} else {
+				match++
+			}
 		}
+	} else {
+		dst.ConnectorHTTP = nil
 	}
 
-	varConnector := _Connector{}
-
-	err = json.Unmarshal(data, &varConnector)
-
-	if err != nil {
-		return err
+	// try to unmarshal data into ConnectorLiveIngest
+	err = newStrictDecoder(data).Decode(&dst.ConnectorLiveIngest)
+	if err == nil {
+		jsonConnectorLiveIngest, _ := json.Marshal(dst.ConnectorLiveIngest)
+		if string(jsonConnectorLiveIngest) == "{}" { // empty struct
+			dst.ConnectorLiveIngest = nil
+		} else {
+			if err = validator.Validate(dst.ConnectorLiveIngest); err != nil {
+				dst.ConnectorLiveIngest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ConnectorLiveIngest = nil
 	}
 
-	*o = Connector(varConnector)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "last_editor")
-		delete(additionalProperties, "last_modified")
-		delete(additionalProperties, "created_at")
-		delete(additionalProperties, "active")
-		delete(additionalProperties, "product_version")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "is_versioned")
-		delete(additionalProperties, "version")
-		delete(additionalProperties, "version_state")
-		delete(additionalProperties, "attributes")
-		o.AdditionalProperties = additionalProperties
+	// try to unmarshal data into ConnectorStorage
+	err = newStrictDecoder(data).Decode(&dst.ConnectorStorage)
+	if err == nil {
+		jsonConnectorStorage, _ := json.Marshal(dst.ConnectorStorage)
+		if string(jsonConnectorStorage) == "{}" { // empty struct
+			dst.ConnectorStorage = nil
+		} else {
+			if err = validator.Validate(dst.ConnectorStorage); err != nil {
+				dst.ConnectorStorage = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ConnectorStorage = nil
 	}
 
-	return err
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.ConnectorHTTP = nil
+		dst.ConnectorLiveIngest = nil
+		dst.ConnectorStorage = nil
+
+		return fmt.Errorf("data matches more than one schema in oneOf(Connector)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		if err != nil {
+			return fmt.Errorf("data failed to match schemas in oneOf(Connector): %v", err)
+		}
+
+		return fmt.Errorf("data failed to match schemas in oneOf(Connector)")
+	}
+}
+
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src Connector) MarshalJSON() ([]byte, error) {
+	if src.ConnectorHTTP != nil {
+		return json.Marshal(&src.ConnectorHTTP)
+	}
+
+	if src.ConnectorLiveIngest != nil {
+		return json.Marshal(&src.ConnectorLiveIngest)
+	}
+
+	if src.ConnectorStorage != nil {
+		return json.Marshal(&src.ConnectorStorage)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *Connector) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.ConnectorHTTP != nil {
+		return obj.ConnectorHTTP
+	}
+
+	if obj.ConnectorLiveIngest != nil {
+		return obj.ConnectorLiveIngest
+	}
+
+	if obj.ConnectorStorage != nil {
+		return obj.ConnectorStorage
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj Connector) GetActualInstanceValue() (interface{}) {
+	if obj.ConnectorHTTP != nil {
+		return *obj.ConnectorHTTP
+	}
+
+	if obj.ConnectorLiveIngest != nil {
+		return *obj.ConnectorLiveIngest
+	}
+
+	if obj.ConnectorStorage != nil {
+		return *obj.ConnectorStorage
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableConnector struct {

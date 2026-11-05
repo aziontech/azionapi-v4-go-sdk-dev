@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -111,9 +110,4 @@ model_service_resource_request.go
 model_services.go
 model_services_request.go
 response.go
-test/api_orchestrator_edge_node_groups_test.go
-test/api_orchestrator_edge_node_services_test.go
-test/api_orchestrator_edge_nodes_test.go
-test/api_orchestrator_edge_service_resources_test.go
-test/api_orchestrator_edge_services_test.go
 utils.go

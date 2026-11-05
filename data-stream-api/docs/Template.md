@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
-**LastEditor** | **string** |  | 
-**CreatedAt** | **time.Time** |  | 
-**LastModified** | **time.Time** |  | 
-**Custom** | **bool** |  | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
+**Custom** | Pointer to **bool** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **DataSet** | **string** |  | 
 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewTemplate
 
-`func NewTemplate(id int64, name string, lastEditor string, createdAt time.Time, lastModified time.Time, custom bool, dataSet string, ) *Template`
+`func NewTemplate(name string, dataSet string, ) *Template`
 
 NewTemplate instantiates a new Template object
 This constructor will assign default values to properties that have it defined,
@@ -51,6 +51,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Template) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -91,6 +96,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *Template) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -111,6 +121,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *Template) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -131,6 +146,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *Template) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetCustom
 
@@ -151,6 +171,11 @@ and a boolean to check if the value has been set.
 
 SetCustom sets Custom field to given value.
 
+### HasCustom
+
+`func (o *Template) HasCustom() bool`
+
+HasCustom returns a boolean if a field has been set.
 
 ### GetActive
 

@@ -13,216 +13,165 @@ package edgeapi
 import (
 	"encoding/json"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
-// checks if the ConnectorRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ConnectorRequest{}
-
-// ConnectorRequest struct for ConnectorRequest
+// ConnectorRequest - struct for ConnectorRequest
 type ConnectorRequest struct {
-	Name string `json:"name"`
-	Active *bool `json:"active,omitempty"`
-	// Type of the connector  * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
-	Type string `json:"type"`
-	Attributes ConnectorStorageAttributesRequest `json:"attributes"`
-	AdditionalProperties map[string]interface{}
+	ConnectorHTTPRequest *ConnectorHTTPRequest
+	ConnectorLiveIngestRequest *ConnectorLiveIngestRequest
+	ConnectorStorageRequest *ConnectorStorageRequest
 }
 
-type _ConnectorRequest ConnectorRequest
-
-// NewConnectorRequest instantiates a new ConnectorRequest object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewConnectorRequest(name string, type_ string, attributes ConnectorStorageAttributesRequest) *ConnectorRequest {
-	this := ConnectorRequest{}
-	this.Name = name
-	this.Type = type_
-	this.Attributes = attributes
-	return &this
-}
-
-// NewConnectorRequestWithDefaults instantiates a new ConnectorRequest object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewConnectorRequestWithDefaults() *ConnectorRequest {
-	this := ConnectorRequest{}
-	return &this
-}
-
-// GetName returns the Name field value
-func (o *ConnectorRequest) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
+// ConnectorHTTPRequestAsConnectorRequest is a convenience function that returns ConnectorHTTPRequest wrapped in ConnectorRequest
+func ConnectorHTTPRequestAsConnectorRequest(v *ConnectorHTTPRequest) ConnectorRequest {
+	return ConnectorRequest{
+		ConnectorHTTPRequest: v,
 	}
-
-	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *ConnectorRequest) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
+// ConnectorLiveIngestRequestAsConnectorRequest is a convenience function that returns ConnectorLiveIngestRequest wrapped in ConnectorRequest
+func ConnectorLiveIngestRequestAsConnectorRequest(v *ConnectorLiveIngestRequest) ConnectorRequest {
+	return ConnectorRequest{
+		ConnectorLiveIngestRequest: v,
 	}
-	return &o.Name, true
 }
 
-// SetName sets field value
-func (o *ConnectorRequest) SetName(v string) {
-	o.Name = v
-}
-
-// GetActive returns the Active field value if set, zero value otherwise.
-func (o *ConnectorRequest) GetActive() bool {
-	if o == nil || IsNil(o.Active) {
-		var ret bool
-		return ret
+// ConnectorStorageRequestAsConnectorRequest is a convenience function that returns ConnectorStorageRequest wrapped in ConnectorRequest
+func ConnectorStorageRequestAsConnectorRequest(v *ConnectorStorageRequest) ConnectorRequest {
+	return ConnectorRequest{
+		ConnectorStorageRequest: v,
 	}
-	return *o.Active
 }
 
-// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ConnectorRequest) GetActiveOk() (*bool, bool) {
-	if o == nil || IsNil(o.Active) {
-		return nil, false
-	}
-	return o.Active, true
-}
 
-// HasActive returns a boolean if a field has been set.
-func (o *ConnectorRequest) HasActive() bool {
-	if o != nil && !IsNil(o.Active) {
-		return true
-	}
-
-	return false
-}
-
-// SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *ConnectorRequest) SetActive(v bool) {
-	o.Active = &v
-}
-
-// GetType returns the Type field value
-func (o *ConnectorRequest) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *ConnectorRequest) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *ConnectorRequest) SetType(v string) {
-	o.Type = v
-}
-
-// GetAttributes returns the Attributes field value
-func (o *ConnectorRequest) GetAttributes() ConnectorStorageAttributesRequest {
-	if o == nil {
-		var ret ConnectorStorageAttributesRequest
-		return ret
-	}
-
-	return o.Attributes
-}
-
-// GetAttributesOk returns a tuple with the Attributes field value
-// and a boolean to check if the value has been set.
-func (o *ConnectorRequest) GetAttributesOk() (*ConnectorStorageAttributesRequest, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Attributes, true
-}
-
-// SetAttributes sets field value
-func (o *ConnectorRequest) SetAttributes(v ConnectorStorageAttributesRequest) {
-	o.Attributes = v
-}
-
-func (o ConnectorRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o ConnectorRequest) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	toSerialize["name"] = o.Name
-	if !IsNil(o.Active) {
-		toSerialize["active"] = o.Active
-	}
-	toSerialize["type"] = o.Type
-	toSerialize["attributes"] = o.Attributes
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
-	return toSerialize, nil
-}
-
-func (o *ConnectorRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"name",
-		"type",
-		"attributes",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *ConnectorRequest) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into ConnectorHTTPRequest
+	err = newStrictDecoder(data).Decode(&dst.ConnectorHTTPRequest)
+	if err == nil {
+		jsonConnectorHTTPRequest, _ := json.Marshal(dst.ConnectorHTTPRequest)
+		if string(jsonConnectorHTTPRequest) == "{}" { // empty struct
+			dst.ConnectorHTTPRequest = nil
+		} else {
+			if err = validator.Validate(dst.ConnectorHTTPRequest); err != nil {
+				dst.ConnectorHTTPRequest = nil
+			} else {
+				match++
+			}
 		}
+	} else {
+		dst.ConnectorHTTPRequest = nil
 	}
 
-	varConnectorRequest := _ConnectorRequest{}
-
-	err = json.Unmarshal(data, &varConnectorRequest)
-
-	if err != nil {
-		return err
+	// try to unmarshal data into ConnectorLiveIngestRequest
+	err = newStrictDecoder(data).Decode(&dst.ConnectorLiveIngestRequest)
+	if err == nil {
+		jsonConnectorLiveIngestRequest, _ := json.Marshal(dst.ConnectorLiveIngestRequest)
+		if string(jsonConnectorLiveIngestRequest) == "{}" { // empty struct
+			dst.ConnectorLiveIngestRequest = nil
+		} else {
+			if err = validator.Validate(dst.ConnectorLiveIngestRequest); err != nil {
+				dst.ConnectorLiveIngestRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ConnectorLiveIngestRequest = nil
 	}
 
-	*o = ConnectorRequest(varConnectorRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "active")
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "attributes")
-		o.AdditionalProperties = additionalProperties
+	// try to unmarshal data into ConnectorStorageRequest
+	err = newStrictDecoder(data).Decode(&dst.ConnectorStorageRequest)
+	if err == nil {
+		jsonConnectorStorageRequest, _ := json.Marshal(dst.ConnectorStorageRequest)
+		if string(jsonConnectorStorageRequest) == "{}" { // empty struct
+			dst.ConnectorStorageRequest = nil
+		} else {
+			if err = validator.Validate(dst.ConnectorStorageRequest); err != nil {
+				dst.ConnectorStorageRequest = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ConnectorStorageRequest = nil
 	}
 
-	return err
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.ConnectorHTTPRequest = nil
+		dst.ConnectorLiveIngestRequest = nil
+		dst.ConnectorStorageRequest = nil
+
+		return fmt.Errorf("data matches more than one schema in oneOf(ConnectorRequest)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		if err != nil {
+			return fmt.Errorf("data failed to match schemas in oneOf(ConnectorRequest): %v", err)
+		}
+
+		return fmt.Errorf("data failed to match schemas in oneOf(ConnectorRequest)")
+	}
+}
+
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src ConnectorRequest) MarshalJSON() ([]byte, error) {
+	if src.ConnectorHTTPRequest != nil {
+		return json.Marshal(&src.ConnectorHTTPRequest)
+	}
+
+	if src.ConnectorLiveIngestRequest != nil {
+		return json.Marshal(&src.ConnectorLiveIngestRequest)
+	}
+
+	if src.ConnectorStorageRequest != nil {
+		return json.Marshal(&src.ConnectorStorageRequest)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *ConnectorRequest) GetActualInstance() (interface{}) {
+	if obj == nil {
+		return nil
+	}
+	if obj.ConnectorHTTPRequest != nil {
+		return obj.ConnectorHTTPRequest
+	}
+
+	if obj.ConnectorLiveIngestRequest != nil {
+		return obj.ConnectorLiveIngestRequest
+	}
+
+	if obj.ConnectorStorageRequest != nil {
+		return obj.ConnectorStorageRequest
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj ConnectorRequest) GetActualInstanceValue() (interface{}) {
+	if obj.ConnectorHTTPRequest != nil {
+		return *obj.ConnectorHTTPRequest
+	}
+
+	if obj.ConnectorLiveIngestRequest != nil {
+		return *obj.ConnectorLiveIngestRequest
+	}
+
+	if obj.ConnectorStorageRequest != nil {
+		return *obj.ConnectorStorageRequest
+	}
+
+	// all schemas are nil
+	return nil
 }
 
 type NullableConnectorRequest struct {

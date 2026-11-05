@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Criteria** | Pointer to [**[][]EdgeFirewallCriterionFieldRequest**]([]EdgeFirewallCriterionFieldRequest.md) |  | [optional] 
+**Criteria** | Pointer to [**[][]FirewallCriterionFieldRequest**]([]FirewallCriterionFieldRequest.md) |  | [optional] 
 **Behaviors** | Pointer to [**[]FirewallBehaviorRequest**](FirewallBehaviorRequest.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 
@@ -81,20 +81,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetCriteria
 
-`func (o *PatchedFirewallRuleRequest) GetCriteria() [][]EdgeFirewallCriterionFieldRequest`
+`func (o *PatchedFirewallRuleRequest) GetCriteria() [][]FirewallCriterionFieldRequest`
 
 GetCriteria returns the Criteria field if non-nil, zero value otherwise.
 
 ### GetCriteriaOk
 
-`func (o *PatchedFirewallRuleRequest) GetCriteriaOk() (*[][]EdgeFirewallCriterionFieldRequest, bool)`
+`func (o *PatchedFirewallRuleRequest) GetCriteriaOk() (*[][]FirewallCriterionFieldRequest, bool)`
 
 GetCriteriaOk returns a tuple with the Criteria field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCriteria
 
-`func (o *PatchedFirewallRuleRequest) SetCriteria(v [][]EdgeFirewallCriterionFieldRequest)`
+`func (o *PatchedFirewallRuleRequest) SetCriteria(v [][]FirewallCriterionFieldRequest)`
 
 SetCriteria sets Criteria field to given value.
 

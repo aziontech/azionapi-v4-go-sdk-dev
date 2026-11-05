@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | **string** | Discriminator field for PageRequest | 
 **Attributes** | [**PageConnectorAttributesRequest**](PageConnectorAttributesRequest.md) |  | 
 
 ## Methods
 
 ### NewPageConnectorRequest
 
-`func NewPageConnectorRequest(attributes PageConnectorAttributesRequest, ) *PageConnectorRequest`
+`func NewPageConnectorRequest(type_ string, attributes PageConnectorAttributesRequest, ) *PageConnectorRequest`
 
 NewPageConnectorRequest instantiates a new PageConnectorRequest object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *PageConnectorRequest) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetAttributes
 

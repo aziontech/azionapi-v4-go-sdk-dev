@@ -35,7 +35,7 @@ import (
 )
 
 func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the edge firewall.
+	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
 	cloneFirewallRequest := *openapiclient.NewCloneFirewallRequest("Name_example") // CloneFirewallRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -56,7 +56,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the edge firewall. | 
+**firewallId** | **int64** | A unique integer value identifying the firewall. | 
 
 ### Other Parameters
 
@@ -173,7 +173,7 @@ import (
 )
 
 func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the edge firewall.
+	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -193,7 +193,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the edge firewall. | 
+**firewallId** | **int64** | A unique integer value identifying the firewall. | 
 
 ### Other Parameters
 
@@ -332,7 +332,7 @@ import (
 )
 
 func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the edge firewall.
+	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
 	patchedFirewallRequest := *openapiclient.NewPatchedFirewallRequest() // PatchedFirewallRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -353,7 +353,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the edge firewall. | 
+**firewallId** | **int64** | A unique integer value identifying the firewall. | 
 
 ### Other Parameters
 
@@ -404,7 +404,7 @@ import (
 )
 
 func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the edge firewall.
+	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
 	fields := "fields_example" // string | Comma-separated list of field names to include in the response. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -425,7 +425,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the edge firewall. | 
+**firewallId** | **int64** | A unique integer value identifying the firewall. | 
 
 ### Other Parameters
 
@@ -476,7 +476,7 @@ import (
 )
 
 func main() {
-	firewallId := int64(789) // int64 | A unique integer value identifying the edge firewall.
+	firewallId := int64(789) // int64 | A unique integer value identifying the firewall.
 	firewallRequest := *openapiclient.NewFirewallRequest("Name_example") // FirewallRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -497,7 +497,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**firewallId** | **int64** | A unique integer value identifying the edge firewall. | 
+**firewallId** | **int64** | A unique integer value identifying the firewall. | 
 
 ### Other Parameters
 

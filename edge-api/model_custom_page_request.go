@@ -19,11 +19,11 @@ import (
 // checks if the CustomPageRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CustomPageRequest{}
 
-// CustomPageRequest Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``version_state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers.ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
+// CustomPageRequest struct for CustomPageRequest
 type CustomPageRequest struct {
 	Name string `json:"name"`
 	Active *bool `json:"active,omitempty"`
-	Pages []PageRequest `json:"pages"`
+	Pages []PageRequestBase `json:"pages"`
 }
 
 type _CustomPageRequest CustomPageRequest
@@ -32,7 +32,7 @@ type _CustomPageRequest CustomPageRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomPageRequest(name string, pages []PageRequest) *CustomPageRequest {
+func NewCustomPageRequest(name string, pages []PageRequestBase) *CustomPageRequest {
 	this := CustomPageRequest{}
 	this.Name = name
 	this.Pages = pages
@@ -104,9 +104,9 @@ func (o *CustomPageRequest) SetActive(v bool) {
 }
 
 // GetPages returns the Pages field value
-func (o *CustomPageRequest) GetPages() []PageRequest {
+func (o *CustomPageRequest) GetPages() []PageRequestBase {
 	if o == nil {
-		var ret []PageRequest
+		var ret []PageRequestBase
 		return ret
 	}
 
@@ -115,7 +115,7 @@ func (o *CustomPageRequest) GetPages() []PageRequest {
 
 // GetPagesOk returns a tuple with the Pages field value
 // and a boolean to check if the value has been set.
-func (o *CustomPageRequest) GetPagesOk() ([]PageRequest, bool) {
+func (o *CustomPageRequest) GetPagesOk() ([]PageRequestBase, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -123,7 +123,7 @@ func (o *CustomPageRequest) GetPagesOk() ([]PageRequest, bool) {
 }
 
 // SetPages sets field value
-func (o *CustomPageRequest) SetPages(v []PageRequest) {
+func (o *CustomPageRequest) SetPages(v []PageRequestBase) {
 	o.Pages = v
 }
 

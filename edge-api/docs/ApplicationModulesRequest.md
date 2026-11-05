@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cache** | Pointer to [**CacheModuleRequest**](CacheModuleRequest.md) |  | [optional] 
-**Functions** | Pointer to [**EdgeFunctionModuleRequest**](EdgeFunctionModuleRequest.md) |  | [optional] 
+**Functions** | Pointer to [**FunctionModuleRequest**](FunctionModuleRequest.md) |  | [optional] 
 **ApplicationAccelerator** | Pointer to [**ApplicationAcceleratorModuleRequest**](ApplicationAcceleratorModuleRequest.md) |  | [optional] 
 **ImageProcessor** | Pointer to [**ImageProcessorModuleRequest**](ImageProcessorModuleRequest.md) |  | [optional] 
 
@@ -55,20 +55,20 @@ HasCache returns a boolean if a field has been set.
 
 ### GetFunctions
 
-`func (o *ApplicationModulesRequest) GetFunctions() EdgeFunctionModuleRequest`
+`func (o *ApplicationModulesRequest) GetFunctions() FunctionModuleRequest`
 
 GetFunctions returns the Functions field if non-nil, zero value otherwise.
 
 ### GetFunctionsOk
 
-`func (o *ApplicationModulesRequest) GetFunctionsOk() (*EdgeFunctionModuleRequest, bool)`
+`func (o *ApplicationModulesRequest) GetFunctionsOk() (*FunctionModuleRequest, bool)`
 
 GetFunctionsOk returns a tuple with the Functions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFunctions
 
-`func (o *ApplicationModulesRequest) SetFunctions(v EdgeFunctionModuleRequest)`
+`func (o *ApplicationModulesRequest) SetFunctions(v FunctionModuleRequest)`
 
 SetFunctions sets Functions field to given value.
 

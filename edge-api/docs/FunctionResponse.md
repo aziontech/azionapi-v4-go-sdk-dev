@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **State** | Pointer to **string** |  | [optional] 
-**Data** | [**EdgeFunctions**](EdgeFunctions.md) |  | 
+**Data** | [**Functions**](Functions.md) |  | 
 
 ## Methods
 
 ### NewFunctionResponse
 
-`func NewFunctionResponse(data EdgeFunctions, ) *FunctionResponse`
+`func NewFunctionResponse(data Functions, ) *FunctionResponse`
 
 NewFunctionResponse instantiates a new FunctionResponse object
 This constructor will assign default values to properties that have it defined,
@@ -53,20 +53,20 @@ HasState returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *FunctionResponse) GetData() EdgeFunctions`
+`func (o *FunctionResponse) GetData() Functions`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *FunctionResponse) GetDataOk() (*EdgeFunctions, bool)`
+`func (o *FunctionResponse) GetDataOk() (*Functions, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *FunctionResponse) SetData(v EdgeFunctions)`
+`func (o *FunctionResponse) SetData(v Functions)`
 
 SetData sets Data field to given value.
 

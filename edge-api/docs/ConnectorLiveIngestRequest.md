@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | **string** |  | 
+**Type** | **string** | Discriminator field for ConnectorRequest | 
 **Attributes** | [**ConnectorLiveIngestAttributesRequest**](ConnectorLiveIngestAttributesRequest.md) |  | 
 
 ## Methods
