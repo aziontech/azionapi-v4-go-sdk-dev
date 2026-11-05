@@ -20,7 +20,7 @@ var _ MappedNullable = &ApplicationModules{}
 // ApplicationModules struct for ApplicationModules
 type ApplicationModules struct {
 	Cache *CacheModule `json:"cache,omitempty"`
-	Functions *EdgeFunctionModule `json:"functions,omitempty"`
+	Functions *FunctionModule `json:"functions,omitempty"`
 	ApplicationAccelerator *ApplicationAcceleratorModule `json:"application_accelerator,omitempty"`
 	ImageProcessor *ImageProcessorModule `json:"image_processor,omitempty"`
 }
@@ -75,9 +75,9 @@ func (o *ApplicationModules) SetCache(v CacheModule) {
 }
 
 // GetFunctions returns the Functions field value if set, zero value otherwise.
-func (o *ApplicationModules) GetFunctions() EdgeFunctionModule {
+func (o *ApplicationModules) GetFunctions() FunctionModule {
 	if o == nil || IsNil(o.Functions) {
-		var ret EdgeFunctionModule
+		var ret FunctionModule
 		return ret
 	}
 	return *o.Functions
@@ -85,7 +85,7 @@ func (o *ApplicationModules) GetFunctions() EdgeFunctionModule {
 
 // GetFunctionsOk returns a tuple with the Functions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationModules) GetFunctionsOk() (*EdgeFunctionModule, bool) {
+func (o *ApplicationModules) GetFunctionsOk() (*FunctionModule, bool) {
 	if o == nil || IsNil(o.Functions) {
 		return nil, false
 	}
@@ -101,8 +101,8 @@ func (o *ApplicationModules) HasFunctions() bool {
 	return false
 }
 
-// SetFunctions gets a reference to the given EdgeFunctionModule and assigns it to the Functions field.
-func (o *ApplicationModules) SetFunctions(v EdgeFunctionModule) {
+// SetFunctions gets a reference to the given FunctionModule and assigns it to the Functions field.
+func (o *ApplicationModules) SetFunctions(v FunctionModule) {
 	o.Functions = &v
 }
 

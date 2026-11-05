@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Type** | **string** | Discriminator field for PatchedConnectorRequest | 
 **Name** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | Pointer to **string** | Type of the connector  * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | [optional] 
-**Attributes** | Pointer to [**ConnectorStorageAttributesRequest**](ConnectorStorageAttributesRequest.md) |  | [optional] 
+**Attributes** | Pointer to [**ConnectorLiveIngestAttributesRequest**](ConnectorLiveIngestAttributesRequest.md) |  | [optional] 
 
 ## Methods
 
 ### NewPatchedConnectorRequest
 
-`func NewPatchedConnectorRequest() *PatchedConnectorRequest`
+`func NewPatchedConnectorRequest(type_ string, ) *PatchedConnectorRequest`
 
 NewPatchedConnectorRequest instantiates a new PatchedConnectorRequest object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +27,26 @@ will change when the set of required properties is changed
 NewPatchedConnectorRequestWithDefaults instantiates a new PatchedConnectorRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetType
+
+`func (o *PatchedConnectorRequest) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *PatchedConnectorRequest) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *PatchedConnectorRequest) SetType(v string)`
+
+SetType sets Type field to given value.
+
 
 ### GetName
 
@@ -78,47 +98,22 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetType
-
-`func (o *PatchedConnectorRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *PatchedConnectorRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *PatchedConnectorRequest) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *PatchedConnectorRequest) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
 ### GetAttributes
 
-`func (o *PatchedConnectorRequest) GetAttributes() ConnectorStorageAttributesRequest`
+`func (o *PatchedConnectorRequest) GetAttributes() ConnectorLiveIngestAttributesRequest`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *PatchedConnectorRequest) GetAttributesOk() (*ConnectorStorageAttributesRequest, bool)`
+`func (o *PatchedConnectorRequest) GetAttributesOk() (*ConnectorLiveIngestAttributesRequest, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttributes
 
-`func (o *PatchedConnectorRequest) SetAttributes(v ConnectorStorageAttributesRequest)`
+`func (o *PatchedConnectorRequest) SetAttributes(v ConnectorLiveIngestAttributesRequest)`
 
 SetAttributes sets Attributes field to given value.
 

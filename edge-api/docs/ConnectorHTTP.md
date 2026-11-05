@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**IsVersioned** | Pointer to **bool** |  | [optional] 
+**Version** | Pointer to **NullableInt64** |  | [optional] 
 **VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
 **VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 **Id** | Pointer to **int64** |  | [optional] 
@@ -13,7 +15,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | Pointer to **string** |  | [optional] 
-**Type** | **string** |  | 
+**Type** | **string** | Discriminator field for Connector | 
 **Attributes** | [**ConnectorHTTPAttributes**](ConnectorHTTPAttributes.md) |  | 
 
 ## Methods
@@ -35,6 +37,66 @@ NewConnectorHTTPWithDefaults instantiates a new ConnectorHTTP object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetIsVersioned
+
+`func (o *ConnectorHTTP) GetIsVersioned() bool`
+
+GetIsVersioned returns the IsVersioned field if non-nil, zero value otherwise.
+
+### GetIsVersionedOk
+
+`func (o *ConnectorHTTP) GetIsVersionedOk() (*bool, bool)`
+
+GetIsVersionedOk returns a tuple with the IsVersioned field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsVersioned
+
+`func (o *ConnectorHTTP) SetIsVersioned(v bool)`
+
+SetIsVersioned sets IsVersioned field to given value.
+
+### HasIsVersioned
+
+`func (o *ConnectorHTTP) HasIsVersioned() bool`
+
+HasIsVersioned returns a boolean if a field has been set.
+
+### GetVersion
+
+`func (o *ConnectorHTTP) GetVersion() int64`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *ConnectorHTTP) GetVersionOk() (*int64, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersion
+
+`func (o *ConnectorHTTP) SetVersion(v int64)`
+
+SetVersion sets Version field to given value.
+
+### HasVersion
+
+`func (o *ConnectorHTTP) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
+
+### SetVersionNil
+
+`func (o *ConnectorHTTP) SetVersionNil(b bool)`
+
+ SetVersionNil sets the value for Version to be an explicit nil
+
+### UnsetVersion
+`func (o *ConnectorHTTP) UnsetVersion()`
+
+UnsetVersion ensures that no value is present for Version, not even an explicit nil
 ### GetVersionId
 
 `func (o *ConnectorHTTP) GetVersionId() string`

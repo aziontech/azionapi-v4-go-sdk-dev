@@ -21,7 +21,8 @@ var _ MappedNullable = &PageConnector{}
 
 // PageConnector struct for PageConnector
 type PageConnector struct {
-	Type *string `json:"type,omitempty"`
+	// Discriminator field for Page
+	Type string `json:"type"`
 	Attributes PageConnectorAttributes `json:"attributes"`
 }
 
@@ -31,8 +32,9 @@ type _PageConnector PageConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPageConnector(attributes PageConnectorAttributes) *PageConnector {
+func NewPageConnector(type_ string, attributes PageConnectorAttributes) *PageConnector {
 	this := PageConnector{}
+	this.Type = type_
 	this.Attributes = attributes
 	return &this
 }
@@ -45,36 +47,28 @@ func NewPageConnectorWithDefaults() *PageConnector {
 	return &this
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *PageConnector) GetType() string {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *PageConnector) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *PageConnector) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType sets field value
 func (o *PageConnector) SetType(v string) {
-	o.Type = &v
+	o.Type = v
 }
 
 // GetAttributes returns the Attributes field value
@@ -111,9 +105,7 @@ func (o PageConnector) MarshalJSON() ([]byte, error) {
 
 func (o PageConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
 	return toSerialize, nil
 }
@@ -123,6 +115,7 @@ func (o *PageConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"type",
 		"attributes",
 	}
 

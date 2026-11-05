@@ -19,7 +19,7 @@ var _ MappedNullable = &CacheSettingsModules{}
 
 // CacheSettingsModules struct for CacheSettingsModules
 type CacheSettingsModules struct {
-	Cache *CacheSettingsEdgeCacheModule `json:"cache,omitempty"`
+	Cache *CacheSettingsCacheModule `json:"cache,omitempty"`
 	ApplicationAccelerator *CacheSettingsApplicationAcceleratorModule `json:"application_accelerator,omitempty"`
 }
 
@@ -41,9 +41,9 @@ func NewCacheSettingsModulesWithDefaults() *CacheSettingsModules {
 }
 
 // GetCache returns the Cache field value if set, zero value otherwise.
-func (o *CacheSettingsModules) GetCache() CacheSettingsEdgeCacheModule {
+func (o *CacheSettingsModules) GetCache() CacheSettingsCacheModule {
 	if o == nil || IsNil(o.Cache) {
-		var ret CacheSettingsEdgeCacheModule
+		var ret CacheSettingsCacheModule
 		return ret
 	}
 	return *o.Cache
@@ -51,7 +51,7 @@ func (o *CacheSettingsModules) GetCache() CacheSettingsEdgeCacheModule {
 
 // GetCacheOk returns a tuple with the Cache field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CacheSettingsModules) GetCacheOk() (*CacheSettingsEdgeCacheModule, bool) {
+func (o *CacheSettingsModules) GetCacheOk() (*CacheSettingsCacheModule, bool) {
 	if o == nil || IsNil(o.Cache) {
 		return nil, false
 	}
@@ -67,8 +67,8 @@ func (o *CacheSettingsModules) HasCache() bool {
 	return false
 }
 
-// SetCache gets a reference to the given CacheSettingsEdgeCacheModule and assigns it to the Cache field.
-func (o *CacheSettingsModules) SetCache(v CacheSettingsEdgeCacheModule) {
+// SetCache gets a reference to the given CacheSettingsCacheModule and assigns it to the Cache field.
+func (o *CacheSettingsModules) SetCache(v CacheSettingsCacheModule) {
 	o.Cache = &v
 }
 

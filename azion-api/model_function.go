@@ -23,11 +23,11 @@ var _ MappedNullable = &Function{}
 
 // Function struct for Function
 type Function struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
-	LastEditor string `json:"last_editor"`
-	LastModified time.Time `json:"last_modified"`
-	ProductVersion string `json:"product_version"`
+	LastEditor *string `json:"last_editor,omitempty"`
+	LastModified *time.Time `json:"last_modified,omitempty"`
+	ProductVersion *string `json:"product_version,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	// * `azion_js` - Azion JavaScript
 	Runtime *string `json:"runtime,omitempty"`
@@ -35,14 +35,16 @@ type Function struct {
 	ExecutionEnvironment *string `json:"execution_environment,omitempty"`
 	DefaultArgs interface{} `json:"default_args,omitempty"`
 	AzionForm *FunctionAzionForm `json:"azion_form,omitempty"`
-	ReferenceCount int64 `json:"reference_count"`
+	ReferenceCount *int64 `json:"reference_count,omitempty"`
 	// Installed version, which may not be the latest if the vendor has released updates since installation.
-	Version string `json:"version"`
-	Vendor string `json:"vendor"`
-	IsVersioned bool `json:"is_versioned"`
-	ResourceVersion NullableInt64 `json:"resource_version"`
-	VersionState NullableString `json:"version_state"`
-	VersionId NullableString `json:"version_id"`
+	Version *string `json:"version,omitempty"`
+	Vendor *string `json:"vendor,omitempty"`
+	// ID of the version metadata (use in /versions/{id} URLs)
+	VersionId NullableString `json:"version_id,omitempty"`
+	// Build state of this version (queued, building, ready, error, ...)
+	VersionState NullableString `json:"version_state,omitempty"`
+	IsVersioned *bool `json:"is_versioned,omitempty"`
+	ResourceVersion NullableInt64 `json:"resource_version,omitempty"`
 }
 
 type _Function Function
@@ -51,20 +53,9 @@ type _Function Function
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFunction(id int64, name string, lastEditor string, lastModified time.Time, productVersion string, referenceCount int64, version string, vendor string, isVersioned bool, resourceVersion NullableInt64, versionState NullableString, versionId NullableString) *Function {
+func NewFunction(name string) *Function {
 	this := Function{}
-	this.Id = id
 	this.Name = name
-	this.LastEditor = lastEditor
-	this.LastModified = lastModified
-	this.ProductVersion = productVersion
-	this.ReferenceCount = referenceCount
-	this.Version = version
-	this.Vendor = vendor
-	this.IsVersioned = isVersioned
-	this.ResourceVersion = resourceVersion
-	this.VersionState = versionState
-	this.VersionId = versionId
 	return &this
 }
 
@@ -76,28 +67,36 @@ func NewFunctionWithDefaults() *Function {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *Function) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Function) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *Function) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *Function) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -124,76 +123,100 @@ func (o *Function) SetName(v string) {
 	o.Name = v
 }
 
-// GetLastEditor returns the LastEditor field value
+// GetLastEditor returns the LastEditor field value if set, zero value otherwise.
 func (o *Function) GetLastEditor() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		var ret string
 		return ret
 	}
-
-	return o.LastEditor
+	return *o.LastEditor
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value
+// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Function) GetLastEditorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		return nil, false
 	}
-	return &o.LastEditor, true
+	return o.LastEditor, true
 }
 
-// SetLastEditor sets field value
+// HasLastEditor returns a boolean if a field has been set.
+func (o *Function) HasLastEditor() bool {
+	if o != nil && !IsNil(o.LastEditor) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
 func (o *Function) SetLastEditor(v string) {
-	o.LastEditor = v
+	o.LastEditor = &v
 }
 
-// GetLastModified returns the LastModified field value
+// GetLastModified returns the LastModified field value if set, zero value otherwise.
 func (o *Function) GetLastModified() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.LastModified
+	return *o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value
+// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Function) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		return nil, false
 	}
-	return &o.LastModified, true
+	return o.LastModified, true
 }
 
-// SetLastModified sets field value
+// HasLastModified returns a boolean if a field has been set.
+func (o *Function) HasLastModified() bool {
+	if o != nil && !IsNil(o.LastModified) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
 func (o *Function) SetLastModified(v time.Time) {
-	o.LastModified = v
+	o.LastModified = &v
 }
 
-// GetProductVersion returns the ProductVersion field value
+// GetProductVersion returns the ProductVersion field value if set, zero value otherwise.
 func (o *Function) GetProductVersion() string {
-	if o == nil {
+	if o == nil || IsNil(o.ProductVersion) {
 		var ret string
 		return ret
 	}
-
-	return o.ProductVersion
+	return *o.ProductVersion
 }
 
-// GetProductVersionOk returns a tuple with the ProductVersion field value
+// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Function) GetProductVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProductVersion) {
 		return nil, false
 	}
-	return &o.ProductVersion, true
+	return o.ProductVersion, true
 }
 
-// SetProductVersion sets field value
+// HasProductVersion returns a boolean if a field has been set.
+func (o *Function) HasProductVersion() bool {
+	if o != nil && !IsNil(o.ProductVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetProductVersion gets a reference to the given string and assigns it to the ProductVersion field.
 func (o *Function) SetProductVersion(v string) {
-	o.ProductVersion = v
+	o.ProductVersion = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -357,166 +380,112 @@ func (o *Function) SetAzionForm(v FunctionAzionForm) {
 	o.AzionForm = &v
 }
 
-// GetReferenceCount returns the ReferenceCount field value
+// GetReferenceCount returns the ReferenceCount field value if set, zero value otherwise.
 func (o *Function) GetReferenceCount() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.ReferenceCount) {
 		var ret int64
 		return ret
 	}
-
-	return o.ReferenceCount
+	return *o.ReferenceCount
 }
 
-// GetReferenceCountOk returns a tuple with the ReferenceCount field value
+// GetReferenceCountOk returns a tuple with the ReferenceCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Function) GetReferenceCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReferenceCount) {
 		return nil, false
 	}
-	return &o.ReferenceCount, true
+	return o.ReferenceCount, true
 }
 
-// SetReferenceCount sets field value
+// HasReferenceCount returns a boolean if a field has been set.
+func (o *Function) HasReferenceCount() bool {
+	if o != nil && !IsNil(o.ReferenceCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetReferenceCount gets a reference to the given int64 and assigns it to the ReferenceCount field.
 func (o *Function) SetReferenceCount(v int64) {
-	o.ReferenceCount = v
+	o.ReferenceCount = &v
 }
 
-// GetVersion returns the Version field value
+// GetVersion returns the Version field value if set, zero value otherwise.
 func (o *Function) GetVersion() string {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
-
-	return o.Version
+	return *o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Function) GetVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
-	return &o.Version, true
+	return o.Version, true
 }
 
-// SetVersion sets field value
+// HasVersion returns a boolean if a field has been set.
+func (o *Function) HasVersion() bool {
+	if o != nil && !IsNil(o.Version) {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *Function) SetVersion(v string) {
-	o.Version = v
+	o.Version = &v
 }
 
-// GetVendor returns the Vendor field value
+// GetVendor returns the Vendor field value if set, zero value otherwise.
 func (o *Function) GetVendor() string {
-	if o == nil {
+	if o == nil || IsNil(o.Vendor) {
 		var ret string
 		return ret
 	}
-
-	return o.Vendor
+	return *o.Vendor
 }
 
-// GetVendorOk returns a tuple with the Vendor field value
+// GetVendorOk returns a tuple with the Vendor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Function) GetVendorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Vendor) {
 		return nil, false
 	}
-	return &o.Vendor, true
+	return o.Vendor, true
 }
 
-// SetVendor sets field value
+// HasVendor returns a boolean if a field has been set.
+func (o *Function) HasVendor() bool {
+	if o != nil && !IsNil(o.Vendor) {
+		return true
+	}
+
+	return false
+}
+
+// SetVendor gets a reference to the given string and assigns it to the Vendor field.
 func (o *Function) SetVendor(v string) {
-	o.Vendor = v
+	o.Vendor = &v
 }
 
-// GetIsVersioned returns the IsVersioned field value
-func (o *Function) GetIsVersioned() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsVersioned
-}
-
-// GetIsVersionedOk returns a tuple with the IsVersioned field value
-// and a boolean to check if the value has been set.
-func (o *Function) GetIsVersionedOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IsVersioned, true
-}
-
-// SetIsVersioned sets field value
-func (o *Function) SetIsVersioned(v bool) {
-	o.IsVersioned = v
-}
-
-// GetResourceVersion returns the ResourceVersion field value
-// If the value is explicit nil, the zero value for int64 will be returned
-func (o *Function) GetResourceVersion() int64 {
-	if o == nil || o.ResourceVersion.Get() == nil {
-		var ret int64
-		return ret
-	}
-
-	return *o.ResourceVersion.Get()
-}
-
-// GetResourceVersionOk returns a tuple with the ResourceVersion field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Function) GetResourceVersionOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ResourceVersion.Get(), o.ResourceVersion.IsSet()
-}
-
-// SetResourceVersion sets field value
-func (o *Function) SetResourceVersion(v int64) {
-	o.ResourceVersion.Set(&v)
-}
-
-// GetVersionState returns the VersionState field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *Function) GetVersionState() string {
-	if o == nil || o.VersionState.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.VersionState.Get()
-}
-
-// GetVersionStateOk returns a tuple with the VersionState field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Function) GetVersionStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.VersionState.Get(), o.VersionState.IsSet()
-}
-
-// SetVersionState sets field value
-func (o *Function) SetVersionState(v string) {
-	o.VersionState.Set(&v)
-}
-
-// GetVersionId returns the VersionId field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetVersionId returns the VersionId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Function) GetVersionId() string {
-	if o == nil || o.VersionId.Get() == nil {
+	if o == nil || IsNil(o.VersionId.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.VersionId.Get()
 }
 
-// GetVersionIdOk returns a tuple with the VersionId field value
+// GetVersionIdOk returns a tuple with the VersionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Function) GetVersionIdOk() (*string, bool) {
@@ -526,9 +495,143 @@ func (o *Function) GetVersionIdOk() (*string, bool) {
 	return o.VersionId.Get(), o.VersionId.IsSet()
 }
 
-// SetVersionId sets field value
+// HasVersionId returns a boolean if a field has been set.
+func (o *Function) HasVersionId() bool {
+	if o != nil && o.VersionId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVersionId gets a reference to the given NullableString and assigns it to the VersionId field.
 func (o *Function) SetVersionId(v string) {
 	o.VersionId.Set(&v)
+}
+// SetVersionIdNil sets the value for VersionId to be an explicit nil
+func (o *Function) SetVersionIdNil() {
+	o.VersionId.Set(nil)
+}
+
+// UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
+func (o *Function) UnsetVersionId() {
+	o.VersionId.Unset()
+}
+
+// GetVersionState returns the VersionState field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Function) GetVersionState() string {
+	if o == nil || IsNil(o.VersionState.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.VersionState.Get()
+}
+
+// GetVersionStateOk returns a tuple with the VersionState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Function) GetVersionStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.VersionState.Get(), o.VersionState.IsSet()
+}
+
+// HasVersionState returns a boolean if a field has been set.
+func (o *Function) HasVersionState() bool {
+	if o != nil && o.VersionState.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVersionState gets a reference to the given NullableString and assigns it to the VersionState field.
+func (o *Function) SetVersionState(v string) {
+	o.VersionState.Set(&v)
+}
+// SetVersionStateNil sets the value for VersionState to be an explicit nil
+func (o *Function) SetVersionStateNil() {
+	o.VersionState.Set(nil)
+}
+
+// UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
+func (o *Function) UnsetVersionState() {
+	o.VersionState.Unset()
+}
+
+// GetIsVersioned returns the IsVersioned field value if set, zero value otherwise.
+func (o *Function) GetIsVersioned() bool {
+	if o == nil || IsNil(o.IsVersioned) {
+		var ret bool
+		return ret
+	}
+	return *o.IsVersioned
+}
+
+// GetIsVersionedOk returns a tuple with the IsVersioned field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Function) GetIsVersionedOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsVersioned) {
+		return nil, false
+	}
+	return o.IsVersioned, true
+}
+
+// HasIsVersioned returns a boolean if a field has been set.
+func (o *Function) HasIsVersioned() bool {
+	if o != nil && !IsNil(o.IsVersioned) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsVersioned gets a reference to the given bool and assigns it to the IsVersioned field.
+func (o *Function) SetIsVersioned(v bool) {
+	o.IsVersioned = &v
+}
+
+// GetResourceVersion returns the ResourceVersion field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Function) GetResourceVersion() int64 {
+	if o == nil || IsNil(o.ResourceVersion.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.ResourceVersion.Get()
+}
+
+// GetResourceVersionOk returns a tuple with the ResourceVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Function) GetResourceVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ResourceVersion.Get(), o.ResourceVersion.IsSet()
+}
+
+// HasResourceVersion returns a boolean if a field has been set.
+func (o *Function) HasResourceVersion() bool {
+	if o != nil && o.ResourceVersion.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceVersion gets a reference to the given NullableInt64 and assigns it to the ResourceVersion field.
+func (o *Function) SetResourceVersion(v int64) {
+	o.ResourceVersion.Set(&v)
+}
+// SetResourceVersionNil sets the value for ResourceVersion to be an explicit nil
+func (o *Function) SetResourceVersionNil() {
+	o.ResourceVersion.Set(nil)
+}
+
+// UnsetResourceVersion ensures that no value is present for ResourceVersion, not even an explicit nil
+func (o *Function) UnsetResourceVersion() {
+	o.ResourceVersion.Unset()
 }
 
 func (o Function) MarshalJSON() ([]byte, error) {
@@ -541,11 +644,19 @@ func (o Function) MarshalJSON() ([]byte, error) {
 
 func (o Function) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
-	toSerialize["last_editor"] = o.LastEditor
-	toSerialize["last_modified"] = o.LastModified
-	toSerialize["product_version"] = o.ProductVersion
+	if !IsNil(o.LastEditor) {
+		toSerialize["last_editor"] = o.LastEditor
+	}
+	if !IsNil(o.LastModified) {
+		toSerialize["last_modified"] = o.LastModified
+	}
+	if !IsNil(o.ProductVersion) {
+		toSerialize["product_version"] = o.ProductVersion
+	}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
@@ -561,13 +672,27 @@ func (o Function) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AzionForm) {
 		toSerialize["azion_form"] = o.AzionForm
 	}
-	toSerialize["reference_count"] = o.ReferenceCount
-	toSerialize["version"] = o.Version
-	toSerialize["vendor"] = o.Vendor
-	toSerialize["is_versioned"] = o.IsVersioned
-	toSerialize["resource_version"] = o.ResourceVersion.Get()
-	toSerialize["version_state"] = o.VersionState.Get()
-	toSerialize["version_id"] = o.VersionId.Get()
+	if !IsNil(o.ReferenceCount) {
+		toSerialize["reference_count"] = o.ReferenceCount
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	if !IsNil(o.Vendor) {
+		toSerialize["vendor"] = o.Vendor
+	}
+	if o.VersionId.IsSet() {
+		toSerialize["version_id"] = o.VersionId.Get()
+	}
+	if o.VersionState.IsSet() {
+		toSerialize["version_state"] = o.VersionState.Get()
+	}
+	if !IsNil(o.IsVersioned) {
+		toSerialize["is_versioned"] = o.IsVersioned
+	}
+	if o.ResourceVersion.IsSet() {
+		toSerialize["resource_version"] = o.ResourceVersion.Get()
+	}
 	return toSerialize, nil
 }
 
@@ -576,18 +701,7 @@ func (o *Function) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
 		"name",
-		"last_editor",
-		"last_modified",
-		"product_version",
-		"reference_count",
-		"version",
-		"vendor",
-		"is_versioned",
-		"resource_version",
-		"version_state",
-		"version_id",
 	}
 
 	allProperties := make(map[string]interface{})

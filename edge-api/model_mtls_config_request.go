@@ -21,7 +21,8 @@ var _ MappedNullable = &MTLSConfigRequest{}
 type MTLSConfigRequest struct {
 	Certificate NullableInt64 `json:"certificate,omitempty"`
 	Crl []int64 `json:"crl,omitempty"`
-	Verification NullableMTLSConfigVerification `json:"verification,omitempty"`
+	// * `enforce` - Enforce * `permissive` - Permissive
+	Verification NullableString `json:"verification,omitempty"`
 }
 
 // NewMTLSConfigRequest instantiates a new MTLSConfigRequest object
@@ -117,9 +118,9 @@ func (o *MTLSConfigRequest) SetCrl(v []int64) {
 }
 
 // GetVerification returns the Verification field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MTLSConfigRequest) GetVerification() MTLSConfigVerification {
+func (o *MTLSConfigRequest) GetVerification() string {
 	if o == nil || IsNil(o.Verification.Get()) {
-		var ret MTLSConfigVerification
+		var ret string
 		return ret
 	}
 	return *o.Verification.Get()
@@ -128,7 +129,7 @@ func (o *MTLSConfigRequest) GetVerification() MTLSConfigVerification {
 // GetVerificationOk returns a tuple with the Verification field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MTLSConfigRequest) GetVerificationOk() (*MTLSConfigVerification, bool) {
+func (o *MTLSConfigRequest) GetVerificationOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -144,8 +145,8 @@ func (o *MTLSConfigRequest) HasVerification() bool {
 	return false
 }
 
-// SetVerification gets a reference to the given NullableMTLSConfigVerification and assigns it to the Verification field.
-func (o *MTLSConfigRequest) SetVerification(v MTLSConfigVerification) {
+// SetVerification gets a reference to the given NullableString and assigns it to the Verification field.
+func (o *MTLSConfigRequest) SetVerification(v string) {
 	o.Verification.Set(&v)
 }
 // SetVerificationNil sets the value for Verification to be an explicit nil

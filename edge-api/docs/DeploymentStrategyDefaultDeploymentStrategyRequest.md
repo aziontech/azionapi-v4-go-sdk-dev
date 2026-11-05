@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** |  | 
+**Type** | **string** | Discriminator field for DeploymentStrategyRequest | 
 **Attributes** | [**DefaultDeploymentStrategyAttrsRequest**](DefaultDeploymentStrategyAttrsRequest.md) |  | 
 
 ## Methods

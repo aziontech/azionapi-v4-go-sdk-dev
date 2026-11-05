@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** | Indicates if the certificate revocation list is active. This field cannot be set to false. | [optional] 
-**LastEditor** | **string** |  | 
-**CreatedAt** | **NullableTime** | Timestamp of the certificate revocation list creation on the platform. | 
-**LastModified** | **time.Time** | Timestamp of the last modification made to the certificate content on the platform. | 
-**ProductVersion** | **string** |  | 
-**Issuer** | **string** |  | 
-**LastUpdate** | **time.Time** | Timestamp of the last update issued by the certification revocation list issuer. | 
-**NextUpdate** | **time.Time** | Timestamp of the next scheduled update from the certification revocation list issuer. | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **NullableTime** | Timestamp of the certificate revocation list creation on the platform. | [optional] 
+**LastModified** | Pointer to **time.Time** | Timestamp of the last modification made to the certificate content on the platform. | [optional] 
+**ProductVersion** | Pointer to **string** |  | [optional] 
+**Issuer** | Pointer to **string** |  | [optional] 
+**LastUpdate** | Pointer to **time.Time** | Timestamp of the last update issued by the certification revocation list issuer. | [optional] 
+**NextUpdate** | Pointer to **time.Time** | Timestamp of the next scheduled update from the certification revocation list issuer. | [optional] 
 **Crl** | **string** |  | 
 
 ## Methods
 
 ### NewCertificateRevocationList
 
-`func NewCertificateRevocationList(id int64, name string, lastEditor string, createdAt NullableTime, lastModified time.Time, productVersion string, issuer string, lastUpdate time.Time, nextUpdate time.Time, crl string, ) *CertificateRevocationList`
+`func NewCertificateRevocationList(name string, crl string, ) *CertificateRevocationList`
 
 NewCertificateRevocationList instantiates a new CertificateRevocationList object
 This constructor will assign default values to properties that have it defined,
@@ -54,6 +54,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *CertificateRevocationList) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -119,6 +124,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *CertificateRevocationList) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -139,6 +149,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *CertificateRevocationList) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 ### SetCreatedAtNil
 
@@ -169,6 +184,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *CertificateRevocationList) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetProductVersion
 
@@ -189,6 +209,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *CertificateRevocationList) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 ### GetIssuer
 
@@ -209,6 +234,11 @@ and a boolean to check if the value has been set.
 
 SetIssuer sets Issuer field to given value.
 
+### HasIssuer
+
+`func (o *CertificateRevocationList) HasIssuer() bool`
+
+HasIssuer returns a boolean if a field has been set.
 
 ### GetLastUpdate
 
@@ -229,6 +259,11 @@ and a boolean to check if the value has been set.
 
 SetLastUpdate sets LastUpdate field to given value.
 
+### HasLastUpdate
+
+`func (o *CertificateRevocationList) HasLastUpdate() bool`
+
+HasLastUpdate returns a boolean if a field has been set.
 
 ### GetNextUpdate
 
@@ -249,6 +284,11 @@ and a boolean to check if the value has been set.
 
 SetNextUpdate sets NextUpdate field to given value.
 
+### HasNextUpdate
+
+`func (o *CertificateRevocationList) HasNextUpdate() bool`
+
+HasNextUpdate returns a boolean if a field has been set.
 
 ### GetCrl
 

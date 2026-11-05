@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 **Criteria** | [**[][]ApplicationCriterionField**]([]ApplicationCriterionField.md) |  | 
 **Behaviors** | [**[]RequestPhaseBehavior**](RequestPhaseBehavior.md) |  | 
 **Description** | Pointer to **string** |  | [optional] 
-**Order** | **int64** |  | 
-**LastEditor** | **NullableString** |  | 
-**LastModified** | **NullableTime** |  | 
-**CreatedAt** | **time.Time** |  | 
+**Order** | Pointer to **int64** |  | [optional] 
+**LastEditor** | Pointer to **NullableString** |  | [optional] 
+**LastModified** | Pointer to **NullableTime** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
 ### NewRequestPhaseRule
 
-`func NewRequestPhaseRule(id int64, name string, criteria [][]ApplicationCriterionField, behaviors []RequestPhaseBehavior, order int64, lastEditor NullableString, lastModified NullableTime, createdAt time.Time, ) *RequestPhaseRule`
+`func NewRequestPhaseRule(name string, criteria [][]ApplicationCriterionField, behaviors []RequestPhaseBehavior, ) *RequestPhaseRule`
 
 NewRequestPhaseRule instantiates a new RequestPhaseRule object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +53,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *RequestPhaseRule) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -183,6 +188,11 @@ and a boolean to check if the value has been set.
 
 SetOrder sets Order field to given value.
 
+### HasOrder
+
+`func (o *RequestPhaseRule) HasOrder() bool`
+
+HasOrder returns a boolean if a field has been set.
 
 ### GetLastEditor
 
@@ -203,6 +213,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *RequestPhaseRule) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### SetLastEditorNil
 
@@ -233,6 +248,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *RequestPhaseRule) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### SetLastModifiedNil
 
@@ -263,6 +283,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *RequestPhaseRule) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

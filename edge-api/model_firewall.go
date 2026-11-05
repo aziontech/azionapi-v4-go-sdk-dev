@@ -20,7 +20,7 @@ import (
 // checks if the Firewall type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Firewall{}
 
-// Firewall Mixin that exposes build state info on the main resource payload.  Adds read-only ``version_id`` (ResourceVersionMeta ULID) and ``version_state`` fields, read from the ``_version_meta`` attribute stamped by ``VersioningService.attach_version_metas``. Instances without a meta (legacy rows, base-rows) or never stamped serialize both as ``null``.  Designed for pseudo-versionable resources (single active version, save-and-build) where clients interact with the main route and need to see the build state without hitting ``/versions``. ``version_id`` links to ``/{resource}/{id}/versions/{version_id}`` for full meta, including ``last_error``.  Usage:     class CertificateSerializer(VersionStateSerializerMixin, serializers.ModelSerializer):         class Meta:             model = Certificate             fields = [\"id\", \"name\"] + VersionStateSerializerMixin.version_state_fields
+// Firewall struct for Firewall
 type Firewall struct {
 	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
@@ -35,6 +35,8 @@ type Firewall struct {
 	VersionId NullableString `json:"version_id,omitempty"`
 	// Build state of this version (queued, building, ready, error, ...)
 	VersionState NullableString `json:"version_state,omitempty"`
+	IsVersioned *bool `json:"is_versioned,omitempty"`
+	Version NullableInt64 `json:"version,omitempty"`
 }
 
 type _Firewall Firewall
@@ -421,6 +423,80 @@ func (o *Firewall) UnsetVersionState() {
 	o.VersionState.Unset()
 }
 
+// GetIsVersioned returns the IsVersioned field value if set, zero value otherwise.
+func (o *Firewall) GetIsVersioned() bool {
+	if o == nil || IsNil(o.IsVersioned) {
+		var ret bool
+		return ret
+	}
+	return *o.IsVersioned
+}
+
+// GetIsVersionedOk returns a tuple with the IsVersioned field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Firewall) GetIsVersionedOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsVersioned) {
+		return nil, false
+	}
+	return o.IsVersioned, true
+}
+
+// HasIsVersioned returns a boolean if a field has been set.
+func (o *Firewall) HasIsVersioned() bool {
+	if o != nil && !IsNil(o.IsVersioned) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsVersioned gets a reference to the given bool and assigns it to the IsVersioned field.
+func (o *Firewall) SetIsVersioned(v bool) {
+	o.IsVersioned = &v
+}
+
+// GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Firewall) GetVersion() int64 {
+	if o == nil || IsNil(o.Version.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.Version.Get()
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Firewall) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Version.Get(), o.Version.IsSet()
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *Firewall) HasVersion() bool {
+	if o != nil && o.Version.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given NullableInt64 and assigns it to the Version field.
+func (o *Firewall) SetVersion(v int64) {
+	o.Version.Set(&v)
+}
+// SetVersionNil sets the value for Version to be an explicit nil
+func (o *Firewall) SetVersionNil() {
+	o.Version.Set(nil)
+}
+
+// UnsetVersion ensures that no value is present for Version, not even an explicit nil
+func (o *Firewall) UnsetVersion() {
+	o.Version.Unset()
+}
+
 func (o Firewall) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -461,6 +537,12 @@ func (o Firewall) ToMap() (map[string]interface{}, error) {
 	}
 	if o.VersionState.IsSet() {
 		toSerialize["version_state"] = o.VersionState.Get()
+	}
+	if !IsNil(o.IsVersioned) {
+		toSerialize["is_versioned"] = o.IsVersioned
+	}
+	if o.Version.IsSet() {
+		toSerialize["version"] = o.Version.Get()
 	}
 	return toSerialize, nil
 }

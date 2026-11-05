@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Key** | **string** |  | 
-**LastModified** | **time.Time** |  | 
-**Size** | **int64** | Size of the object in bytes | 
-**IsFolder** | **bool** | Whether this entry represents a folder | 
+**Key** | Pointer to **string** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
+**Size** | Pointer to **int64** | Size of the object in bytes | [optional] 
+**IsFolder** | Pointer to **bool** | Whether this entry represents a folder | [optional] 
 
 ## Methods
 
 ### NewBucketObject
 
-`func NewBucketObject(key string, lastModified time.Time, size int64, isFolder bool, ) *BucketObject`
+`func NewBucketObject() *BucketObject`
 
 NewBucketObject instantiates a new BucketObject object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetKey sets Key field to given value.
 
+### HasKey
+
+`func (o *BucketObject) HasKey() bool`
+
+HasKey returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -67,6 +72,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *BucketObject) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetSize
 
@@ -87,6 +97,11 @@ and a boolean to check if the value has been set.
 
 SetSize sets Size field to given value.
 
+### HasSize
+
+`func (o *BucketObject) HasSize() bool`
+
+HasSize returns a boolean if a field has been set.
 
 ### GetIsFolder
 
@@ -107,6 +122,11 @@ and a boolean to check if the value has been set.
 
 SetIsFolder sets IsFolder field to given value.
 
+### HasIsFolder
+
+`func (o *BucketObject) HasIsFolder() bool`
+
+HasIsFolder returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

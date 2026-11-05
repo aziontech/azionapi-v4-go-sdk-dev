@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **ProductVersion** | Pointer to **string** |  | [optional] 
 **VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
 **VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
+**IsVersioned** | Pointer to **bool** |  | [optional] 
+**Version** | Pointer to **NullableInt64** |  | [optional] 
 
 ## Methods
 
@@ -325,6 +327,66 @@ HasVersionState returns a boolean if a field has been set.
 `func (o *Firewall) UnsetVersionState()`
 
 UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
+### GetIsVersioned
+
+`func (o *Firewall) GetIsVersioned() bool`
+
+GetIsVersioned returns the IsVersioned field if non-nil, zero value otherwise.
+
+### GetIsVersionedOk
+
+`func (o *Firewall) GetIsVersionedOk() (*bool, bool)`
+
+GetIsVersionedOk returns a tuple with the IsVersioned field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsVersioned
+
+`func (o *Firewall) SetIsVersioned(v bool)`
+
+SetIsVersioned sets IsVersioned field to given value.
+
+### HasIsVersioned
+
+`func (o *Firewall) HasIsVersioned() bool`
+
+HasIsVersioned returns a boolean if a field has been set.
+
+### GetVersion
+
+`func (o *Firewall) GetVersion() int64`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *Firewall) GetVersionOk() (*int64, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVersion
+
+`func (o *Firewall) SetVersion(v int64)`
+
+SetVersion sets Version field to given value.
+
+### HasVersion
+
+`func (o *Firewall) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
+
+### SetVersionNil
+
+`func (o *Firewall) SetVersionNil(b bool)`
+
+ SetVersionNil sets the value for Version to be an explicit nil
+
+### UnsetVersion
+`func (o *Firewall) UnsetVersion()`
+
+UnsetVersion ensures that no value is present for Version, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

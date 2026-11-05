@@ -22,6 +22,7 @@ var _ MappedNullable = &PageConnectorRequest{}
 
 // PageConnectorRequest struct for PageConnectorRequest
 type PageConnectorRequest struct {
+	// Discriminator field for PageRequest
 	Type string `json:"type"`
 	Attributes PageConnectorAttributesRequest `json:"attributes"`
 }

@@ -23,16 +23,16 @@ var _ MappedNullable = &DataStream{}
 
 // DataStream struct for DataStream
 type DataStream struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
-	LastEditor string `json:"last_editor"`
-	Created time.Time `json:"created"`
-	LastModified time.Time `json:"last_modified"`
-	ProductVersion string `json:"product_version"`
+	LastEditor *string `json:"last_editor,omitempty"`
+	Created *time.Time `json:"created,omitempty"`
+	LastModified *time.Time `json:"last_modified,omitempty"`
+	ProductVersion *string `json:"product_version,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	Inputs []InputInputDataSourceAttributes `json:"inputs"`
 	Transform []Transform `json:"transform"`
-	Outputs []Output `json:"outputs"`
+	Outputs []OutputBase `json:"outputs"`
 }
 
 type _DataStream DataStream
@@ -41,14 +41,9 @@ type _DataStream DataStream
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataStream(id int64, name string, lastEditor string, created time.Time, lastModified time.Time, productVersion string, inputs []InputInputDataSourceAttributes, transform []Transform, outputs []Output) *DataStream {
+func NewDataStream(name string, inputs []InputInputDataSourceAttributes, transform []Transform, outputs []OutputBase) *DataStream {
 	this := DataStream{}
-	this.Id = id
 	this.Name = name
-	this.LastEditor = lastEditor
-	this.Created = created
-	this.LastModified = lastModified
-	this.ProductVersion = productVersion
 	this.Inputs = inputs
 	this.Transform = transform
 	this.Outputs = outputs
@@ -63,28 +58,36 @@ func NewDataStreamWithDefaults() *DataStream {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *DataStream) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataStream) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *DataStream) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *DataStream) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -111,100 +114,132 @@ func (o *DataStream) SetName(v string) {
 	o.Name = v
 }
 
-// GetLastEditor returns the LastEditor field value
+// GetLastEditor returns the LastEditor field value if set, zero value otherwise.
 func (o *DataStream) GetLastEditor() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		var ret string
 		return ret
 	}
-
-	return o.LastEditor
+	return *o.LastEditor
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value
+// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataStream) GetLastEditorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		return nil, false
 	}
-	return &o.LastEditor, true
+	return o.LastEditor, true
 }
 
-// SetLastEditor sets field value
+// HasLastEditor returns a boolean if a field has been set.
+func (o *DataStream) HasLastEditor() bool {
+	if o != nil && !IsNil(o.LastEditor) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
 func (o *DataStream) SetLastEditor(v string) {
-	o.LastEditor = v
+	o.LastEditor = &v
 }
 
-// GetCreated returns the Created field value
+// GetCreated returns the Created field value if set, zero value otherwise.
 func (o *DataStream) GetCreated() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.Created
+	return *o.Created
 }
 
-// GetCreatedOk returns a tuple with the Created field value
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataStream) GetCreatedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
-	return &o.Created, true
+	return o.Created, true
 }
 
-// SetCreated sets field value
+// HasCreated returns a boolean if a field has been set.
+func (o *DataStream) HasCreated() bool {
+	if o != nil && !IsNil(o.Created) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 func (o *DataStream) SetCreated(v time.Time) {
-	o.Created = v
+	o.Created = &v
 }
 
-// GetLastModified returns the LastModified field value
+// GetLastModified returns the LastModified field value if set, zero value otherwise.
 func (o *DataStream) GetLastModified() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.LastModified
+	return *o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value
+// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataStream) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		return nil, false
 	}
-	return &o.LastModified, true
+	return o.LastModified, true
 }
 
-// SetLastModified sets field value
+// HasLastModified returns a boolean if a field has been set.
+func (o *DataStream) HasLastModified() bool {
+	if o != nil && !IsNil(o.LastModified) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
 func (o *DataStream) SetLastModified(v time.Time) {
-	o.LastModified = v
+	o.LastModified = &v
 }
 
-// GetProductVersion returns the ProductVersion field value
+// GetProductVersion returns the ProductVersion field value if set, zero value otherwise.
 func (o *DataStream) GetProductVersion() string {
-	if o == nil {
+	if o == nil || IsNil(o.ProductVersion) {
 		var ret string
 		return ret
 	}
-
-	return o.ProductVersion
+	return *o.ProductVersion
 }
 
-// GetProductVersionOk returns a tuple with the ProductVersion field value
+// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DataStream) GetProductVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProductVersion) {
 		return nil, false
 	}
-	return &o.ProductVersion, true
+	return o.ProductVersion, true
 }
 
-// SetProductVersion sets field value
+// HasProductVersion returns a boolean if a field has been set.
+func (o *DataStream) HasProductVersion() bool {
+	if o != nil && !IsNil(o.ProductVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetProductVersion gets a reference to the given string and assigns it to the ProductVersion field.
 func (o *DataStream) SetProductVersion(v string) {
-	o.ProductVersion = v
+	o.ProductVersion = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -288,9 +323,9 @@ func (o *DataStream) SetTransform(v []Transform) {
 }
 
 // GetOutputs returns the Outputs field value
-func (o *DataStream) GetOutputs() []Output {
+func (o *DataStream) GetOutputs() []OutputBase {
 	if o == nil {
-		var ret []Output
+		var ret []OutputBase
 		return ret
 	}
 
@@ -299,7 +334,7 @@ func (o *DataStream) GetOutputs() []Output {
 
 // GetOutputsOk returns a tuple with the Outputs field value
 // and a boolean to check if the value has been set.
-func (o *DataStream) GetOutputsOk() ([]Output, bool) {
+func (o *DataStream) GetOutputsOk() ([]OutputBase, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -307,7 +342,7 @@ func (o *DataStream) GetOutputsOk() ([]Output, bool) {
 }
 
 // SetOutputs sets field value
-func (o *DataStream) SetOutputs(v []Output) {
+func (o *DataStream) SetOutputs(v []OutputBase) {
 	o.Outputs = v
 }
 
@@ -321,12 +356,22 @@ func (o DataStream) MarshalJSON() ([]byte, error) {
 
 func (o DataStream) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
-	toSerialize["last_editor"] = o.LastEditor
-	toSerialize["created"] = o.Created
-	toSerialize["last_modified"] = o.LastModified
-	toSerialize["product_version"] = o.ProductVersion
+	if !IsNil(o.LastEditor) {
+		toSerialize["last_editor"] = o.LastEditor
+	}
+	if !IsNil(o.Created) {
+		toSerialize["created"] = o.Created
+	}
+	if !IsNil(o.LastModified) {
+		toSerialize["last_modified"] = o.LastModified
+	}
+	if !IsNil(o.ProductVersion) {
+		toSerialize["product_version"] = o.ProductVersion
+	}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
@@ -341,12 +386,7 @@ func (o *DataStream) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
 		"name",
-		"last_editor",
-		"created",
-		"last_modified",
-		"product_version",
 		"inputs",
 		"transform",
 		"outputs",

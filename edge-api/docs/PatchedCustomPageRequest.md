@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Pages** | Pointer to [**[]PageRequest**](PageRequest.md) |  | [optional] 
+**Pages** | Pointer to [**[]PageRequestBase**](PageRequestBase.md) |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetPages
 
-`func (o *PatchedCustomPageRequest) GetPages() []PageRequest`
+`func (o *PatchedCustomPageRequest) GetPages() []PageRequestBase`
 
 GetPages returns the Pages field if non-nil, zero value otherwise.
 
 ### GetPagesOk
 
-`func (o *PatchedCustomPageRequest) GetPagesOk() (*[]PageRequest, bool)`
+`func (o *PatchedCustomPageRequest) GetPagesOk() (*[]PageRequestBase, bool)`
 
 GetPagesOk returns a tuple with the Pages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPages
 
-`func (o *PatchedCustomPageRequest) SetPages(v []PageRequest)`
+`func (o *PatchedCustomPageRequest) SetPages(v []PageRequestBase)`
 
 SetPages sets Pages field to given value.
 

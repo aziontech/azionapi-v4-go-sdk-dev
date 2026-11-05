@@ -31,7 +31,7 @@ type PaginatedEdgeFunctionList struct {
 	Next NullableString `json:"next,omitempty"`
 	// URL to the previous page of results
 	Previous NullableString `json:"previous,omitempty"`
-	Results []EdgeFunction `json:"results,omitempty"`
+	Results []Function `json:"results,omitempty"`
 }
 
 // NewPaginatedEdgeFunctionList instantiates a new PaginatedEdgeFunctionList object
@@ -264,9 +264,9 @@ func (o *PaginatedEdgeFunctionList) UnsetPrevious() {
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
-func (o *PaginatedEdgeFunctionList) GetResults() []EdgeFunction {
+func (o *PaginatedEdgeFunctionList) GetResults() []Function {
 	if o == nil || IsNil(o.Results) {
-		var ret []EdgeFunction
+		var ret []Function
 		return ret
 	}
 	return o.Results
@@ -274,7 +274,7 @@ func (o *PaginatedEdgeFunctionList) GetResults() []EdgeFunction {
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PaginatedEdgeFunctionList) GetResultsOk() ([]EdgeFunction, bool) {
+func (o *PaginatedEdgeFunctionList) GetResultsOk() ([]Function, bool) {
 	if o == nil || IsNil(o.Results) {
 		return nil, false
 	}
@@ -290,8 +290,8 @@ func (o *PaginatedEdgeFunctionList) HasResults() bool {
 	return false
 }
 
-// SetResults gets a reference to the given []EdgeFunction and assigns it to the Results field.
-func (o *PaginatedEdgeFunctionList) SetResults(v []EdgeFunction) {
+// SetResults gets a reference to the given []Function and assigns it to the Results field.
+func (o *PaginatedEdgeFunctionList) SetResults(v []Function) {
 	o.Results = v
 }
 

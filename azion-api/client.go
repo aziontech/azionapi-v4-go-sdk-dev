@@ -50,6 +50,14 @@ type APIClient struct {
 
 	// API Services
 
+	AICopilotChatCompletionsAPI *AICopilotChatCompletionsAPIService
+
+	AICopilotDocumentationSearchAPI *AICopilotDocumentationSearchAPIService
+
+	AICopilotFeedbackAPI *AICopilotFeedbackAPIService
+
+	AICopilotSupportAPI *AICopilotSupportAPIService
+
 	AIStudioChatThreadsAPI *AIStudioChatThreadsAPIService
 
 	AIStudioChunksAPI *AIStudioChunksAPIService
@@ -67,8 +75,6 @@ type APIClient struct {
 	AccountsInfoAPI *AccountsInfoAPIService
 
 	AccountsLoggedInAPI *AccountsLoggedInAPIService
-
-	ApplicationVersionsAPI *ApplicationVersionsAPIService
 
 	ApplicationsAPI *ApplicationsAPIService
 
@@ -94,11 +100,7 @@ type APIClient struct {
 
 	BillingPaymentsAPI *BillingPaymentsAPIService
 
-	ConnectorVersionsAPI *ConnectorVersionsAPIService
-
 	ConnectorsAPI *ConnectorsAPIService
-
-	CustomPageVersionsAPI *CustomPageVersionsAPIService
 
 	CustomPagesAPI *CustomPagesAPIService
 
@@ -124,15 +126,11 @@ type APIClient struct {
 
 	FavoritesAPI *FavoritesAPIService
 
-	FirewallVersionsAPI *FirewallVersionsAPIService
-
 	FirewallsAPI *FirewallsAPIService
 
 	FirewallsFunctionAPI *FirewallsFunctionAPIService
 
 	FirewallsRulesEngineAPI *FirewallsRulesEngineAPIService
-
-	FunctionVersionsAPI *FunctionVersionsAPIService
 
 	FunctionsAPI *FunctionsAPIService
 
@@ -165,8 +163,6 @@ type APIClient struct {
 	MetricsReportsAPI *MetricsReportsAPIService
 
 	MetricsRowsAPI *MetricsRowsAPIService
-
-	NetworkListVersionsAPI *NetworkListVersionsAPIService
 
 	NetworkListsAPI *NetworkListsAPIService
 
@@ -212,7 +208,9 @@ type APIClient struct {
 
 	VCSProvidersAPI *VCSProvidersAPIService
 
-	WAFVersionsAPI *WAFVersionsAPIService
+	VariablesAPI *VariablesAPIService
+
+	VariablesScopeGroupsAPI *VariablesScopeGroupsAPIService
 
 	WAFsAPI *WAFsAPIService
 
@@ -239,6 +237,10 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.AICopilotChatCompletionsAPI = (*AICopilotChatCompletionsAPIService)(&c.common)
+	c.AICopilotDocumentationSearchAPI = (*AICopilotDocumentationSearchAPIService)(&c.common)
+	c.AICopilotFeedbackAPI = (*AICopilotFeedbackAPIService)(&c.common)
+	c.AICopilotSupportAPI = (*AICopilotSupportAPIService)(&c.common)
 	c.AIStudioChatThreadsAPI = (*AIStudioChatThreadsAPIService)(&c.common)
 	c.AIStudioChunksAPI = (*AIStudioChunksAPIService)(&c.common)
 	c.AIStudioDocumentsAPI = (*AIStudioDocumentsAPIService)(&c.common)
@@ -248,7 +250,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AccountsDescendantsAPI = (*AccountsDescendantsAPIService)(&c.common)
 	c.AccountsInfoAPI = (*AccountsInfoAPIService)(&c.common)
 	c.AccountsLoggedInAPI = (*AccountsLoggedInAPIService)(&c.common)
-	c.ApplicationVersionsAPI = (*ApplicationVersionsAPIService)(&c.common)
 	c.ApplicationsAPI = (*ApplicationsAPIService)(&c.common)
 	c.ApplicationsCacheSettingsAPI = (*ApplicationsCacheSettingsAPIService)(&c.common)
 	c.ApplicationsDeviceGroupsAPI = (*ApplicationsDeviceGroupsAPIService)(&c.common)
@@ -261,9 +262,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.AuthRevokeAPI = (*AuthRevokeAPIService)(&c.common)
 	c.BillingInvoicesAPI = (*BillingInvoicesAPIService)(&c.common)
 	c.BillingPaymentsAPI = (*BillingPaymentsAPIService)(&c.common)
-	c.ConnectorVersionsAPI = (*ConnectorVersionsAPIService)(&c.common)
 	c.ConnectorsAPI = (*ConnectorsAPIService)(&c.common)
-	c.CustomPageVersionsAPI = (*CustomPageVersionsAPIService)(&c.common)
 	c.CustomPagesAPI = (*CustomPagesAPIService)(&c.common)
 	c.DNSDNSSECAPI = (*DNSDNSSECAPIService)(&c.common)
 	c.DNSRecordsAPI = (*DNSRecordsAPIService)(&c.common)
@@ -276,11 +275,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DigitalCertificatesCertificatesAPI = (*DigitalCertificatesCertificatesAPIService)(&c.common)
 	c.DigitalCertificatesRequestACertificateAPI = (*DigitalCertificatesRequestACertificateAPIService)(&c.common)
 	c.FavoritesAPI = (*FavoritesAPIService)(&c.common)
-	c.FirewallVersionsAPI = (*FirewallVersionsAPIService)(&c.common)
 	c.FirewallsAPI = (*FirewallsAPIService)(&c.common)
 	c.FirewallsFunctionAPI = (*FirewallsFunctionAPIService)(&c.common)
 	c.FirewallsRulesEngineAPI = (*FirewallsRulesEngineAPIService)(&c.common)
-	c.FunctionVersionsAPI = (*FunctionVersionsAPIService)(&c.common)
 	c.FunctionsAPI = (*FunctionsAPIService)(&c.common)
 	c.IdentityGrantsAPI = (*IdentityGrantsAPIService)(&c.common)
 	c.IdentityGroupMembersAPI = (*IdentityGroupMembersAPIService)(&c.common)
@@ -297,7 +294,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.MetricsRecommendationsAPI = (*MetricsRecommendationsAPIService)(&c.common)
 	c.MetricsReportsAPI = (*MetricsReportsAPIService)(&c.common)
 	c.MetricsRowsAPI = (*MetricsRowsAPIService)(&c.common)
-	c.NetworkListVersionsAPI = (*NetworkListVersionsAPIService)(&c.common)
 	c.NetworkListsAPI = (*NetworkListsAPIService)(&c.common)
 	c.OrchestratorNodeGroupsAPI = (*OrchestratorNodeGroupsAPIService)(&c.common)
 	c.OrchestratorNodeServicesAPI = (*OrchestratorNodeServicesAPIService)(&c.common)
@@ -320,7 +316,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.VCSExecutionScriptsAPI = (*VCSExecutionScriptsAPIService)(&c.common)
 	c.VCSIntegrationsAPI = (*VCSIntegrationsAPIService)(&c.common)
 	c.VCSProvidersAPI = (*VCSProvidersAPIService)(&c.common)
-	c.WAFVersionsAPI = (*WAFVersionsAPIService)(&c.common)
+	c.VariablesAPI = (*VariablesAPIService)(&c.common)
+	c.VariablesScopeGroupsAPI = (*VariablesScopeGroupsAPIService)(&c.common)
 	c.WAFsAPI = (*WAFsAPIService)(&c.common)
 	c.WAFsExceptionsAPI = (*WAFsExceptionsAPIService)(&c.common)
 	c.WorkloadDeploymentsAPI = (*WorkloadDeploymentsAPIService)(&c.common)
@@ -435,10 +432,14 @@ func parameterAddToHeaderOrQuery(headerOrQueryParams interface{}, keyPrefix stri
 				for i:=0;i<lenIndValue;i++ {
 					var arrayValue = indValue.Index(i)
 					var keyPrefixForCollectionType = keyPrefix
+					var styleForElement = style
 					if style == "deepObject" {
 						keyPrefixForCollectionType = keyPrefix + "[" + strconv.Itoa(i) + "]"
+					} else if style == "form" {
+						// only the parameter's own map is flattened; a map inside an array keeps its bracketed path
+						styleForElement = ""
 					}
-					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefixForCollectionType, arrayValue.Interface(), style, collectionType)
+					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefixForCollectionType, arrayValue.Interface(), styleForElement, collectionType)
 				}
 				return
 
@@ -450,13 +451,36 @@ func parameterAddToHeaderOrQuery(headerOrQueryParams interface{}, keyPrefix stri
 				iter := indValue.MapRange()
 				for iter.Next() {
 					k,v := iter.Key(), iter.Value()
-					parameterAddToHeaderOrQuery(headerOrQueryParams, fmt.Sprintf("%s[%s]", keyPrefix, k.String()), v.Interface(), style, collectionType)
+					var keyPrefixForMapEntry = fmt.Sprintf("%s[%s]", keyPrefix, k.String())
+					var styleForMapEntry = style
+					if style == "form" {
+						// form style: one query parameter per entry, keyed by the property name; anything nested keeps its bracketed path
+						keyPrefixForMapEntry = k.String()
+						styleForMapEntry = ""
+						// a nil entry, or a nil item of a list entry, is left out rather than sent as "null"
+						entry, ok := parameterValueIndirect(v)
+						if !ok {
+							continue
+						}
+						if entry.Kind() == reflect.Slice {
+							for i := 0; i < entry.Len(); i++ {
+								if element, ok := parameterValueIndirect(entry.Index(i)); ok {
+									parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefixForMapEntry, element.Interface(), styleForMapEntry, collectionType)
+								}
+							}
+							continue
+						}
+					}
+					parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefixForMapEntry, v.Interface(), styleForMapEntry, collectionType)
 				}
 				return
 
 			case reflect.Interface:
 				fallthrough
 			case reflect.Ptr:
+				if v.IsNil() {
+					return
+				}
 				parameterAddToHeaderOrQuery(headerOrQueryParams, keyPrefix, v.Elem().Interface(), style, collectionType)
 				return
 
@@ -489,6 +513,18 @@ func parameterAddToHeaderOrQuery(headerOrQueryParams interface{}, keyPrefix stri
 			valuesMap[keyPrefix] = value
 			break
 	}
+}
+
+// parameterValueIndirect unwraps interfaces and pointers down to the value they hold,
+// reporting false when that value is nil
+func parameterValueIndirect(v reflect.Value) (reflect.Value, bool) {
+	for v.Kind() == reflect.Interface || v.Kind() == reflect.Ptr {
+		if v.IsNil() {
+			return v, false
+		}
+		v = v.Elem()
+	}
+	return v, v.IsValid()
 }
 
 // helper for converting interface{} parameters to json strings

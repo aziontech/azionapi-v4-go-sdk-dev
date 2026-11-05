@@ -12,6 +12,7 @@ package edgeapi
 
 import (
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -21,7 +22,6 @@ var _ MappedNullable = &FirewallBehaviorRunFunctionAttributesRequest{}
 // FirewallBehaviorRunFunctionAttributesRequest struct for FirewallBehaviorRunFunctionAttributesRequest
 type FirewallBehaviorRunFunctionAttributesRequest struct {
 	Value int64 `json:"value"`
-	AdditionalProperties map[string]interface{}
 }
 
 type _FirewallBehaviorRunFunctionAttributesRequest FirewallBehaviorRunFunctionAttributesRequest
@@ -79,11 +79,6 @@ func (o FirewallBehaviorRunFunctionAttributesRequest) MarshalJSON() ([]byte, err
 func (o FirewallBehaviorRunFunctionAttributesRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["value"] = o.Value
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return toSerialize, nil
 }
 
@@ -111,20 +106,15 @@ func (o *FirewallBehaviorRunFunctionAttributesRequest) UnmarshalJSON(data []byte
 
 	varFirewallBehaviorRunFunctionAttributesRequest := _FirewallBehaviorRunFunctionAttributesRequest{}
 
-	err = json.Unmarshal(data, &varFirewallBehaviorRunFunctionAttributesRequest)
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varFirewallBehaviorRunFunctionAttributesRequest)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FirewallBehaviorRunFunctionAttributesRequest(varFirewallBehaviorRunFunctionAttributesRequest)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "value")
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return err
 }

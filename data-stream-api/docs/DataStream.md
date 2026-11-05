@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
-**LastEditor** | **string** |  | 
-**Created** | **time.Time** |  | 
-**LastModified** | **time.Time** |  | 
-**ProductVersion** | **string** |  | 
+**LastEditor** | Pointer to **string** |  | [optional] 
+**Created** | Pointer to **time.Time** |  | [optional] 
+**LastModified** | Pointer to **time.Time** |  | [optional] 
+**ProductVersion** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **Inputs** | [**[]InputPolymorphicInputDataSourceAttributes**](InputPolymorphicInputDataSourceAttributes.md) |  | 
 **Transform** | [**[]TransformPolymorphic**](TransformPolymorphic.md) |  | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewDataStream
 
-`func NewDataStream(id int64, name string, lastEditor string, created time.Time, lastModified time.Time, productVersion string, inputs []InputPolymorphicInputDataSourceAttributes, transform []TransformPolymorphic, outputs []Output, ) *DataStream`
+`func NewDataStream(name string, inputs []InputPolymorphicInputDataSourceAttributes, transform []TransformPolymorphic, outputs []Output, ) *DataStream`
 
 NewDataStream instantiates a new DataStream object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +53,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *DataStream) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -93,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *DataStream) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### GetCreated
 
@@ -113,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetCreated sets Created field to given value.
 
+### HasCreated
+
+`func (o *DataStream) HasCreated() bool`
+
+HasCreated returns a boolean if a field has been set.
 
 ### GetLastModified
 
@@ -133,6 +148,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *DataStream) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetProductVersion
 
@@ -153,6 +173,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *DataStream) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 ### GetActive
 

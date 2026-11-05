@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Criteria** | [**[][]EdgeApplicationCriterionFieldRequest**]([]EdgeApplicationCriterionFieldRequest.md) |  | 
+**Criteria** | [**[][]ApplicationCriterionFieldRequest**]([]ApplicationCriterionFieldRequest.md) |  | 
 **Behaviors** | [**[]RequestPhaseBehaviorRequest**](RequestPhaseBehaviorRequest.md) |  | 
 **Description** | Pointer to **string** |  | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewRequestPhaseRuleRequest
 
-`func NewRequestPhaseRuleRequest(name string, criteria [][]EdgeApplicationCriterionFieldRequest, behaviors []RequestPhaseBehaviorRequest, ) *RequestPhaseRuleRequest`
+`func NewRequestPhaseRuleRequest(name string, criteria [][]ApplicationCriterionFieldRequest, behaviors []RequestPhaseBehaviorRequest, ) *RequestPhaseRuleRequest`
 
 NewRequestPhaseRuleRequest instantiates a new RequestPhaseRuleRequest object
 This constructor will assign default values to properties that have it defined,
@@ -76,20 +76,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetCriteria
 
-`func (o *RequestPhaseRuleRequest) GetCriteria() [][]EdgeApplicationCriterionFieldRequest`
+`func (o *RequestPhaseRuleRequest) GetCriteria() [][]ApplicationCriterionFieldRequest`
 
 GetCriteria returns the Criteria field if non-nil, zero value otherwise.
 
 ### GetCriteriaOk
 
-`func (o *RequestPhaseRuleRequest) GetCriteriaOk() (*[][]EdgeApplicationCriterionFieldRequest, bool)`
+`func (o *RequestPhaseRuleRequest) GetCriteriaOk() (*[][]ApplicationCriterionFieldRequest, bool)`
 
 GetCriteriaOk returns a tuple with the Criteria field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCriteria
 
-`func (o *RequestPhaseRuleRequest) SetCriteria(v [][]EdgeApplicationCriterionFieldRequest)`
+`func (o *RequestPhaseRuleRequest) SetCriteria(v [][]ApplicationCriterionFieldRequest)`
 
 SetCriteria sets Criteria field to given value.
 

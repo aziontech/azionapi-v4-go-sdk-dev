@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Pages** | [**[]PageRequest**](PageRequest.md) |  | 
+**Pages** | [**[]PageRequestBase**](PageRequestBase.md) |  | 
 
 ## Methods
 
 ### NewCustomPageRequest
 
-`func NewCustomPageRequest(name string, pages []PageRequest, ) *CustomPageRequest`
+`func NewCustomPageRequest(name string, pages []PageRequestBase, ) *CustomPageRequest`
 
 NewCustomPageRequest instantiates a new CustomPageRequest object
 This constructor will assign default values to properties that have it defined,
@@ -74,20 +74,20 @@ HasActive returns a boolean if a field has been set.
 
 ### GetPages
 
-`func (o *CustomPageRequest) GetPages() []PageRequest`
+`func (o *CustomPageRequest) GetPages() []PageRequestBase`
 
 GetPages returns the Pages field if non-nil, zero value otherwise.
 
 ### GetPagesOk
 
-`func (o *CustomPageRequest) GetPagesOk() (*[]PageRequest, bool)`
+`func (o *CustomPageRequest) GetPagesOk() (*[]PageRequestBase, bool)`
 
 GetPagesOk returns a tuple with the Pages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPages
 
-`func (o *CustomPageRequest) SetPages(v []PageRequest)`
+`func (o *CustomPageRequest) SetPages(v []PageRequestBase)`
 
 SetPages sets Pages field to given value.
 

@@ -35,6 +35,8 @@ type NetworkList struct {
 	VersionId NullableString `json:"version_id,omitempty"`
 	// Build state of this version (queued, building, ready, error, ...)
 	VersionState NullableString `json:"version_state,omitempty"`
+	IsVersioned *bool `json:"is_versioned,omitempty"`
+	Version NullableInt64 `json:"version,omitempty"`
 }
 
 type _NetworkList NetworkList
@@ -375,6 +377,80 @@ func (o *NetworkList) UnsetVersionState() {
 	o.VersionState.Unset()
 }
 
+// GetIsVersioned returns the IsVersioned field value if set, zero value otherwise.
+func (o *NetworkList) GetIsVersioned() bool {
+	if o == nil || IsNil(o.IsVersioned) {
+		var ret bool
+		return ret
+	}
+	return *o.IsVersioned
+}
+
+// GetIsVersionedOk returns a tuple with the IsVersioned field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkList) GetIsVersionedOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsVersioned) {
+		return nil, false
+	}
+	return o.IsVersioned, true
+}
+
+// HasIsVersioned returns a boolean if a field has been set.
+func (o *NetworkList) HasIsVersioned() bool {
+	if o != nil && !IsNil(o.IsVersioned) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsVersioned gets a reference to the given bool and assigns it to the IsVersioned field.
+func (o *NetworkList) SetIsVersioned(v bool) {
+	o.IsVersioned = &v
+}
+
+// GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NetworkList) GetVersion() int64 {
+	if o == nil || IsNil(o.Version.Get()) {
+		var ret int64
+		return ret
+	}
+	return *o.Version.Get()
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NetworkList) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Version.Get(), o.Version.IsSet()
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *NetworkList) HasVersion() bool {
+	if o != nil && o.Version.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given NullableInt64 and assigns it to the Version field.
+func (o *NetworkList) SetVersion(v int64) {
+	o.Version.Set(&v)
+}
+// SetVersionNil sets the value for Version to be an explicit nil
+func (o *NetworkList) SetVersionNil() {
+	o.Version.Set(nil)
+}
+
+// UnsetVersion ensures that no value is present for Version, not even an explicit nil
+func (o *NetworkList) UnsetVersion() {
+	o.Version.Unset()
+}
+
 func (o NetworkList) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -408,6 +484,12 @@ func (o NetworkList) ToMap() (map[string]interface{}, error) {
 	}
 	if o.VersionState.IsSet() {
 		toSerialize["version_state"] = o.VersionState.Get()
+	}
+	if !IsNil(o.IsVersioned) {
+		toSerialize["is_versioned"] = o.IsVersioned
+	}
+	if o.Version.IsSet() {
+		toSerialize["version"] = o.Version.Get()
 	}
 	return toSerialize, nil
 }

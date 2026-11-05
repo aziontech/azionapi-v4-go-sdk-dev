@@ -10,17 +10,14 @@ Name | Type | Description | Notes
 **LastEditor** | Pointer to **string** |  | [optional] 
 **LastModified** | Pointer to **time.Time** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**Infrastructure** | Pointer to **int64** | * &#x60;1&#x60; - Production Infrastructure (All Edge Locations) * &#x60;2&#x60; - Staging Infrastructure | [optional] 
+**Infrastructure** | Pointer to **int64** | * &#x60;1&#x60; - Production Infrastructure (All Locations) * &#x60;2&#x60; - Staging Infrastructure | [optional] 
 **Tls** | Pointer to [**TLSWorkload**](TLSWorkload.md) |  | [optional] 
 **Protocols** | Pointer to [**Protocols**](Protocols.md) |  | [optional] 
 **Mtls** | Pointer to [**MTLS**](MTLS.md) |  | [optional] 
 **Domains** | Pointer to **[]string** |  | [optional] 
 **WorkloadDomainAllowAccess** | Pointer to **bool** |  | [optional] 
 **WorkloadDomain** | Pointer to **string** |  | [optional] 
-**Bindings** | Pointer to [**[]WorkloadBinding**](WorkloadBinding.md) |  | [optional] 
 **ProductVersion** | Pointer to **string** |  | [optional] 
-**VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 
-**VersionState** | Pointer to **NullableString** | Build state of this version (queued, building, ready, error, ...) | [optional] 
 
 ## Methods
 
@@ -361,31 +358,6 @@ SetWorkloadDomain sets WorkloadDomain field to given value.
 
 HasWorkloadDomain returns a boolean if a field has been set.
 
-### GetBindings
-
-`func (o *Workload) GetBindings() []WorkloadBinding`
-
-GetBindings returns the Bindings field if non-nil, zero value otherwise.
-
-### GetBindingsOk
-
-`func (o *Workload) GetBindingsOk() (*[]WorkloadBinding, bool)`
-
-GetBindingsOk returns a tuple with the Bindings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBindings
-
-`func (o *Workload) SetBindings(v []WorkloadBinding)`
-
-SetBindings sets Bindings field to given value.
-
-### HasBindings
-
-`func (o *Workload) HasBindings() bool`
-
-HasBindings returns a boolean if a field has been set.
-
 ### GetProductVersion
 
 `func (o *Workload) GetProductVersion() string`
@@ -411,76 +383,6 @@ SetProductVersion sets ProductVersion field to given value.
 
 HasProductVersion returns a boolean if a field has been set.
 
-### GetVersionId
-
-`func (o *Workload) GetVersionId() string`
-
-GetVersionId returns the VersionId field if non-nil, zero value otherwise.
-
-### GetVersionIdOk
-
-`func (o *Workload) GetVersionIdOk() (*string, bool)`
-
-GetVersionIdOk returns a tuple with the VersionId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionId
-
-`func (o *Workload) SetVersionId(v string)`
-
-SetVersionId sets VersionId field to given value.
-
-### HasVersionId
-
-`func (o *Workload) HasVersionId() bool`
-
-HasVersionId returns a boolean if a field has been set.
-
-### SetVersionIdNil
-
-`func (o *Workload) SetVersionIdNil(b bool)`
-
- SetVersionIdNil sets the value for VersionId to be an explicit nil
-
-### UnsetVersionId
-`func (o *Workload) UnsetVersionId()`
-
-UnsetVersionId ensures that no value is present for VersionId, not even an explicit nil
-### GetVersionState
-
-`func (o *Workload) GetVersionState() string`
-
-GetVersionState returns the VersionState field if non-nil, zero value otherwise.
-
-### GetVersionStateOk
-
-`func (o *Workload) GetVersionStateOk() (*string, bool)`
-
-GetVersionStateOk returns a tuple with the VersionState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVersionState
-
-`func (o *Workload) SetVersionState(v string)`
-
-SetVersionState sets VersionState field to given value.
-
-### HasVersionState
-
-`func (o *Workload) HasVersionState() bool`
-
-HasVersionState returns a boolean if a field has been set.
-
-### SetVersionStateNil
-
-`func (o *Workload) SetVersionStateNil(b bool)`
-
- SetVersionStateNil sets the value for VersionState to be an explicit nil
-
-### UnsetVersionState
-`func (o *Workload) UnsetVersionState()`
-
-UnsetVersionState ensures that no value is present for VersionState, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
