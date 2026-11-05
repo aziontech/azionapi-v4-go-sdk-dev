@@ -1534,14 +1534,4 @@ model_zone.go
 model_zone_request.go
 model_zone_response.go
 response.go
-test/api_ai_copilot_chat_completions_test.go
-test/api_ai_copilot_documentation_search_test.go
-test/api_ai_copilot_feedback_test.go
-test/api_ai_copilot_support_test.go
-test/api_edge_dns_records_test.go
-test/api_edge_dns_zones_test.go
-test/api_edge_dnsdnssec_test.go
-test/api_sql_database_test.go
-test/api_variables_scope_groups_test.go
-test/api_variables_test.go
 utils.go
