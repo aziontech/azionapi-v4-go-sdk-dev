@@ -104,12 +104,6 @@ type APIClient struct {
 
 	CustomPagesAPI *CustomPagesAPIService
 
-	DNSDNSSECAPI *DNSDNSSECAPIService
-
-	DNSRecordsAPI *DNSRecordsAPIService
-
-	DNSZonesAPI *DNSZonesAPIService
-
 	DataStreamDataSourcesAPI *DataStreamDataSourcesAPIService
 
 	DataStreamStreamsAPI *DataStreamStreamsAPIService
@@ -123,6 +117,12 @@ type APIClient struct {
 	DigitalCertificatesCertificatesAPI *DigitalCertificatesCertificatesAPIService
 
 	DigitalCertificatesRequestACertificateAPI *DigitalCertificatesRequestACertificateAPIService
+
+	EdgeDNSDNSSECAPI *EdgeDNSDNSSECAPIService
+
+	EdgeDNSRecordsAPI *EdgeDNSRecordsAPIService
+
+	EdgeDNSZonesAPI *EdgeDNSZonesAPIService
 
 	FavoritesAPI *FavoritesAPIService
 
@@ -186,7 +186,7 @@ type APIClient struct {
 
 	PurgeAPI *PurgeAPIService
 
-	SQLAPI *SQLAPIService
+	SQLDatabaseAPI *SQLDatabaseAPIService
 
 	StorageBucketsAPI *StorageBucketsAPIService
 
@@ -264,9 +264,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.BillingPaymentsAPI = (*BillingPaymentsAPIService)(&c.common)
 	c.ConnectorsAPI = (*ConnectorsAPIService)(&c.common)
 	c.CustomPagesAPI = (*CustomPagesAPIService)(&c.common)
-	c.DNSDNSSECAPI = (*DNSDNSSECAPIService)(&c.common)
-	c.DNSRecordsAPI = (*DNSRecordsAPIService)(&c.common)
-	c.DNSZonesAPI = (*DNSZonesAPIService)(&c.common)
 	c.DataStreamDataSourcesAPI = (*DataStreamDataSourcesAPIService)(&c.common)
 	c.DataStreamStreamsAPI = (*DataStreamStreamsAPIService)(&c.common)
 	c.DataStreamTemplatesAPI = (*DataStreamTemplatesAPIService)(&c.common)
@@ -274,6 +271,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DigitalCertificatesCertificateSigningRequestsAPI = (*DigitalCertificatesCertificateSigningRequestsAPIService)(&c.common)
 	c.DigitalCertificatesCertificatesAPI = (*DigitalCertificatesCertificatesAPIService)(&c.common)
 	c.DigitalCertificatesRequestACertificateAPI = (*DigitalCertificatesRequestACertificateAPIService)(&c.common)
+	c.EdgeDNSDNSSECAPI = (*EdgeDNSDNSSECAPIService)(&c.common)
+	c.EdgeDNSRecordsAPI = (*EdgeDNSRecordsAPIService)(&c.common)
+	c.EdgeDNSZonesAPI = (*EdgeDNSZonesAPIService)(&c.common)
 	c.FavoritesAPI = (*FavoritesAPIService)(&c.common)
 	c.FirewallsAPI = (*FirewallsAPIService)(&c.common)
 	c.FirewallsFunctionAPI = (*FirewallsFunctionAPIService)(&c.common)
@@ -305,7 +305,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.PolicySessionTimeoutPolicyAPI = (*PolicySessionTimeoutPolicyAPIService)(&c.common)
 	c.PublisherManagementAPI = (*PublisherManagementAPIService)(&c.common)
 	c.PurgeAPI = (*PurgeAPIService)(&c.common)
-	c.SQLAPI = (*SQLAPIService)(&c.common)
+	c.SQLDatabaseAPI = (*SQLDatabaseAPIService)(&c.common)
 	c.StorageBucketsAPI = (*StorageBucketsAPIService)(&c.common)
 	c.StorageCredentialsAPI = (*StorageCredentialsAPIService)(&c.common)
 	c.StorageObjectsAPI = (*StorageObjectsAPIService)(&c.common)

@@ -49,7 +49,7 @@ type APIClient struct {
 
 	// API Services
 
-	SQLAPI *SQLAPIService
+	SQLDatabaseAPI *SQLDatabaseAPIService
 }
 
 type service struct {
@@ -68,7 +68,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.SQLAPI = (*SQLAPIService)(&c.common)
+	c.SQLDatabaseAPI = (*SQLDatabaseAPIService)(&c.common)
 
 	return c
 }

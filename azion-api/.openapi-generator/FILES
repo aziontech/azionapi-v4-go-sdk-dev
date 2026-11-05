@@ -36,9 +36,9 @@ api_digital_certificates_certificate_revocation_lists.go
 api_digital_certificates_certificate_signing_requests.go
 api_digital_certificates_certificates.go
 api_digital_certificates_request_a_certificate.go
-api_dns_records.go
-api_dns_zones.go
-api_dnsdnssec.go
+api_edge_dns_records.go
+api_edge_dns_zones.go
+api_edge_dnsdnssec.go
 api_favorites.go
 api_firewalls.go
 api_firewalls_function.go
@@ -70,7 +70,7 @@ api_policy_policies.go
 api_policy_session_timeout_policy.go
 api_publisher_management.go
 api_purge.go
-api_sql.go
+api_sql_database.go
 api_storage_buckets.go
 api_storage_credentials.go
 api_storage_objects.go
@@ -251,12 +251,9 @@ docs/CustomPage.md
 docs/CustomPageRequest.md
 docs/CustomPageResponse.md
 docs/CustomPagesAPI.md
-docs/DNSDNSSECAPI.md
-docs/DNSRecordsAPI.md
 docs/DNSSEC.md
 docs/DNSSECRequest.md
 docs/DNSSECResponse.md
-docs/DNSZonesAPI.md
 docs/Dashboard.md
 docs/DashboardListResponse.md
 docs/DashboardRequest.md
@@ -295,6 +292,9 @@ docs/DocsRequest.md
 docs/DocsResponseItem.md
 docs/Document.md
 docs/DocumentRequest.md
+docs/EdgeDNSDNSSECAPI.md
+docs/EdgeDNSRecordsAPI.md
+docs/EdgeDNSZonesAPI.md
 docs/ElasticsearchEndpoint.md
 docs/ElasticsearchEndpointRequest.md
 docs/ErrorResponse.md
@@ -728,7 +728,7 @@ docs/RowRequest.md
 docs/RowResponse.md
 docs/S3Endpoint.md
 docs/S3EndpointRequest.md
-docs/SQLAPI.md
+docs/SQLDatabaseAPI.md
 docs/SQLResult.md
 docs/SQLResultResponse.md
 docs/SQLStatementsRequest.md
@@ -1538,6 +1538,10 @@ test/api_ai_copilot_chat_completions_test.go
 test/api_ai_copilot_documentation_search_test.go
 test/api_ai_copilot_feedback_test.go
 test/api_ai_copilot_support_test.go
+test/api_edge_dns_records_test.go
+test/api_edge_dns_zones_test.go
+test/api_edge_dnsdnssec_test.go
+test/api_sql_database_test.go
 test/api_variables_scope_groups_test.go
 test/api_variables_test.go
 utils.go

@@ -71,11 +71,11 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*SQLAPI* | [**CreateDatabase**](docs/SQLAPI.md#createdatabase) | **Post** /workspace/sql/databases | Create a database
-*SQLAPI* | [**DeleteDatabase**](docs/SQLAPI.md#deletedatabase) | **Delete** /workspace/sql/databases/{database_id} | Delete a database
-*SQLAPI* | [**ExecuteQuery**](docs/SQLAPI.md#executequery) | **Post** /workspace/sql/databases/{database_id}/query | Execute a query into a database
-*SQLAPI* | [**ListDatabases**](docs/SQLAPI.md#listdatabases) | **Get** /workspace/sql/databases | List databases
-*SQLAPI* | [**RetrieveDatabase**](docs/SQLAPI.md#retrievedatabase) | **Get** /workspace/sql/databases/{database_id} | Retrieve details from a database
+*SQLDatabaseAPI* | [**CreateDatabase**](docs/SQLDatabaseAPI.md#createdatabase) | **Post** /workspace/sql/databases | Create a database
+*SQLDatabaseAPI* | [**DeleteDatabase**](docs/SQLDatabaseAPI.md#deletedatabase) | **Delete** /workspace/sql/databases/{database_id} | Delete a database
+*SQLDatabaseAPI* | [**ExecuteQuery**](docs/SQLDatabaseAPI.md#executequery) | **Post** /workspace/sql/databases/{database_id}/query | Execute a query into a database
+*SQLDatabaseAPI* | [**ListDatabases**](docs/SQLDatabaseAPI.md#listdatabases) | **Get** /workspace/sql/databases | List databases
+*SQLDatabaseAPI* | [**RetrieveDatabase**](docs/SQLDatabaseAPI.md#retrievedatabase) | **Get** /workspace/sql/databases/{database_id} | Retrieve details from a database
 
 
 ## Documentation For Models

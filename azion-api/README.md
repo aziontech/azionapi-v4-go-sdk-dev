@@ -187,21 +187,6 @@ Class | Method | HTTP request | Description
 *CustomPagesAPI* | [**PartialUpdateCustomPage**](docs/CustomPagesAPI.md#partialupdatecustompage) | **Patch** /workspace/custom_pages/{custom_page_id} | Partially update a Custom Page
 *CustomPagesAPI* | [**RetrieveCustomPage**](docs/CustomPagesAPI.md#retrievecustompage) | **Get** /workspace/custom_pages/{custom_page_id} | Retrieve details of a Custom Page
 *CustomPagesAPI* | [**UpdateCustomPage**](docs/CustomPagesAPI.md#updatecustompage) | **Put** /workspace/custom_pages/{custom_page_id} | Update a Custom Page
-*DNSDNSSECAPI* | [**PartialUpdateDnssec**](docs/DNSDNSSECAPI.md#partialupdatednssec) | **Patch** /workspace/dns/zones/{zone_id}/dnssec | Partially update a DNSSEC
-*DNSDNSSECAPI* | [**RetrieveDnssec**](docs/DNSDNSSECAPI.md#retrievednssec) | **Get** /workspace/dns/zones/{zone_id}/dnssec | Retrieve details of a DNSSEC
-*DNSDNSSECAPI* | [**UpdateDnssec**](docs/DNSDNSSECAPI.md#updatednssec) | **Put** /workspace/dns/zones/{zone_id}/dnssec | Update a DNSSEC
-*DNSRecordsAPI* | [**CreateDnsRecord**](docs/DNSRecordsAPI.md#creatednsrecord) | **Post** /workspace/dns/zones/{zone_id}/records | Create a DNS Record
-*DNSRecordsAPI* | [**DeleteDnsRecord**](docs/DNSRecordsAPI.md#deletednsrecord) | **Delete** /workspace/dns/zones/{zone_id}/records/{record_id} | Delete a DNS Record
-*DNSRecordsAPI* | [**ListDnsRecords**](docs/DNSRecordsAPI.md#listdnsrecords) | **Get** /workspace/dns/zones/{zone_id}/records | List DNS Records
-*DNSRecordsAPI* | [**PartialUpdateDnsRecord**](docs/DNSRecordsAPI.md#partialupdatednsrecord) | **Patch** /workspace/dns/zones/{zone_id}/records/{record_id} | Partially update a DNS Record
-*DNSRecordsAPI* | [**RetrieveDnsRecord**](docs/DNSRecordsAPI.md#retrievednsrecord) | **Get** /workspace/dns/zones/{zone_id}/records/{record_id} | Retrieve details of a DNS Record
-*DNSRecordsAPI* | [**UpdateDnsRecord**](docs/DNSRecordsAPI.md#updatednsrecord) | **Put** /workspace/dns/zones/{zone_id}/records/{record_id} | Update a DNS Record
-*DNSZonesAPI* | [**CreateDnsZone**](docs/DNSZonesAPI.md#creatednszone) | **Post** /workspace/dns/zones | Create a DNS Zone
-*DNSZonesAPI* | [**DeleteDnsZone**](docs/DNSZonesAPI.md#deletednszone) | **Delete** /workspace/dns/zones/{zone_id} | Delete a DNS Zone
-*DNSZonesAPI* | [**ListDnsZones**](docs/DNSZonesAPI.md#listdnszones) | **Get** /workspace/dns/zones | List DNS Zones
-*DNSZonesAPI* | [**PartialUpdateDnsZone**](docs/DNSZonesAPI.md#partialupdatednszone) | **Patch** /workspace/dns/zones/{zone_id} | Partially update a DNS Zone
-*DNSZonesAPI* | [**RetrieveDnsZone**](docs/DNSZonesAPI.md#retrievednszone) | **Get** /workspace/dns/zones/{zone_id} | Retrieve details of a DNS Zone
-*DNSZonesAPI* | [**UpdateDnsZone**](docs/DNSZonesAPI.md#updatednszone) | **Put** /workspace/dns/zones/{zone_id} | Update a DNS Zone
 *DataStreamDataSourcesAPI* | [**ListDataSources**](docs/DataStreamDataSourcesAPI.md#listdatasources) | **Get** /workspace/stream/data_sources | List of Data Sources
 *DataStreamStreamsAPI* | [**CreateDataStream**](docs/DataStreamStreamsAPI.md#createdatastream) | **Post** /workspace/stream/streams | Create a Data Stream
 *DataStreamStreamsAPI* | [**DeleteDataStream**](docs/DataStreamStreamsAPI.md#deletedatastream) | **Delete** /workspace/stream/streams/{stream_id} | Delete a Data Stream
@@ -229,6 +214,21 @@ Class | Method | HTTP request | Description
 *DigitalCertificatesCertificatesAPI* | [**RetrieveCertificate**](docs/DigitalCertificatesCertificatesAPI.md#retrievecertificate) | **Get** /workspace/tls/certificates/{certificate_id} | Retrieve details from a certificate
 *DigitalCertificatesCertificatesAPI* | [**UpdateCertificate**](docs/DigitalCertificatesCertificatesAPI.md#updatecertificate) | **Put** /workspace/tls/certificates/{certificate_id} | Update a certificate
 *DigitalCertificatesRequestACertificateAPI* | [**RequestCertificate**](docs/DigitalCertificatesRequestACertificateAPI.md#requestcertificate) | **Post** /workspace/tls/certificates/request | Request a certificate
+*EdgeDNSDNSSECAPI* | [**PartialUpdateDnssec**](docs/EdgeDNSDNSSECAPI.md#partialupdatednssec) | **Patch** /workspace/dns/zones/{zone_id}/dnssec | Partially update a DNSSEC
+*EdgeDNSDNSSECAPI* | [**RetrieveDnssec**](docs/EdgeDNSDNSSECAPI.md#retrievednssec) | **Get** /workspace/dns/zones/{zone_id}/dnssec | Retrieve details of a DNSSEC
+*EdgeDNSDNSSECAPI* | [**UpdateDnssec**](docs/EdgeDNSDNSSECAPI.md#updatednssec) | **Put** /workspace/dns/zones/{zone_id}/dnssec | Update a DNSSEC
+*EdgeDNSRecordsAPI* | [**CreateDnsRecord**](docs/EdgeDNSRecordsAPI.md#creatednsrecord) | **Post** /workspace/dns/zones/{zone_id}/records | Create a DNS Record
+*EdgeDNSRecordsAPI* | [**DeleteDnsRecord**](docs/EdgeDNSRecordsAPI.md#deletednsrecord) | **Delete** /workspace/dns/zones/{zone_id}/records/{record_id} | Delete a DNS Record
+*EdgeDNSRecordsAPI* | [**ListDnsRecords**](docs/EdgeDNSRecordsAPI.md#listdnsrecords) | **Get** /workspace/dns/zones/{zone_id}/records | List DNS Records
+*EdgeDNSRecordsAPI* | [**PartialUpdateDnsRecord**](docs/EdgeDNSRecordsAPI.md#partialupdatednsrecord) | **Patch** /workspace/dns/zones/{zone_id}/records/{record_id} | Partially update a DNS Record
+*EdgeDNSRecordsAPI* | [**RetrieveDnsRecord**](docs/EdgeDNSRecordsAPI.md#retrievednsrecord) | **Get** /workspace/dns/zones/{zone_id}/records/{record_id} | Retrieve details of a DNS Record
+*EdgeDNSRecordsAPI* | [**UpdateDnsRecord**](docs/EdgeDNSRecordsAPI.md#updatednsrecord) | **Put** /workspace/dns/zones/{zone_id}/records/{record_id} | Update a DNS Record
+*EdgeDNSZonesAPI* | [**CreateDnsZone**](docs/EdgeDNSZonesAPI.md#creatednszone) | **Post** /workspace/dns/zones | Create a DNS Zone
+*EdgeDNSZonesAPI* | [**DeleteDnsZone**](docs/EdgeDNSZonesAPI.md#deletednszone) | **Delete** /workspace/dns/zones/{zone_id} | Delete a DNS Zone
+*EdgeDNSZonesAPI* | [**ListDnsZones**](docs/EdgeDNSZonesAPI.md#listdnszones) | **Get** /workspace/dns/zones | List DNS Zones
+*EdgeDNSZonesAPI* | [**PartialUpdateDnsZone**](docs/EdgeDNSZonesAPI.md#partialupdatednszone) | **Patch** /workspace/dns/zones/{zone_id} | Partially update a DNS Zone
+*EdgeDNSZonesAPI* | [**RetrieveDnsZone**](docs/EdgeDNSZonesAPI.md#retrievednszone) | **Get** /workspace/dns/zones/{zone_id} | Retrieve details of a DNS Zone
+*EdgeDNSZonesAPI* | [**UpdateDnsZone**](docs/EdgeDNSZonesAPI.md#updatednszone) | **Put** /workspace/dns/zones/{zone_id} | Update a DNS Zone
 *FavoritesAPI* | [**CreateFavorite**](docs/FavoritesAPI.md#createfavorite) | **Post** /identity/user/favorites | Create a new favorite
 *FavoritesAPI* | [**DeleteFavorite**](docs/FavoritesAPI.md#deletefavorite) | **Delete** /identity/user/favorites/{favorite_id} | Delete a favorite
 *FavoritesAPI* | [**ListFavorites**](docs/FavoritesAPI.md#listfavorites) | **Get** /identity/user/favorites | List of the favorites
@@ -375,11 +375,11 @@ Class | Method | HTTP request | Description
 *PublisherManagementAPI* | [**GetPublisherDetails**](docs/PublisherManagementAPI.md#getpublisherdetails) | **Get** /marketplace/publisher | Get publisher details
 *PublisherManagementAPI* | [**UpdatePublisherDetails**](docs/PublisherManagementAPI.md#updatepublisherdetails) | **Put** /marketplace/publisher | Update publisher details
 *PurgeAPI* | [**CreatePurgeRequest**](docs/PurgeAPI.md#createpurgerequest) | **Post** /workspace/purge/{purge_type} | Create a Purge Request
-*SQLAPI* | [**CreateDatabase**](docs/SQLAPI.md#createdatabase) | **Post** /workspace/sql/databases | Create a database
-*SQLAPI* | [**DeleteDatabase**](docs/SQLAPI.md#deletedatabase) | **Delete** /workspace/sql/databases/{database_id} | Delete a database
-*SQLAPI* | [**ExecuteQuery**](docs/SQLAPI.md#executequery) | **Post** /workspace/sql/databases/{database_id}/query | Execute a query into a database
-*SQLAPI* | [**ListDatabases**](docs/SQLAPI.md#listdatabases) | **Get** /workspace/sql/databases | List databases
-*SQLAPI* | [**RetrieveDatabase**](docs/SQLAPI.md#retrievedatabase) | **Get** /workspace/sql/databases/{database_id} | Retrieve details from a database
+*SQLDatabaseAPI* | [**CreateDatabase**](docs/SQLDatabaseAPI.md#createdatabase) | **Post** /workspace/sql/databases | Create a database
+*SQLDatabaseAPI* | [**DeleteDatabase**](docs/SQLDatabaseAPI.md#deletedatabase) | **Delete** /workspace/sql/databases/{database_id} | Delete a database
+*SQLDatabaseAPI* | [**ExecuteQuery**](docs/SQLDatabaseAPI.md#executequery) | **Post** /workspace/sql/databases/{database_id}/query | Execute a query into a database
+*SQLDatabaseAPI* | [**ListDatabases**](docs/SQLDatabaseAPI.md#listdatabases) | **Get** /workspace/sql/databases | List databases
+*SQLDatabaseAPI* | [**RetrieveDatabase**](docs/SQLDatabaseAPI.md#retrievedatabase) | **Get** /workspace/sql/databases/{database_id} | Retrieve details from a database
 *StorageBucketsAPI* | [**CreateBucket**](docs/StorageBucketsAPI.md#createbucket) | **Post** /workspace/storage/buckets | Create a new bucket
 *StorageBucketsAPI* | [**DeleteBucket**](docs/StorageBucketsAPI.md#deletebucket) | **Delete** /workspace/storage/buckets/{bucket_name} | Delete a bucket
 *StorageBucketsAPI* | [**ListBuckets**](docs/StorageBucketsAPI.md#listbuckets) | **Get** /workspace/storage/buckets | List buckets

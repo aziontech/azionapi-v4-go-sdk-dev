@@ -2,7 +2,7 @@
 .travis.yml
 README.md
 api/openapi.yaml
-api_sql.go
+api_sql_database.go
 client.go
 configuration.go
 docs/DatabaseDetail.md
@@ -13,7 +13,7 @@ docs/JSONAPIErrorObject.md
 docs/JSONAPIErrorResponse.md
 docs/JSONAPIErrorSource.md
 docs/PaginatedDatabaseDetailList.md
-docs/SQLAPI.md
+docs/SQLDatabaseAPI.md
 docs/SQLResult.md
 docs/SQLResultResponse.md
 docs/SQLStatementsRequest.md
@@ -32,4 +32,5 @@ model_sql_result.go
 model_sql_result_response.go
 model_sql_statements_request.go
 response.go
+test/api_sql_database_test.go
 utils.go
