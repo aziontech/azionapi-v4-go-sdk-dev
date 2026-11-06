@@ -58,7 +58,4 @@ model_zone.go
 model_zone_request.go
 model_zone_response.go
 response.go
-test/api_edge_dns_records_test.go
-test/api_edge_dns_zones_test.go
-test/api_edge_dnsdnssec_test.go
 utils.go
