@@ -1,0 +1,4000 @@
+openapi: 3.0.3
+info:
+  title: identity-api
+  version: 1.0.0
+  description: REST API OpenAPI documentation for the Identity API
+paths:
+  /identity/grants:
+    get:
+      operationId: ListGrants
+      description: Retrieves a list of all grants associated with the logged-in account
+        or its descendant accounts.
+      summary: List grants for the account
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+        description: Comma-separated list of field names to include in the response.
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: query
+        name: page_size
+        schema:
+          type: integer
+        description: A numeric value that indicates the number of items per page.
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - Identity - Grants
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponseListGrantList'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGrant'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+    post:
+      operationId: CreateGrant
+      description: Creates a new grant, optionally linked to an identity, for the
+        logged-in account or its descendant accounts.
+      summary: Create a new grant
+      tags:
+      - Identity - Grants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GrantRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGrant'
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGrant'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGrant'
+          description: Accepted
+  /identity/grants/{grant_id}:
+    get:
+      operationId: RetrieveGrant
+      description: Fetches detailed information about a specific grant within the
+        logged-in account or its descendant accounts.
+      summary: Retrieve grant details
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+        description: Comma-separated list of field names to include in the response.
+      - in: path
+        name: grant_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Grants
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRetrieveGrant'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGrant'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+    put:
+      operationId: UpdateGrant
+      description: Updates an existing grant within the logged-in account or its descendant
+        accounts. This operation replaces the entire grant with the provided data.
+      summary: Update a grant
+      parameters:
+      - in: path
+        name: grant_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Grants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GrantRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGrant'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGrant'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGrant'
+          description: Accepted
+    patch:
+      operationId: PartialUpdateGrant
+      description: Updates specific fields of an existing grant within the logged-in
+        account or its descendant accounts, leaving other fields unchanged.
+      summary: Partially update a grant
+      parameters:
+      - in: path
+        name: grant_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Grants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedGrantRequest'
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGrant'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGrant'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGrant'
+          description: Accepted
+    delete:
+      operationId: DeleteGrant
+      description: Delete a specific grant from the logged-in account or its descendant
+        accounts.
+      summary: Delete a grant
+      parameters:
+      - in: path
+        name: grant_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Grants
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDeleteGrant'
+          description: ''
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDeleteGrant'
+          description: Accepted
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGrant'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+  /identity/groups:
+    get:
+      operationId: ListGroup
+      description: List all groups owned by your account.
+      summary: List of the account groups
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+        description: Comma-separated list of field names to include in the response.
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: query
+        name: page_size
+        schema:
+          type: integer
+        description: A numeric value that indicates the number of items per page.
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - Identity - Groups
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponseListGroupList'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGroup'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+    post:
+      operationId: CreateGroup
+      description: Create a group for your account.
+      summary: Create a new group
+      tags:
+      - Identity - Groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGroup'
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGroup'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGroup'
+          description: Accepted
+  /identity/groups/{group_id}:
+    get:
+      operationId: RetrieveGroup
+      description: Retrieve details from a specific group in your account.
+      summary: Retrieve details from a group
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+        description: Comma-separated list of field names to include in the response.
+      - in: path
+        name: group_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Groups
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRetrieveGroup'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGroup'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+    put:
+      operationId: UpdateGroup
+      description: Update an existing group. This replaces the entire group with the
+        new data provided.
+      summary: Update a group
+      parameters:
+      - in: path
+        name: group_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGroup'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGroup'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGroup'
+          description: Accepted
+    patch:
+      operationId: PartialUpdateGroup
+      description: Update one or more fields of an existing group without affecting
+        other fields.
+      summary: Partially update a group
+      parameters:
+      - in: path
+        name: group_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Groups
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedGroupRequest'
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGroup'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGroup'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGroup'
+          description: Accepted
+    delete:
+      operationId: DeleteGroup
+      description: Delete a specific group in your account.
+      summary: Delete a group
+      parameters:
+      - in: path
+        name: group_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Groups
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDeleteGroup'
+          description: ''
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDeleteGroup'
+          description: Accepted
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGroup'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+  /identity/groups/{id}/members:
+    get:
+      operationId: RetrieveMembersGroup
+      description: Retrieve members from a specific group in your account.
+      summary: Retrieve members from a group
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+        description: Comma-separated list of field names to include in the response.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Identity - Group Members
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRetrieveGroupMembers'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGroupMembers'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+    put:
+      operationId: UpdateMembersGroup
+      description: Update all members from a group. This replaces the entire group
+        members with the new data provided.
+      summary: Update members from a group
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Identity - Group Members
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupMembersRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGroupMembers'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestGroupMembers'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGroupMembers'
+          description: Accepted
+  /identity/service-tokens:
+    get:
+      operationId: ListServiceToken
+      description: List all services tokens owned by your account.
+      summary: List of the account service tokens
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+        description: Comma-separated list of field names to include in the response.
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: query
+        name: page_size
+        schema:
+          type: integer
+        description: A numeric value that indicates the number of items per page.
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - Identity - Service Tokens
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponseListServiceTokenList'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestServiceToken'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+    post:
+      operationId: CreateServiceToken
+      description: Create a new service token for your account.
+      summary: Create a new service token
+      tags:
+      - Identity - Service Tokens
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceTokenCreateRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseServiceTokenCreate'
+              examples:
+                ResponseExample:
+                  value:
+                    state: executed
+                    data:
+                      id: 1
+                      name: N)AZ~n%b)o}&3`jVg p/}8l^3I8DhGLNKKZAZ$w&;e0\c~TJ-<%O#tB)IT9sn!R
+                      email: user@example.com
+                      created: '2024-12-12T17:56:17.614Z'
+                      last_editor: 4[]Zu4voLh-R3^'>1I+.xz[x=D(9f ,(rk
+                      last_modified: '2024-12-12T17:56:17.614Z'
+                      active: true
+                      account_id: 1
+                      description: string
+                      expires: '2024-12-12T17:56:17.614Z'
+                      last_used: '2024-12-12T17:56:17.614Z'
+                      token: string
+                  summary: Response example
+                  description: This is the response format for a successful service
+                    token creation.
+          description: ''
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+  /identity/service-tokens/{id}/renew:
+    post:
+      operationId: RenewServiceToken
+      description: Renews a service token for your account.
+      summary: Renews a service token
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Identity - Service Token Renew
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceTokenRenewRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseServiceTokenRenew'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestServiceTokenRenew'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseServiceTokenRenew'
+          description: Accepted
+  /identity/service-tokens/{token_id}:
+    get:
+      operationId: RetrieveServiceToken
+      description: Retrieve details from a specific service token in your account.
+      summary: Retrieve details from a service token
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+        description: Comma-separated list of field names to include in the response.
+      - in: path
+        name: token_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Service Tokens
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRetrieveServiceToken'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestServiceToken'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+    put:
+      operationId: UpdateServiceToken
+      description: Update an existing service token. This replaces the entire service
+        token with the new data provided.
+      summary: Update a service token
+      parameters:
+      - in: path
+        name: token_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Service Tokens
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceTokenUpdateRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseServiceToken'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestServiceToken'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseServiceToken'
+          description: Accepted
+    patch:
+      operationId: PartialUpdateServiceToken
+      description: Update one or more fields of an existing service token without
+        affecting other fields.
+      summary: Partially update a service token
+      parameters:
+      - in: path
+        name: token_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Service Tokens
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedServiceTokenUpdateRequest'
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseServiceToken'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestServiceToken'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseServiceToken'
+          description: Accepted
+    delete:
+      operationId: DeleteServiceToken
+      description: Delete a specific service token in your account.
+      summary: Delete a service token
+      parameters:
+      - in: path
+        name: token_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Service Tokens
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDeleteServiceToken'
+          description: ''
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDeleteServiceToken'
+          description: Accepted
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestServiceToken'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+  /identity/user:
+    get:
+      operationId: ListLoggedUser
+      description: Retrieve details from the logged user.
+      summary: Retrieve details from the currently logged-in user
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+        description: Comma-separated list of field names to include in the response.
+      tags:
+      - Identity - Logged In User
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRetrieveUser'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestUser'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+    put:
+      operationId: UpdateLoggedUser
+      description: Update the logged user. This replaces the entire user with the
+        new data provided.
+      summary: Update the currently logged-in user
+      tags:
+      - Identity - Logged In User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestUser'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+          description: Accepted
+    patch:
+      operationId: PartialUpdateLoggedUser
+      description: Update one or more fields of the logged user without affecting
+        other fields.
+      summary: Partially update the currently logged-in user
+      tags:
+      - Identity - Logged In User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserRequest'
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestUser'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+          description: Accepted
+  /identity/user/favorites:
+    get:
+      operationId: list_favorites
+      description: List all favorites by your account.
+      summary: List of the favorites
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+        description: Comma-separated list of field names to include in the response.
+      - in: query
+        name: id
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: query
+        name: page_size
+        schema:
+          type: integer
+        description: A numeric value that indicates the number of items per page.
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: type
+        schema:
+          type: string
+      - in: query
+        name: uri
+        schema:
+          type: string
+      tags:
+      - Favorites
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponseListFavoriteList'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestFavorite'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+    post:
+      operationId: create_favorite
+      description: Create a new favorite for your account.
+      summary: Create a new favorite
+      tags:
+      - Favorites
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavoriteRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseFavorite'
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestFavorite'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseFavorite'
+          description: Accepted
+  /identity/user/favorites/{favorite_id}:
+    delete:
+      operationId: delete_favorite
+      description: Delete a specific favorite in your account.
+      summary: Delete a favorite
+      parameters:
+      - in: path
+        name: favorite_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Favorite.
+        required: true
+      tags:
+      - Favorites
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDeleteFavorite'
+          description: ''
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDeleteFavorite'
+          description: Accepted
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestFavorite'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+  /identity/users:
+    get:
+      operationId: ListUsers
+      description: List all users owned by your account.
+      summary: List of the account users
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+        description: Comma-separated list of field names to include in the response.
+      - in: query
+        name: locked
+        schema:
+          type: boolean
+        description: |-
+          Filters users by locked status.
+           - `true`: Returns only locked users.
+           - `false`: Returns only unlocked users.
+           - (not provided): Returns all users.
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: query
+        name: page_size
+        schema:
+          type: integer
+        description: A numeric value that indicates the number of items per page.
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - Identity - Users
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResponseListUserList'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestUser'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+    post:
+      operationId: CreateUser
+      description: Create a new user for your account.
+      summary: Create a new user
+      tags:
+      - Identity - Users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestUser'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+          description: Accepted
+  /identity/users/{id}/info:
+    get:
+      operationId: RetrieveUserInfo
+      description: Retrieve info from a specific user in your account.
+      summary: Retrieve user info
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+        description: Comma-separated list of field names to include in the response.
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Identity - User info
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRetrieveUserInfo'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestUserInfo'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+    put:
+      operationId: UpdateUserInfo
+      description: Update info from an existing user. This replaces the entire user
+        info with the new data provided.
+      summary: Update an user info
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Identity - User info
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                info:
+                  type: object
+                  properties:
+                    job_function:
+                      type: string
+                      description: The job function.
+                      enum:
+                      - Software Developer
+                      - DevOps Engineer
+                      - Infrastructure Analyst
+                      - Network Engineer
+                      - Security Specialist
+                      - Data Engineer
+                      - AI/ML Engineer
+                      - IoT Engineer
+                      - Team Lead
+                      - Other
+                      title: JobFunctionEnum
+                      additionalProperties: false
+                  title: UserInfoRequest
+                  additionalProperties: false
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUserInfo'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestUserInfo'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUserInfo'
+          description: Accepted
+  /identity/users/{user_id}:
+    get:
+      operationId: RetrieveUser
+      description: Retrieve details from a specific user in your account.
+      summary: Retrieve details from an user
+      parameters:
+      - in: query
+        name: fields
+        schema:
+          type: string
+        description: Comma-separated list of field names to include in the response.
+      - in: path
+        name: user_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Users
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRetrieveUser'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestUser'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+    put:
+      operationId: UpdateUser
+      description: Update an existing user. This replaces the entire user with the
+        new data provided.
+      summary: Update an user
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+        required: true
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestUser'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+          description: Accepted
+    patch:
+      operationId: PartialUpdateUser
+      description: Update one or more fields of an existing user without affecting
+        other fields.
+      summary: Partially update an user
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserRequest'
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+          description: Ok
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestUser'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUser'
+          description: Accepted
+    delete:
+      operationId: DeleteUser
+      description: Delete a specific user in your account.
+      summary: Delete an user
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - Identity - Users
+      security:
+      - TokenAuth: []
+      - BearerAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDeleteUser'
+          description: ''
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDeleteUser'
+          description: Accepted
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBadRequestUser'
+          description: Bad Request
+        '404':
+          description: Not Found
+        '405':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Found
+        '406':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Not Acceptable
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Too Many Requests
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultErrorResponse'
+          description: Forbidden
+components:
+  schemas:
+    DefaultErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          pattern: .*
+          maxLength: 4096
+          minLength: 1
+      title: DefaultErrorResponse
+      additionalProperties: false
+    Favorite:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        uri:
+          type: string
+          maxLength: 255
+          minLength: 1
+          pattern: ^/v\d/[a-zA-Z0-9_-]+/
+        type:
+          type: string
+          readOnly: true
+          description: Favorite type
+        name:
+          type: string
+          readOnly: true
+      required:
+      - id
+      - name
+      - type
+      - uri
+      title: Favorite
+      additionalProperties: false
+    FavoriteRequest:
+      type: object
+      properties:
+        uri:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: ^/v\d/[a-zA-Z0-9_-]+/
+      required:
+      - uri
+      title: FavoriteRequest
+      additionalProperties: false
+    Grant:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        identity:
+          type: integer
+          nullable: true
+        roles:
+          type: array
+          items:
+            type: integer
+        policies:
+          type: array
+          items:
+            type: integer
+        expires:
+          type: string
+          format: date-time
+        owner:
+          type: boolean
+        account_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+      required:
+      - account_id
+      - id
+      - owner
+      title: Grant
+      additionalProperties: false
+    GrantRequest:
+      type: object
+      properties:
+        identity:
+          type: integer
+          nullable: true
+        roles:
+          type: array
+          items:
+            type: integer
+        policies:
+          type: array
+          items:
+            type: integer
+        expires:
+          type: string
+          format: date-time
+        owner:
+          type: boolean
+        account_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+      required:
+      - account_id
+      - owner
+      title: GrantRequest
+      additionalProperties: false
+    Group:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          pattern: .*
+          maxLength: 255
+          minLength: 1
+        email:
+          type: string
+          format: email
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        last_editor:
+          type: string
+          readOnly: true
+          pattern: .*
+        last_modified:
+          type: string
+          format: date-time
+          readOnly: true
+        active:
+          type: boolean
+          default: true
+        account_id:
+          type: integer
+          readOnly: true
+      required:
+      - account_id
+      - created
+      - email
+      - id
+      - last_editor
+      - last_modified
+      - name
+      title: Group
+      additionalProperties: false
+    GroupMembers:
+      type: object
+      properties:
+        members:
+          type: array
+          items:
+            type: integer
+          description: List of the users' IDs.
+      required:
+      - members
+      title: GroupMembers
+      additionalProperties: false
+    GroupMembersRequest:
+      type: object
+      properties:
+        members:
+          type: array
+          items:
+            type: integer
+          description: List of the users' IDs.
+      required:
+      - members
+      title: GroupMembersRequest
+      additionalProperties: false
+    GroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          pattern: .*
+          maxLength: 255
+        active:
+          type: boolean
+          default: true
+      required:
+      - name
+      title: GroupRequest
+      additionalProperties: false
+    PaginatedResponseListFavoriteList:
+      type: object
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseListFavorite'
+      title: PaginatedResponseListFavoriteList
+      additionalProperties: false
+    PaginatedResponseListGrantList:
+      type: object
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseListGrant'
+      title: PaginatedResponseListGrantList
+      additionalProperties: false
+    PaginatedResponseListGroupList:
+      type: object
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseListGroup'
+      title: PaginatedResponseListGroupList
+      additionalProperties: false
+    PaginatedResponseListServiceTokenList:
+      type: object
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseListServiceToken'
+      title: PaginatedResponseListServiceTokenList
+      additionalProperties: false
+    PaginatedResponseListUserList:
+      type: object
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseListUser'
+      title: PaginatedResponseListUserList
+      additionalProperties: false
+    PatchedGrantRequest:
+      type: object
+      properties:
+        identity:
+          type: integer
+          nullable: true
+        roles:
+          type: array
+          items:
+            type: integer
+        policies:
+          type: array
+          items:
+            type: integer
+        expires:
+          type: string
+          format: date-time
+        owner:
+          type: boolean
+        account_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+      title: PatchedGrantRequest
+      additionalProperties: false
+    PatchedGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          pattern: .*
+          maxLength: 255
+        active:
+          type: boolean
+          default: true
+      title: PatchedGroupRequest
+      additionalProperties: false
+    PatchedServiceTokenUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          pattern: .*
+          maxLength: 255
+        active:
+          type: boolean
+          default: true
+        description:
+          type: string
+          minLength: 1
+          pattern: .*
+          maxLength: 255
+      title: PatchedServiceTokenUpdateRequest
+      additionalProperties: false
+    PatchedUserRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          pattern: .*
+          maxLength: 255
+        email:
+          type: string
+          format: email
+          minLength: 1
+          maxLength: 255
+        active:
+          type: boolean
+        two_factor_enabled:
+          type: boolean
+          default: false
+        preferences:
+          type: object
+          additionalProperties: {}
+          description: User-specific preferences in JSON format.
+        phone:
+          type: string
+          minLength: 1
+          maxLength: 31
+          pattern: ^[+\d()\-/.\s]*$
+      title: PatchedUserRequest
+      additionalProperties: false
+    ResponseBadRequestFavorite:
+      type: object
+      properties:
+        uri:
+          type: array
+          items:
+            type: string
+        name:
+          type: array
+          items:
+            type: string
+        detail:
+          type: string
+          pattern: .*
+          maxLength: 4096
+          minLength: 1
+      title: ResponseBadRequestFavorite
+      additionalProperties: false
+    ResponseBadRequestGrant:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        roles:
+          oneOf:
+          - type: array
+            items:
+              type: string
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+        policies:
+          oneOf:
+          - type: array
+            items:
+              type: string
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+        expires:
+          type: array
+          items:
+            type: string
+        owner:
+          type: array
+          items:
+            type: string
+        account_id:
+          type: array
+          items:
+            type: string
+        detail:
+          type: string
+          pattern: .*
+          maxLength: 4096
+          minLength: 1
+      title: ResponseBadRequestGrant
+      additionalProperties: false
+    ResponseBadRequestGroup:
+      type: object
+      properties:
+        name:
+          type: array
+          items:
+            type: string
+        email:
+          type: array
+          items:
+            type: string
+        created:
+          type: array
+          items:
+            type: string
+        last_editor:
+          type: array
+          items:
+            type: string
+        last_modified:
+          type: array
+          items:
+            type: string
+        active:
+          type: array
+          items:
+            type: string
+        account_id:
+          type: array
+          items:
+            type: string
+        detail:
+          type: string
+          pattern: .*
+          maxLength: 4096
+          minLength: 1
+      title: ResponseBadRequestGroup
+      additionalProperties: false
+    ResponseBadRequestGroupMembers:
+      type: object
+      properties:
+        members:
+          oneOf:
+          - type: array
+            items:
+              type: string
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+        detail:
+          type: string
+          pattern: .*
+          maxLength: 4096
+          minLength: 1
+      title: ResponseBadRequestGroupMembers
+      additionalProperties: false
+    ResponseBadRequestServiceToken:
+      type: object
+      properties:
+        name:
+          type: array
+          items:
+            type: string
+        email:
+          type: array
+          items:
+            type: string
+        created:
+          type: array
+          items:
+            type: string
+        last_editor:
+          type: array
+          items:
+            type: string
+        last_modified:
+          type: array
+          items:
+            type: string
+        active:
+          type: array
+          items:
+            type: string
+        account_id:
+          type: array
+          items:
+            type: string
+        description:
+          type: array
+          items:
+            type: string
+        expires:
+          type: array
+          items:
+            type: string
+        last_used:
+          type: array
+          items:
+            type: string
+        detail:
+          type: string
+          pattern: .*
+          maxLength: 4096
+          minLength: 1
+      title: ResponseBadRequestServiceToken
+      additionalProperties: false
+    ResponseBadRequestServiceTokenRenew:
+      type: object
+      properties:
+        name:
+          type: array
+          items:
+            type: string
+        email:
+          type: array
+          items:
+            type: string
+        created:
+          type: array
+          items:
+            type: string
+        last_editor:
+          type: array
+          items:
+            type: string
+        last_modified:
+          type: array
+          items:
+            type: string
+        active:
+          type: array
+          items:
+            type: string
+        account_id:
+          type: array
+          items:
+            type: string
+        description:
+          type: array
+          items:
+            type: string
+        expires:
+          type: array
+          items:
+            type: string
+        last_used:
+          type: array
+          items:
+            type: string
+        token:
+          type: array
+          items:
+            type: string
+        detail:
+          type: string
+          pattern: .*
+          maxLength: 4096
+          minLength: 1
+      title: ResponseBadRequestServiceTokenRenew
+      additionalProperties: false
+    ResponseBadRequestUser:
+      type: object
+      properties:
+        name:
+          type: array
+          items:
+            type: string
+        email:
+          type: array
+          items:
+            type: string
+        created:
+          type: array
+          items:
+            type: string
+        last_editor:
+          type: array
+          items:
+            type: string
+        last_modified:
+          type: array
+          items:
+            type: string
+        active:
+          type: array
+          items:
+            type: string
+        account_id:
+          type: array
+          items:
+            type: string
+        last_login:
+          type: array
+          items:
+            type: string
+        two_factor_enabled:
+          type: array
+          items:
+            type: string
+        phone:
+          type: array
+          items:
+            type: string
+        info:
+          type: array
+          items:
+            type: string
+        lockout:
+          type: array
+          items:
+            type: string
+        detail:
+          type: string
+          pattern: .*
+          maxLength: 4096
+          minLength: 1
+      title: ResponseBadRequestUser
+      additionalProperties: false
+    ResponseBadRequestUserInfo:
+      type: object
+      properties:
+        info:
+          type: array
+          items:
+            type: string
+        detail:
+          type: string
+          pattern: .*
+          maxLength: 4096
+          minLength: 1
+      title: ResponseBadRequestUserInfo
+      additionalProperties: false
+    ResponseDeleteFavorite:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Favorite'
+          nullable: true
+      required:
+      - data
+      - state
+      title: ResponseDeleteFavorite
+      additionalProperties: false
+    ResponseDeleteGrant:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Grant'
+          nullable: true
+      required:
+      - data
+      - state
+      title: ResponseDeleteGrant
+      additionalProperties: false
+    ResponseDeleteGroup:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          allOf:
+          - $ref: '#/components/schemas/Group'
+          nullable: true
+      required:
+      - data
+      - state
+      title: ResponseDeleteGroup
+      additionalProperties: false
+    ResponseDeleteServiceToken:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          allOf:
+          - $ref: '#/components/schemas/ServiceToken'
+          nullable: true
+      required:
+      - data
+      - state
+      title: ResponseDeleteServiceToken
+      additionalProperties: false
+    ResponseDeleteUser:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          nullable: true
+      required:
+      - data
+      - state
+      title: ResponseDeleteUser
+      additionalProperties: false
+    ResponseFavorite:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          $ref: '#/components/schemas/Favorite'
+      required:
+      - data
+      - state
+      title: ResponseFavorite
+      additionalProperties: false
+    ResponseGrant:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          $ref: '#/components/schemas/Grant'
+      required:
+      - data
+      - state
+      title: ResponseGrant
+      additionalProperties: false
+    ResponseGroup:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          $ref: '#/components/schemas/Group'
+      required:
+      - data
+      - state
+      title: ResponseGroup
+      additionalProperties: false
+    ResponseGroupMembers:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          $ref: '#/components/schemas/GroupMembers'
+      required:
+      - data
+      - state
+      title: ResponseGroupMembers
+      additionalProperties: false
+    ResponseListFavorite:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        uri:
+          type: string
+          maxLength: 255
+          minLength: 1
+          pattern: ^/v\d/[a-zA-Z0-9_-]+/
+        type:
+          type: string
+          readOnly: true
+          description: Favorite type
+        name:
+          type: string
+          readOnly: true
+      required:
+      - id
+      - name
+      - type
+      - uri
+      title: ResponseListFavorite
+      additionalProperties: false
+    ResponseListGrant:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        identity:
+          type: integer
+          nullable: true
+        roles:
+          type: array
+          items:
+            type: integer
+        policies:
+          type: array
+          items:
+            type: integer
+        expires:
+          type: string
+          format: date-time
+        owner:
+          type: boolean
+        account_id:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+      required:
+      - account_id
+      - id
+      - owner
+      title: ResponseListGrant
+      additionalProperties: false
+    ResponseListGroup:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          pattern: .*
+          maxLength: 255
+          minLength: 1
+        email:
+          type: string
+          format: email
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        last_editor:
+          type: string
+          readOnly: true
+          pattern: .*
+        last_modified:
+          type: string
+          format: date-time
+          readOnly: true
+        active:
+          type: boolean
+          default: true
+        account_id:
+          type: integer
+          readOnly: true
+      required:
+      - account_id
+      - created
+      - email
+      - id
+      - last_editor
+      - last_modified
+      - name
+      title: ResponseListGroup
+      additionalProperties: false
+    ResponseListServiceToken:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          pattern: .*
+          maxLength: 255
+          minLength: 1
+        email:
+          type: string
+          format: email
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        last_editor:
+          type: string
+          readOnly: true
+          pattern: .*
+        last_modified:
+          type: string
+          format: date-time
+          readOnly: true
+        active:
+          type: boolean
+          default: true
+        account_id:
+          type: integer
+          readOnly: true
+        description:
+          type: string
+          pattern: .*
+          maxLength: 255
+          minLength: 1
+        expires:
+          type: string
+          format: date-time
+        last_used:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - account_id
+      - created
+      - email
+      - expires
+      - id
+      - last_editor
+      - last_modified
+      - last_used
+      - name
+      title: ResponseListServiceToken
+      additionalProperties: false
+    ResponseListUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          pattern: .*
+          maxLength: 255
+          minLength: 1
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        last_editor:
+          type: string
+          readOnly: true
+          pattern: .*
+        last_modified:
+          type: string
+          format: date-time
+          readOnly: true
+        active:
+          type: boolean
+        account_id:
+          type: integer
+          readOnly: true
+        last_login:
+          type: string
+          format: date-time
+          readOnly: true
+        two_factor_enabled:
+          type: boolean
+          default: false
+        preferences:
+          type: object
+          additionalProperties: {}
+          description: User-specific preferences in JSON format.
+        phone:
+          type: string
+          maxLength: 31
+          minLength: 1
+          pattern: ^[+\d()\-/.\s]*$
+        info:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+        lockout:
+          type: string
+          readOnly: true
+      required:
+      - account_id
+      - created
+      - email
+      - id
+      - info
+      - last_editor
+      - last_login
+      - last_modified
+      - lockout
+      - name
+      title: ResponseListUser
+      additionalProperties: false
+    ResponseRetrieveGrant:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Grant'
+      required:
+      - data
+      title: ResponseRetrieveGrant
+      additionalProperties: false
+    ResponseRetrieveGroup:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Group'
+      required:
+      - data
+      title: ResponseRetrieveGroup
+      additionalProperties: false
+    ResponseRetrieveGroupMembers:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/GroupMembers'
+      required:
+      - data
+      title: ResponseRetrieveGroupMembers
+      additionalProperties: false
+    ResponseRetrieveServiceToken:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ServiceToken'
+      required:
+      - data
+      title: ResponseRetrieveServiceToken
+      additionalProperties: false
+    ResponseRetrieveUser:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/User'
+      required:
+      - data
+      title: ResponseRetrieveUser
+      additionalProperties: false
+    ResponseRetrieveUserInfo:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/UserInfo'
+      required:
+      - data
+      title: ResponseRetrieveUserInfo
+      additionalProperties: false
+    ResponseServiceToken:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          $ref: '#/components/schemas/ServiceToken'
+      required:
+      - data
+      - state
+      title: ResponseServiceToken
+      additionalProperties: false
+    ResponseServiceTokenCreate:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          $ref: '#/components/schemas/ServiceTokenCreate'
+      required:
+      - data
+      - state
+      title: ResponseServiceTokenCreate
+      additionalProperties: false
+    ResponseServiceTokenRenew:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          $ref: '#/components/schemas/ServiceTokenRenew'
+      required:
+      - data
+      - state
+      title: ResponseServiceTokenRenew
+      additionalProperties: false
+    ResponseUser:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          $ref: '#/components/schemas/User'
+      required:
+      - data
+      - state
+      title: ResponseUser
+      additionalProperties: false
+    ResponseUserInfo:
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/StateEnum'
+        data:
+          $ref: '#/components/schemas/UserInfo'
+      required:
+      - data
+      - state
+      title: ResponseUserInfo
+      additionalProperties: false
+    ServiceToken:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          pattern: .*
+          maxLength: 255
+          minLength: 1
+        email:
+          type: string
+          format: email
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        last_editor:
+          type: string
+          readOnly: true
+          pattern: .*
+        last_modified:
+          type: string
+          format: date-time
+          readOnly: true
+        active:
+          type: boolean
+          default: true
+        account_id:
+          type: integer
+          readOnly: true
+        description:
+          type: string
+          pattern: .*
+          maxLength: 255
+          minLength: 1
+        expires:
+          type: string
+          format: date-time
+        last_used:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - account_id
+      - created
+      - email
+      - expires
+      - id
+      - last_editor
+      - last_modified
+      - last_used
+      - name
+      title: ServiceToken
+      additionalProperties: false
+    ServiceTokenCreate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          pattern: .*
+          maxLength: 255
+          minLength: 1
+        email:
+          type: string
+          format: email
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        last_editor:
+          type: string
+          readOnly: true
+          pattern: .*
+        last_modified:
+          type: string
+          format: date-time
+          readOnly: true
+        active:
+          type: boolean
+          default: true
+        account_id:
+          type: integer
+          readOnly: true
+        description:
+          type: string
+          pattern: .*
+          maxLength: 255
+          minLength: 1
+        expires:
+          type: string
+          format: date-time
+        last_used:
+          type: string
+          format: date-time
+          readOnly: true
+        token:
+          type: string
+          readOnly: true
+          pattern: .*
+      required:
+      - account_id
+      - created
+      - email
+      - expires
+      - id
+      - last_editor
+      - last_modified
+      - last_used
+      - name
+      - token
+      title: ServiceTokenCreate
+      additionalProperties: false
+    ServiceTokenCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          pattern: .*
+          maxLength: 255
+        active:
+          type: boolean
+          default: true
+        description:
+          type: string
+          minLength: 1
+          pattern: .*
+          maxLength: 255
+        expires:
+          type: string
+          format: date-time
+      required:
+      - expires
+      - name
+      title: ServiceTokenCreateRequest
+      additionalProperties: false
+    ServiceTokenRenew:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+          pattern: .*
+          minLength: 1
+        email:
+          type: string
+          format: email
+          readOnly: true
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        last_editor:
+          type: string
+          readOnly: true
+          pattern: .*
+        last_modified:
+          type: string
+          format: date-time
+          readOnly: true
+        active:
+          type: boolean
+          readOnly: true
+        account_id:
+          type: integer
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+          pattern: .*
+          minLength: 1
+        expires:
+          type: string
+          format: date-time
+        last_used:
+          type: string
+          format: date-time
+          readOnly: true
+        token:
+          type: string
+          readOnly: true
+          pattern: .*
+      required:
+      - account_id
+      - active
+      - created
+      - description
+      - email
+      - expires
+      - id
+      - last_editor
+      - last_modified
+      - last_used
+      - name
+      - token
+      title: ServiceTokenRenew
+      additionalProperties: false
+    ServiceTokenRenewRequest:
+      type: object
+      properties:
+        expires:
+          type: string
+          format: date-time
+      required:
+      - expires
+      title: ServiceTokenRenewRequest
+      additionalProperties: false
+    ServiceTokenUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          pattern: .*
+          maxLength: 255
+        active:
+          type: boolean
+          default: true
+        description:
+          type: string
+          minLength: 1
+          pattern: .*
+          maxLength: 255
+      required:
+      - name
+      title: ServiceTokenUpdateRequest
+      additionalProperties: false
+    StateEnum:
+      enum:
+      - pending
+      - executed
+      type: string
+      description: |-
+        * `pending` - pending
+        * `executed` - executed
+      title: StateEnum
+      additionalProperties: false
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          pattern: .*
+          maxLength: 255
+          minLength: 1
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        last_editor:
+          type: string
+          readOnly: true
+          pattern: .*
+        last_modified:
+          type: string
+          format: date-time
+          readOnly: true
+        active:
+          type: boolean
+        account_id:
+          type: integer
+          readOnly: true
+        last_login:
+          type: string
+          format: date-time
+          readOnly: true
+        two_factor_enabled:
+          type: boolean
+          default: false
+        preferences:
+          type: object
+          additionalProperties: {}
+          description: User-specific preferences in JSON format.
+        phone:
+          type: string
+          maxLength: 31
+          minLength: 1
+          pattern: ^[+\d()\-/.\s]*$
+        info:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+        lockout:
+          type: string
+          readOnly: true
+      required:
+      - account_id
+      - created
+      - email
+      - id
+      - info
+      - last_editor
+      - last_login
+      - last_modified
+      - lockout
+      - name
+      title: User
+      additionalProperties: false
+    UserInfo:
+      type: object
+      properties:
+        info:
+          type: object
+          additionalProperties: {}
+      required:
+      - info
+      title: UserInfo
+      additionalProperties: false
+    UserRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          pattern: .*
+          maxLength: 255
+        email:
+          type: string
+          format: email
+          minLength: 1
+          maxLength: 255
+        active:
+          type: boolean
+        two_factor_enabled:
+          type: boolean
+          default: false
+        preferences:
+          type: object
+          additionalProperties: {}
+          description: User-specific preferences in JSON format.
+        phone:
+          type: string
+          minLength: 1
+          maxLength: 31
+          pattern: ^[+\d()\-/.\s]*$
+      required:
+      - email
+      - name
+      title: UserRequest
+      additionalProperties: false
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
