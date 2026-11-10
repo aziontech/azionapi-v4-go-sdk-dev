@@ -844,6 +844,8 @@ docs/WorkloadDeployment.md
 docs/WorkloadDeploymentRequest.md
 docs/WorkloadDeploymentResponse.md
 docs/WorkloadDeploymentsAPI.md
+docs/WorkloadDomainAvailability.md
+docs/WorkloadDomainAvailabilityResponse.md
 docs/WorkloadRequest.md
 docs/WorkloadResponse.md
 docs/WorkloadsAPI.md
@@ -1526,6 +1528,8 @@ model_workload.go
 model_workload_deployment.go
 model_workload_deployment_request.go
 model_workload_deployment_response.go
+model_workload_domain_availability.go
+model_workload_domain_availability_response.go
 model_workload_request.go
 model_workload_response.go
 model_workspace.go

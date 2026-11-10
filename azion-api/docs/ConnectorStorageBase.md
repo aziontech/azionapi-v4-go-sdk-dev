@@ -15,14 +15,13 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | Pointer to **string** |  | [optional] 
-**Type** | **string** |  | 
 **Attributes** | [**ConnectorStorageAttributes**](ConnectorStorageAttributes.md) |  | 
 
 ## Methods
 
 ### NewConnectorStorageBase
 
-`func NewConnectorStorageBase(name string, type_ string, attributes ConnectorStorageAttributes, ) *ConnectorStorageBase`
+`func NewConnectorStorageBase(name string, attributes ConnectorStorageAttributes, ) *ConnectorStorageBase`
 
 NewConnectorStorageBase instantiates a new ConnectorStorageBase object
 This constructor will assign default values to properties that have it defined,
@@ -336,26 +335,6 @@ SetProductVersion sets ProductVersion field to given value.
 `func (o *ConnectorStorageBase) HasProductVersion() bool`
 
 HasProductVersion returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *ConnectorStorageBase) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ConnectorStorageBase) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ConnectorStorageBase) SetType(v string)`
-
-SetType sets Type field to given value.
-
 
 ### GetAttributes
 

@@ -21,8 +21,6 @@ var _ MappedNullable = &PatchedConnectorLiveIngestBaseRequest{}
 type PatchedConnectorLiveIngestBaseRequest struct {
 	Name *string `json:"name,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	// * `http` - HTTP * `storage` - Storage * `live_ingest` - Live Ingest
-	Type *string `json:"type,omitempty"`
 	Attributes *ConnectorLiveIngestAttributesRequest `json:"attributes,omitempty"`
 }
 
@@ -107,38 +105,6 @@ func (o *PatchedConnectorLiveIngestBaseRequest) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *PatchedConnectorLiveIngestBaseRequest) GetType() string {
-	if o == nil || IsNil(o.Type) {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchedConnectorLiveIngestBaseRequest) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *PatchedConnectorLiveIngestBaseRequest) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *PatchedConnectorLiveIngestBaseRequest) SetType(v string) {
-	o.Type = &v
-}
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *PatchedConnectorLiveIngestBaseRequest) GetAttributes() ConnectorLiveIngestAttributesRequest {
 	if o == nil || IsNil(o.Attributes) {
@@ -186,9 +152,6 @@ func (o PatchedConnectorLiveIngestBaseRequest) ToMap() (map[string]interface{}, 
 	}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
-	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
 	}
 	if !IsNil(o.Attributes) {
 		toSerialize["attributes"] = o.Attributes

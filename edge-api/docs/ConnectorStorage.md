@@ -15,14 +15,14 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | Pointer to **string** |  | [optional] 
-**Type** | **string** | Discriminator field for Connector | 
 **Attributes** | [**ConnectorStorageAttributes**](ConnectorStorageAttributes.md) |  | 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewConnectorStorage
 
-`func NewConnectorStorage(name string, type_ string, attributes ConnectorStorageAttributes, ) *ConnectorStorage`
+`func NewConnectorStorage(name string, attributes ConnectorStorageAttributes, type_ string, ) *ConnectorStorage`
 
 NewConnectorStorage instantiates a new ConnectorStorage object
 This constructor will assign default values to properties that have it defined,
@@ -337,26 +337,6 @@ SetProductVersion sets ProductVersion field to given value.
 
 HasProductVersion returns a boolean if a field has been set.
 
-### GetType
-
-`func (o *ConnectorStorage) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ConnectorStorage) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ConnectorStorage) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 ### GetAttributes
 
 `func (o *ConnectorStorage) GetAttributes() ConnectorStorageAttributes`
@@ -375,6 +355,26 @@ and a boolean to check if the value has been set.
 `func (o *ConnectorStorage) SetAttributes(v ConnectorStorageAttributes)`
 
 SetAttributes sets Attributes field to given value.
+
+
+### GetType
+
+`func (o *ConnectorStorage) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ConnectorStorage) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ConnectorStorage) SetType(v string)`
+
+SetType sets Type field to given value.
 
 
 

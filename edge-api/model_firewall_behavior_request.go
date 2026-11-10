@@ -16,7 +16,7 @@ import (
 	"gopkg.in/validator.v2"
 )
 
-// FirewallBehaviorRequest - struct for FirewallBehaviorRequest
+// FirewallBehaviorRequest - Behaviors that need a module enabled on the firewall:  - `deny`: `modules.waf.enabled` or `modules.network_protection.enabled` or `modules.functions.enabled` - `drop`: `modules.waf.enabled` or `modules.network_protection.enabled` or `modules.functions.enabled` - `set_custom_response`: `modules.waf.enabled` or `modules.network_protection.enabled` or `modules.functions.enabled` - `set_rate_limit`: `modules.waf.enabled` or `modules.network_protection.enabled` or `modules.functions.enabled` - `set_waf`: `modules.waf.enabled` or `modules.network_protection.enabled` or `modules.functions.enabled` - `run_function`: `modules.functions.enabled`
 type FirewallBehaviorRequest struct {
 	FirewallBehaviorArgsRequest *FirewallBehaviorArgsRequest
 	FirewallBehaviorNoArgsRequest *FirewallBehaviorNoArgsRequest

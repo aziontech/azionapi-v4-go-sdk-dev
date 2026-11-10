@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | Discriminator field for Connector | 
+**Type** | **string** |  | 
 **IsVersioned** | Pointer to **bool** |  | [optional] 
 **Version** | Pointer to **NullableInt64** |  | [optional] 
 **VersionId** | Pointer to **NullableString** | ID of the version metadata (use in /versions/{id} URLs) | [optional] 

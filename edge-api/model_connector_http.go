@@ -35,9 +35,8 @@ type ConnectorHTTP struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	ProductVersion *string `json:"product_version,omitempty"`
-	// Discriminator field for Connector
-	Type string `json:"type"`
 	Attributes ConnectorHTTPAttributes `json:"attributes"`
+	Type string `json:"type"`
 }
 
 type _ConnectorHTTP ConnectorHTTP
@@ -46,11 +45,11 @@ type _ConnectorHTTP ConnectorHTTP
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectorHTTP(name string, type_ string, attributes ConnectorHTTPAttributes) *ConnectorHTTP {
+func NewConnectorHTTP(name string, attributes ConnectorHTTPAttributes, type_ string) *ConnectorHTTP {
 	this := ConnectorHTTP{}
 	this.Name = name
-	this.Type = type_
 	this.Attributes = attributes
+	this.Type = type_
 	return &this
 }
 
@@ -436,30 +435,6 @@ func (o *ConnectorHTTP) SetProductVersion(v string) {
 	o.ProductVersion = &v
 }
 
-// GetType returns the Type field value
-func (o *ConnectorHTTP) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *ConnectorHTTP) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *ConnectorHTTP) SetType(v string) {
-	o.Type = v
-}
-
 // GetAttributes returns the Attributes field value
 func (o *ConnectorHTTP) GetAttributes() ConnectorHTTPAttributes {
 	if o == nil {
@@ -482,6 +457,30 @@ func (o *ConnectorHTTP) GetAttributesOk() (*ConnectorHTTPAttributes, bool) {
 // SetAttributes sets field value
 func (o *ConnectorHTTP) SetAttributes(v ConnectorHTTPAttributes) {
 	o.Attributes = v
+}
+
+// GetType returns the Type field value
+func (o *ConnectorHTTP) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ConnectorHTTP) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *ConnectorHTTP) SetType(v string) {
+	o.Type = v
 }
 
 func (o ConnectorHTTP) MarshalJSON() ([]byte, error) {
@@ -525,8 +524,8 @@ func (o ConnectorHTTP) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProductVersion) {
 		toSerialize["product_version"] = o.ProductVersion
 	}
-	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -536,8 +535,8 @@ func (o *ConnectorHTTP) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
-		"type",
 		"attributes",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})

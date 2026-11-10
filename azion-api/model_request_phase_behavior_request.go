@@ -17,7 +17,7 @@ import (
 	"gopkg.in/validator.v2"
 )
 
-// RequestPhaseBehaviorRequest - struct for RequestPhaseBehaviorRequest
+// RequestPhaseBehaviorRequest - Behaviors that need a module enabled on the application:  - `forward_cookies`: `modules.application_accelerator.enabled` - `optimize_images`: `modules.image_processor.enabled` - `bypass_cache`: `modules.cache.enabled` - `filter_request_cookie`: `modules.application_accelerator.enabled` - `run_function`: `modules.functions.enabled` - `rewrite_request`: `modules.application_accelerator.enabled` - `capture_match_groups`: `modules.application_accelerator.enabled` - `add_request_cookie`: `modules.application_accelerator.enabled`
 type RequestPhaseBehaviorRequest struct {
 	BehaviorArgs *BehaviorArgs
 	BehaviorCapture *BehaviorCapture

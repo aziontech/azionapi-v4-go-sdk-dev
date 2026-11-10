@@ -4,6 +4,7 @@ All URIs are relative to *https://stage-api.azion.com/v4*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CheckWorkloadDomainAvailability**](WorkloadsAPI.md#CheckWorkloadDomainAvailability) | **Get** /workspace/workloads/domains/availability | Check the availability of a Workload domain
 [**CreateWorkload**](WorkloadsAPI.md#CreateWorkload) | **Post** /workspace/workloads | Create an Workload
 [**DeleteWorkload**](WorkloadsAPI.md#DeleteWorkload) | **Delete** /workspace/workloads/{workload_id} | Delete an Workload
 [**ListWorkloads**](WorkloadsAPI.md#ListWorkloads) | **Get** /workspace/workloads | List Workloads
@@ -11,6 +12,74 @@ Method | HTTP request | Description
 [**RetrieveWorkload**](WorkloadsAPI.md#RetrieveWorkload) | **Get** /workspace/workloads/{workload_id} | Retrieve details of an Workload
 [**UpdateWorkload**](WorkloadsAPI.md#UpdateWorkload) | **Put** /workspace/workloads/{workload_id} | Update an Workload
 
+
+
+## CheckWorkloadDomainAvailability
+
+> WorkloadDomainAvailabilityResponse CheckWorkloadDomainAvailability(ctx).Domain(domain).Fields(fields).Execute()
+
+Check the availability of a Workload domain
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	domain := "domain_example" // string | The domain to check, under the Azion workload suffix.
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WorkloadsAPI.CheckWorkloadDomainAvailability(context.Background()).Domain(domain).Fields(fields).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WorkloadsAPI.CheckWorkloadDomainAvailability``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CheckWorkloadDomainAvailability`: WorkloadDomainAvailabilityResponse
+	fmt.Fprintf(os.Stdout, "Response from `WorkloadsAPI.CheckWorkloadDomainAvailability`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCheckWorkloadDomainAvailabilityRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **domain** | **string** | The domain to check, under the Azion workload suffix. | 
+ **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
+
+### Return type
+
+[**WorkloadDomainAvailabilityResponse**](WorkloadDomainAvailabilityResponse.md)
+
+### Authorization
+
+[TokenAuth](../README.md#TokenAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateWorkload

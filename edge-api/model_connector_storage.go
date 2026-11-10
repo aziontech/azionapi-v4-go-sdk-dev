@@ -35,9 +35,8 @@ type ConnectorStorage struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Active *bool `json:"active,omitempty"`
 	ProductVersion *string `json:"product_version,omitempty"`
-	// Discriminator field for Connector
-	Type string `json:"type"`
 	Attributes ConnectorStorageAttributes `json:"attributes"`
+	Type string `json:"type"`
 }
 
 type _ConnectorStorage ConnectorStorage
@@ -46,11 +45,11 @@ type _ConnectorStorage ConnectorStorage
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectorStorage(name string, type_ string, attributes ConnectorStorageAttributes) *ConnectorStorage {
+func NewConnectorStorage(name string, attributes ConnectorStorageAttributes, type_ string) *ConnectorStorage {
 	this := ConnectorStorage{}
 	this.Name = name
-	this.Type = type_
 	this.Attributes = attributes
+	this.Type = type_
 	return &this
 }
 
@@ -436,30 +435,6 @@ func (o *ConnectorStorage) SetProductVersion(v string) {
 	o.ProductVersion = &v
 }
 
-// GetType returns the Type field value
-func (o *ConnectorStorage) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *ConnectorStorage) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *ConnectorStorage) SetType(v string) {
-	o.Type = v
-}
-
 // GetAttributes returns the Attributes field value
 func (o *ConnectorStorage) GetAttributes() ConnectorStorageAttributes {
 	if o == nil {
@@ -482,6 +457,30 @@ func (o *ConnectorStorage) GetAttributesOk() (*ConnectorStorageAttributes, bool)
 // SetAttributes sets field value
 func (o *ConnectorStorage) SetAttributes(v ConnectorStorageAttributes) {
 	o.Attributes = v
+}
+
+// GetType returns the Type field value
+func (o *ConnectorStorage) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ConnectorStorage) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *ConnectorStorage) SetType(v string) {
+	o.Type = v
 }
 
 func (o ConnectorStorage) MarshalJSON() ([]byte, error) {
@@ -525,8 +524,8 @@ func (o ConnectorStorage) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProductVersion) {
 		toSerialize["product_version"] = o.ProductVersion
 	}
-	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -536,8 +535,8 @@ func (o *ConnectorStorage) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
-		"type",
 		"attributes",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})

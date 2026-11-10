@@ -21,7 +21,6 @@ var _ MappedNullable = &PageConnectorBase{}
 
 // PageConnectorBase struct for PageConnectorBase
 type PageConnectorBase struct {
-	Type *string `json:"type,omitempty"`
 	Attributes PageConnectorAttributes `json:"attributes"`
 }
 
@@ -43,38 +42,6 @@ func NewPageConnectorBase(attributes PageConnectorAttributes) *PageConnectorBase
 func NewPageConnectorBaseWithDefaults() *PageConnectorBase {
 	this := PageConnectorBase{}
 	return &this
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *PageConnectorBase) GetType() string {
-	if o == nil || IsNil(o.Type) {
-		var ret string
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PageConnectorBase) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *PageConnectorBase) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *PageConnectorBase) SetType(v string) {
-	o.Type = &v
 }
 
 // GetAttributes returns the Attributes field value
@@ -111,9 +78,6 @@ func (o PageConnectorBase) MarshalJSON() ([]byte, error) {
 
 func (o PageConnectorBase) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
 	toSerialize["attributes"] = o.Attributes
 	return toSerialize, nil
 }

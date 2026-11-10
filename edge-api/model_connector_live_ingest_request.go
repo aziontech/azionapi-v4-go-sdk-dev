@@ -23,9 +23,8 @@ var _ MappedNullable = &ConnectorLiveIngestRequest{}
 type ConnectorLiveIngestRequest struct {
 	Name string `json:"name"`
 	Active *bool `json:"active,omitempty"`
-	// Discriminator field for ConnectorRequest
-	Type string `json:"type"`
 	Attributes ConnectorLiveIngestAttributesRequest `json:"attributes"`
+	Type string `json:"type"`
 }
 
 type _ConnectorLiveIngestRequest ConnectorLiveIngestRequest
@@ -34,11 +33,11 @@ type _ConnectorLiveIngestRequest ConnectorLiveIngestRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectorLiveIngestRequest(name string, type_ string, attributes ConnectorLiveIngestAttributesRequest) *ConnectorLiveIngestRequest {
+func NewConnectorLiveIngestRequest(name string, attributes ConnectorLiveIngestAttributesRequest, type_ string) *ConnectorLiveIngestRequest {
 	this := ConnectorLiveIngestRequest{}
 	this.Name = name
-	this.Type = type_
 	this.Attributes = attributes
+	this.Type = type_
 	return &this
 }
 
@@ -106,30 +105,6 @@ func (o *ConnectorLiveIngestRequest) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetType returns the Type field value
-func (o *ConnectorLiveIngestRequest) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *ConnectorLiveIngestRequest) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *ConnectorLiveIngestRequest) SetType(v string) {
-	o.Type = v
-}
-
 // GetAttributes returns the Attributes field value
 func (o *ConnectorLiveIngestRequest) GetAttributes() ConnectorLiveIngestAttributesRequest {
 	if o == nil {
@@ -154,6 +129,30 @@ func (o *ConnectorLiveIngestRequest) SetAttributes(v ConnectorLiveIngestAttribut
 	o.Attributes = v
 }
 
+// GetType returns the Type field value
+func (o *ConnectorLiveIngestRequest) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ConnectorLiveIngestRequest) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *ConnectorLiveIngestRequest) SetType(v string) {
+	o.Type = v
+}
+
 func (o ConnectorLiveIngestRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -168,8 +167,8 @@ func (o ConnectorLiveIngestRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -179,8 +178,8 @@ func (o *ConnectorLiveIngestRequest) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
-		"type",
 		"attributes",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})

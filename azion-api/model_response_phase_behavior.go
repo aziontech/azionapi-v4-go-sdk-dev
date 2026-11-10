@@ -17,7 +17,7 @@ import (
 	"gopkg.in/validator.v2"
 )
 
-// ResponsePhaseBehavior - struct for ResponsePhaseBehavior
+// ResponsePhaseBehavior - Behaviors that need a module enabled on the application:  - `run_function`: `modules.functions.enabled` - `set_cookie`: `modules.application_accelerator.enabled` - `capture_match_groups`: `modules.application_accelerator.enabled`  In this phase, `run_function` accepts only Lua functions.
 type ResponsePhaseBehavior struct {
 	BehaviorArgs *BehaviorArgs
 	BehaviorCapture *BehaviorCapture
