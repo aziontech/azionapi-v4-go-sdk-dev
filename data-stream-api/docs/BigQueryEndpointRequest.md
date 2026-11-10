@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **ProjectId** | **string** |  | 
 **TableId** | **string** |  | 
 **ServiceAccountKey** | **string** |  | 
-**Type** | **string** | Type identifier for this endpoint (big_query) | 
+**Type** | **string** | Discriminator field for OutputRequest | 
 
 ## Methods
 

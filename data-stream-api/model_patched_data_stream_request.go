@@ -21,8 +21,8 @@ var _ MappedNullable = &PatchedDataStreamRequest{}
 type PatchedDataStreamRequest struct {
 	Name *string `json:"name,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	Inputs []InputPolymorphicInputDataSourceAttributesRequest `json:"inputs,omitempty"`
-	Transform []TransformPolymorphicRequest `json:"transform,omitempty"`
+	Inputs []InputInputDataSourceAttributesRequest `json:"inputs,omitempty"`
+	Transform []TransformRequest `json:"transform,omitempty"`
 }
 
 // NewPatchedDataStreamRequest instantiates a new PatchedDataStreamRequest object
@@ -107,9 +107,9 @@ func (o *PatchedDataStreamRequest) SetActive(v bool) {
 }
 
 // GetInputs returns the Inputs field value if set, zero value otherwise.
-func (o *PatchedDataStreamRequest) GetInputs() []InputPolymorphicInputDataSourceAttributesRequest {
+func (o *PatchedDataStreamRequest) GetInputs() []InputInputDataSourceAttributesRequest {
 	if o == nil || IsNil(o.Inputs) {
-		var ret []InputPolymorphicInputDataSourceAttributesRequest
+		var ret []InputInputDataSourceAttributesRequest
 		return ret
 	}
 	return o.Inputs
@@ -117,7 +117,7 @@ func (o *PatchedDataStreamRequest) GetInputs() []InputPolymorphicInputDataSource
 
 // GetInputsOk returns a tuple with the Inputs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedDataStreamRequest) GetInputsOk() ([]InputPolymorphicInputDataSourceAttributesRequest, bool) {
+func (o *PatchedDataStreamRequest) GetInputsOk() ([]InputInputDataSourceAttributesRequest, bool) {
 	if o == nil || IsNil(o.Inputs) {
 		return nil, false
 	}
@@ -133,15 +133,15 @@ func (o *PatchedDataStreamRequest) HasInputs() bool {
 	return false
 }
 
-// SetInputs gets a reference to the given []InputPolymorphicInputDataSourceAttributesRequest and assigns it to the Inputs field.
-func (o *PatchedDataStreamRequest) SetInputs(v []InputPolymorphicInputDataSourceAttributesRequest) {
+// SetInputs gets a reference to the given []InputInputDataSourceAttributesRequest and assigns it to the Inputs field.
+func (o *PatchedDataStreamRequest) SetInputs(v []InputInputDataSourceAttributesRequest) {
 	o.Inputs = v
 }
 
 // GetTransform returns the Transform field value if set, zero value otherwise.
-func (o *PatchedDataStreamRequest) GetTransform() []TransformPolymorphicRequest {
+func (o *PatchedDataStreamRequest) GetTransform() []TransformRequest {
 	if o == nil || IsNil(o.Transform) {
-		var ret []TransformPolymorphicRequest
+		var ret []TransformRequest
 		return ret
 	}
 	return o.Transform
@@ -149,7 +149,7 @@ func (o *PatchedDataStreamRequest) GetTransform() []TransformPolymorphicRequest 
 
 // GetTransformOk returns a tuple with the Transform field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchedDataStreamRequest) GetTransformOk() ([]TransformPolymorphicRequest, bool) {
+func (o *PatchedDataStreamRequest) GetTransformOk() ([]TransformRequest, bool) {
 	if o == nil || IsNil(o.Transform) {
 		return nil, false
 	}
@@ -165,8 +165,8 @@ func (o *PatchedDataStreamRequest) HasTransform() bool {
 	return false
 }
 
-// SetTransform gets a reference to the given []TransformPolymorphicRequest and assigns it to the Transform field.
-func (o *PatchedDataStreamRequest) SetTransform(v []TransformPolymorphicRequest) {
+// SetTransform gets a reference to the given []TransformRequest and assigns it to the Transform field.
+func (o *PatchedDataStreamRequest) SetTransform(v []TransformRequest) {
 	o.Transform = v
 }
 

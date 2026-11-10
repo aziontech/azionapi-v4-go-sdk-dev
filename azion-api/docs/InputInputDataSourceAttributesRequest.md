@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | Type identifier for this endpoint (raw_logs) | 
+**Type** | **string** | Discriminator field for InputRequest | 
 **Attributes** | [**InputDataSourceRequest**](InputDataSourceRequest.md) |  | 
 
 ## Methods

@@ -11,15 +11,15 @@ Name | Type | Description | Notes
 **LastModified** | Pointer to **time.Time** |  | [optional] 
 **ProductVersion** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Inputs** | [**[]InputPolymorphicInputDataSourceAttributes**](InputPolymorphicInputDataSourceAttributes.md) |  | 
-**Transform** | [**[]TransformPolymorphic**](TransformPolymorphic.md) |  | 
-**Outputs** | [**[]Output**](Output.md) |  | 
+**Inputs** | [**[]InputInputDataSourceAttributes**](InputInputDataSourceAttributes.md) |  | 
+**Transform** | [**[]Transform**](Transform.md) |  | 
+**Outputs** | [**[]OutputBase**](OutputBase.md) |  | 
 
 ## Methods
 
 ### NewDataStream
 
-`func NewDataStream(name string, inputs []InputPolymorphicInputDataSourceAttributes, transform []TransformPolymorphic, outputs []Output, ) *DataStream`
+`func NewDataStream(name string, inputs []InputInputDataSourceAttributes, transform []Transform, outputs []OutputBase, ) *DataStream`
 
 NewDataStream instantiates a new DataStream object
 This constructor will assign default values to properties that have it defined,
@@ -206,60 +206,60 @@ HasActive returns a boolean if a field has been set.
 
 ### GetInputs
 
-`func (o *DataStream) GetInputs() []InputPolymorphicInputDataSourceAttributes`
+`func (o *DataStream) GetInputs() []InputInputDataSourceAttributes`
 
 GetInputs returns the Inputs field if non-nil, zero value otherwise.
 
 ### GetInputsOk
 
-`func (o *DataStream) GetInputsOk() (*[]InputPolymorphicInputDataSourceAttributes, bool)`
+`func (o *DataStream) GetInputsOk() (*[]InputInputDataSourceAttributes, bool)`
 
 GetInputsOk returns a tuple with the Inputs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInputs
 
-`func (o *DataStream) SetInputs(v []InputPolymorphicInputDataSourceAttributes)`
+`func (o *DataStream) SetInputs(v []InputInputDataSourceAttributes)`
 
 SetInputs sets Inputs field to given value.
 
 
 ### GetTransform
 
-`func (o *DataStream) GetTransform() []TransformPolymorphic`
+`func (o *DataStream) GetTransform() []Transform`
 
 GetTransform returns the Transform field if non-nil, zero value otherwise.
 
 ### GetTransformOk
 
-`func (o *DataStream) GetTransformOk() (*[]TransformPolymorphic, bool)`
+`func (o *DataStream) GetTransformOk() (*[]Transform, bool)`
 
 GetTransformOk returns a tuple with the Transform field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransform
 
-`func (o *DataStream) SetTransform(v []TransformPolymorphic)`
+`func (o *DataStream) SetTransform(v []Transform)`
 
 SetTransform sets Transform field to given value.
 
 
 ### GetOutputs
 
-`func (o *DataStream) GetOutputs() []Output`
+`func (o *DataStream) GetOutputs() []OutputBase`
 
 GetOutputs returns the Outputs field if non-nil, zero value otherwise.
 
 ### GetOutputsOk
 
-`func (o *DataStream) GetOutputsOk() (*[]Output, bool)`
+`func (o *DataStream) GetOutputsOk() (*[]OutputBase, bool)`
 
 GetOutputsOk returns a tuple with the Outputs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOutputs
 
-`func (o *DataStream) SetOutputs(v []Output)`
+`func (o *DataStream) SetOutputs(v []OutputBase)`
 
 SetOutputs sets Outputs field to given value.
 

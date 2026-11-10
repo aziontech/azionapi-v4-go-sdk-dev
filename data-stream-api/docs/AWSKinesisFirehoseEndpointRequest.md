@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **StreamName** | **string** |  | 
 **Region** | **string** |  | 
 **SecretKey** | **string** |  | 
-**Type** | **string** | Type identifier for this endpoint (aws_kinesis_firehose) | 
+**Type** | **string** | Discriminator field for OutputRequest | 
 
 ## Methods
 

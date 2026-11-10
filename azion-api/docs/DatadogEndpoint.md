@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **string** |  | 
 **ApiKey** | **string** |  | 
-**Type** | **string** | Type identifier for this endpoint (datadog) | 
+**Type** | **string** | Discriminator field for Output | 
 
 ## Methods
 

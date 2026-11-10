@@ -25,7 +25,7 @@ type AWSKinesisFirehoseEndpoint struct {
 	StreamName string `json:"stream_name"`
 	Region string `json:"region"`
 	SecretKey string `json:"secret_key"`
-	// Type identifier for this endpoint (aws_kinesis_firehose)
+	// Discriminator field for Output
 	Type string `json:"type"`
 }
 

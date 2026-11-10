@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **string** |  | 
-**Type** | **string** | Type identifier for this endpoint (qradar) | 
+**Type** | **string** | Discriminator field for Output | 
 
 ## Methods
 

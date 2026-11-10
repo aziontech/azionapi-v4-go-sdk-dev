@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | Type identifier for this endpoint (render_template) | 
+**Type** | **string** | Discriminator field for Transform | 
 **Attributes** | [**TransformRenderTemplate**](TransformRenderTemplate.md) |  | 
 
 ## Methods

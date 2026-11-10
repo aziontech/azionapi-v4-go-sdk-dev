@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **BucketName** | **string** |  | 
 **ContentType** | **string** | * &#x60;plain/text&#x60; - plain/text * &#x60;application/gzip&#x60; - application/gzip | 
 **HostUrl** | **string** |  | 
-**Type** | **string** | Type identifier for this endpoint (s3) | 
+**Type** | **string** | Discriminator field for OutputRequest | 
 
 ## Methods
 

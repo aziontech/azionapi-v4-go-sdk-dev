@@ -25,7 +25,7 @@ type BigQueryEndpoint struct {
 	ProjectId string `json:"project_id"`
 	TableId string `json:"table_id"`
 	ServiceAccountKey string `json:"service_account_key"`
-	// Type identifier for this endpoint (big_query)
+	// Discriminator field for Output
 	Type string `json:"type"`
 }
 

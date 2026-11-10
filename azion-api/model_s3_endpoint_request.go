@@ -30,7 +30,7 @@ type S3EndpointRequest struct {
 	// * `plain/text` - plain/text * `application/gzip` - application/gzip
 	ContentType string `json:"content_type"`
 	HostUrl string `json:"host_url"`
-	// Type identifier for this endpoint (s3)
+	// Discriminator field for OutputRequest
 	Type string `json:"type"`
 }
 

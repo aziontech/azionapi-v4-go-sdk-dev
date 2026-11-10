@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **PayloadFormat** | Pointer to **string** |  | [optional] 
 **MaxSize** | Pointer to **NullableInt64** |  | [optional] 
 **Headers** | **map[string]string** |  | 
-**Type** | **string** | Type identifier for this endpoint (splunk) | 
+**Type** | **string** | Discriminator field for OutputRequest | 
 **BootstrapServers** | **string** |  | 
 **KafkaTopic** | **string** |  | 
 **UseTls** | **bool** |  | 

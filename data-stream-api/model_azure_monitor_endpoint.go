@@ -25,7 +25,7 @@ type AzureMonitorEndpoint struct {
 	SharedKey string `json:"shared_key"`
 	TimeGeneratedField NullableString `json:"time_generated_field,omitempty"`
 	WorkspaceId string `json:"workspace_id"`
-	// Type identifier for this endpoint (azure_monitor)
+	// Discriminator field for Output
 	Type string `json:"type"`
 }
 

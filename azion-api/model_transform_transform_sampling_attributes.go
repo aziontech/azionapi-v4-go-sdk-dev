@@ -22,7 +22,7 @@ var _ MappedNullable = &TransformTransformSamplingAttributes{}
 
 // TransformTransformSamplingAttributes struct for TransformTransformSamplingAttributes
 type TransformTransformSamplingAttributes struct {
-	// Type identifier for this endpoint (sampling)
+	// Discriminator field for Transform
 	Type string `json:"type"`
 	Attributes TransformSampling `json:"attributes"`
 }

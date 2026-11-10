@@ -22,7 +22,7 @@ var _ MappedNullable = &InputInputDataSourceAttributes{}
 
 // InputInputDataSourceAttributes struct for InputInputDataSourceAttributes
 type InputInputDataSourceAttributes struct {
-	// Type identifier for this endpoint (raw_logs)
+	// Discriminator field for Input
 	Type string `json:"type"`
 	Attributes InputDataSource `json:"attributes"`
 }
