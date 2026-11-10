@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MaxIdleTime** | **int64** |  | 
 **MaxSessionTime** | **int64** |  | 
-**CreatedAt** | **time.Time** |  | 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
 ### NewSessionTimeoutPolicy
 
-`func NewSessionTimeoutPolicy(maxIdleTime int64, maxSessionTime int64, createdAt time.Time, ) *SessionTimeoutPolicy`
+`func NewSessionTimeoutPolicy(maxIdleTime int64, maxSessionTime int64, ) *SessionTimeoutPolicy`
 
 NewSessionTimeoutPolicy instantiates a new SessionTimeoutPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -86,6 +86,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *SessionTimeoutPolicy) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

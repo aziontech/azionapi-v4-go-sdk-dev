@@ -13,8 +13,6 @@ package azionapi
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the TOTPDevice type satisfies the MappedNullable interface at compile time
@@ -22,18 +20,15 @@ var _ MappedNullable = &TOTPDevice{}
 
 // TOTPDevice struct for TOTPDevice
 type TOTPDevice struct {
-	Url string `json:"url"`
+	Url *string `json:"url,omitempty"`
 }
-
-type _TOTPDevice TOTPDevice
 
 // NewTOTPDevice instantiates a new TOTPDevice object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTOTPDevice(url string) *TOTPDevice {
+func NewTOTPDevice() *TOTPDevice {
 	this := TOTPDevice{}
-	this.Url = url
 	return &this
 }
 
@@ -45,28 +40,36 @@ func NewTOTPDeviceWithDefaults() *TOTPDevice {
 	return &this
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *TOTPDevice) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TOTPDevice) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *TOTPDevice) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *TOTPDevice) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
 func (o TOTPDevice) MarshalJSON() ([]byte, error) {
@@ -79,44 +82,10 @@ func (o TOTPDevice) MarshalJSON() ([]byte, error) {
 
 func (o TOTPDevice) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["url"] = o.Url
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
 	return toSerialize, nil
-}
-
-func (o *TOTPDevice) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varTOTPDevice := _TOTPDevice{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	err = decoder.Decode(&varTOTPDevice)
-
-	if err != nil {
-		return err
-	}
-
-	*o = TOTPDevice(varTOTPDevice)
-
-	return err
 }
 
 type NullableTOTPDevice struct {

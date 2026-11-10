@@ -22,11 +22,11 @@ var _ MappedNullable = &Policy{}
 
 // Policy struct for Policy
 type Policy struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
-	LastEditor string `json:"last_editor"`
-	LastModified time.Time `json:"last_modified"`
-	CreatedAt time.Time `json:"created_at"`
+	LastEditor *string `json:"last_editor,omitempty"`
+	LastModified *time.Time `json:"last_modified,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Active bool `json:"active"`
 	Rules []PolicyRule `json:"rules"`
 }
@@ -37,13 +37,9 @@ type _Policy Policy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPolicy(id int64, name string, lastEditor string, lastModified time.Time, createdAt time.Time, active bool, rules []PolicyRule) *Policy {
+func NewPolicy(name string, active bool, rules []PolicyRule) *Policy {
 	this := Policy{}
-	this.Id = id
 	this.Name = name
-	this.LastEditor = lastEditor
-	this.LastModified = lastModified
-	this.CreatedAt = createdAt
 	this.Active = active
 	this.Rules = rules
 	return &this
@@ -57,28 +53,36 @@ func NewPolicyWithDefaults() *Policy {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *Policy) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Policy) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *Policy) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *Policy) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -105,76 +109,100 @@ func (o *Policy) SetName(v string) {
 	o.Name = v
 }
 
-// GetLastEditor returns the LastEditor field value
+// GetLastEditor returns the LastEditor field value if set, zero value otherwise.
 func (o *Policy) GetLastEditor() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		var ret string
 		return ret
 	}
-
-	return o.LastEditor
+	return *o.LastEditor
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value
+// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Policy) GetLastEditorOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastEditor) {
 		return nil, false
 	}
-	return &o.LastEditor, true
+	return o.LastEditor, true
 }
 
-// SetLastEditor sets field value
+// HasLastEditor returns a boolean if a field has been set.
+func (o *Policy) HasLastEditor() bool {
+	if o != nil && !IsNil(o.LastEditor) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastEditor gets a reference to the given string and assigns it to the LastEditor field.
 func (o *Policy) SetLastEditor(v string) {
-	o.LastEditor = v
+	o.LastEditor = &v
 }
 
-// GetLastModified returns the LastModified field value
+// GetLastModified returns the LastModified field value if set, zero value otherwise.
 func (o *Policy) GetLastModified() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.LastModified
+	return *o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value
+// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Policy) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		return nil, false
 	}
-	return &o.LastModified, true
+	return o.LastModified, true
 }
 
-// SetLastModified sets field value
+// HasLastModified returns a boolean if a field has been set.
+func (o *Policy) HasLastModified() bool {
+	if o != nil && !IsNil(o.LastModified) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
 func (o *Policy) SetLastModified(v time.Time) {
-	o.LastModified = v
+	o.LastModified = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Policy) GetCreatedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Policy) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Policy) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *Policy) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
 // GetActive returns the Active field value
@@ -235,11 +263,19 @@ func (o Policy) MarshalJSON() ([]byte, error) {
 
 func (o Policy) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
-	toSerialize["last_editor"] = o.LastEditor
-	toSerialize["last_modified"] = o.LastModified
-	toSerialize["created_at"] = o.CreatedAt
+	if !IsNil(o.LastEditor) {
+		toSerialize["last_editor"] = o.LastEditor
+	}
+	if !IsNil(o.LastModified) {
+		toSerialize["last_modified"] = o.LastModified
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
 	toSerialize["active"] = o.Active
 	toSerialize["rules"] = o.Rules
 	return toSerialize, nil
@@ -250,11 +286,7 @@ func (o *Policy) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
 		"name",
-		"last_editor",
-		"last_modified",
-		"created_at",
 		"active",
 		"rules",
 	}
