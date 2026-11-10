@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** | Unique identifier for the database | 
+**Id** | Pointer to **int64** | Unique identifier for the database | [optional] 
 **Name** | **string** | Name of the database | 
-**Status** | **string** | Current status of the database  * &#x60;creating&#x60; - creating * &#x60;created&#x60; - created * &#x60;deleting&#x60; - deleting | 
+**Status** | Pointer to **string** | Current status of the database  * &#x60;creating&#x60; - creating * &#x60;created&#x60; - created * &#x60;deleting&#x60; - deleting | [optional] 
 **Active** | Pointer to **bool** | Whether the database is active | [optional] 
-**LastModified** | **time.Time** | Last modification timestamp | 
-**LastEditor** | **NullableString** | Last editor of the schema. | 
-**ProductVersion** | **string** | Product version | 
+**LastModified** | Pointer to **time.Time** | Last modification timestamp | [optional] 
+**LastEditor** | Pointer to **NullableString** | Last editor of the schema. | [optional] 
+**ProductVersion** | Pointer to **string** | Product version | [optional] 
 
 ## Methods
 
 ### NewDatabaseDetail
 
-`func NewDatabaseDetail(id int64, name string, status string, lastModified time.Time, lastEditor NullableString, productVersion string, ) *DatabaseDetail`
+`func NewDatabaseDetail(name string, ) *DatabaseDetail`
 
 NewDatabaseDetail instantiates a new DatabaseDetail object
 This constructor will assign default values to properties that have it defined,
@@ -50,6 +50,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *DatabaseDetail) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -90,6 +95,11 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *DatabaseDetail) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetActive
 
@@ -135,6 +145,11 @@ and a boolean to check if the value has been set.
 
 SetLastModified sets LastModified field to given value.
 
+### HasLastModified
+
+`func (o *DatabaseDetail) HasLastModified() bool`
+
+HasLastModified returns a boolean if a field has been set.
 
 ### GetLastEditor
 
@@ -155,6 +170,11 @@ and a boolean to check if the value has been set.
 
 SetLastEditor sets LastEditor field to given value.
 
+### HasLastEditor
+
+`func (o *DatabaseDetail) HasLastEditor() bool`
+
+HasLastEditor returns a boolean if a field has been set.
 
 ### SetLastEditorNil
 
@@ -185,6 +205,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *DatabaseDetail) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
