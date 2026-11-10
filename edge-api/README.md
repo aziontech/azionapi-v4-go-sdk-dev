@@ -175,6 +175,7 @@ Class | Method | HTTP request | Description
 *WorkloadDeploymentsAPI* | [**PartialUpdateWorkloadDeployment**](docs/WorkloadDeploymentsAPI.md#partialupdateworkloaddeployment) | **Patch** /workspace/workloads/{workload_id}/deployments/{deployment_id} | Partially update a Workload Deployment
 *WorkloadDeploymentsAPI* | [**RetrieveWorkloadDeployment**](docs/WorkloadDeploymentsAPI.md#retrieveworkloaddeployment) | **Get** /workspace/workloads/{workload_id}/deployments/{deployment_id} | Retrieve details of a Workload Deployment
 *WorkloadDeploymentsAPI* | [**UpdateWorkloadDeployment**](docs/WorkloadDeploymentsAPI.md#updateworkloaddeployment) | **Put** /workspace/workloads/{workload_id}/deployments/{deployment_id} | Update a Workload Deployment
+*WorkloadsAPI* | [**CheckWorkloadDomainAvailability**](docs/WorkloadsAPI.md#checkworkloaddomainavailability) | **Get** /workspace/workloads/domains/availability | Check the availability of a Workload domain
 *WorkloadsAPI* | [**CreateWorkload**](docs/WorkloadsAPI.md#createworkload) | **Post** /workspace/workloads | Create an Workload
 *WorkloadsAPI* | [**DeleteWorkload**](docs/WorkloadsAPI.md#deleteworkload) | **Delete** /workspace/workloads/{workload_id} | Delete an Workload
 *WorkloadsAPI* | [**ListWorkloads**](docs/WorkloadsAPI.md#listworkloads) | **Get** /workspace/workloads | List Workloads
@@ -445,6 +446,8 @@ Class | Method | HTTP request | Description
  - [WorkloadDeployment](docs/WorkloadDeployment.md)
  - [WorkloadDeploymentRequest](docs/WorkloadDeploymentRequest.md)
  - [WorkloadDeploymentResponse](docs/WorkloadDeploymentResponse.md)
+ - [WorkloadDomainAvailability](docs/WorkloadDomainAvailability.md)
+ - [WorkloadDomainAvailabilityResponse](docs/WorkloadDomainAvailabilityResponse.md)
  - [WorkloadRequest](docs/WorkloadRequest.md)
  - [WorkloadResponse](docs/WorkloadResponse.md)
 

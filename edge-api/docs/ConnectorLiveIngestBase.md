@@ -15,14 +15,13 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | Pointer to **string** |  | [optional] 
-**Type** | **string** |  | 
 **Attributes** | [**ConnectorLiveIngestAttributes**](ConnectorLiveIngestAttributes.md) |  | 
 
 ## Methods
 
 ### NewConnectorLiveIngestBase
 
-`func NewConnectorLiveIngestBase(name string, type_ string, attributes ConnectorLiveIngestAttributes, ) *ConnectorLiveIngestBase`
+`func NewConnectorLiveIngestBase(name string, attributes ConnectorLiveIngestAttributes, ) *ConnectorLiveIngestBase`
 
 NewConnectorLiveIngestBase instantiates a new ConnectorLiveIngestBase object
 This constructor will assign default values to properties that have it defined,
@@ -336,26 +335,6 @@ SetProductVersion sets ProductVersion field to given value.
 `func (o *ConnectorLiveIngestBase) HasProductVersion() bool`
 
 HasProductVersion returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *ConnectorLiveIngestBase) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ConnectorLiveIngestBase) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ConnectorLiveIngestBase) SetType(v string)`
-
-SetType sets Type field to given value.
-
 
 ### GetAttributes
 

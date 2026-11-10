@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | **string** | Discriminator field for ConnectorRequest | 
 **Attributes** | [**ConnectorStorageAttributesRequest**](ConnectorStorageAttributesRequest.md) |  | 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewConnectorStorageRequest
 
-`func NewConnectorStorageRequest(name string, type_ string, attributes ConnectorStorageAttributesRequest, ) *ConnectorStorageRequest`
+`func NewConnectorStorageRequest(name string, attributes ConnectorStorageAttributesRequest, type_ string, ) *ConnectorStorageRequest`
 
 NewConnectorStorageRequest instantiates a new ConnectorStorageRequest object
 This constructor will assign default values to properties that have it defined,
@@ -73,26 +73,6 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetType
-
-`func (o *ConnectorStorageRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ConnectorStorageRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ConnectorStorageRequest) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 ### GetAttributes
 
 `func (o *ConnectorStorageRequest) GetAttributes() ConnectorStorageAttributesRequest`
@@ -111,6 +91,26 @@ and a boolean to check if the value has been set.
 `func (o *ConnectorStorageRequest) SetAttributes(v ConnectorStorageAttributesRequest)`
 
 SetAttributes sets Attributes field to given value.
+
+
+### GetType
+
+`func (o *ConnectorStorageRequest) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ConnectorStorageRequest) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ConnectorStorageRequest) SetType(v string)`
+
+SetType sets Type field to given value.
 
 
 

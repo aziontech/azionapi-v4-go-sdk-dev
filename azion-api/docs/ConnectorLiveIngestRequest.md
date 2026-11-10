@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | **string** | Discriminator field for ConnectorRequest | 
 **Attributes** | [**ConnectorLiveIngestAttributesRequest**](ConnectorLiveIngestAttributesRequest.md) |  | 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewConnectorLiveIngestRequest
 
-`func NewConnectorLiveIngestRequest(name string, type_ string, attributes ConnectorLiveIngestAttributesRequest, ) *ConnectorLiveIngestRequest`
+`func NewConnectorLiveIngestRequest(name string, attributes ConnectorLiveIngestAttributesRequest, type_ string, ) *ConnectorLiveIngestRequest`
 
 NewConnectorLiveIngestRequest instantiates a new ConnectorLiveIngestRequest object
 This constructor will assign default values to properties that have it defined,
@@ -73,26 +73,6 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetType
-
-`func (o *ConnectorLiveIngestRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ConnectorLiveIngestRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ConnectorLiveIngestRequest) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 ### GetAttributes
 
 `func (o *ConnectorLiveIngestRequest) GetAttributes() ConnectorLiveIngestAttributesRequest`
@@ -111,6 +91,26 @@ and a boolean to check if the value has been set.
 `func (o *ConnectorLiveIngestRequest) SetAttributes(v ConnectorLiveIngestAttributesRequest)`
 
 SetAttributes sets Attributes field to given value.
+
+
+### GetType
+
+`func (o *ConnectorLiveIngestRequest) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ConnectorLiveIngestRequest) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ConnectorLiveIngestRequest) SetType(v string)`
+
+SetType sets Type field to given value.
 
 
 

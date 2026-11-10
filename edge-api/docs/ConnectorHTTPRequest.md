@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | **string** | Discriminator field for ConnectorRequest | 
 **Attributes** | [**ConnectorHTTPAttributesRequest**](ConnectorHTTPAttributesRequest.md) |  | 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewConnectorHTTPRequest
 
-`func NewConnectorHTTPRequest(name string, type_ string, attributes ConnectorHTTPAttributesRequest, ) *ConnectorHTTPRequest`
+`func NewConnectorHTTPRequest(name string, attributes ConnectorHTTPAttributesRequest, type_ string, ) *ConnectorHTTPRequest`
 
 NewConnectorHTTPRequest instantiates a new ConnectorHTTPRequest object
 This constructor will assign default values to properties that have it defined,
@@ -73,26 +73,6 @@ SetActive sets Active field to given value.
 
 HasActive returns a boolean if a field has been set.
 
-### GetType
-
-`func (o *ConnectorHTTPRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ConnectorHTTPRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ConnectorHTTPRequest) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 ### GetAttributes
 
 `func (o *ConnectorHTTPRequest) GetAttributes() ConnectorHTTPAttributesRequest`
@@ -111,6 +91,26 @@ and a boolean to check if the value has been set.
 `func (o *ConnectorHTTPRequest) SetAttributes(v ConnectorHTTPAttributesRequest)`
 
 SetAttributes sets Attributes field to given value.
+
+
+### GetType
+
+`func (o *ConnectorHTTPRequest) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ConnectorHTTPRequest) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ConnectorHTTPRequest) SetType(v string)`
+
+SetType sets Type field to given value.
 
 
 

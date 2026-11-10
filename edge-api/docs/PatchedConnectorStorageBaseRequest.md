@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | Pointer to **string** | * &#x60;http&#x60; - HTTP * &#x60;storage&#x60; - Storage * &#x60;live_ingest&#x60; - Live Ingest | [optional] 
 **Attributes** | Pointer to [**ConnectorStorageAttributesRequest**](ConnectorStorageAttributesRequest.md) |  | [optional] 
 
 ## Methods
@@ -77,31 +76,6 @@ SetActive sets Active field to given value.
 `func (o *PatchedConnectorStorageBaseRequest) HasActive() bool`
 
 HasActive returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *PatchedConnectorStorageBaseRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *PatchedConnectorStorageBaseRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *PatchedConnectorStorageBaseRequest) SetType(v string)`
-
-SetType sets Type field to given value.
-
-### HasType
-
-`func (o *PatchedConnectorStorageBaseRequest) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetAttributes
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | Discriminator field for ConnectorRequest | 
+**Type** | **string** |  | 
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
 **Attributes** | [**ConnectorLiveIngestAttributesRequest**](ConnectorLiveIngestAttributesRequest.md) |  | 

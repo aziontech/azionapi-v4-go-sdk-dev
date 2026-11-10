@@ -6,14 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | **string** |  | 
 **Attributes** | [**ConnectorHTTPAttributesRequest**](ConnectorHTTPAttributesRequest.md) |  | 
 
 ## Methods
 
 ### NewConnectorHTTPBaseRequest
 
-`func NewConnectorHTTPBaseRequest(name string, type_ string, attributes ConnectorHTTPAttributesRequest, ) *ConnectorHTTPBaseRequest`
+`func NewConnectorHTTPBaseRequest(name string, attributes ConnectorHTTPAttributesRequest, ) *ConnectorHTTPBaseRequest`
 
 NewConnectorHTTPBaseRequest instantiates a new ConnectorHTTPBaseRequest object
 This constructor will assign default values to properties that have it defined,
@@ -72,26 +71,6 @@ SetActive sets Active field to given value.
 `func (o *ConnectorHTTPBaseRequest) HasActive() bool`
 
 HasActive returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *ConnectorHTTPBaseRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ConnectorHTTPBaseRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ConnectorHTTPBaseRequest) SetType(v string)`
-
-SetType sets Type field to given value.
-
 
 ### GetAttributes
 
