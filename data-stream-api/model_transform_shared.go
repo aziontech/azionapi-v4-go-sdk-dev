@@ -18,7 +18,7 @@ import (
 // checks if the TransformShared type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &TransformShared{}
 
-// TransformShared Polymorphic serializer base class.  Note that the discriminator field must exist at the same depth as the mapped serializer fields for the OpenAPI introspection. See https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/ for more information. As such, it's not possible to define something like:  {     \"object_type\": \"foo\",     \"polymorphic_context\": {         <foo-specific fields>     } }  without explicitly wrapping this in a parent serializer, i.e. - ``polymorphic_context`` can not be a PolymorphicSerializer itself, as it requires access to the ``object_type`` in the parent scope.
+// TransformShared struct for TransformShared
 type TransformShared struct {
 	Type string `json:"type"`
 	AdditionalProperties map[string]interface{}
