@@ -24,7 +24,7 @@ var _ MappedNullable = &ElasticsearchEndpoint{}
 type ElasticsearchEndpoint struct {
 	Url string `json:"url"`
 	ApiKey string `json:"api_key"`
-	// Type identifier for this endpoint (elasticsearch)
+	// Discriminator field for Output
 	Type string `json:"type"`
 }
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **StorageAccount** | **string** |  | 
 **ContainerName** | **string** |  | 
 **BlobSasToken** | **string** |  | 
-**Type** | **string** | Type identifier for this endpoint (azure_blob_storage) | 
+**Type** | **string** | Discriminator field for Output | 
 
 ## Methods
 

@@ -24,7 +24,7 @@ type AzureBlobStorageEndpoint struct {
 	StorageAccount string `json:"storage_account"`
 	ContainerName string `json:"container_name"`
 	BlobSasToken string `json:"blob_sas_token"`
-	// Type identifier for this endpoint (azure_blob_storage)
+	// Discriminator field for Output
 	Type string `json:"type"`
 }
 

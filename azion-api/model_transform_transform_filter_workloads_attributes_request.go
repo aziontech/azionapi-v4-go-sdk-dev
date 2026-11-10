@@ -22,7 +22,7 @@ var _ MappedNullable = &TransformTransformFilterWorkloadsAttributesRequest{}
 
 // TransformTransformFilterWorkloadsAttributesRequest struct for TransformTransformFilterWorkloadsAttributesRequest
 type TransformTransformFilterWorkloadsAttributesRequest struct {
-	// Type identifier for this endpoint (filter_workloads)
+	// Discriminator field for TransformRequest
 	Type string `json:"type"`
 	Attributes TransformFilterWorkloadsRequest `json:"attributes"`
 }

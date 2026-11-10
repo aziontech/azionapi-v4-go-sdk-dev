@@ -15,14 +15,14 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | Pointer to **string** |  | [optional] 
-**Type** | **string** | Discriminator field for Connector | 
 **Attributes** | [**ConnectorLiveIngestAttributes**](ConnectorLiveIngestAttributes.md) |  | 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewConnectorLiveIngest
 
-`func NewConnectorLiveIngest(name string, type_ string, attributes ConnectorLiveIngestAttributes, ) *ConnectorLiveIngest`
+`func NewConnectorLiveIngest(name string, attributes ConnectorLiveIngestAttributes, type_ string, ) *ConnectorLiveIngest`
 
 NewConnectorLiveIngest instantiates a new ConnectorLiveIngest object
 This constructor will assign default values to properties that have it defined,
@@ -337,26 +337,6 @@ SetProductVersion sets ProductVersion field to given value.
 
 HasProductVersion returns a boolean if a field has been set.
 
-### GetType
-
-`func (o *ConnectorLiveIngest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ConnectorLiveIngest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ConnectorLiveIngest) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 ### GetAttributes
 
 `func (o *ConnectorLiveIngest) GetAttributes() ConnectorLiveIngestAttributes`
@@ -375,6 +355,26 @@ and a boolean to check if the value has been set.
 `func (o *ConnectorLiveIngest) SetAttributes(v ConnectorLiveIngestAttributes)`
 
 SetAttributes sets Attributes field to given value.
+
+
+### GetType
+
+`func (o *ConnectorLiveIngest) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ConnectorLiveIngest) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ConnectorLiveIngest) SetType(v string)`
+
+SetType sets Type field to given value.
 
 
 

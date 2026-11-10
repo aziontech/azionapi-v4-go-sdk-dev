@@ -22,7 +22,7 @@ var _ MappedNullable = &TransformTransformRenderTemplateAttributes{}
 
 // TransformTransformRenderTemplateAttributes struct for TransformTransformRenderTemplateAttributes
 type TransformTransformRenderTemplateAttributes struct {
-	// Type identifier for this endpoint (render_template)
+	// Discriminator field for Transform
 	Type string `json:"type"`
 	Attributes TransformRenderTemplate `json:"attributes"`
 }

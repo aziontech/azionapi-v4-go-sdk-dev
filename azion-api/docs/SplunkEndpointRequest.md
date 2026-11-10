@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Url** | **string** |  | 
 **ApiKey** | **string** |  | 
-**Type** | **string** | Type identifier for this endpoint (splunk) | 
+**Type** | **string** | Discriminator field for OutputRequest | 
 
 ## Methods
 

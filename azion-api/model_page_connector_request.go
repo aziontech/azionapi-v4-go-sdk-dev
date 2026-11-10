@@ -22,9 +22,8 @@ var _ MappedNullable = &PageConnectorRequest{}
 
 // PageConnectorRequest struct for PageConnectorRequest
 type PageConnectorRequest struct {
-	// Discriminator field for PageRequest
-	Type string `json:"type"`
 	Attributes PageConnectorAttributesRequest `json:"attributes"`
+	Type string `json:"type"`
 }
 
 type _PageConnectorRequest PageConnectorRequest
@@ -33,10 +32,10 @@ type _PageConnectorRequest PageConnectorRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPageConnectorRequest(type_ string, attributes PageConnectorAttributesRequest) *PageConnectorRequest {
+func NewPageConnectorRequest(attributes PageConnectorAttributesRequest, type_ string) *PageConnectorRequest {
 	this := PageConnectorRequest{}
-	this.Type = type_
 	this.Attributes = attributes
+	this.Type = type_
 	return &this
 }
 
@@ -46,30 +45,6 @@ func NewPageConnectorRequest(type_ string, attributes PageConnectorAttributesReq
 func NewPageConnectorRequestWithDefaults() *PageConnectorRequest {
 	this := PageConnectorRequest{}
 	return &this
-}
-
-// GetType returns the Type field value
-func (o *PageConnectorRequest) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *PageConnectorRequest) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *PageConnectorRequest) SetType(v string) {
-	o.Type = v
 }
 
 // GetAttributes returns the Attributes field value
@@ -96,6 +71,30 @@ func (o *PageConnectorRequest) SetAttributes(v PageConnectorAttributesRequest) {
 	o.Attributes = v
 }
 
+// GetType returns the Type field value
+func (o *PageConnectorRequest) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *PageConnectorRequest) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *PageConnectorRequest) SetType(v string) {
+	o.Type = v
+}
+
 func (o PageConnectorRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -106,8 +105,8 @@ func (o PageConnectorRequest) MarshalJSON() ([]byte, error) {
 
 func (o PageConnectorRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["type"] = o.Type
 	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -116,8 +115,8 @@ func (o *PageConnectorRequest) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
 		"attributes",
+		"type",
 	}
 
 	allProperties := make(map[string]interface{})

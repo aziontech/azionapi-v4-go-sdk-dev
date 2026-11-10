@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **SharedKey** | **string** |  | 
 **TimeGeneratedField** | Pointer to **NullableString** |  | [optional] 
 **WorkspaceId** | **string** |  | 
-**Type** | **string** | Type identifier for this endpoint (azure_monitor) | 
+**Type** | **string** | Discriminator field for OutputRequest | 
 
 ## Methods
 

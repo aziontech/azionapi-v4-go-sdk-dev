@@ -15,14 +15,14 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Active** | Pointer to **bool** |  | [optional] 
 **ProductVersion** | Pointer to **string** |  | [optional] 
-**Type** | **string** | Discriminator field for Connector | 
 **Attributes** | [**ConnectorHTTPAttributes**](ConnectorHTTPAttributes.md) |  | 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewConnectorHTTP
 
-`func NewConnectorHTTP(name string, type_ string, attributes ConnectorHTTPAttributes, ) *ConnectorHTTP`
+`func NewConnectorHTTP(name string, attributes ConnectorHTTPAttributes, type_ string, ) *ConnectorHTTP`
 
 NewConnectorHTTP instantiates a new ConnectorHTTP object
 This constructor will assign default values to properties that have it defined,
@@ -337,26 +337,6 @@ SetProductVersion sets ProductVersion field to given value.
 
 HasProductVersion returns a boolean if a field has been set.
 
-### GetType
-
-`func (o *ConnectorHTTP) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ConnectorHTTP) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ConnectorHTTP) SetType(v string)`
-
-SetType sets Type field to given value.
-
-
 ### GetAttributes
 
 `func (o *ConnectorHTTP) GetAttributes() ConnectorHTTPAttributes`
@@ -375,6 +355,26 @@ and a boolean to check if the value has been set.
 `func (o *ConnectorHTTP) SetAttributes(v ConnectorHTTPAttributes)`
 
 SetAttributes sets Attributes field to given value.
+
+
+### GetType
+
+`func (o *ConnectorHTTP) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *ConnectorHTTP) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *ConnectorHTTP) SetType(v string)`
+
+SetType sets Type field to given value.
 
 
 

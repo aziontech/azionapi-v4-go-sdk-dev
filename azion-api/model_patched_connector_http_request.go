@@ -24,9 +24,8 @@ var _ MappedNullable = &PatchedConnectorHTTPRequest{}
 type PatchedConnectorHTTPRequest struct {
 	Name *string `json:"name,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	// Discriminator field for PatchedConnectorRequest
-	Type string `json:"type"`
 	Attributes *ConnectorHTTPAttributesRequest `json:"attributes,omitempty"`
+	Type string `json:"type"`
 }
 
 type _PatchedConnectorHTTPRequest PatchedConnectorHTTPRequest
@@ -113,30 +112,6 @@ func (o *PatchedConnectorHTTPRequest) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetType returns the Type field value
-func (o *PatchedConnectorHTTPRequest) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *PatchedConnectorHTTPRequest) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *PatchedConnectorHTTPRequest) SetType(v string) {
-	o.Type = v
-}
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *PatchedConnectorHTTPRequest) GetAttributes() ConnectorHTTPAttributesRequest {
 	if o == nil || IsNil(o.Attributes) {
@@ -169,6 +144,30 @@ func (o *PatchedConnectorHTTPRequest) SetAttributes(v ConnectorHTTPAttributesReq
 	o.Attributes = &v
 }
 
+// GetType returns the Type field value
+func (o *PatchedConnectorHTTPRequest) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *PatchedConnectorHTTPRequest) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *PatchedConnectorHTTPRequest) SetType(v string) {
+	o.Type = v
+}
+
 func (o PatchedConnectorHTTPRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -185,10 +184,10 @@ func (o PatchedConnectorHTTPRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	toSerialize["type"] = o.Type
 	if !IsNil(o.Attributes) {
 		toSerialize["attributes"] = o.Attributes
 	}
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 

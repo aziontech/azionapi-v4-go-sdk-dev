@@ -29,9 +29,9 @@ type DataStream struct {
 	LastModified *time.Time `json:"last_modified,omitempty"`
 	ProductVersion *string `json:"product_version,omitempty"`
 	Active *bool `json:"active,omitempty"`
-	Inputs []InputPolymorphicInputDataSourceAttributes `json:"inputs"`
-	Transform []TransformPolymorphic `json:"transform"`
-	Outputs []Output `json:"outputs"`
+	Inputs []InputInputDataSourceAttributes `json:"inputs"`
+	Transform []Transform `json:"transform"`
+	Outputs []OutputBase `json:"outputs"`
 }
 
 type _DataStream DataStream
@@ -40,7 +40,7 @@ type _DataStream DataStream
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataStream(name string, inputs []InputPolymorphicInputDataSourceAttributes, transform []TransformPolymorphic, outputs []Output) *DataStream {
+func NewDataStream(name string, inputs []InputInputDataSourceAttributes, transform []Transform, outputs []OutputBase) *DataStream {
 	this := DataStream{}
 	this.Name = name
 	this.Inputs = inputs
@@ -274,9 +274,9 @@ func (o *DataStream) SetActive(v bool) {
 }
 
 // GetInputs returns the Inputs field value
-func (o *DataStream) GetInputs() []InputPolymorphicInputDataSourceAttributes {
+func (o *DataStream) GetInputs() []InputInputDataSourceAttributes {
 	if o == nil {
-		var ret []InputPolymorphicInputDataSourceAttributes
+		var ret []InputInputDataSourceAttributes
 		return ret
 	}
 
@@ -285,7 +285,7 @@ func (o *DataStream) GetInputs() []InputPolymorphicInputDataSourceAttributes {
 
 // GetInputsOk returns a tuple with the Inputs field value
 // and a boolean to check if the value has been set.
-func (o *DataStream) GetInputsOk() ([]InputPolymorphicInputDataSourceAttributes, bool) {
+func (o *DataStream) GetInputsOk() ([]InputInputDataSourceAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -293,14 +293,14 @@ func (o *DataStream) GetInputsOk() ([]InputPolymorphicInputDataSourceAttributes,
 }
 
 // SetInputs sets field value
-func (o *DataStream) SetInputs(v []InputPolymorphicInputDataSourceAttributes) {
+func (o *DataStream) SetInputs(v []InputInputDataSourceAttributes) {
 	o.Inputs = v
 }
 
 // GetTransform returns the Transform field value
-func (o *DataStream) GetTransform() []TransformPolymorphic {
+func (o *DataStream) GetTransform() []Transform {
 	if o == nil {
-		var ret []TransformPolymorphic
+		var ret []Transform
 		return ret
 	}
 
@@ -309,7 +309,7 @@ func (o *DataStream) GetTransform() []TransformPolymorphic {
 
 // GetTransformOk returns a tuple with the Transform field value
 // and a boolean to check if the value has been set.
-func (o *DataStream) GetTransformOk() ([]TransformPolymorphic, bool) {
+func (o *DataStream) GetTransformOk() ([]Transform, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -317,14 +317,14 @@ func (o *DataStream) GetTransformOk() ([]TransformPolymorphic, bool) {
 }
 
 // SetTransform sets field value
-func (o *DataStream) SetTransform(v []TransformPolymorphic) {
+func (o *DataStream) SetTransform(v []Transform) {
 	o.Transform = v
 }
 
 // GetOutputs returns the Outputs field value
-func (o *DataStream) GetOutputs() []Output {
+func (o *DataStream) GetOutputs() []OutputBase {
 	if o == nil {
-		var ret []Output
+		var ret []OutputBase
 		return ret
 	}
 
@@ -333,7 +333,7 @@ func (o *DataStream) GetOutputs() []Output {
 
 // GetOutputsOk returns a tuple with the Outputs field value
 // and a boolean to check if the value has been set.
-func (o *DataStream) GetOutputsOk() ([]Output, bool) {
+func (o *DataStream) GetOutputsOk() ([]OutputBase, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -341,7 +341,7 @@ func (o *DataStream) GetOutputsOk() ([]Output, bool) {
 }
 
 // SetOutputs sets field value
-func (o *DataStream) SetOutputs(v []Output) {
+func (o *DataStream) SetOutputs(v []OutputBase) {
 	o.Outputs = v
 }
 

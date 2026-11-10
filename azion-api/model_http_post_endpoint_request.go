@@ -27,7 +27,7 @@ type HttpPostEndpointRequest struct {
 	PayloadFormat *string `json:"payload_format,omitempty"`
 	MaxSize NullableInt64 `json:"max_size,omitempty"`
 	Headers map[string]string `json:"headers"`
-	// Type identifier for this endpoint (standard)
+	// Discriminator field for OutputRequest
 	Type string `json:"type"`
 }
 

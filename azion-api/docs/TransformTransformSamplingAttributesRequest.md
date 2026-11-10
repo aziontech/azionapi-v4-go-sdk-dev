@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | Type identifier for this endpoint (sampling) | 
+**Type** | **string** | Discriminator field for TransformRequest | 
 **Attributes** | [**TransformSamplingRequest**](TransformSamplingRequest.md) |  | 
 
 ## Methods

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **BootstrapServers** | **string** |  | 
 **KafkaTopic** | **string** |  | 
 **UseTls** | **bool** |  | 
-**Type** | **string** | Type identifier for this endpoint (kafka) | 
+**Type** | **string** | Discriminator field for Output | 
 
 ## Methods
 

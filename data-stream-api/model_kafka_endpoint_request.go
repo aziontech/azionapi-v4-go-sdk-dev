@@ -24,7 +24,7 @@ type KafkaEndpointRequest struct {
 	BootstrapServers string `json:"bootstrap_servers"`
 	KafkaTopic string `json:"kafka_topic"`
 	UseTls bool `json:"use_tls"`
-	// Type identifier for this endpoint (kafka)
+	// Discriminator field for OutputRequest
 	Type string `json:"type"`
 }
 

@@ -22,7 +22,7 @@ var _ MappedNullable = &QRadarEndpointRequest{}
 // QRadarEndpointRequest struct for QRadarEndpointRequest
 type QRadarEndpointRequest struct {
 	Url string `json:"url"`
-	// Type identifier for this endpoint (qradar)
+	// Discriminator field for OutputRequest
 	Type string `json:"type"`
 }
 

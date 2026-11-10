@@ -24,7 +24,7 @@ var _ MappedNullable = &DatadogEndpoint{}
 type DatadogEndpoint struct {
 	Url string `json:"url"`
 	ApiKey string `json:"api_key"`
-	// Type identifier for this endpoint (datadog)
+	// Discriminator field for Output
 	Type string `json:"type"`
 }
 

@@ -23,7 +23,7 @@ var _ MappedNullable = &SplunkEndpoint{}
 type SplunkEndpoint struct {
 	Url string `json:"url"`
 	ApiKey string `json:"api_key"`
-	// Type identifier for this endpoint (splunk)
+	// Discriminator field for Output
 	Type string `json:"type"`
 }
 

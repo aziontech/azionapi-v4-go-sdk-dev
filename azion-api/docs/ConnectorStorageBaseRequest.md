@@ -6,14 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Active** | Pointer to **bool** |  | [optional] 
-**Type** | **string** |  | 
 **Attributes** | [**ConnectorStorageAttributesRequest**](ConnectorStorageAttributesRequest.md) |  | 
 
 ## Methods
 
 ### NewConnectorStorageBaseRequest
 
-`func NewConnectorStorageBaseRequest(name string, type_ string, attributes ConnectorStorageAttributesRequest, ) *ConnectorStorageBaseRequest`
+`func NewConnectorStorageBaseRequest(name string, attributes ConnectorStorageAttributesRequest, ) *ConnectorStorageBaseRequest`
 
 NewConnectorStorageBaseRequest instantiates a new ConnectorStorageBaseRequest object
 This constructor will assign default values to properties that have it defined,
@@ -72,26 +71,6 @@ SetActive sets Active field to given value.
 `func (o *ConnectorStorageBaseRequest) HasActive() bool`
 
 HasActive returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *ConnectorStorageBaseRequest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *ConnectorStorageBaseRequest) GetTypeOk() (*string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *ConnectorStorageBaseRequest) SetType(v string)`
-
-SetType sets Type field to given value.
-
 
 ### GetAttributes
 
