@@ -22,7 +22,7 @@ var _ MappedNullable = &TOTPDeviceList{}
 
 // TOTPDeviceList struct for TOTPDeviceList
 type TOTPDeviceList struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	// User's full name (alphanumeric, spaces, hyphens, dots)
 	Name string `json:"name"`
 	// User's email address
@@ -30,7 +30,7 @@ type TOTPDeviceList struct {
 	// Is this device ready for use?
 	Confirmed *bool `json:"confirmed,omitempty"`
 	// The user that this device belongs to.
-	UserId int64 `json:"user_id"`
+	UserId *int64 `json:"user_id,omitempty"`
 }
 
 type _TOTPDeviceList TOTPDeviceList
@@ -39,12 +39,10 @@ type _TOTPDeviceList TOTPDeviceList
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTOTPDeviceList(id int64, name string, email string, userId int64) *TOTPDeviceList {
+func NewTOTPDeviceList(name string, email string) *TOTPDeviceList {
 	this := TOTPDeviceList{}
-	this.Id = id
 	this.Name = name
 	this.Email = email
-	this.UserId = userId
 	return &this
 }
 
@@ -56,28 +54,36 @@ func NewTOTPDeviceListWithDefaults() *TOTPDeviceList {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *TOTPDeviceList) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TOTPDeviceList) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *TOTPDeviceList) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *TOTPDeviceList) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -160,28 +166,36 @@ func (o *TOTPDeviceList) SetConfirmed(v bool) {
 	o.Confirmed = &v
 }
 
-// GetUserId returns the UserId field value
+// GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *TOTPDeviceList) GetUserId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret int64
 		return ret
 	}
-
-	return o.UserId
+	return *o.UserId
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TOTPDeviceList) GetUserIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
-	return &o.UserId, true
+	return o.UserId, true
 }
 
-// SetUserId sets field value
+// HasUserId returns a boolean if a field has been set.
+func (o *TOTPDeviceList) HasUserId() bool {
+	if o != nil && !IsNil(o.UserId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserId gets a reference to the given int64 and assigns it to the UserId field.
 func (o *TOTPDeviceList) SetUserId(v int64) {
-	o.UserId = v
+	o.UserId = &v
 }
 
 func (o TOTPDeviceList) MarshalJSON() ([]byte, error) {
@@ -194,13 +208,17 @@ func (o TOTPDeviceList) MarshalJSON() ([]byte, error) {
 
 func (o TOTPDeviceList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["email"] = o.Email
 	if !IsNil(o.Confirmed) {
 		toSerialize["confirmed"] = o.Confirmed
 	}
-	toSerialize["user_id"] = o.UserId
+	if !IsNil(o.UserId) {
+		toSerialize["user_id"] = o.UserId
+	}
 	return toSerialize, nil
 }
 
@@ -209,10 +227,8 @@ func (o *TOTPDeviceList) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
 		"name",
 		"email",
-		"user_id",
 	}
 
 	allProperties := make(map[string]interface{})

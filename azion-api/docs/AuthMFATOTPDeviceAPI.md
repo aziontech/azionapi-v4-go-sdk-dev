@@ -5,7 +5,7 @@ All URIs are relative to *https://stage-api.azion.com/v4*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateTotpDevice**](AuthMFATOTPDeviceAPI.md#CreateTotpDevice) | **Post** /account/auth/mfa/totp | Create a TOTP device
-[**DeleteTotpDevice**](AuthMFATOTPDeviceAPI.md#DeleteTotpDevice) | **Delete** /auth/mfa/totp/{device_id} | Delete a TOTP device
+[**DeleteTotpDevice**](AuthMFATOTPDeviceAPI.md#DeleteTotpDevice) | **Delete** /account/auth/mfa/totp/{device_id} | Delete a TOTP device
 [**ListTotpDevices**](AuthMFATOTPDeviceAPI.md#ListTotpDevices) | **Get** /account/auth/mfa/totp | List of TOTP devices
 
 

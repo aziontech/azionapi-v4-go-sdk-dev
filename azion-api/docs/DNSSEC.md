@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | **bool** |  | 
-**Status** | **string** | * &#x60;unconfigured&#x60; - unconfigured * &#x60;waiting&#x60; - waiting * &#x60;ready&#x60; - ready | 
-**DelegationSigner** | [**NullableDelegationSigner**](DelegationSigner.md) |  | 
+**Status** | Pointer to **string** | * &#x60;unconfigured&#x60; - unconfigured * &#x60;waiting&#x60; - waiting * &#x60;ready&#x60; - ready | [optional] 
+**DelegationSigner** | Pointer to [**NullableDelegationSigner**](DelegationSigner.md) |  | [optional] 
 
 ## Methods
 
 ### NewDNSSEC
 
-`func NewDNSSEC(enabled bool, status string, delegationSigner NullableDelegationSigner, ) *DNSSEC`
+`func NewDNSSEC(enabled bool, ) *DNSSEC`
 
 NewDNSSEC instantiates a new DNSSEC object
 This constructor will assign default values to properties that have it defined,
@@ -66,6 +66,11 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
+### HasStatus
+
+`func (o *DNSSEC) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 ### GetDelegationSigner
 
@@ -86,6 +91,11 @@ and a boolean to check if the value has been set.
 
 SetDelegationSigner sets DelegationSigner field to given value.
 
+### HasDelegationSigner
+
+`func (o *DNSSEC) HasDelegationSigner() bool`
+
+HasDelegationSigner returns a boolean if a field has been set.
 
 ### SetDelegationSignerNil
 

@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** |  | 
 **Domain** | **string** |  | 
 **Active** | **bool** |  | 
-**Nameservers** | **[]string** |  | 
-**ProductVersion** | **string** |  | 
+**Nameservers** | Pointer to **[]string** |  | [optional] 
+**ProductVersion** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewZone
 
-`func NewZone(id int64, name string, domain string, active bool, nameservers []string, productVersion string, ) *Zone`
+`func NewZone(name string, domain string, active bool, ) *Zone`
 
 NewZone instantiates a new Zone object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Zone) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -129,6 +134,11 @@ and a boolean to check if the value has been set.
 
 SetNameservers sets Nameservers field to given value.
 
+### HasNameservers
+
+`func (o *Zone) HasNameservers() bool`
+
+HasNameservers returns a boolean if a field has been set.
 
 ### GetProductVersion
 
@@ -149,6 +159,11 @@ and a boolean to check if the value has been set.
 
 SetProductVersion sets ProductVersion field to given value.
 
+### HasProductVersion
+
+`func (o *Zone) HasProductVersion() bool`
+
+HasProductVersion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
