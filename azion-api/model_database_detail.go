@@ -24,19 +24,19 @@ var _ MappedNullable = &DatabaseDetail{}
 // DatabaseDetail Detailed database representation with extended status information.
 type DatabaseDetail struct {
 	// Unique identifier for the database
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	// Name of the database
 	Name string `json:"name"`
 	// Current status of the database  * `creating` - creating * `created` - created * `deleting` - deleting
-	Status string `json:"status"`
+	Status *string `json:"status,omitempty"`
 	// Whether the database is active
 	Active *bool `json:"active,omitempty"`
 	// Last modification timestamp
-	LastModified time.Time `json:"last_modified"`
+	LastModified *time.Time `json:"last_modified,omitempty"`
 	// Last editor of the schema.
-	LastEditor NullableString `json:"last_editor"`
+	LastEditor NullableString `json:"last_editor,omitempty"`
 	// Product version
-	ProductVersion string `json:"product_version"`
+	ProductVersion *string `json:"product_version,omitempty"`
 }
 
 type _DatabaseDetail DatabaseDetail
@@ -45,14 +45,9 @@ type _DatabaseDetail DatabaseDetail
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDatabaseDetail(id int64, name string, status string, lastModified time.Time, lastEditor NullableString, productVersion string) *DatabaseDetail {
+func NewDatabaseDetail(name string) *DatabaseDetail {
 	this := DatabaseDetail{}
-	this.Id = id
 	this.Name = name
-	this.Status = status
-	this.LastModified = lastModified
-	this.LastEditor = lastEditor
-	this.ProductVersion = productVersion
 	return &this
 }
 
@@ -64,28 +59,36 @@ func NewDatabaseDetailWithDefaults() *DatabaseDetail {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *DatabaseDetail) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseDetail) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *DatabaseDetail) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *DatabaseDetail) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -112,28 +115,36 @@ func (o *DatabaseDetail) SetName(v string) {
 	o.Name = v
 }
 
-// GetStatus returns the Status field value
+// GetStatus returns the Status field value if set, zero value otherwise.
 func (o *DatabaseDetail) GetStatus() string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
-
-	return o.Status
+	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseDetail) GetStatusOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
-// SetStatus sets field value
+// HasStatus returns a boolean if a field has been set.
+func (o *DatabaseDetail) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *DatabaseDetail) SetStatus(v string) {
-	o.Status = v
+	o.Status = &v
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
@@ -168,42 +179,48 @@ func (o *DatabaseDetail) SetActive(v bool) {
 	o.Active = &v
 }
 
-// GetLastModified returns the LastModified field value
+// GetLastModified returns the LastModified field value if set, zero value otherwise.
 func (o *DatabaseDetail) GetLastModified() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.LastModified
+	return *o.LastModified
 }
 
-// GetLastModifiedOk returns a tuple with the LastModified field value
+// GetLastModifiedOk returns a tuple with the LastModified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseDetail) GetLastModifiedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastModified) {
 		return nil, false
 	}
-	return &o.LastModified, true
+	return o.LastModified, true
 }
 
-// SetLastModified sets field value
+// HasLastModified returns a boolean if a field has been set.
+func (o *DatabaseDetail) HasLastModified() bool {
+	if o != nil && !IsNil(o.LastModified) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastModified gets a reference to the given time.Time and assigns it to the LastModified field.
 func (o *DatabaseDetail) SetLastModified(v time.Time) {
-	o.LastModified = v
+	o.LastModified = &v
 }
 
-// GetLastEditor returns the LastEditor field value
-// If the value is explicit nil, the zero value for string will be returned
+// GetLastEditor returns the LastEditor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DatabaseDetail) GetLastEditor() string {
-	if o == nil || o.LastEditor.Get() == nil {
+	if o == nil || IsNil(o.LastEditor.Get()) {
 		var ret string
 		return ret
 	}
-
 	return *o.LastEditor.Get()
 }
 
-// GetLastEditorOk returns a tuple with the LastEditor field value
+// GetLastEditorOk returns a tuple with the LastEditor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DatabaseDetail) GetLastEditorOk() (*string, bool) {
@@ -213,33 +230,59 @@ func (o *DatabaseDetail) GetLastEditorOk() (*string, bool) {
 	return o.LastEditor.Get(), o.LastEditor.IsSet()
 }
 
-// SetLastEditor sets field value
+// HasLastEditor returns a boolean if a field has been set.
+func (o *DatabaseDetail) HasLastEditor() bool {
+	if o != nil && o.LastEditor.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastEditor gets a reference to the given NullableString and assigns it to the LastEditor field.
 func (o *DatabaseDetail) SetLastEditor(v string) {
 	o.LastEditor.Set(&v)
 }
+// SetLastEditorNil sets the value for LastEditor to be an explicit nil
+func (o *DatabaseDetail) SetLastEditorNil() {
+	o.LastEditor.Set(nil)
+}
 
-// GetProductVersion returns the ProductVersion field value
+// UnsetLastEditor ensures that no value is present for LastEditor, not even an explicit nil
+func (o *DatabaseDetail) UnsetLastEditor() {
+	o.LastEditor.Unset()
+}
+
+// GetProductVersion returns the ProductVersion field value if set, zero value otherwise.
 func (o *DatabaseDetail) GetProductVersion() string {
-	if o == nil {
+	if o == nil || IsNil(o.ProductVersion) {
 		var ret string
 		return ret
 	}
-
-	return o.ProductVersion
+	return *o.ProductVersion
 }
 
-// GetProductVersionOk returns a tuple with the ProductVersion field value
+// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatabaseDetail) GetProductVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProductVersion) {
 		return nil, false
 	}
-	return &o.ProductVersion, true
+	return o.ProductVersion, true
 }
 
-// SetProductVersion sets field value
+// HasProductVersion returns a boolean if a field has been set.
+func (o *DatabaseDetail) HasProductVersion() bool {
+	if o != nil && !IsNil(o.ProductVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetProductVersion gets a reference to the given string and assigns it to the ProductVersion field.
 func (o *DatabaseDetail) SetProductVersion(v string) {
-	o.ProductVersion = v
+	o.ProductVersion = &v
 }
 
 func (o DatabaseDetail) MarshalJSON() ([]byte, error) {
@@ -252,15 +295,25 @@ func (o DatabaseDetail) MarshalJSON() ([]byte, error) {
 
 func (o DatabaseDetail) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
-	toSerialize["status"] = o.Status
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
 	if !IsNil(o.Active) {
 		toSerialize["active"] = o.Active
 	}
-	toSerialize["last_modified"] = o.LastModified
-	toSerialize["last_editor"] = o.LastEditor.Get()
-	toSerialize["product_version"] = o.ProductVersion
+	if !IsNil(o.LastModified) {
+		toSerialize["last_modified"] = o.LastModified
+	}
+	if o.LastEditor.IsSet() {
+		toSerialize["last_editor"] = o.LastEditor.Get()
+	}
+	if !IsNil(o.ProductVersion) {
+		toSerialize["product_version"] = o.ProductVersion
+	}
 	return toSerialize, nil
 }
 
@@ -269,12 +322,7 @@ func (o *DatabaseDetail) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
 		"name",
-		"status",
-		"last_modified",
-		"last_editor",
-		"product_version",
 	}
 
 	allProperties := make(map[string]interface{})
