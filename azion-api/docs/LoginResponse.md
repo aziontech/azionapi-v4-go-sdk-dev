@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccessToken** | **string** | The access_token is a short-lived token (e.g., 10 minutes) used for API authentication in the Authorization: Bearer &lt;access_token&gt; header. | 
-**RefreshToken** | **string** | A long-lived JWT token used to refresh the access_token without requiring the user to authenticate again. | 
+**AccessToken** | Pointer to **string** | The access_token is a short-lived token (e.g., 10 minutes) used for API authentication in the Authorization: Bearer &lt;access_token&gt; header. | [optional] 
+**RefreshToken** | Pointer to **string** | A long-lived JWT token used to refresh the access_token without requiring the user to authenticate again. | [optional] 
 **ResponseType** | **string** | Discriminator field for LoginResponse | 
-**TwoFactorRequired** | **bool** | Specifies the type of two-factor authentication configured. Currently supports &#39;TOTP&#39; (Time-based One-Time Password). | 
-**TwoFactorType** | **string** | Indicates whether the user has an active TOTP device configured. If false, the user must register a device before using MFA authentication. | 
-**HasActiveDevice** | **bool** | Indicates whether the user already has an active TOTP device configured. If false, the user needs to set up a new device before using MFA authentication. | 
+**TwoFactorRequired** | Pointer to **bool** | Specifies the type of two-factor authentication configured. Currently supports &#39;TOTP&#39; (Time-based One-Time Password). | [optional] 
+**TwoFactorType** | Pointer to **string** | Indicates whether the user has an active TOTP device configured. If false, the user must register a device before using MFA authentication. | [optional] 
+**HasActiveDevice** | Pointer to **bool** | Indicates whether the user already has an active TOTP device configured. If false, the user needs to set up a new device before using MFA authentication. | [optional] 
 
 ## Methods
 
 ### NewLoginResponse
 
-`func NewLoginResponse(accessToken string, refreshToken string, responseType string, twoFactorRequired bool, twoFactorType string, hasActiveDevice bool, ) *LoginResponse`
+`func NewLoginResponse(responseType string, ) *LoginResponse`
 
 NewLoginResponse instantiates a new LoginResponse object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetAccessToken sets AccessToken field to given value.
 
+### HasAccessToken
+
+`func (o *LoginResponse) HasAccessToken() bool`
+
+HasAccessToken returns a boolean if a field has been set.
 
 ### GetRefreshToken
 
@@ -69,6 +74,11 @@ and a boolean to check if the value has been set.
 
 SetRefreshToken sets RefreshToken field to given value.
 
+### HasRefreshToken
+
+`func (o *LoginResponse) HasRefreshToken() bool`
+
+HasRefreshToken returns a boolean if a field has been set.
 
 ### GetResponseType
 
@@ -109,6 +119,11 @@ and a boolean to check if the value has been set.
 
 SetTwoFactorRequired sets TwoFactorRequired field to given value.
 
+### HasTwoFactorRequired
+
+`func (o *LoginResponse) HasTwoFactorRequired() bool`
+
+HasTwoFactorRequired returns a boolean if a field has been set.
 
 ### GetTwoFactorType
 
@@ -129,6 +144,11 @@ and a boolean to check if the value has been set.
 
 SetTwoFactorType sets TwoFactorType field to given value.
 
+### HasTwoFactorType
+
+`func (o *LoginResponse) HasTwoFactorType() bool`
+
+HasTwoFactorType returns a boolean if a field has been set.
 
 ### GetHasActiveDevice
 
@@ -149,6 +169,11 @@ and a boolean to check if the value has been set.
 
 SetHasActiveDevice sets HasActiveDevice field to given value.
 
+### HasHasActiveDevice
+
+`func (o *LoginResponse) HasHasActiveDevice() bool`
+
+HasHasActiveDevice returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
