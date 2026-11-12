@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccessToken** | **string** | The access_token is a short-lived token (e.g., 10 minutes) used for API authentication in the Authorization: Bearer &lt;access_token&gt; header. | 
-**RefreshToken** | **string** | A long-lived JWT token used to refresh the access_token without requiring the user to authenticate again. | 
+**AccessToken** | Pointer to **string** | The access_token is a short-lived token (e.g., 10 minutes) used for API authentication in the Authorization: Bearer &lt;access_token&gt; header. | [optional] 
+**RefreshToken** | Pointer to **string** | A long-lived JWT token used to refresh the access_token without requiring the user to authenticate again. | [optional] 
 
 ## Methods
 
 ### NewTokenPair
 
-`func NewTokenPair(accessToken string, refreshToken string, ) *TokenPair`
+`func NewTokenPair() *TokenPair`
 
 NewTokenPair instantiates a new TokenPair object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetAccessToken sets AccessToken field to given value.
 
+### HasAccessToken
+
+`func (o *TokenPair) HasAccessToken() bool`
+
+HasAccessToken returns a boolean if a field has been set.
 
 ### GetRefreshToken
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetRefreshToken sets RefreshToken field to given value.
 
+### HasRefreshToken
+
+`func (o *TokenPair) HasRefreshToken() bool`
+
+HasRefreshToken returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

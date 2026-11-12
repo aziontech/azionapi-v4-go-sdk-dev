@@ -23,13 +23,13 @@ var _ MappedNullable = &MFAToken{}
 // MFAToken Used when user has MFA enabled. Returns a temporary MFA token that must be verified with a TOTP code before receiving full access tokens.
 type MFAToken struct {
 	// The access_token is a short-lived token (e.g., 10 minutes) used for API authentication in the Authorization: Bearer <access_token> header.
-	AccessToken string `json:"access_token"`
+	AccessToken *string `json:"access_token,omitempty"`
 	// Specifies the type of two-factor authentication configured. Currently supports 'TOTP' (Time-based One-Time Password).
-	TwoFactorRequired bool `json:"two_factor_required"`
+	TwoFactorRequired *bool `json:"two_factor_required,omitempty"`
 	// Indicates whether the user has an active TOTP device configured. If false, the user must register a device before using MFA authentication.
-	TwoFactorType string `json:"two_factor_type"`
+	TwoFactorType *string `json:"two_factor_type,omitempty"`
 	// Indicates whether the user already has an active TOTP device configured. If false, the user needs to set up a new device before using MFA authentication.
-	HasActiveDevice bool `json:"has_active_device"`
+	HasActiveDevice *bool `json:"has_active_device,omitempty"`
 	// Discriminator field for LoginResponse
 	ResponseType string `json:"response_type"`
 }
@@ -40,12 +40,8 @@ type _MFAToken MFAToken
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMFAToken(accessToken string, twoFactorRequired bool, twoFactorType string, hasActiveDevice bool, responseType string) *MFAToken {
+func NewMFAToken(responseType string) *MFAToken {
 	this := MFAToken{}
-	this.AccessToken = accessToken
-	this.TwoFactorRequired = twoFactorRequired
-	this.TwoFactorType = twoFactorType
-	this.HasActiveDevice = hasActiveDevice
 	this.ResponseType = responseType
 	return &this
 }
@@ -58,100 +54,132 @@ func NewMFATokenWithDefaults() *MFAToken {
 	return &this
 }
 
-// GetAccessToken returns the AccessToken field value
+// GetAccessToken returns the AccessToken field value if set, zero value otherwise.
 func (o *MFAToken) GetAccessToken() string {
-	if o == nil {
+	if o == nil || IsNil(o.AccessToken) {
 		var ret string
 		return ret
 	}
-
-	return o.AccessToken
+	return *o.AccessToken
 }
 
-// GetAccessTokenOk returns a tuple with the AccessToken field value
+// GetAccessTokenOk returns a tuple with the AccessToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MFAToken) GetAccessTokenOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AccessToken) {
 		return nil, false
 	}
-	return &o.AccessToken, true
+	return o.AccessToken, true
 }
 
-// SetAccessToken sets field value
+// HasAccessToken returns a boolean if a field has been set.
+func (o *MFAToken) HasAccessToken() bool {
+	if o != nil && !IsNil(o.AccessToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccessToken gets a reference to the given string and assigns it to the AccessToken field.
 func (o *MFAToken) SetAccessToken(v string) {
-	o.AccessToken = v
+	o.AccessToken = &v
 }
 
-// GetTwoFactorRequired returns the TwoFactorRequired field value
+// GetTwoFactorRequired returns the TwoFactorRequired field value if set, zero value otherwise.
 func (o *MFAToken) GetTwoFactorRequired() bool {
-	if o == nil {
+	if o == nil || IsNil(o.TwoFactorRequired) {
 		var ret bool
 		return ret
 	}
-
-	return o.TwoFactorRequired
+	return *o.TwoFactorRequired
 }
 
-// GetTwoFactorRequiredOk returns a tuple with the TwoFactorRequired field value
+// GetTwoFactorRequiredOk returns a tuple with the TwoFactorRequired field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MFAToken) GetTwoFactorRequiredOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TwoFactorRequired) {
 		return nil, false
 	}
-	return &o.TwoFactorRequired, true
+	return o.TwoFactorRequired, true
 }
 
-// SetTwoFactorRequired sets field value
+// HasTwoFactorRequired returns a boolean if a field has been set.
+func (o *MFAToken) HasTwoFactorRequired() bool {
+	if o != nil && !IsNil(o.TwoFactorRequired) {
+		return true
+	}
+
+	return false
+}
+
+// SetTwoFactorRequired gets a reference to the given bool and assigns it to the TwoFactorRequired field.
 func (o *MFAToken) SetTwoFactorRequired(v bool) {
-	o.TwoFactorRequired = v
+	o.TwoFactorRequired = &v
 }
 
-// GetTwoFactorType returns the TwoFactorType field value
+// GetTwoFactorType returns the TwoFactorType field value if set, zero value otherwise.
 func (o *MFAToken) GetTwoFactorType() string {
-	if o == nil {
+	if o == nil || IsNil(o.TwoFactorType) {
 		var ret string
 		return ret
 	}
-
-	return o.TwoFactorType
+	return *o.TwoFactorType
 }
 
-// GetTwoFactorTypeOk returns a tuple with the TwoFactorType field value
+// GetTwoFactorTypeOk returns a tuple with the TwoFactorType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MFAToken) GetTwoFactorTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TwoFactorType) {
 		return nil, false
 	}
-	return &o.TwoFactorType, true
+	return o.TwoFactorType, true
 }
 
-// SetTwoFactorType sets field value
+// HasTwoFactorType returns a boolean if a field has been set.
+func (o *MFAToken) HasTwoFactorType() bool {
+	if o != nil && !IsNil(o.TwoFactorType) {
+		return true
+	}
+
+	return false
+}
+
+// SetTwoFactorType gets a reference to the given string and assigns it to the TwoFactorType field.
 func (o *MFAToken) SetTwoFactorType(v string) {
-	o.TwoFactorType = v
+	o.TwoFactorType = &v
 }
 
-// GetHasActiveDevice returns the HasActiveDevice field value
+// GetHasActiveDevice returns the HasActiveDevice field value if set, zero value otherwise.
 func (o *MFAToken) GetHasActiveDevice() bool {
-	if o == nil {
+	if o == nil || IsNil(o.HasActiveDevice) {
 		var ret bool
 		return ret
 	}
-
-	return o.HasActiveDevice
+	return *o.HasActiveDevice
 }
 
-// GetHasActiveDeviceOk returns a tuple with the HasActiveDevice field value
+// GetHasActiveDeviceOk returns a tuple with the HasActiveDevice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MFAToken) GetHasActiveDeviceOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.HasActiveDevice) {
 		return nil, false
 	}
-	return &o.HasActiveDevice, true
+	return o.HasActiveDevice, true
 }
 
-// SetHasActiveDevice sets field value
+// HasHasActiveDevice returns a boolean if a field has been set.
+func (o *MFAToken) HasHasActiveDevice() bool {
+	if o != nil && !IsNil(o.HasActiveDevice) {
+		return true
+	}
+
+	return false
+}
+
+// SetHasActiveDevice gets a reference to the given bool and assigns it to the HasActiveDevice field.
 func (o *MFAToken) SetHasActiveDevice(v bool) {
-	o.HasActiveDevice = v
+	o.HasActiveDevice = &v
 }
 
 // GetResponseType returns the ResponseType field value
@@ -188,10 +216,18 @@ func (o MFAToken) MarshalJSON() ([]byte, error) {
 
 func (o MFAToken) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["access_token"] = o.AccessToken
-	toSerialize["two_factor_required"] = o.TwoFactorRequired
-	toSerialize["two_factor_type"] = o.TwoFactorType
-	toSerialize["has_active_device"] = o.HasActiveDevice
+	if !IsNil(o.AccessToken) {
+		toSerialize["access_token"] = o.AccessToken
+	}
+	if !IsNil(o.TwoFactorRequired) {
+		toSerialize["two_factor_required"] = o.TwoFactorRequired
+	}
+	if !IsNil(o.TwoFactorType) {
+		toSerialize["two_factor_type"] = o.TwoFactorType
+	}
+	if !IsNil(o.HasActiveDevice) {
+		toSerialize["has_active_device"] = o.HasActiveDevice
+	}
 	toSerialize["response_type"] = o.ResponseType
 	return toSerialize, nil
 }
@@ -201,10 +237,6 @@ func (o *MFAToken) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"access_token",
-		"two_factor_required",
-		"two_factor_type",
-		"has_active_device",
 		"response_type",
 	}
 

@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Name** | **string** | User&#39;s full name (alphanumeric, spaces, hyphens, dots) | 
 **Email** | **string** | User&#39;s email address | 
 **Confirmed** | Pointer to **bool** | Is this device ready for use? | [optional] 
-**UserId** | **int64** | The user that this device belongs to. | 
+**UserId** | Pointer to **int64** | The user that this device belongs to. | [optional] 
 
 ## Methods
 
 ### NewTOTPDeviceList
 
-`func NewTOTPDeviceList(id int64, name string, email string, userId int64, ) *TOTPDeviceList`
+`func NewTOTPDeviceList(name string, email string, ) *TOTPDeviceList`
 
 NewTOTPDeviceList instantiates a new TOTPDeviceList object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *TOTPDeviceList) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -133,6 +138,11 @@ and a boolean to check if the value has been set.
 
 SetUserId sets UserId field to given value.
 
+### HasUserId
+
+`func (o *TOTPDeviceList) HasUserId() bool`
+
+HasUserId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

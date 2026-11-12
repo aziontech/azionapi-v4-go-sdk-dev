@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccessToken** | **string** | The access_token is a short-lived token (e.g., 10 minutes) used for API authentication in the Authorization: Bearer &lt;access_token&gt; header. | 
-**TwoFactorRequired** | **bool** | Specifies the type of two-factor authentication configured. Currently supports &#39;TOTP&#39; (Time-based One-Time Password). | 
-**TwoFactorType** | **string** | Indicates whether the user has an active TOTP device configured. If false, the user must register a device before using MFA authentication. | 
-**HasActiveDevice** | **bool** | Indicates whether the user already has an active TOTP device configured. If false, the user needs to set up a new device before using MFA authentication. | 
+**AccessToken** | Pointer to **string** | The access_token is a short-lived token (e.g., 10 minutes) used for API authentication in the Authorization: Bearer &lt;access_token&gt; header. | [optional] 
+**TwoFactorRequired** | Pointer to **bool** | Specifies the type of two-factor authentication configured. Currently supports &#39;TOTP&#39; (Time-based One-Time Password). | [optional] 
+**TwoFactorType** | Pointer to **string** | Indicates whether the user has an active TOTP device configured. If false, the user must register a device before using MFA authentication. | [optional] 
+**HasActiveDevice** | Pointer to **bool** | Indicates whether the user already has an active TOTP device configured. If false, the user needs to set up a new device before using MFA authentication. | [optional] 
 **ResponseType** | **string** | Discriminator field for LoginResponse | 
 
 ## Methods
 
 ### NewMFAToken
 
-`func NewMFAToken(accessToken string, twoFactorRequired bool, twoFactorType string, hasActiveDevice bool, responseType string, ) *MFAToken`
+`func NewMFAToken(responseType string, ) *MFAToken`
 
 NewMFAToken instantiates a new MFAToken object
 This constructor will assign default values to properties that have it defined,
@@ -48,6 +48,11 @@ and a boolean to check if the value has been set.
 
 SetAccessToken sets AccessToken field to given value.
 
+### HasAccessToken
+
+`func (o *MFAToken) HasAccessToken() bool`
+
+HasAccessToken returns a boolean if a field has been set.
 
 ### GetTwoFactorRequired
 
@@ -68,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetTwoFactorRequired sets TwoFactorRequired field to given value.
 
+### HasTwoFactorRequired
+
+`func (o *MFAToken) HasTwoFactorRequired() bool`
+
+HasTwoFactorRequired returns a boolean if a field has been set.
 
 ### GetTwoFactorType
 
@@ -88,6 +98,11 @@ and a boolean to check if the value has been set.
 
 SetTwoFactorType sets TwoFactorType field to given value.
 
+### HasTwoFactorType
+
+`func (o *MFAToken) HasTwoFactorType() bool`
+
+HasTwoFactorType returns a boolean if a field has been set.
 
 ### GetHasActiveDevice
 
@@ -108,6 +123,11 @@ and a boolean to check if the value has been set.
 
 SetHasActiveDevice sets HasActiveDevice field to given value.
 
+### HasHasActiveDevice
+
+`func (o *MFAToken) HasHasActiveDevice() bool`
+
+HasHasActiveDevice returns a boolean if a field has been set.
 
 ### GetResponseType
 
