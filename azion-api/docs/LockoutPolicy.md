@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Active** | **bool** |  | 
 **MaxAttempts** | **int64** | Maximum number of failed login attempts before lockout | 
 **BlockingPeriod** | **int64** | Blocking period in minutes | 
-**CreatedAt** | **time.Time** |  | 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
 ### NewLockoutPolicy
 
-`func NewLockoutPolicy(active bool, maxAttempts int64, blockingPeriod int64, createdAt time.Time, ) *LockoutPolicy`
+`func NewLockoutPolicy(active bool, maxAttempts int64, blockingPeriod int64, ) *LockoutPolicy`
 
 NewLockoutPolicy instantiates a new LockoutPolicy object
 This constructor will assign default values to properties that have it defined,
@@ -107,6 +107,11 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+### HasCreatedAt
+
+`func (o *LockoutPolicy) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

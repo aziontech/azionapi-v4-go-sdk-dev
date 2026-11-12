@@ -28,7 +28,7 @@ type LockoutPolicy struct {
 	MaxAttempts int64 `json:"max_attempts"`
 	// Blocking period in minutes
 	BlockingPeriod int64 `json:"blocking_period"`
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
 }
 
 type _LockoutPolicy LockoutPolicy
@@ -37,12 +37,11 @@ type _LockoutPolicy LockoutPolicy
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLockoutPolicy(active bool, maxAttempts int64, blockingPeriod int64, createdAt time.Time) *LockoutPolicy {
+func NewLockoutPolicy(active bool, maxAttempts int64, blockingPeriod int64) *LockoutPolicy {
 	this := LockoutPolicy{}
 	this.Active = active
 	this.MaxAttempts = maxAttempts
 	this.BlockingPeriod = blockingPeriod
-	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -126,28 +125,36 @@ func (o *LockoutPolicy) SetBlockingPeriod(v int64) {
 	o.BlockingPeriod = v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *LockoutPolicy) GetCreatedAt() time.Time {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LockoutPolicy) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *LockoutPolicy) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *LockoutPolicy) SetCreatedAt(v time.Time) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
 func (o LockoutPolicy) MarshalJSON() ([]byte, error) {
@@ -163,7 +170,9 @@ func (o LockoutPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize["active"] = o.Active
 	toSerialize["max_attempts"] = o.MaxAttempts
 	toSerialize["blocking_period"] = o.BlockingPeriod
-	toSerialize["created_at"] = o.CreatedAt
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
 	return toSerialize, nil
 }
 
@@ -175,7 +184,6 @@ func (o *LockoutPolicy) UnmarshalJSON(data []byte) (err error) {
 		"active",
 		"max_attempts",
 		"blocking_period",
-		"created_at",
 	}
 
 	allProperties := make(map[string]interface{})

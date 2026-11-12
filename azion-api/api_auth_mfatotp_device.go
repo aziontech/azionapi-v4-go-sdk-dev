@@ -260,7 +260,7 @@ func (a *AuthMFATOTPDeviceAPIService) DeleteTotpDeviceExecute(r ApiDeleteTotpDev
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/auth/mfa/totp/{device_id}"
+	localVarPath := localBasePath + "/account/auth/mfa/totp/{device_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"device_id"+"}", url.PathEscape(parameterValueToString(r.deviceId, "deviceId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
