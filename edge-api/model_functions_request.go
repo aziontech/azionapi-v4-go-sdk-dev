@@ -19,7 +19,7 @@ import (
 // checks if the FunctionsRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FunctionsRequest{}
 
-// FunctionsRequest Serializer mixin that enforces immutable-after-build fields.  Fields listed in IMMUTABLE_AFTER_BUILD_FIELDS_MAP cannot be changed after any version of the resource has been built (state >= QUEUED). Before the first build, changes are allowed and the base-row is synced.  Subclasses must set:     versioning_resource_type = \"function\"  # or other resource type     versioning_db_alias = \"azionmanager\"   # database alias for the resource
+// FunctionsRequest struct for FunctionsRequest
 type FunctionsRequest struct {
 	Name string `json:"name"`
 	Active *bool `json:"active,omitempty"`
