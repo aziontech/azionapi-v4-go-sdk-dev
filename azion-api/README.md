@@ -163,7 +163,7 @@ Class | Method | HTTP request | Description
 *AuthLoginAPI* | [**AuthUserLoginMethod**](docs/AuthLoginAPI.md#authuserloginmethod) | **Get** /account/auth/login/method | Check User Authentication Method
 *AuthLoginAPI* | [**TotpVerify**](docs/AuthLoginAPI.md#totpverify) | **Post** /account/auth/mfa/totp/verify | Retrieve user JWT tokens by MFA auth
 *AuthMFATOTPDeviceAPI* | [**CreateTotpDevice**](docs/AuthMFATOTPDeviceAPI.md#createtotpdevice) | **Post** /account/auth/mfa/totp | Create a TOTP device
-*AuthMFATOTPDeviceAPI* | [**DeleteTotpDevice**](docs/AuthMFATOTPDeviceAPI.md#deletetotpdevice) | **Delete** /auth/mfa/totp/{device_id} | Delete a TOTP device
+*AuthMFATOTPDeviceAPI* | [**DeleteTotpDevice**](docs/AuthMFATOTPDeviceAPI.md#deletetotpdevice) | **Delete** /account/auth/mfa/totp/{device_id} | Delete a TOTP device
 *AuthMFATOTPDeviceAPI* | [**ListTotpDevices**](docs/AuthMFATOTPDeviceAPI.md#listtotpdevices) | **Get** /account/auth/mfa/totp | List of TOTP devices
 *AuthRefreshAccessTokenAPI* | [**AuthUserRefreshToken**](docs/AuthRefreshAccessTokenAPI.md#authuserrefreshtoken) | **Post** /account/auth/token | Refresh user JWT access token
 *AuthRevokeAPI* | [**AuthUserRevoke**](docs/AuthRevokeAPI.md#authuserrevoke) | **Post** /account/auth/revoke | Revoke user JWT refresh token
@@ -776,9 +776,29 @@ Class | Method | HTTP request | Description
  - [OriginShieldModule](docs/OriginShieldModule.md)
  - [OriginShieldModuleRequest](docs/OriginShieldModuleRequest.md)
  - [Output](docs/Output.md)
- - [OutputBase](docs/OutputBase.md)
+ - [OutputAWSKinesisFirehoseEndpoint](docs/OutputAWSKinesisFirehoseEndpoint.md)
+ - [OutputAWSKinesisFirehoseEndpointRequest](docs/OutputAWSKinesisFirehoseEndpointRequest.md)
+ - [OutputAzureBlobStorageEndpoint](docs/OutputAzureBlobStorageEndpoint.md)
+ - [OutputAzureBlobStorageEndpointRequest](docs/OutputAzureBlobStorageEndpointRequest.md)
+ - [OutputAzureMonitorEndpoint](docs/OutputAzureMonitorEndpoint.md)
+ - [OutputAzureMonitorEndpointRequest](docs/OutputAzureMonitorEndpointRequest.md)
+ - [OutputBigQueryEndpoint](docs/OutputBigQueryEndpoint.md)
+ - [OutputBigQueryEndpointRequest](docs/OutputBigQueryEndpointRequest.md)
+ - [OutputDatadogEndpoint](docs/OutputDatadogEndpoint.md)
+ - [OutputDatadogEndpointRequest](docs/OutputDatadogEndpointRequest.md)
+ - [OutputElasticsearchEndpoint](docs/OutputElasticsearchEndpoint.md)
+ - [OutputElasticsearchEndpointRequest](docs/OutputElasticsearchEndpointRequest.md)
+ - [OutputHttpPostEndpoint](docs/OutputHttpPostEndpoint.md)
+ - [OutputHttpPostEndpointRequest](docs/OutputHttpPostEndpointRequest.md)
+ - [OutputKafkaEndpoint](docs/OutputKafkaEndpoint.md)
+ - [OutputKafkaEndpointRequest](docs/OutputKafkaEndpointRequest.md)
+ - [OutputQRadarEndpoint](docs/OutputQRadarEndpoint.md)
+ - [OutputQRadarEndpointRequest](docs/OutputQRadarEndpointRequest.md)
  - [OutputRequest](docs/OutputRequest.md)
- - [OutputRequestBase](docs/OutputRequestBase.md)
+ - [OutputS3Endpoint](docs/OutputS3Endpoint.md)
+ - [OutputS3EndpointRequest](docs/OutputS3EndpointRequest.md)
+ - [OutputSplunkEndpoint](docs/OutputSplunkEndpoint.md)
+ - [OutputSplunkEndpointRequest](docs/OutputSplunkEndpointRequest.md)
  - [PageBase](docs/PageBase.md)
  - [PageConnector](docs/PageConnector.md)
  - [PageConnectorAttributes](docs/PageConnectorAttributes.md)

@@ -24,8 +24,6 @@ type KafkaEndpoint struct {
 	BootstrapServers string `json:"bootstrap_servers"`
 	KafkaTopic string `json:"kafka_topic"`
 	UseTls bool `json:"use_tls"`
-	// Discriminator field for Output
-	Type string `json:"type"`
 }
 
 type _KafkaEndpoint KafkaEndpoint
@@ -34,12 +32,11 @@ type _KafkaEndpoint KafkaEndpoint
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKafkaEndpoint(bootstrapServers string, kafkaTopic string, useTls bool, type_ string) *KafkaEndpoint {
+func NewKafkaEndpoint(bootstrapServers string, kafkaTopic string, useTls bool) *KafkaEndpoint {
 	this := KafkaEndpoint{}
 	this.BootstrapServers = bootstrapServers
 	this.KafkaTopic = kafkaTopic
 	this.UseTls = useTls
-	this.Type = type_
 	return &this
 }
 
@@ -123,30 +120,6 @@ func (o *KafkaEndpoint) SetUseTls(v bool) {
 	o.UseTls = v
 }
 
-// GetType returns the Type field value
-func (o *KafkaEndpoint) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *KafkaEndpoint) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *KafkaEndpoint) SetType(v string) {
-	o.Type = v
-}
-
 func (o KafkaEndpoint) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -160,7 +133,6 @@ func (o KafkaEndpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize["bootstrap_servers"] = o.BootstrapServers
 	toSerialize["kafka_topic"] = o.KafkaTopic
 	toSerialize["use_tls"] = o.UseTls
-	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -172,7 +144,6 @@ func (o *KafkaEndpoint) UnmarshalJSON(data []byte) (err error) {
 		"bootstrap_servers",
 		"kafka_topic",
 		"use_tls",
-		"type",
 	}
 
 	allProperties := make(map[string]interface{})

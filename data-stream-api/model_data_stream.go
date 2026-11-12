@@ -31,7 +31,7 @@ type DataStream struct {
 	Active *bool `json:"active,omitempty"`
 	Inputs []InputInputDataSourceAttributes `json:"inputs"`
 	Transform []Transform `json:"transform"`
-	Outputs []OutputBase `json:"outputs"`
+	Outputs []Output `json:"outputs"`
 }
 
 type _DataStream DataStream
@@ -40,7 +40,7 @@ type _DataStream DataStream
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDataStream(name string, inputs []InputInputDataSourceAttributes, transform []Transform, outputs []OutputBase) *DataStream {
+func NewDataStream(name string, inputs []InputInputDataSourceAttributes, transform []Transform, outputs []Output) *DataStream {
 	this := DataStream{}
 	this.Name = name
 	this.Inputs = inputs
@@ -322,9 +322,9 @@ func (o *DataStream) SetTransform(v []Transform) {
 }
 
 // GetOutputs returns the Outputs field value
-func (o *DataStream) GetOutputs() []OutputBase {
+func (o *DataStream) GetOutputs() []Output {
 	if o == nil {
-		var ret []OutputBase
+		var ret []Output
 		return ret
 	}
 
@@ -333,7 +333,7 @@ func (o *DataStream) GetOutputs() []OutputBase {
 
 // GetOutputsOk returns a tuple with the Outputs field value
 // and a boolean to check if the value has been set.
-func (o *DataStream) GetOutputsOk() ([]OutputBase, bool) {
+func (o *DataStream) GetOutputsOk() ([]Output, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -341,7 +341,7 @@ func (o *DataStream) GetOutputsOk() ([]OutputBase, bool) {
 }
 
 // SetOutputs sets field value
-func (o *DataStream) SetOutputs(v []OutputBase) {
+func (o *DataStream) SetOutputs(v []Output) {
 	o.Outputs = v
 }
 

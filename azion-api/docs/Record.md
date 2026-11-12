@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int64** |  | 
+**Id** | Pointer to **int64** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Name** | **string** |  | 
 **Ttl** | Pointer to **int64** |  | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewRecord
 
-`func NewRecord(id int64, name string, type_ string, rdata []string, ) *Record`
+`func NewRecord(name string, type_ string, rdata []string, ) *Record`
 
 NewRecord instantiates a new Record object
 This constructor will assign default values to properties that have it defined,
@@ -51,6 +51,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Record) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetDescription
 

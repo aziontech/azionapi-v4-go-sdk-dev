@@ -23,8 +23,6 @@ var _ MappedNullable = &DatadogEndpoint{}
 type DatadogEndpoint struct {
 	Url string `json:"url"`
 	ApiKey string `json:"api_key"`
-	// Discriminator field for Output
-	Type string `json:"type"`
 }
 
 type _DatadogEndpoint DatadogEndpoint
@@ -33,11 +31,10 @@ type _DatadogEndpoint DatadogEndpoint
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDatadogEndpoint(url string, apiKey string, type_ string) *DatadogEndpoint {
+func NewDatadogEndpoint(url string, apiKey string) *DatadogEndpoint {
 	this := DatadogEndpoint{}
 	this.Url = url
 	this.ApiKey = apiKey
-	this.Type = type_
 	return &this
 }
 
@@ -97,30 +94,6 @@ func (o *DatadogEndpoint) SetApiKey(v string) {
 	o.ApiKey = v
 }
 
-// GetType returns the Type field value
-func (o *DatadogEndpoint) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *DatadogEndpoint) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *DatadogEndpoint) SetType(v string) {
-	o.Type = v
-}
-
 func (o DatadogEndpoint) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -133,7 +106,6 @@ func (o DatadogEndpoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["url"] = o.Url
 	toSerialize["api_key"] = o.ApiKey
-	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -144,7 +116,6 @@ func (o *DatadogEndpoint) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"url",
 		"api_key",
-		"type",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | **string** |  | 
+**Url** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewTOTPDevice
 
-`func NewTOTPDevice(url string, ) *TOTPDevice`
+`func NewTOTPDevice() *TOTPDevice`
 
 NewTOTPDevice instantiates a new TOTPDevice object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +44,11 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
+### HasUrl
+
+`func (o *TOTPDevice) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
