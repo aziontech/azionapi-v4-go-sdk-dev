@@ -21,7 +21,7 @@ var _ MappedNullable = &Record{}
 
 // Record struct for Record
 type Record struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Name string `json:"name"`
 	Ttl *int64 `json:"ttl,omitempty"`
@@ -39,9 +39,8 @@ type _Record Record
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecord(id int64, name string, type_ string, rdata []string) *Record {
+func NewRecord(name string, type_ string, rdata []string) *Record {
 	this := Record{}
-	this.Id = id
 	this.Name = name
 	this.Type = type_
 	this.Rdata = rdata
@@ -56,28 +55,36 @@ func NewRecordWithDefaults() *Record {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *Record) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Record) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *Record) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *Record) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -290,7 +297,9 @@ func (o Record) MarshalJSON() ([]byte, error) {
 
 func (o Record) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -314,7 +323,6 @@ func (o *Record) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
 		"name",
 		"type",
 		"rdata",

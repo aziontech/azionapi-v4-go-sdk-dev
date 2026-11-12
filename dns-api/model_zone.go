@@ -21,12 +21,12 @@ var _ MappedNullable = &Zone{}
 
 // Zone struct for Zone
 type Zone struct {
-	Id int64 `json:"id"`
+	Id *int64 `json:"id,omitempty"`
 	Name string `json:"name"`
 	Domain string `json:"domain"`
 	Active bool `json:"active"`
-	Nameservers []string `json:"nameservers"`
-	ProductVersion string `json:"product_version"`
+	Nameservers []string `json:"nameservers,omitempty"`
+	ProductVersion *string `json:"product_version,omitempty"`
 }
 
 type _Zone Zone
@@ -35,14 +35,11 @@ type _Zone Zone
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewZone(id int64, name string, domain string, active bool, nameservers []string, productVersion string) *Zone {
+func NewZone(name string, domain string, active bool) *Zone {
 	this := Zone{}
-	this.Id = id
 	this.Name = name
 	this.Domain = domain
 	this.Active = active
-	this.Nameservers = nameservers
-	this.ProductVersion = productVersion
 	return &this
 }
 
@@ -54,28 +51,36 @@ func NewZoneWithDefaults() *Zone {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *Zone) GetId() int64 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int64
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Zone) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *Zone) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int64 and assigns it to the Id field.
 func (o *Zone) SetId(v int64) {
-	o.Id = v
+	o.Id = &v
 }
 
 // GetName returns the Name field value
@@ -150,52 +155,68 @@ func (o *Zone) SetActive(v bool) {
 	o.Active = v
 }
 
-// GetNameservers returns the Nameservers field value
+// GetNameservers returns the Nameservers field value if set, zero value otherwise.
 func (o *Zone) GetNameservers() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Nameservers) {
 		var ret []string
 		return ret
 	}
-
 	return o.Nameservers
 }
 
-// GetNameserversOk returns a tuple with the Nameservers field value
+// GetNameserversOk returns a tuple with the Nameservers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Zone) GetNameserversOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Nameservers) {
 		return nil, false
 	}
 	return o.Nameservers, true
 }
 
-// SetNameservers sets field value
+// HasNameservers returns a boolean if a field has been set.
+func (o *Zone) HasNameservers() bool {
+	if o != nil && !IsNil(o.Nameservers) {
+		return true
+	}
+
+	return false
+}
+
+// SetNameservers gets a reference to the given []string and assigns it to the Nameservers field.
 func (o *Zone) SetNameservers(v []string) {
 	o.Nameservers = v
 }
 
-// GetProductVersion returns the ProductVersion field value
+// GetProductVersion returns the ProductVersion field value if set, zero value otherwise.
 func (o *Zone) GetProductVersion() string {
-	if o == nil {
+	if o == nil || IsNil(o.ProductVersion) {
 		var ret string
 		return ret
 	}
-
-	return o.ProductVersion
+	return *o.ProductVersion
 }
 
-// GetProductVersionOk returns a tuple with the ProductVersion field value
+// GetProductVersionOk returns a tuple with the ProductVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Zone) GetProductVersionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ProductVersion) {
 		return nil, false
 	}
-	return &o.ProductVersion, true
+	return o.ProductVersion, true
 }
 
-// SetProductVersion sets field value
+// HasProductVersion returns a boolean if a field has been set.
+func (o *Zone) HasProductVersion() bool {
+	if o != nil && !IsNil(o.ProductVersion) {
+		return true
+	}
+
+	return false
+}
+
+// SetProductVersion gets a reference to the given string and assigns it to the ProductVersion field.
 func (o *Zone) SetProductVersion(v string) {
-	o.ProductVersion = v
+	o.ProductVersion = &v
 }
 
 func (o Zone) MarshalJSON() ([]byte, error) {
@@ -208,12 +229,18 @@ func (o Zone) MarshalJSON() ([]byte, error) {
 
 func (o Zone) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["name"] = o.Name
 	toSerialize["domain"] = o.Domain
 	toSerialize["active"] = o.Active
-	toSerialize["nameservers"] = o.Nameservers
-	toSerialize["product_version"] = o.ProductVersion
+	if !IsNil(o.Nameservers) {
+		toSerialize["nameservers"] = o.Nameservers
+	}
+	if !IsNil(o.ProductVersion) {
+		toSerialize["product_version"] = o.ProductVersion
+	}
 	return toSerialize, nil
 }
 
@@ -222,12 +249,9 @@ func (o *Zone) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"id",
 		"name",
 		"domain",
 		"active",
-		"nameservers",
-		"product_version",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -23,8 +23,8 @@ var _ MappedNullable = &DNSSEC{}
 type DNSSEC struct {
 	Enabled bool `json:"enabled"`
 	// * `unconfigured` - unconfigured * `waiting` - waiting * `ready` - ready
-	Status string `json:"status"`
-	DelegationSigner NullableDelegationSigner `json:"delegation_signer"`
+	Status *string `json:"status,omitempty"`
+	DelegationSigner NullableDelegationSigner `json:"delegation_signer,omitempty"`
 }
 
 type _DNSSEC DNSSEC
@@ -33,11 +33,9 @@ type _DNSSEC DNSSEC
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDNSSEC(enabled bool, status string, delegationSigner NullableDelegationSigner) *DNSSEC {
+func NewDNSSEC(enabled bool) *DNSSEC {
 	this := DNSSEC{}
 	this.Enabled = enabled
-	this.Status = status
-	this.DelegationSigner = delegationSigner
 	return &this
 }
 
@@ -73,42 +71,48 @@ func (o *DNSSEC) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
-// GetStatus returns the Status field value
+// GetStatus returns the Status field value if set, zero value otherwise.
 func (o *DNSSEC) GetStatus() string {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
-
-	return o.Status
+	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DNSSEC) GetStatusOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
-// SetStatus sets field value
+// HasStatus returns a boolean if a field has been set.
+func (o *DNSSEC) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *DNSSEC) SetStatus(v string) {
-	o.Status = v
+	o.Status = &v
 }
 
-// GetDelegationSigner returns the DelegationSigner field value
-// If the value is explicit nil, the zero value for DelegationSigner will be returned
+// GetDelegationSigner returns the DelegationSigner field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DNSSEC) GetDelegationSigner() DelegationSigner {
-	if o == nil || o.DelegationSigner.Get() == nil {
+	if o == nil || IsNil(o.DelegationSigner.Get()) {
 		var ret DelegationSigner
 		return ret
 	}
-
 	return *o.DelegationSigner.Get()
 }
 
-// GetDelegationSignerOk returns a tuple with the DelegationSigner field value
+// GetDelegationSignerOk returns a tuple with the DelegationSigner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DNSSEC) GetDelegationSignerOk() (*DelegationSigner, bool) {
@@ -118,9 +122,27 @@ func (o *DNSSEC) GetDelegationSignerOk() (*DelegationSigner, bool) {
 	return o.DelegationSigner.Get(), o.DelegationSigner.IsSet()
 }
 
-// SetDelegationSigner sets field value
+// HasDelegationSigner returns a boolean if a field has been set.
+func (o *DNSSEC) HasDelegationSigner() bool {
+	if o != nil && o.DelegationSigner.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDelegationSigner gets a reference to the given NullableDelegationSigner and assigns it to the DelegationSigner field.
 func (o *DNSSEC) SetDelegationSigner(v DelegationSigner) {
 	o.DelegationSigner.Set(&v)
+}
+// SetDelegationSignerNil sets the value for DelegationSigner to be an explicit nil
+func (o *DNSSEC) SetDelegationSignerNil() {
+	o.DelegationSigner.Set(nil)
+}
+
+// UnsetDelegationSigner ensures that no value is present for DelegationSigner, not even an explicit nil
+func (o *DNSSEC) UnsetDelegationSigner() {
+	o.DelegationSigner.Unset()
 }
 
 func (o DNSSEC) MarshalJSON() ([]byte, error) {
@@ -134,8 +156,12 @@ func (o DNSSEC) MarshalJSON() ([]byte, error) {
 func (o DNSSEC) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["enabled"] = o.Enabled
-	toSerialize["status"] = o.Status
-	toSerialize["delegation_signer"] = o.DelegationSigner.Get()
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if o.DelegationSigner.IsSet() {
+		toSerialize["delegation_signer"] = o.DelegationSigner.Get()
+	}
 	return toSerialize, nil
 }
 
@@ -145,8 +171,6 @@ func (o *DNSSEC) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"enabled",
-		"status",
-		"delegation_signer",
 	}
 
 	allProperties := make(map[string]interface{})
