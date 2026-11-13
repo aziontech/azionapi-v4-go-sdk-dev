@@ -36,21 +36,6 @@ func Test_azionapi_FirewallsRulesEngineAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test FirewallsRulesEngineAPIService CreateFirewallRule2", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var firewallId int64
-		var versionId string
-
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.CreateFirewallRule2(context.Background(), firewallId, versionId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test FirewallsRulesEngineAPIService DeleteFirewallRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -59,22 +44,6 @@ func Test_azionapi_FirewallsRulesEngineAPIService(t *testing.T) {
 		var requestRuleId int64
 
 		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.DeleteFirewallRule(context.Background(), firewallId, requestRuleId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test FirewallsRulesEngineAPIService DeleteFirewallRule2", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var firewallId int64
-		var requestRuleId int64
-		var versionId string
-
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.DeleteFirewallRule2(context.Background(), firewallId, requestRuleId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -96,21 +65,6 @@ func Test_azionapi_FirewallsRulesEngineAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test FirewallsRulesEngineAPIService ListFirewallRules2", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var firewallId int64
-		var versionId string
-
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.ListFirewallRules2(context.Background(), firewallId, versionId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test FirewallsRulesEngineAPIService OrderFirewallRules", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -118,21 +72,6 @@ func Test_azionapi_FirewallsRulesEngineAPIService(t *testing.T) {
 		var firewallId int64
 
 		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.OrderFirewallRules(context.Background(), firewallId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test FirewallsRulesEngineAPIService OrderFirewallRules2", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var firewallId int64
-		var versionId string
-
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.OrderFirewallRules2(context.Background(), firewallId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -155,22 +94,6 @@ func Test_azionapi_FirewallsRulesEngineAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test FirewallsRulesEngineAPIService PartialUpdateFirewallRule2", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var firewallId int64
-		var requestRuleId int64
-		var versionId string
-
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.PartialUpdateFirewallRule2(context.Background(), firewallId, requestRuleId, versionId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test FirewallsRulesEngineAPIService RetrieveFirewallRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -186,22 +109,6 @@ func Test_azionapi_FirewallsRulesEngineAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test FirewallsRulesEngineAPIService RetrieveFirewallRule2", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var firewallId int64
-		var requestRuleId int64
-		var versionId string
-
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.RetrieveFirewallRule2(context.Background(), firewallId, requestRuleId, versionId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test FirewallsRulesEngineAPIService UpdateFirewallRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -210,22 +117,6 @@ func Test_azionapi_FirewallsRulesEngineAPIService(t *testing.T) {
 		var requestRuleId int64
 
 		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.UpdateFirewallRule(context.Background(), firewallId, requestRuleId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test FirewallsRulesEngineAPIService UpdateFirewallRule2", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var firewallId int64
-		var requestRuleId int64
-		var versionId string
-
-		resp, httpRes, err := apiClient.FirewallsRulesEngineAPI.UpdateFirewallRule2(context.Background(), firewallId, requestRuleId, versionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

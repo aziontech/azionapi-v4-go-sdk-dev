@@ -60,6 +60,18 @@ func Test_azionapi_NetworkListsAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test NetworkListsAPIService ListOriginShieldIps", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.NetworkListsAPI.ListOriginShieldIps(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test NetworkListsAPIService PartialUpdateNetworkList", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
