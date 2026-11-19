@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	uuid := "uuid_example" // string | 
+	uuid := "uuid_example" // string | A unique value identifying the variable.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**uuid** | **string** |  | 
+**uuid** | **string** | A unique value identifying the variable. | 
 
 ### Other Parameters
 
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## ListVariables
 
-> PaginatedVariableGetList ListVariables(ctx).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Key(key).LastEditor(lastEditor).Ordering(ordering).Page(page).PageSize(pageSize).ResourceId(resourceId).ResourceType(resourceType).Scope(scope).ScopeId(scopeId).ScopeType(scopeType).Search(search).Secret(secret).UpdatedAtGte(updatedAtGte).UpdatedAtLte(updatedAtLte).Uuid(uuid).Execute()
+> PaginatedVariableGetList ListVariables(ctx).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Fields(fields).Key(key).LastEditor(lastEditor).Ordering(ordering).Page(page).PageSize(pageSize).ResourceId(resourceId).ResourceType(resourceType).Scope(scope).ScopeId(scopeId).ScopeType(scopeType).Search(search).Secret(secret).UpdatedAtGte(updatedAtGte).UpdatedAtLte(updatedAtLte).Uuid(uuid).Execute()
 
 List Variables
 
@@ -171,6 +171,7 @@ import (
 func main() {
 	createdAtGte := time.Now() // time.Time | Filter by creation date (greater than or equal). (optional)
 	createdAtLte := time.Now() // time.Time | Filter by creation date (less than or equal). (optional)
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
 	key := "key_example" // string | Filter by key (case-insensitive, partial match). (optional)
 	lastEditor := "lastEditor_example" // string | Filter by last editor (case-insensitive, partial match). (optional)
 	ordering := "ordering_example" // string | Which field to use when ordering the results. (optional)
@@ -189,7 +190,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VariablesAPI.ListVariables(context.Background()).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Key(key).LastEditor(lastEditor).Ordering(ordering).Page(page).PageSize(pageSize).ResourceId(resourceId).ResourceType(resourceType).Scope(scope).ScopeId(scopeId).ScopeType(scopeType).Search(search).Secret(secret).UpdatedAtGte(updatedAtGte).UpdatedAtLte(updatedAtLte).Uuid(uuid).Execute()
+	resp, r, err := apiClient.VariablesAPI.ListVariables(context.Background()).CreatedAtGte(createdAtGte).CreatedAtLte(createdAtLte).Fields(fields).Key(key).LastEditor(lastEditor).Ordering(ordering).Page(page).PageSize(pageSize).ResourceId(resourceId).ResourceType(resourceType).Scope(scope).ScopeId(scopeId).ScopeType(scopeType).Search(search).Secret(secret).UpdatedAtGte(updatedAtGte).UpdatedAtLte(updatedAtLte).Uuid(uuid).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VariablesAPI.ListVariables``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -212,6 +213,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **createdAtGte** | **time.Time** | Filter by creation date (greater than or equal). | 
  **createdAtLte** | **time.Time** | Filter by creation date (less than or equal). | 
+ **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
  **key** | **string** | Filter by key (case-insensitive, partial match). | 
  **lastEditor** | **string** | Filter by last editor (case-insensitive, partial match). | 
  **ordering** | **string** | Which field to use when ordering the results. | 
@@ -267,7 +269,7 @@ import (
 )
 
 func main() {
-	uuid := "uuid_example" // string | 
+	uuid := "uuid_example" // string | A unique value identifying the variable.
 	patchedVariableCreateRequest := *openapiclient.NewPatchedVariableCreateRequest() // PatchedVariableCreateRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -288,7 +290,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**uuid** | **string** |  | 
+**uuid** | **string** | A unique value identifying the variable. | 
 
 ### Other Parameters
 
@@ -320,7 +322,7 @@ Name | Type | Description  | Notes
 
 ## RetrieveVariable
 
-> VariableGet RetrieveVariable(ctx, uuid).Execute()
+> VariableGet RetrieveVariable(ctx, uuid).Fields(fields).Execute()
 
 Retrieve details of a Variable
 
@@ -339,11 +341,12 @@ import (
 )
 
 func main() {
-	uuid := "uuid_example" // string | 
+	uuid := "uuid_example" // string | A unique value identifying the variable.
+	fields := "fields_example" // string | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.VariablesAPI.RetrieveVariable(context.Background(), uuid).Execute()
+	resp, r, err := apiClient.VariablesAPI.RetrieveVariable(context.Background(), uuid).Fields(fields).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VariablesAPI.RetrieveVariable``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -359,7 +362,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**uuid** | **string** |  | 
+**uuid** | **string** | A unique value identifying the variable. | 
 
 ### Other Parameters
 
@@ -369,6 +372,7 @@ Other parameters are passed through a pointer to a apiRetrieveVariableRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **fields** | **string** | Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation. | 
 
 ### Return type
 
@@ -409,7 +413,7 @@ import (
 )
 
 func main() {
-	uuid := "uuid_example" // string | 
+	uuid := "uuid_example" // string | A unique value identifying the variable.
 	variableCreateRequest := *openapiclient.NewVariableCreateRequest("Key_example") // VariableCreateRequest | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -430,7 +434,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**uuid** | **string** |  | 
+**uuid** | **string** | A unique value identifying the variable. | 
 
 ### Other Parameters
 
