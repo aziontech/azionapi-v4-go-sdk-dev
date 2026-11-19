@@ -17,6 +17,7 @@ api_functions.go
 api_network_lists.go
 api_purge.go
 api_wafs.go
+api_wafs_attack_lists.go
 api_wafs_exceptions.go
 api_workload_deployments.go
 api_workloads.go
@@ -275,6 +276,9 @@ docs/TLSWorkloadRequest.md
 docs/ThresholdsConfigField.md
 docs/ThresholdsConfigFieldRequest.md
 docs/WAF.md
+docs/WAFAttackLists.md
+docs/WAFAttackListsRequest.md
+docs/WAFAttackListsResponse.md
 docs/WAFEngineSettingsAttributesField.md
 docs/WAFEngineSettingsAttributesFieldRequest.md
 docs/WAFEngineSettingsField.md
@@ -293,6 +297,7 @@ docs/WAFRule.md
 docs/WAFRuleRequest.md
 docs/WAFRuleResponse.md
 docs/WAFsAPI.md
+docs/WAFsAttackListsAPI.md
 docs/WAFsExceptionsAPI.md
 docs/Workload.md
 docs/WorkloadDeployment.md
@@ -546,6 +551,9 @@ model_thresholds_config_field_request.go
 model_tls_workload.go
 model_tls_workload_request.go
 model_waf.go
+model_waf_attack_lists.go
+model_waf_attack_lists_request.go
+model_waf_attack_lists_response.go
 model_waf_engine_settings_attributes_field.go
 model_waf_engine_settings_attributes_field_request.go
 model_waf_engine_settings_field.go
@@ -572,4 +580,5 @@ model_workload_domain_availability_response.go
 model_workload_request.go
 model_workload_response.go
 response.go
+test/api_wafs_attack_lists_test.go
 utils.go
