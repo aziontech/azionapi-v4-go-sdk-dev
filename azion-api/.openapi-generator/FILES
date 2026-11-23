@@ -1586,5 +1586,4 @@ model_zone.go
 model_zone_request.go
 model_zone_response.go
 response.go
-test/api_wafs_attack_lists_test.go
 utils.go
