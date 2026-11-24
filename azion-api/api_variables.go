@@ -208,7 +208,7 @@ DeleteVariable Delete a Variable
 Delete a Variable by it's UUID
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param uuid A unique value identifying the variable.
  @return ApiDeleteVariableRequest
 */
 func (a *VariablesAPIService) DeleteVariable(ctx context.Context, uuid string) ApiDeleteVariableRequest {
@@ -346,6 +346,7 @@ type ApiListVariablesRequest struct {
 	ApiService *VariablesAPIService
 	createdAtGte *time.Time
 	createdAtLte *time.Time
+	fields *string
 	key *string
 	lastEditor *string
 	ordering *string
@@ -372,6 +373,12 @@ func (r ApiListVariablesRequest) CreatedAtGte(createdAtGte time.Time) ApiListVar
 // Filter by creation date (less than or equal).
 func (r ApiListVariablesRequest) CreatedAtLte(createdAtLte time.Time) ApiListVariablesRequest {
 	r.createdAtLte = &createdAtLte
+	return r
+}
+
+// Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation.
+func (r ApiListVariablesRequest) Fields(fields string) ApiListVariablesRequest {
+	r.fields = &fields
 	return r
 }
 
@@ -512,6 +519,9 @@ func (a *VariablesAPIService) ListVariablesExecute(r ApiListVariablesRequest) (*
 	}
 	if r.createdAtLte != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "created_at__lte", r.createdAtLte, "form", "")
+	}
+	if r.fields != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
 	}
 	if r.key != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "key", r.key, "form", "")
@@ -691,7 +701,7 @@ PartialUpdateVariable Partially update a Variable
 Partially update variable attributes by it's UUID. Only the sent fields are changed.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param uuid A unique value identifying the variable.
  @return ApiPartialUpdateVariableRequest
 */
 func (a *VariablesAPIService) PartialUpdateVariable(ctx context.Context, uuid string) ApiPartialUpdateVariableRequest {
@@ -841,6 +851,13 @@ type ApiRetrieveVariableRequest struct {
 	ctx context.Context
 	ApiService *VariablesAPIService
 	uuid string
+	fields *string
+}
+
+// Comma-separated list of field names to include in the response. Nested fields can be accessed using dot notation.
+func (r ApiRetrieveVariableRequest) Fields(fields string) ApiRetrieveVariableRequest {
+	r.fields = &fields
+	return r
 }
 
 func (r ApiRetrieveVariableRequest) Execute() (*VariableGet, *http.Response, error) {
@@ -853,7 +870,7 @@ RetrieveVariable Retrieve details of a Variable
 Retrieve all data for a Variable by it's UUID
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param uuid A unique value identifying the variable.
  @return ApiRetrieveVariableRequest
 */
 func (a *VariablesAPIService) RetrieveVariable(ctx context.Context, uuid string) ApiRetrieveVariableRequest {
@@ -886,6 +903,9 @@ func (a *VariablesAPIService) RetrieveVariableExecute(r ApiRetrieveVariableReque
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.fields != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "fields", r.fields, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1019,7 +1039,7 @@ UpdateVariable Update a Variable
 Update variable attributes by it's UUID. Keep the Variable UUID but overwrite all editable attributes.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param uuid
+ @param uuid A unique value identifying the variable.
  @return ApiUpdateVariableRequest
 */
 func (a *VariablesAPIService) UpdateVariable(ctx context.Context, uuid string) ApiUpdateVariableRequest {
