@@ -214,8 +214,6 @@ type APIClient struct {
 
 	WAFsAPI *WAFsAPIService
 
-	WAFsAttackListsAPI *WAFsAttackListsAPIService
-
 	WAFsExceptionsAPI *WAFsExceptionsAPIService
 
 	WorkloadDeploymentsAPI *WorkloadDeploymentsAPIService
@@ -321,7 +319,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.VariablesAPI = (*VariablesAPIService)(&c.common)
 	c.VariablesScopeGroupsAPI = (*VariablesScopeGroupsAPIService)(&c.common)
 	c.WAFsAPI = (*WAFsAPIService)(&c.common)
-	c.WAFsAttackListsAPI = (*WAFsAttackListsAPIService)(&c.common)
 	c.WAFsExceptionsAPI = (*WAFsExceptionsAPIService)(&c.common)
 	c.WorkloadDeploymentsAPI = (*WorkloadDeploymentsAPIService)(&c.common)
 	c.WorkloadsAPI = (*WorkloadsAPIService)(&c.common)

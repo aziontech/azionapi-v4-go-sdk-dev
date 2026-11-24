@@ -84,7 +84,6 @@ api_vcs_execution_scripts.go
 api_vcs_integrations.go
 api_vcs_providers.go
 api_wafs.go
-api_wafs_attack_lists.go
 api_wafs_exceptions.go
 api_workload_deployments.go
 api_workloads.go
@@ -841,9 +840,6 @@ docs/VariableGet.md
 docs/VariablesAPI.md
 docs/VariablesScopeGroupsAPI.md
 docs/WAF.md
-docs/WAFAttackLists.md
-docs/WAFAttackListsRequest.md
-docs/WAFAttackListsResponse.md
 docs/WAFEngineSettingsAttributesField.md
 docs/WAFEngineSettingsAttributesFieldRequest.md
 docs/WAFEngineSettingsField.md
@@ -862,7 +858,6 @@ docs/WAFRule.md
 docs/WAFRuleRequest.md
 docs/WAFRuleResponse.md
 docs/WAFsAPI.md
-docs/WAFsAttackListsAPI.md
 docs/WAFsExceptionsAPI.md
 docs/Workload.md
 docs/WorkloadDeployment.md
@@ -1552,9 +1547,6 @@ model_user_request.go
 model_variable_create_request.go
 model_variable_get.go
 model_waf.go
-model_waf_attack_lists.go
-model_waf_attack_lists_request.go
-model_waf_attack_lists_response.go
 model_waf_engine_settings_attributes_field.go
 model_waf_engine_settings_attributes_field_request.go
 model_waf_engine_settings_field.go
