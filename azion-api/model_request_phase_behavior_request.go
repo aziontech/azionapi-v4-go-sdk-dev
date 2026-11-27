@@ -49,74 +49,329 @@ func BehaviorNoArgsAsRequestPhaseBehaviorRequest(v *BehaviorNoArgs) RequestPhase
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *RequestPhaseBehaviorRequest) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into BehaviorArgs
-	err = newStrictDecoder(data).Decode(&dst.BehaviorArgs)
-	if err == nil {
-		jsonBehaviorArgs, _ := json.Marshal(dst.BehaviorArgs)
-		if string(jsonBehaviorArgs) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'add_request_cookie'
+	if jsonDict["type"] == "add_request_cookie" {
+		// try to unmarshal JSON data into BehaviorArgs
+		err = json.Unmarshal(data, &dst.BehaviorArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorArgs, return on the first match
+		} else {
 			dst.BehaviorArgs = nil
-		} else {
-			if err = validator.Validate(dst.BehaviorArgs); err != nil {
-				dst.BehaviorArgs = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorArgs: %s", err.Error())
 		}
-	} else {
-		dst.BehaviorArgs = nil
 	}
 
-	// try to unmarshal data into BehaviorCapture
-	err = newStrictDecoder(data).Decode(&dst.BehaviorCapture)
-	if err == nil {
-		jsonBehaviorCapture, _ := json.Marshal(dst.BehaviorCapture)
-		if string(jsonBehaviorCapture) == "{}" { // empty struct
-			dst.BehaviorCapture = nil
-		} else {
-			if err = validator.Validate(dst.BehaviorCapture); err != nil {
-				dst.BehaviorCapture = nil
-			} else {
-				match++
-			}
+	// check if the discriminator value is 'add_request_header'
+	if jsonDict["type"] == "add_request_header" {
+		// try to unmarshal JSON data into BehaviorArgs
+		err = json.Unmarshal(data, &dst.BehaviorArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorArgs)
 		}
-	} else {
-		dst.BehaviorCapture = nil
+		if err == nil {
+			return nil // data stored in dst.BehaviorArgs, return on the first match
+		} else {
+			dst.BehaviorArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorArgs: %s", err.Error())
+		}
 	}
 
-	// try to unmarshal data into BehaviorNoArgs
-	err = newStrictDecoder(data).Decode(&dst.BehaviorNoArgs)
-	if err == nil {
-		jsonBehaviorNoArgs, _ := json.Marshal(dst.BehaviorNoArgs)
-		if string(jsonBehaviorNoArgs) == "{}" { // empty struct
+	// check if the discriminator value is 'bypass_cache'
+	if jsonDict["type"] == "bypass_cache" {
+		// try to unmarshal JSON data into BehaviorNoArgs
+		err = json.Unmarshal(data, &dst.BehaviorNoArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorNoArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorNoArgs, return on the first match
+		} else {
 			dst.BehaviorNoArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorNoArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'capture_match_groups'
+	if jsonDict["type"] == "capture_match_groups" {
+		// try to unmarshal JSON data into BehaviorCapture
+		err = json.Unmarshal(data, &dst.BehaviorCapture)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorCapture)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorCapture, return on the first match
 		} else {
-			if err = validator.Validate(dst.BehaviorNoArgs); err != nil {
-				dst.BehaviorNoArgs = nil
-			} else {
-				match++
-			}
+			dst.BehaviorCapture = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorCapture: %s", err.Error())
 		}
-	} else {
-		dst.BehaviorNoArgs = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.BehaviorArgs = nil
-		dst.BehaviorCapture = nil
-		dst.BehaviorNoArgs = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(RequestPhaseBehaviorRequest)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(RequestPhaseBehaviorRequest): %v", err)
+	// check if the discriminator value is 'deliver'
+	if jsonDict["type"] == "deliver" {
+		// try to unmarshal JSON data into BehaviorNoArgs
+		err = json.Unmarshal(data, &dst.BehaviorNoArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorNoArgs)
 		}
-
-		return fmt.Errorf("data failed to match schemas in oneOf(RequestPhaseBehaviorRequest)")
+		if err == nil {
+			return nil // data stored in dst.BehaviorNoArgs, return on the first match
+		} else {
+			dst.BehaviorNoArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorNoArgs: %s", err.Error())
+		}
 	}
+
+	// check if the discriminator value is 'deny'
+	if jsonDict["type"] == "deny" {
+		// try to unmarshal JSON data into BehaviorNoArgs
+		err = json.Unmarshal(data, &dst.BehaviorNoArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorNoArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorNoArgs, return on the first match
+		} else {
+			dst.BehaviorNoArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorNoArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'enable_gzip'
+	if jsonDict["type"] == "enable_gzip" {
+		// try to unmarshal JSON data into BehaviorNoArgs
+		err = json.Unmarshal(data, &dst.BehaviorNoArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorNoArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorNoArgs, return on the first match
+		} else {
+			dst.BehaviorNoArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorNoArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'filter_request_cookie'
+	if jsonDict["type"] == "filter_request_cookie" {
+		// try to unmarshal JSON data into BehaviorArgs
+		err = json.Unmarshal(data, &dst.BehaviorArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorArgs, return on the first match
+		} else {
+			dst.BehaviorArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'filter_request_header'
+	if jsonDict["type"] == "filter_request_header" {
+		// try to unmarshal JSON data into BehaviorArgs
+		err = json.Unmarshal(data, &dst.BehaviorArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorArgs, return on the first match
+		} else {
+			dst.BehaviorArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'finish_request_phase'
+	if jsonDict["type"] == "finish_request_phase" {
+		// try to unmarshal JSON data into BehaviorNoArgs
+		err = json.Unmarshal(data, &dst.BehaviorNoArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorNoArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorNoArgs, return on the first match
+		} else {
+			dst.BehaviorNoArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorNoArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'forward_cookies'
+	if jsonDict["type"] == "forward_cookies" {
+		// try to unmarshal JSON data into BehaviorNoArgs
+		err = json.Unmarshal(data, &dst.BehaviorNoArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorNoArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorNoArgs, return on the first match
+		} else {
+			dst.BehaviorNoArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorNoArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'no_content'
+	if jsonDict["type"] == "no_content" {
+		// try to unmarshal JSON data into BehaviorNoArgs
+		err = json.Unmarshal(data, &dst.BehaviorNoArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorNoArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorNoArgs, return on the first match
+		} else {
+			dst.BehaviorNoArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorNoArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'optimize_images'
+	if jsonDict["type"] == "optimize_images" {
+		// try to unmarshal JSON data into BehaviorNoArgs
+		err = json.Unmarshal(data, &dst.BehaviorNoArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorNoArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorNoArgs, return on the first match
+		} else {
+			dst.BehaviorNoArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorNoArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'redirect_http_to_https'
+	if jsonDict["type"] == "redirect_http_to_https" {
+		// try to unmarshal JSON data into BehaviorNoArgs
+		err = json.Unmarshal(data, &dst.BehaviorNoArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorNoArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorNoArgs, return on the first match
+		} else {
+			dst.BehaviorNoArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorNoArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'redirect_to_301'
+	if jsonDict["type"] == "redirect_to_301" {
+		// try to unmarshal JSON data into BehaviorArgs
+		err = json.Unmarshal(data, &dst.BehaviorArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorArgs, return on the first match
+		} else {
+			dst.BehaviorArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'redirect_to_302'
+	if jsonDict["type"] == "redirect_to_302" {
+		// try to unmarshal JSON data into BehaviorArgs
+		err = json.Unmarshal(data, &dst.BehaviorArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorArgs, return on the first match
+		} else {
+			dst.BehaviorArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'rewrite_request'
+	if jsonDict["type"] == "rewrite_request" {
+		// try to unmarshal JSON data into BehaviorArgs
+		err = json.Unmarshal(data, &dst.BehaviorArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorArgs, return on the first match
+		} else {
+			dst.BehaviorArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'run_function'
+	if jsonDict["type"] == "run_function" {
+		// try to unmarshal JSON data into BehaviorArgs
+		err = json.Unmarshal(data, &dst.BehaviorArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorArgs, return on the first match
+		} else {
+			dst.BehaviorArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'set_cache_policy'
+	if jsonDict["type"] == "set_cache_policy" {
+		// try to unmarshal JSON data into BehaviorArgs
+		err = json.Unmarshal(data, &dst.BehaviorArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorArgs, return on the first match
+		} else {
+			dst.BehaviorArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'set_connector'
+	if jsonDict["type"] == "set_connector" {
+		// try to unmarshal JSON data into BehaviorArgs
+		err = json.Unmarshal(data, &dst.BehaviorArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorArgs, return on the first match
+		} else {
+			dst.BehaviorArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorArgs: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'set_origin'
+	if jsonDict["type"] == "set_origin" {
+		// try to unmarshal JSON data into BehaviorArgs
+		err = json.Unmarshal(data, &dst.BehaviorArgs)
+		if err == nil {
+			err = validator.Validate(dst.BehaviorArgs)
+		}
+		if err == nil {
+			return nil // data stored in dst.BehaviorArgs, return on the first match
+		} else {
+			dst.BehaviorArgs = nil
+			return fmt.Errorf("failed to unmarshal RequestPhaseBehaviorRequest as BehaviorArgs: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

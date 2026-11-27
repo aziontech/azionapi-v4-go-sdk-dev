@@ -57,92 +57,74 @@ func PatchedWorkspaceRequestAsPatchedAccountRequest(v *PatchedWorkspaceRequest) 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *PatchedAccountRequest) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into PatchedBrandRequest
-	err = newStrictDecoder(data).Decode(&dst.PatchedBrandRequest)
-	if err == nil {
-		jsonPatchedBrandRequest, _ := json.Marshal(dst.PatchedBrandRequest)
-		if string(jsonPatchedBrandRequest) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'Brand'
+	if jsonDict["type"] == "Brand" {
+		// try to unmarshal JSON data into PatchedBrandRequest
+		err = json.Unmarshal(data, &dst.PatchedBrandRequest)
+		if err == nil {
+			err = validator.Validate(dst.PatchedBrandRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.PatchedBrandRequest, return on the first match
+		} else {
 			dst.PatchedBrandRequest = nil
-		} else {
-			if err = validator.Validate(dst.PatchedBrandRequest); err != nil {
-				dst.PatchedBrandRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal PatchedAccountRequest as PatchedBrandRequest: %s", err.Error())
 		}
-	} else {
-		dst.PatchedBrandRequest = nil
 	}
 
-	// try to unmarshal data into PatchedOrganizationRequest
-	err = newStrictDecoder(data).Decode(&dst.PatchedOrganizationRequest)
-	if err == nil {
-		jsonPatchedOrganizationRequest, _ := json.Marshal(dst.PatchedOrganizationRequest)
-		if string(jsonPatchedOrganizationRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'Organization'
+	if jsonDict["type"] == "Organization" {
+		// try to unmarshal JSON data into PatchedOrganizationRequest
+		err = json.Unmarshal(data, &dst.PatchedOrganizationRequest)
+		if err == nil {
+			err = validator.Validate(dst.PatchedOrganizationRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.PatchedOrganizationRequest, return on the first match
+		} else {
 			dst.PatchedOrganizationRequest = nil
-		} else {
-			if err = validator.Validate(dst.PatchedOrganizationRequest); err != nil {
-				dst.PatchedOrganizationRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal PatchedAccountRequest as PatchedOrganizationRequest: %s", err.Error())
 		}
-	} else {
-		dst.PatchedOrganizationRequest = nil
 	}
 
-	// try to unmarshal data into PatchedResellerRequest
-	err = newStrictDecoder(data).Decode(&dst.PatchedResellerRequest)
-	if err == nil {
-		jsonPatchedResellerRequest, _ := json.Marshal(dst.PatchedResellerRequest)
-		if string(jsonPatchedResellerRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'Reseller'
+	if jsonDict["type"] == "Reseller" {
+		// try to unmarshal JSON data into PatchedResellerRequest
+		err = json.Unmarshal(data, &dst.PatchedResellerRequest)
+		if err == nil {
+			err = validator.Validate(dst.PatchedResellerRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.PatchedResellerRequest, return on the first match
+		} else {
 			dst.PatchedResellerRequest = nil
-		} else {
-			if err = validator.Validate(dst.PatchedResellerRequest); err != nil {
-				dst.PatchedResellerRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal PatchedAccountRequest as PatchedResellerRequest: %s", err.Error())
 		}
-	} else {
-		dst.PatchedResellerRequest = nil
 	}
 
-	// try to unmarshal data into PatchedWorkspaceRequest
-	err = newStrictDecoder(data).Decode(&dst.PatchedWorkspaceRequest)
-	if err == nil {
-		jsonPatchedWorkspaceRequest, _ := json.Marshal(dst.PatchedWorkspaceRequest)
-		if string(jsonPatchedWorkspaceRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'Workspace'
+	if jsonDict["type"] == "Workspace" {
+		// try to unmarshal JSON data into PatchedWorkspaceRequest
+		err = json.Unmarshal(data, &dst.PatchedWorkspaceRequest)
+		if err == nil {
+			err = validator.Validate(dst.PatchedWorkspaceRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.PatchedWorkspaceRequest, return on the first match
+		} else {
 			dst.PatchedWorkspaceRequest = nil
-		} else {
-			if err = validator.Validate(dst.PatchedWorkspaceRequest); err != nil {
-				dst.PatchedWorkspaceRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal PatchedAccountRequest as PatchedWorkspaceRequest: %s", err.Error())
 		}
-	} else {
-		dst.PatchedWorkspaceRequest = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.PatchedBrandRequest = nil
-		dst.PatchedOrganizationRequest = nil
-		dst.PatchedResellerRequest = nil
-		dst.PatchedWorkspaceRequest = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(PatchedAccountRequest)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(PatchedAccountRequest): %v", err)
-		}
-
-		return fmt.Errorf("data failed to match schemas in oneOf(PatchedAccountRequest)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

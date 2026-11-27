@@ -49,74 +49,104 @@ func FirewallBehaviorObjectArgsRequestAsFirewallBehaviorRequest(v *FirewallBehav
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *FirewallBehaviorRequest) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into FirewallBehaviorArgsRequest
-	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorArgsRequest)
-	if err == nil {
-		jsonFirewallBehaviorArgsRequest, _ := json.Marshal(dst.FirewallBehaviorArgsRequest)
-		if string(jsonFirewallBehaviorArgsRequest) == "{}" { // empty struct
-			dst.FirewallBehaviorArgsRequest = nil
-		} else {
-			if err = validator.Validate(dst.FirewallBehaviorArgsRequest); err != nil {
-				dst.FirewallBehaviorArgsRequest = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.FirewallBehaviorArgsRequest = nil
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
 	}
 
-	// try to unmarshal data into FirewallBehaviorNoArgsRequest
-	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorNoArgsRequest)
-	if err == nil {
-		jsonFirewallBehaviorNoArgsRequest, _ := json.Marshal(dst.FirewallBehaviorNoArgsRequest)
-		if string(jsonFirewallBehaviorNoArgsRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'deny'
+	if jsonDict["type"] == "deny" {
+		// try to unmarshal JSON data into FirewallBehaviorNoArgsRequest
+		err = json.Unmarshal(data, &dst.FirewallBehaviorNoArgsRequest)
+		if err == nil {
+			err = validator.Validate(dst.FirewallBehaviorNoArgsRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.FirewallBehaviorNoArgsRequest, return on the first match
+		} else {
 			dst.FirewallBehaviorNoArgsRequest = nil
-		} else {
-			if err = validator.Validate(dst.FirewallBehaviorNoArgsRequest); err != nil {
-				dst.FirewallBehaviorNoArgsRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal FirewallBehaviorRequest as FirewallBehaviorNoArgsRequest: %s", err.Error())
 		}
-	} else {
-		dst.FirewallBehaviorNoArgsRequest = nil
 	}
 
-	// try to unmarshal data into FirewallBehaviorObjectArgsRequest
-	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorObjectArgsRequest)
-	if err == nil {
-		jsonFirewallBehaviorObjectArgsRequest, _ := json.Marshal(dst.FirewallBehaviorObjectArgsRequest)
-		if string(jsonFirewallBehaviorObjectArgsRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'drop'
+	if jsonDict["type"] == "drop" {
+		// try to unmarshal JSON data into FirewallBehaviorNoArgsRequest
+		err = json.Unmarshal(data, &dst.FirewallBehaviorNoArgsRequest)
+		if err == nil {
+			err = validator.Validate(dst.FirewallBehaviorNoArgsRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.FirewallBehaviorNoArgsRequest, return on the first match
+		} else {
+			dst.FirewallBehaviorNoArgsRequest = nil
+			return fmt.Errorf("failed to unmarshal FirewallBehaviorRequest as FirewallBehaviorNoArgsRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'run_function'
+	if jsonDict["type"] == "run_function" {
+		// try to unmarshal JSON data into FirewallBehaviorArgsRequest
+		err = json.Unmarshal(data, &dst.FirewallBehaviorArgsRequest)
+		if err == nil {
+			err = validator.Validate(dst.FirewallBehaviorArgsRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.FirewallBehaviorArgsRequest, return on the first match
+		} else {
+			dst.FirewallBehaviorArgsRequest = nil
+			return fmt.Errorf("failed to unmarshal FirewallBehaviorRequest as FirewallBehaviorArgsRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'set_custom_response'
+	if jsonDict["type"] == "set_custom_response" {
+		// try to unmarshal JSON data into FirewallBehaviorObjectArgsRequest
+		err = json.Unmarshal(data, &dst.FirewallBehaviorObjectArgsRequest)
+		if err == nil {
+			err = validator.Validate(dst.FirewallBehaviorObjectArgsRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.FirewallBehaviorObjectArgsRequest, return on the first match
+		} else {
 			dst.FirewallBehaviorObjectArgsRequest = nil
+			return fmt.Errorf("failed to unmarshal FirewallBehaviorRequest as FirewallBehaviorObjectArgsRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'set_rate_limit'
+	if jsonDict["type"] == "set_rate_limit" {
+		// try to unmarshal JSON data into FirewallBehaviorObjectArgsRequest
+		err = json.Unmarshal(data, &dst.FirewallBehaviorObjectArgsRequest)
+		if err == nil {
+			err = validator.Validate(dst.FirewallBehaviorObjectArgsRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.FirewallBehaviorObjectArgsRequest, return on the first match
 		} else {
-			if err = validator.Validate(dst.FirewallBehaviorObjectArgsRequest); err != nil {
-				dst.FirewallBehaviorObjectArgsRequest = nil
-			} else {
-				match++
-			}
+			dst.FirewallBehaviorObjectArgsRequest = nil
+			return fmt.Errorf("failed to unmarshal FirewallBehaviorRequest as FirewallBehaviorObjectArgsRequest: %s", err.Error())
 		}
-	} else {
-		dst.FirewallBehaviorObjectArgsRequest = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.FirewallBehaviorArgsRequest = nil
-		dst.FirewallBehaviorNoArgsRequest = nil
-		dst.FirewallBehaviorObjectArgsRequest = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(FirewallBehaviorRequest)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(FirewallBehaviorRequest): %v", err)
+	// check if the discriminator value is 'set_waf'
+	if jsonDict["type"] == "set_waf" {
+		// try to unmarshal JSON data into FirewallBehaviorObjectArgsRequest
+		err = json.Unmarshal(data, &dst.FirewallBehaviorObjectArgsRequest)
+		if err == nil {
+			err = validator.Validate(dst.FirewallBehaviorObjectArgsRequest)
 		}
-
-		return fmt.Errorf("data failed to match schemas in oneOf(FirewallBehaviorRequest)")
+		if err == nil {
+			return nil // data stored in dst.FirewallBehaviorObjectArgsRequest, return on the first match
+		} else {
+			dst.FirewallBehaviorObjectArgsRequest = nil
+			return fmt.Errorf("failed to unmarshal FirewallBehaviorRequest as FirewallBehaviorObjectArgsRequest: %s", err.Error())
+		}
 	}
+
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

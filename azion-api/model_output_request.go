@@ -113,218 +113,179 @@ func OutputSplunkEndpointRequestAsOutputRequest(v *OutputSplunkEndpointRequest) 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *OutputRequest) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into OutputAWSKinesisFirehoseEndpointRequest
-	err = newStrictDecoder(data).Decode(&dst.OutputAWSKinesisFirehoseEndpointRequest)
-	if err == nil {
-		jsonOutputAWSKinesisFirehoseEndpointRequest, _ := json.Marshal(dst.OutputAWSKinesisFirehoseEndpointRequest)
-		if string(jsonOutputAWSKinesisFirehoseEndpointRequest) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'aws_kinesis_firehose'
+	if jsonDict["type"] == "aws_kinesis_firehose" {
+		// try to unmarshal JSON data into OutputAWSKinesisFirehoseEndpointRequest
+		err = json.Unmarshal(data, &dst.OutputAWSKinesisFirehoseEndpointRequest)
+		if err == nil {
+			err = validator.Validate(dst.OutputAWSKinesisFirehoseEndpointRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.OutputAWSKinesisFirehoseEndpointRequest, return on the first match
+		} else {
 			dst.OutputAWSKinesisFirehoseEndpointRequest = nil
-		} else {
-			if err = validator.Validate(dst.OutputAWSKinesisFirehoseEndpointRequest); err != nil {
-				dst.OutputAWSKinesisFirehoseEndpointRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal OutputRequest as OutputAWSKinesisFirehoseEndpointRequest: %s", err.Error())
 		}
-	} else {
-		dst.OutputAWSKinesisFirehoseEndpointRequest = nil
 	}
 
-	// try to unmarshal data into OutputAzureBlobStorageEndpointRequest
-	err = newStrictDecoder(data).Decode(&dst.OutputAzureBlobStorageEndpointRequest)
-	if err == nil {
-		jsonOutputAzureBlobStorageEndpointRequest, _ := json.Marshal(dst.OutputAzureBlobStorageEndpointRequest)
-		if string(jsonOutputAzureBlobStorageEndpointRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'azure_blob_storage'
+	if jsonDict["type"] == "azure_blob_storage" {
+		// try to unmarshal JSON data into OutputAzureBlobStorageEndpointRequest
+		err = json.Unmarshal(data, &dst.OutputAzureBlobStorageEndpointRequest)
+		if err == nil {
+			err = validator.Validate(dst.OutputAzureBlobStorageEndpointRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.OutputAzureBlobStorageEndpointRequest, return on the first match
+		} else {
 			dst.OutputAzureBlobStorageEndpointRequest = nil
-		} else {
-			if err = validator.Validate(dst.OutputAzureBlobStorageEndpointRequest); err != nil {
-				dst.OutputAzureBlobStorageEndpointRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal OutputRequest as OutputAzureBlobStorageEndpointRequest: %s", err.Error())
 		}
-	} else {
-		dst.OutputAzureBlobStorageEndpointRequest = nil
 	}
 
-	// try to unmarshal data into OutputAzureMonitorEndpointRequest
-	err = newStrictDecoder(data).Decode(&dst.OutputAzureMonitorEndpointRequest)
-	if err == nil {
-		jsonOutputAzureMonitorEndpointRequest, _ := json.Marshal(dst.OutputAzureMonitorEndpointRequest)
-		if string(jsonOutputAzureMonitorEndpointRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'azure_monitor'
+	if jsonDict["type"] == "azure_monitor" {
+		// try to unmarshal JSON data into OutputAzureMonitorEndpointRequest
+		err = json.Unmarshal(data, &dst.OutputAzureMonitorEndpointRequest)
+		if err == nil {
+			err = validator.Validate(dst.OutputAzureMonitorEndpointRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.OutputAzureMonitorEndpointRequest, return on the first match
+		} else {
 			dst.OutputAzureMonitorEndpointRequest = nil
-		} else {
-			if err = validator.Validate(dst.OutputAzureMonitorEndpointRequest); err != nil {
-				dst.OutputAzureMonitorEndpointRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal OutputRequest as OutputAzureMonitorEndpointRequest: %s", err.Error())
 		}
-	} else {
-		dst.OutputAzureMonitorEndpointRequest = nil
 	}
 
-	// try to unmarshal data into OutputBigQueryEndpointRequest
-	err = newStrictDecoder(data).Decode(&dst.OutputBigQueryEndpointRequest)
-	if err == nil {
-		jsonOutputBigQueryEndpointRequest, _ := json.Marshal(dst.OutputBigQueryEndpointRequest)
-		if string(jsonOutputBigQueryEndpointRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'big_query'
+	if jsonDict["type"] == "big_query" {
+		// try to unmarshal JSON data into OutputBigQueryEndpointRequest
+		err = json.Unmarshal(data, &dst.OutputBigQueryEndpointRequest)
+		if err == nil {
+			err = validator.Validate(dst.OutputBigQueryEndpointRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.OutputBigQueryEndpointRequest, return on the first match
+		} else {
 			dst.OutputBigQueryEndpointRequest = nil
-		} else {
-			if err = validator.Validate(dst.OutputBigQueryEndpointRequest); err != nil {
-				dst.OutputBigQueryEndpointRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal OutputRequest as OutputBigQueryEndpointRequest: %s", err.Error())
 		}
-	} else {
-		dst.OutputBigQueryEndpointRequest = nil
 	}
 
-	// try to unmarshal data into OutputDatadogEndpointRequest
-	err = newStrictDecoder(data).Decode(&dst.OutputDatadogEndpointRequest)
-	if err == nil {
-		jsonOutputDatadogEndpointRequest, _ := json.Marshal(dst.OutputDatadogEndpointRequest)
-		if string(jsonOutputDatadogEndpointRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'datadog'
+	if jsonDict["type"] == "datadog" {
+		// try to unmarshal JSON data into OutputDatadogEndpointRequest
+		err = json.Unmarshal(data, &dst.OutputDatadogEndpointRequest)
+		if err == nil {
+			err = validator.Validate(dst.OutputDatadogEndpointRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.OutputDatadogEndpointRequest, return on the first match
+		} else {
 			dst.OutputDatadogEndpointRequest = nil
-		} else {
-			if err = validator.Validate(dst.OutputDatadogEndpointRequest); err != nil {
-				dst.OutputDatadogEndpointRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal OutputRequest as OutputDatadogEndpointRequest: %s", err.Error())
 		}
-	} else {
-		dst.OutputDatadogEndpointRequest = nil
 	}
 
-	// try to unmarshal data into OutputElasticsearchEndpointRequest
-	err = newStrictDecoder(data).Decode(&dst.OutputElasticsearchEndpointRequest)
-	if err == nil {
-		jsonOutputElasticsearchEndpointRequest, _ := json.Marshal(dst.OutputElasticsearchEndpointRequest)
-		if string(jsonOutputElasticsearchEndpointRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'elasticsearch'
+	if jsonDict["type"] == "elasticsearch" {
+		// try to unmarshal JSON data into OutputElasticsearchEndpointRequest
+		err = json.Unmarshal(data, &dst.OutputElasticsearchEndpointRequest)
+		if err == nil {
+			err = validator.Validate(dst.OutputElasticsearchEndpointRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.OutputElasticsearchEndpointRequest, return on the first match
+		} else {
 			dst.OutputElasticsearchEndpointRequest = nil
-		} else {
-			if err = validator.Validate(dst.OutputElasticsearchEndpointRequest); err != nil {
-				dst.OutputElasticsearchEndpointRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal OutputRequest as OutputElasticsearchEndpointRequest: %s", err.Error())
 		}
-	} else {
-		dst.OutputElasticsearchEndpointRequest = nil
 	}
 
-	// try to unmarshal data into OutputHttpPostEndpointRequest
-	err = newStrictDecoder(data).Decode(&dst.OutputHttpPostEndpointRequest)
-	if err == nil {
-		jsonOutputHttpPostEndpointRequest, _ := json.Marshal(dst.OutputHttpPostEndpointRequest)
-		if string(jsonOutputHttpPostEndpointRequest) == "{}" { // empty struct
-			dst.OutputHttpPostEndpointRequest = nil
-		} else {
-			if err = validator.Validate(dst.OutputHttpPostEndpointRequest); err != nil {
-				dst.OutputHttpPostEndpointRequest = nil
-			} else {
-				match++
-			}
+	// check if the discriminator value is 'kafka'
+	if jsonDict["type"] == "kafka" {
+		// try to unmarshal JSON data into OutputKafkaEndpointRequest
+		err = json.Unmarshal(data, &dst.OutputKafkaEndpointRequest)
+		if err == nil {
+			err = validator.Validate(dst.OutputKafkaEndpointRequest)
 		}
-	} else {
-		dst.OutputHttpPostEndpointRequest = nil
-	}
-
-	// try to unmarshal data into OutputKafkaEndpointRequest
-	err = newStrictDecoder(data).Decode(&dst.OutputKafkaEndpointRequest)
-	if err == nil {
-		jsonOutputKafkaEndpointRequest, _ := json.Marshal(dst.OutputKafkaEndpointRequest)
-		if string(jsonOutputKafkaEndpointRequest) == "{}" { // empty struct
+		if err == nil {
+			return nil // data stored in dst.OutputKafkaEndpointRequest, return on the first match
+		} else {
 			dst.OutputKafkaEndpointRequest = nil
-		} else {
-			if err = validator.Validate(dst.OutputKafkaEndpointRequest); err != nil {
-				dst.OutputKafkaEndpointRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal OutputRequest as OutputKafkaEndpointRequest: %s", err.Error())
 		}
-	} else {
-		dst.OutputKafkaEndpointRequest = nil
 	}
 
-	// try to unmarshal data into OutputQRadarEndpointRequest
-	err = newStrictDecoder(data).Decode(&dst.OutputQRadarEndpointRequest)
-	if err == nil {
-		jsonOutputQRadarEndpointRequest, _ := json.Marshal(dst.OutputQRadarEndpointRequest)
-		if string(jsonOutputQRadarEndpointRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'qradar'
+	if jsonDict["type"] == "qradar" {
+		// try to unmarshal JSON data into OutputQRadarEndpointRequest
+		err = json.Unmarshal(data, &dst.OutputQRadarEndpointRequest)
+		if err == nil {
+			err = validator.Validate(dst.OutputQRadarEndpointRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.OutputQRadarEndpointRequest, return on the first match
+		} else {
 			dst.OutputQRadarEndpointRequest = nil
-		} else {
-			if err = validator.Validate(dst.OutputQRadarEndpointRequest); err != nil {
-				dst.OutputQRadarEndpointRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal OutputRequest as OutputQRadarEndpointRequest: %s", err.Error())
 		}
-	} else {
-		dst.OutputQRadarEndpointRequest = nil
 	}
 
-	// try to unmarshal data into OutputS3EndpointRequest
-	err = newStrictDecoder(data).Decode(&dst.OutputS3EndpointRequest)
-	if err == nil {
-		jsonOutputS3EndpointRequest, _ := json.Marshal(dst.OutputS3EndpointRequest)
-		if string(jsonOutputS3EndpointRequest) == "{}" { // empty struct
+	// check if the discriminator value is 's3'
+	if jsonDict["type"] == "s3" {
+		// try to unmarshal JSON data into OutputS3EndpointRequest
+		err = json.Unmarshal(data, &dst.OutputS3EndpointRequest)
+		if err == nil {
+			err = validator.Validate(dst.OutputS3EndpointRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.OutputS3EndpointRequest, return on the first match
+		} else {
 			dst.OutputS3EndpointRequest = nil
-		} else {
-			if err = validator.Validate(dst.OutputS3EndpointRequest); err != nil {
-				dst.OutputS3EndpointRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal OutputRequest as OutputS3EndpointRequest: %s", err.Error())
 		}
-	} else {
-		dst.OutputS3EndpointRequest = nil
 	}
 
-	// try to unmarshal data into OutputSplunkEndpointRequest
-	err = newStrictDecoder(data).Decode(&dst.OutputSplunkEndpointRequest)
-	if err == nil {
-		jsonOutputSplunkEndpointRequest, _ := json.Marshal(dst.OutputSplunkEndpointRequest)
-		if string(jsonOutputSplunkEndpointRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'splunk'
+	if jsonDict["type"] == "splunk" {
+		// try to unmarshal JSON data into OutputSplunkEndpointRequest
+		err = json.Unmarshal(data, &dst.OutputSplunkEndpointRequest)
+		if err == nil {
+			err = validator.Validate(dst.OutputSplunkEndpointRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.OutputSplunkEndpointRequest, return on the first match
+		} else {
 			dst.OutputSplunkEndpointRequest = nil
+			return fmt.Errorf("failed to unmarshal OutputRequest as OutputSplunkEndpointRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'standard'
+	if jsonDict["type"] == "standard" {
+		// try to unmarshal JSON data into OutputHttpPostEndpointRequest
+		err = json.Unmarshal(data, &dst.OutputHttpPostEndpointRequest)
+		if err == nil {
+			err = validator.Validate(dst.OutputHttpPostEndpointRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.OutputHttpPostEndpointRequest, return on the first match
 		} else {
-			if err = validator.Validate(dst.OutputSplunkEndpointRequest); err != nil {
-				dst.OutputSplunkEndpointRequest = nil
-			} else {
-				match++
-			}
+			dst.OutputHttpPostEndpointRequest = nil
+			return fmt.Errorf("failed to unmarshal OutputRequest as OutputHttpPostEndpointRequest: %s", err.Error())
 		}
-	} else {
-		dst.OutputSplunkEndpointRequest = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.OutputAWSKinesisFirehoseEndpointRequest = nil
-		dst.OutputAzureBlobStorageEndpointRequest = nil
-		dst.OutputAzureMonitorEndpointRequest = nil
-		dst.OutputBigQueryEndpointRequest = nil
-		dst.OutputDatadogEndpointRequest = nil
-		dst.OutputElasticsearchEndpointRequest = nil
-		dst.OutputHttpPostEndpointRequest = nil
-		dst.OutputKafkaEndpointRequest = nil
-		dst.OutputQRadarEndpointRequest = nil
-		dst.OutputS3EndpointRequest = nil
-		dst.OutputSplunkEndpointRequest = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(OutputRequest)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(OutputRequest): %v", err)
-		}
-
-		return fmt.Errorf("data failed to match schemas in oneOf(OutputRequest)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

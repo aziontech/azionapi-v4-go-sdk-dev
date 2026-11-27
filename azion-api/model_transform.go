@@ -49,74 +49,59 @@ func TransformTransformSamplingAttributesAsTransform(v *TransformTransformSampli
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Transform) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into TransformTransformFilterWorkloadsAttributes
-	err = newStrictDecoder(data).Decode(&dst.TransformTransformFilterWorkloadsAttributes)
-	if err == nil {
-		jsonTransformTransformFilterWorkloadsAttributes, _ := json.Marshal(dst.TransformTransformFilterWorkloadsAttributes)
-		if string(jsonTransformTransformFilterWorkloadsAttributes) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'filter_workloads'
+	if jsonDict["type"] == "filter_workloads" {
+		// try to unmarshal JSON data into TransformTransformFilterWorkloadsAttributes
+		err = json.Unmarshal(data, &dst.TransformTransformFilterWorkloadsAttributes)
+		if err == nil {
+			err = validator.Validate(dst.TransformTransformFilterWorkloadsAttributes)
+		}
+		if err == nil {
+			return nil // data stored in dst.TransformTransformFilterWorkloadsAttributes, return on the first match
+		} else {
 			dst.TransformTransformFilterWorkloadsAttributes = nil
-		} else {
-			if err = validator.Validate(dst.TransformTransformFilterWorkloadsAttributes); err != nil {
-				dst.TransformTransformFilterWorkloadsAttributes = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal Transform as TransformTransformFilterWorkloadsAttributes: %s", err.Error())
 		}
-	} else {
-		dst.TransformTransformFilterWorkloadsAttributes = nil
 	}
 
-	// try to unmarshal data into TransformTransformRenderTemplateAttributes
-	err = newStrictDecoder(data).Decode(&dst.TransformTransformRenderTemplateAttributes)
-	if err == nil {
-		jsonTransformTransformRenderTemplateAttributes, _ := json.Marshal(dst.TransformTransformRenderTemplateAttributes)
-		if string(jsonTransformTransformRenderTemplateAttributes) == "{}" { // empty struct
+	// check if the discriminator value is 'render_template'
+	if jsonDict["type"] == "render_template" {
+		// try to unmarshal JSON data into TransformTransformRenderTemplateAttributes
+		err = json.Unmarshal(data, &dst.TransformTransformRenderTemplateAttributes)
+		if err == nil {
+			err = validator.Validate(dst.TransformTransformRenderTemplateAttributes)
+		}
+		if err == nil {
+			return nil // data stored in dst.TransformTransformRenderTemplateAttributes, return on the first match
+		} else {
 			dst.TransformTransformRenderTemplateAttributes = nil
-		} else {
-			if err = validator.Validate(dst.TransformTransformRenderTemplateAttributes); err != nil {
-				dst.TransformTransformRenderTemplateAttributes = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal Transform as TransformTransformRenderTemplateAttributes: %s", err.Error())
 		}
-	} else {
-		dst.TransformTransformRenderTemplateAttributes = nil
 	}
 
-	// try to unmarshal data into TransformTransformSamplingAttributes
-	err = newStrictDecoder(data).Decode(&dst.TransformTransformSamplingAttributes)
-	if err == nil {
-		jsonTransformTransformSamplingAttributes, _ := json.Marshal(dst.TransformTransformSamplingAttributes)
-		if string(jsonTransformTransformSamplingAttributes) == "{}" { // empty struct
+	// check if the discriminator value is 'sampling'
+	if jsonDict["type"] == "sampling" {
+		// try to unmarshal JSON data into TransformTransformSamplingAttributes
+		err = json.Unmarshal(data, &dst.TransformTransformSamplingAttributes)
+		if err == nil {
+			err = validator.Validate(dst.TransformTransformSamplingAttributes)
+		}
+		if err == nil {
+			return nil // data stored in dst.TransformTransformSamplingAttributes, return on the first match
+		} else {
 			dst.TransformTransformSamplingAttributes = nil
-		} else {
-			if err = validator.Validate(dst.TransformTransformSamplingAttributes); err != nil {
-				dst.TransformTransformSamplingAttributes = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal Transform as TransformTransformSamplingAttributes: %s", err.Error())
 		}
-	} else {
-		dst.TransformTransformSamplingAttributes = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.TransformTransformFilterWorkloadsAttributes = nil
-		dst.TransformTransformRenderTemplateAttributes = nil
-		dst.TransformTransformSamplingAttributes = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(Transform)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(Transform): %v", err)
-		}
-
-		return fmt.Errorf("data failed to match schemas in oneOf(Transform)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

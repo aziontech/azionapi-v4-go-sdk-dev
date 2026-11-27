@@ -49,74 +49,59 @@ func PatchedConnectorStorageRequestAsPatchedConnectorRequest(v *PatchedConnector
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *PatchedConnectorRequest) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into PatchedConnectorHTTPRequest
-	err = newStrictDecoder(data).Decode(&dst.PatchedConnectorHTTPRequest)
-	if err == nil {
-		jsonPatchedConnectorHTTPRequest, _ := json.Marshal(dst.PatchedConnectorHTTPRequest)
-		if string(jsonPatchedConnectorHTTPRequest) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'http'
+	if jsonDict["type"] == "http" {
+		// try to unmarshal JSON data into PatchedConnectorHTTPRequest
+		err = json.Unmarshal(data, &dst.PatchedConnectorHTTPRequest)
+		if err == nil {
+			err = validator.Validate(dst.PatchedConnectorHTTPRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.PatchedConnectorHTTPRequest, return on the first match
+		} else {
 			dst.PatchedConnectorHTTPRequest = nil
-		} else {
-			if err = validator.Validate(dst.PatchedConnectorHTTPRequest); err != nil {
-				dst.PatchedConnectorHTTPRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal PatchedConnectorRequest as PatchedConnectorHTTPRequest: %s", err.Error())
 		}
-	} else {
-		dst.PatchedConnectorHTTPRequest = nil
 	}
 
-	// try to unmarshal data into PatchedConnectorLiveIngestRequest
-	err = newStrictDecoder(data).Decode(&dst.PatchedConnectorLiveIngestRequest)
-	if err == nil {
-		jsonPatchedConnectorLiveIngestRequest, _ := json.Marshal(dst.PatchedConnectorLiveIngestRequest)
-		if string(jsonPatchedConnectorLiveIngestRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'live_ingest'
+	if jsonDict["type"] == "live_ingest" {
+		// try to unmarshal JSON data into PatchedConnectorLiveIngestRequest
+		err = json.Unmarshal(data, &dst.PatchedConnectorLiveIngestRequest)
+		if err == nil {
+			err = validator.Validate(dst.PatchedConnectorLiveIngestRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.PatchedConnectorLiveIngestRequest, return on the first match
+		} else {
 			dst.PatchedConnectorLiveIngestRequest = nil
-		} else {
-			if err = validator.Validate(dst.PatchedConnectorLiveIngestRequest); err != nil {
-				dst.PatchedConnectorLiveIngestRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal PatchedConnectorRequest as PatchedConnectorLiveIngestRequest: %s", err.Error())
 		}
-	} else {
-		dst.PatchedConnectorLiveIngestRequest = nil
 	}
 
-	// try to unmarshal data into PatchedConnectorStorageRequest
-	err = newStrictDecoder(data).Decode(&dst.PatchedConnectorStorageRequest)
-	if err == nil {
-		jsonPatchedConnectorStorageRequest, _ := json.Marshal(dst.PatchedConnectorStorageRequest)
-		if string(jsonPatchedConnectorStorageRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'storage'
+	if jsonDict["type"] == "storage" {
+		// try to unmarshal JSON data into PatchedConnectorStorageRequest
+		err = json.Unmarshal(data, &dst.PatchedConnectorStorageRequest)
+		if err == nil {
+			err = validator.Validate(dst.PatchedConnectorStorageRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.PatchedConnectorStorageRequest, return on the first match
+		} else {
 			dst.PatchedConnectorStorageRequest = nil
-		} else {
-			if err = validator.Validate(dst.PatchedConnectorStorageRequest); err != nil {
-				dst.PatchedConnectorStorageRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal PatchedConnectorRequest as PatchedConnectorStorageRequest: %s", err.Error())
 		}
-	} else {
-		dst.PatchedConnectorStorageRequest = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.PatchedConnectorHTTPRequest = nil
-		dst.PatchedConnectorLiveIngestRequest = nil
-		dst.PatchedConnectorStorageRequest = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(PatchedConnectorRequest)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(PatchedConnectorRequest): %v", err)
-		}
-
-		return fmt.Errorf("data failed to match schemas in oneOf(PatchedConnectorRequest)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

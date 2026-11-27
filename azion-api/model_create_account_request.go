@@ -57,92 +57,74 @@ func CreateWorkspaceRequestAsCreateAccountRequest(v *CreateWorkspaceRequest) Cre
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CreateAccountRequest) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into CreateBrandRequest
-	err = newStrictDecoder(data).Decode(&dst.CreateBrandRequest)
-	if err == nil {
-		jsonCreateBrandRequest, _ := json.Marshal(dst.CreateBrandRequest)
-		if string(jsonCreateBrandRequest) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'Brand'
+	if jsonDict["type"] == "Brand" {
+		// try to unmarshal JSON data into CreateBrandRequest
+		err = json.Unmarshal(data, &dst.CreateBrandRequest)
+		if err == nil {
+			err = validator.Validate(dst.CreateBrandRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.CreateBrandRequest, return on the first match
+		} else {
 			dst.CreateBrandRequest = nil
-		} else {
-			if err = validator.Validate(dst.CreateBrandRequest); err != nil {
-				dst.CreateBrandRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal CreateAccountRequest as CreateBrandRequest: %s", err.Error())
 		}
-	} else {
-		dst.CreateBrandRequest = nil
 	}
 
-	// try to unmarshal data into CreateOrganizationRequest
-	err = newStrictDecoder(data).Decode(&dst.CreateOrganizationRequest)
-	if err == nil {
-		jsonCreateOrganizationRequest, _ := json.Marshal(dst.CreateOrganizationRequest)
-		if string(jsonCreateOrganizationRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'Organization'
+	if jsonDict["type"] == "Organization" {
+		// try to unmarshal JSON data into CreateOrganizationRequest
+		err = json.Unmarshal(data, &dst.CreateOrganizationRequest)
+		if err == nil {
+			err = validator.Validate(dst.CreateOrganizationRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.CreateOrganizationRequest, return on the first match
+		} else {
 			dst.CreateOrganizationRequest = nil
-		} else {
-			if err = validator.Validate(dst.CreateOrganizationRequest); err != nil {
-				dst.CreateOrganizationRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal CreateAccountRequest as CreateOrganizationRequest: %s", err.Error())
 		}
-	} else {
-		dst.CreateOrganizationRequest = nil
 	}
 
-	// try to unmarshal data into CreateResellerRequest
-	err = newStrictDecoder(data).Decode(&dst.CreateResellerRequest)
-	if err == nil {
-		jsonCreateResellerRequest, _ := json.Marshal(dst.CreateResellerRequest)
-		if string(jsonCreateResellerRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'Reseller'
+	if jsonDict["type"] == "Reseller" {
+		// try to unmarshal JSON data into CreateResellerRequest
+		err = json.Unmarshal(data, &dst.CreateResellerRequest)
+		if err == nil {
+			err = validator.Validate(dst.CreateResellerRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.CreateResellerRequest, return on the first match
+		} else {
 			dst.CreateResellerRequest = nil
-		} else {
-			if err = validator.Validate(dst.CreateResellerRequest); err != nil {
-				dst.CreateResellerRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal CreateAccountRequest as CreateResellerRequest: %s", err.Error())
 		}
-	} else {
-		dst.CreateResellerRequest = nil
 	}
 
-	// try to unmarshal data into CreateWorkspaceRequest
-	err = newStrictDecoder(data).Decode(&dst.CreateWorkspaceRequest)
-	if err == nil {
-		jsonCreateWorkspaceRequest, _ := json.Marshal(dst.CreateWorkspaceRequest)
-		if string(jsonCreateWorkspaceRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'Workspace'
+	if jsonDict["type"] == "Workspace" {
+		// try to unmarshal JSON data into CreateWorkspaceRequest
+		err = json.Unmarshal(data, &dst.CreateWorkspaceRequest)
+		if err == nil {
+			err = validator.Validate(dst.CreateWorkspaceRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.CreateWorkspaceRequest, return on the first match
+		} else {
 			dst.CreateWorkspaceRequest = nil
-		} else {
-			if err = validator.Validate(dst.CreateWorkspaceRequest); err != nil {
-				dst.CreateWorkspaceRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal CreateAccountRequest as CreateWorkspaceRequest: %s", err.Error())
 		}
-	} else {
-		dst.CreateWorkspaceRequest = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.CreateBrandRequest = nil
-		dst.CreateOrganizationRequest = nil
-		dst.CreateResellerRequest = nil
-		dst.CreateWorkspaceRequest = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(CreateAccountRequest)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(CreateAccountRequest): %v", err)
-		}
-
-		return fmt.Errorf("data failed to match schemas in oneOf(CreateAccountRequest)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

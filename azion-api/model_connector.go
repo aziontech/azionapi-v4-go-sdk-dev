@@ -49,74 +49,59 @@ func ConnectorStorageAsConnector(v *ConnectorStorage) Connector {
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *Connector) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into ConnectorHTTP
-	err = newStrictDecoder(data).Decode(&dst.ConnectorHTTP)
-	if err == nil {
-		jsonConnectorHTTP, _ := json.Marshal(dst.ConnectorHTTP)
-		if string(jsonConnectorHTTP) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'http'
+	if jsonDict["type"] == "http" {
+		// try to unmarshal JSON data into ConnectorHTTP
+		err = json.Unmarshal(data, &dst.ConnectorHTTP)
+		if err == nil {
+			err = validator.Validate(dst.ConnectorHTTP)
+		}
+		if err == nil {
+			return nil // data stored in dst.ConnectorHTTP, return on the first match
+		} else {
 			dst.ConnectorHTTP = nil
-		} else {
-			if err = validator.Validate(dst.ConnectorHTTP); err != nil {
-				dst.ConnectorHTTP = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal Connector as ConnectorHTTP: %s", err.Error())
 		}
-	} else {
-		dst.ConnectorHTTP = nil
 	}
 
-	// try to unmarshal data into ConnectorLiveIngest
-	err = newStrictDecoder(data).Decode(&dst.ConnectorLiveIngest)
-	if err == nil {
-		jsonConnectorLiveIngest, _ := json.Marshal(dst.ConnectorLiveIngest)
-		if string(jsonConnectorLiveIngest) == "{}" { // empty struct
+	// check if the discriminator value is 'live_ingest'
+	if jsonDict["type"] == "live_ingest" {
+		// try to unmarshal JSON data into ConnectorLiveIngest
+		err = json.Unmarshal(data, &dst.ConnectorLiveIngest)
+		if err == nil {
+			err = validator.Validate(dst.ConnectorLiveIngest)
+		}
+		if err == nil {
+			return nil // data stored in dst.ConnectorLiveIngest, return on the first match
+		} else {
 			dst.ConnectorLiveIngest = nil
-		} else {
-			if err = validator.Validate(dst.ConnectorLiveIngest); err != nil {
-				dst.ConnectorLiveIngest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal Connector as ConnectorLiveIngest: %s", err.Error())
 		}
-	} else {
-		dst.ConnectorLiveIngest = nil
 	}
 
-	// try to unmarshal data into ConnectorStorage
-	err = newStrictDecoder(data).Decode(&dst.ConnectorStorage)
-	if err == nil {
-		jsonConnectorStorage, _ := json.Marshal(dst.ConnectorStorage)
-		if string(jsonConnectorStorage) == "{}" { // empty struct
+	// check if the discriminator value is 'storage'
+	if jsonDict["type"] == "storage" {
+		// try to unmarshal JSON data into ConnectorStorage
+		err = json.Unmarshal(data, &dst.ConnectorStorage)
+		if err == nil {
+			err = validator.Validate(dst.ConnectorStorage)
+		}
+		if err == nil {
+			return nil // data stored in dst.ConnectorStorage, return on the first match
+		} else {
 			dst.ConnectorStorage = nil
-		} else {
-			if err = validator.Validate(dst.ConnectorStorage); err != nil {
-				dst.ConnectorStorage = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal Connector as ConnectorStorage: %s", err.Error())
 		}
-	} else {
-		dst.ConnectorStorage = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.ConnectorHTTP = nil
-		dst.ConnectorLiveIngest = nil
-		dst.ConnectorStorage = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(Connector)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(Connector): %v", err)
-		}
-
-		return fmt.Errorf("data failed to match schemas in oneOf(Connector)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

@@ -57,92 +57,74 @@ func WorkspaceAsResponseListAccount(v *Workspace) ResponseListAccount {
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ResponseListAccount) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into Brand
-	err = newStrictDecoder(data).Decode(&dst.Brand)
-	if err == nil {
-		jsonBrand, _ := json.Marshal(dst.Brand)
-		if string(jsonBrand) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'Brand'
+	if jsonDict["type"] == "Brand" {
+		// try to unmarshal JSON data into Brand
+		err = json.Unmarshal(data, &dst.Brand)
+		if err == nil {
+			err = validator.Validate(dst.Brand)
+		}
+		if err == nil {
+			return nil // data stored in dst.Brand, return on the first match
+		} else {
 			dst.Brand = nil
-		} else {
-			if err = validator.Validate(dst.Brand); err != nil {
-				dst.Brand = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal ResponseListAccount as Brand: %s", err.Error())
 		}
-	} else {
-		dst.Brand = nil
 	}
 
-	// try to unmarshal data into Organization
-	err = newStrictDecoder(data).Decode(&dst.Organization)
-	if err == nil {
-		jsonOrganization, _ := json.Marshal(dst.Organization)
-		if string(jsonOrganization) == "{}" { // empty struct
+	// check if the discriminator value is 'Organization'
+	if jsonDict["type"] == "Organization" {
+		// try to unmarshal JSON data into Organization
+		err = json.Unmarshal(data, &dst.Organization)
+		if err == nil {
+			err = validator.Validate(dst.Organization)
+		}
+		if err == nil {
+			return nil // data stored in dst.Organization, return on the first match
+		} else {
 			dst.Organization = nil
-		} else {
-			if err = validator.Validate(dst.Organization); err != nil {
-				dst.Organization = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal ResponseListAccount as Organization: %s", err.Error())
 		}
-	} else {
-		dst.Organization = nil
 	}
 
-	// try to unmarshal data into Reseller
-	err = newStrictDecoder(data).Decode(&dst.Reseller)
-	if err == nil {
-		jsonReseller, _ := json.Marshal(dst.Reseller)
-		if string(jsonReseller) == "{}" { // empty struct
+	// check if the discriminator value is 'Reseller'
+	if jsonDict["type"] == "Reseller" {
+		// try to unmarshal JSON data into Reseller
+		err = json.Unmarshal(data, &dst.Reseller)
+		if err == nil {
+			err = validator.Validate(dst.Reseller)
+		}
+		if err == nil {
+			return nil // data stored in dst.Reseller, return on the first match
+		} else {
 			dst.Reseller = nil
-		} else {
-			if err = validator.Validate(dst.Reseller); err != nil {
-				dst.Reseller = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal ResponseListAccount as Reseller: %s", err.Error())
 		}
-	} else {
-		dst.Reseller = nil
 	}
 
-	// try to unmarshal data into Workspace
-	err = newStrictDecoder(data).Decode(&dst.Workspace)
-	if err == nil {
-		jsonWorkspace, _ := json.Marshal(dst.Workspace)
-		if string(jsonWorkspace) == "{}" { // empty struct
+	// check if the discriminator value is 'Workspace'
+	if jsonDict["type"] == "Workspace" {
+		// try to unmarshal JSON data into Workspace
+		err = json.Unmarshal(data, &dst.Workspace)
+		if err == nil {
+			err = validator.Validate(dst.Workspace)
+		}
+		if err == nil {
+			return nil // data stored in dst.Workspace, return on the first match
+		} else {
 			dst.Workspace = nil
-		} else {
-			if err = validator.Validate(dst.Workspace); err != nil {
-				dst.Workspace = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal ResponseListAccount as Workspace: %s", err.Error())
 		}
-	} else {
-		dst.Workspace = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.Brand = nil
-		dst.Organization = nil
-		dst.Reseller = nil
-		dst.Workspace = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(ResponseListAccount)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(ResponseListAccount): %v", err)
-		}
-
-		return fmt.Errorf("data failed to match schemas in oneOf(ResponseListAccount)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
