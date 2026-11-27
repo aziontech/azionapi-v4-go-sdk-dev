@@ -14,7 +14,6 @@ package azionapi
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
 
 // FirewallBehaviorObjectArgsRequestAttributes - Attributes object whose shape depends on the behavior type. Use SetCustomResponseAttributes for set_custom_response, SetRateLimitAttributes for set_rate_limit, SetWafAttributes for set_waf.
@@ -51,51 +50,39 @@ func (dst *FirewallBehaviorObjectArgsRequestAttributes) UnmarshalJSON(data []byt
 	var err error
 	match := 0
 	// try to unmarshal data into FirewallBehaviorSetCustomResponseAttributesRequest
-	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorSetCustomResponseAttributesRequest)
+	err = json.Unmarshal(data, &dst.FirewallBehaviorSetCustomResponseAttributesRequest)
 	if err == nil {
 		jsonFirewallBehaviorSetCustomResponseAttributesRequest, _ := json.Marshal(dst.FirewallBehaviorSetCustomResponseAttributesRequest)
 		if string(jsonFirewallBehaviorSetCustomResponseAttributesRequest) == "{}" { // empty struct
 			dst.FirewallBehaviorSetCustomResponseAttributesRequest = nil
 		} else {
-			if err = validator.Validate(dst.FirewallBehaviorSetCustomResponseAttributesRequest); err != nil {
-				dst.FirewallBehaviorSetCustomResponseAttributesRequest = nil
-			} else {
-				match++
-			}
+			match++
 		}
 	} else {
 		dst.FirewallBehaviorSetCustomResponseAttributesRequest = nil
 	}
 
 	// try to unmarshal data into FirewallBehaviorSetRateLimitAttributesRequest
-	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorSetRateLimitAttributesRequest)
+	err = json.Unmarshal(data, &dst.FirewallBehaviorSetRateLimitAttributesRequest)
 	if err == nil {
 		jsonFirewallBehaviorSetRateLimitAttributesRequest, _ := json.Marshal(dst.FirewallBehaviorSetRateLimitAttributesRequest)
 		if string(jsonFirewallBehaviorSetRateLimitAttributesRequest) == "{}" { // empty struct
 			dst.FirewallBehaviorSetRateLimitAttributesRequest = nil
 		} else {
-			if err = validator.Validate(dst.FirewallBehaviorSetRateLimitAttributesRequest); err != nil {
-				dst.FirewallBehaviorSetRateLimitAttributesRequest = nil
-			} else {
-				match++
-			}
+			match++
 		}
 	} else {
 		dst.FirewallBehaviorSetRateLimitAttributesRequest = nil
 	}
 
 	// try to unmarshal data into FirewallBehaviorSetWafAttributesRequest
-	err = newStrictDecoder(data).Decode(&dst.FirewallBehaviorSetWafAttributesRequest)
+	err = json.Unmarshal(data, &dst.FirewallBehaviorSetWafAttributesRequest)
 	if err == nil {
 		jsonFirewallBehaviorSetWafAttributesRequest, _ := json.Marshal(dst.FirewallBehaviorSetWafAttributesRequest)
 		if string(jsonFirewallBehaviorSetWafAttributesRequest) == "{}" { // empty struct
 			dst.FirewallBehaviorSetWafAttributesRequest = nil
 		} else {
-			if err = validator.Validate(dst.FirewallBehaviorSetWafAttributesRequest); err != nil {
-				dst.FirewallBehaviorSetWafAttributesRequest = nil
-			} else {
-				match++
-			}
+			match++
 		}
 	} else {
 		dst.FirewallBehaviorSetWafAttributesRequest = nil

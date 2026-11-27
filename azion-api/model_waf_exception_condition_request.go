@@ -49,74 +49,239 @@ func WAFExceptionSpecificConditionOnValueRequestAsWAFExceptionConditionRequest(v
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *WAFExceptionConditionRequest) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into WAFExceptionGenericConditionRequest
-	err = newStrictDecoder(data).Decode(&dst.WAFExceptionGenericConditionRequest)
-	if err == nil {
-		jsonWAFExceptionGenericConditionRequest, _ := json.Marshal(dst.WAFExceptionGenericConditionRequest)
-		if string(jsonWAFExceptionGenericConditionRequest) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'any_http_header_name'
+	if jsonDict["match"] == "any_http_header_name" {
+		// try to unmarshal JSON data into WAFExceptionGenericConditionRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionGenericConditionRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionGenericConditionRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionGenericConditionRequest, return on the first match
+		} else {
 			dst.WAFExceptionGenericConditionRequest = nil
-		} else {
-			if err = validator.Validate(dst.WAFExceptionGenericConditionRequest); err != nil {
-				dst.WAFExceptionGenericConditionRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionGenericConditionRequest: %s", err.Error())
 		}
-	} else {
-		dst.WAFExceptionGenericConditionRequest = nil
 	}
 
-	// try to unmarshal data into WAFExceptionSpecificConditionOnNameRequest
-	err = newStrictDecoder(data).Decode(&dst.WAFExceptionSpecificConditionOnNameRequest)
-	if err == nil {
-		jsonWAFExceptionSpecificConditionOnNameRequest, _ := json.Marshal(dst.WAFExceptionSpecificConditionOnNameRequest)
-		if string(jsonWAFExceptionSpecificConditionOnNameRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'any_http_header_value'
+	if jsonDict["match"] == "any_http_header_value" {
+		// try to unmarshal JSON data into WAFExceptionGenericConditionRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionGenericConditionRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionGenericConditionRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionGenericConditionRequest, return on the first match
+		} else {
+			dst.WAFExceptionGenericConditionRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionGenericConditionRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'any_query_string_name'
+	if jsonDict["match"] == "any_query_string_name" {
+		// try to unmarshal JSON data into WAFExceptionGenericConditionRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionGenericConditionRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionGenericConditionRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionGenericConditionRequest, return on the first match
+		} else {
+			dst.WAFExceptionGenericConditionRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionGenericConditionRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'any_query_string_value'
+	if jsonDict["match"] == "any_query_string_value" {
+		// try to unmarshal JSON data into WAFExceptionGenericConditionRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionGenericConditionRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionGenericConditionRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionGenericConditionRequest, return on the first match
+		} else {
+			dst.WAFExceptionGenericConditionRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionGenericConditionRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'any_url'
+	if jsonDict["match"] == "any_url" {
+		// try to unmarshal JSON data into WAFExceptionGenericConditionRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionGenericConditionRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionGenericConditionRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionGenericConditionRequest, return on the first match
+		} else {
+			dst.WAFExceptionGenericConditionRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionGenericConditionRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'body_form_field_name'
+	if jsonDict["match"] == "body_form_field_name" {
+		// try to unmarshal JSON data into WAFExceptionGenericConditionRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionGenericConditionRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionGenericConditionRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionGenericConditionRequest, return on the first match
+		} else {
+			dst.WAFExceptionGenericConditionRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionGenericConditionRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'body_form_field_value'
+	if jsonDict["match"] == "body_form_field_value" {
+		// try to unmarshal JSON data into WAFExceptionGenericConditionRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionGenericConditionRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionGenericConditionRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionGenericConditionRequest, return on the first match
+		} else {
+			dst.WAFExceptionGenericConditionRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionGenericConditionRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'file_extension'
+	if jsonDict["match"] == "file_extension" {
+		// try to unmarshal JSON data into WAFExceptionGenericConditionRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionGenericConditionRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionGenericConditionRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionGenericConditionRequest, return on the first match
+		} else {
+			dst.WAFExceptionGenericConditionRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionGenericConditionRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'raw_body'
+	if jsonDict["match"] == "raw_body" {
+		// try to unmarshal JSON data into WAFExceptionGenericConditionRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionGenericConditionRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionGenericConditionRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionGenericConditionRequest, return on the first match
+		} else {
+			dst.WAFExceptionGenericConditionRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionGenericConditionRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'specific_body_form_field_name'
+	if jsonDict["match"] == "specific_body_form_field_name" {
+		// try to unmarshal JSON data into WAFExceptionSpecificConditionOnNameRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionSpecificConditionOnNameRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionSpecificConditionOnNameRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionSpecificConditionOnNameRequest, return on the first match
+		} else {
 			dst.WAFExceptionSpecificConditionOnNameRequest = nil
-		} else {
-			if err = validator.Validate(dst.WAFExceptionSpecificConditionOnNameRequest); err != nil {
-				dst.WAFExceptionSpecificConditionOnNameRequest = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionSpecificConditionOnNameRequest: %s", err.Error())
 		}
-	} else {
-		dst.WAFExceptionSpecificConditionOnNameRequest = nil
 	}
 
-	// try to unmarshal data into WAFExceptionSpecificConditionOnValueRequest
-	err = newStrictDecoder(data).Decode(&dst.WAFExceptionSpecificConditionOnValueRequest)
-	if err == nil {
-		jsonWAFExceptionSpecificConditionOnValueRequest, _ := json.Marshal(dst.WAFExceptionSpecificConditionOnValueRequest)
-		if string(jsonWAFExceptionSpecificConditionOnValueRequest) == "{}" { // empty struct
+	// check if the discriminator value is 'specific_body_form_field_value'
+	if jsonDict["match"] == "specific_body_form_field_value" {
+		// try to unmarshal JSON data into WAFExceptionSpecificConditionOnValueRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionSpecificConditionOnValueRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionSpecificConditionOnValueRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionSpecificConditionOnValueRequest, return on the first match
+		} else {
 			dst.WAFExceptionSpecificConditionOnValueRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionSpecificConditionOnValueRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'specific_http_header_name'
+	if jsonDict["match"] == "specific_http_header_name" {
+		// try to unmarshal JSON data into WAFExceptionSpecificConditionOnNameRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionSpecificConditionOnNameRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionSpecificConditionOnNameRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionSpecificConditionOnNameRequest, return on the first match
 		} else {
-			if err = validator.Validate(dst.WAFExceptionSpecificConditionOnValueRequest); err != nil {
-				dst.WAFExceptionSpecificConditionOnValueRequest = nil
-			} else {
-				match++
-			}
+			dst.WAFExceptionSpecificConditionOnNameRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionSpecificConditionOnNameRequest: %s", err.Error())
 		}
-	} else {
-		dst.WAFExceptionSpecificConditionOnValueRequest = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.WAFExceptionGenericConditionRequest = nil
-		dst.WAFExceptionSpecificConditionOnNameRequest = nil
-		dst.WAFExceptionSpecificConditionOnValueRequest = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(WAFExceptionConditionRequest)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(WAFExceptionConditionRequest): %v", err)
+	// check if the discriminator value is 'specific_http_header_value'
+	if jsonDict["match"] == "specific_http_header_value" {
+		// try to unmarshal JSON data into WAFExceptionSpecificConditionOnValueRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionSpecificConditionOnValueRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionSpecificConditionOnValueRequest)
 		}
-
-		return fmt.Errorf("data failed to match schemas in oneOf(WAFExceptionConditionRequest)")
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionSpecificConditionOnValueRequest, return on the first match
+		} else {
+			dst.WAFExceptionSpecificConditionOnValueRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionSpecificConditionOnValueRequest: %s", err.Error())
+		}
 	}
+
+	// check if the discriminator value is 'specific_query_string_name'
+	if jsonDict["match"] == "specific_query_string_name" {
+		// try to unmarshal JSON data into WAFExceptionSpecificConditionOnNameRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionSpecificConditionOnNameRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionSpecificConditionOnNameRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionSpecificConditionOnNameRequest, return on the first match
+		} else {
+			dst.WAFExceptionSpecificConditionOnNameRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionSpecificConditionOnNameRequest: %s", err.Error())
+		}
+	}
+
+	// check if the discriminator value is 'specific_query_string_value'
+	if jsonDict["match"] == "specific_query_string_value" {
+		// try to unmarshal JSON data into WAFExceptionSpecificConditionOnValueRequest
+		err = json.Unmarshal(data, &dst.WAFExceptionSpecificConditionOnValueRequest)
+		if err == nil {
+			err = validator.Validate(dst.WAFExceptionSpecificConditionOnValueRequest)
+		}
+		if err == nil {
+			return nil // data stored in dst.WAFExceptionSpecificConditionOnValueRequest, return on the first match
+		} else {
+			dst.WAFExceptionSpecificConditionOnValueRequest = nil
+			return fmt.Errorf("failed to unmarshal WAFExceptionConditionRequest as WAFExceptionSpecificConditionOnValueRequest: %s", err.Error())
+		}
+	}
+
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

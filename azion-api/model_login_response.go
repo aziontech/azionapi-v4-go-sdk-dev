@@ -41,56 +41,44 @@ func TokenPairAsLoginResponse(v *TokenPair) LoginResponse {
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *LoginResponse) UnmarshalJSON(data []byte) error {
 	var err error
-	match := 0
-	// try to unmarshal data into MFAToken
-	err = newStrictDecoder(data).Decode(&dst.MFAToken)
-	if err == nil {
-		jsonMFAToken, _ := json.Marshal(dst.MFAToken)
-		if string(jsonMFAToken) == "{}" { // empty struct
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = newStrictDecoder(data).Decode(&jsonDict)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup")
+	}
+
+	// check if the discriminator value is 'MFAToken'
+	if jsonDict["response_type"] == "MFAToken" {
+		// try to unmarshal JSON data into MFAToken
+		err = json.Unmarshal(data, &dst.MFAToken)
+		if err == nil {
+			err = validator.Validate(dst.MFAToken)
+		}
+		if err == nil {
+			return nil // data stored in dst.MFAToken, return on the first match
+		} else {
 			dst.MFAToken = nil
-		} else {
-			if err = validator.Validate(dst.MFAToken); err != nil {
-				dst.MFAToken = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal LoginResponse as MFAToken: %s", err.Error())
 		}
-	} else {
-		dst.MFAToken = nil
 	}
 
-	// try to unmarshal data into TokenPair
-	err = newStrictDecoder(data).Decode(&dst.TokenPair)
-	if err == nil {
-		jsonTokenPair, _ := json.Marshal(dst.TokenPair)
-		if string(jsonTokenPair) == "{}" { // empty struct
+	// check if the discriminator value is 'TokenPair'
+	if jsonDict["response_type"] == "TokenPair" {
+		// try to unmarshal JSON data into TokenPair
+		err = json.Unmarshal(data, &dst.TokenPair)
+		if err == nil {
+			err = validator.Validate(dst.TokenPair)
+		}
+		if err == nil {
+			return nil // data stored in dst.TokenPair, return on the first match
+		} else {
 			dst.TokenPair = nil
-		} else {
-			if err = validator.Validate(dst.TokenPair); err != nil {
-				dst.TokenPair = nil
-			} else {
-				match++
-			}
+			return fmt.Errorf("failed to unmarshal LoginResponse as TokenPair: %s", err.Error())
 		}
-	} else {
-		dst.TokenPair = nil
 	}
 
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.MFAToken = nil
-		dst.TokenPair = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(LoginResponse)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		if err != nil {
-			return fmt.Errorf("data failed to match schemas in oneOf(LoginResponse): %v", err)
-		}
-
-		return fmt.Errorf("data failed to match schemas in oneOf(LoginResponse)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
